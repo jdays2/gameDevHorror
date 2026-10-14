@@ -33,6 +33,7 @@ namespace EmergencyShift
         [Serializable] private sealed class EffectSample
         {
             public int frame,phase,health; public float maxLight; public int spray;
+            public int hitSprays,hitsShown; public bool staggered,playerShadow;
             public List<GibSample> gibs=new List<GibSample>();
         }
         [Serializable] private sealed class EffectReport { public List<EffectSample> samples; }
@@ -96,6 +97,9 @@ namespace EmergencyShift
                     File.WriteAllBytes(Path.Combine(folder, "frame-" + FramesWritten.ToString("0000") + ".png"), texture.EncodeToPNG());
                     var sample=new EffectSample{frame=FramesWritten,phase=phase,health=target!=null?target.Health:2,
                         spray=UnityEngine.Object.FindObjectsByType<BloodRuptureBurst2D>().Length};
+                    sample.hitSprays=UnityEngine.Object.FindObjectsByType<BloodHitSpray2D>().Length;
+                    if(target!=null){sample.hitsShown=target.GetComponent<StalkerHitResponse2D>().HitsShown;sample.staggered=target.IsStaggered;}
+                    var shadow=player.GetComponent<PlayerShotShadow2D>();sample.playerShadow=shadow!=null&&shadow.Visible;
                     foreach(var gib in UnityEngine.Object.FindObjectsByType<GibMotion2D>())
                         sample.gibs.Add(new GibSample{position=gib.transform.position,velocity=gib.Velocity,height=gib.Height,settled=gib.Settled});
                     foreach(var effect in UnityEngine.Object.FindObjectsByType<ShotEffect2D>())

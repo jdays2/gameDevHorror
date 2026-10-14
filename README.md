@@ -53,3 +53,5 @@ Scene View оставлен в 2D с отключённым просмотром
 В стартовой комнате слева от капсулы лежат четыре тестовых сталкера с кровью и кусками. Включить F и направить фонарь влево/влево вниз. Группа `Test corpses — Stalkers` сохранена в Hierarchy: трупы неподвижны, без AI и коллайдеров. Можно отключить группу или удалить командой `Emergency Shift → Preview → Remove test corpses`.
 
 v0.6.1: [вспышка и разрыв до/после](Docs/Demos/combat-effects-before-after-v061.mp4), [разрыв в замедлении](Docs/Demos/stalker-rupture-slow-v061.mp4). Настройки — Docs/WEAPONS.md. Части тела теперь получают разный импульс/подлёт и быстро останавливаются после посадки.
+
+v0.6.2: [план и приоритеты](Docs/COMBAT_FEEL_PLAN.md), [текущие свет/попадания](Docs/Demos/combat-feel-v062.mp4). У сталкеров индивидуальная домашняя зона; выбирать экземпляр в Scene с Gizmos. Player → Flashlight2D → Aim — плавность разворота; Main Camera → CameraFollow2D — плавность следования. Настройки и ограничения — Docs/WEAPONS.md и Docs/ENEMIES.md.

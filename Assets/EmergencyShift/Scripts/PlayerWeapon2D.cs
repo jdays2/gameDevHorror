@@ -21,6 +21,7 @@ namespace EmergencyShift
         [SerializeField, Min(0.5f)] private float bulletRange = 10f;
         private Flashlight2D flashlight;
         private PlayerLife2D life;
+        private PlayerShotShadow2D shotShadow;
         private float nextShot;
         public bool HasWeapon { get; private set; }
         public int Ammo { get; private set; }
@@ -34,7 +35,7 @@ namespace EmergencyShift
 
         private void Awake()
         {
-            flashlight = GetComponent<Flashlight2D>(); life = GetComponent<PlayerLife2D>();
+            flashlight = GetComponent<Flashlight2D>(); life = GetComponent<PlayerLife2D>();shotShadow=GetComponent<PlayerShotShadow2D>();
             if (weaponPivot != null) weaponPivot.gameObject.SetActive(false);
         }
         private bool CanUse => isActiveAndEnabled && (life == null || !life.IsDead);
@@ -80,6 +81,7 @@ namespace EmergencyShift
             Ammo--; ShotsFired++; nextShot = Time.time + secondsBetweenShots;
             var flash = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
             flash.Play(visualProfile, false, direction);
+            if(shotShadow!=null)shotShadow.Follow(flash.LightSource);
             if (blockedMuzzle.collider == null)
             {
                 var bullet = Instantiate(bulletPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);

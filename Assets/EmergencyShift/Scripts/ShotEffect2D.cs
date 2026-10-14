@@ -18,6 +18,7 @@ namespace EmergencyShift
         private Color tint;
         private bool configured;
         private bool isImpact;
+        public Light2D LightSource => flash;
 
         public void Configure(Light2D light, SpriteRenderer[] shapes) { flash = light; strokes = shapes; }
         public void ConfigureFlame(Light2D light, SpriteRenderer[] sparks, SpriteRenderer core, SpriteRenderer[] layers)

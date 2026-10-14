@@ -15,6 +15,11 @@ namespace EmergencyShift
         [Header("Optics — world units and degrees")]
         [SerializeField, Min(0.5f)] private float range = 4.2f;
         [SerializeField, Range(20f, 140f)] private float beamAngle = 80f;
+        [Header("Aim — player input")]
+        [SerializeField, Min(0.01f)] private float turnSmoothTime = .075f;
+        [SerializeField, Min(30)] private float maximumTurnSpeed = 720f;
+        [SerializeField, Min(0)] private float cursorDeadZone = .25f;
+        private float angularVelocity;
         public bool IsOn => beam != null && beam.enabled;
         public float Range => range;
         public float BeamAngle => beamAngle;
@@ -56,15 +61,27 @@ namespace EmergencyShift
             if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame) Toggle();
             if (Mouse.current == null || worldCamera == null || aimPivot == null) return;
             Vector3 world = worldCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            AimAt(world);
+            AimTowards(world,Time.deltaTime);
         }
 
+        /// <summary>Плавный игровой ввод; оружие и луч читают один фактический угол.</summary>
+        public void AimTowards(Vector2 worldPoint,float deltaTime)
+        {
+            if(aimPivot==null||deltaTime<=0)return;
+            Vector2 offset=worldPoint-(Vector2)transform.position;
+            if(offset.sqrMagnitude<cursorDeadZone*cursorDeadZone){angularVelocity=0;return;}
+            float target=Mathf.Atan2(offset.y,offset.x)*Mathf.Rad2Deg-90;
+            float angle=Mathf.SmoothDampAngle(aimPivot.eulerAngles.z,target,ref angularVelocity,turnSmoothTime,maximumTurnSpeed,deltaTime);
+            aimPivot.rotation=Quaternion.Euler(0,0,angle);
+        }
+
+        /// <summary>Явная установка позы для сценарных демонстраций и телепорта; ввод использует AimTowards.</summary>
         public void AimAt(Vector2 worldPoint)
         {
             if (aimPivot == null) return;
             Vector2 direction = worldPoint - (Vector2)transform.position;
             if (direction.sqrMagnitude > 0.001f)
-                aimPivot.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
+            {aimPivot.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);angularVelocity=0;}
         }
 
         /// <summary>Игровое освещение основным лучом. Слабый ближний свет не отпугивает врага.</summary>

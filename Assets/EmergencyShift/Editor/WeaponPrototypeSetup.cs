@@ -66,15 +66,15 @@ namespace EmergencyShift.Editor
             if (index == 1)
             {
                 p.displayName = "Холодный след"; p.flashColor = new Color(0.66f, 0.79f, 0.84f);
-                p.bulletColor = new Color(0.77f, 0.90f, 0.93f); p.flashSeconds = 0.06f;
-                p.flashRadius = 1.5f; p.flashIntensity = 1.7f; p.bulletSpeed = 28;
+                p.bulletColor = new Color(0.77f, 0.90f, 0.93f); p.flashSeconds = 0.14f;
+                p.flashRadius = 3.4f; p.flashIntensity = 7.2f; p.bulletSpeed = 28;
                 p.trailLength = 0.7f; p.trailWidth = 0.02f; p.bulletLightRadius = 0.38f; p.bulletLightIntensity = 0.45f;
             }
             if (index == 2)
             {
                 p.displayName = "Красный импульс"; p.flashColor = new Color(1, 0.40f, 0.25f);
-                p.bulletColor = new Color(1, 0.64f, 0.38f); p.flashSeconds = 0.12f;
-                p.flashRadius = 2.3f; p.flashIntensity = 2.4f; p.bulletSpeed = 24;
+                p.bulletColor = new Color(1, 0.64f, 0.38f); p.flashSeconds = 0.18f;
+                p.flashRadius = 3.9f; p.flashIntensity = 9f; p.bulletSpeed = 24;
                 p.trailLength = 0.54f; p.trailWidth = 0.04f; p.bulletLightRadius = 0.3f; p.bulletLightIntensity = 0.3f;
                 p.impactSeconds = 0.16f;
             }

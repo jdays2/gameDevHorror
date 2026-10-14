@@ -6,7 +6,7 @@ namespace EmergencyShift
     public sealed class CameraFollow2D : MonoBehaviour
     {
         [SerializeField] private Transform target;
-        [SerializeField, Min(0.01f)] private float smoothing = 0.12f;
+        [SerializeField, Min(0.01f)] private float smoothing = 0.18f;
         private Vector3 velocity;
         public void Configure(Transform player) => target = player;
         private void LateUpdate()

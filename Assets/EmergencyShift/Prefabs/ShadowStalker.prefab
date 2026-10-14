@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 806753377248091079}
   - component: {fileID: 13470835391138406}
   - component: {fileID: 2678899024459319601}
+  - component: {fileID: 8962063445162029192}
   m_Layer: 0
   m_Name: ShadowStalker
   m_TagString: Untagged
@@ -442,6 +443,11 @@ MonoBehaviour:
   attackDuration: 0.8
   attackCooldown: 1.2
   maximumHealth: 2
+  habitatRadius: 3.2
+  leaveMargin: 0.6
+  loseSightDelay: 1.2
+  hitStaggerSeconds: 0.09
+  hitPushSpeed: 1.6
 --- !u!114 &806753377248091079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,6 +545,24 @@ MonoBehaviour:
   projectionOpacity: 0.62
   projectionStretch: 0.3
   maximumLength: 1.35
+--- !u!114 &8962063445162029192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801567498149846478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338c7d1a9e8f670409c139ba9c20a7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerHitResponse2D
+  visual: {fileID: 734055481866270515}
+  body: {fileID: 1361151187204916597}
+  bloodSprite: {fileID: 21300000, guid: c14c5873bb679f44fb2ff0a8f297f76c, type: 2}
+  bloodMaterial: {fileID: 2100000, guid: 1356292d317ac7a47bb9e752bcb92db2, type: 2}
+  reactionSeconds: 0.16
+  visualPush: 0.07
 --- !u!1 &7750864743140940108
 GameObject:
   m_ObjectHideFlags: 0

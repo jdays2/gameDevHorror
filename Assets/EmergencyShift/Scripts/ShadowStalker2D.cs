@@ -6,7 +6,7 @@ namespace EmergencyShift
     [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
     public sealed class ShadowStalker2D : MonoBehaviour
     {
-        public enum BehaviourState { Sneaking, Recoiling, Retreating, Waiting, Attacking, Dead }
+        public enum BehaviourState { Sneaking, Recoiling, Retreating, Waiting, Attacking, Dead, Dormant, Returning }
 
         [SerializeField] private Transform player;
         [SerializeField] private Flashlight2D flashlight;
@@ -27,6 +27,13 @@ namespace EmergencyShift
         [SerializeField, Min(0.1f)] private float attackDuration = 0.8f;
         [SerializeField, Min(0)] private float attackCooldown = 1.2f;
         [SerializeField, Min(1)] private int maximumHealth = 2;
+        [Header("Habitat — center is spawn position")]
+        [SerializeField, Min(.5f)] private float habitatRadius = 3.2f;
+        [SerializeField, Min(.1f)] private float leaveMargin = .6f;
+        [SerializeField, Min(0)] private float loseSightDelay = 1.2f;
+        [Header("Bullet hit reaction")]
+        [SerializeField, Min(0)] private float hitStaggerSeconds = .09f;
+        [SerializeField, Min(0)] private float hitPushSpeed = 1.6f;
 
         private Rigidbody2D body;
         private CircleCollider2D bodyCollider;
@@ -39,6 +46,14 @@ namespace EmergencyShift
         private GoreBurst2D gore;
         private bool strikeApplied;
         private float attackReadyAt;
+        private Vector2 home;
+        private float sightLostFor;
+        private float staggerUntil;
+        private Vector2 hitPush;
+        private StalkerHitResponse2D hitResponse;
+        public Vector2 Home => home;
+        public float HabitatRadius => habitatRadius;
+        public bool IsStaggered => State!=BehaviourState.Dead && Time.time<staggerUntil;
         public BehaviourState State { get; private set; }
         public float Closure { get; private set; }
         public bool Exposed { get; private set; }
@@ -62,7 +77,8 @@ namespace EmergencyShift
         {
             body = GetComponent<Rigidbody2D>(); bodyCollider = GetComponent<CircleCollider2D>();
             playerLife = player != null ? player.GetComponent<PlayerLife2D>() : null;
-            gore = GetComponent<GoreBurst2D>(); State = BehaviourState.Sneaking; Health = maximumHealth;
+            gore = GetComponent<GoreBurst2D>();hitResponse=GetComponent<StalkerHitResponse2D>();
+            home=body.position;State = BehaviourState.Dormant; Health = maximumHealth;
         }
 
         private void FixedUpdate()
@@ -70,6 +86,27 @@ namespace EmergencyShift
             stateTime += Time.fixedDeltaTime;
             if (State == BehaviourState.Dead) { body.linearVelocity = Vector2.zero; return; }
             if (player == null || flashlight == null) { body.linearVelocity = Vector2.zero; return; }
+            bool aliveTarget=playerLife==null||!playerLife.IsDead;
+            float homeDistance=Vector2.Distance(home,player.position);
+            bool lineOfSight=aliveTarget&&Physics2D.Linecast(body.position,player.position,blockingGeometry).collider==null;
+            bool inside=homeDistance<=habitatRadius;
+            bool leaves=homeDistance>habitatRadius+leaveMargin;
+            if(IsStaggered){body.linearVelocity=hitPush*Mathf.Clamp01((staggerUntil-Time.time)/Mathf.Max(.01f,hitStaggerSeconds));return;}
+            if(State==BehaviourState.Dormant||State==BehaviourState.Returning)
+            {
+                if(inside&&lineOfSight){sightLostFor=0;Enter(BehaviourState.Sneaking);}
+                else
+                {
+                    Exposed=false;exposureTime=0;Closure=Mathf.MoveTowards(Closure,0,Time.fixedDeltaTime*3);
+                    Vector2 back=home-body.position;
+                    if(back.magnitude>.15f){State=BehaviourState.Returning;body.linearVelocity=FindClearDirection(back.normalized)*creepSpeed;}
+                    else{State=BehaviourState.Dormant;body.linearVelocity=Vector2.zero;}
+                    return;
+                }
+            }
+            sightLostFor=lineOfSight?0:sightLostFor+Time.fixedDeltaTime;
+            if(!aliveTarget||leaves||sightLostFor>loseSightDelay||Vector2.Distance(home,body.position)>habitatRadius+leaveMargin)
+            {exposureTime=0;Enter(BehaviourState.Returning);body.linearVelocity=Vector2.zero;return;}
             Exposed = flashlight.Illuminates(body.position, blockingGeometry);
             bool closeLight = Exposed && Vector2.Distance(body.position, flashlight.Origin) <= lightFearDistance;
             if ((State == BehaviourState.Sneaking || State == BehaviourState.Attacking) && closeLight)
@@ -163,6 +200,16 @@ namespace EmergencyShift
         }
 
         private void Enter(BehaviourState state) { State = state; stateTime = 0; }
+        /// <summary>Пуля задаёт направление реакции; здоровье и Dead остаются единственным источником истины.</summary>
+        public void ApplyBulletHit(int amount,Vector2 point,Vector2 direction)
+        {
+            if(State==BehaviourState.Dead||amount<=0)return;
+            TakeDamage(amount);
+            if(hitResponse!=null)hitResponse.Play(point,direction,State==BehaviourState.Dead);
+            if(State==BehaviourState.Dead)return;
+            staggerUntil=Time.time+hitStaggerSeconds;hitPush=direction.normalized*hitPushSpeed;
+            if(State==BehaviourState.Attacking){Enter(BehaviourState.Sneaking);attackReadyAt=Time.time+.35f;}
+        }
         public void TakeDamage(int amount)
         {
             if (State == BehaviourState.Dead || amount <= 0) return;
@@ -179,5 +226,11 @@ namespace EmergencyShift
             if (gore != null) gore.Play(blockingGeometry);
         }
         private void OnDisable() { if (body != null) body.linearVelocity = Vector2.zero; }
+        private void OnDrawGizmosSelected()
+        {
+            Vector3 center=Application.isPlaying?(Vector3)home:transform.position;
+            Gizmos.color=new Color(.3f,.75f,.85f,.7f);Gizmos.DrawWireSphere(center,habitatRadius);
+            Gizmos.color=new Color(.85f,.5f,.2f,.45f);Gizmos.DrawWireSphere(center,habitatRadius+leaveMargin);
+        }
     }
 }

@@ -58,10 +58,13 @@ namespace EmergencyShift
             {
                 RaycastHit2D hit = hits[closest];
                 var enemy = hit.collider.GetComponentInParent<ShadowStalker2D>();
-                if (enemy != null) enemy.TakeDamage(damage);
+                if (enemy != null) enemy.ApplyBulletHit(damage,hit.point,direction);
                 Vector2 point = hit.centroid - direction * 0.01f;
-                var effect = Instantiate(effectPrefab, new Vector3(point.x, point.y, -0.1f), Quaternion.identity);
-                effect.Play(profile, true, -direction);
+                if(enemy==null)
+                {
+                    var effect = Instantiate(effectPrefab, new Vector3(point.x, point.y, -0.1f), Quaternion.identity);
+                    effect.Play(profile, true, -direction);
+                }
                 active = false; Destroy(gameObject); return;
             }
             Vector2 next = start + direction * step;
