@@ -103,7 +103,11 @@ def build(kind,variant,rng,reference):
         if variant==1:return reference[int(.55*SR):int(.55*SR)+int(.19*SR)].copy()
         if variant==2:return reference[int(1.45*SR):int(1.45*SR)+int(.12*SR)].copy()
         return core.membrane(rng,rng.uniform(.13,.24))*rng.uniform(.8,1.05)
-    if kind=='step':return core.foot(rng)
+    if kind=='step':
+        # Match contact energy, not just peaks: the old variants differed by ~3.5dB RMS.
+        x=core.foot(rng)
+        x=.10*np.tanh(x/.10)
+        return x*(.007/max(float(np.sqrt(np.mean(x*x))),1e-10))
     if kind=='scrape':return scrape(rng)
     if kind=='notice':return core.membrane(rng,rng.uniform(.12,.17))*.95
     if kind=='retreat_pain':return core.membrane(rng,rng.uniform(.14,.23),True)*rng.uniform(.72,.92)
@@ -131,8 +135,9 @@ def build(kind,variant,rng,reference):
         return finish(x,.47)
     if kind=='light_fear':
         x=np.zeros(int(.39*SR));core.add(x,core.membrane(rng,.29,True),.004,1.25)
-        core.add(x,core.small_squeal(rng,.075,.14),.015,.5)
-        return finish(x,.48)
+        # More explicit immediate irritation, retaining the approved membrane underneath.
+        core.add(x,core.small_squeal(rng,.11,.38),.006,1.0)
+        return finish(x,.64)
     if kind=='hit':
         x=np.zeros(int(.27*SR));core.add(x,flesh_impact(rng,.18),.002,.85)
         core.add(x,core.membrane(rng,.14,True),.035,.6)
@@ -183,8 +188,8 @@ def main():
             level=gain*((1-.67*progress)if away else(.65+.35*progress))
             pan=.75*progress if away else -.35*(1-progress)
             place(track,'step',1+i%6,at,level,pan)
-            if i%3==0:place(track,'scrape',1+i%3,at+.015,level*.5,pan)
-            if i%6==0:place(track,'idle',3+i%3,at+.025,level*.42,pan)
+            # No recurring loud sixth-step body accent; friction is a quiet separate layer.
+            if i%3==0:place(track,'scrape',1+(i//3)%3,at+.015,level*.22,pan)
             events.append(at);at+=(.85 if i%3==0 else 1.08)/rate*rng.uniform(.91,1.09);i+=1
         return events
 
@@ -200,7 +205,8 @@ def main():
     place(scene,'hit',1,16.1,1);place(scene,'hit',2,16.65,.85)
     place(scene,'death',1,17.65,1)
     for at,variant,gain,pan in [(17.92,1,.5,-.7),(18.13,2,.45,.55),(18.43,3,.32,.2)]:place(scene,'debris',variant,at,gain,pan)
-    master_gain=min(2.0,.84/float(np.max(np.abs(scene))));scene*=master_gain
+    # Keep the original full-demo master gain, so accepted membrane events keep their level.
+    master_gain=.84/(.70/np.sqrt(2));scene*=master_gain
     write(PREVIEW/'stalker-full-encounter.wav',scene,16)
 
     focus=np.zeros((int(7*SR),2));place(focus,'idle',1,.35,1.7)
@@ -210,6 +216,16 @@ def main():
     place(focus,'cower',2,4.7,1.3,.65)
     focus*=min(2.0,.80/float(np.max(np.abs(focus))));write(PREVIEW/'stalker-light-and-retreat.wav',focus,16)
 
+    # Short revision audition: level-matched feet, sharper irritation, then retreat/cower.
+    revision=np.zeros((int(6.5*SR),2))
+    for i in range(6):place(revision,'step',i+1,.22+i*.22,1.35)
+    place(revision,'idle',1,1.72,1.6)
+    place(revision,'light_fear',1,2.3,1.0)
+    gait(revision,2.47,4.6,14,1.7,True)
+    place(revision,'retreat_pain',1,2.85,.8,.2);place(revision,'retreat_pain',2,3.6,.55,.5)
+    place(revision,'cower',1,5.0,1.25,.65)
+    revision*=1.6;write(PREVIEW/'stalker-revision-r2.wav',revision,16)
+
     # Sequential catalogue: boundaries allow distinct event families to be auditioned.
     timeline=[];cursor=.35
     for kind,title,_ in CATALOG:
@@ -218,16 +234,18 @@ def main():
     sampler=np.zeros((int((cursor+.25)*SR),2))
     for entry in timeline:place(sampler,entry['category'],1,entry['start'],1.15)
     write(PREVIEW/'stalker-event-catalogue.wav',sampler,16)
-    report=dict(version='Membrane04',direction='Choices03 variant 2 selected by user; quiet timbre approved, new events pending review.',
+    report=dict(version='Membrane04-r2',direction='Membrane sound approved by user; footstep balance revised and initial light irritation strengthened.',
         method='Original local synthesis and DSP; no external recordings/service.',numpyVersion=np.__version__,runtimeAttached=False,
         generator='Tools/Audio/generate_stalker_membrane_v04.py',dependencies=['generate_stalker_choices_v03.py'],
         reference='Docs/Audio/StalkerChoices03/02-membrane.wav',referenceSha256=hashlib.sha256(REFERENCE.read_bytes()).hexdigest(),
         exactQuietSlices=[dict(file='stalker_idle_01.wav',startSeconds=.55,seconds=.19),dict(file='stalker_idle_02.wav',startSeconds=1.45,seconds=.12)],
-        clips=manifest,catalogueTimeline=timeline,encounterSeconds=21,retreatFocusSeconds=7,
+        clips=manifest,catalogueTimeline=timeline,encounterSeconds=21,retreatFocusSeconds=7,revisionAuditionSeconds=6.5,
+        revisionNote='Six foot contacts RMS-matched to .007 with softened peaks; no sixth-contact body accent. Initial light fear .64 peak with stronger short cry. Other 40 sources unchanged.',
         stagedContactCounts=dict(stalk=len(stalk),retreat=len(retreat),chase=len(chase),focusRetreat=len(focus_steps)),
         previewNote='Arranged audio demonstration, not Unity capture; pan/distance envelopes are hand staged. Runtime cadence/mixer/crowd not implemented.')
     (PREVIEW/'manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-    cue=['# Сталкер — Membrane04','','Тихий тембр Choices03 №2 выбран пользователем. Новые события ещё оцениваются.','',
+    cue=['# Сталкер — Membrane04-r2','','Мембрана одобрена пользователем; выровнены шаги и усилен начальный вскрик от света.','',
+        '- stalker-revision-r2.wav: 6.5с, шесть выровненных шагов → спокойная мембрана → усиленный вскрик/бегство → сжатие.',
         '- stalker-full-encounter.wav: 21с, покой → приближение → свет/бегство → сжатие → погоня/укус → ранения → разрыв/падения.',
         '- stalker-light-and-retreat.wav: 7с, отдельно усилен быстрый перебор ног при отходе; звук постепенно удаляется.',
         '- stalker-event-catalogue.wav: изолированный пример каждой группы.','',
@@ -240,7 +258,7 @@ def main():
     with zipfile.ZipFile(PREVIEW/'stalker-membrane04.zip','w',zipfile.ZIP_DEFLATED)as archive:
         for entry in manifest:archive.write(ASSETS/entry['file'],'Stalker/'+entry['file'])
         archive.write(PREVIEW/'manifest.json','manifest.json');archive.write(PREVIEW/'README.md','README.md')
-    print(json.dumps({'clips':len(manifest),'categories':len(CATALOG),'previews':3,'quietSlicesExact':True,'stagedRetreatContacts':len(retreat)},indent=2))
+    print(json.dumps({'clips':len(manifest),'categories':len(CATALOG),'previews':4,'quietSlicesExact':True,'stagedRetreatContacts':len(retreat)},indent=2))
 
 
 if __name__=='__main__':main()

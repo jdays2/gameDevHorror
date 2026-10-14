@@ -274,3 +274,9 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 - Docs/Audio/StalkerMembrane04/README.md, manifest.json, Validation.json, UnityImport.json — таймкоды/происхождение/точные quiet-срезы/проверки файлов и импорта.
 - Docs/Audio/StalkerMembrane04/stalker-membrane04.zip —49 WAV/manifest/README.
 - Docs/STALKER_AUDIO.md — текущий полный гайд, заменяет описание отклонённого Prototype01.
+
+## Membrane04-r2
+
+- В Membrane04 изменены6 stalker_step_*.wav и3 stalker_light_fear_*.wav, GUID сохранены;40 других исходников совпадают по SHA.
+- Docs/Audio/StalkerMembrane04/stalker-revision-r2.wav — новый6.5с пример правок шагов/вскрика.
+- Три прежних превью, ZIP, manifest/Validation/UnityImport обновлены; схема папок и генератор прежние.
