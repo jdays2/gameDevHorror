@@ -43,9 +43,7 @@ namespace EmergencyShift
         {
             if (!repeatable && actor.Upgrades.HasModule(moduleId)) return displayName + " — уже установлено";
             if (!actor.Upgrades.CanImprove(rangeBonus, angleBonus)) return "Фонарик улучшен до предела";
-            string bonus = rangeBonus > 0 ? $"дальность +{rangeBonus:0.#}" : "";
-            if (angleBonus > 0) bonus += (bonus.Length > 0 ? "; " : "") + $"угол +{angleBonus:0.#}°";
-            return "[E]  Подобрать: " + displayName + " · " + bonus;
+            return "[E]  Подобрать: " + displayName;
         }
 
         public bool Interact(PlayerInteraction actor)
@@ -54,7 +52,6 @@ namespace EmergencyShift
             string message;
             if (!actor.Upgrades.TryInstall(moduleId, displayName, rangeBonus, angleBonus, out message, repeatable)) return false;
             collected = true;
-            actor.ShowNotification(message);
             // Не Destroy: экземпляр явно хранит факт подбора, а повторный вызов безопасен.
             gameObject.SetActive(false);
             return true;
