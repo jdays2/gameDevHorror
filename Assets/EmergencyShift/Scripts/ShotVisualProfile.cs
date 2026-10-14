@@ -9,9 +9,10 @@ namespace EmergencyShift
         public string displayName = "Тёплая вспышка";
         public Color flashColor = new Color(1, 0.72f, 0.38f);
         public Color bulletColor = new Color(1, 0.88f, 0.62f);
-        [Min(0.02f)] public float flashSeconds = 0.08f;
-        [Min(0.1f)] public float flashRadius = 1.9f;
-        [Min(0)] public float flashIntensity = 2f;
+        [Min(0.02f)] public float flashSeconds = 0.14f;
+        [Min(0.1f)] public float flashRadius = 2.8f;
+        [Min(0)] public float flashIntensity = 6.5f;
+        [Min(0.1f)] public float muzzleSize = 1f;
         [Min(0.02f)] public float impactSeconds = 0.12f;
         [Min(1)] public float bulletSpeed = 36f;
         [Min(0.02f)] public float trailLength = 0.42f;

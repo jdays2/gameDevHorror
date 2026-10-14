@@ -7,6 +7,29 @@ namespace EmergencyShift
     {
         [SerializeField] private SpriteRenderer[] patches;
         [SerializeField] private SpriteRenderer[] droplets;
+        private Vector3[] patchScales;
+        private float[] dropArrival;
+        private float ruptureAge;
+        private bool rupturing;
+        public SpriteRenderer[] DropletRenderers => droplets;
+        public float DropArrivalTime(int index) => dropArrival[index];
+        public void BeginRupture()
+        {
+            ruptureAge=0;rupturing=true;patchScales=new Vector3[patches.Length];dropArrival=new float[droplets.Length];
+            for(int i=0;i<patches.Length;i++){patchScales[i]=patches[i].transform.localScale;patches[i].transform.localScale*=.30f;}
+            for(int i=0;i<droplets.Length;i++){dropArrival[i]=Random.Range(.18f,.34f);droplets[i].enabled=false;}
+        }
+        private void Update()
+        {
+            if(!rupturing)return;
+            ruptureAge+=Time.deltaTime;
+            float t=Mathf.Clamp01(ruptureAge/.22f);float grow=Mathf.Lerp(.30f,1,1-(1-t)*(1-t));
+            for(int i=0;i<patches.Length;i++)patches[i].transform.localScale=patchScales[i]*grow;
+            bool all=true;
+            for(int i=0;i<droplets.Length;i++)
+            {bool arrived=ruptureAge>=dropArrival[i];droplets[i].enabled=arrived;all&=arrived;}
+            if(t>=1&&all)rupturing=false;
+        }
         public void Initialize(float size, int seed, LayerMask walls)
         {
             var random = new System.Random(seed);

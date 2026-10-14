@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace EmergencyShift
@@ -25,6 +26,17 @@ namespace EmergencyShift
         public int FramesWritten { get; private set; }
         public bool Finished { get; private set; }
         public string Failure { get; private set; }
+        [Serializable] private sealed class GibSample
+        {
+            public Vector2 position,velocity; public float height; public bool settled;
+        }
+        [Serializable] private sealed class EffectSample
+        {
+            public int frame,phase,health; public float maxLight; public int spray;
+            public List<GibSample> gibs=new List<GibSample>();
+        }
+        [Serializable] private sealed class EffectReport { public List<EffectSample> samples; }
+        private readonly List<EffectSample> effectSamples=new List<EffectSample>();
 
         public void Begin(string directory, GameObject enemyPrefab, ShotVisualProfile[] profiles)
         {
@@ -64,7 +76,8 @@ namespace EmergencyShift
             // После настоящего попадания вернуть FixedUpdate: он продвигает время кадров смерти.
             if (target != null && target.Health == 0) target.enabled = true;
             lamp.AimAt(new Vector2(1.7f, 0));
-            lamp.SetPower(frame < 15 || (frame >= 42 && frame < 70) || frame >= 95);
+            // Первый выстрел без фонаря; после второго включить луч для осмотра самого разрыва.
+            lamp.SetPower(frame < 15 || (frame >= 34 && frame < 70) || frame >= 95);
             if (frame >= 18 && !firstShot) firstShot = weapon.TryFire();
             if (frame >= 32 && !secondShot) secondShot = weapon.TryFire();
             if (frame >= 76 && !wallShot) wallShot = weapon.TryFire();
@@ -81,12 +94,20 @@ namespace EmergencyShift
                 {
                     texture = ScreenCapture.CaptureScreenshotAsTexture();
                     File.WriteAllBytes(Path.Combine(folder, "frame-" + FramesWritten.ToString("0000") + ".png"), texture.EncodeToPNG());
+                    var sample=new EffectSample{frame=FramesWritten,phase=phase,health=target!=null?target.Health:2,
+                        spray=UnityEngine.Object.FindObjectsByType<BloodRuptureBurst2D>().Length};
+                    foreach(var gib in UnityEngine.Object.FindObjectsByType<GibMotion2D>())
+                        sample.gibs.Add(new GibSample{position=gib.transform.position,velocity=gib.Velocity,height=gib.Height,settled=gib.Settled});
+                    foreach(var effect in UnityEngine.Object.FindObjectsByType<ShotEffect2D>())
+                        sample.maxLight=Mathf.Max(sample.maxLight,effect.GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>().intensity);
+                    effectSamples.Add(sample);
                     FramesWritten++;
                 }
                 catch (Exception ex) { Failure = ex.ToString(); break; }
                 finally { if (texture != null) Destroy(texture); }
             }
             Finished = true; Time.captureFramerate = oldCapture; Application.runInBackground = oldBackground;
+            File.WriteAllText(Path.Combine(folder,"effect-samples.json"),JsonUtility.ToJson(new EffectReport{samples=effectSamples},true));
         }
 
         private void OnGUI()

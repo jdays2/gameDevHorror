@@ -108,11 +108,7 @@ namespace EmergencyShift.Editor
             var root = new GameObject("Pistol shot effect", typeof(ShotEffect2D));
             try
             {
-                var strokes = new[] {
-                    Part(root.transform, "Forward spark", new Vector2(0, .08f), new Vector2(.035f, .25f), Color.white, Unlit, 2),
-                    Part(root.transform, "Cross spark", Vector2.zero, new Vector2(.20f, .035f), Color.white, Unlit, 2),
-                    Part(root.transform, "Core", Vector2.zero, new Vector2(.075f, .075f), Color.white, Unlit, 2) };
-                root.GetComponent<ShotEffect2D>().Configure(Light(root.transform, "Temporary flash"), strokes);
+                CombatEffectsRevision.ConfigureShotEffect(root);
                 PrefabUtility.SaveAsPrefabAsset(root, EffectPath);
             }
             finally { UnityEngine.Object.DestroyImmediate(root); }
