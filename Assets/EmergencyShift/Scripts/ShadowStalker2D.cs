@@ -6,20 +6,20 @@ namespace EmergencyShift
     [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
     public sealed class ShadowStalker2D : MonoBehaviour
     {
-        public enum BehaviourState { Sneaking, Recoiling, Retreating, Waiting, Attacking, Dead, Dormant, Returning, Patrolling }
+        // Returning зарезервирован для совместимости старых данных; возврата домой больше нет.
+        public enum BehaviourState { Sneaking, Recoiling, Retreating, Waiting, Attacking, Dead, Dormant, Returning, Patrolling, TargetDead }
 
         [SerializeField] private Transform player;
         [SerializeField] private Flashlight2D flashlight;
         [SerializeField] private LayerMask blockingGeometry;
-        [SerializeField, Min(0.1f)] private float creepSpeed = 1.1f;
-        [SerializeField, Min(0.1f)] private float retreatSpeed = 2.4f;
-        [SerializeField, Min(0.1f)] private float noticeDistance = 7f;
+        [SerializeField, Min(0.1f), Tooltip("Скорость постоянного преследования после первого обнаружения.")] private float creepSpeed = 1.5f;
+        [SerializeField, Min(0.1f)] private float retreatSpeed = 3.8f;
         [SerializeField, Min(0.1f)] private float standOffDistance = 1.05f;
         [SerializeField, Min(0.1f)] private float recoilSeconds = 0.35f;
         [SerializeField, Min(0.1f)] private float retreatSeconds = 1.05f;
         [SerializeField, Min(0.1f)] private float cooldownSeconds = 3f;
         [Header("Light response")]
-        [SerializeField, Min(0.1f)] private float lightFearDistance = 2.4f;
+        [SerializeField, Min(0.1f)] private float lightFearDistance = 3.2f;
         [SerializeField, Min(0.05f)] private float reactionDelay = 0.45f;
         [Header("Attack")]
         [SerializeField] private bool attacksEnabled = true;
@@ -27,10 +27,9 @@ namespace EmergencyShift
         [SerializeField, Min(0.1f)] private float attackDuration = 0.8f;
         [SerializeField, Min(0)] private float attackCooldown = 1.2f;
         [SerializeField, Min(1)] private int maximumHealth = 2;
-        [Header("Habitat — center is spawn position")]
-        [SerializeField, Min(.5f)] private float habitatRadius = 3.2f;
-        [SerializeField, Min(.1f)] private float leaveMargin = .6f;
-        [SerializeField, Min(0)] private float loseSightDelay = 1.2f;
+        [Header("First detection — proximity and line of sight")]
+        [SerializeField, Min(.5f), InspectorName("Detection Radius")]
+        private float habitatRadius = 3.2f;
         [Header("Bullet hit reaction")]
         [SerializeField, Min(0)] private float hitStaggerSeconds = .09f;
         [SerializeField, Min(0)] private float hitPushSpeed = 1.6f;
@@ -47,11 +46,15 @@ namespace EmergencyShift
         private bool strikeApplied;
         private float attackReadyAt;
         private Vector2 home;
-        private float sightLostFor;
         private float staggerUntil;
         private Vector2 hitPush;
         private StalkerHitResponse2D hitResponse;
         private StalkerPatrol2D patrol;
+        private StalkerChasePath2D chasePath;
+        public bool HasAggro { get; private set; }
+        public float PursuitSpeed => creepSpeed;
+        public float RetreatSpeed => retreatSpeed;
+        public int ChaseWaypointCount => chasePath != null ? chasePath.WaypointCount : 0;
         public Vector2 Home => home;
         public float HabitatRadius => habitatRadius;
         public bool IsStaggered => State!=BehaviourState.Dead && Time.time<staggerUntil;
@@ -81,6 +84,7 @@ namespace EmergencyShift
             gore = GetComponent<GoreBurst2D>();hitResponse=GetComponent<StalkerHitResponse2D>();
             home=body.position;State = BehaviourState.Dormant; Health = maximumHealth;
             patrol=GetComponent<StalkerPatrol2D>();
+            chasePath=new StalkerChasePath2D();
             if(patrol!=null)patrol.Initialize(home);
         }
 
@@ -90,39 +94,18 @@ namespace EmergencyShift
             if (State == BehaviourState.Dead) { body.linearVelocity = Vector2.zero; return; }
             if (player == null || flashlight == null) { body.linearVelocity = Vector2.zero; return; }
             bool aliveTarget=playerLife==null||!playerLife.IsDead;
-            float homeDistance=Vector2.Distance(home,player.position);
-            bool lineOfSight=aliveTarget&&Physics2D.Linecast(body.position,player.position,blockingGeometry).collider==null;
-            bool inside=homeDistance<=habitatRadius;
-            bool leaves=homeDistance>habitatRadius+leaveMargin;
-            if(IsStaggered){body.linearVelocity=hitPush*Mathf.Clamp01((staggerUntil-Time.time)/Mathf.Max(.01f,hitStaggerSeconds));return;}
-            if(State==BehaviourState.Dormant||State==BehaviourState.Returning||State==BehaviourState.Patrolling)
+            if(!aliveTarget)
             {
-                if(inside&&lineOfSight)
-                {sightLostFor=0;if(patrol!=null)patrol.ResetRoute();Enter(BehaviourState.Sneaking);}
-                else
-                {
-                    Exposed=false;exposureTime=0;Closure=Mathf.MoveTowards(Closure,0,Time.fixedDeltaTime*3);
-                    Vector2 back=home-body.position;
-                    bool canPatrol=patrol!=null&&patrol.PatrolEnabled;
-                    float radius=bodyCollider.radius*Mathf.Max(Mathf.Abs(transform.lossyScale.x),Mathf.Abs(transform.lossyScale.y));
-                    bool returnHome=State==BehaviourState.Returning||!canPatrol||(canPatrol&&!patrol.ContainsBody(body.position,radius));
-                    if(returnHome&&back.magnitude>.15f)
-                    {if(patrol!=null)patrol.ResetRoute();State=BehaviourState.Returning;body.linearVelocity=FindClearDirection(back.normalized)*creepSpeed;}
-                    else if(canPatrol)
-                    {
-                        if(State!=BehaviourState.Patrolling)Enter(BehaviourState.Patrolling);
-                        body.linearVelocity=patrol.Step(body.position,radius,blockingGeometry.value|(1<<9),Time.fixedDeltaTime);
-                    }
-                    else{State=BehaviourState.Dormant;body.linearVelocity=Vector2.zero;}
-                    return;
-                }
+                if(patrol!=null)patrol.ResetRoute();
+                Exposed=false;exposureTime=0;Enter(BehaviourState.TargetDead);body.linearVelocity=Vector2.zero;return;
             }
-            sightLostFor=lineOfSight?0:sightLostFor+Time.fixedDeltaTime;
-            if(!aliveTarget||leaves||sightLostFor>loseSightDelay||Vector2.Distance(home,body.position)>habitatRadius+leaveMargin)
-            {exposureTime=0;if(patrol!=null)patrol.ResetRoute();Enter(BehaviourState.Returning);body.linearVelocity=Vector2.zero;return;}
+            bool lineOfSight=aliveTarget&&Physics2D.Linecast(body.position,player.position,blockingGeometry).collider==null;
+            if(!HasAggro&&Vector2.Distance(body.position,player.position)<=habitatRadius&&lineOfSight)ActivateAggro();
+            if(IsStaggered){body.linearVelocity=hitPush*Mathf.Clamp01((staggerUntil-Time.time)/Mathf.Max(.01f,hitStaggerSeconds));return;}
             Exposed = flashlight.Illuminates(body.position, blockingGeometry);
             bool closeLight = Exposed && Vector2.Distance(body.position, flashlight.Origin) <= lightFearDistance;
-            if ((State == BehaviourState.Sneaking || State == BehaviourState.Attacking) && closeLight)
+            bool idle=State==BehaviourState.Dormant||State==BehaviourState.Patrolling;
+            if ((idle || State == BehaviourState.Sneaking || State == BehaviourState.Attacking) && closeLight)
             {
                 if (exposureTime == 0)
                     approachBeforeLight = body.linearVelocity.sqrMagnitude > 0.01f
@@ -140,6 +123,17 @@ namespace EmergencyShift
             Vector2 velocity = Vector2.zero;
             switch (State)
             {
+                case BehaviourState.Dormant:
+                case BehaviourState.Patrolling:
+                    Closure=Mathf.MoveTowards(Closure,0,Time.fixedDeltaTime*3);
+                    if(patrol!=null&&patrol.PatrolEnabled)
+                    {
+                        if(State!=BehaviourState.Patrolling)Enter(BehaviourState.Patrolling);
+                        float radius=bodyCollider.radius*Mathf.Max(Mathf.Abs(transform.lossyScale.x),Mathf.Abs(transform.lossyScale.y));
+                        velocity=patrol.Step(body.position,radius,blockingGeometry.value|(1<<9),Time.fixedDeltaTime);
+                    }
+                    else if(State!=BehaviourState.Dormant){if(patrol!=null)patrol.ResetRoute();Enter(BehaviourState.Dormant);}
+                    break;
                 case BehaviourState.Sneaking:
                     Closure = Mathf.MoveTowards(Closure, 0, Time.fixedDeltaTime * 3);
                     if (closeLight)
@@ -149,21 +143,25 @@ namespace EmergencyShift
                         break;
                     }
                     Vector2 toPlayer = (Vector2)player.position - body.position;
-                    bool canTrack = toPlayer.magnitude < noticeDistance &&
-                        (playerLife == null || !playerLife.IsDead) &&
-                        Physics2D.Linecast(body.position, player.position, blockingGeometry).collider == null;
-                    if (canTrack)
+                    if (HasAggro)
                     {
-                        if (attacksEnabled && playerLife != null && toPlayer.magnitude <= attackDistance && Time.time >= attackReadyAt && Closure < 0.1f)
+                        if (attacksEnabled && playerLife != null && lineOfSight && toPlayer.magnitude <= attackDistance && Time.time >= attackReadyAt && Closure < 0.1f)
                         {
                             Enter(BehaviourState.Attacking);strikeApplied = false;escapeDirection = toPlayer.normalized;
                             break;
                         }
                         // Точка за спиной определяется направлением фонаря, а не формой капсулы.
                         Vector2 behindPlayer = (Vector2)player.position - flashlight.Direction * standOffDistance;
-                        Vector2 toBehind = behindPlayer - body.position;
+                        float radius=bodyCollider.radius*Mathf.Max(Mathf.Abs(transform.lossyScale.x),Mathf.Abs(transform.lossyScale.y));
+                        int solids=blockingGeometry.value|(1<<9);
+                        Vector2 goal=lineOfSight?behindPlayer:(Vector2)player.position;
+                        if(lineOfSight&&(Physics2D.OverlapCircle(goal,radius,solids)!=null||Physics2D.Linecast(player.position,goal,solids).collider!=null))
+                            goal=player.position;
+                        Vector2 toBehind = goal - body.position;
                         if (toBehind.magnitude > 0.15f && toPlayer.magnitude > standOffDistance * 0.8f)
-                            velocity = FindClearDirection(toBehind.normalized) * creepSpeed;
+                        {
+                            velocity = chasePath.Direction(body.position,goal,radius,solids) * creepSpeed;
+                        }
                     }
                     break;
                 case BehaviourState.Recoiling:
@@ -177,7 +175,8 @@ namespace EmergencyShift
                     break;
                 case BehaviourState.Waiting:
                     Closure = 1;
-                    if (stateTime >= cooldownSeconds && !Exposed) Enter(BehaviourState.Sneaking);
+                    if (stateTime >= cooldownSeconds && !Exposed)
+                        Enter(HasAggro?BehaviourState.Sneaking:BehaviourState.Dormant);
                     break;
                 case BehaviourState.Attacking:
                     Closure = 0;
@@ -214,6 +213,12 @@ namespace EmergencyShift
         }
 
         private void Enter(BehaviourState state) { State = state; stateTime = 0; }
+        private void ActivateAggro()
+        {
+            if(HasAggro)return;
+            HasAggro=true;if(patrol!=null)patrol.ResetRoute();
+            if(State==BehaviourState.Dormant||State==BehaviourState.Patrolling)Enter(BehaviourState.Sneaking);
+        }
         /// <summary>Пуля задаёт направление реакции; здоровье и Dead остаются единственным источником истины.</summary>
         public void ApplyBulletHit(int amount,Vector2 point,Vector2 direction)
         {
@@ -221,6 +226,7 @@ namespace EmergencyShift
             TakeDamage(amount);
             if(hitResponse!=null)hitResponse.Play(point,direction,State==BehaviourState.Dead);
             if(State==BehaviourState.Dead)return;
+            if(player!=null&&(playerLife==null||!playerLife.IsDead))ActivateAggro();
             staggerUntil=Time.time+hitStaggerSeconds;hitPush=direction.normalized*hitPushSpeed;
             if(State==BehaviourState.Attacking){Enter(BehaviourState.Sneaking);attackReadyAt=Time.time+.35f;}
         }
@@ -243,9 +249,7 @@ namespace EmergencyShift
         private void OnDisable() { if (body != null) body.linearVelocity = Vector2.zero; }
         private void OnDrawGizmosSelected()
         {
-            Vector3 center=Application.isPlaying?(Vector3)home:transform.position;
-            Gizmos.color=new Color(.3f,.75f,.85f,.7f);Gizmos.DrawWireSphere(center,habitatRadius);
-            Gizmos.color=new Color(.85f,.5f,.2f,.45f);Gizmos.DrawWireSphere(center,habitatRadius+leaveMargin);
+            Gizmos.color=new Color(.3f,.75f,.85f,.7f);Gizmos.DrawWireSphere(transform.position,habitatRadius);
         }
     }
 }

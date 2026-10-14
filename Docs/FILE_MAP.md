@@ -209,3 +209,19 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 Новые C# файлы сопровождаются .meta с GUID; сторонние пакеты не менялись.
 
 `Docs/Demos/patrol-v071.png` — просмотренный Game View патрульного, с временной камерой/позицией игрока; постановка не сохранена в уровне.
+
+## v0.7.2 — изменённые файлы агрессии
+
+| Файл | Назначение изменения |
+|---|---|
+| Assets/EmergencyShift/Scripts/ShadowStalker2D.cs | Постоянный HasAggro, обнаружение вокруг тела, отмена возврата, усиленный страх/скорости, TargetDead |
+| Assets/EmergencyShift/Scripts/StalkerChasePath2D.cs + .meta | Новый ограниченный кэшируемый A* для активной погони; чистый C# helper |
+| Assets/EmergencyShift/Scripts/StalkerPatrol2D.cs | Необязательная область, шаги от текущей позиции, без возвращения к spawn |
+| Assets/EmergencyShift/Editor/StalkerPatrol2DEditor.cs | Актуальные подсказки и условные маркеры области |
+| Assets/EmergencyShift/Scripts/StalkerSpriteAnimator.cs | Returning исключён из используемых режимов ходьбы |
+| Assets/EmergencyShift/Prefabs/ShadowStalker.prefab | Новые скорости/страх и поле Use Patrol Area, устаревшие настройки удалены |
+| Assets/EmergencyShift/Scenes/BasementPrototype.unity | Настройки действующих экземпляров с сохранением ручных радиусов/позиций |
+| Docs/PATROL_GUIDE.md | Переписанный актуальный гайд без возврата/забывания |
+| Docs/Aggro072Results.json | Реальные наблюдения тестов и ограничения |
+
+`Docs/Demos/stalker-fear-v072.png` — постановочный осмотр текущей позы сжатия на увеличенной дистанции света, не запись движения; условия указаны в VALIDATION.md.

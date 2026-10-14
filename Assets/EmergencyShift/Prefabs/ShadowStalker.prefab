@@ -430,14 +430,13 @@ MonoBehaviour:
   blockingGeometry:
     serializedVersion: 2
     m_Bits: 256
-  creepSpeed: 1.1
-  retreatSpeed: 2.4
-  noticeDistance: 7
+  creepSpeed: 1.5
+  retreatSpeed: 3.8
   standOffDistance: 1.05
   recoilSeconds: 0.35
   retreatSeconds: 1.05
   cooldownSeconds: 3
-  lightFearDistance: 2.4
+  lightFearDistance: 3.2
   reactionDelay: 0.45
   attacksEnabled: 1
   attackDistance: 1.28
@@ -445,8 +444,6 @@ MonoBehaviour:
   attackCooldown: 1.2
   maximumHealth: 2
   habitatRadius: 3.2
-  leaveMargin: 0.6
-  loseSightDelay: 1.2
   hitStaggerSeconds: 0.09
   hitPushSpeed: 1.6
 --- !u!114 &806753377248091079
@@ -577,6 +574,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerPatrol2D
   patrolEnabled: 0
+  usePatrolArea: 1
+  wanderStepDistance: 1.6
   areaOffset: {x: 0, y: 0}
   areaSize: {x: 3, y: 3}
   patrolSpeed: 0.6

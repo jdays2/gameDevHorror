@@ -35,7 +35,7 @@ namespace EmergencyShift
         private void LateUpdate()
         {
             if (behaviour == null || visualRoot == null || bodyRenderer == null || walkFrames == null || walkFrames.Length == 0) return;
-            bool creeping = behaviour.State == ShadowStalker2D.BehaviourState.Sneaking||behaviour.State==ShadowStalker2D.BehaviourState.Returning||behaviour.State==ShadowStalker2D.BehaviourState.Patrolling;
+            bool creeping = behaviour.State == ShadowStalker2D.BehaviourState.Sneaking||behaviour.State==ShadowStalker2D.BehaviourState.Patrolling;
             bool attacking = behaviour.State == ShadowStalker2D.BehaviourState.Attacking;
             bool dead = behaviour.State == ShadowStalker2D.BehaviourState.Dead;
             if (dead && !deathStyleApplied)

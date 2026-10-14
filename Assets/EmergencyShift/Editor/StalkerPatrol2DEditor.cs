@@ -12,20 +12,20 @@ namespace EmergencyShift.Editor
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
-            EditorGUILayout.HelpBox("Patrol Enabled выключен — ждать у места появления. Включён — патрулировать жёлтый прямоугольник. Голубой Habitat Radius отвечает за обнаружение игрока. Область должна вмещать коллайдер и стартовую позицию.", MessageType.Info);
-            if (targets.Length == 1)
+            EditorGUILayout.HelpBox("Patrol Enabled — иногда передвигаться до обнаружения игрока. Use Patrol Area ограничивает мирные точки жёлтым прямоугольником; без флага — короткие шаги от текущего места. Detection Radius и прямая видимость нужны только для первого обнаружения. Возврата домой нет.", MessageType.Info);
+            if (targets.Length == 1 && ((StalkerPatrol2D)target).UsePatrolArea)
             {
                 var patrol = (StalkerPatrol2D)target;
                 var body = patrol.GetComponent<CircleCollider2D>();
                 float padding = body.radius * Mathf.Max(Mathf.Abs(patrol.transform.lossyScale.x), Mathf.Abs(patrol.transform.lossyScale.y)) + .04f;
                 Rect area = patrol.Area;
-                if (!area.Contains(patrol.AreaOrigin - Vector2.one * padding) || !area.Contains(patrol.AreaOrigin + Vector2.one * padding))
-                    EditorGUILayout.HelpBox("Стартовая позиция с коллайдером не помещается в область. Увеличьте Area Size или поправьте Area Offset. В тесной области враг безопасно остаётся на месте.", MessageType.Warning);
+                if (area.width <= padding * 2 || area.height <= padding * 2)
+                    EditorGUILayout.HelpBox("Коллайдер не помещается в область: увеличьте Area Size. В тесной области враг безопасно остаётся на месте.", MessageType.Warning);
             }
         }
         private void OnSceneGUI()
         {
-            if (Application.isPlaying || targets.Length != 1) return;
+            if (Application.isPlaying || targets.Length != 1 || !((StalkerPatrol2D)target).UsePatrolArea) return;
             var patrol = (StalkerPatrol2D)target;
             Rect area = patrol.Area;
             bounds.center = new Vector3(area.center.x, area.center.y, patrol.transform.position.z);

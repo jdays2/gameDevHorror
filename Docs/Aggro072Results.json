@@ -1,0 +1,835 @@
+{
+  "version": "0.7.2",
+  "checks": [
+    {
+      "name": "Every actor has faster pursuit, much faster retreat and wider fear range",
+      "passed": true,
+      "observed": {
+        "count": 7,
+        "settings": true
+      }
+    },
+    {
+      "name": "Optional area: spontaneous roaming from current position, no aggro",
+      "passed": true,
+      "observed": {
+        "x": -5.0304575,
+        "y": -0.6205062,
+        "state": "Patrolling",
+        "aggro": false,
+        "speed": 0.6,
+        "waypoints": 0,
+        "target": true
+      }
+    },
+    {
+      "name": "Turning off idle movement stops in place, never returns home",
+      "passed": true,
+      "observed": {
+        "x": -4.891122,
+        "y": -0.7132194,
+        "state": "Dormant",
+        "aggro": false,
+        "speed": 0.0,
+        "waypoints": 0,
+        "target": false
+      }
+    },
+    {
+      "name": "Nearby player behind opaque cover does not trigger ambush",
+      "passed": true,
+      "observed": {
+        "x": -5.5,
+        "y": 0.0,
+        "state": "Dormant",
+        "aggro": false,
+        "speed": 0.0,
+        "waypoints": 0,
+        "target": false
+      }
+    },
+    {
+      "name": "Proximity plus clear line of sight latches aggression",
+      "passed": true,
+      "observed": {
+        "x": -4.32239628,
+        "y": 0.0,
+        "state": "Sneaking",
+        "aggro": true,
+        "speed": 1.5,
+        "waypoints": 0,
+        "target": false
+      }
+    },
+    {
+      "name": "Aggressive stalker routes around blocked corner without forgetting",
+      "passed": true,
+      "observed": {
+        "maxDetourY": 1.85078585,
+        "end": {
+          "x": -2.87326765,
+          "y": 0.7313801,
+          "state": "Sneaking",
+          "aggro": true,
+          "speed": 0.0,
+          "waypoints": 0,
+          "overlap": false
+        },
+        "usedGrid": true
+      }
+    },
+    {
+      "name": "Distance and loss of sight no longer clear aggression",
+      "passed": true,
+      "observed": {
+        "x": -4.318386,
+        "y": 1.82994044,
+        "state": "Sneaking",
+        "aggro": true,
+        "speed": 0.0,
+        "waypoints": 0,
+        "target": false
+      }
+    },
+    {
+      "name": "Wider light response still waits before recoil",
+      "passed": true,
+      "observed": {
+        "first": "Sneaking",
+        "progress": 0.0444444269,
+        "after": "Recoiling",
+        "distance": 2.524018,
+        "fear": 3.2
+      }
+    },
+    {
+      "name": "Retreat is faster than pursuit",
+      "passed": true,
+      "observed": {
+        "x": -7.17385864,
+        "y": 8.54195648e-09,
+        "state": "Retreating",
+        "aggro": true,
+        "speed": 3.8,
+        "waypoints": 0,
+        "target": false
+      }
+    },
+    {
+      "name": "Fear cooldown resumes pursuit without clearing aggression",
+      "passed": true,
+      "observed": {
+        "x": -5.28216076,
+        "y": -1.28283453,
+        "state": "Sneaking",
+        "aggro": true,
+        "speed": 1.5,
+        "waypoints": 0,
+        "target": false
+      }
+    },
+    {
+      "name": "Player death stops the pursuit",
+      "passed": true,
+      "observed": {
+        "x": -4.91726875,
+        "y": -1.12042248,
+        "state": "TargetDead",
+        "aggro": true,
+        "speed": 0.0,
+        "waypoints": 0,
+        "target": false
+      }
+    },
+    {
+      "name": "Enemy death is terminal",
+      "passed": true,
+      "observed": {
+        "x": -4.91726875,
+        "y": -1.12042248,
+        "state": "Dead",
+        "aggro": true,
+        "speed": 0.0,
+        "waypoints": 0,
+        "target": false
+      }
+    },
+    {
+      "name": "User placements, detection radii, delays and patrol configuration preserved",
+      "passed": true,
+      "observed": [
+        "Cover Stalker — Room B|(14.300000, 1.100000, 0.000000)|1,2|0,45|True|(3.000000, 4.000000)",
+        "ShadowStalker|(-1.600000, -1.500000, 0.000000)|1,8|0,45|False|(3.000000, 3.000000)",
+        "Stalker — six legs (1)|(7.024833, -0.486815, 0.000000)|3,2|0,33|False|(3.000000, 3.000000)",
+        "Stalker — six legs (2)|(5.312844, -0.381232, 0.000000)|3,2|0,33|False|(3.000000, 3.000000)",
+        "Stalker — six legs (3)|(3.010000, -2.980000, 0.000000)|4,19|0,33|False|(3.000000, 3.000000)",
+        "Stalker — six legs (4)|(3.179286, 2.850549, 0.000000)|3,84|0,33|False|(3.000000, 3.000000)",
+        "Stalker — six legs|(-4.230000, -3.030000, 0.000000)|5,23|0,33|False|(3.000000, 3.000000)"
+      ]
+    },
+    {
+      "name": "Final compilation and scene references valid",
+      "passed": true,
+      "observed": {
+        "compiling": false,
+        "errors": 0,
+        "warnings": 0,
+        "missing": 0,
+        "dirty": false
+      }
+    }
+  ],
+  "roamingSamples": [
+    {
+      "x": -5.389497,
+      "y": 0.3343118,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.6,
+      "waypoints": 0,
+      "target": true
+    },
+    {
+      "x": -5.29662752,
+      "y": 0.6152567,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -5.29662752,
+      "y": 0.6152567,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -5.29856968,
+      "y": 0.5999686,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.6000001,
+      "waypoints": 0,
+      "target": true
+    },
+    {
+      "x": -5.33648348,
+      "y": 0.301472425,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.6,
+      "waypoints": 0,
+      "target": true
+    },
+    {
+      "x": -5.355082,
+      "y": 0.155045658,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.6,
+      "waypoints": 0,
+      "target": true
+    },
+    {
+      "x": -5.37376928,
+      "y": 0.007935439,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.599999964,
+      "waypoints": 0,
+      "target": true
+    },
+    {
+      "x": -5.40806532,
+      "y": -0.26203078,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.6,
+      "waypoints": 0,
+      "target": true
+    },
+    {
+      "x": -5.42062569,
+      "y": -0.360898256,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -5.38065052,
+      "y": -0.387496352,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.6,
+      "waypoints": 0,
+      "target": true
+    },
+    {
+      "x": -5.156934,
+      "y": -0.536351442,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.6,
+      "waypoints": 0,
+      "target": true
+    },
+    {
+      "x": -5.0304575,
+      "y": -0.6205062,
+      "state": "Patrolling",
+      "aggro": false,
+      "speed": 0.6,
+      "waypoints": 0,
+      "target": true
+    }
+  ],
+  "chaseSamples": [
+    {
+      "x": -5.004567,
+      "y": 1.05128658,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 1.5,
+      "waypoints": 8,
+      "target": false
+    },
+    {
+      "x": -4.63705969,
+      "y": 1.66856241,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 1.5,
+      "waypoints": 8,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    },
+    {
+      "x": -4.318386,
+      "y": 1.82994044,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "target": false
+    }
+  ],
+  "passed": 14,
+  "total": 14,
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "note": "Actual Play. Temporary geometry/poses discarded. Delay checked by explicitly invoking the same FixedUpdate within one frame; runtime retreat/pursuit separately observed. No standalone build or crowd profiling.",
+  "initialRouteFailure": {
+    "name": "Aggressive stalker routes around blocked corner without forgetting",
+    "passed": false,
+    "observed": {
+      "maxDetourY": 1.82994044,
+      "end": {
+        "x": -4.318386,
+        "y": 1.82994044,
+        "state": "Sneaking",
+        "aggro": true,
+        "speed": 0.0,
+        "waypoints": 0,
+        "target": false
+      },
+      "usedGrid": true
+    }
+  },
+  "routeRetestSamples": [
+    {
+      "x": -5.22014,
+      "y": 0.690548956,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 1.50000012,
+      "waypoints": 8,
+      "overlap": false
+    },
+    {
+      "x": -4.76962662,
+      "y": 1.44547009,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 1.49999988,
+      "waypoints": 8,
+      "overlap": false
+    },
+    {
+      "x": -4.51983452,
+      "y": 1.74831843,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 1.5,
+      "waypoints": 7,
+      "overlap": false
+    },
+    {
+      "x": -4.15020227,
+      "y": 1.85078585,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 1.5,
+      "waypoints": 4,
+      "overlap": false
+    },
+    {
+      "x": -3.77877879,
+      "y": 1.84000862,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 1.5,
+      "waypoints": 4,
+      "overlap": false
+    },
+    {
+      "x": -3.43425131,
+      "y": 1.7199502,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 1.5,
+      "waypoints": 2,
+      "overlap": false
+    },
+    {
+      "x": -3.083601,
+      "y": 1.143507,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 1.5,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326741,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    },
+    {
+      "x": -2.87326765,
+      "y": 0.7313801,
+      "state": "Sneaking",
+      "aggro": true,
+      "speed": 0.0,
+      "waypoints": 0,
+      "overlap": false
+    }
+  ],
+  "bulletProvocation": {
+    "before": false,
+    "after": true,
+    "health": 1
+  },
+  "routeFix": "Grid padding .02 no longer inflates the start connection cast at corners. All graph edges retain full clearance.",
+  "edgeChecks": [
+    {
+      "name": "Closed door blocks physical pursuit without deaggro",
+      "passed": true,
+      "observed": {
+        "x": 2.5212,
+        "state": "Sneaking",
+        "aggro": true,
+        "closed": true
+      }
+    },
+    {
+      "name": "Opening door restores route and pursuit across passage",
+      "passed": true,
+      "observed": {
+        "x": 6.02164,
+        "state": "Sneaking",
+        "aggro": true
+      }
+    },
+    {
+      "name": "Flashlight can frighten a passive creature outside detection radius",
+      "passed": true,
+      "observed": {
+        "state": "Recoiling",
+        "aggro": false,
+        "distance": 2.92
+      }
+    },
+    {
+      "name": "Passive fear ends at new position without home return or aggro",
+      "passed": true,
+      "observed": {
+        "state": "Dormant",
+        "aggro": false,
+        "speed": 0.0,
+        "distanceFromSpawn": 2.8390007
+      }
+    },
+    {
+      "name": "Final scene restores active actors and normal controls",
+      "passed": true,
+      "observed": {
+        "errors": 0,
+        "warnings": 0,
+        "compiling": false,
+        "dirty": false,
+        "motor": true,
+        "physics": true,
+        "live": 7
+      }
+    }
+  ],
+  "edgePassed": 5,
+  "finalConsole": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "visualPreview": {
+    "observed": {
+      "state": "Recoiling",
+      "closure": 0.5714284,
+      "aggro": false,
+      "distance": 2.92
+    },
+    "note": "Staged Game View, same actual recoil code ticked to middle pose then controller paused for inspection. Other actors temporarily hidden, camera/player poses discarded after Stop."
+  },
+  "restoredScene": {
+    "dirty": false,
+    "motor": true,
+    "physics": true,
+    "cameraFollow": true,
+    "zoom": 5.2,
+    "live": 7
+  }
+}
