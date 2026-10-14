@@ -226,3 +226,21 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 | Docs/Aggro072Results.json | Реальные наблюдения тестов и ограничения |
 
 `Docs/Demos/stalker-fear-v072.png` — постановочный осмотр текущей позы сжатия на увеличенной дистанции света, не запись движения; условия указаны в VALIDATION.md.
+
+## Добавления v0.7.3 — аудиопрототип
+
+| Путь | Назначение |
+|---|---|
+| Assets/EmergencyShift/Audio/Stalker/Prototype01/*.wav + .meta | 31 моно PCM24/48kHz AudioClip, 11 групп; импорт без Normalize |
+| Tools/Audio/generate_stalker_sfx.py | Воспроизводимый офлайн-синтез, превью, manifest и ZIP; --force для перезаписи |
+| Tools/Audio/requirements.txt | NumPy2.3.5 только для генератора |
+| Docs/STALKER_AUDIO.md | Прослушивание, происхождение, группы, импорт и следующий план подключения |
+| Docs/Audio/StalkerPrototype01/README.md | Таймкоды прослушивания |
+| Docs/Audio/StalkerPrototype01/manifest.json | Seeds, SHA256, формат и уровни каждого WAV |
+| Docs/Audio/StalkerPrototype01/Validation.json | Объективная проверка WAV/Unity, редакторская регрессия |
+| Docs/Audio/StalkerPrototype01/stalker-showcase.wav | Последовательный каталог звуков |
+| Docs/Audio/StalkerPrototype01/stalker-encounter.wav | Постановочный аудиоэпизод, не запись Unity |
+| Docs/Audio/StalkerPrototype01/stalker-sfx-prototype01.zip | 31 WAV, manifest, README и отдельный гайд |
+| Assets/EmergencyShift/Editor/StalkerPatrol2DEditor.cs | Исправлен per-target OnSceneGUI/SerializedObject |
+
+Сцена/префабы и игровой C# этим этапом не меняются.

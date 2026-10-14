@@ -25,8 +25,9 @@ namespace EmergencyShift.Editor
         }
         private void OnSceneGUI()
         {
-            if (Application.isPlaying || targets.Length != 1 || !((StalkerPatrol2D)target).UsePatrolArea) return;
-            var patrol = (StalkerPatrol2D)target;
+            // Unity invokes this callback for each selected target; targets is invalid here.
+            var patrol = target as StalkerPatrol2D;
+            if (Application.isPlaying || patrol == null || !patrol.UsePatrolArea) return;
             Rect area = patrol.Area;
             bounds.center = new Vector3(area.center.x, area.center.y, patrol.transform.position.z);
             bounds.size = new Vector3(area.width, area.height, 0);
@@ -35,10 +36,11 @@ namespace EmergencyShift.Editor
             using (new Handles.DrawingScope(new Color(.95f, .72f, .2f))) bounds.DrawHandle();
             if (!EditorGUI.EndChangeCheck()) return;
             Undo.RecordObject(patrol, "Resize patrol area");
-            serializedObject.Update();
-            serializedObject.FindProperty("areaOffset").vector2Value = (Vector2)bounds.center - patrol.AreaOrigin;
-            serializedObject.FindProperty("areaSize").vector2Value = Vector2.Max((Vector2)bounds.size, Vector2.one * .2f);
-            serializedObject.ApplyModifiedProperties();
+            var patrolObject = new SerializedObject(patrol);
+            patrolObject.Update();
+            patrolObject.FindProperty("areaOffset").vector2Value = (Vector2)bounds.center - patrol.AreaOrigin;
+            patrolObject.FindProperty("areaSize").vector2Value = Vector2.Max((Vector2)bounds.size, Vector2.one * .2f);
+            patrolObject.ApplyModifiedProperties();
         }
     }
 }
