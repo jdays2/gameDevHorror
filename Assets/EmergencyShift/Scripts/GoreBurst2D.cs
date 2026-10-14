@@ -68,7 +68,7 @@ namespace EmergencyShift
                 var motion=piece.GetComponent<GibMotion2D>();motion.ConfigureVisual(renderer,shadow);
                 // Чередуем тяжёлые близкие куски и быстрые дальние, а не восемь одинаковых импульсов.
                 float power=Random.Range(impulseRange.x,impulseRange.y)*(i%3==0?.65f:1);
-                motion.Launch(new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*power,Random.Range(-650f,650f),obstacles,
+                motion.Launch(new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*power,Random.Range(-650f,650f),obstacles.value|(1<<9),
                     Random.Range(liftRange.x,liftRange.y),fragmentGravity);
             }
         }

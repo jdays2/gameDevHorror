@@ -24,7 +24,7 @@ namespace EmergencyShift
         {
             return !collected && isActiveAndEnabled && actor != null && actor.Weapon != null
                 && actor.CanReach(InteractionPosition, pickupRange)
-                && (!requiresLight || actor.Flashlight.Illuminates(InteractionPosition, actor.BlockingGeometry));
+                && (!requiresLight || actor.IsCurrentlyLit(InteractionPosition));
         }
         public string GetPrompt(PlayerInteraction actor)
         {

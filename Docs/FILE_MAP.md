@@ -172,3 +172,23 @@ GibMotion2D теперь разделяет планарный импульс и
 ShadowStalker2D дополнен домашним центром/радиусами, Dormant/Returning и stagger; Flashlight2D — AimTowards и параметрами угловой плавности. Остальные существующие файлы и .meta сохраняются; старые маски/записи не удаляются.
 
 `Docs/CombatFeel062Final.json` — финальное направление/ограничение/отсечение тени, состояние сохранённой сцены, полная консоль с отдельно классифицированным служебным предупреждением MCP.
+
+## Файлы v0.7 — свет и укрытия
+
+| Файл/объект | Ответственность |
+|---|---|
+| Scripts/LocalLamp2D.cs | Настройки локального Light2D, перебои и проверка освещённости для подбора |
+| Scripts/LightingDemoRecorder.cs | Только Editor: временная сценарная запись света без сохранения постановки |
+| Editor/LightingPlaygroundSetup.cs | Идемпотентная подготовка стенда/префабов/слоя9/контуров |
+| Prefabs/CoverCabinet.prefab | Высокий непрозрачный шкаф, коллайдер/ShadowCaster |
+| Prefabs/CoverCrate.prefab | Непрозрачный ящик с простыми рейками |
+| Prefabs/LowBench.prefab | Низкий стол, layer9, без ShadowCaster |
+| Prefabs/EmergencyLamp.prefab | Локальная лампа, корпус/индикатор/Light2D/компонент |
+| Scenes/BasementPrototype.unity: Occlusion playground | Четыре пропа, шесть ламп, укрытый сталкер и патроны |
+| Scenes/BasementPrototype.unity: Boundary guide | 13 дочерних слабых контуров стен/створки |
+| ProjectSettings/TagManager.asset | Имя LowObstacles у физического слоя9 |
+| Docs/LIGHTING_PLAYGROUND.md | Текущие правила темноты, параметры и инструкция новичку |
+| Docs/Lighting07Results.json | Наблюдения 15 Edit/Play-проверок |
+| Docs/Demos/lighting-playground-v07.mp4 | Демонстрация света и обхода шкафа |
+
+Пути Scripts/Editor/Prefabs/Scenes в таблице относительно Assets/EmergencyShift. .meta хранит GUID каждого нового ассета. PlayerInteraction/два Pickup используют общий IsCurrentlyLit; ShotEffect2D регистрирует текущую вспышку. Маски PlayerWeapon2D/Player.prefab, движение ShadowStalker2D и GoreBurst2D учитывают низкие препятствия. Fog/exploration исходников и ресурсов в текущей версии нет.

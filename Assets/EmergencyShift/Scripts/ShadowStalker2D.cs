@@ -188,12 +188,13 @@ namespace EmergencyShift
         private Vector2 FindClearDirection(Vector2 preferred)
         {
             float probe = bodyCollider.radius * 0.9f;
-            if (Physics2D.CircleCast(body.position, probe, preferred, 0.3f, blockingGeometry).collider == null)
+            int solids=blockingGeometry.value|(1<<9); // Низкая мебель мешает движению, но не свету/взгляду.
+            if (Physics2D.CircleCast(body.position, probe, preferred, 0.3f, solids).collider == null)
                 return preferred;
             foreach (float angle in AvoidanceAngles)
             {
                 Vector2 alternative = Quaternion.Euler(0, 0, angle) * preferred;
-                if (Physics2D.CircleCast(body.position, probe, alternative, 0.3f, blockingGeometry).collider == null)
+                if (Physics2D.CircleCast(body.position, probe, alternative, 0.3f, solids).collider == null)
                     return alternative;
             }
             return Vector2.zero;

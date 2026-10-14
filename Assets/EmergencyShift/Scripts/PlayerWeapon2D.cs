@@ -14,7 +14,7 @@ namespace EmergencyShift
         [SerializeField] private ShotEffect2D effectPrefab;
         [SerializeField] private ShotVisualProfile visualProfile;
         [SerializeField] private LayerMask blockingGeometry = 1 << 8;
-        [SerializeField] private LayerMask bulletCollisionMask = (1 << 8) | 1;
+        [SerializeField] private LayerMask bulletCollisionMask = (1 << 8) | (1<<9) | 1;
         [SerializeField, Min(1)] private int maximumAmmo = 120;
         [SerializeField, Min(1)] private int damage = 1;
         [SerializeField, Min(0.05f)] private float secondsBetweenShots = 0.3f;
@@ -75,8 +75,8 @@ namespace EmergencyShift
             UpdatePose();
             Vector2 direction = flashlight.Direction.normalized;
             Vector2 origin = muzzle.position;
-            // Проверка от капсулы до дула запрещает выстрел/вспышку за стеной вплотную к игроку.
-            RaycastHit2D blockedMuzzle = Physics2D.Linecast(transform.position, origin, blockingGeometry);
+            // Не выпускаем пулю за преградой, даже если дуло выступает сквозь низкую мебель.
+            RaycastHit2D blockedMuzzle = Physics2D.Linecast(transform.position, origin, blockingGeometry.value | (1 << 9));
             if (blockedMuzzle.collider != null) origin = blockedMuzzle.point - direction * 0.05f;
             Ammo--; ShotsFired++; nextShot = Time.time + secondsBetweenShots;
             var flash = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);

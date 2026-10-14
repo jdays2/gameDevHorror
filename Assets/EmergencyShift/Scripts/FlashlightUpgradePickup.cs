@@ -35,8 +35,7 @@ namespace EmergencyShift
         {
             if (collected || !isActiveAndEnabled || actor == null || actor.Upgrades == null) return false;
             if (!actor.CanReach(InteractionPosition, pickupRange)) return false;
-            return !requiresLight || (actor.Flashlight != null
-                && actor.Flashlight.Illuminates(InteractionPosition, actor.BlockingGeometry));
+            return !requiresLight || actor.IsCurrentlyLit(InteractionPosition);
         }
 
         public string GetPrompt(PlayerInteraction actor)

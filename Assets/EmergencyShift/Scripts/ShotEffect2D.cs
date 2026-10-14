@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.Rendering.Universal;
 
 namespace EmergencyShift
@@ -6,6 +7,20 @@ namespace EmergencyShift
     /// <summary>Короткая вспышка/попадание: одноразовый свет и простые геометрические штрихи.</summary>
     public sealed class ShotEffect2D : MonoBehaviour
     {
+        private static readonly List<ShotEffect2D> active=new List<ShotEffect2D>();
+        private void OnEnable(){if(!active.Contains(this))active.Add(this);}
+        private void OnDisable(){active.Remove(this);}
+        public static bool IlluminatesPoint(Vector2 point,LayerMask opaque)
+        {
+            foreach(var effect in active)
+            {
+                var light=effect.flash;
+                if(effect.configured&&light!=null&&light.enabled&&light.intensity>.12f
+                    &&Vector2.Distance(point,light.transform.position)<light.pointLightOuterRadius*.9f
+                    &&Physics2D.Linecast(light.transform.position,point,opaque).collider==null)return true;
+            }
+            return false;
+        }
         [SerializeField] private Light2D flash;
         [SerializeField] private SpriteRenderer[] strokes;
         [SerializeField] private SpriteRenderer whiteCore;

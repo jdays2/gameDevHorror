@@ -51,6 +51,8 @@ namespace EmergencyShift
             Collider2D blocker = Physics2D.Linecast(transform.position, point, blockingGeometry).collider;
             return blocker == null || blocker == allowedBlocker;
         }
+        public bool IsCurrentlyLit(Vector2 point)
+        {return (flashlight!=null&&flashlight.Illuminates(point,blockingGeometry))||LocalLamp2D.AnyIlluminates(point,blockingGeometry)||ShotEffect2D.IlluminatesPoint(point,blockingGeometry);}
 
         public void RefreshTarget()
         {

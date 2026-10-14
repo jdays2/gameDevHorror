@@ -55,3 +55,7 @@ Scene View оставлен в 2D с отключённым просмотром
 v0.6.1: [вспышка и разрыв до/после](Docs/Demos/combat-effects-before-after-v061.mp4), [разрыв в замедлении](Docs/Demos/stalker-rupture-slow-v061.mp4). Настройки — Docs/WEAPONS.md. Части тела теперь получают разный импульс/подлёт и быстро останавливаются после посадки.
 
 v0.6.2: [план и приоритеты](Docs/COMBAT_FEEL_PLAN.md), [текущие свет/попадания](Docs/Demos/combat-feel-v062.mp4). У сталкеров индивидуальная домашняя зона; выбирать экземпляр в Scene с Gizmos. Player → Flashlight2D → Aim — плавность разворота; Main Camera → CameraFollow2D — плавность следования. Настройки и ограничения — Docs/WEAPONS.md и Docs/ENEMIES.md.
+
+## v0.7 — текущая тестовая сцена
+
+Туман войны/память карты удалены по последнему решению. Постоянная видимая рамка границ, густая темнота, шесть ламп и четыре раздельных укрытия. Как добавлять/настраивать лампы и пропы — [LIGHTING_PLAYGROUND.md](Docs/LIGHTING_PLAYGROUND.md). Видеопроверка — [lighting-playground-v07.mp4](Docs/Demos/lighting-playground-v07.mp4). Остальные механики/пользовательская расстановка сохранены.

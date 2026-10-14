@@ -1,0 +1,238 @@
+{
+  "version": "0.7",
+  "checks": [
+    {
+      "name": "Saved four props, six lamps and high/low physical layers",
+      "passed": true,
+      "observed": {
+        "props": 4,
+        "lamps": 6,
+        "layer": "LowObstacles",
+        "lowLayer": 9,
+        "lowCaster": false,
+        "tallLayer": 8,
+        "tallCaster": true,
+        "bulletsHitLow": true,
+        "guides": 13,
+        "legacy": 0,
+        "missing": 0,
+        "ambient": 0.002,
+        "dirty": false
+      }
+    },
+    {
+      "name": "Fog removed, 13 permanent guides, dense ambient, no missing scripts",
+      "passed": true,
+      "observed": {
+        "props": 4,
+        "lamps": 6,
+        "layer": "LowObstacles",
+        "lowLayer": 9,
+        "lowCaster": false,
+        "tallLayer": 8,
+        "tallCaster": true,
+        "bulletsHitLow": true,
+        "guides": 13,
+        "legacy": 0,
+        "missing": 0,
+        "ambient": 0.002,
+        "dirty": false
+      }
+    },
+    {
+      "name": "Wall/door sources are outside opaque colliders with distinct intensities",
+      "passed": true,
+      "observed": {
+        "inside": 0,
+        "low": 0.160326257,
+        "high": 0.8
+      }
+    },
+    {
+      "name": "Low bench blocks physical path and passes flashlight",
+      "passed": true,
+      "observed": {
+        "lit": true,
+        "physical": true,
+        "layer": 9
+      }
+    },
+    {
+      "name": "Real capsule stops at low bench",
+      "passed": true,
+      "observed": {
+        "x": 0.5099998,
+        "y": -0.65
+      }
+    },
+    {
+      "name": "Actual bullet hits bench, target behind is unharmed",
+      "passed": true,
+      "observed": {
+        "health": 2,
+        "bullets": 0
+      }
+    },
+    {
+      "name": "Tall cabinet blocks beam to hidden enemy/loot",
+      "passed": true,
+      "observed": {
+        "lit": false,
+        "blocked": true
+      }
+    },
+    {
+      "name": "Going around cover exposes enemy and ammo to flashlight",
+      "passed": true,
+      "observed": {
+        "enemy": true,
+        "loot": true
+      }
+    },
+    {
+      "name": "Dark nearby loot is unavailable without actual light",
+      "passed": true,
+      "observed": {
+        "reach": true,
+        "available": false,
+        "lit": false
+      }
+    },
+    {
+      "name": "Local illumination permits item prompt with F off",
+      "passed": true,
+      "observed": {
+        "available": true,
+        "prompt": "[E]  Подобрать патроны",
+        "flashlight": false
+      }
+    },
+    {
+      "name": "Lit ammo uses E path once and adds 12",
+      "passed": true,
+      "observed": {
+        "got": true,
+        "repeat": false,
+        "added": 12
+      }
+    },
+    {
+      "name": "Entities are not forcibly hidden by a visibility system",
+      "passed": true,
+      "observed": 0
+    },
+    {
+      "name": "Every user enemy position/radius restored after Stop",
+      "passed": true,
+      "observed": {
+        "before": [
+          "(-1.600000, -1.500000, 0.000000) 1,8",
+          "(14.300000, 1.100000, 0.000000) 1,8",
+          "(3.010000, -2.980000, 0.000000) 2,35",
+          "(3.179286, 2.850549, 0.000000) 2",
+          "(-4.230000, -3.030000, 0.000000) 3,2",
+          "(5.312844, -0.381232, 0.000000) 3,2",
+          "(7.024833, -0.486815, 0.000000) 3,2"
+        ],
+        "after": [
+          "(-1.600000, -1.500000, 0.000000) 1,8",
+          "(14.300000, 1.100000, 0.000000) 1,8",
+          "(3.010000, -2.980000, 0.000000) 2,35",
+          "(3.179286, 2.850549, 0.000000) 2",
+          "(-4.230000, -3.030000, 0.000000) 3,2",
+          "(5.312844, -0.381232, 0.000000) 3,2",
+          "(7.024833, -0.486815, 0.000000) 3,2"
+        ]
+      }
+    },
+    {
+      "name": "Saved scene has normal control/physics and no recorder",
+      "passed": true,
+      "observed": {
+        "dirty": false,
+        "motor": true,
+        "physics": true,
+        "recorders": 0
+      }
+    },
+    {
+      "name": "Final console has no game warnings/errors",
+      "passed": true,
+      "observed": {
+        "success": true,
+        "message": "Retrieved 0 log entries.",
+        "data": []
+      },
+      "infrastructureWarnings": [],
+      "otherWarningsOrErrors": []
+    }
+  ],
+  "passed": 15,
+  "total": 15,
+  "note": "Native lighting only. Fog and exploration memory were cancelled by user and removed. Actual Edit/Play tests; temporary fixtures discarded. Video/pixel validation separate. No standalone build or crowd profiling.",
+  "earlierInfrastructureConsoleResponse": {
+    "success": true,
+    "message": "Retrieved 1 log entries.",
+    "data": [
+      {
+        "type": "Warning",
+        "message": "<b><color=#cc7a00>MCP-FOR-UNITY</color></b>: Suppressed duplicate command resent on a new connection; awaiting the in-flight result instead of running it twice.",
+        "file": "./Library/PackageCache/com.coplaydev.unity-mcp@da7b9ae4aeeb/Editor/Helpers/McpLog.cs",
+        "line": 45,
+        "stackTrace": null
+      }
+    ]
+  },
+  "finalAudit": {
+    "nearBenchMuzzleCannotFireThrough": {
+      "fired": true,
+      "ammo": 7,
+      "bullets": 0,
+      "effects": 2
+    },
+    "savedScene": {
+      "compiling": false,
+      "errors": 0,
+      "warnings": 0,
+      "guides": [
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12
+      ],
+      "missing": 0,
+      "forced": 0,
+      "benchZ": -0.045,
+      "ammoZ": -0.045,
+      "positions": [
+        "(-1.600000, -1.500000, 0.000000) 1,8",
+        "(14.300000, 1.100000, 0.000000) 1,8",
+        "(3.010000, -2.980000, 0.000000) 2,35",
+        "(3.179286, 2.850549, 0.000000) 2",
+        "(-4.230000, -3.030000, 0.000000) 3,2",
+        "(5.312844, -0.381232, 0.000000) 3,2",
+        "(7.024833, -0.486815, 0.000000) 3,2"
+      ],
+      "dirty": false,
+      "motor": true,
+      "physics": true,
+      "cameraFollow": true,
+      "zoom": 5.2,
+      "recorders": 0
+    },
+    "console": {
+      "success": true,
+      "message": "Retrieved 0 log entries.",
+      "data": []
+    }
+  }
+}
