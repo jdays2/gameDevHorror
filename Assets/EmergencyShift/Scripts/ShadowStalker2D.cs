@@ -44,6 +44,7 @@ namespace EmergencyShift
         private PlayerLife2D playerLife;
         private GoreBurst2D gore;
         private bool strikeApplied;
+        private bool lungeAnnounced;
         private float attackReadyAt;
         private Vector2 home;
         private float staggerUntil;
@@ -51,6 +52,11 @@ namespace EmergencyShift
         private StalkerHitResponse2D hitResponse;
         private StalkerPatrol2D patrol;
         private StalkerChasePath2D chasePath;
+        // Presentation observes these events; damage, timing and state ownership stay here.
+        public event System.Action<BehaviourState> StateChanged;
+        public event System.Action Damaged;
+        public event System.Action AttackLunged;
+        public event System.Action<bool> AttackResolved;
         public bool HasAggro { get; private set; }
         public float PursuitSpeed => creepSpeed;
         public float RetreatSpeed => retreatSpeed;
@@ -147,7 +153,7 @@ namespace EmergencyShift
                     {
                         if (attacksEnabled && playerLife != null && lineOfSight && toPlayer.magnitude <= attackDistance && Time.time >= attackReadyAt && Closure < 0.1f)
                         {
-                            Enter(BehaviourState.Attacking);strikeApplied = false;escapeDirection = toPlayer.normalized;
+                            Enter(BehaviourState.Attacking);strikeApplied = false;lungeAnnounced = false;escapeDirection = toPlayer.normalized;
                             break;
                         }
                         // Точка за спиной определяется направлением фонаря, а не формой капсулы.
@@ -181,14 +187,18 @@ namespace EmergencyShift
                 case BehaviourState.Attacking:
                     Closure = 0;
                     // Подготовка, короткий бросок, укус и восстановление — один завершённый цикл.
+                    if (!lungeAnnounced && AttackProgress >= 0.25f)
+                    { lungeAnnounced = true; AttackLunged?.Invoke(); }
                     if (AttackProgress >= 0.25f && AttackProgress < 0.48f)
                         velocity = FindClearDirection(escapeDirection) * 2.7f;
                     if (!strikeApplied && AttackProgress >= 0.42f)
                     {
                         strikeApplied = true;
+                        bool landed = false;
                         if (playerLife != null && !playerLife.IsDead && Vector2.Distance(body.position,player.position) < 1.4f &&
                             Physics2D.Linecast(body.position,player.position,blockingGeometry).collider == null)
-                            playerLife.TakeDamage(1);
+                            landed = playerLife.TakeDamage(1);
+                        AttackResolved?.Invoke(landed);
                     }
                     if (AttackProgress >= 1)
                     { attackReadyAt = Time.time + attackCooldown;Enter(BehaviourState.Sneaking);velocity = Vector2.zero; }
@@ -212,7 +222,12 @@ namespace EmergencyShift
             return Vector2.zero;
         }
 
-        private void Enter(BehaviourState state) { State = state; stateTime = 0; }
+        private void Enter(BehaviourState state)
+        {
+            bool changed = State != state;
+            State = state; stateTime = 0;
+            if (changed) StateChanged?.Invoke(state);
+        }
         private void ActivateAggro()
         {
             if(HasAggro)return;
@@ -235,6 +250,7 @@ namespace EmergencyShift
             if (State == BehaviourState.Dead || amount <= 0) return;
             Health = Mathf.Max(0,Health-amount);
             if (Health == 0) Kill();
+            else Damaged?.Invoke();
         }
 
         [ContextMenu("Preview/Kill creature (Play only)")]

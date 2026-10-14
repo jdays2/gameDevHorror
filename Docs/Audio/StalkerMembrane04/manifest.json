@@ -3,23 +3,23 @@
   "direction": "Membrane sound approved by user; footstep balance revised and initial light irritation strengthened.",
   "method": "Original local synthesis and DSP; no external recordings/service.",
   "numpyVersion": "2.3.5",
-  "runtimeAttached": false,
+  "runtimeIntegration": "StalkerAudio2D; actual verification in RuntimeValidation.json",
   "generator": "Tools/Audio/generate_stalker_membrane_v04.py",
   "dependencies": [
-    "generate_stalker_choices_v03.py"
+    "stalker_membrane_dsp.py",
+    "Tools/Audio/Reference/approved-idle-01.wav",
+    "Tools/Audio/Reference/approved-idle-02.wav"
   ],
-  "reference": "Docs/Audio/StalkerChoices03/02-membrane.wav",
-  "referenceSha256": "2febfae723dcecf23831dbd33e4c83d4d047ef30b076a0e502d7c10b6dcc6cda",
-  "exactQuietSlices": [
+  "quietReferences": [
     {
       "file": "stalker_idle_01.wav",
-      "startSeconds": 0.55,
-      "seconds": 0.19
+      "source": "Tools/Audio/Reference/approved-idle-01.wav",
+      "sha256": "baccb44f42c812b68436a061cb71a748bf801e0793bb7a4df3e6b12d122f99ed"
     },
     {
       "file": "stalker_idle_02.wav",
-      "startSeconds": 1.45,
-      "seconds": 0.12
+      "source": "Tools/Audio/Reference/approved-idle-02.wav",
+      "sha256": "63391bf630d9331dd5b45e81fbccf3fa534c48d04e98b1011c7aecd1c9c557c2"
     }
   ],
   "clips": [
@@ -840,14 +840,11 @@
     }
   ],
   "encounterSeconds": 21,
-  "retreatFocusSeconds": 7,
-  "revisionAuditionSeconds": 6.5,
   "revisionNote": "Six foot contacts RMS-matched to .007 with softened peaks; no sixth-contact body accent. Initial light fear .64 peak with stronger short cry. Other 40 sources unchanged.",
   "stagedContactCounts": {
     "stalk": 16,
     "retreat": 35,
-    "chase": 19,
-    "focusRetreat": 38
+    "chase": 19
   },
-  "previewNote": "Arranged audio demonstration, not Unity capture; pan/distance envelopes are hand staged. Runtime cadence/mixer/crowd not implemented."
+  "previewNote": "Offline arrangement, not Unity capture. Runtime checks are in RuntimeValidation.json; no crowd performance claim."
 }

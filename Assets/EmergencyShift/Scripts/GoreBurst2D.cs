@@ -19,6 +19,7 @@ namespace EmergencyShift
         [SerializeField] private Vector2 liftRange=new Vector2(3f,5.5f);
         [SerializeField, Min(1)] private float fragmentGravity=26f;
         private bool emitted;
+        public event System.Action<GibMotion2D> FragmentLaunched;
         public void Configure(BloodPool2D pool,Sprite[] pieces,Material material)
         {bloodPoolPrefab=pool;fragments=pieces;litMaterial=material;}
         public void ConfigureRupture(Sprite blood,Sprite shadow,Material material)
@@ -70,6 +71,7 @@ namespace EmergencyShift
                 float power=Random.Range(impulseRange.x,impulseRange.y)*(i%3==0?.65f:1);
                 motion.Launch(new Vector2(Mathf.Cos(angle),Mathf.Sin(angle))*power,Random.Range(-650f,650f),obstacles.value|(1<<9),
                     Random.Range(liftRange.x,liftRange.y),fragmentGravity);
+                FragmentLaunched?.Invoke(motion);
             }
         }
     }

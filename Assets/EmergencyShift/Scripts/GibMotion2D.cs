@@ -19,6 +19,7 @@ namespace EmergencyShift
         public float Height => height;
         public Vector2 Velocity => velocity;
         public bool Settled { get; private set; }
+        public event System.Action<GibMotion2D> FirstLanded;
         public void ConfigureVisual(SpriteRenderer body, SpriteRenderer contact) { visual = body; shadow = contact; }
         public void Launch(Vector2 initialVelocity,float angularSpeed,LayerMask obstacles,float lift=4f,float fallGravity=26f)
         {
@@ -45,6 +46,7 @@ namespace EmergencyShift
                 {
                     landed=true;verticalSpeed=-verticalSpeed*0.18f;
                     velocity*=0.16f;spin*=0.2f;
+                    FirstLanded?.Invoke(this);
                 }
                 else {Settle();return;}
             }

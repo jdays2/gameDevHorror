@@ -9,15 +9,14 @@ import argparse
 import hashlib
 import json
 import wave
-import zipfile
 import numpy as np
-import generate_stalker_choices_v03 as core
+import stalker_membrane_dsp as core
 
 SR=48000
 ROOT=Path(__file__).resolve().parents[2]
 ASSETS=ROOT/'Assets/EmergencyShift/Audio/Stalker/Membrane04'
 PREVIEW=ROOT/'Docs/Audio/StalkerMembrane04'
-REFERENCE=ROOT/'Docs/Audio/StalkerChoices03/02-membrane.wav'
+REFERENCES=ROOT/'Tools/Audio/Reference'
 
 
 def read24(path):
@@ -100,8 +99,7 @@ CATALOG=[
 def build(kind,variant,rng,reference):
     if kind=='idle':
         # These first two slices preserve the liked calm part exactly, including its gain.
-        if variant==1:return reference[int(.55*SR):int(.55*SR)+int(.19*SR)].copy()
-        if variant==2:return reference[int(1.45*SR):int(1.45*SR)+int(.12*SR)].copy()
+        if variant in (1,2):return reference[variant].copy()
         return core.membrane(rng,rng.uniform(.13,.24))*rng.uniform(.8,1.05)
     if kind=='step':
         # Match contact energy, not just peaks: the old variants differed by ~3.5dB RMS.
@@ -164,7 +162,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--force',action='store_true');args=parser.parse_args()
     if (ASSETS/'stalker_idle_01.wav').exists() and not args.force:raise SystemExit('Output exists; deliberate overwrite requires --force.')
     ASSETS.mkdir(parents=True,exist_ok=True);PREVIEW.mkdir(parents=True,exist_ok=True)
-    reference=read24(REFERENCE);clips={};manifest=[]
+    reference={i:read24(REFERENCES/f'approved-idle-{i:02}.wav')for i in (1,2)};clips={};manifest=[]
     for group,(kind,title,count)in enumerate(CATALOG):
         for variant in range(1,count+1):
             seed=202610140400+group*83+variant*17
@@ -174,8 +172,8 @@ def main():
                 frames=len(x),sampleRate=SR,channels=1,bits=24,durationSeconds=len(x)/SR,
                 peak=float(np.max(np.abs(x))),rms=float(np.sqrt(np.mean(x*x))),
                 sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
-    for variant,at,seconds in [(1,.55,.19),(2,1.45,.12)]:
-        assert np.array_equal(read24(ASSETS/f'stalker_idle_{variant:02}.wav'),reference[int(at*SR):int(at*SR)+int(seconds*SR)])
+    for variant in (1,2):
+        assert np.array_equal(read24(ASSETS/f'stalker_idle_{variant:02}.wav'),reference[variant])
 
     def place(track,kind,variant,at,gain=1,pan=0):
         source=clips[(kind,variant)]
@@ -209,23 +207,6 @@ def main():
     master_gain=.84/(.70/np.sqrt(2));scene*=master_gain
     write(PREVIEW/'stalker-full-encounter.wav',scene,16)
 
-    focus=np.zeros((int(7*SR),2));place(focus,'idle',1,.35,1.7)
-    place(focus,'light_fear',2,1.25,1.15)
-    focus_steps=gait(focus,1.43,4.1,14,1.9,True)
-    for at,variant,gain,pan in [(1.75,1,1,.1),(2.55,2,.75,.35),(3.35,3,.5,.6)]:place(focus,'retreat_pain',variant,at,gain,pan)
-    place(focus,'cower',2,4.7,1.3,.65)
-    focus*=min(2.0,.80/float(np.max(np.abs(focus))));write(PREVIEW/'stalker-light-and-retreat.wav',focus,16)
-
-    # Short revision audition: level-matched feet, sharper irritation, then retreat/cower.
-    revision=np.zeros((int(6.5*SR),2))
-    for i in range(6):place(revision,'step',i+1,.22+i*.22,1.35)
-    place(revision,'idle',1,1.72,1.6)
-    place(revision,'light_fear',1,2.3,1.0)
-    gait(revision,2.47,4.6,14,1.7,True)
-    place(revision,'retreat_pain',1,2.85,.8,.2);place(revision,'retreat_pain',2,3.6,.55,.5)
-    place(revision,'cower',1,5.0,1.25,.65)
-    revision*=1.6;write(PREVIEW/'stalker-revision-r2.wav',revision,16)
-
     # Sequential catalogue: boundaries allow distinct event families to be auditioned.
     timeline=[];cursor=.35
     for kind,title,_ in CATALOG:
@@ -235,30 +216,24 @@ def main():
     for entry in timeline:place(sampler,entry['category'],1,entry['start'],1.15)
     write(PREVIEW/'stalker-event-catalogue.wav',sampler,16)
     report=dict(version='Membrane04-r2',direction='Membrane sound approved by user; footstep balance revised and initial light irritation strengthened.',
-        method='Original local synthesis and DSP; no external recordings/service.',numpyVersion=np.__version__,runtimeAttached=False,
-        generator='Tools/Audio/generate_stalker_membrane_v04.py',dependencies=['generate_stalker_choices_v03.py'],
-        reference='Docs/Audio/StalkerChoices03/02-membrane.wav',referenceSha256=hashlib.sha256(REFERENCE.read_bytes()).hexdigest(),
-        exactQuietSlices=[dict(file='stalker_idle_01.wav',startSeconds=.55,seconds=.19),dict(file='stalker_idle_02.wav',startSeconds=1.45,seconds=.12)],
-        clips=manifest,catalogueTimeline=timeline,encounterSeconds=21,retreatFocusSeconds=7,revisionAuditionSeconds=6.5,
+        method='Original local synthesis and DSP; no external recordings/service.',numpyVersion=np.__version__,runtimeIntegration='StalkerAudio2D; actual verification in RuntimeValidation.json',
+        generator='Tools/Audio/generate_stalker_membrane_v04.py',dependencies=['stalker_membrane_dsp.py','Tools/Audio/Reference/approved-idle-01.wav','Tools/Audio/Reference/approved-idle-02.wav'],
+        quietReferences=[dict(file=f'stalker_idle_{i:02}.wav',source=f'Tools/Audio/Reference/approved-idle-{i:02}.wav',sha256=hashlib.sha256((REFERENCES/f'approved-idle-{i:02}.wav').read_bytes()).hexdigest())for i in (1,2)],
+        clips=manifest,catalogueTimeline=timeline,encounterSeconds=21,
         revisionNote='Six foot contacts RMS-matched to .007 with softened peaks; no sixth-contact body accent. Initial light fear .64 peak with stronger short cry. Other 40 sources unchanged.',
-        stagedContactCounts=dict(stalk=len(stalk),retreat=len(retreat),chase=len(chase),focusRetreat=len(focus_steps)),
-        previewNote='Arranged audio demonstration, not Unity capture; pan/distance envelopes are hand staged. Runtime cadence/mixer/crowd not implemented.')
+        stagedContactCounts=dict(stalk=len(stalk),retreat=len(retreat),chase=len(chase)),
+        previewNote='Offline arrangement, not Unity capture. Runtime checks are in RuntimeValidation.json; no crowd performance claim.')
     (PREVIEW/'manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     cue=['# Сталкер — Membrane04-r2','','Мембрана одобрена пользователем; выровнены шаги и усилен начальный вскрик от света.','',
-        '- stalker-revision-r2.wav: 6.5с, шесть выровненных шагов → спокойная мембрана → усиленный вскрик/бегство → сжатие.',
         '- stalker-full-encounter.wav: 21с, покой → приближение → свет/бегство → сжатие → погоня/укус → ранения → разрыв/падения.',
-        '- stalker-light-and-retreat.wav: 7с, отдельно усилен быстрый перебор ног при отходе; звук постепенно удаляется.',
         '- stalker-event-catalogue.wav: изолированный пример каждой группы.','',
-        'Это постановочные аудиомонтажи, не запись Unity. В игре звуки ещё не подключены.','',
+        'Это постановочные аудиомонтажи, не запись Unity. Игровое проигрывание — StalkerAudio2D; гайд Docs/STALKER_AUDIO.md.','',
         '49 исходников в13 группах — моно PCM24/48kHz. Превью стерео PCM16/48kHz. Все клипы однократные; бегство строится отдельными контактами, не фиксированной петлёй.',
         'Два первых idle сохраняют спокойные фрагменты выбранной пробы sample-for-sample. Остальные события развивают этот тембр.','',
         'Каталог по времени:','']
     cue += [f"- {e['start']:.2f}–{e['end']:.2f}с: {e['title']}"for e in timeline]
     (PREVIEW/'README.md').write_text('\n'.join(cue)+'\n',encoding='utf-8')
-    with zipfile.ZipFile(PREVIEW/'stalker-membrane04.zip','w',zipfile.ZIP_DEFLATED)as archive:
-        for entry in manifest:archive.write(ASSETS/entry['file'],'Stalker/'+entry['file'])
-        archive.write(PREVIEW/'manifest.json','manifest.json');archive.write(PREVIEW/'README.md','README.md')
-    print(json.dumps({'clips':len(manifest),'categories':len(CATALOG),'previews':4,'quietSlicesExact':True,'stagedRetreatContacts':len(retreat)},indent=2))
+    print(json.dumps({'clips':len(manifest),'categories':len(CATALOG),'previews':2,'quietSlicesExact':True,'stagedRetreatContacts':len(retreat)},indent=2))
 
 
 if __name__=='__main__':main()

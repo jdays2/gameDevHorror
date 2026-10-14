@@ -227,56 +227,30 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 
 `Docs/Demos/stalker-fear-v072.png` — постановочный осмотр текущей позы сжатия на увеличенной дистанции света, не запись движения; условия указаны в VALIDATION.md.
 
-## Добавления v0.7.3 — аудиопрототип
+## v0.8 — рабочий звук сталкера
 
 | Путь | Назначение |
 |---|---|
-| Assets/EmergencyShift/Audio/Stalker/Prototype01/*.wav + .meta | 31 моно PCM24/48kHz AudioClip, 11 групп; импорт без Normalize |
-| Tools/Audio/generate_stalker_sfx.py | Воспроизводимый офлайн-синтез, превью, manifest и ZIP; --force для перезаписи |
-| Tools/Audio/requirements.txt | NumPy2.3.5 только для генератора |
-| Docs/STALKER_AUDIO.md | Прослушивание, происхождение, группы, импорт и следующий план подключения |
-| Docs/Audio/StalkerPrototype01/README.md | Таймкоды прослушивания |
-| Docs/Audio/StalkerPrototype01/manifest.json | Seeds, SHA256, формат и уровни каждого WAV |
-| Docs/Audio/StalkerPrototype01/Validation.json | Объективная проверка WAV/Unity, редакторская регрессия |
-| Docs/Audio/StalkerPrototype01/stalker-showcase.wav | Последовательный каталог звуков |
-| Docs/Audio/StalkerPrototype01/stalker-encounter.wav | Постановочный аудиоэпизод, не запись Unity |
-| Docs/Audio/StalkerPrototype01/stalker-sfx-prototype01.zip | 31 WAV, manifest, README и отдельный гайд |
-| Assets/EmergencyShift/Editor/StalkerPatrol2DEditor.cs | Исправлен per-target OnSceneGUI/SerializedObject |
+| Assets/EmergencyShift/Scripts/StalkerAudioSet.cs |Данные ScriptableObject,13 групп/общие лимиты |
+| Assets/EmergencyShift/Scripts/StalkerAudio2D.cs |События/контакты/дистанция/панорама/фильтр/бюджеты |
+| Assets/EmergencyShift/Scripts/ShadowStalker2D.cs |Уведомления о состоянии/уроне/фазах атаки, прежние правила AI |
+| Assets/EmergencyShift/Scripts/GoreBurst2D.cs |FragmentLaunched |
+| Assets/EmergencyShift/Scripts/GibMotion2D.cs |FirstLanded |
+| Assets/EmergencyShift/Editor/StalkerAudioSetup.cs |Разовая запись ссылок в префаб/сцену, проверка сохранности AI |
+| Assets/EmergencyShift/Audio/Stalker/StalkerMembrane.asset + .meta |49 ссылок, лимиты8/2/3 |
+| Assets/EmergencyShift/Audio/Stalker/Membrane04/*.wav + .meta |Единственный рабочий набор,49 моно PCM24/48kHz |
+| Assets/EmergencyShift/Prefabs/ShadowStalker.prefab |StalkerAudio2D и2 сохранённых дочерних источника/фильтра |
+| Assets/EmergencyShift/Scenes/BasementPrototype.unity |Один AudioListener на Main Camera;7 экземпляров наследуют аудиопрефаб |
+| Tools/Audio/generate_stalker_membrane_v04.py |Офлайн-производство рабочего набора/2 превью/manifest |
+| Tools/Audio/stalker_membrane_dsp.py |Только используемые DSP-функции выбранного тембра |
+| Tools/Audio/Reference/approved-idle-01.wav, approved-idle-02.wav |Точные утверждённые спокойные эталоны |
+| Tools/Audio/requirements.txt |NumPy2.3.5 только для инструмента |
+| Docs/STALKER_AUDIO.md |Подробный гайд новичку, Inspector, C#, границы |
+| Docs/STALKER_AUDIO_DIRECTION.md |Краткий актуальный звуковой бриф |
+| Docs/Audio/StalkerMembrane04/manifest.json |Seed/уровни/frames/SHA/производственные зависимости |
+| Docs/Audio/StalkerMembrane04/Validation.json |Формат/хэши/эталоны/очистка/воспроизводимость |
+| Docs/Audio/StalkerMembrane04/RuntimeValidation.json |Ссылки/сохранность параметров/реальные Play и DSP-проверки |
+| Docs/Audio/StalkerMembrane04/stalker-full-encounter.wav |Постановочный21с пример, не запись Unity |
+| Docs/Audio/StalkerMembrane04/stalker-event-catalogue.wav |Изолированный пример каждой группы |
 
-Сцена/префабы и игровой C# этим этапом не меняются.
-
-## Studies02 — новые звуковые исследования
-
-- Docs/STALKER_AUDIO_DIRECTION.md — утверждённые ответы пользователя, характер тела/ног/света/атаки/смерти и будущий микс группы.
-- Tools/Audio/generate_stalker_studies_v02.py — независимый локальный синтез трёх проб, NumPy2.3.5; --force защищает от случайной перезаписи.
-- Docs/Audio/StalkerStudies02/01-bone-on-tile.wav — медленный/быстрый перебор по плитке, 8 секунд.
-- Docs/Audio/StalkerStudies02/02-sparse-viscera.wav — редкие внутренние звуки/паузы, 10 секунд.
-- Docs/Audio/StalkerStudies02/03-light-distress.wav — реакция света/отход/дрожь, 8 секунд.
-- Docs/Audio/StalkerStudies02/manifest.json, README.md, Validation.json — происхождение/seed/таймкоды/уровни и техническая проверка.
-
-Все три пробы в Docs, не рабочие AudioClip в Assets. Prototype01 сохранён как отклонённая история; не использовать как эталон.
-
-## Choices03 — сравнение тембров
-
-- Tools/Audio/generate_stalker_choices_v03.py — офлайн-генератор четырёх отдельных проб, --force защищает файлы от случайной перезаписи.
-- Docs/Audio/StalkerChoices03/01-cartilage.wav, 02-membrane.wav, 03-quiet-hunter.wav — три варианта: покой, свет, затихание; каждый5.5с.
-- Docs/Audio/StalkerChoices03/04-neutral-feet.wav — новая более глухая база ног,5.5с.
-- Docs/Audio/StalkerChoices03/README.md, manifest.json, Validation.json — содержание, происхождение/параметры и фактическая проверка WAV.
-- Docs/STALKER_AUDIO_DIRECTION.md — последовательные отзывы/текущие условия выбора; новые варианты ещё не одобрены.
-
-## Membrane04 — выбранная мембрана, полный набор
-
-- Assets/EmergencyShift/Audio/Stalker/Membrane04/*.wav + .meta —49 однократных моно PCM24/48kHz в13 группах. Полный список/назначение в manifest/гайде.
-- Tools/Audio/generate_stalker_membrane_v04.py — генерация исходников/трёх превью/manifest/ZIP; зависит от choices_v03 и выбранной 02-membrane.wav, NumPy2.3.5.
-- Docs/Audio/StalkerMembrane04/stalker-full-encounter.wav —21с насыщенного сценария.
-- Docs/Audio/StalkerMembrane04/stalker-light-and-retreat.wav —7с отдельного бегства от света.
-- Docs/Audio/StalkerMembrane04/stalker-event-catalogue.wav — один пример каждой группы.
-- Docs/Audio/StalkerMembrane04/README.md, manifest.json, Validation.json, UnityImport.json — таймкоды/происхождение/точные quiet-срезы/проверки файлов и импорта.
-- Docs/Audio/StalkerMembrane04/stalker-membrane04.zip —49 WAV/manifest/README.
-- Docs/STALKER_AUDIO.md — текущий полный гайд, заменяет описание отклонённого Prototype01.
-
-## Membrane04-r2
-
-- В Membrane04 изменены6 stalker_step_*.wav и3 stalker_light_fear_*.wav, GUID сохранены;40 других исходников совпадают по SHA.
-- Docs/Audio/StalkerMembrane04/stalker-revision-r2.wav — новый6.5с пример правок шагов/вскрика.
-- Три прежних превью, ZIP, manifest/Validation/UnityImport обновлены; схема папок и генератор прежние.
+Отклонённые наборы/генераторы и лишние дубли превью/ZIP удалены. Графика/анимации/исторические видео не очищались вне аудиозадачи.
