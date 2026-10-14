@@ -9,11 +9,12 @@ namespace EmergencyShift
         public string displayName = "Тёплая вспышка";
         public Color flashColor = new Color(1, 0.72f, 0.38f);
         public Color bulletColor = new Color(1, 0.88f, 0.62f);
-        [Min(0.02f)] public float flashSeconds = 0.16f;
-        [Min(0.1f)] public float flashRadius = 3.6f;
+        [Tooltip("Maximum muzzle lifetime; visible plume duration also limits the light.")]
+        [Min(0.02f)] public float flashSeconds = 0.095f;
+        [Min(0.1f)] public float flashRadius = 2.8f;
         [Min(0)] public float flashIntensity = 8f;
         [Min(0.1f)] public float muzzleSize = 1f;
-        [Header("Visible fire plume (independent of room light)")]
+        [Header("Visible fire plume (light ends with the plume)")]
         [Min(0.02f)] public float plumeSeconds = .095f;
         [Min(0.1f)] public float plumeWidth = .95f;
         [Min(0.1f)] public float plumeLength = .78f;

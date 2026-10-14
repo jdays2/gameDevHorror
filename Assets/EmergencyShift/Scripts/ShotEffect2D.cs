@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace EmergencyShift
 {
-    /// <summary>Короткий огненный выброс и независимый свет; штрихи используются для попаданий.</summary>
+    /// <summary>Огонь и свет дула затухают вместе; штрихи используются для попаданий.</summary>
     public sealed class ShotEffect2D : MonoBehaviour
     {
         private static readonly List<ShotEffect2D> active=new List<ShotEffect2D>();
@@ -73,6 +73,8 @@ namespace EmergencyShift
             {
                 plume.enabled = !impact;
                 plumeDuration = Mathf.Clamp(profile.plumeSeconds, .02f, duration);
+                // The muzzle light must never outlive its visible fire. Impacts retain their own timing.
+                if (!impact) duration = plumeDuration;
                 plume.transform.localPosition = new Vector3(0, profile.plumeLength * .42f, -.003f);
                 plume.transform.localScale = new Vector3(profile.plumeWidth, profile.plumeLength, 1);
                 plume.color = Color.Lerp(Color.white, tint, .22f);
@@ -87,10 +89,20 @@ namespace EmergencyShift
         {
             if (!configured) return;
             elapsed += Time.deltaTime;
-            if (elapsed >= duration) { Destroy(gameObject); return; }
+            if (elapsed >= duration)
+            {
+                flash.intensity = 0; flash.enabled = false;
+                if (plume != null) plume.enabled = false;
+                Destroy(gameObject); return;
+            }
             // Короткая удержанная вершина яркости, затем резкий спад, а не слабый первый кадр.
             float t = elapsed / duration;
             float fade = 1 - Mathf.InverseLerp(0.25f, 1, t);
+            if (plume != null && !isImpact)
+            {
+                // Match the shader's smoothstep(.35, 1, age); squared light falloff removes a glowing tail.
+                fade = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.35f, 1, t));
+            }
             flash.intensity = initialIntensity * fade * fade;
             if (plume != null && !isImpact)
             {

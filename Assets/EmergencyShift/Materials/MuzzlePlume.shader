@@ -64,7 +64,7 @@ Shader "EmergencyShift/Muzzle Plume"
                 float hot=1-smoothstep(.12,.95,Lobe(p,float2(0,.31),float2(.29,.27)));
                 float3 fire=lerp(float3(1,.19,.012),float3(1,.67,.11),1-smoothstep(.48,.95,d));
                 fire=lerp(fire,float3(1.28,1.19,.91),hot);
-                // Brief white-yellow peak, then shrinking orange fringes; light has its own envelope.
+                // Keep .35/1 smoothstep synchronized with ShotEffect2D's muzzle light envelope.
                 float fade=1-smoothstep(.35,1,age);
                 fire=lerp(fire,float3(1,.23,.025),age*.24);
                 float alpha=max(body,halo)*fade*input.color.a;

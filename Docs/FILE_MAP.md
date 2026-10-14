@@ -335,3 +335,7 @@ Scripts/Editor/Prefabs в таблице относительно Assets/Emergen
 Новые .meta хранят стабильные GUID шейдера/материала/редакторского инструмента. Старые CombatEffectsRevision/CombatFeelSetup вызывают MuzzlePlumeSetup.Configure, сохраняя новое оформление при подготовке префаба.
 
 Docs/Effects/MuzzlePlume/FinalEditorState.json — финальная read-only проверка компиляции/шейдера после более поздних пользовательских правок сцены; сцену не сохраняет/не откатывает.
+
+## v0.8.5 — синхронная вспышка
+
+ShotEffect2D — общий срок/кривая огня и света, явное выключение перед Destroy. ShotVisualProfile и3 сохранённых профиля — меньший радиус/.095с; WeaponPrototypeSetup — соответствующие дефолты новых профилей. MuzzlePlume.shader — комментарий о синхронизации кривых. Новые Docs/Effects/MuzzleSync/RuntimeValidation.json и RecordingValidation.json фиксируют проверки/запись; Docs/Demos/muzzle-sync-v085.mp4 — актуальные8с. Сцена/расстановка не менялись.
