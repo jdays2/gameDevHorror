@@ -7,13 +7,15 @@ namespace EmergencyShift
     /// <summary>Наземный модуль: требует близости, света и E. После успешной установки исчезает.</summary>
     public sealed class FlashlightUpgradePickup : MonoBehaviour, IInteractable
     {
-        [SerializeField, Tooltip("Одинаковый ID означает один и тот же модуль; копия не усилит фонарь повторно.")]
+        [SerializeField, Tooltip("ID вида модуля. При Repeatable каждая новая копия даёт ещё один бонус.")]
         private string moduleId = "range-lens-01";
-        [SerializeField] private string displayName = "Фокусирующая линза";
-        [SerializeField, Min(0)] private float rangeBonus = 0.8f;
-        [SerializeField, Min(0)] private float angleBonus;
+        [SerializeField] private string displayName = "Модуль фонаря";
+        [SerializeField, Min(0)] private float rangeBonus = 0.6f;
+        [SerializeField, Min(0)] private float angleBonus = 6f;
         [SerializeField, Min(0.1f)] private float pickupRange = 1f;
         [SerializeField] private bool requiresLight = true;
+        [SerializeField, Tooltip("Можно собирать несколько экземпляров этого вида; каждый предмет всё равно однократный.")]
+        private bool repeatable = true;
         private bool collected;
         public string ModuleId => moduleId;
         public bool Collected => collected;
@@ -39,7 +41,8 @@ namespace EmergencyShift
 
         public string GetPrompt(PlayerInteraction actor)
         {
-            if (actor.Upgrades.HasModule(moduleId)) return displayName + " — уже установлена";
+            if (!repeatable && actor.Upgrades.HasModule(moduleId)) return displayName + " — уже установлено";
+            if (!actor.Upgrades.CanImprove(rangeBonus, angleBonus)) return "Фонарик улучшен до предела";
             string bonus = rangeBonus > 0 ? $"дальность +{rangeBonus:0.#}" : "";
             if (angleBonus > 0) bonus += (bonus.Length > 0 ? "; " : "") + $"угол +{angleBonus:0.#}°";
             return "[E]  Подобрать: " + displayName + " · " + bonus;
@@ -49,7 +52,7 @@ namespace EmergencyShift
         {
             if (!IsAvailable(actor)) return false;
             string message;
-            if (!actor.Upgrades.TryInstall(moduleId, displayName, rangeBonus, angleBonus, out message)) return false;
+            if (!actor.Upgrades.TryInstall(moduleId, displayName, rangeBonus, angleBonus, out message, repeatable)) return false;
             collected = true;
             actor.ShowNotification(message);
             // Не Destroy: экземпляр явно хранит факт подбора, а повторный вызов безопасен.

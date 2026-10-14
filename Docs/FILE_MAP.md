@@ -33,7 +33,7 @@
 | `PlayerInteraction.cs` | Выбор одной двери/предмета, локальный поиск, обработка E и уведомление |
 | `IInteractable.cs` | Общий контракт доступности, подсказки и действия двери/предмета |
 | `FlashlightUpgradePickup.cs` | Настраиваемый наземный модуль, ограничения подбора и однократное исчезновение |
-| `FlashlightUpgrades.cs` | Уникальные модули на игроке и пересчёт оптики от базовых параметров |
+| `FlashlightUpgrades.cs` | Накопленные бонусы повторяемых/уникальных модулей, пересчёт от базы и пределы |
 | `Door2D.cs` | Состояние двери и coroutine плавного открытия |
 | `CameraFollow2D.cs` | Плавное следование ортографической камеры |
 | `PrototypeHud.cs` | Тексты статуса фонаря и взаимодействия |
@@ -73,7 +73,7 @@
 | `Prefabs/Wall.prefab` | Стена: однотонная форма, коллайдер и тень |
 | `Prefabs/ShadowStalker.prefab` | Составной шестиногий враг; внешние ссылки назначаются экземпляру сцены |
 | `Prefabs/BloodPool.prefab` | Переиспользуемая лужа: неровные пятна и капли |
-| `Prefabs/FlashlightRangeUpgrade.prefab` | Наземный модуль дальности +0.8, два lit-плейсхолдера и триггер; настройки подбора в Inspector |
+| `Prefabs/FlashlightRangeUpgrade.prefab` | Повторяемый модуль +0.6 дальности/+6° угла, два lit-плейсхолдера и триггер; параметры в Inspector |
 | `Prefabs/StalkerRemainsTest.prefab` | Последняя поза смерти, восемь неподвижных кусков и отдельная лужа; без AI/физики |
 | `Art/Stalker/WalkSheet.png`, `LightReactionSheet.png` | Исходные PNG ходьбы/сжатия |
 | `Art/Stalker/AttackSheet.png`, `DeathSheet.png` | Листы атаки/гибели, созданные imagegen; атака скорректирована по пропорциям |
@@ -95,6 +95,8 @@
 Эти пути относятся к `Assets/EmergencyShift/`. `.meta` рядом с каждым ассетом содержит его GUID и параметры импорта. GUID связывает сцену со скриптами, материалами и префабами; переносить ассеты лучше через Project внутри Unity.
 
 ## Документы
+
+`RepeatableUpgrades052Results.json` — фактические проверки трёх повторяемых находок/пределов/перезагрузки; `Previews/repeatable-upgrades-third.png` — свет/UI после третьей находки.
 
 `InteractionUi051Results.json` — 6 проверок Fit Game View/реальных предмета и двери; `Previews/interaction-upgrade-ui.png` и `interaction-door-ui.png` — видимые UI-подсказки. StalkerDemoTools включает команду Fit Game View; это только редакторский масштаб.
 

@@ -1,0 +1,180 @@
+{
+  "checks": [
+    {
+      "check": "Three saved pickups, same repeatable ID/bonuses, original placement and manual optics/AI preserved",
+      "passed": true,
+      "observed": {
+        "before": {
+          "position": "(0.606979, -3.463614, -0.045000)",
+          "range": 4.2,
+          "angle": 80.0,
+          "fear": 2.0,
+          "delay": 0.33
+        },
+        "after": {
+          "position": "(0.606979, -3.463614, -0.045000)",
+          "range": 4.2,
+          "angle": 80.0,
+          "fear": 2.0,
+          "delay": 0.33
+        },
+        "items": [
+          {
+            "name": "Flashlight upgrade — 2",
+            "position": "(0.000000, -0.700000, -0.045000)",
+            "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Assembly-CSharp::EmergencyShift.FlashlightUpgradePickup\",\"moduleId\":\"range-lens-01\",\"displayName\":\"Модуль фонаря\",\"rangeBonus\":0.6000000238418579,\"angleBonus\":6.0,\"pickupRange\":1.0,\"requiresLight\":true,\"repeatable\":true}}"
+          },
+          {
+            "name": "Flashlight upgrade — 3",
+            "position": "(12.000000, 1.000000, -0.045000)",
+            "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Assembly-CSharp::EmergencyShift.FlashlightUpgradePickup\",\"moduleId\":\"range-lens-01\",\"displayName\":\"Модуль фонаря\",\"rangeBonus\":0.6000000238418579,\"angleBonus\":6.0,\"pickupRange\":1.0,\"requiresLight\":true,\"repeatable\":true}}"
+          },
+          {
+            "name": "FlashlightRangeUpgrade",
+            "position": "(0.606979, -3.463614, -0.045000)",
+            "data": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"\",\"m_EditorClassIdentifier\":\"Assembly-CSharp::EmergencyShift.FlashlightUpgradePickup\",\"moduleId\":\"range-lens-01\",\"displayName\":\"Модуль фонаря\",\"rangeBonus\":0.6000000238418579,\"angleBonus\":6.0,\"pickupRange\":1.0,\"requiresLight\":true,\"repeatable\":true}}"
+          }
+        ],
+        "dirty": false
+      }
+    },
+    {
+      "check": "Actual E on saved pickup 1 stacks range and angle",
+      "passed": true,
+      "observed": {
+        "range": 4.79999971,
+        "angle": 86.0,
+        "count": 1,
+        "on": true,
+        "prompt": null,
+        "activeItems": 2
+      }
+    },
+    {
+      "check": "Actual E on saved pickup 2 stacks range and angle",
+      "passed": true,
+      "observed": {
+        "range": 5.39999962,
+        "angle": 92.0,
+        "count": 2,
+        "on": true,
+        "prompt": null,
+        "activeItems": 1
+      }
+    },
+    {
+      "check": "Actual E on saved pickup 3 stacks range and angle",
+      "passed": true,
+      "observed": {
+        "range": 6.0,
+        "angle": 98.0,
+        "count": 3,
+        "on": true,
+        "prompt": null,
+        "activeItems": 0
+      }
+    },
+    {
+      "check": "Actual Light2D optics match third upgrade",
+      "passed": true,
+      "observed": {
+        "radius": 6.0,
+        "angle": 98.0,
+        "innerAngle": 58.8000031
+      }
+    },
+    {
+      "check": "Same physical item cannot grant its repeatable bonus twice",
+      "passed": true,
+      "observed": {
+        "action": false,
+        "count": 3
+      }
+    },
+    {
+      "check": "Optional non-repeatable mode still rejects a previously installed ID before caps",
+      "passed": true,
+      "observed": {
+        "action": false,
+        "prompt": "Модуль фонаря — уже установлено",
+        "count": 3,
+        "canImprove": true
+      }
+    },
+    {
+      "check": "Installing repeatable bonus keeps flashlight power off",
+      "passed": true,
+      "observed": {
+        "success": true,
+        "on": false,
+        "range": 6.1,
+        "angle": 98.0
+      }
+    },
+    {
+      "check": "Repeated copies clamp optics to configurable limits",
+      "passed": true,
+      "observed": {
+        "range": 7.0,
+        "angle": 110.0,
+        "count": 6,
+        "on": true,
+        "prompt": null,
+        "activeItems": 0
+      }
+    },
+    {
+      "check": "At both caps extra item remains with explanatory prompt and no extra installation",
+      "passed": true,
+      "observed": {
+        "range": 7.0,
+        "angle": 110.0,
+        "count": 6,
+        "on": true,
+        "prompt": "Фонарик улучшен до предела",
+        "activeItems": 1
+      }
+    },
+    {
+      "check": "Lowering limits in Inspector never downgrades already improved flashlight",
+      "passed": true,
+      "observed": {
+        "action": false,
+        "range": 7.0,
+        "angle": 110.0
+      }
+    },
+    {
+      "check": "Actual R restores all three saved pickups and base optics",
+      "passed": true,
+      "observed": {
+        "range": 4.2,
+        "angle": 80.0,
+        "count": 0,
+        "on": false,
+        "prompt": "Нажмите «E», чтобы открыть",
+        "activeItems": 3
+      }
+    }
+  ],
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "sceneValidation": {
+    "success": true,
+    "message": "Scene 'BasementPrototype' is clean — no issues found.",
+    "data": {
+      "sceneName": "BasementPrototype",
+      "totalIssues": 0,
+      "missingScripts": 0,
+      "brokenPrefabs": 0,
+      "repaired": 0,
+      "issues": [],
+      "truncated": false,
+      "note": null
+    }
+  },
+  "note": "Actual three saved pickups tested with E. Extra cap/unique/power probes and player positions temporary in Play."
+}

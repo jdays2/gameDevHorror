@@ -12,6 +12,51 @@ namespace EmergencyShift.Editor
     {
         public const string PrefabPath = "Assets/EmergencyShift/Prefabs/FlashlightRangeUpgrade.prefab";
 
+        [MenuItem("Emergency Shift/Preview/Add two flashlight upgrades")]
+        public static void AddTwoRepeatableUpgrades()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Остановите Play.");
+            Scene scene = SceneManager.GetActiveScene();
+            if (scene.path != PrototypeSceneBuilder.ScenePath) throw new InvalidOperationException("Откройте BasementPrototype.");
+            Apply();
+            GameObject contents = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                var settings = new SerializedObject(contents.GetComponent<FlashlightUpgradePickup>());
+                // Обновляем первоначальный плейсхолдер, сохраняя отличающиеся ручные бонусы.
+                if (Mathf.Approximately(settings.FindProperty("rangeBonus").floatValue, 0.8f)) settings.FindProperty("rangeBonus").floatValue = 0.6f;
+                if (Mathf.Approximately(settings.FindProperty("angleBonus").floatValue, 0)) settings.FindProperty("angleBonus").floatValue = 6f;
+                if (settings.FindProperty("displayName").stringValue == "Фокусирующая линза") settings.FindProperty("displayName").stringValue = "Модуль фонаря";
+                settings.FindProperty("repeatable").boolValue = true;
+                settings.ApplyModifiedPropertiesWithoutUndo();
+                PrefabUtility.SaveAsPrefabAsset(contents, PrefabPath);
+            }
+            finally { PrefabUtility.UnloadPrefabContents(contents); }
+            // Уже расставленный предмет не перемещаем; ручные overrides сохраняются.
+            foreach (FlashlightUpgradePickup item in UnityEngine.Object.FindObjectsByType<FlashlightUpgradePickup>(FindObjectsInactive.Include))
+            {
+                var settings = new SerializedObject(item);
+                settings.FindProperty("repeatable").boolValue = true;
+                settings.ApplyModifiedPropertiesWithoutUndo();
+                if (PrefabUtility.IsPartOfPrefabInstance(item)) PrefabUtility.RecordPrefabInstancePropertyModifications(item);
+                EditorUtility.SetDirty(item);
+            }
+            const string groupName = "Flashlight upgrades — test path";
+            GameObject group = GameObject.Find(groupName) ?? new GameObject(groupName);
+            AddPickup(group.transform, "Flashlight upgrade — 2", new Vector3(0, -0.7f, -0.045f));
+            AddPickup(group.transform, "Flashlight upgrade — 3", new Vector3(12, 1f, -0.045f));
+            EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); AssetDatabase.SaveAssets();
+        }
+
+        private static void AddPickup(Transform parent, string name, Vector3 position)
+        {
+            if (parent.Find(name) != null) return;
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
+            var obj = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            obj.transform.SetParent(parent, true); obj.name = name; obj.transform.position = position;
+            PrefabUtility.RecordPrefabInstancePropertyModifications(obj.transform);
+        }
+
         [MenuItem("Emergency Shift/Prepare flashlight upgrade")]
         public static void Apply()
         {
