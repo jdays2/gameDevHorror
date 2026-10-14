@@ -255,3 +255,11 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 - Docs/Audio/StalkerStudies02/manifest.json, README.md, Validation.json — происхождение/seed/таймкоды/уровни и техническая проверка.
 
 Все три пробы в Docs, не рабочие AudioClip в Assets. Prototype01 сохранён как отклонённая история; не использовать как эталон.
+
+## Choices03 — сравнение тембров
+
+- Tools/Audio/generate_stalker_choices_v03.py — офлайн-генератор четырёх отдельных проб, --force защищает файлы от случайной перезаписи.
+- Docs/Audio/StalkerChoices03/01-cartilage.wav, 02-membrane.wav, 03-quiet-hunter.wav — три варианта: покой, свет, затихание; каждый5.5с.
+- Docs/Audio/StalkerChoices03/04-neutral-feet.wav — новая более глухая база ног,5.5с.
+- Docs/Audio/StalkerChoices03/README.md, manifest.json, Validation.json — содержание, происхождение/параметры и фактическая проверка WAV.
+- Docs/STALKER_AUDIO_DIRECTION.md — последовательные отзывы/текущие условия выбора; новые варианты ещё не одобрены.
