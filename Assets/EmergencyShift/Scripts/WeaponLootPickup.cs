@@ -8,6 +8,7 @@ namespace EmergencyShift
     {
         public enum LootKind { Pistol, Ammo }
         [SerializeField] private LootKind kind;
+        [SerializeField] private WeaponDefinition weaponDefinition;
         [SerializeField, Min(1)] private int cartridges = 8;
         [SerializeField, Min(0.1f)] private float pickupRange = 1f;
         private bool collected;
@@ -29,7 +30,7 @@ namespace EmergencyShift
         {
             if (!IsAvailable(actor)) return false;
             int before = actor.Weapon.Ammo;
-            bool success = kind == LootKind.Pistol ? actor.Weapon.Acquire(cartridges) : actor.Weapon.TryAddAmmo(cartridges);
+            bool success = kind == LootKind.Pistol ? actor.Weapon.Acquire(cartridges,weaponDefinition) : actor.Weapon.TryAddAmmo(cartridges);
             if (!success) return false;
             if (kind == LootKind.Ammo)
             {
@@ -38,7 +39,7 @@ namespace EmergencyShift
                 actor.ReportPickup(PickupKind.Ammo, "Патроны +" + received);
                 if (cartridges > 0) return true; // Preserve the remainder of a partially collected box.
             }
-            else actor.ReportPickup(PickupKind.Weapon, "Пистолет");
+            else actor.ReportPickup(PickupKind.Weapon, actor.Weapon.Definition!=null?actor.Weapon.Definition.displayName:"Пистолет");
             collected = true; gameObject.SetActive(false); return true;
         }
     }

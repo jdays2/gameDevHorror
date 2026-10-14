@@ -50,6 +50,7 @@ namespace EmergencyShift
             if(fragments==null||fragments.Length==0)yield break;
             for(int i=0;i<8;i++)
             {
+                while(!GoreSpawnBudget2D.TryReserve())yield return null;
                 var piece=new GameObject("Stalker fragment",typeof(GibMotion2D));
                 piece.transform.position=new Vector3(transform.position.x,transform.position.y,RemainsVisualStyle.SurfaceZ);
                 var body=new GameObject("Fragment visual",typeof(SpriteRenderer));body.transform.SetParent(piece.transform,false);

@@ -60,10 +60,10 @@ namespace EmergencyShift
             {
                 RaycastHit2D hit = hits[closest];
                 if (weapon != null) weapon.ReportImpact(hit.collider, hit.point);
-                var enemy = hit.collider.GetComponentInParent<ShadowStalker2D>();
-                if (enemy != null) enemy.ApplyBulletHit(damage,hit.point,direction);
+                var receiver = hit.collider.GetComponentInParent<Damageable2D>();
+                if (receiver != null && receiver.IsAlive) receiver.ReceiveBulletHit(damage,hit.point,direction);
                 Vector2 point = hit.centroid - direction * 0.01f;
-                if(enemy==null)
+                if(ImpactSurface2D.Resolve(hit.collider)!=ImpactMaterial.Flesh)
                 {
                     var effect = Instantiate(effectPrefab, new Vector3(point.x, point.y, -0.1f), Quaternion.identity);
                     effect.Play(profile, true, -direction);

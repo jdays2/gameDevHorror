@@ -14,6 +14,8 @@ namespace EmergencyShift
         [SerializeField] private ShotEffect2D effectPrefab;
         [SerializeField] private ShotVisualProfile visualProfile;
         [SerializeField] private PlayerAim2D aim;
+        [SerializeField] private WeaponDefinition definition;
+        [SerializeField,Tooltip("Off preserves this instance's Inspector damage/rate/range/ammo settings.")] private bool useDefinitionStats;
         [SerializeField] private LayerMask blockingGeometry = 1 << 8;
         [SerializeField] private LayerMask bulletCollisionMask = (1 << 8) | (1<<9) | 1;
         [SerializeField, Min(1)] private int maximumAmmo = 120;
@@ -26,7 +28,11 @@ namespace EmergencyShift
         private float nextShot;
         public bool HasWeapon { get; private set; }
         public int Ammo { get; private set; }
-        public int MaximumAmmo => maximumAmmo;
+        public int MaximumAmmo => useDefinitionStats && definition!=null ? definition.maximumAmmo : maximumAmmo;
+        public int Damage => useDefinitionStats && definition!=null ? definition.damage : damage;
+        public float ShotInterval => Mathf.Max(.05f,useDefinitionStats && definition!=null ? definition.secondsBetweenShots : secondsBetweenShots);
+        public float BulletRange => useDefinitionStats && definition!=null ? definition.range : bulletRange;
+        public WeaponDefinition Definition => definition;
         public int ShotsFired { get; private set; }
         public ShotVisualProfile VisualProfile => visualProfile;
         public Vector2 LastShotDirection { get; private set; }
@@ -43,6 +49,12 @@ namespace EmergencyShift
         { weaponPivot = pivot; muzzle = exit; bulletPrefab = bullet; effectPrefab = effect; visualProfile = style; }
         public void SetVisualProfile(ShotVisualProfile style) { if (style != null) visualProfile = style; }
         public void ConfigureAim(PlayerAim2D target) { aim = target; }
+        public void SetDefinition(WeaponDefinition value,bool useStats=true,bool applyVisuals=true)
+        {
+            definition=value;useDefinitionStats=useStats;
+            if(applyVisuals && value!=null && value.visuals!=null)visualProfile=value.visuals;
+            Ammo=Mathf.Min(Ammo,MaximumAmmo);
+        }
 
         private void Awake()
         {
@@ -51,23 +63,28 @@ namespace EmergencyShift
         }
         private bool CanUse => isActiveAndEnabled && (life == null || !life.IsDead);
 
-        public bool Acquire(int cartridges)
+        public bool Acquire(int cartridges,WeaponDefinition selected=null)
         {
             if (!CanUse || HasWeapon) return false;
-            HasWeapon = true; Ammo = Mathf.Min(maximumAmmo, Ammo + Mathf.Max(0, cartridges));
+            if(selected!=null && selected!=definition)SetDefinition(selected);
+            HasWeapon = true; Ammo = Mathf.Min(MaximumAmmo, Ammo + Mathf.Max(0, cartridges));
             UpdatePose(); return true;
         }
 
         public bool TryAddAmmo(int cartridges)
         {
-            if (!CanUse || cartridges <= 0 || Ammo >= maximumAmmo) return false;
-            Ammo += Mathf.Min(cartridges, maximumAmmo - Ammo); return true;
+            if (!CanUse || cartridges <= 0 || Ammo >= MaximumAmmo) return false;
+            Ammo += Mathf.Min(cartridges, MaximumAmmo - Ammo); return true;
         }
 
         private void Update()
         {
             UpdatePose();
-            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame) TryFire();
+            if(Mouse.current!=null)
+            {
+                bool fire=useDefinitionStats && definition!=null && definition.automatic ? Mouse.current.leftButton.isPressed : Mouse.current.leftButton.wasPressedThisFrame;
+                if(fire)TryFire();
+            }
         }
         private void OnDisable() { if (weaponPivot != null) weaponPivot.gameObject.SetActive(false); }
 
@@ -100,13 +117,13 @@ namespace EmergencyShift
             UpdatePose();
             Vector2 origin = muzzle.position;
             if (aim != null && !HasForwardAim) return false; // Never fire backwards into the owner at a cursor under the gun.
-            Vector2 target = aim != null ? aim.WorldPoint : origin + flashlight.Direction * bulletRange;
+            Vector2 target = aim != null ? aim.WorldPoint : origin + flashlight.Direction * BulletRange;
             Vector2 direction = (target - origin).normalized;
             // Не выпускаем пулю за преградой, даже если дуло выступает сквозь низкую мебель.
             RaycastHit2D blockedMuzzle = Physics2D.Linecast(transform.position, origin, blockingGeometry.value | (1 << 9));
             if (blockedMuzzle.collider != null) origin = blockedMuzzle.point - direction * 0.05f;
             LastShotDirection = direction; LastShotOrigin = origin; LastShotTarget = target;
-            Ammo--; ShotsFired++; nextShot = Time.time + secondsBetweenShots;
+            Ammo--; ShotsFired++; nextShot = Time.time + ShotInterval;
             ShotFired?.Invoke();
             var flash = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
             flash.Play(visualProfile, false, direction);
@@ -114,7 +131,7 @@ namespace EmergencyShift
             if (blockedMuzzle.collider == null)
             {
                 var bullet = Instantiate(bulletPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
-                bullet.Launch(transform, direction, visualProfile, effectPrefab, bulletCollisionMask, damage, bulletRange);
+                bullet.Launch(transform, direction, visualProfile, effectPrefab, bulletCollisionMask, Damage, BulletRange);
             }
             else
             {

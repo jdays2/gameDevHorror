@@ -1,5 +1,30 @@
 # Проверки
 
+## v0.10 — 15 октября 2026 — звук, сцены и расширяемость
+
+Выполнено на Unity6000.6.5f1, не заменяет полное прохождение будущего уровня.
+
+| Проверка | Наблюдаемый результат / доказательство |
+|---|---|
+| Дверь/3 вида подбора, реальный main mix |210 кадров,≈6.997с/48kHz,2 начала/2 остановки/по1 каждого подбора, peak.458, без клиппинга; Audio/WorldFoley/RuntimeValidation.json и gameplay-preview.wav |
+| Сохранность данных миграции |12 акторов: позиции/скалярные AI-поля/патрули совпадают до/после; локальный темп.1с сохранён; Readiness/Migration.json |
+|20 префабов, обход стены |20 автоматических привязок/движений,154 A*построения, пик2/кадр,0 проникновений; CPU-маркеры/данные — Readiness/Crowd.json и CrowdSummary.json |
+| Массовая гибель |20 луж/160 частей,≤32 части/кадр; спустя4с0 активных AI/аниматоров/аудиокомпонентов/луж-update; скриншот crowd-remains.png |
+| Регрессия мыши/пуль |12/12 проверок: Input System,24 направления/дистанции, независимый фонарь, ближний курсор, тонкие преграды8/9/0, защита дула, смерть/UI; Readiness/MouseAimRegression/RuntimeValidation.json |
+| Новая дверь/прерывание/зона |5/5: E без ручного массива, открытая створка вне overlap, остановка/очистка registry при выключении, реальный OnTriggerEnter,0 ошибок/предупреждений; Readiness/Interaction.json |
+| Шаблон сцены | Play:контекст/камера aim,1listener/25sources; визуально видны фонарь/капсула/HUD/прицел/тёмные границы; Readiness/level-template.png. Постановка временная, оригинальная сцена восстановлена |
+| Windows x64 Development+StrictMode+Instrumented | BuildPipeline Succeeded,0errors/0warnings,≈24с/201830192Б; Readiness/BuildReport.json |
+| Самостоятельный exe, headless smoke |12/12: смена сцены/очистка registry, один listener, полный player, generic damage, другая definition, тонкая стена, разовая активация; Readiness/StandaloneSmoke.json |
+| Итоговое состояние редактора |0 ошибок/предупреждений/missing scripts в сцене и префабах; Play=false,dirty=false,capture=0;25 уникальных voices у игрока/префаба, AI-поля сохранены, Managed Variant=Release; Readiness/FinalIntegrity.json |
+
+Первичная сборка показала4 устаревших API/define предупреждения: FindFirstObjectByType и DEVELOPMENT_BUILD. Исправлены для Unity6.6 (FindAnyObjectByType / UNITY_INCLUDE_INSTRUMENTATION + Debug.isDebugBuild). Для smoke явно выбран Instrumented variant: одного Development Build недостаточно. Дополнительная сборка с Release-вариантом подтвердила отсутствие smoke/мишени в Assembly-CSharp. Для проверочного запуска применяются --es-smoke-test --es-smoke-output <полный путь JSON>. После сборки настройка возвращена к Release и сохранена через Save Project.
+
+Финальный бинарник находится вне Git в work/builds/readiness-v010-instrumented относительно рабочей папки Codex. В Git только исходники/ассеты/отчёты, без бинарника/Editor.log/IP/токенов. Headless smoke (-batchmode -nographics) проверяет логику, не GPU/звук устройства/реальную мышь. Звук и aim проверены отдельно в Editor.
+
+Пределы: атаки в нагрузочном сценарии отключены, диагностический свет для скриншотов включён после замера. Kill20≈33.6мс; максимальный Editor-кадр≈919мс, p95≈6.56мс не является гарантией FPS. Трупы/кровь сохраняются, длительное накопление и крупный уровень ещё не измерены. Полное прохождение/ключи/сохранение/выход не заявлены готовыми; ARCHITECTURE_REVIEW.md.
+
+Сборка Unity обновила штатные URP prefilter/runtime-settings/Bloom filter. Временный Input System preloadedAsset не остался в настройках после Save Project. Это сериализация build pipeline, не изменение качества света/поста вручную. Временные PerformanceTestRunInfo/Settings Resources удалены самим pipeline; не включать подобные generated-данные в Git.
+
 Этот файл обновляется по фактическим результатам, а не по ожиданиям от исходного кода.
 
 ## Окружение

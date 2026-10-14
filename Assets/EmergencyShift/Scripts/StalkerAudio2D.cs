@@ -118,6 +118,8 @@ namespace EmergencyShift
         private void Update()
         {
             if (sounds == null || movementSource == null || voiceSource == null) return;
+            if(stalker.State==ShadowStalker2D.BehaviourState.Dead && stalker.DeathTime>=2.5f && !movementSource.isPlaying && !voiceSource.isPlaying && fallingParts.Count==0)
+            {enabled=false;return;}
             if (!stalker.isActiveAndEnabled)
             {
                 movementSource.Stop(); voiceSource.Stop();

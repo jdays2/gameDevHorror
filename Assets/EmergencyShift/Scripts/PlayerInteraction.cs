@@ -78,9 +78,8 @@ namespace EmergencyShift
             if (!isActiveAndEnabled || (life != null && life.IsDead)) return;
             float closest = float.PositiveInfinity;
             float bestAngle = float.PositiveInfinity;
-            if (doors != null)
-                foreach (Door2D door in doors)
-                    if (door != null) Consider(door, ref closest, ref bestAngle);
+            foreach(Door2D door in Door2D.Active)
+                if(door!=null && door.gameObject.scene==gameObject.scene)Consider(door,ref closest,ref bestAngle);
             // Локальный запрос с переиспользуемым списком; каждый предмет не читает E самостоятельно.
             Physics2D.OverlapCircle(transform.position, reach, new ContactFilter2D { useTriggers = true }, nearby);
             foreach (Collider2D collider in nearby)

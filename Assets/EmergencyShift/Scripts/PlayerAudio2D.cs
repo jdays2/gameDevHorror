@@ -104,8 +104,8 @@ namespace EmergencyShift
             if (!combatAudioEnabled || !impactAudioEnabled || sounds == null || impactSources == null || impactSources.Length == 0) return;
             // Stalker already plays its approved flesh hit/death through its own damage events.
             // Do not double that layer; generic fleshy objects can use the same data directly.
-            var creatureAudio = target != null ? target.GetComponentInParent<StalkerAudio2D>() : null;
-            if (LastImpactMaterial == ImpactMaterial.Flesh && creatureAudio != null && creatureAudio.isActiveAndEnabled) return;
+            var receiver = target != null ? target.GetComponentInParent<Damageable2D>() : null;
+            if (LastImpactMaterial == ImpactMaterial.Flesh && receiver != null && receiver.OwnsHitAudio) return;
             var clip = Choose(sounds.Impact(LastImpactMaterial)); if (clip == null) return;
             AudioSource selected = null;
             foreach (var source in impactSources) if (source != null && !source.isPlaying) { selected = source; break; }

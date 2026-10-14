@@ -31,6 +31,7 @@ namespace EmergencyShift
             pupil = pupilRenderer; walkFrames = walk; recoilFrames = recoil;
         }
         public void ConfigureCombat(Sprite[] attack,Sprite[] death){attackFrames=attack;deathFrames=death;}
+        private void Awake(){walkClock=(float)new System.Random(System.Guid.NewGuid().GetHashCode()).NextDouble()/Mathf.Max(1,walkFramesPerSecond)*8;}
 
         private void LateUpdate()
         {
@@ -59,6 +60,7 @@ namespace EmergencyShift
             {
                 CurrentFrame = Mathf.Min(deathFrames.Length-1,(int)(behaviour.DeathTime*6f));
                 bodyRenderer.sprite = deathFrames[CurrentFrame];
+                if(behaviour.DeathTime>=1)enabled=false;
             }
             else if (attacking && attackFrames != null && attackFrames.Length > 0)
             {

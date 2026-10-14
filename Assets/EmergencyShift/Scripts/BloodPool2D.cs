@@ -15,6 +15,7 @@ namespace EmergencyShift
         public float DropArrivalTime(int index) => dropArrival[index];
         public void BeginRupture()
         {
+            enabled=true;
             ruptureAge=0;rupturing=true;patchScales=new Vector3[patches.Length];dropArrival=new float[droplets.Length];
             for(int i=0;i<patches.Length;i++){patchScales[i]=patches[i].transform.localScale;patches[i].transform.localScale*=.30f;}
             for(int i=0;i<droplets.Length;i++){dropArrival[i]=Random.Range(.18f,.34f);droplets[i].enabled=false;}
@@ -28,10 +29,11 @@ namespace EmergencyShift
             bool all=true;
             for(int i=0;i<droplets.Length;i++)
             {bool arrived=ruptureAge>=dropArrival[i];droplets[i].enabled=arrived;all&=arrived;}
-            if(t>=1&&all)rupturing=false;
+            if(t>=1&&all){rupturing=false;enabled=false;}
         }
         public void Initialize(float size, int seed, LayerMask walls)
         {
+            enabled=false;
             var random = new System.Random(seed);
             for (int i=0;i<patches.Length;i++)
             {

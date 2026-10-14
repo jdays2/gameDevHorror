@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 namespace EmergencyShift
 {
     /// <summary>Два попадания, короткая защита после удара, поражение и перезапуск комнаты по R.</summary>
-    public sealed class PlayerLife2D : MonoBehaviour
+    public sealed class PlayerLife2D : Damageable2D
     {
         [SerializeField, Min(1)] private int maximumHealth = 2;
         [SerializeField, Min(0)] private float hitProtectionSeconds = 0.7f;
@@ -21,6 +21,8 @@ namespace EmergencyShift
         public int Health { get; private set; }
         public int MaximumHealth => maximumHealth;
         public bool IsDead => Health <= 0;
+        public override bool IsAlive => !IsDead;
+        public override void ReceiveBulletHit(int damage,Vector2 point,Vector2 direction) { TakeDamage(damage); }
 
         private void Awake()
         {

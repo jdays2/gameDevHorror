@@ -16,7 +16,7 @@ namespace EmergencyShift
             if (target == null) return ImpactMaterial.Concrete;
             var surface = target.GetComponentInParent<ImpactSurface2D>();
             if (surface != null) return surface.Material;
-            return target.GetComponentInParent<ShadowStalker2D>() != null ? ImpactMaterial.Flesh : ImpactMaterial.Concrete;
+            return target.GetComponentInParent<Damageable2D>() != null ? ImpactMaterial.Flesh : ImpactMaterial.Concrete;
         }
     }
 }

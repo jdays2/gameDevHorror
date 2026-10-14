@@ -1,5 +1,21 @@
 # Правила проекта Emergency Shift
 
+## Актуальная подготовка v0.10 (приоритет над историческими числами ниже)
+
+Дверь/подбор используют11 обработанных CC0-записей WorldFoley. Не возвращать процедурные бипы/тишину. DoorAudio2D слушает MotionStarted/MotionStopped,2 источника, volume.85/loop.4/дистанция12; pickupVolume.9. Источники/public MP3/SHA — Docs/Audio/WorldFoley/Sources. Принятые пистолет/гильзы/мембрана сохранены.
+
+Player.prefab полный:25 уникальных AudioSource (12 shot,8 casing,4 impact,1 pickup) и CasingEjector. Не возвращать scene-only audio/дубли Audio group/старые17/4. При росте SerializedProperty массивов проверять уникальность ссылок. Unity fake-null AudioSource проверять ==null, не ?? AddComponent.
+
+Новая сцена — LevelRig.prefab/LevelTemplate.unity, Docs/LEVEL_AUTHORING_GUIDE.md. Не перезаписывать пользовательские карты/rig/шаблон. LevelContext2D один на сцену; враги/дверной звук заполняют только отсутствующие ссылки. Реестры фильтруются по сцене/очищаются при unload. Без глобального игрока/singleton/DI.
+
+Damageable2D — контракт попаданий; пуля/ImpactSurface/PlayerAudio не зависят от конкретного сталкера. Другому AI отдельный компонент, не наследование ShadowStalker. WeaponDefinition — общие настройки, Ammo/HasWeapon — runtime. Basement: Use Definition Stats=false, ручной.1с; новый Player/rig=true/PistolDefinition(.1). Расстановку/патрули/задержки пользователя(.33 у части) не сбрасывать. Definition не является сохранением/арсеналом.
+
+CrowdAgent2D раздвигает малую группу, NavigationWorkBudget2D≤2 A*/кадр, GoreSpawnBudget2D≤32 новых частей/кадр. Кровь/останки сохраняются; конечные AI/анимация/аудио отключаются. Разные фазы шага. EncounterZone разово включает заранее неактивных акторов, не сбрасывает агрессию.
+
+20 сталкеров проверены в Editor Play: обход стены,20 луж/160 частей, привязка/остановка мёртвых. Это не гарантия FPS/неограниченных трупов: Kill20≈33.6мс, максимальный Editor-кадр≈919мс. Пределы — Docs/Readiness/ARCHITECTURE_REVIEW.md. Пули/короткие VFX пока Instantiate/Destroy; не обещать универсальный пул/большой мир. Probe/recorder не сохранять. Smoke использует UNITY_INCLUDE_INSTRUMENTATION + Debug.isDebugBuild + явный CLI (Unity6.6), без устаревшего DEVELOPMENT_BUILD.
+
+Доступ/ключи, завершение комнаты/выход, сохранение остаются будущими P0. Аудит не разрешает реализовать их автоматически.
+
 ## Источник требований
 
 Последнее прямое указание пользователя важнее этого файла. Текущая спецификация — `Docs/SPEC.md`. Перед изменениями прочитать её и `Docs/ARCHITECTURE.md`; после изменений обновить `CHANGELOG.md`, карту файлов и затронутые разделы учебного гайда.

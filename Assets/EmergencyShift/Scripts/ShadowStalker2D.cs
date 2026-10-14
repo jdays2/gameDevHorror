@@ -4,7 +4,7 @@ namespace EmergencyShift
 {
     /// <summary>Простой светобоязненный враг: подкрадывание, сжатие, отход и пауза.</summary>
     [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
-    public sealed class ShadowStalker2D : MonoBehaviour
+    public sealed class ShadowStalker2D : Damageable2D
     {
         // Returning зарезервирован для совместимости старых данных; возврата домой больше нет.
         public enum BehaviourState { Sneaking, Recoiling, Retreating, Waiting, Attacking, Dead, Dormant, Returning, Patrolling, TargetDead }
@@ -52,6 +52,12 @@ namespace EmergencyShift
         private StalkerHitResponse2D hitResponse;
         private StalkerPatrol2D patrol;
         private StalkerChasePath2D chasePath;
+        private CrowdAgent2D crowd;
+        private StalkerAudio2D audioFeedback;
+        private static readonly Unity.Profiling.ProfilerMarker tickMarker=new Unity.Profiling.ProfilerMarker("EmergencyShift.Stalker.Tick");
+        public override bool IsAlive => State!=BehaviourState.Dead;
+        public override bool OwnsHitAudio => audioFeedback!=null && audioFeedback.isActiveAndEnabled;
+        public override void ReceiveBulletHit(int damage,Vector2 point,Vector2 direction){ApplyBulletHit(damage,point,direction);}
         // Presentation observes these events; damage, timing and state ownership stay here.
         public event System.Action<BehaviourState> StateChanged;
         public event System.Action Damaged;
@@ -86,6 +92,13 @@ namespace EmergencyShift
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>(); bodyCollider = GetComponent<CircleCollider2D>();
+            var context=LevelContext2D.For(this);
+            if(context!=null)
+            {
+                if(player==null && context.Player!=null)player=context.Player.transform;
+                if(flashlight==null)flashlight=context.Flashlight;
+            }
+            crowd=GetComponent<CrowdAgent2D>();audioFeedback=GetComponent<StalkerAudio2D>();
             playerLife = player != null ? player.GetComponent<PlayerLife2D>() : null;
             gore = GetComponent<GoreBurst2D>();hitResponse=GetComponent<StalkerHitResponse2D>();
             home=body.position;State = BehaviourState.Dormant; Health = maximumHealth;
@@ -95,9 +108,12 @@ namespace EmergencyShift
         }
 
         private void FixedUpdate()
+        { using(tickMarker.Auto())Tick(); }
+
+        private void Tick()
         {
             stateTime += Time.fixedDeltaTime;
-            if (State == BehaviourState.Dead) { body.linearVelocity = Vector2.zero; return; }
+            if (State == BehaviourState.Dead) { body.linearVelocity = Vector2.zero;if(stateTime>=3)enabled=false; return; }
             if (player == null || flashlight == null) { body.linearVelocity = Vector2.zero; return; }
             bool aliveTarget=playerLife==null||!playerLife.IsDead;
             if(!aliveTarget)
@@ -204,6 +220,7 @@ namespace EmergencyShift
                     { attackReadyAt = Time.time + attackCooldown;Enter(BehaviourState.Sneaking);velocity = Vector2.zero; }
                     break;
             }
+            if(crowd!=null && State!=BehaviourState.Attacking)velocity=crowd.Adjust(velocity,blockingGeometry.value|(1<<9));
             body.linearVelocity = velocity;
         }
 
@@ -258,6 +275,7 @@ namespace EmergencyShift
         {
             if (!Application.isPlaying || State == BehaviourState.Dead) return;
             Health = 0;Closure = 1;Enter(BehaviourState.Dead);
+            if(crowd!=null)crowd.enabled=false;
             if(patrol!=null)patrol.ResetRoute();
             body.linearVelocity = Vector2.zero;body.simulated = false;bodyCollider.enabled = false;
             if (gore != null) gore.Play(blockingGeometry);

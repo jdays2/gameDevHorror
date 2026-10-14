@@ -16,6 +16,8 @@ namespace EmergencyShift
         private Vector2 gridMin, lastGoal;
         private int width, height, cursor;
         private float nextRepath;
+        private readonly System.Random random=new System.Random(System.Guid.NewGuid().GetHashCode());
+        private static readonly Unity.Profiling.ProfilerMarker marker=new Unity.Profiling.ProfilerMarker("EmergencyShift.Navigation.Build");
         public int WaypointCount => Mathf.Max(0, path.Count - cursor);
 
         public Vector2 Direction(Vector2 position, Vector2 goal, float radius, LayerMask solids)
@@ -23,10 +25,10 @@ namespace EmergencyShift
             Vector2 delta = goal - position;
             if (delta.magnitude < .12f) return Vector2.zero;
             if (Clear(position, goal, radius, solids)) { path.Clear(); cursor = 0; return delta.normalized; }
-            if (Time.time >= nextRepath)
+            if (Time.time >= nextRepath && NavigationWorkBudget2D.TryReserve())
             {
-                Build(position, goal, radius + .02f, solids);
-                lastGoal = goal; nextRepath = Time.time + .65f + Random.Range(0, .12f);
+                using(marker.Auto())Build(position, goal, radius + .02f, solids);
+                lastGoal = goal; nextRepath = Time.time + .65f + (float)random.NextDouble()*.12f;
             }
             if ((goal - lastGoal).sqrMagnitude > 4) { path.Clear(); nextRepath = 0; return Vector2.zero; }
             while (cursor < path.Count && Vector2.Distance(position, path[cursor]) < .15f) cursor++;

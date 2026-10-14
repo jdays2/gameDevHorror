@@ -358,3 +358,34 @@ ShotEffect2D — общий срок/кривая огня и света, явн
 Новые .meta сохраняют GUID3 скриптов. BulletProjectile2D/звук/AI/баланс этим этапом не переписывались. WeaponPrototypeSetup подключает новые методы и при первоначальной подготовке оружия.
 
 Docs/Weapons/MouseAim/RecordingValidation.json —480 кадров/основной микс/7 выстрелов во втором проходе/проверка кодирования; Docs/Demos/mouse-aim-v09.mp4 —8с с прицелом.
+
+## v0.10 — мировой звук и подготовка контента
+
+Игровой код в Assets/EmergencyShift/Scripts; ассеты ниже относительно Assets/EmergencyShift.
+
+| Файл/группа | Ответственность |
+|---|---|
+| DoorAudioSet.cs / DoorAudio2D.cs / Door2D.cs | Банки/2 канала, события движения/реестр дверей |
+| Audio/WorldFoley/*.wav + DoorFoley.asset |11 обработанных mono клипов/назначение |
+| Editor/WorldFoleySetup.cs / PlayerAudioSetup.cs | Миграция scene-only аудио, уникальные12/8/4/1 каналы |
+| Damageable2D.cs | Общий контракт попадания/живого состояния/hit-аудио |
+| BulletProjectile2D / ImpactSurface2D / PlayerAudio2D | Получатель/поверхность без зависимости от конкретного врага |
+| WeaponDefinition.cs / Settings/PistolDefinition.asset | Боевые данные отдельно от Ammo/HasWeapon |
+| PlayerWeapon2D / WeaponLootPickup | Выбор definition/локальных overrides/находка |
+| LevelContext2D.cs | Связь с игроком/фонарём своей сцены |
+| CrowdAgent2D / NavigationWorkBudget2D | Раздвигание малой группы/≤2A*/кадр |
+| GoreSpawnBudget2D / GoreBurst2D |≤32 новых частей/кадр |
+| ShadowStalker2D / StalkerSpriteAnimator / StalkerAudio2D / BloodPool2D | Привязка/разная фаза/отключение конечных обновлений |
+| EncounterActivation2D.cs / Prefabs/EncounterZone.prefab | Разовое включение неактивных акторов |
+| Editor/ProjectReadinessSetup.cs | Адресная миграция с сохранением пользовательских параметров |
+| Editor/LevelAuthoringSetup.cs | Создание rig/шаблона/зоны только при отсутствии |
+| Prefabs/LevelRig.prefab / Scenes/LevelTemplate.unity | Player/камера/HUD/контекст, пустая редактируемая комната |
+| WorldFoleyDemoRecorder / CrowdReadinessProbe | UNITY_EDITOR, временная запись/измерение, не сохранять |
+| DevelopmentBuildSmoke / CombatProbeTarget2D | Editor/instrumentation, явный development CLI/отдельная мишень |
+| Tools/Audio/prepare_world_foley.py (от корня) | Воспроизводимый монтаж/обработка реальных записей |
+| Docs/Audio/WorldFoley (от корня) | CC0/SHA/исходники/manifest/Unity mix/факты |
+| Docs/Readiness (от корня) | Сохранность миграции/CPU/скриншоты/регрессия/сборка |
+| Docs/ARCHITECTURE_REVIEW.md | Готовность/изменения/ограничения/очередь |
+| Docs/LEVEL_AUTHORING_GUIDE.md / WORLD_AUDIO_GUIDE.md | Пошаговые гайды |
+
+Все .meta сохранены. Build binaries/кэши/локальная MCP-конфигурация и токены в Git не включаются.

@@ -22,13 +22,22 @@ namespace EmergencyShift.Editor
             var player = UnityEngine.Object.FindFirstObjectByType<PlayerInteraction>();
             if (player == null) throw new InvalidOperationException("PlayerInteraction is required.");
             var set = CreateSet();
+            Configure(player.gameObject,set);
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+            EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+            AssetDatabase.SaveAssets();
+            return "Saved bounded pickup, shot, casing and impact channels.";
+        }
+
+        public static PlayerAudio2D Configure(GameObject player,PlayerAudioSet set)
+        {
             var component = player.GetComponent<PlayerAudio2D>();
-            if (component == null) component = player.gameObject.AddComponent<PlayerAudio2D>();
+            if (component == null) component = player.AddComponent<PlayerAudio2D>();
             var root = Child(player.transform, "Audio");
             var data = new SerializedObject(component);
             AssignIfMissing(data, "sounds", set);
             AssignIfMissing(data, "pickupSource", Source(Child(root, "Pickup"), 80));
-            EnsureVoices(data, "shotSources", root, "Shot", 4, 48);
+            EnsureVoices(data, "shotSources", root, "Shot", 12, 48);
             EnsureVoices(data, "casingSources", root, "Casing", 8, 130);
             var impacts = data.FindProperty("impactSources");
             if (impacts.arraySize == 0)
@@ -40,10 +49,7 @@ namespace EmergencyShift.Editor
             // Deliberately preserve Inspector choices, including the default-disabled combat audition.
             data.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(component);
-            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-            EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
-            AssetDatabase.SaveAssets();
-            return "Saved pickup channel, shot channel and four impact channels. Combat candidates remain opt-in.";
+            return component;
         }
 
         private static PlayerAudioSet CreateSet()
