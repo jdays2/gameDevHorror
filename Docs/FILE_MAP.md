@@ -192,3 +192,20 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 | Docs/Demos/lighting-playground-v07.mp4 | Демонстрация света и обхода шкафа |
 
 Пути Scripts/Editor/Prefabs/Scenes в таблице относительно Assets/EmergencyShift. .meta хранит GUID каждого нового ассета. PlayerInteraction/два Pickup используют общий IsCurrentlyLit; ShotEffect2D регистрирует текущую вспышку. Маски PlayerWeapon2D/Player.prefab, движение ShadowStalker2D и GoreBurst2D учитывают низкие препятствия. Fog/exploration исходников и ресурсов в текущей версии нет.
+
+## v0.7.1 — файлы патруля
+
+| Путь | Назначение |
+|---|---|
+| Assets/EmergencyShift/Scripts/StalkerPatrol2D.cs | Флаг, область, скорость/пауза, безопасный выбор мирной точки |
+| Assets/EmergencyShift/Editor/StalkerPatrol2DEditor.cs | XY-маркеры границ, Undo, помощь/предупреждение Inspector |
+| Assets/EmergencyShift/Scripts/ShadowStalker2D.cs | Patrolling, переключение засады/патруля/боя/возврата |
+| Assets/EmergencyShift/Scripts/StalkerSpriteAnimator.cs | Прежняя ходьба также для Patrolling |
+| Assets/EmergencyShift/Prefabs/ShadowStalker.prefab | Новый компонент, ожидание по умолчанию |
+| Assets/EmergencyShift/Scenes/BasementPrototype.unity | Патруль3×4 у Cover Stalker, остальные ждут; ручные параметры сохранены |
+| Docs/PATROL_GUIDE.md | Пошаговая настройка области/засады и ограничения |
+| Docs/Patrol071Results.json | Наблюдения из Play и проверки сохранённой сцены |
+
+Новые C# файлы сопровождаются .meta с GUID; сторонние пакеты не менялись.
+
+`Docs/Demos/patrol-v071.png` — просмотренный Game View патрульного, с временной камерой/позицией игрока; постановка не сохранена в уровне.

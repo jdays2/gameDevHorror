@@ -6,7 +6,7 @@ namespace EmergencyShift
     [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
     public sealed class ShadowStalker2D : MonoBehaviour
     {
-        public enum BehaviourState { Sneaking, Recoiling, Retreating, Waiting, Attacking, Dead, Dormant, Returning }
+        public enum BehaviourState { Sneaking, Recoiling, Retreating, Waiting, Attacking, Dead, Dormant, Returning, Patrolling }
 
         [SerializeField] private Transform player;
         [SerializeField] private Flashlight2D flashlight;
@@ -51,6 +51,7 @@ namespace EmergencyShift
         private float staggerUntil;
         private Vector2 hitPush;
         private StalkerHitResponse2D hitResponse;
+        private StalkerPatrol2D patrol;
         public Vector2 Home => home;
         public float HabitatRadius => habitatRadius;
         public bool IsStaggered => State!=BehaviourState.Dead && Time.time<staggerUntil;
@@ -79,6 +80,8 @@ namespace EmergencyShift
             playerLife = player != null ? player.GetComponent<PlayerLife2D>() : null;
             gore = GetComponent<GoreBurst2D>();hitResponse=GetComponent<StalkerHitResponse2D>();
             home=body.position;State = BehaviourState.Dormant; Health = maximumHealth;
+            patrol=GetComponent<StalkerPatrol2D>();
+            if(patrol!=null)patrol.Initialize(home);
         }
 
         private void FixedUpdate()
@@ -92,21 +95,31 @@ namespace EmergencyShift
             bool inside=homeDistance<=habitatRadius;
             bool leaves=homeDistance>habitatRadius+leaveMargin;
             if(IsStaggered){body.linearVelocity=hitPush*Mathf.Clamp01((staggerUntil-Time.time)/Mathf.Max(.01f,hitStaggerSeconds));return;}
-            if(State==BehaviourState.Dormant||State==BehaviourState.Returning)
+            if(State==BehaviourState.Dormant||State==BehaviourState.Returning||State==BehaviourState.Patrolling)
             {
-                if(inside&&lineOfSight){sightLostFor=0;Enter(BehaviourState.Sneaking);}
+                if(inside&&lineOfSight)
+                {sightLostFor=0;if(patrol!=null)patrol.ResetRoute();Enter(BehaviourState.Sneaking);}
                 else
                 {
                     Exposed=false;exposureTime=0;Closure=Mathf.MoveTowards(Closure,0,Time.fixedDeltaTime*3);
                     Vector2 back=home-body.position;
-                    if(back.magnitude>.15f){State=BehaviourState.Returning;body.linearVelocity=FindClearDirection(back.normalized)*creepSpeed;}
+                    bool canPatrol=patrol!=null&&patrol.PatrolEnabled;
+                    float radius=bodyCollider.radius*Mathf.Max(Mathf.Abs(transform.lossyScale.x),Mathf.Abs(transform.lossyScale.y));
+                    bool returnHome=State==BehaviourState.Returning||!canPatrol||(canPatrol&&!patrol.ContainsBody(body.position,radius));
+                    if(returnHome&&back.magnitude>.15f)
+                    {if(patrol!=null)patrol.ResetRoute();State=BehaviourState.Returning;body.linearVelocity=FindClearDirection(back.normalized)*creepSpeed;}
+                    else if(canPatrol)
+                    {
+                        if(State!=BehaviourState.Patrolling)Enter(BehaviourState.Patrolling);
+                        body.linearVelocity=patrol.Step(body.position,radius,blockingGeometry.value|(1<<9),Time.fixedDeltaTime);
+                    }
                     else{State=BehaviourState.Dormant;body.linearVelocity=Vector2.zero;}
                     return;
                 }
             }
             sightLostFor=lineOfSight?0:sightLostFor+Time.fixedDeltaTime;
             if(!aliveTarget||leaves||sightLostFor>loseSightDelay||Vector2.Distance(home,body.position)>habitatRadius+leaveMargin)
-            {exposureTime=0;Enter(BehaviourState.Returning);body.linearVelocity=Vector2.zero;return;}
+            {exposureTime=0;if(patrol!=null)patrol.ResetRoute();Enter(BehaviourState.Returning);body.linearVelocity=Vector2.zero;return;}
             Exposed = flashlight.Illuminates(body.position, blockingGeometry);
             bool closeLight = Exposed && Vector2.Distance(body.position, flashlight.Origin) <= lightFearDistance;
             if ((State == BehaviourState.Sneaking || State == BehaviourState.Attacking) && closeLight)
@@ -223,6 +236,7 @@ namespace EmergencyShift
         {
             if (!Application.isPlaying || State == BehaviourState.Dead) return;
             Health = 0;Closure = 1;Enter(BehaviourState.Dead);
+            if(patrol!=null)patrol.ResetRoute();
             body.linearVelocity = Vector2.zero;body.simulated = false;bodyCollider.enabled = false;
             if (gore != null) gore.Play(blockingGeometry);
         }

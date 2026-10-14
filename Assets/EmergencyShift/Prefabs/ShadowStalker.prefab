@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 13470835391138406}
   - component: {fileID: 2678899024459319601}
   - component: {fileID: 8962063445162029192}
+  - component: {fileID: 3026749963237189230}
   m_Layer: 0
   m_Name: ShadowStalker
   m_TagString: Untagged
@@ -563,6 +564,23 @@ MonoBehaviour:
   bloodMaterial: {fileID: 2100000, guid: 1356292d317ac7a47bb9e752bcb92db2, type: 2}
   reactionSeconds: 0.16
   visualPush: 0.07
+--- !u!114 &3026749963237189230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801567498149846478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67da6c27f5070d84ba67196ab5dfe499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerPatrol2D
+  patrolEnabled: 0
+  areaOffset: {x: 0, y: 0}
+  areaSize: {x: 3, y: 3}
+  patrolSpeed: 0.6
+  pauseSeconds: {x: 0.6, y: 1.8}
 --- !u!1 &7750864743140940108
 GameObject:
   m_ObjectHideFlags: 0
