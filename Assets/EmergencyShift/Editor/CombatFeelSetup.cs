@@ -82,6 +82,7 @@ namespace EmergencyShift.Editor
             obj.transform.Find("Left flame").localScale=new Vector3(.14f,.32f,1);
             obj.transform.Find("Right flame").localScale=new Vector3(.14f,.32f,1);
             obj.GetComponentInChildren<Light2D>().pointLightInnerRadius=.55f;
+            MuzzlePlumeSetup.Configure(obj);
         }
         private static Sprite EnsureGlow()
         {

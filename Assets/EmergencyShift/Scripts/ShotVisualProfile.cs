@@ -13,6 +13,10 @@ namespace EmergencyShift
         [Min(0.1f)] public float flashRadius = 3.6f;
         [Min(0)] public float flashIntensity = 8f;
         [Min(0.1f)] public float muzzleSize = 1f;
+        [Header("Visible fire plume (independent of room light)")]
+        [Min(0.02f)] public float plumeSeconds = .095f;
+        [Min(0.1f)] public float plumeWidth = .95f;
+        [Min(0.1f)] public float plumeLength = .78f;
         [Min(0.02f)] public float impactSeconds = 0.12f;
         [Min(1)] public float bulletSpeed = 36f;
         [Min(0.02f)] public float trailLength = 0.42f;

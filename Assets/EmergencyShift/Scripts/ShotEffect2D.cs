@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace EmergencyShift
 {
-    /// <summary>Короткая вспышка/попадание: одноразовый свет и простые геометрические штрихи.</summary>
+    /// <summary>Короткий огненный выброс и независимый свет; штрихи используются для попаданий.</summary>
     public sealed class ShotEffect2D : MonoBehaviour
     {
         private static readonly List<ShotEffect2D> active=new List<ShotEffect2D>();
@@ -25,6 +25,11 @@ namespace EmergencyShift
         [SerializeField] private SpriteRenderer[] strokes;
         [SerializeField] private SpriteRenderer whiteCore;
         [SerializeField] private SpriteRenderer[] flames;
+        [SerializeField] private SpriteRenderer plume;
+        private MaterialPropertyBlock plumeProperties;
+        private static readonly int AgeId = Shader.PropertyToID("_Age");
+        private static readonly int SeedId = Shader.PropertyToID("_Seed");
+        private float plumeDuration;
         private Vector3[] shapeScales;
         private Vector3[] shapePositions;
         private float duration;
@@ -38,6 +43,7 @@ namespace EmergencyShift
         public void Configure(Light2D light, SpriteRenderer[] shapes) { flash = light; strokes = shapes; }
         public void ConfigureFlame(Light2D light, SpriteRenderer[] sparks, SpriteRenderer core, SpriteRenderer[] layers)
         { flash = light; strokes = sparks; whiteCore = core; flames = layers; }
+        public void ConfigurePlume(SpriteRenderer renderer) { plume = renderer; }
 
         public void Play(ShotVisualProfile profile, bool impact, Vector2 direction)
         {
@@ -52,17 +58,29 @@ namespace EmergencyShift
             flash.enabled = true;
             transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
             transform.localScale = Vector3.one * (impact ? 0.55f : Mathf.Max(0.1f, profile.muzzleSize) * Random.Range(0.92f, 1.08f));
-            foreach (SpriteRenderer stroke in strokes) stroke.color = tint;
+            foreach (SpriteRenderer stroke in strokes) { stroke.color = tint; stroke.enabled = impact || plume == null; }
             shapeScales = new Vector3[strokes.Length]; shapePositions = new Vector3[strokes.Length];
             for (int i = 0; i < strokes.Length; i++)
             {
                 shapeScales[i] = strokes[i].transform.localScale;
                 shapePositions[i] = strokes[i].transform.localPosition;
             }
-            if (whiteCore != null) whiteCore.color = Color.white;
+            if (whiteCore != null) { whiteCore.color = Color.white; whiteCore.enabled = impact || plume == null; }
             if (flames != null)
                 for (int i = 0; i < flames.Length; i++)
-                { flames[i].enabled = !impact; flames[i].color = Color.Lerp(tint, Color.white, i == 0 ? 0.1f : 0.5f); }
+                { flames[i].enabled = !impact && plume == null; flames[i].color = Color.Lerp(tint, Color.white, i == 0 ? 0.1f : 0.5f); }
+            if (plume != null)
+            {
+                plume.enabled = !impact;
+                plumeDuration = Mathf.Clamp(profile.plumeSeconds, .02f, duration);
+                plume.transform.localPosition = new Vector3(0, profile.plumeLength * .42f, -.003f);
+                plume.transform.localScale = new Vector3(profile.plumeWidth, profile.plumeLength, 1);
+                plume.color = Color.Lerp(Color.white, tint, .22f);
+                plumeProperties = new MaterialPropertyBlock();
+                plumeProperties.SetFloat(SeedId, Random.Range(0f, 100f));
+                plumeProperties.SetFloat(AgeId, 0);
+                plume.SetPropertyBlock(plumeProperties);
+            }
         }
 
         private void Update()
@@ -74,6 +92,13 @@ namespace EmergencyShift
             float t = elapsed / duration;
             float fade = 1 - Mathf.InverseLerp(0.25f, 1, t);
             flash.intensity = initialIntensity * fade * fade;
+            if (plume != null && !isImpact)
+            {
+                float age = Mathf.Clamp01(elapsed / plumeDuration);
+                plume.enabled = age < 1;
+                plumeProperties.SetFloat(AgeId, age);
+                plume.SetPropertyBlock(plumeProperties);
+            }
             Color color = tint; color.a = fade;
             for (int i = 0; i < strokes.Length; i++)
             {

@@ -315,3 +315,23 @@ Scripts/PlayerWeapon2D.cs и BulletProjectile2D.cs публикуют звуко
 |Docs/Demos/pistol-*-v083.mp4|Сравнение16с и два отдельных8с эпизода, H.264/AAC|
 
 Scripts/Editor/Prefabs в таблице относительно Assets/EmergencyShift. Источники остаются в Docs/Audio/WeaponRealism02/Sources с авторством/CC0; не удалять их ради неверного заявления «сгенерировал оригинальную запись».
+
+## v0.8.4 — плотная вспышка
+
+|Файл|Назначение|
+|---|---|
+|Assets/EmergencyShift/Materials/MuzzlePlume.shader|UV-маска/единое ядро/оранжевый край/ореол и короткое расширение|
+|Assets/EmergencyShift/Materials/MuzzlePlume.mat|Общий материал сохранённого Fire plume|
+|Assets/EmergencyShift/Editor/MuzzlePlumeSetup.cs|Адресное обновление только VFX-префаба и сохранение новых полей профилей|
+|Assets/EmergencyShift/Prefabs/PistolShotEffect.prefab|Новый Fire plume, явная ссылка ShotEffect2D; прежний Light2D|
+|Assets/EmergencyShift/Scripts/ShotEffect2D.cs|Раздельные времена огня/света, MaterialPropertyBlock, impact-ветка|
+|Assets/EmergencyShift/Scripts/ShotVisualProfile.cs|Plume Seconds/Width/Length рядом с прежними настройками|
+|Docs/MUZZLE_FLASH_GUIDE.md|Настройка/логика/файлы/доказательства/ограничения|
+|Docs/Effects/MuzzlePlume/RuntimeValidation.json|12 направлений/профилей, импакт, выстрел/гильза/очистка/сохранность на момент проверки|
+|Docs/Effects/MuzzlePlume/RecordingValidation.json|Факты480 кадров/реального микса/совпадающих выстрелов/декодирования MP4|
+|Docs/Demos/muzzle-before-after-v084.mp4|16с: сначала прежний эффект, затем новая форма|
+|Docs/Demos/muzzle-plume-v084.mp4|8с: только новый эффект|
+
+Новые .meta хранят стабильные GUID шейдера/материала/редакторского инструмента. Старые CombatEffectsRevision/CombatFeelSetup вызывают MuzzlePlumeSetup.Configure, сохраняя новое оформление при подготовке префаба.
+
+Docs/Effects/MuzzlePlume/FinalEditorState.json — финальная read-only проверка компиляции/шейдера после более поздних пользовательских правок сцены; сцену не сохраняет/не откатывает.

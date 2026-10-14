@@ -76,6 +76,7 @@ namespace EmergencyShift.Editor
                 var so=new SerializedObject(light);var ids=so.FindProperty("m_ApplyToSortingLayers");ids.arraySize=1;ids.GetArrayElementAtIndex(0).intValue=0;so.ApplyModifiedPropertiesWithoutUndo();
             }
             light.intensity=0;root.GetComponent<ShotEffect2D>().ConfigureFlame(light,sparks,core,layers);
+            MuzzlePlumeSetup.Configure(root);
         }
         private static SpriteRenderer Part(GameObject root,string name,Sprite sprite,Vector2 position,Vector2 scale,float angle)
         {
