@@ -1,0 +1,318 @@
+{
+  "checks": [
+    {
+      "name": "Saved scene starts with six player channels, no gun/ammo and combat candidates off",
+      "passed": true,
+      "observed": {
+        "combat": false,
+        "weapon": false,
+        "ammo": 0,
+        "channels": 6
+      }
+    },
+    {
+      "name": "Loot outside 0.65 remains on floor without E prompt",
+      "passed": true,
+      "observed": {
+        "ammo": 0,
+        "active": true
+      }
+    },
+    {
+      "name": "Natural Update auto-collects ammo in darkness before gun, HUD ammo stays hidden",
+      "passed": true,
+      "observed": {
+        "ammo": 12,
+        "gun": false,
+        "hidden": true,
+        "notice": "Получено: Патроны +12",
+        "count": 1
+      }
+    },
+    {
+      "name": "High wall blocks close auto pickup",
+      "passed": true,
+      "observed": {
+        "collected": false,
+        "range": 4.2
+      }
+    },
+    {
+      "name": "Removing wall permits dark upgrade without switching F on",
+      "passed": true,
+      "observed": {
+        "range": 4.79999971,
+        "count": 1,
+        "power": false
+      }
+    },
+    {
+      "name": "Automatic pistol acquisition enables ammo HUD and weapon pickup cue",
+      "passed": true,
+      "observed": {
+        "gun": true,
+        "ammo": 20,
+        "hud": true,
+        "count": 1
+      }
+    },
+    {
+      "name": "Pickup notices queue ammo, module and pistol without upgrade statistics",
+      "passed": true,
+      "observed": {
+        "notices": [
+          "Получено: Модуль фонаря",
+          "Получено: Пистолет",
+          "Получено: Патроны +12"
+        ],
+        "hudVisible": true,
+        "ammo": 20,
+        "weapon": true,
+        "upgrades": 1,
+        "burstPlaying": true
+      },
+      "note": "Three real pickups collected in one update; notification deadlines advanced deliberately to inspect all HUD entries. Earlier sequential test allowed the 1.8 s notices to expire between MCP calls; corrected test timing."
+    },
+    {
+      "name": "Near capacity receives only two rounds and leaves ten in the box",
+      "passed": true,
+      "observed": {
+        "ammo": 120,
+        "collected": false,
+        "remaining": 10
+      }
+    },
+    {
+      "name": "Full capacity leaves box and emits no repeated pickup cue",
+      "passed": true,
+      "observed": {
+        "ammo": 120,
+        "countBefore": 2,
+        "countAfter": 2,
+        "active": true
+      }
+    },
+    {
+      "name": "Later collection receives only the retained ten rounds",
+      "passed": true,
+      "observed": {
+        "ammo": 110,
+        "active": false
+      }
+    },
+    {
+      "name": "Upgrade at both limits is not consumed",
+      "passed": true,
+      "observed": {
+        "collected": false
+      }
+    },
+    {
+      "name": "Disabled interaction cannot collect loot",
+      "passed": true,
+      "observed": {
+        "ammo": 110,
+        "collected": false
+      }
+    },
+    {
+      "name": "Door still shows E prompt and opens through its existing action",
+      "passed": true,
+      "observed": {
+        "same": true,
+        "prompt": "Нажмите «E», чтобы открыть",
+        "acted": true,
+        "open": true
+      }
+    },
+    {
+      "name": "Material routing resolves concrete fallback, explicit wood and Stalker flesh",
+      "passed": true,
+      "observed": {
+        "concrete": "Concrete",
+        "wood": "Wood",
+        "flesh": "Flesh"
+      }
+    },
+    {
+      "name": "Real shot resolves wood target while candidate audio remains off",
+      "passed": true,
+      "observed": {
+        "fired": true,
+        "shotAudio": 0,
+        "resolved": 1,
+        "impactAudio": 0,
+        "material": "Wood"
+      }
+    },
+    {
+      "name": "Enabled real projectile plays Concrete candidate",
+      "passed": true,
+      "observed": {
+        "material": "Concrete",
+        "audio": 1,
+        "shots": 1
+      }
+    },
+    {
+      "name": "Enabled real projectile plays Wood candidate",
+      "passed": true,
+      "observed": {
+        "material": "Wood",
+        "audio": 2,
+        "shots": 2
+      }
+    },
+    {
+      "name": "Enabled real projectile plays Flesh candidate",
+      "passed": true,
+      "observed": {
+        "material": "Flesh",
+        "audio": 3,
+        "shots": 3
+      }
+    },
+    {
+      "name": "Real enemy takes damage and one approved flesh hit, no duplicate generic layer",
+      "passed": true,
+      "observed": {
+        "material": "Flesh",
+        "generic": 3,
+        "hit": 1,
+        "health": 1
+      }
+    },
+    {
+      "name": "Shot into empty space emits no impact",
+      "passed": true,
+      "observed": {
+        "before": 5,
+        "fire": true,
+        "after": 5
+      }
+    },
+    {
+      "name": "Blocked muzzle reports concrete impact exactly once",
+      "passed": true,
+      "observed": {
+        "before": 5,
+        "after": 6,
+        "material": "Concrete",
+        "fire": true
+      }
+    },
+    {
+      "name": "Unity DSP produced audible pickup, shot and impact channels",
+      "passed": true,
+      "observed": {
+        "pickup": 0.08272812,
+        "shot": 0.350019783,
+        "impact": 0.15381676
+      }
+    },
+    {
+      "name": "Disabling player audio stops its fixed channels",
+      "passed": true,
+      "observed": {
+        "playing": false
+      }
+    },
+    {
+      "name": "Edit scene restored, user controls and combat-off policy preserved",
+      "passed": true,
+      "observed": {
+        "errors": 0,
+        "warnings": 0,
+        "play": false,
+        "dirty": false,
+        "missingScripts": 0,
+        "actors": 7,
+        "sources": 20,
+        "listeners": 1,
+        "combat": false,
+        "motor": true,
+        "physics": true,
+        "interaction": true
+      }
+    },
+    {
+      "name": "A second repeatable auto module accumulates normally",
+      "passed": true,
+      "observed": {
+        "count": 2,
+        "range": 5.39999962,
+        "collected": true
+      }
+    },
+    {
+      "name": "Unique modules still refuse a second identical ID",
+      "passed": true,
+      "observed": {
+        "first": true,
+        "second": false,
+        "count": 3
+      }
+    },
+    {
+      "name": "Player death prevents automatic collection",
+      "passed": true,
+      "observed": {
+        "dead": true,
+        "collected": false,
+        "ammo": 20,
+        "interaction": false
+      }
+    }
+  ],
+  "passed": 27,
+  "total": 27,
+  "final": {
+    "errors": 0,
+    "warnings": 0,
+    "play": false,
+    "dirty": false,
+    "missingScripts": 0,
+    "actors": 7,
+    "sources": 20,
+    "listeners": 1,
+    "combat": false,
+    "motor": true,
+    "physics": true,
+    "interaction": true
+  },
+  "limitations": "Play-mode integration and DSP verification. No subjective listening verdict, physical speaker check, full-level mix/Profiler or standalone build.",
+  "extraFinal": {
+    "errors": 0,
+    "warnings": 0,
+    "dirty": false,
+    "play": false
+  },
+  "finalEditVerification": {
+    "errors": 0,
+    "warnings": 0,
+    "compiling": false,
+    "play": false,
+    "dirty": false,
+    "combat": false,
+    "motor": true,
+    "interaction": true,
+    "physics": true,
+    "notificationSeconds": 1.8,
+    "sources": 20,
+    "listeners": 1
+  },
+  "savedPositionsScalesScalarAIUnchanged": true,
+  "captureNote": "Real Game View. Only Play: actors disabled, health restored, input frozen, notification duration extended to 60s to survive MCP screenshot latency. Actual pickups collected. Stop restored 1.8s/controls/AI; no scene save.",
+  "postDocumentationCompile": {
+    "errors": 0,
+    "warnings": 0,
+    "compiling": false,
+    "dirty": false,
+    "play": false,
+    "combat": false,
+    "actors": 7,
+    "sources": 20,
+    "listeners": 1
+  },
+  "editorReloadNote": "Reloaded saved scene after a whitespace-only YAML normalization triggered the Unity external-change dialog. Final compilation and saved channels verified again."
+}

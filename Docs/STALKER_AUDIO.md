@@ -193,6 +193,6 @@ Python/NumPy2.3.5 нужны только для повторной генера
 
 Фактические проверки находятся в [RuntimeValidation.json](Audio/StalkerMembrane04/RuntimeValidation.json), проверка исходников/эталонов — [Validation.json](Audio/StalkerMembrane04/Validation.json). Они отдельно фиксируют наличие ссылок, реальные Play-сценарии и ненулевой DSP-выход Unity. Это не подтверждение звука физических колонок пользователя и не субъективная художественная оценка.
 
-Следующие отдельные этапы: собственные звуки оружия/окружения/двери, микс всего уровня, отдельные материалы контакта, полноценная толпа/Profiler и самостоятельный Windows-билд. Стрелять пистолетом теперь можно услышать реакцию врага, но сам пистолет пока не озвучен.
+Следующие отдельные этапы: собственные звуки оружия/окружения/двери, микс всего уровня, отдельные материалы контакта, полноценная толпа/Profiler и самостоятельный Windows-билд. При стрельбе слышна реакция врага. В v0.8.1 подбор получил временный звук; отдельные кандидаты выстрела/материалов подготовлены для оценки и выключены по умолчанию. Гайд — AUTO_PICKUP_AND_WEAPON_AUDIO.md.
 
 Документация Unity: [2D/3D AudioSource](https://docs.unity3d.com/Manual/AudioSource-overview.html), [приоритет источника](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AudioSource-priority.html), [LowPass cutoff](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AudioLowPassFilter-cutoffFrequency.html), [проверка выходных samples](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/AudioListener.GetOutputData.html).

@@ -28,6 +28,9 @@ namespace EmergencyShift
         public int MaximumAmmo => maximumAmmo;
         public int ShotsFired { get; private set; }
         public ShotVisualProfile VisualProfile => visualProfile;
+        public event System.Action ShotFired;
+        public event System.Action<Collider2D, Vector2> SurfaceHit;
+        public void ReportImpact(Collider2D target, Vector2 point) { SurfaceHit?.Invoke(target, point); }
 
         public void Configure(Transform pivot, Transform exit, BulletProjectile2D bullet, ShotEffect2D effect, ShotVisualProfile style)
         { weaponPivot = pivot; muzzle = exit; bulletPrefab = bullet; effectPrefab = effect; visualProfile = style; }
@@ -79,6 +82,7 @@ namespace EmergencyShift
             RaycastHit2D blockedMuzzle = Physics2D.Linecast(transform.position, origin, blockingGeometry.value | (1 << 9));
             if (blockedMuzzle.collider != null) origin = blockedMuzzle.point - direction * 0.05f;
             Ammo--; ShotsFired++; nextShot = Time.time + secondsBetweenShots;
+            ShotFired?.Invoke();
             var flash = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
             flash.Play(visualProfile, false, direction);
             if(shotShadow!=null)shotShadow.Follow(flash.LightSource);
@@ -89,6 +93,7 @@ namespace EmergencyShift
             }
             else
             {
+                ReportImpact(blockedMuzzle.collider, blockedMuzzle.point);
                 var impact = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
                 impact.Play(visualProfile, true, -direction);
             }

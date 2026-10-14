@@ -31,12 +31,12 @@
 |---|---|
 | `PlayerMotor2D.cs` | WASD → нормализованное направление → Rigidbody2D |
 | `Flashlight2D.cs` | Мышь → поворот Light2D; F → включение |
-| `PlayerInteraction.cs` | Выбор одной двери/предмета, локальный поиск, обработка E и уведомление |
-| `IInteractable.cs` | Общий контракт доступности, подсказки и действия двери/предмета |
+| `PlayerInteraction.cs` | Выбор двери/E, локальный автоподбор лута и очередь уведомлений |
+| `IInteractable.cs` | Контракт доступности, подсказки и действия двери по E |
 | `FlashlightUpgradePickup.cs` | Настраиваемый наземный модуль, ограничения подбора, однократное исчезновение; подсказка без чисел, без отчёта после подбора |
 | `FlashlightUpgrades.cs` | Накопленные бонусы повторяемых/уникальных модулей, пересчёт от базы и пределы |
 | `PlayerWeapon2D.cs` | Владение пистолетом, патроны, ЛКМ, темп, модель, создание выстрела |
-| `WeaponLootPickup.cs` | Наземный пистолет/коробка патронов через IInteractable |
+| `WeaponLootPickup.cs` | Наземный пистолет/коробка патронов через IAutoPickup, остаток неполной коробки |
 | `BulletProjectile2D.cs` | Полёт и CircleCast по пути; один урон, блокирование стенами, удаление |
 | `ShotEffect2D.cs` | Короткая вспышка/попадание, затухание Point Light и штрихов |
 | `ShotVisualProfile.cs` | Общие данные визуального варианта, ScriptableObject |
@@ -254,3 +254,27 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 | Docs/Audio/StalkerMembrane04/stalker-event-catalogue.wav |Изолированный пример каждой группы |
 
 Отклонённые наборы/генераторы и лишние дубли превью/ZIP удалены. Графика/анимации/исторические видео не очищались вне аудиозадачи.
+
+## v0.8.1 — подбор и аудиокандидаты пистолета
+
+| Файл/папка | Назначение |
+|---|---|
+|Scripts/IAutoPickup.cs|Контракт автоподбора и PickupKind для звукового события|
+|Scripts/PlayerInteraction.cs|Локальный автоподбор, дверь/E, очередь уведомлений|
+|Scripts/WeaponLootPickup.cs|Пистолет/патроны; частичная коробка сохраняет остаток|
+|Scripts/FlashlightUpgradePickup.cs|Автоподбор модуля с прежними ID/лимитами|
+|Scripts/ImpactSurface2D.cs|Материал цели/родителя и бетонный/мясной fallback|
+|Scripts/PlayerAudioSet.cs|Общие массивы подбора/выстрела/материалов|
+|Scripts/PlayerAudio2D.cs|Подписки, выбор варианта и6 ограниченных каналов|
+|Editor/PlayerAudioSetup.cs|Разовая запись ссылок/каналов в активную сцену|
+|Audio/PlayerPrototype/*.wav|17 исходников подбора/двух пистолетов/бетона/дерева|
+|Audio/PlayerPrototype/PlayerPrototypeAudio.asset|Общие17 новых+4 прежних flesh-hit ссылок|
+|Tools/Audio/generate_player_audio_prototype.py|Воспроизводимый локальный NumPy DSP, без сервиса|
+|Docs/AUTO_PICKUP_AND_WEAPON_AUDIO.md|Настройка/прослушивание и руководство новичку|
+|Docs/Audio/PlayerPrototype/manifest.json|Происхождение, SHA/frames/уровни исходников|
+|Docs/Audio/PlayerPrototype/UnityImport.json|Реальный PCM-импорт/ссылки, сохранность AI|
+|Docs/Audio/PlayerPrototype/RuntimeValidation.json|Проверки Play/каналов/материалов/настоящих пуль|
+|Docs/Audio/PlayerPrototype/Validation.json|WAV/превью/хэши/клиппинг|
+|Docs/Audio/PlayerPrototype/*-preview.wav|4 монтажа для прослушивания, не запись Unity|
+
+Scripts/PlayerWeapon2D.cs и BulletProjectile2D.cs публикуют звукособытия успешного выстрела/реального первого столкновения, сохраняя прежний урон/свет. Все пути Scripts/Editor/Audio в таблице относительно Assets/EmergencyShift.

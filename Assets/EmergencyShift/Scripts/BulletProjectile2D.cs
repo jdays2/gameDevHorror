@@ -11,6 +11,7 @@ namespace EmergencyShift
         [SerializeField] private Light2D glow;
         private readonly RaycastHit2D[] hits = new RaycastHit2D[32];
         private Transform owner;
+        private PlayerWeapon2D weapon;
         private ShotVisualProfile profile;
         private ShotEffect2D effectPrefab;
         private LayerMask collisionMask;
@@ -28,6 +29,7 @@ namespace EmergencyShift
         public void Launch(Transform shooter, Vector2 heading, ShotVisualProfile style, ShotEffect2D impact, LayerMask mask, int hitDamage, float range)
         {
             owner = shooter; direction = heading.normalized; profile = style; effectPrefab = impact;
+            weapon = shooter != null ? shooter.GetComponent<PlayerWeapon2D>() : null;
             collisionMask = mask; damage = hitDamage; maxDistance = Mathf.Max(0.1f, range);
             active = true; age = 0; distance = 0;
             transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
@@ -57,6 +59,7 @@ namespace EmergencyShift
             if (closest >= 0)
             {
                 RaycastHit2D hit = hits[closest];
+                if (weapon != null) weapon.ReportImpact(hit.collider, hit.point);
                 var enemy = hit.collider.GetComponentInParent<ShadowStalker2D>();
                 if (enemy != null) enemy.ApplyBulletHit(damage,hit.point,direction);
                 Vector2 point = hit.centroid - direction * 0.01f;

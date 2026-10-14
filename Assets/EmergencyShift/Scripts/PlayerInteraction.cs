@@ -4,12 +4,14 @@ using UnityEngine.InputSystem;
 
 namespace EmergencyShift
 {
-    /// <summary>Выбирает одну близкую дверь/предмет и передаёт E. HUD только читает результат.</summary>
+    /// <summary>E selects a door; nearby loot collects automatically with queued HUD feedback.</summary>
     public sealed class PlayerInteraction : MonoBehaviour
     {
         [SerializeField, Min(0.1f)] private float reach = 1.6f;
         [SerializeField] private Door2D[] doors;
         [SerializeField] private LayerMask blockingGeometry = 1 << 8;
+        [SerializeField, Min(.1f)] private float autoPickupRadius = .65f;
+        [SerializeField, Min(.5f)] private float notificationSeconds = 1.8f;
         private readonly List<Collider2D> nearby = new List<Collider2D>(32);
         private Flashlight2D flashlight;
         private FlashlightUpgrades upgrades;
@@ -17,6 +19,8 @@ namespace EmergencyShift
         private PlayerWeapon2D weapon;
         private float notificationUntil;
         private string notification;
+        private readonly Queue<string> notices = new Queue<string>();
+        public event System.Action<PickupKind> ItemCollected;
         public IInteractable CurrentTarget { get; private set; }
         public Door2D CurrentDoor => CurrentTarget as Door2D;
         public Flashlight2D Flashlight => flashlight;
@@ -37,11 +41,25 @@ namespace EmergencyShift
 
         private void Update()
         {
+            if (Time.time >= notificationUntil && notices.Count > 0) StartNotice(notices.Dequeue());
+            CollectNearbyLoot();
             RefreshTarget();
             if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame) TryInteractCurrent();
         }
 
-        private void OnDisable() { CurrentTarget = null; notification = null; }
+        private void OnDisable() { CurrentTarget = null; notification = null; notices.Clear(); notificationUntil = 0; }
+
+        public void CollectNearbyLoot()
+        {
+            if (!isActiveAndEnabled || (life != null && life.IsDead)) return;
+            Physics2D.OverlapCircle(transform.position, autoPickupRadius, new ContactFilter2D { useTriggers = true }, nearby);
+            foreach (var collider in nearby)
+            {
+                var pickup = collider.GetComponentInParent<IAutoPickup>();
+                if (pickup != null && (pickup.PickupPosition - (Vector2)transform.position).sqrMagnitude <= autoPickupRadius * autoPickupRadius)
+                    pickup.TryCollect(this);
+            }
+        }
 
         public bool CanReach(Vector2 point, float targetRange, Collider2D allowedBlocker = null)
         {
@@ -92,7 +110,17 @@ namespace EmergencyShift
             return succeeded;
         }
 
+        private void StartNotice(string message)
+        { notification = message; notificationUntil = Time.time + notificationSeconds; }
+
         public void ShowNotification(string message)
-        { notification = message; notificationUntil = Time.time + 3f; }
+        {
+            if (string.IsNullOrEmpty(message)) return;
+            if (Time.time >= notificationUntil && notices.Count == 0) StartNotice(message);
+            else { if (notices.Count >= 8) notices.Dequeue(); notices.Enqueue(message); }
+        }
+
+        public void ReportPickup(PickupKind kind, string description)
+        { ShowNotification("Получено: " + description); ItemCollected?.Invoke(kind); }
     }
 }
