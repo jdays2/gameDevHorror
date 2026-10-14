@@ -96,3 +96,5 @@ GoreBurst: Release Delay=.12, Impulse Range=3.2–9.5, Lift Range=3–5.5, Fragm
 ## Звук v0.8.1
 
 Подбор уже озвучен. Для выстрела подготовлены сухой/комнатный варианты, бетон/дерево и переиспользуемая плоть. Combat Audio Enabled=false до оценки; включение/настройка/материалы и аудиопримеры — [AUTO_PICKUP_AND_WEAPON_AUDIO.md](AUTO_PICKUP_AND_WEAPON_AUDIO.md). ShotFired/SurfaceHit отделены от аудио, урон/пули/свет прежние. Попадание в сталкера продолжает его собственные одобренные hit/death без двойного слоя.
+
+Новый отзыв v0.8.2: прежний процедурный пистолетный тембр отклонён; реалистичные записи/гильзы пока для отдельного выбора — [WEAPON_SOUND_STUDIES.md](WEAPON_SOUND_STUDIES.md). Combat Audio Enabled не включён, новые WAV не назначены в сцену.

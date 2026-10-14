@@ -278,3 +278,16 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 |Docs/Audio/PlayerPrototype/*-preview.wav|4 монтажа для прослушивания, не запись Unity|
 
 Scripts/PlayerWeapon2D.cs и BulletProjectile2D.cs публикуют звукособытия успешного выстрела/реального первого столкновения, сохраняя прежний урон/свет. Все пути Scripts/Editor/Audio в таблице относительно Assets/EmergencyShift.
+
+## v0.8.2 — реалистичные оружейные пробы
+
+| Файл/папка | Назначение |
+|---|---|
+|Docs/WEAPON_SOUND_STUDIES.md|6 номеров для выбора, авторство/качество/метод и будущая отдельная гильза|
+|Docs/Audio/WeaponRealism02/01…04-*.wav|4 варианта пистолета, по3 события, без добавленных гильз/попаданий|
+|Docs/Audio/WeaponRealism02/05…06-*.wav|2 отдельных фоли-примера гильз: плитка/бетон, по3 разных падения|
+|Docs/Audio/WeaponRealism02/Sources/*.mp3|6 неизменённых публичных CC0-превью, без авторизации/платного сервиса|
+|Docs/Audio/WeaponRealism02/Sources/sources.json|Авторы/страницы/адреса превью/лицензии/SHA/дата|
+|Docs/Audio/WeaponRealism02/manifest.json|Точные окна нарезки/уровни/размещение/происхождение|
+|Docs/Audio/WeaponRealism02/Validation.json|Декодирование6 WAV, формат/сигнал/границы/хэши|
+|Tools/Audio/prepare_weapon_realism_studies.py|Монтаж из сохранённых источников, NumPy2.3.5+явный путь FFmpeg; Unity не меняет|
