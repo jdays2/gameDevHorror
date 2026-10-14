@@ -244,3 +244,14 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 | Assets/EmergencyShift/Editor/StalkerPatrol2DEditor.cs | Исправлен per-target OnSceneGUI/SerializedObject |
 
 Сцена/префабы и игровой C# этим этапом не меняются.
+
+## Studies02 — новые звуковые исследования
+
+- Docs/STALKER_AUDIO_DIRECTION.md — утверждённые ответы пользователя, характер тела/ног/света/атаки/смерти и будущий микс группы.
+- Tools/Audio/generate_stalker_studies_v02.py — независимый локальный синтез трёх проб, NumPy2.3.5; --force защищает от случайной перезаписи.
+- Docs/Audio/StalkerStudies02/01-bone-on-tile.wav — медленный/быстрый перебор по плитке, 8 секунд.
+- Docs/Audio/StalkerStudies02/02-sparse-viscera.wav — редкие внутренние звуки/паузы, 10 секунд.
+- Docs/Audio/StalkerStudies02/03-light-distress.wav — реакция света/отход/дрожь, 8 секунд.
+- Docs/Audio/StalkerStudies02/manifest.json, README.md, Validation.json — происхождение/seed/таймкоды/уровни и техническая проверка.
+
+Все три пробы в Docs, не рабочие AudioClip в Assets. Prototype01 сохранён как отклонённая история; не использовать как эталон.

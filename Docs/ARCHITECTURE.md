@@ -236,3 +236,7 @@ StalkerChasePath2D — обычный C# helper одного врага, не в
 AudioClip — импортированные данные из Assets/EmergencyShift/Audio/Stalker/Prototype01. AudioSource — компонент воспроизведения; его в этом этапе не добавлено. Docs/Audio содержит отдельные стереомонтажи для отбора, не игровую запись. Tools/Audio/generate_stalker_sfx.py строит WAV локально через NumPy2.3.5; Unity/Windows-билду Python не нужен. Manifest хранит seed/SHA/уровни, .meta сохраняют ссылки при будущих правках. План привязки событий и ограничения голосов — STALKER_AUDIO.md; глобальная шина/менеджер не введены.
 
 Попутно исправлен StalkerPatrol2DEditor: OnSceneGUI вызывается для отдельного target, поэтому targets здесь нельзя читать. Handle пишет через новый SerializedObject конкретного patrol, исключая изменение всех выбранных врагов одной ручкой.
+
+## Аудио Studies02 — стадия отбора
+
+Первый набор художественно отклонён. Новый независимый Tools/Audio/generate_stalker_studies_v02.py пишет только три моно WAV/manifest/README в Docs/Audio/StalkerStudies02, не Assets/сцену/префабы. Звуковой бриф — STALKER_AUDIO_DIRECTION.md. В примере темп меняется частотой отдельных контактов, не ускорением одного файла. Короткие контакты, трение, внутренности и боль независимы; будущий компонент сможет привязать их к движению/состояниям и ограничить голоса. Runtime-реализации этим этапом не добавлено.
