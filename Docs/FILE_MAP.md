@@ -263,3 +263,14 @@ ShadowStalker2D дополнен домашним центром/радиуса�
 - Docs/Audio/StalkerChoices03/04-neutral-feet.wav — новая более глухая база ног,5.5с.
 - Docs/Audio/StalkerChoices03/README.md, manifest.json, Validation.json — содержание, происхождение/параметры и фактическая проверка WAV.
 - Docs/STALKER_AUDIO_DIRECTION.md — последовательные отзывы/текущие условия выбора; новые варианты ещё не одобрены.
+
+## Membrane04 — выбранная мембрана, полный набор
+
+- Assets/EmergencyShift/Audio/Stalker/Membrane04/*.wav + .meta —49 однократных моно PCM24/48kHz в13 группах. Полный список/назначение в manifest/гайде.
+- Tools/Audio/generate_stalker_membrane_v04.py — генерация исходников/трёх превью/manifest/ZIP; зависит от choices_v03 и выбранной 02-membrane.wav, NumPy2.3.5.
+- Docs/Audio/StalkerMembrane04/stalker-full-encounter.wav —21с насыщенного сценария.
+- Docs/Audio/StalkerMembrane04/stalker-light-and-retreat.wav —7с отдельного бегства от света.
+- Docs/Audio/StalkerMembrane04/stalker-event-catalogue.wav — один пример каждой группы.
+- Docs/Audio/StalkerMembrane04/README.md, manifest.json, Validation.json, UnityImport.json — таймкоды/происхождение/точные quiet-срезы/проверки файлов и импорта.
+- Docs/Audio/StalkerMembrane04/stalker-membrane04.zip —49 WAV/manifest/README.
+- Docs/STALKER_AUDIO.md — текущий полный гайд, заменяет описание отклонённого Prototype01.
