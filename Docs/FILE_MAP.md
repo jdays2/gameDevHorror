@@ -34,6 +34,12 @@
 | `IInteractable.cs` | Общий контракт доступности, подсказки и действия двери/предмета |
 | `FlashlightUpgradePickup.cs` | Настраиваемый наземный модуль, ограничения подбора, однократное исчезновение; подсказка без чисел, без отчёта после подбора |
 | `FlashlightUpgrades.cs` | Накопленные бонусы повторяемых/уникальных модулей, пересчёт от базы и пределы |
+| `PlayerWeapon2D.cs` | Владение пистолетом, патроны, ЛКМ, темп, модель, создание выстрела |
+| `WeaponLootPickup.cs` | Наземный пистолет/коробка патронов через IInteractable |
+| `BulletProjectile2D.cs` | Полёт и CircleCast по пути; один урон, блокирование стенами, удаление |
+| `ShotEffect2D.cs` | Короткая вспышка/попадание, затухание Point Light и штрихов |
+| `ShotVisualProfile.cs` | Общие данные визуального варианта, ScriptableObject |
+| `WeaponDemoRecorder.cs` | Временный сравнительный recorder только UNITY_EDITOR, не входит в билд |
 | `Door2D.cs` | Состояние двери и coroutine плавного открытия |
 | `CameraFollow2D.cs` | Плавное следование ортографической камеры |
 | `PrototypeHud.cs` | Тексты статуса фонаря и взаимодействия |
@@ -58,6 +64,7 @@
 | `Assets/EmergencyShift/Editor/StalkerDemoTools.cs` | Размер Game View для записи 1280×720 |
 | `Assets/EmergencyShift/Editor/CreatureShadowSetup.cs` | Общий материал силуэтной тени и два SpriteRenderer в префабе/сцене |
 | `Assets/EmergencyShift/Editor/FlashlightUpgradeSetup.cs` | Создаёт предметный префаб, подключает игрока/HUD без расстановки лута |
+| `Assets/EmergencyShift/Editor/WeaponPrototypeSetup.cs` | Профили/префабы пистолета/патронов/пули/вспышки, связи игрока/HUD и редакторское переключение концептов |
 | `Assets/EmergencyShift/Editor/StalkerPaletteRevision.cs` | Новые текстуры/Rect/pivot без смены GUID, палитра глаз и визуальный стиль останков |
 | `Assets/EmergencyShift/Editor/StalkerCorpseSetup.cs` | Добавление/удаление сохранённой группы из четырёх статических тестовых трупов |
 
@@ -74,6 +81,9 @@
 | `Prefabs/ShadowStalker.prefab` | Составной шестиногий враг; внешние ссылки назначаются экземпляру сцены |
 | `Prefabs/BloodPool.prefab` | Переиспользуемая лужа: неровные пятна и капли |
 | `Prefabs/FlashlightRangeUpgrade.prefab` | Повторяемый модуль +0.6 дальности/+6° угла, два lit-плейсхолдера и триггер; параметры в Inspector |
+| `Prefabs/PistolPickup.prefab`, `AmmoPickup.prefab` | Пистолет с 8 патронами и коробка с 12, lit-плейсхолдеры/триггеры |
+| `Prefabs/PistolBullet.prefab`, `PistolShotEffect.prefab` | Движущийся след/точка и одноразовая геометрическая вспышка/Point Light |
+| `Settings/WeaponProfiles/` | WarmFlash/ColdTrail/RedPulse.asset и .meta: три редактируемых визуальных профиля |
 | `Prefabs/StalkerRemainsTest.prefab` | Последняя поза смерти, восемь неподвижных кусков и отдельная лужа; без AI/физики |
 | `Art/Stalker/WalkSheet.png`, `LightReactionSheet.png` | Исходные PNG ходьбы/сжатия |
 | `Art/Stalker/AttackSheet.png`, `DeathSheet.png` | Листы атаки/гибели, созданные imagegen; атака скорректирована по пропорциям |
@@ -95,6 +105,8 @@
 Эти пути относятся к `Assets/EmergencyShift/`. `.meta` рядом с каждым ассетом содержит его GUID и параметры импорта. GUID связывает сцену со скриптами, материалами и префабами; переносить ассеты лучше через Project внутри Unity.
 
 ## Документы
+
+WEAPONS.md — текущая механика, три концепта, настройка, архитектура и ограничения. Weapon06Results.json — 20 фактических проверок. Previews/pistol-before-pickup.png, pistol-equipped.png, pistol-killed-stalker.png — настоящий Game View. Demos/shooting-concepts-v06.mp4 — сравнительная запись; shooting-warm/cold/red-v06.mp4 — отдельные фрагменты; shooting-recording-summary.json — результат записи/декодирования.
 
 `RepeatableUpgrades052Results.json` — фактические проверки трёх повторяемых находок/пределов/перезагрузки; `Previews/repeatable-upgrades-third.png` — свет/UI после третьей находки.
 

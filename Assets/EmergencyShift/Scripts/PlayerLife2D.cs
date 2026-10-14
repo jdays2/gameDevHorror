@@ -14,6 +14,7 @@ namespace EmergencyShift
         private PlayerMotor2D motor;
         private Flashlight2D flashlight;
         private PlayerInteraction interaction;
+        private PlayerWeapon2D weapon;
         private SpriteRenderer visual;
         private Color normalColor;
         private float protectedUntil;
@@ -25,6 +26,7 @@ namespace EmergencyShift
         {
             body = GetComponent<Rigidbody2D>(); motor = GetComponent<PlayerMotor2D>();
             flashlight = GetComponent<Flashlight2D>(); interaction = GetComponent<PlayerInteraction>();
+            weapon = GetComponent<PlayerWeapon2D>();
             visual = transform.Find("Capsule visual").GetComponent<SpriteRenderer>();
             normalColor = visual.color; Health = maximumHealth;
         }
@@ -39,6 +41,7 @@ namespace EmergencyShift
                 StopAllCoroutines();
                 motor.enabled = false; interaction.enabled = false;
                 flashlight.SetPower(false); flashlight.enabled = false;
+                if (weapon != null) weapon.enabled = false;
                 body.linearVelocity = Vector2.zero; body.simulated = false;
                 visual.color = new Color(0.35f, 0.08f, 0.10f);
             }

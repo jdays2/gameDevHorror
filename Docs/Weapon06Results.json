@@ -1,0 +1,323 @@
+{
+  "checks": [
+    {
+      "check": "Saved pistol/two ammo pickups and player/HUD, user placements and settings preserved",
+      "passed": true,
+      "observed": {
+        "before": {
+          "player": "(2.800000, 0.000000, 0.000000)",
+          "enemy": "(-4.230000, -3.030000, 0.000000)",
+          "fear": 2.0,
+          "delay": 0.33,
+          "range": 4.2,
+          "angle": 80.0
+        },
+        "after": {
+          "player": "(2.800000, 0.000000, 0.000000)",
+          "enemy": "(-4.230000, -3.030000, 0.000000)",
+          "fear": 2.0,
+          "delay": 0.33,
+          "range": 4.2,
+          "angle": 80.0
+        },
+        "weapons": 1,
+        "loot": 3,
+        "upgradeLoot": 4,
+        "dirty": false
+      }
+    },
+    {
+      "check": "Three distinct saved profiles share weapon gameplay",
+      "passed": true,
+      "observed": [
+        {
+          "name": "Тёплая вспышка",
+          "color": "RGBA(1.000, 0.720, 0.380, 1.000)",
+          "seconds": 0.08,
+          "speed": 36.0,
+          "trail": 0.42
+        },
+        {
+          "name": "Холодный след",
+          "color": "RGBA(0.660, 0.790, 0.840, 1.000)",
+          "seconds": 0.06,
+          "speed": 28.0,
+          "trail": 0.7
+        },
+        {
+          "name": "Красный импульс",
+          "color": "RGBA(1.000, 0.400, 0.250, 1.000)",
+          "seconds": 0.12,
+          "speed": 24.0,
+          "trail": 0.54
+        }
+      ]
+    },
+    {
+      "check": "No pistol means no ammo HUD and no shooting",
+      "passed": true,
+      "observed": {
+        "owned": false,
+        "ammo": 0,
+        "shots": 0,
+        "ammoUi": false,
+        "ammoText": "ПАТРОНЫ  0   [ЛКМ]",
+        "health": 2,
+        "state": "Sneaking",
+        "bullets": 0,
+        "effects": 0,
+        "prompt": "Нажмите «E», чтобы открыть"
+      }
+    },
+    {
+      "check": "Actual E stores ammo before gun while keeping counter hidden",
+      "passed": true,
+      "observed": {
+        "owned": false,
+        "ammo": 12,
+        "shots": 0,
+        "ammoUi": false,
+        "ammoText": "ПАТРОНЫ  12   [ЛКМ]",
+        "health": 2,
+        "state": "Sneaking",
+        "bullets": 0,
+        "effects": 0,
+        "prompt": null
+      }
+    },
+    {
+      "check": "Gun pickup requires main light",
+      "passed": true,
+      "observed": {
+        "pickedWithFOff": false
+      }
+    },
+    {
+      "check": "Actual E acquires gun, adds 8 cartridges and reveals HUD",
+      "passed": true,
+      "observed": {
+        "owned": true,
+        "ammo": 20,
+        "shots": 0,
+        "ammoUi": true,
+        "ammoText": "ПАТРОНЫ  20   [ЛКМ]",
+        "health": 2,
+        "state": "Sneaking",
+        "bullets": 0,
+        "effects": 0,
+        "prompt": null
+      }
+    },
+    {
+      "check": "Collected weapon cannot grant ammo twice",
+      "passed": true,
+      "observed": {
+        "again": false,
+        "ammo": 20,
+        "active": false
+      }
+    },
+    {
+      "check": "Ammo cannot be taken through a wall",
+      "passed": true,
+      "observed": {
+        "pickup": false
+      }
+    },
+    {
+      "check": "Second ammo box adds cartridges to visible HUD",
+      "passed": true,
+      "observed": {
+        "owned": true,
+        "ammo": 32,
+        "shots": 0,
+        "ammoUi": true,
+        "ammoText": "ПАТРОНЫ  32   [ЛКМ]",
+        "health": 2,
+        "state": "Sneaking",
+        "bullets": 0,
+        "effects": 0,
+        "prompt": null
+      }
+    },
+    {
+      "check": "Actual LMB consumes one cartridge but closed door blocks damage",
+      "passed": true,
+      "observed": {
+        "owned": true,
+        "ammo": 31,
+        "shots": 1,
+        "ammoUi": true,
+        "ammoText": "ПАТРОНЫ  31   [ЛКМ]",
+        "health": 2,
+        "state": "Sneaking",
+        "bullets": 0,
+        "effects": 0,
+        "prompt": "Нажмите «E», чтобы открыть"
+      }
+    },
+    {
+      "check": "Actual bullet damages living Stalker once",
+      "passed": true,
+      "observed": {
+        "owned": true,
+        "ammo": 30,
+        "shots": 2,
+        "ammoUi": true,
+        "ammoText": "ПАТРОНЫ  30   [ЛКМ]",
+        "health": 1,
+        "state": "Sneaking",
+        "bullets": 0,
+        "effects": 0,
+        "prompt": null
+      }
+    },
+    {
+      "check": "Held LMB is semi-auto and does not fire extra rounds",
+      "passed": true,
+      "observed": {
+        "owned": true,
+        "ammo": 30,
+        "shots": 2,
+        "ammoUi": true,
+        "ammoText": "ПАТРОНЫ  30   [ЛКМ]",
+        "health": 1,
+        "state": "Sneaking",
+        "bullets": 0,
+        "effects": 0,
+        "prompt": null
+      }
+    },
+    {
+      "check": "Fire cooldown rejects duplicate call without consuming ammo",
+      "passed": true,
+      "observed": {
+        "first": true,
+        "second": false,
+        "ammoAfterFirst": 29,
+        "ammoAfterSecond": 29
+      }
+    },
+    {
+      "check": "Two real projectile hits kill Stalker and produce existing blood/gibs",
+      "passed": true,
+      "observed": {
+        "enemy": {
+          "owned": true,
+          "ammo": 29,
+          "shots": 3,
+          "ammoUi": true,
+          "ammoText": "ПАТРОНЫ  29   [ЛКМ]",
+          "health": 0,
+          "state": "Dead",
+          "bullets": 0,
+          "effects": 0,
+          "prompt": null
+        },
+        "gore": {
+          "pools": 1,
+          "gibs": 8
+        }
+      }
+    },
+    {
+      "check": "Pistol fires with flashlight off and transient effects expire",
+      "passed": true,
+      "observed": {
+        "owned": true,
+        "ammo": 28,
+        "shots": 4,
+        "ammoUi": true,
+        "ammoText": "ПАТРОНЫ  28   [ЛКМ]",
+        "health": 0,
+        "state": "Dead",
+        "bullets": 0,
+        "effects": 0,
+        "prompt": null
+      }
+    },
+    {
+      "check": "Point-blank muzzle cannot spawn a bullet on far side of wall",
+      "passed": true,
+      "observed": {
+        "shot": true,
+        "bullets": 0
+      }
+    },
+    {
+      "check": "Ammo capacity is respected and pickups stay quiet",
+      "passed": true,
+      "observed": {
+        "added": true,
+        "repeat": false,
+        "ammo": 120,
+        "maximum": 120,
+        "notification": null
+      }
+    },
+    {
+      "check": "Empty gun cannot fire or produce another shot",
+      "passed": true,
+      "observed": {
+        "shot": false,
+        "before": 5,
+        "after": 5,
+        "ammo": 0
+      }
+    },
+    {
+      "check": "Dead player cannot shoot/pick up ammo; held gun and ammo HUD hidden",
+      "passed": true,
+      "observed": {
+        "fire": false,
+        "pickup": false,
+        "enabled": false,
+        "held": false
+      }
+    },
+    {
+      "check": "Actual R restores gun/two boxes and removes owned weapon/ammo state",
+      "passed": true,
+      "observed": {
+        "owned": false,
+        "ammo": 0,
+        "shots": 0,
+        "ammoUi": false,
+        "ammoText": "ПАТРОНЫ  0   [ЛКМ]",
+        "health": 2,
+        "state": "Sneaking",
+        "bullets": 0,
+        "effects": 0,
+        "prompt": "Нажмите «E», чтобы открыть"
+      }
+    }
+  ],
+  "console": {
+    "success": true,
+    "message": "Retrieved 1 log entries.",
+    "data": [
+      {
+        "type": "Warning",
+        "message": "<b><color=#cc7a00>MCP-FOR-UNITY</color></b>: Suppressed duplicate command resent on a new connection; awaiting the in-flight result instead of running it twice.",
+        "file": "./Library/PackageCache/com.coplaydev.unity-mcp@da7b9ae4aeeb/Editor/Helpers/McpLog.cs",
+        "line": 45,
+        "stackTrace": null
+      }
+    ]
+  },
+  "sceneValidation": {
+    "success": true,
+    "message": "Scene 'BasementPrototype' is clean — no issues found.",
+    "data": {
+      "sceneName": "BasementPrototype",
+      "totalIssues": 0,
+      "missingScripts": 0,
+      "brokenPrefabs": 0,
+      "repaired": 0,
+      "issues": [],
+      "truncated": false,
+      "note": null
+    }
+  },
+  "note": "Actual E/LMB/R input; scripted temporary placements and stationary AI. Real circlecast projectiles, damage and gore. No fixture saved."
+}

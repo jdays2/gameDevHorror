@@ -14,12 +14,14 @@ namespace EmergencyShift
         private Flashlight2D flashlight;
         private FlashlightUpgrades upgrades;
         private PlayerLife2D life;
+        private PlayerWeapon2D weapon;
         private float notificationUntil;
         private string notification;
         public IInteractable CurrentTarget { get; private set; }
         public Door2D CurrentDoor => CurrentTarget as Door2D;
         public Flashlight2D Flashlight => flashlight;
         public FlashlightUpgrades Upgrades => upgrades;
+        public PlayerWeapon2D Weapon => weapon;
         public LayerMask BlockingGeometry => blockingGeometry;
         public string CurrentPrompt => CurrentTarget != null ? CurrentTarget.GetPrompt(this) : null;
         public string Notification => Time.time < notificationUntil ? notification : null;
@@ -30,6 +32,7 @@ namespace EmergencyShift
             flashlight = GetComponent<Flashlight2D>();
             upgrades = GetComponent<FlashlightUpgrades>();
             life = GetComponent<PlayerLife2D>();
+            weapon = GetComponent<PlayerWeapon2D>();
         }
 
         private void Update()

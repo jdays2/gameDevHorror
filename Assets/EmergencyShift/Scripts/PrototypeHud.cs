@@ -14,6 +14,9 @@ namespace EmergencyShift
         [SerializeField] private Text healthStatus;
         [SerializeField] private Text defeatPrompt;
         [SerializeField] private Text pickupNotification;
+        [SerializeField] private PlayerWeapon2D weapon;
+        [SerializeField] private Text ammoStatus;
+        public void ConfigureWeapon(PlayerWeapon2D gun, Text counter) { weapon = gun; ammoStatus = counter; }
         public void ConfigurePickupNotification(Text label) => pickupNotification = label;
 
         public void Configure(Flashlight2D light, PlayerInteraction actor, Text status, Text prompt)
@@ -27,6 +30,11 @@ namespace EmergencyShift
             flashlightStatus.text = dead ? "ФОНАРЬ ПОГАШЕН" : flashlight.IsOn ? "[F]  ФОНАРЬ ВКЛЮЧЁН" : "[F]  ВКЛЮЧИТЬ ФОНАРЬ";
             if(healthStatus!=null&&life!=null)healthStatus.text="ЗДОРОВЬЕ  "+life.Health+" / "+life.MaximumHealth;
             if(defeatPrompt!=null)defeatPrompt.gameObject.SetActive(dead);
+            if (ammoStatus != null)
+            {
+                ammoStatus.gameObject.SetActive(weapon != null && weapon.HasWeapon && !dead);
+                if (weapon != null) ammoStatus.text = "ПАТРОНЫ  " + weapon.Ammo + "   [ЛКМ]";
+            }
             string prompt = interaction.CurrentPrompt;
             doorPrompt.gameObject.SetActive(!string.IsNullOrEmpty(prompt) && !dead);
             if (!string.IsNullOrEmpty(prompt)) doorPrompt.text = prompt;
