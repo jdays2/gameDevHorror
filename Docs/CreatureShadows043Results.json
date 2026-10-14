@@ -1,0 +1,182 @@
+{
+  "checks": [
+    {
+      "check": "Saved shadows in prefab and scene without colliders/casters or tuning reset",
+      "passed": true,
+      "observed": {
+        "sceneShadows": true,
+        "prefabShadows": true,
+        "colliders": 0,
+        "casters": 0,
+        "fear": 1.5,
+        "delay": 0.33,
+        "x": -4.23,
+        "y": -3.03,
+        "dirty": false
+      }
+    },
+    {
+      "check": "Flashlight off retains contact shadow but hides projection",
+      "passed": true,
+      "observed": {
+        "contact": true,
+        "projection": false,
+        "length": 0.0,
+        "dx": 0.0,
+        "dy": 0.0,
+        "cx": 0.95,
+        "cy": 0.76,
+        "alpha": 0.55,
+        "projectAlpha": 1.0,
+        "contactZ": -0.04,
+        "bodyOrder": 1,
+        "health": 2
+      }
+    },
+    {
+      "check": "Flashlight projects a short translucent shadow away from its source",
+      "passed": true,
+      "observed": {
+        "contact": true,
+        "projection": true,
+        "length": 0.9166667,
+        "dx": 1.0,
+        "dy": 8.187452e-09,
+        "cx": 0.95,
+        "cy": 0.76,
+        "alpha": 0.55,
+        "projectAlpha": 0.4,
+        "contactZ": -0.04,
+        "bodyOrder": 1,
+        "health": 2
+      }
+    },
+    {
+      "check": "Moving the lamp changes shadow direction",
+      "passed": true,
+      "observed": {
+        "contact": true,
+        "projection": true,
+        "length": 0.9166667,
+        "dx": 8.646209e-09,
+        "dy": -1.0,
+        "cx": 0.95,
+        "cy": 0.76,
+        "alpha": 0.55,
+        "projectAlpha": 0.4,
+        "contactZ": -0.04,
+        "bodyOrder": 1,
+        "health": 2
+      }
+    },
+    {
+      "check": "No projected shadow beyond beam range",
+      "passed": true,
+      "observed": {
+        "contact": true,
+        "projection": false,
+        "length": 0.0,
+        "dx": 8.646209e-09,
+        "dy": -1.0,
+        "cx": 0.95,
+        "cy": 0.76,
+        "alpha": 0.55,
+        "projectAlpha": 0.4,
+        "contactZ": -0.04,
+        "bodyOrder": 1,
+        "health": 2
+      }
+    },
+    {
+      "check": "Closed door blocks projected shadow visibility",
+      "passed": true,
+      "observed": {
+        "contact": true,
+        "projection": false,
+        "length": 0.0,
+        "dx": 8.646209e-09,
+        "dy": -1.0,
+        "cx": 0.95,
+        "cy": 0.76,
+        "alpha": 0.55,
+        "projectAlpha": 0.4,
+        "contactZ": -0.04,
+        "bodyOrder": 1,
+        "health": 2
+      }
+    },
+    {
+      "check": "Short shadow stops before the north wall",
+      "passed": true,
+      "observed": {
+        "contact": true,
+        "projection": true,
+        "length": 0.5499999,
+        "dx": 6.49328946e-09,
+        "dy": 1.0,
+        "cx": 0.95,
+        "cy": 0.76,
+        "alpha": 0.55,
+        "projectAlpha": 0.4,
+        "contactZ": -0.04,
+        "bodyOrder": 1,
+        "health": 2
+      }
+    },
+    {
+      "check": "Projection does not occlude another creature",
+      "passed": true,
+      "observed": {
+        "first": true,
+        "second": true,
+        "casters": 0
+      }
+    },
+    {
+      "check": "Death removes projected shadow and settles contact below the remains",
+      "passed": true,
+      "observed": {
+        "contact": true,
+        "projection": false,
+        "length": 0.0,
+        "dx": 0.9994141,
+        "dy": 0.0342265144,
+        "cx": 0.617499948,
+        "cy": 0.494,
+        "alpha": 0.2475,
+        "projectAlpha": 0.1725496,
+        "contactZ": -0.015,
+        "bodyOrder": 0,
+        "health": 0
+      }
+    }
+  ],
+  "console": {
+    "success": true,
+    "message": "Retrieved 1 log entries.",
+    "data": [
+      {
+        "type": "Warning",
+        "message": "<b><color=#cc7a00>MCP-FOR-UNITY</color></b>: Suppressed duplicate command resent on a new connection; awaiting the in-flight result instead of running it twice.",
+        "file": "./Library/PackageCache/com.coplaydev.unity-mcp@da7b9ae4aeeb/Editor/Helpers/McpLog.cs",
+        "line": 45,
+        "stackTrace": null
+      }
+    ]
+  },
+  "sceneValidation": {
+    "success": true,
+    "message": "Scene 'BasementPrototype' is clean — no issues found.",
+    "data": {
+      "sceneName": "BasementPrototype",
+      "totalIssues": 0,
+      "missingScripts": 0,
+      "brokenPrefabs": 0,
+      "repaired": 0,
+      "issues": [],
+      "truncated": false,
+      "note": null
+    }
+  },
+  "captureNote": "Game View under normal scene darkness and flashlight. Camera zoom 2.6 and fixture positions temporary; same pose in before/after; no scene edits saved during Play."
+}

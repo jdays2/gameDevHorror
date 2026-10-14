@@ -1,0 +1,220 @@
+{
+  "checks": [
+    {
+      "check": "Saved dark remains below live creatures, manual tuning preserved",
+      "passed": true,
+      "observed": {
+        "x": -4.23,
+        "y": -3.03,
+        "fear": 1.5,
+        "delay": 0.33,
+        "liveOrder": 1,
+        "deadOrder": 0.0,
+        "tint": 0.58,
+        "corpses": 4,
+        "dirty": false
+      }
+    },
+    {
+      "check": "All 28 Sprite assets use new textures and retain original GUID",
+      "passed": true,
+      "observed": [
+        {
+          "name": "Walk00-corrected",
+          "passed": true
+        },
+        {
+          "name": "Walk01-corrected",
+          "passed": true
+        },
+        {
+          "name": "Walk02-corrected",
+          "passed": true
+        },
+        {
+          "name": "Walk03-corrected",
+          "passed": true
+        },
+        {
+          "name": "Walk04-corrected",
+          "passed": true
+        },
+        {
+          "name": "Walk05-corrected",
+          "passed": true
+        },
+        {
+          "name": "Walk06-corrected",
+          "passed": true
+        },
+        {
+          "name": "Walk07-corrected",
+          "passed": true
+        },
+        {
+          "name": "Recoil00-corrected",
+          "passed": true
+        },
+        {
+          "name": "Recoil01-corrected",
+          "passed": true
+        },
+        {
+          "name": "Recoil02-corrected",
+          "passed": true
+        },
+        {
+          "name": "Recoil03-corrected",
+          "passed": true
+        },
+        {
+          "name": "Attack00",
+          "passed": true
+        },
+        {
+          "name": "Attack01",
+          "passed": true
+        },
+        {
+          "name": "Attack02",
+          "passed": true
+        },
+        {
+          "name": "Attack03",
+          "passed": true
+        },
+        {
+          "name": "Attack04",
+          "passed": true
+        },
+        {
+          "name": "Attack05",
+          "passed": true
+        },
+        {
+          "name": "Death00",
+          "passed": true
+        },
+        {
+          "name": "Death01",
+          "passed": true
+        },
+        {
+          "name": "Death02",
+          "passed": true
+        },
+        {
+          "name": "Death03",
+          "passed": true
+        },
+        {
+          "name": "Gib00",
+          "passed": true
+        },
+        {
+          "name": "Gib01",
+          "passed": true
+        },
+        {
+          "name": "Gib02",
+          "passed": true
+        },
+        {
+          "name": "Gib03",
+          "passed": true
+        },
+        {
+          "name": "Gib04",
+          "passed": true
+        },
+        {
+          "name": "Gib05",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "check": "Walking uses pale atlas and tracking eye",
+      "passed": true,
+      "observed": {
+        "state": "Sneaking",
+        "texture": "Assets/EmergencyShift/Art/Stalker/PaleFlesh/walk-sheet.png",
+        "eye": true
+      }
+    },
+    {
+      "check": "Recoil uses pale atlas",
+      "passed": true,
+      "observed": {
+        "state": "Retreating",
+        "exposed": true,
+        "progress": 0.0,
+        "distance": 1.31818724,
+        "texture": "Assets/EmergencyShift/Art/Stalker/PaleFlesh/recoil-sheet.png"
+      }
+    },
+    {
+      "check": "One pool appears synchronously on Dead and is not duplicated",
+      "passed": true,
+      "observed": {
+        "before": 4,
+        "after": 5,
+        "repeated": 5,
+        "dead": "Dead"
+      }
+    },
+    {
+      "check": "Dead body and all eight fragments use pale art with dark tint below living layer",
+      "passed": true,
+      "observed": {
+        "frame": "Death03",
+        "texture": "Assets/EmergencyShift/Art/Stalker/PaleFlesh/death-sheet.png",
+        "tint": 0.58,
+        "order": 0,
+        "gibs": 8,
+        "badGibs": 0
+      }
+    },
+    {
+      "check": "Successive deaths create different procedural pool shapes and sizes",
+      "passed": true,
+      "observed": {
+        "count": 2,
+        "shapes": [
+          "(1.1184, 0.8394, 1.0000)",
+          "(1.0236, 0.8786, 1.0000)"
+        ]
+      }
+    },
+    {
+      "check": "Actual attack uses pale atlas with a separate feeding mouth",
+      "passed": true,
+      "observed": {
+        "state": "Attacking",
+        "progress": 0.174999937,
+        "health": 2,
+        "texture": "Assets/EmergencyShift/Art/Stalker/PaleFlesh/attack-sheet.png"
+      }
+    }
+  ],
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "sceneValidation": {
+    "success": true,
+    "message": "Scene 'BasementPrototype' is clean — no issues found.",
+    "data": {
+      "sceneName": "BasementPrototype",
+      "totalIssues": 0,
+      "missingScripts": 0,
+      "brokenPrefabs": 0,
+      "repaired": 0,
+      "issues": [],
+      "truncated": false,
+      "note": null
+    }
+  },
+  "screenshotNote": "Temporary ambient .55 and camera zoom 3.4 for inspection; not saved."
+}

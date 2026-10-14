@@ -1,0 +1,464 @@
+{
+  "checks": [
+    {
+      "check": "Saved creature has frames and scene references",
+      "passed": true,
+      "observed": {
+        "hasEnemy": true,
+        "walk": 8,
+        "recoil": 4,
+        "hasPlayer": true,
+        "mask": 256,
+        "dirty": false
+      }
+    },
+    {
+      "check": "Clean Play begins with flashlight off and open eye",
+      "passed": true,
+      "observed": {
+        "state": "Sneaking",
+        "x": -4.23,
+        "y": -3.03,
+        "distance": 7.65518141,
+        "speed": 0.0,
+        "closure": 0.0,
+        "eyeOpen": true,
+        "pupilDot": 0.028,
+        "frame": 0,
+        "exposed": false,
+        "light": false,
+        "time": 1.23582089,
+        "fearDistance": 1.5,
+        "delay": 0.33,
+        "progress": 0.0
+      }
+    },
+    {
+      "check": "Creature advances behind moving player",
+      "passed": true,
+      "observed": [
+        {
+          "state": "Sneaking",
+          "x": -2.141997,
+          "y": 4.9098432e-08,
+          "distance": 2.53199673,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 5,
+          "exposed": false,
+          "light": false,
+          "time": 2.598241,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        },
+        {
+          "state": "Sneaking",
+          "x": -1.63599741,
+          "y": 7.311495e-08,
+          "distance": 2.255997,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 0,
+          "exposed": false,
+          "light": false,
+          "time": 3.04641223,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        },
+        {
+          "state": "Sneaking",
+          "x": -1.10799849,
+          "y": 9.36871558e-08,
+          "distance": 1.96799779,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 3,
+          "exposed": false,
+          "light": false,
+          "time": 3.52283025,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        },
+        {
+          "state": "Sneaking",
+          "x": -0.6019984,
+          "y": 1.08905326e-07,
+          "distance": 1.69199753,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 7,
+          "exposed": false,
+          "light": false,
+          "time": 3.99443388,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        },
+        {
+          "state": "Sneaking",
+          "x": -0.07399861,
+          "y": 1.19778633e-07,
+          "distance": 1.40399742,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 2,
+          "exposed": false,
+          "light": false,
+          "time": 4.46895075,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        }
+      ]
+    },
+    {
+      "check": "Walking cycles through frames without changing eye target",
+      "passed": true,
+      "observed": [
+        {
+          "state": "Sneaking",
+          "x": -2.141997,
+          "y": 4.9098432e-08,
+          "distance": 2.53199673,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 5,
+          "exposed": false,
+          "light": false,
+          "time": 2.598241,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        },
+        {
+          "state": "Sneaking",
+          "x": -1.63599741,
+          "y": 7.311495e-08,
+          "distance": 2.255997,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 0,
+          "exposed": false,
+          "light": false,
+          "time": 3.04641223,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        },
+        {
+          "state": "Sneaking",
+          "x": -1.10799849,
+          "y": 9.36871558e-08,
+          "distance": 1.96799779,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 3,
+          "exposed": false,
+          "light": false,
+          "time": 3.52283025,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        },
+        {
+          "state": "Sneaking",
+          "x": -0.6019984,
+          "y": 1.08905326e-07,
+          "distance": 1.69199753,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 7,
+          "exposed": false,
+          "light": false,
+          "time": 3.99443388,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        },
+        {
+          "state": "Sneaking",
+          "x": -0.07399861,
+          "y": 1.19778633e-07,
+          "distance": 1.40399742,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 2,
+          "exposed": false,
+          "light": false,
+          "time": 4.46895075,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        }
+      ]
+    },
+    {
+      "check": "Forward flashlight does not repel creature behind player",
+      "passed": true,
+      "observed": {
+        "state": "Sneaking",
+        "x": -1.18600166,
+        "y": 1.0699425e-07,
+        "distance": 1.18600166,
+        "speed": 0.0,
+        "closure": 0.0,
+        "eyeOpen": true,
+        "pupilDot": 0.028,
+        "frame": 1,
+        "exposed": false,
+        "light": true,
+        "time": 5.49954462,
+        "fearDistance": 1.5,
+        "delay": 0.33,
+        "progress": 0.0
+      }
+    },
+    {
+      "check": "Distant lit creature remains visible without fear",
+      "passed": true,
+      "observed": {
+        "state": "Sneaking",
+        "x": -2.96199775,
+        "y": 1.717383e-08,
+        "distance": 2.96199775,
+        "speed": 1.1,
+        "closure": 0.0,
+        "eyeOpen": true,
+        "pupilDot": 0.028,
+        "frame": 5,
+        "exposed": true,
+        "light": true,
+        "time": 6.339702,
+        "fearDistance": 1.5,
+        "delay": 0.33,
+        "progress": 0.0
+      }
+    },
+    {
+      "check": "Close light has a reaction delay",
+      "passed": true,
+      "observed": {
+        "start": {
+          "time": 6.596864,
+          "delay": 0.33,
+          "distance": 1.5
+        },
+        "later": {
+          "state": "Sneaking",
+          "x": -1.49200022,
+          "y": 0.0,
+          "distance": 1.49200022,
+          "speed": 1.1,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 0,
+          "exposed": true,
+          "light": true,
+          "time": 6.67819357,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.24242413
+        }
+      }
+    },
+    {
+      "check": "Short flash resets reaction timer",
+      "passed": true,
+      "observed": {
+        "state": "Sneaking",
+        "progress": 0.0,
+        "open": true
+      }
+    },
+    {
+      "check": "Beam causes contraction and closed eye",
+      "passed": true,
+      "observed": {
+        "state": "Retreating",
+        "x": -2.47600126,
+        "y": 1.7744874e-08,
+        "distance": 2.47600126,
+        "speed": 2.4,
+        "closure": 1.0,
+        "eyeOpen": false,
+        "pupilDot": 0.028,
+        "frame": 3,
+        "exposed": true,
+        "light": true,
+        "time": 8.062543,
+        "fearDistance": 1.5,
+        "delay": 0.33,
+        "progress": 0.0
+      }
+    },
+    {
+      "check": "Creature retreats and enters cooldown",
+      "passed": true,
+      "observed": {
+        "state": "Waiting",
+        "x": -3.72400379,
+        "y": 3.548975e-08,
+        "distance": 3.72400379,
+        "speed": 0.0,
+        "closure": 1.0,
+        "eyeOpen": false,
+        "pupilDot": 0.028,
+        "frame": 3,
+        "exposed": true,
+        "light": true,
+        "time": 8.829889,
+        "fearDistance": 1.5,
+        "delay": 0.33,
+        "progress": 0.0
+      }
+    },
+    {
+      "check": "Cooldown prevents immediate return",
+      "passed": true,
+      "observed": {
+        "state": "Waiting",
+        "x": -3.72400379,
+        "y": 3.548975e-08,
+        "distance": 3.72400379,
+        "speed": 0.0,
+        "closure": 1.0,
+        "eyeOpen": false,
+        "pupilDot": 0.028,
+        "frame": 3,
+        "exposed": false,
+        "light": false,
+        "time": 10.2748756,
+        "fearDistance": 1.5,
+        "delay": 0.33,
+        "progress": 0.0
+      }
+    },
+    {
+      "check": "Creature resumes stalking after cooldown",
+      "passed": true,
+      "observed": {
+        "state": "Sneaking",
+        "x": -2.20599866,
+        "y": 6.400558e-08,
+        "distance": 2.20599866,
+        "speed": 1.1,
+        "closure": 0.0,
+        "eyeOpen": true,
+        "pupilDot": 0.028,
+        "frame": 5,
+        "exposed": false,
+        "light": false,
+        "time": 13.00162,
+        "fearDistance": 1.5,
+        "delay": 0.33,
+        "progress": 0.0
+      }
+    },
+    {
+      "check": "Closed door blocks beam and awareness",
+      "passed": true,
+      "observed": {
+        "query": {
+          "illuminated": false,
+          "occluded": true,
+          "origin": "(5.32, 0.00)",
+          "aim": "(-1.00, 0.00)"
+        },
+        "enemy": {
+          "state": "Sneaking",
+          "x": 2.8,
+          "y": 0.0,
+          "distance": 2.7,
+          "speed": 0.0,
+          "closure": 0.0,
+          "eyeOpen": true,
+          "pupilDot": 0.028,
+          "frame": 6,
+          "exposed": false,
+          "light": true,
+          "time": 14.0400915,
+          "fearDistance": 1.5,
+          "delay": 0.33,
+          "progress": 0.0
+        }
+      }
+    },
+    {
+      "check": "Creature cannot cross east/north wall",
+      "passed": true,
+      "observed": {
+        "state": "Sneaking",
+        "x": 3.095277,
+        "y": 3.17781949,
+        "distance": 1.65193856,
+        "speed": 1.10000014,
+        "closure": 0.0,
+        "eyeOpen": true,
+        "pupilDot": 0.028,
+        "frame": 1,
+        "exposed": false,
+        "light": false,
+        "time": 15.9071293,
+        "fearDistance": 1.5,
+        "delay": 0.33,
+        "progress": 0.0
+      }
+    },
+    {
+      "check": "F input switches both lights and HUD",
+      "passed": true,
+      "observed": {
+        "beam": true,
+        "spill": true,
+        "label": "[F]  ФОНАРЬ ВКЛЮЧЁН"
+      }
+    },
+    {
+      "check": "Second F input switches beam off",
+      "passed": true,
+      "observed": {
+        "state": "Sneaking",
+        "x": 2.178686,
+        "y": 3.278678,
+        "distance": 9.897545,
+        "speed": 0.0,
+        "closure": 0.0,
+        "eyeOpen": true,
+        "pupilDot": 0.028,
+        "frame": 7,
+        "exposed": false,
+        "light": false,
+        "time": 20.4378357,
+        "fearDistance": 1.5,
+        "delay": 0.33,
+        "progress": 0.0
+      }
+    }
+  ],
+  "allPassed": true,
+  "error": null
+}

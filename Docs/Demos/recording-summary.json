@@ -1,0 +1,24 @@
+{
+  "file": "stalker-demo-v04.mp4",
+  "frames": 960,
+  "fps": 24,
+  "durationSeconds": 40,
+  "width": 1280,
+  "height": 720,
+  "states": {
+    "Sneaking": 640,
+    "Recoiling": 9,
+    "Retreating": 25,
+    "Waiting": 103,
+    "Attacking": 39,
+    "Dead": 144
+  },
+  "healthValues": [
+    2,
+    1,
+    0
+  ],
+  "allBehaviourPhasesPresent": true,
+  "complete": true,
+  "note": "Real Unity Game View. Player movement/aim scripted. Inspection/attack/death phases use temporary ambient 0.55; shadow/light phases retain scene darkness. Attacks disabled only in the first 27 seconds to isolate locomotion/light response. At 27s real combat is enabled. At 34s lethal test damage, at 36s second corpse; no weapon is implemented. Actor position/tuning in the saved scene is preserved. Enemy AI, collisions, sprites, tracked pupil, damage and gore run in Unity."
+}
