@@ -8,48 +8,65 @@ namespace EmergencyShift
     public sealed class PlayerAudio2D : MonoBehaviour
     {
         [SerializeField] private PlayerAudioSet sounds;
-        [SerializeField] private AudioSource pickupSource, shotSource;
+        [SerializeField] private AudioSource pickupSource;
+        [SerializeField] private AudioSource[] shotSources, casingSources;
         [SerializeField] private AudioSource[] impactSources;
         [SerializeField, Range(0, 1)] private float pickupVolume = .65f;
-        [Header("Combat prototype — disabled until artistic approval")]
+        [Header("Selected indoor pistol")]
         [SerializeField] private bool combatAudioEnabled;
         [SerializeField] private bool indoorShot;
+        [SerializeField] private bool impactAudioEnabled;
         [SerializeField, Range(0, 1)] private float shotVolume = .75f;
         [SerializeField, Range(0, 1)] private float impactVolume = .65f;
+        [SerializeField, Range(0, 1)] private float casingVolume = .3f;
+        [SerializeField, Range(0, .03f)] private float shotPitchVariation = .008f;
+        [SerializeField, Range(0, 1)] private float shotGainVariationDb = .4f;
         private PlayerInteraction interaction;
         private PlayerWeapon2D weapon;
         private readonly Dictionary<AudioClip[], int> last = new Dictionary<AudioClip[], int>();
         private readonly int[] pickupCounts = new int[3];
         private System.Random random;
+        private System.Random casingRandom;
         private float pickupBurstUntil;
         private int pickupPriority;
+        private int shotCursor;
         public bool CombatAudioEnabled { get => combatAudioEnabled; set => combatAudioEnabled = value; }
         public int PickupCount(PickupKind kind) => pickupCounts[(int)kind];
         public int ShotAudioCount { get; private set; }
         public int ImpactAudioCount { get; private set; }
         public int ResolvedImpactCount { get; private set; }
         public ImpactMaterial LastImpactMaterial { get; private set; }
+        public int CasingAudioCount { get; private set; }
+        public string LastShotClip { get; private set; }
+        public float LastShotPitch { get; private set; }
+        public float LastShotGain { get; private set; }
+        public string LastCasingClip { get; private set; }
+        public bool ImpactAudioEnabled { get => impactAudioEnabled; set => impactAudioEnabled = value; }
 
         private void Awake()
         {
             interaction = GetComponent<PlayerInteraction>(); weapon = GetComponent<PlayerWeapon2D>();
             random = new System.Random(System.Guid.NewGuid().GetHashCode());
+            casingRandom = new System.Random(System.Guid.NewGuid().GetHashCode());
         }
         private void OnEnable()
         { interaction.ItemCollected += OnPickup; weapon.ShotFired += OnShot; weapon.SurfaceHit += OnImpact; }
         private void OnDisable()
         {
             interaction.ItemCollected -= OnPickup; weapon.ShotFired -= OnShot; weapon.SurfaceHit -= OnImpact;
-            pickupSource?.Stop(); shotSource?.Stop();
+            pickupSource?.Stop();
+            if (shotSources != null) foreach (var source in shotSources) if (source != null) source.Stop();
+            if (casingSources != null) foreach (var source in casingSources) if (source != null) source.Stop();
             if (impactSources != null) foreach (var source in impactSources) if (source != null) source.Stop();
         }
 
-        private AudioClip Choose(AudioClip[] clips)
+        private AudioClip Choose(AudioClip[] clips, System.Random generator = null)
         {
             if (clips == null || clips.Length == 0) return null;
-            int index = random.Next(clips.Length), previous;
+            generator = generator ?? random;
+            int index = generator.Next(clips.Length), previous;
             if (clips.Length > 1 && last.TryGetValue(clips, out previous) && index == previous)
-                index = (index + random.Next(1, clips.Length)) % clips.Length;
+                index = (index + generator.Next(1, clips.Length)) % clips.Length;
             last[clips] = index; return clips[index];
         }
 
@@ -67,15 +84,24 @@ namespace EmergencyShift
 
         private void OnShot()
         {
-            if (!combatAudioEnabled || sounds == null || shotSource == null) return;
+            if (!combatAudioEnabled || sounds == null || shotSources == null || shotSources.Length == 0) return;
             var clip = Choose(sounds.Shots(indoorShot)); if (clip == null) return;
-            shotSource.clip = clip; shotSource.volume = shotVolume; shotSource.Play(); ShotAudioCount++;
+            AudioSource selected = null;
+            foreach (var voice in shotSources) if (voice != null && !voice.isPlaying) { selected = voice; break; }
+            // At the current 0.3 s fire interval two voices suffice; a bounded fallback supports Inspector changes.
+            if (selected == null) selected = shotSources[shotCursor++ % shotSources.Length];
+            if (selected == null) return;
+            LastShotClip = clip.name;
+            LastShotPitch = 1 + ((float)random.NextDouble() * 2 - 1) * shotPitchVariation;
+            LastShotGain = shotVolume * Mathf.Pow(10, (((float)random.NextDouble() * 2 - 1) * shotGainVariationDb) / 20);
+            selected.clip = clip; selected.pitch = LastShotPitch; selected.volume = LastShotGain;
+            selected.Play(); ShotAudioCount++;
         }
 
         private void OnImpact(Collider2D target, Vector2 point)
         {
             LastImpactMaterial = ImpactSurface2D.Resolve(target); ResolvedImpactCount++;
-            if (!combatAudioEnabled || sounds == null || impactSources == null || impactSources.Length == 0) return;
+            if (!combatAudioEnabled || !impactAudioEnabled || sounds == null || impactSources == null || impactSources.Length == 0) return;
             // Stalker already plays its approved flesh hit/death through its own damage events.
             // Do not double that layer; generic fleshy objects can use the same data directly.
             var creatureAudio = target != null ? target.GetComponentInParent<StalkerAudio2D>() : null;
@@ -89,6 +115,25 @@ namespace EmergencyShift
             selected.panStereo = Mathf.Clamp((point.x - transform.position.x) / 6, -.75f, .75f);
             selected.Play(); ImpactAudioCount++;
         }
+
+        public void PlayCasingAt(Vector2 point, GroundSoundSurface surface)
+        {
+            if (!isActiveAndEnabled || !combatAudioEnabled || sounds == null || casingSources == null) return;
+            AudioSource voice = null;
+            foreach (var source in casingSources) if (source != null && !source.isPlaying) { voice = source; break; }
+            if (voice == null) return;
+            var clip = Choose(sounds.Casings(surface), casingRandom); if (clip == null) return;
+            float distance = Vector2.Distance(transform.position, point);
+            if (distance >= 12) return;
+            voice.clip = clip; voice.pitch = 1;
+            voice.volume = casingVolume * Mathf.Clamp01(1 - distance / 12);
+            voice.panStereo = Mathf.Clamp((point.x - transform.position.x) / 6, -.75f, .75f);
+            voice.Play(); LastCasingClip = clip.name; CasingAudioCount++;
+        }
+
+#if UNITY_EDITOR
+        public void SetPreviewSeed(int seed) { random = new System.Random(seed); casingRandom = new System.Random(seed + 1); last.Clear(); }
+#endif
 
         [ContextMenu("Preview/Enable combat audio (Play only)")]
         private void EnablePreview() { if (Application.isPlaying) combatAudioEnabled = true; }

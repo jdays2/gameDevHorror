@@ -28,7 +28,8 @@ namespace EmergencyShift.Editor
             var data = new SerializedObject(component);
             AssignIfMissing(data, "sounds", set);
             AssignIfMissing(data, "pickupSource", Source(Child(root, "Pickup"), 80));
-            AssignIfMissing(data, "shotSource", Source(Child(root, "Shot"), 48));
+            EnsureVoices(data, "shotSources", root, "Shot", 4, 48);
+            EnsureVoices(data, "casingSources", root, "Casing", 8, 130);
             var impacts = data.FindProperty("impactSources");
             if (impacts.arraySize == 0)
             {
@@ -76,6 +77,23 @@ namespace EmergencyShift.Editor
         {
             var field = data.FindProperty(name);
             if (field.objectReferenceValue == null) field.objectReferenceValue = value;
+        }
+
+        private static void EnsureVoices(SerializedObject data, string field, Transform root, string name, int count, int priority)
+        {
+            var array = data.FindProperty(field);
+            if (array.arraySize < count) array.arraySize = count;
+            var seen = new HashSet<UnityEngine.Object>();
+            for (int i = 0; i < array.arraySize; i++)
+            {
+                var element = array.GetArrayElementAtIndex(i);
+                // Unity duplicates the final reference when a serialized array grows.
+                if (element.objectReferenceValue == null || !seen.Add(element.objectReferenceValue))
+                {
+                    element.objectReferenceValue = Source(Child(root, i == 0 ? name : name + " " + (i + 1)), priority);
+                    seen.Add(element.objectReferenceValue);
+                }
+            }
         }
 
         private static Transform Child(Transform parent, string name)

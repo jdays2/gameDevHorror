@@ -291,3 +291,27 @@ Scripts/PlayerWeapon2D.cs и BulletProjectile2D.cs публикуют звуко
 |Docs/Audio/WeaponRealism02/manifest.json|Точные окна нарезки/уровни/размещение/происхождение|
 |Docs/Audio/WeaponRealism02/Validation.json|Декодирование6 WAV, формат/сигнал/границы/хэши|
 |Tools/Audio/prepare_weapon_realism_studies.py|Монтаж из сохранённых источников, NumPy2.3.5+явный путь FFmpeg; Unity не меняет|
+
+## v0.8.3 — подключённый пистолет/гильзы
+
+|Путь|Ответственность|
+|---|---|
+|Assets/EmergencyShift/Audio/PistolIndoor|6 shot+6 casing WAV/их .meta и PistolIndoorAudio.asset|
+|Scripts/PlayerAudio2D.cs /PlayerAudioSet.cs|Пулы4shot/8casing, уровни/малые вариации/банки, отдельные RNG|
+|Scripts/PlayerCasingEjector2D.cs|ShotFired → одна гильза, bounded pool48|
+|Scripts/ShellCasing2D.cs|XY/условная высота/стены/однократная первая посадка/остановка|
+|Scripts/GroundAudioSurface2D.cs|Материал floor-region/приоритет, без регионаConcrete|
+|Prefabs/PistolCasing.prefab|Готовая геометрическая латунная заглушка/контактная тень|
+|Editor/PistolAudioSetup.cs|Явное назначение выбранного набора/префаба/флагов|
+|Editor/PlayerAudioSetup.cs|Уникальные сохранённые каналы; миграция4/8 без копирования последней ссылки|
+|Scripts/PistolAudioDemoRecorder.cs|Только UNITY_EDITOR:480 кадров Game View+Unity main audio mix, не компонент сохранённой сцены|
+|Tools/Audio/prepare_pistol_runtime.py|Обработка выбранных CC0 MP3 в12 WAV, без сервиса|
+|Docs/PISTOL_AUDIO_GUIDE.md|Работа/настройки/C#/производство/видео/ограничения|
+|Docs/Audio/PistolIndoor/manifest.json|Окна/фильтры/варианты/seed-пределы/источники/SHA|
+|Docs/Audio/PistolIndoor/UnityImport.json|12 реальных PCM-импортов/ссылки/параметры7 врагов до/после|
+|Docs/Audio/PistolIndoor/RuntimeValidation.json|15 фактических Play/DSP-проверок|
+|Docs/Audio/PistolIndoor/Validation.json|WAV/формат/хэши/сигнал/сохранность49 сталкерских WAV|
+|Docs/Audio/PistolIndoor/RecordingValidation.json|480 кадров/реальный микс/тайминг выстрелов и посадок/A-B/MP4 QA|
+|Docs/Demos/pistol-*-v083.mp4|Сравнение16с и два отдельных8с эпизода, H.264/AAC|
+
+Scripts/Editor/Prefabs в таблице относительно Assets/EmergencyShift. Источники остаются в Docs/Audio/WeaponRealism02/Sources с авторством/CC0; не удалять их ради неверного заявления «сгенерировал оригинальную запись».
