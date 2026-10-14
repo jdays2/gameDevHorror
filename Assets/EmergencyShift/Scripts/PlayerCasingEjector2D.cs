@@ -14,7 +14,6 @@ namespace EmergencyShift
         private readonly List<ShellCasing2D> pool = new List<ShellCasing2D>();
         private PlayerWeapon2D weapon;
         private PlayerAudio2D audioOwner;
-        private Flashlight2D aim;
         private Transform root;
         private System.Random random;
         private int cursor;
@@ -23,7 +22,7 @@ namespace EmergencyShift
         public int PooledCount => pool.Count;
         public event System.Action<ShellCasing2D> CasingEmitted;
         private void Awake()
-        { weapon = GetComponent<PlayerWeapon2D>(); audioOwner = GetComponent<PlayerAudio2D>(); aim = GetComponent<Flashlight2D>(); random = new System.Random(System.Guid.NewGuid().GetHashCode()); }
+        { weapon = GetComponent<PlayerWeapon2D>(); audioOwner = GetComponent<PlayerAudio2D>(); random = new System.Random(System.Guid.NewGuid().GetHashCode()); }
         private void OnEnable() { weapon.ShotFired += Eject; }
         private void OnDisable() { weapon.ShotFired -= Eject; }
         private float Between(float a, float b) => Mathf.Lerp(a, b, (float)random.NextDouble());
@@ -35,7 +34,7 @@ namespace EmergencyShift
             if (pool.Count < maximumCasings)
             { casing = Instantiate(casingPrefab, root); pool.Add(casing); }
             else { casing = pool[cursor++ % pool.Count]; }
-            Vector2 direction = aim.Direction.normalized, side = new Vector2(direction.y, -direction.x);
+            Vector2 direction = weapon.LastShotDirection, side = new Vector2(direction.y, -direction.x);
             Vector2 port = (Vector2)transform.position + direction * .16f + side * .16f;
             var blocked = Physics2D.Linecast(transform.position, port, obstacles);
             if (blocked.collider != null) port = blocked.point - (port - (Vector2)transform.position).normalized * .03f;

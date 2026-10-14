@@ -8,6 +8,7 @@ namespace EmergencyShift
     public sealed class Flashlight2D : MonoBehaviour
     {
         [SerializeField] private Camera worldCamera;
+        [SerializeField] private PlayerAim2D aim;
         [SerializeField] private Transform aimPivot;
         [SerializeField] private Light2D beam;
         [SerializeField] private Light2D nearGlow;
@@ -28,6 +29,7 @@ namespace EmergencyShift
 
         public void Configure(Camera camera, Transform pivot, Light2D light, Light2D spillLight = null)
         { worldCamera = camera; aimPivot = pivot; beam = light; nearGlow = spillLight; ApplyOptics(); }
+        public void ConfigureAim(PlayerAim2D target) { aim = target; }
 
         private void Awake() { ApplyOptics(); SetPower(startsOn); }
         private void OnValidate() => ApplyOptics();
@@ -59,13 +61,23 @@ namespace EmergencyShift
         private void Update()
         {
             if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame) Toggle();
+            if (aim != null)
+            {
+                if (aim.HasTarget) RotateTowards(aim.WorldPoint, Time.deltaTime);
+                return;
+            }
             if (Mouse.current == null || worldCamera == null || aimPivot == null) return;
             Vector3 world = worldCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            AimTowards(world,Time.deltaTime);
+            RotateTowards(world,Time.deltaTime);
         }
 
-        /// <summary>Плавный игровой ввод; оружие и луч читают один фактический угол.</summary>
+        /// <summary>Scenario/test input; ordinary pointer input comes from PlayerAim2D.</summary>
         public void AimTowards(Vector2 worldPoint,float deltaTime)
+        {
+            if (aim != null) aim.SetScriptedTarget(worldPoint);
+            RotateTowards(worldPoint, deltaTime);
+        }
+        private void RotateTowards(Vector2 worldPoint,float deltaTime)
         {
             if(aimPivot==null||deltaTime<=0)return;
             Vector2 offset=worldPoint-(Vector2)transform.position;
@@ -78,6 +90,7 @@ namespace EmergencyShift
         /// <summary>Явная установка позы для сценарных демонстраций и телепорта; ввод использует AimTowards.</summary>
         public void AimAt(Vector2 worldPoint)
         {
+            if (aim != null) aim.SetScriptedTarget(worldPoint);
             if (aimPivot == null) return;
             Vector2 direction = worldPoint - (Vector2)transform.position;
             if (direction.sqrMagnitude > 0.001f)

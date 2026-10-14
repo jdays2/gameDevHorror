@@ -176,6 +176,7 @@ namespace EmergencyShift.Editor
                 weapon.VisualProfile ?? AssetDatabase.LoadAssetAtPath<ShotVisualProfile>(ProfilePath(0)));
             pivot.gameObject.SetActive(false); EditorUtility.SetDirty(weapon);
             if (PrefabUtility.IsPartOfPrefabInstance(root)) PrefabUtility.RecordPrefabInstancePropertyModifications(weapon);
+            MouseAimSetup.ConfigurePlayer(root, root.scene == SceneManager.GetActiveScene() ? Camera.main : null);
         }
         private static void ConfigureHud(PrototypeHud hud)
         {
@@ -192,6 +193,7 @@ namespace EmergencyShift.Editor
             }
             text.gameObject.SetActive(false);
             hud.ConfigureWeapon(UnityEngine.Object.FindAnyObjectByType<PlayerWeapon2D>(), text); EditorUtility.SetDirty(hud);
+            MouseAimSetup.ConfigureReticle(hud);
         }
         private static void AddLoot(Transform parent, string name, string path, Vector3 position)
         {

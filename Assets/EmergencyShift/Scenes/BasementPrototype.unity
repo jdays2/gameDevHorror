@@ -602,7 +602,7 @@ Transform:
   m_GameObject: {fileID: 88222719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.09, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2381,6 +2381,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2855272905876606400, guid: fce43d684661e814da5f980abc34efb1, type: 3}
   m_PrefabInstance: {fileID: 286670491}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &317897262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 317897263}
+  - component: {fileID: 317897265}
+  - component: {fileID: 317897264}
+  m_Layer: 0
+  m_Name: Aim reticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &317897263
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317897262}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 527110359}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 32, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &317897264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317897262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50c9591d5dad5848ad199733d810581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.AimReticle2D
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.86, g: 0.89, b: 0.88, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  aim: {fileID: 2063763852}
+  weapon: {fileID: 4285742385993795654}
+  nearColor: {r: 0.45, g: 0.47, b: 0.48, a: 0.8}
+--- !u!222 &317897265
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317897262}
+  m_CullTransparentMesh: 1
 --- !u!1001 &322286665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5524,6 +5592,7 @@ RectTransform:
   - {fileID: 2009441592}
   - {fileID: 502470860}
   - {fileID: 578987513}
+  - {fileID: 317897263}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -15677,6 +15746,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &2063763852 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3437036606695426937, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
+  m_PrefabInstance: {fileID: 4285742385993795649}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616853215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9e87766ab2b40a3608d8091f05c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.PlayerAim2D
 --- !u!4 &2123870576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
@@ -15892,6 +15972,10 @@ PrefabInstance:
       propertyPath: managedReferences[3250315001632129119].m_Cache.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3437036606695426937, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
+      propertyPath: worldCamera
+      value: 
+      objectReference: {fileID: 687977053}
     - target: {fileID: 4356745379422065042, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
       propertyPath: m_Name
       value: "Player \u2014 capsule"

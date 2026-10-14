@@ -338,6 +338,7 @@ GameObject:
   - component: {fileID: 6808638143778853288}
   - component: {fileID: 6855847030977610174}
   - component: {fileID: 6039635478759429527}
+  - component: {fileID: 3437036606695426937}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -455,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.Flashlight2D
   worldCamera: {fileID: 0}
+  aim: {fileID: 3437036606695426937}
   aimPivot: {fileID: 2791175412149633991}
   beam: {fileID: 5770085557351586450}
   nearGlow: {fileID: 3292622291985577942}
@@ -482,6 +484,8 @@ MonoBehaviour:
   blockingGeometry:
     serializedVersion: 2
     m_Bits: 256
+  autoPickupRadius: 0.65
+  notificationSeconds: 1.8
 --- !u!114 &5336899062434458646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +531,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7963296310314763367, guid: 74cb6e88d852cb441a75f011b94713fb, type: 3}
   effectPrefab: {fileID: 2517720053985645042, guid: bf3300728e91bbc428c3fa60fdff14f8, type: 3}
   visualProfile: {fileID: 11400000, guid: 20cbf3532e67940448f1a5f4024fe62d, type: 2}
+  aim: {fileID: 3437036606695426937}
   blockingGeometry:
     serializedVersion: 2
     m_Bits: 256
@@ -556,6 +561,19 @@ MonoBehaviour:
   walls:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &3437036606695426937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4356745379422065042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1e9e87766ab2b40a3608d8091f05c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.PlayerAim2D
+  worldCamera: {fileID: 0}
 --- !u!1 &5461847330090093038
 GameObject:
   m_ObjectHideFlags: 0

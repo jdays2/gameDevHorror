@@ -339,3 +339,22 @@ Docs/Effects/MuzzlePlume/FinalEditorState.json — финальная read-only 
 ## v0.8.5 — синхронная вспышка
 
 ShotEffect2D — общий срок/кривая огня и света, явное выключение перед Destroy. ShotVisualProfile и3 сохранённых профиля — меньший радиус/.095с; WeaponPrototypeSetup — соответствующие дефолты новых профилей. MuzzlePlume.shader — комментарий о синхронизации кривых. Новые Docs/Effects/MuzzleSync/RuntimeValidation.json и RecordingValidation.json фиксируют проверки/запись; Docs/Demos/muzzle-sync-v085.mp4 — актуальные8с. Сцена/расстановка не менялись.
+
+## v0.9 — mouse aim
+
+|Файл|Ответственность|
+|---|---|
+|Assets/EmergencyShift/Scripts/PlayerAim2D.cs|Точка Input System/XY, валидность ввода, явный сценарный target|
+|Assets/EmergencyShift/Scripts/AimReticle2D.cs|UGUI-меш кольца/штрихов, позиция/видимость/возврат курсора|
+|Assets/EmergencyShift/Editor/MouseAimSetup.cs|Адресные сохранённые ссылки Player/Flashlight/Weapon и один HUD reticle|
+|Assets/EmergencyShift/Scripts/PlayerWeapon2D.cs|Поворот с учётом дула, прямая к target, LastShotDirection/Origin/Target, защита ближней цели|
+|Assets/EmergencyShift/Scripts/Flashlight2D.cs|Плавное следование общей цели; сценарные AimAt/AimTowards|
+|Assets/EmergencyShift/Scripts/PlayerCasingEjector2D.cs|Выброс по фактическому направлению оружия|
+|Assets/EmergencyShift/Prefabs/Player.prefab|Сохранённый PlayerAim2D/явные ссылки компонентов|
+|Assets/EmergencyShift/Scenes/BasementPrototype.unity|Камера aim и Aim reticle в прежнем HUD; пользовательская раскладка сохранена|
+|Docs/MOUSE_AIM_GUIDE.md|Настройка/правила/архитектура/проверка для новичка|
+|Docs/Weapons/MouseAim/RuntimeValidation.json|Реальный Input System/Play, попадания/преграды/сохранность настройки|
+
+Новые .meta сохраняют GUID3 скриптов. BulletProjectile2D/звук/AI/баланс этим этапом не переписывались. WeaponPrototypeSetup подключает новые методы и при первоначальной подготовке оружия.
+
+Docs/Weapons/MouseAim/RecordingValidation.json —480 кадров/основной микс/7 выстрелов во втором проходе/проверка кодирования; Docs/Demos/mouse-aim-v09.mp4 —8с с прицелом.
