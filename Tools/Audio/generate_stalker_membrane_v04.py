@@ -15,7 +15,7 @@ import stalker_membrane_dsp as core
 SR=48000
 ROOT=Path(__file__).resolve().parents[2]
 ASSETS=ROOT/'Assets/EmergencyShift/Audio/Stalker/Membrane04'
-PREVIEW=ROOT/'Docs/Audio/StalkerMembrane04'
+PREVIEW=ROOT/'Concepts/Used/Audio/StalkerMembrane04'
 REFERENCES=ROOT/'Tools/Audio/Reference'
 
 

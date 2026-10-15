@@ -7,7 +7,7 @@ import numpy as np
 
 ROOT=Path(__file__).resolve().parents[2]
 OUT=ROOT/'Assets/EmergencyShift/Audio/PistolIndoor'
-REPORT=ROOT/'Docs/Audio/PistolIndoor'
+REPORT=ROOT/'Concepts/Used/Audio/PistolIndoor'
 SR=48000
 
 def decode(ff,path,mono=False):

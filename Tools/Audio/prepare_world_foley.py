@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[2];SR=48000
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--ffmpeg',required=True);args=p.parse_args()
- sources=ROOT/'Docs/Audio/WorldFoley/Sources';out=ROOT/'Assets/EmergencyShift/Audio/WorldFoley';out.mkdir(parents=True,exist_ok=True)
+ sources=ROOT/'Concepts/Used/Audio/WorldFoley/Sources';out=ROOT/'Assets/EmergencyShift/Audio/WorldFoley';out.mkdir(parents=True,exist_ok=True)
  raw={}
  for s in json.loads((sources/'sources.json').read_text(encoding='utf-8')):
   file=sources/s['file'];assert hashlib.sha256(file.read_bytes()).hexdigest()==s['sha256']
@@ -43,8 +43,8 @@ def main():
  for name,start in [('door_start_open_01',.2),('door_stop_01',.53),('pickup_ammo_01',1.7),('pickup_weapon_01',3.1),('pickup_upgrade_01',4.7)]:
   x=clips[name]*.85;i=round(start*SR);demo[i:i+len(x)]+=x
  x=clips['door_slide_loop']*.4;i=round(.28*SR);demo[i:i+len(x)]+=x
- f=ROOT/'Docs/Audio/WorldFoley/door-and-pickups.wav'
+ f=ROOT/'Concepts/Used/Audio/WorldFoley/door-and-pickups.wav'
  with wave.open(str(f),'wb')as w:w.setnchannels(1);w.setsampwidth(2);w.setframerate(SR);w.writeframes(np.rint(demo*32767).astype('<i2').tobytes())
- (ROOT/'Docs/Audio/WorldFoley/manifest.json').write_text(json.dumps(dict(clips=report,layeredPickups='Ammo/upgrade recorded clicks layered with recorded weapon handling body, RMS .045/.08 before processing; all windows in this tool.',processing='Mono48k/PCM16, DC/65Hz high pass/soft high rolloff, mild transient compression, linear gain/fades. Door slide wrap crossfade60ms. All source material recorded; MP3 quality limitation retained.',door='Open/close are designed variations of one recorded rail movement, not separately recorded directions; body loop stops on actual MotionStopped.',audition='Door0.2s, ammo1.7s, weapon3.1s, upgrade4.7s; offline preview only.'),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+ (ROOT/'Concepts/Used/Audio/WorldFoley/manifest.json').write_text(json.dumps(dict(clips=report,layeredPickups='Ammo/upgrade recorded clicks layered with recorded weapon handling body, RMS .045/.08 before processing; all windows in this tool.',processing='Mono48k/PCM16, DC/65Hz high pass/soft high rolloff, mild transient compression, linear gain/fades. Door slide wrap crossfade60ms. All source material recorded; MP3 quality limitation retained.',door='Open/close are designed variations of one recorded rail movement, not separately recorded directions; body loop stops on actual MotionStopped.',audition='Door0.2s, ammo1.7s, weapon3.1s, upgrade4.7s; offline preview only.'),ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
  print(json.dumps(report))
 if __name__=='__main__':main()
