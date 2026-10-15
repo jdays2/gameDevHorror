@@ -82,6 +82,8 @@
 
 ## 5. Следующая проверка перед генерацией библиотеки
 
+**Уточнение пользователя, приоритетнее прежней очереди:** сейчас сначала один короткий отдельный музыкальный семпл с естественной акустической фактурой, без электронного/8-bit характера. Его одобрение требуется до примеров наложения. Существующие принятые звуки сохраняем; дальнейшие SFX — отсутствующие/заглушки. Шаги/сведение ниже относятся к следующей разрешённой итерации, не выполняются автоматически до одобрения музыки.
+
 1. В следующем аудиозадании подготовить короткий образец будущих шагов игрока и отдельный универсальный музыкальный фон без характерных инструментальных акцентов по уточнённому заданию. Не запускать массовую библиотеку ради проверки одной сцены.
 2. Собрать временную постановку из имеющейся сцены: тихое исследование → слышимый враг вне луча → обнаружение/световая боль → выстрел/гильза/ранение → дверь/снова тишина.
 3. Сравнить одинаковый игровой фрагмент без музыки и с ней, не меняя положение/поведение врагов между версиями. Оценивать весь микс, а не только красивый музыкальный файл отдельно.
@@ -100,7 +102,7 @@
 
 ## 6. Переработанное задание следующей музыкальной пробе
 
-Ниже предложение, **не запущенная генерация**:
+Раннее общее задание ниже — история. Оно недостаточно явно исключало синтетическую фактуру. В новой отдельной пробе дополнительно задан натуральный акустический характер, физические резонансы/естественные затухания, без synth pads/электронных пульсаций/chiptune. Сам тембр и пригодность оценивает пользователь до наложения.
 
 > Instrumental psychological horror underscore for exploring darkness, independent of any specific location. Extremely sparse, subdued, slowly shifting non-melodic tonal textures with natural gaps and restrained tension. No recognizable lead instruments, no overt melody or steady percussion, no machinery or room ambience baked into the music. Avoid hard clicks, scratches, breathing, creature-like sounds, sharp high tones and big bass swells that could mask gameplay cues. Leave room for quiet player footsteps, dry bone scraping, wet alien vocalizations and sudden realistic pistol shots; do not include those sounds in the track. Unease should come from subtle instability and silence, not constant events or jump scares. Begin and end unobtrusively.
 
