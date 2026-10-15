@@ -5,6 +5,8 @@ description: Safely modify Emergency Shift C#, Unity scenes, prefabs, configs or
 
 # Unity changes and migration
 
+For C# writing/review/refactoring, read [readability-and-configs](references/readability-and-configs.md). For levels, enemy lifecycle, death effects, saves, encounters or crowd scaling, also read [level-and-enemy-lifetimes](references/level-and-enemy-lifetimes.md). Discussion-only tasks use these to assess designs, not to authorize code changes.
+
 Before a migration, capture the dirty Git state and actual serialized values. Stop Play and preserve manual edits. Move Unity assets with .meta, retaining GUIDs. Do not hand-replace a live scene with an old generator.
 
 Place gameplay in Runtime by responsibility, authoring in Editor, temporary probes in Development, tests in Tests. Runtime cannot depend on Editor/Development. Updating paths includes authoring scripts and offline asset processors. A MonoBehaviour probe cannot blindly move into an Editor-only assembly if it must be attached in Play.
@@ -16,3 +18,5 @@ Use common health/perception/motor/melee/patrol modules with a species brain and
 For consequential changes: compile; inspect actual console errors; compare serialized values and missing scripts/references; run relevant EditMode and scene regressions; build when assemblies/runtime integration changed. Build with normal settings restored afterward. A successful Editor test does not verify release inclusion boundaries. Keep temporary probes out of saved scenes. Runtime mutations must not dirty shared SO assets.
 
 Docs/ARCHITECTURE.md describes real boundaries and remaining demo-only flow. Docs/VALIDATION.md lists runnable checks. Avoid claiming campaign/save support from LevelContext/LevelRig.
+
+Review actual source before declaring it clean: formatting, data ownership and dependency direction matter in the newly extracted components too. Keep an identified existing defect in Docs/ENGINEERING_REVIEW.md until fixed; a skill update does not close that defect. Source research is recorded there with explicit adoption limits.

@@ -11,6 +11,8 @@ Before removing/moving a Unity resource, inspect dependencies from all saved sce
 
 Retain source authors/licenses, prompts or generation provenance and processing instructions. Do not commit signed download URLs or tokens. Update Concepts/catalog.json when canonical materials move. Do not infer approval from an ambient browser URL.
 
+When authoring reusable enemy/death/encounter content, distinguish a shared definition and visual variant from an individual spawn and a persistent remains record. Record units, valid ranges, variant selection and required prefab references in the handoff. An asset family must not require new type checks across bullets, HUD and audio just to add another data variant. These future ownership boundaries do not authorize implementing campaigns, pooling or persistence now.
+
 Current Stalker reference is pale gray-pink flesh, strict top-down, full connected legs, transparent sprite backgrounds. Accepted membrane/pistol/casings/foley remain unless the task changes them. New musical direction requires a short audition and user approval before full expansion/integration; existing authorized maintenance needs no new approval ceremony.
 
 Canonical current docs: Docs/README.md, SPEC.md, ARCHITECTURE.md, MVP_PLAN.md, Guides, Enemies and Audio. Update one source of truth rather than append contradictory histories. Delete irrelevant intermediate test dumps only after preserving current evidence and provenance. Generate FILE_MAP from actual source layout, not imagined systems.
