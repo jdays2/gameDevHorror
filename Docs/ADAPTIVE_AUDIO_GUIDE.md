@@ -19,7 +19,7 @@
 | Assets/EmergencyShift/Settings/SurvivalAudio.asset | Общий профиль громкости и переходов |
 | Assets/EmergencyShift/Audio/Atmosphere | Три9-секундные PCM-петли ExploreLoop/ThreatLoop/CombatLoop |
 | Player → PlayerFootsteps2D | Distance Per Step=1.05, Minimum Interval=.22, Pitch Variation=.025 |
-| Assets/EmergencyShift/Audio/PlayerWorld/PlayerWorldAudio.asset | Шаги Concrete/Wood/Tile, щелчок фонаря, пустой спуск и их уровни |
+| Assets/EmergencyShift/Audio/PlayerWorld/PlayerWorldAudio.asset | Шаги Concrete/Wood/Tile: Step Volume=.24 (уменьшено с.32 по просьбе пользователя); щелчок фонаря, пустой спуск и их отдельные уровни |
 | Player → World audio | Два сохранённых канала шагов и один utility |
 | Player → PlayerAudio2D | Существующие пистолет/гильзы/подбор, теперь включённые материальные импакты |
 | Assets/EmergencyShift/Audio/PistolIndoor/PistolIndoorAudio.asset | Сохранённые выстрелы/гильзы плюс новые Concrete/Wood и повторно использованные принятые Flesh Hit |
