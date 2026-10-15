@@ -24,8 +24,10 @@ namespace EmergencyShift
         public bool IsOn => beam != null && beam.enabled;
         public float Range => range;
         public float BeamAngle => beamAngle;
+        public Camera WorldCamera => worldCamera;
         public Vector2 Origin => beam != null ? (Vector2)beam.transform.position : (Vector2)transform.position;
         public Vector2 Direction => aimPivot != null ? (Vector2)aimPivot.up : Vector2.up;
+        public event System.Action<bool> PowerChanged;
 
         public void Configure(Camera camera, Transform pivot, Light2D light, Light2D spillLight = null)
         { worldCamera = camera; aimPivot = pivot; beam = light; nearGlow = spillLight; ApplyOptics(); }
@@ -54,8 +56,10 @@ namespace EmergencyShift
 
         public void SetPower(bool on)
         {
+            bool previous = IsOn;
             if (beam != null) beam.enabled = on;
             if (nearGlow != null) nearGlow.enabled = on;
+            if (previous != IsOn) PowerChanged?.Invoke(IsOn);
         }
 
         private void Update()

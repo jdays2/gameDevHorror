@@ -1,0 +1,216 @@
+{
+  "editorPlay": {
+    "failure": "",
+    "mode": "tests",
+    "finished": true,
+    "frames": 0,
+    "sampleRate": 48000,
+    "peak": 0.0,
+    "checks": [
+      {
+        "name": "Three bounded sources playing synchronous9s PCM loops",
+        "passed": true,
+        "time": 2.558075189590454
+      },
+      {
+        "name": "Silent unseen aggro behind wall does not reveal enemy",
+        "passed": true,
+        "time": 2.9096782207489014
+      },
+      {
+        "name": "Real shot immediately ducks atmosphere",
+        "passed": true,
+        "time": 2.9096782207489014
+      },
+      {
+        "name": "Shooting an empty area does not start combat",
+        "passed": true,
+        "time": 3.213275909423828
+      },
+      {
+        "name": "Visible source in another scene is ignored",
+        "passed": true,
+        "time": 3.5155997276306152
+      },
+      {
+        "name": "Lamp behind the player's wall does not reveal creature",
+        "passed": true,
+        "time": 5.527935981750488
+      },
+      {
+        "name": "Local lamp reveals creature without fear-light activation",
+        "passed": true,
+        "time": 5.927983283996582
+      },
+      {
+        "name": "Darkness and expired memory remove lamp visibility",
+        "passed": true,
+        "time": 6.830334186553955
+      },
+      {
+        "name": "Flashlight discovery enters Threat",
+        "passed": true,
+        "time": 7.2305989265441895
+      },
+      {
+        "name": "Known enemy is killed by the actual projectile",
+        "passed": true,
+        "time": 7.416375637054443
+      },
+      {
+        "name": "Shot at a known enemy enters Combat even when projectile kills it",
+        "passed": true,
+        "time": 7.416375637054443
+      },
+      {
+        "name": "Death and expired perception return to Explore",
+        "passed": true,
+        "time": 8.818127632141113
+      },
+      {
+        "name": "One perceived close pursuer starts Combat without a shot or attack",
+        "passed": true,
+        "time": 9.224206924438477
+      },
+      {
+        "name": "Two perceived pursuers start Combat outside close radius without a shot",
+        "passed": true,
+        "time": 11.127483367919922
+      },
+      {
+        "name": "Actually heard attack cue starts Combat without flashlight",
+        "passed": true,
+        "time": 12.836623191833496
+      },
+      {
+        "name": "Nonlethal player damage accepted",
+        "passed": true,
+        "time": 13.836934089660645
+      },
+      {
+        "name": "Damage immediately ducks background",
+        "passed": true,
+        "time": 13.836934089660645
+      },
+      {
+        "name": "Damage escalates combat at low health",
+        "passed": true,
+        "time": 14.036999702453613
+      },
+      {
+        "name": "Flashlight toggling plays mechanical cue",
+        "passed": true,
+        "time": 14.0429105758667
+      },
+      {
+        "name": "Empty pistol plays a bounded dry trigger cue",
+        "passed": true,
+        "time": 14.04909610748291
+      },
+      {
+        "name": "Teleport does not fake a footstep Concrete",
+        "passed": true,
+        "time": 14.133498191833496
+      },
+      {
+        "name": "Actual travel resolves Concrete footstep",
+        "passed": true,
+        "time": 14.988545417785645
+      },
+      {
+        "name": "Standing still is silent Concrete",
+        "passed": true,
+        "time": 15.346117973327637
+      },
+      {
+        "name": "Teleport does not fake a footstep Wood",
+        "passed": true,
+        "time": 15.430375099182129
+      },
+      {
+        "name": "Actual travel resolves Wood footstep",
+        "passed": true,
+        "time": 16.28843116760254
+      },
+      {
+        "name": "Standing still is silent Wood",
+        "passed": true,
+        "time": 16.64890480041504
+      },
+      {
+        "name": "Teleport does not fake a footstep Tile",
+        "passed": true,
+        "time": 16.734092712402344
+      },
+      {
+        "name": "Actual travel resolves Tile footstep",
+        "passed": true,
+        "time": 17.588211059570312
+      },
+      {
+        "name": "Standing still is silent Tile",
+        "passed": true,
+        "time": 17.945859909057617
+      },
+      {
+        "name": "Game pause freezes ambient playback",
+        "passed": true,
+        "time": 17.945859909057617
+      },
+      {
+        "name": "Resume preserves playing layers",
+        "passed": true,
+        "time": 18.200517654418945
+      },
+      {
+        "name": "Disable stops all scene audio layers",
+        "passed": true,
+        "time": 18.206933975219727
+      },
+      {
+        "name": "Re-enable resets scene mood and restarts",
+        "passed": true,
+        "time": 18.558483123779297
+      },
+      {
+        "name": "Player death fades the bed and stops new footsteps",
+        "passed": true,
+        "time": 20.564491271972656
+      }
+    ],
+    "timeline": []
+  },
+  "restart": {
+    "directors": 1,
+    "emitters": 12,
+    "playerVoices": 28,
+    "listeners": 1
+  },
+  "savedSceneHash": "176d073d46c33311680f2e16a7a35c82852d3d6d1f68ceb28b97a46f0cbf49da",
+  "playDidNotSaveScene": true,
+  "consoleErrors": [],
+  "note": "Scripted Editor scenarios; not an artistic hearing verdict or full level playthrough.",
+  "materialImpacts": {
+    "concrete": {
+      "material": "Concrete",
+      "played": 1,
+      "resolved": 1
+    },
+    "wood": {
+      "material": "Wood",
+      "played": 2,
+      "resolved": 2
+    },
+    "ownedFlesh": {
+      "material": "Flesh",
+      "played": 2,
+      "resolved": 3
+    },
+    "stalkerOwnHit": {
+      "hit": 1,
+      "hp": 1
+    },
+    "passed": true,
+    "method": "Three real projectiles into temporary material colliders and a Stalker; no direct ReportImpact call."
+  }
+}

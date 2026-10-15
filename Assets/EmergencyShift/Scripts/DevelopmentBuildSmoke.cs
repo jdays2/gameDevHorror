@@ -35,7 +35,14 @@ namespace EmergencyShift
             if(!Check(context!=null && context.Player==player,"New level context"))yield break;
             if(!Check(FindObjectsByType<AudioListener>().Length==1,"One listener after scene switch"))yield break;
             if(!Check(Door2D.Active.Count==0,"Old door registry cleared on unload"))yield break;
-            if(!Check(player.GetComponentsInChildren<AudioSource>(true).Length==25,"Complete player audio prefab"))yield break;
+            var voices=player.GetComponentsInChildren<AudioSource>(true);
+            if(!Check(voices.Length==28 && new HashSet<AudioSource>(voices).Count==28
+                && player.GetComponent<PlayerFootsteps2D>()!=null && player.GetComponent<PlayerUtilityAudio2D>()!=null,
+                "Complete player audio prefab and unique world-foley voices"))yield break;
+            var atmosphere=FindObjectsByType<LevelAudioDirector2D>();
+            if(!Check(atmosphere.Length==1 && atmosphere[0].Profile!=null
+                && atmosphere[0].Profile.exploration!=null && AudioThreatEmitter2D.Active.Count==0,
+                "One scene atmosphere and cleared threat registry after unload"))yield break;
             player.GetComponent<PlayerMotor2D>().enabled=false;player.GetComponent<PlayerInteraction>().enabled=false;player.GetComponent<Rigidbody2D>().simulated=false;player.transform.position=Vector3.zero;
             var weapon=player.GetComponent<PlayerWeapon2D>();weapon.Acquire(20);var aim=player.GetComponent<PlayerAim2D>();aim.SetScriptedTarget(new Vector2(3,0));
             var target=new GameObject("Generic damage contract target",typeof(CombatProbeTarget2D)).GetComponent<CombatProbeTarget2D>();target.transform.position=new Vector3(3,0,0);target.GetComponent<CircleCollider2D>().radius=.35f;Physics2D.SyncTransforms();

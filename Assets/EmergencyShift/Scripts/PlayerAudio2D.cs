@@ -112,6 +112,7 @@ namespace EmergencyShift
             if (selected == null) return; // Bounded channels instead of unbounded temporary objects.
             float distance = Vector2.Distance(transform.position, point);
             selected.clip = clip; selected.volume = impactVolume * Mathf.Clamp01(1 - distance / 16);
+            selected.pitch = Mathf.Lerp(.97f, 1.03f, (float)random.NextDouble());
             selected.panStereo = Mathf.Clamp((point.x - transform.position.x) / 6, -.75f, .75f);
             selected.Play(); ImpactAudioCount++;
         }

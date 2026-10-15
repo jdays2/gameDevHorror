@@ -1,5 +1,27 @@
 # Карта файлов
 
+## v0.11 — пробная адаптивная аудиосистема
+
+| Путь | Назначение |
+|---|---|
+| Docs/ADAPTIVE_AUDIO_GUIDE.md | Практика в Unity, Inspector, C# события/адаптеры/данные, новые уровни, ограничения |
+| Scripts/AudioMoodProfile.cs, Settings/SurvivalAudio.asset | Фоновые клипы, уровни, память/сглаживание/duck |
+| Scripts/LevelAudioDirector2D.cs | Сценовый контроллер3 синхронных петель, восприятие/пауза/смерть/устройство |
+| Scripts/AudioThreatEmitter2D.cs, StalkerAudioThreat2D.cs | Контракт и адаптер без управления AI, scene-filtered реестр |
+| Scripts/PlayerWorldAudioSet.cs, Audio/PlayerWorld/PlayerWorldAudio.asset |6 шагов/щелчок/пустой спуск и уровни |
+| Scripts/PlayerFootsteps2D.cs, PlayerUtilityAudio2D.cs | Реальное перемещение/материал пола и питание/пустой спуск,3 канала |
+| Prefabs/LevelAudio.prefab |3 сохранённых фоновых AudioSource; включён в LevelRig и Basement |
+| Audio/Atmosphere/*.wav |3 подготовленные9с стерео PCM-петли |
+| Audio/PlayerWorld/*.wav |6 шагов по3 материалам, переключатель/пустой спуск |
+| Audio/WorldImpacts/*.wav |2 Concrete/1Wood взамен прежних выключенных заглушек |
+| Editor/AdaptiveAudioSetup.cs | Аддитивная миграция/импорт, метка однократной настройки импактов |
+| Editor/LevelAudioDirectorEditor.cs | Read-only состояние/восприятие в Play Inspector |
+| Scripts/AdaptiveAudioProbe.cs | Временный Editor-only тест и real main-mix recorder |
+| Docs/Audio/AdaptivePrototype/ | Sources/Processing/Validation/ScenePreservation/Recording/Build JSON |
+| Docs/Demos/adaptive-audio-gameplay-v011.mp3 | Реальная36с запись Unity с постановочным движением/врагом/выстрелами |
+
+Scripts/Editor/Prefabs/Audio/Settings относятся к Assets/EmergencyShift. Все новые Unity-файлы сопровождаются .meta. Добавлены события PlayerLife2D.HealthChanged, Flashlight2D.PowerChanged, PlayerWeapon2D.EmptyTriggerPulled, StalkerAudio2D.PerceptibleCue. GroundAudioSurface2D принимает сцену; PlayerAudio2D варьирует pitch импакта. DevelopmentBuildSmoke проверяет28 каналов/scene audio при смене на LevelTemplate.
+
 Docs/Audio/StatePreviewV2 — реальный40-секундный офлайн-микс трёх состояний из новой серии фактур: build_preview.py, manifest.json, validation.json, README. Docs/Demos/audio-states-v2.mp3 — готовое превью. DistantMemory не используется; без Unity-интеграции.
 
 Docs/Audio/RunwayStudies/StateTransitionStudy — учёт уже созданной4-кредитной ритмической заготовки и отказа от текущего направления после правки пользователя; микс не создан, новые генерации/интеграция не выполнены.

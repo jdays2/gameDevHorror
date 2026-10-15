@@ -26,6 +26,7 @@ namespace EmergencyShift
         private PlayerLife2D life;
         private PlayerShotShadow2D shotShadow;
         private float nextShot;
+        private float nextEmptyTrigger;
         public bool HasWeapon { get; private set; }
         public int Ammo { get; private set; }
         public int MaximumAmmo => useDefinitionStats && definition!=null ? definition.maximumAmmo : maximumAmmo;
@@ -42,6 +43,7 @@ namespace EmergencyShift
         public bool HasForwardAim => aim != null && aim.HasTarget && muzzle != null && weaponPivot != null
             && Vector2.Dot(aim.WorldPoint - (Vector2)muzzle.position, weaponPivot.up) > .025f;
         public event System.Action ShotFired;
+        public event System.Action EmptyTriggerPulled;
         public event System.Action<Collider2D, Vector2> SurfaceHit;
         public void ReportImpact(Collider2D target, Vector2 point) { SurfaceHit?.Invoke(target, point); }
 
@@ -112,6 +114,15 @@ namespace EmergencyShift
 
         public bool TryFire()
         {
+            if (CanUse && HasWeapon && Ammo <= 0)
+            {
+                if (Time.time >= nextEmptyTrigger)
+                {
+                    nextEmptyTrigger = Time.time + .25f;
+                    EmptyTriggerPulled?.Invoke();
+                }
+                return false;
+            }
             if (!CanUse || !HasWeapon || Ammo <= 0 || Time.time < nextShot
                 || visualProfile == null || bulletPrefab == null || effectPrefab == null || muzzle == null) return false;
             UpdatePose();

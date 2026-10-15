@@ -1,0 +1,23 @@
+{
+  "report": "User did not hear changes when a single enemy or crowd aggroed.",
+  "findings": [
+    "State tests passed before tuning; this does not reproduce the user's exact historical listening session.",
+    "Old Threat gain adds only about1.5dB of mean energy assuming uncorrelated layers; repeated important cues ducked bed to45%.",
+    "Old Combat rules required attack, player shot or two perceived close pursuers; one approaching enemy remained Threat.",
+    "Three background voices had priority220 under a32-real-voice budget; crowd activity could virtualize them."
+  ],
+  "changes": {
+    "explorationGain": 0.6,
+    "threatGain": 0.85,
+    "combatGain": 0.9,
+    "riseSeconds": 0.45,
+    "fallSeconds": 3.5,
+    "duckGain": 0.75,
+    "lowHealthGain": 0.9,
+    "closeCombatDistance": 2.5,
+    "crowdEnemiesForCombat": 2,
+    "awarenessDistance": 9,
+    "sourcePriority": 120
+  },
+  "scope": "No new generation; no AI/patrol changes. Technical checks and recording are not a human hearing verdict."
+}

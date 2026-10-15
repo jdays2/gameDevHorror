@@ -21,6 +21,7 @@ namespace EmergencyShift
         public int Health { get; private set; }
         public int MaximumHealth => maximumHealth;
         public bool IsDead => Health <= 0;
+        public event System.Action<int> HealthChanged;
         public override bool IsAlive => !IsDead;
         public override void ReceiveBulletHit(int damage,Vector2 point,Vector2 direction) { TakeDamage(damage); }
 
@@ -48,6 +49,7 @@ namespace EmergencyShift
                 visual.color = new Color(0.35f, 0.08f, 0.10f);
             }
             else StartCoroutine(HitFlash());
+            HealthChanged?.Invoke(Health);
             return true;
         }
 

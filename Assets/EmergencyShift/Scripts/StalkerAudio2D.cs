@@ -58,6 +58,9 @@ namespace EmergencyShift
         public AudioSource MovementSource => movementSource;
         public StalkerAudioSet Sounds => sounds;
         public float ObstructionGain => obstruction;
+        /// <summary>Presentation signal after real playback gain is known; silent or muted cues do not reveal enemies.</summary>
+        public event System.Action<float, float, bool> PerceptibleCue;
+        private float nextPerceptionSignal;
         public int PlaybackCount(Cue cue) => playCounts[(int)cue];
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -208,7 +211,8 @@ namespace EmergencyShift
             AudioClip clip = Choose(cue); if (clip == null) return false;
             voiceCue = cue; voiceGain = gain; voiceSource.clip = clip; voiceSource.pitch = 1;
             voiceSource.priority = cue == Cue.Windup || cue == Cue.LightFear ? 24 : cue == Cue.Death ? 40 : cue == Cue.Idle || cue == Cue.Cower ? 180 : 64;
-            UpdateMix(); voiceSource.Play(); playCounts[(int)cue]++; return true;
+            UpdateMix(); voiceSource.Play(); playCounts[(int)cue]++;
+            SignalPerception(voiceSource, cue); return true;
         }
 
         private void PlayMovement(Cue cue, float gain, Vector2 position)
@@ -219,6 +223,7 @@ namespace EmergencyShift
             movementSource.clip = clip; movementSource.pitch = cue == Cue.Step || cue == Cue.Scrape ? contactPitch : 1;
             movementSource.priority = cue == Cue.Lunge ? 80 : 140;
             UpdateMix(); movementSource.Play(); playCounts[(int)cue]++;
+            SignalPerception(movementSource, cue);
         }
 
         private bool MovementBudgetAvailable()
@@ -288,6 +293,20 @@ namespace EmergencyShift
             MixSource(movementSource, movementPosition, listener, movementVolume * movementGain);
             if (voiceFilter != null) voiceFilter.cutoffFrequency = cutoff;
             if (movementFilter != null) movementFilter.cutoffFrequency = cutoff;
+            if (Time.time >= nextPerceptionSignal)
+            {
+                nextPerceptionSignal = Time.time + .15f;
+                SignalPerception(voiceSource, voiceCue);
+                SignalPerception(movementSource, movementCue);
+            }
+        }
+        private void SignalPerception(AudioSource source, Cue cue)
+        {
+            if (source == null || !source.isPlaying || source.isVirtual || source.mute || source.clip == null
+                || source.volume < .02f || AudioListener.pause || AudioListener.volume <= .001f) return;
+            float remaining = Mathf.Max(.25f, source.clip.length-source.time);
+            bool urgent = cue == Cue.Windup || cue == Cue.LightFear || cue == Cue.Bite || cue == Cue.Hit;
+            PerceptibleCue?.Invoke(Mathf.Min(remaining,.5f), source.volume, urgent);
         }
         private float targetObstruction = 1, targetCutoff = 22000;
 
