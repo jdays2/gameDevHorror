@@ -1,5 +1,7 @@
 # Карта файлов
 
+Docs/Audio/StatePreviewV2 — реальный40-секундный офлайн-микс трёх состояний из новой серии фактур: build_preview.py, manifest.json, validation.json, README. Docs/Demos/audio-states-v2.mp3 — готовое превью. DistantMemory не используется; без Unity-интеграции.
+
 Docs/Audio/RunwayStudies/StateTransitionStudy — учёт уже созданной4-кредитной ритмической заготовки и отказа от текущего направления после правки пользователя; микс не создан, новые генерации/интеграция не выполнены.
 
 Docs/Audio/RunwayStudies/DistantMemory — оригинальная10-секундная атмосферная проба после референса White Noiz; общие эмоциональные принципы, источники, промпт/task ID/10 кредитов, без использования референсного аудио.

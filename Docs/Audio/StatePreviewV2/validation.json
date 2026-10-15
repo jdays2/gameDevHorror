@@ -1,0 +1,95 @@
+{
+  "durationSeconds": 40.0,
+  "sampleRate": 48000,
+  "channels": 2,
+  "decodedSuccessfully": true,
+  "samplePeak": 0.3530312776565552,
+  "globalSafetyGain": 1.0,
+  "sha256": "2d9baa4261603aa1467c70b66d440a70507c380b0e536f963c2560cbbb70aa0a",
+  "sources": {
+    "base": {
+      "sha256": "31ef18ea243cf3c3c39cdf9ad5168c1f4bd01c978f23cd6ad9066a0272d1ed6e",
+      "seconds": 10.0,
+      "lowpassHz": null,
+      "rmsTarget": 0.042
+    },
+    "tension": {
+      "sha256": "b6f44c9ececb17b9d0a86eb7ec5e926b270b9d37829a0a7d119bba9ad3cecc00",
+      "seconds": 10.0,
+      "lowpassHz": 1500,
+      "rmsTarget": 0.032
+    },
+    "pressure": {
+      "sha256": "3d94388cfb3c36d6f0c63b185b479c0c6812d0ff0f682318f248597b7fe6bd01",
+      "seconds": 10.0,
+      "lowpassHz": 2500,
+      "rmsTarget": 0.065
+    }
+  },
+  "timeline": [
+    {
+      "start": 0,
+      "end": 12,
+      "state": "exploration"
+    },
+    {
+      "start": 12,
+      "end": 24,
+      "state": "threat"
+    },
+    {
+      "start": 24,
+      "end": 36,
+      "state": "combat"
+    },
+    {
+      "start": 36,
+      "end": 40,
+      "state": "release"
+    }
+  ],
+  "phaseRms": {
+    "exploration": 0.03704517434393455,
+    "threat": 0.04994596960790521,
+    "combat": 0.08077079277299427,
+    "release": 0.04402273548821028
+  },
+  "atSeconds": {
+    "6": {
+      "base": 1.0,
+      "tension": 0.0,
+      "pressure": 0.0
+    },
+    "12": {
+      "base": 1.0,
+      "tension": 0.0,
+      "pressure": 0.0
+    },
+    "18": {
+      "base": 1.0,
+      "tension": 1.0,
+      "pressure": 0.0
+    },
+    "24": {
+      "base": 1.0,
+      "tension": 1.0,
+      "pressure": 0.0
+    },
+    "30": {
+      "base": 0.8200000000000001,
+      "tension": 0.75,
+      "pressure": 1.0
+    },
+    "36": {
+      "base": 0.8200000000000001,
+      "tension": 0.75,
+      "pressure": 1.0
+    },
+    "39": {
+      "base": 0.8200000000000001,
+      "tension": 0.0,
+      "pressure": 0.0
+    }
+  },
+  "limits": "Offline audition, not Unity playback. No added percussion, rhythm, enemies or gunshots. Generation prompt compliance, artistic quality and absence of unwanted timbres have not been verified by listening."
+}
