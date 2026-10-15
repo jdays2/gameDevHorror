@@ -1,83 +1,148 @@
 {
-  "result": {
-    "success": true,
-    "message": "Test job status retrieved.",
-    "error": null,
-    "data": {
-      "job_id": "b105cb2cfa2644e89f8790b9883035ff",
-      "status": "succeeded",
-      "mode": "EditMode",
-      "started_unix_ms": 1792059914514,
-      "finished_unix_ms": 1792059919345,
-      "last_update_unix_ms": 1792059919345,
-      "progress": {
-        "completed": 4,
-        "total": 4,
-        "current_test_full_name": null,
-        "current_test_started_unix_ms": null,
-        "last_finished_test_full_name": "EmergencyShift.Tests.EnemySystemsTests.SharedDefinitionDoesNotShareCurrentHealth",
-        "last_finished_unix_ms": 1792059919214,
-        "stuck_suspected": false,
-        "editor_is_focused": false,
-        "run_in_background": true,
-        "focus_nudge_attempts": null,
-        "focus_nudge_limit": null,
-        "focus_nudge_status": null,
-        "blocked_reason": null,
-        "failures_so_far": [],
-        "failures_capped": false
-      },
-      "error": null,
-      "result": {
-        "mode": "EditMode",
-        "summary": {
-          "total": 4,
-          "passed": 4,
-          "failed": 0,
-          "skipped": 0,
-          "durationSeconds": 0.5809404,
-          "resultState": "Passed"
-        },
-        "results": [
-          {
-            "name": "OverkillAndRepeatedKillEmitOnlyOneDeath",
-            "fullName": "EmergencyShift.Tests.EnemySystemsTests.OverkillAndRepeatedKillEmitOnlyOneDeath",
-            "state": "Passed",
-            "durationSeconds": 0.0156435,
-            "message": null,
-            "stackTrace": null,
-            "output": ""
-          },
-          {
-            "name": "PatrolAreaTooSmallForBodyDoesNotMove",
-            "fullName": "EmergencyShift.Tests.EnemySystemsTests.PatrolAreaTooSmallForBodyDoesNotMove",
-            "state": "Passed",
-            "durationSeconds": 0.0041126,
-            "message": null,
-            "stackTrace": null,
-            "output": ""
-          },
-          {
-            "name": "PerceptionDoesNotSeeTargetThroughBlockingGeometry",
-            "fullName": "EmergencyShift.Tests.EnemySystemsTests.PerceptionDoesNotSeeTargetThroughBlockingGeometry",
-            "state": "Passed",
-            "durationSeconds": 0.0027815,
-            "message": null,
-            "stackTrace": null,
-            "output": ""
-          },
-          {
-            "name": "SharedDefinitionDoesNotShareCurrentHealth",
-            "fullName": "EmergencyShift.Tests.EnemySystemsTests.SharedDefinitionDoesNotShareCurrentHealth",
-            "state": "Passed",
-            "durationSeconds": 0.0007348,
-            "message": null,
-            "stackTrace": null,
-            "output": ""
-          }
-        ]
-      }
+  "mode": "EditMode",
+  "summary": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 0.6613133,
+    "resultState": "Passed"
+  },
+  "results": [
+    {
+      "name": "OverkillAndRepeatedKillEmitOnlyOneDeath",
+      "fullName": "EmergencyShift.Tests.EnemySystemsTests.OverkillAndRepeatedKillEmitOnlyOneDeath",
+      "state": "Passed",
+      "durationSeconds": 0.0162932,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
     },
-    "hint": null
-  }
+    {
+      "name": "PatrolAreaTooSmallForBodyDoesNotMove",
+      "fullName": "EmergencyShift.Tests.EnemySystemsTests.PatrolAreaTooSmallForBodyDoesNotMove",
+      "state": "Passed",
+      "durationSeconds": 0.0029336,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "PerceptionDoesNotSeeTargetThroughBlockingGeometry",
+      "fullName": "EmergencyShift.Tests.EnemySystemsTests.PerceptionDoesNotSeeTargetThroughBlockingGeometry",
+      "state": "Passed",
+      "durationSeconds": 0.0018732,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "SharedDefinitionDoesNotShareCurrentHealth",
+      "fullName": "EmergencyShift.Tests.EnemySystemsTests.SharedDefinitionDoesNotShareCurrentHealth",
+      "state": "Passed",
+      "durationSeconds": 0.0005485,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "BrokenJsonIsRejected",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.BrokenJsonIsRejected",
+      "state": "Passed",
+      "durationSeconds": 0.0190872,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "CardRestoreReplacesInventoryWithoutSharingIt",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.CardRestoreReplacesInventoryWithoutSharingIt",
+      "state": "Passed",
+      "durationSeconds": 0.0008226,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ClearRemovesBackupAndSlot",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.ClearRemovesBackupAndSlot",
+      "state": "Passed",
+      "durationSeconds": 0.0222952,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "DiskRoundTripPreservesStableIdAndPayload",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.DiskRoundTripPreservesStableIdAndPayload",
+      "state": "Passed",
+      "durationSeconds": 0.0063146,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "DuplicateIdsAreRejectedBeforeWriting",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.DuplicateIdsAreRejectedBeforeWriting",
+      "state": "Passed",
+      "durationSeconds": 0.0004294,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "DuplicateSceneIdsFailRatherThanOverwritingAnEnemy",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.DuplicateSceneIdsFailRatherThanOverwritingAnEnemy",
+      "state": "Passed",
+      "durationSeconds": 0.0013174,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "HealthRestoreIsSilentAndStillPreventsSecondDeath",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.HealthRestoreIsSilentAndStillPreventsSecondDeath",
+      "state": "Passed",
+      "durationSeconds": 0.0004724,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "InactiveActorPayloadSurvivesJsonWithoutBecomingADeadActor",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.InactiveActorPayloadSurvivesJsonWithoutBecomingADeadActor",
+      "state": "Passed",
+      "durationSeconds": 0.0017163,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "NonFinitePositionIsRejected",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.NonFinitePositionIsRejected",
+      "state": "Passed",
+      "durationSeconds": 0.0002487,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "ReplacementKeepsPreviousSlotBackup",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.ReplacementKeepsPreviousSlotBackup",
+      "state": "Passed",
+      "durationSeconds": 0.0059968,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    },
+    {
+      "name": "UnsupportedVersionDoesNotReplaceLastGoodSave",
+      "fullName": "EmergencyShift.Tests.PersistenceTests.UnsupportedVersionDoesNotReplaceLastGoodSave",
+      "state": "Passed",
+      "durationSeconds": 0.0030602,
+      "message": null,
+      "stackTrace": null,
+      "output": ""
+    }
+  ]
 }

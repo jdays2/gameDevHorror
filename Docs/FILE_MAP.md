@@ -1,6 +1,6 @@
 # Карта файлов
 
-Пути относительно Assets/EmergencyShift. Все игровые исходники и сборки перечислены ниже. Данные — Data, готовые комплекты — Prefabs, активные медиа — Art/Audio, исторические материалы — Concepts вне Assets.
+Пути относительно Assets/EmergencyShift. Фактические исходники/сборки; данные — Data, комплекты — Prefabs, история — Concepts вне Assets.
 
 ## Runtime
 
@@ -16,19 +16,25 @@
 | `Runtime/Definitions/DoorAudioSet.cs` | DoorAudioSet |
 | `Runtime/Definitions/EnemyDefinition.cs` | Shared tuning only. Current health, aggro and timers belong to an instance. |
 | `Runtime/Definitions/EnemyPatrolProfile.cs` | EnemyPatrolProfile |
+| `Runtime/Definitions/GoreProfile.cs` | GoreProfile |
+| `Runtime/Definitions/LevelCatalog.cs` | LevelCatalog |
+| `Runtime/Definitions/LevelDefinition.cs` | LevelDefinition |
 | `Runtime/Definitions/PlayerAudioSet.cs` | Pickup cues are live; combat candidates can be auditioned before enabling gameplay audio. |
 | `Runtime/Definitions/PlayerWorldAudioSet.cs` | PlayerWorldAudioSet |
 | `Runtime/Definitions/ShotVisualProfile.cs` | Общие параметры одного визуального варианта. Не хранит патроны/состояние игрока. |
 | `Runtime/Definitions/StalkerAudioSet.cs` | Shared authored audio data: one asset instead of 49 references on every creature. |
 | `Runtime/Definitions/StalkerBehaviourProfile.cs` | StalkerBehaviourProfile |
+| `Runtime/Definitions/WeaponCatalog.cs` | WeaponCatalog |
 | `Runtime/Definitions/WeaponDefinition.cs` | Shared weapon data; ammunition/ownership stay on the player, never in this asset. |
 | `Runtime/Development/AdaptiveAudioProbe.cs` | Temporary Editor Play probe/real main-mix recorder. Never saved and excluded from builds. |
+| `Runtime/Development/CheckpointRegressionProbe.cs` | Opt-in end-to-end disk save/death/reload regression. Never authored in a scene. |
 | `Runtime/Development/CombatProbeTarget2D.cs` | Development-only non-Stalker receiver used by smoke tests, never placed in production scenes. |
 | `Runtime/Development/CrowdReadinessProbe.cs` | Temporary authored-prefab stress fixture. Records actual CPU markers, not a frame-rate guarantee. |
 | `Runtime/Development/DevelopmentBuildSmoke.cs` | Only runs with --es-smoke-test in a development player. Ordinary game startup is unchanged. |
-| `Runtime/Development/EmergencyShift.Development.asmdef` | Граница сборки и зависимости |
+| `Runtime/Development/EmergencyShift.Development.asmdef` | Граница сборки |
+| `Runtime/Development/EngineeringBenchmark2D.cs` | Opt-in native-player baseline for pursuit and simultaneous death. Never saved in a scene. |
 | `Runtime/Development/FirstLevelProbe.cs` | Temporary scripted pilot: real physics, proximity pickups, doors and bullets. Never saved/built. |
-| `Runtime/EmergencyShift.Runtime.asmdef` | Граница сборки и зависимости |
+| `Runtime/EmergencyShift.Runtime.asmdef` | Граница сборки |
 | `Runtime/Enemies/Common/CrowdAgent2D.cs` | Small-population local separation. Static walls still decide whether a step is safe. |
 | `Runtime/Enemies/Common/EnemyChasePath2D.cs` | Ограниченный кэшируемый A* для погони за углами. Не управляет агрессией или телом. |
 | `Runtime/Enemies/Common/EnemyHealth2D.cs` | Instance-owned health. Death is emitted once; no AI, sprite, sound or species dependency. |
@@ -37,15 +43,29 @@
 | `Runtime/Enemies/Common/EnemyPatrol2D.cs` | Только мирный маршрут: ограниченная область, случайные достижимые точки и паузы. |
 | `Runtime/Enemies/Common/EnemyPerception2D.cs` | Shared sensing, independent of the decision to flee, sleep or attack. |
 | `Runtime/Enemies/Common/NavigationWorkBudget2D.cs` | Caps expensive path rebuilds across actors, preserving cached steering between requests. |
-| `Runtime/Enemies/Stalker/ShadowStalker2D.cs` | РџСЂРѕСЃС‚РѕР№ СЃРІРµС‚РѕР±РѕСЏР·РЅРµРЅРЅС‹Р№ РІСЂР°Рі: РїРѕРґРєСЂР°РґС‹РІР°РЅРёРµ, СЃР¶Р°С‚РёРµ, РѕС‚С…РѕРґ Рё РїР°СѓР·Р°. |
+| `Runtime/Enemies/Stalker/ShadowStalker2D.cs` | Species brain: permanent aggro, delayed light fear, retreat and melee. |
 | `Runtime/Enemies/Stalker/StalkerAudio2D.cs` | Two bounded voices per creature. AI events drive reactions; real travel drives feet. |
 | `Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs` | Adapter only: it observes AI and actual audible playback; it never activates or resets aggro. |
 | `Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs` | Species adapter; a different AI can provide the same presentation facts. |
 | `Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs` | Перелистывает спрайты, поворачивает изображение и ведёт отдельный зрачок. |
-| `Runtime/Levels/DemoLevelFlow2D.cs` | Authored demo objective and exit. It does not spawn geometry, loot, UI or enemies. |
 | `Runtime/Levels/EncounterActivation2D.cs` | One-shot authorable activation of already placed enemies. It never resets an active fight. |
 | `Runtime/Levels/LevelContext2D.cs` | Explicit scene-scoped player binding; no global player singleton or per-frame scene searches. |
 | `Runtime/Levels/LevelExit2D.cs` | LevelExit2D |
+| `Runtime/Levels/LevelObjectiveController2D.cs` | LevelObjectiveController2D |
+| `Runtime/Levels/LevelParticipant2D.cs` | Scene-authored lifetime boundary; the level does not know enemy species. |
+| `Runtime/Levels/LevelRunController2D.cs` | Owns completion and run lifetime. Objectives and UI are separate components. |
+| `Runtime/Persistence/CardCheckpoint2D.cs` | CardCheckpoint2D |
+| `Runtime/Persistence/CheckpointData.cs` | CheckpointData |
+| `Runtime/Persistence/CheckpointStore.cs` | Versioned local slot; write a complete temp file before replacing the last good save. |
+| `Runtime/Persistence/CheckpointVolume2D.cs` | CheckpointVolume2D |
+| `Runtime/Persistence/DoorCheckpoint2D.cs` | DoorCheckpoint2D |
+| `Runtime/Persistence/EncounterCheckpoint2D.cs` | EncounterCheckpoint2D |
+| `Runtime/Persistence/LevelCheckpointController2D.cs` | LevelCheckpointController2D |
+| `Runtime/Persistence/PersistentEntity2D.cs` | PersistentEntity2D |
+| `Runtime/Persistence/PlayerCheckpoint2D.cs` | PlayerCheckpoint2D |
+| `Runtime/Persistence/StalkerCheckpoint2D.cs` | StalkerCheckpoint2D |
+| `Runtime/Persistence/UpgradeCheckpoint2D.cs` | UpgradeCheckpoint2D |
+| `Runtime/Persistence/WeaponLootCheckpoint2D.cs` | WeaponLootCheckpoint2D |
 | `Runtime/Player/CameraFollow2D.cs` | Мягко следует за игроком после обновления движения. |
 | `Runtime/Player/FlashlightUpgrades.cs` | Хранит модули игрока в текущем запуске комнаты; пересчитывает оптику от базы. |
 | `Runtime/Player/PlayerAccessCards2D.cs` | Only access tokens for this run; not a general inventory or a save system. |
@@ -70,10 +90,14 @@
 | `Runtime/Presentation/Visuals/GoreBurst2D.cs` | Одноразовый разрыв тела. Лужа и куски независимы от игрового поведения врага. |
 | `Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs` | Spread simultaneous corpse fragment construction across frames; never remove permanent blood. |
 | `Runtime/Presentation/Visuals/PlayerShotShadow2D.cs` | Короткая проекция силуэта капсулы от настоящего света дула; плоское приближение высоты. |
+| `Runtime/Presentation/Visuals/RemainsPartIdentity2D.cs` | Settled presentation data. No AI, physics or Update after landing. |
+| `Runtime/Presentation/Visuals/RemainsRecord2D.cs` | Scene-owned settled remains. It survives the actor; no AI, damage or playback logic. |
+| `Runtime/Presentation/Visuals/RemainsSnapshot.cs` | RemainsSnapshot |
 | `Runtime/Presentation/Visuals/RemainsVisualStyle.cs` | Общее визуальное правило для трупов, кусков и редакторских образцов. |
 | `Runtime/Presentation/Visuals/ShellCasing2D.cs` | Small top-down casing: planar motion plus virtual height, one first-floor-contact sound. |
 | `Runtime/Presentation/Visuals/ShotEffect2D.cs` | Огонь и свет дула затухают вместе; штрихи используются для попаданий. |
 | `Runtime/UI/AimReticle2D.cs` | Saved HUD graphic: a small ring/ticks at the pointer, with no enemy highlighting. |
+| `Runtime/UI/LevelCompletionView2D.cs` | LevelCompletionView2D |
 | `Runtime/UI/PrototypeHud.cs` | Отображает состояние игрока, одну контекстную подсказку и результат подбора. |
 | `Runtime/World/Doors/Door2D.cs` | Двигает створку двери; коллайдер и тень двигаются вместе с ней. |
 | `Runtime/World/Doors/DoorAccess2D.cs` | Optional lock. The door still owns interaction, movement, collision and audio. |
@@ -92,7 +116,8 @@
 |---|---|
 | `Editor/Authoring/FirstLevelBuilder.cs` | One-time authoring tool. The resulting scene is ordinary editable geometry, not a runtime generator. |
 | `Editor/Authoring/LevelAuthoringSetup.cs` | Creates reusable scene-authored scaffolding once; never replaces the user's playable level. |
-| `Editor/EmergencyShift.Editor.asmdef` | Граница сборки и зависимости |
+| `Editor/Authoring/LevelPersistenceAuthoring.cs` | Explicit authoring command. Adds metadata/components; never rebuilds room geometry. |
+| `Editor/EmergencyShift.Editor.asmdef` | Граница сборки |
 | `Editor/Inspectors/EnemyPatrol2DEditor.cs` | Границы патруля редактируются на сцене; данные остаются на конкретном враге. |
 | `Editor/Inspectors/LevelAudioDirectorEditor.cs` | LevelAudioDirectorEditor |
 
@@ -100,22 +125,6 @@
 
 | Файл | Назначение |
 |---|---|
-| `Tests/EditMode/EmergencyShift.EditModeTests.asmdef` | Граница сборки и зависимости |
+| `Tests/EditMode/EmergencyShift.EditModeTests.asmdef` | Граница сборки |
 | `Tests/EditMode/EnemySystemsTests.cs` | EnemySystemsTests |
-
-## Настройки и сцены
-
-| Файл | Тип |
-|---|---|
-| `Data/Audio/SurvivalAudio.asset` | ScriptableObject / настройки рендера |
-| `Data/Enemies/Patrol-Default.asset` | ScriptableObject / настройки рендера |
-| `Data/Enemies/Patrol-FirstShift.asset` | ScriptableObject / настройки рендера |
-| `Data/Enemies/Stalker-Default.asset` | ScriptableObject / настройки рендера |
-| `Data/Enemies/Stalker-Light-BasementPrototype.asset` | ScriptableObject / настройки рендера |
-| `Data/Enemies/Stalker-Light-Default.asset` | ScriptableObject / настройки рендера |
-| `Data/Rendering/Prototype2DRenderer.asset` | ScriptableObject / настройки рендера |
-| `Data/Rendering/PrototypeURP.asset` | ScriptableObject / настройки рендера |
-| `Data/Weapons/PistolDefinition.asset` | ScriptableObject / настройки рендера |
-| `Scenes/BasementPrototype.unity` | Редактируемая сцена |
-| `Scenes/FirstShift.unity` | Редактируемая сцена |
-| `Scenes/LevelTemplate.unity` | Редактируемая сцена |
+| `Tests/EditMode/PersistenceTests.cs` | PersistenceTests |

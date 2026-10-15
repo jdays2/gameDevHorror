@@ -22,14 +22,17 @@ namespace EmergencyShift.Tests
                 Assert.That(health.Current, Is.Zero);
                 Assert.That(deaths, Is.EqualTo(1));
             }
-            finally { Object.DestroyImmediate(obj); }
+            finally
+            {
+                Object.DestroyImmediate(obj);
+            }
         }
 
         [Test]
         public void SharedDefinitionDoesNotShareCurrentHealth()
         {
             var config = ScriptableObject.CreateInstance<EnemyDefinition>();
-            var first = new GameObject("First" );
+            var first = new GameObject("First");
             var second = new GameObject("Second");
             try
             {
@@ -43,7 +46,12 @@ namespace EmergencyShift.Tests
                 Assert.That(b.Current, Is.EqualTo(3));
                 Assert.That(config.maximumHealth, Is.EqualTo(3));
             }
-            finally { Object.DestroyImmediate(first); Object.DestroyImmediate(second); Object.DestroyImmediate(config); }
+            finally
+            {
+                Object.DestroyImmediate(first);
+                Object.DestroyImmediate(second);
+                Object.DestroyImmediate(config);
+            }
         }
 
         [Test]
@@ -67,7 +75,12 @@ namespace EmergencyShift.Tests
                 Physics2D.SyncTransforms();
                 Assert.That(senses.CanSeeTarget(Vector2.zero), Is.True);
             }
-            finally { Object.DestroyImmediate(observer); Object.DestroyImmediate(target); Object.DestroyImmediate(wall); }
+            finally
+            {
+                Object.DestroyImmediate(observer);
+                Object.DestroyImmediate(target);
+                Object.DestroyImmediate(wall);
+            }
         }
 
         [Test]
@@ -86,7 +99,11 @@ namespace EmergencyShift.Tests
                 patrol.Initialize(Vector2.zero);
                 Assert.That(patrol.Step(Vector2.zero, .3f, 1 << 8, .02f), Is.EqualTo(Vector2.zero));
             }
-            finally { Object.DestroyImmediate(obj); Object.DestroyImmediate(config); }
+            finally
+            {
+                Object.DestroyImmediate(obj);
+                Object.DestroyImmediate(config);
+            }
         }
     }
 }

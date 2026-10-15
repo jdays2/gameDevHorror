@@ -6,16 +6,71 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Player audio set")]
     public sealed class PlayerAudioSet : ScriptableObject
     {
-        [SerializeField] private AudioClip[] ammoPickup, weaponPickup, upgradePickup;
-        [SerializeField] private AudioClip[] dryShots, roomShots;
-        [SerializeField] private AudioClip[] concreteImpact, woodImpact, fleshImpact;
-        [SerializeField] private AudioClip[] concreteCasings, woodCasings, tileCasings;
-        public AudioClip[] Pickup(PickupKind kind) => kind == PickupKind.Ammo ? ammoPickup : kind == PickupKind.Weapon ? weaponPickup : upgradePickup;
+        [SerializeField]
+        private AudioClip[] ammoPickup;
+        [SerializeField]
+        private AudioClip[] weaponPickup;
+        [SerializeField]
+        private AudioClip[] upgradePickup;
+        [SerializeField]
+        private AudioClip[] dryShots;
+        [SerializeField]
+        private AudioClip[] roomShots;
+        [SerializeField]
+        private AudioClip[] concreteImpact;
+        [SerializeField]
+        private AudioClip[] woodImpact;
+        [SerializeField]
+        private AudioClip[] fleshImpact;
+        [SerializeField]
+        private AudioClip[] concreteCasings;
+        [SerializeField]
+        private AudioClip[] woodCasings;
+        [SerializeField]
+        private AudioClip[] tileCasings;
+        public AudioClip[] Pickup(PickupKind kind)
+        {
+            switch (kind)
+            {
+                case PickupKind.Ammo:
+                    return ammoPickup;
+                case PickupKind.Weapon:
+                    return weaponPickup;
+                default:
+                    return upgradePickup;
+            }
+        }
+
         public AudioClip[] Shots(bool indoor) => indoor ? roomShots : dryShots;
-        public AudioClip[] Impact(ImpactMaterial material) => material == ImpactMaterial.Wood ? woodImpact : material == ImpactMaterial.Flesh ? fleshImpact : concreteImpact;
+        public AudioClip[] Impact(ImpactMaterial material)
+        {
+            switch (material)
+            {
+                case ImpactMaterial.Wood:
+                    return woodImpact;
+                case ImpactMaterial.Flesh:
+                    return fleshImpact;
+                default:
+                    return concreteImpact;
+            }
+        }
+
         public AudioClip[] Casings(GroundSoundSurface material)
         {
-            var selected = material == GroundSoundSurface.Wood ? woodCasings : material == GroundSoundSurface.Tile ? tileCasings : concreteCasings;
+            AudioClip[] selected;
+            switch (material)
+            {
+                case GroundSoundSurface.Wood:
+                    selected = woodCasings;
+                    break;
+                case GroundSoundSurface.Tile:
+                    selected = tileCasings;
+                    break;
+                default:
+                    selected = concreteCasings;
+                    break;
+            }
+
             return selected != null && selected.Length > 0 ? selected : concreteCasings;
         }
     }

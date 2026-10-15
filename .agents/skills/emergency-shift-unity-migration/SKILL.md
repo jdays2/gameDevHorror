@@ -17,6 +17,6 @@ Use common health/perception/motor/melee/patrol modules with a species brain and
 
 For consequential changes: compile; inspect actual console errors; compare serialized values and missing scripts/references; run relevant EditMode and scene regressions; build when assemblies/runtime integration changed. Build with normal settings restored afterward. A successful Editor test does not verify release inclusion boundaries. Keep temporary probes out of saved scenes. Runtime mutations must not dirty shared SO assets.
 
-Docs/ARCHITECTURE.md describes real boundaries and remaining demo-only flow. Docs/VALIDATION.md lists runnable checks. Avoid claiming campaign/save support from LevelContext/LevelRig.
+Docs/ARCHITECTURE.md describes actual boundaries; Docs/Guides/CHECKPOINTS.md defines the implemented local checkpoint policy. Preserve permanent IDs, content IDs, level saveRevision and silent restoration of Dead/settled remains. A new persistence payload needs presence/version validation and a death/reload test using isolated slots. Checkpoint support does not imply campaign transitions or persistent runtime-spawn factories. Docs/VALIDATION.md lists runnable checks.
 
 Review actual source before declaring it clean: formatting, data ownership and dependency direction matter in the newly extracted components too. Keep an identified existing defect in Docs/ENGINEERING_REVIEW.md until fixed; a skill update does not close that defect. Source research is recorded there with explicit adoption limits.

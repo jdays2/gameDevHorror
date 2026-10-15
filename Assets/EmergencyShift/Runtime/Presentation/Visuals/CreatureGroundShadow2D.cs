@@ -6,16 +6,26 @@ namespace EmergencyShift
     [DefaultExecutionOrder(30)]
     public sealed class CreatureGroundShadow2D : MonoBehaviour
     {
-        [SerializeField] private EnemyPresentationSource2D creature;
-        [SerializeField] private Transform visual;
-        [SerializeField] private SpriteRenderer bodyRenderer;
-        [SerializeField] private SpriteRenderer contact;
-        [SerializeField] private SpriteRenderer projection;
-        [SerializeField, Range(1, 1.15f)] private float contactScale = 1.04f;
-        [SerializeField, Range(0, 1)] private float contactOpacity = 0.55f;
-        [SerializeField, Range(0, 1)] private float projectionOpacity = 0.62f;
-        [SerializeField, Range(0, 0.6f)] private float projectionStretch = 0.30f;
-        [SerializeField, Min(0.05f)] private float maximumLength = 1.35f;
+        [SerializeField]
+        private EnemyPresentationSource2D creature;
+        [SerializeField]
+        private Transform visual;
+        [SerializeField]
+        private SpriteRenderer bodyRenderer;
+        [SerializeField]
+        private SpriteRenderer contact;
+        [SerializeField]
+        private SpriteRenderer projection;
+        [SerializeField, Range(1, 1.15f)]
+        private float contactScale = 1.04f;
+        [SerializeField, Range(0, 1)]
+        private float contactOpacity = 0.55f;
+        [SerializeField, Range(0, 1)]
+        private float projectionOpacity = 0.62f;
+        [SerializeField, Range(0, 0.6f)]
+        private float projectionStretch = 0.30f;
+        [SerializeField, Min(0.05f)]
+        private float maximumLength = 1.35f;
         private bool settledDead;
         private MaterialPropertyBlock contactProperties;
         private MaterialPropertyBlock projectionProperties;
@@ -28,27 +38,49 @@ namespace EmergencyShift
         private static readonly int LightDirectionId = Shader.PropertyToID("_LightDirection");
         private static readonly int WallClipId = Shader.PropertyToID("_UseWallClip");
         private static readonly int WallId = Shader.PropertyToID("_Wall");
-
-        public float ProjectionLength { get; private set; }
-        public Vector2 ProjectionDirection { get; private set; }
+        public float ProjectionLength
+        {
+            get; private set;
+        }
+        public Vector2 ProjectionDirection
+        {
+            get; private set;
+        }
 
         public void Configure(EnemyPresentationSource2D actor, Transform bodyVisual, SpriteRenderer contactRenderer, SpriteRenderer projectionRenderer)
         {
-            creature = actor; visual = bodyVisual; contact = contactRenderer; projection = projectionRenderer;
+            creature = actor;
+            visual = bodyVisual;
+            contact = contactRenderer;
+            projection = projectionRenderer;
             bodyRenderer = bodyVisual.Find("Body").GetComponent<SpriteRenderer>();
         }
 
-        private void OnEnable() { settledDead = false; }
+        private void OnEnable()
+        {
+            settledDead = false;
+        }
 
         private void LateUpdate()
         {
-            if (creature == null || bodyRenderer == null || visual == null || contact == null || projection == null || settledDead) return;
-            if (contactProperties == null) contactProperties = new MaterialPropertyBlock();
-            if (projectionProperties == null) projectionProperties = new MaterialPropertyBlock();
+            if (creature == null || bodyRenderer == null || visual == null || contact == null || projection == null || settledDead)
+            {
+                return;
+            }
+
+            if (contactProperties == null)
+            {
+                contactProperties = new MaterialPropertyBlock();
+            }
+
+            if (projectionProperties == null)
+            {
+                projectionProperties = new MaterialPropertyBlock();
+            }
+
             bool dead = creature.IsDead;
             // Размер и поза уже содержатся в текущем кадре: дополнительное сжатие силуэта не нужно.
-            float leap = creature.AttackProgress > 0
-                ? Mathf.Sin(creature.AttackProgress * Mathf.PI) : 0f;
+            float leap = creature.AttackProgress > 0 ? Mathf.Sin(creature.AttackProgress * Mathf.PI) : 0f;
             float size = dead ? Mathf.Lerp(1f, 0.95f, Mathf.Clamp01(creature.DeathTime * 2f)) : contactScale - leap * 0.02f;
             Vector2 center = bodyRenderer.transform.position;
             SyncSilhouette(contact, size);
@@ -58,7 +90,6 @@ namespace EmergencyShift
             contact.color = new Color(0, 0, 0, dead ? contactOpacity * 0.45f : contactOpacity * (1f - leap * 0.25f));
             contactProperties.Clear();
             contact.SetPropertyBlock(contactProperties);
-
             IThreatLight2D lamp = creature.LightSource;
             ProjectionLength = 0;
             projection.enabled = false;
@@ -74,8 +105,7 @@ namespace EmergencyShift
                     float stretch = projectionStretch * reach;
                     Vector3 bodyScale = bodyRenderer.transform.lossyScale;
                     Vector3 extents = bodyRenderer.sprite.bounds.extents;
-                    float radius = Mathf.Abs(Vector2.Dot(bodyRenderer.transform.right, ProjectionDirection)) * extents.x * Mathf.Abs(bodyScale.x)
-                        + Mathf.Abs(Vector2.Dot(bodyRenderer.transform.up, ProjectionDirection)) * extents.y * Mathf.Abs(bodyScale.y);
+                    float radius = Mathf.Abs(Vector2.Dot(bodyRenderer.transform.right, ProjectionDirection)) * extents.x * Mathf.Abs(bodyScale.x) + Mathf.Abs(Vector2.Dot(bodyRenderer.transform.up, ProjectionDirection)) * extents.y * Mathf.Abs(bodyScale.y);
                     float available = Mathf.Max(0, maximumLength - radius);
                     shift = Mathf.Min(shift, available);
                     stretch = Mathf.Min(stretch, Mathf.Max(0, available - shift) / Mathf.Max(radius, 0.001f));
@@ -101,19 +131,25 @@ namespace EmergencyShift
                             projectionProperties.SetFloat(WallClipId, 1);
                             projectionProperties.SetVector(WallId, new Vector4(point.x, point.y, hit.normal.x, hit.normal.y));
                         }
+
                         projection.SetPropertyBlock(projectionProperties);
                         projection.enabled = true;
                     }
                 }
             }
+
             // После оседания трупа настройки больше не пересчитываются.
-            if (dead && creature.DeathTime >= 0.8f) settledDead = true;
+            if (dead && creature.DeathTime >= 0.8f)
+            {
+                settledDead = true;
+            }
         }
 
         private void SyncSilhouette(SpriteRenderer shadow, float scale)
         {
             shadow.sprite = bodyRenderer.sprite;
-            shadow.flipX = bodyRenderer.flipX; shadow.flipY = bodyRenderer.flipY;
+            shadow.flipX = bodyRenderer.flipX;
+            shadow.flipY = bodyRenderer.flipY;
             shadow.transform.rotation = bodyRenderer.transform.rotation;
             Vector3 world = bodyRenderer.transform.lossyScale * scale;
             Vector3 parent = shadow.transform.parent.lossyScale;
@@ -122,8 +158,15 @@ namespace EmergencyShift
 
         private void OnDisable()
         {
-            if (contact != null) contact.enabled = false;
-            if (projection != null) projection.enabled = false;
+            if (contact != null)
+            {
+                contact.enabled = false;
+            }
+
+            if (projection != null)
+            {
+                projection.enabled = false;
+            }
         }
     }
 }

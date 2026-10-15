@@ -1094,21 +1094,111 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs (4)"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 157137447}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 157137446}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 157137445}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &157137439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 157137438}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &157137440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 157137438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &157137441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 157137438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157137440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &157137442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 157137438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157137440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &157137443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 157137438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157137440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &157137444 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 157137438}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &157137445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157137440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 157137443}
+  - {fileID: 157137442}
+  - {fileID: 157137441}
+  body: {fileID: 157137444}
+--- !u!114 &157137446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157137440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &157137447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157137440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 4432ece5c2d74df9996ffb27148fc14d
 --- !u!1 &194272310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,13 +1293,49 @@ PrefabInstance:
     - {fileID: 8109381126503061838, guid: 91186f60793c121499df4cedc88637af, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6343857256779327830, guid: 91186f60793c121499df4cedc88637af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 204629058}
+    - targetCorrespondingSourceObject: {fileID: 6343857256779327830, guid: 91186f60793c121499df4cedc88637af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 204629057}
   m_SourcePrefab: {fileID: 100100000, guid: 91186f60793c121499df4cedc88637af, type: 3}
 --- !u!4 &204629055 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5551158938541820924, guid: 91186f60793c121499df4cedc88637af, type: 3}
   m_PrefabInstance: {fileID: 204629054}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &204629056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6343857256779327830, guid: 91186f60793c121499df4cedc88637af, type: 3}
+  m_PrefabInstance: {fileID: 204629054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &204629057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204629056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014ad5d0c8c98d04f9f2bae9462f35ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.WeaponLootCheckpoint2D
+--- !u!114 &204629058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204629056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: b6906782ecae4abd9e98470ecf5d720b
 --- !u!1001 &209422549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1274,21 +1400,111 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs (1)"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 209422558}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 209422557}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 209422556}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &209422550 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 209422549}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &209422551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 209422549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &209422552 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 209422549}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209422551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &209422553 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 209422549}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209422551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &209422554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 209422549}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209422551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &209422555 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 209422549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &209422556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209422551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 209422554}
+  - {fileID: 209422553}
+  - {fileID: 209422552}
+  body: {fileID: 209422555}
+--- !u!114 &209422557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209422551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &209422558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209422551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 3bbb326c5ffe4906a25fcf6fd28b02c4
 --- !u!1 &247039138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,21 +1628,111 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs (3)"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 249669428}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 249669427}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 249669426}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &249669420 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 249669419}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &249669421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 249669419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &249669422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 249669419}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249669421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &249669423 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 249669419}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249669421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &249669424 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 249669419}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249669421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &249669425 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 249669419}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &249669426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249669421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 249669424}
+  - {fileID: 249669423}
+  - {fileID: 249669422}
+  body: {fileID: 249669425}
+--- !u!114 &249669427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249669421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &249669428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249669421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: b1d4529e00e6414185f1440565724665
 --- !u!1001 &282501219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5003,13 +5309,49 @@ PrefabInstance:
     - {fileID: 2902330936746171604, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 535364564}
+    - targetCorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 535364563}
   m_SourcePrefab: {fileID: 100100000, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
 --- !u!4 &535364561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8595839746998501157, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
   m_PrefabInstance: {fileID: 535364560}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &535364562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+  m_PrefabInstance: {fileID: 535364560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &535364563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535364562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44d7a1881a7a7c49a6d182bce20cc7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.UpgradeCheckpoint2D
+--- !u!114 &535364564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535364562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 1d8bd01194b24879b003e3479b77ab5d
 --- !u!1001 &537105439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5070,13 +5412,49 @@ PrefabInstance:
     - {fileID: 8109381126503061838, guid: 91186f60793c121499df4cedc88637af, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6343857256779327830, guid: 91186f60793c121499df4cedc88637af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 537105443}
+    - targetCorrespondingSourceObject: {fileID: 6343857256779327830, guid: 91186f60793c121499df4cedc88637af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 537105442}
   m_SourcePrefab: {fileID: 100100000, guid: 91186f60793c121499df4cedc88637af, type: 3}
 --- !u!4 &537105440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5551158938541820924, guid: 91186f60793c121499df4cedc88637af, type: 3}
   m_PrefabInstance: {fileID: 537105439}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &537105441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6343857256779327830, guid: 91186f60793c121499df4cedc88637af, type: 3}
+  m_PrefabInstance: {fileID: 537105439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &537105442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537105441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014ad5d0c8c98d04f9f2bae9462f35ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.WeaponLootCheckpoint2D
+--- !u!114 &537105443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537105441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 4eef59b14c97465b88ff7d8e924301f2
 --- !u!1 &578987510
 GameObject:
   m_ObjectHideFlags: 0
@@ -5224,21 +5602,111 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs (6)"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 652568518}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 652568517}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 652568516}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &652568510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 652568509}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &652568511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 652568509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &652568512 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 652568509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652568511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &652568513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 652568509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652568511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &652568514 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 652568509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652568511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &652568515 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 652568509}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &652568516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652568511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 652568514}
+  - {fileID: 652568513}
+  - {fileID: 652568512}
+  body: {fileID: 652568515}
+--- !u!114 &652568517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652568511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &652568518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652568511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 66442c342149485f9c63a4043a6901ed
 --- !u!1001 &668688412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6561,21 +7029,111 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs (9)"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 761915732}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 761915731}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 761915730}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &761915724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 761915723}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &761915725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 761915723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &761915726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 761915723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761915725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &761915727 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 761915723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761915725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &761915728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 761915723}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761915725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &761915729 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 761915723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &761915730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761915725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 761915728}
+  - {fileID: 761915727}
+  - {fileID: 761915726}
+  body: {fileID: 761915729}
+--- !u!114 &761915731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761915725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &761915732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761915725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 0c3587ba4cc544a7ab55923134b5bde1
 --- !u!1001 &784396277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6636,13 +7194,49 @@ PrefabInstance:
     - {fileID: 8109381126503061838, guid: 91186f60793c121499df4cedc88637af, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6343857256779327830, guid: 91186f60793c121499df4cedc88637af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 784396281}
+    - targetCorrespondingSourceObject: {fileID: 6343857256779327830, guid: 91186f60793c121499df4cedc88637af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 784396280}
   m_SourcePrefab: {fileID: 100100000, guid: 91186f60793c121499df4cedc88637af, type: 3}
 --- !u!4 &784396278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5551158938541820924, guid: 91186f60793c121499df4cedc88637af, type: 3}
   m_PrefabInstance: {fileID: 784396277}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &784396279 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6343857256779327830, guid: 91186f60793c121499df4cedc88637af, type: 3}
+  m_PrefabInstance: {fileID: 784396277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &784396280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784396279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014ad5d0c8c98d04f9f2bae9462f35ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.WeaponLootCheckpoint2D
+--- !u!114 &784396281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784396279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 49cd22b219804088a96e2559ed53ddc1
 --- !u!1 &901603922
 GameObject:
   m_ObjectHideFlags: 0
@@ -6737,12 +7331,69 @@ PrefabInstance:
     - {fileID: 2902330936746171604, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 933294191}
+    - targetCorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 933294190}
   m_SourcePrefab: {fileID: 100100000, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
 --- !u!4 &933294188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8595839746998501157, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
   m_PrefabInstance: {fileID: 933294187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &933294189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+  m_PrefabInstance: {fileID: 933294187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &933294190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933294189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44d7a1881a7a7c49a6d182bce20cc7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.UpgradeCheckpoint2D
+--- !u!114 &933294191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933294189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 317e765009844d4381f001f7f014746d
+--- !u!50 &940086833 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4440430714685360213, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
+  m_PrefabInstance: {fileID: 4285742385993795649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &940086834 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6477379270795473385, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
+  m_PrefabInstance: {fileID: 4285742385993795649}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940086835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96f5d332188ae1418b13a363dbe5ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.PlayerMotor2D
+--- !u!1 &940086835 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4356745379422065042, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
+  m_PrefabInstance: {fileID: 4285742385993795649}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &982036777
 PrefabInstance:
@@ -7586,21 +8237,111 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs (2)"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1076465264}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1076465263}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1076465262}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &1076465256 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 1076465255}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1076465257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1076465255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1076465258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1076465255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076465257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &1076465259 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1076465255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076465257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &1076465260 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1076465255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076465257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &1076465261 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1076465255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1076465262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076465257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 1076465260}
+  - {fileID: 1076465259}
+  - {fileID: 1076465258}
+  body: {fileID: 1076465261}
+--- !u!114 &1076465263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076465257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &1076465264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076465257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 3a8ad1ebd77d42a3a1daa6522b40c932
 --- !u!1001 &1081479426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8162,21 +8903,111 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs (5)"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1143267748}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1143267747}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1143267746}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &1143267740 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 1143267739}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1143267741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1143267739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1143267742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1143267739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143267741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &1143267743 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1143267739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143267741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &1143267744 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1143267739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143267741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &1143267745 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1143267739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1143267746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143267741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 1143267744}
+  - {fileID: 1143267743}
+  - {fileID: 1143267742}
+  body: {fileID: 1143267745}
+--- !u!114 &1143267747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143267741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &1143267748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143267741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 6640165ad035490985bbf4b4b2241946
 --- !u!1001 &1146811538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9202,13 +10033,49 @@ PrefabInstance:
     - {fileID: 2902330936746171604, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1211670859}
+    - targetCorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1211670858}
   m_SourcePrefab: {fileID: 100100000, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
 --- !u!4 &1211670856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8595839746998501157, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
   m_PrefabInstance: {fileID: 1211670855}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1211670857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+  m_PrefabInstance: {fileID: 1211670855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1211670858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211670857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44d7a1881a7a7c49a6d182bce20cc7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.UpgradeCheckpoint2D
+--- !u!114 &1211670859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211670857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: ebc55f1f166640c987acabe43828ab3a
 --- !u!1001 &1233153719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10004,13 +10871,107 @@ PrefabInstance:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1317982169}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1317982168}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1317982167}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &1317982161 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 1317982160}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1317982162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1317982160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1317982163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1317982160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317982162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &1317982164 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1317982160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317982162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &1317982165 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1317982160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317982162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &1317982166 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1317982160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1317982167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317982162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 1317982165}
+  - {fileID: 1317982164}
+  - {fileID: 1317982163}
+  body: {fileID: 1317982166}
+--- !u!114 &1317982168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317982162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &1317982169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317982162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: e201f759d93444718f024fe97f1ab112
 --- !u!1 &1341437202
 GameObject:
   m_ObjectHideFlags: 0
@@ -11357,13 +12318,49 @@ PrefabInstance:
     - {fileID: 1311851919817895717, guid: bc61488ede9691546923d64d16ca394c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1843415811302185570, guid: bc61488ede9691546923d64d16ca394c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1612530177}
+    - targetCorrespondingSourceObject: {fileID: 1843415811302185570, guid: bc61488ede9691546923d64d16ca394c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1612530176}
   m_SourcePrefab: {fileID: 100100000, guid: bc61488ede9691546923d64d16ca394c, type: 3}
 --- !u!4 &1612530174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3161833133747577427, guid: bc61488ede9691546923d64d16ca394c, type: 3}
   m_PrefabInstance: {fileID: 1612530173}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1612530175 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1843415811302185570, guid: bc61488ede9691546923d64d16ca394c, type: 3}
+  m_PrefabInstance: {fileID: 1612530173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1612530176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612530175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014ad5d0c8c98d04f9f2bae9462f35ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.WeaponLootCheckpoint2D
+--- !u!114 &1612530177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612530175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: b3f4d4bc4ae9490dae0ceab9394b35c1
 --- !u!1 &1658746211
 GameObject:
   m_ObjectHideFlags: 0
@@ -12228,21 +13225,111 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs (7)"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1817860448}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1817860447}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1817860446}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &1817860440 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 1817860439}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1817860441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1817860439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1817860442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1817860439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817860441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &1817860443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1817860439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817860441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &1817860444 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1817860439}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817860441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &1817860445 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1817860439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1817860446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817860441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 1817860444}
+  - {fileID: 1817860443}
+  - {fileID: 1817860442}
+  body: {fileID: 1817860445}
+--- !u!114 &1817860447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817860441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &1817860448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817860441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: fec694d95a9e4bb0855551e7505195ca
 --- !u!1001 &1818101836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12796,8 +13883,44 @@ PrefabInstance:
     - {fileID: 2902330936746171604, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1822415519}
+    - targetCorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1822415518}
   m_SourcePrefab: {fileID: 100100000, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+--- !u!1 &1822415517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2567301491270444116, guid: 9e3b9e8ca78d43f4592ea0dc3239d67d, type: 3}
+  m_PrefabInstance: {fileID: 1822415516}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1822415518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822415517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b44d7a1881a7a7c49a6d182bce20cc7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.UpgradeCheckpoint2D
+--- !u!114 &1822415519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822415517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: c096b468e1534fd38313fecbbe20d042
 --- !u!1 &1830552892
 GameObject:
   m_ObjectHideFlags: 0
@@ -12958,21 +14081,111 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs (8)"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1847507147}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1847507146}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1847507145}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &1847507139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 1847507138}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1847507140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1847507138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1847507141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1847507138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847507140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &1847507142 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1847507138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847507140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &1847507143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1847507138}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847507140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &1847507144 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1847507138}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1847507145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847507140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 1847507143}
+  - {fileID: 1847507142}
+  - {fileID: 1847507141}
+  body: {fileID: 1847507144}
+--- !u!114 &1847507146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847507140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &1847507147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847507140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: c0f45ab4b9ca4bdb83abf872cbad4952
 --- !u!1 &1848594982
 GameObject:
   m_ObjectHideFlags: 0
@@ -13298,13 +14511,107 @@ PrefabInstance:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1871021012}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1871021011}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1871021010}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
 --- !u!4 &1871021004 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
   m_PrefabInstance: {fileID: 1871021003}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1871021005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1871021003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1871021006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1871021003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871021005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &1871021007 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1871021003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871021005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &1871021008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1871021003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871021005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &1871021009 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 1871021003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1871021010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871021005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 1871021008}
+  - {fileID: 1871021007}
+  - {fileID: 1871021006}
+  body: {fileID: 1871021009}
+--- !u!114 &1871021011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871021005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &1871021012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871021005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 1032257ddc4544cdb348e2dfbf7cd608
 --- !u!1 &1955753707
 GameObject:
   m_ObjectHideFlags: 0
@@ -13515,7 +14822,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3437036606695426937, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
   m_PrefabInstance: {fileID: 4285742385993795649}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 940086835}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b1e9e87766ab2b40a3608d8091f05c4, type: 3}
@@ -13679,16 +14986,106 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Stalker \u2014 six legs"
       objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: observer
-      value: 
-      objectReference: {fileID: 4285742385993795652}
     m_RemovedComponents:
     - {fileID: 6004288043281349771, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 238193614516990859}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 238193614516990858}
+    - targetCorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 238193614516990857}
   m_SourcePrefab: {fileID: 100100000, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+--- !u!1 &238193614516990852 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 238193614516990851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &238193614516990853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3287639879642865661, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 238193614516990851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238193614516990852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d64d477307453944bc09f71aeff120a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioThreat2D
+--- !u!114 &238193614516990854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3786033617028251814, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 238193614516990851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238193614516990852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1794a8d6db1a7104c8e68ef00753a601, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudio2D
+--- !u!114 &238193614516990855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3164793756777085726, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 238193614516990851}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238193614516990852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e9df3ce7c1ac4488a2ef46069492f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.ShadowStalker2D
+--- !u!50 &238193614516990856 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 263848196628194079, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
+  m_PrefabInstance: {fileID: 238193614516990851}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &238193614516990857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238193614516990852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 238193614516990855}
+  - {fileID: 238193614516990854}
+  - {fileID: 238193614516990853}
+  body: {fileID: 238193614516990856}
+--- !u!114 &238193614516990858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238193614516990852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6df61419b63534f95834aef895846a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerCheckpoint2D
+--- !u!114 &238193614516990859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238193614516990852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 843395ccddf14931b8913e82fb94ad5a
 --- !u!1001 &4285742385993795649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13856,14 +15253,23 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4356745379422065042, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4285742385993795657}
+    - targetCorrespondingSourceObject: {fileID: 4356745379422065042, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4285742385993795656}
+    - targetCorrespondingSourceObject: {fileID: 4356745379422065042, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4285742385993795655}
   m_SourcePrefab: {fileID: 100100000, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
 --- !u!114 &4285742385993795650 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5468575836828047699, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
   m_PrefabInstance: {fileID: 4285742385993795649}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 940086835}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 500d12c8cbe97624898244a956ece442, type: 3}
@@ -13874,7 +15280,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8262546381353967040, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
   m_PrefabInstance: {fileID: 4285742385993795649}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 940086835}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d3c9775b72850a4bae63a49ab0b939b, type: 3}
@@ -13890,7 +15296,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5336899062434458646, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
   m_PrefabInstance: {fileID: 4285742385993795649}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 940086835}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d88942bc97261748be6ab11968ac481, type: 3}
@@ -13901,12 +15307,55 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6855847030977610174, guid: 9082954efeeff0d418436885051ac4b0, type: 3}
   m_PrefabInstance: {fileID: 4285742385993795649}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 940086835}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7c2f849920eead45b86e58e62166543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.PlayerWeapon2D
+--- !u!114 &4285742385993795655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940086835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7681129605eab814bb016c54edc1eca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.LevelParticipant2D
+  activity:
+  - {fileID: 940086834}
+  - {fileID: 4285742385993795650}
+  - {fileID: 4285742385993795654}
+  body: {fileID: 940086833}
+--- !u!114 &4285742385993795656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940086835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b38f6979e5090b4cba6fdff18a3be8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PlayerCheckpoint2D
+  weapons: {fileID: 11400000, guid: e3850278e203bb94c843ca5626fbf0ec, type: 2}
+--- !u!114 &4285742385993795657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940086835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 943b8f9250e146248bd6658b30411985
 --- !u!1001 &6706278717929343343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14385,14 +15834,20 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5541054406115990625, guid: ac094c6a3fe97984281d77dfdb8737b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2040187322}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1169973344078556063, guid: ac094c6a3fe97984281d77dfdb8737b8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6706278717929343348}
+    - targetCorrespondingSourceObject: {fileID: 1169973344078556063, guid: ac094c6a3fe97984281d77dfdb8737b8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6706278717929343347}
   m_SourcePrefab: {fileID: 100100000, guid: ac094c6a3fe97984281d77dfdb8737b8, type: 3}
 --- !u!114 &6706278717929343344 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 892032495616693844, guid: ac094c6a3fe97984281d77dfdb8737b8, type: 3}
   m_PrefabInstance: {fileID: 6706278717929343343}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6706278717929343346}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9ed2bf47fea2194d81220c054b2769c, type: 3}
@@ -14403,6 +15858,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1502594697075184047, guid: ac094c6a3fe97984281d77dfdb8737b8, type: 3}
   m_PrefabInstance: {fileID: 6706278717929343343}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6706278717929343346 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1169973344078556063, guid: ac094c6a3fe97984281d77dfdb8737b8, type: 3}
+  m_PrefabInstance: {fileID: 6706278717929343343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6706278717929343347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706278717929343346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a555b9991ddd3647b05a9aff2b25c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.DoorCheckpoint2D
+--- !u!114 &6706278717929343348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706278717929343346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9ffea566130444b9decdfd3faa2e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.PersistentEntity2D
+  persistentId: 33216d1e4c6b4ea98d2523efec9a6e55
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

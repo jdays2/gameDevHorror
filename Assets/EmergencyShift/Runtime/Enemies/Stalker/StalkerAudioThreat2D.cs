@@ -13,17 +13,35 @@ namespace EmergencyShift
         public override bool IsAttacking => IsAlive && stalker.State == ShadowStalker2D.BehaviourState.Attacking;
         public override Transform Target => stalker != null ? stalker.Player : null;
         public override LayerMask Obstacles => stalker != null ? stalker.BlockingGeometry : 0;
-        private void Awake() { stalker = GetComponent<ShadowStalker2D>(); feedback = GetComponent<StalkerAudio2D>(); }
+
+        private void Awake()
+        {
+            stalker = GetComponent<ShadowStalker2D>();
+            feedback = GetComponent<StalkerAudio2D>();
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (feedback != null) feedback.PerceptibleCue += OnHeard;
+            if (feedback != null)
+            {
+                feedback.PerceptibleCue += OnHeard;
+            }
         }
+
         protected override void OnDisable()
         {
-            if (feedback != null) feedback.PerceptibleCue -= OnHeard;
+            if (feedback != null)
+            {
+                feedback.PerceptibleCue -= OnHeard;
+            }
+
             base.OnDisable();
         }
-        private void OnHeard(float duration, float gain, bool urgent) { ReportHeard(duration, gain, urgent); }
+
+        private void OnHeard(float duration, float gain, bool urgent)
+        {
+            ReportHeard(duration, gain, urgent);
+        }
     }
 }

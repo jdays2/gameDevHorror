@@ -6,14 +6,56 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Stalker audio set")]
     public sealed class StalkerAudioSet : ScriptableObject
     {
-        public enum Cue { Step, Scrape, Idle, Notice, Windup, Lunge, Bite, LightFear, RetreatPain, Cower, Hit, Death, Debris }
+        public enum Cue
+        {
+            Step,
+            Scrape,
+            Idle,
+            Notice,
+            Windup,
+            Lunge,
+            Bite,
+            LightFear,
+            RetreatPain,
+            Cower,
+            Hit,
+            Death,
+            Debris
+        }
 
-        [SerializeField] private AudioClip[] step, scrape, idle, notice, windup, lunge, bite;
-        [SerializeField] private AudioClip[] lightFear, retreatPain, cower, hit, death, debris;
+        [SerializeField]
+        private AudioClip[] step;
+        [SerializeField]
+        private AudioClip[] scrape;
+        [SerializeField]
+        private AudioClip[] idle;
+        [SerializeField]
+        private AudioClip[] notice;
+        [SerializeField]
+        private AudioClip[] windup;
+        [SerializeField]
+        private AudioClip[] lunge;
+        [SerializeField]
+        private AudioClip[] bite;
+        [SerializeField]
+        private AudioClip[] lightFear;
+        [SerializeField]
+        private AudioClip[] retreatPain;
+        [SerializeField]
+        private AudioClip[] cower;
+        [SerializeField]
+        private AudioClip[] hit;
+        [SerializeField]
+        private AudioClip[] death;
+        [SerializeField]
+        private AudioClip[] debris;
         [Header("Shared simultaneous voice limits")]
-        [SerializeField, Min(1)] private int movementVoices = 8;
-        [SerializeField, Min(1)] private int idleVoices = 2;
-        [SerializeField, Min(1)] private int deathVoices = 3;
+        [SerializeField, Min(1)]
+        private int movementVoices = 8;
+        [SerializeField, Min(1)]
+        private int idleVoices = 2;
+        [SerializeField, Min(1)]
+        private int deathVoices = 3;
         public int MovementVoices => movementVoices;
         public int IdleVoices => idleVoices;
         public int DeathVoices => deathVoices;
@@ -22,20 +64,34 @@ namespace EmergencyShift
         {
             switch (cue)
             {
-                case Cue.Step: return step;
-                case Cue.Scrape: return scrape;
-                case Cue.Idle: return idle;
-                case Cue.Notice: return notice;
-                case Cue.Windup: return windup;
-                case Cue.Lunge: return lunge;
-                case Cue.Bite: return bite;
-                case Cue.LightFear: return lightFear;
-                case Cue.RetreatPain: return retreatPain;
-                case Cue.Cower: return cower;
-                case Cue.Hit: return hit;
-                case Cue.Death: return death;
-                case Cue.Debris: return debris;
-                default: return null;
+                case Cue.Step:
+                    return step;
+                case Cue.Scrape:
+                    return scrape;
+                case Cue.Idle:
+                    return idle;
+                case Cue.Notice:
+                    return notice;
+                case Cue.Windup:
+                    return windup;
+                case Cue.Lunge:
+                    return lunge;
+                case Cue.Bite:
+                    return bite;
+                case Cue.LightFear:
+                    return lightFear;
+                case Cue.RetreatPain:
+                    return retreatPain;
+                case Cue.Cower:
+                    return cower;
+                case Cue.Hit:
+                    return hit;
+                case Cue.Death:
+                    return death;
+                case Cue.Debris:
+                    return debris;
+                default:
+                    return null;
             }
         }
     }
