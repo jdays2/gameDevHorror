@@ -1,0 +1,31 @@
+{
+  "checks": {
+    "basement_without_side_content": true,
+    "basement_must_visit_b02_before_d1": true,
+    "shortcut_reduces_graph_steps": true,
+    "upper_route_a_without_side_content": true,
+    "upper_route_b_without_side_content": true,
+    "role_ii_observation_before_either_branch": true,
+    "role_iii_demo_before_arena": true,
+    "two_stalker_rooms_upstairs_before_arena": true,
+    "no_box_overlaps": true,
+    "no_edge_through_unrelated_box": true
+  },
+  "shortcut_before": [
+    "Vminus",
+    "B04",
+    "C04",
+    "B03",
+    "C03",
+    "B02",
+    "C02",
+    "C01",
+    "BO1"
+  ],
+  "shortcut_after": [
+    "Vminus",
+    "C01",
+    "BO1"
+  ],
+  "limitation": "Graph audit only; not movement, visibility, fight duration, balance or performance validation."
+}
