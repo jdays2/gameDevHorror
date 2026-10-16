@@ -12,6 +12,7 @@
 | Сохранение/восстановление и добавление точек | [Чекпоинты](Guides/CHECKPOINTS.md) |
 | Почему код устроен так | [C# для владельца проекта](Guides/CSHARP.md) |
 | Первый враг | [Сталкер](Enemies/STALKER.md) |
+| Оружие и согласованные концепты | [Оружие](Weapons/README.md), [пистолет](Weapons/PISTOL.md), [дробовик](Weapons/SHOTGUN.md) |
 | Настройка звука | [Аудио](Audio/AUDIO_GUIDE.md) |
 | Основная тестовая сцена | [Песочница механик](SANDBOX.md) |
 | История удалённого демо | [FirstShift](FIRST_LEVEL.md) |
