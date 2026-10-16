@@ -2,7 +2,7 @@
   "date": "2026-10-16",
   "tool": "image_gen.imagegen (built-in)",
   "model": "not exposed by tool",
-  "status": "Two clean base material studies for owner review; not approved or integrated.",
+  "status": "Integrated at owner request as MechanicsSandbox preview; final art approval pending.",
   "requestedScope": "Two non-pixel 2D room-floor texture examples. No blood, damage, broken, worn or rusty variants; those require later owner approval.",
   "outputs": [
     {
@@ -30,7 +30,14 @@
     "Opaque full-surface overhead base-color studies",
     "No perspective, objects, labels or scenery",
     "Neutral even albedo; no theatrical lighting",
-    "Source prompts request seamless repetition; technical tiling and in-engine scale not yet approved or verified"
+    "Repeat and in-engine scale visually checked as sandbox preview; no production seamlessness guarantee."
   ],
-  "unityChanged": false
+  "unityChanged": true,
+  "integration": {
+    "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+    "tileRoom": 2,
+    "concreteRoom": 3,
+    "sourceProcessing": "Original PNG bytes copied unchanged; sprite import PPU209, FullRect, NPOT None, Repeat, Tiled 20x16 world units; source repeat spans 6 units.",
+    "review": "Visual Play review with existing lights; no damage variants generated."
+  }
 }
