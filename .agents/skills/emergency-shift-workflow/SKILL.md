@@ -16,3 +16,5 @@ description: Work on Emergency Shift Unity horror with its current project rules
 For design or code changes, identify the owner of configuration, runtime state and cleanup. Check the cost of adding the next level/enemy/weapon: ordinary content should not require edits across unrelated systems. State planned boundaries as plans, not implemented features. Do not turn a request to research/update rules into a runtime rewrite.
 
 Always retain: top-down 2D; scene-authored content; permanent aggro after proximity+LOS; delayed light fear; no automatic defensive lamps; one procedural blood event per death; darker remains below living actors. Check Docs/Enemies/STALKER.md for the full accepted behavior. OPT-01 mass-death pooling is deliberately deferred.
+
+Current scope: MechanicsSandbox is the primary authored test scene; FirstShift was removed at the owner’s request. Defer playable-level/campaign construction. See Docs/SANDBOX.md. Sandbox R starts fresh, T refills owned weapon ammo, and the range temporarily grants player health; do not attach checkpoint/objective controllers there without a new task.

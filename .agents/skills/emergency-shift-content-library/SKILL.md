@@ -16,3 +16,5 @@ When authoring reusable enemy/death/encounter content, distinguish a shared defi
 Current Stalker reference is pale gray-pink flesh, strict top-down, full connected legs, transparent sprite backgrounds. Accepted membrane/pistol/casings/foley remain unless the task changes them. New musical direction requires a short audition and user approval before full expansion/integration; existing authorized maintenance needs no new approval ceremony.
 
 Canonical current docs: Docs/README.md, SPEC.md, ARCHITECTURE.md, MVP_PLAN.md, Guides, Enemies and Audio. Update one source of truth rather than append contradictory histories. Delete irrelevant intermediate test dumps only after preserving current evidence and provenance. Generate FILE_MAP from actual source layout, not imagined systems.
+
+Current scope: MechanicsSandbox is the primary authored test scene; FirstShift was removed at the owner’s request. Defer playable-level/campaign construction. See Docs/SANDBOX.md. Sandbox R starts fresh, T refills owned weapon ammo, and the range temporarily grants player health; do not attach checkpoint/objective controllers there without a new task.

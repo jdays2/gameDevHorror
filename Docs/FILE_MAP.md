@@ -1,6 +1,6 @@
 # Карта файлов
 
-Пути относительно Assets/EmergencyShift. Фактические исходники/сборки; данные — Data, комплекты — Prefabs, история — Concepts вне Assets.
+Пути относительно Assets/EmergencyShift. Получены из фактического дерева исходников; основная сцена — MechanicsSandbox.
 
 ## Runtime
 
@@ -33,7 +33,7 @@
 | `Runtime/Development/DevelopmentBuildSmoke.cs` | Only runs with --es-smoke-test in a development player. Ordinary game startup is unchanged. |
 | `Runtime/Development/EmergencyShift.Development.asmdef` | Граница сборки |
 | `Runtime/Development/EngineeringBenchmark2D.cs` | Opt-in native-player baseline for pursuit and simultaneous death. Never saved in a scene. |
-| `Runtime/Development/FirstLevelProbe.cs` | Temporary scripted pilot: real physics, proximity pickups, doors and bullets. Never saved/built. |
+| `Runtime/Development/SandboxRegressionProbe.cs` | Opt-in physical sandbox route, shooting and restart checks. Never saved in a scene. |
 | `Runtime/EmergencyShift.Runtime.asmdef` | Граница сборки |
 | `Runtime/Enemies/Common/CrowdAgent2D.cs` | Small-population local separation. Static walls still decide whether a step is safe. |
 | `Runtime/Enemies/Common/EnemyChasePath2D.cs` | Ограниченный кэшируемый A* для погони за углами. Не управляет агрессией или телом. |
@@ -96,6 +96,9 @@
 | `Runtime/Presentation/Visuals/RemainsVisualStyle.cs` | Общее визуальное правило для трупов, кусков и редакторских образцов. |
 | `Runtime/Presentation/Visuals/ShellCasing2D.cs` | Small top-down casing: planar motion plus virtual height, one first-floor-contact sound. |
 | `Runtime/Presentation/Visuals/ShotEffect2D.cs` | Огонь и свет дула затухают вместе; штрихи используются для попаданий. |
+| `Runtime/Sandbox/SandboxHealthZone2D.cs` | Temporary shooting-range health; leaving preserves the health held before entry. |
+| `Runtime/Sandbox/SandboxSession2D.cs` | Explicit sandbox shortcuts. No campaign objectives or checkpoint slot. |
+| `Runtime/Sandbox/SandboxStationaryStalker2D.cs` | Anchors a real Stalker target; its hit, sound and death pipeline keeps running. |
 | `Runtime/UI/AimReticle2D.cs` | Saved HUD graphic: a small ring/ticks at the pointer, with no enemy highlighting. |
 | `Runtime/UI/LevelCompletionView2D.cs` | LevelCompletionView2D |
 | `Runtime/UI/PrototypeHud.cs` | Отображает состояние игрока, одну контекстную подсказку и результат подбора. |
@@ -114,9 +117,9 @@
 
 | Файл | Назначение |
 |---|---|
-| `Editor/Authoring/FirstLevelBuilder.cs` | One-time authoring tool. The resulting scene is ordinary editable geometry, not a runtime generator. |
 | `Editor/Authoring/LevelAuthoringSetup.cs` | Creates reusable scene-authored scaffolding once; never replaces the user's playable level. |
 | `Editor/Authoring/LevelPersistenceAuthoring.cs` | Explicit authoring command. Adds metadata/components; never rebuilds room geometry. |
+| `Editor/Authoring/SandboxSceneBuilder.cs` | One-time authoring of editable test rooms; never runs at Play or replaces an existing sandbox. |
 | `Editor/EmergencyShift.Editor.asmdef` | Граница сборки |
 | `Editor/Inspectors/EnemyPatrol2DEditor.cs` | Границы патруля редактируются на сцене; данные остаются на конкретном враге. |
 | `Editor/Inspectors/LevelAudioDirectorEditor.cs` | LevelAudioDirectorEditor |

@@ -1,0 +1,278 @@
+{
+  "date": "2026-10-16",
+  "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+  "unity": "6000.6.5f1",
+  "nativeRoute": {
+    "finished": true,
+    "failure": "",
+    "passed": [
+      "Sandbox is startup scene",
+      "Fresh player 3/3 HP",
+      "No objectives, exit or checkpoint slot",
+      "One listener and accepted adaptive director",
+      "Two mobile Stalkers and three anchored targets",
+      "Room 01 starts behind blocking geometry",
+      "Interact 03 Room 02 · Access card and locked door / Entry door · close to isolate test",
+      "Door fully open",
+      "Locked door rejects missing card",
+      "Closed door physically blocks movement",
+      "Physical route auto-picks card",
+      "Interact 03 Room 02 · Access card and locked door / Locked test door · sandbox-card",
+      "Door fully open",
+      "Card unlocks only test door",
+      "Interact 04 Room 03 · Stationary targets and weapons / Entry door · close to isolate test",
+      "Door fully open",
+      "Damage outside range uses normal HP",
+      "Range entry raises player to 100/100",
+      "Pistol collected via proximity",
+      "Target remains anchored during light response",
+      "First actual projectile fires",
+      "Bullet damages target without killing",
+      "Target stays anchored after bullet push",
+      "Second actual projectile fires",
+      "Target dead and body collision removed",
+      "One independent remains root",
+      "Repeated kill does not duplicate blood",
+      "Other targets retain independent HP",
+      "T refills existing weapon",
+      "Leaving range restores original 2/3 HP",
+      "Reentering range reapplies 100 HP",
+      "Repeated entry does not heal outside",
+      "R restarts while alive",
+      "Restart restores targets, loot and doors",
+      "Restart leaves one listener and four doors",
+      "Interact 02 Room 01 · Stalkers / Entry door · close to isolate test",
+      "Door fully open",
+      "Mobile Stalker detects real nearby player",
+      "Mobile Stalker reacts to flashlight",
+      "Room 01 keeps permanent aggro",
+      "Normal player can still be defeated",
+      "R restarts after death"
+    ]
+  },
+  "standaloneSmoke": {
+    "passed": true,
+    "checks": [
+      "Initial level context: True",
+      "New level context: True",
+      "One listener after scene switch: True",
+      "Old door registry cleared on unload: True",
+      "Complete player audio prefab and unique world-foley voices: True",
+      "One scene atmosphere and cleared threat registry after unload: True",
+      "Fire from authored rig: True",
+      "Non-Stalker receives one bullet: True",
+      "Weapon data controls stats: True",
+      "Fire with alternate weapon data: True",
+      "Alternate damage reaches generic target: True",
+      "Thin wall blocks new weapon: True",
+      "One-shot encounter activation: True"
+    ],
+    "errors": [],
+    "unity": "6000.6.5f1",
+    "scene": "Assets/EmergencyShift/Scenes/LevelTemplate.unity"
+  },
+  "editMode": {
+    "mode": "EditMode",
+    "summary": {
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 0.6640767,
+      "resultState": "Passed"
+    },
+    "results": [
+      {
+        "name": "OverkillAndRepeatedKillEmitOnlyOneDeath",
+        "fullName": "EmergencyShift.Tests.EnemySystemsTests.OverkillAndRepeatedKillEmitOnlyOneDeath",
+        "state": "Passed",
+        "durationSeconds": 0.0162887,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "PatrolAreaTooSmallForBodyDoesNotMove",
+        "fullName": "EmergencyShift.Tests.EnemySystemsTests.PatrolAreaTooSmallForBodyDoesNotMove",
+        "state": "Passed",
+        "durationSeconds": 0.0037187,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "PerceptionDoesNotSeeTargetThroughBlockingGeometry",
+        "fullName": "EmergencyShift.Tests.EnemySystemsTests.PerceptionDoesNotSeeTargetThroughBlockingGeometry",
+        "state": "Passed",
+        "durationSeconds": 0.0018798,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "SharedDefinitionDoesNotShareCurrentHealth",
+        "fullName": "EmergencyShift.Tests.EnemySystemsTests.SharedDefinitionDoesNotShareCurrentHealth",
+        "state": "Passed",
+        "durationSeconds": 0.0005101,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "BrokenJsonIsRejected",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.BrokenJsonIsRejected",
+        "state": "Passed",
+        "durationSeconds": 0.0189078,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "CardRestoreReplacesInventoryWithoutSharingIt",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.CardRestoreReplacesInventoryWithoutSharingIt",
+        "state": "Passed",
+        "durationSeconds": 0.0013215,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ClearRemovesBackupAndSlot",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.ClearRemovesBackupAndSlot",
+        "state": "Passed",
+        "durationSeconds": 0.0181503,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "DiskRoundTripPreservesStableIdAndPayload",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.DiskRoundTripPreservesStableIdAndPayload",
+        "state": "Passed",
+        "durationSeconds": 0.0050158,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "DuplicateIdsAreRejectedBeforeWriting",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.DuplicateIdsAreRejectedBeforeWriting",
+        "state": "Passed",
+        "durationSeconds": 0.0006029,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "DuplicateSceneIdsFailRatherThanOverwritingAnEnemy",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.DuplicateSceneIdsFailRatherThanOverwritingAnEnemy",
+        "state": "Passed",
+        "durationSeconds": 0.0010706,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "HealthRestoreIsSilentAndStillPreventsSecondDeath",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.HealthRestoreIsSilentAndStillPreventsSecondDeath",
+        "state": "Passed",
+        "durationSeconds": 0.0005859,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "InactiveActorPayloadSurvivesJsonWithoutBecomingADeadActor",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.InactiveActorPayloadSurvivesJsonWithoutBecomingADeadActor",
+        "state": "Passed",
+        "durationSeconds": 0.0018709,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "NonFinitePositionIsRejected",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.NonFinitePositionIsRejected",
+        "state": "Passed",
+        "durationSeconds": 0.0003382,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ReplacementKeepsPreviousSlotBackup",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.ReplacementKeepsPreviousSlotBackup",
+        "state": "Passed",
+        "durationSeconds": 0.01643,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "UnsupportedVersionDoesNotReplaceLastGoodSave",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.UnsupportedVersionDoesNotReplaceLastGoodSave",
+        "state": "Passed",
+        "durationSeconds": 0.0039552,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      }
+    ]
+  },
+  "developmentBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 33.7791134
+  },
+  "releaseBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 17.3017427
+  },
+  "sceneAudit": {
+    "missingScripts": 0,
+    "savedDevelopmentProbes": 0,
+    "signs": [
+      "СВОБОДНЫЙ ДОСТУП К ТЕСТАМ  →",
+      "01  ·  СТАЛКЕРЫ ↑",
+      "02  ·  КАРТА / ДВЕРЬ ↑",
+      "03  ·  ТИР / 100 HP ↑",
+      "01  ·  СТАЛКЕРЫ",
+      "Обнаружение · патруль · страх света · укус\nОбычное здоровье: 3 HP",
+      "02  ·  КАРТА И ДВЕРЬ",
+      "Проверь отказ без карты, затем подбери карту\n[E] Открыть / закрыть · карта не расходуется",
+      "КАРТА ↓",
+      "03  ·  ОРУЖЕЙНЫЙ ТИР",
+      "Неподвижные Сталкеры · попадания · кровь / останки\nВнутри: 100 HP · [T] Патроны · [R] Новые цели",
+      "2 HP",
+      "6 HP",
+      "20 HP"
+    ],
+    "builds": [
+      "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+      "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+      "Assets/EmergencyShift/Scenes/LevelTemplate.unity"
+    ],
+    "variant": "Release"
+  },
+  "consoleErrorsAndWarnings": 0,
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "integrity": {
+    "userBasementSceneUnchanged": true,
+    "userBasementSha256": "b94410fc20b6e691e90db08c5ad834965e84f391862db11ef4e6fa07751e9ce8",
+    "duplicateAssetGuids": 0,
+    "assetGuidCount": 392,
+    "removedSceneAndDefinitionHaveNoSerializedReferences": true,
+    "skillsSynchronized": [
+      "emergency-shift-workflow",
+      "emergency-shift-unity-migration",
+      "emergency-shift-content-library"
+    ],
+    "newArtOrAudioSources": false,
+    "scope": "Historical concept materials and accepted art/audio were not moved or replaced."
+  }
+}

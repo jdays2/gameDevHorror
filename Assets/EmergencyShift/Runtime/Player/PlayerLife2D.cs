@@ -67,6 +67,19 @@ namespace EmergencyShift
             HealthChanged?.Invoke(Health);
         }
 
+        /// <summary>Changes this player's capacity without reviving a defeated player.</summary>
+        public void SetHealthCapacity(int capacity, int currentHealth)
+        {
+            if (IsDead)
+            {
+                return;
+            }
+
+            maximumHealth = Mathf.Max(1, capacity);
+            Health = Mathf.Clamp(currentHealth, 1, maximumHealth);
+            HealthChanged?.Invoke(Health);
+        }
+
         public bool TakeDamage(int amount)
         {
             if (IsDead || amount <= 0 || Time.time < protectedUntil)
