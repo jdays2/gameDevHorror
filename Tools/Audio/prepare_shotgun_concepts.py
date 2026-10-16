@@ -15,7 +15,7 @@ import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[2]
-BASE = ROOT / 'Concepts/Unused/Audio/ShotgunRealism01'
+BASE = ROOT / 'Concepts/Used/Audio/ShotgunRealism01'
 RATE = 48000
 
 
@@ -87,6 +87,9 @@ def main():
     args = parser.parse_args()
     if (BASE / 'manifest.json').exists() and not args.force:
         raise SystemExit('Audition exists. Use --force only for intentional regeneration.')
+    previous = {}
+    if (BASE / 'manifest.json').exists():
+        previous = json.loads((BASE / 'manifest.json').read_text(encoding='utf-8'))
     (BASE / 'Clips').mkdir(exist_ok=True)
     (BASE / 'Previews').mkdir(exist_ok=True)
     sources = json.loads((BASE / 'sources.json').read_text(encoding='utf-8'))
@@ -206,6 +209,12 @@ def main():
                   sourceRecords=sources, existingReferences=reference_report, clips=report, previews=preview_report,
                   limitations='Numerical and decoder QA only; take/event identity follows source descriptions and selected windows. Subjective listening and final in-game mixing remain for the owner. Loading montage uses 3 source events with the first repeated for the fourth insert.',
                   unityChanged=False)
+    # Regenerating offline studies must retain the history of selected runtime copies.
+    # This tool never updates Assets; runtime copy hashes continue to describe those actual files.
+    if 'runtimeSelection' in previous:
+        result['runtimeSelection'] = previous['runtimeSelection']
+        result['status'] = previous['status']
+        result['unityChanged'] = previous['unityChanged']
     (BASE / 'manifest.json').write_bytes((json.dumps(result, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
     print(json.dumps(dict(clips=len(report), previews=len(preview_report), maximumPreviewPeak=max(item['peakAfterMp3'] for item in preview_report), unityChanged=False)))
 

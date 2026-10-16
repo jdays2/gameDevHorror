@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace EmergencyShift
 {
-    /// <summary>Pistol ownership/ammo and a straight projectile from the muzzle through the cursor target.</summary>
+    /// <summary>Player input, common aiming and projectile presentation; definitions create independent firing cycles.</summary>
     [DisallowMultipleComponent, DefaultExecutionOrder(20)]
     [RequireComponent(typeof(Flashlight2D))]
     public sealed class PlayerWeapon2D : MonoBehaviour
@@ -29,21 +29,22 @@ namespace EmergencyShift
         private Flashlight2D flashlight;
         private PlayerLife2D life;
         private PlayerShotShadow2D shotShadow;
-        private float nextShot;
+        private readonly WeaponInventory inventory = new WeaponInventory();
+        private WeaponCycle boundCycle;
+        private Vector3 restingWeaponScale;
         private float nextEmptyTrigger;
-        public bool HasWeapon
-        {
-            get; private set;
-        }
-        public int Ammo
-        {
-            get; private set;
-        }
-        public int MaximumAmmo => definition.maximumAmmo;
-        public int Damage => definition.damage;
-        public float ShotInterval => Mathf.Max(.05f, definition.secondsBetweenShots);
-        public float BulletRange => definition.range;
-        public WeaponDefinition Definition => definition;
+        public bool HasWeapon => inventory.ActiveCycle != null;
+        public int Ammo => inventory.ActiveCycle != null ? inventory.ActiveCycle.TotalAmmo : 0;
+        public int MaximumAmmo => Definition.maximumAmmo;
+        public int LoadedAmmo => inventory.ActiveCycle != null ? inventory.ActiveCycle.Loaded : 0;
+        public int ReserveAmmo => inventory.ActiveCycle != null ? inventory.ActiveCycle.Reserve : 0;
+        public int MagazineCapacity => inventory.ActiveCycle != null ? inventory.ActiveCycle.MagazineCapacity : 0;
+        public WeaponPhase Phase => inventory.ActiveCycle != null ? inventory.ActiveCycle.Phase : WeaponPhase.Ready;
+        public int OwnedCount => inventory.Count;
+        public int Damage => Definition.damage;
+        public float ShotInterval => Mathf.Max(.05f, Definition.secondsBetweenShots);
+        public float BulletRange => Definition.range;
+        public WeaponDefinition Definition => inventory.ActiveDefinition != null ? inventory.ActiveDefinition : definition;
         public int ShotsFired
         {
             get; private set;
@@ -67,9 +68,18 @@ namespace EmergencyShift
         public event System.Action OwnershipChanged;
         public event System.Action ShotFired;
         public event System.Action EmptyTriggerPulled;
+        public event System.Action CasingEjected;
+        public event System.Action<WeaponOperation> Operation;
         public event System.Action<Collider2D, Vector2> SurfaceHit;
+        public int LastImpactVolleyId { get; private set; }
         public void ReportImpact(Collider2D target, Vector2 point)
         {
+            ReportImpact(target, point, 0);
+        }
+
+        public void ReportImpact(Collider2D target, Vector2 point, int volleyId)
+        {
+            LastImpactVolleyId = volleyId;
             SurfaceHit?.Invoke(target, point);
         }
 
@@ -102,13 +112,15 @@ namespace EmergencyShift
                 throw new System.ArgumentNullException(nameof(value));
             }
 
+            value.Validate();
+            inventory.ReplaceActiveDefinition(value);
             definition = value;
-            if (applyVisuals && value != null && value.visuals != null)
+            if (applyVisuals && value.visuals != null)
             {
                 visualProfile = value.visuals;
             }
 
-            Ammo = Mathf.Min(Ammo, MaximumAmmo);
+            BindCycle();
         }
 
         private void Awake()
@@ -125,63 +137,142 @@ namespace EmergencyShift
             shotShadow = GetComponent<PlayerShotShadow2D>();
             if (weaponPivot != null)
             {
+                restingWeaponScale = weaponPivot.localScale;
                 weaponPivot.gameObject.SetActive(false);
             }
+
+            definition.Validate();
         }
 
         public void RestoreState(bool owned, int ammo, WeaponDefinition savedDefinition)
         {
-            if (savedDefinition != null)
-            {
-                SetDefinition(savedDefinition);
-            }
-
-            HasWeapon = owned;
-            Ammo = Mathf.Clamp(ammo, 0, MaximumAmmo);
-            nextShot = 0;
+            UnbindCycle();
+            definition = savedDefinition != null ? savedDefinition : definition;
+            inventory.RestoreLegacy(owned, ammo, definition);
             nextEmptyTrigger = 0;
-            UpdatePose();
-            OwnershipChanged?.Invoke();
+            Equipped();
+        }
+
+        public WeaponInventorySnapshot CaptureInventory() => inventory.Capture(Time.time);
+
+        public void RestoreInventory(WeaponInventorySnapshot state, WeaponCatalog catalog)
+        {
+            WeaponInventory.Validate(state, catalog);
+            UnbindCycle();
+            inventory.Restore(state, catalog, Time.time);
+            Equipped();
         }
 
         private bool CanUse => isActiveAndEnabled && (life == null || !life.IsDead);
 
         public bool Acquire(int cartridges, WeaponDefinition selected = null)
         {
-            if (!CanUse || HasWeapon)
+            if (!CanUse || !inventory.Acquire(selected != null ? selected : Definition, cartridges))
             {
                 return false;
             }
 
-            if (selected != null && selected != definition)
-            {
-                SetDefinition(selected);
-            }
-
-            HasWeapon = true;
-            Ammo = Mathf.Min(MaximumAmmo, Ammo + Mathf.Max(0, cartridges));
-            UpdatePose();
-            OwnershipChanged?.Invoke();
+            Equipped();
             return true;
         }
 
-        public bool TryAddAmmo(int cartridges)
+        public bool TryAddAmmo(int cartridges, WeaponDefinition target = null)
         {
-            if (!CanUse || cartridges <= 0 || Ammo >= MaximumAmmo)
+            return AddAmmo(cartridges, target) > 0;
+        }
+
+        public int AddAmmo(int cartridges, WeaponDefinition target = null)
+        {
+            return CanUse ? inventory.AddAmmo(cartridges, target) : 0;
+        }
+
+        public bool TryEquip(int slot)
+        {
+            if (!CanUse || !inventory.Equip(slot))
             {
                 return false;
             }
 
-            Ammo += Mathf.Min(cartridges, MaximumAmmo - Ammo);
+            Equipped();
             return true;
+        }
+
+        public bool TryReload()
+        {
+            return CanUse && inventory.ActiveCycle != null && inventory.ActiveCycle.TryReload(Time.time);
+        }
+
+        private void Equipped()
+        {
+            if (Definition.visuals != null)
+            {
+                visualProfile = Definition.visuals;
+            }
+
+            BindCycle();
+            if (weaponPivot != null)
+            {
+                weaponPivot.localScale = Vector3.Scale(restingWeaponScale, Definition.HeldScale);
+            }
+
+            UpdatePose();
+            OwnershipChanged?.Invoke();
+        }
+
+        private void BindCycle()
+        {
+            UnbindCycle();
+            boundCycle = inventory.ActiveCycle;
+            if (boundCycle != null)
+            {
+                boundCycle.Operation += OnOperation;
+            }
+        }
+
+        private void UnbindCycle()
+        {
+            if (boundCycle != null)
+            {
+                boundCycle.Operation -= OnOperation;
+                boundCycle = null;
+            }
+        }
+
+        private void OnOperation(WeaponOperation operation)
+        {
+            Operation?.Invoke(operation);
+            if (operation == WeaponOperation.Pump)
+            {
+                CasingEjected?.Invoke();
+            }
         }
 
         private void Update()
         {
+            inventory.ActiveCycle?.Tick(Time.time);
+            var keyboard = Keyboard.current;
+            if (keyboard != null)
+            {
+                if (keyboard.digit1Key.wasPressedThisFrame)
+                {
+                    TryEquip(0);
+                }
+
+                if (keyboard.digit2Key.wasPressedThisFrame)
+                {
+                    TryEquip(1);
+                }
+
+                if (keyboard.xKey.wasPressedThisFrame)
+                {
+                    TryReload();
+                }
+            }
+
             UpdatePose();
             if (Mouse.current != null)
             {
-                bool fire = definition != null && definition.automatic ? Mouse.current.leftButton.isPressed : Mouse.current.leftButton.wasPressedThisFrame;
+                bool fire = Definition != null && Definition.automatic ? Mouse.current.leftButton.isPressed : Mouse.current.leftButton.wasPressedThisFrame;
                 if (fire)
                 {
                     TryFire();
@@ -191,6 +282,7 @@ namespace EmergencyShift
 
         private void OnDisable()
         {
+            inventory.ActiveCycle?.CancelReload();
             if (weaponPivot != null)
             {
                 weaponPivot.gameObject.SetActive(false);
@@ -233,7 +325,8 @@ namespace EmergencyShift
 
         public bool TryFire()
         {
-            if (CanUse && HasWeapon && Ammo <= 0)
+            var cycle = inventory.ActiveCycle;
+            if (CanUse && cycle != null && !cycle.HasReadyRound && cycle.Phase != WeaponPhase.Pumping)
             {
                 if (Time.time >= nextEmptyTrigger)
                 {
@@ -244,7 +337,7 @@ namespace EmergencyShift
                 return false;
             }
 
-            if (!CanUse || !HasWeapon || Ammo <= 0 || Time.time < nextShot || visualProfile == null || bulletPrefab == null || effectPrefab == null || muzzle == null)
+            if (!CanUse || cycle == null || !cycle.CanFire(Time.time) || visualProfile == null || bulletPrefab == null || effectPrefab == null || muzzle == null)
             {
                 return false;
             }
@@ -254,6 +347,11 @@ namespace EmergencyShift
             if (aim != null && !HasForwardAim)
             {
                 return false; // Never fire backwards into the owner at a cursor under the gun.
+            }
+
+            if (!cycle.TryFire(Time.time))
+            {
+                return false;
             }
 
             Vector2 target = aim != null ? aim.WorldPoint : origin + flashlight.Direction * BulletRange;
@@ -268,10 +366,12 @@ namespace EmergencyShift
             LastShotDirection = direction;
             LastShotOrigin = origin;
             LastShotTarget = target;
-            Ammo--;
             ShotsFired++;
-            nextShot = Time.time + ShotInterval;
             ShotFired?.Invoke();
+            if (cycle.EjectsOnShot)
+            {
+                CasingEjected?.Invoke();
+            }
             var flash = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
             flash.Play(visualProfile, false, direction);
             if (shotShadow != null)
@@ -281,17 +381,26 @@ namespace EmergencyShift
 
             if (blockedMuzzle.collider == null)
             {
-                var bullet = Instantiate(bulletPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
-                bullet.Launch(transform, direction, visualProfile, effectPrefab, bulletCollisionMask, Damage, BulletRange);
+                for (int index = 0; index < Definition.ProjectileCount; index++)
+                {
+                    Vector2 heading = Definition.ProjectileDirection(direction, index);
+                    var bullet = Instantiate(bulletPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
+                    bullet.Launch(transform, heading, visualProfile, effectPrefab, bulletCollisionMask, Damage, BulletRange, ShotsFired);
+                }
             }
             else
             {
-                ReportImpact(blockedMuzzle.collider, blockedMuzzle.point);
+                ReportImpact(blockedMuzzle.collider, blockedMuzzle.point, ShotsFired);
                 var impact = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
                 impact.Play(visualProfile, true, -direction);
             }
 
             return true;
+        }
+
+        private void OnDestroy()
+        {
+            UnbindCycle();
         }
     }
 }

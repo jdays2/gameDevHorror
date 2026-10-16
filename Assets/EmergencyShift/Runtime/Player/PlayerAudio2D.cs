@@ -45,6 +45,10 @@ namespace EmergencyShift
         private float pickupBurstUntil;
         private int pickupPriority;
         private int shotCursor;
+        private const int RememberedVolleys = 64;
+        private readonly Dictionary<int, int> audibleImpacts = new Dictionary<int, int>();
+        private readonly Queue<int> impactOrder = new Queue<int>();
+        public int MechanismAudioCount { get; private set; }
         public bool CombatAudioEnabled
         {
             get => combatAudioEnabled; set => combatAudioEnabled = value;
@@ -105,6 +109,7 @@ namespace EmergencyShift
             interaction.ItemCollected += OnPickup;
             weapon.ShotFired += OnShot;
             weapon.SurfaceHit += OnImpact;
+            weapon.Operation += OnOperation;
         }
 
         private void OnDisable()
@@ -112,6 +117,9 @@ namespace EmergencyShift
             interaction.ItemCollected -= OnPickup;
             weapon.ShotFired -= OnShot;
             weapon.SurfaceHit -= OnImpact;
+            weapon.Operation -= OnOperation;
+            audibleImpacts.Clear();
+            impactOrder.Clear();
             pickupSource?.Stop();
             if (shotSources != null)
             {
@@ -215,7 +223,8 @@ namespace EmergencyShift
                 return;
             }
 
-            var clip = Choose(sounds.Shots(indoorShot));
+            var profile = weapon.Definition.audioProfile;
+            var clip = Choose(profile != null ? profile.shots : sounds.Shots(indoorShot));
             if (clip == null)
             {
                 return;
@@ -244,12 +253,43 @@ namespace EmergencyShift
 
             LastShotClip = clip.name;
             LastShotPitch = 1 + ((float)random.NextDouble() * 2 - 1) * shotPitchVariation;
-            LastShotGain = shotVolume * Mathf.Pow(10, (((float)random.NextDouble() * 2 - 1) * shotGainVariationDb) / 20);
+            float gain = profile != null ? profile.shotGain : shotVolume;
+            LastShotGain = gain * Mathf.Pow(10, (((float)random.NextDouble() * 2 - 1) * shotGainVariationDb) / 20);
             selected.clip = clip;
             selected.pitch = LastShotPitch;
             selected.volume = LastShotGain;
             selected.Play();
             ShotAudioCount++;
+        }
+
+        private void OnOperation(WeaponOperation operation)
+        {
+            var profile = weapon.Definition.audioProfile;
+            if (!combatAudioEnabled || profile == null || casingSources == null)
+            {
+                return;
+            }
+
+            var clips = operation == WeaponOperation.Pump ? profile.pump : profile.shellInsert;
+            var clip = Choose(clips);
+            if (clip == null)
+            {
+                return;
+            }
+
+            foreach (var source in casingSources)
+            {
+                if (source != null && !source.isPlaying)
+                {
+                    source.clip = clip;
+                    source.volume = profile.mechanismGain;
+                    source.pitch = 1;
+                    source.panStereo = 0;
+                    source.Play();
+                    MechanismAudioCount++;
+                    return;
+                }
+            }
         }
 
         private void OnImpact(Collider2D target, Vector2 point)
@@ -265,6 +305,13 @@ namespace EmergencyShift
             // Do not double that layer; generic fleshy objects can use the same data directly.
             var receiver = target != null ? target.GetComponentInParent<Damageable2D>() : null;
             if (LastImpactMaterial == ImpactMaterial.Flesh && receiver != null && receiver.OwnsHitAudio)
+            {
+                return;
+            }
+
+            int volley = weapon.LastImpactVolleyId;
+            int materialBit = 1 << (int)LastImpactMaterial;
+            if (volley > 0 && audibleImpacts.TryGetValue(volley, out int played) && (played & materialBit) != 0)
             {
                 return;
             }
@@ -297,9 +344,23 @@ namespace EmergencyShift
             selected.panStereo = Mathf.Clamp((point.x - transform.position.x) / 6, -.75f, .75f);
             selected.Play();
             ImpactAudioCount++;
+            if (volley > 0)
+            {
+                if (!audibleImpacts.ContainsKey(volley))
+                {
+                    impactOrder.Enqueue(volley);
+                    audibleImpacts.Add(volley, 0);
+                }
+
+                audibleImpacts[volley] |= materialBit;
+                while (impactOrder.Count > RememberedVolleys)
+                {
+                    audibleImpacts.Remove(impactOrder.Dequeue());
+                }
+            }
         }
 
-        public void PlayCasingAt(Vector2 point, GroundSoundSurface surface)
+        public void PlayCasingAt(Vector2 point, GroundSoundSurface surface, WeaponAudioProfile profile = null)
         {
             if (!isActiveAndEnabled || !combatAudioEnabled || sounds == null || casingSources == null)
             {
@@ -321,7 +382,7 @@ namespace EmergencyShift
                 return;
             }
 
-            var clip = Choose(sounds.Casings(surface), casingRandom);
+            var clip = Choose(profile != null ? profile.casings : sounds.Casings(surface), casingRandom);
             if (clip == null)
             {
                 return;
@@ -335,7 +396,8 @@ namespace EmergencyShift
 
             voice.clip = clip;
             voice.pitch = 1;
-            voice.volume = casingVolume * Mathf.Clamp01(1 - distance / 12);
+            float gain = profile != null ? profile.casingGain : casingVolume;
+            voice.volume = gain * Mathf.Clamp01(1 - distance / 12);
             voice.panStereo = Mathf.Clamp((point.x - transform.position.x) / 6, -.75f, .75f);
             voice.Play();
             LastCasingClip = clip.name;

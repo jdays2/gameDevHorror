@@ -19,6 +19,7 @@ namespace EmergencyShift
         private Vector3 bodyScale;
         private LayerMask obstacles;
         private bool landed;
+        private WeaponAudioProfile audioProfile;
         public bool Settled
         {
             get; private set;
@@ -28,7 +29,7 @@ namespace EmergencyShift
         public Vector2 FloorPosition => floor;
 
         public event System.Action<ShellCasing2D> FirstLanded;
-        public void Launch(Vector2 origin, Vector2 impulse, float verticalSpeed, float angularSpeed, PlayerAudio2D owner, LayerMask walls)
+        public void Launch(Vector2 origin, Vector2 impulse, float verticalSpeed, float angularSpeed, PlayerAudio2D owner, LayerMask walls, WeaponAudioProfile profile = null)
         {
             floor = origin;
             velocity = impulse;
@@ -37,11 +38,12 @@ namespace EmergencyShift
             gravity = 12;
             spin = angularSpeed;
             audioOwner = owner;
+            audioProfile = profile;
             obstacles = walls;
             landed = Settled = false;
-            bodyScale = new Vector3(.075f, .028f, 1);
+            bodyScale = profile != null ? new Vector3(profile.casingSize.x, profile.casingSize.y, 1) : new Vector3(.075f, .028f, 1);
             body.transform.localScale = bodyScale;
-            body.color = new Color(.63f, .47f, .23f);
+            body.color = profile != null ? profile.casingColor : new Color(.63f, .47f, .23f);
             enabled = true;
             gameObject.SetActive(true);
             ApplyVisual();
@@ -75,7 +77,7 @@ namespace EmergencyShift
                     spin *= .35f;
                     if (audioOwner != null)
                     {
-                        audioOwner.PlayCasingAt(floor, GroundAudioSurface2D.At(floor));
+                        audioOwner.PlayCasingAt(floor, GroundAudioSurface2D.At(floor), audioProfile);
                     }
 
                     FirstLanded?.Invoke(this);

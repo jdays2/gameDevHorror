@@ -67,7 +67,18 @@ namespace EmergencyShift
                 ammoStatus.gameObject.SetActive(weapon != null && weapon.HasWeapon && !dead);
                 if (weapon != null)
                 {
-                    ammoStatus.text = "ПАТРОНЫ  " + weapon.Ammo + "   [ЛКМ]";
+                    string ammunition = weapon.MagazineCapacity > 0 ? weapon.LoadedAmmo + " / " + weapon.ReserveAmmo : weapon.Ammo.ToString();
+                    string operation = "";
+                    if (weapon.Phase == WeaponPhase.Pumping)
+                    {
+                        operation = " · ПОМПА";
+                    }
+                    else if (weapon.Phase == WeaponPhase.Loading)
+                    {
+                        operation = " · ЗАРЯДКА";
+                    }
+
+                    ammoStatus.text = weapon.Definition.displayName.ToUpperInvariant() + "  " + ammunition + operation + "   [ЛКМ]";
                 }
             }
 

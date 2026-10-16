@@ -23,6 +23,7 @@ namespace EmergencyShift
         private float maxDistance;
         private float age;
         private int damage;
+        private int volleyId;
         private bool active;
         public float DistanceTravelled => distance;
 
@@ -33,7 +34,7 @@ namespace EmergencyShift
             glow = light;
         }
 
-        public void Launch(Transform shooter, Vector2 heading, ShotVisualProfile style, ShotEffect2D impact, LayerMask mask, int hitDamage, float range)
+        public void Launch(Transform shooter, Vector2 heading, ShotVisualProfile style, ShotEffect2D impact, LayerMask mask, int hitDamage, float range, int shotId = 0)
         {
             owner = shooter;
             direction = heading.normalized;
@@ -42,6 +43,7 @@ namespace EmergencyShift
             weapon = shooter != null ? shooter.GetComponent<PlayerWeapon2D>() : null;
             collisionMask = mask;
             damage = hitDamage;
+            volleyId = shotId;
             maxDistance = Mathf.Max(0.1f, range);
             active = true;
             age = 0;
@@ -101,7 +103,7 @@ namespace EmergencyShift
                 RaycastHit2D hit = hits[closest];
                 if (weapon != null)
                 {
-                    weapon.ReportImpact(hit.collider, hit.point);
+                    weapon.ReportImpact(hit.collider, hit.point, volleyId);
                 }
 
                 var receiver = hit.collider.GetComponentInParent<Damageable2D>();

@@ -21,6 +21,8 @@ namespace EmergencyShift
             public int moduleCount;
             public bool light;
             public Vector2 direction;
+            public bool hasInventory;
+            public WeaponInventorySnapshot inventory;
         }
 
         public string SaveKey => "player.v1";
@@ -35,24 +37,65 @@ namespace EmergencyShift
             var gun = GetComponent<PlayerWeapon2D>();
             var light = GetComponent<Flashlight2D>();
             var upgrades = GetComponent<FlashlightUpgrades>();
-            return JsonUtility.ToJson(new State { format = 1, health = GetComponent<PlayerLife2D>().Health, cards = GetComponent<PlayerAccessCards2D>().Capture(), weapon = gun.HasWeapon, weaponId = gun.Definition.contentId, ammo = gun.Ammo, modules = upgrades.Capture(), moduleCount = upgrades.InstalledCount, light = light.IsOn, direction = light.Direction });
+            return JsonUtility.ToJson(new State
+            {
+                format = 2,
+                health = GetComponent<PlayerLife2D>().Health,
+                cards = GetComponent<PlayerAccessCards2D>().Capture(),
+                weapon = gun.HasWeapon,
+                weaponId = gun.Definition.contentId,
+                ammo = gun.Ammo,
+                modules = upgrades.Capture(),
+                moduleCount = upgrades.InstalledCount,
+                light = light.IsOn,
+                direction = light.Direction,
+                hasInventory = true,
+                inventory = gun.CaptureInventory()
+            });
         }
 
         public void ValidateCheckpoint(string json)
         {
             var state = JsonUtility.FromJson<State>(json);
-            if (state == null || state.format != 1 || state.health < 1 || state.ammo < 0 || weapons == null || weapons.Find(state.weaponId) == null)
+            if (state == null || state.health < 1 || weapons == null)
             {
-                throw new InvalidOperationException("Invalid player checkpoint or missing weapon definition");
+                throw new InvalidOperationException("Invalid player checkpoint");
             }
+
+            if (state.format == 1)
+            {
+                var legacy = weapons.Find(state.weaponId);
+                if (legacy == null || state.ammo < 0 || state.ammo > legacy.maximumAmmo || legacy.CreateCycle(0).MagazineCapacity != 0)
+                {
+                    throw new InvalidOperationException("Invalid legacy player weapon payload");
+                }
+
+                return;
+            }
+
+            if (state.format != 2 || !state.hasInventory)
+            {
+                throw new InvalidOperationException("Missing/unsupported player inventory payload");
+            }
+
+            WeaponInventory.Validate(state.inventory, weapons);
         }
 
         public void RestoreCheckpoint(string json)
         {
+            ValidateCheckpoint(json);
             var saved = JsonUtility.FromJson<State>(json);
             GetComponent<PlayerLife2D>().RestoreHealth(saved.health);
             GetComponent<PlayerAccessCards2D>().Restore(saved.cards);
-            GetComponent<PlayerWeapon2D>().RestoreState(saved.weapon, saved.ammo, weapons.Find(saved.weaponId));
+            var gun = GetComponent<PlayerWeapon2D>();
+            if (saved.format == 1)
+            {
+                gun.RestoreState(saved.weapon, saved.ammo, weapons.Find(saved.weaponId));
+            }
+            else
+            {
+                gun.RestoreInventory(saved.inventory, weapons);
+            }
             GetComponent<FlashlightUpgrades>().Restore(saved.modules, saved.moduleCount);
             var light = GetComponent<Flashlight2D>();
             light.AimAt((Vector2)transform.position + saved.direction);

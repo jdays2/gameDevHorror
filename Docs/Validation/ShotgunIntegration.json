@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-16",
+  "unity": "6000.6.5f1",
+  "status": "Passed functional and technical checks; balance/artistic mix provisional.",
+  "editMode": {
+    "total": 24,
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 0.8853567,
+    "resultState": "Passed"
+  },
+  "nativeShotgun": {
+    "finished": true,
+    "failure": "",
+    "passed": [
+      "Shotgun route starts in fresh sandbox",
+      "Interact 04 Room 03 · Stationary targets and weapons / Entry door · close to isolate test",
+      "Door fully open",
+      "Existing pistol pickup unchanged",
+      "Shotgun auto pickup owns both weapons",
+      "Shotgun starts with four loaded and twelve reserve",
+      "One click creates eight real projectiles",
+      "One volley consumes one shell and plays one shot",
+      "Shotgun selects its own recorded shot",
+      "Hull is not ejected at muzzle event",
+      "Pump blocks immediate second shot and switching",
+      "Holding mouse does not fire after pump",
+      "Pump ejects one hull and plays its mechanical recording",
+      "Hull landing uses shotgun recording",
+      "Real pellets damage anchored target",
+      "Separate shotgun shot 2",
+      "Separate shotgun shot 3",
+      "Separate shotgun shot 4",
+      "Exactly four shots exhaust magazine",
+      "Lethal pellet volley produces one settled remains record",
+      "Empty trigger has feedback",
+      "X begins single shell loading",
+      "One shell commits from reserve",
+      "Loaded shell can interrupt reload to fire",
+      "Interrupted insertion creates no free shell",
+      "Four shells refill sequentially without changing total",
+      "1 equips original pistol and preserves its ammo",
+      "2 restores shotgun magazine and reserve",
+      "Generic two-target volley fires",
+      "One cone can hit two independent damage receivers",
+      "Blocked volley fires",
+      "Thin wall blocks every pellet",
+      "Wall does not play eight full impact sounds",
+      "Typed shotgun ammo leaves equipped pistol unchanged",
+      "Typed ammo refills the holstered shotgun",
+      "Sandbox T fills selected weapon total",
+      "Corridor shot prepares checkpoint fixture",
+      "Checkpoint fixture starts loading",
+      "Death stops a player during loading",
+      "Scene reload starts with clean inventory",
+      "Disk payload restores both weapons and exact loaded reserve state",
+      "Restored pending insertion commits once",
+      "Pistol survives death/disk/reload independently",
+      "Legacy pistol payload remains compatible"
+    ]
+  },
+  "nativeSandbox": {
+    "finished": true,
+    "failure": "",
+    "passed": [
+      "Sandbox is startup scene",
+      "Fresh player 3/3 HP",
+      "No objectives, exit or checkpoint slot",
+      "One listener and accepted adaptive director",
+      "Two mobile Stalkers and three anchored targets",
+      "Room 01 starts behind blocking geometry",
+      "Interact 03 Room 02 · Access card and locked door / Entry door · close to isolate test",
+      "Door fully open",
+      "Locked door rejects missing card",
+      "Closed door physically blocks movement",
+      "Physical route auto-picks card",
+      "Interact 03 Room 02 · Access card and locked door / Locked test door · sandbox-card",
+      "Door fully open",
+      "Card unlocks only test door",
+      "Interact 04 Room 03 · Stationary targets and weapons / Entry door · close to isolate test",
+      "Door fully open",
+      "Damage outside range uses normal HP",
+      "Range entry raises player to 100/100",
+      "Pistol collected via proximity",
+      "Target remains anchored during light response",
+      "First actual projectile fires",
+      "Bullet damages target without killing",
+      "Target stays anchored after bullet push",
+      "Second actual projectile fires",
+      "Target dead and body collision removed",
+      "One independent remains root",
+      "Repeated kill does not duplicate blood",
+      "Other targets retain independent HP",
+      "T refills existing weapon",
+      "Leaving range restores original 2/3 HP",
+      "Reentering range reapplies 100 HP",
+      "Repeated entry does not heal outside",
+      "R restarts while alive",
+      "Restart restores targets, loot and doors",
+      "Restart leaves one listener and four doors",
+      "Interact 02 Room 01 · Stalkers / Entry door · close to isolate test",
+      "Door fully open",
+      "Mobile Stalker detects real nearby player",
+      "Mobile Stalker reacts to flashlight",
+      "Room 01 keeps permanent aggro",
+      "Normal player can still be defeated",
+      "R restarts after death"
+    ]
+  },
+  "nativeSmoke": {
+    "passed": true,
+    "checks": [
+      "Initial level context: True",
+      "New level context: True",
+      "One listener after scene switch: True",
+      "Old door registry cleared on unload: True",
+      "Complete player audio prefab and unique world-foley voices: True",
+      "One scene atmosphere and cleared threat registry after unload: True",
+      "Fire from authored rig: True",
+      "Non-Stalker receives one bullet: True",
+      "Weapon data controls stats: True",
+      "Fire with alternate weapon data: True",
+      "Alternate damage reaches generic target: True",
+      "Thin wall blocks new weapon: True",
+      "One-shot encounter activation: True"
+    ],
+    "errors": [],
+    "unity": "6000.6.5f1",
+    "scene": "Assets/EmergencyShift/Scenes/LevelTemplate.unity"
+  },
+  "developmentBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 62.8229837
+  },
+  "releaseBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 56.5364845
+  },
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sceneAudit": {
+    "missingScripts": 0,
+    "savedDevelopmentProbes": 0,
+    "dirty": false,
+    "catalogContainsShotgun": true,
+    "shotgunClips": 11,
+    "labelCount": 26,
+    "variant": "Release",
+    "buildScenes": [
+      {
+        "path": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+        "enabled": true
+      },
+      {
+        "path": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+        "enabled": true
+      },
+      {
+        "path": "Assets/EmergencyShift/Scenes/LevelTemplate.unity",
+        "enabled": true
+      }
+    ]
+  },
+  "serializedAndContentChecks": {
+    "originalSandboxObjectsCompared": 202,
+    "newSandboxObjects": 20,
+    "existingValuesPreserved": true,
+    "allowedParentChildAdditions": [
+      [
+        [
+          4,
+          1752143200
+        ],
+        "m_Children"
+      ],
+      [
+        [
+          1001,
+          1783665848
+        ],
+        "m_Modification"
+      ]
+    ],
+    "userSceneByteIdentical": true,
+    "existingMetaFilesUnchanged": 392,
+    "existingArtAudioFilesUnchanged": 263,
+    "uniqueAssetGuids": 416,
+    "contentCatalogHashesVerified": 375,
+    "runtimeAudioCopiesVerified": 11,
+    "documentLinksVerified": 110
+  },
+  "finalConsoleErrorsAndWarnings": 0,
+  "screenshots": [
+    "Weapons/Shotgun/Range.png",
+    "Weapons/Shotgun/Loading.png"
+  ],
+  "audioPreview": "Concepts/Used/Audio/ShotgunRealism01/Previews/05-gameplay-current.mp3",
+  "notes": [
+    "44 shotgun checks cover real Input System keyboard/mouse, eight projectiles, pump timing, independent weapon ammo, shell-by-shell reload, interruption, wall and generic receivers, recorded cues, one death/remains event, typed ammo and T.",
+    "Persistence check uses a temporary adapter and isolated disk slot across player death and scene reload; no checkpoint controller was saved into MechanicsSandbox. It also reads a legacy format1 pistol payload.",
+    "Actual Unity audio mix captured separately for 14.656 seconds; ambience muted only for this preview. No claim of final subjective approval.",
+    "An initial assertion incorrectly expected a full magazine after restoring one pending shell; corrected to savedLoaded + 1 and rerun successfully.",
+    "Intermediate build warning about pending compilation was resolved by waiting for compilation; final builds have zero warnings.",
+    "Two earlier MCP duplicate-request transport warnings were inspected; after final Play/stop another transport retry warning was inspected, then the console was cleared and the stopped-scene audit stayed clean.",
+    "Existing BasementPrototype user edits were preserved byte for byte and excluded from this commit. Shotgun visual is a temporary modified prototype silhouette; upgrades and dedicated hand/pump animation are not implemented.",
+    "Functional regressions are not FPS/scalability measurements."
+  ],
+  "nativeLogsHaveNoManagedExceptions": true
+}

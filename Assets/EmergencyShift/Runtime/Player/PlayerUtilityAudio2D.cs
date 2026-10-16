@@ -68,7 +68,14 @@ namespace EmergencyShift
 
         private void OnEmpty()
         {
-            if (sounds != null && Play(sounds.emptyTrigger, sounds.emptyVolume))
+            var profile = weapon.Definition.audioProfile;
+            AudioClip clip = sounds != null ? sounds.emptyTrigger : null;
+            if (profile != null)
+            {
+                clip = profile.emptyTrigger;
+            }
+            float gain = sounds != null ? sounds.emptyVolume : .45f;
+            if (Play(clip, gain))
             {
                 EmptyTriggersPlayed++;
             }

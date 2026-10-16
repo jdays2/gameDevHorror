@@ -28,27 +28,34 @@ namespace EmergencyShift
         private PlayerInteraction interaction;
         private PlayerWeapon2D weapon;
         private Keyboard testKeyboard;
+        private Mouse testMouse;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Launch()
         {
             string[] args = Environment.GetCommandLineArgs();
             int index = Array.IndexOf(args, "--sandbox-regression");
+            bool shotgun = false;
+            if (index < 0)
+            {
+                index = Array.IndexOf(args, "--shotgun-regression");
+                shotgun = true;
+            }
             if (!Debug.isDebugBuild || index < 0 || index + 1 >= args.Length || FindAnyObjectByType<SandboxRegressionProbe>() != null)
             {
                 return;
             }
 
-            new GameObject("Temporary sandbox regression").AddComponent<SandboxRegressionProbe>().Begin(args[index + 1]);
+            new GameObject("Temporary sandbox regression").AddComponent<SandboxRegressionProbe>().Begin(args[index + 1], shotgun);
         }
 
-        public void Begin(string path)
+        public void Begin(string path, bool shotgun = false)
         {
             output = path;
             Directory.CreateDirectory(Path.GetDirectoryName(output));
             DontDestroyOnLoad(gameObject);
             testKeyboard = InputSystem.AddDevice<Keyboard>("Sandbox regression keyboard");
-            StartCoroutine(Guard(Run()));
+            StartCoroutine(Guard(shotgun ? RunShotgun() : Run()));
         }
 
         private IEnumerator Guard(IEnumerator route)
@@ -88,6 +95,11 @@ namespace EmergencyShift
             if (testKeyboard != null)
             {
                 InputSystem.RemoveDevice(testKeyboard);
+            }
+
+            if (testMouse != null)
+            {
+                InputSystem.RemoveDevice(testMouse);
             }
             if (!Application.isEditor)
             {
@@ -167,6 +179,194 @@ namespace EmergencyShift
             InputSystem.QueueStateEvent(testKeyboard, new KeyboardState());
             yield return null;
             yield return null;
+        }
+
+        private IEnumerator RunShotgun()
+        {
+            yield return new WaitForSeconds(.4f);
+            Bind();
+            testMouse = InputSystem.AddDevice<Mouse>("Shotgun regression mouse");
+            Check("Shotgun route starts in fresh sandbox", SceneManager.GetActiveScene().name == "MechanicsSandbox" && !weapon.HasWeapon);
+            yield return Move(50, -3);
+            yield return Move(50, -1.1f);
+            yield return Open(Entry(3));
+            yield return Move(48.5f, 2);
+            yield return null;
+            var pistol = weapon.Definition;
+            int pistolAmmo = weapon.Ammo;
+            Check("Existing pistol pickup unchanged", weapon.HasWeapon && pistol.contentId == "pistol" && weapon.MagazineCapacity == 0);
+            yield return Move(46, 2);
+            yield return null;
+            var shotgun = weapon.Definition;
+            var catalog = ScriptableObject.CreateInstance<WeaponCatalog>();
+            catalog.weapons = new[] { pistol, shotgun };
+            Check("Shotgun auto pickup owns both weapons", weapon.OwnedCount == 2 && shotgun.contentId == "pump-shotgun");
+            Check("Shotgun starts with four loaded and twelve reserve", weapon.LoadedAmmo == 4 && weapon.ReserveAmmo == 12 && weapon.Ammo == 16);
+            yield return Move(46, 5);
+            yield return Move(55, 6.4f);
+            var aim = player.GetComponent<PlayerAim2D>();
+            aim.SetScriptedTarget(new Vector2(55, 9));
+            player.GetComponent<Flashlight2D>().SetPower(true);
+            yield return null;
+            var audio = player.GetComponent<PlayerAudio2D>();
+            var ejector = player.GetComponent<PlayerCasingEjector2D>();
+            int shots = weapon.ShotsFired;
+            int shotSounds = audio.ShotAudioCount;
+            int ejected = ejector.EmittedCount;
+            testMouse.MakeCurrent();
+            InputSystem.QueueStateEvent(testMouse, new MouseState { buttons = 1 });
+            yield return null;
+            yield return new WaitForFixedUpdate();
+            Check("One click creates eight real projectiles", FindObjectsByType<BulletProjectile2D>().Length == shotgun.ProjectileCount);
+            Check("One volley consumes one shell and plays one shot", weapon.LoadedAmmo == 3 && weapon.Ammo == 15 && audio.ShotAudioCount == shotSounds + 1);
+            Check("Shotgun selects its own recorded shot", audio.LastShotClip.StartsWith("shot_a_"));
+            Check("Hull is not ejected at muzzle event", ejector.EmittedCount == ejected);
+            Check("Pump blocks immediate second shot and switching", !weapon.TryFire() && !weapon.TryEquip(0));
+            yield return new WaitForSeconds(1.15f);
+            Check("Holding mouse does not fire after pump", weapon.ShotsFired == shots + 1 && weapon.LoadedAmmo == 3);
+            Check("Pump ejects one hull and plays its mechanical recording", ejector.EmittedCount == ejected + 1 && audio.MechanismAudioCount > 0);
+            Check("Hull landing uses shotgun recording", audio.LastCasingClip == "hull_concrete_01");
+            InputSystem.QueueStateEvent(testMouse, new MouseState());
+            yield return null;
+            var target = Array.Find(FindObjectsByType<SandboxStationaryStalker2D>(), a => a.GetComponent<EnemyHealth2D>().Maximum == 20);
+            Check("Real pellets damage anchored target", target.GetComponent<EnemyHealth2D>().Current < 20);
+            for (int i = 0; i < 3; i++)
+            {
+                Check("Separate shotgun shot " + (i + 2), weapon.TryFire());
+                yield return new WaitForSeconds(1);
+            }
+
+            Check("Exactly four shots exhaust magazine", weapon.LoadedAmmo == 0 && weapon.Ammo == 12 && !weapon.TryFire());
+            Check("Lethal pellet volley produces one settled remains record", !target.GetComponent<EnemyHealth2D>().IsAlive && FindObjectsByType<RemainsRecord2D>().Length == 1 && target.GetComponent<GoreBurst2D>().IsSettled);
+            int empty = player.GetComponent<PlayerUtilityAudio2D>().EmptyTriggersPlayed;
+            yield return new WaitForSeconds(.3f);
+            weapon.TryFire();
+            Check("Empty trigger has feedback", player.GetComponent<PlayerUtilityAudio2D>().EmptyTriggersPlayed > empty);
+            yield return KeyPress(Key.X);
+            Check("X begins single shell loading", weapon.Phase == WeaponPhase.Loading);
+            yield return new WaitForSeconds(.9f);
+            Check("One shell commits from reserve", weapon.LoadedAmmo == 1 && weapon.Ammo == 12 && weapon.ReserveAmmo == 11);
+            Check("Loaded shell can interrupt reload to fire", weapon.TryFire());
+            yield return new WaitForSeconds(1);
+            Check("Interrupted insertion creates no free shell", weapon.LoadedAmmo == 0 && weapon.Phase == WeaponPhase.Ready && weapon.Ammo == 11);
+            yield return KeyPress(Key.X);
+            yield return new WaitForSeconds(3.4f);
+            Check("Four shells refill sequentially without changing total", weapon.LoadedAmmo == 4 && weapon.Ammo == 11 && weapon.Phase == WeaponPhase.Ready);
+            yield return KeyPress(Key.Digit1);
+            Check("1 equips original pistol and preserves its ammo", weapon.Definition == pistol && weapon.Ammo == pistolAmmo);
+            yield return KeyPress(Key.Digit2);
+            Check("2 restores shotgun magazine and reserve", weapon.Definition == shotgun && weapon.LoadedAmmo == 4 && weapon.Ammo == 11);
+            yield return Capture("shotgun-range");
+
+            // Two generic receivers in one cone verify that the firing code has no Stalker dependency.
+            yield return Move(50, 11);
+            var left = new GameObject("Volley receiver left", typeof(CombatProbeTarget2D)).GetComponent<CombatProbeTarget2D>();
+            var right = new GameObject("Volley receiver right", typeof(CombatProbeTarget2D)).GetComponent<CombatProbeTarget2D>();
+            left.transform.position = new Vector3(49.75f, 14, 0);
+            right.transform.position = new Vector3(50.25f, 14, 0);
+            left.GetComponent<CircleCollider2D>().radius = .18f;
+            right.GetComponent<CircleCollider2D>().radius = .18f;
+            aim.SetScriptedTarget(new Vector2(50, 15));
+            yield return null;
+            Physics2D.SyncTransforms();
+            Check("Generic two-target volley fires", weapon.TryFire());
+            yield return new WaitForSeconds(1);
+            Check("One cone can hit two independent damage receivers", left.Hits > 0 && right.Hits > 0);
+            int leftHits = left.Hits;
+            int rightHits = right.Hits;
+            var wall = new GameObject("Temporary pellet blocker", typeof(BoxCollider2D));
+            wall.layer = 8;
+            wall.transform.position = new Vector3(50, 13, 0);
+            wall.GetComponent<BoxCollider2D>().size = new Vector2(4, .03f);
+            Physics2D.SyncTransforms();
+            int impactsBefore = audio.ImpactAudioCount;
+            Check("Blocked volley fires", weapon.TryFire());
+            yield return new WaitForSeconds(1);
+            Check("Thin wall blocks every pellet", left.Hits == leftHits && right.Hits == rightHits);
+            Check("Wall does not play eight full impact sounds", audio.ImpactAudioCount - impactsBefore <= 1);
+            Destroy(wall);
+            Destroy(left.gameObject);
+            Destroy(right.gameObject);
+            yield return Move(50, 2);
+            yield return KeyPress(Key.Digit1);
+            yield return Move(50, 4);
+            yield return Move(54, 4);
+            yield return Move(54, 2);
+            yield return null;
+            Check("Typed shotgun ammo leaves equipped pistol unchanged", weapon.Definition == pistol && weapon.Ammo == pistolAmmo);
+            yield return KeyPress(Key.Digit2);
+            Check("Typed ammo refills the holstered shotgun", weapon.Ammo == 21);
+            yield return KeyPress(Key.T);
+            Check("Sandbox T fills selected weapon total", weapon.Ammo == shotgun.maximumAmmo);
+            yield return Move(50, 2);
+            yield return Move(50, -2);
+            aim.SetScriptedTarget(new Vector2(50, -5));
+            yield return null;
+            Check("Corridor shot prepares checkpoint fixture", weapon.TryFire());
+            yield return new WaitForSeconds(1);
+            Check("Checkpoint fixture starts loading", weapon.TryReload());
+            yield return new WaitForSeconds(.25f);
+            var adapter = player.GetComponent<PlayerCheckpoint2D>();
+            if (adapter == null)
+            {
+                adapter = player.gameObject.AddComponent<PlayerCheckpoint2D>();
+            }
+
+            adapter.Configure(catalog);
+            var captured = adapter.CaptureCheckpoint();
+            var store = new CheckpointStore(Path.Combine(Path.GetDirectoryName(output), "isolated-weapon-slot.json"));
+            store.Write(new CheckpointData
+            {
+                levelId = "shotgun-regression",
+                levelRevision = 1,
+                checkpointId = "weapon-payload",
+                entities = new[]
+                {
+                    new CheckpointEntityState
+                    {
+                        id = "test-player",
+                        active = true,
+                        position = player.transform.position,
+                        rotation = player.transform.rotation,
+                        parts = new[] { new CheckpointPart { key = adapter.SaveKey, json = captured } }
+                    }
+                }
+            });
+            int savedAmmo = weapon.Ammo;
+            int savedLoaded = weapon.LoadedAmmo;
+            player.TakeDamage(1000);
+            Check("Death stops a player during loading", player.IsDead && !weapon.enabled);
+            yield return KeyPress(Key.R);
+            yield return new WaitForSeconds(.4f);
+            Bind();
+            Check("Scene reload starts with clean inventory", !weapon.HasWeapon);
+            adapter = player.GetComponent<PlayerCheckpoint2D>();
+            if (adapter == null)
+            {
+                adapter = player.gameObject.AddComponent<PlayerCheckpoint2D>();
+            }
+
+            adapter.Configure(catalog);
+            var saved = store.Read().entities[0];
+            adapter.ValidateCheckpoint(saved.parts[0].json);
+            body.position = saved.position;
+            player.transform.position = saved.position;
+            adapter.RestoreCheckpoint(saved.parts[0].json);
+            player.GetComponent<PlayerMotor2D>().enabled = false;
+            Check("Disk payload restores both weapons and exact loaded reserve state", weapon.OwnedCount == 2 && weapon.Ammo == savedAmmo && weapon.LoadedAmmo == savedLoaded && weapon.Phase == WeaponPhase.Loading);
+            yield return new WaitForSeconds(.65f);
+            Check("Restored pending insertion commits once", weapon.LoadedAmmo == savedLoaded + 1 && weapon.Ammo == savedAmmo);
+            yield return KeyPress(Key.Digit1);
+            Check("Pistol survives death/disk/reload independently", weapon.Definition == pistol && weapon.Ammo == pistolAmmo);
+            var legacy = new PlayerCheckpoint2D.State
+            {
+                format = 1, health = player.Health, weapon = true, weaponId = pistol.contentId, ammo = 7,
+                cards = Array.Empty<string>(), modules = Array.Empty<FlashlightUpgrades.ModuleState>(), direction = Vector2.up
+            };
+            adapter.RestoreCheckpoint(JsonUtility.ToJson(legacy));
+            Check("Legacy pistol payload remains compatible", weapon.OwnedCount == 1 && weapon.Definition == pistol && weapon.Ammo == 7);
+            store.Delete();
+            Destroy(catalog);
         }
 
         private IEnumerator Run()

@@ -125,6 +125,7 @@ namespace EmergencyShift.Editor
                 Sign(corridor, "02  ·  КАРТА / ДВЕРЬ ↑", new Vector2(30, -1.3f), .22f);
                 Sign(corridor, "03  ·  ТИР / 100 HP ↑", new Vector2(50, -1.3f), .22f);
 
+                ShotgunIntegrationAuthoring.ApplyTo(scene);
                 foreach (var root in scene.GetRootGameObjects())
                 {
                     foreach (var component in root.GetComponentsInChildren<Component>(true))

@@ -4,7 +4,7 @@ namespace EmergencyShift
 {
     /// <summary>Shared weapon data; ammunition/ownership stay on the player, never in this asset.</summary>
     [CreateAssetMenu(menuName = "Emergency Shift/Weapon definition")]
-    public sealed class WeaponDefinition : ScriptableObject
+    public class WeaponDefinition : ScriptableObject
     {
         public string contentId = "pistol";
         public string displayName = "Пистолет";
@@ -18,5 +18,31 @@ namespace EmergencyShift
         public float range = 10;
         public ShotVisualProfile visuals;
         public bool automatic;
+        [Min(0)]
+        public int selectionSlot;
+        public WeaponAudioProfile audioProfile;
+        public virtual int ProjectileCount => 1;
+        public virtual Vector3 HeldScale => Vector3.one;
+
+        public virtual WeaponCycle CreateCycle(int cartridges)
+        {
+            Validate();
+            return new WeaponCycle(this, cartridges);
+        }
+
+        public virtual Vector2 ProjectileDirection(Vector2 heading, int index)
+        {
+            return heading;
+        }
+
+        public virtual void Validate()
+        {
+            if (string.IsNullOrWhiteSpace(contentId) || maximumAmmo < 1 || damage < 1 ||
+                !float.IsFinite(secondsBetweenShots) || secondsBetweenShots < .05f ||
+                !float.IsFinite(range) || range < .5f || selectionSlot < 0)
+            {
+                throw new System.InvalidOperationException("Invalid weapon definition: " + name);
+            }
+        }
     }
 }

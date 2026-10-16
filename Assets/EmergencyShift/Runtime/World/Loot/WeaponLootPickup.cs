@@ -8,7 +8,7 @@ namespace EmergencyShift
     {
         public enum LootKind
         {
-            Pistol,
+            Weapon,
             Ammo
         }
 
@@ -35,10 +35,14 @@ namespace EmergencyShift
         public float InteractionRange => pickupRange;
         public Vector2 PickupPosition => transform.position;
 
-        public void Configure(LootKind type, int amount)
+        public void Configure(LootKind type, int amount, WeaponDefinition selected = null)
         {
             kind = type;
             cartridges = amount;
+            if (selected != null)
+            {
+                weaponDefinition = selected;
+            }
         }
 
         private void Reset() => GetComponent<CircleCollider2D>().isTrigger = true;
@@ -55,8 +59,17 @@ namespace EmergencyShift
                 return false;
             }
 
-            int before = actor.Weapon.Ammo;
-            bool success = kind == LootKind.Pistol ? actor.Weapon.Acquire(cartridges, weaponDefinition) : actor.Weapon.TryAddAmmo(cartridges);
+            int received = 0;
+            bool success;
+            if (kind == LootKind.Weapon)
+            {
+                success = actor.Weapon.Acquire(cartridges, weaponDefinition);
+            }
+            else
+            {
+                received = actor.Weapon.AddAmmo(cartridges, weaponDefinition);
+                success = received > 0;
+            }
             if (!success)
             {
                 return false;
@@ -64,7 +77,6 @@ namespace EmergencyShift
 
             if (kind == LootKind.Ammo)
             {
-                int received = actor.Weapon.Ammo - before;
                 cartridges -= received;
                 actor.ReportPickup(PickupKind.Ammo, "Патроны +" + received);
                 if (cartridges > 0)

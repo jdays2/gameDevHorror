@@ -41,12 +41,12 @@ namespace EmergencyShift
 
         private void OnEnable()
         {
-            weapon.ShotFired += Eject;
+            weapon.CasingEjected += Eject;
         }
 
         private void OnDisable()
         {
-            weapon.ShotFired -= Eject;
+            weapon.CasingEjected -= Eject;
         }
 
         private float Between(float a, float b) => Mathf.Lerp(a, b, (float)random.NextDouble());
@@ -60,6 +60,7 @@ namespace EmergencyShift
             if (root == null)
             {
                 root = new GameObject("Spent casings — runtime").transform;
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(root.gameObject, gameObject.scene);
             }
 
             ShellCasing2D casing;
@@ -81,7 +82,7 @@ namespace EmergencyShift
                 port = blocked.point - (port - (Vector2)transform.position).normalized * .03f;
             }
 
-            casing.Launch(port, side * Between(1.2f, 1.8f) + direction * Between(-.25f, .4f), Between(1.35f, 1.85f), Between(-650, 650), audioOwner, obstacles);
+            casing.Launch(port, side * Between(1.2f, 1.8f) + direction * Between(-.25f, .4f), Between(1.35f, 1.85f), Between(-650, 650), audioOwner, obstacles, weapon.Definition.audioProfile);
             EmittedCount++;
             CasingEmitted?.Invoke(casing);
         }

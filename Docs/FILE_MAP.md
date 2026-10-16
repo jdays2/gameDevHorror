@@ -7,6 +7,9 @@
 | Файл | Назначение |
 |---|---|
 | `Runtime/Combat/Weapons/BulletProjectile2D.cs` | Летящая пуля с проверкой всего отрезка пути, чтобы не проскочить тонкую стену. |
+| `Runtime/Combat/Weapons/PumpShotgunCycle.cs` | Automatic pump and interruptible single-shell loading; no input, visuals or audio ownership. |
+| `Runtime/Combat/Weapons/WeaponCycle.cs` | Instance-owned ammunition/cooldown, also the ordinary single-projectile weapon cycle. |
+| `Runtime/Combat/Weapons/WeaponInventory.cs` | Owns independent weapon instances. Definitions are immutable content, snapshots contain only values/IDs. |
 | `Runtime/Core/Contracts/Damageable2D.cs` | Combat contract. A projectile does not need to know the enemy species. |
 | `Runtime/Core/Contracts/EnemyPresentationSource2D.cs` | EnemyPresentationSource2D |
 | `Runtime/Core/Contracts/IAutoPickup.cs` | Ground loot is collected by proximity; doors keep IInteractable/E. |
@@ -21,9 +24,11 @@
 | `Runtime/Definitions/LevelDefinition.cs` | LevelDefinition |
 | `Runtime/Definitions/PlayerAudioSet.cs` | Pickup cues are live; combat candidates can be auditioned before enabling gameplay audio. |
 | `Runtime/Definitions/PlayerWorldAudioSet.cs` | PlayerWorldAudioSet |
+| `Runtime/Definitions/PumpShotgunDefinition.cs` | Shared shotgun tuning. Each owned weapon gets its own cycle and ammunition. |
 | `Runtime/Definitions/ShotVisualProfile.cs` | Общие параметры одного визуального варианта. Не хранит патроны/состояние игрока. |
 | `Runtime/Definitions/StalkerAudioSet.cs` | Shared authored audio data: one asset instead of 49 references on every creature. |
 | `Runtime/Definitions/StalkerBehaviourProfile.cs` | StalkerBehaviourProfile |
+| `Runtime/Definitions/WeaponAudioProfile.cs` | Weapon-specific recordings; impact materials remain in the shared world palette. |
 | `Runtime/Definitions/WeaponCatalog.cs` | WeaponCatalog |
 | `Runtime/Definitions/WeaponDefinition.cs` | Shared weapon data; ammunition/ownership stay on the player, never in this asset. |
 | `Runtime/Development/AdaptiveAudioProbe.cs` | Temporary Editor Play probe/real main-mix recorder. Never saved and excluded from builds. |
@@ -120,6 +125,7 @@
 | `Editor/Authoring/LevelAuthoringSetup.cs` | Creates reusable scene-authored scaffolding once; never replaces the user's playable level. |
 | `Editor/Authoring/LevelPersistenceAuthoring.cs` | Explicit authoring command. Adds metadata/components; never rebuilds room geometry. |
 | `Editor/Authoring/SandboxSceneBuilder.cs` | One-time authoring of editable test rooms; never runs at Play or replaces an existing sandbox. |
+| `Editor/Authoring/ShotgunIntegrationAuthoring.cs` | Adds weapon fixtures to the existing range; never generates or replaces room geometry. |
 | `Editor/EmergencyShift.Editor.asmdef` | Граница сборки |
 | `Editor/Inspectors/EnemyPatrol2DEditor.cs` | Границы патруля редактируются на сцене; данные остаются на конкретном враге. |
 | `Editor/Inspectors/LevelAudioDirectorEditor.cs` | LevelAudioDirectorEditor |
@@ -131,3 +137,4 @@
 | `Tests/EditMode/EmergencyShift.EditModeTests.asmdef` | Граница сборки |
 | `Tests/EditMode/EnemySystemsTests.cs` | EnemySystemsTests |
 | `Tests/EditMode/PersistenceTests.cs` | PersistenceTests |
+| `Tests/EditMode/WeaponCycleTests.cs` | WeaponCycleTests |

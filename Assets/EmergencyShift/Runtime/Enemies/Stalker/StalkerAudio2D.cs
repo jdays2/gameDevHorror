@@ -92,6 +92,9 @@ namespace EmergencyShift
         /// <summary>Presentation signal after real playback gain is known; silent or muted cues do not reveal enemies.</summary>
         public event System.Action<float, float, bool> PerceptibleCue;
         private float nextPerceptionSignal;
+        [SerializeField, Min(0)]
+        private float minimumHitCueInterval = .05f;
+        private float nextHitCue;
         public int PlaybackCount(Cue cue) => playCounts[(int)cue];
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetRegistry()
@@ -322,6 +325,12 @@ namespace EmergencyShift
 
         private void OnHit()
         {
+            if (Time.time < nextHitCue)
+            {
+                return;
+            }
+
+            nextHitCue = Time.time + minimumHitCueInterval;
             PlayVoice(Cue.Hit, 1, true);
         }
 

@@ -1,6 +1,6 @@
 {
   "date": "2026-10-16",
-  "status": "Audition only, not approved or integrated",
+  "status": "Variant A and mechanics provisionally integrated at owner request; tuning and final listening approval pending.",
   "numpy": "2.3.5",
   "reference": "Accepted indoor pistol recording pipeline and existing material/creature impact palette",
   "processing": "Recorded sources only; DC/45Hz high pass, broad -1dB high EQ, preserved attack, late shot decay .29s, fades, common linear gain within each take bank. No synthesized source, added reverb, pitch shift, saturation, or compression.",
@@ -486,5 +486,88 @@
     }
   ],
   "limitations": "Numerical and decoder QA only; take/event identity follows source descriptions and selected windows. Subjective listening and final in-game mixing remain for the owner. Loading montage uses 3 source events with the first repeated for the fourth insert.",
-  "unityChanged": false
+  "unityChanged": true,
+  "runtimeSelection": [
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_a_01.wav",
+      "sha256": "3354eb490d1d5a8b026c4e54bd525e8b880ab37a851718753aa3d1a894f6a0bc"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_a_02.wav",
+      "sha256": "85bd619a4bf41a49a88ab94b4beb2a5a33e1cae29cb9cccd291cdf6179cdf048"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_a_03.wav",
+      "sha256": "d3f779459d113c24fcc1cf556c2d156633cb7149b636a86799beddc788f622e0"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/pump_01.wav",
+      "sha256": "8dd14c5ba3056a751fd7800c885c9ee6db3e51eca3a8a7e42dcef02806f546d3"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/pump_02.wav",
+      "sha256": "c38093d7ebfdf7c3c38b586b43705bfc1e37471b4a471d007c77b04d8b0750c0"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/pump_03.wav",
+      "sha256": "39efa1c7b320294c5e631ff2bfbefb141ebfc8c9aa6fc1d88215fb68c97b874d"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shell_insert_01.wav",
+      "sha256": "e3897554e910586b4a0a548f7c20018340838080ba4f9d4aa73ab48b2f13cbe4"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shell_insert_02.wav",
+      "sha256": "c604cede8f26e9ed814015e05230778e86f2a7cf31ce850a460d5a8a515a7d8a"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shell_insert_03.wav",
+      "sha256": "c3da7d402b14afb8a6c8b9e6a3313ef465f845e9f76462ab2dc9bac3420b33d8"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/empty_trigger_01.wav",
+      "sha256": "a561722cfddb4c88da0a32c0cf6e14a598451c3f083cabb6952bdcbe0e743e9c"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/hull_concrete_01.wav",
+      "sha256": "68182561b6955d4c6e7b89623a9993b16529120f5962299b4a7772d5924fc97a"
+    }
+  ],
+  "gameplayPreview": {
+    "file": "Previews/05-gameplay-current.mp3",
+    "sha256": "0aec0be2537410ca1bfebd0a4ce702e853565941c4585885303f7f9a2cba991d",
+    "durationSeconds": 14.656,
+    "sampleRate": 48000,
+    "channels": 2,
+    "capturedFloatPeak": 0.49344122409820557,
+    "origin": "Actual Unity AudioRenderer main mix, 440 capture frames at 30 fps; ambience director muted only for this audition. No offline SFX montage or gain normalization.",
+    "timeline": [
+      {
+        "at": 1,
+        "event": "shot 1"
+      },
+      {
+        "at": 2.5,
+        "event": "shot 2"
+      },
+      {
+        "at": 4,
+        "event": "shot 3"
+      },
+      {
+        "at": 5.5,
+        "event": "shot 4"
+      },
+      {
+        "at": 7,
+        "event": "begin four single-shell inserts"
+      },
+      {
+        "at": 11,
+        "event": "shot after reload"
+      }
+    ],
+    "processing": "Float32 stereo 48kHz capture encoded to MP3 256 kbps with FFmpeg; no added processing.",
+    "limitation": "Provisional in-game mix, not final owner approval; impacts include the actual range targets/materials, not every possible surface."
+  }
 }
