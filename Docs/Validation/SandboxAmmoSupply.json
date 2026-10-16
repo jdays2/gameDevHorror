@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-16",
+  "playChecks": [
+    "Unowned weapon is not granted",
+    "PistolDefinition.asset: 20 repeated E interactions; reserve filled, loaded unchanged, no overflow/consumption",
+    "PumpShotgun.asset: 20 repeated E interactions; reserve filled, loaded unchanged, no overflow/consumption",
+    "Out of reach rejected",
+    "Only selected weapon refilled; switching keeps independent reserves",
+    "X reload still starts timed magazine replacement",
+    "Camera enabled and follows player"
+  ],
+  "repeatRefillsPerWeapon": 20,
+  "editMode": {
+    "total": 31,
+    "passed": 31,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 0.7337113,
+    "resultState": "Passed"
+  },
+  "releaseBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 14.0726731,
+    "messages": []
+  },
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sceneAudit": {
+    "existingObjectsPreserved": true,
+    "onlyExistingFieldChanges": [
+      {
+        "id": [
+          4,
+          1752143200
+        ],
+        "field": "m_Children",
+        "addedChildren": 1
+      }
+    ],
+    "newSerializedObjects": 23,
+    "userBasementByteIdentical": true,
+    "indexPatchApplies": false,
+    "indexContainsOnlyOwnStation": true,
+    "preexistingUnsavedSceneEditsPreservedOutsideCommit": true
+  },
+  "finalEditorAudit": {
+    "scene": "MechanicsSandbox",
+    "dirty": false,
+    "play": false,
+    "compiling": false,
+    "missingScripts": 0,
+    "savedProbes": 0,
+    "cameraEnabled": true,
+    "cameraFollowsPlayer": true,
+    "supplies": 1,
+    "variant": "Release",
+    "preloadedAssets": 0
+  },
+  "consoleWarningsAndErrors": 0,
+  "acceptedAudioBytesUnchanged": true,
+  "catalogHashesVerified": true,
+  "scope": "Play checks directly exercised the normal PlayerInteraction E dispatch, repeated reserve refill for each weapon, selection isolation and timed reload. No native gameplay regression claimed for this change."
+}

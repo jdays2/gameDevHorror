@@ -14,7 +14,7 @@
 | `Runtime/Core/Contracts/Damageable2D.cs` | Combat contract. A projectile does not need to know the enemy species. |
 | `Runtime/Core/Contracts/EnemyPresentationSource2D.cs` | EnemyPresentationSource2D |
 | `Runtime/Core/Contracts/IAutoPickup.cs` | Ground loot is collected by proximity; doors keep IInteractable/E. |
-| `Runtime/Core/Contracts/IInteractable.cs` | Контракт действия по E (сейчас дверь). Наземный лут использует IAutoPickup. |
+| `Runtime/Core/Contracts/IInteractable.cs` | Контракт действия по E: двери и тестовые припасы. Наземный лут использует IAutoPickup. |
 | `Runtime/Core/Contracts/IThreatLight2D.cs` | A defensive light stimulus. Ordinary decorative lights need not implement it. |
 | `Runtime/Definitions/AudioMoodProfile.cs` | Shared tuning and replaceable sounds; runtime perception is owned by the scene director. |
 | `Runtime/Definitions/DoorAudioSet.cs` | DoorAudioSet |
@@ -104,6 +104,7 @@
 | `Runtime/Presentation/Visuals/RemainsVisualStyle.cs` | Общее визуальное правило для трупов, кусков и редакторских образцов. |
 | `Runtime/Presentation/Visuals/ShellCasing2D.cs` | Small top-down casing: planar motion plus virtual height, one first-floor-contact sound. |
 | `Runtime/Presentation/Visuals/ShotEffect2D.cs` | Огонь и свет дула затухают вместе; штрихи используются для попаданий. |
+| `Runtime/Sandbox/SandboxAmmoSupply2D.cs` | Reusable sandbox supply; refills reserve through the normal inventory limits. |
 | `Runtime/Sandbox/SandboxHealthZone2D.cs` | Temporary shooting-range health; leaving preserves the health held before entry. |
 | `Runtime/Sandbox/SandboxSession2D.cs` | Explicit sandbox shortcuts. No campaign objectives or checkpoint slot. |
 | `Runtime/Sandbox/SandboxStationaryStalker2D.cs` | Anchors a real Stalker target; its hit, sound and death pipeline keeps running. |
