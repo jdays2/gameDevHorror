@@ -11,6 +11,16 @@ Before removing/moving a Unity resource, inspect dependencies from all saved sce
 
 Retain source authors/licenses, prompts or generation provenance and processing instructions. Do not commit signed download URLs or tokens. Update Concepts/catalog.json when canonical materials move. Do not infer approval from an ambient browser URL.
 
+## Generated visual assets: natural irregularity
+
+For this project's generated props, materials and arrangements, avoid the sterile AI-catalogue look: every contour mechanically perfect, every item centered, every gap identical. Apply this requirement when writing prompts and reviewing outputs; a generic "not AI-looking" negative prompt is insufficient.
+
+- Specify plausible, restrained variation appropriate to the object: slightly uneven seams, wood grain and board widths, local rim irregularity, unequal packing gaps, or contents placed a little off-center/at different angles. Keep manufactured construction coherent; do not warp every straight edge or turn every circular object into an arbitrary blob.
+- Distinguish technical framing from internal arrangement. The sprite canvas/pivot may be centered, while a crate on a pallet or boxes on a shelf need not be centered or identically aligned. Position objects as people would use/store them, with a credible purpose rather than random offsets everywhere.
+- Clean/intact does not mean geometrically flawless or showroom-arranged. Natural variation does not require dirt, rust, blood, dents or damage; respect the requested condition and do not introduce those variants automatically. Uniform procedural noise over every surface is not a substitute for intentional variation.
+- Preserve strict overhead projection, readable silhouettes, family style, alpha and modular connection geometry. Keep tile seams and assembly ports accurate where required; put variation inside those boundaries. Prefer separable contents when reuse benefits from different arrangements.
+- Inspect the family together at close-up and intended gameplay scale. Check for repeated perfect centering, cloned spacing/details, excessive symmetry and uniformly polished surfaces. If these dominate, make a targeted correction within the current generation task before presenting the result. Skill updates alone do not authorize regenerating existing assets or changing scenes.
+
 When authoring reusable enemy/death/encounter content, distinguish a shared definition and visual variant from an individual spawn and a persistent remains record. Record units, valid ranges, variant selection and required prefab references in the handoff. An asset family must not require new type checks across bullets, HUD and audio just to add another data variant. Local checkpoint/remains ownership is implemented; further campaign/pool/dynamic-spawn work still needs task scope. Preserve exact settled presentation snapshots when changing sprite layouts, and revise the level saveRevision if compatibility changes.
 
 Current Stalker reference is pale gray-pink flesh, strict top-down, full connected legs, transparent sprite backgrounds. Accepted membrane/pistol/casings/foley remain unless the task changes them. New musical direction requires a short audition and user approval before full expansion/integration; existing authorized maintenance needs no new approval ceremony.
