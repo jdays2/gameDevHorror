@@ -63,7 +63,8 @@ namespace EmergencyShift.Editor
                 title.color = new Color(.64f, .8f, .8f);
 
                 var corridor = new GameObject("01 Safe corridor · direct access to every test").transform;
-                Shape("Corridor floor", corridor, new Vector2(30, -3), new Vector2(60, 6), new Color(.105f, .14f, .15f), true);
+                Shape("Corridor floor", corridor, new Vector2(30, -3), new Vector2(60, 6), new Color(.105f, .14f, .15f));
+                CorridorAmbient(corridor);
                 Wall("South boundary", corridor, new Vector2(30, -6), new Vector2(60.4f, .4f));
                 Wall("West boundary", corridor, new Vector2(0, -3), new Vector2(.4f, 6));
                 Wall("East boundary", corridor, new Vector2(60, -3), new Vector2(.4f, 6));
@@ -274,6 +275,20 @@ namespace EmergencyShift.Editor
             text.alignment = TextAnchor.MiddleCenter;
             text.text = message;
             text.color = new Color(.65f, .82f, .82f);
+        }
+
+        private static void CorridorAmbient(Transform corridor)
+        {
+            var obj = new GameObject("Corridor ambient · not defensive light", typeof(Light2D));
+            obj.transform.SetParent(corridor, false);
+            obj.transform.position = new Vector3(30, -3, 0);
+            obj.transform.localScale = new Vector3(60, 6, 1);
+            var light = obj.GetComponent<Light2D>();
+            light.lightType = Light2D.LightType.Sprite;
+            light.lightCookieSprite = square;
+            light.intensity = .35f;
+            light.color = new Color(.8f, .88f, 1);
+            light.shadowsEnabled = false;
         }
 
         private static void Lamp(Transform parent, Vector2 position, float radius, float intensity)

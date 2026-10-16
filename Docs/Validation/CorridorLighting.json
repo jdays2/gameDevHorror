@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-16",
+  "status": "Passed targeted Editor Play lighting checks",
+  "sceneAudit": {
+    "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+    "dirty": false,
+    "missingScripts": 0,
+    "savedDevelopmentProbes": 0,
+    "lightType": "Sprite",
+    "cookie": "Rectangle",
+    "intensity": 0.35,
+    "compiling": false
+  },
+  "originalSceneDocumentsCompared": 222,
+  "newDocuments": 3,
+  "allowedExistingChanges": [
+    [
+      [
+        212,
+        899892269
+      ],
+      "m_Materials"
+    ],
+    [
+      [
+        4,
+        1542182459
+      ],
+      "m_Children"
+    ]
+  ],
+  "oldPositionsDoorEnemyTuningLootAndProfilesPreserved": true,
+  "userBasementByteIdentical": true,
+  "corridorPixelRgbOff": [
+    10.0,
+    16.0,
+    20.0
+  ],
+  "corridorPixelRgbOn": [
+    21.114186851211073,
+    30.636678200692042,
+    34.705882352941174
+  ],
+  "roomOutsideBeamPixelDelta": 0.0,
+  "captureStates": [
+    {
+      "name": "Off",
+      "on": false,
+      "direction": {
+        "x": 1.0,
+        "y": -1.013279e-05
+      }
+    },
+    {
+      "name": "Right",
+      "on": true,
+      "direction": {
+        "x": 1.00000012,
+        "y": -1.1920929e-07
+      }
+    },
+    {
+      "name": "Up",
+      "on": true,
+      "direction": {
+        "x": 0.040467,
+        "y": 0.999180853
+      }
+    }
+  ],
+  "finalConsoleErrorsAndWarnings": 0,
+  "scope": "Scene-local floor material and rectangular Sprite Light2D; matching one-time authoring updated. No runtime assembly changes, new tests or builds required for this visual fix.",
+  "notes": [
+    "Sprite light reuses existing Rectangle sprite and clips illumination to corridor bounds; no defensive-light contract added.",
+    "Initial Freeform interior was not rendered with the installed package set; replaced by Sprite light without adding a package.",
+    "Early hot-reload Play produced existing audio random-state errors; after stopping, finishing compilation and reopening the saved scene, final Play console is clean."
+  ],
+  "screenshots": [
+    "Sandbox/Lighting/Off.png",
+    "Sandbox/Lighting/Right.png",
+    "Sandbox/Lighting/Up.png"
+  ]
+}

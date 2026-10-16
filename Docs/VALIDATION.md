@@ -1,5 +1,9 @@
 # Проверки и границы
 
+## Свет в стартовом коридоре · 2026-10-16
+
+[Отчёт](Validation/CorridorLighting.json), [фонарь выключен](Sandbox/Lighting/Off.png), [луч вдоль коридора](Sandbox/Lighting/Right.png), [луч к входу](Sandbox/Lighting/Up.png). Проверены три состояния в Play: фон слабый и видимый, включение добавляет свет на полу, комнаты вне луча сохраняют темноту. Все прежние значения сцены сохранены, кроме материала пола и добавленной ссылки на один локальный свет; BasementPrototype побайтово не изменён. Missing scripts / сохранённые probes / ошибки и предупреждения финального Play: 0. Изменены сцена и одноразовый Editor-авторинг; runtime-сборки не менялись, прежние полные прогоны ниже относятся к предыдущему этапу.
+
 ## Дробовик · 2026-10-16
 
 Текущий отчёт — [ShotgunIntegration.json](Validation/ShotgunIntegration.json), [тир](Weapons/Shotgun/Range.png), [зарядка](Weapons/Shotgun/Loading.png), [запись настоящего Unity-микса](../Concepts/Used/Audio/ShotgunRealism01/Previews/05-gameplay-current.mp3).
