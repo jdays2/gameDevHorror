@@ -1,9 +1,11 @@
 # Концепты и источники
 
-- [StorageUtilities01](Unused/Environment/StorageUtilities01/README.md) — четыре шкафа и пять трубных элементов; конкретные следы использования вместо стерильных поверхностей, пример соединения и исправленная тележка до/после. Библиотека на оценку, без интеграции.
+- [Полная обзорная сцена](Used/Environment/EnvironmentLibraryReview/README.md) — 27 новых ассетов и 6 базовых в трёх связанных помещениях Unity.
 
-- [IndustrialProps03Variants](Unused/Environment/IndustrialProps03Variants/README.md) — 8 вариаций наполнения существующих поддонов, стеллажей и столов. Отдельная библиотека на оценку, без интеграции.
-- [InteriorProps01](Unused/Environment/InteriorProps01/README.md) — 10 PNG одобренных к генерации типов мебели/оснащения, включая чистую и кровавую койку. Конкретные изображения на оценку, без интеграции.
+- [StorageUtilities01](Used/Environment/StorageUtilities01/README.md) — четыре шкафа и пять трубных элементов; конкретные следы использования вместо стерильных поверхностей, пример соединения и исправленная тележка до/после. Подключены в EnvironmentLibraryReview.
+
+- [IndustrialProps03Variants](Used/Environment/IndustrialProps03Variants/README.md) — 8 вариаций наполнения существующих поддонов, стеллажей и столов. Подключены в EnvironmentLibraryReview.
+- [InteriorProps01](Used/Environment/InteriorProps01/README.md) — 10 PNG одобренных к генерации типов мебели/оснащения, включая чистую и кровавую койку. Подключены в EnvironmentLibraryReview; используется исправленная тележка v2.
 
 - [IndustrialProps02](Used/Environment/IndustrialProps02/README.md) — шесть перегенерированных предметов с естественной асимметрией, сравнение 01/02 и отдельная комната EnvironmentPropsReview. Подключены для оценки.
 - [IndustrialProps01](Unused/Environment/IndustrialProps01/README.md) — шесть отдельных прозрачных спрайтов склада/лаборатории и интерактивный каталог. Историческая первая партия, перегенерирована по замечанию об идеальности; исходники сохранены.

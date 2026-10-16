@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Reflection;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -18,7 +17,6 @@ namespace EmergencyShift.Editor
         private const string Prefabs = Root + "/Prefabs/Environment/IndustrialProps02";
         public const string ScenePath = Root + "/Scenes/ArtReview/EnvironmentPropsReview.unity";
         private const float ShadowAlphaCutoff = .2f;
-        private const float OutlineDetail = .05f;
 
         [Serializable]
         private sealed class Library
@@ -157,64 +155,7 @@ namespace EmergencyShift.Editor
 
         private static void Import(Prop prop)
         {
-            var importer = (TextureImporter)AssetImporter.GetAtPath(Art + "/" + prop.id + ".png");
-            importer.textureType = TextureImporterType.Sprite;
-            importer.spriteImportMode = SpriteImportMode.Single;
-            importer.spritePixelsPerUnit = prop.pixelsPerUnit;
-            importer.alphaIsTransparency = true;
-            importer.mipmapEnabled = false;
-            importer.filterMode = FilterMode.Bilinear;
-            importer.wrapMode = TextureWrapMode.Clamp;
-            importer.textureCompression = TextureImporterCompression.Uncompressed;
-            importer.maxTextureSize = 4096;
-            importer.npotScale = TextureImporterNPOTScale.None;
-            var settings = new TextureImporterSettings();
-            importer.ReadTextureSettings(settings);
-            // URP's SpriteRenderer shadow provider extrudes this mesh, including its alpha outline.
-            settings.spriteMeshType = SpriteMeshType.Tight;
-            settings.spriteGenerateFallbackPhysicsShape = true;
-            importer.SetTextureSettings(settings);
-            importer.SaveAndReimport();
-            ImportAlphaOutline(importer);
-        }
-
-        private static void ImportAlphaOutline(TextureImporter importer)
-        {
-            // Unity's default Tight outline includes almost transparent fringe fragments.
-            // Bake the same alpha threshold as the caster; never trace texture pixels at runtime.
-            var sprite = Load<Sprite>(importer.assetPath);
-            var utility = typeof(TextureImporter).Assembly.GetType("UnityEditor.Sprites.SpriteUtility");
-            var generate = utility?.GetMethod("GenerateOutlineFromSprite",
-                BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
-            if (generate == null)
-            {
-                throw new InvalidOperationException("This Unity version lacks the sprite outline authoring API.");
-            }
-
-            object[] arguments = { sprite, OutlineDetail, (byte)(ShadowAlphaCutoff * 255), true, null };
-            generate.Invoke(null, arguments);
-            var paths = (Vector2[][])arguments[4];
-            if (paths == null || paths.Length == 0)
-            {
-                throw new InvalidOperationException("No opaque prop outline: " + importer.assetPath);
-            }
-
-            var serialized = new SerializedObject(importer);
-            var outline = serialized.FindProperty("m_SpriteSheet.m_Outline");
-            outline.arraySize = paths.Length;
-            for (int i = 0; i < paths.Length; i++)
-            {
-                var points = outline.GetArrayElementAtIndex(i);
-                points.arraySize = paths[i].Length;
-                for (int j = 0; j < paths[i].Length; j++)
-                {
-                    // Native outline coordinates are sprite units; importer contours use centered pixels.
-                    points.GetArrayElementAtIndex(j).vector2Value = paths[i][j] * sprite.pixelsPerUnit;
-                }
-            }
-
-            serialized.ApplyModifiedPropertiesWithoutUndo();
-            importer.SaveAndReimport();
+            EnvironmentSpriteAuthoring.Import(Art + "/" + prop.id + ".png", prop.pixelsPerUnit);
         }
 
         private static void CreatePrefab(Prop prop, Material material)

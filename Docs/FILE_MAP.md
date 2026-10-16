@@ -126,7 +126,9 @@
 
 | Файл | Назначение |
 |---|---|
+| `Editor/Authoring/EnvironmentLibraryReviewBuilder.cs` | One-time library authoring; the saved scene owns all later placement edits. |
 | `Editor/Authoring/EnvironmentReviewBuilder.cs` | Creates an editable prop review room once; never overwrites existing scenes or prefabs. |
+| `Editor/Authoring/EnvironmentSpriteAuthoring.cs` | Shared offline sprite import for silhouette-based URP shadows. |
 | `Editor/Authoring/FloorMarkingsAuthoring.cs` | Offline paint-mask rasterizer and prefab authoring. No runtime generation or scene replacement. |
 | `Editor/Authoring/LevelAuthoringSetup.cs` | Creates reusable scene-authored scaffolding once; never replaces the user's playable level. |
 | `Editor/Authoring/LevelPersistenceAuthoring.cs` | Explicit authoring command. Adds metadata/components; never rebuilds room geometry. |
@@ -170,6 +172,7 @@
 | `Data/Weapons/PistolDefinition.asset` | ScriptableObject / настройки рендера |
 | `Data/Weapons/PumpShotgun.asset` | ScriptableObject / настройки рендера |
 | `Data/Weapons/ShotgunVisual.asset` | ScriptableObject / настройки рендера |
+| `Scenes/ArtReview/EnvironmentLibraryReview.unity` | Редактируемая сцена |
 | `Scenes/ArtReview/EnvironmentPropsDarkReview.unity` | Редактируемая сцена |
 | `Scenes/ArtReview/EnvironmentPropsReview.unity` | Редактируемая сцена |
 | `Scenes/ArtReview/FloorMarkingsReview.unity` | Редактируемая сцена |

@@ -1,0 +1,490 @@
+{
+  "date": "2026-10-16",
+  "family": "InteriorProps01",
+  "status": "Owner approved object types and clean/bloody cot generation; visual approval pending. Kept in Concepts/Unused, no Unity integration.",
+  "tool": "image_gen.imagegen (built-in)",
+  "model": "Not exposed by tool",
+  "processing": "Generated PNG files copied byte-for-byte from built-in output. No raster editing, alpha thresholding, resizing or recoloring performed in Python or other local code. Pillow used only to read dimensions, alpha statistics and SHA-256 input bytes.",
+  "styleReviewRefs": [
+    {
+      "file": "Concepts/Used/Environment/IndustrialProps02/Sprites/lab-workbench.png",
+      "sha256": "299b609379c98ba6a970059d9c963e38c42d5a083c2a7f51c95e29a379602bb8",
+      "role": "Inspected existing style reference; not an edit target and not fed as an image input to new-base generations."
+    },
+    {
+      "file": "Concepts/Used/Environment/IndustrialProps02/Sprites/warehouse-drum.png",
+      "sha256": "e41c4b25f181662523da5c1c58182182ba5d225954253f09e82079b926d10a5c",
+      "role": "Inspected existing style reference; not an edit target and not fed as an image input to new-base generations."
+    },
+    {
+      "file": "Concepts/Used/Environment/IndustrialProps02/Sprites/warehouse-steel-shelf.png",
+      "sha256": "588d3b2ab55d0449e88e48b248d83826a4c1e4a7be1504dac2af87dfdb30d5f2",
+      "role": "Inspected existing style reference; not an edit target and not fed as an image input to new-base generations."
+    }
+  ],
+  "generationPlan": "generation-plan.json",
+  "outputs": [
+    {
+      "id": "utility-chair",
+      "label": "Рабочий стул",
+      "group": "Служебные помещения",
+      "proposedVisibleWidthUnits": 0.58,
+      "file": "Sprites/utility-chair.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        33,
+        72,
+        1000,
+        1486
+      ],
+      "solidBoundingBox": [
+        136,
+        217,
+        891,
+        1296
+      ],
+      "transparentPixelFraction": 0.589483896891276,
+      "partialAlphaPixelFraction": 0.41051610310872394,
+      "opaquePixelFraction": 0.0,
+      "nearOpaquePixelFraction": 0.3939679463704427,
+      "bytes": 1690695,
+      "sha256": "0a033f8ae5ab4c37ba4f5f7800b203ec779297e972dccd41bd6ccf18de284620",
+      "sourceFilename": "exec-f83f5952-b321-4dce-8f09-a8cfbf553235.png",
+      "generationHistory": [
+        {
+          "mode": "generate",
+          "prompt": "Use case: stylized-concept. Asset type: ONE isolated reusable Emergency Shift interior prop sprite, a painted bitmap game asset, NOT a product photograph and NOT an icon. Strict vertical orthographic top-down camera, looking straight down exactly 90 degrees, only top-facing surfaces and narrow edge definitions; no perspective, no isometric angle, no front or side elevation. Match a restrained non-pixel 2D hand-painted survival-horror family: muted olive/cool-gray painted steel, warm off-white, quiet charcoal and subdued fabric tones; readable construction seams, fine restrained material texture, no glossy 3D render. Clean intact base condition without blood, rust, chipped paint, grime or random damage. Natural modest irregularity must come from plausible material seams, unequal cloth folds or functional construction, never sterile AI catalogue symmetry nor arbitrary warping. One complete object centered on canvas for technical framing, generous transparent padding; true transparent RGBA background. No floor, no drop shadow, no cast shadow, no luminous fringe, no smoke, no gradient backdrop, no labels, no text, no logo, no characters, no other props. Keep silhouette clear at small gameplay scale. Neutral diffuse surface color, minimal local relief only; do not bake directional lighting. Specific subject: A simple armless industrial utility chair viewed straight overhead. Its muted olive-gray steel frame supports one warm-gray molded seat with a subtle off-center manufacturing seam; a narrow curved backrest forms a slim band at the TOP of the sprite. Visible frame/foot ends only where they project beyond seat. Seat broad and readable, no upholstery buttons, no decorative cutouts. Coherent manufactured shape, a little unequal backrest seam width. Empty seat. Exactly one chair.",
+          "outputSourceFilename": "exec-a2ee17a8-45e1-4b2c-a5c9-ba4c0e3fdc33.png",
+          "outputSha256": "5da364d64989ab0f97de4135c42d81f59604c88ee955dcabf5ecfe7ffa2c8a58"
+        },
+        {
+          "mode": "background-extraction edit",
+          "prompt": "Use case: background-extraction. Edit ONLY the pixels OUTSIDE the actual solid object silhouette in this exact supplied Emergency Shift overhead game sprite. Remove the entire smoky gray-green translucent halo / blurred backdrop / glow around the object, replacing ALL background beyond the physical contour with fully transparent RGBA alpha zero. Preserve every actual object pixel, exact 90-degree top-down projection, complete silhouette, all fine frame/leg ends, internal gaps, materials, colors, seams, cloth folds, size, canvas dimensions, framing and position unchanged. The input's outer haze is a generation error, NOT part of the object or a shadow to retain. No new shadows, no ground, no extra objects, no cosmetic redesign, no viewpoint change. Clean transparent cutout, thin antialiased silhouette edges only, no broad partially transparent gradient anywhere outside the physical silhouette.",
+          "inputSourceFilename": "exec-a2ee17a8-45e1-4b2c-a5c9-ba4c0e3fdc33.png",
+          "inputSha256": "5da364d64989ab0f97de4135c42d81f59604c88ee955dcabf5ecfe7ffa2c8a58",
+          "outputSourceFilename": "exec-f83f5952-b321-4dce-8f09-a8cfbf553235.png",
+          "outputSha256": "0a033f8ae5ab4c37ba4f5f7800b203ec779297e972dccd41bd6ccf18de284620"
+        }
+      ],
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration"
+    },
+    {
+      "id": "office-chair",
+      "label": "Офисное кресло",
+      "group": "Рабочие места",
+      "proposedVisibleWidthUnits": 0.72,
+      "file": "Sprites/office-chair.png",
+      "width": 1212,
+      "height": 1297,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        64,
+        41,
+        1160,
+        1255
+      ],
+      "solidBoundingBox": [
+        126,
+        114,
+        1087,
+        1184
+      ],
+      "transparentPixelFraction": 0.5835884282337255,
+      "partialAlphaPixelFraction": 0.41579578158278435,
+      "opaquePixelFraction": 0.0006157901834902071,
+      "nearOpaquePixelFraction": 0.3974582115112051,
+      "bytes": 1298495,
+      "sha256": "0740254ff0e8994cd06efec694fe601f320a1f9d925a6022896cb8533c60c52a",
+      "sourceFilename": "exec-e662363f-372a-498a-805e-50c9308c5699.png",
+      "generationHistory": [
+        {
+          "mode": "generate",
+          "prompt": "Use case: stylized-concept. Asset type: ONE isolated reusable Emergency Shift interior prop sprite, a painted bitmap game asset, NOT a product photograph and NOT an icon. Strict vertical orthographic top-down camera, looking straight down exactly 90 degrees, only top-facing surfaces and narrow edge definitions; no perspective, no isometric angle, no front or side elevation. Match a restrained non-pixel 2D hand-painted survival-horror family: muted olive/cool-gray painted steel, warm off-white, quiet charcoal and subdued fabric tones; readable construction seams, fine restrained material texture, no glossy 3D render. Clean intact base condition without blood, rust, chipped paint, grime or random damage. Natural modest irregularity must come from plausible material seams, unequal cloth folds or functional construction, never sterile AI catalogue symmetry nor arbitrary warping. One complete object centered on canvas for technical framing, generous transparent padding; true transparent RGBA background. No floor, no drop shadow, no cast shadow, no luminous fringe, no smoke, no gradient backdrop, no labels, no text, no logo, no characters, no other props. Keep silhouette clear at small gameplay scale. Neutral diffuse surface color, minimal local relief only; do not bake directional lighting. Specific subject: An office swivel chair, strict overhead. Charcoal-blue upholstered seat cushion, thin padded backrest at TOP, two compact clearly visible armrests alongside seat, a five-spoke base with small caster ends visible beyond cushion where physically appropriate. Cushion has a few shallow unequal folds, one seam slightly off-center; left and right padded arm surfaces have subtly differing crease patterns but functional matching sizes. No occupant. No perspective: do not show broad vertical backrest face or raised side walls.",
+          "outputSourceFilename": "exec-e662363f-372a-498a-805e-50c9308c5699.png",
+          "outputSha256": "0740254ff0e8994cd06efec694fe601f320a1f9d925a6022896cb8533c60c52a"
+        }
+      ],
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration"
+    },
+    {
+      "id": "two-seat-sofa",
+      "label": "Двухместный диван",
+      "group": "Комната отдыха",
+      "proposedVisibleWidthUnits": 1.65,
+      "file": "Sprites/two-seat-sofa.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        0,
+        0,
+        1506,
+        1024
+      ],
+      "solidBoundingBox": [
+        39,
+        175,
+        1499,
+        849
+      ],
+      "transparentPixelFraction": 0.3742815653483073,
+      "partialAlphaPixelFraction": 0.6257184346516927,
+      "opaquePixelFraction": 0.0,
+      "nearOpaquePixelFraction": 0.6153138478597006,
+      "bytes": 2257832,
+      "sha256": "f6f86ce8be277a551d9bea3a517149aedf895c32a61445b527b58a9061314aa9",
+      "sourceFilename": "exec-a2d1fef8-fb90-4d6d-aca7-3f6ca8f9514e.png",
+      "generationHistory": [
+        {
+          "mode": "generate",
+          "prompt": "Use case: stylized-concept. Asset type: ONE isolated reusable Emergency Shift interior prop sprite, a painted bitmap game asset, NOT a product photograph and NOT an icon. Strict vertical orthographic top-down camera, looking straight down exactly 90 degrees, only top-facing surfaces and narrow edge definitions; no perspective, no isometric angle, no front or side elevation. Match a restrained non-pixel 2D hand-painted survival-horror family: muted olive/cool-gray painted steel, warm off-white, quiet charcoal and subdued fabric tones; readable construction seams, fine restrained material texture, no glossy 3D render. Clean intact base condition without blood, rust, chipped paint, grime or random damage. Natural modest irregularity must come from plausible material seams, unequal cloth folds or functional construction, never sterile AI catalogue symmetry nor arbitrary warping. One complete object centered on canvas for technical framing, generous transparent padding; true transparent RGBA background. No floor, no drop shadow, no cast shadow, no luminous fringe, no smoke, no gradient backdrop, no labels, no text, no logo, no characters, no other props. Keep silhouette clear at small gameplay scale. Neutral diffuse surface color, minimal local relief only; do not bake directional lighting. Specific subject: A modest two-seat staff-room sofa seen exactly overhead. Horizontal wide footprint, muted desaturated blue-gray fabric, two separate seat cushions with slightly unequal realistic creases and one cushion a few degrees less square in its pocket; narrow backrest band across TOP, thick armrest top surfaces left and right. Whole sofa intact, no loose pillows or clutter. Low quiet fabric grain and seam details. No front apron, no visible legs underneath, no foreshortening.",
+          "outputSourceFilename": "exec-847ab7cc-73b7-4e79-8f98-61809cf67685.png",
+          "outputSha256": "5115e59dd1db0730a77f6b159ccb5e7e576c85560879a8f3d2643016c68f6c8f"
+        },
+        {
+          "mode": "background-extraction edit",
+          "prompt": "Use case: background-extraction. Edit ONLY the pixels OUTSIDE the actual solid object silhouette in this exact supplied Emergency Shift overhead game sprite. Remove the entire smoky gray-green translucent halo / blurred backdrop / glow around the object, replacing ALL background beyond the physical contour with fully transparent RGBA alpha zero. Preserve every actual object pixel, exact 90-degree top-down projection, complete silhouette, all fine frame/leg ends, internal gaps, materials, colors, seams, cloth folds, size, canvas dimensions, framing and position unchanged. The input's outer haze is a generation error, NOT part of the object or a shadow to retain. No new shadows, no ground, no extra objects, no cosmetic redesign, no viewpoint change. Clean transparent cutout, thin antialiased silhouette edges only, no broad partially transparent gradient anywhere outside the physical silhouette.",
+          "inputSourceFilename": "exec-847ab7cc-73b7-4e79-8f98-61809cf67685.png",
+          "inputSha256": "5115e59dd1db0730a77f6b159ccb5e7e576c85560879a8f3d2643016c68f6c8f",
+          "outputSourceFilename": "exec-a2d1fef8-fb90-4d6d-aca7-3f6ca8f9514e.png",
+          "outputSha256": "f6f86ce8be277a551d9bea3a517149aedf895c32a61445b527b58a9061314aa9"
+        }
+      ],
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration"
+    },
+    {
+      "id": "room-rug",
+      "label": "Тканый ковёр",
+      "group": "Бытовая зона",
+      "proposedVisibleWidthUnits": 1.7,
+      "file": "Sprites/room-rug.png",
+      "width": 1774,
+      "height": 887,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        86,
+        29,
+        1693,
+        887
+      ],
+      "solidBoundingBox": [
+        91,
+        107,
+        1685,
+        786
+      ],
+      "transparentPixelFraction": 0.3202331306902026,
+      "partialAlphaPixelFraction": 0.6795571508282608,
+      "opaquePixelFraction": 0.00020971848153651199,
+      "nearOpaquePixelFraction": 0.6681236805212203,
+      "bytes": 2774477,
+      "sha256": "4ca0aae349e5049546dbae1adce1c8f095061761934c5b6450b963b0068321c1",
+      "sourceFilename": "exec-63755fa2-57cb-42c4-b168-26e68f96f724.png",
+      "generationHistory": [
+        {
+          "mode": "generate",
+          "prompt": "Use case: stylized-concept. Asset type: ONE isolated reusable Emergency Shift interior prop sprite, a painted bitmap game asset, NOT a product photograph and NOT an icon. Strict vertical orthographic top-down camera, looking straight down exactly 90 degrees, only top-facing surfaces and narrow edge definitions; no perspective, no isometric angle, no front or side elevation. Match a restrained non-pixel 2D hand-painted survival-horror family: muted olive/cool-gray painted steel, warm off-white, quiet charcoal and subdued fabric tones; readable construction seams, fine restrained material texture, no glossy 3D render. Clean intact base condition without blood, rust, chipped paint, grime or random damage. Natural modest irregularity must come from plausible material seams, unequal cloth folds or functional construction, never sterile AI catalogue symmetry nor arbitrary warping. One complete object centered on canvas for technical framing, generous transparent padding; true transparent RGBA background. No floor, no drop shadow, no cast shadow, no luminous fringe, no smoke, no gradient backdrop, no labels, no text, no logo, no characters, no other props. Keep silhouette clear at small gameplay scale. Neutral diffuse surface color, minimal local relief only; do not bake directional lighting. Specific subject: A single plain rectangular woven room rug, longer horizontally than vertically, subdued gray-brown fibers with a narrow charcoal sewn border and very quiet uneven woven bands. Almost flat with slight natural edge waviness, tiny differing thread directions, no torn corners, no heavy fringe. No fancy central medallion, no writing. The rug IS the complete prop; everything outside its exact textile outline genuinely transparent. No floor-colored rectangle, no surrounding gray haze, no edge drop shadow, no embossed icon appearance.",
+          "outputSourceFilename": "exec-63755fa2-57cb-42c4-b168-26e68f96f724.png",
+          "outputSha256": "4ca0aae349e5049546dbae1adce1c8f095061761934c5b6450b963b0068321c1"
+        }
+      ],
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration"
+    },
+    {
+      "id": "entrance-mat",
+      "label": "Придверный коврик",
+      "group": "Входная зона",
+      "proposedVisibleWidthUnits": 0.9,
+      "file": "Sprites/entrance-mat.png",
+      "width": 1536,
+      "height": 1024,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        78,
+        9,
+        1458,
+        1000
+      ],
+      "solidBoundingBox": [
+        85,
+        163,
+        1452,
+        858
+      ],
+      "transparentPixelFraction": 0.3898385365804036,
+      "partialAlphaPixelFraction": 0.6101614634195963,
+      "opaquePixelFraction": 0.0,
+      "nearOpaquePixelFraction": 0.5984280904134115,
+      "bytes": 2096176,
+      "sha256": "81b41e0538b15cae9dba05c9dbcd0189e642e7394c382ca34be23dec6bf86e03",
+      "sourceFilename": "exec-f6b40ab3-9cf2-48c4-80a6-e2bf64926f6d.png",
+      "generationHistory": [
+        {
+          "mode": "generate",
+          "prompt": "Use case: stylized-concept. Asset type: ONE isolated reusable Emergency Shift interior prop sprite, a painted bitmap game asset, NOT a product photograph and NOT an icon. Strict vertical orthographic top-down camera, looking straight down exactly 90 degrees, only top-facing surfaces and narrow edge definitions; no perspective, no isometric angle, no front or side elevation. Match a restrained non-pixel 2D hand-painted survival-horror family: muted olive/cool-gray painted steel, warm off-white, quiet charcoal and subdued fabric tones; readable construction seams, fine restrained material texture, no glossy 3D render. Clean intact base condition without blood, rust, chipped paint, grime or random damage. Natural modest irregularity must come from plausible material seams, unequal cloth folds or functional construction, never sterile AI catalogue symmetry nor arbitrary warping. One complete object centered on canvas for technical framing, generous transparent padding; true transparent RGBA background. No floor, no drop shadow, no cast shadow, no luminous fringe, no smoke, no gradient backdrop, no labels, no text, no logo, no characters, no other props. Keep silhouette clear at small gameplay scale. Neutral diffuse surface color, minimal local relief only; do not bake directional lighting. Specific subject: A single rectangular rubber entrance mat, horizontal, dark muted charcoal with restrained olive undertone. Practical parallel shallow ribs inside a solid perimeter band. Coherent mostly rectangular molded construction with slightly differing corner radii and subtle nonuniform rubber grain, no damaged rubber. One small drainage notch functionally offsets a short edge, no perfect vector icon. Empty, no dirt, no lettering. Everything outside rubber silhouette genuinely transparent, no floor, no shadow.",
+          "outputSourceFilename": "exec-9895b265-9a04-48c7-b1f8-c3cbe6a1421a.png",
+          "outputSha256": "921d73c8ce16373a6eaa8065a89611039bbf74619c216baecf84fae4ea584ffd"
+        },
+        {
+          "mode": "background-extraction edit",
+          "prompt": "Use case: background-extraction. Edit ONLY the pixels OUTSIDE the actual solid object silhouette in this exact supplied Emergency Shift overhead game sprite. Remove the entire smoky gray-green translucent halo / blurred backdrop / glow around the object, replacing ALL background beyond the physical contour with fully transparent RGBA alpha zero. Preserve every actual object pixel, exact 90-degree top-down projection, complete silhouette, all fine frame/leg ends, internal gaps, materials, colors, seams, cloth folds, size, canvas dimensions, framing and position unchanged. The input's outer haze is a generation error, NOT part of the object or a shadow to retain. No new shadows, no ground, no extra objects, no cosmetic redesign, no viewpoint change. Clean transparent cutout, thin antialiased silhouette edges only, no broad partially transparent gradient anywhere outside the physical silhouette.",
+          "inputSourceFilename": "exec-9895b265-9a04-48c7-b1f8-c3cbe6a1421a.png",
+          "inputSha256": "921d73c8ce16373a6eaa8065a89611039bbf74619c216baecf84fae4ea584ffd",
+          "outputSourceFilename": "exec-f6b40ab3-9cf2-48c4-80a6-e2bf64926f6d.png",
+          "outputSha256": "81b41e0538b15cae9dba05c9dbcd0189e642e7394c382ca34be23dec6bf86e03"
+        }
+      ],
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration"
+    },
+    {
+      "id": "waste-bin",
+      "label": "Открытая урна",
+      "group": "Все зоны",
+      "proposedVisibleWidthUnits": 0.46,
+      "file": "Sprites/waste-bin.png",
+      "width": 1247,
+      "height": 1261,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        0,
+        12,
+        1246,
+        1237
+      ],
+      "solidBoundingBox": [
+        206,
+        209,
+        1039,
+        1034
+      ],
+      "transparentPixelFraction": 0.6494597342901314,
+      "partialAlphaPixelFraction": 0.35022674561691913,
+      "opaquePixelFraction": 0.0003135200929494864,
+      "nearOpaquePixelFraction": 0.3395823250980784,
+      "bytes": 986384,
+      "sha256": "f938602c44c3319084feb549742bbda02470b9fbdf6301f32f1e20a3826c7b59",
+      "sourceFilename": "exec-6f32369c-abb5-4271-8b79-57bf11cf1a05.png",
+      "generationHistory": [
+        {
+          "mode": "generate",
+          "prompt": "Use case: stylized-concept. Asset type: ONE isolated reusable Emergency Shift interior prop sprite, a painted bitmap game asset, NOT a product photograph and NOT an icon. Strict vertical orthographic top-down camera, looking straight down exactly 90 degrees, only top-facing surfaces and narrow edge definitions; no perspective, no isometric angle, no front or side elevation. Match a restrained non-pixel 2D hand-painted survival-horror family: muted olive/cool-gray painted steel, warm off-white, quiet charcoal and subdued fabric tones; readable construction seams, fine restrained material texture, no glossy 3D render. Clean intact base condition without blood, rust, chipped paint, grime or random damage. Natural modest irregularity must come from plausible material seams, unequal cloth folds or functional construction, never sterile AI catalogue symmetry nor arbitrary warping. One complete object centered on canvas for technical framing, generous transparent padding; true transparent RGBA background. No floor, no drop shadow, no cast shadow, no luminous fringe, no smoke, no gradient backdrop, no labels, no text, no logo, no characters, no other props. Keep silhouette clear at small gameplay scale. Neutral diffuse surface color, minimal local relief only; do not bake directional lighting. Specific subject: One small open cylindrical office/lab waste bin seen exactly down its vertical axis. Muted cool-gray painted steel, round rolled rim with subtle nonidentical lip widths, dark neutral inner bottom visible through open top, no lid, no handle, no rubbish, no plastic bag. Keep true overhead circular plan, no vertical cylinder side visible, not a bowl in perspective. Restrained matte texture and functional rim seam; clean intact. Interior dark but not glowing, no cast shadow.",
+          "outputSourceFilename": "exec-6f32369c-abb5-4271-8b79-57bf11cf1a05.png",
+          "outputSha256": "f938602c44c3319084feb549742bbda02470b9fbdf6301f32f1e20a3826c7b59"
+        }
+      ],
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration"
+    },
+    {
+      "id": "medical-cot",
+      "label": "Медицинская койка",
+      "group": "Медблок",
+      "proposedVisibleWidthUnits": 0.95,
+      "file": "Sprites/medical-cot.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        185,
+        62,
+        988,
+        1486
+      ],
+      "solidBoundingBox": [
+        260,
+        67,
+        766,
+        1445
+      ],
+      "transparentPixelFraction": 0.5748157501220703,
+      "partialAlphaPixelFraction": 0.4251842498779297,
+      "opaquePixelFraction": 0.0,
+      "nearOpaquePixelFraction": 0.4092114766438802,
+      "bytes": 1582753,
+      "sha256": "fea030ff6a2f87b7db69fda71e89a6a015472d7a6df57338df123aa9ca2eca68",
+      "sourceFilename": "exec-295e3ba7-3a56-4ded-a877-9147540fd784.png",
+      "generationHistory": [
+        {
+          "mode": "generate",
+          "prompt": "Use case: stylized-concept. Asset type: ONE isolated reusable Emergency Shift interior prop sprite, a painted bitmap game asset, NOT a product photograph and NOT an icon. Strict vertical orthographic top-down camera, looking straight down exactly 90 degrees, only top-facing surfaces and narrow edge definitions; no perspective, no isometric angle, no front or side elevation. Match a restrained non-pixel 2D hand-painted survival-horror family: muted olive/cool-gray painted steel, warm off-white, quiet charcoal and subdued fabric tones; readable construction seams, fine restrained material texture, no glossy 3D render. Clean intact base condition without blood, rust, chipped paint, grime or random damage. Natural modest irregularity must come from plausible material seams, unequal cloth folds or functional construction, never sterile AI catalogue symmetry nor arbitrary warping. One complete object centered on canvas for technical framing, generous transparent padding; true transparent RGBA background. No floor, no drop shadow, no cast shadow, no luminous fringe, no smoke, no gradient backdrop, no labels, no text, no logo, no characters, no other props. Keep silhouette clear at small gameplay scale. Neutral diffuse surface color, minimal local relief only; do not bake directional lighting. Specific subject: One empty medical cot, long axis vertical, head at TOP. Strict overhead plan of narrow off-white mattress inside muted cool-gray tubular metal frame with low side rails, small foot ends where they protrude. Off-white cotton sheet with a few broad unequal folds, one folded-back top edge slightly diagonal, one pale-gray pillow near head slightly offset left and rotated only a little. No blanket pile, no patient, no tubes, no equipment, no cross logos. Clean intact medical furniture, readable mattress length roughly twice width. No front headboard elevation: head/foot rails only thin top bands.",
+          "outputSourceFilename": "exec-2a56b79e-bc8c-4af8-9c6a-8e409750ef38.png",
+          "outputSha256": "cacb5ef510d4916e16fc0acbff0bf8a88b443ce1e500d373f9c876464fb7ddf3"
+        },
+        {
+          "mode": "background-extraction edit",
+          "prompt": "Use case: background-extraction. Edit ONLY the pixels OUTSIDE the actual solid object silhouette in this exact supplied Emergency Shift overhead game sprite. Remove the entire smoky gray-green translucent halo / blurred backdrop / glow around the object, replacing ALL background beyond the physical contour with fully transparent RGBA alpha zero. Preserve every actual object pixel, exact 90-degree top-down projection, complete silhouette, all fine frame/leg ends, internal gaps, materials, colors, seams, cloth folds, size, canvas dimensions, framing and position unchanged. The input's outer haze is a generation error, NOT part of the object or a shadow to retain. No new shadows, no ground, no extra objects, no cosmetic redesign, no viewpoint change. Clean transparent cutout, thin antialiased silhouette edges only, no broad partially transparent gradient anywhere outside the physical silhouette.",
+          "inputSourceFilename": "exec-2a56b79e-bc8c-4af8-9c6a-8e409750ef38.png",
+          "inputSha256": "cacb5ef510d4916e16fc0acbff0bf8a88b443ce1e500d373f9c876464fb7ddf3",
+          "outputSourceFilename": "exec-295e3ba7-3a56-4ded-a877-9147540fd784.png",
+          "outputSha256": "fea030ff6a2f87b7db69fda71e89a6a015472d7a6df57338df123aa9ca2eca68"
+        }
+      ],
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration"
+    },
+    {
+      "id": "medical-trolley",
+      "label": "Медицинская тележка",
+      "group": "Лаборатория/медблок",
+      "proposedVisibleWidthUnits": 0.67,
+      "file": "Sprites/medical-trolley-v2.png",
+      "width": 1215,
+      "height": 1295,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        0,
+        23,
+        1184,
+        1219
+      ],
+      "solidBoundingBox": [
+        42,
+        281,
+        1174,
+        1015
+      ],
+      "transparentPixelFraction": 0.596885117642943,
+      "partialAlphaPixelFraction": 0.4025901165934115,
+      "opaquePixelFraction": 0.0005247657636455001,
+      "nearOpaquePixelFraction": 0.3846793840204054,
+      "bytes": 1165805,
+      "sha256": "af05a8c4120eacb015494f07cb8564e0af60148e3d76e432bd951600e587d1e8",
+      "sourceFilename": "exec-088b6eff-c50b-45a7-8ef8-112b994855a0.png",
+      "generationHistory": [
+        {
+          "mode": "generate",
+          "prompt": "Use case: stylized-concept. Asset type: ONE isolated reusable Emergency Shift interior prop sprite, a painted bitmap game asset, NOT a product photograph and NOT an icon. Strict vertical orthographic top-down camera, looking straight down exactly 90 degrees, only top-facing surfaces and narrow edge definitions; no perspective, no isometric angle, no front or side elevation. Match a restrained non-pixel 2D hand-painted survival-horror family: muted olive/cool-gray painted steel, warm off-white, quiet charcoal and subdued fabric tones; readable construction seams, fine restrained material texture, no glossy 3D render. Clean intact base condition without blood, rust, chipped paint, grime or random damage. Natural modest irregularity must come from plausible material seams, unequal cloth folds or functional construction, never sterile AI catalogue symmetry nor arbitrary warping. One complete object centered on canvas for technical framing, generous transparent padding; true transparent RGBA background. No floor, no drop shadow, no cast shadow, no luminous fringe, no smoke, no gradient backdrop, no labels, no text, no logo, no characters, no other props. Keep silhouette clear at small gameplay scale. Neutral diffuse surface color, minimal local relief only; do not bake directional lighting. Specific subject: One empty small two-level medical instrument trolley, strict overhead orthographic. Rectangular cool-gray matte stainless upper tray with a narrow raised perimeter lip, two short side handles at opposite short ends and small caster/frame tips visible outside tray. Top tray hides lower shelf naturally; do not reveal lower level through fake perspective. Keep empty: no bottles, papers or instruments. One asymmetric practical assembly seam near a handle, quiet broad metal grain, clean intact surface, no rust or scratches.",
+          "outputSourceFilename": "exec-088b6eff-c50b-45a7-8ef8-112b994855a0.png",
+          "outputSha256": "af94d78e7512945fcb74ee6032326a1f555ae0f678a3f495af9e12dd47e7fc65"
+        }
+      ],
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration",
+      "historicalVersion": {
+        "file": "Sprites/medical-trolley.png",
+        "sha256": "af94d78e7512945fcb74ee6032326a1f555ae0f678a3f495af9e12dd47e7fc65",
+        "status": "Rejected as too ideal / insufficiently individual by owner"
+      },
+      "alphaRange": [
+        0,
+        255
+      ],
+      "individuality": "The owner explicitly requests non-identical caster directions: turn the LOWER-LEFT swivel caster's actual wheel and fork about 55 degrees relative to the three remaining wheels while keeping its mounting point attached and all four wheels physically functional. Make this directional difference visible, not just rotate its highlights. Add a faint incomplete dried jar ring near one upper tray corner and only two short fine utensil drag scuffs nearby. The metal tray remains mostly empty and maintained. Do not bend the frame, mirror these marks, make every wheel crooked, or cover it with grime.",
+      "individualityCorrection": {
+        "prompt": "Use case: precise-object-edit. Image 1 is the EXACT current Emergency Shift game sprite edit target. The owner rejects its sterile factory-perfect AI-catalogue look. Add a few specific evidence-of-use details that tell this object's small practical history. This is NOT a damage/rust variant and NOT random grunge. Preserve its exact recognizable construction, complete silhouette except the one explicitly requested caster rotation, straight rigid body, 90-degree orthographic top-down camera, non-pixel hand-painted muted style, materials, object scale, canvas size, framing, alpha padding and all other contents. Do not use general uniform noise as individuality. Functional geometry stays credible; no bent straight pipes, warped cabinet roofs or unnecessary ornaments. Keep roughly 90% of the surface maintained. A small number of intentional asymmetries should be visible in a thumbnail, without oversize stains or excessive detail. Genuine transparent RGBA background, no floor, drop/cast shadow, halo, perspective, logo, readable text, blood or characters. Source may contain hidden RGB outside alpha; preserve actual transparent cutout, do not paint a background. Specific edit: The owner explicitly requests non-identical caster directions: turn the LOWER-LEFT swivel caster's actual wheel and fork about 55 degrees relative to the three remaining wheels while keeping its mounting point attached and all four wheels physically functional. Make this directional difference visible, not just rotate its highlights. Add a faint incomplete dried jar ring near one upper tray corner and only two short fine utensil drag scuffs nearby. The metal tray remains mostly empty and maintained. Do not bend the frame, mirror these marks, make every wheel crooked, or cover it with grime.",
+        "reference": "Concepts/Used/Environment/InteriorProps01/Sprites/medical-trolley.png",
+        "referenceSha256": "af94d78e7512945fcb74ee6032326a1f555ae0f678a3f495af9e12dd47e7fc65",
+        "generatedSourceFilename": "exec-79393ba7-ab08-4d55-bebc-3cc7977613b5.png",
+        "method": "Built-in image_gen precise-object-edit; copied unchanged"
+      }
+    },
+    {
+      "id": "personnel-locker",
+      "label": "Шкафчик для одежды",
+      "group": "Раздевалка",
+      "proposedVisibleWidthUnits": 0.55,
+      "file": "Sprites/personnel-locker.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        0,
+        31,
+        962,
+        1536
+      ],
+      "solidBoundingBox": [
+        174,
+        122,
+        851,
+        1390
+      ],
+      "transparentPixelFraction": 0.4578806559244792,
+      "partialAlphaPixelFraction": 0.5421193440755209,
+      "opaquePixelFraction": 0.0,
+      "nearOpaquePixelFraction": 0.531103769938151,
+      "bytes": 1748682,
+      "sha256": "03a5724c98a42a024bb746ef19700676343b4a2432ccec9ac00cd0feb28d0413",
+      "sourceFilename": "exec-76602b11-c2c1-40f8-affc-4047509bd487.png",
+      "generationHistory": [
+        {
+          "mode": "generate",
+          "prompt": "Use case: stylized-concept. Asset type: ONE isolated reusable Emergency Shift interior prop sprite, a painted bitmap game asset, NOT a product photograph and NOT an icon. Strict vertical orthographic top-down camera, looking straight down exactly 90 degrees, only top-facing surfaces and narrow edge definitions; no perspective, no isometric angle, no front or side elevation. Match a restrained non-pixel 2D hand-painted survival-horror family: muted olive/cool-gray painted steel, warm off-white, quiet charcoal and subdued fabric tones; readable construction seams, fine restrained material texture, no glossy 3D render. Clean intact base condition without blood, rust, chipped paint, grime or random damage. Natural modest irregularity must come from plausible material seams, unequal cloth folds or functional construction, never sterile AI catalogue symmetry nor arbitrary warping. One complete object centered on canvas for technical framing, generous transparent padding; true transparent RGBA background. No floor, no drop shadow, no cast shadow, no luminous fringe, no smoke, no gradient backdrop, no labels, no text, no logo, no characters, no other props. Keep silhouette clear at small gameplay scale. Neutral diffuse surface color, minimal local relief only; do not bake directional lighting. Specific subject: One closed narrow single personnel locker viewed EXACTLY straight down from the ceiling. Show predominantly the muted olive-gray rectangular TOP sheet-metal plane, slightly deeper than wide, narrow rear seam, small unequal corner junctions. A thin projecting door-top lip and tiny latch end along BOTTOM edge can identify front direction, but DO NOT tilt camera to show locker facade, door vents or tall sides. Clean intact institutional steel, quiet fine paint texture and subtle manufacturing tonal variations; no items on top, no letters/numbers, no rust, no damage. It should be an overhead plan sprite, not a front-view cupboard.",
+          "outputSourceFilename": "exec-89a63c79-24a3-496d-a193-b4183042bbc3.png",
+          "outputSha256": "fb65785bd3d2b390f21266e84a8d625d584f637fefb33d5aced6c4d1b33b2aa8"
+        },
+        {
+          "mode": "background-extraction edit",
+          "prompt": "Use case: background-extraction. Edit ONLY the pixels OUTSIDE the actual solid object silhouette in this exact supplied Emergency Shift overhead game sprite. Remove the entire smoky gray-green translucent halo / blurred backdrop / glow around the object, replacing ALL background beyond the physical contour with fully transparent RGBA alpha zero. Preserve every actual object pixel, exact 90-degree top-down projection, complete silhouette, all fine frame/leg ends, internal gaps, materials, colors, seams, cloth folds, size, canvas dimensions, framing and position unchanged. The input's outer haze is a generation error, NOT part of the object or a shadow to retain. No new shadows, no ground, no extra objects, no cosmetic redesign, no viewpoint change. Clean transparent cutout, thin antialiased silhouette edges only, no broad partially transparent gradient anywhere outside the physical silhouette.",
+          "inputSourceFilename": "exec-89a63c79-24a3-496d-a193-b4183042bbc3.png",
+          "inputSha256": "fb65785bd3d2b390f21266e84a8d625d584f637fefb33d5aced6c4d1b33b2aa8",
+          "outputSourceFilename": "exec-76602b11-c2c1-40f8-affc-4047509bd487.png",
+          "outputSha256": "03a5724c98a42a024bb746ef19700676343b4a2432ccec9ac00cd0feb28d0413"
+        }
+      ],
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration"
+    },
+    {
+      "id": "medical-cot-bloody",
+      "label": "Медицинская койка — кровь",
+      "group": "Медблок",
+      "proposedVisibleWidthUnits": 0.95,
+      "file": "Sprites/medical-cot-bloody.png",
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGBA",
+      "alphaBoundingBox": [
+        0,
+        0,
+        848,
+        1456
+      ],
+      "solidBoundingBox": [
+        259,
+        64,
+        767,
+        1446
+      ],
+      "transparentPixelFraction": 0.5725288391113281,
+      "partialAlphaPixelFraction": 0.4274711608886719,
+      "opaquePixelFraction": 0.0,
+      "nearOpaquePixelFraction": 0.4119434356689453,
+      "bytes": 1629864,
+      "sha256": "960df0ee07ccc836e201cfb99fbec2d76923295c574ccc2d207eba5a2f759e84",
+      "generationMode": "precise-object-edit",
+      "prompt": "Use case: precise-object-edit. The supplied image is the EDIT TARGET, the existing clean medical-cot game sprite. Create exactly one blood-stained variant of this SAME empty cot. Change ONLY the sheet's local surface coloration: add one restrained irregular dark-crimson soaked patch toward the middle-right sleeping area and two smaller unequal absorbed smears nearby, following existing cloth folds with subtle darker pooled centers and softer wicked edges. Blood should be sober burgundy/dark red, not bright paint, not symmetrical splatter, not a full red blanket. Keep EXACTLY the cot's complete metal frame, rails, mattress outline, pillow, off-center pillow pose, sheet fold geometry, strict vertical orthographic overhead camera, canvas dimensions, size, orientation, framing, colors outside stains and transparent alpha silhouette. No person, body, wound, organs, severed parts or story scene; no additional props. All background beyond the physical cot outline remains fully transparent alpha zero, including any RGB haze in transparent pixels. No cast shadow, floor, glow, text or logo. Do not redesign furniture or make the camera oblique. This is an edited complete PNG state, not a separate decal.",
+      "reference": "Concepts/Used/Environment/InteriorProps01/Sprites/medical-cot.png",
+      "referenceSha256": "fea030ff6a2f87b7db69fda71e89a6a015472d7a6df57338df123aa9ca2eca68",
+      "sourceFilename": "exec-8716e687-cca5-4281-a411-b639b70d19f8.png",
+      "editComparison": {
+        "sameCanvasDimensions": true,
+        "silhouetteIoUAtAlpha51": 0.9940483656331738,
+        "note": "Metric checks silhouette registration only; it does not claim unchanged non-blood pixels."
+      },
+      "outputRepresentation": "Complete RGBA PNG state; no standalone blood mask or decal layer was produced.",
+      "status": "PNG prepared; owner artistic evaluation pending; no Unity integration"
+    }
+  ],
+  "knownLimitations": [
+    "Images are individual complete bitmap props, not separate furniture/contents layers or recolorable material masks.",
+    "Blood cot is a complete edited PNG, not a separable blood decal; exact pixel registration is not guaranteed by generative edit.",
+    "Generated files contain nonzero RGB in fully transparent pixels; those hidden RGB values can resemble a halo in viewers which ignore alpha. Browser RGBA compositing is the relevant preview.",
+    "Fine antialiasing and sparse faint alpha remain outside solid contours; use actual alpha outline policy if importing later.",
+    "Apparent relief and fold shading are painted in; moving-light appearance still needs Unity review after explicit integration request.",
+    "Approximate world widths are preview suggestions only; no collision, height, occlusion or gameplay behavior is implemented."
+  ],
+  "catalogue": {
+    "file": "index.html",
+    "previews": [
+      {
+        "file": "Previews/CommonScaleConcrete.png",
+        "sha256": "e307c65b21a440f3fc152aeccb6c72d3b48f82defa2eaaff29c674d0227a5a69",
+        "source": "Chromium screenshot of actual RGBA PNGs"
+      },
+      {
+        "file": "Previews/Overview.png",
+        "sha256": "69c8bbdc1e982a36072ca75f56d164fefc6a5cfbabe8293b5412158953a6d437",
+        "source": "Chromium screenshot of actual RGBA PNGs"
+      }
+    ]
+  }
+}
