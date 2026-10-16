@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace EmergencyShift.Editor
         private const string Art = Root + "/Art/Environment/IndustrialProps02";
         private const string Prefabs = Root + "/Prefabs/Environment/IndustrialProps02";
         public const string ScenePath = Root + "/Scenes/ArtReview/EnvironmentPropsReview.unity";
+        private const float ShadowAlphaCutoff = .2f;
+        private const float OutlineDetail = .05f;
 
         [Serializable]
         private sealed class Library
@@ -68,13 +71,12 @@ namespace EmergencyShift.Editor
 
             AssetDatabase.Refresh();
             var material = Load<Material>(Root + "/Materials/FlatLit.mat");
-            var shadowStyle = Load<PropShadowProfile>(Root + "/Data/Environment/LowPropShadows.asset");
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
             SceneManager.SetActiveScene(scene);
             foreach (var prop in library.outputs)
             {
                 Import(prop);
-                CreatePrefab(prop, material, shadowStyle);
+                CreatePrefab(prop, material);
             }
 
             var room = new GameObject("Environment review · warehouse and laboratory").transform;
@@ -121,12 +123,6 @@ namespace EmergencyShift.Editor
 
             Ambient(room, new Vector2(-4, 0), new Color(1, .94f, .84f));
             Ambient(room, new Vector2(4, 0), new Color(.86f, .95f, 1));
-            var warehouseLamp = Lamp(room, new Vector2(-4, 3), new Color(1, .9f, .75f));
-            var laboratoryLamp = Lamp(room, new Vector2(4, 3), new Color(.8f, .91f, 1));
-            foreach (var shadow in room.GetComponentsInChildren<PropGroundShadow2D>())
-            {
-                shadow.ConfigureLights(player.GetComponent<Flashlight2D>(), new [] { warehouseLamp, laboratoryLamp });
-            }
             Marking(room, "arrow-forward", new Vector2(-1, -2.7f), 90, new Color(.8f, .67f, .33f, .7f));
             Marking(room, "arrow-forward", new Vector2(1.4f, -2.7f), -90, new Color(.35f, .65f, .75f, .7f));
 
@@ -174,13 +170,54 @@ namespace EmergencyShift.Editor
             importer.npotScale = TextureImporterNPOTScale.None;
             var settings = new TextureImporterSettings();
             importer.ReadTextureSettings(settings);
-            settings.spriteMeshType = SpriteMeshType.FullRect;
+            // URP's SpriteRenderer shadow provider extrudes this mesh, including its alpha outline.
+            settings.spriteMeshType = SpriteMeshType.Tight;
             settings.spriteGenerateFallbackPhysicsShape = true;
             importer.SetTextureSettings(settings);
             importer.SaveAndReimport();
+            ImportAlphaOutline(importer);
         }
 
-        private static void CreatePrefab(Prop prop, Material material, PropShadowProfile shadowStyle)
+        private static void ImportAlphaOutline(TextureImporter importer)
+        {
+            // Unity's default Tight outline includes almost transparent fringe fragments.
+            // Bake the same alpha threshold as the caster; never trace texture pixels at runtime.
+            var sprite = Load<Sprite>(importer.assetPath);
+            var utility = typeof(TextureImporter).Assembly.GetType("UnityEditor.Sprites.SpriteUtility");
+            var generate = utility?.GetMethod("GenerateOutlineFromSprite",
+                BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+            if (generate == null)
+            {
+                throw new InvalidOperationException("This Unity version lacks the sprite outline authoring API.");
+            }
+
+            object[] arguments = { sprite, OutlineDetail, (byte)(ShadowAlphaCutoff * 255), true, null };
+            generate.Invoke(null, arguments);
+            var paths = (Vector2[][])arguments[4];
+            if (paths == null || paths.Length == 0)
+            {
+                throw new InvalidOperationException("No opaque prop outline: " + importer.assetPath);
+            }
+
+            var serialized = new SerializedObject(importer);
+            var outline = serialized.FindProperty("m_SpriteSheet.m_Outline");
+            outline.arraySize = paths.Length;
+            for (int i = 0; i < paths.Length; i++)
+            {
+                var points = outline.GetArrayElementAtIndex(i);
+                points.arraySize = paths[i].Length;
+                for (int j = 0; j < paths[i].Length; j++)
+                {
+                    // Native outline coordinates are sprite units; importer contours use centered pixels.
+                    points.GetArrayElementAtIndex(j).vector2Value = paths[i][j] * sprite.pixelsPerUnit;
+                }
+            }
+
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+            importer.SaveAndReimport();
+        }
+
+        private static void CreatePrefab(Prop prop, Material material)
         {
             var obj = new GameObject(prop.id);
             try
@@ -206,30 +243,18 @@ namespace EmergencyShift.Editor
                     box.size = new Vector2((b[2] - b[0]) / prop.pixelsPerUnit, (b[3] - b[1]) / prop.pixelsPerUnit);
                 }
 
-                var contact = ShadowRenderer(obj.transform, "Contact shadow", renderer.sprite,
-                    Load<Material>(Root + "/Materials/FlatUnlit.mat"), -8);
-                contact.color = new Color(0, 0, 0, shadowStyle.contactOpacity);
-                var projection = ShadowRenderer(obj.transform, "Bounded light shadow", renderer.sprite,
-                    Load<Material>(Root + "/Materials/CreatureSilhouetteShadow.mat"), -7);
-                projection.color = new Color(0, 0, 0, 0);
-                obj.AddComponent<PropGroundShadow2D>().Configure(shadowStyle, renderer, obj.GetComponent<Collider2D>(), contact, projection);
+                // SpriteRenderer has the highest default provider priority in this URP version.
+                // Keep the visual contour independent of the deliberately simple movement collider.
+                var shadow = obj.AddComponent<ShadowCaster2D>();
+                shadow.castingOption = ShadowCaster2D.ShadowCastingOptions.CastShadow;
+                shadow.alphaCutoff = ShadowAlphaCutoff;
+                shadow.trimEdge = 0;
                 PrefabUtility.SaveAsPrefabAsset(obj, Prefabs + "/" + prop.id + ".prefab");
             }
             finally
             {
                 UnityEngine.Object.DestroyImmediate(obj);
             }
-        }
-
-        private static SpriteRenderer ShadowRenderer(Transform parent, string name, Sprite sprite, Material material, int order)
-        {
-            var obj = new GameObject(name, typeof(SpriteRenderer));
-            obj.transform.SetParent(parent, false);
-            var renderer = obj.GetComponent<SpriteRenderer>();
-            renderer.sprite = sprite;
-            renderer.sharedMaterial = material;
-            renderer.sortingOrder = order;
-            return renderer;
         }
 
         private static T Load<T>(string path) where T : UnityEngine.Object
@@ -311,21 +336,6 @@ namespace EmergencyShift.Editor
             light.intensity = .2f;
             light.color = color;
             light.shadowsEnabled = false;
-        }
-
-        private static Light2D Lamp(Transform room, Vector2 position, Color color)
-        {
-            var obj = new GameObject("Inspection light · not defensive", typeof(Light2D));
-            obj.transform.SetParent(room, false);
-            obj.transform.position = position;
-            var light = obj.GetComponent<Light2D>();
-            light.lightType = Light2D.LightType.Point;
-            light.pointLightOuterRadius = 7;
-            light.pointLightInnerRadius = 2;
-            light.intensity = .65f;
-            light.color = color;
-            light.shadowsEnabled = true;
-            return light;
         }
 
         private static void Marking(Transform room, string id, Vector2 position, float angle, Color color)

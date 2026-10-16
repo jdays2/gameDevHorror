@@ -185,10 +185,12 @@
       "FlatUnlit for contact shadow",
       "existing CreatureSilhouetteShadow for bounded projection"
     ],
-    "shadowProfile": "Assets/EmergencyShift/Data/Environment/LowPropShadows.asset",
-    "shadowPolicy": "Low props use contact + bounded dominant-light silhouette; max added extension .24. Walls keep URP casters. Not a physical height/penumbra model.",
+    "shadowPolicy": "Standard URP ShadowCaster2D, SpriteRenderer source, CastShadow; Tight alpha outline baked at cutoff .2 / detail .05 including holes; trim 0; no length cap; bounded projection runtime removed after owner clarified the issue was rectangular silhouettes.",
     "defaultCameraSize": 5.2,
-    "buildSettingsChanged": false
+    "buildSettingsChanged": false,
+    "spriteMesh": "Tight with baked alpha outline in importer metadata; PNG source bytes unchanged",
+    "roomLights": "Owner locally removed both inspection lights; normal room retains local ambient, dark room has zero illumination and flashlight off on entry.",
+    "darkScene": "Assets/EmergencyShift/Scenes/ArtReview/EnvironmentPropsDarkReview.unity"
   },
   "previews": [
     {
@@ -204,7 +206,7 @@
   ],
   "unityPreview": {
     "file": "Docs/Environment/Room.png",
-    "sha256": "727453d56172b254ab614e1acaa0be1e86a5c0dd049f8dc75fc2ddbf20df06f9",
-    "source": "Actual Play ScreenCapture, bounded prop shadows, camera follows player, normal 5.2 size"
+    "sha256": "46cad16e2e786f138bf5349c6050167e7bd4dccabaeb4001eff0a51a156a95fd",
+    "source": "Actual Play ScreenCapture; standard URP shadows from baked Tight alpha contour, camera follows player at normal size 5.2"
   }
 }
