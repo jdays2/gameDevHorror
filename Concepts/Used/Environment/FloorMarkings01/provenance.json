@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-16",
+  "status": "Reusable white-alpha PNG modules and Unity prefabs created at owner request; final visual approval pending.",
+  "generation": {
+    "tool": "image_gen.imagegen (built-in)",
+    "model": "not exposed",
+    "source": "Sources/paint-coverage.png",
+    "prompt": "A single square grayscale material MASK for worn industrial floor paint. This is a flat technical TEXTURE, not a scene and not an object. Fill the whole image edge to edge with a mostly WHITE matte painted surface. Uniform coverage with very fine irregular light-gray roller grain. Sparse tiny BLACK pinholes and a few hair-thin short BLACK horizontal scuffs represent small places where paint has been rubbed away. Keep 90-95 percent of the area solid white or nearly white. Black holes must be small, scattered and occasional, not a dense noisy pattern. No long cracks, no huge peeled patches. No objects, arrows, symbols, text, frame, tiles or perspective. No shadows, no bevels, no spotlight, no gradients and no vignette. Only white, gray and black. Neutral evenly distributed paint-coverage mask, as a seamless repeating overhead 2D texture, ideally 1024 by 1024. Opaque background. The software will use dark pixels as transparent wear and light pixels as opaque paint."
+  },
+  "processing": {
+    "tool": "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
+    "method": "Deterministic new module geometry rasterized to RGBA PNGs. Generated paint coverage is sampled as material opacity; all output RGB channels are white (255). No external image or asset pack used.",
+    "resolution": 512,
+    "pixelsPerUnit": 256,
+    "moduleWorldSize": 2,
+    "thinStrokeWorldWidth": 0.125,
+    "thickStrokeWorldWidth": 0.25,
+    "sourceWearRemap": {
+      "blackPoint": 0.72,
+      "whitePoint": 0.97
+    },
+    "connectorCollar": "Last 4 percent of each edge fades opacity wear/edge roughness to solid matching sockets.",
+    "color": "Per-instance SpriteRenderer.color multiplies white RGB; alpha pinholes expose the actual floor.",
+    "implementation": "Editor-only/offline. No runtime generation, extra Update or color-specific PNG copies."
+  },
+  "excludedStudies": "Concepts/Unused/Environment/FloorMarkings01",
+  "scenePlacement": "Only new ArtReview/FloorMarkingsReview.unity; gameplay scenes are preserved.",
+  "outputs": [
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/arrow-double.png",
+      "sha256": "77287bf227ac62303ef7c8f3a90078af57d92805b0759370e077daa7b19abf58",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 221225,
+      "partialAlphaPixels": 29327
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/arrow-forward.png",
+      "sha256": "be3acaa9bead7c8b5492907de540b893828b4416cb4826de70578773ebb70340",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 225968,
+      "partialAlphaPixels": 25730
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/arrow-turn.png",
+      "sha256": "db5e267832aeb8ee49d9b7efa1cd17dae54295eeebe56545517b70efdbb44dad",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 216560,
+      "partialAlphaPixels": 32168
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/chevron.png",
+      "sha256": "31eedcc2392e451013e78e0a61c99f551cdaaebc79cc493200646fe73447a279",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 236841,
+      "partialAlphaPixels": 18080
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thick-corner.png",
+      "sha256": "b605c700a04f5af9e27e6321c354a722d4056382d6d7d9726f7af298f7def1f9",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 228775,
+      "partialAlphaPixels": 23596
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thick-cross.png",
+      "sha256": "acf99e264c358d4b04a172685784c97dc79b6c41305fbbd841f431b67ffb1f46",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 199632,
+      "partialAlphaPixels": 44078
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thick-dashes.png",
+      "sha256": "8fd1486922c6b88cf1ea98fc5cdaf21d0ad267b012e292faba1dcc8ea4da600c",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 236920,
+      "partialAlphaPixels": 17761
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thick-end.png",
+      "sha256": "1fc31f116be5b1ffaa3176456435848ad79604eab98ab16f7a72f900bd5c83aa",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 232933,
+      "partialAlphaPixels": 20835
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thick-straight.png",
+      "sha256": "c2611fc174c3d9f3e51918f030cda58aa81d53e11361921a325f7d029b87157b",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 228751,
+      "partialAlphaPixels": 23618
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thick-tee.png",
+      "sha256": "9a2bbd8e305735f0fecd24e713c9a96cd5e55ad2a109b1ee39264680768e516b",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 214201,
+      "partialAlphaPixels": 33823
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thin-corner.png",
+      "sha256": "70734246752072678e5fb1704732053c48eaf75133468126945ce179e5f28c7f",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 245050,
+      "partialAlphaPixels": 12167
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thin-cross.png",
+      "sha256": "b25773057fbe6a79bb5d4abc3f8d685d62188f3a941b513d43700384a247cff1",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 229060,
+      "partialAlphaPixels": 23491
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thin-dashes.png",
+      "sha256": "ea38d5e579c338202ed761a9ea2a2e0305a1aa5522097c475210411f4a4a4bcc",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 249216,
+      "partialAlphaPixels": 9079
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thin-end.png",
+      "sha256": "86e3c3149720b63ff8b240ec7ac7210b75ced3fd9135fea22c49386e820b689a",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 247610,
+      "partialAlphaPixels": 10365
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thin-straight.png",
+      "sha256": "5768a593601f2c4869371c7ff74e8fe7b8273b0b7938571c158ede1e9c53067b",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 245046,
+      "partialAlphaPixels": 12100
+    },
+    {
+      "file": "Assets/EmergencyShift/Art/Environment/FloorMarkings/thin-tee.png",
+      "sha256": "dd7f347e3ff8403e434224e7d1a1ed8a209779202748df907e819f2e0bde5bd8",
+      "size": [
+        512,
+        512
+      ],
+      "transparentPixels": 237057,
+      "partialAlphaPixels": 17779
+    }
+  ],
+  "sourceSha256": "9f38123f3dfc5aa89cb4a656009df8a0d63abc5ccddabae6dd019782b8e9a793",
+  "prefabCount": 20,
+  "reviewScene": "Assets/EmergencyShift/Scenes/ArtReview/FloorMarkingsReview.unity"
+}

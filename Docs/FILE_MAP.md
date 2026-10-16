@@ -122,6 +122,7 @@
 
 | Файл | Назначение |
 |---|---|
+| `Editor/Authoring/FloorMarkingsAuthoring.cs` | Offline paint-mask rasterizer and prefab authoring. No runtime generation or scene replacement. |
 | `Editor/Authoring/LevelAuthoringSetup.cs` | Creates reusable scene-authored scaffolding once; never replaces the user's playable level. |
 | `Editor/Authoring/LevelPersistenceAuthoring.cs` | Explicit authoring command. Adds metadata/components; never rebuilds room geometry. |
 | `Editor/Authoring/SandboxSceneBuilder.cs` | One-time authoring of editable test rooms; never runs at Play or replaces an existing sandbox. |

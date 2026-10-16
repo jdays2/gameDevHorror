@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-16",
+  "status": "Passed asset import, pixel/alpha/socket, Unity Play/render checks; final artistic approval pending",
+  "pngs": 16,
+  "prefabs": 20,
+  "rgba": "512x512, RGB white, transparent variable alpha",
+  "socketEdgesCompared": 32,
+  "arrowInteriorTrueHoles": 35,
+  "arrowInteriorPartialAlphaFraction": 0.7045572916666667,
+  "tintProof": [
+    "Assets/EmergencyShift/Art/Environment/FloorMarkings/arrow-forward.png",
+    "Assets/EmergencyShift/Art/Environment/FloorMarkings/arrow-forward.png",
+    "Assets/EmergencyShift/Art/Environment/FloorMarkings/arrow-forward.png"
+  ],
+  "lightPixelMean": {
+    "bright": 151.63407142857142,
+    "dim": 40.352892857142855
+  },
+  "missingScripts": 0,
+  "savedDevelopmentProbes": 0,
+  "playGameErrorsAndWarnings": 0,
+  "inspectedMcpTransportWarnings": 2,
+  "originalSandboxByteIdentical": true,
+  "userBasementByteIdentical": true,
+  "buildSettingsUnchanged": true,
+  "uniqueGuids": 459,
+  "documentLinksVerified": 35,
+  "notes": [
+    "No Runtime assembly code or existing gameplay scene changes. No runtime generation or per-decal Update. Existing FlatLit reused.",
+    "All default prefabs are white. Review tint instances share the same sprite; short/long lines share the base line PNG and tile it.",
+    "No permanent unit tests or player builds added for asset-only/editor authoring change; actual Unity Play and URP renders checked.",
+    "Source imagegen atlas studies failed module-quality checks; source coverage was generated separately and applied to precise module shapes.",
+    "An intermediate smoothstep collar calculation suppressed wear; corrected and interior alpha checks added before final export."
+  ]
+}
