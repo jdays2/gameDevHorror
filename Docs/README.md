@@ -9,7 +9,7 @@
 | Где код, кто владеет данными | [Архитектура](ARCHITECTURE.md), [карта файлов](FILE_MAP.md) |
 | Читаемость, будущие границы и изученные skills | [Инженерное ревью](ENGINEERING_REVIEW.md) |
 | Редактирование сцены/конфигов | [Авторинг](Guides/LEVEL_AUTHORING.md) |
-| Библиотека окружения и отдельная тестовая комната | [Окружение](Guides/ENVIRONMENT_LIBRARY.md) |
+| Библиотека окружения и отдельные тестовые комнаты | [Окружение](Guides/ENVIRONMENT_LIBRARY.md), [новые типы](Environment/OBJECT_BACKLOG.md) |
 | Разметка пола: PNG, соединения и цвет | [Разметка](Guides/FLOOR_MARKINGS.md) |
 | Сохранение/восстановление и добавление точек | [Чекпоинты](Guides/CHECKPOINTS.md) |
 | Почему код устроен так | [C# для владельца проекта](Guides/CSHARP.md) |
