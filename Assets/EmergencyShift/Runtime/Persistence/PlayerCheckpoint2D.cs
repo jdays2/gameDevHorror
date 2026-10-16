@@ -65,7 +65,7 @@ namespace EmergencyShift
             if (state.format == 1)
             {
                 var legacy = weapons.Find(state.weaponId);
-                if (legacy == null || state.ammo < 0 || state.ammo > legacy.maximumAmmo || legacy.CreateCycle(0).MagazineCapacity != 0)
+                if (legacy == null || state.ammo < 0 || state.ammo > legacy.maximumAmmo)
                 {
                     throw new InvalidOperationException("Invalid legacy player weapon payload");
                 }

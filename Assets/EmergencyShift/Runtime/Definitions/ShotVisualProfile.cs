@@ -8,7 +8,7 @@ namespace EmergencyShift
     {
         public string displayName = "Тёплая вспышка";
         public Color flashColor = new Color(1, 0.72f, 0.38f);
-        public Color bulletColor = new Color(1, 0.88f, 0.62f);
+        public ProjectileVisualProfile projectile;
         [Tooltip("Maximum muzzle lifetime; visible plume duration also limits the light.")]
         [Min(0.02f)]
         public float flashSeconds = 0.095f;
@@ -27,21 +27,5 @@ namespace EmergencyShift
         public float plumeLength = .78f;
         [Min(0.02f)]
         public float impactSeconds = 0.12f;
-        [Min(1)]
-        public float bulletSpeed = 36f;
-        [Min(0.02f)]
-        public float trailLength = 0.42f;
-        [Min(0.01f)]
-        public float trailWidth = 0.025f;
-        [Tooltip("Chance to show a projectile streak; collision and damage always remain active.")]
-        [Range(0, 1)]
-        public float projectileVisibility = 1;
-        [Tooltip("Per-projectile variation of streak length and opacity.")]
-        [Range(0, .8f)]
-        public float trailVariation;
-        [Min(0)]
-        public float bulletLightRadius;
-        [Min(0)]
-        public float bulletLightIntensity;
     }
 }

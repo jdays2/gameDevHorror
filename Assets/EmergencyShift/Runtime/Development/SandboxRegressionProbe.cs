@@ -36,26 +36,42 @@ namespace EmergencyShift
             string[] args = Environment.GetCommandLineArgs();
             int index = Array.IndexOf(args, "--sandbox-regression");
             bool shotgun = false;
+            bool pistol = false;
             if (index < 0)
             {
                 index = Array.IndexOf(args, "--shotgun-regression");
                 shotgun = true;
+            }
+            if (index < 0)
+            {
+                index = Array.IndexOf(args, "--pistol-regression");
+                shotgun = false;
+                pistol = true;
             }
             if (!Debug.isDebugBuild || index < 0 || index + 1 >= args.Length || FindAnyObjectByType<SandboxRegressionProbe>() != null)
             {
                 return;
             }
 
-            new GameObject("Temporary sandbox regression").AddComponent<SandboxRegressionProbe>().Begin(args[index + 1], shotgun);
+            new GameObject("Temporary sandbox regression").AddComponent<SandboxRegressionProbe>().Begin(args[index + 1], shotgun, pistol);
         }
 
-        public void Begin(string path, bool shotgun = false)
+        public void Begin(string path, bool shotgun = false, bool pistol = false)
         {
             output = path;
             Directory.CreateDirectory(Path.GetDirectoryName(output));
             DontDestroyOnLoad(gameObject);
             testKeyboard = InputSystem.AddDevice<Keyboard>("Sandbox regression keyboard");
-            StartCoroutine(Guard(shotgun ? RunShotgun() : Run()));
+            IEnumerator route = Run();
+            if (shotgun)
+            {
+                route = RunShotgun();
+            }
+            if (pistol)
+            {
+                route = RunPistol();
+            }
+            StartCoroutine(Guard(route));
         }
 
         private IEnumerator Guard(IEnumerator route)
@@ -181,6 +197,82 @@ namespace EmergencyShift
             yield return null;
         }
 
+        private IEnumerator RunPistol()
+        {
+            yield return new WaitForSeconds(.4f);
+            Bind();
+            yield return Move(50, -3);
+            yield return Move(50, -1.1f);
+            yield return Open(Entry(3));
+            yield return Move(48.5f, 2);
+            yield return null;
+            var pistol = weapon.Definition;
+            Check("Pistol pickup loads only available cartridges", weapon.MagazineCapacity == 8 && weapon.LoadedAmmo == Mathf.Min(weapon.Ammo, 8));
+            yield return Move(46, 2);
+            yield return null;
+            var shotgun = weapon.Definition;
+            Check("Both weapons share flying projectile presentation", shotgun.visuals.projectile == pistol.visuals.projectile);
+            yield return KeyPress(Key.Digit1);
+            yield return Move(48.5f, 5);
+            player.GetComponent<PlayerAim2D>().SetScriptedTarget(new Vector2(48.5f, 14));
+            yield return null;
+            int loaded = weapon.LoadedAmmo;
+            weapon.AddAmmo(30, pistol);
+            int total = weapon.Ammo;
+            Check("Ammo pickup adds reserve without filling magazine", weapon.LoadedAmmo == loaded && weapon.ReserveAmmo == total - loaded);
+            var audio = player.GetComponent<PlayerAudio2D>();
+            var utility = player.GetComponent<PlayerUtilityAudio2D>();
+            int empty = utility.EmptyTriggersPlayed;
+            int sounds = audio.ShotAudioCount;
+            for (int index = 0; index < loaded; index++)
+            {
+                Check("Loaded pistol shot " + (index + 1), weapon.TryFire());
+                yield return new WaitForSeconds(.13f);
+            }
+            Check("Successful pistol shots never add empty clicks", utility.EmptyTriggersPlayed == empty && audio.ShotAudioCount == sounds + loaded);
+            Check("Pistol cannot shoot reserve directly", weapon.LoadedAmmo == 0 && weapon.Ammo == total - loaded && !weapon.TryFire());
+            Check("Empty magazine gives exactly one dry click", utility.EmptyTriggersPlayed == empty + 1);
+            int mechanisms = audio.MechanismAudioCount;
+            yield return KeyPress(Key.X);
+            Check("X starts magazine reload and its foley", weapon.Phase == WeaponPhase.Loading && audio.MechanismAudioCount == mechanisms + 1);
+            weapon.TryFire();
+            Check("Reload suppresses dry clicks and repeated reload cues", utility.EmptyTriggersPlayed == empty + 1 && !weapon.TryReload() && audio.MechanismAudioCount == mechanisms + 1);
+            yield return new WaitForSeconds(.5f);
+            Check("Magazine does not fill early", weapon.LoadedAmmo == 0);
+            yield return new WaitForSeconds(1);
+            Check("Reload transfers reserve once", weapon.LoadedAmmo == 8 && weapon.Ammo == total - loaded && weapon.Phase == WeaponPhase.Ready);
+            Check("Reloaded pistol fires", weapon.TryFire());
+            yield return new WaitForSeconds(.15f);
+            weapon.TryReload();
+            yield return new WaitForSeconds(.3f);
+            yield return KeyPress(Key.Digit2);
+            yield return KeyPress(Key.Digit1);
+            Check("Switching cancels reload without free cartridges", weapon.LoadedAmmo == 7 && weapon.Phase == WeaponPhase.Ready);
+            weapon.TryReload();
+            yield return new WaitForSeconds(.3f);
+            var catalog = ScriptableObject.CreateInstance<WeaponCatalog>();
+            catalog.weapons = new[] { pistol, shotgun };
+            var adapter = player.gameObject.AddComponent<PlayerCheckpoint2D>();
+            adapter.Configure(catalog);
+            string slot = Path.Combine(Path.GetDirectoryName(output), "isolated-pistol-payload.json");
+            File.WriteAllText(slot, adapter.CaptureCheckpoint());
+            int savedAmmo = weapon.Ammo;
+            player.TakeDamage(1000);
+            Check("Death stops a pending magazine reload", player.IsDead && !weapon.enabled);
+            yield return KeyPress(Key.R);
+            yield return new WaitForSeconds(.4f);
+            Bind();
+            adapter = player.gameObject.AddComponent<PlayerCheckpoint2D>();
+            adapter.Configure(catalog);
+            adapter.RestoreCheckpoint(File.ReadAllText(slot));
+            player.GetComponent<PlayerMotor2D>().enabled = false;
+            Check("Disk restores exact magazine reserve and remaining reload", weapon.LoadedAmmo == 7 && weapon.Ammo == savedAmmo && weapon.Phase == WeaponPhase.Loading);
+            yield return new WaitForSeconds(1.3f);
+            Check("Restored magazine reload commits once", weapon.LoadedAmmo == 8 && weapon.Ammo == savedAmmo && weapon.Phase == WeaponPhase.Ready);
+            File.Delete(slot);
+            Destroy(catalog);
+        }
+
         private IEnumerator RunShotgun()
         {
             yield return new WaitForSeconds(.4f);
@@ -194,7 +286,7 @@ namespace EmergencyShift
             yield return null;
             var pistol = weapon.Definition;
             int pistolAmmo = weapon.Ammo;
-            Check("Existing pistol pickup unchanged", weapon.HasWeapon && pistol.contentId == "pistol" && weapon.MagazineCapacity == 0);
+            Check("Pistol pickup has a loaded magazine", weapon.HasWeapon && pistol.contentId == "pistol" && weapon.MagazineCapacity > 0 && weapon.LoadedAmmo == Mathf.Min(weapon.Ammo, weapon.MagazineCapacity));
             yield return Move(46, 2);
             yield return null;
             var shotgun = weapon.Definition;
@@ -271,7 +363,8 @@ namespace EmergencyShift
             Physics2D.SyncTransforms();
             var normalVisuals = weapon.VisualProfile;
             var hiddenVisuals = Instantiate(normalVisuals);
-            hiddenVisuals.projectileVisibility = 0;
+            hiddenVisuals.projectile = Instantiate(normalVisuals.projectile);
+            hiddenVisuals.projectile.projectileVisibility = 0;
             weapon.SetVisualProfile(hiddenVisuals);
             UnityEngine.Random.InitState(4471);
             Check("Generic two-target volley fires", weapon.TryFire());
@@ -279,6 +372,7 @@ namespace EmergencyShift
             yield return new WaitForSeconds(1);
             Check("One cone can hit two independent damage receivers", left.Hits > 0 && right.Hits > 0);
             weapon.SetVisualProfile(normalVisuals);
+            Destroy(hiddenVisuals.projectile);
             Destroy(hiddenVisuals);
             int leftHits = left.Hits;
             int rightHits = right.Hits;

@@ -70,7 +70,7 @@ namespace EmergencyShift.Editor
                 text.fontSize = 15;
                 text.color = new Color(.7f, .8f, .76f);
                 text.raycastTarget = false;
-                text.text = "[1] Пистолет   [2] Дробовик   [X] Зарядить дробовик по одному патрону";
+                text.text = "[1] Пистолет   [2] Дробовик   [X] Перезарядить выбранное оружие";
                 var rect = text.rectTransform;
                 rect.anchorMin = new Vector2(0, 1);
                 rect.anchorMax = new Vector2(0, 1);
@@ -98,22 +98,18 @@ namespace EmergencyShift.Editor
             }
 
             var audio = ScriptableObject.CreateInstance<WeaponAudioProfile>();
-            audio.shots = Clips("shot_01", 3);
+            audio.shots = Clips("shotgun", 3, Root + "/Audio/FirearmMix02");
             audio.pump = Clips("pump", 3);
             audio.shellInsert = Clips("shell_insert", 3);
             audio.casings = Clips("hull_concrete", 1);
-            audio.emptyTrigger = Clips("empty_trigger", 1)[0];
+            audio.emptyTrigger = Clips("empty", 1, Root + "/Audio/FirearmMix02")[0];
+            audio.shotGain = .92f;
+            audio.emptyGain = .3f;
             AssetDatabase.CreateAsset(audio, Root + "/Data/Audio/ShotgunPump.asset");
             var visual = UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<WeaponDefinition>(Root + "/Data/Weapons/PistolDefinition.asset").visuals);
             visual.displayName = "Дробовик · короткая вспышка";
             visual.plumeWidth = 1.1f;
             visual.plumeLength = .9f;
-            visual.bulletColor = new Color(.78f, .72f, .60f, .3f);
-            visual.projectileVisibility = .28f;
-            visual.trailVariation = .55f;
-            visual.trailLength = .10f;
-            visual.trailWidth = .012f;
-            visual.bulletSpeed = 44;
             AssetDatabase.CreateAsset(visual, Root + "/Data/Weapons/ShotgunVisual.asset");
             var definition = ScriptableObject.CreateInstance<PumpShotgunDefinition>();
             definition.contentId = "pump-shotgun";
@@ -130,12 +126,17 @@ namespace EmergencyShift.Editor
             return definition;
         }
 
-        private static AudioClip[] Clips(string prefix, int count)
+        private static AudioClip[] Clips(string prefix, int count, string folder = null)
         {
+            if (folder == null)
+            {
+                folder = Root + "/Audio/ShotgunPump";
+            }
+
             var clips = new AudioClip[count];
             for (int i = 0; i < count; i++)
             {
-                string path = Root + "/Audio/ShotgunPump/" + prefix + "_" + (i + 1).ToString("00") + ".wav";
+                string path = folder + "/" + prefix + "_" + (i + 1).ToString("00") + ".wav";
                 clips[i] = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
                 if (clips[i] == null)
                 {

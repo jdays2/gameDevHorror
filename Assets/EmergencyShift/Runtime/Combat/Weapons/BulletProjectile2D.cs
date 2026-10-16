@@ -16,6 +16,7 @@ namespace EmergencyShift
         private Transform owner;
         private PlayerWeapon2D weapon;
         private ShotVisualProfile profile;
+        private ProjectileVisualProfile presentation;
         private ShotEffect2D effectPrefab;
         private LayerMask collisionMask;
         private Vector2 direction;
@@ -38,9 +39,16 @@ namespace EmergencyShift
 
         public void Launch(Transform shooter, Vector2 heading, ShotVisualProfile style, ShotEffect2D impact, LayerMask mask, int hitDamage, float range, int shotId = 0)
         {
+            if (style == null || style.projectile == null)
+            {
+                throw new System.InvalidOperationException("A projectile visual profile is required.");
+            }
+
+            style.projectile.Validate();
             owner = shooter;
             direction = heading.normalized;
             profile = style;
+            presentation = style.projectile;
             effectPrefab = impact;
             weapon = shooter != null ? shooter.GetComponent<PlayerWeapon2D>() : null;
             collisionMask = mask;
@@ -51,18 +59,18 @@ namespace EmergencyShift
             age = 0;
             distance = 0;
             transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
-            visible = Random.value < Mathf.Clamp01(style.projectileVisibility);
-            float variation = Mathf.Clamp(style.trailVariation, 0, .8f);
+            visible = Random.value < presentation.projectileVisibility;
+            float variation = presentation.trailVariation;
             trailScale = Random.Range(1 - variation, 1);
-            var tint = style.bulletColor;
+            var tint = presentation.bulletColor;
             tint.a *= Random.Range(1 - variation, 1);
             tip.color = tint;
             tip.enabled = visible;
             trail.color = tint;
-            glow.enabled = visible && style.bulletLightRadius > 0 && style.bulletLightIntensity > 0;
-            glow.color = style.bulletColor;
-            glow.intensity = Mathf.Max(0, style.bulletLightIntensity);
-            glow.pointLightOuterRadius = Mathf.Max(0.01f, style.bulletLightRadius);
+            glow.enabled = visible && presentation.bulletLightRadius > 0 && presentation.bulletLightIntensity > 0;
+            glow.color = presentation.bulletColor;
+            glow.intensity = Mathf.Max(0, presentation.bulletLightIntensity);
+            glow.pointLightOuterRadius = Mathf.Max(0.01f, presentation.bulletLightRadius);
             UpdateTrail();
         }
 
@@ -80,7 +88,7 @@ namespace EmergencyShift
                 return;
             }
 
-            float step = Mathf.Min(Mathf.Max(1, profile.bulletSpeed) * Time.fixedDeltaTime, maxDistance - distance);
+            float step = Mathf.Min(presentation.bulletSpeed * Time.fixedDeltaTime, maxDistance - distance);
             Vector2 start = transform.position;
             var filter = new ContactFilter2D
             {
@@ -140,10 +148,10 @@ namespace EmergencyShift
 
         private void UpdateTrail()
         {
-            float length = Mathf.Min(Mathf.Max(0.02f, profile.trailLength) * trailScale, distance);
+            float length = Mathf.Min(presentation.trailLength * trailScale, distance);
             trail.enabled = visible && length > 0.01f;
             trail.transform.localPosition = new Vector3(0, -length * 0.5f, 0.001f);
-            trail.transform.localScale = new Vector3(Mathf.Max(0.01f, profile.trailWidth), length, 1);
+            trail.transform.localScale = new Vector3(presentation.trailWidth, length, 1);
         }
     }
 }

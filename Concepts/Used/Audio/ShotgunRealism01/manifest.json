@@ -1,6 +1,6 @@
 {
   "date": "2026-10-16",
-  "status": "Gameplay correction: B-derived shot_01 bank replaces A selection; mechanics retained; final listening approval pending.",
+  "status": "Current pump, shell insert and hull sources; shots and dry trigger now selected from FirearmMix02. Prior comparisons are historical.",
   "numpy": "2.3.5",
   "reference": "Accepted indoor pistol recording pipeline and existing material/creature impact palette",
   "processing": "Recorded sources only; DC/45Hz high pass, broad -1dB high EQ, preserved attack, late shot decay .29s, fades, common linear gain within each take bank. No synthesized source, added reverb, pitch shift, saturation, or compression.",
@@ -513,24 +513,8 @@
       "sha256": "c3da7d402b14afb8a6c8b9e6a3313ef465f845e9f76462ab2dc9bac3420b33d8"
     },
     {
-      "file": "Assets/EmergencyShift/Audio/ShotgunPump/empty_trigger_01.wav",
-      "sha256": "a561722cfddb4c88da0a32c0cf6e14a598451c3f083cabb6952bdcbe0e743e9c"
-    },
-    {
       "file": "Assets/EmergencyShift/Audio/ShotgunPump/hull_concrete_01.wav",
       "sha256": "68182561b6955d4c6e7b89623a9993b16529120f5962299b4a7772d5924fc97a"
-    },
-    {
-      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_01_01.wav",
-      "sha256": "0067a9464a7d455ba9d565d6c7d1ed955e9c8869161e93f875da08039df19462"
-    },
-    {
-      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_01_02.wav",
-      "sha256": "5f291a347c1a85bc1ca836e329e7f31cd2bb8bcdd9bfe17929f4ee566dd067ed"
-    },
-    {
-      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_01_03.wav",
-      "sha256": "c18e7a3a7cfb69da4b6ad569429e5a340d1e96d2d2e6f260c567e654c8dd5950"
     }
   ],
   "gameplayPreview": {
@@ -570,5 +554,51 @@
     "processing": "Float32 stereo 48kHz capture encoded to MP3 256 kbps with FFmpeg; no added processing.",
     "limitation": "Provisional in-game mix, not final owner approval; impacts include the actual range targets/materials, not every possible surface."
   },
-  "gameplayRevision": "gameplay-bank.json"
+  "gameplayRevision": "gameplay-bank.json",
+  "previousRuntimeSelection": [
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/pump_01.wav",
+      "sha256": "8dd14c5ba3056a751fd7800c885c9ee6db3e51eca3a8a7e42dcef02806f546d3"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/pump_02.wav",
+      "sha256": "c38093d7ebfdf7c3c38b586b43705bfc1e37471b4a471d007c77b04d8b0750c0"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/pump_03.wav",
+      "sha256": "39efa1c7b320294c5e631ff2bfbefb141ebfc8c9aa6fc1d88215fb68c97b874d"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shell_insert_01.wav",
+      "sha256": "e3897554e910586b4a0a548f7c20018340838080ba4f9d4aa73ab48b2f13cbe4"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shell_insert_02.wav",
+      "sha256": "c604cede8f26e9ed814015e05230778e86f2a7cf31ce850a460d5a8a515a7d8a"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shell_insert_03.wav",
+      "sha256": "c3da7d402b14afb8a6c8b9e6a3313ef465f845e9f76462ab2dc9bac3420b33d8"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/empty_trigger_01.wav",
+      "sha256": "a561722cfddb4c88da0a32c0cf6e14a598451c3f083cabb6952bdcbe0e743e9c"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/hull_concrete_01.wav",
+      "sha256": "68182561b6955d4c6e7b89623a9993b16529120f5962299b4a7772d5924fc97a"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_01_01.wav",
+      "sha256": "0067a9464a7d455ba9d565d6c7d1ed955e9c8869161e93f875da08039df19462"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_01_02.wav",
+      "sha256": "5f291a347c1a85bc1ca836e329e7f31cd2bb8bcdd9bfe17929f4ee566dd067ed"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_01_03.wav",
+      "sha256": "c18e7a3a7cfb69da4b6ad569429e5a340d1e96d2d2e6f260c567e654c8dd5950"
+    }
+  ]
 }

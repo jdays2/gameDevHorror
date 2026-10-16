@@ -7,6 +7,7 @@
 | Файл | Назначение |
 |---|---|
 | `Runtime/Combat/Weapons/BulletProjectile2D.cs` | Летящая пуля с проверкой всего отрезка пути, чтобы не проскочить тонкую стену. |
+| `Runtime/Combat/Weapons/MagazineWeaponCycle.cs` | Shared loaded/reserve ownership; ordinary reload swaps a magazine atomically. |
 | `Runtime/Combat/Weapons/PumpShotgunCycle.cs` | Automatic pump and interruptible single-shell loading; no input, visuals or audio ownership. |
 | `Runtime/Combat/Weapons/WeaponCycle.cs` | Instance-owned ammunition/cooldown, also the ordinary single-projectile weapon cycle. |
 | `Runtime/Combat/Weapons/WeaponInventory.cs` | Owns independent weapon instances. Definitions are immutable content, snapshots contain only values/IDs. |
@@ -22,8 +23,10 @@
 | `Runtime/Definitions/GoreProfile.cs` | GoreProfile |
 | `Runtime/Definitions/LevelCatalog.cs` | LevelCatalog |
 | `Runtime/Definitions/LevelDefinition.cs` | LevelDefinition |
+| `Runtime/Definitions/MagazineWeaponDefinition.cs` | MagazineWeaponDefinition |
 | `Runtime/Definitions/PlayerAudioSet.cs` | Pickup cues are live; combat candidates can be auditioned before enabling gameplay audio. |
 | `Runtime/Definitions/PlayerWorldAudioSet.cs` | PlayerWorldAudioSet |
+| `Runtime/Definitions/ProjectileVisualProfile.cs` | One shared presentation for flying bullets and pellets; no volley or weapon state. |
 | `Runtime/Definitions/PumpShotgunDefinition.cs` | Shared shotgun tuning. Each owned weapon gets its own cycle and ammunition. |
 | `Runtime/Definitions/ShotVisualProfile.cs` | Общие параметры одного визуального варианта. Не хранит патроны/состояние игрока. |
 | `Runtime/Definitions/StalkerAudioSet.cs` | Shared authored audio data: one asset instead of 49 references on every creature. |
@@ -36,10 +39,10 @@
 | `Runtime/Development/CombatProbeTarget2D.cs` | Development-only non-Stalker receiver used by smoke tests, never placed in production scenes. |
 | `Runtime/Development/CrowdReadinessProbe.cs` | Temporary authored-prefab stress fixture. Records actual CPU markers, not a frame-rate guarantee. |
 | `Runtime/Development/DevelopmentBuildSmoke.cs` | Only runs with --es-smoke-test in a development player. Ordinary game startup is unchanged. |
-| `Runtime/Development/EmergencyShift.Development.asmdef` | Граница сборки |
+| `Runtime/Development/EmergencyShift.Development.asmdef` | Граница сборки и зависимости |
 | `Runtime/Development/EngineeringBenchmark2D.cs` | Opt-in native-player baseline for pursuit and simultaneous death. Never saved in a scene. |
 | `Runtime/Development/SandboxRegressionProbe.cs` | Opt-in physical sandbox route, shooting and restart checks. Never saved in a scene. |
-| `Runtime/EmergencyShift.Runtime.asmdef` | Граница сборки |
+| `Runtime/EmergencyShift.Runtime.asmdef` | Граница сборки и зависимости |
 | `Runtime/Enemies/Common/CrowdAgent2D.cs` | Small-population local separation. Static walls still decide whether a step is safe. |
 | `Runtime/Enemies/Common/EnemyChasePath2D.cs` | Ограниченный кэшируемый A* для погони за углами. Не управляет агрессией или телом. |
 | `Runtime/Enemies/Common/EnemyHealth2D.cs` | Instance-owned health. Death is emitted once; no AI, sprite, sound or species dependency. |
@@ -82,7 +85,7 @@
 | `Runtime/Player/PlayerLife2D.cs` | Два попадания, короткая защита после удара, поражение и перезапуск комнаты по R. |
 | `Runtime/Player/PlayerMotor2D.cs` | Читает WASD и перемещает капсулу через физику Unity. |
 | `Runtime/Player/PlayerUtilityAudio2D.cs` | Single saved channel for flashlight switch and empty trigger; no synthetic pickup beeps. |
-| `Runtime/Player/PlayerWeapon2D.cs` | Pistol ownership/ammo and a straight projectile from the muzzle through the cursor target. |
+| `Runtime/Player/PlayerWeapon2D.cs` | Player input, common aiming and projectile presentation; definitions create independent firing cycles. |
 | `Runtime/Presentation/Audio/AudioThreatEmitter2D.cs` | Small scene-filtered registry. New enemy adapters expose state without changing the music director. |
 | `Runtime/Presentation/Audio/LevelAudioDirector2D.cs` | Scene-local layered atmosphere. Only perceived threats affect it; AI remains independent. |
 | `Runtime/Presentation/Visuals/BloodHitSpray2D.cs` | Малый направленный выброс при попадании; не создаёт постоянную лужу живому врагу. |
@@ -127,7 +130,7 @@
 | `Editor/Authoring/LevelPersistenceAuthoring.cs` | Explicit authoring command. Adds metadata/components; never rebuilds room geometry. |
 | `Editor/Authoring/SandboxSceneBuilder.cs` | One-time authoring of editable test rooms; never runs at Play or replaces an existing sandbox. |
 | `Editor/Authoring/ShotgunIntegrationAuthoring.cs` | Adds weapon fixtures to the existing range; never generates or replaces room geometry. |
-| `Editor/EmergencyShift.Editor.asmdef` | Граница сборки |
+| `Editor/EmergencyShift.Editor.asmdef` | Граница сборки и зависимости |
 | `Editor/Inspectors/EnemyPatrol2DEditor.cs` | Границы патруля редактируются на сцене; данные остаются на конкретном враге. |
 | `Editor/Inspectors/LevelAudioDirectorEditor.cs` | LevelAudioDirectorEditor |
 
@@ -135,7 +138,37 @@
 
 | Файл | Назначение |
 |---|---|
-| `Tests/EditMode/EmergencyShift.EditModeTests.asmdef` | Граница сборки |
+| `Tests/EditMode/EmergencyShift.EditModeTests.asmdef` | Граница сборки и зависимости |
 | `Tests/EditMode/EnemySystemsTests.cs` | EnemySystemsTests |
+| `Tests/EditMode/MagazineWeaponTests.cs` | MagazineWeaponTests |
 | `Tests/EditMode/PersistenceTests.cs` | PersistenceTests |
 | `Tests/EditMode/WeaponCycleTests.cs` | WeaponCycleTests |
+
+## Настройки и сцены
+
+| Файл | Тип |
+|---|---|
+| `Data/Audio/PistolMagazine.asset` | ScriptableObject / настройки рендера |
+| `Data/Audio/ShotgunPump.asset` | ScriptableObject / настройки рендера |
+| `Data/Audio/SurvivalAudio.asset` | ScriptableObject / настройки рендера |
+| `Data/Enemies/Patrol-Default.asset` | ScriptableObject / настройки рендера |
+| `Data/Enemies/Patrol-FirstShift.asset` | ScriptableObject / настройки рендера |
+| `Data/Enemies/SandboxTarget-20HP.asset` | ScriptableObject / настройки рендера |
+| `Data/Enemies/SandboxTarget-2HP.asset` | ScriptableObject / настройки рендера |
+| `Data/Enemies/SandboxTarget-6HP.asset` | ScriptableObject / настройки рендера |
+| `Data/Enemies/Stalker-Default.asset` | ScriptableObject / настройки рендера |
+| `Data/Enemies/Stalker-Light-BasementPrototype.asset` | ScriptableObject / настройки рендера |
+| `Data/Enemies/Stalker-Light-Default.asset` | ScriptableObject / настройки рендера |
+| `Data/Gore/StalkerRupture.asset` | ScriptableObject / настройки рендера |
+| `Data/Levels/Campaign.asset` | ScriptableObject / настройки рендера |
+| `Data/Levels/Weapons.asset` | ScriptableObject / настройки рендера |
+| `Data/Rendering/Prototype2DRenderer.asset` | ScriptableObject / настройки рендера |
+| `Data/Rendering/PrototypeURP.asset` | ScriptableObject / настройки рендера |
+| `Data/Weapons/CommonProjectile.asset` | ScriptableObject / настройки рендера |
+| `Data/Weapons/PistolDefinition.asset` | ScriptableObject / настройки рендера |
+| `Data/Weapons/PumpShotgun.asset` | ScriptableObject / настройки рендера |
+| `Data/Weapons/ShotgunVisual.asset` | ScriptableObject / настройки рендера |
+| `Scenes/ArtReview/FloorMarkingsReview.unity` | Редактируемая сцена |
+| `Scenes/BasementPrototype.unity` | Редактируемая сцена |
+| `Scenes/LevelTemplate.unity` | Редактируемая сцена |
+| `Scenes/MechanicsSandbox.unity` | Редактируемая сцена |

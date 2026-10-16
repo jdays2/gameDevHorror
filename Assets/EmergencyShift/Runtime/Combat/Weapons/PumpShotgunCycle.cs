@@ -4,30 +4,24 @@ using UnityEngine;
 namespace EmergencyShift
 {
     /// <summary>Automatic pump and interruptible single-shell loading; no input, visuals or audio ownership.</summary>
-    public sealed class PumpShotgunCycle : WeaponCycle
+    public sealed class PumpShotgunCycle : MagazineWeaponCycle
     {
         private readonly PumpShotgunDefinition profile;
-        private int loaded;
-        private WeaponPhase phase;
-        private float operationEnds;
         private float pumpCueAt;
         private bool cuePending;
-        public override int Loaded => loaded;
-        public override int MagazineCapacity => profile.magazineCapacity;
-        public override WeaponPhase Phase => phase;
-        public override bool HasReadyRound => loaded > 0;
+        protected override int SnapshotFormat => 1;
         public override bool CanHolster => phase != WeaponPhase.Pumping;
         public override bool EjectsOnShot => false;
 
-        public PumpShotgunCycle(PumpShotgunDefinition data, int cartridges) : base(data, cartridges)
+        public PumpShotgunCycle(PumpShotgunDefinition data, int cartridges)
+            : base(data, cartridges, data.magazineCapacity, data.shellInsertSeconds)
         {
             profile = data;
-            loaded = Mathf.Min(TotalAmmo, MagazineCapacity);
         }
 
         public override bool CanFire(float now)
         {
-            return phase != WeaponPhase.Pumping && base.CanFire(now);
+            return phase != WeaponPhase.Pumping && HasReadyRound && now >= readyAt;
         }
 
         public override bool TryFire(float now)
@@ -43,7 +37,6 @@ namespace EmergencyShift
                 return false;
             }
 
-            loaded--;
             phase = WeaponPhase.Pumping;
             operationEnds = now + profile.pumpSeconds;
             pumpCueAt = now + profile.pumpCueDelay;
@@ -61,15 +54,6 @@ namespace EmergencyShift
             phase = WeaponPhase.Loading;
             operationEnds = now + profile.shellInsertSeconds;
             return true;
-        }
-
-        public override void CancelReload()
-        {
-            if (phase == WeaponPhase.Loading)
-            {
-                phase = WeaponPhase.Ready;
-                operationEnds = 0;
-            }
         }
 
         public override void Tick(float now)
@@ -108,9 +92,6 @@ namespace EmergencyShift
         public override WeaponCycleSnapshot Capture(float now)
         {
             var state = base.Capture(now);
-            state.loaded = loaded;
-            state.phase = phase;
-            state.operationRemaining = phase == WeaponPhase.Ready ? 0 : Mathf.Max(0, operationEnds - now);
             state.cuePending = cuePending && phase == WeaponPhase.Pumping;
             state.cueRemaining = state.cuePending ? Mathf.Max(0, pumpCueAt - now) : 0;
             return state;
@@ -134,9 +115,6 @@ namespace EmergencyShift
         public override void Restore(WeaponCycleSnapshot state, float now)
         {
             base.Restore(state, now);
-            loaded = state.loaded;
-            phase = state.phase;
-            operationEnds = now + state.operationRemaining;
             cuePending = state.cuePending;
             pumpCueAt = now + state.cueRemaining;
         }

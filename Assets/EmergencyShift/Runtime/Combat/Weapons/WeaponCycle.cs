@@ -13,7 +13,10 @@ namespace EmergencyShift
     public enum WeaponOperation
     {
         Pump,
-        ShellInserted
+        ShellInserted,
+        MagazineReloadStarted,
+        MagazineLoaded,
+        ReloadCancelled
     }
 
     [Serializable]
@@ -41,6 +44,7 @@ namespace EmergencyShift
         public int Reserve => TotalAmmo - Loaded;
         public virtual WeaponPhase Phase => WeaponPhase.Ready;
         public virtual bool HasReadyRound => TotalAmmo > 0;
+        public bool CanDryFire => !HasReadyRound && Phase == WeaponPhase.Ready;
         public virtual bool CanHolster => true;
         public virtual bool EjectsOnShot => true;
         public event Action<WeaponOperation> Operation;
@@ -96,9 +100,9 @@ namespace EmergencyShift
             };
         }
 
-        protected void ValidateCommon(WeaponCycleSnapshot state)
+        protected void ValidateCommon(WeaponCycleSnapshot state, int format = 1)
         {
-            if (state == null || state.format != 1 || !state.initialized || state.ammo < 0 ||
+            if (state == null || state.format != format || !state.initialized || state.ammo < 0 ||
                 state.ammo > definition.maximumAmmo || !ValidTime(state.cooldown, definition.secondsBetweenShots))
             {
                 throw new InvalidOperationException("Invalid saved weapon cycle");

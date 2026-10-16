@@ -233,6 +233,7 @@ namespace EmergencyShift
         {
             if (boundCycle != null)
             {
+                boundCycle.CancelReload();
                 boundCycle.Operation -= OnOperation;
                 boundCycle = null;
             }
@@ -326,7 +327,7 @@ namespace EmergencyShift
         public bool TryFire()
         {
             var cycle = inventory.ActiveCycle;
-            if (CanUse && cycle != null && !cycle.HasReadyRound && cycle.Phase != WeaponPhase.Pumping)
+            if (CanUse && cycle != null && cycle.CanDryFire)
             {
                 if (Time.time >= nextEmptyTrigger)
                 {

@@ -19,7 +19,7 @@ namespace EmergencyShift
         private AudioSource[] impactSources;
         [SerializeField, Range(0, 1)]
         private float pickupVolume = .65f;
-        [Header("Selected indoor pistol")]
+        [Header("Combat audio and legacy fallback")]
         [SerializeField]
         private bool combatAudioEnabled;
         [SerializeField]
@@ -45,6 +45,7 @@ namespace EmergencyShift
         private float pickupBurstUntil;
         private int pickupPriority;
         private int shotCursor;
+        private AudioSource reloadVoice;
         private const int RememberedVolleys = 64;
         private readonly Dictionary<int, int> audibleImpacts = new Dictionary<int, int>();
         private readonly Queue<int> impactOrder = new Queue<int>();
@@ -114,6 +115,7 @@ namespace EmergencyShift
 
         private void OnDisable()
         {
+            reloadVoice = null;
             interaction.ItemCollected -= OnPickup;
             weapon.ShotFired -= OnShot;
             weapon.SurfaceHit -= OnImpact;
@@ -240,7 +242,7 @@ namespace EmergencyShift
                 }
             }
 
-            // At the current 0.3 s fire interval two voices suffice; a bounded fallback supports Inspector changes.
+            // Preserve overlapping shot tails; a bounded fallback supports shorter Inspector intervals.
             if (selected == null)
             {
                 selected = shotSources[shotCursor++ % shotSources.Length];
@@ -264,13 +266,42 @@ namespace EmergencyShift
 
         private void OnOperation(WeaponOperation operation)
         {
+            if (operation == WeaponOperation.ReloadCancelled)
+            {
+                if (reloadVoice != null)
+                {
+                    reloadVoice.Stop();
+                    reloadVoice = null;
+                }
+
+                return;
+            }
+
             var profile = weapon.Definition.audioProfile;
             if (!combatAudioEnabled || profile == null || casingSources == null)
             {
                 return;
             }
 
-            var clips = operation == WeaponOperation.Pump ? profile.pump : profile.shellInsert;
+            AudioClip[] clips;
+            switch (operation)
+            {
+                case WeaponOperation.Pump:
+                    clips = profile.pump;
+                    break;
+                case WeaponOperation.ShellInserted:
+                    clips = profile.shellInsert;
+                    break;
+                case WeaponOperation.MagazineReloadStarted:
+                    clips = profile.magazineReload;
+                    break;
+                case WeaponOperation.MagazineLoaded:
+                    reloadVoice = null;
+                    return;
+                default:
+                    return;
+            }
+
             var clip = Choose(clips);
             if (clip == null)
             {
@@ -286,6 +317,10 @@ namespace EmergencyShift
                     source.pitch = 1;
                     source.panStereo = 0;
                     source.Play();
+                    if (operation == WeaponOperation.MagazineReloadStarted)
+                    {
+                        reloadVoice = source;
+                    }
                     MechanismAudioCount++;
                     return;
                 }
