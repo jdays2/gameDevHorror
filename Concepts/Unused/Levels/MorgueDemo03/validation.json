@@ -1,31 +1,29 @@
 {
   "checks": {
     "basement_without_side_content": true,
-    "basement_must_visit_b02_before_d1": true,
-    "shortcut_reduces_graph_steps": true,
-    "upper_route_a_without_side_content": true,
-    "upper_route_b_without_side_content": true,
-    "role_ii_observation_before_either_branch": true,
-    "role_iii_demo_before_arena": true,
-    "two_stalker_rooms_upstairs_before_arena": true,
-    "no_box_overlaps": true,
-    "no_edge_through_unrelated_box": true
+    "b02_mandatory_before_shortcut": true,
+    "shortcut_before_last_basement_encounter": true,
+    "upper_a_without_side_content": true,
+    "upper_b_without_side_content": true,
+    "upper_observation_hub_mandatory": true,
+    "third_role_before_arena": true,
+    "floor_transition_same_coordinates": true,
+    "no_optional_stalker_in_main_routes": true,
+    "shortcut_shorter": true,
+    "b_physically_longer_than_a": true,
+    "basement_P0_clear_sightline": true,
+    "basement_P1_clear_sightline": true,
+    "basement_P1_far_target_occluded": true,
+    "upper_P2_clear_sightline": true,
+    "upper_P3_clear_sightline": true
   },
-  "shortcut_before": [
-    "Vminus",
-    "B04",
-    "C04",
-    "B03",
-    "C03",
-    "B02",
-    "C02",
-    "C01",
-    "BO1"
-  ],
-  "shortcut_after": [
-    "Vminus",
-    "C01",
-    "BO1"
-  ],
-  "limitation": "Graph audit only; not movement, visibility, fight duration, balance or performance validation."
+  "shortcut_grid_steps": {
+    "closed": 93,
+    "open": 49
+  },
+  "upper_choice_grid_steps": {
+    "A": 18,
+    "B": 44
+  },
+  "scope": "Relative plan geometry only, 20 drawing units per grid cell. Not Unity units, player clearance, AI, combat, time, balance or FPS validation."
 }
