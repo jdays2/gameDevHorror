@@ -27,6 +27,7 @@
 | `Runtime/Definitions/PlayerAudioSet.cs` | Pickup cues are live; combat candidates can be auditioned before enabling gameplay audio. |
 | `Runtime/Definitions/PlayerWorldAudioSet.cs` | PlayerWorldAudioSet |
 | `Runtime/Definitions/ProjectileVisualProfile.cs` | One shared presentation for flying bullets and pellets; no volley or weapon state. |
+| `Runtime/Definitions/PropShadowProfile.cs` | Shared bounded floor-shadow tuning for low scenery; no gameplay visibility rules. |
 | `Runtime/Definitions/PumpShotgunDefinition.cs` | Shared shotgun tuning. Each owned weapon gets its own cycle and ammunition. |
 | `Runtime/Definitions/ShotVisualProfile.cs` | Общие параметры одного визуального варианта. Не хранит патроны/состояние игрока. |
 | `Runtime/Definitions/StalkerAudioSet.cs` | Shared authored audio data: one asset instead of 49 references on every creature. |
@@ -98,6 +99,7 @@
 | `Runtime/Presentation/Visuals/GoreBurst2D.cs` | Одноразовый разрыв тела. Лужа и куски независимы от игрового поведения врага. |
 | `Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs` | Spread simultaneous corpse fragment construction across frames; never remove permanent blood. |
 | `Runtime/Presentation/Visuals/PlayerShotShadow2D.cs` | Короткая проекция силуэта капсулы от настоящего света дула; плоское приближение высоты. |
+| `Runtime/Presentation/Visuals/PropGroundShadow2D.cs` | Short sprite-silhouette shadows for low props; reuses the existing projection material. |
 | `Runtime/Presentation/Visuals/RemainsPartIdentity2D.cs` | Settled presentation data. No AI, physics or Update after landing. |
 | `Runtime/Presentation/Visuals/RemainsRecord2D.cs` | Scene-owned settled remains. It survives the actor; no AI, damage or playback logic. |
 | `Runtime/Presentation/Visuals/RemainsSnapshot.cs` | RemainsSnapshot |
@@ -126,6 +128,7 @@
 
 | Файл | Назначение |
 |---|---|
+| `Editor/Authoring/EnvironmentReviewBuilder.cs` | Creates an editable prop review room once; never overwrites existing scenes or prefabs. |
 | `Editor/Authoring/FloorMarkingsAuthoring.cs` | Offline paint-mask rasterizer and prefab authoring. No runtime generation or scene replacement. |
 | `Editor/Authoring/LevelAuthoringSetup.cs` | Creates reusable scene-authored scaffolding once; never replaces the user's playable level. |
 | `Editor/Authoring/LevelPersistenceAuthoring.cs` | Explicit authoring command. Adds metadata/components; never rebuilds room geometry. |
@@ -160,6 +163,7 @@
 | `Data/Enemies/Stalker-Default.asset` | ScriptableObject / настройки рендера |
 | `Data/Enemies/Stalker-Light-BasementPrototype.asset` | ScriptableObject / настройки рендера |
 | `Data/Enemies/Stalker-Light-Default.asset` | ScriptableObject / настройки рендера |
+| `Data/Environment/LowPropShadows.asset` | ScriptableObject / настройки рендера |
 | `Data/Gore/StalkerRupture.asset` | ScriptableObject / настройки рендера |
 | `Data/Levels/Campaign.asset` | ScriptableObject / настройки рендера |
 | `Data/Levels/Weapons.asset` | ScriptableObject / настройки рендера |
@@ -169,6 +173,7 @@
 | `Data/Weapons/PistolDefinition.asset` | ScriptableObject / настройки рендера |
 | `Data/Weapons/PumpShotgun.asset` | ScriptableObject / настройки рендера |
 | `Data/Weapons/ShotgunVisual.asset` | ScriptableObject / настройки рендера |
+| `Scenes/ArtReview/EnvironmentPropsReview.unity` | Редактируемая сцена |
 | `Scenes/ArtReview/FloorMarkingsReview.unity` | Редактируемая сцена |
 | `Scenes/BasementPrototype.unity` | Редактируемая сцена |
 | `Scenes/LevelTemplate.unity` | Редактируемая сцена |

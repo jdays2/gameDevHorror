@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-16",
+  "status": "Passed standalone environment room and bounded prop shadow checks; artistic judgement remains with owner",
+  "editor": {
+    "scene": "EnvironmentPropsReview",
+    "dirty": false,
+    "play": false,
+    "compiling": false,
+    "cameraEnabled": true,
+    "cameraFollowsPlayer": true,
+    "cameraSize": 5.2,
+    "contexts": 1,
+    "listeners": 1,
+    "propShadows": 7,
+    "wallCasters": 4,
+    "preloadedAssets": 0
+  },
+  "assets": {
+    "scene": "EnvironmentPropsReview",
+    "dirty": false,
+    "missingScripts": 0,
+    "probes": 0,
+    "prefabRows": [
+      {
+        "path": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-cabinet.prefab",
+        "ppu": 1246.66663,
+        "collider": "BoxCollider2D",
+        "material": "FlatLit",
+        "layer": 8
+      },
+      {
+        "path": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-equipment-cabinet.prefab",
+        "ppu": 1007.33331,
+        "collider": "BoxCollider2D",
+        "material": "FlatLit",
+        "layer": 8
+      },
+      {
+        "path": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-workbench.prefab",
+        "ppu": 806.363647,
+        "collider": "BoxCollider2D",
+        "material": "FlatLit",
+        "layer": 8
+      },
+      {
+        "path": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-drum.prefab",
+        "ppu": 1276.0,
+        "collider": "CircleCollider2D",
+        "material": "FlatLit",
+        "layer": 8
+      },
+      {
+        "path": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-pallet-crate.prefab",
+        "ppu": 688.125,
+        "collider": "BoxCollider2D",
+        "material": "FlatLit",
+        "layer": 8
+      },
+      {
+        "path": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-steel-shelf.prefab",
+        "ppu": 816.6667,
+        "collider": "BoxCollider2D",
+        "material": "FlatLit",
+        "layer": 8
+      }
+    ],
+    "variant": "Release"
+  },
+  "physicalMovement": [
+    "crate blocks physical movement: True, y=-1,482748",
+    "central passage allows physical movement: True, y=1,599997",
+    "north wall stops physical movement: True, y=4,405001"
+  ],
+  "shadowChecks": [
+    "Flashlight creates a bounded silhouette projection",
+    "Moving player light reverses shadow direction",
+    "Power off removes projection and keeps quiet contact shadow",
+    "Room point light creates bounded shadow too",
+    "Disabling component hides both renderers",
+    "Seven props keep collision blockers; only walls use URP casters"
+  ],
+  "shadowPolicy": "Low props: contact + bounded projection, added extension <= .24. Uses strongest configured point light or player flashlight, first-blocker query allows own collider. Walls keep URP casters. This is not a physical height/penumbra model.",
+  "editMode": {
+    "total": 31,
+    "passed": 31,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 0.1412422,
+    "resultState": "Passed"
+  },
+  "releaseBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 4.6093741
+  },
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "newRuntimeShadowTypesVerifiedInRelease": true,
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "originalScenesAndFirstSpritesByteIdentical": true,
+  "buildSettingsUnchanged": true,
+  "scope": [
+    "Six regenerated PNGs; old sources retained; two extra corrections removed unrequested wear.",
+    "Source PNGs copied unchanged to production, common FlatLit and projection materials reused.",
+    "Physical movement uses existing Rigidbody2D with temporary motor disable; normal motor restored. It is not a WASD input regression.",
+    "Shadow checks exercise actual MonoBehaviour presentation methods in Play; no saved temporary probes.",
+    "Final build follows UI-only cleanup; final Play screenshot is fresh, normal camera framing/target enabled."
+  ],
+  "limitations": [
+    "Subtle edge relief/contact shading remains painted into sprites; moving-light behaviour must be reviewed in the test room.",
+    "Containers and contents remain one image per prop, not separate editable layers.",
+    "Some faint surface marks and near-transparent edge pixels remain in generated output; no final albedo/sprite quality approval inferred."
+  ]
+}
