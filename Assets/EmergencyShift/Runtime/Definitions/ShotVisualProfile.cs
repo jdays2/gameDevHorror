@@ -33,6 +33,12 @@ namespace EmergencyShift
         public float trailLength = 0.42f;
         [Min(0.01f)]
         public float trailWidth = 0.025f;
+        [Tooltip("Chance to show a projectile streak; collision and damage always remain active.")]
+        [Range(0, 1)]
+        public float projectileVisibility = 1;
+        [Tooltip("Per-projectile variation of streak length and opacity.")]
+        [Range(0, .8f)]
+        public float trailVariation;
         [Min(0)]
         public float bulletLightRadius;
         [Min(0)]

@@ -25,6 +25,8 @@ namespace EmergencyShift
         private int damage;
         private int volleyId;
         private bool active;
+        private bool visible;
+        private float trailScale;
         public float DistanceTravelled => distance;
 
         public void ConfigureVisual(SpriteRenderer streak, SpriteRenderer head, Light2D light)
@@ -49,9 +51,15 @@ namespace EmergencyShift
             age = 0;
             distance = 0;
             transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
-            tip.color = style.bulletColor;
-            trail.color = style.bulletColor;
-            glow.enabled = style.bulletLightRadius > 0 && style.bulletLightIntensity > 0;
+            visible = Random.value < Mathf.Clamp01(style.projectileVisibility);
+            float variation = Mathf.Clamp(style.trailVariation, 0, .8f);
+            trailScale = Random.Range(1 - variation, 1);
+            var tint = style.bulletColor;
+            tint.a *= Random.Range(1 - variation, 1);
+            tip.color = tint;
+            tip.enabled = visible;
+            trail.color = tint;
+            glow.enabled = visible && style.bulletLightRadius > 0 && style.bulletLightIntensity > 0;
             glow.color = style.bulletColor;
             glow.intensity = Mathf.Max(0, style.bulletLightIntensity);
             glow.pointLightOuterRadius = Mathf.Max(0.01f, style.bulletLightRadius);
@@ -132,8 +140,8 @@ namespace EmergencyShift
 
         private void UpdateTrail()
         {
-            float length = Mathf.Min(Mathf.Max(0.02f, profile.trailLength), distance);
-            trail.enabled = length > 0.01f;
+            float length = Mathf.Min(Mathf.Max(0.02f, profile.trailLength) * trailScale, distance);
+            trail.enabled = visible && length > 0.01f;
             trail.transform.localPosition = new Vector3(0, -length * 0.5f, 0.001f);
             trail.transform.localScale = new Vector3(Mathf.Max(0.01f, profile.trailWidth), length, 1);
         }

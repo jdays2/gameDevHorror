@@ -179,6 +179,33 @@ namespace EmergencyShift.Tests
         }
 
         [Test]
+        public void PelletDirectionsStayInSpreadWithoutOrderedAngularSlots()
+        {
+            var previous = UnityEngine.Random.state;
+            try
+            {
+                UnityEngine.Random.InitState(4721);
+                float previousAngle = -180;
+                bool hasUnorderedPair = false;
+                for (int index = 0; index < shotgun.ProjectileCount; index++)
+                {
+                    Vector2 direction = shotgun.ProjectileDirection(Vector2.up, index);
+                    float angle = Vector2.SignedAngle(Vector2.up, direction);
+                    Assert.That(direction.magnitude, Is.EqualTo(1).Within(.0001f));
+                    Assert.That(Mathf.Abs(angle), Is.LessThanOrEqualTo(shotgun.spreadDegrees * .5f));
+                    hasUnorderedPair |= angle < previousAngle;
+                    previousAngle = angle;
+                }
+
+                Assert.That(hasUnorderedPair, Is.True, "Pellets must not occupy an ordered comb of angular slots.");
+            }
+            finally
+            {
+                UnityEngine.Random.state = previous;
+            }
+        }
+
+        [Test]
         public void InvalidMagazineAndNonFiniteSavedTimersAreExplicitErrors()
         {
             shotgun.magazineCapacity = 0;

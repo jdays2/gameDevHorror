@@ -1,6 +1,6 @@
 {
   "date": "2026-10-16",
-  "status": "Variant A and mechanics provisionally integrated at owner request; tuning and final listening approval pending.",
+  "status": "Gameplay correction: B-derived shot_01 bank replaces A selection; mechanics retained; final listening approval pending.",
   "numpy": "2.3.5",
   "reference": "Accepted indoor pistol recording pipeline and existing material/creature impact palette",
   "processing": "Recorded sources only; DC/45Hz high pass, broad -1dB high EQ, preserved attack, late shot decay .29s, fades, common linear gain within each take bank. No synthesized source, added reverb, pitch shift, saturation, or compression.",
@@ -489,18 +489,6 @@
   "unityChanged": true,
   "runtimeSelection": [
     {
-      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_a_01.wav",
-      "sha256": "3354eb490d1d5a8b026c4e54bd525e8b880ab37a851718753aa3d1a894f6a0bc"
-    },
-    {
-      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_a_02.wav",
-      "sha256": "85bd619a4bf41a49a88ab94b4beb2a5a33e1cae29cb9cccd291cdf6179cdf048"
-    },
-    {
-      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_a_03.wav",
-      "sha256": "d3f779459d113c24fcc1cf556c2d156633cb7149b636a86799beddc788f622e0"
-    },
-    {
       "file": "Assets/EmergencyShift/Audio/ShotgunPump/pump_01.wav",
       "sha256": "8dd14c5ba3056a751fd7800c885c9ee6db3e51eca3a8a7e42dcef02806f546d3"
     },
@@ -531,6 +519,18 @@
     {
       "file": "Assets/EmergencyShift/Audio/ShotgunPump/hull_concrete_01.wav",
       "sha256": "68182561b6955d4c6e7b89623a9993b16529120f5962299b4a7772d5924fc97a"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_01_01.wav",
+      "sha256": "0067a9464a7d455ba9d565d6c7d1ed955e9c8869161e93f875da08039df19462"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_01_02.wav",
+      "sha256": "5f291a347c1a85bc1ca836e329e7f31cd2bb8bcdd9bfe17929f4ee566dd067ed"
+    },
+    {
+      "file": "Assets/EmergencyShift/Audio/ShotgunPump/shot_01_03.wav",
+      "sha256": "c18e7a3a7cfb69da4b6ad569429e5a340d1e96d2d2e6f260c567e654c8dd5950"
     }
   ],
   "gameplayPreview": {
@@ -569,5 +569,6 @@
     ],
     "processing": "Float32 stereo 48kHz capture encoded to MP3 256 kbps with FFmpeg; no added processing.",
     "limitation": "Provisional in-game mix, not final owner approval; impacts include the actual range targets/materials, not every possible surface."
-  }
+  },
+  "gameplayRevision": "gameplay-bank.json"
 }

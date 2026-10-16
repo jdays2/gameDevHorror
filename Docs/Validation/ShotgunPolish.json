@@ -1,0 +1,295 @@
+{
+  "date": "2026-10-16",
+  "status": "Passed targeted audio, presentation, native shotgun regression and release checks",
+  "audio": {
+    "before": {
+      "events": [
+        {
+          "frame": 30,
+          "fired": true,
+          "clip": "shot_a_03",
+          "audioCount": 1,
+          "rms150ms": 0.026534348726272583,
+          "peak150ms": 0.42805910110473633
+        },
+        {
+          "frame": 70,
+          "fired": true,
+          "clip": "shot_a_02",
+          "audioCount": 2,
+          "rms150ms": 0.11733807623386383,
+          "peak150ms": 0.5204813480377197
+        },
+        {
+          "frame": 110,
+          "fired": true,
+          "clip": "shot_a_03",
+          "audioCount": 3,
+          "rms150ms": 0.025614822283387184,
+          "peak150ms": 0.41298025846481323
+        },
+        {
+          "frame": 150,
+          "fired": true,
+          "clip": "shot_a_02",
+          "audioCount": 4,
+          "rms150ms": 0.11814537644386292,
+          "peak150ms": 0.5224961638450623
+        },
+        {
+          "frame": 310,
+          "fired": true,
+          "clip": "shot_a_03",
+          "audioCount": 5,
+          "rms150ms": 0.024873577058315277,
+          "peak150ms": 0.3934829533100128
+        },
+        {
+          "frame": 350,
+          "fired": true,
+          "clip": "shot_a_01",
+          "audioCount": 6,
+          "rms150ms": 0.05859517678618431,
+          "peak150ms": 0.4025607407093048
+        },
+        {
+          "frame": 390,
+          "fired": true,
+          "clip": "shot_a_03",
+          "audioCount": 7,
+          "rms150ms": 0.025638610124588013,
+          "peak150ms": 0.4008394479751587
+        },
+        {
+          "frame": 430,
+          "fired": true,
+          "clip": "shot_a_01",
+          "audioCount": 8,
+          "rms150ms": 0.061655059456825256,
+          "peak150ms": 0.39986568689346313
+        }
+      ],
+      "attackSpreadDb": 13.53356969913046,
+      "mixPeak": 0.5224961638450623,
+      "seconds": 16.0,
+      "allFinite": true
+    },
+    "after": {
+      "events": [
+        {
+          "frame": 30,
+          "fired": true,
+          "clip": "shot_01_03",
+          "audioCount": 1,
+          "rms150ms": 0.11018793284893036,
+          "peak150ms": 0.5235326886177063
+        },
+        {
+          "frame": 70,
+          "fired": true,
+          "clip": "shot_01_02",
+          "audioCount": 2,
+          "rms150ms": 0.11462961882352829,
+          "peak150ms": 0.5307514667510986
+        },
+        {
+          "frame": 110,
+          "fired": true,
+          "clip": "shot_01_03",
+          "audioCount": 3,
+          "rms150ms": 0.10594133287668228,
+          "peak150ms": 0.48908331990242004
+        },
+        {
+          "frame": 150,
+          "fired": true,
+          "clip": "shot_01_02",
+          "audioCount": 4,
+          "rms150ms": 0.11548349261283875,
+          "peak150ms": 0.5317481160163879
+        },
+        {
+          "frame": 310,
+          "fired": true,
+          "clip": "shot_01_03",
+          "audioCount": 5,
+          "rms150ms": 0.11001923680305481,
+          "peak150ms": 0.5283647179603577
+        },
+        {
+          "frame": 350,
+          "fired": true,
+          "clip": "shot_01_01",
+          "audioCount": 6,
+          "rms150ms": 0.1040535420179367,
+          "peak150ms": 0.4816495478153229
+        },
+        {
+          "frame": 390,
+          "fired": true,
+          "clip": "shot_01_03",
+          "audioCount": 7,
+          "rms150ms": 0.11185283958911896,
+          "peak150ms": 0.5135279893875122
+        },
+        {
+          "frame": 430,
+          "fired": true,
+          "clip": "shot_01_01",
+          "audioCount": 8,
+          "rms150ms": 0.10969485342502594,
+          "peak150ms": 0.5049961805343628
+        }
+      ],
+      "attackSpreadDb": 0.9052608323130927,
+      "mixPeak": 0.5666279792785645,
+      "seconds": 16.0,
+      "allFinite": true
+    }
+  },
+  "configuration": {
+    "shots": [
+      {
+        "name": "shot_01_01",
+        "state": "Loaded",
+        "preload": true
+      },
+      {
+        "name": "shot_01_02",
+        "state": "Loaded",
+        "preload": true
+      },
+      {
+        "name": "shot_01_03",
+        "state": "Loaded",
+        "preload": true
+      }
+    ],
+    "visibleChance": 0.28,
+    "pistolProfile": "Assets/EmergencyShift/Settings/WeaponProfiles/WarmFlash.asset"
+  },
+  "visualCapture": {
+    "realProjectiles": 8,
+    "visibleProjectiles": 2
+  },
+  "visualCaptureDescription": "Editor Play, captureFramerate 120 for a repeatable early flight frame; all eight projectiles exist, two display sprites. Screenshot at Weapons/Shotgun/Tracers.png. Not a performance benchmark.",
+  "editMode": {
+    "total": 25,
+    "passed": 25,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 0.130557,
+    "resultState": "Passed"
+  },
+  "nativeShotgun": {
+    "finished": true,
+    "failure": "",
+    "passed": [
+      "Shotgun route starts in fresh sandbox",
+      "Interact 04 Room 03 · Stationary targets and weapons / Entry door · close to isolate test",
+      "Door fully open",
+      "Existing pistol pickup unchanged",
+      "Shotgun auto pickup owns both weapons",
+      "Shotgun starts with four loaded and twelve reserve",
+      "One click creates eight real projectiles",
+      "One volley consumes one shell and plays one shot",
+      "Shotgun selects its own recorded shot",
+      "Hull is not ejected at muzzle event",
+      "Pump blocks immediate second shot and switching",
+      "Holding mouse does not fire after pump",
+      "Pump ejects one hull and plays its mechanical recording",
+      "Hull landing uses shotgun recording",
+      "Real pellets damage anchored target",
+      "Separate shotgun shot 2",
+      "Separate shotgun shot 3",
+      "Separate shotgun shot 4",
+      "Exactly four shots exhaust magazine",
+      "Lethal pellet volley produces one settled remains record",
+      "Empty trigger has feedback",
+      "X begins single shell loading",
+      "One shell commits from reserve",
+      "Loaded shell can interrupt reload to fire",
+      "Interrupted insertion creates no free shell",
+      "Four shells refill sequentially without changing total",
+      "1 equips original pistol and preserves its ammo",
+      "2 restores shotgun magazine and reserve",
+      "Generic two-target volley fires",
+      "Hidden projectile presentation disables sprites only",
+      "One cone can hit two independent damage receivers",
+      "Blocked volley fires",
+      "Thin wall blocks every pellet",
+      "Wall does not play eight full impact sounds",
+      "Typed shotgun ammo leaves equipped pistol unchanged",
+      "Typed ammo refills the holstered shotgun",
+      "Sandbox T fills selected weapon total",
+      "Corridor shot prepares checkpoint fixture",
+      "Checkpoint fixture starts loading",
+      "Death stops a player during loading",
+      "Scene reload starts with clean inventory",
+      "Disk payload restores both weapons and exact loaded reserve state",
+      "Restored pending insertion commits once",
+      "Pistol survives death/disk/reload independently",
+      "Legacy pistol payload remains compatible"
+    ]
+  },
+  "developmentBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 1,
+    "seconds": 23.2474122
+  },
+  "developmentWarning": [
+    "You are building a player, but you have uncompiled code changes. This means that any post-processing or importing code you may have changed will not affect this player build."
+  ],
+  "releaseBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 25.3261686
+  },
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "finalSceneAudit": {
+    "scene": "MechanicsSandbox",
+    "dirty": false,
+    "missingScripts": 0,
+    "savedDevelopmentProbes": 0,
+    "play": false,
+    "compiling": false,
+    "variant": "Release",
+    "preloadedAssets": 0
+  },
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "savedSandboxAndUserBasementByteIdentical": true,
+  "playerPrefabByteIdentical": true,
+  "assetGuidsUnique": 465,
+  "sourceAndDerivedShotHashesVerified": true,
+  "limitations": [
+    "YouTube reference fetch unavailable; no claim of listening or extracted media.",
+    "Original A selection did not lose events in the captured eight-shot reproduction; diagnosis is inconsistent recorded attack levels, not proof against every playback fault.",
+    "Centre-weighted spread changes average pellet distribution within the original limits; owner gameplay/art/audio judgement remains pending.",
+    "Development emitted one pending-editor-code warning; the built native probe includes and passes the new hidden-projectile check, subsequent Release is clean."
+  ],
+  "cameraRestoredAfterCapture": {
+    "movementPlayCheck": {
+      "followDistance": 5.722046e-06,
+      "playerX": 13.0,
+      "cameraX": 12.9999943,
+      "targetIsPlayer": true
+    },
+    "afterReload": {
+      "targetPresent": true,
+      "targetIsPlayer": true,
+      "followEnabled": true,
+      "play": false,
+      "sceneDirty": false,
+      "captureFramerate": 0
+    },
+    "notes": "Capture temporarily disabled follow in Play. Restored by ending capture Play; saved Target was always correct. Sanitized Editor JSON showed instanceID 0 and was initially misinterpreted, direct serialized-reference comparison confirms the player target. Scene bytes unchanged."
+  }
+}

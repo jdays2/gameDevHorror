@@ -98,7 +98,7 @@ namespace EmergencyShift.Editor
             }
 
             var audio = ScriptableObject.CreateInstance<WeaponAudioProfile>();
-            audio.shots = Clips("shot_a", 3);
+            audio.shots = Clips("shot_01", 3);
             audio.pump = Clips("pump", 3);
             audio.shellInsert = Clips("shell_insert", 3);
             audio.casings = Clips("hull_concrete", 1);
@@ -108,8 +108,11 @@ namespace EmergencyShift.Editor
             visual.displayName = "Дробовик · короткая вспышка";
             visual.plumeWidth = 1.1f;
             visual.plumeLength = .9f;
-            visual.trailLength = .16f;
-            visual.trailWidth = .018f;
+            visual.bulletColor = new Color(.78f, .72f, .60f, .3f);
+            visual.projectileVisibility = .28f;
+            visual.trailVariation = .55f;
+            visual.trailLength = .10f;
+            visual.trailWidth = .012f;
             visual.bulletSpeed = 44;
             AssetDatabase.CreateAsset(visual, Root + "/Data/Weapons/ShotgunVisual.asset");
             var definition = ScriptableObject.CreateInstance<PumpShotgunDefinition>();

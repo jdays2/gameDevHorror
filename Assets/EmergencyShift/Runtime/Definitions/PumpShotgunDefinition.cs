@@ -29,9 +29,10 @@ namespace EmergencyShift
 
         public override Vector2 ProjectileDirection(Vector2 heading, int index)
         {
-            // One pellet per angular stratum avoids a random empty centre or an identical fan every shot.
-            float fraction = (index + Random.Range(.15f, .85f)) / pellets;
-            float angle = (fraction - .5f) * spreadDegrees;
+            // Independent, centre-weighted angles avoid the old evenly spaced comb.
+            // The sum of two uniforms stays inside the same full spread limit.
+            float offset = Random.value + Random.value - 1;
+            float angle = offset * spreadDegrees * .5f;
             return Quaternion.Euler(0, 0, angle) * heading;
         }
 

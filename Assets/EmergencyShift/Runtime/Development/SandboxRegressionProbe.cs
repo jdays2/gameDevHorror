@@ -219,7 +219,7 @@ namespace EmergencyShift
             yield return new WaitForFixedUpdate();
             Check("One click creates eight real projectiles", FindObjectsByType<BulletProjectile2D>().Length == shotgun.ProjectileCount);
             Check("One volley consumes one shell and plays one shot", weapon.LoadedAmmo == 3 && weapon.Ammo == 15 && audio.ShotAudioCount == shotSounds + 1);
-            Check("Shotgun selects its own recorded shot", audio.LastShotClip.StartsWith("shot_a_"));
+            Check("Shotgun selects its own recorded shot", Array.Exists(shotgun.audioProfile.shots, clip => clip != null && clip.name == audio.LastShotClip));
             Check("Hull is not ejected at muzzle event", ejector.EmittedCount == ejected);
             Check("Pump blocks immediate second shot and switching", !weapon.TryFire() && !weapon.TryEquip(0));
             yield return new WaitForSeconds(1.15f);
@@ -269,9 +269,17 @@ namespace EmergencyShift
             aim.SetScriptedTarget(new Vector2(50, 15));
             yield return null;
             Physics2D.SyncTransforms();
+            var normalVisuals = weapon.VisualProfile;
+            var hiddenVisuals = Instantiate(normalVisuals);
+            hiddenVisuals.projectileVisibility = 0;
+            weapon.SetVisualProfile(hiddenVisuals);
+            UnityEngine.Random.InitState(4471);
             Check("Generic two-target volley fires", weapon.TryFire());
+            Check("Hidden projectile presentation disables sprites only", Array.TrueForAll(FindObjectsByType<BulletProjectile2D>(), bullet => Array.TrueForAll(bullet.GetComponentsInChildren<SpriteRenderer>(), renderer => !renderer.enabled)));
             yield return new WaitForSeconds(1);
             Check("One cone can hit two independent damage receivers", left.Hits > 0 && right.Hits > 0);
+            weapon.SetVisualProfile(normalVisuals);
+            Destroy(hiddenVisuals);
             int leftHits = left.Hits;
             int rightHits = right.Hits;
             var wall = new GameObject("Temporary pellet blocker", typeof(BoxCollider2D));
