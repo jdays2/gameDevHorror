@@ -56,7 +56,7 @@
 | `Runtime/Enemies/Stalker/StalkerAudio2D.cs` | Two bounded voices per creature. AI events drive reactions; real travel drives feet. |
 | `Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs` | Adapter only: it observes AI and actual audible playback; it never activates or resets aggro. |
 | `Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs` | Species adapter; a different AI can provide the same presentation facts. |
-| `Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs` | Перелистывает спрайты, поворачивает изображение и ведёт отдельный зрачок. |
+| `Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs` | Совместимый компонент старых prefab; общее представление в CreatureSpriteAnimator2D. |
 | `Runtime/Levels/EncounterActivation2D.cs` | One-shot authorable activation of already placed enemies. It never resets an active fight. |
 | `Runtime/Levels/LevelContext2D.cs` | Explicit scene-scoped player binding; no global player singleton or per-frame scene searches. |
 | `Runtime/Levels/LevelExit2D.cs` | LevelExit2D |
@@ -123,6 +123,16 @@
 | `Runtime/World/Surfaces/GroundAudioSurface2D.cs` | Optional floor region; independent from the material of a bullet's target. |
 | `Runtime/World/Surfaces/ImpactSurface2D.cs` | Optional collider/parent override; untagged scenery is concrete, Stalkers are flesh. |
 
+| `Runtime/Definitions/SleeperAudioProfile.cs` | SleeperAudioProfile — второй вид / общая инфраструктура представления и проверка. |
+| `Runtime/Definitions/SleeperBehaviourProfile.cs` | SleeperBehaviourProfile — второй вид / общая инфраструктура представления и проверка. |
+| `Runtime/Development/SleeperRegressionProbe.cs` | SleeperRegressionProbe — второй вид / общая инфраструктура представления и проверка. |
+| `Runtime/Enemies/Sleeper/Sleeper2D.cs` | Sleeper2D — второй вид / общая инфраструктура представления и проверка. |
+| `Runtime/Enemies/Sleeper/SleeperAudio2D.cs` | SleeperAudio2D — второй вид / общая инфраструктура представления и проверка. |
+| `Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs` | SleeperAudioThreat2D — второй вид / общая инфраструктура представления и проверка. |
+| `Runtime/Enemies/Sleeper/SleeperPresentationSource2D.cs` | SleeperPresentationSource2D — второй вид / общая инфраструктура представления и проверка. |
+| `Runtime/Persistence/SleeperCheckpoint2D.cs` | SleeperCheckpoint2D — второй вид / общая инфраструктура представления и проверка. |
+| `Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs` | CreatureSpriteAnimator2D — второй вид / общая инфраструктура представления и проверка. |
+
 ## Editor
 
 | Файл | Назначение |
@@ -180,3 +190,5 @@
 | `Scenes/BasementPrototype.unity` | Редактируемая сцена |
 | `Scenes/LevelTemplate.unity` | Редактируемая сцена |
 | `Scenes/MechanicsSandbox.unity` | Редактируемая сцена |
+
+| `Tests/EditMode/SleeperTests.cs` | Неполные/противоречивые checkpoint payload второго вида и ещё не активированная особь. |

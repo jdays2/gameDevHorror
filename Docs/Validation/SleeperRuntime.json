@@ -1,0 +1,327 @@
+{
+  "date": "2026-10-17",
+  "scope": "Second species runtime with owner-approved recolored Stalker placeholder; no art generation or subjective art validation",
+  "runtime": {
+    "finished": true,
+    "failure": "",
+    "passed": [
+      "Sleeping ignores proximity and decorative lights",
+      "Sleeping uses compact pose, closed eye and membrane loop",
+      "Brief beam accumulates irritation without instant wake",
+      "Interrupted exposure decays",
+      "Opaque wall prevents light wake",
+      "Sustained directed beam wakes exactly once",
+      "Shared profiles do not share wake or HP",
+      "Aggro persists after switching the light off",
+      "Pursuit enters a telegraphed attack",
+      "Lunge keeps committed heading and can be dodged",
+      "Attack ends in a recovery window without repeating the scream",
+      "Second attack begins with clear line of sight",
+      "Committed lunge stops at a wall and cannot hit through it (hits=0, y=999,76)",
+      "Real melee delivers exactly one hit per attack",
+      "A real unlit projectile hits the shared damage contract and wakes once",
+      "Wake voice survives the initial pellet volley",
+      "Pellet pain cues have a cooldown",
+      "Damage remains instance-owned",
+      "Live checkpoint retains damage and aggro without another wake",
+      "Death is single and removes living physics",
+      "Death leaves settled independent remains",
+      "Dead checkpoint is silent and restores settled parts within float tolerance",
+      "Restore does not duplicate the remains record",
+      "Target death stops pursuit and attacks"
+    ]
+  },
+  "stalkerPresentation": {
+    "passed": 39,
+    "checks": [
+      {
+        "name": "four non-null stages",
+        "pass": true
+      },
+      {
+        "name": "walk 0",
+        "pass": true
+      },
+      {
+        "name": "walk 1",
+        "pass": true
+      },
+      {
+        "name": "walk 2",
+        "pass": true
+      },
+      {
+        "name": "walk 3",
+        "pass": true
+      },
+      {
+        "name": "walk 4",
+        "pass": true
+      },
+      {
+        "name": "walk 5",
+        "pass": true
+      },
+      {
+        "name": "walk 6",
+        "pass": true
+      },
+      {
+        "name": "walk 7",
+        "pass": true
+      },
+      {
+        "name": "attack 0",
+        "pass": true
+      },
+      {
+        "name": "attack 1",
+        "pass": true
+      },
+      {
+        "name": "attack 2",
+        "pass": true
+      },
+      {
+        "name": "attack 3",
+        "pass": true
+      },
+      {
+        "name": "attack 4",
+        "pass": true
+      },
+      {
+        "name": "attack 5",
+        "pass": true
+      },
+      {
+        "name": "recoil 0",
+        "pass": true
+      },
+      {
+        "name": "recoil 1",
+        "pass": true
+      },
+      {
+        "name": "recoil 2",
+        "pass": true
+      },
+      {
+        "name": "recoil 3",
+        "pass": true
+      },
+      {
+        "name": "retreat slit/shut",
+        "pass": true
+      },
+      {
+        "name": "waiting shut",
+        "pass": true
+      },
+      {
+        "name": "pupil tracking -1",
+        "pass": true
+      },
+      {
+        "name": "pupil tracking 1",
+        "pass": true
+      },
+      {
+        "name": "pupil stays within iris",
+        "pass": true
+      },
+      {
+        "name": "same distance two sample speeds",
+        "pass": true
+      },
+      {
+        "name": "distance drives complete cycle",
+        "pass": true
+      },
+      {
+        "name": "stationary frame and phase freeze",
+        "pass": true
+      },
+      {
+        "name": "stationary support sway settles",
+        "pass": true
+      },
+      {
+        "name": "teleport does not count as steps",
+        "pass": true
+      },
+      {
+        "name": "stagger displacement is not walking",
+        "pass": true
+      },
+      {
+        "name": "light fear does not advance walk phase",
+        "pass": true
+      },
+      {
+        "name": "visual position and scale ownership preserved",
+        "pass": true
+      },
+      {
+        "name": "collider and actor rotation preserved",
+        "pass": true
+      },
+      {
+        "name": "shared locomotion profile immutable",
+        "pass": true
+      },
+      {
+        "name": "legacy null frames",
+        "pass": true
+      },
+      {
+        "name": "legacy empty frames",
+        "pass": true
+      },
+      {
+        "name": "death hides both",
+        "pass": true
+      },
+      {
+        "name": "settled death stays hidden",
+        "pass": true
+      },
+      {
+        "name": "restore dead silent/hidden",
+        "pass": true
+      }
+    ],
+    "scope": "Real Play, temporary far-away prefab clone, direct presentation-state injection; no AI/profiles/scenes saved"
+  },
+  "editMode": {
+    "total": 45,
+    "passed": 45,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 1.1218998,
+    "resultState": "Passed"
+  },
+  "freshPlayRestorationFromIsolatedDiskPayload": {
+    "dead": true,
+    "health": 0,
+    "wakeCount": 0,
+    "deathCount": 0,
+    "voice": false,
+    "aiEnabled": false,
+    "animator": false,
+    "remains": 8
+  },
+  "scenes": [
+    {
+      "path": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+      "missing": 0,
+      "probes": 0,
+      "sleepers": 2,
+      "placed": [
+        {
+          "name": "Sleeper · live behind the card door",
+          "x": 35.0,
+          "y": 11.0,
+          "hp": 8,
+          "attacks": true,
+          "frozen": "FreezeRotation",
+          "id": "16283f355f324f11b30fe10a8e5544f6"
+        },
+        {
+          "name": "Sleeper · stationary range target · 8 HP",
+          "x": 57.0,
+          "y": 5.0,
+          "hp": 8,
+          "attacks": false,
+          "frozen": "FreezeAll",
+          "id": "e84de833c0e54c33a7fb83223cf67f44"
+        }
+      ]
+    },
+    {
+      "path": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+      "missing": 0,
+      "probes": 0,
+      "sleepers": 1,
+      "placed": [
+        {
+          "name": "Sleeper · live · Room B",
+          "x": 15.0,
+          "y": -0.8,
+          "hp": 8,
+          "attacks": true,
+          "frozen": "FreezeRotation",
+          "id": "697e26c23fb34a8880c286d953df841c"
+        }
+      ]
+    }
+  ],
+  "preservation": {
+    "scenes": [
+      {
+        "scene": "MechanicsSandbox.unity",
+        "addedDocuments": 20,
+        "removedExistingDocuments": 0,
+        "changedExistingDocuments": [
+          "SceneRoots only"
+        ],
+        "newRootReferences": [
+          "1065973431"
+        ],
+        "staging": "Only additions; prior dirty edits excluded"
+      },
+      {
+        "scene": "BasementPrototype.unity",
+        "addedDocuments": 1,
+        "removedExistingDocuments": 0,
+        "changedExistingDocuments": [
+          "SceneRoots only"
+        ],
+        "newRootReferences": [
+          "1655141483"
+        ],
+        "staging": "Only additions; prior dirty edits excluded"
+      }
+    ],
+    "byteIdentical": [
+      "Assets/EmergencyShift/Scenes/ArtReview/EnvironmentNarrativeStressReview.unity",
+      "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
+      "ProjectSettings/EditorBuildSettings.asset",
+      "ProjectSettings/ProjectSettings.asset"
+    ]
+  },
+  "releaseBuild": {
+    "job_id": "build-9ca40ccb78",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "C:/Users/Mark/Documents/Codex/2026-10-13/gkf/outputs/EmergencyShift/Builds/SleeperReview/EmergencyShift.exe",
+    "started_at": "2026-10-17T07:53:36.9637345Z",
+    "duration_seconds": 7.2053899999999995,
+    "completed_at": "2026-10-17T07:53:44.1691245Z",
+    "total_size_mb": 183.71,
+    "errors": 0,
+    "warnings": 0
+  },
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "normalSettings": {
+    "development": false,
+    "managedCodeVariant": "Release",
+    "preloadedAssets": 0
+  },
+  "limits": [
+    "Balance and presentation still require owner playtest",
+    "No hearing/chain wake/campaign transitions added",
+    "Checkpoint test uses an isolated payload; no checkpoint controller added to sandbox"
+  ],
+  "finalConsole": [],
+  "basementNativePlay": {
+    "state": "Sleeping",
+    "hp": 8,
+    "target": true,
+    "light": true,
+    "breathing": true
+  },
+  "startupAudio": "Breathing has playOnAwake=false; the sleep adapter supplies and starts the membrane loop. Startup Play console is empty."
+}

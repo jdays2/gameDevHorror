@@ -34,5 +34,7 @@ namespace EmergencyShift
         public float lungeEnd = .48f;
         [Range(0, 1)]
         public float strikeAt = .42f;
+        [Range(1, 360), Tooltip("Strike arc for committed fixed-heading attacks. Legacy steering attacks keep their previous contact rule.")]
+        public float attackArcDegrees = 120;
     }
 }

@@ -166,6 +166,17 @@ namespace EmergencyShift.Editor
                 }
             }
 
+            // Prefabs of new species already carry their own save adapter and lifetime component.
+            // Assign/deduplicate their placed IDs without adding species cases to this tool.
+            var authoredIds = new HashSet<string>();
+            foreach (var root in scene.GetRootGameObjects())
+            {
+                foreach (var identity in root.GetComponentsInChildren<PersistentEntity2D>(true))
+                {
+                    AddIdentity(identity.gameObject, authoredIds);
+                }
+            }
+
             foreach (var root in scene.GetRootGameObjects())
             {
                 foreach (var flow in root.GetComponentsInChildren<LevelRunController2D>(true))

@@ -42,7 +42,7 @@ namespace EmergencyShift
             lunged = false;
         }
 
-        public Vector2 Step(float progress, Vector2 at, Vector2 heading)
+        public Vector2 Step(float progress, Vector2 at, Vector2 heading, bool fixedHeading = false)
         {
             if (!lunged && progress >= tuning.lungeStart)
             {
@@ -50,12 +50,17 @@ namespace EmergencyShift
                 Lunged?.Invoke();
             }
 
-            Vector2 velocity = progress >= tuning.lungeStart && progress < tuning.lungeEnd ? motor.ClearDirection(heading) * tuning.lungeSpeed : Vector2.zero;
+            Vector2 velocity = Vector2.zero;
+            if (progress >= tuning.lungeStart && progress < tuning.lungeEnd)
+            {
+                velocity = fixedHeading ? motor.FixedHeadingVelocity(heading, tuning.lungeSpeed) : motor.ClearDirection(heading) * tuning.lungeSpeed;
+            }
             if (!struck && progress >= tuning.strikeAt)
             {
                 struck = true;
                 bool landed = false;
-                if (CanBite(at))
+                bool inArc = !fixedHeading || (senses.Target != null && Vector2.Angle(heading, (Vector2)senses.Target.position - at) <= tuning.attackArcDegrees * .5f);
+                if (inArc && CanBite(at))
                 {
                     landed = senses.TargetHealth.TryTakeDamage(tuning.attackDamage, at, heading);
                 }

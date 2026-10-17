@@ -38,6 +38,16 @@ namespace EmergencyShift
         }
 
         public Vector2 Follow(Vector2 goal, float speed) => path.Direction(body.position, goal, Radius, solids) * speed;
+        public Vector2 FixedHeadingVelocity(Vector2 heading, float speed)
+        {
+            // A committed charge stops at an obstruction instead of choosing a new angle.
+            float distance = speed * Time.fixedDeltaTime + .03f;
+            if (Physics2D.CircleCast(body.position, Radius, heading, distance, solids).collider != null)
+            {
+                return Vector2.zero;
+            }
+            return heading * speed;
+        }
         public bool CanStand(Vector2 goal) => Physics2D.OverlapCircle(goal, Radius, solids) == null;
         public bool Clear(Vector2 from, Vector2 to) => Physics2D.Linecast(from, to, solids).collider == null;
         public Vector2 ClearDirection(Vector2 preferred)
