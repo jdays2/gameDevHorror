@@ -1,61 +1,26 @@
-# CLI и локальные утилиты
+# CLI проекта
 
-**[← Старт](../../README.md)** · [MCP](MCP.md) · [Skills](SKILLS.md)
+**[Проект](../../README.md)** · [План демо](../MVP_PLAN.md) · [MCP](MCP.md) · [Skills](SKILLS.md)
 
-Снимок **17 октября 2026**. Здесь команды, относящиеся к разработке проекта, и известные локальные среды. Это не перечень всех системных EXE Windows. PATH проверен через `Get-Command`; наличие файла и успешный запуск различаются.
-
-## Найдены в PATH
-
-| Команда | Назначение | Результат проверки |
-|---|---|---|
-| `git` | История, коммиты и push | Запуск подтверждён: 2.49.0.windows.1 |
-| `codex` | Codex CLI | Версия получена: 0.163.0-alpha.10.2; при проверке были предупреждения доступа к временным PATH aliases |
-| `node` | JavaScript и инструменты | Запуск подтверждён: v22.14.0 |
-| `npm`, `npx` | Пакеты и команды Node | Найдены; запуск не проверялся |
-| `uv`, `uvx` | Python-среды и запуск инструментов | Найдены; успешный запуск здесь не подтверждён |
-| `rg` | Быстрый поиск по файлам | Использован для поиска файлов в этой задаче |
-| `pwsh` | PowerShell | Текущая командная среда |
-| `unity` | Командный launcher Unity | Найден в AppData; это не путь Editor проекта |
-| `python`, `python3` | Windows App Execution Alias | Найдены в WindowsApps; рабочий Python этим не подтверждён |
-
-## Проверенные пути вне PATH
-
-| Инструмент | Где находится | Статус |
-|---|---|---|
-| Unity Editor 6000.6.5f1 | `C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Unity.exe` | Файл найден; Editor из этой задачи не запускался |
-| Комплектный Python | `C:/Users/Mark/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe` | Успешный запуск: 3.12.14 |
-| Python среды Unity MCP | `work/mcp-tools/unity-server/Scripts/python.exe` от корня рабочего каталога | Файл найден; версия и соединение с Editor не проверялись |
-| Среда обработки контента | `work/creature-tools/Scripts` от корня рабочего каталога | Каталог найден; состав и команды проверяются по конкретной задаче |
-
-Каталог `work` находится рядом с `outputs`, вне Git-репозитория игры. Пути локального компьютера не являются переносимой конфигурацией проекта.
-
-## Не найдены в PATH
-
-`gh`, `py`, `dotnet`, `ffmpeg`, `ffprobe`. Это результат поиска в PATH, а не доказательство отсутствия в локальных средах. Устанавливать их для работы с навигатором не требуется.
-
-## Утилиты проекта
-
-**План:** `Открыть план.cmd` запускает [локальный просмотрщик](../Guides/PLAN_VIEWER.md) с галочками; `Tools/PlanViewer/server.py` работает на стандартной библиотеке Python.
-
-| Файл | Назначение |
+| Инструмент | Для чего нужен проекту |
 |---|---|
-| [prepare_creature_rupture_06.py](../../Tools/Audio/prepare_creature_rupture_06.py) | Подготовка набора звуков разрыва |
-| [generate_stalker_membrane_v04.py](../../Tools/Audio/generate_stalker_membrane_v04.py) | Генерация мембранного звука |
-| [stalker_membrane_dsp.py](../../Tools/Audio/stalker_membrane_dsp.py) | DSP-модуль мембраны |
-| [prepare_stalker_tissue.py](../../Tools/Audio/prepare_stalker_tissue.py) | Подготовка звуков ткани |
-| [prepare_firearm_mix.py](../../Tools/Audio/prepare_firearm_mix.py) | Парный микс оружия |
-| [prepare_pistol_runtime.py](../../Tools/Audio/prepare_pistol_runtime.py) | Подготовка пистолетного звука |
-| [prepare_shotgun_concepts.py](../../Tools/Audio/prepare_shotgun_concepts.py) | Пробы дробовика |
-| [prepare_shotgun_gameplay.py](../../Tools/Audio/prepare_shotgun_gameplay.py) | Игровой набор дробовика |
-| [prepare_world_foley.py](../../Tools/Audio/prepare_world_foley.py) | Звуки предметов и взаимодействий |
-| [requirements.txt](../../Tools/Audio/requirements.txt) | Зависимости аудиоутилит |
-| [Проверки Unity](../VALIDATION.md) | Актуальные точки входа и результаты тестов/сборок |
-| [Настройка MCP](../MCP_SETUP.md) | Подключение редактора и границы исторических проверок |
+| Unity Editor 6000.6.5f1 | Редактирование сцен/профилей, Play, тесты и Windows-сборки |
+| Git | История, отдельные коммиты задач и сохранение ручных правок |
+| Python 3.12 | Подготовка контента, экспорт схем и локальный просмотр плана |
+| FFmpeg | Нарезка/конвертация и проверка аудио; путь передаётся обработчикам явно |
 
-Список аудиоутилит сверен с Git-каталогом Tools/Audio; обработка и перезапись звука в этой задаче не запускались. Аргументы конкретного скрипта проверяются по его исходнику перед применением.
+Unity Editor этого компьютера: `C:/Program Files/Unity/Hub/Editor/6000.6.5f1/Editor/Unity.exe`. Для Python используется комплектная среда Codex или среда конкретного обработчика; WindowsApps alias не является рабочей установкой.
 
-## Как обновить список
+## Что запускаем
 
-В PowerShell: `Get-Command git,codex,node,npm,npx,uv,uvx,rg,pwsh,unity,python,python3,gh,py,dotnet,ffmpeg,ffprobe -ErrorAction SilentlyContinue`.
+| Задача | Вход |
+|---|---|
+| Тестировать механику и смотреть профили | Unity → [MechanicsSandbox](../SANDBOX.md) |
+| Проверять изменение перед завершением | [Тесты и сборки проекта](../VALIDATION.md) |
+| Готовить звук оружия | [prepare_firearm_mix.py](../../Tools/Audio/prepare_firearm_mix.py) |
+| Готовить мембрану Сталкера | [generate_stalker_membrane_v04.py](../../Tools/Audio/generate_stalker_membrane_v04.py) |
+| Готовить общий разрыв | [prepare_creature_rupture_06.py](../../Tools/Audio/prepare_creature_rupture_06.py) |
+| Работать со схемой демо | [Редактируемая схема 03](../../Concepts/Unused/Levels/MorgueDemo03/README.md); ручные draw.io/SVG не перезаписывать экспортом |
+| Открыть план с галочками | `Открыть план.cmd` → [инструкция](../Guides/PLAN_VIEWER.md) |
 
-Агент обновляет дату, пути и результаты; наличие файла помечает отдельно от подтверждённого запуска. Команды сборки и изменения сцены выполняет только в рамках соответствующей задачи.
+Аудиообработчики используют [свои зависимости](../../Tools/Audio/requirements.txt) и источники из Concepts. Принятый звук не перегенерируем без соответствующего поручения.
