@@ -90,6 +90,7 @@ namespace EmergencyShift
         {
             get; private set;
         }
+        public bool EyeBurned { get; private set; }
         public float PursuitSpeed => creepSpeed;
         public float RetreatSpeed => retreatSpeed;
         public int ChaseWaypointCount => motor != null ? motor.WaypointCount : 0;
@@ -252,6 +253,7 @@ namespace EmergencyShift
                 exposureTime += Time.fixedDeltaTime;
                 if (exposureTime >= reactionDelay)
                 {
+                    EyeBurned = true;
                     escapeDirection = (body.position - flashlight.Origin).normalized;
                     if (escapeDirection.sqrMagnitude < 0.001f)
                     {
@@ -520,6 +522,7 @@ namespace EmergencyShift
             public int health;
             public BehaviourState state;
             public bool aggro;
+            public bool eyeBurned;
             public float age;
             public float exposure;
             public float closure;
@@ -538,6 +541,7 @@ namespace EmergencyShift
                 health = Health,
                 state = State,
                 aggro = HasAggro,
+                eyeBurned = EyeBurned,
                 age = stateTime,
                 exposure = exposureTime,
                 closure = Closure,
@@ -555,6 +559,7 @@ namespace EmergencyShift
             health.Restore(saved.health);
             State = saved.state;
             HasAggro = saved.aggro;
+            EyeBurned = saved.eyeBurned;
             stateTime = saved.age;
             exposureTime = saved.exposure;
             Closure = saved.closure;

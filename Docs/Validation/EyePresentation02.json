@@ -1,0 +1,275 @@
+{
+  "date": "2026-10-17",
+  "scope": "Owner-requested single larger pupil, persistent Stalker light-burn tint. Native composition; no art generation.",
+  "targetedPlayChecks": [
+    {
+      "name": "Pupil enlarged from .082 to .13 in native prefab",
+      "pass": true
+    },
+    {
+      "name": "Opaque backing is below iris and above body",
+      "pass": true
+    },
+    {
+      "name": "Fresh Stalker has no burn",
+      "pass": true
+    },
+    {
+      "name": "Larger moving pupil remains inside the iris at full gaze offset",
+      "pass": true
+    },
+    {
+      "name": "Proximity aggro alone does not redden the eye",
+      "pass": true
+    },
+    {
+      "name": "Sleeper keeps its sleeping eyelid closed",
+      "pass": true
+    },
+    {
+      "name": "Real directed flashlight reaches the burn threshold",
+      "pass": true
+    },
+    {
+      "name": "Burned eye is visibly red while the body recoils",
+      "pass": true
+    },
+    {
+      "name": "Burn remains visible after reopening the eye and switching light off",
+      "pass": true
+    },
+    {
+      "name": "Serialized snapshot restores the damaged tint on a fresh actor",
+      "pass": true
+    },
+    {
+      "name": "Old snapshot without the optional visual flag remains loadable",
+      "pass": true
+    },
+    {
+      "name": "Death hides backing, iris and pupil",
+      "pass": true
+    },
+    {
+      "name": "Burn belongs to one actor, not its shared prefab or neighbour",
+      "pass": true
+    }
+  ],
+  "previousStalkerPresentationChecks": {
+    "checks": [
+      {
+        "name": "four non-null stages",
+        "pass": true
+      },
+      {
+        "name": "walk 0",
+        "pass": true
+      },
+      {
+        "name": "walk 1",
+        "pass": true
+      },
+      {
+        "name": "walk 2",
+        "pass": true
+      },
+      {
+        "name": "walk 3",
+        "pass": true
+      },
+      {
+        "name": "walk 4",
+        "pass": true
+      },
+      {
+        "name": "walk 5",
+        "pass": true
+      },
+      {
+        "name": "walk 6",
+        "pass": true
+      },
+      {
+        "name": "walk 7",
+        "pass": true
+      },
+      {
+        "name": "attack 0",
+        "pass": true
+      },
+      {
+        "name": "attack 1",
+        "pass": true
+      },
+      {
+        "name": "attack 2",
+        "pass": true
+      },
+      {
+        "name": "attack 3",
+        "pass": true
+      },
+      {
+        "name": "attack 4",
+        "pass": true
+      },
+      {
+        "name": "attack 5",
+        "pass": true
+      },
+      {
+        "name": "recoil 0",
+        "pass": true
+      },
+      {
+        "name": "recoil 1",
+        "pass": true
+      },
+      {
+        "name": "recoil 2",
+        "pass": true
+      },
+      {
+        "name": "recoil 3",
+        "pass": true
+      },
+      {
+        "name": "retreat slit/shut",
+        "pass": true
+      },
+      {
+        "name": "waiting shut",
+        "pass": true
+      },
+      {
+        "name": "pupil tracking -1",
+        "pass": true
+      },
+      {
+        "name": "pupil tracking 1",
+        "pass": true
+      },
+      {
+        "name": "pupil stays within iris",
+        "pass": true
+      },
+      {
+        "name": "same distance two sample speeds",
+        "pass": true
+      },
+      {
+        "name": "distance drives complete cycle",
+        "pass": true
+      },
+      {
+        "name": "stationary frame and phase freeze",
+        "pass": true
+      },
+      {
+        "name": "stationary support sway settles",
+        "pass": true
+      },
+      {
+        "name": "teleport does not count as steps",
+        "pass": true
+      },
+      {
+        "name": "stagger displacement is not walking",
+        "pass": true
+      },
+      {
+        "name": "light fear does not advance walk phase",
+        "pass": true
+      },
+      {
+        "name": "visual position and scale ownership preserved",
+        "pass": true
+      },
+      {
+        "name": "collider and actor rotation preserved",
+        "pass": true
+      },
+      {
+        "name": "shared locomotion profile immutable",
+        "pass": true
+      },
+      {
+        "name": "legacy null frames",
+        "pass": true
+      },
+      {
+        "name": "legacy empty frames",
+        "pass": true
+      },
+      {
+        "name": "death hides both",
+        "pass": true
+      },
+      {
+        "name": "settled death stays hidden",
+        "pass": true
+      },
+      {
+        "name": "restore dead silent/hidden",
+        "pass": true
+      }
+    ],
+    "deltaTime": 0.006185601,
+    "scope": "Real Play, temporary far-away prefab clone, direct presentation-state injection; no AI/profiles/scenes saved"
+  },
+  "editMode": {
+    "total": 45,
+    "passed": 45,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 1.4943384,
+    "resultState": "Passed"
+  },
+  "prefabs": [
+    {
+      "name": "ShadowStalker",
+      "missing": 0,
+      "backings": 1,
+      "pupilSize": 0.13,
+      "bodyAssigned": true
+    },
+    {
+      "name": "Sleeper",
+      "missing": 0,
+      "backings": 1,
+      "pupilSize": 0.13,
+      "bodyAssigned": true
+    }
+  ],
+  "unchangedFiles": [
+    "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+    "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+    "ProjectSettings/EditorBuildSettings.asset",
+    "Concepts/Used/Stalker/LargeEye01/provenance.json",
+    "ProjectSettings/ProjectSettings.asset"
+  ],
+  "sourceTextures": "Unmodified; hashes in Concepts/Used/Stalker/EyePresentation02/provenance.json",
+  "releaseBuild": {
+    "job_id": "build-215b637e34",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "C:/Users/Mark/Documents/Codex/2026-10-13/gkf/outputs/EmergencyShift/Builds/EyePresentation02/EmergencyShift.exe",
+    "started_at": "2026-10-17T08:18:55.9802955Z",
+    "duration_seconds": 34.3166338,
+    "completed_at": "2026-10-17T08:19:30.2969293Z",
+    "total_size_mb": 183.73,
+    "errors": 0,
+    "warnings": 0
+  },
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "finalConsole": [],
+  "settings": {
+    "development": false,
+    "variant": "Release",
+    "preloadedAssets": 0
+  },
+  "preview": "Concepts/Used/Stalker/EyePresentation02/preview.png",
+  "previewScope": "Isolated Unity URP scene, left/centre/right gaze and burned tint; not an artistic approval"
+}

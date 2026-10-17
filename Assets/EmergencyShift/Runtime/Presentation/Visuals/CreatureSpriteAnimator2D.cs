@@ -15,6 +15,10 @@ namespace EmergencyShift
         private SpriteRenderer iris;
         [SerializeField]
         private SpriteRenderer pupil;
+        [SerializeField, Tooltip("Opaque backing covers the eye baked into body frames; not a second pupil.")]
+        private SpriteRenderer eyeUnderlay;
+        [SerializeField]
+        private Color damagedEyeTint = new Color(.72f, .24f, .20f, 1);
         [SerializeField]
         private Sprite[] eyeFrames;
         [SerializeField]
@@ -42,6 +46,8 @@ namespace EmergencyShift
         private Vector2 previousPosition;
         private bool hasPreviousPosition;
         private bool deathStyleApplied;
+        private Color restingIrisColor = Color.white;
+        private Color restingUnderlayColor = Color.white;
         public int CurrentFrame
         {
             get; private set;
@@ -69,6 +75,14 @@ namespace EmergencyShift
         protected virtual void Awake()
         {
             presentation = GetComponent<EnemyPresentationSource2D>();
+            if (iris != null)
+            {
+                restingIrisColor = iris.color;
+            }
+            if (eyeUnderlay != null)
+            {
+                restingUnderlayColor = eyeUnderlay.color;
+            }
             walkClock = (float)new System.Random(System.Guid.NewGuid().GetHashCode()).NextDouble() / Mathf.Max(1, walkFramesPerSecond) * 8;
             walkPhase = Mathf.Repeat(walkClock * Mathf.Max(1, walkFramesPerSecond) / 8f, 1f);
         }
@@ -106,6 +120,10 @@ namespace EmergencyShift
             if (pupil != null)
             {
                 pupil.enabled = false;
+            }
+            if (eyeUnderlay != null)
+            {
+                eyeUnderlay.enabled = false;
             }
 
             enabled = false;
@@ -190,8 +208,15 @@ namespace EmergencyShift
             }
 
             bool open = !dead && presentation.Closure < 0.166f;
+            Color eyeTint = presentation.HasEyeDamage ? damagedEyeTint : Color.white;
+            if (eyeUnderlay != null)
+            {
+                eyeUnderlay.enabled = !dead;
+                eyeUnderlay.color = restingUnderlayColor * eyeTint;
+            }
             if (iris != null)
             {
+                iris.color = restingIrisColor * eyeTint;
                 if (eyeFrames != null && eyeFrames.Length > 0)
                 {
                     int eyeFrameIndex = Mathf.Clamp(eyeFrame, 0, eyeFrames.Length - 1);

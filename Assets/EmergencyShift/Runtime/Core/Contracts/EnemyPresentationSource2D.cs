@@ -8,6 +8,7 @@ namespace EmergencyShift
         public virtual bool IsAttacking => false;
         public virtual bool IsOrienting => IsAttacking;
         public virtual bool IsStaggered => false;
+        public virtual bool HasEyeDamage => false;
         public virtual bool IsCompactWalking => false;
         public virtual float Closure => 0;
         public virtual Vector2 Velocity => Vector2.zero;

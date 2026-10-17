@@ -17,6 +17,7 @@ namespace EmergencyShift
         public override bool IsAttacking => actor.State == ShadowStalker2D.BehaviourState.Attacking;
         public override bool IsCompactWalking => actor.State == ShadowStalker2D.BehaviourState.Retreating;
         public override bool IsStaggered => actor.IsStaggered;
+        public override bool HasEyeDamage => actor.EyeBurned;
         public override float Closure => actor.Closure;
         public override Vector2 Velocity => actor.Velocity;
         public override Transform Target => actor.Player;
