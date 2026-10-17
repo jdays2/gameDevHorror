@@ -1,0 +1,177 @@
+{
+  "date": "2026-10-17",
+  "status": "Integrated in existing Stalker prefab for owner review; body art/AI/scenes preserved",
+  "user_request": "Enlarge the light-sensitive Stalker eye; it should be larger relative to body than the developing Sleeper eye",
+  "tool": "image_gen.imagegen (built-in)",
+  "source": "C:/Users/Mark/.codex/generated_images/01a14253-0d76-7b63-a439-9dde8e41c183/exec-a68e890d-95da-49a4-af5a-76b515155780.png",
+  "file": "eye-atlas.png",
+  "sha256": "ce71cb9553f6e39e9475490bfbf86d4656e5e295239a50e4cf90e5c7a000f4e5",
+  "prompt": "prompt.txt",
+  "prompt_sha256": "3dbeab22739f9df685bf8e4fd5f523800a4881bddb2d4f2aed219c0e87a9eae4",
+  "inputs": [
+    {
+      "project_file": "Assets/EmergencyShift/Art/Enemies/Stalker/PaleFlesh/walk-sheet.png",
+      "role": "Existing Stalker family, organ and four-stage lid reference",
+      "sha256": "6733cb493c8ef1cf128ee05f730b5c7fa1c75e4dd89787e46ac8451a8d9bd807"
+    },
+    {
+      "project_file": "Assets/EmergencyShift/Art/Enemies/Stalker/PaleFlesh/recoil-sheet.png",
+      "role": "Existing Stalker family, organ and four-stage lid reference",
+      "sha256": "0d59c57d2a7e81e7bff799d6e076b3d84985ede7c8e9bd97c341844f8d87d96c"
+    }
+  ],
+  "processing": "Byte-identical copy of generated output. No pixel painting, resizing, recoloring or alpha cleanup. Unity native Sprite rects provide four cropped views of the same texture.",
+  "alpha": {
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "mode": "RGBA",
+    "alpha_zero_pixels": 820503,
+    "partial_alpha_pixels": 750075,
+    "opaque_bounds_alpha128_top_left": [
+      [
+        56,
+        69,
+        567,
+        580
+      ],
+      [
+        683,
+        69,
+        1194,
+        581
+      ],
+      [
+        56,
+        695,
+        567,
+        1206
+      ],
+      [
+        683,
+        695,
+        1194,
+        1206
+      ]
+    ],
+    "note": "Native alpha preserved, including small partial edge values. Most interior alpha is 252–253; a partial-alpha count is not a haze count. Real RGBA composition checked in Unity on dark background."
+  },
+  "import": {
+    "type": "Sprite/Single",
+    "filter": "Bilinear",
+    "sRGB": true,
+    "alphaIsTransparency": true,
+    "mipmaps": false,
+    "compression": "Uncompressed",
+    "npot": "None",
+    "maxSize": 2048
+  },
+  "sprites": [
+    {
+      "name": "EyeOpen",
+      "rect": [
+        32.0,
+        650.0,
+        560.0,
+        560.0
+      ],
+      "pivot": [
+        280.0,
+        271.0
+      ],
+      "ppu": 1160.0,
+      "texture": "Assets/EmergencyShift/Art/Enemies/Stalker/LargeEye01/eye-atlas.png"
+    },
+    {
+      "name": "EyeHalf",
+      "rect": [
+        659.0,
+        650.0,
+        560.0,
+        560.0
+      ],
+      "pivot": [
+        280.0,
+        271.0
+      ],
+      "ppu": 1160.0,
+      "texture": "Assets/EmergencyShift/Art/Enemies/Stalker/LargeEye01/eye-atlas.png"
+    },
+    {
+      "name": "EyeSlit",
+      "rect": [
+        32.0,
+        24.0,
+        560.0,
+        560.0
+      ],
+      "pivot": [
+        280.0,
+        271.0
+      ],
+      "ppu": 1160.0,
+      "texture": "Assets/EmergencyShift/Art/Enemies/Stalker/LargeEye01/eye-atlas.png"
+    },
+    {
+      "name": "EyeShut",
+      "rect": [
+        659.0,
+        24.0,
+        560.0,
+        560.0
+      ],
+      "pivot": [
+        280.0,
+        271.0
+      ],
+      "ppu": 1160.0,
+      "texture": "Assets/EmergencyShift/Art/Enemies/Stalker/LargeEye01/eye-atlas.png"
+    }
+  ],
+  "sprite_mesh": "FullRect",
+  "prefab": {
+    "path": "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
+    "iris_scale": [
+      1,
+      1,
+      1
+    ],
+    "iris_tint": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "pupil_scale": [
+      0.082,
+      0.082,
+      0.082
+    ],
+    "pupil_travel": 0.045,
+    "approx_opaque_organ_width_units": 0.44051724137931036
+  },
+  "previous_presentation": {
+    "prefab": "Previous/ShadowStalker.prefab",
+    "sha256": "8a228025933fc3520d12a6c6ea4b34d5236d8c498e10e1d5b34c097c03b9bf04",
+    "iris_scale": 0.108,
+    "iris_tint": [
+      0.84,
+      0.75,
+      0.79,
+      1
+    ],
+    "pupil_scale": 0.05,
+    "pupil_travel": 0.028,
+    "EyeDisc_guid": "ddc3215e8191b2d45b608541d1f58bee",
+    "note": "Historical exact prefab snapshot and original meta outside Assets; do not import duplicate GUIDs into Assets."
+  },
+  "unity_previews": {
+    "unity-preview.png": "Isolated unsaved preview scene, actual Sprite/FlatLit and uniform global light; previous/new/gaze left/gaze right, half/slit/shut/death",
+    "unity-attack-preview.png": "Same preview renderer; attack0–5 and walk6–7"
+  },
+  "visual_review": {
+    "observed": "Enlarged aperture and pupil, coherent four lid stages, old eye covered, no second painted pupil. Full legs and separate attacking mouth remain visible. Pupil stays inside opening in both gaze extremes. Small uneven folds in membrane, no random extra anatomy. Sleeper current concept prioritizes jaw over eye.",
+    "limitations": "Owner artistic approval pending. Sleeper is only a concept with no established world size, so cross-species comparison is visual proportion rather than a claim about final world-space diameters. Body death/gib art unchanged, enlarged live overlay hidden at death."
+  }
+}

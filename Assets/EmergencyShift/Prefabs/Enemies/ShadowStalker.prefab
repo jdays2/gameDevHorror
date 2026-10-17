@@ -307,7 +307,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.108, y: 0.108, z: 0.108}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734055481866270515}
@@ -361,8 +361,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: ddc3215e8191b2d45b608541d1f58bee, type: 2}
-  m_Color: {r: 0.84, g: 0.75, b: 0.79, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2eee3af031d303a4f8d00c36b8b4fa8b, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -804,6 +804,11 @@ MonoBehaviour:
   bodyRenderer: {fileID: 1361151187204916597}
   iris: {fileID: 7872070389695808557}
   pupil: {fileID: 4799677290374597046}
+  eyeFrames:
+  - {fileID: 21300000, guid: 2eee3af031d303a4f8d00c36b8b4fa8b, type: 2}
+  - {fileID: 21300000, guid: 288ee8c7e86913142a58bbc980387554, type: 2}
+  - {fileID: 21300000, guid: e08693ca019d7df42aca6d0ec3a1c80e, type: 2}
+  - {fileID: 21300000, guid: 62c60656e4d2a0c4da120633437e2ae6, type: 2}
   walkFrames:
   - {fileID: 21300000, guid: ca3a99397a45b8840a5bde92d6b59c6c, type: 2}
   - {fileID: 21300000, guid: b5b308544d125784681f947e34d5b1be, type: 2}
@@ -831,7 +836,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cebaeea67cbf6ae41b13a5c911570b17, type: 2}
   - {fileID: 21300000, guid: 26bb8040821f58848968cdf8a32a089b, type: 2}
   walkFramesPerSecond: 7
-  pupilTravel: 0.028
+  pupilTravel: 0.045
   turnSpeed: 160
 --- !u!114 &13470835391138406
 MonoBehaviour:
@@ -1077,7 +1082,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.082, y: 0.082, z: 0.082}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 734055481866270515}

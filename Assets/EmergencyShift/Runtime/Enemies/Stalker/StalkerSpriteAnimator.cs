@@ -16,6 +16,8 @@ namespace EmergencyShift
         [SerializeField]
         private SpriteRenderer pupil;
         [SerializeField]
+        private Sprite[] eyeFrames;
+        [SerializeField]
         private Sprite[] walkFrames;
         [SerializeField]
         private Sprite[] recoilFrames;
@@ -120,6 +122,7 @@ namespace EmergencyShift
                 visualRoot.rotation = Quaternion.RotateTowards(visualRoot.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);
             }
 
+            int eyeFrame = 0;
             if (dead && deathFrames != null && deathFrames.Length > 0)
             {
                 CurrentFrame = Mathf.Min(deathFrames.Length - 1, (int)(behaviour.DeathTime * 6f));
@@ -149,12 +152,22 @@ namespace EmergencyShift
                 }
 
                 bodyRenderer.sprite = recoilFrames[CurrentFrame];
+                eyeFrame = CurrentFrame;
             }
 
             bool open = !dead && behaviour.Closure < 0.166f;
             if (iris != null)
             {
-                iris.enabled = open;
+                if (eyeFrames != null && eyeFrames.Length > 0)
+                {
+                    int eyeFrameIndex = Mathf.Clamp(eyeFrame, 0, eyeFrames.Length - 1);
+                    iris.sprite = eyeFrames[eyeFrameIndex];
+                    iris.enabled = !dead;
+                }
+                else
+                {
+                    iris.enabled = open;
+                }
             }
 
             if (pupil == null)

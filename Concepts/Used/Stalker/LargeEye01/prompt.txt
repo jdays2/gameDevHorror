@@ -1,0 +1,15 @@
+Use case: precise-object-edit / game sprite component.
+Asset type: transparent 2D sprite atlas for the EXISTING Stalker's enlarged eye, FOUR isolated eye/eyelid stages.
+Input Image 1: the actual Stalker walk sheet, anatomy, palette and line style reference.
+Input Image 2: Stalker recoil sheet, reference for eye closing sequence.
+Do NOT redraw the creatures or their limbs. Extract and redesign ONLY their central circular dorsal eye organ as a separate overlay, enlarged and clearly light-sensitive. It will cover the small eye already painted on their torso.
+
+Output: a SQUARE 1024 by 1024 transparent canvas, exactly FOUR eye organs in a precise 2x2 grid, centers at (256,256), (768,256), (256,768), (768,768). Each fits comfortably inside its 512 square with at least 70 pixels margin. Identical outer diameter and registration in every cell, same top-facing orientation; no perspective or globe sticking out toward camera.
+TOP LEFT: fully OPEN large round iris with thick pale-pink fleshy eyelid rim.
+TOP RIGHT: upper and lower lids HALF-CLOSED, same outer ring, horizontal opening.
+BOTTOM LEFT: nearly closed, thin dark horizontal slit, same ring.
+BOTTOM RIGHT: fully CLOSED folded lid, complete pale-pink muscular eyelid, no visible iris.
+
+CRITICAL for game compositing: OPEN stage must have NO black pupil, no dark central dot and NO specular pinpoint highlight. A moving black pupil is a SEPARATE existing renderer. Draw a pale gray-pink iris disk with a few broad radial folds and a light softly shaded CENTER where the engine's black disc will move. Do not paint another eye or black center. The partly closed stages may show their dark opening only as the slit between lids.
+Outer ring: one or two thick living folds, cool pink-gray flesh matching the Stalker. Clear dark contour, broad controlled 2–3 tone shading, simple readable 2D art, no mottled noise, photoreal pores or glossy 3D. A slightly deeper fold on one side, not a mechanically perfect mirrored button. Most interest is the large sensory iris and expressive closure; not teeth or a mouth.
+Transparent ALPHA ZERO outside each complete organ and between every cell; no background haze, opaque black fill, painted checkerboard, shadow outside the contour, labels, borders, grid lines, extra parts or creatures. Preserve flat strict 90-degree overhead projection and generous unclipped margins.
