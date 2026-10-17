@@ -9,6 +9,9 @@ namespace EmergencyShift
     {
         [SerializeField]
         private AudioClip[] clips = System.Array.Empty<AudioClip>();
+        [SerializeField, Range(0, 1), Tooltip("Shared rupture volume multiplier; other creature voices are unaffected.")]
+        private float volume = 1;
         public IReadOnlyList<AudioClip> Clips => clips;
+        public float Volume => Mathf.Clamp01(volume);
     }
 }

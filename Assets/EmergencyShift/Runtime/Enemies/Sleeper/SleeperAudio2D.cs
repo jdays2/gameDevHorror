@@ -16,6 +16,7 @@ namespace EmergencyShift
         private float nextPain;
         private float nextObstruction;
         private float obstruction = 1;
+        private float voiceGain = 1;
         private float travelled;
         private Vector2 previousPosition;
         private float nextContact;
@@ -123,7 +124,8 @@ namespace EmergencyShift
                 DeathCount++;
                 contact.Stop();
                 AudioClip rupture = profile.deathSounds != null ? EnemyDeathAudioVariants.Choose(profile.deathSounds) : profile.rupture;
-                PlayVoice(rupture);
+                float gain = profile.deathSounds != null ? profile.deathSounds.Volume : 1;
+                PlayVoice(rupture, gain);
             }
             else if (state == Sleeper2D.BehaviourState.TargetDead)
             {
@@ -151,8 +153,9 @@ namespace EmergencyShift
             }
         }
 
-        private void PlayVoice(AudioClip clip)
+        private void PlayVoice(AudioClip clip, float gain = 1)
         {
+            voiceGain = gain;
             voice.clip = clip;
             if (clip != null)
             {
@@ -197,7 +200,7 @@ namespace EmergencyShift
             float gain = falloff * obstruction;
             float pan = Mathf.Clamp((transform.position.x - actor.Player.position.x) / profile.panDistance, -profile.maximumPan, profile.maximumPan);
             Mix(breathing, profile.breathingVolume * gain, pan);
-            Mix(voice, profile.voiceVolume * gain, pan);
+            Mix(voice, profile.voiceVolume * voiceGain * gain, pan);
             Mix(contact, profile.contactVolume * gain, pan);
             if (Time.time >= nextHeard)
             {

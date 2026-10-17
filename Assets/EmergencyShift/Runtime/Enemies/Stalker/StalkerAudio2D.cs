@@ -401,6 +401,10 @@ namespace EmergencyShift
 
             voiceCue = cue;
             voiceGain = gain;
+            if (cue == Cue.Death && sounds.DeathSounds != null)
+            {
+                voiceGain *= sounds.DeathSounds.Volume;
+            }
             voiceSource.clip = clip;
             voiceSource.pitch = 1;
             voiceSource.priority = VoicePriority(cue);
