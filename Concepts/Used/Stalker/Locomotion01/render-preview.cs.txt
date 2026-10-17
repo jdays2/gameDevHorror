@@ -1,0 +1,243 @@
+// C# 6 execute_code method body. Run in Edit mode; no user scene is saved or changed.
+if (UnityEngine.Application.isPlaying)
+{
+    throw new System.InvalidOperationException("Stop Play before creating the isolated Stalker preview.");
+}
+
+const int frameCount = 48;
+const int size = 512;
+string project = "C:/Users/Mark/Documents/Codex/2026-10-13/gkf/outputs/EmergencyShift";
+string folder = project + "/Concepts/Used/Stalker/Locomotion01";
+string framesFolder = folder + "/Frames";
+string prefabPath = "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab";
+System.IO.Directory.CreateDirectory(framesFolder);
+
+var preview = UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();
+var previousTarget = UnityEngine.RenderTexture.active;
+UnityEngine.RenderTexture target = null;
+UnityEngine.Texture2D image = null;
+UnityEngine.Texture2D contactSheet = null;
+UnityEngine.Sprite planeSprite = null;
+try
+{
+    System.Func<string, UnityEngine.GameObject> create = delegate(string name)
+    {
+        var created = new UnityEngine.GameObject(name);
+        created.hideFlags = UnityEngine.HideFlags.HideAndDontSave;
+        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(created, preview);
+        return created;
+    };
+    System.Func<string, string> quote = delegate(string value)
+    {
+        return "\"" + value.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", "\\r").Replace("\n", "\\n") + "\"";
+    };
+    var invariant = System.Globalization.CultureInfo.InvariantCulture;
+    var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(prefabPath);
+    if (prefab == null)
+    {
+        throw new System.InvalidOperationException("Missing Stalker prefab: " + prefabPath);
+    }
+
+    var actor = (UnityEngine.GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(prefab, preview);
+    actor.hideFlags = UnityEngine.HideFlags.HideAndDontSave;
+    actor.transform.position = UnityEngine.Vector3.zero;
+    actor.transform.rotation = UnityEngine.Quaternion.identity;
+    foreach (var component in actor.GetComponentsInChildren<UnityEngine.Behaviour>(true))
+    {
+        component.enabled = false;
+    }
+    foreach (var physicsBody in actor.GetComponentsInChildren<UnityEngine.Rigidbody2D>(true))
+    {
+        physicsBody.simulated = false;
+    }
+    foreach (var collider in actor.GetComponentsInChildren<UnityEngine.Collider2D>(true))
+    {
+        collider.enabled = false;
+    }
+
+    var animator = new UnityEditor.SerializedObject(actor.GetComponent<EmergencyShift.StalkerSpriteAnimator>());
+    var profile = animator.FindProperty("locomotionProfile").objectReferenceValue as EmergencyShift.StalkerLocomotionProfile;
+    if (profile == null)
+    {
+        throw new System.InvalidOperationException("The prefab needs an assigned StalkerLocomotionProfile for this reconstruction.");
+    }
+
+    var visual = actor.transform.Find("Visual");
+    var body = visual.Find("Body").GetComponent<UnityEngine.SpriteRenderer>();
+    var iris = visual.Find("Eye iris").GetComponent<UnityEngine.SpriteRenderer>();
+    var pupil = visual.Find("Eye pupil").GetComponent<UnityEngine.SpriteRenderer>();
+    foreach (var renderer in actor.GetComponentsInChildren<UnityEngine.SpriteRenderer>(true))
+    {
+        renderer.enabled = renderer == body || renderer == iris || renderer == pupil;
+    }
+    var walkProperty = animator.FindProperty("walkFrames");
+    var walk = new UnityEngine.Sprite[walkProperty.arraySize];
+    for (int i = 0; i < walk.Length; i++)
+    {
+        walk[i] = walkProperty.GetArrayElementAtIndex(i).objectReferenceValue as UnityEngine.Sprite;
+        if (walk[i] == null)
+        {
+            throw new System.InvalidOperationException("Missing walk frame " + i);
+        }
+    }
+    if (walk.Length != 8)
+    {
+        throw new System.InvalidOperationException("This contact-sheet layout expects the current eight source walk frames.");
+    }
+    var eyeProperty = animator.FindProperty("eyeFrames");
+    if (eyeProperty.arraySize > 0)
+    {
+        iris.sprite = eyeProperty.GetArrayElementAtIndex(0).objectReferenceValue as UnityEngine.Sprite;
+    }
+    if (iris.sprite == null || pupil.sprite == null)
+    {
+        throw new System.InvalidOperationException("The current live iris and pupil must both have sprites.");
+    }
+
+    float scale = UnityEngine.Mathf.Max(UnityEngine.Mathf.Abs(actor.transform.lossyScale.x), UnityEngine.Mathf.Abs(actor.transform.lossyScale.y));
+    float cycleDistance = UnityEngine.Mathf.Max(0.01f, profile.distancePerCycle * scale);
+    float speed = UnityEngine.Mathf.Max(0.1f, profile.fullWeightSpeed);
+    float duration = cycleDistance / speed;
+    float dt = duration / frameCount;
+    float movementWeight = UnityEngine.Mathf.Clamp01(speed / UnityEngine.Mathf.Max(0.1f, profile.fullWeightSpeed));
+    float pupilTravel = animator.FindProperty("pupilTravel").floatValue;
+    float hold = UnityEngine.Mathf.Clamp(profile.supportHold, 0, 0.6f);
+    float yawLimit = UnityEngine.Mathf.Clamp(profile.supportYawDegrees, 0, 3);
+
+    // A neutral technical floor, with faint repeating grid lines to make translation readable.
+    var white = UnityEngine.Texture2D.whiteTexture;
+    planeSprite = UnityEngine.Sprite.Create(white, new UnityEngine.Rect(0, 0, white.width, white.height), new UnityEngine.Vector2(0.5f, 0.5f), white.width);
+    planeSprite.hideFlags = UnityEngine.HideFlags.HideAndDontSave;
+    var floor = create("Neutral dark floor").AddComponent<UnityEngine.SpriteRenderer>();
+    floor.sprite = planeSprite;
+    floor.sharedMaterial = body.sharedMaterial;
+    floor.color = new UnityEngine.Color(0.075f, 0.085f, 0.095f, 1);
+    floor.sortingOrder = -100;
+    floor.transform.position = new UnityEngine.Vector3(0, 0, 0.2f);
+    floor.transform.localScale = new UnityEngine.Vector3(12, 12, 1);
+    float gridSpacing = cycleDistance / 4f;
+    for (int i = -28; i <= 28; i++)
+    {
+        var horizontal = create("Floor horizontal " + i).AddComponent<UnityEngine.SpriteRenderer>();
+        horizontal.sprite = planeSprite;
+        horizontal.sharedMaterial = body.sharedMaterial;
+        horizontal.color = new UnityEngine.Color(0.105f, 0.115f, 0.125f, 1);
+        horizontal.sortingOrder = -90;
+        horizontal.transform.position = new UnityEngine.Vector3(0, i * gridSpacing, 0.1f);
+        horizontal.transform.localScale = new UnityEngine.Vector3(12, 0.004f, 1);
+        var vertical = create("Floor vertical " + i).AddComponent<UnityEngine.SpriteRenderer>();
+        vertical.sprite = planeSprite;
+        vertical.sharedMaterial = body.sharedMaterial;
+        vertical.color = horizontal.color;
+        vertical.sortingOrder = -90;
+        vertical.transform.position = new UnityEngine.Vector3(i * gridSpacing, 0, 0.1f);
+        vertical.transform.localScale = new UnityEngine.Vector3(0.004f, 12, 1);
+    }
+
+    var lamp = create("Isolated preview global light").AddComponent<UnityEngine.Rendering.Universal.Light2D>();
+    lamp.lightType = UnityEngine.Rendering.Universal.Light2D.LightType.Global;
+    lamp.intensity = 1;
+    var cameraObject = create("Isolated URP preview camera");
+    var camera = cameraObject.AddComponent<UnityEngine.Camera>();
+    camera.enabled = false;
+    camera.scene = preview;
+    camera.orthographic = true;
+    camera.orthographicSize = 1.22f * scale;
+    camera.aspect = 1;
+    camera.clearFlags = UnityEngine.CameraClearFlags.SolidColor;
+    camera.backgroundColor = floor.color;
+    var cameraData = cameraObject.AddComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
+    cameraData.renderPostProcessing = false;
+    cameraData.SetRenderer(0);
+    target = new UnityEngine.RenderTexture(size, size, 24);
+    target.Create();
+    image = new UnityEngine.Texture2D(size, size, UnityEngine.TextureFormat.RGB24, false);
+    contactSheet = new UnityEngine.Texture2D(size * 4, size * 2, UnityEngine.TextureFormat.RGBA32, false);
+    var firstSeen = new bool[walk.Length];
+    var metadata = new System.Text.StringBuilder();
+    metadata.AppendLine("{");
+    metadata.AppendLine("  \"scope\": \"Offline reconstruction of actual prefab art and steady straight locomotion equations; NOT runtime gameplay capture.\",");
+    metadata.AppendLine("  \"limitations\": \"No AI, physics, acceleration transient, hit response, retreat, dynamic shadows or independent foot lock is evaluated. Whole pre-existing walk sprites are used.\",");
+    metadata.AppendLine("  \"stage\": \"Isolated NewPreviewScene, current URP 2D renderer, neutral floor, camera follows root. User scenes and shared assets are not saved.\",");
+    metadata.AppendLine("  \"prefab\": " + quote(prefabPath) + ",");
+    metadata.AppendLine("  \"profile\": " + quote(UnityEditor.AssetDatabase.GetAssetPath(profile)) + ",");
+    metadata.AppendFormat(invariant, "  \"frame_count\": {0},\n  \"size\": [{1}, {1}],\n  \"duration_seconds\": {2:R},\n  \"frame_duration_seconds\": {3:R},\n  \"root_distance_per_cycle\": {4:R},\n  \"speed\": {5:R},\n  \"support_hold\": {6:R},\n  \"support_yaw_degrees\": {7:R},\n  \"frames\": [\n", frameCount, size, duration, dt, cycleDistance, speed, hold, yawLimit);
+
+    pupil.transform.localPosition = new UnityEngine.Vector3(0, pupilTravel, -0.002f);
+    for (int i = 0; i < frameCount; i++)
+    {
+        float phase = (float)i / frameCount;
+        float framePhase = phase - UnityEngine.Mathf.Sin(phase * UnityEngine.Mathf.PI * 4f) * hold / (UnityEngine.Mathf.PI * 4f);
+        int frame = UnityEngine.Mathf.Clamp(UnityEngine.Mathf.FloorToInt(framePhase * walk.Length), 0, walk.Length - 1);
+        float yaw = UnityEngine.Mathf.Sin(phase * UnityEngine.Mathf.PI * 2f) * yawLimit * movementWeight;
+        actor.transform.position = new UnityEngine.Vector3(0, phase * cycleDistance, 0);
+        visual.rotation = UnityEngine.Quaternion.Euler(0, 0, yaw);
+        body.sprite = walk[frame];
+        var worldGaze = actor.transform.position + UnityEngine.Vector3.up * 3f;
+        UnityEngine.Vector2 localTarget = visual.InverseTransformPoint(worldGaze);
+        UnityEngine.Vector2 offset = localTarget.normalized * pupilTravel * UnityEngine.Mathf.Clamp01(localTarget.magnitude / 0.4f);
+        UnityEngine.Vector2 nextPupil = UnityEngine.Vector2.MoveTowards(pupil.transform.localPosition, offset, dt * 0.25f);
+        pupil.transform.localPosition = new UnityEngine.Vector3(nextPupil.x, nextPupil.y, -0.002f);
+        camera.transform.position = actor.transform.position + new UnityEngine.Vector3(0, 0, -10);
+        UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(camera, new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target });
+        UnityEngine.RenderTexture.active = target;
+        image.ReadPixels(new UnityEngine.Rect(0, 0, size, size), 0, 0);
+        image.Apply();
+        string filename = "stalker-walk-" + i.ToString("D3", invariant) + ".png";
+        System.IO.File.WriteAllBytes(framesFolder + "/" + filename, image.EncodeToPNG());
+        if (!firstSeen[frame])
+        {
+            contactSheet.SetPixels32((frame % 4) * size, (1 - frame / 4) * size, size, size, image.GetPixels32());
+            firstSeen[frame] = true;
+        }
+        metadata.AppendFormat(invariant, "    {{\"index\": {0}, \"file\": {1}, \"phase\": {2:R}, \"body_frame\": {3}, \"body_sprite\": {4}, \"support_yaw\": {5:R}, \"root_y\": {6:R}, \"pupil_x\": {7:R}, \"pupil_y\": {8:R}", i, quote("Frames/" + filename), phase, frame, quote(walk[frame].name), yaw, actor.transform.position.y, nextPupil.x, nextPupil.y);
+        metadata.Append("}");
+        metadata.AppendLine(i + 1 < frameCount ? "," : "");
+    }
+
+    for (int i = 0; i < firstSeen.Length; i++)
+    {
+        if (!firstSeen[i])
+        {
+            throw new System.InvalidOperationException("Preview did not visit source walk frame " + i);
+        }
+    }
+    metadata.AppendLine("  ]");
+    metadata.AppendLine("}");
+    contactSheet.Apply();
+    System.IO.File.WriteAllBytes(folder + "/contact-sheet.png", contactSheet.EncodeToPNG());
+    System.IO.File.WriteAllText(folder + "/render-metadata.json", metadata.ToString(), new System.Text.UTF8Encoding(false));
+    return new
+    {
+        captured = true,
+        frames = frameCount,
+        imageSize = size,
+        durationSeconds = duration,
+        framesFolder = framesFolder,
+        contactSheet = folder + "/contact-sheet.png",
+        metadata = folder + "/render-metadata.json",
+        scope = "Offline prefab/gait reconstruction; not runtime gameplay capture. No user scene saved."
+    };
+}
+finally
+{
+    UnityEngine.RenderTexture.active = previousTarget;
+    if (image != null)
+    {
+        UnityEngine.Object.DestroyImmediate(image);
+    }
+    if (contactSheet != null)
+    {
+        UnityEngine.Object.DestroyImmediate(contactSheet);
+    }
+    if (target != null)
+    {
+        target.Release();
+        UnityEngine.Object.DestroyImmediate(target);
+    }
+    UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(preview);
+    if (planeSprite != null)
+    {
+        UnityEngine.Object.DestroyImmediate(planeSprite);
+    }
+}

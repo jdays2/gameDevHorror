@@ -1,0 +1,194 @@
+if (!UnityEngine.Application.isPlaying)
+{
+    throw new System.InvalidOperationException("Play required");
+}
+var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>("Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab");
+UnityEngine.GameObject actorObject = null;
+UnityEngine.GameObject targetObject = null;
+var checks = new System.Collections.Generic.List<object>();
+try
+{
+    actorObject = UnityEngine.Object.Instantiate(prefab, new UnityEngine.Vector3(100, 100, 0), UnityEngine.Quaternion.identity);
+    foreach (var script in actorObject.GetComponentsInChildren<UnityEngine.MonoBehaviour>(true))
+    {
+        script.enabled = false;
+    }
+    foreach (var source in actorObject.GetComponentsInChildren<UnityEngine.AudioSource>(true))
+    {
+        source.Stop();
+        source.mute = true;
+    }
+    actorObject.GetComponent<UnityEngine.Rigidbody2D>().simulated = false;
+    targetObject = new UnityEngine.GameObject("Temporary eye target");
+    targetObject.transform.position = actorObject.transform.position + UnityEngine.Vector3.right * 3;
+    var actor = actorObject.GetComponent<EmergencyShift.ShadowStalker2D>();
+    actor.Configure(targetObject.transform, null, 0);
+    var animator = actorObject.GetComponent<EmergencyShift.StalkerSpriteAnimator>();
+    var iris = actorObject.transform.Find("Visual/Eye iris").GetComponent<UnityEngine.SpriteRenderer>();
+    var pupil = actorObject.transform.Find("Visual/Eye pupil").GetComponent<UnityEngine.SpriteRenderer>();
+    var body = actorObject.transform.Find("Visual/Body").GetComponent<UnityEngine.SpriteRenderer>();
+    var visual = actorObject.transform.Find("Visual");
+    var flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+    var state = typeof(EmergencyShift.ShadowStalker2D).GetProperty("State");
+    var closure = typeof(EmergencyShift.ShadowStalker2D).GetProperty("Closure");
+    var stateTime = typeof(EmergencyShift.ShadowStalker2D).GetField("stateTime", flags);
+    var walkClock = typeof(EmergencyShift.StalkerSpriteAnimator).GetField("walkPhase", flags);
+    var compactClock = typeof(EmergencyShift.StalkerSpriteAnimator).GetField("compactClock", flags);
+    var eyeFramesField = typeof(EmergencyShift.StalkerSpriteAnimator).GetField("eyeFrames", flags);
+    var eyeFrames = (UnityEngine.Sprite[])eyeFramesField.GetValue(animator);
+    var late = typeof(EmergencyShift.StalkerSpriteAnimator).GetMethod("LateUpdate", flags);
+    bool allAssigned = eyeFrames.Length == 4;
+    foreach (var frame in eyeFrames)
+    {
+        allAssigned &= frame != null;
+    }
+    checks.Add(new { name = "four non-null stages", pass = allAssigned });
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Dormant, null);
+    closure.SetValue(actor, 0f, null);
+    for (int i = 0; i < 8; i++)
+    {
+        walkClock.SetValue(animator, (i + .5f) / 8f);
+        late.Invoke(animator, null);
+        checks.Add(new { name = "walk " + i, pass = animator.CurrentFrame == i && iris.sprite == eyeFrames[0] && iris.enabled && pupil.enabled });
+    }
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Attacking, null);
+    for (int i = 0; i < 6; i++)
+    {
+        stateTime.SetValue(actor, (i + .1f) / 6f * actor.Definition.attackDuration);
+        late.Invoke(animator, null);
+        checks.Add(new { name = "attack " + i, pass = animator.CurrentFrame == i && iris.sprite == eyeFrames[0] && iris.enabled && pupil.enabled });
+    }
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Recoiling, null);
+    for (int i = 0; i < 4; i++)
+    {
+        closure.SetValue(actor, i == 0 ? .08f : i / 3f, null);
+        late.Invoke(animator, null);
+        checks.Add(new { name = "recoil " + i, pass = animator.CurrentFrame == i && iris.sprite == eyeFrames[i] && iris.enabled && pupil.enabled == (i == 0) });
+    }
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Retreating, null);
+    var retreatFrames = new System.Collections.Generic.HashSet<int>();
+    for (int i = 0; i < 8; i++)
+    {
+        compactClock.SetValue(animator, i * .2f);
+        late.Invoke(animator, null);
+        retreatFrames.Add(animator.CurrentFrame);
+    }
+    checks.Add(new { name = "retreat slit/shut", pass = retreatFrames.Count == 2 && retreatFrames.Contains(2) && retreatFrames.Contains(3) && !pupil.enabled });
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Waiting, null);
+    closure.SetValue(actor, 1f, null);
+    late.Invoke(animator, null);
+    checks.Add(new { name = "waiting shut", pass = iris.enabled && iris.sprite == eyeFrames[3] && !pupil.enabled });
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Dormant, null);
+    closure.SetValue(actor, 0f, null);
+    visual.rotation = UnityEngine.Quaternion.identity;
+    for (int direction = -1; direction <= 1; direction += 2)
+    {
+        targetObject.transform.position = actorObject.transform.position + UnityEngine.Vector3.right * direction * 3f;
+        for (int i = 0; i < 100; i++)
+        {
+            late.Invoke(animator, null);
+        }
+        checks.Add(new { name = "pupil tracking " + direction, pass = Mathf.Abs(animator.PupilOffset.x - direction * .045f) < .001f && Mathf.Abs(animator.PupilOffset.y) < .001f && animator.EyeOpen });
+    }
+    checks.Add(new { name = "pupil stays within iris", pass = animator.PupilOffset.magnitude + .041f < .13f });
+
+    var phaseField = typeof(EmergencyShift.StalkerSpriteAnimator).GetField("walkPhase", flags);
+    var previousField = typeof(EmergencyShift.StalkerSpriteAnimator).GetField("hasPreviousPosition", flags);
+    var yawField = typeof(EmergencyShift.StalkerSpriteAnimator).GetField("supportYaw", flags);
+    var weightField = typeof(EmergencyShift.StalkerSpriteAnimator).GetField("movementWeight", flags);
+    var profileField = typeof(EmergencyShift.StalkerSpriteAnimator).GetField("locomotionProfile", flags);
+    var profile = (EmergencyShift.StalkerLocomotionProfile)profileField.GetValue(animator);
+    string profileBefore = UnityEditor.EditorJsonUtility.ToJson(profile);
+    var collider = actorObject.GetComponent<UnityEngine.CircleCollider2D>();
+    float colliderRadius = collider.radius;
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Patrolling, null);
+    closure.SetValue(actor, 0f, null);
+    visual.localPosition = new UnityEngine.Vector3(.03f, -.04f, 0);
+    visual.localScale = new UnityEngine.Vector3(1.03f, .96f, 1);
+    UnityEngine.Vector3 localPositionBefore = visual.localPosition;
+    UnityEngine.Vector3 localScaleBefore = visual.localScale;
+    System.Func<int, float, float> travel = (samples, distance) =>
+    {
+        actorObject.transform.position = new UnityEngine.Vector3(100, 100, 0);
+        visual.rotation = UnityEngine.Quaternion.identity;
+        previousField.SetValue(animator, false);
+        phaseField.SetValue(animator, 0f);
+        yawField.SetValue(animator, 0f);
+        weightField.SetValue(animator, 0f);
+        late.Invoke(animator, null);
+        for (int step = 1; step <= samples; step++)
+        {
+            actorObject.transform.position = new UnityEngine.Vector3(100 + distance * step / samples, 100, 0);
+            late.Invoke(animator, null);
+        }
+        return (float)phaseField.GetValue(animator);
+    };
+    float slow = travel(40, .4f);
+    float fast = travel(20, .4f);
+    checks.Add(new {name = "same distance two sample speeds", pass = Mathf.Abs(slow - fast) < .0002f});
+    checks.Add(new {name = "distance drives complete cycle", pass = Mathf.Abs(fast - .4f / profile.distancePerCycle) < .0002f});
+    int frameAtStop = animator.CurrentFrame;
+    for (int i = 0; i < 80; i++)
+    {
+        late.Invoke(animator, null);
+    }
+    checks.Add(new {name = "stationary frame and phase freeze", pass = animator.CurrentFrame == frameAtStop && Mathf.Abs((float)phaseField.GetValue(animator) - fast) < .000001f});
+    checks.Add(new {name = "stationary support sway settles", pass = Mathf.Abs((float)yawField.GetValue(animator)) < .00001f});
+    actorObject.transform.position += UnityEngine.Vector3.right * 3;
+    late.Invoke(animator, null);
+    checks.Add(new {name = "teleport does not count as steps", pass = Mathf.Abs((float)phaseField.GetValue(animator) - fast) < .000001f});
+    var stagger = typeof(EmergencyShift.ShadowStalker2D).GetField("staggerUntil", flags);
+    stagger.SetValue(actor, UnityEngine.Time.time + 10f);
+    actorObject.transform.position += UnityEngine.Vector3.right * .02f;
+    late.Invoke(animator, null);
+    checks.Add(new {name = "stagger displacement is not walking", pass = Mathf.Abs((float)phaseField.GetValue(animator) - fast) < .000001f});
+    stagger.SetValue(actor, 0f);
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Recoiling, null);
+    closure.SetValue(actor, 1f, null);
+    actorObject.transform.position += UnityEngine.Vector3.right * .02f;
+    late.Invoke(animator, null);
+    checks.Add(new {name = "light fear does not advance walk phase", pass = Mathf.Abs((float)phaseField.GetValue(animator) - fast) < .000001f});
+    checks.Add(new {name = "visual position and scale ownership preserved", pass = visual.localPosition == localPositionBefore && visual.localScale == localScaleBefore});
+    checks.Add(new {name = "collider and actor rotation preserved", pass = collider.radius == colliderRadius && actorObject.transform.rotation == UnityEngine.Quaternion.identity});
+    checks.Add(new {name = "shared locomotion profile immutable", pass = UnityEditor.EditorJsonUtility.ToJson(profile) == profileBefore});
+    visual.localPosition = UnityEngine.Vector3.zero;
+    visual.localScale = UnityEngine.Vector3.one;
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Dormant, null);
+    closure.SetValue(actor, 0f, null);
+
+    eyeFramesField.SetValue(animator, null);
+    late.Invoke(animator, null);
+    bool legacyOpen = iris.enabled && pupil.enabled;
+    closure.SetValue(actor, 1f, null);
+    late.Invoke(animator, null);
+    checks.Add(new { name = "legacy null frames", pass = legacyOpen && !iris.enabled && !pupil.enabled });
+    eyeFramesField.SetValue(animator, new UnityEngine.Sprite[0]);
+    closure.SetValue(actor, 0f, null);
+    late.Invoke(animator, null);
+    legacyOpen = iris.enabled && pupil.enabled;
+    closure.SetValue(actor, 1f, null);
+    late.Invoke(animator, null);
+    checks.Add(new { name = "legacy empty frames", pass = legacyOpen && !iris.enabled && !pupil.enabled });
+    eyeFramesField.SetValue(animator, eyeFrames);
+    state.SetValue(actor, EmergencyShift.ShadowStalker2D.BehaviourState.Dead, null);
+    stateTime.SetValue(actor, 0f);
+    late.Invoke(animator, null);
+    checks.Add(new { name = "death hides both", pass = !iris.enabled && !pupil.enabled });
+    stateTime.SetValue(actor, 1.1f);
+    late.Invoke(animator, null);
+    checks.Add(new { name = "settled death stays hidden", pass = !iris.enabled && !pupil.enabled && !animator.enabled });
+    animator.RestoreDead();
+    checks.Add(new { name = "restore dead silent/hidden", pass = !iris.enabled && !pupil.enabled && !animator.enabled });
+    return new { checks = checks, deltaTime = UnityEngine.Time.deltaTime, scope = "Real Play, temporary far-away prefab clone, direct presentation-state injection; no AI/profiles/scenes saved" };
+}
+finally
+{
+    if (actorObject != null)
+    {
+        UnityEngine.Object.DestroyImmediate(actorObject);
+    }
+    if (targetObject != null)
+    {
+        UnityEngine.Object.DestroyImmediate(targetObject);
+    }
+}

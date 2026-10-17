@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-17",
+  "status": "Incomplete; no baked sprites; source cleanup authorization pending",
+  "tool": "image_gen.imagegen built-in only",
+  "attempts": [
+    {
+      "prompt": "body-parts-prompt.txt",
+      "result": "No image; output moderation rejection",
+      "requestId": "67c5c158-ee93-4bf9-9c14-986c8ab9d112"
+    },
+    {
+      "prompt": "body-parts-safe-prompt.txt",
+      "result": "No image; output moderation rejection",
+      "requestId": "1ad1341b-5a28-493c-a59b-60022e2e005c"
+    },
+    {
+      "prompt": "master-sprite-prompt.txt",
+      "result": "Completed but rejected internally: anatomy/eye changed, opaque background and halo",
+      "source": "C:/Users/Mark/.codex/generated_images/01a14253-0d76-7b63-a439-9dde8e41c183/exec-438aab19-a1c0-485a-a218-a46e24ce94c2.png",
+      "file": "Sources/master-extraction-rejected.png",
+      "sha256": "dd378d7cfa7cf7be605eff38c92760e4a864c0f5730525f1fb914bf6ab7999ff"
+    }
+  ],
+  "referenceSources": [
+    {
+      "file": "Concepts/Unused/Visual/SleeperAnatomy02/tripartite-closed-attempt.png",
+      "sha256": "11fa8e374bbab186e64c51ceba892eecdd975e60cfa7bbe14bf3ea3fb53b400f"
+    },
+    {
+      "file": "Concepts/Unused/Visual/SleeperAnatomy02/tripartite-open.png",
+      "sha256": "9becfb89f0b7c07d0d51da58e0b08df2f327d3f3f5c042271ca1a823cba16212"
+    },
+    {
+      "file": "Concepts/Unused/Visual/SleeperAnatomy02/master-closed.png",
+      "sha256": "318cab1bd06b0f6b3edab48cbd0265d442b23c948f4c8ebd85963fe268575428"
+    },
+    {
+      "file": "Concepts/Used/Stalker/PaleFlesh/walk-sheet.png",
+      "sha256": "6733cb493c8ef1cf128ee05f730b5c7fa1c75e4dd89787e46ac8451a8d9bd807"
+    }
+  ],
+  "processing": "Generated result copied unchanged. No pixel editing, background cleanup, anatomy assembly or frame baking performed.",
+  "draftSource": [
+    {
+      "file": "AuthoringDrafts/SleeperJawBakeSource.cs",
+      "sha256": "b1aba13da7c37fe3adb1d6b784d95af3c107f216b47f949905cbfc6333bf6bfa"
+    },
+    {
+      "file": "AuthoringDrafts/SleeperSpriteBaker.cs",
+      "sha256": "7fff758026ab02bc164a8c4aaf25e56ce3ea7e9d20146a1f4a07d6ef3adf47a2"
+    }
+  ],
+  "validation": "Editor compile and C# pose formula checks only; no visual rig/anatomy QA or gameplay integration",
+  "plannedFrames": 64,
+  "bakedFrames": 0,
+  "rights": "Generated concept; no third-party stock or CC0 claim."
+}

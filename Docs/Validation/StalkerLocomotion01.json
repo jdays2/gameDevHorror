@@ -1,0 +1,220 @@
+{
+  "date": "2026-10-17",
+  "scope": "Stalker locomotion presentation integration only; original body frames and AI retained",
+  "playPresentation": {
+    "checks": [
+      {
+        "name": "four non-null stages",
+        "pass": true
+      },
+      {
+        "name": "walk 0",
+        "pass": true
+      },
+      {
+        "name": "walk 1",
+        "pass": true
+      },
+      {
+        "name": "walk 2",
+        "pass": true
+      },
+      {
+        "name": "walk 3",
+        "pass": true
+      },
+      {
+        "name": "walk 4",
+        "pass": true
+      },
+      {
+        "name": "walk 5",
+        "pass": true
+      },
+      {
+        "name": "walk 6",
+        "pass": true
+      },
+      {
+        "name": "walk 7",
+        "pass": true
+      },
+      {
+        "name": "attack 0",
+        "pass": true
+      },
+      {
+        "name": "attack 1",
+        "pass": true
+      },
+      {
+        "name": "attack 2",
+        "pass": true
+      },
+      {
+        "name": "attack 3",
+        "pass": true
+      },
+      {
+        "name": "attack 4",
+        "pass": true
+      },
+      {
+        "name": "attack 5",
+        "pass": true
+      },
+      {
+        "name": "recoil 0",
+        "pass": true
+      },
+      {
+        "name": "recoil 1",
+        "pass": true
+      },
+      {
+        "name": "recoil 2",
+        "pass": true
+      },
+      {
+        "name": "recoil 3",
+        "pass": true
+      },
+      {
+        "name": "retreat slit/shut",
+        "pass": true
+      },
+      {
+        "name": "waiting shut",
+        "pass": true
+      },
+      {
+        "name": "pupil tracking -1",
+        "pass": true
+      },
+      {
+        "name": "pupil tracking 1",
+        "pass": true
+      },
+      {
+        "name": "pupil stays within iris",
+        "pass": true
+      },
+      {
+        "name": "same distance two sample speeds",
+        "pass": true
+      },
+      {
+        "name": "distance drives complete cycle",
+        "pass": true
+      },
+      {
+        "name": "stationary frame and phase freeze",
+        "pass": true
+      },
+      {
+        "name": "stationary support sway settles",
+        "pass": true
+      },
+      {
+        "name": "teleport does not count as steps",
+        "pass": true
+      },
+      {
+        "name": "stagger displacement is not walking",
+        "pass": true
+      },
+      {
+        "name": "light fear does not advance walk phase",
+        "pass": true
+      },
+      {
+        "name": "visual position and scale ownership preserved",
+        "pass": true
+      },
+      {
+        "name": "collider and actor rotation preserved",
+        "pass": true
+      },
+      {
+        "name": "shared locomotion profile immutable",
+        "pass": true
+      },
+      {
+        "name": "legacy null frames",
+        "pass": true
+      },
+      {
+        "name": "legacy empty frames",
+        "pass": true
+      },
+      {
+        "name": "death hides both",
+        "pass": true
+      },
+      {
+        "name": "settled death stays hidden",
+        "pass": true
+      },
+      {
+        "name": "restore dead silent/hidden",
+        "pass": true
+      }
+    ],
+    "deltaTime": 0.006032398,
+    "scope": "Real Play, temporary far-away prefab clone, direct presentation-state injection; no AI/profiles/scenes saved"
+  },
+  "playScope": "Temporary actor in Play; state/position injected and real LateUpdate invoked. Not full AI/gameplay replay.",
+  "editMode": {
+    "total": 36,
+    "passed": 36,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 0.1421441,
+    "resultState": "Passed"
+  },
+  "release": {
+    "source": "Unity BuildReport.GetLatestReport after domain reload lost MCP job",
+    "data": {
+      "result": "Succeeded",
+      "outputPath": "C:/Users/Mark/Documents/Codex/2026-10-13/gkf/work/sleeper-sprites-01/Release/EmergencyShift.exe",
+      "errors": 0,
+      "warnings": 0,
+      "durationSeconds": 13.9528869,
+      "start": "2026-10-17T03:22:21.6297889Z",
+      "end": "2026-10-17T03:22:35.5826758Z",
+      "sizeBytes": 160705878,
+      "platform": "StandaloneWindows64"
+    }
+  },
+  "releaseAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "protectedFiles": {
+    "captured": 154,
+    "unchanged": 153,
+    "intentionalChanged": [
+      "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab"
+    ],
+    "prefabOnlyChange": "One serialized locomotionProfile reference; all other bytes equal snapshot",
+    "sceneFiles": 8,
+    "duplicateAssetGuids": {}
+  },
+  "editorFinal": {
+    "playing": false,
+    "compiling": false,
+    "activeScene": "Assets/EmergencyShift/Scenes/ArtReview/EnvironmentNarrativeStressReview.unity",
+    "activeSceneDirty": false,
+    "missingScripts": 0,
+    "development": false,
+    "managed": "Release",
+    "preloaded": []
+  },
+  "consoleErrorWarningCount": 0,
+  "visual": "All eight poses inspected on dark URP preview: limbs/claws connected, single eye overlay; no source pixels changed. Video is offline steady straight reconstruction, not AI capture.",
+  "limitations": [
+    "Eight pre-existing whole-body walk sprites retained; no independent foot lock or newly drawn in-betweens.",
+    "Sharp turns may show lateral slide while visual heading catches motor heading.",
+    "Live gait phase is not serialized by checkpoint; settled corpse orientation policy unchanged.",
+    "Existing unrelated environment work was present in test/build workspace and remains excluded from this commit."
+  ]
+}

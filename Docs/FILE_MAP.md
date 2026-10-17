@@ -31,6 +31,7 @@
 | `Runtime/Definitions/ShotVisualProfile.cs` | Общие параметры одного визуального варианта. Не хранит патроны/состояние игрока. |
 | `Runtime/Definitions/StalkerAudioSet.cs` | Shared authored audio data: one asset instead of 49 references on every creature. |
 | `Runtime/Definitions/StalkerBehaviourProfile.cs` | StalkerBehaviourProfile |
+| `Runtime/Definitions/StalkerLocomotionProfile.cs` | Длина цикла шага, опорные паузы и сглаживание поворота; общее неизменяемое описание, без фазы экземпляра. |
 | `Runtime/Definitions/WeaponAudioProfile.cs` | Weapon-specific recordings; impact materials remain in the shared world palette. |
 | `Runtime/Definitions/WeaponCatalog.cs` | WeaponCatalog |
 | `Runtime/Definitions/WeaponDefinition.cs` | Shared weapon data; ammunition/ownership stay on the player, never in this asset. |

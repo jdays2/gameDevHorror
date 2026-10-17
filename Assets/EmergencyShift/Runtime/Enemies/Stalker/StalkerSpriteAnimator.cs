@@ -25,6 +25,8 @@ namespace EmergencyShift
         private Sprite[] attackFrames;
         [SerializeField]
         private Sprite[] deathFrames;
+        [SerializeField]
+        private StalkerLocomotionProfile locomotionProfile;
         [SerializeField, Min(1)]
         private float walkFramesPerSecond = 7f;
         [SerializeField, Min(0.001f)]
@@ -33,6 +35,12 @@ namespace EmergencyShift
         private float turnSpeed = 160f;
         private float walkClock;
         private float compactClock;
+        private float walkPhase;
+        private float movementWeight;
+        private float supportYaw;
+        private float turnVelocity;
+        private Vector2 previousPosition;
+        private bool hasPreviousPosition;
         private bool deathStyleApplied;
         public int CurrentFrame
         {
@@ -61,12 +69,22 @@ namespace EmergencyShift
         private void Awake()
         {
             walkClock = (float)new System.Random(System.Guid.NewGuid().GetHashCode()).NextDouble() / Mathf.Max(1, walkFramesPerSecond) * 8;
+            walkPhase = Mathf.Repeat(walkClock * Mathf.Max(1, walkFramesPerSecond) / 8f, 1f);
+        }
+
+        private void OnEnable()
+        {
+            hasPreviousPosition = false;
         }
 
         public Quaternion VisualRotation => visualRoot.rotation;
         public void RestoreVisualRotation(Quaternion rotation)
         {
             visualRoot.rotation = rotation;
+            supportYaw = 0;
+            turnVelocity = 0;
+            movementWeight = 0;
+            hasPreviousPosition = false;
         }
 
         public void RestoreDead()
@@ -108,7 +126,22 @@ namespace EmergencyShift
                 deathStyleApplied = true;
             }
 
-            if (creeping && behaviour.Velocity.sqrMagnitude > 0.01f)
+            Vector2 position = transform.position;
+            Vector2 translation = Vector2.zero;
+            if (hasPreviousPosition)
+            {
+                translation = position - previousPosition;
+            }
+
+            previousPosition = position;
+            hasPreviousPosition = true;
+
+            if (locomotionProfile != null)
+            {
+                bool walking = creeping && !behaviour.IsStaggered && behaviour.Closure < 0.05f;
+                UpdateLocomotion(walking, translation);
+            }
+            else if (creeping && behaviour.Velocity.sqrMagnitude > 0.01f)
             {
                 float angle = Mathf.Atan2(behaviour.Velocity.y, behaviour.Velocity.x) * Mathf.Rad2Deg - 90;
                 visualRoot.rotation = Quaternion.RotateTowards(visualRoot.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);
@@ -139,7 +172,7 @@ namespace EmergencyShift
             }
             else if (behaviour.Closure < 0.05f || recoilFrames == null || recoilFrames.Length == 0)
             {
-                CurrentFrame = (int)(walkClock * walkFramesPerSecond) % walkFrames.Length;
+                CurrentFrame = WalkFrame();
                 bodyRenderer.sprite = walkFrames[CurrentFrame];
             }
             else
@@ -185,6 +218,74 @@ namespace EmergencyShift
             Vector2 offset = localTarget.normalized * pupilTravel * Mathf.Clamp01(localTarget.magnitude / 0.4f);
             Vector2 next = Vector2.MoveTowards(pupil.transform.localPosition, offset, Time.deltaTime * 0.25f);
             pupil.transform.localPosition = new Vector3(next.x, next.y, -0.002f);
+        }
+
+        private int WalkFrame()
+        {
+            if (locomotionProfile == null)
+            {
+                return (int)(walkClock * walkFramesPerSecond) % walkFrames.Length;
+            }
+
+            // Two support phases remain monotonic; the same distance always advances the same cycle.
+            float supportPhase = walkPhase * Mathf.PI * 4f;
+            float hold = Mathf.Clamp(locomotionProfile.supportHold, 0, 0.6f);
+            float framePhase = walkPhase - Mathf.Sin(supportPhase) * hold / (Mathf.PI * 4f);
+            return Mathf.Clamp(Mathf.FloorToInt(framePhase * walkFrames.Length), 0, walkFrames.Length - 1);
+        }
+
+        private void UpdateLocomotion(bool walking, Vector2 translation)
+        {
+            float heading = visualRoot.eulerAngles.z - supportYaw;
+            if (!walking)
+            {
+                visualRoot.rotation = Quaternion.Euler(0, 0, heading);
+                supportYaw = 0;
+                turnVelocity = 0;
+                movementWeight = 0;
+                return;
+            }
+
+            float dt = Time.deltaTime;
+            if (dt <= 0)
+            {
+                return;
+            }
+
+            float scale = Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.y));
+            float cycleDistance = Mathf.Max(0.01f, locomotionProfile.distancePerCycle * scale);
+            float distance = translation.magnitude;
+            float acceptedDistance = Mathf.Max(cycleDistance, behaviour.MovementSpeed * dt * 3f);
+            if (distance > acceptedDistance)
+            {
+                // Teleports/restores are not a burst of footwork.
+                distance = 0;
+            }
+
+            float speed = distance / dt;
+            bool moving = speed >= Mathf.Max(0.001f, locomotionProfile.minimumMovingSpeed);
+            if (moving)
+            {
+                walkPhase = Mathf.Repeat(walkPhase + distance / cycleDistance, 1f);
+                float targetHeading = Mathf.Atan2(translation.y, translation.x) * Mathf.Rad2Deg - 90;
+                heading = Mathf.SmoothDampAngle(heading, targetHeading, ref turnVelocity,
+                    Mathf.Max(0.01f, locomotionProfile.turnSmoothSeconds), turnSpeed, dt);
+            }
+            else
+            {
+                turnVelocity = 0;
+            }
+
+            float targetWeight = Mathf.Clamp01(speed / Mathf.Max(0.1f, locomotionProfile.fullWeightSpeed));
+            if (!moving)
+            {
+                targetWeight = 0;
+            }
+
+            float response = targetWeight > movementWeight ? locomotionProfile.startSeconds : locomotionProfile.settleSeconds;
+            movementWeight = Mathf.MoveTowards(movementWeight, targetWeight, dt / Mathf.Max(0.01f, response));
+            supportYaw = Mathf.Sin(walkPhase * Mathf.PI * 2f) * Mathf.Clamp(locomotionProfile.supportYawDegrees, 0, 3) * movementWeight;
+            visualRoot.rotation = Quaternion.Euler(0, 0, heading + supportYaw);
         }
     }
 }

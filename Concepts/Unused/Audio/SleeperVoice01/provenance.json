@@ -1,0 +1,298 @@
+{
+  "date": "2026-10-17",
+  "family": "SleeperVoice01",
+  "status": "Four new voice auditions; artistic evaluation pending; no Unity integration",
+  "method": "Four text-to-sound-effect generations through built-in Runway connector, followed by local decode and restrained DSP",
+  "creditCostPerToolSchema": 11,
+  "creditsRemainingAfterSubmissions": 408,
+  "rights": {
+    "source": "Generated outputs from the connected Runway workspace; source prompts and task IDs retained",
+    "terms": "Use is governed by the current Runway service/account terms. No CC0 or third-party stock license is asserted; this record is provenance, not an independent rights determination.",
+    "termsReference": "https://runwayml.com/terms-of-use/",
+    "signedUrlsOrTokensStored": false
+  },
+  "stalkerReference": {
+    "family": "Concepts/Used/Audio/StalkerMembrane04",
+    "role": "Read-only reference for the shared organic sonic palette; no audio copied, overwritten or layered"
+  },
+  "listening": {
+    "performed": false,
+    "reason": "No audio-listening tool is available to this agent; generated clips are provided for real playback and owner evaluation. Measurements do not establish timbre or emotional quality."
+  },
+  "outputs": [
+    {
+      "id": "sleep",
+      "prompt": "Dry close nonhuman organic creature; muted low elastic membrane and hollow pressure-cavity texture. No human breath, speech, music, electrical hum, footsteps, room echo or other creatures. A sleeping sealed throat sac slowly flexes, thick folded tissue softly rubs and releases tiny uneven wet creaks. Very quiet two slow asymmetric compression cycles, sparse airless clicks. Seamless restrained loop; no alarm or vocal scream.",
+      "taskId": "4a881b0a-3618-46fb-ab63-75396b9a5ac5",
+      "provider": "Runway connected workspace",
+      "taskType": "workflow_audio_sfx",
+      "requestedDurationSeconds": 6,
+      "loopRequested": true,
+      "toolMetadata": {
+        "durationSeconds": 6
+      },
+      "nativeOriginal": {
+        "file": "Originals/sleeper_sleep_01.mp3",
+        "sha256": "18dbea1e81e05c93a0b8a6c7adb780989b2ebcfab848c026c00d664a6c2154c5",
+        "bytes": 97009,
+        "format": "MP3, native generated download; preserved unchanged",
+        "decodedMono48k": {
+          "frames": 288000,
+          "durationSeconds": 6.0,
+          "sampleRate": 48000,
+          "channels": 1,
+          "peak": 0.011550754308700562,
+          "peakDbFS": -38.747793074900706,
+          "rms": 0.003881914383402052,
+          "rmsDbFS": -48.21908094632089,
+          "samplesAtOrAboveFullScale": 0,
+          "finite": true,
+          "dcOffset": -1.1427420351254153e-05,
+          "boundaryJump": 2.188848884543404e-05
+        }
+      },
+      "processing": {
+        "dcRemoval": true,
+        "edgeProcessing": "60ms wrap crossfade; output shortened by 60ms, no start/end silence fades",
+        "peakTarget": 0.035,
+        "gain": 3.027110351678434,
+        "note": "Explicit linear gain to separate per-cue peak targets; no compression, Stalker samples, pitch shifting, reverb or added vocal layers"
+      },
+      "wav": {
+        "file": "WAV/sleeper_sleep_01.wav",
+        "sha256": "6865a1149ad4d9240cc75213fc03995ba4759d646ac871f67fd7cda271485886",
+        "bytes": 570284,
+        "bits": 16,
+        "frames": 285120,
+        "durationSeconds": 5.94,
+        "sampleRate": 48000,
+        "channels": 1,
+        "peak": 0.035003662109375,
+        "peakDbFS": -29.117730341169008,
+        "rms": 0.011779376221559962,
+        "rmsDbFS": -38.5775541412452,
+        "samplesAtOrAboveFullScale": 0,
+        "finite": true,
+        "dcOffset": -1.0266716097608025e-06,
+        "boundaryJump": 0.0001220703125
+      }
+    },
+    {
+      "id": "wake",
+      "prompt": "Dry close nonhuman organic creature; muted low elastic membrane and hollow pressure-cavity texture. No human breath, speech, music, electrical hum, footsteps, room echo or other creatures. One abrupt awakening: a closed three-fold mouth peels open with a brief sticky stretch, then a single harsh broken animal squeal rising from a hollow low cavity and cutting off into silence. Short alarming onset, no repeated cries or attack rhythm.",
+      "taskId": "e71399ae-b6ce-4ca4-a01a-6db61c4e0162",
+      "provider": "Runway connected workspace",
+      "taskType": "workflow_audio_sfx",
+      "requestedDurationSeconds": 1.5,
+      "loopRequested": false,
+      "toolMetadata": {
+        "durationSeconds": 1.48
+      },
+      "nativeOriginal": {
+        "file": "Originals/sleeper_wake_01.mp3",
+        "sha256": "2200bc668e807e1d8e7764dec725a8a1b52acb3141e24f039143d7d387bce31b",
+        "bytes": 24702,
+        "format": "MP3, native generated download; preserved unchanged",
+        "decodedMono48k": {
+          "frames": 71040,
+          "durationSeconds": 1.48,
+          "sampleRate": 48000,
+          "channels": 1,
+          "peak": 0.2059473991394043,
+          "peakDbFS": -13.724873765487736,
+          "rms": 0.017122149046083866,
+          "rmsDbFS": -35.32883453583914,
+          "samplesAtOrAboveFullScale": 0,
+          "finite": true,
+          "dcOffset": 1.8206190350130143e-06,
+          "boundaryJump": 0.0023242655588546768
+        }
+      },
+      "processing": {
+        "dcRemoval": true,
+        "edgeProcessing": "0.5ms entry and 8ms exit fades",
+        "peakTarget": 0.68,
+        "gain": 3.3017847836354104,
+        "note": "Explicit linear gain to separate per-cue peak targets; no compression, Stalker samples, pitch shifting, reverb or added vocal layers"
+      },
+      "wav": {
+        "file": "WAV/sleeper_wake_01.wav",
+        "sha256": "97033705d4767c6c2e01bbfd7326e418726e2672748bfccc80c21aead4bfa4a9",
+        "bytes": 142124,
+        "bits": 16,
+        "frames": 71040,
+        "durationSeconds": 1.48,
+        "sampleRate": 48000,
+        "channels": 1,
+        "peak": 0.67999267578125,
+        "peakDbFS": -3.349915301314036,
+        "rms": 0.05653186626712136,
+        "rmsDbFS": -24.95413354176742,
+        "samplesAtOrAboveFullScale": 0,
+        "finite": true,
+        "dcOffset": -1.3841165078652872e-06,
+        "boundaryJump": 0.0
+      }
+    },
+    {
+      "id": "pain",
+      "prompt": "Dry close nonhuman organic creature; muted low elastic membrane and hollow pressure-cavity texture. No human breath, speech, music, electrical hum, footsteps, room echo or other creatures. One brief wounded contraction: short pinched guttural yelp with a cracked membrane chirr and small wet body recoil, lower and much shorter than an awakening scream. Fast onset then silence; no impacts, gunfire or repeated moans.",
+      "taskId": "0c873aa7-d376-407d-b044-bb9ff42bd851",
+      "provider": "Runway connected workspace",
+      "taskType": "workflow_audio_sfx",
+      "requestedDurationSeconds": 0.8,
+      "loopRequested": false,
+      "toolMetadata": {
+        "durationSeconds": 0.8
+      },
+      "nativeOriginal": {
+        "file": "Originals/sleeper_pain_01.mp3",
+        "sha256": "77bbdb77734dc9e50ed8fd133cbf6ad7fdf83af9d2dba8fdd19e033c4013cb4b",
+        "bytes": 13835,
+        "format": "MP3, native generated download; preserved unchanged",
+        "decodedMono48k": {
+          "frames": 38400,
+          "durationSeconds": 0.8,
+          "sampleRate": 48000,
+          "channels": 1,
+          "peak": 0.3326234221458435,
+          "peakDbFS": -9.560943451665885,
+          "rms": 0.033043358173744306,
+          "rmsDbFS": -29.6183164411893,
+          "samplesAtOrAboveFullScale": 0,
+          "finite": true,
+          "dcOffset": 0.0002985907132951482,
+          "boundaryJump": 0.00016896506349439733
+        }
+      },
+      "processing": {
+        "dcRemoval": true,
+        "edgeProcessing": "0.5ms entry and 8ms exit fades",
+        "peakTarget": 0.38,
+        "gain": 1.141408453999647,
+        "note": "Explicit linear gain to separate per-cue peak targets; no compression, Stalker samples, pitch shifting, reverb or added vocal layers"
+      },
+      "wav": {
+        "file": "WAV/sleeper_pain_01.wav",
+        "sha256": "b337af65924fae264ac5f61823285091fb5cb9d96f2657317b50d3be1f1b95c7",
+        "bytes": 76844,
+        "bits": 16,
+        "frames": 38400,
+        "durationSeconds": 0.8,
+        "sampleRate": 48000,
+        "channels": 1,
+        "peak": 0.379974365234375,
+        "peakDbFS": -8.404914036757983,
+        "rms": 0.037713256104015574,
+        "rmsDbFS": -28.470119393277802,
+        "samplesAtOrAboveFullScale": 0,
+        "finite": true,
+        "dcOffset": 1.7023086547851562e-06,
+        "boundaryJump": 0.0
+      }
+    },
+    {
+      "id": "rupture",
+      "prompt": "Dry close nonhuman organic creature; muted low elastic membrane and hollow pressure-cavity texture. No human breath, speech, music, electrical hum, footsteps, room echo or other creatures. One terminal body rupture: a thick tensioned membrane tears apart with a low moist snap, a very short collapsing cavity groan, then a few irregular soft tissue drops settling into silence. No explosion, cinematic boom, scream loop or footsteps.",
+      "taskId": "b4c3ba8a-fad7-4f26-9515-881c6d7b1aae",
+      "provider": "Runway connected workspace",
+      "taskType": "workflow_audio_sfx",
+      "requestedDurationSeconds": 1.5,
+      "loopRequested": false,
+      "toolMetadata": {
+        "durationSeconds": 1.48
+      },
+      "nativeOriginal": {
+        "file": "Originals/sleeper_rupture_01.mp3",
+        "sha256": "263205aab2ae254cd7d94c2d7c56754bf642b3a290003baab43a4182d92bd062",
+        "bytes": 24702,
+        "format": "MP3, native generated download; preserved unchanged",
+        "decodedMono48k": {
+          "frames": 71040,
+          "durationSeconds": 1.48,
+          "sampleRate": 48000,
+          "channels": 1,
+          "peak": 1.0664031505584717,
+          "peakDbFS": 0.5584283895590035,
+          "rms": 0.047351613554632535,
+          "rmsDbFS": -26.493304347603384,
+          "samplesAtOrAboveFullScale": 10,
+          "finite": true,
+          "dcOffset": 5.388106522772389e-05,
+          "boundaryJump": 0.008564604286220856
+        }
+      },
+      "processing": {
+        "dcRemoval": true,
+        "edgeProcessing": "0.5ms entry and 8ms exit fades",
+        "peakTarget": 0.72,
+        "gain": 0.6752009126823542,
+        "note": "Explicit linear gain to separate per-cue peak targets; no compression, Stalker samples, pitch shifting, reverb or added vocal layers"
+      },
+      "wav": {
+        "file": "WAV/sleeper_rupture_01.wav",
+        "sha256": "546f7f08c510f4fd64b9de04a03c1affc7c376af4cba4e5efe2cd94fdfd93e44",
+        "bytes": 142124,
+        "bits": 16,
+        "frames": 71040,
+        "durationSeconds": 1.48,
+        "sampleRate": 48000,
+        "channels": 1,
+        "peak": 0.719970703125,
+        "peakDbFS": -2.8537035083195255,
+        "rms": 0.0319707136309406,
+        "rmsDbFS": -29.90495339122523,
+        "samplesAtOrAboveFullScale": 0,
+        "finite": true,
+        "dcOffset": -1.1615925007038288e-06,
+        "boundaryJump": 0.0
+      }
+    }
+  ],
+  "preview": {
+    "file": "Previews/sleeper-voice-catalogue.wav",
+    "sha256": "9d5aae5d04dddb8f1999f53463329f6790ef92a96a554980ae82f10c1aa12d68",
+    "bytes": 1296044,
+    "bits": 16,
+    "frames": 648000,
+    "durationSeconds": 13.5,
+    "sampleRate": 48000,
+    "channels": 1,
+    "peak": 0.719970703125,
+    "peakDbFS": -2.8537035083195255,
+    "rms": 0.024652603849306672,
+    "rmsDbFS": -32.162744061071315,
+    "samplesAtOrAboveFullScale": 0,
+    "finite": true,
+    "dcOffset": -6.299430941358025e-07,
+    "boundaryJump": 0.0
+  },
+  "previewTimeline": [
+    {
+      "id": "sleep",
+      "atSeconds": 0.25,
+      "endSeconds": 6.19
+    },
+    {
+      "id": "wake",
+      "atSeconds": 7.04,
+      "endSeconds": 8.52
+    },
+    {
+      "id": "pain",
+      "atSeconds": 9.37,
+      "endSeconds": 10.17
+    },
+    {
+      "id": "rupture",
+      "atSeconds": 11.02,
+      "endSeconds": 12.5
+    }
+  ],
+  "knownLimitations": [
+    "One audition per cue, not a finished variation bank.",
+    "MP3 source remains lossy; WAV decode does not recover a lossless master.",
+    "Loop seam and output headroom are measured; natural phrasing and distinction from the Stalker still need listening.",
+    "No AI state binding, event latch, cooldown or death playback behavior has been implemented."
+  ]
+}
