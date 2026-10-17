@@ -20,6 +20,8 @@ namespace EmergencyShift
         private Material shadowMaterial;
         [SerializeField]
         private GoreProfile profile;
+        [SerializeField, Tooltip("Original death-animation body, hidden when an explicit corpse replaces it.")]
+        private SpriteRenderer replacedBody;
         private GoreVariant variant;
         private Transform remainsRoot;
         private RemainsRecord2D record;
@@ -57,6 +59,17 @@ namespace EmergencyShift
 
             emitted = true;
             variant = profile.variants[Random.Range(0, profile.variants.Length)];
+            if (variant.pieces != null)
+            {
+                foreach (GorePiece part in variant.pieces)
+                {
+                    if (part == null || fragments == null || part.spriteIndex < 0 || part.spriteIndex >= fragments.Length || fragments[part.spriteIndex] == null)
+                    {
+                        Debug.LogError("Invalid anatomical gore composition: " + name, this);
+                        return;
+                    }
+                }
+            }
             CreateRemainsRoot(transform.position);
             spawning = true;
             // Кровь появляется сразу при переходе в Dead; разлёт частей следует за разрывом.
@@ -89,25 +102,39 @@ namespace EmergencyShift
                 yield break;
             }
 
-            for (int i = 0; i < variant.fragmentCount; i++)
+            bool explicitComposition = variant.pieces != null && variant.pieces.Length > 0;
+            int count = explicitComposition ? variant.pieces.Length : variant.fragmentCount;
+            if (variant.replaceOriginalBody && replacedBody != null)
+            {
+                replacedBody.enabled = false;
+            }
+
+            for (int i = 0; i < count; i++)
             {
                 while (!GoreSpawnBudget2D.TryReserve())
                 {
                     yield return null;
                 }
 
-                var piece = new GameObject("Stalker fragment", typeof(GibMotion2D));
+                GorePiece specification = explicitComposition ? variant.pieces[i] : null;
+                int spriteIndex = specification != null ? specification.spriteIndex : (i + variant.spriteOffset) % fragments.Length;
+                Vector2 scaleRange = specification != null ? specification.scale : variant.scale;
+                var piece = new GameObject("Creature fragment", typeof(GibMotion2D));
                 piece.transform.position = new Vector3(transform.position.x, transform.position.y, RemainsVisualStyle.SurfaceZ);
+                if (specification != null)
+                {
+                    piece.transform.position += transform.TransformVector(specification.offset);
+                }
                 piece.transform.SetParent(remainsRoot, true);
                 var body = new GameObject("Fragment visual", typeof(SpriteRenderer));
                 body.transform.SetParent(piece.transform, false);
-                body.transform.localScale = Vector3.one * Random.Range(variant.scale.x, variant.scale.y);
+                body.transform.localScale = Vector3.one * Random.Range(scaleRange.x, scaleRange.y);
                 var renderer = body.GetComponent<SpriteRenderer>();
-                renderer.sprite = fragments[(i + variant.spriteOffset) % fragments.Length];
+                renderer.sprite = fragments[spriteIndex];
                 renderer.sharedMaterial = litMaterial;
                 renderer.sortingOrder = RemainsVisualStyle.DeadOrder;
                 renderer.color = RemainsVisualStyle.Tint;
-                float angle = i * Mathf.PI * 2 / variant.fragmentCount + variant.rotationOffset * Mathf.Deg2Rad + Random.Range(-.33f, .33f);
+                float angle = i * Mathf.PI * 2 / count + variant.rotationOffset * Mathf.Deg2Rad + Random.Range(-.33f, .33f);
                 body.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
                 SpriteRenderer shadow = null;
                 if (contactShadowSprite != null && shadowMaterial != null)
@@ -125,8 +152,15 @@ namespace EmergencyShift
                 motion.ConfigureVisual(renderer, shadow);
                 // Чередуем тяжёлые близкие куски и быстрые дальние, а не восемь одинаковых импульсов.
                 float power = Random.Range(profile.impulseRange.x, profile.impulseRange.y) * variant.impulseMultiplier * (i % 3 == 0 ? .65f : 1);
-                motion.Launch(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * power, Random.Range(-650f, 650f), obstacles.value | (1 << 9), Random.Range(profile.liftRange.x, profile.liftRange.y), profile.gravity);
-                piece.AddComponent<RemainsPartIdentity2D>().Configure((i + variant.spriteOffset) % fragments.Length, renderer, shadow);
+                float lift = Random.Range(profile.liftRange.x, profile.liftRange.y);
+                if (specification != null)
+                {
+                    power *= specification.impulseMultiplier;
+                    lift *= specification.liftMultiplier;
+                }
+
+                motion.Launch(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * power, Random.Range(-650f, 650f), obstacles.value | (1 << 9), lift, profile.gravity);
+                piece.AddComponent<RemainsPartIdentity2D>().Configure(spriteIndex, renderer, shadow);
                 record.RegisterPart(motion);
                 FragmentLaunched?.Invoke(motion);
             }
@@ -191,6 +225,11 @@ namespace EmergencyShift
 
             CreateRemainsRoot(saved.position);
             record.Restore(saved);
+            GoreVariant restoredVariant = System.Array.Find(profile.variants, item => item.id == saved.variantId);
+            if (restoredVariant != null && restoredVariant.replaceOriginalBody && replacedBody != null)
+            {
+                replacedBody.enabled = false;
+            }
         }
     }
 }

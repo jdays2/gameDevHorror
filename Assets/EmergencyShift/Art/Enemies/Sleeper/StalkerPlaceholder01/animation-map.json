@@ -1,7 +1,7 @@
 {
-  "status": "Temporary palette-only Stalker sprite copy for Sleeper; no new AI or scene placement",
-  "palette": "Muted cold gray-green; source red blood retained",
-  "bodyGeometry": "Exact existing Stalker frames/UV/rects/pivots/PPU/mesh; new resource GUIDs only",
+  "status": "Implemented Sleeper presentation; registered Stalker geometry with BloodMarks02 surface update and three corpse compositions",
+  "palette": "Cold grey-green skin, nearly white exposed eye, several separate localized red marks",
+  "bodyGeometry": "Original frame rects, pivots, PPU, mesh and alpha unchanged",
   "clips": {
     "sleep": [
       "Assets/EmergencyShift/Art/Enemies/Sleeper/StalkerPlaceholder01/Frames/Recoil03-corrected.asset"
@@ -60,6 +60,13 @@
     "sleep": "Assets/EmergencyShift/Audio/Sleeper/Voice01/sleeper_sleep_01.wav",
     "wake": "Assets/EmergencyShift/Audio/Sleeper/Voice01/sleeper_wake_01.wav",
     "pain": "Assets/EmergencyShift/Audio/Sleeper/Voice01/sleeper_pain_01.wav",
-    "death": "Assets/EmergencyShift/Audio/Sleeper/Voice01/sleeper_rupture_01.wav"
-  }
+    "death": "Assets/EmergencyShift/Data/Audio/CreatureRupture06.asset"
+  },
+  "corpseProfile": "Assets/EmergencyShift/Data/Gore/SleeperRupture.asset",
+  "corpseSprites": [
+    "Assets/EmergencyShift/Art/Enemies/Sleeper/BloodMarks02/HollowCore.asset",
+    "Assets/EmergencyShift/Art/Enemies/Sleeper/BloodMarks02/RetainedEyeCore.asset",
+    "Assets/EmergencyShift/Art/Enemies/Sleeper/BloodMarks02/SplitCore.asset",
+    "Assets/EmergencyShift/Art/Enemies/Sleeper/BloodMarks02/DetachedEye.asset"
+  ]
 }

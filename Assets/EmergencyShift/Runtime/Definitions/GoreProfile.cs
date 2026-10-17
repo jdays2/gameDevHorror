@@ -4,6 +4,19 @@ using UnityEngine;
 namespace EmergencyShift
 {
     [Serializable]
+    public sealed class GorePiece
+    {
+        [Min(0)]
+        public int spriteIndex;
+        public Vector2 offset;
+        public Vector2 scale = Vector2.one;
+        [Min(.01f)]
+        public float impulseMultiplier = 1;
+        [Min(.01f)]
+        public float liftMultiplier = 1;
+    }
+
+    [Serializable]
     public sealed class GoreVariant
     {
         public string id;
@@ -14,6 +27,9 @@ namespace EmergencyShift
         public Vector2 scale = new Vector2(.65f, .95f);
         [Min(.1f)]
         public float impulseMultiplier = 1;
+        [Tooltip("Optional explicit anatomical composition. Empty preserves the original radial fragment layout.")]
+        public GorePiece[] pieces;
+        public bool replaceOriginalBody;
     }
 
     [CreateAssetMenu(menuName = "Emergency Shift/Gore profile")]

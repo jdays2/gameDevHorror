@@ -63,7 +63,20 @@ namespace EmergencyShift
 
         private void LateUpdate()
         {
-            if (creature == null || bodyRenderer == null || visual == null || contact == null || projection == null || settledDead)
+            if (creature == null || bodyRenderer == null || visual == null || contact == null || projection == null)
+            {
+                return;
+            }
+
+            if (!bodyRenderer.enabled)
+            {
+                contact.enabled = false;
+                projection.enabled = false;
+                ProjectionLength = 0;
+                return;
+            }
+
+            if (settledDead)
             {
                 return;
             }
