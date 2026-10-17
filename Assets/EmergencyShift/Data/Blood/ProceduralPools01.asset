@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207cba265a2d2b34fbabe2a317f2c92a, type: 3}
+  m_Name: ProceduralPools01
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.BloodPoolProfile
+  variants:
+  - id: fresh-01
+    sprite: {fileID: 21300000, guid: 3430b373493b22a4db89062aedf5b0f6, type: 2}
+    canvasSize: 4.5
+  - id: ejected-01
+    sprite: {fileID: 21300000, guid: 0add1a8cd0ff8a9498d44b30108ad082, type: 2}
+    canvasSize: 4.5
+  - id: clotted-01
+    sprite: {fileID: 21300000, guid: ad92db9980d0148499c39ad89e6ab624, type: 2}
+    canvasSize: 4.5
+  dropletSprites:
+  - {fileID: 21300000, guid: bd3374f5de9f42740be51d6cfc6ff577, type: 2}
+  - {fileID: 21300000, guid: e910942d2cbd127418a1f7cbdb5e93a7, type: 2}
+  - {fileID: 21300000, guid: d9896c9a6bc11424d9028ae8ab8a99c7, type: 2}
+  - {fileID: 21300000, guid: 96429f88658edf540a6ffe9d0b6719c4, type: 2}
+  - {fileID: 21300000, guid: 668ef5b04c09d2d4fb8347e5b9d84ee5, type: 2}
+  - {fileID: 21300000, guid: 9918644be2ee4ef459f879471ab5f25a, type: 2}
+  poolTint: {r: 1, g: 1, b: 1, a: 1}
+  dropletTint: {r: 1, g: 1, b: 1, a: 1}
+  scaleRange: {x: 0.92, y: 1.08}
+  dropletDistance: {x: 0.7, y: 1.8}
+  dropletSize: {x: 0.06, y: 0.18}
+  dropletAspect: {x: 0.6, y: 1.5}
+  arrivalSeconds: {x: 0.18, y: 0.34}
+  growSeconds: 0.22
+  initialScale: 0.3

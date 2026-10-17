@@ -30,6 +30,8 @@ namespace EmergencyShift
         [Tooltip("Optional explicit anatomical composition. Empty preserves the original radial fragment layout.")]
         public GorePiece[] pieces;
         public bool replaceOriginalBody;
+        [Tooltip("Keep the ID available for old snapshots, but do not select this composition for a new death.")]
+        public bool restorationOnly;
     }
 
     [CreateAssetMenu(menuName = "Emergency Shift/Gore profile")]
@@ -50,5 +52,39 @@ namespace EmergencyShift
                 id = "radial"
             }
         };
+
+        public GoreVariant ChooseVariant()
+        {
+            int count = 0;
+            foreach (GoreVariant variant in variants)
+            {
+                if (variant != null && !variant.restorationOnly)
+                {
+                    count++;
+                }
+            }
+
+            if (count == 0)
+            {
+                throw new System.InvalidOperationException("Gore profile has no composition for new deaths: " + name);
+            }
+
+            int selected = UnityEngine.Random.Range(0, count);
+            foreach (GoreVariant variant in variants)
+            {
+                if (variant == null || variant.restorationOnly)
+                {
+                    continue;
+                }
+
+                if (selected == 0)
+                {
+                    return variant;
+                }
+                selected--;
+            }
+
+            throw new System.InvalidOperationException("Gore composition selection failed");
+        }
     }
 }

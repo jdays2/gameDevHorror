@@ -17,11 +17,12 @@
 | `Runtime/Core/Contracts/IInteractable.cs` | Контракт действия по E: двери и тестовые припасы. Наземный лут использует IAutoPickup. |
 | `Runtime/Core/Contracts/IThreatLight2D.cs` | A defensive light stimulus. Ordinary decorative lights need not implement it. |
 | `Runtime/Definitions/AudioMoodProfile.cs` | Shared tuning and replaceable sounds; runtime perception is owned by the scene director. |
+| `Runtime/Definitions/BloodPoolProfile.cs` | Подготовленные процедурные формы крови, stable ID и общие параметры; выбранный вариант принадлежит отдельной смерти. |
 | `Runtime/Definitions/DoorAudioSet.cs` | DoorAudioSet |
 | `Runtime/Definitions/EnemyDeathAudioSet.cs` | Общий неизменяемый набор клипов разрыва для видовых аудиоадаптеров. |
 | `Runtime/Definitions/EnemyDefinition.cs` | Shared tuning only. Current health, aggro and timers belong to an instance. |
 | `Runtime/Definitions/EnemyPatrolProfile.cs` | EnemyPatrolProfile |
-| `Runtime/Definitions/GoreProfile.cs` | GoreProfile |
+| `Runtime/Definitions/GoreProfile.cs` | Составы останков и выбор новых смертей; исторические ID могут быть доступны только восстановлению. |
 | `Runtime/Definitions/LevelCatalog.cs` | LevelCatalog |
 | `Runtime/Definitions/LevelDefinition.cs` | LevelDefinition |
 | `Runtime/Definitions/MagazineWeaponDefinition.cs` | MagazineWeaponDefinition |
@@ -92,7 +93,7 @@
 | `Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs` | Общая история выбора по набору на время Play; исключение немедленного повтора между особями. |
 | `Runtime/Presentation/Audio/LevelAudioDirector2D.cs` | Scene-local layered atmosphere. Only perceived threats affect it; AI remains independent. |
 | `Runtime/Presentation/Visuals/BloodHitSpray2D.cs` | Малый направленный выброс при попадании; не создаёт постоянную лужу живому врагу. |
-| `Runtime/Presentation/Visuals/BloodPool2D.cs` | Переиспользуемое пятно: набор круговых спрайтов даёт нерегулярную лужу и капли. |
+| `Runtime/Presentation/Visuals/BloodPool2D.cs` | Подготовленные процедурные формы, выбор/масштаб на смерть и короткая анимация до оседания; поддержка старой круговой крови. |
 | `Runtime/Presentation/Visuals/BloodRuptureBurst2D.cs` | Быстрый веер крови: летящие штрихи приходят в позиции постоянных капель лужи. |
 | `Runtime/Presentation/Visuals/CreatureGroundShadow2D.cs` | Чёткие тени полного текущего силуэта, включая ноги, в плоской 2D-сцене. |
 | `Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs` | One death notification produces one blood/gib burst, independently of the AI species. |
@@ -156,6 +157,8 @@
 | Файл | Назначение |
 |---|---|
 | `Tests/EditMode/EmergencyShift.EditModeTests.asmdef` | Граница сборки и зависимости |
+| `Tests/EditMode/BloodPoolTests.cs` | Точная форма/transform после JSON, независимость экземпляров и старые снимки без variant ID. |
+| `Tests/EditMode/GoreCompositionTests.cs` | Новые смерти без повторных ног/старого тела, 8–10 кусков плоти и исключение архивных составов. |
 | `Tests/EditMode/EnemySystemsTests.cs` | EnemySystemsTests |
 | `Tests/EditMode/MagazineWeaponTests.cs` | MagazineWeaponTests |
 | `Tests/EditMode/PersistenceTests.cs` | PersistenceTests |

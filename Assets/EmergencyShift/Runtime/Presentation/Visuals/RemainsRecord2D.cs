@@ -71,6 +71,7 @@ namespace EmergencyShift
             {
                 var renderers = spawnedPool.GetComponentsInChildren<SpriteRenderer>(true);
                 result.hasPool = true;
+                result.bloodVariantId = spawnedPool.VariantId;
                 result.pool = new RemainsSpriteState[renderers.Length];
                 for (int i = 0; i < renderers.Length; i++)
                 {
@@ -102,6 +103,7 @@ namespace EmergencyShift
             {
                 spawnedPool = Instantiate(bloodPoolPrefab, new Vector3(saved.position.x, saved.position.y, -.02f), Quaternion.identity, transform);
                 spawnedPool.enabled = false;
+                spawnedPool.RestoreVariant(saved.bloodVariantId);
                 var renderers = spawnedPool.GetComponentsInChildren<SpriteRenderer>(true);
                 if (renderers.Length != saved.pool.Length)
                 {

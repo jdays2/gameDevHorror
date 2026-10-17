@@ -58,7 +58,7 @@ namespace EmergencyShift
             }
 
             emitted = true;
-            variant = profile.variants[Random.Range(0, profile.variants.Length)];
+            variant = profile.ChooseVariant();
             if (variant.pieces != null)
             {
                 foreach (GorePiece part in variant.pieces)
@@ -187,6 +187,11 @@ namespace EmergencyShift
             if (saved.hasPool && (bloodPoolPrefab == null || saved.pool == null || bloodPoolPrefab.GetComponentsInChildren<SpriteRenderer>(true).Length != saved.pool.Length))
             {
                 throw new System.InvalidOperationException("Blood prefab layout changed");
+            }
+
+            if (saved.hasPool && !bloodPoolPrefab.SupportsVariant(saved.bloodVariantId))
+            {
+                throw new System.InvalidOperationException("Missing saved blood variant");
             }
 
             if (saved.parts == null)

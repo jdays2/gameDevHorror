@@ -81,6 +81,7 @@ MonoBehaviour:
       impulseMultiplier: 0.33
       liftMultiplier: 0.5
     replaceOriginalBody: 0
+    restorationOnly: 1
   - id: heavy-close
     fragmentCount: 8
     spriteOffset: 1
@@ -144,6 +145,7 @@ MonoBehaviour:
       impulseMultiplier: 0.33
       liftMultiplier: 0.5
     replaceOriginalBody: 0
+    restorationOnly: 1
   - id: scattered
     fragmentCount: 8
     spriteOffset: 3
@@ -207,8 +209,9 @@ MonoBehaviour:
       impulseMultiplier: 0.33
       liftMultiplier: 0.5
     replaceOriginalBody: 0
+    restorationOnly: 1
   - id: hollow-core
-    fragmentCount: 8
+    fragmentCount: 13
     spriteOffset: 0
     rotationOffset: 12
     scale: {x: 0.65, y: 0.95}
@@ -240,23 +243,49 @@ MonoBehaviour:
       impulseMultiplier: 0.5
       liftMultiplier: 0.7
     - spriteIndex: 10
-      offset: {x: 0.14, y: 0.1}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.15
-      liftMultiplier: 0.3
+      offset: {x: -0.25877646, y: -0.29961893}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.30054727
+      liftMultiplier: 0.4131098
     - spriteIndex: 11
-      offset: {x: -0.18, y: -0.05}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.28
-      liftMultiplier: 0.45
+      offset: {x: 0.19041356, y: -0.013276493}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.30647862
+      liftMultiplier: 0.34976915
     - spriteIndex: 12
-      offset: {x: 0.04, y: -0.2}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.35
-      liftMultiplier: 0.5
+      offset: {x: -0.32574996, y: 0.13471366}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.24687655
+      liftMultiplier: 0.3109017
+    - spriteIndex: 13
+      offset: {x: -0.31537285, y: -0.15802807}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.41503313
+      liftMultiplier: 0.3475239
+    - spriteIndex: 10
+      offset: {x: -0.112305745, y: 0.40300626}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.18687698
+      liftMultiplier: 0.48892617
+    - spriteIndex: 11
+      offset: {x: -0.014188938, y: 0.19511141}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.37139526
+      liftMultiplier: 0.2893505
+    - spriteIndex: 12
+      offset: {x: -0.078172885, y: 0.20967013}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.3290728
+      liftMultiplier: 0.28080815
+    - spriteIndex: 13
+      offset: {x: 0.2737542, y: 0.004146726}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.19812022
+      liftMultiplier: 0.37162384
     replaceOriginalBody: 1
+    restorationOnly: 0
   - id: retained-core
-    fragmentCount: 8
+    fragmentCount: 14
     spriteOffset: 0
     rotationOffset: 35
     scale: {x: 0.65, y: 0.95}
@@ -288,28 +317,54 @@ MonoBehaviour:
       impulseMultiplier: 0.4
       liftMultiplier: 0.7
     - spriteIndex: 10
-      offset: {x: -0.16, y: -0.02}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.12
-      liftMultiplier: 0.22
+      offset: {x: 0.09948167, y: 0.15469968}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.21325378
+      liftMultiplier: 0.47287384
     - spriteIndex: 11
-      offset: {x: 0.17, y: 0.16}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.2
-      liftMultiplier: 0.38
+      offset: {x: -0.14244129, y: 0.055975925}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.14641505
+      liftMultiplier: 0.49024078
     - spriteIndex: 12
-      offset: {x: 0.16, y: -0.17}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.32
-      liftMultiplier: 0.45
+      offset: {x: -0.15117787, y: -0.06129633}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.1705284
+      liftMultiplier: 0.24950173
     - spriteIndex: 13
-      offset: {x: -0.08, y: 0.23}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.23
-      liftMultiplier: 0.35
+      offset: {x: -0.014919979, y: 0.2082934}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.32802498
+      liftMultiplier: 0.24238977
+    - spriteIndex: 10
+      offset: {x: -0.06897973, y: -0.2964419}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.19472739
+      liftMultiplier: 0.31734356
+    - spriteIndex: 11
+      offset: {x: -0.21213335, y: 0.1657799}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.4204067
+      liftMultiplier: 0.38716736
+    - spriteIndex: 12
+      offset: {x: -0.34437534, y: 0.23465814}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.28840464
+      liftMultiplier: 0.45429838
+    - spriteIndex: 13
+      offset: {x: -0.038529523, y: 0.21191943}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.30518177
+      liftMultiplier: 0.44537777
+    - spriteIndex: 10
+      offset: {x: 0.001826539, y: 0.14949761}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.14180507
+      liftMultiplier: 0.44733804
     replaceOriginalBody: 1
+    restorationOnly: 0
   - id: split-core
-    fragmentCount: 8
+    fragmentCount: 16
     spriteOffset: 0
     rotationOffset: 50
     scale: {x: 0.65, y: 0.95}
@@ -346,23 +401,54 @@ MonoBehaviour:
       impulseMultiplier: 0.6
       liftMultiplier: 0.8
     - spriteIndex: 10
-      offset: {x: 0.12, y: 0.08}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.16
-      liftMultiplier: 0.3
+      offset: {x: -0.11351198, y: -0.24712837}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.4159603
+      liftMultiplier: 0.25263786
     - spriteIndex: 11
-      offset: {x: -0.2, y: -0.1}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.32
-      liftMultiplier: 0.4
+      offset: {x: 0.3230526, y: -0.26084504}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.27635148
+      liftMultiplier: 0.35071242
     - spriteIndex: 12
-      offset: {x: 0.22, y: -0.05}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.4
-      liftMultiplier: 0.6
+      offset: {x: -0.108684726, y: -0.25125805}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.38418025
+      liftMultiplier: 0.4681018
     - spriteIndex: 13
-      offset: {x: 0.02, y: 0.22}
-      scale: {x: 0.85, y: 1.15}
-      impulseMultiplier: 0.28
-      liftMultiplier: 0.4
+      offset: {x: 0.346207, y: -0.11530564}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.24101682
+      liftMultiplier: 0.4172556
+    - spriteIndex: 10
+      offset: {x: 0.12680754, y: 0.1419765}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.2025778
+      liftMultiplier: 0.42576092
+    - spriteIndex: 11
+      offset: {x: -0.3377994, y: -0.058506936}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.17941815
+      liftMultiplier: 0.4849842
+    - spriteIndex: 12
+      offset: {x: -0.30963054, y: -0.0054665734}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.2477365
+      liftMultiplier: 0.3477886
+    - spriteIndex: 13
+      offset: {x: -0.1477741, y: -0.053030677}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.4122433
+      liftMultiplier: 0.23913166
+    - spriteIndex: 10
+      offset: {x: -0.092156544, y: -0.12714393}
+      scale: {x: 0.8, y: 1.15}
+      impulseMultiplier: 0.24306688
+      liftMultiplier: 0.4594727
+    - spriteIndex: 11
+      offset: {x: -0.076738976, y: -0.27216333}
+      scale: {x: 0.55, y: 0.85}
+      impulseMultiplier: 0.19450156
+      liftMultiplier: 0.34789157
     replaceOriginalBody: 1
+    restorationOnly: 0

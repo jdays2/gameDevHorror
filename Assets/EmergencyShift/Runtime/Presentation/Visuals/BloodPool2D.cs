@@ -2,9 +2,11 @@ using UnityEngine;
 
 namespace EmergencyShift
 {
-    /// <summary>Переиспользуемое пятно: набор круговых спрайтов даёт нерегулярную лужу и капли.</summary>
+    /// <summary>One persistent pool per death; baked procedural shapes share the original remains lifecycle.</summary>
     public sealed class BloodPool2D : MonoBehaviour
     {
+        [SerializeField]
+        private BloodPoolProfile profile;
         [SerializeField]
         private SpriteRenderer[] patches;
         [SerializeField]
@@ -13,6 +15,8 @@ namespace EmergencyShift
         private float[] dropArrival;
         private float ruptureAge;
         private bool rupturing;
+        private string variantId;
+        public string VariantId => variantId;
         public SpriteRenderer[] DropletRenderers => droplets;
 
         public float DropArrivalTime(int index) => dropArrival[index];
@@ -26,12 +30,13 @@ namespace EmergencyShift
             for (int i = 0; i < patches.Length; i++)
             {
                 patchScales[i] = patches[i].transform.localScale;
-                patches[i].transform.localScale *= .30f;
+                patches[i].transform.localScale *= InitialScale;
             }
 
             for (int i = 0; i < droplets.Length; i++)
             {
-                dropArrival[i] = Random.Range(.18f, .34f);
+                Vector2 arrival = profile != null ? profile.arrivalSeconds : new Vector2(.18f, .34f);
+                dropArrival[i] = Random.Range(arrival.x, arrival.y);
                 droplets[i].enabled = false;
             }
         }
@@ -44,8 +49,9 @@ namespace EmergencyShift
             }
 
             ruptureAge += Time.deltaTime;
-            float t = Mathf.Clamp01(ruptureAge / .22f);
-            float grow = Mathf.Lerp(.30f, 1, 1 - (1 - t) * (1 - t));
+            float duration = profile != null ? profile.growSeconds : .22f;
+            float t = Mathf.Clamp01(ruptureAge / duration);
+            float grow = Mathf.Lerp(InitialScale, 1, 1 - (1 - t) * (1 - t));
             for (int i = 0; i < patches.Length; i++)
             {
                 patches[i].transform.localScale = patchScales[i] * grow;
@@ -69,7 +75,14 @@ namespace EmergencyShift
         public void Initialize(float size, int seed, LayerMask walls)
         {
             enabled = false;
+            variantId = null;
             var random = new System.Random(seed);
+            if (profile != null)
+            {
+                InitializeTextured(size, random, walls);
+                return;
+            }
+
             for (int i = 0; i < patches.Length; i++)
             {
                 float angle = (float)random.NextDouble() * Mathf.PI * 2;
@@ -99,6 +112,85 @@ namespace EmergencyShift
                 droplets[i].transform.localScale = new Vector3(scale, scale * Mathf.Lerp(0.6f, 1.5f, (float)random.NextDouble()), 1);
                 droplets[i].transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
                 droplets[i].color = new Color(0.82f, 0.015f, 0.03f, 0.98f);
+            }
+        }
+
+        private float InitialScale => profile != null ? profile.initialScale : .3f;
+
+        public bool SupportsVariant(string id)
+        {
+            return string.IsNullOrEmpty(id) || (profile != null && profile.IsValid() && profile.FindVariant(id) >= 0);
+        }
+
+        public void RestoreVariant(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                variantId = null;
+                return;
+            }
+
+            if (!SupportsVariant(id))
+            {
+                throw new System.InvalidOperationException("Missing saved blood variant: " + id);
+            }
+
+            variantId = id;
+            ApplySprites(profile.variants[profile.FindVariant(id)]);
+        }
+
+        private void ApplySprites(BloodPoolVariant variant)
+        {
+            patches[0].sprite = variant.sprite;
+            for (int i = 0; i < droplets.Length; i++)
+            {
+                droplets[i].sprite = profile.dropletSprites[i % profile.dropletSprites.Length];
+            }
+        }
+
+        private void InitializeTextured(float size, System.Random random, LayerMask walls)
+        {
+            if (!profile.IsValid() || patches == null || patches.Length == 0)
+            {
+                throw new System.InvalidOperationException("Invalid blood pool profile: " + name);
+            }
+
+            BloodPoolVariant variant = profile.variants[random.Next(profile.variants.Length)];
+            variantId = variant.id;
+            ApplySprites(variant);
+            for (int i = 0; i < patches.Length; i++)
+            {
+                patches[i].enabled = i == 0;
+            }
+
+            SpriteRenderer pool = patches[0];
+            pool.transform.localPosition = Vector3.zero;
+            pool.transform.localRotation = Quaternion.Euler(0, 0, (float)random.NextDouble() * 360);
+            float width = size * variant.canvasSize * Mathf.Lerp(profile.scaleRange.x, profile.scaleRange.y, (float)random.NextDouble());
+            Vector2 bounds = pool.sprite.bounds.size;
+            pool.transform.localScale = new Vector3(width / bounds.x, width / bounds.y, 1);
+            pool.color = profile.poolTint;
+
+            for (int i = 0; i < droplets.Length; i++)
+            {
+                float angle = (float)random.NextDouble() * Mathf.PI * 2;
+                float distance = size * Mathf.Lerp(profile.dropletDistance.x, profile.dropletDistance.y, (float)random.NextDouble());
+                Vector2 origin = transform.position;
+                Vector2 goal = origin + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * distance;
+                RaycastHit2D hit = Physics2D.Linecast(origin, goal, walls);
+                if (hit.collider != null)
+                {
+                    goal = hit.point + hit.normal * .05f;
+                }
+
+                SpriteRenderer drop = droplets[i];
+                drop.transform.position = new Vector3(goal.x, goal.y, transform.position.z);
+                drop.transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
+                float diameter = size * Mathf.Lerp(profile.dropletSize.x, profile.dropletSize.y, (float)random.NextDouble());
+                float aspect = Mathf.Lerp(profile.dropletAspect.x, profile.dropletAspect.y, (float)random.NextDouble());
+                Vector2 dropBounds = drop.sprite.bounds.size;
+                drop.transform.localScale = new Vector3(diameter / dropBounds.x, diameter * aspect / dropBounds.y, 1);
+                drop.color = profile.dropletTint;
             }
         }
 
