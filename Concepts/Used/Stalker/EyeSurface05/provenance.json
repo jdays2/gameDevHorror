@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-17",
+  "method": "Code-native URP 2D eye surface update; no bitmap generation or editing",
+  "source_family": "Concepts/Used/Stalker/LargeEye01",
+  "body_family": "Concepts/Used/Stalker/PaleFlesh",
+  "source_provenance_retained": true,
+  "files": [
+    "Assets/EmergencyShift/Materials/LocalizedEyeBurn.shader",
+    "Assets/EmergencyShift/Materials/stalker-eye-burn.mat",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs"
+  ],
+  "preview": "Unity isolated preview scene; same neutral GlobalLight2D; not saved to user scenes",
+  "artistic_status": "Awaiting owner evaluation",
+  "changes": [
+    "Stationary lids; warped inner radial texture follows actual pupil offset",
+    "Clouded pupil and local redness only inside exposed ocular surface",
+    "Burn contact gain 0.42; unchanged AI timing and persistence"
+  ],
+  "eye_frame_offsets": [
+    [
+      0,
+      0
+    ],
+    [
+      0.0410714,
+      -0.0205357
+    ],
+    [
+      0.0164286,
+      -0.0410714
+    ],
+    [
+      0.0472321,
+      -0.02875
+    ]
+  ],
+  "pose_registration": "Anatomical centres measured on original PaleFlesh recoil sheet; body PNG/pivots/GUID unchanged. Stalker base offset removed to match optical centre and Sleeper."
+}

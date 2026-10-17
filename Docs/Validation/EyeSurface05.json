@@ -1,0 +1,211 @@
+{
+  "date": "2026-10-17",
+  "scope": "Coherent inner iris and pupil gaze, progressive cloudy pupil/local redness, intact flesh lids; anatomical eye anchor for each recoil pose on both prefabs",
+  "runtimeChecks": [
+    {
+      "name": "Burn contact cue precedes the visible change",
+      "pass": true
+    },
+    {
+      "name": "Preloaded burn clip actually starts on the bounded contact source",
+      "pass": true
+    },
+    {
+      "name": "Lead-in keeps eye unchanged for the first .10 seconds",
+      "pass": true
+    },
+    {
+      "name": "A partial dose stays between healthy and fully burned",
+      "pass": true
+    },
+    {
+      "name": "Fear still triggers independently at its authored delay",
+      "pass": true
+    },
+    {
+      "name": "Per-renderer burn amount matches the actual accumulated dose",
+      "pass": true
+    },
+    {
+      "name": "A second creature sharing the material stays healthy",
+      "pass": true
+    },
+    {
+      "name": "Removing the directed light stops damage without healing",
+      "pass": true
+    },
+    {
+      "name": "A real occluding wall blocks further burning",
+      "pass": true
+    },
+    {
+      "name": "Checkpoint round-trip retains a partial burn",
+      "pass": true
+    },
+    {
+      "name": "Loading a living snapshot emits no burn or death sound",
+      "pass": true
+    },
+    {
+      "name": "Old burned snapshots migrate to complete damage",
+      "pass": true
+    },
+    {
+      "name": "Old snapshots without damage stay healthy",
+      "pass": true
+    },
+    {
+      "name": "Continued directed exposure reaches full damage gradually",
+      "pass": true
+    },
+    {
+      "name": "No repeated burn choir during uninterrupted exposure",
+      "pass": true
+    },
+    {
+      "name": "Shared tuning and damage material are immutable",
+      "pass": true
+    },
+    {
+      "name": "Open eye and moving pupil use the same anatomical origin",
+      "pass": true
+    },
+    {
+      "name": "Pupil and backing share a stable registered eye anchor",
+      "pass": true
+    },
+    {
+      "name": "Iris fibres use the actual pupil displacement in the same frame",
+      "pass": true
+    },
+    {
+      "name": "Healthy and injured eyes use the same lit surface material",
+      "pass": true
+    },
+    {
+      "name": "Cloudy pupil receives instance injury independently of the iris",
+      "pass": true
+    },
+    {
+      "name": "Full injury leaves flesh and opaque backing untinted",
+      "pass": true
+    },
+    {
+      "name": "Contact sound is intentionally quiet",
+      "pass": true
+    },
+    {
+      "name": "Closed eye selects the intact flesh lid and hides the pupil",
+      "pass": true
+    },
+    {
+      "name": "Pose 3 cycle 0: iris, backing and pupil anchor match the painted eye",
+      "pass": true
+    },
+    {
+      "name": "Pose 2 cycle 0: iris, backing and pupil anchor match the painted eye",
+      "pass": true
+    },
+    {
+      "name": "Pose 1 cycle 0: iris, backing and pupil anchor match the painted eye",
+      "pass": true
+    },
+    {
+      "name": "Pose 0 cycle 0: iris, backing and pupil anchor match the painted eye",
+      "pass": true
+    },
+    {
+      "name": "Pose 3 cycle 1: iris, backing and pupil anchor match the painted eye",
+      "pass": true
+    },
+    {
+      "name": "Pose 2 cycle 1: iris, backing and pupil anchor match the painted eye",
+      "pass": true
+    },
+    {
+      "name": "Pose 1 cycle 1: iris, backing and pupil anchor match the painted eye",
+      "pass": true
+    },
+    {
+      "name": "Pose 0 cycle 1: iris, backing and pupil anchor match the painted eye",
+      "pass": true
+    },
+    {
+      "name": "Closing and opening repeatedly adds no gaze drift",
+      "pass": true
+    },
+    {
+      "name": "Sleeping species keeps its original skin palette and zero injury",
+      "pass": true
+    },
+    {
+      "name": "Death plays exactly one wet flesh pop",
+      "pass": true
+    },
+    {
+      "name": "Death hides every eye layer",
+      "pass": true
+    },
+    {
+      "name": "Restoring dead damage retains the burn without replaying death",
+      "pass": true
+    }
+  ],
+  "nativeRendering": {
+    "closedChangedBytes": 0,
+    "injuredChangedPixels": 15043,
+    "injuryOutsideOcularSurface": 0,
+    "blackoutMaximumByte": 0
+  },
+  "shaderMessages": [],
+  "editMode": {
+    "total": 55,
+    "passed": 55,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 1.8388553,
+    "resultState": "Passed"
+  },
+  "releaseBuild": {
+    "job_id": "build-e11b2a9805",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "C:/Users/Mark/Documents/Codex/2026-10-13/gkf/outputs/EmergencyShift/Builds/EyeSurface05/EmergencyShift.exe",
+    "started_at": "2026-10-17T13:48:49.3400062Z",
+    "duration_seconds": 30.3741192,
+    "completed_at": "2026-10-17T13:49:19.7141254Z",
+    "total_size_mb": 183.69,
+    "errors": 0,
+    "warnings": 0
+  },
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "finalConsole": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "normalSettings": {
+    "play": false,
+    "compiling": false,
+    "development": false,
+    "configuration": "Release",
+    "preloaded": 0
+  },
+  "protectedSceneAndSettingsHashes": {
+    "Assets\\EmergencyShift\\Scenes\\BasementPrototype.unity": "13bf838c101e2051bd1795559690e876ab8b488740a5780f0d438335beaff319",
+    "Assets\\EmergencyShift\\Scenes\\LevelTemplate.unity": "d4b4d68c80e61839f17a6ee3be2ac15defc164536bfe2f8d65195842aae936ce",
+    "Assets\\EmergencyShift\\Scenes\\MechanicsSandbox.unity": "2f6a3b6ffd3a275748a93521fb4bc3fbe708c5656671cb578f31a7bc765f2164",
+    "Assets\\EmergencyShift\\Scenes\\ArtReview\\EnvironmentLibraryReview.unity": "15f52bf43e5111820693d4847079d72b347a1d5d45064bbed7cf7bf0973a3174",
+    "Assets\\EmergencyShift\\Scenes\\ArtReview\\EnvironmentNarrativeStressReview.unity": "c1f88ac3fa9994330d9972156d45c77f1494a4549f10218504848e8764b48b2f",
+    "Assets\\EmergencyShift\\Scenes\\ArtReview\\EnvironmentPropsDarkReview.unity": "5312133aef2465c72c6dcd8f3b9a0c123896a4bc5bbe1d1e762fbfd5e989866c",
+    "Assets\\EmergencyShift\\Scenes\\ArtReview\\EnvironmentPropsReview.unity": "383c25b432706ae4a6efba3126f75e0574386f9eca05decbebd7d8733d23dec3",
+    "Assets\\EmergencyShift\\Scenes\\ArtReview\\FloorMarkingsReview.unity": "4be7bd783deb343b1b1d8bbac28e51546b5078f14d92fe470fc3db652272b1e1",
+    "ProjectSettings\\ProjectSettings.asset": "f710ccb53e2fc64ca4382d1e27b1a074369e265b521a40d3b24301b03aedc3ca",
+    "Assets\\EmergencyShift\\Prefabs\\World\\EmergencyLamp.prefab": "5d13a37a5b45d0e00bd3d72b58490f1ff355f78ad960458ee3d652a865f487fe"
+  },
+  "protectedFiles": "All previously existing scene and ProjectSettings bytes preserved relative to task start. No saved scenes regenerated. Body artwork/pivots/GUID unchanged.",
+  "artisticStatus": "Awaiting owner evaluation; native static previews do not replace gameplay assessment.",
+  "probeNote": "Initial temporary probe had an invalid backing child-name lookup; replaced by the actual serialized component reference. Final complete pass succeeded."
+}

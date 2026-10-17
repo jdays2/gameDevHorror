@@ -306,7 +306,7 @@ Transform:
   m_GameObject: {fileID: 4722824679171552688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0077586207, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -678,7 +678,7 @@ Transform:
   m_GameObject: {fileID: 6164706075258318390}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0077586207, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -897,13 +897,17 @@ MonoBehaviour:
   iris: {fileID: 7872070389695808557}
   pupil: {fileID: 4799677290374597046}
   eyeUnderlay: {fileID: 5832703003688288012}
-  damagedEyeTint: {r: 0.32, g: 0.34, b: 0.35, a: 1}
-  damagedEyeMaterial: {fileID: 2100000, guid: de7c56ec1a79cd3498b36e2b3e3ae0e9, type: 2}
+  eyeSurfaceMaterial: {fileID: 2100000, guid: de7c56ec1a79cd3498b36e2b3e3ae0e9, type: 2}
   eyeFrames:
   - {fileID: 21300000, guid: 2eee3af031d303a4f8d00c36b8b4fa8b, type: 2}
   - {fileID: 21300000, guid: 288ee8c7e86913142a58bbc980387554, type: 2}
   - {fileID: 21300000, guid: e08693ca019d7df42aca6d0ec3a1c80e, type: 2}
   - {fileID: 21300000, guid: 62c60656e4d2a0c4da120633437e2ae6, type: 2}
+  eyeFrameOffsets:
+  - {x: 0, y: 0}
+  - {x: 0.0410714, y: -0.0205357}
+  - {x: 0.0164286, y: -0.0410714}
+  - {x: 0.0472321, y: -0.02875}
   walkFrames:
   - {fileID: 21300000, guid: ca3a99397a45b8840a5bde92d6b59c6c, type: 2}
   - {fileID: 21300000, guid: b5b308544d125784681f947e34d5b1be, type: 2}
@@ -1179,7 +1183,7 @@ Transform:
   m_GameObject: {fileID: 7750864743140940108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0077586207, z: -0.002}
+  m_LocalPosition: {x: 0, y: 0, z: -0.002}
   m_LocalScale: {x: 0.13, y: 0.13, z: 0.13}
   m_ConstrainProportionsScale: 0
   m_Children: []

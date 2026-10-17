@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace EmergencyShift
 {
-    /// <summary>Перелистывает спрайты, поворачивает изображение и ведёт отдельный зрачок.</summary>
+    /// <summary>Перелистывает спрайты, поворачивает изображение и согласует слои глаза.</summary>
     public class CreatureSpriteAnimator2D : MonoBehaviour
     {
         [SerializeField]
@@ -17,12 +18,13 @@ namespace EmergencyShift
         private SpriteRenderer pupil;
         [SerializeField, Tooltip("Opaque backing covers the eye baked into body frames; not a second pupil.")]
         private SpriteRenderer eyeUnderlay;
-        [SerializeField]
-        private Color damagedEyeTint = new Color(.32f, .34f, .35f, 1);
-        [SerializeField, Tooltip("Optional textured damage treatment; null keeps the tint fallback.")]
-        private Material damagedEyeMaterial;
+        [SerializeField, FormerlySerializedAs("damagedEyeMaterial")]
+        [Tooltip("Lit eye surface: gaze moves inner fibres; injury affects the exposed eye and pupil, never the lids.")]
+        private Material eyeSurfaceMaterial;
         [SerializeField]
         private Sprite[] eyeFrames;
+        [SerializeField, Tooltip("Anatomical eye offsets for each lid/body pose, in Visual local units. Frame zero is the walking pose.")]
+        private Vector2[] eyeFrameOffsets;
         [SerializeField]
         private Sprite[] walkFrames;
         [SerializeField]
@@ -51,15 +53,23 @@ namespace EmergencyShift
         private Color restingIrisColor = Color.white;
         private Color restingUnderlayColor = Color.white;
         private Material restingIrisMaterial;
+        private Material restingPupilMaterial;
         private MaterialPropertyBlock eyeProperties;
         private static readonly int burnAmountId = Shader.PropertyToID("_BurnAmount");
+        private static readonly int gazeOffsetId = Shader.PropertyToID("_GazeOffset");
+        private static readonly int atlasUVPerUnitId = Shader.PropertyToID("_AtlasUVPerUnit");
+        private static readonly int eyeFrameId = Shader.PropertyToID("_EyeFrame");
+        private static readonly int pupilLayerId = Shader.PropertyToID("_PupilLayer");
         private Vector3 pupilRestPosition;
+        private Vector3 irisRestPosition;
+        private Vector3 underlayRestPosition;
+        private Vector3 currentEyeOffset;
         public int CurrentFrame
         {
             get; private set;
         }
         public bool EyeOpen => pupil != null && pupil.enabled;
-        public Vector2 PupilOffset => pupil != null ? (Vector2)(pupil.transform.localPosition - pupilRestPosition) : Vector2.zero;
+        public Vector2 PupilOffset => pupil != null ? (Vector2)(pupil.transform.localPosition - pupilRestPosition - currentEyeOffset) : Vector2.zero;
 
         public void Configure(EnemyPresentationSource2D actor, Transform root, SpriteRenderer renderer, SpriteRenderer irisRenderer, SpriteRenderer pupilRenderer, Sprite[] walk, Sprite[] recoil)
         {
@@ -90,18 +100,22 @@ namespace EmergencyShift
         private void CacheEyePresentation()
         {
             eyeProperties = new MaterialPropertyBlock();
+            currentEyeOffset = Vector3.zero;
             if (pupil != null)
             {
                 pupilRestPosition = pupil.transform.localPosition;
+                restingPupilMaterial = pupil.sharedMaterial;
             }
             if (iris != null)
             {
                 restingIrisColor = iris.color;
                 restingIrisMaterial = iris.sharedMaterial;
+                irisRestPosition = iris.transform.localPosition;
             }
             if (eyeUnderlay != null)
             {
                 restingUnderlayColor = eyeUnderlay.color;
+                underlayRestPosition = eyeUnderlay.transform.localPosition;
             }
         }
 
@@ -225,26 +239,35 @@ namespace EmergencyShift
                 eyeFrame = CurrentFrame;
             }
 
+            UpdateEyePresentation(eyeFrame, dead);
+        }
+
+        private void UpdateEyePresentation(int eyeFrame, bool dead)
+        {
+            ApplyEyePose(eyeFrame);
             bool open = !dead && presentation.Closure < 0.166f;
-            float damage = Mathf.Clamp01(presentation.EyeDamageProgress);
-            Color eyeTint = Color.Lerp(Color.white, damagedEyeTint, damage);
             if (eyeUnderlay != null)
             {
                 eyeUnderlay.enabled = !dead;
-                eyeUnderlay.color = restingUnderlayColor * eyeTint;
+                eyeUnderlay.color = restingUnderlayColor;
             }
+
+            if (pupil != null)
+            {
+                pupil.enabled = open;
+                if (open && presentation.Target != null)
+                {
+                    Vector2 localTarget = pupil.transform.parent.InverseTransformPoint(presentation.Target.position) - pupilRestPosition - currentEyeOffset;
+                    Vector2 offset = localTarget.normalized * pupilTravel * Mathf.Clamp01(localTarget.magnitude / 0.4f);
+                    Vector2 next = Vector2.MoveTowards(PupilOffset, offset, Time.deltaTime * 0.25f);
+                    pupil.transform.localPosition = pupilRestPosition + currentEyeOffset + new Vector3(next.x, next.y, 0);
+                }
+            }
+
+            float damage = Mathf.Clamp01(presentation.EyeDamageProgress);
             if (iris != null)
             {
-                bool texturedDamage = damage > 0 && damagedEyeMaterial != null;
-                Material eyeMaterial = texturedDamage ? damagedEyeMaterial : restingIrisMaterial;
-                if (iris.sharedMaterial != eyeMaterial)
-                {
-                    iris.sharedMaterial = eyeMaterial;
-                }
-                iris.color = texturedDamage ? restingIrisColor : restingIrisColor * eyeTint;
-                iris.GetPropertyBlock(eyeProperties);
-                eyeProperties.SetFloat(burnAmountId, damage);
-                iris.SetPropertyBlock(eyeProperties);
+                iris.color = restingIrisColor;
                 if (eyeFrames != null && eyeFrames.Length > 0)
                 {
                     int eyeFrameIndex = Mathf.Clamp(eyeFrame, 0, eyeFrames.Length - 1);
@@ -255,23 +278,71 @@ namespace EmergencyShift
                 {
                     iris.enabled = open;
                 }
+
+                // Convert the actual pupil displacement to this sprite's space after moving it.
+                Vector3 gaze = Vector3.zero;
+                if (pupil != null)
+                {
+                    Vector3 gazeWorld = pupil.transform.parent.TransformVector(PupilOffset);
+                    gaze = iris.transform.InverseTransformVector(gazeWorld);
+                }
+
+                ApplyEyeSurface(iris, restingIrisMaterial, damage, eyeFrame, gaze, false);
             }
 
-            if (pupil == null)
+            if (pupil != null)
+            {
+                ApplyEyeSurface(pupil, restingPupilMaterial, damage, eyeFrame, Vector3.zero, true);
+            }
+        }
+
+        private void ApplyEyePose(int frame)
+        {
+            Vector2 gaze = PupilOffset;
+            currentEyeOffset = Vector3.zero;
+            if (eyeFrameOffsets != null && frame >= 0 && frame < eyeFrameOffsets.Length)
+            {
+                currentEyeOffset = eyeFrameOffsets[frame];
+            }
+
+            if (iris != null)
+            {
+                iris.transform.localPosition = irisRestPosition + currentEyeOffset;
+            }
+
+            if (eyeUnderlay != null)
+            {
+                eyeUnderlay.transform.localPosition = underlayRestPosition + currentEyeOffset;
+            }
+
+            if (pupil != null)
+            {
+                pupil.transform.localPosition = pupilRestPosition + currentEyeOffset + new Vector3(gaze.x, gaze.y, 0);
+            }
+        }
+
+        private void ApplyEyeSurface(SpriteRenderer renderer, Material fallback, float damage, int frame, Vector3 gaze, bool isPupil)
+        {
+            Material material = eyeSurfaceMaterial != null ? eyeSurfaceMaterial : fallback;
+            if (renderer.sharedMaterial != material)
+            {
+                renderer.sharedMaterial = material;
+            }
+
+            if (eyeSurfaceMaterial == null || renderer.sprite == null)
             {
                 return;
             }
 
-            pupil.enabled = open;
-            if (!open || presentation.Target == null)
-            {
-                return;
-            }
-
-            Vector2 localTarget = pupil.transform.parent.InverseTransformPoint(presentation.Target.position) - pupilRestPosition;
-            Vector2 offset = localTarget.normalized * pupilTravel * Mathf.Clamp01(localTarget.magnitude / 0.4f);
-            Vector2 next = Vector2.MoveTowards(PupilOffset, offset, Time.deltaTime * 0.25f);
-            pupil.transform.localPosition = pupilRestPosition + new Vector3(next.x, next.y, 0);
+            Sprite sprite = renderer.sprite;
+            Vector4 uvPerUnit = new Vector4(sprite.pixelsPerUnit / sprite.texture.width, sprite.pixelsPerUnit / sprite.texture.height, 0, 0);
+            renderer.GetPropertyBlock(eyeProperties);
+            eyeProperties.SetFloat(burnAmountId, damage);
+            eyeProperties.SetFloat(eyeFrameId, frame);
+            eyeProperties.SetFloat(pupilLayerId, isPupil ? 1 : 0);
+            eyeProperties.SetVector(gazeOffsetId, gaze);
+            eyeProperties.SetVector(atlasUVPerUnitId, uvPerUnit);
+            renderer.SetPropertyBlock(eyeProperties);
         }
 
         private int WalkFrame()

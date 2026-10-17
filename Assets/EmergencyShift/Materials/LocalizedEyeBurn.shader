@@ -6,11 +6,15 @@ Shader "EmergencyShift/Localized Eye Burn"
         _MaskTex ("Light mask", 2D) = "white" {}
         _NormalMap ("Normal map", 2D) = "bump" {}
         [PerRendererData] _BurnAmount ("Accumulated burn", Range(0, 1)) = 0
-        _Darkening ("Overall darkening", Range(0, .85)) = .68
-        _Desaturation ("Desaturation", Range(0, 1)) = .92
-        _BruiseStrength ("Local tissue damage", Range(0, 1)) = .65
-        _BruiseTint ("Charcoal patch multiplier", Color) = (.62, .65, .68, 1)
-        _EyeRadius ("Eye radius in sprite units", Float) = .22
+        _Redness ("Local ocular redness", Range(0, 1)) = .42
+        _CloudColor ("Clouded pupil", Color) = (.76, .73, .65, 1)
+        _IrisRadius ("Exposed iris radii in sprite units", Vector) = (.133, .126, 0, 0)
+        _HalfOpening ("Half lid aperture ratio", Range(0, 1)) = .3
+        _SlitOpening ("Slit aperture ratio", Range(0, 1)) = .025
+        [PerRendererData] _GazeOffset ("Gaze in sprite units", Vector) = (0, 0, 0, 0)
+        [PerRendererData] _AtlasUVPerUnit ("Atlas UV per sprite unit", Vector) = (1, 1, 0, 0)
+        [PerRendererData] _EyeFrame ("Open / half / slit / shut", Float) = 0
+        [PerRendererData] _PupilLayer ("Pupil layer", Float) = 0
         [HideInInspector] _Color ("Tint", Color) = (1, 1, 1, 1)
     }
     SubShader
@@ -24,29 +28,60 @@ Shader "EmergencyShift/Localized Eye Burn"
         #include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/Core2D.hlsl"
         CBUFFER_START(UnityPerMaterial)
             half4 _Color;
-            half4 _BruiseTint;
-            float _Darkening;
-            float _Desaturation;
-            float _BruiseStrength;
-            float _EyeRadius;
+            half4 _CloudColor;
+            float4 _IrisRadius;
+            float4 _GazeOffset;
+            float4 _AtlasUVPerUnit;
+            float _Redness;
+            float _HalfOpening;
+            float _SlitOpening;
             float _BurnAmount;
+            float _EyeFrame;
+            float _PupilLayer;
         CBUFFER_END
 
-        half3 BurnedTissue(half3 original, float2 position)
+        float OcularMask(float2 position)
         {
-            // Two unequal, fixed patches follow the organ across all atlas frames.
-            // Only colour ratios change: the original folds, fibres and highlights remain.
-            float2 p = position / max(_EyeRadius, .001);
-            float edge = .07 * sin(p.y * 9 + p.x * 3) + .035 * sin(p.x * 17 - p.y * 6);
-            float upper = length((p - float2(-.55, .23)) * float2(1.4, .95));
-            float lower = length((p - float2(.28, -.55)) * float2(1.15, 1.65));
-            half primary = 1 - smoothstep(.42, .96, upper + edge);
-            half secondary = .6 * (1 - smoothstep(.22, .62, lower - edge));
-            half localDamage = saturate(max(primary, secondary)) * _BruiseStrength;
-            half luminance = dot(original, half3(.2126, .7152, .0722));
-            half3 tissue = lerp(original, luminance.xxx, _Desaturation) * (1 - _Darkening);
-            half3 burned = lerp(tissue, tissue * _BruiseTint.rgb, localDamage);
-            return lerp(original, burned, saturate(_BurnAmount));
+            if (_EyeFrame > 2.5)
+            {
+                return 0;
+            }
+
+            float opening = 1;
+            if (_EyeFrame > 1.5)
+            {
+                opening = _SlitOpening;
+            }
+            else if (_EyeFrame > .5)
+            {
+                opening = _HalfOpening;
+            }
+
+            float2 radius = max(_IrisRadius.xy * float2(1, opening), .001);
+            return 1 - smoothstep(.91, 1, length(position / radius));
+        }
+
+        float CloudNoise(float2 position)
+        {
+            float2 cell = floor(position);
+            float2 f = frac(position);
+            f = f * f * (3 - 2 * f);
+            float a = frac(sin(dot(cell, float2(127.1, 311.7))) * 43758.5453);
+            float b = frac(sin(dot(cell + float2(1, 0), float2(127.1, 311.7))) * 43758.5453);
+            float c = frac(sin(dot(cell + float2(0, 1), float2(127.1, 311.7))) * 43758.5453);
+            float d = frac(sin(dot(cell + float2(1, 1), float2(127.1, 311.7))) * 43758.5453);
+            return lerp(lerp(a, b, f.x), lerp(c, d, f.x), f.y);
+        }
+
+        half3 CloudedPupil(half3 original, float2 position)
+        {
+            // A stable cloudy core with an irregular, still dark outer rim.
+            float2 p = position * 2;
+            float grain = .6 * CloudNoise(p * 3 + 4.7) + .4 * CloudNoise(p * 9 - 3.1);
+            float edge = length(p) + .035 * (grain - .5);
+            float cloud = 1 - smoothstep(.67, .97, edge);
+            half3 tissue = _CloudColor.rgb * (.70 + .30 * grain);
+            return lerp(original, tissue, saturate(_BurnAmount) * cloud);
         }
         ENDHLSL
 
@@ -86,9 +121,38 @@ Shader "EmergencyShift/Localized Eye Burn"
             }
             half4 EyeFragment(Varyings input) : SV_Target
             {
-                half4 lit = CommonLitFragment(input, input.color);
-                lit.rgb = BurnedTissue(lit.rgb, input.eyePosition);
-                return lit;
+                half4 main = input.color * SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.uv);
+                if (_PupilLayer > .5)
+                {
+                    main.rgb = CloudedPupil(main.rgb, input.eyePosition);
+                }
+                else
+                {
+                    float aperture = OcularMask(input.eyePosition);
+                    float radialDistance = length(input.eyePosition / max(_IrisRadius.xy, .001));
+                    float warpWeight = 1 - smoothstep(.45, 1, radialDistance);
+                    float2 shiftedUV = input.uv - _GazeOffset.xy * _AtlasUVPerUnit.xy * warpWeight;
+                    half3 shifted = input.color.rgb * SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, shiftedUV).rgb;
+                    main.rgb = lerp(main.rgb, shifted, aperture);
+
+                    float2 p = (input.eyePosition - _GazeOffset.xy) / max(_IrisRadius.xy, .001);
+                    float patch = 1 - smoothstep(.15, .75, length((p - float2(-.48, .22)) * float2(1.1, 1.5)));
+                    float redness = _BurnAmount * _Redness * patch * aperture;
+                    main.rgb *= lerp(half3(1, 1, 1), half3(1, .48, .43), redness);
+                }
+
+                // Change the surface before URP lighting, so neither lids nor cloudy pupils emit light.
+                half4 mask = SAMPLE_TEXTURE2D(_MaskTex, sampler_MaskTex, input.uv);
+                half3 normalTS = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, input.uv));
+                SurfaceData2D surfaceData;
+                InputData2D inputData;
+                InitializeSurfaceData(main.rgb, main.a, mask, normalTS, surfaceData);
+                InitializeInputData(input.uv, input.lightingUV, inputData);
+                #if defined(DEBUG_DISPLAY)
+                    SETUP_DEBUG_TEXTURE_DATA_2D_NO_TS(inputData, input.positionWS, input.positionCS, _MainTex);
+                    surfaceData.normalWS = input.normalWS;
+                #endif
+                return CombinedShapeLightShared(surfaceData, inputData);
             }
             ENDHLSL
         }
