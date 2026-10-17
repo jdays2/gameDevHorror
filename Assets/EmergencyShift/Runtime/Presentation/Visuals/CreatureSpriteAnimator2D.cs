@@ -18,7 +18,9 @@ namespace EmergencyShift
         [SerializeField, Tooltip("Opaque backing covers the eye baked into body frames; not a second pupil.")]
         private SpriteRenderer eyeUnderlay;
         [SerializeField]
-        private Color damagedEyeTint = new Color(.72f, .24f, .20f, 1);
+        private Color damagedEyeTint = new Color(.64f, .60f, .60f, 1);
+        [SerializeField, Tooltip("Optional textured damage treatment; null keeps the tint fallback.")]
+        private Material damagedEyeMaterial;
         [SerializeField]
         private Sprite[] eyeFrames;
         [SerializeField]
@@ -48,6 +50,7 @@ namespace EmergencyShift
         private bool deathStyleApplied;
         private Color restingIrisColor = Color.white;
         private Color restingUnderlayColor = Color.white;
+        private Material restingIrisMaterial;
         public int CurrentFrame
         {
             get; private set;
@@ -78,6 +81,7 @@ namespace EmergencyShift
             if (iris != null)
             {
                 restingIrisColor = iris.color;
+                restingIrisMaterial = iris.sharedMaterial;
             }
             if (eyeUnderlay != null)
             {
@@ -216,7 +220,13 @@ namespace EmergencyShift
             }
             if (iris != null)
             {
-                iris.color = restingIrisColor * eyeTint;
+                bool texturedDamage = presentation.HasEyeDamage && damagedEyeMaterial != null;
+                Material eyeMaterial = texturedDamage ? damagedEyeMaterial : restingIrisMaterial;
+                if (iris.sharedMaterial != eyeMaterial)
+                {
+                    iris.sharedMaterial = eyeMaterial;
+                }
+                iris.color = texturedDamage ? restingIrisColor : restingIrisColor * eyeTint;
                 if (eyeFrames != null && eyeFrames.Length > 0)
                 {
                     int eyeFrameIndex = Mathf.Clamp(eyeFrame, 0, eyeFrames.Length - 1);
