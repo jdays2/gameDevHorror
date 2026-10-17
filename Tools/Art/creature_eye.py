@@ -72,5 +72,3 @@ def dead_eye_organ(image):
     organ = Image.alpha_composite(organ, Image.fromarray(pupil_data))
     organ.putalpha(original_alpha)
     return organ
-
-
