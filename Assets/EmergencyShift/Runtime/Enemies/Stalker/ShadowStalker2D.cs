@@ -64,6 +64,9 @@ namespace EmergencyShift
         private float stateTime;
         private Vector2 escapeDirection;
         private float exposureTime;
+        private float burnContactTime;
+        private float nextBurnCue;
+        private bool burnContactActive;
         private Vector2 approachBeforeLight;
         private Vector2 home;
         private float staggerUntil;
@@ -84,13 +87,15 @@ namespace EmergencyShift
         // Presentation observes these events; damage, timing and state ownership stay here.
         public event System.Action<BehaviourState> StateChanged;
         public event System.Action Damaged;
+        public event System.Action EyeBurnStarted;
         public event System.Action AttackLunged;
         public event System.Action<bool> AttackResolved;
         public bool HasAggro
         {
             get; private set;
         }
-        public bool EyeBurned { get; private set; }
+        public float EyeDamageProgress { get; private set; }
+        public bool EyeBurned => EyeDamageProgress > 0;
         public float PursuitSpeed => creepSpeed;
         public float RetreatSpeed => retreatSpeed;
         public int ChaseWaypointCount => motor != null ? motor.WaypointCount : 0;
@@ -223,6 +228,7 @@ namespace EmergencyShift
 
                 Exposed = false;
                 exposureTime = 0;
+                UpdateEyeBurn(false);
                 Enter(BehaviourState.TargetDead);
                 body.linearVelocity = Vector2.zero;
                 return;
@@ -234,14 +240,16 @@ namespace EmergencyShift
                 ActivateAggro();
             }
 
+            Exposed = perception.Exposed(body.position);
+            bool closeLight = Exposed && Vector2.Distance(body.position, flashlight.Origin) <= lightFearDistance;
+            UpdateEyeBurn(closeLight);
+
             if (IsStaggered)
             {
                 body.linearVelocity = hitPush * Mathf.Clamp01((staggerUntil - Time.time) / Mathf.Max(.01f, hitStaggerSeconds));
                 return;
             }
 
-            Exposed = perception.Exposed(body.position);
-            bool closeLight = Exposed && Vector2.Distance(body.position, flashlight.Origin) <= lightFearDistance;
             bool idle = State == BehaviourState.Dormant || State == BehaviourState.Patrolling;
             if ((idle || State == BehaviourState.Sneaking || State == BehaviourState.Attacking) && closeLight)
             {
@@ -253,7 +261,6 @@ namespace EmergencyShift
                 exposureTime += Time.fixedDeltaTime;
                 if (exposureTime >= reactionDelay)
                 {
-                    EyeBurned = true;
                     escapeDirection = (body.position - flashlight.Origin).normalized;
                     if (escapeDirection.sqrMagnitude < 0.001f)
                     {
@@ -293,6 +300,37 @@ namespace EmergencyShift
             }
 
             motor.Move(velocity, State != BehaviourState.Attacking);
+        }
+
+        private void UpdateEyeBurn(bool illuminated)
+        {
+            if (!illuminated)
+            {
+                burnContactTime = 0;
+                burnContactActive = false;
+                return;
+            }
+
+            if (EyeDamageProgress >= 1)
+            {
+                return;
+            }
+
+            if (!burnContactActive)
+            {
+                burnContactActive = true;
+                if (Time.time >= nextBurnCue)
+                {
+                    nextBurnCue = Time.time + Mathf.Max(.1f, behaviourProfile.eyeBurnCueInterval);
+                    EyeBurnStarted?.Invoke();
+                }
+            }
+
+            float lead = Mathf.Max(.05f, behaviourProfile.eyeBurnLeadSeconds);
+            float previousDose = Mathf.Max(0, burnContactTime - lead);
+            burnContactTime += Time.fixedDeltaTime;
+            float dose = Mathf.Max(0, burnContactTime - lead) - previousDose;
+            EyeDamageProgress = Mathf.Clamp01(EyeDamageProgress + dose / Mathf.Max(.1f, behaviourProfile.eyeBurnSeconds));
         }
 
         private Vector2 StepIdle()
@@ -523,6 +561,9 @@ namespace EmergencyShift
             public BehaviourState state;
             public bool aggro;
             public bool eyeBurned;
+            public bool hasEyeDamageProgress;
+            public float eyeDamage;
+            public float burnContact;
             public float age;
             public float exposure;
             public float closure;
@@ -542,6 +583,9 @@ namespace EmergencyShift
                 state = State,
                 aggro = HasAggro,
                 eyeBurned = EyeBurned,
+                hasEyeDamageProgress = true,
+                eyeDamage = EyeDamageProgress,
+                burnContact = burnContactTime,
                 age = stateTime,
                 exposure = exposureTime,
                 closure = Closure,
@@ -559,7 +603,11 @@ namespace EmergencyShift
             health.Restore(saved.health);
             State = saved.state;
             HasAggro = saved.aggro;
-            EyeBurned = saved.eyeBurned;
+            float legacyDamage = saved.eyeBurned ? 1 : 0;
+            EyeDamageProgress = saved.hasEyeDamageProgress ? Mathf.Clamp01(saved.eyeDamage) : legacyDamage;
+            burnContactTime = saved.hasEyeDamageProgress ? Mathf.Max(0, saved.burnContact) : 0;
+            burnContactActive = burnContactTime > 0;
+            nextBurnCue = Time.time + Mathf.Max(.1f, behaviourProfile.eyeBurnCueInterval);
             stateTime = saved.age;
             exposureTime = saved.exposure;
             Closure = saved.closure;

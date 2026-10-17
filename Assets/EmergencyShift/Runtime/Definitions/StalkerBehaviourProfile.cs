@@ -19,5 +19,12 @@ namespace EmergencyShift
         public float lightFearDistance = 3.2f;
         [Min(.05f)]
         public float reactionDelay = .45f;
+        [Header("Eye burn — cumulative damage, separate from fear")]
+        [Min(.05f), Tooltip("Audible contact precedes any visible change, seconds.")]
+        public float eyeBurnLeadSeconds = .14f;
+        [Min(.1f), Tooltip("Illuminated seconds after the lead-in to reach full damage.")]
+        public float eyeBurnSeconds = 1.25f;
+        [Min(.1f)]
+        public float eyeBurnCueInterval = 1.2f;
     }
 }

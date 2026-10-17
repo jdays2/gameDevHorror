@@ -18,7 +18,7 @@ namespace EmergencyShift
         [SerializeField, Tooltip("Opaque backing covers the eye baked into body frames; not a second pupil.")]
         private SpriteRenderer eyeUnderlay;
         [SerializeField]
-        private Color damagedEyeTint = new Color(.64f, .60f, .60f, 1);
+        private Color damagedEyeTint = new Color(.32f, .34f, .35f, 1);
         [SerializeField, Tooltip("Optional textured damage treatment; null keeps the tint fallback.")]
         private Material damagedEyeMaterial;
         [SerializeField]
@@ -51,12 +51,15 @@ namespace EmergencyShift
         private Color restingIrisColor = Color.white;
         private Color restingUnderlayColor = Color.white;
         private Material restingIrisMaterial;
+        private MaterialPropertyBlock eyeProperties;
+        private static readonly int burnAmountId = Shader.PropertyToID("_BurnAmount");
+        private Vector3 pupilRestPosition;
         public int CurrentFrame
         {
             get; private set;
         }
         public bool EyeOpen => pupil != null && pupil.enabled;
-        public Vector2 PupilOffset => pupil != null ? (Vector2)pupil.transform.localPosition : Vector2.zero;
+        public Vector2 PupilOffset => pupil != null ? (Vector2)(pupil.transform.localPosition - pupilRestPosition) : Vector2.zero;
 
         public void Configure(EnemyPresentationSource2D actor, Transform root, SpriteRenderer renderer, SpriteRenderer irisRenderer, SpriteRenderer pupilRenderer, Sprite[] walk, Sprite[] recoil)
         {
@@ -67,6 +70,7 @@ namespace EmergencyShift
             pupil = pupilRenderer;
             walkFrames = walk;
             recoilFrames = recoil;
+            CacheEyePresentation();
         }
 
         public void ConfigureCombat(Sprite[] attack, Sprite[] death)
@@ -78,6 +82,18 @@ namespace EmergencyShift
         protected virtual void Awake()
         {
             presentation = GetComponent<EnemyPresentationSource2D>();
+            CacheEyePresentation();
+            walkClock = (float)new System.Random(System.Guid.NewGuid().GetHashCode()).NextDouble() / Mathf.Max(1, walkFramesPerSecond) * 8;
+            walkPhase = Mathf.Repeat(walkClock * Mathf.Max(1, walkFramesPerSecond) / 8f, 1f);
+        }
+
+        private void CacheEyePresentation()
+        {
+            eyeProperties = new MaterialPropertyBlock();
+            if (pupil != null)
+            {
+                pupilRestPosition = pupil.transform.localPosition;
+            }
             if (iris != null)
             {
                 restingIrisColor = iris.color;
@@ -87,8 +103,6 @@ namespace EmergencyShift
             {
                 restingUnderlayColor = eyeUnderlay.color;
             }
-            walkClock = (float)new System.Random(System.Guid.NewGuid().GetHashCode()).NextDouble() / Mathf.Max(1, walkFramesPerSecond) * 8;
-            walkPhase = Mathf.Repeat(walkClock * Mathf.Max(1, walkFramesPerSecond) / 8f, 1f);
         }
 
         protected virtual void OnEnable()
@@ -212,7 +226,8 @@ namespace EmergencyShift
             }
 
             bool open = !dead && presentation.Closure < 0.166f;
-            Color eyeTint = presentation.HasEyeDamage ? damagedEyeTint : Color.white;
+            float damage = Mathf.Clamp01(presentation.EyeDamageProgress);
+            Color eyeTint = Color.Lerp(Color.white, damagedEyeTint, damage);
             if (eyeUnderlay != null)
             {
                 eyeUnderlay.enabled = !dead;
@@ -220,13 +235,16 @@ namespace EmergencyShift
             }
             if (iris != null)
             {
-                bool texturedDamage = presentation.HasEyeDamage && damagedEyeMaterial != null;
+                bool texturedDamage = damage > 0 && damagedEyeMaterial != null;
                 Material eyeMaterial = texturedDamage ? damagedEyeMaterial : restingIrisMaterial;
                 if (iris.sharedMaterial != eyeMaterial)
                 {
                     iris.sharedMaterial = eyeMaterial;
                 }
                 iris.color = texturedDamage ? restingIrisColor : restingIrisColor * eyeTint;
+                iris.GetPropertyBlock(eyeProperties);
+                eyeProperties.SetFloat(burnAmountId, damage);
+                iris.SetPropertyBlock(eyeProperties);
                 if (eyeFrames != null && eyeFrames.Length > 0)
                 {
                     int eyeFrameIndex = Mathf.Clamp(eyeFrame, 0, eyeFrames.Length - 1);
@@ -250,10 +268,10 @@ namespace EmergencyShift
                 return;
             }
 
-            Vector2 localTarget = visualRoot.InverseTransformPoint(presentation.Target.position);
+            Vector2 localTarget = pupil.transform.parent.InverseTransformPoint(presentation.Target.position) - pupilRestPosition;
             Vector2 offset = localTarget.normalized * pupilTravel * Mathf.Clamp01(localTarget.magnitude / 0.4f);
-            Vector2 next = Vector2.MoveTowards(pupil.transform.localPosition, offset, Time.deltaTime * 0.25f);
-            pupil.transform.localPosition = new Vector3(next.x, next.y, -0.002f);
+            Vector2 next = Vector2.MoveTowards(PupilOffset, offset, Time.deltaTime * 0.25f);
+            pupil.transform.localPosition = pupilRestPosition + new Vector3(next.x, next.y, 0);
         }
 
         private int WalkFrame()

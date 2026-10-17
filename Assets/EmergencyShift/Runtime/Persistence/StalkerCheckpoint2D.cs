@@ -47,6 +47,17 @@ namespace EmergencyShift
                 throw new InvalidOperationException("Invalid stalker checkpoint");
             }
 
+            if (saved.initialized && saved.actor.hasEyeDamageProgress)
+            {
+                float damage = saved.actor.eyeDamage;
+                float contact = saved.actor.burnContact;
+                if (float.IsNaN(damage) || float.IsInfinity(damage) || damage < 0 || damage > 1 ||
+                    float.IsNaN(contact) || float.IsInfinity(contact) || contact < 0)
+                {
+                    throw new InvalidOperationException("Invalid stalker eye damage");
+                }
+            }
+
             if (saved.hasRemains)
             {
                 GetComponent<GoreBurst2D>().ValidateRemains(saved.remains);

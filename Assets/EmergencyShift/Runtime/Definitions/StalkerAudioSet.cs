@@ -20,7 +20,8 @@ namespace EmergencyShift
             Cower,
             Hit,
             Death,
-            Debris
+            Debris,
+            EyeBurn
         }
 
         [SerializeField]
@@ -49,6 +50,11 @@ namespace EmergencyShift
         private AudioClip[] death;
         [SerializeField]
         private AudioClip[] debris;
+        [SerializeField]
+        private AudioClip[] eyeBurn;
+        [SerializeField, Range(0, 1)]
+        private float eyeBurnGain = .8f;
+        public float EyeBurnGain => eyeBurnGain;
         [Header("Shared simultaneous voice limits")]
         [SerializeField, Min(1)]
         private int movementVoices = 8;
@@ -90,6 +96,8 @@ namespace EmergencyShift
                     return death;
                 case Cue.Debris:
                     return debris;
+                case Cue.EyeBurn:
+                    return eyeBurn;
                 default:
                     return null;
             }

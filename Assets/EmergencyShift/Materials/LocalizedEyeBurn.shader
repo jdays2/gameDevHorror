@@ -5,10 +5,11 @@ Shader "EmergencyShift/Localized Eye Burn"
         [PerRendererData] _MainTex ("Eye sprite", 2D) = "white" {}
         _MaskTex ("Light mask", 2D) = "white" {}
         _NormalMap ("Normal map", 2D) = "bump" {}
-        _Darkening ("Overall darkening", Range(0, .7)) = .38
-        _Desaturation ("Desaturation", Range(0, 1)) = .25
-        _BruiseStrength ("Local redness", Range(0, 1)) = .65
-        _BruiseTint ("Bruise multiplier", Color) = (.9, .55, .48, 1)
+        [PerRendererData] _BurnAmount ("Accumulated burn", Range(0, 1)) = 0
+        _Darkening ("Overall darkening", Range(0, .85)) = .68
+        _Desaturation ("Desaturation", Range(0, 1)) = .92
+        _BruiseStrength ("Local tissue damage", Range(0, 1)) = .65
+        _BruiseTint ("Charcoal patch multiplier", Color) = (.62, .65, .68, 1)
         _EyeRadius ("Eye radius in sprite units", Float) = .22
         [HideInInspector] _Color ("Tint", Color) = (1, 1, 1, 1)
     }
@@ -28,6 +29,7 @@ Shader "EmergencyShift/Localized Eye Burn"
             float _Desaturation;
             float _BruiseStrength;
             float _EyeRadius;
+            float _BurnAmount;
         CBUFFER_END
 
         half3 BurnedTissue(half3 original, float2 position)
@@ -43,7 +45,8 @@ Shader "EmergencyShift/Localized Eye Burn"
             half localDamage = saturate(max(primary, secondary)) * _BruiseStrength;
             half luminance = dot(original, half3(.2126, .7152, .0722));
             half3 tissue = lerp(original, luminance.xxx, _Desaturation) * (1 - _Darkening);
-            return lerp(tissue, tissue * _BruiseTint.rgb, localDamage);
+            half3 burned = lerp(tissue, tissue * _BruiseTint.rgb, localDamage);
+            return lerp(original, burned, saturate(_BurnAmount));
         }
         ENDHLSL
 

@@ -60,8 +60,8 @@ namespace EmergencyShift
         private float obstructionInterval = .15f;
         // Small registry for local voice budgets; no persistent manager or scene object.
         private static readonly List<StalkerAudio2D> active = new List<StalkerAudio2D>();
-        private readonly int[] lastVariant = new int[13];
-        private readonly int[] playCounts = new int[13];
+        private readonly int[] lastVariant = new int[System.Enum.GetValues(typeof(Cue)).Length];
+        private readonly int[] playCounts = new int[System.Enum.GetValues(typeof(Cue)).Length];
         private readonly List<GibMotion2D> fallingParts = new List<GibMotion2D>(8);
         private ShadowStalker2D stalker;
         private Rigidbody2D body;
@@ -147,6 +147,7 @@ namespace EmergencyShift
             nextObstruction = 0;
             stalker.StateChanged += OnState;
             stalker.Damaged += OnHit;
+            stalker.EyeBurnStarted += OnEyeBurn;
             stalker.AttackLunged += OnLunge;
             stalker.AttackResolved += OnStrike;
             if (gore != null)
@@ -162,6 +163,7 @@ namespace EmergencyShift
             {
                 stalker.StateChanged -= OnState;
                 stalker.Damaged -= OnHit;
+                stalker.EyeBurnStarted -= OnEyeBurn;
                 stalker.AttackLunged -= OnLunge;
                 stalker.AttackResolved -= OnStrike;
             }
@@ -334,6 +336,20 @@ namespace EmergencyShift
             PlayVoice(Cue.Hit, 1, true);
         }
 
+        private void OnEyeBurn()
+        {
+            if (sounds == null || !MovementBudgetAvailable())
+            {
+                return;
+            }
+
+            PlayMovement(Cue.EyeBurn, sounds.EyeBurnGain, transform.position);
+            if (movementSource != null && movementCue == Cue.EyeBurn && movementSource.clip != null)
+            {
+                nextContact = Time.time + movementSource.clip.length;
+            }
+        }
+
         private void OnLunge()
         {
             PlayMovement(Cue.Lunge, .9f, transform.position);
@@ -408,7 +424,7 @@ namespace EmergencyShift
             movementPosition = position;
             movementSource.clip = clip;
             movementSource.pitch = cue == Cue.Step || cue == Cue.Scrape ? contactPitch : 1;
-            movementSource.priority = cue == Cue.Lunge ? 80 : 140;
+            movementSource.priority = cue == Cue.Lunge || cue == Cue.EyeBurn ? 80 : 140;
             UpdateMix();
             movementSource.Play();
             playCounts[(int)cue]++;

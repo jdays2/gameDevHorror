@@ -1,5 +1,8 @@
 # Концепты и источники
 
+- [Постепенный ожог глаза](Used/Stalker/GradualEyeBurn04/README.md) — текущая бледно-чёрная обработка по накопленной дозе; EyeBurn03 — прежняя проба.
+- [StalkerTissue05](Used/Audio/StalkerTissue05/README.md) — короткий ожог и два влажных разрыва плоти, подключены для оценки.
+
 - [Походка Сталкера](Used/Stalker/Locomotion01/README.md) — фаза по расстоянию, опорный ритм и сглаживание поворотов в существующем prefab, с видео для оценки.
 - [Спящий: временная графика](Used/Sleeper/StalkerPlaceholder01/README.md) — копия существующих спрайтов Сталкера с холодной серо-зелёной палитрой. [Новые звуки](Unused/Audio/SleeperVoice01/README.md) сохранены; WAV также доступны в Assets/Audio/Sleeper/Voice01.
 - [Прежняя подготовка Спящего](Unused/Visual/SleeperSpriteRig01/README.md) — остановлена владельцем; отдельный дизайн отложен.
