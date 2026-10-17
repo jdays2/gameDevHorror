@@ -365,6 +365,11 @@ namespace EmergencyShift
 
         private AudioClip Choose(Cue cue)
         {
+            if (cue == Cue.Death && sounds != null && sounds.DeathSounds != null)
+            {
+                return EnemyDeathAudioVariants.Choose(sounds.DeathSounds);
+            }
+
             var clips = sounds != null ? sounds.Clips(cue) : null;
             if (clips == null || clips.Length == 0)
             {

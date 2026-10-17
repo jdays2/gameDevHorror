@@ -1,0 +1,68 @@
+{
+  "source_sha256": "78ae85feef8b21e178451055ac61bf87a4b6acdd8f3e49d64931c4a633d9512f",
+  "format": "mono PCM16 48000 Hz",
+  "variant01": "Approved WAV, byte-for-byte copy",
+  "variant02": {
+    "source_ranges_seconds": [
+      [
+        0,
+        0.055
+      ],
+      [
+        0.115,
+        0.205
+      ],
+      [
+        0.055,
+        0.115
+      ],
+      [
+        0.205,
+        0.31
+      ],
+      [
+        0.31,
+        1
+      ]
+    ],
+    "crossfade_seconds": 0.004,
+    "ffmpeg": "asetrate=48720,aresample=48000,equalizer=f=420:t=q:w=0.9:g=1"
+  },
+  "variant03": {
+    "ffmpeg": "asetrate=47280,aresample=48000,equalizer=f=230:t=q:w=0.85:g=1.5",
+    "layer_source_seconds": [
+      0.17,
+      0.24
+    ],
+    "layer_start_seconds": 0.22,
+    "layer_gain": 0.12
+  },
+  "finishing": "Variations align to approved RMS, peak capped at .85, maximum 1 second, 1 ms onset / 12 ms end fade",
+  "variants": [
+    {
+      "variant": 1,
+      "file": "rupture_06_01.wav",
+      "sha256": "78ae85feef8b21e178451055ac61bf87a4b6acdd8f3e49d64931c4a633d9512f",
+      "seconds": 1.0,
+      "rms": 0.09090085123473648,
+      "peak": 0.8499755859375
+    },
+    {
+      "variant": 2,
+      "file": "rupture_06_02.wav",
+      "sha256": "9506c8b614931b58b23285bc1cea5eb2f0f78069016f849c15d01ca4d9218d6e",
+      "seconds": 0.9694583333333333,
+      "rms": 0.08972234481365891,
+      "peak": 0.85
+    },
+    {
+      "variant": 3,
+      "file": "rupture_06_03.wav",
+      "sha256": "4f63c99d8c376063347f4d4c65400683e2c5f9aafbbb011f788d60728e3aff8b",
+      "seconds": 1.0,
+      "rms": 0.09084343664897629,
+      "peak": 0.8384180551840895
+    }
+  ],
+  "audition": "Variants 01, 02, 03 separated by .4 seconds of silence; no added tones or voices"
+}

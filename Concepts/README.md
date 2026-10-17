@@ -1,9 +1,9 @@
 # Концепты и источники
 
-- [Короткий мясистый разрыв 06](Unused/Audio/StalkerRupture06/README.md) — отдельная односекундная проба по новому референсу владельца; в игру не добавлена.
+- [Общий разрыв 06](Used/Audio/CreatureRupture06/README.md) — одобренная односекундная проба и две монтажные вариации, подключены Сталкеру/Спящему без повторов подряд. [Первичная проба](Unused/Audio/StalkerRupture06/README.md) сохранена по прежнему адресу.
 
 - [Постепенный ожог глаза](Used/Stalker/GradualEyeBurn04/README.md) — текущая бледно-чёрная обработка по накопленной дозе; EyeBurn03 — прежняя проба.
-- [StalkerTissue05](Used/Audio/StalkerTissue05/README.md) — короткий ожог и два влажных разрыва плоти, подключены для оценки.
+- [StalkerTissue05](Used/Audio/StalkerTissue05/README.md) — текущий короткий ожог; два прежних разрыва теперь исторические, заменены CreatureRupture06.
 
 - [Походка Сталкера](Used/Stalker/Locomotion01/README.md) — фаза по расстоянию, опорный ритм и сглаживание поворотов в существующем prefab, с видео для оценки.
 - [Спящий: временная графика](Used/Sleeper/StalkerPlaceholder01/README.md) — копия существующих спрайтов Сталкера с холодной серо-зелёной палитрой. [Новые звуки](Unused/Audio/SleeperVoice01/README.md) сохранены; WAV также доступны в Assets/Audio/Sleeper/Voice01.

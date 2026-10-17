@@ -122,7 +122,8 @@ namespace EmergencyShift
             {
                 DeathCount++;
                 contact.Stop();
-                PlayVoice(profile.rupture);
+                AudioClip rupture = profile.deathSounds != null ? EnemyDeathAudioVariants.Choose(profile.deathSounds) : profile.rupture;
+                PlayVoice(rupture);
             }
             else if (state == Sleeper2D.BehaviourState.TargetDead)
             {

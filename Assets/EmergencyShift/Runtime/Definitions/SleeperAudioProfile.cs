@@ -9,6 +9,7 @@ namespace EmergencyShift
         public AudioClip waking;
         public AudioClip pain;
         public AudioClip rupture;
+        public EnemyDeathAudioSet deathSounds;
         [Tooltip("Reuse accepted flesh/contact foley without inheriting the Stalker brain or its voice logic.")]
         public StalkerAudioSet contactSounds;
         [Range(0, 1)] public float breathingVolume = .36f;

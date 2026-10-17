@@ -46,8 +46,11 @@ namespace EmergencyShift
         private AudioClip[] cower;
         [SerializeField]
         private AudioClip[] hit;
-        [SerializeField]
+        [SerializeField, Tooltip("Legacy fallback when the shared death bank is not assigned.")]
         private AudioClip[] death;
+        [SerializeField]
+        private EnemyDeathAudioSet deathSounds;
+        public EnemyDeathAudioSet DeathSounds => deathSounds;
         [SerializeField]
         private AudioClip[] debris;
         [SerializeField]

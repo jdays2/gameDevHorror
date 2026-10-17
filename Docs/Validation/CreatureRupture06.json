@@ -1,0 +1,302 @@
+{
+  "date": "2026-10-17",
+  "scope": "Three short rupture clips shared by Stalker/Sleeper, session no-immediate-repeat selection; no gore visual changes",
+  "audio": {
+    "source_sha256": "78ae85feef8b21e178451055ac61bf87a4b6acdd8f3e49d64931c4a633d9512f",
+    "format": "mono PCM16 48000 Hz",
+    "variant01": "Approved WAV, byte-for-byte copy",
+    "variant02": {
+      "source_ranges_seconds": [
+        [
+          0,
+          0.055
+        ],
+        [
+          0.115,
+          0.205
+        ],
+        [
+          0.055,
+          0.115
+        ],
+        [
+          0.205,
+          0.31
+        ],
+        [
+          0.31,
+          1
+        ]
+      ],
+      "crossfade_seconds": 0.004,
+      "ffmpeg": "asetrate=48720,aresample=48000,equalizer=f=420:t=q:w=0.9:g=1"
+    },
+    "variant03": {
+      "ffmpeg": "asetrate=47280,aresample=48000,equalizer=f=230:t=q:w=0.85:g=1.5",
+      "layer_source_seconds": [
+        0.17,
+        0.24
+      ],
+      "layer_start_seconds": 0.22,
+      "layer_gain": 0.12
+    },
+    "finishing": "Variations align to approved RMS, peak capped at .85, maximum 1 second, 1 ms onset / 12 ms end fade",
+    "variants": [
+      {
+        "variant": 1,
+        "file": "rupture_06_01.wav",
+        "sha256": "78ae85feef8b21e178451055ac61bf87a4b6acdd8f3e49d64931c4a633d9512f",
+        "seconds": 1.0,
+        "rms": 0.09090085123473648,
+        "peak": 0.8499755859375
+      },
+      {
+        "variant": 2,
+        "file": "rupture_06_02.wav",
+        "sha256": "9506c8b614931b58b23285bc1cea5eb2f0f78069016f849c15d01ca4d9218d6e",
+        "seconds": 0.9694583333333333,
+        "rms": 0.08972234481365891,
+        "peak": 0.85
+      },
+      {
+        "variant": 3,
+        "file": "rupture_06_03.wav",
+        "sha256": "4f63c99d8c376063347f4d4c65400683e2c5f9aafbbb011f788d60728e3aff8b",
+        "seconds": 1.0,
+        "rms": 0.09084343664897629,
+        "peak": 0.8384180551840895
+      }
+    ],
+    "audition": "Variants 01, 02, 03 separated by .4 seconds of silence; no added tones or voices"
+  },
+  "nativePlay": {
+    "checks": [
+      {
+        "name": "Both species reference the same three-clip death bank",
+        "pass": true
+      },
+      {
+        "name": "Old fixed rupture choices are removed from active profiles",
+        "pass": true
+      },
+      {
+        "name": "Sleep, wake, pain and eye-burn references remain assigned",
+        "pass": true
+      },
+      {
+        "name": "Immediate preloaded PCM rupture_06_01",
+        "pass": true
+      },
+      {
+        "name": "Immediate preloaded PCM rupture_06_02",
+        "pass": true
+      },
+      {
+        "name": "Immediate preloaded PCM rupture_06_03",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 0",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 0",
+        "pass": true
+      },
+      {
+        "name": "Stalker dead restore is silent",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 1",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 1",
+        "pass": true
+      },
+      {
+        "name": "Sleeper dead restore is silent",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 2",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 2",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 3",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 3",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 4",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 4",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 5",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 5",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 6",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 6",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 7",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 7",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 8",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 8",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 9",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 9",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 10",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 10",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 11",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 11",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 12",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 12",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 13",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 13",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 14",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 14",
+        "pass": true
+      },
+      {
+        "name": "One death playback for instance 15",
+        "pass": true
+      },
+      {
+        "name": "No repeated clip between consecutive enemy deaths 15",
+        "pass": true
+      },
+      {
+        "name": "Shared audio assets are unchanged by live playback",
+        "pass": true
+      }
+    ],
+    "sequence": [
+      "Stalker: rupture_06_01",
+      "Sleeper: rupture_06_02",
+      "Stalker: rupture_06_01",
+      "Sleeper: rupture_06_02",
+      "Stalker: rupture_06_03",
+      "Sleeper: rupture_06_01",
+      "Stalker: rupture_06_03",
+      "Sleeper: rupture_06_01",
+      "Stalker: rupture_06_03",
+      "Sleeper: rupture_06_02",
+      "Stalker: rupture_06_03",
+      "Sleeper: rupture_06_01",
+      "Stalker: rupture_06_03",
+      "Sleeper: rupture_06_01",
+      "Stalker: rupture_06_02",
+      "Sleeper: rupture_06_01"
+    ]
+  },
+  "editMode": {
+    "total": 55,
+    "passed": 55,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 1.4562073,
+    "resultState": "Passed"
+  },
+  "releaseBuild": {
+    "job_id": "build-4233eca362",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "C:/Users/Mark/Documents/Codex/2026-10-13/gkf/outputs/EmergencyShift/Builds/CreatureRupture06/EmergencyShift.exe",
+    "started_at": "2026-10-17T13:04:59.7429460Z",
+    "duration_seconds": 20.4364813,
+    "completed_at": "2026-10-17T13:05:20.1794273Z",
+    "total_size_mb": 183.69,
+    "errors": 0,
+    "warnings": 0
+  },
+  "releaseAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "runtimeBankTypesPresentInRelease": true,
+  "finalConsole": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "normalSettings": {
+    "compiling": false,
+    "development": false,
+    "managed": "Release",
+    "preloaded": 0,
+    "scene": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+    "dirty": false
+  },
+  "protectedFiles": "All existing scene, prefab and ProjectSettings bytes unchanged from task baseline; existing unrelated dirty work preserved",
+  "verificationNotes": [
+    "Native test used 16 real prefab deaths alternating species at controlled positions; one playback per death and silent dead restore. Not a whole level playthrough.",
+    "Initial console had earlier development API warnings, URP lifecycle assertions and a Stalker audio hot-reload exception; after a fresh Play session the focused run and final console were clean.",
+    "First release build reported pending import/compile changes; a forced refresh/compile and a second release build passed with zero warnings.",
+    "Two provider generation requests were rejected. Variants 02/03 are edited derivatives of the approved 01, not new independent AI recordings. Owner evaluates their sound."
+  ]
+}

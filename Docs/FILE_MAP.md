@@ -18,6 +18,7 @@
 | `Runtime/Core/Contracts/IThreatLight2D.cs` | A defensive light stimulus. Ordinary decorative lights need not implement it. |
 | `Runtime/Definitions/AudioMoodProfile.cs` | Shared tuning and replaceable sounds; runtime perception is owned by the scene director. |
 | `Runtime/Definitions/DoorAudioSet.cs` | DoorAudioSet |
+| `Runtime/Definitions/EnemyDeathAudioSet.cs` | Общий неизменяемый набор клипов разрыва для видовых аудиоадаптеров. |
 | `Runtime/Definitions/EnemyDefinition.cs` | Shared tuning only. Current health, aggro and timers belong to an instance. |
 | `Runtime/Definitions/EnemyPatrolProfile.cs` | EnemyPatrolProfile |
 | `Runtime/Definitions/GoreProfile.cs` | GoreProfile |
@@ -88,6 +89,7 @@
 | `Runtime/Player/PlayerUtilityAudio2D.cs` | Single saved channel for flashlight switch and empty trigger; no synthetic pickup beeps. |
 | `Runtime/Player/PlayerWeapon2D.cs` | Player input, common aiming and projectile presentation; definitions create independent firing cycles. |
 | `Runtime/Presentation/Audio/AudioThreatEmitter2D.cs` | Small scene-filtered registry. New enemy adapters expose state without changing the music director. |
+| `Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs` | Общая история выбора по набору на время Play; исключение немедленного повтора между особями. |
 | `Runtime/Presentation/Audio/LevelAudioDirector2D.cs` | Scene-local layered atmosphere. Only perceived threats affect it; AI remains independent. |
 | `Runtime/Presentation/Visuals/BloodHitSpray2D.cs` | Малый направленный выброс при попадании; не создаёт постоянную лужу живому врагу. |
 | `Runtime/Presentation/Visuals/BloodPool2D.cs` | Переиспользуемое пятно: набор круговых спрайтов даёт нерегулярную лужу и капли. |
@@ -163,6 +165,7 @@
 
 | Файл | Тип |
 |---|---|
+| `Data/Audio/CreatureRupture06.asset` | Три общих разрыва смерти Сталкера и Спящего. |
 | `Data/Audio/PistolMagazine.asset` | ScriptableObject / настройки рендера |
 | `Data/Audio/ShotgunPump.asset` | ScriptableObject / настройки рендера |
 | `Data/Audio/SurvivalAudio.asset` | ScriptableObject / настройки рендера |
@@ -192,3 +195,5 @@
 | `Scenes/MechanicsSandbox.unity` | Редактируемая сцена |
 
 | `Tests/EditMode/SleeperTests.cs` | Неполные/противоречивые checkpoint payload второго вида и ещё не активированная особь. |
+
+| `Tests/EditMode/EnemyDeathAudioTests.cs` | Повторы между потребителями, независимость банков, пустые/единичные клипы и неизменность SO. |
