@@ -1,0 +1,55 @@
+{
+  "status": "Proposed kinematic construction for owner discussion; no approved production art or game integration",
+  "coordinate_system": "Schematic units with rim circumradius R=1; z points out of mouth. These are not Unity scene dimensions.",
+  "geometry": {
+    "segments": 3,
+    "shape": "Three zero-thickness triangular plates meeting at separate tips in the center",
+    "outward_normal_angles_degrees": [
+      -90,
+      30,
+      150
+    ],
+    "hinge_midpoint_radius_R": 0.5,
+    "hinge_half_width_R": 0.8660254037844386,
+    "hinge_to_tip_length_R": 0.5,
+    "angle_range_degrees": [
+      0,
+      110
+    ],
+    "motion": "Each plate rotates upward/outward around its fixed exterior base. Closing reverses exactly the same rotation. No vertex, hinge or throat changes size."
+  },
+  "teeth": {
+    "per_segment": 2,
+    "proposal_not_owner_specified_count": true,
+    "location": "Underside/inner surface, away from central tips; hidden by outer surface in closed top view",
+    "tangent_offsets_R": [
+      -0.18,
+      0.18
+    ],
+    "root_depth_from_hinge_R": 0.25,
+    "tip_depth_from_hinge_R": 0.29,
+    "root_inward_height_R": 0.015,
+    "tip_inward_height_R": 0.15
+  },
+  "eye": "Separate behind rim with clearance; not part of jaw or closure seam",
+  "checks": {
+    "sampled_angles": 111,
+    "segments": 3,
+    "max_edge_length_drift": 1.1102230246251565e-16,
+    "hinge_endpoint_drift": 0.0,
+    "browser_widths_px": [
+      736,
+      320
+    ],
+    "browser_overflow": false,
+    "browser_console_errors": 0,
+    "native_buttons_and_slider_change_pose": true
+  },
+  "limits": [
+    "Zero-thickness plate model does not validate fleshy thickness, neighboring tissue collision, real bite or biology.",
+    "Need bevels/gaps at edges and hinges; tooth placement and clearance to eye/neck require artwork review.",
+    "Side view shows one plate, not a full three-dimensional collision solver.",
+    "The generated open/closed images in this folder are rejected drafts, not illustrations proven to follow this motion.",
+    "Inline motion drawing is response content stored in thread visualization space, not a Library artifact."
+  ]
+}
