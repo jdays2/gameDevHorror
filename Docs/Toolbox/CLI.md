@@ -35,6 +35,8 @@
 
 ## Утилиты проекта
 
+**План:** `Открыть план.cmd` запускает [локальный просмотрщик](../Guides/PLAN_VIEWER.md) с галочками; `Tools/PlanViewer/server.py` работает на стандартной библиотеке Python.
+
 | Файл | Назначение |
 |---|---|
 | [prepare_creature_rupture_06.py](../../Tools/Audio/prepare_creature_rupture_06.py) | Подготовка набора звуков разрыва |
