@@ -6,6 +6,7 @@ No silhouette, atlas geometry, native Sprite or meta is regenerated.
 """
 from pathlib import Path
 from io import BytesIO
+import argparse
 import hashlib
 import json
 import re
@@ -163,16 +164,62 @@ def bake_eyes(decals):
             image = paint(image, decals[number], (centre[0] + dx * 1160, centre[1] + dy * 1160), (width * 1160, height * 1160), angle)
     image.save(ROOT / "LargeEye01/eye-atlas.png")
     assert np.array_equal(np.asarray(before)[:, :, 3], np.asarray(image)[:, :, 3])
-    # This is the actual game eye artwork plus its separate, registered pupil.
+    return dead_eye_organ(image)
+
+
+def pupil_layer(centre, radius):
+    pupil = Image.new("RGBA", (560 * 4, 560 * 4))
+    drawing = ImageDraw.Draw(pupil)
+    drawing.ellipse((round((centre[0] - radius[0]) * 4), round((centre[1] - radius[1]) * 4), round((centre[0] + radius[0]) * 4), round((centre[1] + radius[1]) * 4)), fill=(6, 4, 6, 255))
+    return pupil.resize((560, 560), Image.Resampling.LANCZOS)
+
+
+def dead_eye_organ(image):
+    """Assemble a fixed, slightly rolled eye without changing the live atlas.
+
+    Warp only the exposed fibres, like the runtime gaze shader. The fleshy
+    membrane stays registered; the pupil is foreshortened and clipped by it.
+    """
     organ = image.crop((32, 44, 592, 604))
     backing = Image.new("RGBA", organ.size)
     drawing = ImageDraw.Draw(backing)
     drawing.ellipse((164, 173, 396, 405), fill=(214, 194, 191, 255))
     organ = Image.alpha_composite(backing, organ)
-    pupil = Image.new("RGBA", (560 * 4, 560 * 4))
-    drawing = ImageDraw.Draw(pupil)
-    drawing.ellipse((round((280 - 75.4) * 4), round((289 - 75.4) * 4), round((280 + 75.4) * 4), round((289 + 75.4) * 4)), fill=(6, 4, 6, 255))
-    organ = Image.alpha_composite(organ, pupil.resize((560, 560), Image.Resampling.LANCZOS))
+    # Preserve the previous organ's exact alpha, including nearly opaque
+    # source pixels that the old centered pupil covered.
+    original_alpha = Image.alpha_composite(organ, pupil_layer((280, 289), (75.4, 75.4))).getchannel("A")
+    data = np.asarray(organ).copy()
+    yy, xx = np.indices(data.shape[:2], dtype=np.float32)
+    distance = np.sqrt(((xx - 280) / 154.28) ** 2 + ((yy - 289) / 146.16) ** 2)
+    # Image coordinates: up and left, with a small part behind the upper lid.
+    gaze = (-30, -82)
+    # A disk-preserving map prevents a large rolled gaze from pulling the
+    # lower membrane into the eye. Only the inner ocular surface is sampled.
+    position = (xx - 280) / 154.28 + 1j * (yy - 289) / 146.16
+    offset = gaze[0] / 154.28 + 1j * gaze[1] / 146.16
+    source = (position - offset) / (1 - np.conjugate(offset) * position)
+    source_x = np.clip(280 + source.real * 154.28, 0, organ.width - 1)
+    source_y = np.clip(289 + source.imag * 146.16, 0, organ.height - 1)
+    x0 = source_x.astype(int)
+    y0 = source_y.astype(int)
+    x1 = np.minimum(x0 + 1, organ.width - 1)
+    y1 = np.minimum(y0 + 1, organ.height - 1)
+    fx = (source_x - x0)[:, :, None]
+    fy = (source_y - y0)[:, :, None]
+    rgb = data[:, :, :3].astype(np.float32)
+    shifted = (rgb[y0, x0] * (1 - fx) + rgb[y0, x1] * fx) * (1 - fy)
+    shifted += (rgb[y1, x0] * (1 - fx) + rgb[y1, x1] * fx) * fy
+    transition = np.clip((distance - .91) / .09, 0, 1)
+    aperture = 1 - transition * transition * (3 - 2 * transition)
+    data[:, :, :3] = np.rint(rgb * (1 - aperture[:, :, None]) + shifted * aperture[:, :, None]).clip(0, 255).astype(np.uint8)
+    organ = Image.fromarray(data)
+    centre = (280 + gaze[0], 289 + gaze[1])
+    radius = (75.4 * .94, 75.4 * .72)
+    pupil = pupil_layer(centre, radius)
+    pupil_data = np.asarray(pupil).copy()
+    pupil_data[:, :, 3] = np.rint(pupil_data[:, :, 3] * aperture).astype(np.uint8)
+    organ = Image.alpha_composite(organ, Image.fromarray(pupil_data))
+    organ.putalpha(original_alpha)
     return organ
 
 
@@ -203,11 +250,27 @@ def corpse_parts(organ, decals):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--dead-eye-only", action="store_true", help="Reassemble remains from the current live eye; leave live atlases untouched")
+    arguments = parser.parse_args()
     decals = patches()
+    if arguments.dead_eye_only:
+        image = Image.open(ROOT / "LargeEye01/eye-atlas.png").convert("RGBA")
+        parts = corpse_parts(dead_eye_organ(image), decals)
+        print(json.dumps({"corpseParts": len(parts), "liveAtlasesUntouched": True, "fixedGazePixels": [-30, -82]}))
+        return
     changed = bake_existing(decals)
     organ = bake_eyes(decals)
     parts = corpse_parts(organ, decals)
-    (LIBRARY / "bake-report.json").write_text(json.dumps({"sourceRevision": SOURCE_REVISION, "textures": changed, "eyeAlphaUnchanged": True, "corpseParts": parts, "eyeSource": "Actual LargeEye01 EyeOpen crop and original gameplay pupil dimensions; rejected AI eyeballs are not production sources"}, indent=2) + "\n")
+    report = {
+        "sourceRevision": SOURCE_REVISION,
+        "textures": changed,
+        "eyeAlphaUnchanged": True,
+        "corpseParts": parts,
+        "eyeSource": "Actual LargeEye01 EyeOpen artwork; static corpse pupil rolled up-left and foreshortened. Generated eyeballs rejected.",
+        "latestRemainsCorrection": "Docs/Validation/SleeperDeadEye03.json",
+    }
+    (LIBRARY / "bake-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"updatedAtlases": len(changed) + 1, "corpseParts": len(parts), "sourceRevision": SOURCE_REVISION}))
 
 
