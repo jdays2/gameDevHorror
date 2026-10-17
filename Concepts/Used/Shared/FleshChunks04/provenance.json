@@ -1,22 +1,33 @@
 {
   "date": "2026-10-17",
   "generator": "Built-in image_gen.imagegen",
-  "prompt": "Source/prompt.txt",
-  "source": "Source/flesh-sheet.png",
+  "prompt": "Source/simple-prompt.txt",
+  "source": "Source/simple-flesh-sheet.png",
   "reference": "Project-owned Stalker death sheet, style only",
-  "processing": "2x2 quadrant crop; alpha > 8 bbox plus 2px margin, retained RGBA within crop",
+  "processing": "Tools/Art/build_flesh_palettes_05.py",
   "worldWidths": {
     "MuscleWad": 0.28,
     "TornFlap": 0.26,
     "DenseClot": 0.2,
     "TissueStrip": 0.25
   },
-  "validation": "Docs/Validation/CreatureRemains04.json",
-  "sourceSha256": "673c530907d15fc3fd87ecf97834143f9a39844e6e0f98c6af7b2ee5de8a203d",
+  "validation": "Docs/Validation/FleshPalettes05.json",
+  "sourceSha256": "53aafdca485d14dff09da257b84a3c9842ae21c35e042deb250f6cfc2066aa16",
   "productionPngHashes": {
-    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/DenseClot.png": "533eab746a339b3852330b7d6a75ebf9e6ffa0bcaa5ec75396ee4f875b3cd82a",
-    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/MuscleWad.png": "74f9bc42ca7a7b893a561ff36825d663a3c920bcdc5ca4ad0c03487b5ef08eeb",
-    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/TissueStrip.png": "78f64a4c140589cf07149cdf36dd81eaf83506c3b38997013383a4facf49fddc",
-    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/TornFlap.png": "b6077b00ecc989fed60cc12947dd83499abc9d0bb56c6aa08ed82b2f078ccd08"
-  }
+    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/DenseClot.png": "477b7d6bd6b8ac15a5d73b8690d81faab20c6cb4e26705d81ac6ee85e40cfaa0",
+    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/MuscleWad.png": "d604393533dc6d2deb60e936e0cbd6624e32a1a09f1b82d4e07c911a08355f66",
+    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/TissueStrip.png": "d602b8d74b250c341c6990fb92acf63bd5d637bfb4f8e44ddf61f35c29f2e4e0",
+    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/TornFlap.png": "09952c3ed4e91397203ba592e255ac2226357a02d08f2aa0d79a6efb735cf9ab",
+    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/Sleeper/DenseClot.png": "1e74c52a3a89672aec47e99c4ccfbbdba79fd86d53aa745c6a8d28ad361ee3f7",
+    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/Sleeper/MuscleWad.png": "8769d85298f68b93b1e374215edc430369bacba1eb8a8aaeaa66a865ddf0508b",
+    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/Sleeper/TissueStrip.png": "7e4f21e6264c1e9a5b71551887fce48e50513730c55d9fe4eac9f9da47fa4687",
+    "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/Sleeper/TornFlap.png": "cb6a14489a3793060ace62765e2cd285dff2ab8f3756228bafcd5a5e88093c29"
+  },
+  "historical": {
+    "source": "Source/flesh-sheet.png",
+    "prompt": "Source/prompt.txt",
+    "reason": "Owner rejected excessive viscera detail and requested simple muscle scraps with enemy-matched colors"
+  },
+  "processingSha256": "0174176db0b0d1022779a3649642a60a2e4233d6bb6fd4b75e89a8033daf979d",
+  "paletteReport": "palette-report.json"
 }
