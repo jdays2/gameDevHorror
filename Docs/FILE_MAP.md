@@ -1,6 +1,6 @@
 # Карта файлов
 
-Свечение открытых настенных трубок: `Materials/TubeGlow.shader` рисует локальное белое ядро/цветную оболочку/ореол; `Materials/HospitalTubeGlow.mat` хранит общие силы трёх слоёв. Цвет и включение задаёт прежний Bulb/LocalLamp2D. LocalLampConfiguration2D применяет настройки экземпляра без отдельного Update; свечение по-прежнему следует существующему Bulb/LocalLamp2D.
+Свечение открытых настенных трубок: `Materials/TubeGlow.shader` рисует локальное белое ядро/цветную оболочку/ореол; `Materials/HospitalTubeGlow.mat` хранит общие силы трёх слоёв. Цвет и включение задаёт прежний Bulb/LocalLamp2D. `Materials/HospitalLampHousing.mat` и `HospitalLampHousingMask.asset` исключают свет трубок Blend Style 2 из освещения корпуса; фонарь/обычные источники Style 0 продолжают освещать его. Стандартный URP shader, исходные PNG не менялись. LocalLampConfiguration2D применяет настройки экземпляра без отдельного Update; свечение по-прежнему следует существующему Bulb/LocalLamp2D.
 
 Пути относительно Assets/EmergencyShift. Получены из фактического дерева исходников; основная сцена — MechanicsSandbox.
 

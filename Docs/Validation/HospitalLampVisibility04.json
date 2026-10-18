@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-18",
+  "scope": "Eight existing hospital lamps: masked housing lighting, explicit sorting above walls, increased fixture length",
+  "lengths": {
+    "long": 1.25,
+    "compact": 1.0
+  },
+  "lightAndSoundRadiiUnchanged": true,
+  "rendering": {
+    "housingMaterial": "HospitalLampHousing.mat",
+    "housingShader": "Universal Render Pipeline/2D/Sprite-Lit-Default",
+    "mask": "Persistent 1x1 black R mask, HospitalLampHousingMask.asset",
+    "lampLightBlendStyle": 2,
+    "styleDefinition": "Existing Multiply with Mask (R); renderer asset unchanged",
+    "externalLightBlendStyle": 0,
+    "order": {
+      "sceneWalls": 2,
+      "housing": 3,
+      "tube": 4
+    },
+    "tubeGlowShaderUnchanged": true,
+    "sourceImagesAndMetaUnchanged": true
+  },
+  "play": {
+    "MechanicsSandbox": {
+      "scene": "MechanicsSandbox",
+      "missingScripts": 0,
+      "lamps": [
+        {
+          "name": "Corridor lamp - warm ivory",
+          "length": 1.0,
+          "radius": 1.45,
+          "soundRadius": 2.0,
+          "blend": 2,
+          "housingOrder": 3,
+          "tubeOrder": 4,
+          "anchorPreserved": true,
+          "powerOnlyAffectsTubeAndLight": true,
+          "audioEnabled": true
+        },
+        {
+          "name": "Hall west - pale green tube",
+          "length": 1.0,
+          "radius": 1.1,
+          "soundRadius": 1.4,
+          "blend": 2,
+          "housingOrder": 3,
+          "tubeOrder": 4,
+          "anchorPreserved": true,
+          "powerOnlyAffectsTubeAndLight": true,
+          "audioEnabled": true
+        },
+        {
+          "name": "Hall east - cool white tube",
+          "length": 1.0,
+          "radius": 1.3,
+          "soundRadius": 1.7,
+          "blend": 2,
+          "housingOrder": 3,
+          "tubeOrder": 4,
+          "anchorPreserved": true,
+          "powerOnlyAffectsTubeAndLight": true,
+          "audioEnabled": true
+        },
+        {
+          "name": "Room 02 - warm tube",
+          "length": 1.0,
+          "radius": 1.2,
+          "soundRadius": 1.6,
+          "blend": 2,
+          "housingOrder": 3,
+          "tubeOrder": 4,
+          "anchorPreserved": true,
+          "powerOnlyAffectsTubeAndLight": true,
+          "audioEnabled": true
+        },
+        {
+          "name": "Room 01 - cool tube",
+          "length": 1.25,
+          "radius": 1.25,
+          "soundRadius": 1.8,
+          "blend": 2,
+          "housingOrder": 3,
+          "tubeOrder": 4,
+          "anchorPreserved": true,
+          "powerOnlyAffectsTubeAndLight": true,
+          "audioEnabled": true
+        },
+        {
+          "name": "Ward lamp - muted cyan",
+          "length": 1.25,
+          "radius": 1.45,
+          "soundRadius": 2.0,
+          "blend": 2,
+          "housingOrder": 3,
+          "tubeOrder": 4,
+          "anchorPreserved": true,
+          "powerOnlyAffectsTubeAndLight": true,
+          "audioEnabled": true
+        }
+      ]
+    },
+    "BasementPrototype": {
+      "scene": "BasementPrototype",
+      "missingScripts": 0,
+      "lamps": [
+        {
+          "name": "Room A - cool tube",
+          "length": 1.25,
+          "radius": 1.4,
+          "soundRadius": 1.8,
+          "blend": 2,
+          "housingOrder": 3,
+          "tubeOrder": 4,
+          "anchorPreserved": true,
+          "powerOnlyAffectsTubeAndLight": true,
+          "audioEnabled": true
+        },
+        {
+          "name": "Basement hall - pale green tube",
+          "length": 1.0,
+          "radius": 1.2,
+          "soundRadius": 1.5,
+          "blend": 2,
+          "housingOrder": 3,
+          "tubeOrder": 4,
+          "anchorPreserved": true,
+          "powerOnlyAffectsTubeAndLight": true,
+          "audioEnabled": true
+        }
+      ]
+    }
+  },
+  "nativeURPFrames": [
+    "HospitalLampVisibility04/ward-dark.png",
+    "HospitalLampVisibility04/ward-flashlight.png",
+    "HospitalLampVisibility04/ward-power-off.png"
+  ],
+  "visualChecks": "Housing dark under own lamp; existing flashlight reveals the housing texture; tube-only emission and no wall clipping under external light",
+  "afterStopAndBuild": {
+    "scene": "MechanicsSandbox",
+    "play": false,
+    "dirty": false,
+    "configCount": 6,
+    "missingScripts": 0,
+    "preloadedAssets": 0,
+    "development": false,
+    "managedVariant": "Release",
+    "playerMovement": true,
+    "cameraFollowing": true
+  },
+  "nativePreservation": {
+    "scenes": [
+      {
+        "scene": "MechanicsSandbox",
+        "preservedUnrelatedDocuments": 526,
+        "ownedLampDocuments": 16
+      },
+      {
+        "scene": "BasementPrototype",
+        "preservedUnrelatedDocuments": 377,
+        "ownedLampDocuments": 6
+      }
+    ],
+    "otherTrackedNativeFilesUnchanged": 1655,
+    "policy": "HEAD plus owned lamp blocks only; manual scene changes remain unstaged"
+  },
+  "releaseBuild": {
+    "job_id": "build-461c3ec522",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\work\\lamp-fix04\\build\\EmergencyShift.exe",
+    "started_at": "2026-10-18T04:12:27.5752226Z",
+    "duration_seconds": 6.5393894999999995,
+    "completed_at": "2026-10-18T04:12:34.1146121Z",
+    "total_size_mb": 315.17,
+    "errors": 0,
+    "warnings": 0
+  },
+  "consoleErrorsOrWarnings": 0,
+  "runtimeCSharpChanged": false,
+  "editModeRepeated": false,
+  "editModeReason": "Existing configuration algorithms unchanged; material bindings, render order and sizes checked in both native Play scenes",
+  "limits": [
+    "No performance benchmark; no FPS claim",
+    "Release validates current working tree including existing manual drafts",
+    "Owner validates appearance in gameplay"
+  ]
+}

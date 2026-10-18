@@ -75,11 +75,25 @@
     "component": "LocalLampConfiguration2D",
     "guide": "Docs/Guides/HOSPITAL_LAMPS.md",
     "fixtureLengths": [
-      0.75,
-      0.55
+      1.25,
+      1.0
     ],
     "instances": 8,
     "rawImagesUnchanged": true,
     "scaledGroup": "Fixture, separate from root Light2D/audio"
+  },
+  "housingLighting": {
+    "material": "HospitalLampHousing",
+    "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default",
+    "mask": "1x1 black Texture2D asset, utility data only",
+    "tubeLightBlendStyle": 2,
+    "rendererSettingsUnchanged": true,
+    "externalLights": "Existing style 0 lights reveal housing",
+    "sortingOrder": {
+      "housing": 3,
+      "tube": 4,
+      "sceneWalls": 2
+    },
+    "validation": "Docs/Validation/HospitalLampVisibility04.json"
   }
 }

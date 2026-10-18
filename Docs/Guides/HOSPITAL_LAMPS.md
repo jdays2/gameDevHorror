@@ -16,7 +16,7 @@
 
 При выделении и включённых Gizmos голубая окружность показывает свет, янтарная — звук. Это радиусы, а не диаметры. Полная заданная громкость сохраняется до 17,5% Sound Radius, затем плавно падает к нулю на границе. Стена слоя Walls глушит звук. Гул следует фактической яркости, контакты звучат при перебое. WAV и общий `Data/Audio/HospitalLampQuiet.asset` сохранены.
 
-Размер меняйте через **Fixture Length**, оставляя Scale корня = 1. Дочерняя группа Fixture масштабирует рисунок и ореол; радиусы остаются прежними, задняя планка сохраняет привязку к стене. Длинная проба теперь 0,75, компактная 0,55; для сравнения, имеющийся шкаф — 1,55 по длинной стороне. Это стартовая настройка для оценки владельцем.
+Размер меняйте через **Fixture Length**, оставляя Scale корня = 1. Дочерняя группа Fixture масштабирует рисунок и ореол; радиусы остаются прежними, задняя планка сохраняет привязку к стене. Длинная проба теперь 1,25, компактная 1,0; для сравнения, имеющийся шкаф — 1,55 по длинной стороне. Это стартовая настройка для оценки владельцем.
 
 Для новой лампы перетащите `Prefabs/Environment/HospitalLamp01.prefab` или `HospitalLampCorridor01.prefab`. Все пути здесь относительно `Assets/EmergencyShift`. При Rotation Z=0 стена находится сверху, трубка выступает вниз в комнату; повороты 90/180/270 подходят для остальных стен. Центр корня разместите на 0,025 единицы внутрь комнаты от грани стены: сам источник света и звука должен быть перед стеной. Настройки скрытой калибровки Fixture и локальные положения Mount/Bulb вручную менять не нужно. Новый экземпляр получает слушателя через LevelContext своей сцены; в текущих сценах игрок также задан явно.
 
@@ -24,14 +24,14 @@
 
 | Сцена / лампа | Центр XY | Rotation Z | Длина | Свет: радиус / яркость | Звук: радиус |
 |---|---|---|---|---|---|
-| MechanicsSandbox / Ward lamp - muted cyan | 40.225; 3 | 90° | 0.75 | 1.45 / 0.28 | 2.0 |
-| MechanicsSandbox / Corridor lamp - warm ivory | 59.775; 3 | 270° | 0.55 | 1.45 / 0.28 | 2.0 |
-| MechanicsSandbox / Room 01 - cool tube | 0.225; 8 | 90° | 0.75 | 1.25 / 0.20 | 1.8 |
-| MechanicsSandbox / Room 02 - warm tube | 28; 15.775 | 0° | 0.55 | 1.20 / 0.21 | 1.6 |
-| MechanicsSandbox / Hall west - pale green tube | 6; −0.225 | 0° | 0.55 | 1.10 / 0.18 | 1.4 |
-| MechanicsSandbox / Hall east - cool white tube | 34; −0.225 | 0° | 0.55 | 1.30 / 0.22 | 1.7 |
-| BasementPrototype / Room A - cool tube | −2.4; 3.975 | 0° | 0.75 | 1.40 / 0.23 | 1.8 |
-| BasementPrototype / Basement hall - pale green tube | 6.3; −1.475 | 180° | 0.55 | 1.20 / 0.20 | 1.5 |
+| MechanicsSandbox / Ward lamp - muted cyan | 40.225; 3 | 90° | 1.25 | 1.45 / 0.28 | 2.0 |
+| MechanicsSandbox / Corridor lamp - warm ivory | 59.775; 3 | 270° | 1.0 | 1.45 / 0.28 | 2.0 |
+| MechanicsSandbox / Room 01 - cool tube | 0.225; 8 | 90° | 1.25 | 1.25 / 0.20 | 1.8 |
+| MechanicsSandbox / Room 02 - warm tube | 28; 15.775 | 0° | 1.0 | 1.20 / 0.21 | 1.6 |
+| MechanicsSandbox / Hall west - pale green tube | 6; −0.225 | 0° | 1.0 | 1.10 / 0.18 | 1.4 |
+| MechanicsSandbox / Hall east - cool white tube | 34; −0.225 | 0° | 1.0 | 1.30 / 0.22 | 1.7 |
+| BasementPrototype / Room A - cool tube | −2.4; 3.975 | 0° | 1.25 | 1.40 / 0.23 | 1.8 |
+| BasementPrototype / Basement hall - pale green tube | 6.3; −1.475 | 180° | 1.0 | 1.20 / 0.20 | 1.5 |
 
 В тире сохранилась группа `Hospital lamps - quiet near-field preview`; остальные добавлены в `Hospital lamps - scene configurations`. Room 02 работает ровно, у остальных разные фазы мерцания. Новые лампы используют приглушённые голубой, тёплый белый, зеленоватый и холодный белый оттенки. Свет остаётся местным и не получает защитных свойств фонаря.
 
@@ -39,4 +39,6 @@
 
 `LocalLampSceneSettings` — сериализуемые значения конкретного экземпляра. `LocalLampConfiguration2D` применяет их в Inspector/при запуске и сохраняет геометрию крепления; собственного Update у него нет. `LocalLamp2D` владеет питанием и яркостью, `LocalLampAudio2D` — двумя голосами, затуханием и последним контактом. Общие клипы остаются в LocalLampAudioSet. Без нового компонента прежние светильники продолжают использовать LocalLightProfile либо свои старые поля. При наличии компонента его Settings имеют приоритет.
 
-[Техническая проверка](../Validation/HospitalLampSceneConfig03.json). [Проба в коридоре](../Validation/HospitalLampSceneConfig03/MechanicsSandbox.png), [в комнате подвала](../Validation/HospitalLampSceneConfig03/BasementPrototype.png).
+Корпус использует отдельный **HospitalLampHousing** на стандартном освещаемом Sprite-Lit-Default, без собственного свечения. Чёрная однопиксельная маска материала исключает канал света трубок: Light2D этих ламп использует существующий Blend Style 2 — Multiply with Mask (R). Фонарь и остальные обычные источники на Blend Style 0 освещают корпус. Сами трубки и ореол остаются на TubeGlow; при отключении питания они гаснут. Маска — технические данные, исходные рисунки не изменены. Корпус рисуется order 3, трубка order 4, стены этих сцен order 2: крепления не пропадают за стеной из-за равного порядка. Эти технические настройки на prefab менять не нужно.
+
+[Текущая проверка](../Validation/HospitalLampVisibility04.json): [в темноте](../Validation/HospitalLampVisibility04/ward-dark.png), [под фонарём](../Validation/HospitalLampVisibility04/ward-flashlight.png), [без питания](../Validation/HospitalLampVisibility04/ward-power-off.png). [История конфигов и прежнего размера](../Validation/HospitalLampSceneConfig03.json).
