@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-18",
+  "scene": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+  "editor": "6000.6.5f1",
+  "changes": {
+    "removedPlacedLights": 15,
+    "newHospitalFixtures": 7,
+    "newExistingLibraryProps": 8,
+    "cardId": "service",
+    "cardXY": [
+      1.05,
+      2.25
+    ],
+    "doorXY": [
+      4.15,
+      0
+    ]
+  },
+  "preservation": {
+    "authoredEnemiesUnchanged": 13,
+    "originalGeometryPlayerPistolUnchanged": true,
+    "missingScripts": 0
+  },
+  "enemyAudit": {
+    "stalkers": 12,
+    "stalkerHP": 2,
+    "sleeperHP": 8,
+    "sleeperCount": 1,
+    "basementLightProfilesPreserved": 10,
+    "defaultLightProfilesPreserved": 2,
+    "runtimeReferencesAndHealthValid": true,
+    "positionDetectionAndPatrolSettingsUnchanged": true
+  },
+  "playChecks": {
+    "pistolAutoPickup": {
+      "owned": true,
+      "ammo": 8
+    },
+    "withoutCard": {
+      "available": true,
+      "opened": false,
+      "locked": true,
+      "closed": true
+    },
+    "cardAutoPickup": {
+      "hasCard": true,
+      "collected": true,
+      "hidden": true
+    },
+    "openWithCard": {
+      "opened": true,
+      "unlocked": true,
+      "cardRetained": true
+    },
+    "openPassage": {
+      "open": true,
+      "moving": false,
+      "passageClear": true
+    },
+    "closedPassage": {
+      "closed": true,
+      "blocks": true
+    },
+    "sleeperFlashlightResponse": {
+      "aggro": true,
+      "state": "Waking",
+      "exposure": 0.0
+    },
+    "stalkerRealBulletDeath": {
+      "dead": true,
+      "health": 0,
+      "state": "Dead"
+    },
+    "defaultStalkerFlashlightResponse": {
+      "state": "Retreating",
+      "eyeDamageObserved": true
+    }
+  },
+  "console": {
+    "finalErrors": 0,
+    "earlierBridgeWarnings": "Three MCP duplicate-command suppression warnings; no gameplay errors."
+  },
+  "method": "Unity MCP in the running Editor. Door/pickup checks isolate enemies temporarily; enemy checks use runtime Rigidbody constraints and disabled melee. No temporary components are saved. Authored state compared before/after and reloaded from disk.",
+  "limits": [
+    "Scene-only change: no player build performed.",
+    "No FPS or full-route difficulty claim.",
+    "No checkpoint or campaign controller added."
+  ],
+  "previews": {
+    "card": "BasementRefresh01/card-flashlight.png",
+    "lighting": "BasementRefresh01/lighting-overview.png"
+  }
+}

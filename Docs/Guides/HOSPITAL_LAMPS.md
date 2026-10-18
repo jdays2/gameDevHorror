@@ -30,10 +30,17 @@
 | MechanicsSandbox / Room 02 - warm tube | 28; 15.775 | 0° | 1.0 | 1.20 / 0.21 | 1.6 |
 | MechanicsSandbox / Hall west - pale green tube | 6; −0.225 | 0° | 1.0 | 1.10 / 0.18 | 1.4 |
 | MechanicsSandbox / Hall east - cool white tube | 34; −0.225 | 0° | 1.0 | 1.30 / 0.22 | 1.7 |
-| BasementPrototype / Room A - cool tube | −2.4; 3.975 | 0° | 1.25 | 1.40 / 0.23 | 1.8 |
-| BasementPrototype / Basement hall - pale green tube | 6.3; −1.475 | 180° | 1.0 | 1.20 / 0.20 | 1.5 |
+| BasementPrototype / A - pistol corner warm tube | −5.6; 3.975 | 0° | 1.25 | 2.80 / 0.48 | 2.0 |
+| BasementPrototype / A - records and card cool tube | 1.2; 3.975 | 0° | 1.1 | 2.60 / 0.40 | 2.0 |
+| BasementPrototype / A - south service tube | −5.9; −3.975 | 180° | 1.25 | 2.10 / 0.27 | 2.0 |
+| BasementPrototype / Hall - west service tube | 5.5; 1.475 | 0° | 1.1 | 1.90 / 0.30 | 2.0 |
+| BasementPrototype / Hall - east service tube | 8.5; −1.475 | 180° | 1.1 | 1.90 / 0.27 | 2.0 |
+| BasementPrototype / B - archive cool tube | 14.9; 3.975 | 0° | 1.1 | 2.80 / 0.43 | 2.0 |
+| BasementPrototype / B - storage warm tube | 15.7; −3.975 | 180° | 1.25 | 2.50 / 0.32 | 2.0 |
 
 В тире сохранилась группа `Hospital lamps - quiet near-field preview`; остальные добавлены в `Hospital lamps - scene configurations`. Room 02 работает ровно, у остальных разные фазы мерцания. Новые лампы используют приглушённые голубой, тёплый белый, зеленоватый и холодный белый оттенки. Свет остаётся местным и не получает защитных свойств фонаря.
+
+В BasementPrototype прежние 13 EmergencyLamp и две пробные трубки заменены группой `Basement lighting - hospital fixtures`. Три лампы над пистолетом, документами и архивом работают ровно; остальные мерцают с разными фазами. Свет ведёт к предметам и углам, середина комнат остаётся тёмной. Глобальная темнота и настройки других сцен не менялись. [Мини-уровень, карта и враги](LEVEL_AUTHORING.md#мини-уровень-basementprototype).
 
 ## Границы кода
 
