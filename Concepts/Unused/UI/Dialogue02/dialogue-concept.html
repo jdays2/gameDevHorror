@@ -1,0 +1,192 @@
+<div id="es-dialogue-two">
+ <div class="viz-carousel" aria-label="Новые направления диалогового интерфейса" data-previous-label="Назад" data-next-label="Далее">
+  <section data-variant="Кинематографичный" aria-label="Кинематографичный диалог"><div class="es2-stage" data-style="cinema"></div></section>
+  <section data-variant="Больничное досье" aria-label="Диалог в стиле больничного досье" hidden><div class="es2-stage" data-style="record"></div></section>
+ </div>
+</div>
+<style>
+#es-dialogue-two { --es2-paper:#e8e3d7; --es2-ink:#f2ede4; --es2-subtle:#b9b4ac; --es2-accent:#ce9f79; font-family:"Segoe UI",Arial,sans-serif; color:var(--es2-ink); }
+#es-dialogue-two * { box-sizing:border-box; }
+#es-dialogue-two [hidden] { display:none !important; }
+#es-dialogue-two button { font:inherit; color:inherit; cursor:inherit; }
+#es-dialogue-two .es2-stage { position:relative; isolation:isolate; container-type:inline-size; background:#161a1b; width:100%; min-height:630px; aspect-ratio:16/10; overflow:hidden; }
+#es-dialogue-two .es2-world { position:absolute; inset:0; background:radial-gradient(ellipse at 53% 20%,#626b6b55,transparent 55%),linear-gradient(90deg,#070b0d66,transparent 45%,#06090bb0),repeating-linear-gradient(0deg,transparent 0 83px,#101516 84px 85px),repeating-linear-gradient(90deg,#2a3030 0 83px,#151c1b 84px 85px); }
+#es-dialogue-two .es2-world::before { content:""; position:absolute; left:41%; top:0; bottom:0; width:18%; background:#11181b; border-left:8px solid #0b1012; border-right:8px solid #0b1012; box-shadow:0 0 60px #05090b; }
+#es-dialogue-two .es2-world::after { content:""; position:absolute; left:40.5%; top:24%; height:70px; width:3px; background:#b6c7c4; box-shadow:0 0 55px 13px #bbc9be33; }
+#es-dialogue-two .es2-veil { position:absolute; inset:0; background:linear-gradient(#05080b30,#05080b50 55%,#07090b); }
+#es-dialogue-two .es2-portrait { position:absolute; top:10%; bottom:7%; width:37%; color:#7e8581; opacity:.22; transition:opacity .25s,filter .25s; filter:brightness(.6); mask-image:linear-gradient(#000 55%,transparent 96%); }
+#es-dialogue-two .es2-portrait.left { left:7%; }
+#es-dialogue-two .es2-portrait.right { right:7%; }
+#es-dialogue-two .es2-portrait.speaking { opacity:1; filter:brightness(1); }
+#es-dialogue-two .es2-bust { position:absolute; inset:2% 0 0; filter:drop-shadow(1px 0 0 #dfdbd233); }
+#es-dialogue-two .es2-head { position:absolute; left:35%; top:2%; width:30%; height:25%; border-radius:44% 46% 39% 41%; background:linear-gradient(105deg,#adb1a6,#7f8782 32%,#545d5b 70%,#313d3d); clip-path:polygon(3% 0,96% 0,100% 58%,91% 78%,71% 96%,48% 100%,24% 91%,7% 75%,0 50%); }
+#es-dialogue-two .es2-neck { position:absolute; top:23%; left:43%; width:14%; height:12%; background:linear-gradient(90deg,#737d76,#34433f); }
+#es-dialogue-two .es2-torso { position:absolute; left:0; right:0; top:31%; height:77%; background:linear-gradient(105deg,#a0a69c,#66726b 28%,#434f4c 65%,#293738); clip-path:polygon(30% 1%,40% 0,48% 10%,58% 0,67% 2%,89% 12%,98% 30%,100% 100%,0 100%,2% 32%,10% 13%); }
+#es-dialogue-two .es2-torso::after { content:""; position:absolute; top:3%; left:48%; height:90%; width:1px; background:linear-gradient(#d4d6c826,transparent); }
+#es-dialogue-two .left .es2-head { background:linear-gradient(85deg,#65706c,#8a9288 50%,#3e4b49); }
+#es-dialogue-two .left .es2-torso { background:linear-gradient(100deg,#29393b,#5c6a66 55%,#263738); }
+#es-dialogue-two .es2-bottom { position:absolute; bottom:0; left:0; right:0; height:39%; background:linear-gradient(transparent,#090b0ee8 30%,#090b0e 75%); pointer-events:none; }
+#es-dialogue-two .es2-dialogue { position:absolute; bottom:28px; left:6%; right:6%; padding:24px 0 0; }
+#es-dialogue-two .es2-person { display:flex; align-items:center; gap:15px; margin-bottom:15px; }
+#es-dialogue-two .es2-person::before { content:""; height:1px; width:28px; background:var(--es2-accent); flex:none; }
+#es-dialogue-two .es2-name { font:500 15px/1.3 "Segoe UI",Arial,sans-serif; color:var(--es2-accent); letter-spacing:.14em; margin:0; text-transform:uppercase; }
+#es-dialogue-two .es2-role { display:none; }
+#es-dialogue-two .es2-text { margin:0; max-width:790px; font-size:clamp(20px,2.4cqw,26px); line-height:1.55; color:var(--es2-ink); font-weight:400; }
+#es-dialogue-two .es2-footer { display:flex; align-items:center; justify-content:flex-end; margin-top:20px; gap:14px; min-height:40px; }
+#es-dialogue-two .es2-next { display:flex; gap:18px; align-items:center; min-height:44px; border:0; padding:4px 0 4px 14px; background:transparent; font-size:12px; color:var(--es2-subtle); letter-spacing:.04em; }
+#es-dialogue-two .es2-next:hover { color:var(--es2-ink); }
+#es-dialogue-two .es2-key { font:11px/1.3 "Segoe UI",Arial,sans-serif; padding:5px 8px; border:1px solid #878782; border-radius:2px; }
+#es-dialogue-two .es2-arrow { font-size:23px; font-weight:400; color:var(--es2-accent); }
+#es-dialogue-two .es2-answers { display:grid; gap:8px; margin-top:20px; max-width:680px; }
+#es-dialogue-two .es2-answer { display:flex; align-items:baseline; gap:16px; text-align:left; padding:13px 16px; min-height:48px; border:1px solid #68665e; background:#15191d; color:#ece8de; font-size:16px; line-height:1.4; }
+#es-dialogue-two .es2-answer span { color:var(--es2-accent); font:12px/1.4 Consolas,monospace; flex:none; }
+#es-dialogue-two .es2-answer:hover,#es-dialogue-two .es2-answer:focus-visible { background:#35302b; border-color:var(--es2-accent); }
+#es-dialogue-two .es2-answer:active { background:#27231f; }
+#es-dialogue-two .es2-choice-hint { font-size:12px; color:var(--es2-subtle); }
+#es-dialogue-two .es2-stage.choosing .es2-bottom { height:65%; background:linear-gradient(transparent,#090b0ef5 20%,#090b0e 70%); }
+#es-dialogue-two .es2-talk { position:absolute; left:50%; top:52%; transform:translate(-50%,-50%); padding:13px 20px; border:1px solid #b5b1a8; background:#10171bf5; min-height:46px; font-size:14px; }
+#es-dialogue-two .es2-hud { position:absolute; left:6%; right:6%; bottom:35px; display:flex; justify-content:space-between; font:13px/1.7 Consolas,monospace; }
+#es-dialogue-two .es2-hud b { display:block; font-size:25px; font-weight:400; }
+#es-dialogue-two [data-style="record"] { --es2-accent:#9e4b3a; }
+#es-dialogue-two [data-style="record"] .es2-portrait { left:3%; right:auto; top:19%; width:37%; bottom:3%; mask-image:linear-gradient(#000 68%,transparent 98%); }
+#es-dialogue-two [data-style="record"] .es2-portrait:not(.speaking) { display:none; }
+#es-dialogue-two [data-style="record"] .es2-bottom { display:none; }
+#es-dialogue-two [data-style="record"] .es2-dialogue { display:flex; flex-direction:column; left:43%; right:5%; bottom:7%; min-height:405px; padding:34px; background:var(--es2-paper); color:#252a29; box-shadow:0 18px 60px #0005; border-top:4px solid var(--es2-accent); }
+#es-dialogue-two [data-style="record"] .es2-person { display:block; margin:0 0 25px; padding-bottom:22px; border-bottom:1px solid #b9b7aa; }
+#es-dialogue-two [data-style="record"] .es2-person::before { display:none; }
+#es-dialogue-two [data-style="record"] .es2-role { display:block; color:#745d51; font:11px/1.5 Consolas,monospace; text-transform:uppercase; letter-spacing:.12em; margin-bottom:10px; }
+#es-dialogue-two [data-style="record"] .es2-name { font:400 clamp(26px,3.1cqw,36px)/1.15 Georgia,"Times New Roman",serif; color:#282b28; letter-spacing:-.025em; text-transform:none; }
+#es-dialogue-two [data-style="record"] .es2-text { color:#30332d; font-size:clamp(18px,2cqw,22px); line-height:1.6; }
+#es-dialogue-two [data-style="record"] .es2-next { color:#5c6056; }
+#es-dialogue-two [data-style="record"] .es2-footer { margin-top:auto; padding-top:26px; }
+#es-dialogue-two [data-style="record"] .es2-answer { color:#30332d; background:#e0dccf; border:1px solid #acaa9e; font-size:15px; }
+#es-dialogue-two [data-style="record"] .es2-answer:hover,#es-dialogue-two [data-style="record"] .es2-answer:focus-visible { background:#d2caba; border-color:#9e4b3a; }
+#es-dialogue-two [data-style="record"] .es2-choice-hint { color:#5c6056; }
+#es-dialogue-two [data-style="record"].choosing .es2-dialogue { min-height:450px; padding-top:25px; }
+#es-dialogue-two [data-style="record"].choosing .es2-person { margin-bottom:15px; padding-bottom:16px; }
+@media(max-width:650px) {
+ #es-dialogue-two .es2-stage { min-height:720px; aspect-ratio:auto; }
+ #es-dialogue-two .es2-portrait { top:8%; bottom:21%; width:48%; }
+ #es-dialogue-two .es2-portrait.left { left:0; }
+ #es-dialogue-two .es2-portrait.right { right:0; }
+ #es-dialogue-two .es2-head { height:auto; aspect-ratio:.82; width:38%; left:31%; }
+ #es-dialogue-two .es2-neck { top:17%; height:16%; }
+ #es-dialogue-two .es2-dialogue { left:22px; right:22px; bottom:22px; }
+ #es-dialogue-two .es2-name { font-size:12px; letter-spacing:.09em; }
+ #es-dialogue-two .es2-text { font-size:19px; line-height:1.55; }
+ #es-dialogue-two .es2-person { gap:10px; }
+ #es-dialogue-two .es2-person::before { width:18px; }
+ #es-dialogue-two .es2-bottom { height:47%; }
+ #es-dialogue-two .es2-stage.choosing .es2-bottom { height:72%; }
+ #es-dialogue-two .es2-key { display:none; }
+ #es-dialogue-two .es2-answer { font-size:15px; gap:12px; padding:12px; }
+ #es-dialogue-two [data-style="record"] .es2-portrait { left:21%; top:3%; width:58%; bottom:24%; }
+ #es-dialogue-two [data-style="record"] .es2-dialogue { left:16px; right:16px; bottom:16px; min-height:330px; padding:23px; }
+ #es-dialogue-two [data-style="record"] .es2-name { font-size:28px; }
+ #es-dialogue-two [data-style="record"] .es2-person { margin-bottom:17px; padding-bottom:16px; }
+ #es-dialogue-two [data-style="record"] .es2-text { font-size:18px; }
+ #es-dialogue-two [data-style="record"] .es2-role { font-size:11px; letter-spacing:.04em; }
+ #es-dialogue-two [data-style="record"] .es2-footer { margin-top:auto; padding-top:15px; }
+ #es-dialogue-two [data-style="record"].choosing .es2-dialogue { min-height:450px; }
+}
+@media(prefers-reduced-motion:reduce) { #es-dialogue-two * { transition:none !important; } }
+</style>
+<script>
+(() => {
+ const root = document.getElementById('es-dialogue-two');
+ const lines = [
+  {side:'right',name:'Дежурный врач',role:'Медицинский персонал',text:'Не открывайте дверь. Что бы вы ни услышали с той стороны — не открывайте.'},
+  {side:'left',name:'Вы',role:'Собеседник',text:'Там кто-то просит о помощи.'},
+  {side:'right',name:'Дежурный врач',role:'Медицинский персонал',text:'Я тоже так думал. Пока оно не заговорило моим голосом.',choices:true},
+  {side:'right',name:'Дежурный врач',role:'Медицинский персонал',text:'Через служебный коридор. Держитесь рядом и не оборачивайтесь.'}
+ ];
+ const models=[];
+ const portrait=side=>'<div class="es2-portrait '+side+'" role="img" aria-label="Нейтральный силуэт '+(side==='left'?'игрока':'собеседника')+'"><div class="es2-bust"><div class="es2-neck"></div><div class="es2-torso"></div><div class="es2-head"></div></div></div>';
+ const saved=window.openai?.widgetState?.privateContent?.dialogue02;
+ root.querySelectorAll('.es2-stage').forEach(stage=>{
+  stage.innerHTML='<div class="es2-world" aria-hidden="true"></div><div class="es2-veil"></div>'+portrait('left')+portrait('right')+'<div class="es2-bottom"></div><div class="es2-dialogue" aria-label="Диалог"><div aria-live="polite" aria-atomic="true"><div class="es2-person"><span class="es2-role"></span><h3 class="es2-name"></h3></div><p class="es2-text"></p></div><div class="es2-answers" hidden><button type="button" class="es2-answer cursor-interaction" data-answer="exit"><span>01</span>Как нам отсюда выбраться?</button><button type="button" class="es2-answer cursor-interaction" data-answer="door"><span>02</span>Что находится за дверью?</button></div><div class="es2-footer"><span class="es2-choice-hint" hidden>Выберите ответ</span><button type="button" class="es2-next cursor-interaction"><span class="es2-action">Продолжить</span><span class="es2-key">Space</span><span class="es2-arrow" aria-hidden="true">→</span></button></div></div><div class="es2-hud" hidden><div>ЗДОРОВЬЕ<b>100 / 100</b></div><div>ПИСТОЛЕТ<b>8 / 24</b></div></div><button type="button" class="es2-talk cursor-interaction" hidden>Поговорить</button>';
+  const prior=saved?.[stage.dataset.style];
+  const model={stage,index:Number.isInteger(prior?.index)&&prior.index>=0&&prior.index<=4?prior.index:0,answer:prior?.answer==='door'?'door':'exit'};
+  models.push(model);
+  function save() {
+   if(!window.openai?.setWidgetState) return;
+   const state=Object.fromEntries(models.map(m=>[m.stage.dataset.style,{index:m.index,answer:m.answer}]));
+   window.openai.setWidgetState({modelContent:{concept:'Диалоги 02',direction:stage.dataset.style},privateContent:{dialogue02:state}}).catch(()=>{});
+  }
+  function render() {
+   const play=model.index===4;
+   const line=lines[Math.min(model.index,3)];
+   stage.classList.toggle('choosing',!play&&!!line.choices);
+   stage.querySelector('.es2-dialogue').hidden=play;
+   stage.querySelector('.es2-bottom').hidden=play;
+   stage.querySelector('.es2-veil').hidden=play;
+   stage.querySelector('.es2-hud').hidden=!play;
+   stage.querySelector('.es2-talk').hidden=!play;
+   stage.querySelectorAll('.es2-portrait').forEach(el=>{
+    el.hidden=play;
+    el.classList.toggle('speaking',el.classList.contains(line.side));
+   });
+   stage.querySelector('.es2-name').textContent=line.name;
+   stage.querySelector('.es2-role').textContent=line.role;
+   stage.querySelector('.es2-text').textContent=model.index===3&&model.answer==='door'?'Не знаю. Но оно помнит всё, что слышит. Больше не отвечайте ему.':line.text;
+   stage.querySelector('.es2-answers').hidden=!line.choices;
+   stage.querySelector('.es2-next').hidden=!!line.choices;
+   stage.querySelector('.es2-choice-hint').hidden=!line.choices;
+   stage.querySelector('.es2-action').textContent=model.index===3?'Закончить разговор':'Продолжить';
+  }
+  model.render=render;
+  function advance() {
+   if(model.index===4||lines[model.index].choices) return;
+   model.index+=1;
+   render();
+   const target=model.index===2?'.es2-answer':model.index===4?'.es2-talk':'.es2-next';
+   stage.querySelector(target).focus({preventScroll:true});
+   save();
+  }
+  stage.querySelector('.es2-next').addEventListener('click',advance);
+  stage.querySelector('.es2-talk').addEventListener('click',()=>{
+   model.index=0;
+   render();
+   stage.querySelector('.es2-next').focus({preventScroll:true});
+   save();
+  });
+  stage.querySelectorAll('.es2-answer').forEach(button=>button.addEventListener('click',()=>{
+   model.answer=button.dataset.answer;
+   model.index=3;
+   render();
+   stage.querySelector('.es2-next').focus({preventScroll:true});
+   save();
+  }));
+  stage.addEventListener('keydown',event=>{
+   if(event.repeat) { event.preventDefault(); return; }
+   if(model.index===2) {
+    const answers=Array.from(stage.querySelectorAll('.es2-answer'));
+    if(event.key==='1'||event.key==='2') { event.preventDefault(); answers[Number(event.key)-1].click(); }
+    if(event.key==='ArrowDown'||event.key==='ArrowUp') {
+     event.preventDefault();
+     const current=answers.indexOf(document.activeElement);
+     const delta=event.key==='ArrowDown'?1:-1;
+     answers[(current+delta+answers.length)%answers.length].focus({preventScroll:true});
+    }
+   }
+  });
+  render();
+  if(globalThis.Tweak) {
+   const design={accent:stage.dataset.style==='record'?'#9e4b3a':'#ce9f79'};
+   const tweak=new Tweak({container:stage,onChange:()=>stage.style.setProperty('--es2-accent',design.accent)});
+   tweak.addColorPicker(design,'accent',{label:'Акцент',reference:'--es2-accent'});
+  }
+ });
+ window.addEventListener('openai:set_globals',event=>{
+  const saved=event.detail?.globals?.widgetState?.privateContent?.dialogue02;
+  models.forEach(model=>{
+   const next=saved?.[model.stage.dataset.style];
+   if(Number.isInteger(next?.index)&&next.index>=0&&next.index<=4) {
+    model.index=next.index;
+    model.answer=next.answer==='door'?'door':'exit';
+    model.render();
+   }
+  });
+ });
+})();
+</script>
