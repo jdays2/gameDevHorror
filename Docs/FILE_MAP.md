@@ -210,3 +210,7 @@
 | `Tests/EditMode/SleeperTests.cs` | Неполные/противоречивые checkpoint payload второго вида и ещё не активированная особь. |
 
 | `Tests/EditMode/EnemyDeathAudioTests.cs` | Повторы между потребителями, независимость банков, пустые/единичные клипы и неизменность SO. |
+
+## Процедурная внутренняя отделка стен
+
+`Tools/Environment/prepare_wall_finishes_01.py` создаёт 9 исходников straight/corner/end и provenance. `Art/Environment/WallFinishes01` / `Prefabs/Environment/WallFinishes01` — три семейства, FlatLit, без Runtime-компонентов. Сохранённая группа MechanicsSandbox владеет расстановкой; физические преграды остаются на прежних Wall/Door. [Авторинг](Guides/INTERIOR_WALL_FINISHES.md).
