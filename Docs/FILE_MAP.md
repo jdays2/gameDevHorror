@@ -21,14 +21,16 @@
 | Файл | Назначение |
 |---|---|
 | `Runtime/Core/GameplayInputBlock.cs` | Захват модального игрового ввода с независимым освобождением владельцев. |
-| `Runtime/Dialogue/DialogueSequence.cs` | Общие данные говорящих и линейных реплик; валидация индексов и текста. |
+| `Runtime/Dialogue/DialogueSequence.cs` | Общий граф реплик/ответов со стабильными ID и валидацией целей. |
+| `Runtime/Dialogue/DialogueRun.cs` | Независимое прохождение графа и неизменяемые уведомления о переходах. |
+| `Runtime/Core/WorldMotionPause.cs` | Аренда остановки мира с восстановлением scale и сохранением фонового аудио. |
 | `Runtime/Dialogue/DialogueStyle.cs` | Шрифт, цвета, размеры и отступы диалога. |
 | `Runtime/Dialogue/DialogueSession.cs` | Позиция в беседе, пауза, сохранение/возврат HUD, прицела, курсора и ввода. |
 | `Runtime/Dialogue/DialogueInteraction2D.cs` | Точка разговора через существующий IInteractable/E. |
-| `Runtime/UI/DialogueView.cs` | Сохранённый uGUI: один активный портрет, текст и продолжение. |
-| `Runtime/UI/DialogueFadeGraphic.cs` | Верхний градиент подложки без новой текстуры. |
+| `Runtime/UI/DialogueView.cs` | uGUI: один активный портрет, текст, продолжение и кнопки ответов. |
+| `Runtime/UI/DialogueFadeGraphic.cs` | Плавный градиент тени по всей высоте фильтра без новой текстуры. |
 | `Editor/Authoring/DialogueSandboxAuthoring.cs` | Локальное добавление новой группы без генерации карты. |
-| `Tests/EditMode/DialogueDataTests.cs` | Независимые владельцы ввода и некорректные данные реплик. |
+| `Tests/EditMode/DialogueDataTests.cs` | Обе ветки/схождение, перестановка ID, независимость прохождений, неверные цели и владение паузой/вводом. |
 
 ### Остальные Runtime-файлы
 

@@ -52,6 +52,11 @@ namespace EmergencyShift
 
         private void Update()
         {
+            if (GameplayInputBlock.IsBlocked)
+            {
+                return;
+            }
+
             pointerValid = !scripted && Application.isFocused && Mouse.current != null && worldCamera != null;
             if (!pointerValid)
             {

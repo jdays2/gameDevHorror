@@ -24,7 +24,7 @@ namespace EmergencyShift
 
         private void LateUpdate()
         {
-            if (target == null)
+            if (target == null || Time.deltaTime <= 0)
             {
                 return;
             }

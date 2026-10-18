@@ -107,6 +107,7 @@ namespace EmergencyShift.Editor
             }
 
             AddInteraction(fixture.transform, session, content, font);
+            ConfigureBranchingView(fixture, style);
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
@@ -130,16 +131,143 @@ namespace EmergencyShift.Editor
                 new DialogueSequence.Speaker { displayName = "Дежурный врач" },
                 new DialogueSequence.Speaker { displayName = "Вы" }
             };
-            sequence.lines = new[]
-            {
-                new DialogueSequence.Line { speaker = 0, text = "Не открывайте дверь. Что бы вы ни услышали с той стороны — не открывайте." },
-                new DialogueSequence.Line { speaker = 1, text = "Там кто-то просит о помощи." },
-                new DialogueSequence.Line { speaker = 0, text = "Я тоже так думал. Пока оно не заговорило моим голосом." },
-                new DialogueSequence.Line { speaker = 1, text = "Тогда пойдём через служебный коридор. Я останусь рядом." }
-            };
-            sequence.Validate();
+            SetBranchingConversation(sequence);
             AssetDatabase.CreateAsset(sequence, path);
             return sequence;
+        }
+
+        private static void SetBranchingConversation(DialogueSequence sequence)
+        {
+            sequence.entryId = "warning";
+            sequence.lines = new[]
+            {
+                new DialogueSequence.Line
+                {
+                    id = "warning", speaker = 0, nextId = "question",
+                    text = "Не открывайте дверь. Что бы вы ни услышали с той стороны — не открывайте."
+                },
+                new DialogueSequence.Line
+                {
+                    id = "question", speaker = 0, text = "Вы ведь тоже слышали этот голос? Что будем делать?",
+                    choices = new[]
+                    {
+                        new DialogueSequence.Choice { id = "help", text = "Там просят о помощи. Я хочу проверить.", targetId = "help-reply" },
+                        new DialogueSequence.Choice { id = "leave", text = "Не будем рисковать. Найдём другой путь.", targetId = "leave-reply" }
+                    }
+                },
+                new DialogueSequence.Line
+                {
+                    id = "help-reply", speaker = 1, nextId = "help-warning",
+                    text = "Я не могу просто уйти, если там ещё кто-то живой."
+                },
+                new DialogueSequence.Line
+                {
+                    id = "help-warning", speaker = 0, nextId = "rejoin",
+                    text = "Я тоже так думал. Пока оно не заговорило моим голосом. Сначала заглянем через служебное окно."
+                },
+                new DialogueSequence.Line
+                {
+                    id = "leave-reply", speaker = 1, nextId = "leave-direction",
+                    text = "Хорошо. Дверь останется закрытой. Где ближайший выход?"
+                },
+                new DialogueSequence.Line
+                {
+                    id = "leave-direction", speaker = 0, nextId = "rejoin",
+                    text = "За постом есть служебный коридор. Если держаться вместе, мы доберёмся до лестницы."
+                },
+                new DialogueSequence.Line
+                {
+                    id = "rejoin", speaker = 1, text = "Тогда пойдём через служебный коридор. Я останусь рядом."
+                }
+            };
+            sequence.Validate();
+        }
+
+        [MenuItem("Emergency Shift/Sandbox/Update dialogue test with choices")]
+        public static void UpgradeDialogueTest()
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            if (Application.isPlaying || scene.path != SandboxSceneBuilder.ScenePath || scene.isDirty)
+            {
+                throw new InvalidOperationException("Stop Play, save edits, and open MechanicsSandbox first.");
+            }
+
+            var fixture = GameObject.Find(FixtureName);
+            if (fixture == null)
+            {
+                throw new InvalidOperationException("Add the dialogue test first.");
+            }
+
+            var content = PrepareSequence();
+            SetBranchingConversation(content);
+            EditorUtility.SetDirty(content);
+            var style = AssetDatabase.LoadAssetAtPath<DialogueStyle>(Root + "/Data/Dialogue/CinematicDialogueStyle.asset");
+            EditorUtility.SetDirty(style);
+            ConfigureBranchingView(fixture, style);
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            AssetDatabase.SaveAssets();
+        }
+
+        private static void ConfigureBranchingView(GameObject fixture, DialogueStyle style)
+        {
+            var view = fixture.GetComponentInChildren<DialogueView>(true);
+            Transform ui = view.transform;
+            var scrim = ui.Find("World dimmer").GetComponent<UnityEngine.UI.Image>();
+            scrim.color = Color.clear;
+            var background = scrim.GetComponent<UnityEngine.UI.Button>();
+            if (background == null)
+            {
+                background = scrim.gameObject.AddComponent<UnityEngine.UI.Button>();
+            }
+
+            background.targetGraphic = scrim;
+            background.transition = UnityEngine.UI.Selectable.Transition.None;
+            background.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.None };
+            Assign(view, "backgroundAdvance", background);
+
+            var backing = new SerializedObject(view).FindProperty("backdrop").objectReferenceValue as RectTransform;
+            backing.name = "Bottom shadow filter";
+            backing.GetComponent<UnityEngine.UI.Image>().enabled = false;
+            var fade = backing.GetComponentInChildren<DialogueFadeGraphic>(true);
+            if (fade.GetComponent<CanvasRenderer>() == null)
+            {
+                fade.gameObject.AddComponent<CanvasRenderer>();
+            }
+
+            Stretch(fade.rectTransform);
+            fade.color = style.shadowColor;
+            fade.raycastTarget = false;
+
+            var panel = ui.Find("Dialogue content");
+            var existing = panel.Find("Responses");
+            RectTransform choices = existing != null ? existing.GetComponent<RectTransform>() : Rect("Responses", panel);
+            Anchor(choices, Vector2.zero, Vector2.right, new Vector2(.5f, 0), Vector2.zero, new Vector2(0, 160));
+            var templateTransform = choices.Find("Response template");
+            UnityEngine.UI.Button template;
+            if (templateTransform == null)
+            {
+                var row = Image("Response template", choices, style.choiceColor);
+                Anchor(row.rectTransform, Vector2.up, Vector2.one, new Vector2(.5f, 1), Vector2.zero, new Vector2(0, style.choiceMinHeight));
+                row.raycastTarget = true;
+                template = row.gameObject.AddComponent<UnityEngine.UI.Button>();
+                template.targetGraphic = row;
+                var colors = template.colors;
+                colors.highlightedColor = new Color(1.5f, 1.4f, 1.25f, 1);
+                colors.selectedColor = colors.highlightedColor;
+                template.colors = colors;
+                var label = Text("Response label", row.transform, style.font, style.choiceSize, style.textColor);
+                Stretch(label.rectTransform);
+                label.alignment = TextAnchor.MiddleLeft;
+            }
+            else
+            {
+                template = templateTransform.GetComponent<UnityEngine.UI.Button>();
+            }
+
+            template.gameObject.SetActive(false);
+            Assign(view, "choicesRoot", choices);
+            Assign(view, "choiceTemplate", template);
         }
 
         private static DialogueStyle PrepareStyle(Font font)

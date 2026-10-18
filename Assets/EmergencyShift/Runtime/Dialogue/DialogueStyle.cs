@@ -18,5 +18,12 @@ namespace EmergencyShift
         [Min(0)] public float nameHeight = 36;
         [Min(0)] public float textGap = 24;
         [Min(44)] public float footerHeight = 64;
+        [Min(20)] public int choiceSize = 30;
+        [Min(44)] public float choiceMinHeight = 64;
+        [Min(0)] public float choiceGap = 12;
+        [Min(0)] public float choicePadding = 16;
+        public Color choiceColor = new Color(.11f, .12f, .14f, .65f);
+        public Color shadowColor = new Color(.015f, .022f, .035f, .97f);
+        [Min(1)] public float shadowExtraHeight = 360;
     }
 }

@@ -12,21 +12,26 @@ namespace EmergencyShift
         [SerializeField] private Canvas gameplayHud;
         [SerializeField] private AimReticle2D reticle;
         private DialogueSequence sequence;
+        private DialogueRun run;
         private IDisposable inputLease;
-        private float previousTimeScale;
+        private IDisposable motionLease;
         private bool previousHud;
         private bool previousReticle;
         private bool previousCursor;
         private bool waitingForRelease;
         private int changedFrame;
-        public bool IsOpen => sequence != null;
-        public int LineIndex { get; private set; }
+        public bool IsOpen => run != null && !run.IsComplete;
+        public int LineIndex => run == null ? -1 : run.LineIndex;
+        public string LineId => IsOpen ? run.Current.id : null;
+        public bool RequiresChoice => IsOpen && run.RequiresChoice;
+        public event Action<DialogueTransition> Transitioned;
 
         private void OnEnable()
         {
             if (view != null)
             {
                 view.AdvanceRequested += Advance;
+                view.ChoiceRequested += Choose;
             }
         }
 
@@ -35,6 +40,7 @@ namespace EmergencyShift
             if (view != null)
             {
                 view.AdvanceRequested -= Advance;
+                view.ChoiceRequested -= Choose;
             }
             Cancel();
         }
@@ -46,8 +52,7 @@ namespace EmergencyShift
                 return false;
             }
 
-            content.Validate();
-            previousTimeScale = Time.timeScale;
+            var nextRun = new DialogueRun(content);
             previousHud = gameplayHud.enabled;
             previousReticle = reticle != null && reticle.enabled;
             if (reticle != null)
@@ -59,11 +64,12 @@ namespace EmergencyShift
             inputLease = GameplayInputBlock.Acquire();
             gameplayHud.enabled = false;
             Cursor.visible = true;
-            Time.timeScale = 0;
+            motionLease = WorldMotionPause.Acquire();
             sequence = content;
-            LineIndex = 0;
+            run = nextRun;
             changedFrame = Time.frameCount;
             PresentLine();
+            Transitioned?.Invoke(run.LastTransition);
             return true;
         }
 
@@ -93,29 +99,47 @@ namespace EmergencyShift
 
         public void Advance()
         {
-            if (!IsOpen || Time.frameCount <= changedFrame)
+            if (!IsOpen || Time.frameCount <= changedFrame || !run.Advance())
             {
                 return;
             }
 
+            RefreshAfterTransition();
+        }
+
+        public void Choose(int index)
+        {
+            if (!IsOpen || Time.frameCount <= changedFrame || !run.Choose(index))
+            {
+                return;
+            }
+
+            RefreshAfterTransition();
+        }
+
+        private void RefreshAfterTransition()
+        {
             changedFrame = Time.frameCount;
-            if (LineIndex + 1 >= sequence.lines.Length)
+            var transition = run.LastTransition;
+            if (run.IsComplete)
             {
-                sequence = null;
                 view.Hide();
-                Time.timeScale = previousTimeScale;
+                motionLease.Dispose();
+                motionLease = null;
                 waitingForRelease = true;
-                return;
+            }
+            else
+            {
+                PresentLine();
             }
 
-            LineIndex++;
-            PresentLine();
+            Transitioned?.Invoke(transition);
         }
 
         private void PresentLine()
         {
-            var line = sequence.lines[LineIndex];
-            view.Present(sequence.speakers[line.speaker], line.text, LineIndex == sequence.lines.Length - 1);
+            var line = run.Current;
+            view.Present(sequence.speakers[line.speaker], line, string.IsNullOrEmpty(line.nextId));
         }
 
         public void Cancel()
@@ -125,13 +149,20 @@ namespace EmergencyShift
                 return;
             }
 
-            sequence = null;
+            bool cancelled = IsOpen;
+            run.Cancel();
+            var transition = run.LastTransition;
             if (view != null)
             {
                 view.Hide();
             }
-            Time.timeScale = previousTimeScale;
+            motionLease?.Dispose();
+            motionLease = null;
             ReleaseContext();
+            if (cancelled)
+            {
+                Transitioned?.Invoke(transition);
+            }
         }
 
         private void ReleaseContext()
@@ -149,6 +180,8 @@ namespace EmergencyShift
 
             inputLease.Dispose();
             inputLease = null;
+            run = null;
+            sequence = null;
         }
 
         private static bool ConfirmationHeld()

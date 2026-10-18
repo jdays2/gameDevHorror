@@ -1,0 +1,157 @@
+{
+  "date": "2026-10-18",
+  "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+  "implemented": [
+    "Stable-ID graph with two test branches and shared ending",
+    "Response selection by actual pointer and keyboard UI input",
+    "Click anywhere advances only ordinary lines",
+    "Scoped world motion freeze preserving ambient layers",
+    "Full-height smooth bottom shadow filter with CanvasRenderer",
+    "Transition notifications for future separate event adapters; no world effects"
+  ],
+  "editMode": {
+    "total": 80,
+    "passed": 80,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 2.4289981,
+    "resultState": "Passed"
+  },
+  "playMode": {
+    "worldTransformCount": 457,
+    "finished": true,
+    "passed": [
+      "Initial HUD visible",
+      "Ambient layer 0 initially playing",
+      "Ambient layer 1 initially playing",
+      "Ambient layer 2 initially playing",
+      "Reached warning",
+      "Modal context hides HUD and freezes world",
+      "All non-UI scene transforms frozen",
+      "Clock and gameplay shortcuts frozen",
+      "Weapon fire blocked",
+      "Ambient layer 0 continues without ducking",
+      "Ambient layer 1 continues without ducking",
+      "Ambient layer 2 continues without ducking",
+      "Listener state preserved",
+      "Reached question",
+      "Choice required",
+      "Reached question",
+      "Reached question",
+      "Reached help-reply",
+      "Reached help-warning",
+      "Reached rejoin",
+      "Finish fences held input and restores scale",
+      "Release restores HUD without shooting",
+      "Reached question",
+      "Reached leave-reply",
+      "Reached leave-direction",
+      "Reached rejoin",
+      "Second branch finishes",
+      "Stable choice notifications once per branch",
+      "Open from hidden HUD and custom scale",
+      "Cancel restores original context",
+      "Disabling owner releases context",
+      "Ordinary pause stops ambient 0",
+      "Ordinary pause stops ambient 1",
+      "Ordinary pause stops ambient 2",
+      "Ordinary resume restores ambient 0",
+      "Ordinary resume restores ambient 1",
+      "Ordinary resume restores ambient 2"
+    ],
+    "transitions": [
+      "Started::warning:",
+      "Advanced:warning:question:",
+      "ChoiceSelected:question:help-reply:help",
+      "Advanced:help-reply:help-warning:",
+      "Advanced:help-warning:rejoin:",
+      "Completed:rejoin::",
+      "Started::warning:",
+      "Advanced:warning:question:",
+      "ChoiceSelected:question:leave-reply:leave",
+      "Advanced:leave-reply:leave-direction:",
+      "Advanced:leave-direction:rejoin:",
+      "Completed:rejoin::",
+      "Started::warning:",
+      "Cancelled:warning::",
+      "Started::warning:",
+      "Cancelled:warning::"
+    ],
+    "width": 640,
+    "height": 480
+  },
+  "visual": {
+    "width": 3840,
+    "height": 2160,
+    "line": "question",
+    "hasRenderer": true,
+    "shadowWidth": 1920.0,
+    "shadowHeight": 695.0,
+    "shadowAlpha": 0.97,
+    "isCulled": false
+  },
+  "verificationCopyAfterStop": {
+    "playing": false,
+    "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+    "dirty": false,
+    "missingScripts": 0,
+    "savedDevelopmentProbes": 0,
+    "events": 1,
+    "scale": 1.0,
+    "blocked": false,
+    "motionPaused": false,
+    "dialogueVisible": false,
+    "hud": true
+  },
+  "sceneAudit": {
+    "changedFixtureDocuments": [
+      "1435247113",
+      "379336216",
+      "2116778591",
+      "379336218",
+      "242206602",
+      "986128424",
+      "2116778592",
+      "1435247115",
+      "2116778590"
+    ],
+    "addedFixtureDocuments": [
+      "1102906355",
+      "2116778593",
+      "1102906358",
+      "1102906356",
+      "1102906357",
+      "674853173",
+      "1435247117",
+      "2001749617",
+      "674853171",
+      "674853175",
+      "674853172",
+      "674853174",
+      "2001749616"
+    ],
+    "removedFixtureDocuments": [],
+    "otherChangedDocumentsLeftUnstaged": 1,
+    "otherNewDocumentsLeftUnstaged": 0,
+    "preservedOtherWorkingTreeChanges": true
+  },
+  "releaseBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 31.839761499999998
+  },
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "validationEnvironment": "EditMode in the project Editor; complete input regression, native GameView render and normal release build in an isolated copied project because another chat was testing HUD in the shared Editor.",
+  "consoleNotes": [
+    "No dialogue C# compilation errors. The first isolated Editor startup logged a UnityEditor.Search.SearchDatabase indexing exception; regression and release build completed afterward. Temporary verification helper and an existing Development probe emitted obsolete-API warnings; neither is included in release."
+  ],
+  "limits": [
+    "No game-event effects, conditions, journal, voice or dialogue save/resume",
+    "Not a campaign or performance validation",
+    "Long text and many answers still require future paging/scroll policy",
+    "Visual review is technical, not owner artistic approval"
+  ]
+}

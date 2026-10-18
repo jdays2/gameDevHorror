@@ -132,7 +132,7 @@ namespace EmergencyShift
                 return;
             }
 
-            bool wantPause = Time.timeScale <= 0 || AudioListener.pause;
+            bool wantPause = AudioListener.pause || (Time.timeScale <= 0 && !WorldMotionPause.PreservesAudioPlayback);
             if (wantPause)
             {
                 if (!paused && started)
