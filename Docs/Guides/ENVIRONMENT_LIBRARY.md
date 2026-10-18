@@ -4,7 +4,7 @@
 
 [MedicalRemains01](../../Concepts/Used/Environment/MedicalRemains01/README.md) — четыре prefab с отдельной плотью и густой кровью, в тестовом подвале и двумя наборами в MechanicsSandbox для осмотра при разном свете. Размер/альфа дочерних пятен меняются независимо от рисунка плоти.
 
-[PresenceTraces02](../../Concepts/Used/Environment/PresenceTraces02/README.md) — восемь полупрозрачных следов присутствия Сталкера и 11 экземпляров в MechanicsSandbox: лёгкие смазы, узкие костяные контакты, редкие цепочки и короткие повреждения. Декор без коллайдеров/скриптов, цвет/заметность задаются SpriteRenderer. [Первая процедурная проба](../../Concepts/Unused/Environment/FloorAftermath01/README.md) отклонена владельцем и в игру не переносится.
+[PresenceTraces02](../../Concepts/Used/Environment/PresenceTraces02/README.md) — восемь полупрозрачных следов и 11 экземпляров в MechanicsSandbox; художественно отклонены 2026-10-18, пока остаются в сцене. Декор без коллайдеров/скриптов, цвет/заметность задаются SpriteRenderer. [Новые примеры BloodTraces03](../../Concepts/Unused/Environment/BloodTraces03/README.md) — смаз, волочение, пятна и скользящие контакты с материалом действующей крови; подготовлены вне Unity. [Первая процедурная проба](../../Concepts/Unused/Environment/FloorAftermath01/README.md) также отклонена.
 
 ## Тени 2D: принятое решение и сохранённая альтернатива
 

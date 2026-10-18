@@ -1,6 +1,8 @@
 # Концепты и источники
 
-- [Следы присутствия 02](Used/Environment/PresenceTraces02/README.md) — лёгкие разводы, зацепы костяных остриёв и неровные цепочки контактов Сталкера. В MechanicsSandbox для оценки. [Набор 01 отклонён](Unused/Environment/FloorAftermath01/README.md).
+- [Кровавые смазы 03](Unused/Environment/BloodTraces03/README.md) — четыре новые процедурные пробы: смаз, волочение, пятна и скользящие контакты костяных лап; материал действующей крови. Примеры на бетоне/плитке, вне Unity, на оценку владельцем.
+
+- [Следы присутствия 02](Used/Environment/PresenceTraces02/README.md) — художественно отклонены 2026-10-18, прежние экземпляры пока остаются в MechanicsSandbox. [Набор 01 также отклонён](Unused/Environment/FloorAftermath01/README.md).
 
 - [Останки медработников 01](Used/Environment/MedicalRemains01/README.md) — четыре фрагмента с густой кровью в BasementPrototype и два набора в MechanicsSandbox: освещённая плитка и тёмный тир. Подключены для оценки владельцем.
 
