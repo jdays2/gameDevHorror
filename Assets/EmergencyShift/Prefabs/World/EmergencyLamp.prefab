@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 3751066749149831131}
   - component: {fileID: 374961123725586663}
   - component: {fileID: 1102751245609263199}
+  - component: {fileID: 7125744908495306993}
   m_Layer: 0
   m_Name: EmergencyLamp
   m_TagString: Untagged
@@ -148,7 +149,7 @@ MonoBehaviour:
     rid: 3250315001632129122
   m_FalloffIntensity: 0.5
   m_Color: {r: 0.7, g: 0.53, b: 0.31, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 1.2
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000i
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
   m_UseNormalMap: 0
-  m_ShadowsEnabled: 1
+  m_ShadowsEnabled: 0
   m_ShadowIntensity: 1
   m_ShadowSoftness: 0.3
   m_ShadowSoftnessFalloffIntensity: 0.5
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.12
-  m_PointLightOuterRadius: 1.8
+  m_PointLightOuterRadius: 3.4
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -214,8 +215,8 @@ MonoBehaviour:
   source: {fileID: 374961123725586663}
   bulb: {fileID: 791859546971223761}
   color: {r: 0.7, g: 0.53, b: 0.31, a: 1}
-  radius: 1.8
-  intensity: 0.5
+  radius: 3.4
+  intensity: 1.2
   startsOn: 1
   flickers: 0
   phase: 0
@@ -311,3 +312,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &7125744908495306993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5996587534920373808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4653f674ec13b4bb753360e080155d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.CeilingLightOcclusion2D
+  ceilingLighting: 1
+  automaticallyFindBlockers: 1
+  fullHeightBlockers: []

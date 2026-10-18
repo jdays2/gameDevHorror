@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -10,8 +11,13 @@ namespace EmergencyShift
     {
         private const int Resolution = 128;
         private const int RayCount = 512;
-        [SerializeField, Tooltip("Full-height rectangular walls and moving door leaves. Exclude desks and other low furniture.")]
+        [SerializeField, Tooltip("Ceiling light passes above low furniture. Disable for a low wall or desk light with ordinary planar shadows.")]
+        private bool ceilingLighting = true;
+        [SerializeField, Tooltip("Use marked full-height walls and doors from this scene automatically.")]
+        private bool automaticallyFindBlockers = true;
+        [SerializeField, Tooltip("Additional full-height rectangles, or the complete list when automatic discovery is off. Exclude low furniture.")]
         private BoxCollider2D[] fullHeightBlockers = new BoxCollider2D[0];
+        private readonly List<BoxCollider2D> blockers = new List<BoxCollider2D>();
         private LocalLamp2D lamp;
         private Light2D source;
         private Texture2D texture;
@@ -20,12 +26,24 @@ namespace EmergencyShift
         private readonly float[] distances = new float[RayCount];
         private readonly Color32[] pixels = new Color32[Resolution * Resolution];
         private int previousGeometry;
+        private int registryVersion = -1;
         private bool initialized;
+        private bool maskApplied;
+
+        public bool CeilingLighting => ceilingLighting;
+        public int BlockerCount => blockers.Count;
+
+        public void SetCeilingLighting(bool value)
+        {
+            ceilingLighting = value;
+            Refresh();
+        }
 
         public void Configure(BoxCollider2D[] blockers)
         {
             fullHeightBlockers = blockers;
             initialized = false;
+            registryVersion = -1;
             Refresh();
         }
 
@@ -35,19 +53,42 @@ namespace EmergencyShift
             source = GetComponent<Light2D>();
             originalCookie = source.lightCookieSprite;
             initialized = false;
+            registryVersion = -1;
             Refresh();
+        }
+
+        private void Update()
+        {
+            if (!Application.isPlaying)
+            {
+                Refresh();
+            }
         }
 
         private void LateUpdate()
         {
-            Refresh();
+            if (Application.isPlaying)
+            {
+                Refresh();
+            }
         }
 
         private void Refresh()
         {
-            if (source == null || lamp == null || fullHeightBlockers == null || fullHeightBlockers.Length == 0)
+            if (source == null || lamp == null)
             {
                 return;
+            }
+
+            if (!ceilingLighting)
+            {
+                RestorePlanarLighting();
+                return;
+            }
+
+            if (!initialized || registryVersion != FullHeightLightBlocker2D.RegistryVersion)
+            {
+                ResolveBlockers();
             }
 
             int geometry = GeometryHash();
@@ -61,6 +102,36 @@ namespace EmergencyShift
             // LocalLamp owns power, colour and flicker. The cookie replaces planar furniture shadows.
             source.shadowsEnabled = false;
             source.lightCookieSprite = cookie;
+            maskApplied = true;
+        }
+
+        private void ResolveBlockers()
+        {
+            blockers.Clear();
+            if (automaticallyFindBlockers)
+            {
+                FullHeightLightBlocker2D.CollectFor(this, blockers);
+            }
+
+            if (fullHeightBlockers != null)
+            {
+                foreach (var blocker in fullHeightBlockers)
+                {
+                    if (blocker != null && !blockers.Contains(blocker))
+                    {
+                        blockers.Add(blocker);
+                    }
+                }
+            }
+
+            registryVersion = FullHeightLightBlocker2D.RegistryVersion;
+            initialized = false;
+        }
+
+        private void OnValidate()
+        {
+            initialized = false;
+            registryVersion = -1;
         }
 
         private int GeometryHash()
@@ -68,7 +139,7 @@ namespace EmergencyShift
             unchecked
             {
                 int hash = transform.localToWorldMatrix.GetHashCode() * 31 + lamp.Radius.GetHashCode();
-                foreach (var blocker in fullHeightBlockers)
+                foreach (var blocker in blockers)
                 {
                     if (blocker == null)
                     {
@@ -92,7 +163,7 @@ namespace EmergencyShift
             {
                 float angle = i * Mathf.PI * 2 / RayCount;
                 Vector3 direction = transform.rotation * new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0);
-                distances[i] = VisibleDistance(transform.position, direction, radius, fullHeightBlockers);
+                distances[i] = VisibleDistance(transform.position, direction, radius, blockers);
             }
 
             float texelSize = radius * 2 / Resolution;
@@ -126,7 +197,7 @@ namespace EmergencyShift
             texture.Apply(false, false);
         }
 
-        public static float VisibleDistance(Vector2 origin, Vector2 direction, float range, BoxCollider2D[] blockers)
+        public static float VisibleDistance(Vector2 origin, Vector2 direction, float range, IReadOnlyList<BoxCollider2D> blockers)
         {
             float nearest = range;
             foreach (var blocker in blockers)
@@ -166,13 +237,25 @@ namespace EmergencyShift
             return enter <= exit;
         }
 
-        private void OnDisable()
+        private void RestorePlanarLighting()
         {
+            if (!maskApplied)
+            {
+                return;
+            }
+
             if (source != null && source.lightCookieSprite == cookie)
             {
                 source.lightCookieSprite = originalCookie;
             }
 
+            lamp.RefreshAppearance();
+            maskApplied = false;
+        }
+
+        private void OnDisable()
+        {
+            RestorePlanarLighting();
             UnityEngine.Rendering.CoreUtils.Destroy(cookie);
             UnityEngine.Rendering.CoreUtils.Destroy(texture);
             cookie = null;

@@ -6,6 +6,39 @@ namespace EmergencyShift.Tests
     public sealed class CeilingLightOcclusionTests
     {
         [Test]
+        public void AutomaticBlockersStayInTheirSceneAndUnregisterWhenDisabled()
+        {
+            var first = UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();
+            var second = UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var owner = new GameObject("Lamp owner");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(owner, first);
+                var ownWall = new GameObject("Own full-height wall");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(ownWall, first);
+                ownWall.AddComponent<FullHeightLightBlocker2D>();
+                var otherWall = new GameObject("Other scene wall");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(otherWall, second);
+                otherWall.AddComponent<FullHeightLightBlocker2D>();
+                var found = new System.Collections.Generic.List<BoxCollider2D>();
+                FullHeightLightBlocker2D.CollectFor(owner.transform, found);
+                Assert.That(found, Has.Count.EqualTo(1));
+                Assert.That(found[0].gameObject, Is.EqualTo(ownWall));
+                int version = FullHeightLightBlocker2D.RegistryVersion;
+                ownWall.SetActive(false);
+                found.Clear();
+                FullHeightLightBlocker2D.CollectFor(owner.transform, found);
+                Assert.That(found, Is.Empty);
+                Assert.That(FullHeightLightBlocker2D.RegistryVersion, Is.GreaterThan(version));
+            }
+            finally
+            {
+                UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(second);
+                UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(first);
+            }
+        }
+
+        [Test]
         public void CeilingLightIgnoresLowDeskButStopsAtWallAndMovingDoor()
         {
             var wall = new GameObject("Full height wall");

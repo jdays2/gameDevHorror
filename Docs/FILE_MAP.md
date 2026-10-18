@@ -195,6 +195,7 @@
 
 - `Runtime/World/Lighting/CeilingLightOcclusion2D.cs`
 - `Runtime/World/Lighting/Flashlight2D.cs`
+- `Runtime/World/Lighting/FullHeightLightBlocker2D.cs`
 - `Runtime/World/Lighting/LocalLamp2D.cs`
 - `Runtime/World/Lighting/LocalLampAudio2D.cs`
 - `Runtime/World/Lighting/LocalLampConfiguration2D.cs`

@@ -11,9 +11,9 @@ namespace EmergencyShift
         [ColorUsage(false)]
         public Color color = new Color(.52f, .76f, .78f);
         [Min(.2f), Tooltip("World units; independent of the fixture length.")]
-        public float lightRadius = 1.45f;
+        public float lightRadius = 3.4f;
         [Min(0)]
-        public float intensity = .28f;
+        public float intensity = 1.2f;
         public bool castsShadows = true;
         public bool startsOn = true;
         public bool flickers = true;

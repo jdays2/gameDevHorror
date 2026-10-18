@@ -20,9 +20,11 @@ namespace EmergencyShift
         [SerializeField]
         private Color color = new Color(.70f, .53f, .31f);
         [SerializeField, Min(.2f)]
-        private float radius = 1.8f;
+        private float radius = 3.4f;
         [SerializeField, Min(0)]
-        private float intensity = .5f;
+        private float intensity = 1.2f;
+        [SerializeField]
+        private bool castsShadows = true;
         [SerializeField]
         private bool startsOn = true;
         [SerializeField]
@@ -55,6 +57,11 @@ namespace EmergencyShift
                 powered = settings.startsOn;
             }
 
+            Apply();
+        }
+
+        public void RefreshAppearance()
+        {
             Apply();
         }
 
@@ -160,6 +167,10 @@ namespace EmergencyShift
             else if (profile != null)
             {
                 source.shadowsEnabled = profile.castsShadows;
+            }
+            else
+            {
+                source.shadowsEnabled = castsShadows;
             }
             if (bulb != null)
             {

@@ -1,0 +1,213 @@
+{
+  "date": "2026-10-18",
+  "lampStandard": {
+    "prefabs": [
+      "Environment/HospitalLamp01",
+      "Environment/HospitalLampCorridor01",
+      "World/EmergencyLamp"
+    ],
+    "defaultRadius": 3.4,
+    "defaultIntensity": 1.2,
+    "ceilingModeDefault": true,
+    "automaticSceneScopedWallsAndDoors": true,
+    "manualExtraBlockersAndPlanarModeSupported": true
+  },
+  "freshRuntimePrefabChecks": {
+    "freshPrefab": {
+      "mode": true,
+      "automatic": true,
+      "manualReferences": 0
+    },
+    "blockerCount": 18,
+    "ceilingOverDesk": 1.0,
+    "outsideWall": 0.0,
+    "closedDoor": 0.0,
+    "openDoor": 1.0,
+    "beforeNewWall": 1.0,
+    "afterNewWall": 0.0,
+    "afterDisableWall": 1.0,
+    "lowMode": {
+      "planarShadows": true,
+      "cookieRestored": true
+    },
+    "returnToCeiling": true,
+    "console": {
+      "success": true,
+      "message": "Retrieved 0 log entries.",
+      "data": []
+    }
+  },
+  "allPrefabModeSwitchChecks": [
+    {
+      "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalLamp01.prefab",
+      "lowMode": true,
+      "ceilingMode": true
+    },
+    {
+      "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalLampCorridor01.prefab",
+      "lowMode": true,
+      "ceilingMode": true
+    },
+    {
+      "path": "Assets/EmergencyShift/Prefabs/World/EmergencyLamp.prefab",
+      "lowMode": true,
+      "ceilingMode": true
+    }
+  ],
+  "camera": {
+    "cameraStart": {
+      "range": 4.2,
+      "size": 4.6,
+      "expected": 4.6,
+      "followEnabled": true
+    },
+    "pickupOne": {
+      "collected": true,
+      "range": 4.79999971,
+      "modules": 1
+    },
+    "cameraAfterOne": {
+      "range": 4.79999971,
+      "size": 5.199905,
+      "shortViewportHalfExtent": 5.199905
+    },
+    "pickupTwo": {
+      "collected": true,
+      "range": 5.39999962,
+      "modules": 2
+    },
+    "cameraAfterTwo": {
+      "range": 5.39999962,
+      "size": 5.79991341,
+      "shortViewportHalfExtent": 5.79991341
+    }
+  },
+  "cameraRootCause": "Standalone BasementPrototype CameraFollow2D had no CameraFramingProfile; the existing zoom path returned before updating orthographicSize.",
+  "cameraAuthoring": "Settings/CameraFraming.asset assigned to LevelRig and all three gameplay scenes; margin .4, zoom smoothing .35. Camera reads the player flashlight range without changing the profile asset.",
+  "sceneAudit": [
+    {
+      "path": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+      "missingScripts": 0,
+      "cameras": [
+        {
+          "name": "Main Camera",
+          "enabled": true,
+          "profile": true,
+          "target": true
+        }
+      ],
+      "lamps": [
+        {
+          "name": "A - pistol corner warm tube",
+          "ceilingComponents": 1,
+          "ceiling": true
+        },
+        {
+          "name": "A - records and card cool tube",
+          "ceilingComponents": 1,
+          "ceiling": true
+        },
+        {
+          "name": "A - south service tube",
+          "ceilingComponents": 1,
+          "ceiling": true
+        },
+        {
+          "name": "Hall - west service tube",
+          "ceilingComponents": 1,
+          "ceiling": true
+        },
+        {
+          "name": "Hall - east service tube",
+          "ceilingComponents": 1,
+          "ceiling": true
+        },
+        {
+          "name": "B - archive cool tube",
+          "ceilingComponents": 1,
+          "ceiling": true
+        },
+        {
+          "name": "B - storage warm tube",
+          "ceilingComponents": 1,
+          "ceiling": true
+        }
+      ]
+    },
+    {
+      "path": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+      "missingScripts": 0,
+      "cameras": [
+        {
+          "name": "Main Camera",
+          "enabled": true,
+          "profile": true,
+          "target": true
+        }
+      ],
+      "lamps": [
+        {
+          "name": "Ward lamp - muted cyan",
+          "ceilingComponents": 1,
+          "ceiling": true
+        },
+        {
+          "name": "Corridor lamp - warm ivory",
+          "ceilingComponents": 1,
+          "ceiling": true
+        }
+      ]
+    },
+    {
+      "path": "Assets/EmergencyShift/Scenes/LevelTemplate.unity",
+      "missingScripts": 0,
+      "cameras": [
+        {
+          "name": "Main Camera",
+          "enabled": true,
+          "profile": true,
+          "target": true
+        }
+      ],
+      "lamps": []
+    }
+  ],
+  "preservation": [
+    {
+      "scene": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+      "authoredTransformRecordsPreserved": 91
+    },
+    {
+      "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+      "authoredTransformRecordsPreserved": 141
+    },
+    {
+      "scene": "Assets/EmergencyShift/Scenes/LevelTemplate.unity",
+      "authoredTransformRecordsPreserved": 6
+    }
+  ],
+  "prefabAssetsUnchangedByPlayChecks": true,
+  "editMode": {
+    "total": 86,
+    "passed": 86,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 4.3648377,
+    "resultState": "Passed"
+  },
+  "releaseBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 24.4307494
+  },
+  "limits": [
+    "Full-height occlusion uses marked BoxCollider2D rectangles; custom walls need the marker or explicit references.",
+    "Low furniture finite-height contact shadows are not simulated.",
+    "No performance claim from these checks."
+  ],
+  "previews": [
+    "LampPrefabAndCamera03/camera-before-upgrade.png",
+    "LampPrefabAndCamera03/camera-after-upgrade.png"
+  ]
+}
