@@ -1,6 +1,6 @@
 # Карта файлов
 
-Свечение открытых настенных трубок: `Materials/TubeGlow.shader` рисует локальное белое ядро/цветную оболочку/ореол; `Materials/HospitalTubeGlow.mat` хранит общие силы трёх слоёв. Цвет и включение задаёт прежний Bulb/LocalLamp2D. Отдельного runtime-контроллера не добавлено.
+Свечение открытых настенных трубок: `Materials/TubeGlow.shader` рисует локальное белое ядро/цветную оболочку/ореол; `Materials/HospitalTubeGlow.mat` хранит общие силы трёх слоёв. Цвет и включение задаёт прежний Bulb/LocalLamp2D. LocalLampConfiguration2D применяет настройки экземпляра без отдельного Update; свечение по-прежнему следует существующему Bulb/LocalLamp2D.
 
 Пути относительно Assets/EmergencyShift. Получены из фактического дерева исходников; основная сцена — MechanicsSandbox.
 
@@ -27,6 +27,8 @@
 | `Runtime/Definitions/GoreProfile.cs` | Составы останков и выбор новых смертей; исторические ID могут быть доступны только восстановлению. |
 | `Runtime/Definitions/LevelCatalog.cs` | LevelCatalog |
 | `Runtime/Definitions/LevelDefinition.cs` | LevelDefinition |
+| `Runtime/Definitions/LocalLampSceneSettings.cs` | Inline-настройки света, слышимости и длины отдельной лампы сцены; валидация/затухание. |
+| `Runtime/Definitions/LocalLightProfile.cs` | Неизменяемый общий профиль обычных светильников: цвет/радиус/яркость/интервалы мерцания. |
 | `Runtime/Definitions/LocalLampAudioSet.cs` | Общие записанные клипы лампы, тихий микс и дистанции слышимости; без состояния проигрывания. |
 | `Runtime/Definitions/MagazineWeaponDefinition.cs` | MagazineWeaponDefinition |
 | `Runtime/Definitions/PlayerAudioSet.cs` | Pickup cues are live; combat candidates can be auditioned before enabling gameplay audio. |
@@ -122,6 +124,7 @@
 | `Runtime/World/Doors/DoorAccess2D.cs` | Optional lock. The door still owns interaction, movement, collision and audio. |
 | `Runtime/World/Doors/DoorAudio2D.cs` | Recorded rail movement follows actual door events; two saved voices, no timed fake close. |
 | `Runtime/World/Lighting/Flashlight2D.cs` | Управляет направлением, оптикой и обоими источниками света фонаря. |
+| `Runtime/World/Lighting/LocalLampConfiguration2D.cs` | Применение Settings экземпляра и масштабирование Fixture с сохранением крепления; Gizmos радиусов. |
 | `Runtime/World/Lighting/LocalLamp2D.cs` | Слабый локальный свет. Помогает видеть/подбирать, но не заменяет защитный луч фонаря. |
 | `Runtime/World/Lighting/LocalLampAudio2D.cs` | Два голоса, XY-затухание/стена, гул и контакты по фактической яркости; cleanup экземпляра. |
 | `Runtime/World/Loot/AccessCardPickup2D.cs` | AccessCardPickup2D |
@@ -165,6 +168,7 @@
 | `Tests/EditMode/GoreCompositionTests.cs` | Новые смерти без повторных ног/старого тела, 8–10 кусков плоти и исключение архивных составов. |
 | `Tests/EditMode/EnemySystemsTests.cs` | EnemySystemsTests |
 | `Tests/EditMode/MagazineWeaponTests.cs` | MagazineWeaponTests |
+| `Tests/EditMode/LocalLampSceneSettingsTests.cs` | Независимость радиусов/отключение звука, ровный свет и валидация входных настроек. |
 | `Tests/EditMode/LocalLampAudioTests.cs` | Близкая слышимость, плавное затухание и неизменность общего микса. |
 | `Tests/EditMode/PersistenceTests.cs` | PersistenceTests |
 | `Tests/EditMode/WeaponCycleTests.cs` | WeaponCycleTests |

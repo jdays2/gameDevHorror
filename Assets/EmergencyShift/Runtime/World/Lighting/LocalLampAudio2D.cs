@@ -25,7 +25,17 @@ namespace EmergencyShift
         private bool wasLit;
         private int lastContact = -1;
         private float lastContactTime = float.NegativeInfinity;
+        private LocalLampSceneSettings sceneSettings;
         public int ContactsPlayed { get; private set; }
+        private float HearingDistance => sceneSettings != null ? sceneSettings.soundRadius : sounds.hearingDistance;
+        private float HumVolume => sceneSettings != null ? sceneSettings.humVolume : sounds.humVolume;
+        private float ContactVolume => sceneSettings != null ? sceneSettings.contactVolume : sounds.contactVolume;
+
+        public void ConfigureScene(LocalLampSceneSettings settings)
+        {
+            settings.Validate();
+            sceneSettings = settings;
+        }
 
         public void Configure(LocalLampAudioSet set, Light2D light, AudioSource hum, AudioSource contact)
         {
@@ -104,14 +114,14 @@ namespace EmergencyShift
             float intensity = sourceLight.isActiveAndEnabled ? sourceLight.intensity : 0;
             bool lit = intensity > sounds.darkThreshold;
             Vector2 delta = (Vector2)transform.position - (Vector2)listener.position;
-            float gain = sounds.DistanceGain(delta.magnitude);
+            float gain = sceneSettings != null ? sceneSettings.SoundGain(delta.magnitude) : sounds.DistanceGain(delta.magnitude);
             if (gain > 0 && Physics2D.Linecast(transform.position, listener.position, soundBlockingLayers).collider != null)
             {
                 gain = 0;
             }
 
-            contactSource.volume = sounds.contactVolume * gain;
-            float pan = Mathf.Clamp(delta.x / sounds.hearingDistance, -.5f, .5f);
+            contactSource.volume = ContactVolume * gain;
+            float pan = Mathf.Clamp(delta.x / Mathf.Max(HearingDistance, .001f), -.5f, .5f);
             humSource.panStereo = pan;
             contactSource.panStereo = pan;
             UpdateHum(intensity, gain);
@@ -128,7 +138,7 @@ namespace EmergencyShift
 
         private void UpdateHum(float intensity, float gain)
         {
-            if (gain <= 0 || intensity <= sounds.darkThreshold)
+            if (gain <= 0 || intensity <= sounds.darkThreshold || HumVolume <= 0)
             {
                 humSource.volume = 0;
                 if (humSource.isPlaying)
@@ -146,10 +156,11 @@ namespace EmergencyShift
                 humSource.Play();
             }
 
-            float brightness = Mathf.Clamp01(intensity / sounds.referenceIntensity);
-            float target = sounds.humVolume * brightness * gain;
+            float referenceIntensity = sceneSettings != null ? Mathf.Max(sceneSettings.intensity, .01f) : sounds.referenceIntensity;
+            float brightness = Mathf.Clamp01(intensity / referenceIntensity);
+            float target = HumVolume * brightness * gain;
             humSource.volume = Mathf.MoveTowards(humSource.volume, target,
-                Time.deltaTime * sounds.humVolume / sounds.humFadeSeconds);
+                Time.deltaTime * HumVolume / sounds.humFadeSeconds);
         }
 
         private void PlayContact()

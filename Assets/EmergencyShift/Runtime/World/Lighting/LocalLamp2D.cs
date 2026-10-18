@@ -15,6 +15,8 @@ namespace EmergencyShift
         private Light2D source;
         [SerializeField]
         private SpriteRenderer bulb;
+        [SerializeField, Tooltip("Optional shared appearance. Legacy scene tuning is retained when absent.")]
+        private LocalLightProfile profile;
         [SerializeField]
         private Color color = new Color(.70f, .53f, .31f);
         [SerializeField, Min(.2f)]
@@ -28,9 +30,40 @@ namespace EmergencyShift
         [SerializeField]
         private float phase;
         private bool powered;
+        private LocalLampSceneSettings sceneSettings;
         public Vector2 Origin => transform.position;
-        public float Radius => radius;
+        public float Radius
+        {
+            get
+            {
+                if (sceneSettings != null)
+                {
+                    return sceneSettings.lightRadius;
+                }
+
+                return profile != null ? profile.radius : radius;
+            }
+        }
         public float CurrentIntensity => source != null && source.enabled ? source.intensity : 0;
+
+        public void ConfigureScene(LocalLampSceneSettings settings)
+        {
+            settings.Validate();
+            sceneSettings = settings;
+            if (!Application.isPlaying)
+            {
+                powered = settings.startsOn;
+            }
+
+            Apply();
+        }
+
+        public void SetProfile(LocalLightProfile appearance)
+        {
+            appearance.Validate();
+            profile = appearance;
+            Apply();
+        }
 
         public void Configure(Light2D light, SpriteRenderer marker, Color tint, bool unstable)
         {
@@ -43,7 +76,12 @@ namespace EmergencyShift
 
         private void Awake()
         {
-            powered = startsOn;
+            if (profile != null)
+            {
+                profile.Validate();
+            }
+
+            powered = sceneSettings != null ? sceneSettings.startsOn : startsOn;
             Apply();
         }
 
@@ -56,7 +94,7 @@ namespace EmergencyShift
 
             if (!Application.isPlaying)
             {
-                powered = startsOn;
+                powered = sceneSettings != null ? sceneSettings.startsOn : startsOn;
             }
 
             Apply();
@@ -82,7 +120,7 @@ namespace EmergencyShift
             intensity = Mathf.Max(0, intensity);
             if (!Application.isPlaying)
             {
-                powered = startsOn;
+                powered = sceneSettings != null ? sceneSettings.startsOn : startsOn;
             }
 
             Apply();
@@ -101,17 +139,38 @@ namespace EmergencyShift
             }
 
             source.lightType = Light2D.LightType.Point;
-            source.color = color;
+            source.color = profile != null ? profile.color : color;
             source.pointLightOuterAngle = 360;
             source.pointLightInnerAngle = 360;
-            source.pointLightOuterRadius = radius;
+            source.pointLightOuterRadius = Radius;
             source.pointLightInnerRadius = .12f;
-            source.intensity = powered ? intensity : 0;
+            float strength = profile != null ? profile.intensity : intensity;
+            if (sceneSettings != null)
+            {
+                source.color = sceneSettings.color;
+                strength = sceneSettings.intensity;
+            }
+
+            source.intensity = powered ? strength : 0;
             source.enabled = powered;
+            if (sceneSettings != null)
+            {
+                source.shadowsEnabled = sceneSettings.castsShadows;
+            }
+            else if (profile != null)
+            {
+                source.shadowsEnabled = profile.castsShadows;
+            }
             if (bulb != null)
             {
-                bulb.color = color;
-                bulb.enabled = powered;
+                Color tint = source.color;
+                if (sceneSettings != null)
+                {
+                    tint.a = Mathf.Clamp01(strength / .28f);
+                }
+
+                bulb.color = tint;
+                bulb.enabled = powered && strength > .001f;
             }
         }
 
@@ -123,12 +182,48 @@ namespace EmergencyShift
 
         private void Update()
         {
-            if (source == null || !powered || !flickers)
+            if (source == null || !powered)
             {
                 return;
             }
 
-            float clock = Time.time + phase + transform.position.x * .37f + transform.position.y * .19f;
+            float offset = sceneSettings != null ? sceneSettings.phase : phase;
+            float clock = Time.time + offset + transform.position.x * .37f + transform.position.y * .19f;
+            if (sceneSettings != null)
+            {
+                float brightness = sceneSettings.Brightness(clock);
+                source.intensity = sceneSettings.intensity * brightness;
+                if (bulb != null)
+                {
+                    Color tint = sceneSettings.color;
+                    tint.a = brightness * Mathf.Clamp01(sceneSettings.intensity / .28f);
+                    bulb.color = tint;
+                    bulb.enabled = brightness > .01f && sceneSettings.intensity > .001f;
+                }
+
+                return;
+            }
+
+            if (profile != null)
+            {
+                float brightness = profile.Evaluate(clock);
+                source.intensity = profile.intensity * brightness;
+                if (bulb != null)
+                {
+                    Color tint = profile.color;
+                    tint.a = brightness;
+                    bulb.color = tint;
+                    bulb.enabled = brightness > .01f;
+                }
+
+                return;
+            }
+
+            if (!flickers)
+            {
+                return;
+            }
+
             float t = Mathf.Repeat(clock, 6.4f);
             float factor = (t > 4.9f && t < 5.02f) || (t > 5.16f && t < 5.25f) ? 0 : Mathf.Lerp(.82f, 1, Mathf.PerlinNoise(clock * 1.4f, 3.1f));
             source.intensity = intensity * factor;
@@ -141,7 +236,7 @@ namespace EmergencyShift
         public bool Illuminates(Vector2 point, LayerMask opaque)
         {
             float distance = Vector2.Distance(Origin, point);
-            return isActiveAndEnabled && CurrentIntensity * (1 - distance / radius) > .10f && distance < radius * .9f && Physics2D.Linecast(Origin, point, opaque).collider == null;
+            return isActiveAndEnabled && CurrentIntensity * (1 - distance / Radius) > .10f && distance < Radius * .9f && Physics2D.Linecast(Origin, point, opaque).collider == null;
         }
 
         public static bool AnyIlluminates(Vector2 point, LayerMask opaque)

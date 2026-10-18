@@ -1,0 +1,268 @@
+{
+  "date": "2026-10-18",
+  "scope": "Independent scene lamp settings and eight wall fixtures in two existing scenes",
+  "configComponent": "LocalLampConfiguration2D.Settings",
+  "units": "XY world units; visual length independent of light/sound radius",
+  "placements": [
+    {
+      "scene": "MechanicsSandbox",
+      "name": "Ward lamp - muted cyan",
+      "position": "(40.23, 3.00, 0.00)",
+      "anchor": "(40.20, 3.00, 0.00)",
+      "length": 0.75,
+      "lightRadius": 1.45,
+      "soundRadius": 2.0,
+      "intensity": 0.28
+    },
+    {
+      "scene": "MechanicsSandbox",
+      "name": "Corridor lamp - warm ivory",
+      "position": "(59.78, 3.00, 0.00)",
+      "anchor": "(59.80, 3.00, 0.00)",
+      "length": 0.55,
+      "lightRadius": 1.45,
+      "soundRadius": 2.0,
+      "intensity": 0.28
+    },
+    {
+      "scene": "MechanicsSandbox",
+      "name": "Room 01 - cool tube",
+      "position": "(0.23, 8.00, 0.00)",
+      "anchor": "(0.20, 8.00, 0.00)",
+      "length": 0.75,
+      "lightRadius": 1.25,
+      "soundRadius": 1.8,
+      "intensity": 0.2
+    },
+    {
+      "scene": "MechanicsSandbox",
+      "name": "Room 02 - warm tube",
+      "position": "(28.00, 15.78, 0.00)",
+      "anchor": "(28.00, 15.80, 0.00)",
+      "length": 0.55,
+      "lightRadius": 1.2,
+      "soundRadius": 1.6,
+      "intensity": 0.21
+    },
+    {
+      "scene": "MechanicsSandbox",
+      "name": "Hall west - pale green tube",
+      "position": "(6.00, -0.23, 0.00)",
+      "anchor": "(6.00, -0.20, 0.00)",
+      "length": 0.55,
+      "lightRadius": 1.1,
+      "soundRadius": 1.4,
+      "intensity": 0.18
+    },
+    {
+      "scene": "MechanicsSandbox",
+      "name": "Hall east - cool white tube",
+      "position": "(34.00, -0.23, 0.00)",
+      "anchor": "(34.00, -0.20, 0.00)",
+      "length": 0.55,
+      "lightRadius": 1.3,
+      "soundRadius": 1.7,
+      "intensity": 0.22
+    },
+    {
+      "scene": "BasementPrototype",
+      "name": "Room A - cool tube",
+      "position": "(-2.40, 3.975, 0)",
+      "anchor": "(-2.40, 4.00, 0)",
+      "length": 0.75,
+      "lightRadius": 1.4,
+      "soundRadius": 1.8,
+      "intensity": 0.23
+    },
+    {
+      "scene": "BasementPrototype",
+      "name": "Basement hall - pale green tube",
+      "position": "(6.30, -1.475, 0)",
+      "anchor": "(6.30, -1.50, 0)",
+      "length": 0.55,
+      "lightRadius": 1.2,
+      "soundRadius": 1.5,
+      "intensity": 0.2
+    }
+  ],
+  "mechanicsPlay": {
+    "scene": "MechanicsSandbox",
+    "missingScripts": 0,
+    "independentSettings": true,
+    "lamps": [
+      {
+        "name": "Hall west - pale green tube",
+        "lightRadius": 1.1,
+        "soundRadius": 1.4,
+        "length": 0.55,
+        "resizePreservesWallAndRadii": true,
+        "sourceUnblocked": true,
+        "voices": 2,
+        "audioEnabled": true
+      },
+      {
+        "name": "Corridor lamp - warm ivory",
+        "lightRadius": 1.45,
+        "soundRadius": 2.0,
+        "length": 0.55,
+        "resizePreservesWallAndRadii": true,
+        "sourceUnblocked": true,
+        "voices": 2,
+        "audioEnabled": true
+      },
+      {
+        "name": "Hall east - cool white tube",
+        "lightRadius": 1.3,
+        "soundRadius": 1.7,
+        "length": 0.55,
+        "resizePreservesWallAndRadii": true,
+        "sourceUnblocked": true,
+        "voices": 2,
+        "audioEnabled": true
+      },
+      {
+        "name": "Room 01 - cool tube",
+        "lightRadius": 1.25,
+        "soundRadius": 1.8,
+        "length": 0.75,
+        "resizePreservesWallAndRadii": true,
+        "sourceUnblocked": true,
+        "voices": 2,
+        "audioEnabled": true
+      },
+      {
+        "name": "Ward lamp - muted cyan",
+        "lightRadius": 1.45,
+        "soundRadius": 2.0,
+        "length": 0.75,
+        "resizePreservesWallAndRadii": true,
+        "sourceUnblocked": true,
+        "voices": 2,
+        "audioEnabled": true
+      },
+      {
+        "name": "Room 02 - warm tube",
+        "lightRadius": 1.2,
+        "soundRadius": 1.6,
+        "length": 0.55,
+        "resizePreservesWallAndRadii": true,
+        "sourceUnblocked": true,
+        "voices": 2,
+        "audioEnabled": true
+      }
+    ]
+  },
+  "basementPlay": {
+    "scene": "BasementPrototype",
+    "missingScripts": 0,
+    "independentSettings": true,
+    "lamps": [
+      {
+        "name": "Room A - cool tube",
+        "lightRadius": 1.4,
+        "soundRadius": 1.8,
+        "length": 0.75,
+        "resizePreservesWallAndRadii": true,
+        "sourceUnblocked": true,
+        "voices": 2,
+        "audioEnabled": true
+      },
+      {
+        "name": "Basement hall - pale green tube",
+        "lightRadius": 1.2,
+        "soundRadius": 1.5,
+        "length": 0.55,
+        "resizePreservesWallAndRadii": true,
+        "sourceUnblocked": true,
+        "voices": 2,
+        "audioEnabled": true
+      }
+    ]
+  },
+  "audio": {
+    "near": {
+      "distance": 0.400001526,
+      "radius": 1.0,
+      "humPlaying": true,
+      "humVolume": 0.0572199821,
+      "expected": 0.0572199821
+    },
+    "far": {
+      "distance": 1.09999847,
+      "radius": 1.0,
+      "humPlaying": false,
+      "humVolume": 0.0,
+      "contactVolume": 0.0
+    },
+    "mute": {
+      "distance": 0.150001526,
+      "radius": 0.0,
+      "humPlaying": false,
+      "humVolume": 0.0,
+      "contactVolume": 0.0
+    },
+    "sharedAudioSetUnchanged": true
+  },
+  "editMode": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 0.6086419,
+    "resultState": "Passed"
+  },
+  "releaseBuild": {
+    "job_id": "build-b00e8b6ed9",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\work\\lamp-config03\\build\\EmergencyShift.exe",
+    "started_at": "2026-10-18T03:53:02.5763712Z",
+    "duration_seconds": 6.0684593,
+    "completed_at": "2026-10-18T03:53:08.6448305Z",
+    "total_size_mb": 315.17,
+    "errors": 0,
+    "warnings": 0
+  },
+  "afterStopAndBuild": {
+    "scene": "MechanicsSandbox",
+    "play": false,
+    "dirty": false,
+    "configCount": 6,
+    "missingScripts": 0,
+    "preloadedAssets": 0,
+    "development": false,
+    "managedVariant": "Release",
+    "playerMovement": true,
+    "cameraFollowing": true
+  },
+  "nativePreservation": {
+    "scenes": [
+      {
+        "scene": "MechanicsSandbox",
+        "preservedUnrelatedDocuments": 525,
+        "newOwnedDocuments": 10,
+        "existingLampDocuments": 6,
+        "index": "HEAD plus owned lamp changes only"
+      },
+      {
+        "scene": "BasementPrototype",
+        "preservedUnrelatedDocuments": 376,
+        "newOwnedDocuments": 6,
+        "existingLampDocuments": 0,
+        "index": "HEAD plus owned lamp changes only"
+      }
+    ],
+    "otherTrackedNativeFilesUnchanged": 1646
+  },
+  "consoleErrorsAndWarningsAfterValidation": 0,
+  "preExistingCompileWarnings": "Six obsolete FindObjects API warnings in unrelated untracked EnvironmentLoadProbe.cs; no new lamp errors",
+  "previews": [
+    "HospitalLampSceneConfig03/MechanicsSandbox.png",
+    "HospitalLampSceneConfig03/BasementPrototype.png"
+  ],
+  "limits": [
+    "Owner judges artistic lighting/scale; no FPS or crowd-performance claim",
+    "Release build checks the current working tree, including existing manual drafts",
+    "No new enemy-light interaction, no new audio clips, no global bloom"
+  ]
+}

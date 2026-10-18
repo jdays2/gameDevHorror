@@ -6,11 +6,11 @@
   "clips": "Assets/EmergencyShift/Audio/HospitalLamp01",
   "instancesXY": [
     [
-      40.278263,
+      40.225,
       3
     ],
     [
-      59.713944,
+      59.775,
       3
     ]
   ],
@@ -26,5 +26,12 @@
   "sourceNormalization": false,
   "visuals": "HospitalLampHousings02: open wall brackets, visible tube and procedural TubeGlow material",
   "ownership": "Shared clips/tuning; independent playback/previous light state/cooldown per instance",
-  "validation": "Docs/Validation/HospitalLampRuntime01.json"
+  "validation": "Docs/Validation/HospitalLampRuntime01.json",
+  "sceneConfig": "LocalLampConfiguration2D.Settings overrides light, audio range/mix, phase and visual length per placed instance",
+  "additionalScene": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+  "totalInstances": {
+    "MechanicsSandbox": 6,
+    "BasementPrototype": 2
+  },
+  "currentValidation": "Docs/Validation/HospitalLampSceneConfig03.json"
 }
