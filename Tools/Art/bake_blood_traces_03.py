@@ -1,7 +1,7 @@
 """Offline blood transfer studies using the existing BloodPools01 material.
 
 Shapes represent pressure, sliding contact and lost pigment, not handprints.
-Only Concepts/Unused is written; no Unity assets or scenes are modified.
+Only the source concept family is written; no Unity assets or scenes are modified.
 """
 from pathlib import Path
 import hashlib
@@ -15,7 +15,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[2]
-DEST = ROOT / "Concepts/Unused/Environment/BloodTraces04"
+DEST = ROOT / "Concepts/Used/Environment/BloodTraces05"
 SIZE = 1024
 SEED = 48319
 
@@ -43,7 +43,7 @@ def stretched_noise(rng, columns, rows):
 
 
 def transfer(rng, start, end, half_width, density):
-    """Independent torn straight transfers, with no shared wave or UV warp."""
+    """Independent scuffed transfers, with small local deviations and torn ends."""
     direction = np.asarray(end, dtype=np.float32) - start
     length = float(np.linalg.norm(direction))
     if length <= 0 or half_width <= 0:
@@ -60,26 +60,31 @@ def transfer(rng, start, end, half_width, density):
     # no common displacement is allowed to bend all the internal gaps together.
     contact = Image.new("L", (SIZE, SIZE))
     painter = ImageDraw.Draw(contact)
-    count = int(np.clip(half_width * 330, 26, 98))
+    count = int(np.clip(half_width * 245, 22, 74))
     for index in range(count):
         offset = rng.uniform(-.92, .92) * half_width
         begin = rng.uniform(-.09, .34)
         if index % 5 == 0:
             begin = rng.uniform(.30, .68)
         finish = rng.uniform(.70, 1.06)
-        width = rng.uniform(.002, .019) * (.7 + half_width)
-        drift = rng.uniform(-.10, .10) * half_width
+        width = rng.uniform(.003, .024) * (.7 + half_width)
+        drift = rng.uniform(-.30, .30) * half_width
+        # Each contact has its own nonperiodic control points. There is no
+        # displacement field shared by neighbouring contacts.
+        anchors = np.array([0, rng.uniform(.22, .4), rng.uniform(.59, .82), 1.08])
+        deviations = rng.uniform(-.16, .16, 4) * half_width
         intervals = [(begin, finish)]
         if index % 3 == 0 and finish - begin > .35:
             cut = rng.uniform(begin + .11, finish - .13)
             intervals = [(begin, cut), (cut + rng.uniform(.025, .13), finish)]
         for first, last in intervals:
-            positions = np.linspace(first, last, 7)
-            center = offset + drift * positions
-            upper_width = width * rng.uniform(.4, 1.35, len(positions))
-            lower_width = width * rng.uniform(.3, 1.2, len(positions))
-            upper_width[0] *= .25
-            lower_width[-1] *= .4
+            positions = np.sort(np.concatenate([[first, last], rng.uniform(first, last, 5)]))
+            center = offset + drift * positions + np.interp(positions, anchors, deviations)
+            center += rng.uniform(-.008, .008, len(positions)) * (.5 + half_width)
+            upper_width = width * rng.uniform(.25, 1.45, len(positions))
+            lower_width = width * rng.uniform(.25, 1.35, len(positions))
+            upper_width[[0, -1]] *= rng.uniform(.02, .25, 2)
+            lower_width[[0, -1]] *= rng.uniform(.02, .25, 2)
             upper = [pixel(u, v + w) for u, v, w in zip(positions, center, upper_width)]
             lower = [pixel(u, v - w) for u, v, w in zip(positions[::-1], center[::-1], lower_width[::-1])]
             painter.polygon(upper + lower, fill=int(rng.integers(72, 255)))
@@ -88,10 +93,10 @@ def transfer(rng, start, end, half_width, density):
     coarse = source.fbm(rng, SIZE, 22)
     grain = source.noise_field(rng, SIZE, 420)
     # The rubbed film bridges some strips but leaves ragged local voids. Noise
-    # changes pigment coverage only; it never displaces the direction of a strip.
+    # changes pigment coverage only; the contact control points above own direction.
     outline = 1 - smoothstep(.72, 1.03, np.abs(across) / half_width + (coarse - .5) * .32)
     along = smoothstep(-.06, .18, t) * (1 - smoothstep(.86, 1.04, t))
-    film = outline * along * smoothstep(.35, .72, coarse) * .3
+    film = outline * along * smoothstep(.32, .70, coarse) * .46
     abrasion = smoothstep(.14, .52, grain + coarse * .20)
     pressure = .15 + np.clip(t, 0, 1) ** 1.35 * 1.40
     return (strips + film) * abrasion * pressure * density
@@ -180,7 +185,7 @@ def preview(entries):
     result = Image.new("RGB", (cell * 2 + gap * 3, header + (cell + footer + gap) * 4), "#192023")
     draw = ImageDraw.Draw(result)
     font = lambda size: ImageFont.truetype("C:/Windows/Fonts/arial.ttf", size)
-    draw.text((gap, 15), "КРОВАВЫЕ СМАЗЫ · ПРОБА 04", font=font(27), fill="#e1e4de")
+    draw.text((gap, 15), "КРОВАВЫЕ СМАЗЫ · ПРОБА 05", font=font(27), fill="#e1e4de")
     draw.text((gap, 53), "Бетон / плитка · один и тот же прозрачный PNG", font=font(19), fill="#acb8b4")
     for index, entry in enumerate(entries):
         y = header + index * (cell + footer + gap)
@@ -196,7 +201,7 @@ def preview(entries):
         side, margin = 560, 18
         board = Image.new("RGB", (side * 2 + margin * 3, 1322), "#192023")
         board_draw = ImageDraw.Draw(board)
-        board_draw.text((margin, 17), "КРОВАВЫЕ СМАЗЫ · ПРОБА 04", font=font(29), fill="#e1e4de")
+        board_draw.text((margin, 17), "КРОВАВЫЕ СМАЗЫ · ПРОБА 05", font=font(29), fill="#e1e4de")
         for index, entry in enumerate(entries):
             x = margin + (index % 2) * (side + margin)
             y = 70 + (index // 2) * 620
@@ -233,8 +238,8 @@ def main():
     preview(entries)
     provenance = {
         "date": "2026-10-18", "status": "Offline samples pending owner evaluation; not imported",
-        "method": "Independent straight torn transfer strips, local coverage abrasion and pigment depletion; no shared displacement, sine or AI images",
-        "revision": "04; previous wave-distorted images retained in BloodTraces03",
+        "method": "Independent nonperiodic contact control points, tapered torn ends, local pigment abrasion; no shared displacement, sine or AI images",
+        "revision": "05; previous waves/straight drafts retained in BloodTraces03 and BloodTraces04",
         "generator": "Tools/Art/bake_blood_traces_03.py", "runtimeGeneration": False,
         "reused": ["Concepts/Unused/Visual/ProceduralBlood01/render_samples.py",
                    "Tools/Art/bake_blood_pools_01.py: material"],

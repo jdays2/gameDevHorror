@@ -1,8 +1,8 @@
 # Концепты и источники
 
-- [Рваные смазы 04](Unused/Environment/BloodTraces04/README.md) — исправленный генератор без общей волнистой деформации: отдельные прямые протяжки с независимыми краями и разрывами. Четыре базовые формы и 12 вариантов шириной 0.25–3.2 units, сравнение размеров на двух полах и увеличенные примеры. Вне Unity, на оценку владельцем. [Волнистая ревизия 03](Unused/Environment/BloodTraces03/README.md) сохранена как история.
+- [Следы крови 05](Used/Environment/BloodTraces05/README.md) — небольшие независимые отклонения, надрывы и неровные окончания без общей волны. 16 prefab, 21 экземпляр разных размеров в MechanicsSandbox вместо старых traces; кадры с фонарём и рядом с останками. На оценку владельцем. [Слишком прямая 04](Unused/Environment/BloodTraces04/README.md) и [волнистая 03](Unused/Environment/BloodTraces03/README.md) сохранены как история.
 
-- [Следы присутствия 02](Used/Environment/PresenceTraces02/README.md) — художественно отклонены 2026-10-18, прежние экземпляры пока остаются в MechanicsSandbox. [Набор 01 также отклонён](Unused/Environment/FloorAftermath01/README.md).
+- [Следы присутствия 02](Used/Environment/PresenceTraces02/README.md) — исторический отклонённый набор; все 11 экземпляров в MechanicsSandbox заменены на BloodTraces05. [Набор 01 также отклонён](Unused/Environment/FloorAftermath01/README.md).
 
 - [Останки медработников 01](Used/Environment/MedicalRemains01/README.md) — четыре фрагмента с густой кровью в BasementPrototype и два набора в MechanicsSandbox: освещённая плитка и тёмный тир. Подключены для оценки владельцем.
 

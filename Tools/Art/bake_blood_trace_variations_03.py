@@ -15,7 +15,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[2]
-DEST = ROOT / "Concepts/Unused/Environment/BloodTraces04/Variations"
+DEST = ROOT / "Concepts/Used/Environment/BloodTraces05/Variations"
 specification = importlib.util.spec_from_file_location("blood_transfer_03", ROOT / "Tools/Art/bake_blood_traces_03.py")
 blood = importlib.util.module_from_spec(specification)
 specification.loader.exec_module(blood)
@@ -123,7 +123,7 @@ def previews(entries):
     for kind, name in [(0, "concrete"), (1, "tile")]:
         board = Image.new("RGB", (width, header + row * 3 + 20), "#192023")
         draw = ImageDraw.Draw(board)
-        draw.text((gap, 13), "ПРОБА 04 · МАЛЫЕ / СРЕДНИЕ / КРУПНЫЕ", font=font(27), fill="#e1e4de")
+        draw.text((gap, 13), "ПРОБА 05 · МАЛЫЕ / СРЕДНИЕ / КРУПНЫЕ", font=font(27), fill="#e1e4de")
         draw.text((gap, 52), "Общий масштаб: 1 игровая единица = 98 px. Подпись — ширина PNG в сцене.", font=font(20), fill="#acb8b4")
         for index, entry in enumerate(entries):
             x = gap + (index % 4) * (cell + gap)
@@ -142,7 +142,7 @@ def previews(entries):
 
     detail = Image.new("RGB", (width, 98 + 3 * 275), "#192023")
     draw = ImageDraw.Draw(detail)
-    draw.text((gap, 14), "ПРОБА 04 · ФОРМЫ КРУПНЫМ ПЛАНОМ", font=font(28), fill="#e1e4de")
+    draw.text((gap, 14), "ПРОБА 05 · ФОРМЫ КРУПНЫМ ПЛАНОМ", font=font(28), fill="#e1e4de")
     draw.text((gap, 53), "Увеличение каждого примера для оценки текстуры; масштаб здесь разный.", font=font(20), fill="#acb8b4")
     for index, entry in enumerate(entries):
         x = gap + (index % 4) * (cell + gap)
@@ -166,8 +166,8 @@ def main():
     metadata = {"date": "2026-10-18", "status": "Offline expansion; owner evaluation pending; no Unity import",
                 "generator": "Tools/Art/bake_blood_trace_variations_03.py",
                 "reused": "Tools/Art/bake_blood_traces_03.py and BloodPools01 material",
-                "method": "Independent straight torn strips and local coverage abrasion; no shared wave displacement or AI images",
-                "revision": "04; original BloodTraces03 retained without changes",
+                "method": "Independent contact deviations and torn ends; no shared wave displacement or AI images",
+                "revision": "05; original BloodTraces03 and BloodTraces04 retained without changes",
                 "runtimeGeneration": False, "units": "Suggested canvas widths in Unity units, not physical metres; not assigned to prefabs",
                 "entries": entries,
                 "sha256": {p.relative_to(DEST).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
