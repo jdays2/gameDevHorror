@@ -16,7 +16,7 @@
 | Читаемость, будущие границы и изученные skills | [Инженерное ревью](ENGINEERING_REVIEW.md) |
 | Редактирование сцены/конфигов | [Авторинг](Guides/LEVEL_AUTHORING.md) |
 | Библиотека окружения и отдельные тестовые комнаты | [Окружение](Guides/ENVIRONMENT_LIBRARY.md), [новые типы](Environment/OBJECT_BACKLOG.md) |
-| Материалы внутренней стороны стен, углы и проёмы | [Отделка стен](Guides/INTERIOR_WALL_FINISHES.md) |
+| Стены: прежний вид и история снятой отделки | [Оформление стен](Guides/INTERIOR_WALL_FINISHES.md) |
 | Цвет, радиусы света/звука и размер настенных ламп | [Настройка ламп](Guides/HOSPITAL_LAMPS.md) |
 | Разметка пола: PNG, соединения и цвет | [Разметка](Guides/FLOOR_MARKINGS.md) |
 | Сохранение/восстановление и добавление точек | [Чекпоинты](Guides/CHECKPOINTS.md) |

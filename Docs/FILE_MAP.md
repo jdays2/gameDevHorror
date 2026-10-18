@@ -211,6 +211,6 @@
 
 | `Tests/EditMode/EnemyDeathAudioTests.cs` | Повторы между потребителями, независимость банков, пустые/единичные клипы и неизменность SO. |
 
-## Процедурная внутренняя отделка стен
+## Исторические пробы отделки стен
 
-`Tools/Environment/prepare_wall_finishes_01.py` создаёт 9 исходников straight/corner/end и provenance. `Art/Environment/WallFinishes01` / `Prefabs/Environment/WallFinishes01` — три семейства, FlatLit, без Runtime-компонентов. Сохранённая группа MechanicsSandbox владеет расстановкой; физические преграды остаются на прежних Wall/Door. [Авторинг](Guides/INTERIOR_WALL_FINISHES.md).
+В MechanicsSandbox декоративных полос/кромок больше нет; прежний Wall.prefab, FlatUnlit и исходные цвета сохранены. `Tools/Environment/prepare_wall_finishes_01.py`, `Art/Environment/WallFinishes01` и `Prefabs/Environment/WallFinishes01` — исторические исходники девяти модулей, их 39 экземпляров удалены из сцены. Отклонённый WallCaps02 хранит исходник шейдера/материалов вне Assets в `Concepts/Unused/Environment/WallCaps02/UnitySource`; рабочие shader/material assets удалены после проверки зависимостей. [Состояние](Guides/INTERIOR_WALL_FINISHES.md).

@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-18",
+  "status": "Rejected by owner; removed from active scene and Assets",
+  "method": "Original code-native shader; no image generation, photo pixels or new raster assets",
+  "scene": "MechanicsSandbox",
+  "existingWalls": 18,
+  "rimWidthWorldUnits": 0.025,
+  "rimContrast": 0.3,
+  "surfaceVariation": 0.045,
+  "innerEdgeMasks": {
+    "north": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "south": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "west": [
+      0,
+      1,
+      0,
+      0
+    ],
+    "east": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "horizontal-shared": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "vertical-shared": [
+      1,
+      1,
+      0,
+      0
+    ]
+  },
+  "tintMultipliersByWorldX": {
+    "below20": [
+      1.02,
+      1,
+      0.97
+    ],
+    "20to40": [
+      0.97,
+      1.02,
+      0.97
+    ],
+    "from40": [
+      1,
+      1,
+      1.03
+    ]
+  },
+  "individualFeature": "Restrained local cap touch-up near world (3.7,0), 2.5 percent relative tone; barely visible at current charcoal tint",
+  "invariants": "Unchanged source sprite alpha/footprint, transforms, colliders, caster contours and sorting; weak unlit top-cap visibility retained",
+  "limits": "Unit full-rect wall sprite and Transform scale; world-local patch position; dynamic batching disabled for per-wall matrix dimensions; no performance claim",
+  "previousFamily": "WallFinishes01 is Historical; 39 broad-strip instances removed, source/native assets retained",
+  "sources": [
+    {
+      "path": "UnitySource/WallCap.shader",
+      "sha256": "917639f4307eee9456eec01b847c5b0c73f64ce3c28b73cb91257c6bf0d4061f",
+      "originalPath": "Assets/EmergencyShift/Materials/WallCap.shader"
+    },
+    {
+      "path": "UnitySource/WallCaps02/wall-cap-east.mat",
+      "sha256": "1aaef16164f5ef60301e371171155aa5ed92026ec59c3618e0ff86368029107a",
+      "originalPath": "Assets/EmergencyShift/Materials/WallCaps02/wall-cap-east.mat"
+    },
+    {
+      "path": "UnitySource/WallCaps02/wall-cap-horizontal-shared.mat",
+      "sha256": "b36668e02cf84aed4251ee5787565c29ce9c3986962b8517114f24ed8e74ee47",
+      "originalPath": "Assets/EmergencyShift/Materials/WallCaps02/wall-cap-horizontal-shared.mat"
+    },
+    {
+      "path": "UnitySource/WallCaps02/wall-cap-north.mat",
+      "sha256": "5ab62a3463701cb6b5efe0bd9ffea81341879174fd39a833274a81211e82106a",
+      "originalPath": "Assets/EmergencyShift/Materials/WallCaps02/wall-cap-north.mat"
+    },
+    {
+      "path": "UnitySource/WallCaps02/wall-cap-south.mat",
+      "sha256": "0a22e248e6c4ed90464ac908ae48d79a95b698d166c93a1d9acdb8c77bd8804f",
+      "originalPath": "Assets/EmergencyShift/Materials/WallCaps02/wall-cap-south.mat"
+    },
+    {
+      "path": "UnitySource/WallCaps02/wall-cap-vertical-shared.mat",
+      "sha256": "61080c95b5c0a26ee4eeaa05910dcaadda850174d18dcee3303778d607f2d38d",
+      "originalPath": "Assets/EmergencyShift/Materials/WallCaps02/wall-cap-vertical-shared.mat"
+    },
+    {
+      "path": "UnitySource/WallCaps02/wall-cap-west.mat",
+      "sha256": "9b82e0d0d4c06bbfe2df4ffd8679f6dc918f9ed316eb09700311f700c8d54139",
+      "originalPath": "Assets/EmergencyShift/Materials/WallCaps02/wall-cap-west.mat"
+    }
+  ],
+  "evidence": "Docs/Validation/WallFinishRemoval03.json",
+  "sourceHashNormalization": "UTF-8 text with LF line endings, matching Git blobs",
+  "retirementReason": "Owner requested all internal wall decoration removed and original wall appearance restored"
+}

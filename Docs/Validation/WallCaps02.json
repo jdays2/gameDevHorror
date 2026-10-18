@@ -1,0 +1,232 @@
+{
+  "date": "2026-10-18",
+  "scope": "Replace floor-like wall-face strips with quiet top caps inside the existing MechanicsSandbox wall sprites",
+  "source": "Original code-native shader, no generated bitmap assets or reference-image pixels",
+  "nativeInstall": {
+    "removedFloorFinishInstances": 39,
+    "capWalls": [
+      {
+        "name": "South boundary",
+        "kind": "south",
+        "position": "(30.00, -6.00, 0.00)",
+        "color": "RGBA(0.049, 0.066, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "West boundary",
+        "kind": "west",
+        "position": "(0.00, -3.00, 0.00)",
+        "color": "RGBA(0.051, 0.065, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "East boundary",
+        "kind": "east",
+        "position": "(60.00, -3.00, 0.00)",
+        "color": "RGBA(0.050, 0.065, 0.077, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "North wall",
+        "kind": "north",
+        "position": "(10.00, 16.00, 0.00)",
+        "color": "RGBA(0.051, 0.065, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "West wall",
+        "kind": "west",
+        "position": "(0.00, 8.00, 0.00)",
+        "color": "RGBA(0.051, 0.065, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "Entry frame west",
+        "kind": "horizontal-shared",
+        "position": "(4.25, 0.00, 0.00)",
+        "color": "RGBA(0.051, 0.065, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "Entry frame east",
+        "kind": "horizontal-shared",
+        "position": "(15.75, 0.00, 0.00)",
+        "color": "RGBA(0.051, 0.065, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "North wall",
+        "kind": "north",
+        "position": "(30.00, 16.00, 0.00)",
+        "color": "RGBA(0.049, 0.066, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "West wall",
+        "kind": "vertical-shared",
+        "position": "(20.00, 8.00, 0.00)",
+        "color": "RGBA(0.049, 0.066, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "Entry frame west",
+        "kind": "horizontal-shared",
+        "position": "(24.25, 0.00, 0.00)",
+        "color": "RGBA(0.049, 0.066, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "Entry frame east",
+        "kind": "horizontal-shared",
+        "position": "(35.75, 0.00, 0.00)",
+        "color": "RGBA(0.049, 0.066, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "Lock test · west partition",
+        "kind": "horizontal-shared",
+        "position": "(24.25, 8.50, 0.00)",
+        "color": "RGBA(0.049, 0.066, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "Lock test · east partition",
+        "kind": "horizontal-shared",
+        "position": "(35.75, 8.50, 0.00)",
+        "color": "RGBA(0.049, 0.066, 0.073, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "North wall",
+        "kind": "north",
+        "position": "(50.00, 16.00, 0.00)",
+        "color": "RGBA(0.050, 0.065, 0.077, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "West wall",
+        "kind": "vertical-shared",
+        "position": "(40.00, 8.00, 0.00)",
+        "color": "RGBA(0.050, 0.065, 0.077, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "East wall",
+        "kind": "east",
+        "position": "(60.00, 8.00, 0.00)",
+        "color": "RGBA(0.050, 0.065, 0.077, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "Entry frame west",
+        "kind": "horizontal-shared",
+        "position": "(44.25, 0.00, 0.00)",
+        "color": "RGBA(0.050, 0.065, 0.077, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      },
+      {
+        "name": "Entry frame east",
+        "kind": "horizontal-shared",
+        "position": "(55.75, 0.00, 0.00)",
+        "color": "RGBA(0.050, 0.065, 0.077, 1.000)",
+        "casts": true,
+        "sortingOrder": 2
+      }
+    ],
+    "shaderErrors": false
+  },
+  "nativePlayVerification": {
+    "wallCaps": 18,
+    "extraRenderers": 0,
+    "rimWidth": 0.025,
+    "geometryAndCastersPresent": true,
+    "corridorShadows": true
+  },
+  "nativeFrames": [
+    "WallCaps02/corner-flashlight.png",
+    "WallCaps02/corner-dark.png",
+    "WallCaps02/lamp-and-wall.png"
+  ],
+  "visualInspection": "Broad floor strips absent; thin inner rim remains within wall footprint, including next to the tube. Charcoal top cap retains weak unlit visibility. Surface touch-up intentionally barely visible.",
+  "nativeFinish": {
+    "scene": "MechanicsSandbox",
+    "play": false,
+    "dirty": false,
+    "missingScripts": 0,
+    "preloadedAssets": 0,
+    "development": false,
+    "managedVariant": "Release",
+    "playerMovement": true,
+    "cameraFollowing": true,
+    "shaderErrors": false
+  },
+  "preservation": {
+    "removedFinishInstances": 39,
+    "removedOwnedDocuments": 86,
+    "changedWallAppearanceDocuments": 18,
+    "preservedOtherSceneDocuments": 523,
+    "newSceneDocuments": 0,
+    "otherTrackedNativeFilesUnchanged": 1700,
+    "wallGeometryCollidersCastersAndAllLightSettingsUnchanged": true,
+    "lampAssetsAndBasementUnchanged": true,
+    "previousManualSceneEditsPreserved": true,
+    "stagedOnlyOwnedChanges": true
+  },
+  "releaseBuild": {
+    "success": true,
+    "message": "Build Succeeded.",
+    "data": {
+      "job_id": "build-8e09c0ec95",
+      "result": "succeeded",
+      "platform": "StandaloneWindows64",
+      "output_path": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\work\\wall-cap02\\build\\EmergencyShift.exe",
+      "started_at": "2026-10-18T05:06:02.6669485Z",
+      "duration_seconds": 11.9617569,
+      "completed_at": "2026-10-18T05:06:14.6287054Z",
+      "total_size_mb": 315.18,
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "buildScope": "Current working tree, including existing owner drafts; normal Release/development=false/preloadedAssets=0 restored afterward",
+  "console": {
+    "success": true,
+    "message": "Retrieved 1 log entries.",
+    "data": [
+      {
+        "type": "Assert",
+        "message": "Callback unregistration failed. Callback not registered.",
+        "file": "./Library/PackageCache/com.coplaydev.unity-mcp@da7b9ae4aeeb/Editor/Tools/Build/BuildRunner.cs",
+        "line": 21,
+        "stackTrace": null
+      }
+    ]
+  },
+  "toolingNotes": [
+    "First Play-entry read-only RPC timed out; Editor had entered Play. Fresh verification/captures completed and Play was stopped.",
+    "Console contains one Assert from the MCP BuildRunner callback unregistration; build report succeeded with 0 errors and 0 warnings; shader import has no errors.",
+    "Native asset saves exposed transient disabled light/bulb state in two unchanged lamp prefabs. Restored through Unity APIs and verified exact baseline hashes before completion."
+  ],
+  "lightIsolation": "Previous WallFinishes01 controlled channel-0/channel-2 and closed/open-door transmission results retained. All light parameters, transforms, collider/caster data and Wall/Door prefabs are unchanged in this task.",
+  "tests": "Runtime C# and algorithms unchanged; no repeated EditMode suites. Native Play structure checks, actual URP captures, serialized preservation and Release shader compilation cover the changed boundary.",
+  "limitations": "Unit full-rect wall sprite with Transform scale; no vertical cladding, dynamic lighting of the cap or performance guarantee. Artistic acceptance belongs to owner.",
+  "status": "Historical; rejected by owner and removed",
+  "supersededBy": "WallFinishRemoval03.json"
+}
