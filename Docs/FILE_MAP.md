@@ -193,6 +193,7 @@
 
 ### Runtime/World/Lighting
 
+- `Runtime/World/Lighting/CeilingLightOcclusion2D.cs`
 - `Runtime/World/Lighting/Flashlight2D.cs`
 - `Runtime/World/Lighting/LocalLamp2D.cs`
 - `Runtime/World/Lighting/LocalLampAudio2D.cs`
@@ -236,6 +237,7 @@
 ### Tests/EditMode
 
 - `Tests/EditMode/BloodPoolTests.cs`
+- `Tests/EditMode/CeilingLightOcclusionTests.cs`
 - `Tests/EditMode/DialogueDataTests.cs`
 - `Tests/EditMode/DialoguePrefabTests.cs`
 - `Tests/EditMode/EnemyDeathAudioTests.cs`

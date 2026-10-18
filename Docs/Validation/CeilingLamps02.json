@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-18",
+  "scene": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+  "model": "Ceiling lamps above desks and low furniture in the existing top-down 2D projection. Only authored full-height boxes occlude these lamps. Flashlight furniture shadows are unchanged.",
+  "tuning": {
+    "lamps": 7,
+    "intensityMultiplier": 3,
+    "radiusMultiplier": 1.3,
+    "lampColliders": 0,
+    "fullHeightWallBoxes": 12,
+    "movingDoorLeaves": 1
+  },
+  "preservation": {
+    "worldPlacementsUnchanged": true,
+    "enemyAuthoringUnchanged": 13,
+    "missingScripts": 0,
+    "lampOrFurniturePositionsShifted": false
+  },
+  "cookieSamples": {
+    "deskFrontCookie": 1.0,
+    "outsideNorthWallCookie": 0.0,
+    "southRotatedWallCookie": 0.0,
+    "closedDoorCookie": 0.0,
+    "openDoorCookie": 1.0,
+    "reclosedDoorCookie": 0.0
+  },
+  "editorConsoleErrorsAndWarnings": [],
+  "editMode": {
+    "total": 85,
+    "passed": 85,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 3.6637503,
+    "resultState": "Passed"
+  },
+  "releaseBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 6.014692999999999
+  },
+  "implementation": {
+    "component": "Runtime/World/Lighting/CeilingLightOcclusion2D.cs",
+    "temporaryCookiePixels": [
+      128,
+      128
+    ],
+    "angularRays": 512,
+    "rebuild": "Geometry/enable/size/offset/radius/transform changes; moving doors included",
+    "cleanup": "OnDisable detaches and destroys owned Sprite/Texture2D",
+    "sharedAssetMutation": false
+  },
+  "limits": [
+    "Rectangular BoxCollider2D full-height blockers; rotated/scaled boxes supported.",
+    "Simplified ceiling occlusion; does not simulate finite-height furniture contact shadows.",
+    "No performance claim from this validation."
+  ],
+  "previews": [
+    "CeilingLamps02/desk-overhead.png",
+    "CeilingLamps02/trolley-overhead.png",
+    "CeilingLamps02/overview.png"
+  ],
+  "reference": "https://docs.unity.com/en-us/engine/6000.6/manual/unity2d/2d-urp/2d-index/2d-light-properties-explained"
+}
