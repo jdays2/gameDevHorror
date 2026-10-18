@@ -116,6 +116,7 @@
 | `Runtime/Player/CameraFollow2D.cs` | Мягко следует за игроком после обновления движения. |
 | `Runtime/Player/FlashlightUpgrades.cs` | Хранит модули игрока в текущем запуске комнаты; пересчитывает оптику от базы. |
 | `Runtime/Player/PlayerAccessCards2D.cs` | Only access tokens for this run; not a general inventory or a save system. |
+| `Art/Items/AccessCards01/*.png` | Current compact matte access cards; GUIDs retained. Sources and previous design: `Concepts/Used/Items/AccessCards02` / `AccessCards01`. |
 | `Runtime/Player/PlayerAim2D.cs` | Unsmooth cursor target on the XY floor; independent of the flashlight's rotation. |
 | `Runtime/Player/PlayerAudio2D.cs` | Saved, bounded channels for pickup feedback and optional combat audition. |
 | `Runtime/Player/PlayerCasingEjector2D.cs` | One spent casing per actual shot, with a bounded reusable collection of floor props. |

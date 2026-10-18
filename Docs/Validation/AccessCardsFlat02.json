@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-18",
+  "images": {
+    "blue": {
+      "size": [
+        1611,
+        976
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "oldAlpha128Bounds": [
+        121,
+        149,
+        1492,
+        823
+      ],
+      "newAlpha128Bounds": [
+        353,
+        198,
+        1258,
+        773
+      ],
+      "oldAspect": 2.0341246290801185,
+      "newAspect": 1.5739130434782609,
+      "oldPPU": 2762.0,
+      "newPPU": 2356.305637982196,
+      "sha256": "5beab78355a72fb47169ad11f05e3b082080b9f6c6ff075aa87a234f574fdb6a"
+    },
+    "green": {
+      "size": [
+        1611,
+        976
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "oldAlpha128Bounds": [
+        119,
+        146,
+        1493,
+        826
+      ],
+      "newAlpha128Bounds": [
+        352,
+        196,
+        1259,
+        775
+      ],
+      "oldAspect": 2.0205882352941176,
+      "newAspect": 1.5664939550949915,
+      "oldPPU": 2768.0,
+      "newPPU": 2356.8705882352942,
+      "sha256": "0ba78be6bd9edc557ea276825f99aea077c2b2d05f3dc5960271445cea9e84c7"
+    },
+    "red": {
+      "size": [
+        1611,
+        976
+      ],
+      "alphaRange": [
+        0,
+        255
+      ],
+      "oldAlpha128Bounds": [
+        118,
+        145,
+        1493,
+        827
+      ],
+      "newAlpha128Bounds": [
+        352,
+        196,
+        1259,
+        773
+      ],
+      "oldAspect": 2.0161290322580645,
+      "newAspect": 1.5719237435008666,
+      "oldPPU": 2770.0,
+      "newPPU": 2343.533724340176,
+      "sha256": "509d9d5faa348afe0dab216390644df4e2d020951a5fb97dba186a3e5051aa09"
+    }
+  },
+  "unityImport": {
+    "sprites": [
+      {
+        "path": "Assets/EmergencyShift/Art/Items/AccessCards01/blue.png",
+        "guid": "1e23cb949f9ba8441b486ea07bc33574",
+        "ppu": 748.4168,
+        "width": 512.0,
+        "height": 310.0
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Items/AccessCards01/green.png",
+        "guid": "533ede49150d52c41816b4548fecdeb5",
+        "ppu": 748.5962,
+        "width": 512.0,
+        "height": 310.0
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Items/AccessCards01/red.png",
+        "guid": "88c6ed0fdd80b0846a9d4d11ec029377",
+        "ppu": 744.3601,
+        "width": 512.0,
+        "height": 310.0
+      }
+    ],
+    "sceneDirty": false
+  },
+  "metadata": {
+    "blue": {
+      "guidPreserved": true,
+      "onlyPPUChanged": true
+    },
+    "green": {
+      "guidPreserved": true,
+      "onlyPPUChanged": true
+    },
+    "red": {
+      "guidPreserved": true,
+      "onlyPPUChanged": true
+    }
+  },
+  "play": {
+    "world": [
+      {
+        "name": "ServiceCard",
+        "sprite": "Assets/EmergencyShift/Art/Items/AccessCards01/green.png",
+        "material": "FlatLit",
+        "bounds": "(0.68, 0.41, 0.20)"
+      },
+      {
+        "name": "ResearchCard",
+        "sprite": "Assets/EmergencyShift/Art/Items/AccessCards01/blue.png",
+        "material": "FlatLit",
+        "bounds": "(0.68, 0.41, 0.20)"
+      },
+      {
+        "name": "RestrictedCard",
+        "sprite": "Assets/EmergencyShift/Art/Items/AccessCards01/red.png",
+        "material": "FlatLit",
+        "bounds": "(0.69, 0.42, 0.20)"
+      }
+    ],
+    "hud": [
+      {
+        "id": "sandbox-card",
+        "active": false,
+        "sprite": "Assets/EmergencyShift/Art/Items/AccessCards01/green.png",
+        "preserveAspect": true,
+        "rect": "(x:0.00, y:0.00, width:45.00, height:28.00)"
+      },
+      {
+        "id": "research",
+        "active": true,
+        "sprite": "Assets/EmergencyShift/Art/Items/AccessCards01/blue.png",
+        "preserveAspect": true,
+        "rect": "(x:0.00, y:0.00, width:45.00, height:28.00)"
+      },
+      {
+        "id": "restricted",
+        "active": true,
+        "sprite": "Assets/EmergencyShift/Art/Items/AccessCards01/red.png",
+        "preserveAspect": true,
+        "rect": "(x:0.00, y:0.00, width:45.00, height:28.00)"
+      }
+    ],
+    "screen": {
+      "width": 3840,
+      "height": 2160
+    },
+    "sceneDirty": false
+  },
+  "afterStop": {
+    "play": false,
+    "dirty": false,
+    "missingScripts": 0,
+    "savedPreviews": 0,
+    "scale": 1.0
+  },
+  "sceneFileUnchangedDuringPlayAndStop": true,
+  "nativeFrame": "../../Concepts/Used/Items/AccessCards02/native-game.png",
+  "temporaryPreview": "Three additional world renderers and forced collected cards in Play only; no saved objects or player state",
+  "scope": "Only replacement PNG art and importer PPU. No Runtime C#, pickup IDs/colliders, prefab transforms, saves or events changed.",
+  "checksNotRepeated": "EditMode and release build not repeated for raster content/PPU changes; reusable dialogue prefab was tested separately before this art change.",
+  "playCaptureFollowup": "After the initial probe, sandbox-card (the legacy green scene ID) was added for the capture; all three icons are visible in native-game.png. No saved state was changed."
+}
