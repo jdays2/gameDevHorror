@@ -192,7 +192,7 @@ def preview(entries):
     for index, entry in enumerate(entries):
         x = gap + (index % 4) * (cell + gap)
         y = header + (index // 4) * row
-        floor = Image.open(ROOT / 'Concepts/Unused/Environment/MorgueFloors02/Textures' / (entry['previewFloor'] + '.png')).convert('RGBA')
+        floor = Image.open(ROOT / 'Concepts/Used/Environment/MorgueFloors02/Textures' / (entry['previewFloor'] + '.png')).convert('RGBA')
         # A crop gives a readable material scale. Tile chips are specialised
         # overlays: their straight outer edges must be aligned to an actual seam.
         floor = floor.resize((SIZE, SIZE), Image.Resampling.LANCZOS).crop((100, 135, 668, 571))

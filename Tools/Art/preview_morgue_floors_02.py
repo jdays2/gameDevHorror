@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[2]
-FAMILY = ROOT / 'Concepts/Unused/Environment/MorgueFloors02'
+FAMILY = ROOT / 'Concepts/Used/Environment/MorgueFloors02'
 
 
 def main():
@@ -60,12 +60,15 @@ def main():
                         'sha256': hashlib.sha256(destination.read_bytes()).hexdigest(), 'edgeDiagnostics': seams})
     board.save(FAMILY / 'overview.png')
     repeats.save(FAMILY / 'repeat-check.png')
-    metadata = {'date': '2026-10-18', 'method': 'Built-in imagegen; original PNG bytes copied unchanged',
-                'status': 'Source library studies pending owner evaluation; not imported into Unity',
-                'unityChanged': False, 'textureCoverageUnits': [6, 6],
+    metadata_path = FAMILY / 'provenance.json'
+    metadata = json.loads(metadata_path.read_text(encoding='utf-8')) if metadata_path.exists() else {}
+    metadata.setdefault('status', 'Source library studies pending owner evaluation; not imported into Unity')
+    metadata.setdefault('unityChanged', False)
+    metadata.update({'date': '2026-10-18', 'method': 'Built-in imagegen; original PNG bytes copied unchanged',
+                'textureCoverageUnits': [6, 6],
                 'entries': records, 'promptSet': 'prompts.json', 'previewProcessor': 'Tools/Art/preview_morgue_floors_02.py',
-                'seamlessness': 'Preview 2x2 and numerical edge diagnostics only, no production guarantee'}
-    (FAMILY / 'provenance.json').write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+                'seamlessness': 'Preview 2x2 and numerical edge diagnostics only, no production guarantee'})
+    metadata_path.write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'newFloors': len(records), 'sourceBytesPreserved': True}))
 
 
