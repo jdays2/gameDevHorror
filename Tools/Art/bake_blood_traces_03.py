@@ -15,7 +15,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[2]
-DEST = ROOT / "Concepts/Unused/Environment/BloodTraces03"
+DEST = ROOT / "Concepts/Unused/Environment/BloodTraces04"
 SIZE = 1024
 SEED = 48319
 
@@ -42,36 +42,59 @@ def stretched_noise(rng, columns, rows):
     ) / 255
 
 
-def flow_noise(rng, along, across, columns, rows):
-    """Sample noise along the curved contact, so gaps follow its actual motion."""
-    grid = rng.random((rows, columns), dtype=np.float32)
-    u = np.clip((along + .15) / 1.3, 0, .9999) * (columns - 1)
-    v = np.clip((across + 1.3) / 2.6, 0, .9999) * (rows - 1)
-    left, top = u.astype(int), v.astype(int)
-    fx, fy = u - left, v - top
-    upper = grid[top, left] * (1 - fx) + grid[top, left + 1] * fx
-    lower = grid[top + 1, left] * (1 - fx) + grid[top + 1, left + 1] * fx
-    return upper * (1 - fy) + lower * fy
+def transfer(rng, start, end, half_width, density):
+    """Independent torn straight transfers, with no shared wave or UV warp."""
+    direction = np.asarray(end, dtype=np.float32) - start
+    length = float(np.linalg.norm(direction))
+    if length <= 0 or half_width <= 0:
+        raise ValueError("A transfer needs positive length and width")
+    normal = np.array([-direction[1], direction[0]]) / length
+    t = ((X - start[0]) * direction[0] + (Y - start[1]) * direction[1]) / length ** 2
+    across = (X - start[0]) * normal[0] + (Y - start[1]) * normal[1]
 
+    def pixel(along, offset):
+        point = np.asarray(start) + direction * along + normal * offset
+        return tuple((point + 1) * .5 * (SIZE - 1))
 
-def transfer(rng, start, end, half_width, bend, density):
-    """A sliding contact: thin broken tail, heavier pigment at its stopping end."""
-    t = (X - start[0]) / (end[0] - start[0])
-    center = start[1] + (end[1] - start[1]) * t
-    center += bend * np.sin(np.clip(t, 0, 1) * np.pi)
-    broad = stretched_noise(rng, 13, 24)
-    fine = source.noise_field(rng, SIZE, 390)
-    width = half_width * (.57 + .43 * np.clip(t, 0, 1))
-    transverse = (Y - center + (broad - .5) * half_width * .34) / width
-    strands = flow_noise(rng, t, transverse, 14, 110)
-    edge = 1 - smoothstep(.67, 1.04, np.abs(transverse))
-    # Unequal endpoints across the width prevent a cut-off brush rectangle.
-    tail = smoothstep(-.06, .27, t + (strands - .5) * .37)
-    head = 1 - smoothstep(.9, 1.035, t + (broad - .5) * .15)
-    pressure = .12 + np.clip(t, 0, 1) ** 1.6 * 1.55
-    channels = smoothstep(.24, .65, strands + np.clip(t, 0, 1) * .15)
-    abrasion = smoothstep(.10, .58, fine + broad * .22)
-    return edge * tail * head * pressure * channels * abrasion * density
+    # Unequal strips encode sliding contact. Their edges and breaks are separate;
+    # no common displacement is allowed to bend all the internal gaps together.
+    contact = Image.new("L", (SIZE, SIZE))
+    painter = ImageDraw.Draw(contact)
+    count = int(np.clip(half_width * 330, 26, 98))
+    for index in range(count):
+        offset = rng.uniform(-.92, .92) * half_width
+        begin = rng.uniform(-.09, .34)
+        if index % 5 == 0:
+            begin = rng.uniform(.30, .68)
+        finish = rng.uniform(.70, 1.06)
+        width = rng.uniform(.002, .019) * (.7 + half_width)
+        drift = rng.uniform(-.10, .10) * half_width
+        intervals = [(begin, finish)]
+        if index % 3 == 0 and finish - begin > .35:
+            cut = rng.uniform(begin + .11, finish - .13)
+            intervals = [(begin, cut), (cut + rng.uniform(.025, .13), finish)]
+        for first, last in intervals:
+            positions = np.linspace(first, last, 7)
+            center = offset + drift * positions
+            upper_width = width * rng.uniform(.4, 1.35, len(positions))
+            lower_width = width * rng.uniform(.3, 1.2, len(positions))
+            upper_width[0] *= .25
+            lower_width[-1] *= .4
+            upper = [pixel(u, v + w) for u, v, w in zip(positions, center, upper_width)]
+            lower = [pixel(u, v - w) for u, v, w in zip(positions[::-1], center[::-1], lower_width[::-1])]
+            painter.polygon(upper + lower, fill=int(rng.integers(72, 255)))
+
+    strips = np.asarray(contact, dtype=np.float32) / 255
+    coarse = source.fbm(rng, SIZE, 22)
+    grain = source.noise_field(rng, SIZE, 420)
+    # The rubbed film bridges some strips but leaves ragged local voids. Noise
+    # changes pigment coverage only; it never displaces the direction of a strip.
+    outline = 1 - smoothstep(.72, 1.03, np.abs(across) / half_width + (coarse - .5) * .32)
+    along = smoothstep(-.06, .18, t) * (1 - smoothstep(.86, 1.04, t))
+    film = outline * along * smoothstep(.35, .72, coarse) * .3
+    abrasion = smoothstep(.14, .52, grain + coarse * .20)
+    pressure = .15 + np.clip(t, 0, 1) ** 1.35 * 1.40
+    return (strips + film) * abrasion * pressure * density
 
 
 def deposit(rng, cx, cy, sx, sy, strength):
@@ -93,17 +116,17 @@ def droplets(rng, positions):
 
 def short_wipe(rng):
     # One sideways slip and a small dense stopping patch; no fingers or palm.
-    density = transfer(rng, (-.84, .17), (.54, -.12), .19, -.045, 1.05)
-    density += transfer(rng, (-.55, -.04), (.6, -.18), .085, .04, .6)
+    density = transfer(rng, (-.84, .17), (.54, -.12), .19, 1.05)
+    density += transfer(rng, (-.55, -.04), (.6, -.18), .085, .6)
     density += deposit(rng, .49, -.13, .22, .20, .63)
     density += droplets(rng, [(.68, .21, .022), (.72, .30, .012), (.80, -.34, .012), (.58, .37, .006)])
     return density
 
 
 def long_drag(rng):
-    # A heavier object rotates slightly while dragged; pigment fails mid-stroke.
-    density = transfer(rng, (-.88, .15), (.73, -.13), .25, -.12, 1.1)
-    density += transfer(rng, (-.70, .34), (.65, .01), .09, -.08, .7)
+    # A heavier object leaves two unequal contacts; pigment fails mid-stroke.
+    density = transfer(rng, (-.88, .15), (.73, -.13), .25, 1.1)
+    density += transfer(rng, (-.70, .34), (.65, .01), .09, .7)
     dry_band = np.exp(-((X + .10) / .11) ** 2)
     density *= 1 - dry_band * smoothstep(.18, .72, stretched_noise(rng, 20, 55)) * .85
     density += deposit(rng, .65, -.14, .19, .25, .72)
@@ -114,7 +137,7 @@ def long_drag(rng):
 def scattered_stains(rng):
     # Different local events: one pooled stain, a wiped edge and isolated drops.
     density = deposit(rng, -.29, -.08, .37, .32, .91)
-    density += transfer(rng, (-.52, -.11), (.19, -.22), .075, .06, .43)
+    density += transfer(rng, (-.52, -.11), (.19, -.22), .075, .43)
     density += deposit(rng, .45, .27, .16, .12, .65)
     density += deposit(rng, -.56, .46, .13, .09, .37)
     density += droplets(rng, [(.18, .06, .035), (.57, -.12, .022), (.34, -.45, .015), (-.11, .39, .020),
@@ -130,7 +153,7 @@ def bone_slips(rng):
     for cx, cy, length, width, load, drift in contacts:
         end = (cx + length * .4, cy + drift * .4)
         start = (cx - length * .6, cy - drift * .6)
-        density += transfer(rng, start, end, width, -.018, load)
+        density += transfer(rng, start, end, width, load)
         density += deposit(rng, end[0] - .025, end[1], width * 1.0, width * .7, load * .45)
     density += droplets(rng, [(-.72, .17, .013), (.37, -.4, .019), (.42, -.47, .007), (-.04, .47, .009)])
     return density
@@ -157,7 +180,7 @@ def preview(entries):
     result = Image.new("RGB", (cell * 2 + gap * 3, header + (cell + footer + gap) * 4), "#192023")
     draw = ImageDraw.Draw(result)
     font = lambda size: ImageFont.truetype("C:/Windows/Fonts/arial.ttf", size)
-    draw.text((gap, 15), "КРОВАВЫЕ СМАЗЫ · ПРОБА 03", font=font(27), fill="#e1e4de")
+    draw.text((gap, 15), "КРОВАВЫЕ СМАЗЫ · ПРОБА 04", font=font(27), fill="#e1e4de")
     draw.text((gap, 53), "Бетон / плитка · один и тот же прозрачный PNG", font=font(19), fill="#acb8b4")
     for index, entry in enumerate(entries):
         y = header + index * (cell + footer + gap)
@@ -173,7 +196,7 @@ def preview(entries):
         side, margin = 560, 18
         board = Image.new("RGB", (side * 2 + margin * 3, 1322), "#192023")
         board_draw = ImageDraw.Draw(board)
-        board_draw.text((margin, 17), "КРОВАВЫЕ СМАЗЫ · ПРОБА 03", font=font(29), fill="#e1e4de")
+        board_draw.text((margin, 17), "КРОВАВЫЕ СМАЗЫ · ПРОБА 04", font=font(29), fill="#e1e4de")
         for index, entry in enumerate(entries):
             x = margin + (index % 2) * (side + margin)
             y = 70 + (index // 2) * 620
@@ -210,7 +233,8 @@ def main():
     preview(entries)
     provenance = {
         "date": "2026-10-18", "status": "Offline samples pending owner evaluation; not imported",
-        "method": "Procedural density masks, directional pressure and pigment depletion; no AI images",
+        "method": "Independent straight torn transfer strips, local coverage abrasion and pigment depletion; no shared displacement, sine or AI images",
+        "revision": "04; previous wave-distorted images retained in BloodTraces03",
         "generator": "Tools/Art/bake_blood_traces_03.py", "runtimeGeneration": False,
         "reused": ["Concepts/Unused/Visual/ProceduralBlood01/render_samples.py",
                    "Tools/Art/bake_blood_pools_01.py: material"],
