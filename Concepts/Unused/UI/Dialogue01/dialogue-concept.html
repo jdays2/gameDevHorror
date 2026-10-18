@@ -1,0 +1,159 @@
+<div id="es-dialogue-concept">
+  <div class="viz-carousel" aria-label="Композиция диалога" data-previous-label="Назад" data-next-label="Далее">
+    <section data-variant="Крупные силуэты" aria-label="Крупные силуэты"><div class="es-stage" data-layout="large"></div></section>
+    <section data-variant="Компактные портреты" aria-label="Компактные портреты" hidden><div class="es-stage" data-layout="compact"></div></section>
+  </div>
+</div>
+<style>
+#es-dialogue-concept { --es-ink:#edf0e8; --es-muted:#b1bcb5; --es-accent:#a9c4b4; --es-panel:#141c1b; --es-line:#53645c; color:var(--es-ink); font-family:"Segoe UI",Arial,sans-serif; }
+#es-dialogue-concept * { box-sizing:border-box; }
+#es-dialogue-concept [hidden] { display:none !important; }
+#es-dialogue-concept button { font:inherit; color:inherit; cursor:inherit; }
+#es-dialogue-concept .es-stage { position:relative; isolation:isolate; width:100%; min-height:590px; aspect-ratio:16/10; overflow:hidden; background:#1e2927; container-type:inline-size; }
+#es-dialogue-concept .es-room { position:absolute; inset:0; background:radial-gradient(ellipse at 48% 28%,#52605a77,transparent 60%),repeating-linear-gradient(0deg,transparent 0 57px,#14201f 58px 60px),repeating-linear-gradient(90deg,#394540 0 57px,#26322e 58px 60px); }
+#es-dialogue-concept .es-room::before { content:""; position:absolute; inset:15% 24% 24%; border:26px solid #141c1b; border-top-width:34px; box-shadow:0 12px 30px #0009,inset 0 0 50px #0008; }
+#es-dialogue-concept .es-door { position:absolute; top:15%; left:43%; width:14%; height:32px; background:#43554d; border-bottom:5px solid #7b9483; }
+#es-dialogue-concept .es-lamp { position:absolute; top:23%; left:27%; width:8px; height:90px; background:#baccc0; box-shadow:0 0 25px 10px #a2c4a53b; }
+#es-dialogue-concept .es-bed { position:absolute; top:27%; left:56%; width:90px; height:170px; background:#5d6961; border:9px solid #2e3834; box-shadow:6px 9px 0 #0b131470,inset 0 0 0 2px #87938a; transform:rotate(-7deg); }
+#es-dialogue-concept .es-bed::before { content:""; position:absolute; inset:10px 5px auto; height:31px; background:#849087; }
+#es-dialogue-concept .es-player { position:absolute; left:45%; top:46%; width:26px; height:37px; border-radius:45%; background:#929b8c; transform:rotate(24deg); box-shadow:0 8px 12px #000b; }
+#es-dialogue-concept .es-shade { position:absolute; inset:0; background:rgba(4,11,10,.62); transition:background .22s; }
+#es-dialogue-concept .es-location { position:absolute; top:28px; left:30px; color:#d1d9d1; font-size:11px; letter-spacing:.18em; line-height:1.8; }
+#es-dialogue-concept .es-location span { display:block; color:#a4b1a9; letter-spacing:.1em; }
+#es-dialogue-concept .es-cast { position:absolute; top:16%; bottom:22%; width:29%; max-width:340px; opacity:.36; filter:brightness(.8); transition:opacity .2s,filter .2s,transform .2s; }
+#es-dialogue-concept .es-cast.left { left:9%; transform:translateY(6px); }
+#es-dialogue-concept .es-cast.right { right:9%; transform:translateY(6px); }
+#es-dialogue-concept .es-cast.speaking { opacity:1; filter:brightness(1); transform:translateY(0); }
+#es-dialogue-concept .es-head { position:absolute; width:31%; height:30%; left:34.5%; top:5%; border-radius:46% 46% 42% 42%; background:linear-gradient(100deg,#80928a,#54675f 65%,#364c42); box-shadow:inset -10px 0 0 #101b1420; }
+#es-dialogue-concept .es-neck { position:absolute; top:30%; left:43%; width:14%; height:15%; background:#5a6e63; }
+#es-dialogue-concept .es-body { position:absolute; top:37%; left:0; width:100%; height:72%; border-radius:38% 38% 0 0; background:linear-gradient(100deg,#5e7367,#3a5145 75%); clip-path:polygon(25% 0,41% 0,50% 15%,59% 0,75% 0,96% 19%,100% 100%,0 100%,4% 19%); }
+#es-dialogue-concept .left .es-body { background:linear-gradient(100deg,#465957,#2f4541); }
+#es-dialogue-concept .es-body::after { content:""; position:absolute; top:21%; left:50%; height:76%; width:1px; background:#adbaad33; }
+#es-dialogue-concept .es-placeholder { position:absolute; top:-22px; left:0; right:0; text-align:center; color:#c0cfc2; font-size:11px; letter-spacing:.1em; }
+#es-dialogue-concept .es-placeholder b { display:inline-block; font-size:13px; font-weight:400; letter-spacing:.06em; margin-right:8px; }
+#es-dialogue-concept .es-dialogue { position:absolute; bottom:28px; left:30px; right:30px; padding:23px 30px 18px; min-height:205px; background:var(--es-panel); border:1px solid var(--es-line); box-shadow:0 12px 35px #0007; }
+#es-dialogue-concept .es-dialogue::before { content:""; position:absolute; top:-1px; left:-1px; width:86px; height:3px; background:var(--es-accent); }
+#es-dialogue-concept .es-speaker-row { display:flex; align-items:baseline; flex-wrap:wrap; gap:10px 16px; }
+#es-dialogue-concept .es-speaker { margin:0; color:var(--es-accent); font-size:14px; font-weight:500; letter-spacing:.13em; text-transform:uppercase; }
+#es-dialogue-concept .es-role { color:var(--es-muted); font-size:11px; letter-spacing:.08em; }
+#es-dialogue-concept .es-text { margin:18px 0 22px; max-width:780px; color:var(--es-ink); font-size:clamp(17px,2.15cqw,23px); line-height:1.55; font-weight:400; }
+#es-dialogue-concept .es-footer { display:flex; justify-content:space-between; align-items:center; gap:12px; border-top:1px solid #34463d; padding-top:12px; }
+#es-dialogue-concept .es-mode { color:var(--es-muted); font-size:11px; letter-spacing:.12em; }
+#es-dialogue-concept .es-next { border:0; background:transparent; padding:8px 0 8px 15px; font-size:13px; min-height:40px; }
+#es-dialogue-concept .es-next:hover { color:var(--es-accent); }
+#es-dialogue-concept kbd { display:inline-block; font:11px "Segoe UI",Arial,sans-serif; color:var(--es-muted); border:1px solid #65766b; padding:3px 6px; margin-left:10px; border-radius:2px; }
+#es-dialogue-concept .es-choices { display:grid; gap:8px; margin-bottom:16px; }
+#es-dialogue-concept .es-choice { text-align:left; width:100%; background:#1a2722; border:1px solid #65786c; padding:12px 16px; min-height:46px; font-size:15px; line-height:1.45; }
+#es-dialogue-concept .es-choice:hover,#es-dialogue-concept .es-choice:focus-visible { background:#31483b; border-color:var(--es-accent); }
+#es-dialogue-concept .es-choice span { display:inline-block; width:30px; color:var(--es-accent); }
+#es-dialogue-concept .es-hud { position:absolute; inset:auto 30px 30px; display:flex; justify-content:space-between; gap:20px; font-size:13px; letter-spacing:.08em; }
+#es-dialogue-concept .es-hud strong { font-size:27px; display:block; font-weight:500; margin-top:8px; }
+#es-dialogue-concept .es-talk { position:absolute; top:57%; left:50%; transform:translateX(-50%); min-height:44px; white-space:nowrap; padding:10px 18px; background:#141c1bf5; border:1px solid #a9c4b4; }
+#es-dialogue-concept .es-stage.play .es-shade { background:rgba(4,11,10,.15); }
+#es-dialogue-concept [data-layout="compact"] .es-cast { top:auto; bottom:calc(var(--es-dialogue-height,235px) + 44px); width:135px; height:172px; border:1px solid #4f6257; background:#18251f; overflow:hidden; }
+#es-dialogue-concept [data-layout="compact"] .es-cast.left { left:30px; }
+#es-dialogue-concept [data-layout="compact"] .es-cast.right { right:30px; }
+#es-dialogue-concept [data-layout="compact"] .es-placeholder { top:74%; font-size:11px; letter-spacing:0; }
+#es-dialogue-concept [data-layout="compact"] .es-placeholder b { display:block; font-size:16px; margin:0; }
+#es-dialogue-concept .es-stage.choosing .es-dialogue { min-height:275px; }
+#es-dialogue-concept .es-stage.choosing .es-text { margin:13px 0; }
+@media(max-width:650px) {
+ #es-dialogue-concept .es-stage { min-height:640px; aspect-ratio:auto; }
+ #es-dialogue-concept .es-location { top:20px; left:18px; font-size:11px; }
+ #es-dialogue-concept .es-dialogue { left:14px; right:14px; bottom:14px; padding:20px; min-height:230px; }
+ #es-dialogue-concept .es-cast { top:20%; bottom:29%; width:38%; }
+ #es-dialogue-concept .es-cast.left { left:4%; }
+ #es-dialogue-concept .es-cast.right { right:4%; }
+ #es-dialogue-concept .es-text { font-size:17px; margin:14px 0 18px; }
+ #es-dialogue-concept .es-mode { font-size:11px; letter-spacing:.06em; }
+ #es-dialogue-concept .es-next { font-size:12px; }
+ #es-dialogue-concept kbd { display:none; }
+ #es-dialogue-concept .es-placeholder { font-size:11px; letter-spacing:0; }
+ #es-dialogue-concept .es-placeholder b { display:block; font-size:13px; margin:0; }
+ #es-dialogue-concept [data-layout="large"] .es-placeholder { top:-30px; }
+ #es-dialogue-concept [data-layout="compact"] .es-cast { bottom:calc(var(--es-dialogue-height,250px) + 28px); width:110px; height:150px; }
+ #es-dialogue-concept [data-layout="compact"] .es-cast.left { left:14px; }
+ #es-dialogue-concept [data-layout="compact"] .es-cast.right { right:14px; }
+ #es-dialogue-concept [data-layout="compact"] .es-placeholder { font-size:11px; }
+ #es-dialogue-concept .es-stage.choosing .es-dialogue { min-height:310px; }
+ #es-dialogue-concept .es-stage.choosing[data-layout="large"] .es-cast { top:18%; bottom:44%; }
+ #es-dialogue-concept .es-hud { left:18px; right:18px; font-size:11px; }
+}
+@media(prefers-reduced-motion:reduce) { #es-dialogue-concept * { transition:none !important; } }
+</style>
+<script>
+(() => {
+ const root = document.getElementById('es-dialogue-concept');
+ const lines = [
+  { side:'right', name:'Дежурный врач', role:'Медицинский персонал', text:'Тише. За этой дверью что-то есть. Я слышал, как оно двигалось, когда погас свет.' },
+  { side:'left', name:'Вы', role:'', text:'Я очнулся в морге. Что здесь произошло?' },
+  { side:'right', name:'Дежурный врач', role:'Медицинский персонал', text:'Сначала пропала связь. Потом открылись двери нижнего блока. Что вы хотите узнать?', choices:true },
+  { side:'right', name:'Дежурный врач', role:'Медицинский персонал', text:'Держитесь освещённого коридора. Если услышите шаги за дверью — не открывайте её.' }
+ ];
+ const models = [];
+ const portrait = side => '<div class="es-cast '+side+'" role="img" aria-label="Силуэт-заглушка '+(side==='left'?'игрока':'собеседника')+'"><div class="es-neck"></div><div class="es-head"></div><div class="es-body"></div><div class="es-placeholder"><b>'+(side==='left'?'A':'B')+'</b>ПОРТРЕТ-ЗАГЛУШКА</div></div>';
+ const saved = window.openai?.widgetState?.privateContent;
+ root.querySelectorAll('.es-stage').forEach(stage => {
+  stage.innerHTML = '<div class="es-room" aria-hidden="true"><div class="es-door"></div><div class="es-lamp"></div><div class="es-bed"></div><div class="es-player"></div></div><div class="es-shade"></div><div class="es-location">ПОДВАЛЬНЫЙ ЭТАЖ<span>Служебный коридор</span></div>'+portrait('left')+portrait('right')+'<div class="es-dialogue" aria-label="Окно диалога"><div aria-live="polite" aria-atomic="true"><div class="es-speaker-row"><h3 class="es-speaker"></h3><span class="es-role"></span></div><p class="es-text"></p></div><div class="es-choices" hidden><button type="button" class="es-choice cursor-interaction" data-answer="exit"><span>1</span>Как выбраться из подвала?</button><button type="button" class="es-choice cursor-interaction" data-answer="danger"><span>2</span>Кто находится за дверью?</button></div><div class="es-footer"><span class="es-mode">РАЗГОВОР</span><button type="button" class="es-next cursor-interaction">Продолжить <kbd>Space</kbd></button><span class="es-choice-hint" hidden>Выберите ответ</span></div></div><div class="es-hud" hidden><div>ЗДОРОВЬЕ<strong>100 / 100</strong></div><div>ПИСТОЛЕТ<strong>8 / 24</strong></div></div><button type="button" class="es-talk cursor-interaction" hidden>Поговорить <kbd>E</kbd></button>';
+  const prior = saved?.[stage.dataset.layout];
+  const model = { stage, index:Number.isInteger(prior?.index)&&prior.index>=0&&prior.index<=4?prior.index:0, answer:prior?.answer==='danger'?'danger':'exit' };
+  models.push(model);
+  const render = () => {
+   const playing = model.index===4;
+   const line = lines[Math.min(model.index,3)];
+   stage.classList.toggle('play',playing);
+   stage.classList.toggle('choosing',!playing&&!!line.choices);
+   stage.querySelector('.es-dialogue').hidden=playing;
+   stage.querySelector('.es-hud').hidden=!playing;
+   stage.querySelector('.es-talk').hidden=!playing;
+   stage.querySelectorAll('.es-cast').forEach(el => { el.hidden=playing; el.classList.toggle('speaking',el.classList.contains(line.side)); });
+   stage.querySelector('.es-speaker').textContent=line.name;
+   stage.querySelector('.es-role').textContent=line.role;
+   stage.querySelector('.es-text').textContent=model.index===3&&model.answer==='danger'?'Я не видел лица. Только руки под дверью. Слишком длинные, чтобы принадлежать человеку.':line.text;
+   stage.querySelector('.es-choices').hidden=!line.choices;
+   stage.querySelector('.es-next').hidden=!!line.choices;
+   stage.querySelector('.es-choice-hint').hidden=!line.choices;
+   stage.querySelector('.es-next').innerHTML=(model.index===3?'Завершить разговор':'Продолжить')+' <kbd>Space</kbd>';
+  };
+  model.render=render;
+  const save = () => {
+   if(window.openai?.setWidgetState) {
+    const states=Object.fromEntries(models.map(m=>[m.stage.dataset.layout,{index:m.index,answer:m.answer}]));
+    window.openai.setWidgetState({modelContent:{concept:'Emergency Shift — диалоги',layout:stage.dataset.layout,state:model.index===4?'HUD':'Диалог'},privateContent:states}).catch(()=>{});
+   }
+  };
+  const step = () => {
+   if(model.index===4||lines[model.index].choices) return;
+   model.index+=1;
+   render();
+   if(model.index===2) stage.querySelector('.es-choice').focus({preventScroll:true});
+   if(model.index===4) stage.querySelector('.es-talk').focus({preventScroll:true});
+   save();
+  };
+  stage.querySelector('.es-next').addEventListener('click',step);
+  stage.querySelector('.es-talk').addEventListener('click',()=>{model.index=0;render();stage.querySelector('.es-next').focus({preventScroll:true});save();});
+  stage.querySelectorAll('.es-choice').forEach(button=>button.addEventListener('click',()=>{model.answer=button.dataset.answer;model.index=3;render();stage.querySelector('.es-next').focus({preventScroll:true});save();}));
+  stage.addEventListener('keydown',event=>{
+   if((event.key==='1'||event.key==='2')&&model.index===2){event.preventDefault();stage.querySelectorAll('.es-choice')[Number(event.key)-1].click();return;}
+   if(event.code==='Space'&&event.target.tagName!=='BUTTON'){event.preventDefault();step();}
+  });
+  render();
+  const panel = stage.querySelector('.es-dialogue');
+  new ResizeObserver(() => {
+   if(panel.offsetHeight>0) stage.style.setProperty('--es-dialogue-height',panel.offsetHeight+'px');
+  }).observe(panel);
+ });
+ window.addEventListener('openai:set_globals',event=>{
+  const state=event.detail?.globals?.widgetState?.privateContent;
+  models.forEach(model=>{const next=state?.[model.stage.dataset.layout];if(Number.isInteger(next?.index)&&next.index>=0&&next.index<=4){model.index=next.index;model.answer=next.answer==='danger'?'danger':'exit';model.render();}});
+ });
+ if(globalThis.Tweak) {
+  models.forEach(({stage})=>{
+   const design={accent:'#a9c4b4',size:23};
+   const tweak=new Tweak({container:stage,onChange:()=>{stage.style.setProperty('--es-accent',design.accent);stage.querySelector('.es-text').style.fontSize='clamp(17px,2.15cqw,'+design.size+'px)';}});
+   tweak.addColorPicker(design,'accent',{label:'Акцент',reference:'--es-accent'});
+   tweak.addSlider(design,'size',{label:'Размер реплики',min:20,max:28,unit:'px'});
+  });
+ }
+})();
+</script>
