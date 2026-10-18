@@ -1,9 +1,5 @@
-# Gameplay HUD 02 · рабочая Unity-версия
+# Общая белая форма HUD
 
-2026-10-18. Владелец разрешил перенос выбранной композиции в проект с последующей ручной правкой внешнего вида. Работает в MechanicsSandbox и BasementPrototype. Число HP внутри полосы, карточки с горизонтальной полосой без цифр; оружие 1/2 справа, фонарь над HP.
+В `Assets/EmergencyShift/Art/UI/GameplayHud02` остаётся только white.png — общий белый примитив Image. Воспроизведение: `Tools/UI/prepare_gameplay_hud_02.py` (Pillow). Прежние геометрические иконки удалены; текущие силуэты, исходники и лицензии — в [GameplayHud03](../GameplayHud03/README.md).
 
-[Настройка и границы реализации](../../../../Docs/UI/HUD_DESIGN_SYSTEM.md), [проверки](../../../../Docs/Validation/GameplayHud02.json), [браузерная история](../../../Unused/UI/Hud01/README.md).
-
-Production: Assets/EmergencyShift/Prefabs/UI/GameplayHud01.prefab, Data/UI/GameplayHud01.asset и Art/UI/GameplayHud02. Исходник заменяемых иконок — Tools/UI/prepare_gameplay_hud_02.py: оригинальные геометрические силуэты Pillow, без генерации изображений и переноса пикселей Days Gone. В Unity не включена Lucide; она была только в HTML-пробе. Карточки, полоса HP и перечёркивание собраны из обычных Image; текст использует прежний Unity font.
-
-Used означает наличие рабочей реализации, художественная доводка остаётся за владельцем. Звук игрока в Hit Sounds пока не назначен; предусмотрено поле для подходящих клипов. Новые клипы, дыхание и указатель направления не добавлены.
+Композиция и настройка — [HUD_DESIGN_SYSTEM](../../../../Docs/UI/HUD_DESIGN_SYSTEM.md). Рабочие Canvas/prefab и ручные изменения сохранены.

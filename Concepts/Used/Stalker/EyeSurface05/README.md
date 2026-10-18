@@ -19,4 +19,4 @@
 
 ![Привязка к телу](pose-preview.png)
 
-История: [GradualEyeBurn04](../GradualEyeBurn04/README.md) затемнял весь орган и был отклонён владельцем. Полные требования — [STALKER](../../../../Docs/Enemies/STALKER.md).
+История: [GradualEyeBurn04 — запись происхождения](../../../retired-sources.json) затемнял весь орган и был отклонён владельцем. Полные требования — [STALKER](../../../../Docs/Enemies/STALKER.md).

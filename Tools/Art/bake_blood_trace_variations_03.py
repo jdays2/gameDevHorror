@@ -1,7 +1,7 @@
 """Twelve additional blood-transfer shapes, with proposed physical sizes.
 
 Offline Concepts-only output. Corrected transfers from the shared generator,
-with BloodPools01 material. Earlier BloodTraces03 files remain historical.
+with BloodPools01 material. Rejected earlier drafts are recoverable from Git.
 """
 from pathlib import Path
 import hashlib
@@ -167,7 +167,7 @@ def main():
                 "generator": "Tools/Art/bake_blood_trace_variations_03.py",
                 "reused": "Tools/Art/bake_blood_traces_03.py and BloodPools01 material",
                 "method": "Independent contact deviations and torn ends; no shared wave displacement or AI images",
-                "revision": "05; original BloodTraces03 and BloodTraces04 retained without changes",
+                "revision": "05; rejected drafts 03/04 removed by content cleanup, recoverable from Git",
                 "runtimeGeneration": False, "units": "Suggested canvas widths in Unity units, not physical metres; not assigned to prefabs",
                 "entries": entries,
                 "sha256": {p.relative_to(DEST).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()

@@ -239,7 +239,7 @@ def main():
     provenance = {
         "date": "2026-10-18", "status": "Offline samples pending owner evaluation; not imported",
         "method": "Independent nonperiodic contact control points, tapered torn ends, local pigment abrasion; no shared displacement, sine or AI images",
-        "revision": "05; previous waves/straight drafts retained in BloodTraces03 and BloodTraces04",
+        "revision": "05; rejected drafts 03/04 removed by content cleanup, recoverable from Git",
         "generator": "Tools/Art/bake_blood_traces_03.py", "runtimeGeneration": False,
         "reused": ["Concepts/Unused/Visual/ProceduralBlood01/render_samples.py",
                    "Tools/Art/bake_blood_pools_01.py: material"],

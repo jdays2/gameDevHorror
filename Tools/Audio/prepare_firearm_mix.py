@@ -63,7 +63,7 @@ def main():
         row.update(source=source.relative_to(ROOT).as_posix(), sourceSha256=sha(source), trimStartSample=start, lowDb=-1.5, additionalLateDecay=0.65)
         records.append(row)
     for i in range(1, 4):
-        source = ROOT / f'Assets/EmergencyShift/Audio/ShotgunPump/shot_01_{i:02}.wav'
+        source = FAMILY / f'Inputs/shot_01_{i:02}.wav'
         x = tone(decode(args.ffmpeg, source), 2.5, None)
         row = write(f'shotgun_{i:02}', x, 0.82)
         row.update(source=source.relative_to(ROOT).as_posix(), sourceSha256=sha(source), lowDb=2.5)

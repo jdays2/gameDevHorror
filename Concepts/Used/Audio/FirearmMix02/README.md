@@ -9,7 +9,7 @@
 ## Источники и воспроизведение
 
 - Пистолет — неизменённые шесть производных из [PistolIndoor](../PistolIndoor/manifest.json): один принятый записанный выстрел, шесть близких вариантов.
-- Дробовик — неизменённые `ShotgunPump/shot_01_01..03`, происходящие из записанного банка B [ShotgunRealism01](../ShotgunRealism01/README.md).
+- Дробовик — неизменённые `Inputs/shot_01_01..03.wav`, происходящие из записанного банка B [ShotgunRealism01](../ShotgunRealism01/README.md).
 - Новые foley: NoonerBear, [Taurus G2c Misc Foley](https://freesound.org/people/NoonerBear/sounds/589844/), [Dry Trigger](https://freesound.org/people/NoonerBear/sounds/589848/), [Magazine Release](https://freesound.org/people/NoonerBear/sounds/589845/). На страницах проверена CC0; данные автора/ссылки/хеши в sources.json. Это публичные MP3 previews, не lossless masters. Некоторые исходники имеют decoder overshoot; линейная нормализация экспорта не является восстановлением качества оригинала.
 
 `Tools/Audio/prepare_firearm_mix.py --ffmpeg <absolute-path>`: 48 кГц PCM24 stereo, HP45/DC, широкая низкая полка 420 Гц (пистолет −1.5 дБ, дробовик +2.5 дБ), укороченный пистолетный хвост и короткие fades. Никакого синтетического баса, новой реверберации или компрессора. Точные окна/хеши — manifest.json. Монтаж foley абстрактный; собственная анимация рук ещё не создана.

@@ -17,7 +17,7 @@
 | Читаемость, будущие границы и изученные skills | [Инженерное ревью](ENGINEERING_REVIEW.md) |
 | Редактирование сцены/конфигов | [Авторинг](Guides/LEVEL_AUTHORING.md) |
 | Библиотека окружения и отдельные тестовые комнаты | [Окружение](Guides/ENVIRONMENT_LIBRARY.md), [новые типы](Environment/OBJECT_BACKLOG.md) |
-| Стены: прежний вид и история снятой отделки | [Оформление стен](Guides/INTERIOR_WALL_FINISHES.md) |
+| Текущие стены и блокировка света | [Оформление стен](Guides/INTERIOR_WALL_FINISHES.md) |
 | Цвет, радиусы света/звука и размер настенных ламп | [Настройка ламп](Guides/HOSPITAL_LAMPS.md) |
 | Разметка пола: PNG, соединения и цвет | [Разметка](Guides/FLOOR_MARKINGS.md) |
 | Сохранение/восстановление и добавление точек | [Чекпоинты](Guides/CHECKPOINTS.md) |
@@ -28,8 +28,7 @@
 | Оружие и согласованные концепты | [Оружие](Weapons/README.md), [пистолет](Weapons/PISTOL.md), [дробовик](Weapons/SHOTGUN.md) |
 | Настройка звука | [Аудио](Audio/AUDIO_GUIDE.md) |
 | Основная тестовая сцена | [Песочница механик](SANDBOX.md) |
-| История удалённого демо | [FirstShift](FIRST_LEVEL.md) |
-| Выполненные проверки | [Валидация](VALIDATION.md) |
+| Проверки и аудит контента | [Валидация](VALIDATION.md), [очистка](CONTENT_AUDIT.md) |
 | Отложенные ограничения | [Оптимизация](OPTIMIZATION_BACKLOG.md) |
 | Подключение Unity | [MCP](MCP_SETUP.md) |
 

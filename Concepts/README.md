@@ -1,71 +1,111 @@
-# Концепты и источники
+# Библиотека исходников и концептов
 
-- [HUD 03](Used/UI/GameplayHud03/README.md) — HP ниже, карты над правой частью, прямой фонарь с длинной диагональю; подложки выключены. Оружейная композиция не одобрена. [Три варианта 04](Unused/UI/WeaponHud04/README.md) с референсами TLOU II, L4D2 и Uncharted 4 ждут выбора.
+Рабочие ресурсы Unity находятся в Assets/EmergencyShift. Здесь хранятся исходники, лицензии, генерация и действующие направления исследования. Текущие требования — в [Docs/SPEC](../Docs/SPEC.md). Used означает участие семьи в реализации; статус художественного одобрения указан в её README.
 
-- [Карточки доступа 02](Used/Items/AccessCards02/README.md) — подключены три более плоских матовых варианта, короче примерно на 22–23% при прежней высоте в мире. Без глубоких бликов/царапин; общий Sprite для мира и HUD. [Набор 01](Used/Items/AccessCards01/README.md) и [первая синяя проба](Unused/Items/AccessCard01/README.md) — история.
+Отклонённые старые следы, отделка, ранние эффекты и дубликаты удалены. [Аудит](../Docs/CONTENT_AUDIT.md) описывает границы; [retired-sources.json](retired-sources.json) сохраняет происхождение и обработку удалённых материалов. Восстановление бинарных версий возможно из Git.
 
-- [Игровой HUD](Used/UI/GameplayHud02/README.md) — первая редактируемая uGUI-версия в обеих тестовых сценах: HP/фонарь/карты слева, оружие 1/2 справа, число HP внутри полоски, карточки с цветной полосой без цифр. Отклик на удар без пелены. [Браузерная история](Unused/UI/Hud01/README.md).
+## Источники реализации
 
-- Декоративная отделка стен отключена по просьбе владельца; в MechanicsSandbox возвращён прежний тёмный вид. [Широкая отделка 01](Used/Environment/WallFinishes01/README.md) — Historical, [кромка 02](Unused/Environment/WallCaps02/README.md) — отклонённая проба вне Assets. [Референсы](Unused/Environment/WallReferences01/README.md) сохранены.
+### Audio
 
-- [Настенные лампы 02](Used/Environment/HospitalLampHousings02/README.md) — открытые трубки на торцевых креплениях по схеме владельца, вид сверху. Монтажная планка прилегает к стене; белое ядро и мягкий цветной ореол мерцают вместе с лампой. Версия 01 с неверным ракурсом сохранена как история.
+- [Общий короткий разрыв 06](Used/Audio/CreatureRupture06/README.md)
+- [FirearmMix02 · парный микс и пистолетная механика](Used/Audio/FirearmMix02/README.md)
+- [Звук больничной лампы · проба 01](Used/Audio/HospitalLamp01/README.md)
+- `Used/Audio/PistolIndoor/` — исходные материалы.
+- [Помповый дробовик · реалистичная звуковая проба 01](Used/Audio/ShotgunRealism01/README.md)
+- [Сталкер — Membrane04-r2](Used/Audio/StalkerMembrane04/README.md)
+- [Сталкер: контактный ожог и лопанье плоти 05](Used/Audio/StalkerTissue05/README.md)
+- [Три состояния v2 — развитие новой серии фактур](Used/Audio/StatePreviewV2/README.md)
+- `Used/Audio/WorldFoley/` — исходные материалы.
 
-- [Звук больничной лампы 01](Used/Audio/HospitalLamp01/README.md) — гул и три контакта из реальных CC0-записей подключены к шести тихим местным лампам MechanicsSandbox и двум BasementPrototype. Цвет, размер и слышимость настраиваются отдельно на экземплярах. Сохранены две исходные пробы, схемы синхронизации и происхождение. Финальную громкость оценивает владелец.
+### Environment
 
-- [Полы больницы 02](Used/Environment/MorgueFloors02/README.md) — все 11 основ импортированы и размещены подписанными участками в коридоре MechanicsSandbox. Отдельные prefab, общий FlatLit, размер через Tiled/Size; исходники imagegen, промпты и повтор 2 × 2 сохранены. На оценку владельцем.
-- [Повреждения поверхностей 02](Unused/Environment/SurfaceDamage02/README.md) — восемь процедурных проб: колёсные потёртости, волочение, зацеп костяного острия, трещина, сколы и повреждение покрытия. Отдельные RGBA и белые маски; на оценку, без Unity-интеграции.
-- [Фотореференсы больницы 01](Unused/Environment/HospitalReferences01/README.md) — 17 вложений владельца: морг, коридоры и лаборатории. Только вдохновение, не игровые ассеты; лицензии оригинальных фото не указаны.
+- [Следы крови 05 · неровные смазы в песочнице](Used/Environment/BloodTraces05/README.md)
+- [Полная обзорная сцена окружения](Used/Environment/EnvironmentLibraryReview/README.md)
+- [FloorMarkings01](Used/Environment/FloorMarkings01/README.md)
+- [Полы · базовые текстуры 01](Used/Environment/FloorMaterials01/README.md)
+- [Корпуса больничных ламп 01](Used/Environment/HospitalLampHousings01/README.md)
+- [Настенные лампы 02 · открытая конструкция по схеме владельца](Used/Environment/HospitalLampHousings02/README.md)
+- [IndustrialProps02 · естественная вариативность](Used/Environment/IndustrialProps02/README.md)
+- [IndustrialProps03Variants — варианты существующих предметов](Used/Environment/IndustrialProps03Variants/README.md)
+- [InteriorProps01 — новые предметы помещений](Used/Environment/InteriorProps01/README.md)
+- [Обезличенные останки медработников · проба 01](Used/Environment/MedicalRemains01/README.md)
+- [Полы больницы · MorgueFloors02](Used/Environment/MorgueFloors02/README.md)
+- `Used/Environment/NarrativeBlock01/` — исходные материалы.
+- `Used/Environment/PracticalLights01/` — исходные материалы.
+- [StorageUtilities01 · шкафы и инженерные трубы](Used/Environment/StorageUtilities01/README.md)
 
-- [Следы крови 05](Used/Environment/BloodTraces05/README.md) — небольшие независимые отклонения, надрывы и неровные окончания без общей волны. 16 prefab, 21 экземпляр разных размеров в MechanicsSandbox вместо старых traces; кадры с фонарём и рядом с останками. На оценку владельцем. [Слишком прямая 04](Unused/Environment/BloodTraces04/README.md) и [волнистая 03](Unused/Environment/BloodTraces03/README.md) сохранены как история.
+### Items
 
-- [Следы присутствия 02](Used/Environment/PresenceTraces02/README.md) — исторический отклонённый набор; все 11 экземпляров в MechanicsSandbox заменены на BloodTraces05. [Набор 01 также отклонён](Unused/Environment/FloorAftermath01/README.md).
+- [Карточки доступа 01 — история](Used/Items/AccessCards01/README.md)
+- [Карточки доступа 02 — плоские и компактные](Used/Items/AccessCards02/README.md)
 
-- [Останки медработников 01](Used/Environment/MedicalRemains01/README.md) — четыре фрагмента с густой кровью в BasementPrototype и два набора в MechanicsSandbox: освещённая плитка и тёмный тир. Подключены для оценки владельцем.
+### Shared
 
-- [Очищенные конечности 01](Used/Shared/AnatomicalGibs01/README.md) — удалены края соседних частей из 12 вырезок; прежние GUID/bounds сохранены. Старые составы с лишними ногами исключены из новых смертей, плоти теперь 8–10 кусков на тушу.
+- [Очищенные конечности и составы останков 01](Used/Shared/AnatomicalGibs01/README.md)
+- [BloodPools01 — игровая проба процедурной крови](Used/Shared/BloodPools01/README.md)
+- [Куски плоти: общие формы, две палитры](Used/Shared/FleshChunks04/README.md)
 
-- [Игровая проба крови 01](Used/Shared/BloodPools01/README.md) — три процедурно подготовленные прозрачные формы при смерти обоих врагов, освещение фонариком и тушки сверху. Подключены через общий prefab, на оценку владельцем. [Исходные offline-пробы](Unused/Visual/ProceduralBlood01/README.md) сохраняют вариант накопления общей плотности, который в игру пока не переносился.
+### Sleeper
 
-- [Останки 04](Used/Stalker/Remains04/README.md) — три новых состава туш Сталкера, мёртвый взгляд обоих видов и [общие куски плоти](Used/Shared/FleshChunks04/README.md). Подключены через прежнюю систему останков; внешний вид оценивает владелец.
+- [Спящий · кровь, светлый глаз и варианты останков 02](Used/Sleeper/BloodMarks02/README.md)
+- [Спящий: базовая временная копия Сталкера](Used/Sleeper/StalkerPlaceholder01/README.md)
 
-- [Спящий: BloodMarks02](Used/Sleeper/BloodMarks02/README.md) — светлый игровой глаз, несколько раздельных кровавых следов на всех листах и три состава останков, включая отдельный глаз. Внедрено; первая проба с бордовой полосой историческая.
+### Stalker
 
+- [Глаз 05 · поверхность и слежение](Used/Stalker/EyeSurface05/README.md)
+- [Сталкер: увеличенный глаз](Used/Stalker/LargeEye01/README.md)
+- [Сталкер: походка 01](Used/Stalker/Locomotion01/README.md)
+- `Used/Stalker/Origin/` — исходные материалы.
+- [Сталкер v09 — бледная плоть, рабочий набор](Used/Stalker/PaleFlesh/README.md)
+- [Сталкер · варианты останков 04](Used/Stalker/Remains04/README.md)
 
-- [Общий разрыв 06](Used/Audio/CreatureRupture06/README.md) — одобренная односекундная проба и две монтажные вариации, подключены Сталкеру/Спящему без повторов подряд. [Первичная проба](Unused/Audio/StalkerRupture06/README.md) сохранена по прежнему адресу.
+### UI
 
-- [Глаз: поверхность и слежение](Used/Stalker/EyeSurface05/README.md) — волокна следуют зрачку; ожог мутнит зрачок/слегка краснит открытую поверхность, веки сохраняют цвет кожи. GradualEyeBurn04/EyeBurn03 — история.
-- [StalkerTissue05](Used/Audio/StalkerTissue05/README.md) — текущий короткий ожог; два прежних разрыва теперь исторические, заменены CreatureRupture06.
+- [Общая белая форма HUD](Used/UI/GameplayHud02/README.md)
+- [HUD 03 — текущая проба и история источников](Used/UI/GameplayHud03/README.md)
 
-- [Походка Сталкера](Used/Stalker/Locomotion01/README.md) — фаза по расстоянию, опорный ритм и сглаживание поворотов в существующем prefab, с видео для оценки.
-- [Спящий: временная графика](Used/Sleeper/StalkerPlaceholder01/README.md) — копия существующих спрайтов Сталкера с холодной серо-зелёной палитрой. [Новые звуки](Unused/Audio/SleeperVoice01/README.md) сохранены; WAV также доступны в Assets/Audio/Sleeper/Voice01.
-- [Прежняя подготовка Спящего](Unused/Visual/SleeperSpriteRig01/README.md) — остановлена владельцем; отдельный дизайн отложен.
+## Сохранённые исследования и варианты
 
-- [Сталкер: увеличенный глаз](Used/Stalker/LargeEye01/README.md) — четыре нарисованные стадии века и отдельный подвижный зрачок в существующем prefab; исходные тело и анимации PaleFlesh сохранены. Рисунок подключён на оценку владельцем.
+### Audio
 
-- [Спящий: анатомия и закрытие пасти](Unused/Visual/SleeperAnatomy02/README.md) — постоянные глаз/зубы/суставы, новое требование трёхчастной пасти и крови. Кровавая пара отклонена: открытая и закрытая головы несовместимы. Текущий шаг — схема движения коротких створок до новой отрисовки; утверждённого арта нет. [Прежние силуэты](Unused/Visual/SleeperExploration01/README.md) сохранены как история выбранной «Треноги» и невыбранных направлений.
+- `Unused/Audio/DistantMemory/` — исходные материалы.
+- `Unused/Audio/ProceduralPlayer/` — исходные материалы.
+- `Unused/Audio/RunwayStudies/` — исходные материалы.
+- [Спящий — четыре звуковые пробы 01](Unused/Audio/SleeperVoice01/README.md)
+- [Короткий мясистый разрыв 06 — проба](Unused/Audio/StalkerRupture06/README.md)
+- `Unused/Audio/Tools/` — исходные материалы.
+- `Unused/Audio/WeaponAlternatives/` — исходные материалы.
 
-- [Подвальный морг и этаж выше: схема 03](Unused/Levels/MorgueDemo03/README.md) — текущая редактируемая пространственная ревизия: коридоры с группами помещений, проёмы, локальные обходы, точки наблюдения и арена с двумя островами. D1 открывается до последнего участка подвала; наверху два пути между общими узлами. Без ассетов и художественного наполнения; размеры относительные, блокинг и длительность не утверждены. Принципы геометрии референсов адаптированы, чужая карта не реконструируется. [Схема 01](Unused/Levels/MorgueDemo01/README.md) сохранена как исторический иллюстративный одноэтажный эскиз. В Unity не встроены.
+### Environment
 
-- [Полная обзорная сцена](Used/Environment/EnvironmentLibraryReview/README.md) — 27 новых ассетов и 6 базовых в трёх связанных помещениях Unity.
+- [Ранние атласы разметки](Unused/Environment/FloorMarkings01/README.md)
+- [Референсы помещений больницы · 01](Unused/Environment/HospitalReferences01/README.md)
+- [Жертвы · проба 03](Unused/Environment/HumanRemains03/README.md)
+- [IndustrialProps01 · библиотека окружения](Unused/Environment/IndustrialProps01/README.md)
+- [Повреждения поверхности · проба 02](Unused/Environment/SurfaceDamage02/README.md)
+- [Референсы внутренней отделки стен](Unused/Environment/WallReferences01/README.md)
 
-- [StorageUtilities01](Used/Environment/StorageUtilities01/README.md) — четыре шкафа и пять трубных элементов; конкретные следы использования вместо стерильных поверхностей, пример соединения и исправленная тележка до/после. Подключены в EnvironmentLibraryReview.
+### Levels
 
-- [IndustrialProps03Variants](Used/Environment/IndustrialProps03Variants/README.md) — 8 вариаций наполнения существующих поддонов, стеллажей и столов. Подключены в EnvironmentLibraryReview.
-- [InteriorProps01](Used/Environment/InteriorProps01/README.md) — 10 PNG одобренных к генерации типов мебели/оснащения, включая чистую и кровавую койку. Подключены в EnvironmentLibraryReview; используется исправленная тележка v2.
+- [Морг → больница → арена: схема 01](Unused/Levels/MorgueDemo01/README.md)
+- [Пространственная схема демо 03](Unused/Levels/MorgueDemo03/README.md)
 
-- [IndustrialProps02](Used/Environment/IndustrialProps02/README.md) — шесть перегенерированных предметов с естественной асимметрией, сравнение 01/02 и отдельная комната EnvironmentPropsReview. Подключены для оценки.
-- [IndustrialProps01](Unused/Environment/IndustrialProps01/README.md) — шесть отдельных прозрачных спрайтов склада/лаборатории и интерактивный каталог. Историческая первая партия, перегенерирована по замечанию об идеальности; исходники сохранены.
+### UI
 
-- [FloorMarkings01](Used/Environment/FloorMarkings01/README.md) — общая маска краски, 16 белых PNG с альфой и готовые префабы; цвет меняется у экземпляра. Первичная реализация на художественную оценку владельцем, обзор в отдельной ArtReview-сцене.
+- [Диалоговый интерфейс 01](Unused/UI/Dialogue01/README.md)
+- [Диалоговый интерфейс 02](Unused/UI/Dialogue02/README.md)
+- [Диалоговый интерфейс 03](Unused/UI/Dialogue03/README.md)
+- [HUD · выбранная композиция](Unused/UI/Hud01/README.md)
+- [Оружейный HUD 04 — три варианта на выбор](Unused/UI/WeaponHud04/README.md)
 
-- [FloorMaterials01](Used/Environment/FloorMaterials01/README.md) — чистые основы: плитка в комнате 02 и бетон в тире 03 MechanicsSandbox. Подключены для превью; финальный арт и повреждённые вариации ещё не утверждены.
+### Visual
 
-- **Used/** — материалы, на которых основана реализация. **Historical/** внутри — ранее использовавшиеся варианты, теперь заменённые. Это не список актуальных игровых ассетов.
-- **Unused/** — отклонённые и неиспользованные варианты; не считать их утверждённым направлением.
-- Рабочие ассеты Unity находятся в **Assets/EmergencyShift/**. Концепты намеренно лежат за пределами Assets и не импортируются в игру.
-- [catalog.json](catalog.json) хранит исходное расположение, назначение и SHA-256 каждого перенесённого файла. Исторические README описывают своё время и не заменяют текущую спецификацию.
-- Актуальные исходники палитры: Used/Stalker/PaleFlesh. Фоновый звук: Used/Audio/StatePreviewV2. Мембрана: Used/Audio/StalkerMembrane04. Пистолет/гильзы: Used/Audio/PistolIndoor. Двери/подбор: Used/Audio/WorldFoley.
-- [FirearmMix02](Used/Audio/FirearmMix02/README.md) — текущий парный микс пистолета/дробовика, общий сухой спуск и пистолетная перезарядка из записей CC0; закреплён владельцем как текущий звуковой ориентир 2026-10-16.
-- [ShotgunRealism01](Used/Audio/ShotgunRealism01/README.md) — новая проба реалистичных выстрелов/помпы/зарядки/попаданий в стилистике пистолета. После замечаний владельца выстрелы заменены новой нарезкой банка B; механизм/гильзы сохранены. Прежний A и Unity-микс 05 — история, микс 06 также стал историей после парного FirearmMix02. Текущий FirearmMix02 закреплён как рабочий ориентир; старые пробы не получили общего одобрения. Функциональный концепт хранится в [документации оружия](../Docs/Weapons/SHOTGUN.md).
-- Лицензии и сведения об авторах сохранены рядом с аудиоисточниками. MP3 preview не является оригинальной lossless-записью. Использование в проекте не меняет лицензию.
-- Не переносить старые .asset/.meta из Historical обратно в Assets без проверки GUID: там возможны старые версии действующих ресурсов.
+- [Процедурная кровь 01 — художественные пробы](Unused/Visual/ProceduralBlood01/README.md)
+- [Спящий: проверка постоянства анатомии и закрытия пасти](Unused/Visual/SleeperAnatomy02/README.md)
+- [Второй монстр: визуальная разведка 01 — история](Unused/Visual/SleeperExploration01/README.md)
+- [Спящий: подготовка спрайтов 01 — остановлено владельцем](Unused/Visual/SleeperSpriteRig01/README.md)
+
+## Учёт источников
+
+[catalog.json](catalog.json) содержит записи переноса для существующих файлов. У отдельных семей есть provenance/sources/processing/manifest с авторами, лицензиями, промптами и параметрами. Наличие в Unused не означает мусор: здесь остаются текущие варианты UI, схемы демо, референсы владельца и незавершённые исследования врагов. Не импортировать исторические .meta из Git без проверки GUID.
