@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-18",
+  "scope": "Two lamp casing sprites, visual prefab changes only",
+  "tool": "built-in image_gen.imagegen",
+  "nativeImport": [
+    {
+      "id": "ward-tube-housing",
+      "sourcePixelsPerUnit": 1502.72729,
+      "runtimePixelsPerUnit": 867.4141,
+      "textureWidth": 1024,
+      "textureHeight": 512
+    },
+    {
+      "id": "corridor-diffuser-housing",
+      "sourcePixelsPerUnit": 2275.5813,
+      "runtimePixelsPerUnit": 1119.73047,
+      "textureWidth": 1024,
+      "textureHeight": 372
+    }
+  ],
+  "play": {
+    "lamps": [
+      {
+        "name": "Ward lamp - muted cyan",
+        "sprite": "ward-tube-housing",
+        "material": "FlatLit",
+        "radius": 1.45,
+        "bulbScaleX": 0.9,
+        "bodyScale": "(1.00, 1.00, 1.00)",
+        "bodyOrder": 2,
+        "bulbOrder": 3,
+        "x": 40.65,
+        "y": 3.0,
+        "rotation": 90.0,
+        "sources": 2,
+        "intensity": 0.0
+      },
+      {
+        "name": "Corridor lamp - warm ivory",
+        "sprite": "corridor-diffuser-housing",
+        "material": "FlatLit",
+        "radius": 1.45,
+        "bulbScaleX": 0.65,
+        "bodyScale": "(1.00, 1.00, 1.00)",
+        "bodyOrder": 2,
+        "bulbOrder": 3,
+        "x": 59.35,
+        "y": 3.0,
+        "rotation": 90.0,
+        "sources": 2,
+        "intensity": 0.26303196
+      }
+    ],
+    "sharedMix": "{\"hum\":{\"instanceID\":12094627984094},\"contacts\":[{\"instanceID\":16492674495202},{\"instanceID\":20890721006310},{\"instanceID\":14293651239658}],\"humVolume\":0.07000000029802322,\"contactVolume\":0.11999999731779099,\"fullVolumeDistance\":0.3499999940395355,\"hearingDistance\":2.0,\"referenceIntensity\":0.2800000011920929,\"darkThreshold\":0.009999999776482582,\"contactCooldown\":0.07000000029802322,\"humFadeSeconds\":0.05999999865889549}"
+  },
+  "afterStop": {
+    "missingScripts": 0,
+    "dirty": false,
+    "play": false
+  },
+  "consoleErrorsOrWarnings": 0,
+  "preservation": {
+    "ownedDocumentsBefore": 6,
+    "ownedDocumentsAfter": 6,
+    "changedOwnedDocuments": 2,
+    "preservedUnrelatedDocuments": 526,
+    "otherTrackedNativeFilesUnchanged": 1638,
+    "scope": "Two lamp prefab instances and visual-only base prefab edits",
+    "indexPolicy": "HEAD plus owned lamp documents; prior manual scene edits remain unstaged"
+  },
+  "sourcePixelsAndAlphaUnchanged": true,
+  "nativeURPPreviews": [
+    "ward-on",
+    "ward-off",
+    "corridor-on",
+    "corridor-off"
+  ],
+  "runtimeCodeOrAssembliesChanged": false,
+  "editModeAndReleaseRepeated": false,
+  "reviewLimit": "Owner evaluates visual design; native previews were captured before the final explicit Bulb sortingOrder 3, with the same visible layer order"
+}
