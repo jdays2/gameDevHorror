@@ -49,6 +49,11 @@ namespace EmergencyShift
 
         private void Update()
         {
+            if (GameplayInputBlock.IsBlocked)
+            {
+                return;
+            }
+
             if (Time.time >= notificationUntil && notices.Count > 0)
             {
                 StartNotice(notices.Dequeue());
@@ -72,7 +77,7 @@ namespace EmergencyShift
 
         public void CollectNearbyLoot()
         {
-            if (!isActiveAndEnabled || (life != null && life.IsDead))
+            if (GameplayInputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
             {
                 return;
             }
@@ -90,7 +95,7 @@ namespace EmergencyShift
 
         public bool CanReach(Vector2 point, float targetRange, Collider2D allowedBlocker = null)
         {
-            if (!isActiveAndEnabled || (life != null && life.IsDead))
+            if (GameplayInputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
             {
                 return false;
             }
@@ -113,7 +118,7 @@ namespace EmergencyShift
         public void RefreshTarget()
         {
             CurrentTarget = null;
-            if (!isActiveAndEnabled || (life != null && life.IsDead))
+            if (GameplayInputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
             {
                 return;
             }

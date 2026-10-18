@@ -104,6 +104,11 @@ namespace EmergencyShift
 
         private void Update()
         {
+            if (GameplayInputBlock.IsBlocked)
+            {
+                return;
+            }
+
             if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
             {
                 Toggle();

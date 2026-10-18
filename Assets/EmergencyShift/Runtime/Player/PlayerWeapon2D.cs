@@ -163,7 +163,7 @@ namespace EmergencyShift
             Equipped();
         }
 
-        private bool CanUse => isActiveAndEnabled && (life == null || !life.IsDead);
+        private bool CanUse => !GameplayInputBlock.IsBlocked && isActiveAndEnabled && (life == null || !life.IsDead);
 
         public bool Acquire(int cartridges, WeaponDefinition selected = null)
         {
@@ -250,6 +250,11 @@ namespace EmergencyShift
 
         private void Update()
         {
+            if (GameplayInputBlock.IsBlocked)
+            {
+                return;
+            }
+
             inventory.ActiveCycle?.Tick(Time.time);
             var keyboard = Keyboard.current;
             if (keyboard != null)

@@ -6,6 +6,24 @@
 
 ## Runtime
 
+### Диалоговый тест — добавленные файлы
+
+Все пути ниже проверены по фактическим C#-исходникам.
+
+| Файл | Назначение |
+|---|---|
+| `Runtime/Core/GameplayInputBlock.cs` | Захват модального игрового ввода с независимым освобождением владельцев. |
+| `Runtime/Dialogue/DialogueSequence.cs` | Общие данные говорящих и линейных реплик; валидация индексов и текста. |
+| `Runtime/Dialogue/DialogueStyle.cs` | Шрифт, цвета, размеры и отступы диалога. |
+| `Runtime/Dialogue/DialogueSession.cs` | Позиция в беседе, пауза, сохранение/возврат HUD, прицела, курсора и ввода. |
+| `Runtime/Dialogue/DialogueInteraction2D.cs` | Точка разговора через существующий IInteractable/E. |
+| `Runtime/UI/DialogueView.cs` | Сохранённый uGUI: один активный портрет, текст и продолжение. |
+| `Runtime/UI/DialogueFadeGraphic.cs` | Верхний градиент подложки без новой текстуры. |
+| `Editor/Authoring/DialogueSandboxAuthoring.cs` | Локальное добавление новой группы без генерации карты. |
+| `Tests/EditMode/DialogueDataTests.cs` | Независимые владельцы ввода и некорректные данные реплик. |
+
+### Остальные Runtime-файлы
+
 | Файл | Назначение |
 |---|---|
 | `Runtime/Combat/Weapons/BulletProjectile2D.cs` | Летящая пуля с проверкой всего отрезка пути, чтобы не проскочить тонкую стену. |

@@ -18,7 +18,7 @@ namespace EmergencyShift
         private void Update()
         {
             var keyboard = Keyboard.current;
-            if (keyboard == null || player == null || player.IsDead)
+            if (GameplayInputBlock.IsBlocked || keyboard == null || player == null || player.IsDead)
             {
                 return;
             }

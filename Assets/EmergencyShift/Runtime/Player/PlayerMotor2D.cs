@@ -15,7 +15,7 @@ namespace EmergencyShift
         private void Update()
         {
             var keyboard = Keyboard.current;
-            if (keyboard == null)
+            if (keyboard == null || GameplayInputBlock.IsBlocked)
             {
                 movement = Vector2.zero;
                 return;
@@ -27,7 +27,10 @@ namespace EmergencyShift
             movement = new Vector2(x, y).normalized;
         }
 
-        private void FixedUpdate() => body.linearVelocity = movement * moveSpeed;
+        private void FixedUpdate()
+        {
+            body.linearVelocity = GameplayInputBlock.IsBlocked ? Vector2.zero : movement * moveSpeed;
+        }
         private void OnDisable()
         {
             if (body != null)
