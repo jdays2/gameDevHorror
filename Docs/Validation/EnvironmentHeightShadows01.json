@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-18",
+  "model": "Three authored surface height classes; standard URP caster silhouettes and receiver masks. Floor and live actor draw order kept separate.",
+  "imageSamples": {
+    "before": {
+      "cabinetMeanRGB": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "binFloorShadowRGB": [
+        0,
+        0,
+        0
+      ]
+    },
+    "after": {
+      "cabinetMeanRGB": [
+        87.661625,
+        88.862875,
+        77.88
+      ],
+      "binFloorShadowRGB": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "sceneAudit": [
+    {
+      "path": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+      "missingScripts": 0,
+      "badLightLayers": 0,
+      "heightClasses": {
+        "Low": 2,
+        "Furniture": 5,
+        "Tall": 21
+      }
+    },
+    {
+      "path": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+      "missingScripts": 0,
+      "badLightLayers": 0,
+      "heightClasses": {
+        "Low": 0,
+        "Furniture": 1,
+        "Tall": 22
+      }
+    },
+    {
+      "path": "Assets/EmergencyShift/Scenes/LevelTemplate.unity",
+      "missingScripts": 0,
+      "badLightLayers": 0,
+      "heightClasses": {
+        "Low": 0,
+        "Furniture": 0,
+        "Tall": 4
+      }
+    },
+    {
+      "path": "Assets/EmergencyShift/Scenes/ArtReview/EnvironmentLibraryReview.unity",
+      "missingScripts": 0,
+      "badLightLayers": 0,
+      "heightClasses": {
+        "Low": 8,
+        "Furniture": 13,
+        "Tall": 18
+      }
+    }
+  ],
+  "placementPreservation": [
+    {
+      "scene": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+      "headTransformsPreserved": 102,
+      "workingTransformsPreserved": 106
+    },
+    {
+      "scene": "Assets/EmergencyShift/Scenes/LevelTemplate.unity",
+      "headTransformsPreserved": 6,
+      "workingTransformsPreserved": 6
+    },
+    {
+      "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+      "headTransformsPreserved": 214,
+      "workingTransformsPreserved": 207
+    },
+    {
+      "scene": "Assets/EmergencyShift/Scenes/ArtReview/EnvironmentLibraryReview.unity",
+      "headTransformsPreserved": 70,
+      "workingTransformsPreserved": 69
+    },
+    {
+      "scene": "Assets/EmergencyShift/Scenes/ArtReview/EnvironmentPropsDarkReview.unity",
+      "headTransformsPreserved": 33,
+      "workingTransformsPreserved": 33
+    },
+    {
+      "scene": "Assets/EmergencyShift/Scenes/ArtReview/EnvironmentPropsReview.unity",
+      "headTransformsPreserved": 36,
+      "workingTransformsPreserved": 34
+    },
+    {
+      "scene": "Assets/EmergencyShift/Scenes/ArtReview/FloorMarkingsReview.unity",
+      "headTransformsPreserved": 81,
+      "workingTransformsPreserved": 81
+    }
+  ],
+  "remainsSnapshotRoundTrip": {
+    "originalRenderers": 53,
+    "restoredRenderers": 53,
+    "floorLayers": true,
+    "liveActorsAboveEnvironment": true
+  },
+  "editMode": {
+    "total": 89,
+    "passed": 89,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 4.0276301,
+    "resultState": "Passed"
+  },
+  "releaseBuild": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 8.689351499999999
+  },
+  "limits": [
+    "Discrete classes, not continuous height or finite floor shadow lengths.",
+    "Actors keep their original planar shadow receiving behaviour.",
+    "No FPS claim; different receiver masks can create separate URP lighting batches."
+  ],
+  "previews": [
+    "EnvironmentHeightShadows01/before.png",
+    "EnvironmentHeightShadows01/after.png"
+  ],
+  "fixture": {
+    "cameraPosition": [
+      1000,
+      1000,
+      -10
+    ],
+    "orthographicSize": 2.5,
+    "binPosition": [
+      999,
+      1000,
+      0
+    ],
+    "lockerPosition": [
+      1000.2,
+      1000,
+      0
+    ],
+    "pointLightPosition": [
+      997,
+      1000,
+      0
+    ],
+    "pointLightRadius": 10,
+    "pointLightIntensity": 1.5,
+    "globalAmbientDisabled": true,
+    "runtimeOnly": true,
+    "sameSourceAssetsAndFraming": true
+  }
+}

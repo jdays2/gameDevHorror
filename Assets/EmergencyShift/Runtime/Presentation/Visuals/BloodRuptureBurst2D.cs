@@ -50,6 +50,7 @@ namespace EmergencyShift
             image.sprite = sprite;
             image.sharedMaterial = material;
             image.sortingOrder = RemainsVisualStyle.DeadOrder;
+            image.sortingLayerName = EnvironmentShadowLayers.Floor;
             image.color = new Color(.88f, .015f, .025f, .95f);
             return image;
         }

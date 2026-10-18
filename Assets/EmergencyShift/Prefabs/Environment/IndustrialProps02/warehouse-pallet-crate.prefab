@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3255093754133515017}
   - component: {fileID: 3996637078392567582}
   - component: {fileID: 8385557146340294482}
+  - component: {fileID: 3434967961949910716}
   m_Layer: 8
   m_Name: warehouse-pallet-crate
   m_TagString: Untagged
@@ -79,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 11001003
+  m_SortingLayer: -2
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 75c6c12882fc14347b003830ce5eb16b, type: 3}
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: 00000000i
+  m_ApplyToSortingLayers: a9dca70000000000aadca700abdca700i
   m_ShapePath:
   - {x: -0.9111717, y: -0.9111717, z: 0}
   - {x: -0.9111717, y: 0.9111717, z: 0}
@@ -2012,3 +2013,16 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
+--- !u!114 &3434967961949910716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6926107116236466185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
+  heightClass: 1

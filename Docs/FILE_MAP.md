@@ -194,6 +194,8 @@
 ### Runtime/World/Lighting
 
 - `Runtime/World/Lighting/CeilingLightOcclusion2D.cs`
+- `Runtime/World/Lighting/EnvironmentHeight2D.cs`
+- `Runtime/World/Lighting/EnvironmentShadowLayers.cs`
 - `Runtime/World/Lighting/Flashlight2D.cs`
 - `Runtime/World/Lighting/FullHeightLightBlocker2D.cs`
 - `Runtime/World/Lighting/LocalLamp2D.cs`
@@ -217,6 +219,7 @@
 
 - `Editor/Authoring/DialoguePrefabAuthoring.cs`
 - `Editor/Authoring/DialogueSandboxAuthoring.cs`
+- `Editor/Authoring/EnvironmentHeightEditor.cs`
 - `Editor/Authoring/EnvironmentLibraryReviewBuilder.cs`
 - `Editor/Authoring/EnvironmentReviewBuilder.cs`
 - `Editor/Authoring/EnvironmentSpriteAuthoring.cs`
@@ -243,6 +246,7 @@
 - `Tests/EditMode/DialoguePrefabTests.cs`
 - `Tests/EditMode/EnemyDeathAudioTests.cs`
 - `Tests/EditMode/EnemySystemsTests.cs`
+- `Tests/EditMode/EnvironmentHeightShadowTests.cs`
 - `Tests/EditMode/EnvironmentPresentationTests.cs`
 - `Tests/EditMode/GoreCompositionTests.cs`
 - `Tests/EditMode/LocalLampAudioTests.cs`

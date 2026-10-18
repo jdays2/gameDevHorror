@@ -133,6 +133,7 @@ namespace EmergencyShift
                 renderer.sprite = fragments[spriteIndex];
                 renderer.sharedMaterial = litMaterial;
                 renderer.sortingOrder = RemainsVisualStyle.DeadOrder;
+                renderer.sortingLayerName = EnvironmentShadowLayers.Floor;
                 renderer.color = RemainsVisualStyle.Tint;
                 float angle = i * Mathf.PI * 2 / count + variant.rotationOffset * Mathf.Deg2Rad + Random.Range(-.33f, .33f);
                 body.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
@@ -146,6 +147,7 @@ namespace EmergencyShift
                     shadow.sprite = contactShadowSprite;
                     shadow.sharedMaterial = shadowMaterial;
                     shadow.sortingOrder = RemainsVisualStyle.DeadOrder;
+                    shadow.sortingLayerName = EnvironmentShadowLayers.Floor;
                 }
 
                 var motion = piece.GetComponent<GibMotion2D>();
