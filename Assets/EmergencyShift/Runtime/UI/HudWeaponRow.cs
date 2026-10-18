@@ -7,6 +7,7 @@ namespace EmergencyShift
         [SerializeField] private WeaponDefinition definition;
         [SerializeField] private CanvasGroup opacity;
         [SerializeField] private UnityEngine.UI.Text ammunition;
+        [SerializeField] private UnityEngine.UI.Text reserve;
         [SerializeField] private UnityEngine.UI.Text operation;
         private int previousLoaded = -1;
         private int previousReserve = -1;
@@ -31,6 +32,7 @@ namespace EmergencyShift
 
             opacity.alpha = selected ? 1 : spareAlpha;
             ammunition.gameObject.SetActive(selected);
+            reserve.gameObject.SetActive(selected);
             operation.gameObject.SetActive(selected);
             previousLoaded = -1;
         }
@@ -39,7 +41,8 @@ namespace EmergencyShift
         {
             if (previousLoaded != weapon.LoadedAmmo || previousReserve != weapon.ReserveAmmo)
             {
-                ammunition.text = weapon.LoadedAmmo + " / " + weapon.ReserveAmmo;
+                ammunition.text = weapon.LoadedAmmo.ToString();
+                reserve.text = "/ " + weapon.ReserveAmmo;
                 previousLoaded = weapon.LoadedAmmo;
                 previousReserve = weapon.ReserveAmmo;
             }

@@ -25,6 +25,7 @@ namespace EmergencyShift
         [SerializeField] private UnityEngine.UI.Text condition;
         [SerializeField] private UnityEngine.UI.Text lossLabel;
         [SerializeField] private CanvasGroup lamp;
+        [SerializeField] private UnityEngine.UI.Image lampIcon;
         [SerializeField] private GameObject lampSlash;
         [SerializeField] private RectTransform activeWeaponSlot;
         [SerializeField] private RectTransform spareWeaponSlot;
@@ -194,7 +195,8 @@ namespace EmergencyShift
 
         private void RefreshLamp(bool on)
         {
-            lamp.alpha = on ? 1 : .55f;
+            lamp.alpha = on ? 1 : .7f;
+            lampIcon.gameObject.SetActive(on);
             lampSlash.SetActive(!on);
         }
 

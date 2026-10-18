@@ -53,10 +53,16 @@ namespace EmergencyShift.Editor
 
             view.Bind(life, weapon, flashlight, accessCards);
             var pickups = UnityEngine.Object.FindObjectsByType<AccessCardPickup2D>(FindObjectsInactive.Include);
-            if (pickups.Length > 0)
+            var serviceCard = Array.Find(pickups, pickup => pickup.CardId == "service");
+            if (serviceCard == null)
+            {
+                serviceCard = Array.Find(pickups, pickup => pickup.CardId == "sandbox-card");
+            }
+
+            if (serviceCard != null)
             {
                 var viewData = new SerializedObject(view);
-                viewData.FindProperty("cardDisplays").GetArrayElementAtIndex(0).FindPropertyRelative("cardId").stringValue = pickups[0].CardId;
+                viewData.FindProperty("cardDisplays").GetArrayElementAtIndex(0).FindPropertyRelative("cardId").stringValue = serviceCard.CardId;
                 viewData.ApplyModifiedPropertiesWithoutUndo();
             }
 
@@ -88,9 +94,9 @@ namespace EmergencyShift.Editor
         {
             Folder(Root + "/Data", "UI");
             Folder(Root + "/Prefabs", "UI");
-            foreach (string name in new[] { "white", "pistol", "shotgun", "flashlight" })
+            foreach (string name in new[] { "pistol", "shotgun", "flashlight-on", "flashlight-off" })
             {
-                string path = Root + "/Art/UI/GameplayHud02/" + name + ".png";
+                string path = Root + "/Art/UI/GameplayHud03/" + name + ".png";
                 var importer = (TextureImporter)AssetImporter.GetAtPath(path);
                 importer.textureType = TextureImporterType.Sprite;
                 importer.spriteImportMode = SpriteImportMode.Single;
@@ -105,7 +111,7 @@ namespace EmergencyShift.Editor
                 importer.SaveAndReimport();
             }
 
-            white = Sprite("white");
+            white = AssetDatabase.LoadAssetAtPath<Sprite>(Root + "/Art/UI/GameplayHud02/white.png");
             var style = AssetDatabase.LoadAssetAtPath<GameplayHudStyle>(StylePath);
             if (style == null)
             {
@@ -127,8 +133,8 @@ namespace EmergencyShift.Editor
                 Stretch(root);
                 var view = root.gameObject.AddComponent<GameplayHudView>();
                 Assign(view, "style", style);
-                var left = Rect("Health and access", root, new Vector2(36, 40), new Vector2(270, 110));
-                var track = Image("HP bar", left, new Vector2(0, 36), new Vector2(270, 20), new Color(.12f, .17f, .16f));
+                var left = Rect("Health and access", root, new Vector2(36, 28), new Vector2(270, 110));
+                var track = Image("HP bar", left, Vector2.zero, new Vector2(270, 20), new Color(.12f, .17f, .16f));
                 var trail = Image("Lost health", track.transform, Vector2.zero, new Vector2(270, 20), style.lostHealth);
                 Filled(trail);
                 var fill = Image("Current health", track.transform, Vector2.zero, new Vector2(270, 20), style.healthy);
@@ -146,43 +152,47 @@ namespace EmergencyShift.Editor
                 Assign(view, "lossLabel", loss);
                 Assign(view, "condition", Text("Health condition", left, font, new Vector2(0, -21), new Vector2(300, 17), 12, style.critical, ""));
 
-                var lamp = Rect("Flashlight - above HP", left, new Vector2(0, 68), new Vector2(32, 30));
+                var lamp = Rect("Flashlight - above HP", left, new Vector2(0, 30), new Vector2(24, 24));
                 Assign(view, "lamp", lamp.gameObject.AddComponent<CanvasGroup>());
-                var lampImage = Image("Replaceable flashlight icon", lamp, Vector2.zero, new Vector2(28, 28), Ink);
-                lampImage.sprite = Sprite("flashlight");
+                var lampImage = Image("Replaceable flashlight icon", lamp, Vector2.zero, new Vector2(24, 24), Ink);
+                lampImage.sprite = Sprite("flashlight-on");
+                Assign(view, "lampIcon", lampImage);
                 lampImage.preserveAspect = true;
-                var slash = Image("Off slash", lamp, new Vector2(-1, 3), new Vector2(35, 2), Ink);
-                slash.rectTransform.localRotation = Quaternion.Euler(0, 0, 42);
-                slash.rectTransform.pivot = new Vector2(0, .5f);
+                var slash = Image("Off slash", lamp, Vector2.zero, new Vector2(24, 24), Ink);
+                slash.sprite = Sprite("flashlight-off");
+                slash.preserveAspect = true;
                 Assign(view, "lampSlash", slash.gameObject);
-                Text("Flashlight binding", left, font, new Vector2(38, 73), new Vector2(25, 18), 12, Ink, "F");
+                Text("Flashlight binding", left, font, new Vector2(30, 33), new Vector2(20, 18), 10, Ink, "F");
 
                 var rows = new HudWeaponRow[2];
-                var rack = Rect("Weapon positions - edit anchors", root, new Vector2(-316, 55), new Vector2(280, 160));
+                var rack = Rect("Weapon positions - edit anchors", root, new Vector2(-296, 28), new Vector2(260, 110));
                 rack.anchorMin = rack.anchorMax = Vector2.right;
-                var active = Rect("Active weapon position", rack, Vector2.zero, new Vector2(280, 70));
-                var spare = Rect("Spare weapon position", rack, new Vector2(0, 85), new Vector2(280, 70));
+                var active = Rect("Active weapon position", rack, Vector2.zero, new Vector2(260, 60));
+                var spare = Rect("Spare weapon position", rack, new Vector2(0, 57), new Vector2(260, 60));
                 Assign(view, "activeWeaponSlot", active);
                 Assign(view, "spareWeaponSlot", spare);
+                spare.localScale = new Vector3(.78f, .78f, 1);
                 string[] definitions = { "PistolDefinition", "PumpShotgun" };
                 string[] icons = { "pistol", "shotgun" };
                 for (int i = 0; i < rows.Length; i++)
                 {
                     var definition = AssetDatabase.LoadAssetAtPath<WeaponDefinition>(Root + "/Data/Weapons/" + definitions[i] + ".asset");
-                    var row = Rect(definition.displayName, i == 0 ? active : spare, Vector2.zero, new Vector2(280, 70));
+                    var row = Rect(definition.displayName, i == 0 ? active : spare, Vector2.zero, new Vector2(260, 60));
                     rows[i] = row.gameObject.AddComponent<HudWeaponRow>();
                     Assign(rows[i], "definition", definition);
                     var alpha = row.gameObject.AddComponent<CanvasGroup>();
                     alpha.alpha = i == 0 ? 1 : style.spareOpacity;
                     Assign(rows[i], "opacity", alpha);
-                    var key = Text("Fixed selection key", row, font, new Vector2(0, 24), new Vector2(22, 28), 16, Ink, (definition.selectionSlot + 1).ToString());
+                    var key = Text("Fixed selection key", row, font, new Vector2(0, 25), new Vector2(16, 18), 10, Ink, (definition.selectionSlot + 1).ToString());
                     key.alignment = TextAnchor.MiddleCenter;
-                    var icon = Image("Replaceable weapon icon", row, new Vector2(28, 20), new Vector2(88, 36), Ink);
+                    var icon = Image("Replaceable weapon icon", row, new Vector2(24, 22), new Vector2(128, 34), Ink);
                     icon.sprite = Sprite(icons[i]);
                     icon.preserveAspect = true;
-                    Text("Weapon name", row, font, new Vector2(127, 14), new Vector2(150, 18), 13, Ink, definition.displayName.ToUpperInvariant());
-                    Assign(rows[i], "ammunition", Text("Active ammunition", row, font, new Vector2(127, 34), new Vector2(150, 30), 25, Ink, "0 / 0"));
-                    Assign(rows[i], "operation", Text("Reload or pump", row, font, new Vector2(127, -3), new Vector2(150, 16), 11, Ink, ""));
+                    var name = Text("Weapon name", row, font, new Vector2(24, 2), new Vector2(128, 16), 10, Ink, definition.displayName.ToUpperInvariant());
+                    name.alignment = TextAnchor.MiddleCenter;
+                    Assign(rows[i], "ammunition", Text("Active ammunition", row, font, new Vector2(172, 24), new Vector2(40, 32), 28, Ink, "0 / 0"));
+                    Assign(rows[i], "reserve", Text("Reserve ammunition", row, font, new Vector2(210, 26), new Vector2(60, 23), 14, Ink, "/ 0"));
+                    Assign(rows[i], "operation", Text("Reload or pump", row, font, new Vector2(172, 5), new Vector2(96, 15), 10, Ink, ""));
                 }
 
                 var data = new SerializedObject(view);
@@ -196,13 +206,13 @@ namespace EmergencyShift.Editor
                 var cardArray = data.FindProperty("cardDisplays");
                 cardArray.arraySize = 3;
                 string[] ids = { "service", "research", "restricted" };
-                var colors = new[] { new Color(.49f, .67f, .5f), new Color(.42f, .62f, .81f), new Color(.8f, .47f, .42f) };
+                string[] cardColors = { "green", "blue", "red" };
                 for (int i = 0; i < 3; i++)
                 {
-                    var card = Rect("Access card - " + ids[i], left, new Vector2(i * 49, 0), new Vector2(38, 24));
-                    Image("Card body", card, Vector2.zero, new Vector2(38, 24), new Color(.82f, .84f, .79f));
-                    Image("Dark band", card, new Vector2(0, 16), new Vector2(38, 3), new Color(.18f, .23f, .21f));
-                    Image("Door tier color stripe", card, new Vector2(0, 6), new Vector2(38, 6), colors[i]);
+                    var card = Rect("Access card - " + ids[i], left, new Vector2(123 + i * 51, 26), new Vector2(45, 28));
+                    var body = Image("Card body", card, Vector2.zero, new Vector2(45, 28), Color.white);
+                    body.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(Root + "/Art/Items/AccessCards01/" + cardColors[i] + ".png");
+                    body.preserveAspect = true;
                     var element = cardArray.GetArrayElementAtIndex(i);
                     element.FindPropertyRelative("cardId").stringValue = ids[i];
                     element.FindPropertyRelative("visual").objectReferenceValue = card.gameObject;
@@ -229,7 +239,7 @@ namespace EmergencyShift.Editor
             }
         }
 
-        private static Sprite Sprite(string name) => AssetDatabase.LoadAssetAtPath<Sprite>(Root + "/Art/UI/GameplayHud02/" + name + ".png");
+        private static Sprite Sprite(string name) => AssetDatabase.LoadAssetAtPath<Sprite>(Root + "/Art/UI/GameplayHud03/" + name + ".png");
 
         private static RectTransform Rect(string name, Transform parent, Vector2 position, Vector2 size)
         {
