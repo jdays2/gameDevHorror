@@ -20,7 +20,7 @@ namespace EmergencyShift
         public float phase;
         [Header("Sound")]
         [Min(0), Tooltip("World units in XY. Zero mutes this fixture.")]
-        public float soundRadius = 2;
+        public float soundRadius = 4;
         [Range(0, 1)]
         public float humVolume = .07f;
         [Range(0, 1)]

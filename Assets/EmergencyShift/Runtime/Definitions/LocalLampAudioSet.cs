@@ -14,9 +14,9 @@ namespace EmergencyShift
         [Range(0, 1)]
         public float contactVolume = .12f;
         [Min(0)]
-        public float fullVolumeDistance = .35f;
+        public float fullVolumeDistance = .7f;
         [Min(.1f)]
-        public float hearingDistance = 2;
+        public float hearingDistance = 4;
         [Min(.01f)]
         public float referenceIntensity = .28f;
         [Min(0)]

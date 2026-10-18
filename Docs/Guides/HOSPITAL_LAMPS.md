@@ -14,7 +14,7 @@
 | Hum Volume / Contact Volume | Громкость гула / контактов, от 0 до 1 |
 | Fixture Length | Длина корпуса вдоль стены в единицах мира |
 
-При выделении и включённых Gizmos голубая окружность показывает свет, янтарная — звук. Это радиусы, а не диаметры. Полная заданная громкость сохраняется до 17,5% Sound Radius, затем плавно падает к нулю на границе. Стена слоя Walls глушит звук. Гул следует фактической яркости, контакты звучат при перебое. WAV и общий `Data/Audio/HospitalLampQuiet.asset` сохранены.
+При выделении и включённых Gizmos голубая окружность показывает свет, янтарная — звук. Это радиусы, а не диаметры. Стандартный Sound Radius увеличен с 2 до 4 единиц для гула и треска при мерцании. Полная заданная громкость сохраняется до 17,5% Sound Radius (0,7 при радиусе 4), затем плавно падает к нулю на границе. Стена слоя Walls глушит звук. Гул следует фактической яркости, контакты звучат при перебое. WAV и общий `Data/Audio/HospitalLampQuiet.asset` сохранены.
 
 Размер меняйте через **Fixture Length**, оставляя Scale корня = 1. Дочерняя группа Fixture масштабирует рисунок и ореол; радиусы остаются прежними, задняя планка сохраняет привязку к стене. Длинная проба теперь 1,25, компактная 1,0; для сравнения, имеющийся шкаф — 1,55 по длинной стороне. Это стартовая настройка для оценки владельцем.
 
@@ -36,15 +36,15 @@
 
 | Сцена / лампа | Центр XY | Rotation Z | Длина | Свет: радиус / яркость | Звук: радиус |
 |---|---|---|---|---|---|
-| MechanicsSandbox / Ward lamp - muted cyan | 40.225; 3 | 90° | 1.25 | 1.45 / 0.28 | 2.0 |
-| MechanicsSandbox / Corridor lamp - warm ivory | 59.775; 3 | 270° | 1.0 | 1.45 / 0.28 | 2.0 |
-| BasementPrototype / A - pistol corner warm tube | −5.6; 3.975 | 0° | 1.25 | 3.64 / 1.44 | 2.0 |
-| BasementPrototype / A - records and card cool tube | 1.2; 3.975 | 0° | 1.1 | 3.38 / 1.20 | 2.0 |
-| BasementPrototype / A - south service tube | −5.9; −3.975 | 180° | 1.25 | 2.73 / 0.81 | 2.0 |
-| BasementPrototype / Hall - west service tube | 5.5; 1.475 | 0° | 1.1 | 2.47 / 0.90 | 2.0 |
-| BasementPrototype / Hall - east service tube | 8.5; −1.475 | 180° | 1.1 | 2.47 / 0.81 | 2.0 |
-| BasementPrototype / B - archive cool tube | 14.9; 3.975 | 0° | 1.1 | 3.64 / 1.29 | 2.0 |
-| BasementPrototype / B - storage warm tube | 15.7; −3.975 | 180° | 1.25 | 3.25 / 0.96 | 2.0 |
+| MechanicsSandbox / Ward lamp - muted cyan | 40.225; 3 | 90° | 1.25 | 1.45 / 0.28 | 4.0 |
+| MechanicsSandbox / Corridor lamp - warm ivory | 59.775; 3 | 270° | 1.0 | 1.45 / 0.28 | 4.0 |
+| BasementPrototype / A - pistol corner warm tube | −5.6; 3.975 | 0° | 1.25 | 3.64 / 1.44 | 4.0 |
+| BasementPrototype / A - records and card cool tube | 1.2; 3.975 | 0° | 1.1 | 3.38 / 1.20 | 4.0 |
+| BasementPrototype / A - south service tube | −5.9; −3.975 | 180° | 1.25 | 2.73 / 0.81 | 4.0 |
+| BasementPrototype / Hall - west service tube | 5.5; 1.475 | 0° | 1.1 | 2.47 / 0.90 | 4.0 |
+| BasementPrototype / Hall - east service tube | 8.5; −1.475 | 180° | 1.1 | 2.47 / 0.81 | 4.0 |
+| BasementPrototype / B - archive cool tube | 14.9; 3.975 | 0° | 1.1 | 3.64 / 1.29 | 4.0 |
+| BasementPrototype / B - storage warm tube | 15.7; −3.975 | 180° | 1.25 | 3.25 / 0.96 | 4.0 |
 
 В текущем MechanicsSandbox две больничные лампы находятся в тире. Свет остаётся местным и не получает защитных свойств фонаря.
 

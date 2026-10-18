@@ -14,8 +14,9 @@ namespace EmergencyShift.Tests
             {
                 Assert.That(sounds.DistanceGain(.1f), Is.EqualTo(1));
                 Assert.That(sounds.DistanceGain(1), Is.InRange(0f, 1f));
-                Assert.That(sounds.DistanceGain(1.8f), Is.LessThan(.1f));
-                Assert.That(sounds.DistanceGain(2), Is.Zero);
+                Assert.That(sounds.DistanceGain(3), Is.GreaterThan(0));
+                Assert.That(sounds.DistanceGain(3.6f), Is.LessThan(.1f));
+                Assert.That(sounds.DistanceGain(4), Is.Zero);
                 Assert.That(sounds.DistanceGain(30), Is.Zero);
                 Assert.That(sounds.DistanceGain(1.5f), Is.LessThan(sounds.DistanceGain(.5f)));
             }
