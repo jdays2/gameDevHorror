@@ -9,13 +9,12 @@
         <span class="esh-lamp-icon"><i data-lucide="flashlight" aria-hidden="true"></i></span><span class="esh-binding">F</span>
       </button>
       <div class="esh-health-line">
-        <div class="esh-health-track" role="progressbar" aria-label="Здоровье" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span class="esh-health-ghost"></span><span class="esh-health-fill"></span></div>
-        <span class="esh-health-number">100</span><span class="esh-loss" aria-hidden="true"></span>
+        <div class="esh-health-track" role="progressbar" aria-label="Здоровье" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span class="esh-health-ghost"></span><span class="esh-health-fill"></span><span class="esh-health-number">100</span></div><span class="esh-loss" aria-hidden="true"></span>
       </div>
       <div class="esh-cards" role="group" aria-label="Полученные карты доступа">
-        <span class="esh-key" data-level="0" role="img" aria-label="Карта I, зелёная полоска"><span class="esh-key-face"><b></b><em></em></span><span>I</span></span>
-        <span class="esh-key" data-level="1" role="img" aria-label="Карта II, синяя полоска"><span class="esh-key-face"><b></b><em></em></span><span>II</span></span>
-        <span class="esh-key" data-level="2" role="img" aria-label="Карта III, красная полоска" hidden><span class="esh-key-face"><b></b><em></em></span><span>III</span></span>
+        <span class="esh-key" data-level="0" role="img" aria-label="Карта I, зелёная полоска"><span class="esh-key-face"><b></b><em></em></span></span>
+        <span class="esh-key" data-level="1" role="img" aria-label="Карта II, синяя полоска"><span class="esh-key-face"><b></b><em></em></span></span>
+        <span class="esh-key" data-level="2" role="img" aria-label="Карта III, красная полоска" hidden><span class="esh-key-face"><b></b><em></em></span></span>
       </div>
       <div class="esh-condition" aria-live="polite"></div>
     </div>
@@ -44,9 +43,9 @@
   </div>
   <div class="viz-controls" aria-label="Найденные карточки">
     <span>Карточки</span>
-    <label class="form-check"><input type="checkbox" class="form-check-input" data-card="0" checked><span class="form-check-label">I · зелёная</span></label>
-    <label class="form-check"><input type="checkbox" class="form-check-input" data-card="1" checked><span class="form-check-label">II · синяя</span></label>
-    <label class="form-check"><input type="checkbox" class="form-check-input" data-card="2"><span class="form-check-label">III · красная</span></label>
+    <label class="form-check"><input type="checkbox" class="form-check-input" data-card="0" checked><span class="form-check-label">зелёная</span></label>
+    <label class="form-check"><input type="checkbox" class="form-check-input" data-card="1" checked><span class="form-check-label">синяя</span></label>
+    <label class="form-check"><input type="checkbox" class="form-check-input" data-card="2"><span class="form-check-label">красная</span></label>
   </div>
   <span class="sr-only esh-announcement" aria-live="polite"></span>
 </div>
@@ -80,21 +79,21 @@
   #esh-hud-refined .esh-lamp.esh-off {color:#b4bcb6;}
   #esh-hud-refined .esh-lamp.esh-off .esh-lamp-icon::after {content:"";position:absolute;left:-1px;top:11px;width:27px;height:2px;background:currentColor;transform:rotate(-43deg);box-shadow:0 1px 1px #090e10;}
   #esh-hud-refined .esh-health-line {position:relative;display:flex;align-items:center;gap:9px;height:20px;margin-top:5px;}
-  #esh-hud-refined .esh-health-track {position:relative;flex:1;height:9px;overflow:hidden;background:#c3c9bf25;box-shadow:0 1px 4px #03080799;}
+  #esh-hud-refined .esh-health-track {position:relative;flex:1;height:14px;overflow:hidden;background:#c3c9bf25;box-shadow:0 1px 4px #03080799;}
   #esh-hud-refined .esh-health-fill,#esh-hud-refined .esh-health-ghost {position:absolute;inset:0 auto 0 0;width:100%;}
   #esh-hud-refined .esh-health-fill {background:var(--esh-hp);transition:background .16s;}
   #esh-hud-refined .esh-health-ghost {background:#dfb0a0;opacity:.7;transition:width .5s ease-out;}
-  #esh-hud-refined .esh-health-number {width:25px;text-align:right;font-size:12px;font-variant-numeric:tabular-nums;}
+  #esh-hud-refined .esh-health-number {position:absolute;right:5px;top:50%;transform:translateY(-50%);font-size:11px;line-height:14px;font-variant-numeric:tabular-nums;color:#e5eadb;text-shadow:0 1px 2px #061006;}
   #esh-hud-refined .esh-loss {position:absolute;right:34px;top:-14px;color:#efb09d;font-size:12px;opacity:0;}
   #esh-hud-refined .esh-hit .esh-loss {animation:esh-refined-loss .8s ease-out;}
   #esh-hud-refined .esh-cards {display:flex;align-items:center;gap:11px;height:18px;margin-top:8px;}
   #esh-hud-refined .esh-key {display:flex;align-items:center;gap:4px;font-size:11px;color:var(--esh-secondary);}
   #esh-hud-refined .esh-key[hidden] {display:none;}
-  #esh-hud-refined .esh-key-face {position:relative;display:block;overflow:hidden;width:22px;height:14px;border:1px solid #d1d8cc;border-radius:1px;background:#172021;}
-  #esh-hud-refined .esh-key-face b {position:absolute;top:0;bottom:0;left:0;width:5px;background:#7eac80;}
+  #esh-hud-refined .esh-key-face {position:relative;display:block;overflow:hidden;width:32px;height:20px;border:0;border-radius:2px;background:#d1d8cc;}
+  #esh-hud-refined .esh-key-face b {position:absolute;left:0;right:0;bottom:3px;height:5px;background:#7eac80;}
   #esh-hud-refined .esh-key[data-level="1"] b {background:#6b9dce;}
   #esh-hud-refined .esh-key[data-level="2"] b {background:#cc776b;}
-  #esh-hud-refined .esh-key-face em {position:absolute;left:8px;right:3px;top:4px;height:1px;background:#b5c0b1;box-shadow:0 3px 0 #87958b;}
+  #esh-hud-refined .esh-key-face em {position:absolute;left:0;right:0;top:3px;height:3px;background:#36463f;}
   #esh-hud-refined .esh-condition {height:14px;margin-top:6px;font-size:11px;letter-spacing:.7px;color:#e3a594;white-space:nowrap;}
   #esh-hud-refined .esh-weapons {position:absolute;right:27px;bottom:45px;width:198px;height:115px;transform:scale(var(--esh-scale));transform-origin:right bottom;text-shadow:0 1px 3px #020605,0 0 8px #020605;}
   #esh-hud-refined .esh-weapon {position:absolute;left:0;right:0;height:60px;bottom:0;display:grid;grid-template-columns:21px 77px 1fr;grid-template-rows:32px 19px;align-items:center;column-gap:6px;padding:4px 0;background:transparent;border:0;color:var(--esh-ink);font:inherit;text-align:left;transition:bottom .18s ease-out;}

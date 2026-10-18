@@ -1,6 +1,6 @@
 {
   "date": "2026-10-18",
-  "status": "Owner selected split layout; current refinement awaiting visual feedback; not integrated into Unity",
+  "status": "Historical HTML study; current HP/card refinement became the basis for Used/UI/GameplayHud02 native integration",
   "method": "Original HTML/CSS interactive design, no image generation or copied game UI pixels",
   "referenceUse": "Days Gone screenshot supplied by owner for grouping/density; selected split-concept screenshot supplied for refinement",
   "references": [
@@ -20,7 +20,7 @@
   "icons": {
     "flashlight": "Host-provided Lucide; ISC. Offline QA supplied installed Lucide 1.8.0. Slash is a CSS state overlay.",
     "weapons": "Original temporary CSS silhouettes; no Days Gone sprite pixels",
-    "cards": "Original CSS neutral card with colored stripe and level text"
+    "cards": "Original CSS neutral card with horizontal tier stripe; no digits"
   },
   "ownerDecisions": [
     "Split health/weapons layout",
@@ -29,7 +29,9 @@
     "Hide weapons not owned",
     "Flashlight above HP, crossed out when off",
     "Green / blue / red card stripes",
-    "No fullscreen damage veil"
+    "No fullscreen damage veil",
+    "HP number inside bar",
+    "Horizontal card stripe with no external digits"
   ],
   "conceptLimits": "Schematic overhead room; test controls change local preview state only; reload/heal timing and real combat/audio/persistence are not implemented",
   "browserQA": {
@@ -86,16 +88,20 @@
     ],
     "pageErrors": [],
     "iconPreview": "Bundled Lucide 1.8.0 supplied to offline preview; inline source uses host-provided Lucide only",
-    "scope": "Interactive concept only; no Unity or gameplay changes"
+    "scope": "19 checks and preview PNGs describe pre-card-refinement version; native integration verified separately"
   },
   "sources": [
+    {
+      "path": "Historical/before-card-refinement.html",
+      "sha256": "8a643e9b5be58f4b6577d8590a21dd1f85b763d038957911cdf35a78f0fe5224"
+    },
     {
       "path": "Historical/initial-variants.html",
       "sha256": "5f37a571dcbd66543139c2837de2cfc9afa2d89b484399ffba8b9b2d74662899"
     },
     {
       "path": "hud-concept.html",
-      "sha256": "8a643e9b5be58f4b6577d8590a21dd1f85b763d038957911cdf35a78f0fe5224"
+      "sha256": "aaa0abedd9c2024081796d16bceac01bc9a6c865f842cd180c63c738073df1b1"
     },
     {
       "path": "Preview/refined-narrow.png",
@@ -111,7 +117,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "18d2e52a7f0af20af90c4755fd94361b7b51039d59bbc00dda07d93d9f3352f4"
+      "sha256": "40bfbc7bc8bea49797703fc3371001baf91b320d6c0133773f3644f356afc3f3"
     },
     {
       "path": "References/days-gone-hud.png",

@@ -28,12 +28,13 @@ namespace EmergencyShift
         public bool IsDead => Health <= 0;
 
         public event System.Action<int> HealthChanged;
+        public event System.Action<int, Vector2> Damaged;
         public override bool IsAlive => !IsDead;
 
-        public override bool TryTakeDamage(int amount, Vector2 point, Vector2 direction) => TakeDamage(amount);
+        public override bool TryTakeDamage(int amount, Vector2 point, Vector2 direction) => ApplyDamage(amount, direction);
         public override void ReceiveBulletHit(int damage, Vector2 point, Vector2 direction)
         {
-            TakeDamage(damage);
+            ApplyDamage(damage, direction);
         }
 
         private void Awake()
@@ -82,11 +83,17 @@ namespace EmergencyShift
 
         public bool TakeDamage(int amount)
         {
+            return ApplyDamage(amount, Vector2.zero);
+        }
+
+        private bool ApplyDamage(int amount, Vector2 direction)
+        {
             if (IsDead || amount <= 0 || Time.time < protectedUntil)
             {
                 return false;
             }
 
+            int previousHealth = Health;
             Health = Mathf.Max(0, Health - amount);
             protectedUntil = Time.time + hitProtectionSeconds;
             if (IsDead)
@@ -110,6 +117,7 @@ namespace EmergencyShift
                 StartCoroutine(HitFlash());
             }
 
+            Damaged?.Invoke(previousHealth - Health, direction);
             HealthChanged?.Invoke(Health);
             return true;
         }

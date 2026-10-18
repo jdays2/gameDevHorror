@@ -6,6 +6,14 @@
 
 ## Runtime
 
+### Игровой HUD
+
+- `Runtime/UI/GameplayHudView.cs` — подписки на состояние игрока, HP/отклик, фонарь, карты.
+- `Runtime/UI/HudWeaponRow.cs` — строка оружия, боезапас и позиция активного/запасного.
+- `Runtime/Definitions/GameplayHudStyle.cs` — общий стиль/тайминги и необязательный звук.
+- `Editor/Authoring/GameplayHudAuthoring.cs` — одноразовая установка без пересоздания уровня.
+- `Prefabs/UI/GameplayHud01.prefab`, `Data/UI/GameplayHud01.asset`, `Art/UI/GameplayHud02/` — редактируемый Canvas-набор, профиль и заменяемые иконки.
+
 ### Диалоговый тест — добавленные файлы
 
 Все пути ниже проверены по фактическим C#-исходникам.

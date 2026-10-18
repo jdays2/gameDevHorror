@@ -1,0 +1,175 @@
+{
+  "date": "2026-10-18",
+  "scope": "Native uGUI HUD; no level regeneration or balance change",
+  "scenes": [
+    {
+      "scene": "MechanicsSandbox",
+      "checks": 31,
+      "passed": [
+        "HP number belongs to the bar",
+        "Restore/capacity produce no hit cue",
+        "Accepted real damage contract",
+        "Damage event retains actual amount and direction",
+        "HP and bar update immediately",
+        "Lost-health trail and cue appear",
+        "Protection and invalid damage do not repeat feedback",
+        "Even a lower restored HP clears transient presentation silently",
+        "Lethal damage emits once with bounded actual loss",
+        "Dead player rejects further hits",
+        "Slot 1 equips the real pistol",
+        "Owned weapon visible",
+        "Pistol layout follows real active weapon",
+        "Owned weapon visible",
+        "Pistol layout follows real active weapon",
+        "Slot 2 equips the real shotgun",
+        "Shotgun layout follows real active weapon",
+        "Shotgun layout follows real active weapon",
+        "Off flashlight crossed out",
+        "On flashlight not crossed out",
+        "Uncollected card hidden",
+        "Card has no visible number",
+        "Collected card visible",
+        "Uncollected card hidden",
+        "Card has no visible number",
+        "Collected card visible",
+        "Uncollected card hidden",
+        "Card has no visible number",
+        "Collected card visible",
+        "Shared style remains immutable in Play",
+        "No missing scripts"
+      ],
+      "missingScripts": 0,
+      "profileImmutable": true
+    },
+    {
+      "scene": "BasementPrototype",
+      "checks": 31,
+      "passed": [
+        "HP number belongs to the bar",
+        "Restore/capacity produce no hit cue",
+        "Accepted real damage contract",
+        "Damage event retains actual amount and direction",
+        "HP and bar update immediately",
+        "Lost-health trail and cue appear",
+        "Protection and invalid damage do not repeat feedback",
+        "Even a lower restored HP clears transient presentation silently",
+        "Lethal damage emits once with bounded actual loss",
+        "Dead player rejects further hits",
+        "Slot 1 equips the real pistol",
+        "Owned weapon visible",
+        "Pistol layout follows real active weapon",
+        "Owned weapon visible",
+        "Pistol layout follows real active weapon",
+        "Slot 2 equips the real shotgun",
+        "Shotgun layout follows real active weapon",
+        "Shotgun layout follows real active weapon",
+        "Off flashlight crossed out",
+        "On flashlight not crossed out",
+        "Uncollected card hidden",
+        "Card has no visible number",
+        "Collected card visible",
+        "Uncollected card hidden",
+        "Card has no visible number",
+        "Collected card visible",
+        "Uncollected card hidden",
+        "Card has no visible number",
+        "Collected card visible",
+        "Shared style remains immutable in Play",
+        "No missing scripts"
+      ],
+      "missingScripts": 0,
+      "profileImmutable": true
+    }
+  ],
+  "savedSceneAudit": [
+    {
+      "scene": "BasementPrototype",
+      "enabled": true,
+      "refs": true,
+      "missing": 0,
+      "probes": 0,
+      "controlsHidden": true,
+      "dirty": false
+    },
+    {
+      "scene": "MechanicsSandbox",
+      "enabled": true,
+      "refs": true,
+      "missing": 0,
+      "probes": 0,
+      "controlsHidden": true,
+      "dirty": false
+    }
+  ],
+  "sceneCommitScope": [
+    {
+      "scene": "MechanicsSandbox",
+      "newNativeDocuments": [
+        18104846,
+        18104847,
+        1783665869,
+        1783665870
+      ],
+      "existingDocumentsChanged": [
+        1783665848
+      ],
+      "otherExistingDocumentsPreserved": true,
+      "newUnresolvedLocalReferences": 0
+    },
+    {
+      "scene": "BasementPrototype",
+      "newNativeDocuments": [
+        187489115,
+        187489116,
+        4285742385993795665
+      ],
+      "existingDocumentsChanged": [
+        526935938,
+        527110359,
+        578987511,
+        1018025417,
+        1533152987,
+        4285742385993795649
+      ],
+      "otherExistingDocumentsPreserved": true,
+      "newUnresolvedLocalReferences": 0
+    }
+  ],
+  "build": {
+    "job_id": "build-66d175c906",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "C:/Users/Mark/Documents/Codex/2026-10-13/gkf/work/hud-native02/build/EmergencyShift.exe",
+    "started_at": "2026-10-18T06:50:11.9212655Z",
+    "duration_seconds": 43.6545853,
+    "completed_at": "2026-10-18T06:50:55.5758508Z",
+    "total_size_mb": 315.26,
+    "errors": 0,
+    "warnings": 0
+  },
+  "releaseProjectAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "prebuildSettings": {
+    "preloaded": [],
+    "stripping": "Disabled"
+  },
+  "settingsRestored": true,
+  "console": "No gameplay/compiler warnings observed. Editor UnityConnect token exchange exceptions after build were reviewed separately. Release build errors=0/warnings=0.",
+  "limits": [
+    "Hit Sounds is empty; no new pain/breath audio assigned",
+    "No native directional arrow; number/lost health cue implemented",
+    "Visual owner refinement remains pending; floor sample labels remain in sandbox",
+    "Native weapon rows are passive; existing keyboard 1/2 selection remains active"
+  ],
+  "lifecycle": {
+    "hideShowRefresh": true,
+    "cuePending": true,
+    "cueExpired": true,
+    "trailReachedHealth": true
+  },
+  "finalFreshPlayConsole": {
+    "errors": 0,
+    "warnings": 0
+  }
+}
