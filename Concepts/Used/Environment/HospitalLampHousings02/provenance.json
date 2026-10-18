@@ -1,0 +1,74 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "mode": "sketch-to-render edits, one fixture per call",
+  "date": "2026-10-18",
+  "processing": "PNG/alpha copied unchanged; no programmatic image editing",
+  "orientation": "Source vertical: tube left / wall rail right. Mount child rotates +90 degrees to the shared prefab convention.",
+  "userCorrection": "Open tube on two projecting end brackets; no opaque hood covering the tube",
+  "outputs": [
+    {
+      "id": "ward-tube-housing",
+      "prompt": "Use case: sketch-to-render. INPUT 1 is the user's authoritative schematic for CONSTRUCTION and OVERHEAD VIEW. INPUT 2 is an earlier lamp sprite, ONLY a material/style reference. Create one transparent top-down game sprite exactly following the sketch: a VERTICAL fluorescent TUBE on the LEFT, a skinny VERTICAL wall mounting RAIL on the RIGHT, and two short socket BRACKETS at the TOP and BOTTOM joining the tube ends to that rear rail. This is an OPEN wall light. The tube projects out from the wall on the bracket tips and is fully visible FROM ABOVE, with real open TRANSPARENT SPACE between tube and rear rail. Do NOT fill that gap with a panel. Do NOT put a hood or lid above the tube. Do NOT show a big front-facing glass diffuser or ceiling fitting. The back rail's right edge is the edge that sits flush against a vertical wall; the tube is on the left, toward the room. Trace the sketch's simple side-by-side layout faithfully. A complete slender pale glass cylinder, with neutral ice-grey surface and pale blue-white inner core, readable soft cylindrical shading, held by two ivory ceramic end sockets. Grey-ivory narrow enamel rear rail; modest grey metal top/bottom standoffs. Tube about 1.10m long, distance from rear rail to tube about .14m. Orthographic camera straight DOWN at the top of the wall bracket assembly, no camera-facing elevation, no diagonal or 3/4 showroom view. Slightly different replacement lower socket and one local screw handling rub, otherwise maintained practical equipment. Restrained hand-painted semi-realistic 2D hospital horror material style; broad readable forms, no pixel art, no microscopic grunge. One object, long axis vertical, entire unit in frame with transparent margins. The tube itself may look pale luminous, but NO exterior halo, light pool, bloom or floor shadow; runtime Unity lighting supplies the spill. No wall/floor pixels, no text/logos/checkerboard. Genuine RGBA transparency outside the parts, INCLUDING THE OPEN GAP between the rail and tube. Success means the whole tube is visible from above because the brackets hold it out from the wall, as in the user's sketch.",
+      "file": "Sprites/ward-tube-housing.png",
+      "original": "C:\\Users\\Mark\\.codex\\generated_images\\01a14253-0d76-7b63-a439-9dde8e41c183\\exec-4f92c7ca-7cd2-4635-aecf-20941b09f103.png",
+      "styleReference": "Concepts/Used/Environment/HospitalLampHousings01/Sprites/ward-tube-housing.png",
+      "layoutReference": "Sources/user-wall-lamp-sketch.png",
+      "width": 941,
+      "height": 1672,
+      "boundsAlpha64": [
+        380,
+        73,
+        579,
+        1598
+      ],
+      "visibleLength": 1.1,
+      "pixelsPerUnit": 1386.3636363636363,
+      "middleRowTubePixels": [
+        392,
+        461
+      ],
+      "middleRowRailPixels": [
+        518,
+        579
+      ],
+      "backLocalY": 0.07826229508196722,
+      "frontLocalY": -0.03173770491803279,
+      "transparentGapPixels": 57,
+      "sha256": "9a304e2572d8a20381030bf95b2c78e46afe1fb9fb3bc35331fa663ec1ddced2",
+      "alphaMin": 0,
+      "alphaMax": 255
+    },
+    {
+      "id": "corridor-diffuser-housing",
+      "prompt": "Use case: sketch-to-render. Image 1 is the user's authoritative OVERHEAD construction sketch. Image 2 is only a reference for muted ivory enamel / dark grey hardware materials; discard its old broad housing. Create a compact OPEN hospital wall tube light: VERTICAL exposed glass tube on the LEFT at the room-facing side, very narrow vertical rear mounting rail on the RIGHT against the wall, with one short projecting end bracket across the TOP and one across the BOTTOM. Their ends cradle the two tube sockets. There is an OPEN TRANSPARENT GAP along the middle between the tube and the rear rail. Follow the user's sketch; NEVER turn that gap into a broad lid, white panel or glass pane. Nothing may cover the tube from the overhead camera. The whole straight pale glass tube is visible from above, with a subtle pale ice-white core; actual colour and light spill are supplied by the game. This variant is about .86m long and .15m deep from the wall to the tube, with small rounded ivory end socket blocks and dark grey fixing screws. A dark replaced screw at one end, a small local paint touch-up on the narrow rear rail, most material intact. Broad restrained hand-painted semi-realistic 2D survival-horror forms, matching used hospital fixtures; not pixel art, no photo showroom lighting or all-over scratches. Orthographic straight-down plan view: tube left, wall rail right, top and bottom standoffs; NO diagonal perspective, front elevation or 3/4 display angle. Single connected object, entire long vertical fixture within transparent margins. No protective roof, no wide reflector, no opaque cover, no cage crossing the tube. No wall, floor, scenery, text, logo, checkerboard, baked shadow or external glow. TRUE RGBA transparency outside the components and through the open space between rail and tube.",
+      "file": "Sprites/corridor-diffuser-housing.png",
+      "original": "C:\\Users\\Mark\\.codex\\generated_images\\01a14253-0d76-7b63-a439-9dde8e41c183\\exec-85b02574-30de-4225-9510-1d423a9b9658.png",
+      "styleReference": "Concepts/Used/Environment/HospitalLampHousings01/Sprites/corridor-diffuser-housing.png",
+      "layoutReference": "Sources/user-wall-lamp-sketch.png",
+      "width": 941,
+      "height": 1672,
+      "boundsAlpha64": [
+        315,
+        87,
+        620,
+        1581
+      ],
+      "visibleLength": 0.86,
+      "pixelsPerUnit": 1737.2093023255813,
+      "middleRowTubePixels": [
+        333,
+        431
+      ],
+      "middleRowRailPixels": [
+        530,
+        620
+      ],
+      "backLocalY": 0.08605756358768407,
+      "frontLocalY": -0.05094377510040161,
+      "transparentGapPixels": 99,
+      "sha256": "7cca143b51ba7161f7a125623779c43e5df549d73714417a6980548203eeacd6",
+      "alphaMin": 0,
+      "alphaMax": 255
+    }
+  ]
+}
