@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-18",
+  "scope": "Two near-field lamps in MechanicsSandbox",
+  "play": {
+    "success": true,
+    "checks": [
+      "Far: no hum or contacts, including startup",
+      "Near 0.5: hum audible <=0.07; no approach contact",
+      "Light off: hum stops, one quiet contact",
+      "Light on: hum returns, one contact",
+      "Wall blocks hum and contacts",
+      "Hearing uses XY distance; Z does not mute lamp",
+      "Distant flicker stays silent; approach does not replay it",
+      "Disable stops both voices",
+      "Re-enable has no fake contact; instances independent; shared mix unchanged",
+      "Light radius 1.45, intensity 0.28, shadows on"
+    ]
+  },
+  "editMode": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "durationSeconds": 0.5362754,
+    "resultState": "Passed"
+  },
+  "releaseBuild": {
+    "job_id": "build-290982d8e9",
+    "result": "succeeded",
+    "platform": "StandaloneWindows64",
+    "output_path": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\work\\lamp-runtime01\\build\\EmergencyShift.exe",
+    "started_at": "2026-10-18T02:40:09.5685724Z",
+    "duration_seconds": 40.0961506,
+    "completed_at": "2026-10-18T02:40:49.6647230Z",
+    "total_size_mb": 310.63,
+    "errors": 0,
+    "warnings": 0
+  },
+  "inspection": {
+    "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+    "dirty": false,
+    "play": false,
+    "missingScripts": 0,
+    "lamps": [
+      {
+        "name": "Ward lamp - muted cyan",
+        "x": 40.65,
+        "y": 3.0,
+        "radius": 1.45,
+        "intensity": 0.28,
+        "shadows": true
+      },
+      {
+        "name": "Corridor lamp - warm ivory",
+        "x": 59.35,
+        "y": 3.0,
+        "radius": 1.45,
+        "intensity": 0.28,
+        "shadows": true
+      }
+    ],
+    "clips": [
+      {
+        "name": "hum-loop",
+        "channels": 1,
+        "frequency": 48000,
+        "seconds": 3.14,
+        "importedPeak": 0.141693115
+      },
+      {
+        "name": "flicker-01",
+        "channels": 1,
+        "frequency": 48000,
+        "seconds": 0.42,
+        "importedPeak": 0.259307861
+      },
+      {
+        "name": "flicker-02",
+        "channels": 1,
+        "frequency": 48000,
+        "seconds": 0.33,
+        "importedPeak": 0.279998779
+      },
+      {
+        "name": "flicker-03",
+        "channels": 1,
+        "frequency": 48000,
+        "seconds": 0.4,
+        "importedPeak": 0.279998779
+      }
+    ],
+    "development": false,
+    "managedVariant": "Release"
+  },
+  "preservation": {
+    "addedSerializedDocuments": 7,
+    "preservedUnrelatedDocuments": 524,
+    "existingDocumentChanges": [
+      "SceneRoots: append new lamp group"
+    ],
+    "unrelatedNativeAssetsUnchanged": 1593,
+    "unrelatedNativeChanges": 0,
+    "indexPolicy": "HEAD plus owned lamp group only; prior manual edits remain unstaged"
+  },
+  "nativeURPView": "Small local patch beside left wall with flashlight off; screenshot inspected",
+  "limits": [
+    "Runtime build uses current working tree including pre-existing manual edits",
+    "Temporary elongated existing lamp shapes; new painted art not generated",
+    "Owner validates timbre and final comfortable loudness"
+  ]
+}

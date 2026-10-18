@@ -1,6 +1,6 @@
 {
   "date": "2026-10-18",
-  "status": "Standalone audition studies; not integrated into Unity",
+  "status": "Recorded source family; current Unity use is in integration.json",
   "method": "Edits of retained CC0 real recordings; no generative model or synthetic tones",
   "processor": "Tools/Audio/prepare_hospital_lamp_01.py",
   "sampleRate": 48000,
@@ -189,7 +189,7 @@
       ]
     }
   ],
-  "synchronization": "Offline audio and schematic MP4 use the same darkIntervals; no Unity sync implementation claimed",
-  "integrationPlan": "Playback must follow the actual light output, not run an independent repeated sound timer",
-  "runtimeChanges": false
+  "synchronization": "Offline audio and schematic MP4 use the same darkIntervals; runtime follows actual Light2D output as described in integration.json",
+  "processorChangesUnity": false,
+  "integrationReference": "integration.json"
 }

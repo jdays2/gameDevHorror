@@ -1,6 +1,7 @@
 """Short recorded fluorescent-lamp sound studies with an explicit light timeline.
 
-No Unity assets or scene changes. Requires the retained CC0 MP3 previews in Sources.
+Offline source preparation only. Runtime use is recorded separately in integration.json.
+Requires the retained CC0 MP3 previews in Sources.
 """
 import argparse
 import hashlib
@@ -13,7 +14,7 @@ import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[2]
-FAMILY = ROOT / 'Concepts/Unused/Audio/HospitalLamp01'
+FAMILY = ROOT / 'Concepts/Used/Audio/HospitalLamp01'
 SR = 48000
 DURATION = 8.2
 CUTS = [(1.31, 1.73), (18.54, 18.87), (29.04, 29.44)]
@@ -133,16 +134,15 @@ def main():
                         '-vf', ','.join(filters), '-c:v', 'libx264', '-preset', 'fast', '-crf', '23',
                         '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '160k', '-shortest', '-movflags', '+faststart',
                         str(FAMILY / ('Previews/' + probe['id'] + '.mp4'))], check=True)
-    metadata = {'date': '2026-10-18', 'status': 'Standalone audition studies; not integrated into Unity',
+    metadata = {'date': '2026-10-18', 'status': 'Recorded source family; current Unity use is in integration.json',
                 'method': 'Edits of retained CC0 real recordings; no generative model or synthetic tones',
                 'processor': 'Tools/Audio/prepare_hospital_lamp_01.py', 'sampleRate': SR, 'format': 'PCM16 mono WAV',
                 'sourceManifest': 'sources.json', 'starterCutsSeconds': CUTS,
                 'humSourceSeconds': [.25, 3.55], 'loopCrossfadeSeconds': .16,
                 'filters': {'hum': 'highpass90/lowpass4800', 'contact': 'highpass150/lowpass6200'},
                 'clips': clips, 'previews': previews,
-                'synchronization': 'Offline audio and schematic MP4 use the same darkIntervals; no Unity sync implementation claimed',
-                'integrationPlan': 'Playback must follow the actual light output, not run an independent repeated sound timer',
-                'runtimeChanges': False}
+                'synchronization': 'Offline audio and schematic MP4 use the same darkIntervals; runtime follows actual Light2D output as described in integration.json',
+                'integrationReference': 'integration.json', 'processorChangesUnity': False}
     (FAMILY / 'provenance.json').write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'clips': len(clips), 'auditions': len(previews),
                       'previewPeaks': [p['peak'] for p in previews], 'unityChanged': False}))

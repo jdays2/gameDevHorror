@@ -25,6 +25,7 @@
 | `Runtime/Definitions/GoreProfile.cs` | Составы останков и выбор новых смертей; исторические ID могут быть доступны только восстановлению. |
 | `Runtime/Definitions/LevelCatalog.cs` | LevelCatalog |
 | `Runtime/Definitions/LevelDefinition.cs` | LevelDefinition |
+| `Runtime/Definitions/LocalLampAudioSet.cs` | Общие записанные клипы лампы, тихий микс и дистанции слышимости; без состояния проигрывания. |
 | `Runtime/Definitions/MagazineWeaponDefinition.cs` | MagazineWeaponDefinition |
 | `Runtime/Definitions/PlayerAudioSet.cs` | Pickup cues are live; combat candidates can be auditioned before enabling gameplay audio. |
 | `Runtime/Definitions/PlayerWorldAudioSet.cs` | PlayerWorldAudioSet |
@@ -120,6 +121,7 @@
 | `Runtime/World/Doors/DoorAudio2D.cs` | Recorded rail movement follows actual door events; two saved voices, no timed fake close. |
 | `Runtime/World/Lighting/Flashlight2D.cs` | Управляет направлением, оптикой и обоими источниками света фонаря. |
 | `Runtime/World/Lighting/LocalLamp2D.cs` | Слабый локальный свет. Помогает видеть/подбирать, но не заменяет защитный луч фонаря. |
+| `Runtime/World/Lighting/LocalLampAudio2D.cs` | Два голоса, XY-затухание/стена, гул и контакты по фактической яркости; cleanup экземпляра. |
 | `Runtime/World/Loot/AccessCardPickup2D.cs` | AccessCardPickup2D |
 | `Runtime/World/Loot/FlashlightUpgradePickup.cs` | Proximity pickup; preserves repeatable IDs and upgrade caps. |
 | `Runtime/World/Loot/WeaponLootPickup.cs` | Automatic ground loot; full capacity leaves ammo on the floor. |
@@ -161,6 +163,7 @@
 | `Tests/EditMode/GoreCompositionTests.cs` | Новые смерти без повторных ног/старого тела, 8–10 кусков плоти и исключение архивных составов. |
 | `Tests/EditMode/EnemySystemsTests.cs` | EnemySystemsTests |
 | `Tests/EditMode/MagazineWeaponTests.cs` | MagazineWeaponTests |
+| `Tests/EditMode/LocalLampAudioTests.cs` | Близкая слышимость, плавное затухание и неизменность общего микса. |
 | `Tests/EditMode/PersistenceTests.cs` | PersistenceTests |
 | `Tests/EditMode/WeaponCycleTests.cs` | WeaponCycleTests |
 
@@ -169,6 +172,7 @@
 | Файл | Тип |
 |---|---|
 | `Data/Audio/CreatureRupture06.asset` | Три общих разрыва смерти Сталкера и Спящего. |
+| `Data/Audio/HospitalLampQuiet.asset` | Тихий микс записанных ламп, слышимость .35–2 единицы. |
 | `Data/Audio/PistolMagazine.asset` | ScriptableObject / настройки рендера |
 | `Data/Audio/ShotgunPump.asset` | ScriptableObject / настройки рендера |
 | `Data/Audio/SurvivalAudio.asset` | ScriptableObject / настройки рендера |
