@@ -2,8 +2,6 @@ using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 
 namespace EmergencyShift.Editor
@@ -36,78 +34,9 @@ namespace EmergencyShift.Editor
 
             var font = hud.GetComponentInChildren<UnityEngine.UI.Text>(true).font;
             var content = PrepareSequence();
-            var style = PrepareStyle(font);
-            var fixture = new GameObject(FixtureName);
-            SceneManager.MoveGameObjectToScene(fixture, scene);
-            var ui = Rect("Dialogue canvas", fixture.transform);
-            var canvas = ui.gameObject.AddComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            canvas.sortingOrder = 200;
-            var scaler = ui.gameObject.AddComponent<UnityEngine.UI.CanvasScaler>();
-            scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920, 1080);
-            scaler.matchWidthOrHeight = .5f;
-            ui.gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
-
-            var scrim = Image("World dimmer", ui, new Color(.02f, .03f, .04f, .35f));
-            Stretch(scrim.rectTransform);
-            scrim.raycastTarget = true;
-
-            var backdrop = Image("Solid dialogue backing", ui, new Color(.035f, .043f, .055f));
-            Anchor(backdrop.rectTransform, Vector2.zero, Vector2.right, new Vector2(.5f, 0), Vector2.zero, new Vector2(0, 380));
-            var fade = Rect("Soft upper edge", backdrop.transform);
-            Anchor(fade, Vector2.up, Vector2.one, new Vector2(.5f, 0), Vector2.zero, new Vector2(0, 180));
-            var graphic = fade.gameObject.AddComponent<DialogueFadeGraphic>();
-            graphic.color = backdrop.color;
-            graphic.raycastTarget = false;
-
-            var portrait = Image("Active portrait - white square", ui, Color.white);
-            Anchor(portrait.rectTransform, new Vector2(.06f, 0), new Vector2(.06f, 0), Vector2.zero, new Vector2(0, 450), Vector2.one * style.portraitSize);
-            portrait.preserveAspect = true;
-
-            var panel = Rect("Dialogue content", ui);
-            Anchor(panel, new Vector2(.06f, 0), new Vector2(.94f, 0), new Vector2(.5f, 0), new Vector2(0, 48), new Vector2(0, 300));
-            var speaker = Text("Speaker", panel, font, 24, style.accentColor);
-            Anchor(speaker.rectTransform, Vector2.up, Vector2.one, Vector2.up, Vector2.zero, new Vector2(0, 36));
-            var body = Text("Line", panel, font, 40, style.textColor);
-            Anchor(body.rectTransform, Vector2.up, Vector2.one, Vector2.up, new Vector2(0, -60), new Vector2(0, 120));
-            body.lineSpacing = 1.2f;
-            var buttonRect = Rect("Continue - click or keyboard", panel);
-            Anchor(buttonRect, Vector2.right, Vector2.right, Vector2.right, Vector2.zero, new Vector2(650, 64));
-            var hitArea = buttonRect.gameObject.AddComponent<UnityEngine.UI.Image>();
-            hitArea.color = new Color(1, 1, 1, 0);
-            var button = buttonRect.gameObject.AddComponent<UnityEngine.UI.Button>();
-            button.targetGraphic = hitArea;
-            button.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.None };
-            var buttonLabel = Text("Continue label", buttonRect, font, 20, style.hintColor);
-            Stretch(buttonLabel.rectTransform);
-            buttonLabel.alignment = TextAnchor.MiddleRight;
-
-            var view = ui.gameObject.AddComponent<DialogueView>();
-            Assign(view, "style", style);
-            Assign(view, "overlay", canvas);
-            Assign(view, "panel", panel);
-            Assign(view, "backdrop", backdrop.rectTransform);
-            Assign(view, "portrait", portrait);
-            Assign(view, "speakerName", speaker);
-            Assign(view, "body", body);
-            Assign(view, "advance", button);
-            Assign(view, "advanceLabel", buttonLabel);
-            var session = fixture.AddComponent<DialogueSession>();
-            Assign(session, "view", view);
-            Assign(session, "gameplayHud", hud.GetComponent<Canvas>());
-            Assign(session, "reticle", hud.GetComponentInChildren<AimReticle2D>(true));
-            canvas.enabled = false;
-
-            if (UnityEngine.Object.FindAnyObjectByType<EventSystem>() == null)
-            {
-                var events = new GameObject("Dialogue EventSystem", typeof(EventSystem), typeof(InputSystemUIInputModule));
-                events.transform.SetParent(fixture.transform, false);
-                events.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
-            }
-
-            AddInteraction(fixture.transform, session, content, font);
-            ConfigureBranchingView(fixture, style);
+            var fixture = DialoguePrefabAuthoring.Install(scene, hud.GetComponent<Canvas>(), hud.GetComponentInChildren<AimReticle2D>(true));
+            fixture.name = FixtureName;
+            AddInteraction(fixture.transform, fixture.GetComponent<DialogueSession>(), content, font);
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
@@ -268,20 +197,6 @@ namespace EmergencyShift.Editor
             template.gameObject.SetActive(false);
             Assign(view, "choicesRoot", choices);
             Assign(view, "choiceTemplate", template);
-        }
-
-        private static DialogueStyle PrepareStyle(Font font)
-        {
-            const string path = Root + "/Data/Dialogue/CinematicDialogueStyle.asset";
-            var style = AssetDatabase.LoadAssetAtPath<DialogueStyle>(path);
-            if (style == null)
-            {
-                style = ScriptableObject.CreateInstance<DialogueStyle>();
-                style.font = font;
-                AssetDatabase.CreateAsset(style, path);
-            }
-
-            return style;
         }
 
         private static void AddInteraction(Transform parent, DialogueSession session, DialogueSequence sequence, Font font)

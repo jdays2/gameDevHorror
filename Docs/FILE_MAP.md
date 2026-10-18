@@ -30,7 +30,10 @@
 | `Runtime/UI/DialogueView.cs` | uGUI: один активный портрет, текст, продолжение и кнопки ответов. |
 | `Runtime/UI/DialogueFadeGraphic.cs` | Плавный градиент тени по всей высоте фильтра без новой текстуры. |
 | `Editor/Authoring/DialogueSandboxAuthoring.cs` | Локальное добавление новой группы без генерации карты. |
+| `Editor/Authoring/DialoguePrefabAuthoring.cs` | Экспорт общего prefab, связь существующей пробы и установка с контекстом другой сцены. |
+| `Prefabs/UI/DialogueUI.prefab` | Общие контроллер и uGUI; ссылки HUD/прицела назначаются в экземпляре сцены. |
 | `Tests/EditMode/DialogueDataTests.cs` | Обе ветки/схождение, перестановка ID, независимость прохождений, неверные цели и владение паузой/вводом. |
+| `Tests/EditMode/DialoguePrefabTests.cs` | Изоляция общего prefab от сцен/сюжета, разные HUD и защита от дубликатов. |
 
 ### Остальные Runtime-файлы
 
