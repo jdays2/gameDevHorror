@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Упрощённая графика | [SimplifiedArt01](Validation/SimplifiedArt01.json): аудит 143 PNG и 8 нативных текстур, 105 замен, 163 спрайта, 536 сохранённых ссылок; 89/89 EditMode, смерть/останки обоих врагов в двух сценах, Windows64 build без ошибок/предупреждений. Отдельная ошибка индекса Unity Search в проверочной копии записана в отчёте. [Окружение](Validation/SimplifiedArt01/environment.png), [игровой кадр](Validation/SimplifiedArt01/native-living.png). |
 | Диалог | [DialogueBranches](Validation/DialogueBranches.json), [DialoguePrefab](Validation/DialoguePrefab.json): две ветки, стабильные ID, ввод, сохранение фона и общий prefab. В проверочной копии было 80/80 EditMode и 37 Play-проверок. [Ответы](Validation/DialogueBranches/choices.png), [реплика](Validation/DialogueBranches/line.png). |
 | HUD и карты | [GameplayHud03](Validation/GameplayHud03.json), [AccessCardsFlat02](Validation/AccessCardsFlat02.json): текущие иконки и карточки. [GameplayHud02](Validation/GameplayHud02.json) сохраняет проверки поведения HP/оружия; его иконки заменены. |
 | Песочница | [Sandbox](Validation/Sandbox.json), [ящик патронов](Validation/SandboxAmmoSupply.json), [магазины оружия](Validation/WeaponMagazines.json). R начинает чистый тест; checkpoint-контроллеров в песочнице нет. |

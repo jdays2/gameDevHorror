@@ -1,0 +1,79 @@
+if (UnityEngine.Application.isPlaying) throw new System.Exception("EditMode required");
+var work=System.IO.Path.Combine(System.IO.Directory.GetParent(UnityEngine.Application.dataPath).FullName,"Concepts/Used/Visual/SimplifiedArt01/Processing/");
+var rows=Newtonsoft.Json.Linq.JArray.Parse(System.IO.File.ReadAllText(work+"import-recipes.json"));
+var before=Newtonsoft.Json.Linq.JArray.Parse(System.IO.File.ReadAllText(work+"native-sprites-before.json"));
+UnityEditor.AssetDatabase.Refresh(UnityEditor.ImportAssetOptions.ForceSynchronousImport);
+var importerChanges=new System.Collections.Generic.List<object>();
+var spriteChanges=new System.Collections.Generic.List<object>();
+foreach (var row in rows) {
+    string path=(string)row["path"];
+    if (UnityEditor.AssetDatabase.AssetPathToGUID(path)!=(string)row["guid"]) throw new System.Exception("GUID changed: "+path);
+    var importer=UnityEditor.AssetImporter.GetAtPath(path) as UnityEditor.TextureImporter;
+    bool change=false;
+    if ((int)row["mode"]==1) {
+        float ppu=(float)row["newPPU"];
+        if (UnityEngine.Mathf.Abs(importer.spritePixelsPerUnit-ppu)>.001f) {
+            importer.spritePixelsPerUnit=ppu;
+            change=true;
+        }
+    } else {
+        int oldMax=System.Math.Max((int)row["oldSize"][0],(int)row["oldSize"][1]);
+        int limit=UnityEngine.Mathf.Clamp(UnityEngine.Mathf.NextPowerOfTwo(oldMax),64,2048);
+        if (importer.maxTextureSize>limit) {
+            importer.maxTextureSize=limit;
+            change=true;
+        }
+    }
+    if(change) {
+        importer.SaveAndReimport();
+        importerChanges.Add(new{path,ppu=importer.spritePixelsPerUnit,maxSize=importer.maxTextureSize});
+    }
+    if((int)row["mode"]==1) continue;
+    var texture=UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Texture2D>(path);
+    foreach(var original in before) {
+        if((string)original["texture"]!=path) continue;
+        string spritePath=(string)original["path"];
+        if(UnityEditor.AssetDatabase.AssetPathToGUID(spritePath)!=(string)original["guid"]) throw new System.Exception("Sprite GUID changed: "+spritePath);
+        float oldW=(float)original["textureSize"][0];
+        float oldH=(float)original["textureSize"][1];
+        float sx=texture.width/oldW;
+        float sy=texture.height/oldH;
+        var o=original["rect"];
+        var rect=new UnityEngine.Rect((float)o[0]*sx,(float)o[1]*sy,(float)o[2]*sx,(float)o[3]*sy);
+        var pivot=new UnityEngine.Vector2((float)original["pivot"][0],(float)original["pivot"][1]);
+        float oldPpu=(float)original["ppu"];
+        float ppu=oldPpu*(sx+sy)*.5f;
+        bool full=System.Math.Abs((float)o[0])<.1 && System.Math.Abs((float)o[1])<.1 && System.Math.Abs((float)o[2]-oldW)<.1 && System.Math.Abs((float)o[3]-oldH)<.1;
+        if(full) {
+            rect = new UnityEngine.Rect(0,0,texture.width,texture.height);
+            var a=row["scaleOldBounds"];
+            var b=row["scaleNewBounds"];
+            float oldSourceW=(float)row["oldSize"][0];
+            float oldSourceH=(float)row["oldSize"][1];
+            float newSourceW=(float)row["newSize"][0];
+            float newSourceH=(float)row["newSize"][1];
+            float oldBoxW=((float)a[2]-(float)a[0])*oldW/oldSourceW;
+            float oldBoxH=((float)a[3]-(float)a[1])*oldH/oldSourceH;
+            float newBoxW=((float)b[2]-(float)b[0])*texture.width/newSourceW;
+            float newBoxH=((float)b[3]-(float)b[1])*texture.height/newSourceH;
+            ppu=oldPpu*UnityEngine.Mathf.Max(newBoxW/oldBoxW,newBoxH/oldBoxH);
+            float oldCx=((float)a[0]+(float)a[2])*.5f*oldW/oldSourceW;
+            float oldCy=oldH-((float)a[1]+(float)a[3])*.5f*oldH/oldSourceH;
+            float newCx=((float)b[0]+(float)b[2])*.5f*texture.width/newSourceW;
+            float newCy=texture.height-((float)b[1]+(float)b[3])*.5f*texture.height/newSourceH;
+            float localX=(oldCx-pivot.x*oldW)/oldPpu;
+            float localY=(oldCy-pivot.y*oldH)/oldPpu;
+            pivot=new UnityEngine.Vector2((newCx-localX*ppu)/texture.width,(newCy-localY*ppu)/texture.height);
+        }
+        var sprite=UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Sprite>(spritePath);
+        if(System.Math.Abs(sprite.rect.x-rect.x)<.01 && System.Math.Abs(sprite.rect.y-rect.y)<.01 && System.Math.Abs(sprite.rect.width-rect.width)<.01 && System.Math.Abs(sprite.rect.height-rect.height)<.01 && UnityEngine.Mathf.Abs(sprite.pixelsPerUnit-ppu)<.01 && UnityEngine.Vector2.Distance(new UnityEngine.Vector2(sprite.pivot.x/sprite.rect.width,sprite.pivot.y/sprite.rect.height),pivot)<.0001f) continue;
+        var replacement=UnityEngine.Sprite.Create(texture,rect,pivot,ppu,0,UnityEngine.SpriteMeshType.FullRect);
+        replacement.name=(string)original["name"];
+        UnityEditor.EditorUtility.CopySerialized(replacement,sprite);
+        UnityEngine.Object.DestroyImmediate(replacement);
+        UnityEditor.EditorUtility.SetDirty(sprite);
+        UnityEditor.AssetDatabase.SaveAssetIfDirty(sprite);
+        spriteChanges.Add(new{path=spritePath,texture=path,ppu,pivot=new[]{pivot.x,pivot.y},rect=new[]{rect.x,rect.y,rect.width,rect.height},oldPpu});
+    }
+}
+return Newtonsoft.Json.JsonConvert.SerializeObject(new{textures=rows.Count,importerChanges,spriteChanges,scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty});

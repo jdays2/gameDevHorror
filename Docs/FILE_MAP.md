@@ -2,6 +2,8 @@
 
 Пути относительно Assets/EmergencyShift. Карта построена по фактическим файлам 2026-10-18. Ответственность систем и владение данными описаны в [архитектуре](ARCHITECTURE.md).
 
+Графика остаётся по прежним адресам в `Art`; единый стиль описан в [ART_DIRECTION](ART_DIRECTION.md), реестр 105 замен и исходники — в [SimplifiedArt01](../Concepts/Used/Visual/SimplifiedArt01/README.md). GUID сохранены, переносов рабочих ресурсов нет.
+
 ## Runtime
 
 ### Runtime/Combat/Weapons
