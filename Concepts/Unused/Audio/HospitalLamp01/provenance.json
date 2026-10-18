@@ -1,0 +1,195 @@
+{
+  "date": "2026-10-18",
+  "status": "Standalone audition studies; not integrated into Unity",
+  "method": "Edits of retained CC0 real recordings; no generative model or synthetic tones",
+  "processor": "Tools/Audio/prepare_hospital_lamp_01.py",
+  "sampleRate": 48000,
+  "format": "PCM16 mono WAV",
+  "sourceManifest": "sources.json",
+  "starterCutsSeconds": [
+    [
+      1.31,
+      1.73
+    ],
+    [
+      18.54,
+      18.87
+    ],
+    [
+      29.04,
+      29.44
+    ]
+  ],
+  "humSourceSeconds": [
+    0.25,
+    3.55
+  ],
+  "loopCrossfadeSeconds": 0.16,
+  "filters": {
+    "hum": "highpass90/lowpass4800",
+    "contact": "highpass150/lowpass6200"
+  },
+  "clips": [
+    {
+      "file": "Clips/hum-loop.wav",
+      "seconds": 3.14,
+      "peak": 0.141711,
+      "rms": 0.045,
+      "sha256": "97ca08664f9013338154b617fde1d3e25c533b09b77c5f98ff6fae1107e6d67d"
+    },
+    {
+      "file": "Clips/flicker-01.wav",
+      "seconds": 0.42,
+      "peak": 0.259308,
+      "rms": 0.04415,
+      "sha256": "2819ac9e182557d2399cb7792f367d204561b0711d425f618ab6adfb1ac93e08"
+    },
+    {
+      "file": "Clips/flicker-02.wav",
+      "seconds": 0.33,
+      "peak": 0.28,
+      "rms": 0.021921,
+      "sha256": "ab7ad95fd61e738e8c3de664ef35780a5fc645350b8fc7778ba9cb6af4f9400b"
+    },
+    {
+      "file": "Clips/flicker-03.wav",
+      "seconds": 0.4,
+      "peak": 0.28,
+      "rms": 0.022896,
+      "sha256": "038fba903245996f535666af023463aefeab0bcd4b5a9f47dcfa0c035d8da666"
+    }
+  ],
+  "previews": [
+    {
+      "id": "ward-soft",
+      "label": "Палата · мягкое мерцание",
+      "humGain": 0.7,
+      "eventGain": 0.65,
+      "darkIntervals": [
+        [
+          4.9,
+          5.02
+        ],
+        [
+          5.16,
+          5.25
+        ]
+      ],
+      "file": "Previews/ward-soft.wav",
+      "seconds": 8.2,
+      "peak": 0.146387,
+      "rms": 0.030789,
+      "sha256": "568422eb63108ad3a21ba678a811e577f15e6eb8168f4167bdfbfbef0f0e8793",
+      "events": [
+        {
+          "at": 4.9,
+          "event": "dark",
+          "clip": 1
+        },
+        {
+          "at": 5.02,
+          "event": "restrike",
+          "clip": 2
+        },
+        {
+          "at": 5.16,
+          "event": "dark",
+          "clip": 2
+        },
+        {
+          "at": 5.25,
+          "event": "restrike",
+          "clip": 3
+        }
+      ]
+    },
+    {
+      "id": "corridor-faulty",
+      "label": "Коридор · неисправный стартер",
+      "humGain": 1.0,
+      "eventGain": 1.0,
+      "darkIntervals": [
+        [
+          1.8,
+          1.9
+        ],
+        [
+          2.02,
+          2.15
+        ],
+        [
+          4.4,
+          4.68
+        ],
+        [
+          4.8,
+          4.92
+        ],
+        [
+          5.15,
+          5.5
+        ]
+      ],
+      "file": "Previews/corridor-faulty.wav",
+      "seconds": 8.2,
+      "peak": 0.229248,
+      "rms": 0.042916,
+      "sha256": "65aad212b14f10588b267629128ed27c8d88251b8509485ba7e2ccaf4b18ce7f",
+      "events": [
+        {
+          "at": 1.8,
+          "event": "dark",
+          "clip": 1
+        },
+        {
+          "at": 1.9,
+          "event": "restrike",
+          "clip": 2
+        },
+        {
+          "at": 2.02,
+          "event": "dark",
+          "clip": 2
+        },
+        {
+          "at": 2.15,
+          "event": "restrike",
+          "clip": 3
+        },
+        {
+          "at": 4.4,
+          "event": "dark",
+          "clip": 3
+        },
+        {
+          "at": 4.68,
+          "event": "restrike",
+          "clip": 1
+        },
+        {
+          "at": 4.8,
+          "event": "dark",
+          "clip": 1
+        },
+        {
+          "at": 4.92,
+          "event": "restrike",
+          "clip": 2
+        },
+        {
+          "at": 5.15,
+          "event": "dark",
+          "clip": 2
+        },
+        {
+          "at": 5.5,
+          "event": "restrike",
+          "clip": 3
+        }
+      ]
+    }
+  ],
+  "synchronization": "Offline audio and schematic MP4 use the same darkIntervals; no Unity sync implementation claimed",
+  "integrationPlan": "Playback must follow the actual light output, not run an independent repeated sound timer",
+  "runtimeChanges": false
+}
