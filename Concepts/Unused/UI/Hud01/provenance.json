@@ -1,0 +1,125 @@
+{
+  "date": "2026-10-18",
+  "status": "Owner selected split layout; current refinement awaiting visual feedback; not integrated into Unity",
+  "method": "Original HTML/CSS interactive design, no image generation or copied game UI pixels",
+  "referenceUse": "Days Gone screenshot supplied by owner for grouping/density; selected split-concept screenshot supplied for refinement",
+  "references": [
+    {
+      "path": "References/days-gone-hud.png",
+      "source": "C:/Users/Mark/AppData/Local/Temp/codex-clipboard-709072d1-42f8-4e9e-84cf-a3dc638a4f6a.png",
+      "license": "User-supplied visual reference only; no production asset license asserted",
+      "sha256": "f1167c2195ee866536b4391719652621bfa88fd63ca5c78d4aee73d6d872c874"
+    },
+    {
+      "path": "References/selected-split-layout.png",
+      "source": "C:/Users/Mark/AppData/Local/Temp/codex-clipboard-37f72a17-3280-4510-804a-a0d08c5eb18c.png",
+      "license": "User-supplied visual reference only; no production asset license asserted",
+      "sha256": "359a438e72c829e05e856662171dc1001b421b6e9f3f1e682ac03f3eedbded7c"
+    }
+  ],
+  "icons": {
+    "flashlight": "Host-provided Lucide; ISC. Offline QA supplied installed Lucide 1.8.0. Slash is a CSS state overlay.",
+    "weapons": "Original temporary CSS silhouettes; no Days Gone sprite pixels",
+    "cards": "Original CSS neutral card with colored stripe and level text"
+  },
+  "ownerDecisions": [
+    "Split health/weapons layout",
+    "Active weapon below, subdued spare above",
+    "Fixed 1 pistol / 2 shotgun regardless of display slot",
+    "Hide weapons not owned",
+    "Flashlight above HP, crossed out when off",
+    "Green / blue / red card stripes",
+    "No fullscreen damage veil"
+  ],
+  "conceptLimits": "Schematic overhead room; test controls change local preview state only; reload/heal timing and real combat/audio/persistence are not implemented",
+  "browserQA": {
+    "interactionChecks": 19,
+    "layouts": [
+      {
+        "viewport": 1056,
+        "scale": "1",
+        "width": 1024,
+        "overflow": []
+      },
+      {
+        "viewport": 1056,
+        "scale": "1.15",
+        "width": 1024,
+        "overflow": []
+      },
+      {
+        "viewport": 800,
+        "scale": "1",
+        "width": 768,
+        "overflow": []
+      },
+      {
+        "viewport": 800,
+        "scale": "1.15",
+        "width": 768,
+        "overflow": []
+      },
+      {
+        "viewport": 420,
+        "scale": "1",
+        "width": 388,
+        "overflow": []
+      },
+      {
+        "viewport": 420,
+        "scale": "1.15",
+        "width": 388,
+        "overflow": []
+      },
+      {
+        "viewport": 352,
+        "scale": "1",
+        "width": 320,
+        "overflow": []
+      },
+      {
+        "viewport": 352,
+        "scale": "1.15",
+        "width": 320,
+        "overflow": []
+      }
+    ],
+    "pageErrors": [],
+    "iconPreview": "Bundled Lucide 1.8.0 supplied to offline preview; inline source uses host-provided Lucide only",
+    "scope": "Interactive concept only; no Unity or gameplay changes"
+  },
+  "sources": [
+    {
+      "path": "Historical/initial-variants.html",
+      "sha256": "5f37a571dcbd66543139c2837de2cfc9afa2d89b484399ffba8b9b2d74662899"
+    },
+    {
+      "path": "hud-concept.html",
+      "sha256": "8a643e9b5be58f4b6577d8590a21dd1f85b763d038957911cdf35a78f0fe5224"
+    },
+    {
+      "path": "Preview/refined-narrow.png",
+      "sha256": "a8294acae4dc9752b2646ed492486df6a0c22421189d5292023e4a1d5fa1e612"
+    },
+    {
+      "path": "Preview/refined-pistol.png",
+      "sha256": "29d785fc2d1fb3f9ff393decb6ed00e866f3032c9ff0a682ab86f7283e907369"
+    },
+    {
+      "path": "Preview/refined-shotgun-off.png",
+      "sha256": "d212fe581bf4a93e043a5fee25608a34d6736974a72c1f953268e13f82b70f4f"
+    },
+    {
+      "path": "README.md",
+      "sha256": "18d2e52a7f0af20af90c4755fd94361b7b51039d59bbc00dda07d93d9f3352f4"
+    },
+    {
+      "path": "References/days-gone-hud.png",
+      "sha256": "f1167c2195ee866536b4391719652621bfa88fd63ca5c78d4aee73d6d872c874"
+    },
+    {
+      "path": "References/selected-split-layout.png",
+      "sha256": "359a438e72c829e05e856662171dc1001b421b6e9f3f1e682ac03f3eedbded7c"
+    }
+  ]
+}

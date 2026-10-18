@@ -1,0 +1,250 @@
+<div id="esh-hud-refined">
+  <div class="esh-game" aria-label="Концепт HUD: здоровье слева, два оружия справа. Условная палата, вид сверху">
+    <div class="esh-room" aria-hidden="true">
+      <div class="esh-cabinet"></div><div class="esh-bed esh-bed-a"><b></b><span></span></div><div class="esh-bed esh-bed-b"><b></b><span></span></div>
+      <div class="esh-trolley"></div><div class="esh-floor-mark"></div><div class="esh-cone"></div><div class="esh-player"></div><div class="esh-hit-cue"></div>
+    </div>
+    <div class="esh-health-cluster" aria-label="Здоровье, фонарь и карты доступа">
+      <button type="button" class="esh-lamp cursor-interaction" data-action="flashlight" aria-label="Фонарь включён, клавиша F" aria-pressed="true">
+        <span class="esh-lamp-icon"><i data-lucide="flashlight" aria-hidden="true"></i></span><span class="esh-binding">F</span>
+      </button>
+      <div class="esh-health-line">
+        <div class="esh-health-track" role="progressbar" aria-label="Здоровье" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span class="esh-health-ghost"></span><span class="esh-health-fill"></span></div>
+        <span class="esh-health-number">100</span><span class="esh-loss" aria-hidden="true"></span>
+      </div>
+      <div class="esh-cards" role="group" aria-label="Полученные карты доступа">
+        <span class="esh-key" data-level="0" role="img" aria-label="Карта I, зелёная полоска"><span class="esh-key-face"><b></b><em></em></span><span>I</span></span>
+        <span class="esh-key" data-level="1" role="img" aria-label="Карта II, синяя полоска"><span class="esh-key-face"><b></b><em></em></span><span>II</span></span>
+        <span class="esh-key" data-level="2" role="img" aria-label="Карта III, красная полоска" hidden><span class="esh-key-face"><b></b><em></em></span><span>III</span></span>
+      </div>
+      <div class="esh-condition" aria-live="polite"></div>
+    </div>
+    <div class="esh-weapons" aria-label="Выбор оружия: 1 пистолет, 2 дробовик">
+      <button type="button" class="esh-weapon esh-active cursor-interaction" data-weapon="pistol" aria-label="Пистолет, клавиша 1, выбран" aria-pressed="true">
+        <span class="esh-weapon-key">1</span><span class="esh-art esh-pistol" aria-hidden="true"></span>
+        <span class="esh-ammo"><span class="esh-loaded">07</span><span class="esh-reserve">/ 24</span></span><span class="esh-name">ПИСТОЛЕТ</span>
+      </button>
+      <button type="button" class="esh-weapon esh-spare cursor-interaction" data-weapon="shotgun" aria-label="Дробовик, клавиша 2, в запасе" aria-pressed="false">
+        <span class="esh-weapon-key">2</span><span class="esh-art esh-shotgun" aria-hidden="true"></span>
+        <span class="esh-ammo"><span class="esh-loaded">03</span><span class="esh-reserve">/ 18</span></span><span class="esh-name">ДРОБОВИК</span>
+      </button>
+    </div>
+  </div>
+  <div class="viz-controls" aria-label="Примерка состояния">
+    <button type="button" class="btn btn-primary" data-action="damage">Удар −25 HP</button>
+    <button type="button" class="btn" data-action="heal">Лечение +25</button>
+    <button type="button" class="btn" data-action="shoot">Выстрел</button>
+    <button type="button" class="btn" data-action="reload">Зарядить · X</button>
+    <button type="button" class="btn" data-action="toggle-lamp">Фонарь · F</button>
+  </div>
+  <div class="viz-controls" aria-label="Доступное оружие">
+    <span>Оружие</span>
+    <label class="form-check"><input type="checkbox" class="form-check-input" data-owned="pistol" checked><span class="form-check-label">Пистолет · 1</span></label>
+    <label class="form-check"><input type="checkbox" class="form-check-input" data-owned="shotgun" checked><span class="form-check-label">Дробовик · 2</span></label>
+  </div>
+  <div class="viz-controls" aria-label="Найденные карточки">
+    <span>Карточки</span>
+    <label class="form-check"><input type="checkbox" class="form-check-input" data-card="0" checked><span class="form-check-label">I · зелёная</span></label>
+    <label class="form-check"><input type="checkbox" class="form-check-input" data-card="1" checked><span class="form-check-label">II · синяя</span></label>
+    <label class="form-check"><input type="checkbox" class="form-check-input" data-card="2"><span class="form-check-label">III · красная</span></label>
+  </div>
+  <span class="sr-only esh-announcement" aria-live="polite"></span>
+</div>
+<style>
+  #esh-hud-refined {width:100%;}
+  #esh-hud-refined .viz-controls {margin-top:12px;}
+  #esh-hud-refined .esh-game {
+    --esh-ink:#e5e5db;--esh-secondary:#b6bdb7;--esh-hp:#739566;--esh-danger:#c56859;--esh-scale:1;--esh-spare:.42;
+    position:relative;width:100%;aspect-ratio:16/10;min-height:360px;overflow:hidden;isolation:isolate;
+    background:#090e10;color:var(--esh-ink);font-family:"Segoe UI",Arial,sans-serif;font-size:12px;
+  }
+  #esh-hud-refined .esh-room {position:absolute;inset:7% 8% 15% 10%;overflow:hidden;border:13px solid #11181a;background-color:#273133;background-image:linear-gradient(#1b23257d 1px,transparent 1px),linear-gradient(90deg,#1b23257d 1px,transparent 1px),radial-gradient(ellipse at 55% 67%,#3a4541,transparent 62%);background-size:44px 44px,44px 44px,100% 100%;box-shadow:inset 0 0 100px #050909b0;}
+  #esh-hud-refined .esh-room::before {content:"";position:absolute;bottom:-1px;left:44%;width:16%;height:6px;background:#4a5552;}
+  #esh-hud-refined .esh-cabinet {position:absolute;left:4%;top:5%;width:30%;height:12%;background:repeating-linear-gradient(90deg,#4c5550 0,#4c5550 30px,#29312d 31px,#29312d 33px);box-shadow:3px 6px 7px #05080880;}
+  #esh-hud-refined .esh-bed {position:absolute;width:18%;height:35%;background:#737d77;border:3px solid #45514b;box-shadow:7px 7px 0 #0c14165c;}
+  #esh-hud-refined .esh-bed-a {left:15%;top:30%;transform:rotate(-2deg);}
+  #esh-hud-refined .esh-bed-b {right:13%;top:14%;transform:rotate(1deg);}
+  #esh-hud-refined .esh-bed b {position:absolute;inset:7% 9% 73%;background:#aeb3a5;border-radius:3px;box-shadow:0 2px 3px #1a282a77;}
+  #esh-hud-refined .esh-bed span {position:absolute;inset:31% 6% 9%;background:linear-gradient(90deg,#3f514d,#52635c 55%,#41514b);border-top:2px solid #849388;}
+  #esh-hud-refined .esh-trolley {position:absolute;right:6%;bottom:12%;width:13%;height:15%;background:linear-gradient(115deg,#5a6662,#88928a,#58645f);border:3px solid #465650;box-shadow:4px 5px 0 #08100e77;}
+  #esh-hud-refined .esh-floor-mark {position:absolute;left:38%;top:19%;width:2px;height:27%;background:#b1a78339;}
+  #esh-hud-refined .esh-cone {position:absolute;left:37%;top:9%;width:34%;height:62%;transform:rotate(14deg);transform-origin:50% 100%;clip-path:polygon(50% 100%,0 0,100% 0);background:linear-gradient(0deg,#d5dcb25c,#a9c3a409);opacity:.65;transition:opacity .16s;}
+  #esh-hud-refined .esh-player {position:absolute;left:52%;top:64%;width:20px;height:30px;border-radius:45%;background:#c0c5b7;transform:rotate(14deg);box-shadow:4px 5px 4px #04080777;}
+  #esh-hud-refined .esh-hit-cue {position:absolute;left:calc(52% - 12px);top:calc(64% - 9px);width:44px;height:44px;border:3px solid transparent;border-right-color:var(--esh-danger);border-radius:50%;opacity:0;pointer-events:none;}
+  #esh-hud-refined .esh-game.esh-hit .esh-hit-cue {animation:esh-refined-hit .32s ease-out;}
+  #esh-hud-refined .esh-health-cluster {position:absolute;left:27px;bottom:25px;width:232px;transform:scale(var(--esh-scale));transform-origin:left bottom;text-shadow:0 1px 3px #020605,0 0 8px #020605;}
+  #esh-hud-refined .esh-lamp {display:flex;align-items:center;gap:7px;min-width:44px;min-height:28px;padding:0;background:transparent;border:0;color:var(--esh-ink);font:inherit;}
+  #esh-hud-refined .esh-lamp-icon {position:relative;display:block;width:24px;height:24px;}
+  #esh-hud-refined .esh-lamp-icon svg {width:23px;height:23px;stroke-width:1.8;}
+  #esh-hud-refined .esh-binding {font-size:11px;color:var(--esh-secondary);}
+  #esh-hud-refined .esh-lamp.esh-off {color:#b4bcb6;}
+  #esh-hud-refined .esh-lamp.esh-off .esh-lamp-icon::after {content:"";position:absolute;left:-1px;top:11px;width:27px;height:2px;background:currentColor;transform:rotate(-43deg);box-shadow:0 1px 1px #090e10;}
+  #esh-hud-refined .esh-health-line {position:relative;display:flex;align-items:center;gap:9px;height:20px;margin-top:5px;}
+  #esh-hud-refined .esh-health-track {position:relative;flex:1;height:9px;overflow:hidden;background:#c3c9bf25;box-shadow:0 1px 4px #03080799;}
+  #esh-hud-refined .esh-health-fill,#esh-hud-refined .esh-health-ghost {position:absolute;inset:0 auto 0 0;width:100%;}
+  #esh-hud-refined .esh-health-fill {background:var(--esh-hp);transition:background .16s;}
+  #esh-hud-refined .esh-health-ghost {background:#dfb0a0;opacity:.7;transition:width .5s ease-out;}
+  #esh-hud-refined .esh-health-number {width:25px;text-align:right;font-size:12px;font-variant-numeric:tabular-nums;}
+  #esh-hud-refined .esh-loss {position:absolute;right:34px;top:-14px;color:#efb09d;font-size:12px;opacity:0;}
+  #esh-hud-refined .esh-hit .esh-loss {animation:esh-refined-loss .8s ease-out;}
+  #esh-hud-refined .esh-cards {display:flex;align-items:center;gap:11px;height:18px;margin-top:8px;}
+  #esh-hud-refined .esh-key {display:flex;align-items:center;gap:4px;font-size:11px;color:var(--esh-secondary);}
+  #esh-hud-refined .esh-key[hidden] {display:none;}
+  #esh-hud-refined .esh-key-face {position:relative;display:block;overflow:hidden;width:22px;height:14px;border:1px solid #d1d8cc;border-radius:1px;background:#172021;}
+  #esh-hud-refined .esh-key-face b {position:absolute;top:0;bottom:0;left:0;width:5px;background:#7eac80;}
+  #esh-hud-refined .esh-key[data-level="1"] b {background:#6b9dce;}
+  #esh-hud-refined .esh-key[data-level="2"] b {background:#cc776b;}
+  #esh-hud-refined .esh-key-face em {position:absolute;left:8px;right:3px;top:4px;height:1px;background:#b5c0b1;box-shadow:0 3px 0 #87958b;}
+  #esh-hud-refined .esh-condition {height:14px;margin-top:6px;font-size:11px;letter-spacing:.7px;color:#e3a594;white-space:nowrap;}
+  #esh-hud-refined .esh-weapons {position:absolute;right:27px;bottom:45px;width:198px;height:115px;transform:scale(var(--esh-scale));transform-origin:right bottom;text-shadow:0 1px 3px #020605,0 0 8px #020605;}
+  #esh-hud-refined .esh-weapon {position:absolute;left:0;right:0;height:60px;bottom:0;display:grid;grid-template-columns:21px 77px 1fr;grid-template-rows:32px 19px;align-items:center;column-gap:6px;padding:4px 0;background:transparent;border:0;color:var(--esh-ink);font:inherit;text-align:left;transition:bottom .18s ease-out;}
+  #esh-hud-refined .esh-weapon[hidden] {display:none;}
+  #esh-hud-refined .esh-weapon-key {grid-column:1;grid-row:1/3;justify-self:start;font-size:11px;line-height:18px;width:17px;text-align:center;border:1px solid #d1d8cc70;border-radius:1px;color:#d5dcd1;}
+  #esh-hud-refined .esh-art {grid-column:2;grid-row:1/3;background:var(--esh-ink);justify-self:start;}
+  #esh-hud-refined .esh-pistol {width:61px;height:30px;clip-path:polygon(3% 7%,91% 7%,95% 15%,100% 15%,100% 35%,55% 35%,52% 53%,40% 58%,34% 96%,12% 96%,18% 36%,3% 36%);}
+  #esh-hud-refined .esh-shotgun {width:77px;height:24px;clip-path:polygon(0 8%,86% 8%,86% 0,92% 0,92% 8%,100% 8%,100% 25%,59% 25%,59% 37%,42% 37%,32% 61%,26% 61%,22% 45%,0 96%);}
+  #esh-hud-refined .esh-ammo {grid-column:3;grid-row:1;display:flex;align-items:baseline;gap:5px;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  #esh-hud-refined .esh-loaded {font-size:27px;font-weight:500;letter-spacing:-1px;line-height:1.1;}
+  #esh-hud-refined .esh-reserve {font-size:12px;color:var(--esh-secondary);}
+  #esh-hud-refined .esh-name {grid-column:3;grid-row:2;font-size:11px;letter-spacing:.65px;color:var(--esh-secondary);}
+  #esh-hud-refined .esh-spare {bottom:67px;height:44px;grid-template-rows:22px 14px;}
+  #esh-hud-refined .esh-spare .esh-art {opacity:var(--esh-spare);transform:scale(.83);transform-origin:left center;}
+  #esh-hud-refined .esh-spare .esh-ammo {display:none;}
+  #esh-hud-refined .esh-spare .esh-name {grid-row:1/3;opacity:.64;align-self:center;font-size:11px;letter-spacing:.4px;}
+  #esh-hud-refined .esh-spare .esh-weapon-key {opacity:.75;}
+  #esh-hud-refined .esh-spare:hover .esh-art {opacity:.75;}
+  #esh-hud-refined .esh-spare:hover .esh-name {opacity:1;}
+  @keyframes esh-refined-hit {0%{opacity:.9;transform:translateX(0);}100%{opacity:0;transform:translateX(4px);}}
+  @keyframes esh-refined-loss {0%{opacity:1;transform:translateY(0);}65%{opacity:.85;}100%{opacity:0;transform:translateY(-9px);}}
+  @media(max-width:520px) {
+    #esh-hud-refined .esh-game {min-height:430px;aspect-ratio:4/5;}
+    #esh-hud-refined .esh-health-cluster {left:18px;bottom:20px;width:195px;}
+    #esh-hud-refined .esh-weapons {right:18px;bottom:128px;width:185px;}
+    #esh-hud-refined .esh-weapon {grid-template-columns:21px 70px 1fr;column-gap:5px;}
+    #esh-hud-refined .esh-shotgun {width:70px;}
+    #esh-hud-refined .esh-loaded {font-size:25px;}
+    #esh-hud-refined .esh-room {inset:7% 6% 16% 6%;border-width:10px;}
+    #esh-hud-refined .esh-bed {width:23%;height:31%;}
+    #esh-hud-refined .esh-bed-a {left:9%;top:36%;}
+    #esh-hud-refined .esh-bed-b {right:9%;top:15%;}
+  }
+  @media(prefers-reduced-motion:reduce) {
+    #esh-hud-refined .esh-health-ghost,#esh-hud-refined .esh-weapon,#esh-hud-refined .esh-cone {transition:none;}
+    #esh-hud-refined .esh-hit .esh-hit-cue,#esh-hud-refined .esh-hit .esh-loss {animation:none;opacity:1;}
+  }
+</style>
+<script>
+(() => {
+  const root=document.getElementById('esh-hud-refined');
+  const game=root.querySelector('.esh-game');
+  const defaults={hp:100,ghost:100,flashlight:true,weapon:'pistol',pistolLoaded:7,pistolReserve:24,shotgunLoaded:3,shotgunReserve:18,owned:{pistol:true,shotgun:true},cards:[true,true,false],scale:100,numbers:true,spareOpacity:42};
+  const state={...defaults,owned:{...defaults.owned},cards:[...defaults.cards]};
+  let hitTimer,ghostTimer;
+  const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+  function restore(saved) {
+    if (!saved || saved.concept!=='EmergencyShiftHudRefined') return;
+    clearTimeout(hitTimer);clearTimeout(ghostTimer);
+    for (const key of ['hp','pistolLoaded','pistolReserve','shotgunLoaded','shotgunReserve','scale','spareOpacity']) {
+      if (Number.isFinite(saved[key])) state[key]=Math.max(0,saved[key]);
+    }
+    state.hp=clamp(state.hp,0,100);state.ghost=state.hp;state.scale=clamp(state.scale,100,115);state.spareOpacity=clamp(state.spareOpacity,35,65);
+    if (typeof saved.flashlight==='boolean') state.flashlight=saved.flashlight;
+    if (typeof saved.numbers==='boolean') state.numbers=saved.numbers;
+    if (saved.owned && typeof saved.owned.pistol==='boolean' && typeof saved.owned.shotgun==='boolean') state.owned={...saved.owned};
+    if (Array.isArray(saved.cards) && saved.cards.length===3) state.cards=saved.cards.map(Boolean);
+    state.weapon=saved.weapon==='shotgun'?'shotgun':'pistol';
+    game.classList.remove('esh-hit');
+  }
+  restore(window.openai?.widgetState?.privateContent);
+  function persist() {
+    if (!window.openai?.setWidgetState) return;
+    window.openai.setWidgetState({
+      modelContent:{concept:'EmergencyShiftHudRefined',layout:'Разнесённый, активное оружие снизу',weapon:state.weapon,health:state.hp,flashlight:state.flashlight,owned:state.owned,cardLevels:state.cards.flatMap((found,i)=>found?[i+1]:[])},
+      privateContent:{concept:'EmergencyShiftHudRefined',...state}
+    }).catch(()=>{});
+  }
+  function render() {
+    if (!state.owned[state.weapon]) state.weapon=state.owned.pistol?'pistol':state.owned.shotgun?'shotgun':'';
+    game.style.setProperty('--esh-scale',String(state.scale/100));
+    game.style.setProperty('--esh-spare',String(state.spareOpacity/100));
+    game.style.setProperty('--esh-hp',state.hp<=35?'#c56859':state.hp<=60?'#bca16e':'#739566');
+    root.querySelector('.esh-health-fill').style.width=state.hp+'%';
+    root.querySelector('.esh-health-ghost').style.width=state.ghost+'%';
+    root.querySelector('.esh-health-track').setAttribute('aria-valuenow',String(state.hp));
+    const healthNumber=root.querySelector('.esh-health-number');healthNumber.textContent=String(state.hp);healthNumber.hidden=!state.numbers;
+    root.querySelector('.esh-condition').textContent=state.hp===0?'ПОРАЖЕНИЕ':state.hp<=35?'КРИТИЧЕСКОЕ СОСТОЯНИЕ':'';
+    root.querySelector('.esh-cone').style.opacity=state.flashlight?'.65':'0';
+    const lamp=root.querySelector('.esh-lamp');lamp.classList.toggle('esh-off',!state.flashlight);
+    lamp.setAttribute('aria-pressed',String(state.flashlight));lamp.setAttribute('aria-label',(state.flashlight?'Фонарь включён':'Фонарь выключен')+', клавиша F');
+    root.querySelectorAll('.esh-key').forEach((key,i)=>{key.hidden=!state.cards[i];});
+    root.querySelectorAll('[data-card]').forEach(input=>{input.checked=state.cards[Number(input.dataset.card)];});
+    root.querySelectorAll('[data-owned]').forEach(input=>{input.checked=state.owned[input.dataset.owned];});
+    root.querySelectorAll('[data-weapon]').forEach(button=>{
+      const weapon=button.dataset.weapon;
+      const active=weapon===state.weapon;
+      const name=weapon==='pistol'?'Пистолет':'Дробовик';
+      const key=weapon==='pistol'?'1':'2';
+      button.hidden=!state.owned[weapon];button.classList.toggle('esh-active',active);button.classList.toggle('esh-spare',!active);
+      button.setAttribute('aria-pressed',String(active));
+      button.setAttribute('aria-label',name+', клавиша '+key+(active?', выбран':', в запасе'));
+      button.querySelector('.esh-loaded').textContent=String(state[weapon+'Loaded']).padStart(2,'0');
+      button.querySelector('.esh-reserve').textContent='/ '+state[weapon+'Reserve'];
+      button.querySelector('.esh-name').textContent=state[weapon+'Loaded']===0&&active?'ПУСТО':name.toUpperCase();
+    });
+    root.querySelector('[data-action="damage"]').disabled=state.hp===0;
+    root.querySelector('[data-action="heal"]').disabled=state.hp===100;
+    root.querySelector('[data-action="shoot"]').disabled=!state.weapon||state.hp===0||state[state.weapon+'Loaded']===0;
+    const capacity=state.weapon==='pistol'?8:4;
+    root.querySelector('[data-action="reload"]').disabled=!state.weapon||state[state.weapon+'Reserve']===0||state[state.weapon+'Loaded']>=capacity;
+  }
+  function selectWeapon(weapon) {
+    if (!state.owned[weapon]) return;
+    state.weapon=weapon;render();persist();
+  }
+  function action(name) {
+    if (name==='flashlight'||name==='toggle-lamp') state.flashlight=!state.flashlight;
+    if (name==='damage'&&state.hp>0) {
+      clearTimeout(hitTimer);clearTimeout(ghostTimer);
+      const before=state.hp;state.ghost=Math.max(state.ghost,before);state.hp=Math.max(0,before-25);
+      root.querySelector('.esh-loss').textContent='−'+(before-state.hp);
+      game.classList.remove('esh-hit');void game.offsetWidth;game.classList.add('esh-hit');
+      ghostTimer=setTimeout(()=>{state.ghost=state.hp;render();},180);
+      hitTimer=setTimeout(()=>game.classList.remove('esh-hit'),850);
+      root.querySelector('.esh-announcement').textContent='Получен урон. Здоровье '+state.hp+' из 100.';
+    }
+    if (name==='heal') {clearTimeout(ghostTimer);state.hp=Math.min(100,state.hp+25);state.ghost=state.hp;game.classList.remove('esh-hit');}
+    if (name==='shoot'&&state.weapon&&state.hp>0) state[state.weapon+'Loaded']=Math.max(0,state[state.weapon+'Loaded']-1);
+    if (name==='reload'&&state.weapon) {
+      const capacity=state.weapon==='pistol'?8:4;
+      const count=Math.min(capacity-state[state.weapon+'Loaded'],state[state.weapon+'Reserve']);
+      state[state.weapon+'Loaded']+=count;state[state.weapon+'Reserve']-=count;
+    }
+    render();persist();
+  }
+  root.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',()=>action(button.dataset.action)));
+  root.querySelectorAll('[data-weapon]').forEach(button=>button.addEventListener('click',()=>selectWeapon(button.dataset.weapon)));
+  root.querySelectorAll('[data-owned]').forEach(input=>input.addEventListener('change',()=>{state.owned[input.dataset.owned]=input.checked;render();persist();}));
+  root.querySelectorAll('[data-card]').forEach(input=>input.addEventListener('change',()=>{state.cards[Number(input.dataset.card)]=input.checked;render();persist();}));
+  document.addEventListener('keydown',event=>{
+    if (event.repeat||event.ctrlKey||event.altKey||event.metaKey||['INPUT','SELECT','TEXTAREA'].includes(event.target.tagName)) return;
+    if (event.code==='Digit1'||event.code==='Numpad1') {event.preventDefault();selectWeapon('pistol');}
+    if (event.code==='Digit2'||event.code==='Numpad2') {event.preventDefault();selectWeapon('shotgun');}
+    if (event.code==='KeyF') {event.preventDefault();action('toggle-lamp');}
+    if (event.code==='KeyX') {event.preventDefault();action('reload');}
+  });
+  window.addEventListener('openai:set_globals',event=>{
+    const saved=event.detail?.globals?.widgetState?.privateContent;
+    if (!saved||saved.concept!=='EmergencyShiftHudRefined') return;
+    const keys=['hp','pistolLoaded','pistolReserve','shotgunLoaded','shotgunReserve','weapon','flashlight','owned','cards','scale','numbers','spareOpacity'];
+    if (keys.every(key=>JSON.stringify(saved[key])===JSON.stringify(state[key]))) return;
+    restore(saved);render();
+  });
+  render();
+  if (globalThis.Tweak) {
+    const tweak=new Tweak({container:game,onChange:render});
+    tweak.addSlider(state,'scale',{label:'Размер HUD',min:100,max:115,unit:'%'});
+    tweak.addSlider(state,'spareOpacity',{label:'Видимость запасного оружия',min:35,max:65,unit:'%'});
+    tweak.addToggle(state,'numbers',{label:'Число HP'});
+  }
+})();
+</script>
