@@ -89,7 +89,7 @@ namespace EmergencyShift
             aim = flashlight.GetComponent<PlayerAim2D>();
             playerBody = flashlight.GetComponent<Rigidbody2D>();
             initialized = true;
-            SetVariant(0);
+            SetVariant((int)Variant.DirectionalEdge);
             SetCeiling(false);
             SetShadows(true);
             flashlight.SetPower(true);

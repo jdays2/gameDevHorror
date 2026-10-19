@@ -1,0 +1,1695 @@
+{
+  "date": "2026-10-19",
+  "scope": "Environment prefab SpriteRenderer ShadowCaster2D geometry; 41 unique sprite PNGs. Excludes walls, doors and creatures.",
+  "acceptedFurnitureLight": "C dark top and directional matte edge; starts by default in the three-object study. Library-wide lighting material integration remains separate.",
+  "correction": "Generate the render outline directly from current source PNG alpha, threshold 51/255, detail .25, zero extrusion. Write through ISpriteOutlineDataProvider with capability guards; preserve sprite identity and placement. Closed RDP polyline simplification: up to 2 source pixels; retain contours with <=16 points, winding changes, >1% area change or self intersections. Final imported triangles are separately compared to source alpha.",
+  "dependencies": {
+    "added": "com.unity.2d.sprite@1.0.0",
+    "source": "Bundled with installed Unity 6000.6.5f1",
+    "assembly": "Editor-only Unity.2D.Sprite.Editor"
+  },
+  "measurement": {
+    "metric": "area intersection over union of actual triangle mesh and source alpha > 51, 4-pixel grid of pixel centers",
+    "coordinates": "vertex * PPU + pivot; source image origin bottom-left",
+    "beforeMedianIoU": 0.9340277777777778,
+    "afterMedianIoU": 0.9912075294970767,
+    "beforeMinimumIoU": 0.4036621778075681,
+    "afterMinimumIoU": 0.9679285301111896,
+    "beforeVertexTotal": 2123,
+    "afterVertexTotal": 2793,
+    "limit": "Sampled area accuracy, not exact raster equality or physical correctness of projected shadows."
+  },
+  "preservation": {
+    "spriteIdentityPivotRectPpu": [
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/autopsy-table.png",
+        "preserved": true,
+        "vertices": 20,
+        "guid": "59909667c977fb447a557a80aa0e4368",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/iv-stand.png",
+        "preserved": true,
+        "vertices": 145,
+        "guid": "3d0035b698ee57043982a34e1aca4ef3",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/janitor-cart.png",
+        "preserved": true,
+        "vertices": 87,
+        "guid": "b074c0b111cadf84ea31ac43df6cb3ed",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/linen-hamper.png",
+        "preserved": true,
+        "vertices": 100,
+        "guid": "39133d1fa20c44a4ba8f197aab801b78",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/oxygen-cart.png",
+        "preserved": true,
+        "vertices": 140,
+        "guid": "dd1902c92f32f6d4fa707751978f12d3",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/privacy-screen.png",
+        "preserved": true,
+        "vertices": 154,
+        "guid": "229df65c2eb018a408389a80e0180928",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/scrub-sink.png",
+        "preserved": true,
+        "vertices": 13,
+        "guid": "fad7bbd7364415449910b46ce1471257",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/transport-stretcher.png",
+        "preserved": true,
+        "vertices": 102,
+        "guid": "7f6dc8c631fb4e941b0d4e96116b9e52",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/water-cooler.png",
+        "preserved": true,
+        "vertices": 47,
+        "guid": "f51509fd2bd064440ad21b11fe404734",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/HospitalService01/wheelchair.png",
+        "preserved": true,
+        "vertices": 262,
+        "guid": "6a7a694d9f6a00340a3daa2cb720a91e",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-cabinet.png",
+        "preserved": true,
+        "vertices": 33,
+        "guid": "2c562270be684a04b964d513153760a7",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-equipment-cabinet.png",
+        "preserved": true,
+        "vertices": 13,
+        "guid": "4abcc6d1c2cfd9f4a8eb4800c338f53e",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-workbench.png",
+        "preserved": true,
+        "vertices": 19,
+        "guid": "00605c89d5b9eed41be31916f5644a5c",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-drum.png",
+        "preserved": true,
+        "vertices": 54,
+        "guid": "47e2e407afa84314b973144f0fcf7c76",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-pallet-crate.png",
+        "preserved": true,
+        "vertices": 131,
+        "guid": "75c6c12882fc14347b003830ce5eb16b",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-steel-shelf.png",
+        "preserved": true,
+        "vertices": 26,
+        "guid": "e519ceaae78cd2d459b00bd2b50119f8",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/pallet-mixed-load.png",
+        "preserved": true,
+        "vertices": 193,
+        "guid": "6050b6ab589c5a249b031943e9d0c433",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/pallet-three-cartons.png",
+        "preserved": true,
+        "vertices": 136,
+        "guid": "2dbd2adf08bb15f42a619a43aff983f2",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-documents.png",
+        "preserved": true,
+        "vertices": 30,
+        "guid": "8ddb2976224672246a676b3cbdbbb909",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-glassware.png",
+        "preserved": true,
+        "vertices": 21,
+        "guid": "c2788837754cc4e4a989e09d1d24b6cc",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-microscopes.png",
+        "preserved": true,
+        "vertices": 16,
+        "guid": "675e4a300f6a2794da0e5161e4a00646",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-desktop-computer.png",
+        "preserved": true,
+        "vertices": 14,
+        "guid": "a044f8d17b7e467469c626b0e04c4cb9",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-documents.png",
+        "preserved": true,
+        "vertices": 8,
+        "guid": "b2550ce5af4257b4f871f7d0664cf6bb",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-laptop.png",
+        "preserved": true,
+        "vertices": 14,
+        "guid": "dcbc705e49deac54ca6e2e62f8fdda46",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-cot.png",
+        "preserved": true,
+        "vertices": 51,
+        "guid": "9e785a25c549b654487607ba219ca6be",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-cot-bloody.png",
+        "preserved": true,
+        "vertices": 85,
+        "guid": "189bb0b95288f974595e5d824e47f4b5",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-trolley.png",
+        "preserved": true,
+        "vertices": 99,
+        "guid": "8553d47e21388034aa74bed56875e1de",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/InteriorProps01/office-chair.png",
+        "preserved": true,
+        "vertices": 176,
+        "guid": "7930f24b249b30d428291ccd81e24998",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/InteriorProps01/personnel-locker.png",
+        "preserved": true,
+        "vertices": 16,
+        "guid": "e7e078a9020a727428ebe788ad1fcc07",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/InteriorProps01/two-seat-sofa.png",
+        "preserved": true,
+        "vertices": 43,
+        "guid": "2b13ddf7a8bb4ea4c8675eba0a2ddbf7",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/InteriorProps01/utility-chair.png",
+        "preserved": true,
+        "vertices": 98,
+        "guid": "c1c96d196420c1844916f168bfe3d727",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/InteriorProps01/waste-bin.png",
+        "preserved": true,
+        "vertices": 46,
+        "guid": "161d886a5092e4e46a4585d776c72da6",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/island-storage-cabinet.png",
+        "preserved": true,
+        "vertices": 34,
+        "guid": "fb0bf00a62e3a474e958eb2d64a1527e",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-coupling.png",
+        "preserved": true,
+        "vertices": 24,
+        "guid": "072186a242229a748ab3848dc8bd76e5",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-elbow.png",
+        "preserved": true,
+        "vertices": 43,
+        "guid": "c8fc6bb647ce8c64ea5c2da32bc764f1",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-straight.png",
+        "preserved": true,
+        "vertices": 28,
+        "guid": "fddd883128478ff45bc647db8d693be1",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-tee.png",
+        "preserved": true,
+        "vertices": 21,
+        "guid": "3063f57f719a6144facacc7bfd1f898d",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-valve.png",
+        "preserved": true,
+        "vertices": 168,
+        "guid": "063f368820123ac4b8d69dae2cfb5926",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/technical-floor-cabinet.png",
+        "preserved": true,
+        "vertices": 18,
+        "guid": "5175f767fd8589142b28608652c8f4aa",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/wall-archive-cabinet.png",
+        "preserved": true,
+        "vertices": 16,
+        "guid": "320f4c2cee2f315479cf87ddf5990dbe",
+        "fileId": 21300000
+      },
+      {
+        "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/wall-steel-cabinet.png",
+        "preserved": true,
+        "vertices": 49,
+        "guid": "e76f3e651cb244241b6641f2c41b1ec7",
+        "fileId": 21300000
+      }
+    ],
+    "existingPngPrefabSceneFilesCompared": 290,
+    "changedPngPrefabScenes": [],
+    "existingOtherAssetsChanged": [
+      "Assets/EmergencyShift/Editor/EmergencyShift.Editor.asmdef",
+      "Assets/EmergencyShift/Editor/Authoring/EnvironmentSpriteAuthoring.cs",
+      "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs"
+    ],
+    "activeSceneDirty": false,
+    "editorPlaying": false,
+    "editorSceneAtFinalCheck": "Assets/EmergencyShift/Scenes/ArtReview/EnvironmentNarrativeStressReview.unity"
+  },
+  "verification": {
+    "editMode": {
+      "total": 86,
+      "passed": 86,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 3.2539417,
+      "resultState": "Passed"
+    },
+    "windowsBuild": {
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "seconds": 4.058551899999999,
+      "variantRestored": true,
+      "definesPreserved": true
+    },
+    "buildWarnings": "Final incremental build: zero. Earlier full build: six existing obsolete API warnings from EnvironmentLoadProbe.cs.",
+    "playConsoleErrors": 0,
+    "artStudyViews": [
+      {
+        "filename": "sample0-side0-C.png",
+        "sample": 0,
+        "side": 0,
+        "vertices": 16,
+        "cachedShadowVertices": 80,
+        "variant": "DirectionalEdge",
+        "light": "(-5.0000, -1.9439)",
+        "response": "(0.1200, 0.9500, 0.0750, 1.0000)"
+      },
+      {
+        "filename": "sample0-side1-C.png",
+        "sample": 0,
+        "side": 1,
+        "vertices": 16,
+        "cachedShadowVertices": 80,
+        "variant": "DirectionalEdge",
+        "light": "(-3.2640, 0.0000)",
+        "response": "(0.1200, 0.9500, 0.0750, 1.0000)"
+      },
+      {
+        "filename": "sample0-side2-C.png",
+        "sample": 0,
+        "side": 2,
+        "vertices": 16,
+        "cachedShadowVertices": 80,
+        "variant": "DirectionalEdge",
+        "light": "(-5.0000, 1.9439)",
+        "response": "(0.1200, 0.9500, 0.0750, 1.0000)"
+      },
+      {
+        "filename": "sample0-side3-C.png",
+        "sample": 0,
+        "side": 3,
+        "vertices": 16,
+        "cachedShadowVertices": 80,
+        "variant": "DirectionalEdge",
+        "light": "(-6.7360, 0.0000)",
+        "response": "(0.1200, 0.9500, 0.0750, 1.0000)"
+      },
+      {
+        "filename": "sample1-side0-C.png",
+        "sample": 1,
+        "side": 0,
+        "vertices": 19,
+        "cachedShadowVertices": 20,
+        "variant": "DirectionalEdge",
+        "light": "(0.0000, -1.8216)",
+        "response": "(0.4200, 0.9500, 0.0550, 1.0000)"
+      },
+      {
+        "filename": "sample1-side1-C.png",
+        "sample": 1,
+        "side": 1,
+        "vertices": 19,
+        "cachedShadowVertices": 20,
+        "variant": "DirectionalEdge",
+        "light": "(2.5254, 0.0000)",
+        "response": "(0.4200, 0.9500, 0.0550, 1.0000)"
+      },
+      {
+        "filename": "sample1-side2-C.png",
+        "sample": 1,
+        "side": 2,
+        "vertices": 19,
+        "cachedShadowVertices": 20,
+        "variant": "DirectionalEdge",
+        "light": "(0.0000, 1.8216)",
+        "response": "(0.4200, 0.9500, 0.0550, 1.0000)"
+      },
+      {
+        "filename": "sample1-side3-C.png",
+        "sample": 1,
+        "side": 3,
+        "vertices": 19,
+        "cachedShadowVertices": 20,
+        "variant": "DirectionalEdge",
+        "light": "(-2.5254, 0.0000)",
+        "response": "(0.4200, 0.9500, 0.0550, 1.0000)"
+      },
+      {
+        "filename": "sample2-side0-C.png",
+        "sample": 2,
+        "side": 0,
+        "vertices": 102,
+        "cachedShadowVertices": 510,
+        "variant": "DirectionalEdge",
+        "light": "(4.9768, -2.6747)",
+        "response": "(0.5000, 0.9000, 0.0550, 1.0000)"
+      },
+      {
+        "filename": "sample2-side1-C.png",
+        "sample": 2,
+        "side": 1,
+        "vertices": 102,
+        "cachedShadowVertices": 510,
+        "variant": "DirectionalEdge",
+        "light": "(7.1754, -0.0369)",
+        "response": "(0.5000, 0.9000, 0.0550, 1.0000)"
+      },
+      {
+        "filename": "sample2-side2-C.png",
+        "sample": 2,
+        "side": 2,
+        "vertices": 102,
+        "cachedShadowVertices": 510,
+        "variant": "DirectionalEdge",
+        "light": "(4.9768, 2.6009)",
+        "response": "(0.5000, 0.9000, 0.0550, 1.0000)"
+      },
+      {
+        "filename": "sample2-side3-C.png",
+        "sample": 2,
+        "side": 3,
+        "vertices": 102,
+        "cachedShadowVertices": 510,
+        "variant": "DirectionalEdge",
+        "light": "(2.7783, -0.0369)",
+        "response": "(0.5000, 0.9000, 0.0550, 1.0000)"
+      }
+    ],
+    "concaveShapeViews": [
+      {
+        "filename": "StorageUtilities01-pipe-tee-side0.png",
+        "prefab": "StorageUtilities01/pipe-tee",
+        "side": 0,
+        "vertices": 21,
+        "cachedShadowVertices": 105,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "StorageUtilities01-pipe-tee-side1.png",
+        "prefab": "StorageUtilities01/pipe-tee",
+        "side": 1,
+        "vertices": 21,
+        "cachedShadowVertices": 105,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "StorageUtilities01-pipe-tee-side2.png",
+        "prefab": "StorageUtilities01/pipe-tee",
+        "side": 2,
+        "vertices": 21,
+        "cachedShadowVertices": 105,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "StorageUtilities01-pipe-tee-side3.png",
+        "prefab": "StorageUtilities01/pipe-tee",
+        "side": 3,
+        "vertices": 21,
+        "cachedShadowVertices": 105,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "HospitalService01-wheelchair-side0.png",
+        "prefab": "HospitalService01/wheelchair",
+        "side": 0,
+        "vertices": 262,
+        "cachedShadowVertices": 1315,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "HospitalService01-wheelchair-side1.png",
+        "prefab": "HospitalService01/wheelchair",
+        "side": 1,
+        "vertices": 262,
+        "cachedShadowVertices": 1315,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "HospitalService01-wheelchair-side2.png",
+        "prefab": "HospitalService01/wheelchair",
+        "side": 2,
+        "vertices": 262,
+        "cachedShadowVertices": 1315,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "HospitalService01-wheelchair-side3.png",
+        "prefab": "HospitalService01/wheelchair",
+        "side": 3,
+        "vertices": 262,
+        "cachedShadowVertices": 1315,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "HospitalService01-privacy-screen-side0.png",
+        "prefab": "HospitalService01/privacy-screen",
+        "side": 0,
+        "vertices": 154,
+        "cachedShadowVertices": 770,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "HospitalService01-privacy-screen-side1.png",
+        "prefab": "HospitalService01/privacy-screen",
+        "side": 1,
+        "vertices": 154,
+        "cachedShadowVertices": 770,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "HospitalService01-privacy-screen-side2.png",
+        "prefab": "HospitalService01/privacy-screen",
+        "side": 2,
+        "vertices": 154,
+        "cachedShadowVertices": 770,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "HospitalService01-privacy-screen-side3.png",
+        "prefab": "HospitalService01/privacy-screen",
+        "side": 3,
+        "vertices": 154,
+        "cachedShadowVertices": 770,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "InteriorProps01-utility-chair-side0.png",
+        "prefab": "InteriorProps01/utility-chair",
+        "side": 0,
+        "vertices": 98,
+        "cachedShadowVertices": 490,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "InteriorProps01-utility-chair-side1.png",
+        "prefab": "InteriorProps01/utility-chair",
+        "side": 1,
+        "vertices": 98,
+        "cachedShadowVertices": 490,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "InteriorProps01-utility-chair-side2.png",
+        "prefab": "InteriorProps01/utility-chair",
+        "side": 2,
+        "vertices": 98,
+        "cachedShadowVertices": 490,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      },
+      {
+        "filename": "InteriorProps01-utility-chair-side3.png",
+        "prefab": "InteriorProps01/utility-chair",
+        "side": 3,
+        "vertices": 98,
+        "cachedShadowVertices": 490,
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default"
+      }
+    ],
+    "rejectedEvidence": "Runtime OverrideGeometry reconstruction was rejected by Unity. Those errors were archived; all mislabeled old/new reconstruction captures were excluded. No successful before/after screenshot claim.",
+    "excludedCandidates": "An intermediate RDP candidate lost part of the triangulation on simple shapes; it was rejected. Small contours and intersection/area guards were added, then all 41 actual meshes were checked again.",
+    "shaderSupported": true,
+    "shaderMessages": [],
+    "missingScriptsInFinalEditorScene": 0,
+    "finalConsoleErrors": 0
+  },
+  "limitations": [
+    "URP planar shadows remain long; no height-aware occlusion was implemented.",
+    "No alpha sampling at runtime and no additional shadow casters or light sources.",
+    "Vertex counts increased; earlier light benchmark predates this change.",
+    "C is accepted visually, with integration still scoped to the three study objects."
+  ],
+  "items": [
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-straight.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-straight.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-straight.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-straight.png",
+        "vertices": 6,
+        "meshAreaSamples": 17369,
+        "opaqueAreaSamples": 15060,
+        "outsideMeshFraction": 0.1329379929759917,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.8670620070240083,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-straight.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-straight.png",
+        "vertices": 28,
+        "meshAreaSamples": 15559,
+        "opaqueAreaSamples": 15060,
+        "outsideMeshFraction": 0.032071469888810336,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9679285301111896,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/pallet-mixed-load.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/pallet-mixed-load.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/pallet-mixed-load.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/pallet-mixed-load.png",
+        "vertices": 170,
+        "meshAreaSamples": 49846,
+        "opaqueAreaSamples": 46197,
+        "outsideMeshFraction": 0.07340609075953938,
+        "missedOpaqueFraction": 0.00021646427257181202,
+        "iou": 0.9264080551989731,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/pallet-mixed-load.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/pallet-mixed-load.png",
+        "vertices": 193,
+        "meshAreaSamples": 47420,
+        "opaqueAreaSamples": 46197,
+        "outsideMeshFraction": 0.025917334458034586,
+        "missedOpaqueFraction": 0.00012987856354308721,
+        "iou": 0.9739594315354447,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/iv-stand.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/iv-stand.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/iv-stand.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/iv-stand.png",
+        "vertices": 92,
+        "meshAreaSamples": 13856,
+        "opaqueAreaSamples": 10386,
+        "outsideMeshFraction": 0.2837038106235566,
+        "missedOpaqueFraction": 0.04438667436934335,
+        "iou": 0.6932318223091429,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/iv-stand.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/iv-stand.png",
+        "vertices": 145,
+        "meshAreaSamples": 10559,
+        "opaqueAreaSamples": 10386,
+        "outsideMeshFraction": 0.01998295293114878,
+        "missedOpaqueFraction": 0.003658771423069517,
+        "iou": 0.9765027838067377,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-coupling.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-coupling.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-coupling.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-coupling.png",
+        "vertices": 6,
+        "meshAreaSamples": 28439,
+        "opaqueAreaSamples": 23213,
+        "outsideMeshFraction": 0.20106192200850945,
+        "missedOpaqueFraction": 0.02119502003187869,
+        "iou": 0.7853513532197297,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-coupling.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-coupling.png",
+        "vertices": 24,
+        "meshAreaSamples": 23761,
+        "opaqueAreaSamples": 23213,
+        "outsideMeshFraction": 0.023231345482092505,
+        "missedOpaqueFraction": 0.00017231723603153406,
+        "iou": 0.9766042499474017,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/privacy-screen.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/privacy-screen.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/privacy-screen.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/privacy-screen.png",
+        "vertices": 35,
+        "meshAreaSamples": 7723,
+        "opaqueAreaSamples": 5046,
+        "outsideMeshFraction": 0.346626958435841,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.653373041564159,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/privacy-screen.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/privacy-screen.png",
+        "vertices": 154,
+        "meshAreaSamples": 5162,
+        "opaqueAreaSamples": 5046,
+        "outsideMeshFraction": 0.02247191011235955,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9775280898876404,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-pallet-crate.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-pallet-crate.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-pallet-crate.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-pallet-crate.png",
+        "vertices": 180,
+        "meshAreaSamples": 59703,
+        "opaqueAreaSamples": 57572,
+        "outsideMeshFraction": 0.035777096628310134,
+        "missedOpaqueFraction": 8.684777322309456e-05,
+        "iou": 0.964142158504723,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-pallet-crate.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-pallet-crate.png",
+        "vertices": 131,
+        "meshAreaSamples": 58721,
+        "opaqueAreaSamples": 57572,
+        "outsideMeshFraction": 0.019737402292195297,
+        "missedOpaqueFraction": 0.00017369554644618913,
+        "iou": 0.9800956905211898,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/wheelchair.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/wheelchair.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/wheelchair.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/wheelchair.png",
+        "vertices": 125,
+        "meshAreaSamples": 50006,
+        "opaqueAreaSamples": 34381,
+        "outsideMeshFraction": 0.3186017677878655,
+        "missedOpaqueFraction": 0.00892935051336494,
+        "iou": 0.6772404746288235,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/wheelchair.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/wheelchair.png",
+        "vertices": 262,
+        "meshAreaSamples": 34843,
+        "opaqueAreaSamples": 34381,
+        "outsideMeshFraction": 0.016559997703986452,
+        "missedOpaqueFraction": 0.003344870713475466,
+        "iou": 0.9802048172092225,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-laptop.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/workbench-laptop.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/workbench-laptop.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-laptop.png",
+        "vertices": 4,
+        "meshAreaSamples": 66305,
+        "opaqueAreaSamples": 64737,
+        "outsideMeshFraction": 0.023648291984013272,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9763517080159867,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/workbench-laptop.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-laptop.png",
+        "vertices": 14,
+        "meshAreaSamples": 66006,
+        "opaqueAreaSamples": 64737,
+        "outsideMeshFraction": 0.019225524952277067,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.980774475047723,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-cot.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/medical-cot.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/medical-cot.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-cot.png",
+        "vertices": 74,
+        "meshAreaSamples": 43234,
+        "opaqueAreaSamples": 40967,
+        "outsideMeshFraction": 0.052690012490169774,
+        "missedOpaqueFraction": 0.00026850879976566503,
+        "iou": 0.9470690253208464,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/medical-cot.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-cot.png",
+        "vertices": 51,
+        "meshAreaSamples": 41708,
+        "opaqueAreaSamples": 40967,
+        "outsideMeshFraction": 0.017814328186439052,
+        "missedOpaqueFraction": 4.881978177557546e-05,
+        "iou": 0.9821385758810837,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/pallet-three-cartons.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/pallet-three-cartons.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/pallet-three-cartons.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/pallet-three-cartons.png",
+        "vertices": 205,
+        "meshAreaSamples": 60404,
+        "opaqueAreaSamples": 57537,
+        "outsideMeshFraction": 0.04903648764982452,
+        "missedOpaqueFraction": 0.0016511114587135236,
+        "iou": 0.9494702391775071,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/pallet-three-cartons.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/pallet-three-cartons.png",
+        "vertices": 136,
+        "meshAreaSamples": 58526,
+        "opaqueAreaSamples": 57537,
+        "outsideMeshFraction": 0.017154768820695075,
+        "missedOpaqueFraction": 0.00026070180927055634,
+        "iou": 0.9825933960813789,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-microscopes.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/shelf-microscopes.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/shelf-microscopes.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-microscopes.png",
+        "vertices": 6,
+        "meshAreaSamples": 57071,
+        "opaqueAreaSamples": 51987,
+        "outsideMeshFraction": 0.08908202064095601,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.910917979359044,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/shelf-microscopes.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-microscopes.png",
+        "vertices": 16,
+        "meshAreaSamples": 52902,
+        "opaqueAreaSamples": 51987,
+        "outsideMeshFraction": 0.017296132471362143,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9827038675286378,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-documents.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/workbench-documents.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/workbench-documents.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-documents.png",
+        "vertices": 11,
+        "meshAreaSamples": 66637,
+        "opaqueAreaSamples": 65616,
+        "outsideMeshFraction": 0.01532181820910305,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.984678181790897,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/workbench-documents.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-documents.png",
+        "vertices": 8,
+        "meshAreaSamples": 66715,
+        "opaqueAreaSamples": 65616,
+        "outsideMeshFraction": 0.016473057033650602,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9835269429663493,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/oxygen-cart.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/oxygen-cart.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/oxygen-cart.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/oxygen-cart.png",
+        "vertices": 114,
+        "meshAreaSamples": 22238,
+        "opaqueAreaSamples": 19511,
+        "outsideMeshFraction": 0.15522978685133554,
+        "missedOpaqueFraction": 0.037158525959715034,
+        "iou": 0.8180986804859992,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/oxygen-cart.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/oxygen-cart.png",
+        "vertices": 140,
+        "meshAreaSamples": 19773,
+        "opaqueAreaSamples": 19511,
+        "outsideMeshFraction": 0.013756132099327365,
+        "missedOpaqueFraction": 0.0005125313925477935,
+        "iou": 0.9857453369054239,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/transport-stretcher.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/transport-stretcher.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/transport-stretcher.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/transport-stretcher.png",
+        "vertices": 74,
+        "meshAreaSamples": 34657,
+        "opaqueAreaSamples": 29417,
+        "outsideMeshFraction": 0.18111781169749258,
+        "missedOpaqueFraction": 0.03525172519291566,
+        "iou": 0.7950916120356363,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/transport-stretcher.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/transport-stretcher.png",
+        "vertices": 102,
+        "meshAreaSamples": 29788,
+        "opaqueAreaSamples": 29417,
+        "outsideMeshFraction": 0.012790385390089969,
+        "missedOpaqueFraction": 0.0003399394907706428,
+        "iou": 0.9868783139808041,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-cot-bloody.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/medical-cot-bloody.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/medical-cot-bloody.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-cot-bloody.png",
+        "vertices": 66,
+        "meshAreaSamples": 43715,
+        "opaqueAreaSamples": 41392,
+        "outsideMeshFraction": 0.05558732700446071,
+        "missedOpaqueFraction": 0.0025850405875531505,
+        "iou": 0.9421067043950527,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/medical-cot-bloody.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-cot-bloody.png",
+        "vertices": 85,
+        "meshAreaSamples": 41921,
+        "opaqueAreaSamples": 41392,
+        "outsideMeshFraction": 0.012642828176808759,
+        "missedOpaqueFraction": 2.4159257827599535e-05,
+        "iou": 0.9873336195792185,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-valve.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-valve.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-valve.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-valve.png",
+        "vertices": 185,
+        "meshAreaSamples": 26181,
+        "opaqueAreaSamples": 21889,
+        "outsideMeshFraction": 0.16718230778045148,
+        "missedOpaqueFraction": 0.003883229019142035,
+        "iou": 0.830122591943958,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-valve.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-valve.png",
+        "vertices": 168,
+        "meshAreaSamples": 22093,
+        "opaqueAreaSamples": 21889,
+        "outsideMeshFraction": 0.010501063685330195,
+        "missedOpaqueFraction": 0.0012791813239526704,
+        "iou": 0.988246462637313,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/wall-archive-cabinet.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/wall-archive-cabinet.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/wall-archive-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/wall-archive-cabinet.png",
+        "vertices": 6,
+        "meshAreaSamples": 61578,
+        "opaqueAreaSamples": 60525,
+        "outsideMeshFraction": 0.018464386631589204,
+        "missedOpaqueFraction": 0.0013878562577447336,
+        "iou": 0.9801985015082223,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/wall-archive-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/wall-archive-cabinet.png",
+        "vertices": 16,
+        "meshAreaSamples": 61066,
+        "opaqueAreaSamples": 60525,
+        "outsideMeshFraction": 0.009628926079979038,
+        "missedOpaqueFraction": 0.0007765386204047915,
+        "iou": 0.9896094120727178,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/island-storage-cabinet.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/island-storage-cabinet.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/island-storage-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/island-storage-cabinet.png",
+        "vertices": 11,
+        "meshAreaSamples": 55184,
+        "opaqueAreaSamples": 52361,
+        "outsideMeshFraction": 0.05115613221223543,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9488438677877645,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/island-storage-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/island-storage-cabinet.png",
+        "vertices": 34,
+        "meshAreaSamples": 52892,
+        "opaqueAreaSamples": 52361,
+        "outsideMeshFraction": 0.010039325417832564,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9899606745821674,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-glassware.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/shelf-glassware.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/shelf-glassware.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-glassware.png",
+        "vertices": 7,
+        "meshAreaSamples": 56714,
+        "opaqueAreaSamples": 53204,
+        "outsideMeshFraction": 0.06326480234157351,
+        "missedOpaqueFraction": 0.0014660551838207654,
+        "iou": 0.9354486547401042,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/shelf-glassware.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-glassware.png",
+        "vertices": 21,
+        "meshAreaSamples": 53708,
+        "opaqueAreaSamples": 53204,
+        "outsideMeshFraction": 0.009384076860058092,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.990615923139942,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-trolley.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/medical-trolley.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/medical-trolley.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-trolley.png",
+        "vertices": 57,
+        "meshAreaSamples": 43762,
+        "opaqueAreaSamples": 39614,
+        "outsideMeshFraction": 0.10986700790640282,
+        "missedOpaqueFraction": 0.016660776493158985,
+        "iou": 0.8769078384584215,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/medical-trolley.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/medical-trolley.png",
+        "vertices": 99,
+        "meshAreaSamples": 39961,
+        "opaqueAreaSamples": 39614,
+        "outsideMeshFraction": 0.008958734766397237,
+        "missedOpaqueFraction": 0.0002776796082193164,
+        "iou": 0.9907685379765836,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-workbench.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-workbench.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-workbench.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-workbench.png",
+        "vertices": 4,
+        "meshAreaSamples": 66305,
+        "opaqueAreaSamples": 65611,
+        "outsideMeshFraction": 0.010738255033557046,
+        "missedOpaqueFraction": 0.0002743442410571398,
+        "iou": 0.9889932602566229,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-workbench.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-workbench.png",
+        "vertices": 19,
+        "meshAreaSamples": 66193,
+        "opaqueAreaSamples": 65611,
+        "outsideMeshFraction": 0.00879247050292327,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9912075294970767,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/linen-hamper.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/linen-hamper.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/linen-hamper.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/linen-hamper.png",
+        "vertices": 43,
+        "meshAreaSamples": 57807,
+        "opaqueAreaSamples": 52456,
+        "outsideMeshFraction": 0.09848288269586729,
+        "missedOpaqueFraction": 0.006519749885618423,
+        "iou": 0.8962148962148963,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/linen-hamper.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/linen-hamper.png",
+        "vertices": 100,
+        "meshAreaSamples": 52906,
+        "opaqueAreaSamples": 52456,
+        "outsideMeshFraction": 0.008581257324311042,
+        "missedOpaqueFraction": 7.625438462711606e-05,
+        "iou": 0.9913437913437914,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/office-chair.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/office-chair.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/office-chair.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/office-chair.png",
+        "vertices": 60,
+        "meshAreaSamples": 44369,
+        "opaqueAreaSamples": 40039,
+        "outsideMeshFraction": 0.09770335143906782,
+        "missedOpaqueFraction": 0.00012487824371238044,
+        "iou": 0.9021949790417813,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/office-chair.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/office-chair.png",
+        "vertices": 176,
+        "meshAreaSamples": 40230,
+        "opaqueAreaSamples": 40039,
+        "outsideMeshFraction": 0.0056674123788217744,
+        "missedOpaqueFraction": 0.0009240990034716152,
+        "iou": 0.9934189286512529,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-steel-shelf.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-steel-shelf.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-steel-shelf.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-steel-shelf.png",
+        "vertices": 21,
+        "meshAreaSamples": 56081,
+        "opaqueAreaSamples": 52534,
+        "outsideMeshFraction": 0.06465647902141546,
+        "missedOpaqueFraction": 0.001503788022994632,
+        "iou": 0.9340277777777778,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-steel-shelf.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-steel-shelf.png",
+        "vertices": 26,
+        "meshAreaSamples": 52879,
+        "opaqueAreaSamples": 52534,
+        "outsideMeshFraction": 0.006524329128765672,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9934756708712343,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/janitor-cart.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/janitor-cart.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/janitor-cart.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/janitor-cart.png",
+        "vertices": 81,
+        "meshAreaSamples": 40114,
+        "opaqueAreaSamples": 35383,
+        "outsideMeshFraction": 0.1359126489504911,
+        "missedOpaqueFraction": 0.020377017211655316,
+        "iou": 0.8488306599730623,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/janitor-cart.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/janitor-cart.png",
+        "vertices": 87,
+        "meshAreaSamples": 35597,
+        "opaqueAreaSamples": 35383,
+        "outsideMeshFraction": 0.006011742562575498,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9939882574374245,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/utility-chair.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/utility-chair.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/utility-chair.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/utility-chair.png",
+        "vertices": 277,
+        "meshAreaSamples": 41460,
+        "opaqueAreaSamples": 46308,
+        "outsideMeshFraction": 0.05846599131693198,
+        "missedOpaqueFraction": 0.1570355014252397,
+        "iou": 0.8010342280226546,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/utility-chair.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/utility-chair.png",
+        "vertices": 98,
+        "meshAreaSamples": 46435,
+        "opaqueAreaSamples": 46308,
+        "outsideMeshFraction": 0.004307095940562076,
+        "missedOpaqueFraction": 0.001576401485704414,
+        "iou": 0.9941300421432872,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-tee.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-tee.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-tee.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-tee.png",
+        "vertices": 7,
+        "meshAreaSamples": 32822,
+        "opaqueAreaSamples": 13249,
+        "outsideMeshFraction": 0.5963378221924319,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.4036621778075681,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-tee.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-tee.png",
+        "vertices": 21,
+        "meshAreaSamples": 13325,
+        "opaqueAreaSamples": 13249,
+        "outsideMeshFraction": 0.005703564727954972,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.994296435272045,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-cabinet.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-cabinet.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-cabinet.png",
+        "vertices": 6,
+        "meshAreaSamples": 46164,
+        "opaqueAreaSamples": 44667,
+        "outsideMeshFraction": 0.03242786586950871,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9675721341304913,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-cabinet.png",
+        "vertices": 33,
+        "meshAreaSamples": 44782,
+        "opaqueAreaSamples": 44667,
+        "outsideMeshFraction": 0.003818498503863159,
+        "missedOpaqueFraction": 0.0012537219871493496,
+        "iou": 0.9949373299433516,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/two-seat-sofa.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/two-seat-sofa.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/two-seat-sofa.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/two-seat-sofa.png",
+        "vertices": 12,
+        "meshAreaSamples": 61778,
+        "opaqueAreaSamples": 61343,
+        "outsideMeshFraction": 0.009032341610281977,
+        "missedOpaqueFraction": 0.0020051187584565477,
+        "iou": 0.9889985622203196,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/two-seat-sofa.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/two-seat-sofa.png",
+        "vertices": 43,
+        "meshAreaSamples": 61419,
+        "opaqueAreaSamples": 61343,
+        "outsideMeshFraction": 0.0030935052670997575,
+        "missedOpaqueFraction": 0.0018584027517402149,
+        "iou": 0.9950595615360863,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/technical-floor-cabinet.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/technical-floor-cabinet.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/technical-floor-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/technical-floor-cabinet.png",
+        "vertices": 8,
+        "meshAreaSamples": 70933,
+        "opaqueAreaSamples": 71606,
+        "outsideMeshFraction": 0.009177674707117984,
+        "missedOpaqueFraction": 0.01849007066446946,
+        "iou": 0.9726670080407435,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/technical-floor-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/technical-floor-cabinet.png",
+        "vertices": 18,
+        "meshAreaSamples": 71869,
+        "opaqueAreaSamples": 71606,
+        "outsideMeshFraction": 0.004035119453450027,
+        "missedOpaqueFraction": 0.0003770633745775494,
+        "iou": 0.9955908534549905,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-desktop-computer.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/workbench-desktop-computer.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/workbench-desktop-computer.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-desktop-computer.png",
+        "vertices": 5,
+        "meshAreaSamples": 66885,
+        "opaqueAreaSamples": 65724,
+        "outsideMeshFraction": 0.01750766240562159,
+        "missedOpaqueFraction": 0.00015215142109427303,
+        "iou": 0.9823454667762912,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/workbench-desktop-computer.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/workbench-desktop-computer.png",
+        "vertices": 14,
+        "meshAreaSamples": 65963,
+        "opaqueAreaSamples": 65724,
+        "outsideMeshFraction": 0.0037142034170671435,
+        "missedOpaqueFraction": 9.129085265656382e-05,
+        "iou": 0.99619518258576,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-elbow.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-elbow.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-elbow.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-elbow.png",
+        "vertices": 13,
+        "meshAreaSamples": 27467,
+        "opaqueAreaSamples": 19944,
+        "outsideMeshFraction": 0.273892307132195,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.726107692867805,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/pipe-elbow.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/pipe-elbow.png",
+        "vertices": 43,
+        "meshAreaSamples": 19986,
+        "opaqueAreaSamples": 19944,
+        "outsideMeshFraction": 0.002751926348443911,
+        "missedOpaqueFraction": 0.0006518251103088648,
+        "iou": 0.9965998299914995,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/scrub-sink.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/scrub-sink.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/scrub-sink.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/scrub-sink.png",
+        "vertices": 4,
+        "meshAreaSamples": 37389,
+        "opaqueAreaSamples": 36705,
+        "outsideMeshFraction": 0.02639813848993019,
+        "missedOpaqueFraction": 0.008255006129955047,
+        "iou": 0.9657752308182107,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/scrub-sink.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/scrub-sink.png",
+        "vertices": 13,
+        "meshAreaSamples": 36830,
+        "opaqueAreaSamples": 36705,
+        "outsideMeshFraction": 0.0033939723051859896,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.996606027694814,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/waste-bin.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/waste-bin.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/waste-bin.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/waste-bin.png",
+        "vertices": 27,
+        "meshAreaSamples": 34515,
+        "opaqueAreaSamples": 33328,
+        "outsideMeshFraction": 0.03439084456033609,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.965609155439664,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/waste-bin.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/waste-bin.png",
+        "vertices": 46,
+        "meshAreaSamples": 33326,
+        "opaqueAreaSamples": 33328,
+        "outsideMeshFraction": 0.0013202904639020585,
+        "missedOpaqueFraction": 0.0013802208353336533,
+        "iou": 0.9973031283710896,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/wall-steel-cabinet.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/wall-steel-cabinet.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/wall-steel-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/wall-steel-cabinet.png",
+        "vertices": 43,
+        "meshAreaSamples": 67139,
+        "opaqueAreaSamples": 62809,
+        "outsideMeshFraction": 0.06480585054886132,
+        "missedOpaqueFraction": 0.0003343469884889108,
+        "iou": 0.9349017272185824,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/StorageUtilities01/wall-steel-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/wall-steel-cabinet.png",
+        "vertices": 49,
+        "meshAreaSamples": 62921,
+        "opaqueAreaSamples": 62809,
+        "outsideMeshFraction": 0.002018404030450883,
+        "missedOpaqueFraction": 0.00023881927749207915,
+        "iou": 0.9977437396720478,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/water-cooler.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/water-cooler.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/water-cooler.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/water-cooler.png",
+        "vertices": 17,
+        "meshAreaSamples": 31160,
+        "opaqueAreaSamples": 29625,
+        "outsideMeshFraction": 0.08029525032092426,
+        "missedOpaqueFraction": 0.03264135021097046,
+        "iou": 0.8920222865502537,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/water-cooler.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/water-cooler.png",
+        "vertices": 47,
+        "meshAreaSamples": 29674,
+        "opaqueAreaSamples": 29625,
+        "outsideMeshFraction": 0.0018871739569993934,
+        "missedOpaqueFraction": 0.00023628691983122363,
+        "iou": 0.9978774300057276,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-documents.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/shelf-documents.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/shelf-documents.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-documents.png",
+        "vertices": 4,
+        "meshAreaSamples": 57072,
+        "opaqueAreaSamples": 52032,
+        "outsideMeshFraction": 0.08830950378469302,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.911690496215307,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps03Variants/shelf-documents.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps03Variants/shelf-documents.png",
+        "vertices": 30,
+        "meshAreaSamples": 52131,
+        "opaqueAreaSamples": 52032,
+        "outsideMeshFraction": 0.0018990619784772975,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9981009380215227,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-drum.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-drum.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-drum.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-drum.png",
+        "vertices": 36,
+        "meshAreaSamples": 46127,
+        "opaqueAreaSamples": 55442,
+        "outsideMeshFraction": 0.0,
+        "missedOpaqueFraction": 0.16801341942931353,
+        "iou": 0.8319865805706865,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/warehouse-drum.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/warehouse-drum.png",
+        "vertices": 54,
+        "meshAreaSamples": 55508,
+        "opaqueAreaSamples": 55442,
+        "outsideMeshFraction": 0.0014952799596454566,
+        "missedOpaqueFraction": 0.0003066267450669168,
+        "iou": 0.9981990094552003,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/autopsy-table.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/autopsy-table.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/autopsy-table.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/autopsy-table.png",
+        "vertices": 5,
+        "meshAreaSamples": 47312,
+        "opaqueAreaSamples": 46518,
+        "outsideMeshFraction": 0.01678221170104836,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9832177882989517,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/autopsy-table.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/HospitalService01/autopsy-table.png",
+        "vertices": 20,
+        "meshAreaSamples": 46557,
+        "opaqueAreaSamples": 46518,
+        "outsideMeshFraction": 0.0009665571235260004,
+        "missedOpaqueFraction": 0.00012898232942086933,
+        "iou": 0.9989047097480832,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/personnel-locker.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/personnel-locker.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/personnel-locker.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/personnel-locker.png",
+        "vertices": 9,
+        "meshAreaSamples": 54097,
+        "opaqueAreaSamples": 53696,
+        "outsideMeshFraction": 0.013660646616263379,
+        "missedOpaqueFraction": 0.006294696066746127,
+        "iou": 0.9802149352438688,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/InteriorProps01/personnel-locker.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/InteriorProps01/personnel-locker.png",
+        "vertices": 16,
+        "meshAreaSamples": 53751,
+        "opaqueAreaSamples": 53696,
+        "outsideMeshFraction": 0.0010232367769901956,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9989767632230098,
+        "gridStepPixels": 4
+      }
+    },
+    {
+      "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-equipment-cabinet.png",
+      "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-equipment-cabinet.prefab",
+      "before": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-equipment-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-equipment-cabinet.png",
+        "vertices": 7,
+        "meshAreaSamples": 51881,
+        "opaqueAreaSamples": 51694,
+        "outsideMeshFraction": 0.0036044023823750505,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.996395597617625,
+        "gridStepPixels": 4
+      },
+      "after": {
+        "prefab": "Assets/EmergencyShift/Prefabs/Environment/IndustrialProps02/lab-equipment-cabinet.prefab",
+        "texture": "Assets/EmergencyShift/Art/Environment/IndustrialProps02/lab-equipment-cabinet.png",
+        "vertices": 13,
+        "meshAreaSamples": 51708,
+        "opaqueAreaSamples": 51694,
+        "outsideMeshFraction": 0.0002707511410226657,
+        "missedOpaqueFraction": 0.0,
+        "iou": 0.9997292488589773,
+        "gridStepPixels": 4
+      }
+    }
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Editor/Authoring/EnvironmentSpriteAuthoring.cs": "d8d49d07f58b37b24a249fc8351f3c52a2ba500e7ad75616239209a39d6c505a",
+    "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs": "fdce226fdda5bc1a7c69655a22b2a6649a86c3705809dd9cc166902b87b29814"
+  },
+  "performance": {
+    "summary": "FurnitureShadowShapes/benchmark-summary.json",
+    "raw": "FurnitureShadowShapes/benchmark-1080p.json.gz",
+    "rawSha256": "479d479df8920599c01cf69fc9b6c0de361843c445626538a7b43f21145b3e61",
+    "caveats": [
+      "Development DX11 1080p on the same laptop; not a release FPS or pure CPU budget.",
+      "The dense-sixty ceiling-on condition drifted strongly across repetitions (C GPU segment medians 10.65 to 19.47 ms) and is excluded from comparisons. Cause was not isolated.",
+      "The Editor was observed on EnvironmentNarrativeStressReview after the run; concurrent user/editor activity was not controlled, so comparisons to historical runs are indicative rather than isolated causal measurements.",
+      "Stable flashlight-only dense condition: C GPU segment medians 5.543 to 5.629 ms, median 5.544. B/C remain similar within this condition."
+    ],
+    "flashlightDenseCgpuMs": 5.543936,
+    "historicalOldOutlineCgpuMs": 4.124672,
+    "preSimplificationCgpuMs": 6.980608,
+    "controlledCausalComparison": false,
+    "denseCeilingComparisonAccepted": false
+  }
+}
