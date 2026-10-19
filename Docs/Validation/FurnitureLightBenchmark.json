@@ -1,0 +1,5240 @@
+{
+  "date": "2026-10-19",
+  "scene": "Assets/EmergencyShift/Scenes/ArtReview/FurnitureLightStudy.unity",
+  "scope": "Art study only; not accepted for the complete furniture library.",
+  "method": {
+    "player": "Windows64 development, instrumented, Direct3D11, visible window",
+    "repetitions": 6,
+    "orders": [
+      "ABC",
+      "BCA",
+      "CAB",
+      "CBA",
+      "BAC",
+      "ACB"
+    ],
+    "warmupSecondsPerSegment": 0.35,
+    "sampleSecondsPerSegment": 1.2,
+    "aggregate": "Median of six segment medians; paired deltas compare repetitions. rawP95 is pooled within each condition.",
+    "variants": {
+      "0": "A original FlatLit; skips per-frame material property updates",
+      "1": "B dark top",
+      "2": "C dark top and light-facing matte edge; same shader and update loop as B"
+    },
+    "denseFixture": "60 runtime clones, scale .35, grid 10x6, original three hidden. One stationary handheld beam/spill; optional 3 ceiling lights. Controller updates 63 sample entries including hidden originals.",
+    "resolutionLimit": "Requested 3840x2160 window was clamped to 1920x1200; no 4K claim.",
+    "counters": "GPU only fresh FrameTimingManager timestamps with positive duration. Main Thread includes waits; Render Thread recorder unavailable. No pure CPU execution claim.",
+    "limits": [
+      "Synthetic fixture, not a gameplay level or hardware scalability guarantee.",
+      "Height-aware shadows and shadows onto other furniture are not implemented or measured.",
+      "B and C intentionally share shader arithmetic; disabling rim by coefficient is not a shader specialization.",
+      "Shadows-off scenario follows shadows-on scenarios; its large GPU difference is a diagnostic rather than a separately randomized shadow benchmark."
+    ]
+  },
+  "validation": {
+    "editMode": {
+      "passed": 86,
+      "failed": 0,
+      "skipped": 0
+    },
+    "fullBuild": {
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 6,
+      "seconds": 48.6684566,
+      "restoredVariant": "Release",
+      "definesPreserved": true
+    },
+    "finalMenuBuild": {
+      "result": "Succeeded",
+      "errors": 0,
+      "warnings": 0,
+      "seconds": 2.7783681,
+      "variantRestored": true,
+      "definesPreserved": true
+    },
+    "fullBuildWarnings": "Six pre-existing obsolete API warnings from EnvironmentLoadProbe.cs; final incremental build zero warnings.",
+    "shaderSupported": true,
+    "shaderMessages": [],
+    "missingScripts": 0,
+    "preExistingSerializedAssetsCompared": 310,
+    "changed": [],
+    "sceneDirty": false,
+    "playing": false,
+    "runtimeProbeSavedInScene": false
+  },
+  "rawReports": [
+    {
+      "path": "FurnitureLightBenchmark/1920x1080.json.gz",
+      "rawSha256": "3f8f2aa65620a2f8bc81db7c3da1e434bacd5a075be596b899bd8f4bdd5932e1",
+      "gzipSha256": "c2ec610586e48fe423fad991140799bd87ee11188131e25c50b4c7f36d488e44",
+      "segments": 90,
+      "frames": 68754,
+      "freshPositiveGpuSamples": 62010
+    },
+    {
+      "path": "FurnitureLightBenchmark/1920x1200.json.gz",
+      "rawSha256": "2a0dd98eb01a46e53b5724d994df33b6855e9e9a03d75d7c3f9ebd8b4ac63d32",
+      "gzipSha256": "991eb91231c4b83ac2292198192555a05db0d61c4105deed90f4a65218011c6d",
+      "segments": 90,
+      "frames": 62436,
+      "freshPositiveGpuSamples": 62272
+    }
+  ],
+  "runs": [
+    {
+      "unity": "6000.6.5f1",
+      "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+      "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+      "api": "Direct3D11",
+      "failure": "",
+      "width": 1920,
+      "height": 1080,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "repetitions": 6,
+      "sampleSeconds": 1.2000000476837158,
+      "frameTimingEnabled": true,
+      "mainRecorder": true,
+      "renderRecorder": false,
+      "gcRecorder": true,
+      "drawRecorder": true,
+      "batchRecorder": true,
+      "groups": [
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 1049,
+              "medians": {
+                "frameMs": 1.1268991511315107,
+                "mainMs": 1.1245,
+                "renderMs": null,
+                "gpuMs": 0.862208,
+                "presentWaitMs": 0.5736,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 1018,
+              "medians": {
+                "frameMs": 1.1140519054606557,
+                "mainMs": 1.11205,
+                "renderMs": null,
+                "gpuMs": 0.800768,
+                "presentWaitMs": 0.5967,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 990,
+              "medians": {
+                "frameMs": 1.1210034135729074,
+                "mainMs": 1.11875,
+                "renderMs": null,
+                "gpuMs": 0.794624,
+                "presentWaitMs": 0.6072,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 1063,
+              "medians": {
+                "frameMs": 1.1214002734050155,
+                "mainMs": 1.1191,
+                "renderMs": null,
+                "gpuMs": 0.886784,
+                "presentWaitMs": 0.6012,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 1029,
+              "medians": {
+                "frameMs": 1.1228033108636737,
+                "mainMs": 1.1207,
+                "renderMs": null,
+                "gpuMs": 0.871424,
+                "presentWaitMs": 0.5901,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 1046,
+              "medians": {
+                "frameMs": 1.1248972150497139,
+                "mainMs": 1.1226500000000001,
+                "renderMs": null,
+                "gpuMs": 0.8872960000000001,
+                "presentWaitMs": 0.5923,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.1221017921343446,
+              "segmentMin": 1.1140519054606557,
+              "segmentMax": 1.1268991511315107,
+              "rawP95": 1.5941985533572733,
+              "samples": 6195
+            },
+            "mainMs": {
+              "medianOfSegments": 1.1199,
+              "segmentMin": 1.11205,
+              "segmentMax": 1.1245,
+              "rawP95": 1.5935099999999995,
+              "samples": 6195
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.866816,
+              "segmentMin": 0.794624,
+              "segmentMax": 0.8872960000000001,
+              "rawP95": 1.011712,
+              "samples": 6079
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.5945,
+              "segmentMin": 0.5736,
+              "segmentMax": 0.6072,
+              "rawP95": 1.0260899999999984,
+              "samples": 6195
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 6195
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 6195
+            },
+            "draws": {
+              "medianOfSegments": 29.0,
+              "segmentMin": 29,
+              "segmentMax": 29,
+              "rawP95": 29.0,
+              "samples": 6195
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 984,
+              "medians": {
+                "frameMs": 1.1315972078591585,
+                "mainMs": 1.1292,
+                "renderMs": null,
+                "gpuMs": 0.847872,
+                "presentWaitMs": 0.5728,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 1000,
+              "medians": {
+                "frameMs": 1.126498740632087,
+                "mainMs": 1.1253,
+                "renderMs": null,
+                "gpuMs": 0.75776,
+                "presentWaitMs": 0.5902000000000001,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 1036,
+              "medians": {
+                "frameMs": 1.1199971195310354,
+                "mainMs": 1.11755,
+                "renderMs": null,
+                "gpuMs": 0.841728,
+                "presentWaitMs": 0.57125,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 1061,
+              "medians": {
+                "frameMs": 1.1195011902600527,
+                "mainMs": 1.1161,
+                "renderMs": null,
+                "gpuMs": 0.878592,
+                "presentWaitMs": 0.5926,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 1042,
+              "medians": {
+                "frameMs": 1.1229024967178702,
+                "mainMs": 1.1197499999999998,
+                "renderMs": null,
+                "gpuMs": 0.857088,
+                "presentWaitMs": 0.57645,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 1067,
+              "medians": {
+                "frameMs": 1.1203018948435783,
+                "mainMs": 1.1176,
+                "renderMs": null,
+                "gpuMs": 0.873472,
+                "presentWaitMs": 0.6067,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.1216021957807243,
+              "segmentMin": 1.1195011902600527,
+              "segmentMax": 1.1315972078591585,
+              "rawP95": 1.451059407554566,
+              "samples": 6190
+            },
+            "mainMs": {
+              "medianOfSegments": 1.1186749999999999,
+              "segmentMin": 1.1161,
+              "segmentMax": 1.1292,
+              "rawP95": 1.4583649999999997,
+              "samples": 6190
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.8524799999999999,
+              "segmentMin": 0.75776,
+              "segmentMax": 0.878592,
+              "rawP95": 0.980992,
+              "samples": 6033
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.5833250000000001,
+              "segmentMin": 0.57125,
+              "segmentMax": 0.6067,
+              "rawP95": 0.8209399999999994,
+              "samples": 6190
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 6190
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 6190
+            },
+            "draws": {
+              "medianOfSegments": 29.0,
+              "segmentMin": 29.0,
+              "segmentMax": 29.0,
+              "rawP95": 29.0,
+              "samples": 6190
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 971,
+              "medians": {
+                "frameMs": 1.1408021673560143,
+                "mainMs": 1.1469,
+                "renderMs": null,
+                "gpuMs": 0.746496,
+                "presentWaitMs": 0.5804,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 1026,
+              "medians": {
+                "frameMs": 1.1178996646776795,
+                "mainMs": 1.11525,
+                "renderMs": null,
+                "gpuMs": 0.78336,
+                "presentWaitMs": 0.6091,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 1011,
+              "medians": {
+                "frameMs": 1.1162981390953064,
+                "mainMs": 1.1141,
+                "renderMs": null,
+                "gpuMs": 0.786432,
+                "presentWaitMs": 0.5946,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 1060,
+              "medians": {
+                "frameMs": 1.1147994664497674,
+                "mainMs": 1.1122,
+                "renderMs": null,
+                "gpuMs": 0.868352,
+                "presentWaitMs": 0.59095,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 1036,
+              "medians": {
+                "frameMs": 1.1215030099265277,
+                "mainMs": 1.1182,
+                "renderMs": null,
+                "gpuMs": 0.872448,
+                "presentWaitMs": 0.5918,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 1072,
+              "medians": {
+                "frameMs": 1.119299151469022,
+                "mainMs": 1.11665,
+                "renderMs": null,
+                "gpuMs": 0.861184,
+                "presentWaitMs": 0.5922000000000001,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.1185994080733508,
+              "segmentMin": 1.1147994664497674,
+              "segmentMax": 1.1408021673560143,
+              "rawP95": 1.7118002579081804,
+              "samples": 6176
+            },
+            "mainMs": {
+              "medianOfSegments": 1.11595,
+              "segmentMin": 1.1122,
+              "segmentMax": 1.1469,
+              "rawP95": 1.7164,
+              "samples": 6176
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.823808,
+              "segmentMin": 0.746496,
+              "segmentMax": 0.872448,
+              "rawP95": 0.98816,
+              "samples": 6017
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.5920000000000001,
+              "segmentMin": 0.5804,
+              "segmentMax": 0.6091,
+              "rawP95": 1.13605,
+              "samples": 6176
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 6176
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 6176
+            },
+            "draws": {
+              "medianOfSegments": 29.0,
+              "segmentMin": 29,
+              "segmentMax": 29,
+              "rawP95": 29.0,
+              "samples": 6176
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 983,
+              "medians": {
+                "frameMs": 1.2026006588712335,
+                "mainMs": 1.1999,
+                "renderMs": null,
+                "gpuMs": 1.030144,
+                "presentWaitMs": 0.6627,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 993,
+              "medians": {
+                "frameMs": 1.2007015757262707,
+                "mainMs": 1.1974,
+                "renderMs": null,
+                "gpuMs": 1.013248,
+                "presentWaitMs": 0.6642,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 991,
+              "medians": {
+                "frameMs": 1.1994047090411186,
+                "mainMs": 1.1981,
+                "renderMs": null,
+                "gpuMs": 1.009664,
+                "presentWaitMs": 0.6607,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 992,
+              "medians": {
+                "frameMs": 1.2008999474346638,
+                "mainMs": 1.1992500000000001,
+                "renderMs": null,
+                "gpuMs": 1.01376,
+                "presentWaitMs": 0.66335,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 993,
+              "medians": {
+                "frameMs": 1.2038974091410637,
+                "mainMs": 1.1997,
+                "renderMs": null,
+                "gpuMs": 1.025024,
+                "presentWaitMs": 0.6628,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 994,
+              "medians": {
+                "frameMs": 1.198100857436657,
+                "mainMs": 1.19535,
+                "renderMs": null,
+                "gpuMs": 1.022976,
+                "presentWaitMs": 0.65505,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.2008007615804672,
+              "segmentMin": 1.198100857436657,
+              "segmentMax": 1.2038974091410637,
+              "rawP95": 1.3089746644254774,
+              "samples": 5946
+            },
+            "mainMs": {
+              "medianOfSegments": 1.1986750000000002,
+              "segmentMin": 1.19535,
+              "segmentMax": 1.1999,
+              "rawP95": 1.3076750000000001,
+              "samples": 5946
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 1.0183680000000002,
+              "segmentMin": 1.009664,
+              "segmentMax": 1.030144,
+              "rawP95": 1.1503615999999997,
+              "samples": 5933
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.66275,
+              "segmentMin": 0.65505,
+              "segmentMax": 0.6642,
+              "rawP95": 0.7921,
+              "samples": 5946
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 5946
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 5946
+            },
+            "draws": {
+              "medianOfSegments": 32.0,
+              "segmentMin": 32,
+              "segmentMax": 32,
+              "rawP95": 32.0,
+              "samples": 5946
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 992,
+              "medians": {
+                "frameMs": 1.2002976145595312,
+                "mainMs": 1.1965,
+                "renderMs": null,
+                "gpuMs": 1.01376,
+                "presentWaitMs": 0.65595,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 995,
+              "medians": {
+                "frameMs": 1.2026006588712335,
+                "mainMs": 1.2011,
+                "renderMs": null,
+                "gpuMs": 1.00864,
+                "presentWaitMs": 0.6693,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 979,
+              "medians": {
+                "frameMs": 1.2098001316189766,
+                "mainMs": 1.2069,
+                "renderMs": null,
+                "gpuMs": 1.004544,
+                "presentWaitMs": 0.6617,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 993,
+              "medians": {
+                "frameMs": 1.2000000569969416,
+                "mainMs": 1.1974,
+                "renderMs": null,
+                "gpuMs": 1.004544,
+                "presentWaitMs": 0.66,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 992,
+              "medians": {
+                "frameMs": 1.2001984287053347,
+                "mainMs": 1.19605,
+                "renderMs": null,
+                "gpuMs": 1.004544,
+                "presentWaitMs": 0.6514,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 994,
+              "medians": {
+                "frameMs": 1.1984481243416667,
+                "mainMs": 1.1953,
+                "renderMs": null,
+                "gpuMs": 1.00352,
+                "presentWaitMs": 0.65135,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.200248021632433,
+              "segmentMin": 1.1984481243416667,
+              "segmentMax": 1.2098001316189766,
+              "rawP95": 1.3110969448462129,
+              "samples": 5945
+            },
+            "mainMs": {
+              "medianOfSegments": 1.19695,
+              "segmentMin": 1.1953,
+              "segmentMax": 1.2069,
+              "rawP95": 1.3122800000000001,
+              "samples": 5945
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 1.004544,
+              "segmentMin": 1.00352,
+              "segmentMax": 1.01376,
+              "rawP95": 1.14176,
+              "samples": 5922
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.657975,
+              "segmentMin": 0.65135,
+              "segmentMax": 0.6693,
+              "rawP95": 0.79266,
+              "samples": 5945
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 5945
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 5945
+            },
+            "draws": {
+              "medianOfSegments": 32.0,
+              "segmentMin": 32.0,
+              "segmentMax": 32.0,
+              "rawP95": 32.0,
+              "samples": 5945
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 959,
+              "medians": {
+                "frameMs": 1.2070011580362916,
+                "mainMs": 1.2053,
+                "renderMs": null,
+                "gpuMs": 0.999424,
+                "presentWaitMs": 0.6634,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 967,
+              "medians": {
+                "frameMs": 1.208999427035451,
+                "mainMs": 1.2089,
+                "renderMs": null,
+                "gpuMs": 1.000448,
+                "presentWaitMs": 0.6741,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 974,
+              "medians": {
+                "frameMs": 1.205300446599722,
+                "mainMs": 1.2042,
+                "renderMs": null,
+                "gpuMs": 1.001472,
+                "presentWaitMs": 0.66205,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 981,
+              "medians": {
+                "frameMs": 1.2085033813491464,
+                "mainMs": 1.2057,
+                "renderMs": null,
+                "gpuMs": 1.004032,
+                "presentWaitMs": 0.6601,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 997,
+              "medians": {
+                "frameMs": 1.1989016784355044,
+                "mainMs": 1.1965,
+                "renderMs": null,
+                "gpuMs": 1.011712,
+                "presentWaitMs": 0.651,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 976,
+              "medians": {
+                "frameMs": 1.2012471561320126,
+                "mainMs": 1.2002,
+                "renderMs": null,
+                "gpuMs": 1.00352,
+                "presentWaitMs": 0.6421,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.2061508023180068,
+              "segmentMin": 1.1989016784355044,
+              "segmentMax": 1.208999427035451,
+              "rawP95": 1.4455130090937014,
+              "samples": 5854
+            },
+            "mainMs": {
+              "medianOfSegments": 1.20475,
+              "segmentMin": 1.1965,
+              "segmentMax": 1.2089,
+              "rawP95": 1.4398899999999992,
+              "samples": 5854
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 1.0024959999999998,
+              "segmentMin": 0.999424,
+              "segmentMax": 1.011712,
+              "rawP95": 1.163264,
+              "samples": 5793
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.6610750000000001,
+              "segmentMin": 0.6421,
+              "segmentMax": 0.6741,
+              "rawP95": 0.8225,
+              "samples": 5854
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 5854
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 5854
+            },
+            "draws": {
+              "medianOfSegments": 32.0,
+              "segmentMin": 32,
+              "segmentMax": 32,
+              "rawP95": 32.0,
+              "samples": 5854
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 287,
+              "medians": {
+                "frameMs": 4.19159559533,
+                "mainMs": 4.1885,
+                "renderMs": null,
+                "gpuMs": 4.16256,
+                "presentWaitMs": 2.8997,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 291,
+              "medians": {
+                "frameMs": 4.131597001105547,
+                "mainMs": 4.1298,
+                "renderMs": null,
+                "gpuMs": 4.10112,
+                "presentWaitMs": 2.8462,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.142804071307182,
+                "mainMs": 4.1407,
+                "renderMs": null,
+                "gpuMs": 4.123648,
+                "presentWaitMs": 2.80075,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.142403602600098,
+                "mainMs": 4.13885,
+                "renderMs": null,
+                "gpuMs": 4.123648,
+                "presentWaitMs": 2.82945,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.148150561377406,
+                "mainMs": 4.1463,
+                "renderMs": null,
+                "gpuMs": 4.123648,
+                "presentWaitMs": 2.8577,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.145599436014891,
+                "mainMs": 4.141500000000001,
+                "renderMs": null,
+                "gpuMs": 4.123648,
+                "presentWaitMs": 2.83165,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 4.1442017536610365,
+              "segmentMin": 4.131597001105547,
+              "segmentMax": 4.19159559533,
+              "rawP95": 4.317315295338631,
+              "samples": 1738
+            },
+            "mainMs": {
+              "medianOfSegments": 4.1411,
+              "segmentMin": 4.1298,
+              "segmentMax": 4.1885,
+              "rawP95": 4.31576,
+              "samples": 1738
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 4.123648,
+              "segmentMin": 4.10112,
+              "segmentMax": 4.16256,
+              "rawP95": 4.17792,
+              "samples": 1738
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 2.8389249999999997,
+              "segmentMin": 2.80075,
+              "segmentMax": 2.8997,
+              "rawP95": 3.098115,
+              "samples": 1738
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 1738
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 1738
+            },
+            "draws": {
+              "medianOfSegments": 321.0,
+              "segmentMin": 321,
+              "segmentMax": 321,
+              "rawP95": 321.0,
+              "samples": 1738
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 288,
+              "medians": {
+                "frameMs": 4.1678003035485744,
+                "mainMs": 4.16275,
+                "renderMs": null,
+                "gpuMs": 4.146176,
+                "presentWaitMs": 2.83735,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 292,
+              "medians": {
+                "frameMs": 4.124698927626014,
+                "mainMs": 4.12145,
+                "renderMs": null,
+                "gpuMs": 4.098048,
+                "presentWaitMs": 2.79995,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.148604115471244,
+                "mainMs": 4.1446000000000005,
+                "renderMs": null,
+                "gpuMs": 4.124672,
+                "presentWaitMs": 2.8272000000000004,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.146644612774253,
+                "mainMs": 4.1425,
+                "renderMs": null,
+                "gpuMs": 4.124672,
+                "presentWaitMs": 2.7971,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.153348272666335,
+                "mainMs": 4.1477,
+                "renderMs": null,
+                "gpuMs": 4.124672,
+                "presentWaitMs": 2.82315,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.143300000578165,
+                "mainMs": 4.13805,
+                "renderMs": null,
+                "gpuMs": 4.124672,
+                "presentWaitMs": 2.81045,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 4.147624364122748,
+              "segmentMin": 4.124698927626014,
+              "segmentMax": 4.1678003035485744,
+              "rawP95": 4.29593394510448,
+              "samples": 1740
+            },
+            "mainMs": {
+              "medianOfSegments": 4.14355,
+              "segmentMin": 4.12145,
+              "segmentMax": 4.16275,
+              "rawP95": 4.2908349999999995,
+              "samples": 1740
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 4.124672,
+              "segmentMin": 4.098048,
+              "segmentMax": 4.146176,
+              "rawP95": 4.1626112,
+              "samples": 1740
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 2.8167999999999997,
+              "segmentMin": 2.7971,
+              "segmentMax": 2.83735,
+              "rawP95": 3.04446,
+              "samples": 1740
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 1740
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 1740
+            },
+            "draws": {
+              "medianOfSegments": 321.0,
+              "segmentMin": 321.0,
+              "segmentMax": 321.0,
+              "rawP95": 321.0,
+              "samples": 1740
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.1525475680828094,
+                "mainMs": 4.14925,
+                "renderMs": null,
+                "gpuMs": 4.124672,
+                "presentWaitMs": 2.74785,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 292,
+              "medians": {
+                "frameMs": 4.117151955142617,
+                "mainMs": 4.1135,
+                "renderMs": null,
+                "gpuMs": 4.098048,
+                "presentWaitMs": 2.78755,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.144196631386876,
+                "mainMs": 4.1400500000000005,
+                "renderMs": null,
+                "gpuMs": 4.124672,
+                "presentWaitMs": 2.8075,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.152501467615366,
+                "mainMs": 4.1497,
+                "renderMs": null,
+                "gpuMs": 4.124672,
+                "presentWaitMs": 2.8061,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 290,
+              "medians": {
+                "frameMs": 4.142648074775934,
+                "mainMs": 4.1426,
+                "renderMs": null,
+                "gpuMs": 4.124672,
+                "presentWaitMs": 2.80595,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 289,
+              "medians": {
+                "frameMs": 4.151799716055393,
+                "mainMs": 4.1502,
+                "renderMs": null,
+                "gpuMs": 4.124672,
+                "presentWaitMs": 2.7335,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 4.147998173721135,
+              "segmentMin": 4.117151955142617,
+              "segmentMax": 4.1525475680828094,
+              "rawP95": 4.291900433599949,
+              "samples": 1741
+            },
+            "mainMs": {
+              "medianOfSegments": 4.145925,
+              "segmentMin": 4.1135,
+              "segmentMax": 4.1502,
+              "rawP95": 4.2872,
+              "samples": 1741
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 4.124672,
+              "segmentMin": 4.098048,
+              "segmentMax": 4.124672,
+              "rawP95": 4.141056,
+              "samples": 1740
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 2.7967500000000003,
+              "segmentMin": 2.7335,
+              "segmentMax": 2.8075,
+              "rawP95": 3.0208,
+              "samples": 1741
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 1741
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 1741
+            },
+            "draws": {
+              "medianOfSegments": 321.0,
+              "segmentMin": 321.0,
+              "segmentMax": 321.0,
+              "rawP95": 321.0,
+              "samples": 1741
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.251201171427965,
+                "mainMs": 4.2473,
+                "renderMs": null,
+                "gpuMs": 4.235264,
+                "presentWaitMs": 2.9288499999999997,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 281,
+              "medians": {
+                "frameMs": 4.255803767591715,
+                "mainMs": 4.254,
+                "renderMs": null,
+                "gpuMs": 4.23424,
+                "presentWaitMs": 2.7676,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 283,
+              "medians": {
+                "frameMs": 4.254705272614956,
+                "mainMs": 4.2516,
+                "renderMs": null,
+                "gpuMs": 4.235264,
+                "presentWaitMs": 2.8368,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.256497835740447,
+                "mainMs": 4.25445,
+                "renderMs": null,
+                "gpuMs": 4.235264,
+                "presentWaitMs": 3.034,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.256097599864006,
+                "mainMs": 4.25,
+                "renderMs": null,
+                "gpuMs": 4.23424,
+                "presentWaitMs": 2.84255,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.25895000807941,
+                "mainMs": 4.2562,
+                "renderMs": null,
+                "gpuMs": 4.234752,
+                "presentWaitMs": 2.84255,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 4.2559506837278605,
+              "segmentMin": 4.251201171427965,
+              "segmentMax": 4.25895000807941,
+              "rawP95": 4.444841481745243,
+              "samples": 1692
+            },
+            "mainMs": {
+              "medianOfSegments": 4.2528,
+              "segmentMin": 4.2473,
+              "segmentMax": 4.2562,
+              "rawP95": 4.444735,
+              "samples": 1692
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 4.2350080000000005,
+              "segmentMin": 4.23424,
+              "segmentMax": 4.235264,
+              "rawP95": 4.2469888,
+              "samples": 1692
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 2.84255,
+              "segmentMin": 2.7676,
+              "segmentMax": 3.034,
+              "rawP95": 3.1849899999999995,
+              "samples": 1692
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 1692
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 1692
+            },
+            "draws": {
+              "medianOfSegments": 324.0,
+              "segmentMin": 324.0,
+              "segmentMax": 324.0,
+              "rawP95": 324.0,
+              "samples": 1692
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.2576531413942575,
+                "mainMs": 4.25365,
+                "renderMs": null,
+                "gpuMs": 4.238336,
+                "presentWaitMs": 2.82545,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.256395157426596,
+                "mainMs": 4.252549999999999,
+                "renderMs": null,
+                "gpuMs": 4.236288,
+                "presentWaitMs": 2.903,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.260299727320671,
+                "mainMs": 4.25345,
+                "renderMs": null,
+                "gpuMs": 4.236288,
+                "presentWaitMs": 2.7100999999999997,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.2580002918839455,
+                "mainMs": 4.2538,
+                "renderMs": null,
+                "gpuMs": 4.236288,
+                "presentWaitMs": 2.9473000000000003,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.257248947396874,
+                "mainMs": 4.2505500000000005,
+                "renderMs": null,
+                "gpuMs": 4.237312,
+                "presentWaitMs": 2.74165,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.260700196027756,
+                "mainMs": 4.25735,
+                "renderMs": null,
+                "gpuMs": 4.237312,
+                "presentWaitMs": 2.72845,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 4.2578267166391015,
+              "segmentMin": 4.256395157426596,
+              "segmentMax": 4.260700196027756,
+              "rawP95": 4.3992438819259405,
+              "samples": 1692
+            },
+            "mainMs": {
+              "medianOfSegments": 4.253550000000001,
+              "segmentMin": 4.2505500000000005,
+              "segmentMax": 4.25735,
+              "rawP95": 4.396725,
+              "samples": 1692
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 4.236800000000001,
+              "segmentMin": 4.236288,
+              "segmentMax": 4.238336,
+              "rawP95": 4.249088,
+              "samples": 1691
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 2.78355,
+              "segmentMin": 2.7100999999999997,
+              "segmentMax": 2.9473000000000003,
+              "rawP95": 3.1072900000000003,
+              "samples": 1692
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 1692
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 1692
+            },
+            "draws": {
+              "medianOfSegments": 324.0,
+              "segmentMin": 324.0,
+              "segmentMax": 324.0,
+              "rawP95": 324.0,
+              "samples": 1692
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.2607036884874105,
+                "mainMs": 4.25705,
+                "renderMs": null,
+                "gpuMs": 4.237312,
+                "presentWaitMs": 2.9080000000000004,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.253550199791789,
+                "mainMs": 4.24605,
+                "renderMs": null,
+                "gpuMs": 4.236288,
+                "presentWaitMs": 2.84545,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.261600086465478,
+                "mainMs": 4.25475,
+                "renderMs": null,
+                "gpuMs": 4.236800000000001,
+                "presentWaitMs": 2.6825,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.259300651028752,
+                "mainMs": 4.2565,
+                "renderMs": null,
+                "gpuMs": 4.236288,
+                "presentWaitMs": 2.9678,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 282,
+              "medians": {
+                "frameMs": 4.2517539113759995,
+                "mainMs": 4.247199999999999,
+                "renderMs": null,
+                "gpuMs": 4.237312,
+                "presentWaitMs": 2.8223000000000003,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 281,
+              "medians": {
+                "frameMs": 4.263201728463173,
+                "mainMs": 4.2584,
+                "renderMs": null,
+                "gpuMs": 4.237312,
+                "presentWaitMs": 2.6985,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 4.260002169758081,
+              "segmentMin": 4.2517539113759995,
+              "segmentMax": 4.263201728463173,
+              "rawP95": 4.457298899069428,
+              "samples": 1691
+            },
+            "mainMs": {
+              "medianOfSegments": 4.255625,
+              "segmentMin": 4.24605,
+              "segmentMax": 4.2584,
+              "rawP95": 4.45845,
+              "samples": 1691
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 4.237056000000001,
+              "segmentMin": 4.236288,
+              "segmentMax": 4.237312,
+              "rawP95": 4.258304000000001,
+              "samples": 1691
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 2.833875,
+              "segmentMin": 2.6825,
+              "segmentMax": 2.9678,
+              "rawP95": 3.1402,
+              "samples": 1691
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 1691
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 1691
+            },
+            "draws": {
+              "medianOfSegments": 324.0,
+              "segmentMin": 324.0,
+              "segmentMax": 324.0,
+              "rawP95": 324.0,
+              "samples": 1691
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 1290,
+              "medians": {
+                "frameMs": 0.9590490371920168,
+                "mainMs": 0.9528000000000001,
+                "renderMs": null,
+                "gpuMs": 0.410624,
+                "presentWaitMs": 0.34404999999999997,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 1188,
+              "medians": {
+                "frameMs": 1.0580499074421823,
+                "mainMs": 1.05135,
+                "renderMs": null,
+                "gpuMs": 0.408576,
+                "presentWaitMs": 0.3333,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 1286,
+              "medians": {
+                "frameMs": 1.0571995517238975,
+                "mainMs": 1.05765,
+                "renderMs": null,
+                "gpuMs": 0.411648,
+                "presentWaitMs": 0.31465,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 1374,
+              "medians": {
+                "frameMs": 0.9377480018883944,
+                "mainMs": 0.93745,
+                "renderMs": null,
+                "gpuMs": 0.411648,
+                "presentWaitMs": 0.36975,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 1369,
+              "medians": {
+                "frameMs": 0.8705002837814391,
+                "mainMs": 0.8688,
+                "renderMs": null,
+                "gpuMs": 0.411648,
+                "presentWaitMs": 0.3258,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 1361,
+              "medians": {
+                "frameMs": 0.905505963601172,
+                "mainMs": 0.903,
+                "renderMs": null,
+                "gpuMs": 0.411648,
+                "presentWaitMs": 0.3712,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 0.9483985195402056,
+              "segmentMin": 0.8705002837814391,
+              "segmentMax": 1.0580499074421823,
+              "rawP95": 1.3027271372266114,
+              "samples": 7868
+            },
+            "mainMs": {
+              "medianOfSegments": 0.945125,
+              "segmentMin": 0.8688,
+              "segmentMax": 1.05765,
+              "rawP95": 1.3035299999999999,
+              "samples": 7868
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.411648,
+              "segmentMin": 0.408576,
+              "segmentMax": 0.411648,
+              "rawP95": 0.416768,
+              "samples": 7573
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.33867499999999995,
+              "segmentMin": 0.31465,
+              "segmentMax": 0.3712,
+              "rawP95": 0.74283,
+              "samples": 7868
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 7868
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 7868
+            },
+            "draws": {
+              "medianOfSegments": 69.0,
+              "segmentMin": 69.0,
+              "segmentMax": 69.0,
+              "rawP95": 69.0,
+              "samples": 7868
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 1183,
+              "medians": {
+                "frameMs": 1.011500833556056,
+                "mainMs": 1.0094,
+                "renderMs": null,
+                "gpuMs": 0.41472,
+                "presentWaitMs": 0.388,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 1218,
+              "medians": {
+                "frameMs": 1.0439519537612796,
+                "mainMs": 1.03985,
+                "renderMs": null,
+                "gpuMs": 0.41472,
+                "presentWaitMs": 0.40685,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 1237,
+              "medians": {
+                "frameMs": 1.1252976255491376,
+                "mainMs": 1.1267,
+                "renderMs": null,
+                "gpuMs": 0.415744,
+                "presentWaitMs": 0.4328,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 1250,
+              "medians": {
+                "frameMs": 0.9317495860159397,
+                "mainMs": 0.9299999999999999,
+                "renderMs": null,
+                "gpuMs": 0.415744,
+                "presentWaitMs": 0.37825,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 1235,
+              "medians": {
+                "frameMs": 0.9380031260661781,
+                "mainMs": 0.9391,
+                "renderMs": null,
+                "gpuMs": 0.415744,
+                "presentWaitMs": 0.3739,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 1131,
+              "medians": {
+                "frameMs": 1.1048965388908982,
+                "mainMs": 1.1031,
+                "renderMs": null,
+                "gpuMs": 0.410624,
+                "presentWaitMs": 0.3752,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.0277263936586678,
+              "segmentMin": 0.9317495860159397,
+              "segmentMax": 1.1252976255491376,
+              "rawP95": 1.4464696578215808,
+              "samples": 7254
+            },
+            "mainMs": {
+              "medianOfSegments": 1.024625,
+              "segmentMin": 0.9299999999999999,
+              "segmentMax": 1.1267,
+              "rawP95": 1.4467,
+              "samples": 7254
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.415232,
+              "segmentMin": 0.410624,
+              "segmentMax": 0.415744,
+              "rawP95": 0.41984,
+              "samples": 4293
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.383125,
+              "segmentMin": 0.3739,
+              "segmentMax": 0.4328,
+              "rawP95": 0.8765399999999998,
+              "samples": 7254
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 7254
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 7254
+            },
+            "draws": {
+              "medianOfSegments": 69.0,
+              "segmentMin": 69,
+              "segmentMax": 69,
+              "rawP95": 69.0,
+              "samples": 7254
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 1048,
+              "medians": {
+                "frameMs": 1.2257546768523753,
+                "mainMs": 1.2223000000000002,
+                "renderMs": null,
+                "gpuMs": 0.4096,
+                "presentWaitMs": 0.35375,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 1103,
+              "medians": {
+                "frameMs": 1.2175028678029776,
+                "mainMs": 1.2164,
+                "renderMs": null,
+                "gpuMs": 0.410624,
+                "presentWaitMs": 0.3578,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 1173,
+              "medians": {
+                "frameMs": 1.2243976816534996,
+                "mainMs": 1.2212,
+                "renderMs": null,
+                "gpuMs": 0.41472,
+                "presentWaitMs": 0.4246,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 1234,
+              "medians": {
+                "frameMs": 0.944348779739812,
+                "mainMs": 0.94275,
+                "renderMs": null,
+                "gpuMs": 0.41472,
+                "presentWaitMs": 0.3748,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 1245,
+              "medians": {
+                "frameMs": 0.9248015703633428,
+                "mainMs": 0.9232,
+                "renderMs": null,
+                "gpuMs": 0.416768,
+                "presentWaitMs": 0.382,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 1229,
+              "medians": {
+                "frameMs": 0.9848993504419923,
+                "mainMs": 0.9826,
+                "renderMs": null,
+                "gpuMs": 0.416768,
+                "presentWaitMs": 0.3871,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.101201109122485,
+              "segmentMin": 0.9248015703633428,
+              "segmentMax": 1.2257546768523753,
+              "rawP95": 1.517250941833481,
+              "samples": 7032
+            },
+            "mainMs": {
+              "medianOfSegments": 1.0995,
+              "segmentMin": 0.9232,
+              "segmentMax": 1.2223000000000002,
+              "rawP95": 1.517935,
+              "samples": 7032
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.41472,
+              "segmentMin": 0.4096,
+              "segmentMax": 0.416768,
+              "rawP95": 0.41984,
+              "samples": 4075
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.3784,
+              "segmentMin": 0.35375,
+              "segmentMax": 0.4246,
+              "rawP95": 0.891,
+              "samples": 7032
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 7032
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 7032
+            },
+            "draws": {
+              "medianOfSegments": 69.0,
+              "segmentMin": 69.0,
+              "segmentMax": 69.0,
+              "rawP95": 69.0,
+              "samples": 7032
+            }
+          }
+        }
+      ],
+      "pairedDeltas": [
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": -0.0030027877073735,
+              "min": -0.0066008069552481174,
+              "max": 0.013903016224503517,
+              "positivePairs": 2,
+              "count": 6
+            },
+            "mainMs": {
+              "median": -0.003574999999999884,
+              "min": -0.006899999999999906,
+              "max": 0.022399999999999975,
+              "positivePairs": 2,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": -0.017920000000000047,
+              "min": -0.11571199999999993,
+              "max": 0.0010240000000000249,
+              "positivePairs": 1,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": -0.002549233613535762,
+              "min": -0.008599075954407454,
+              "max": 0.009204959496855736,
+              "positivePairs": 1,
+              "count": 6
+            },
+            "mainMs": {
+              "median": -0.0024999999999998357,
+              "min": -0.010049999999999892,
+              "max": 0.01770000000000005,
+              "positivePairs": 1,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": -0.011264000000000052,
+              "min": -0.10137599999999991,
+              "max": 0.025599999999999956,
+              "positivePairs": 2,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": 0.005148118361830711,
+              "min": -0.004995730705559254,
+              "max": 0.00829785130918026,
+              "positivePairs": 5,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.005750000000000033,
+              "min": -0.0032000000000000917,
+              "max": 0.011500000000000066,
+              "positivePairs": 5,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": -0.013055999999999957,
+              "min": -0.03071999999999997,
+              "max": -0.008191999999999977,
+              "positivePairs": 0,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": 0.00459889997728169,
+              "min": -0.0044996850192546844,
+              "max": 0.0085033243522048,
+              "positivePairs": 4,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.006349999999999967,
+              "min": -0.0027000000000001467,
+              "max": 0.008800000000000141,
+              "positivePairs": 5,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": -0.0017920000000001268,
+              "min": -0.014336000000000015,
+              "max": 0.007167999999999841,
+              "positivePairs": 1,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": 0.11942317360080779,
+              "min": 0.006600777851417661,
+              "max": 0.26670563966035843,
+              "positivePairs": 6,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.12157500000000004,
+              "min": 0.005299999999999971,
+              "max": 0.2695000000000001,
+              "positivePairs": 6,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.0030719999999999636,
+              "min": -0.0010239999999999694,
+              "max": 0.005120000000000013,
+              "positivePairs": 5,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": 0.05584962491411716,
+              "min": -0.11999718844890594,
+              "max": 0.21425384329631925,
+              "positivePairs": 4,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.053625000000000034,
+              "min": -0.12049999999999994,
+              "max": 0.2129000000000001,
+              "positivePairs": 4,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": -0.0010240000000000249,
+              "min": -0.005119999999999958,
+              "max": 0.006144000000000038,
+              "positivePairs": 2,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": -0.0020549632608890533,
+              "min": -0.039048027247190475,
+              "max": 0.010097865015268326,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "mainMs": {
+              "median": -0.002174999999999816,
+              "min": -0.03925000000000001,
+              "max": 0.01085000000000047,
+              "positivePairs": 2,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.001024000000000136,
+              "min": -0.0378879999999997,
+              "max": 0.001024000000000136,
+              "positivePairs": 4,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": -0.005977228283882141,
+              "min": -0.015252735465765,
+              "max": 0.008499715477228165,
+              "positivePairs": 2,
+              "count": 6
+            },
+            "mainMs": {
+              "median": -0.004825000000000301,
+              "min": -0.013499999999999623,
+              "max": 0.012150000000000105,
+              "positivePairs": 2,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.0,
+              "min": -0.0215039999999993,
+              "max": 0.0,
+              "positivePairs": 0,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": 0.003527267836034298,
+              "min": -0.004343688488006592,
+              "max": 0.009502517059445381,
+              "positivePairs": 4,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.0021249999999999325,
+              "min": -0.007949999999999235,
+              "max": 0.009749999999999481,
+              "positivePairs": 4,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.002048000000000272,
+              "min": 0.001024000000000136,
+              "max": 0.0030720000000004077,
+              "positivePairs": 6,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": 0.0013003591448068619,
+              "min": -0.005495036020874977,
+              "max": 0.003050547093153,
+              "positivePairs": 4,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.001174999999999926,
+              "min": -0.006499999999999062,
+              "max": 0.0033999999999991815,
+              "positivePairs": 4,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.0,
+              "min": -0.001024000000000136,
+              "max": 0.000512000000000512,
+              "positivePairs": 1,
+              "count": 6
+            }
+          }
+        }
+      ]
+    },
+    {
+      "unity": "6000.6.5f1",
+      "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+      "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+      "api": "Direct3D11",
+      "failure": "",
+      "width": 1920,
+      "height": 1200,
+      "vSync": 0,
+      "targetFrameRate": -1,
+      "repetitions": 6,
+      "sampleSeconds": 1.2000000476837158,
+      "frameTimingEnabled": true,
+      "mainRecorder": true,
+      "renderRecorder": false,
+      "gcRecorder": true,
+      "drawRecorder": true,
+      "batchRecorder": true,
+      "groups": [
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 927,
+              "medians": {
+                "frameMs": 1.2315972708165646,
+                "mainMs": 1.229,
+                "renderMs": null,
+                "gpuMs": 0.920576,
+                "presentWaitMs": 0.7056,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 972,
+              "medians": {
+                "frameMs": 1.2243480887264013,
+                "mainMs": 1.2217500000000001,
+                "renderMs": null,
+                "gpuMs": 0.955392,
+                "presentWaitMs": 0.7137,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 975,
+              "medians": {
+                "frameMs": 1.223901635967195,
+                "mainMs": 1.2217,
+                "renderMs": null,
+                "gpuMs": 0.934912,
+                "presentWaitMs": 0.7142,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 975,
+              "medians": {
+                "frameMs": 1.2273030588403344,
+                "mainMs": 1.2252,
+                "renderMs": null,
+                "gpuMs": 0.94208,
+                "presentWaitMs": 0.7116,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 976,
+              "medians": {
+                "frameMs": 1.2223994126543403,
+                "mainMs": 1.22,
+                "renderMs": null,
+                "gpuMs": 0.94208,
+                "presentWaitMs": 0.71115,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 961,
+              "medians": {
+                "frameMs": 1.2290958547964692,
+                "mainMs": 1.227,
+                "renderMs": null,
+                "gpuMs": 0.95744,
+                "presentWaitMs": 0.7256,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.2258255737833679,
+              "segmentMin": 1.2223994126543403,
+              "segmentMax": 1.2315972708165646,
+              "rawP95": 1.5220007917378098,
+              "samples": 5786
+            },
+            "mainMs": {
+              "medianOfSegments": 1.223475,
+              "segmentMin": 1.22,
+              "segmentMax": 1.229,
+              "rawP95": 1.5213,
+              "samples": 5786
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.94208,
+              "segmentMin": 0.920576,
+              "segmentMax": 0.95744,
+              "rawP95": 1.086464,
+              "samples": 5739
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.71265,
+              "segmentMin": 0.7056,
+              "segmentMax": 0.7256,
+              "rawP95": 0.9973,
+              "samples": 5786
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 5786
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 5786
+            },
+            "draws": {
+              "medianOfSegments": 29.0,
+              "segmentMin": 29,
+              "segmentMax": 29,
+              "rawP95": 29.0,
+              "samples": 5786
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 970,
+              "medians": {
+                "frameMs": 1.2300984817557037,
+                "mainMs": 1.2276500000000001,
+                "renderMs": null,
+                "gpuMs": 0.928768,
+                "presentWaitMs": 0.7033,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 918,
+              "medians": {
+                "frameMs": 1.2286989949643612,
+                "mainMs": 1.2269,
+                "renderMs": null,
+                "gpuMs": 0.9323520000000001,
+                "presentWaitMs": 0.7102,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 974,
+              "medians": {
+                "frameMs": 1.2220521457493305,
+                "mainMs": 1.2199499999999999,
+                "renderMs": null,
+                "gpuMs": 0.934912,
+                "presentWaitMs": 0.70565,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 973,
+              "medians": {
+                "frameMs": 1.2258007191121578,
+                "mainMs": 1.2235,
+                "renderMs": null,
+                "gpuMs": 0.939008,
+                "presentWaitMs": 0.7103,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 969,
+              "medians": {
+                "frameMs": 1.2267007259652019,
+                "mainMs": 1.2244,
+                "renderMs": null,
+                "gpuMs": 0.944128,
+                "presentWaitMs": 0.7138,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 953,
+              "medians": {
+                "frameMs": 1.2241993099451065,
+                "mainMs": 1.2214,
+                "renderMs": null,
+                "gpuMs": 0.91648,
+                "presentWaitMs": 0.6991,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.2262507225386798,
+              "segmentMin": 1.2220521457493305,
+              "segmentMax": 1.2300984817557037,
+              "rawP95": 1.4898369787260888,
+              "samples": 5757
+            },
+            "mainMs": {
+              "medianOfSegments": 1.2239499999999999,
+              "segmentMin": 1.2199499999999999,
+              "segmentMax": 1.2276500000000001,
+              "rawP95": 1.49654,
+              "samples": 5757
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.933632,
+              "segmentMin": 0.91648,
+              "segmentMax": 0.944128,
+              "rawP95": 1.071104,
+              "samples": 5745
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.707925,
+              "segmentMin": 0.6991,
+              "segmentMax": 0.7138,
+              "rawP95": 0.97572,
+              "samples": 5757
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 5757
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 5757
+            },
+            "draws": {
+              "medianOfSegments": 29.0,
+              "segmentMin": 29.0,
+              "segmentMax": 29.0,
+              "rawP95": 29.0,
+              "samples": 5757
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 973,
+              "medians": {
+                "frameMs": 1.2231009313836694,
+                "mainMs": 1.2207,
+                "renderMs": null,
+                "gpuMs": 0.929792,
+                "presentWaitMs": 0.705,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 971,
+              "medians": {
+                "frameMs": 1.2325042625889182,
+                "mainMs": 1.2302,
+                "renderMs": null,
+                "gpuMs": 0.940032,
+                "presentWaitMs": 0.7101,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 970,
+              "medians": {
+                "frameMs": 1.232149952556938,
+                "mainMs": 1.23,
+                "renderMs": null,
+                "gpuMs": 0.93696,
+                "presentWaitMs": 0.70985,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 29.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 971,
+              "medians": {
+                "frameMs": 1.2254960602149367,
+                "mainMs": 1.2237,
+                "renderMs": null,
+                "gpuMs": 0.940032,
+                "presentWaitMs": 0.7063,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 973,
+              "medians": {
+                "frameMs": 1.2287981808185577,
+                "mainMs": 1.2271,
+                "renderMs": null,
+                "gpuMs": 0.933888,
+                "presentWaitMs": 0.7102,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 969,
+              "medians": {
+                "frameMs": 1.2258999049663544,
+                "mainMs": 1.2233,
+                "renderMs": null,
+                "gpuMs": 0.934912,
+                "presentWaitMs": 0.7076,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 29
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.227349042892456,
+              "segmentMin": 1.2231009313836694,
+              "segmentMax": 1.2325042625889182,
+              "rawP95": 1.4643721748143432,
+              "samples": 5827
+            },
+            "mainMs": {
+              "medianOfSegments": 1.2254,
+              "segmentMin": 1.2207,
+              "segmentMax": 1.2302,
+              "rawP95": 1.46304,
+              "samples": 5827
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.935936,
+              "segmentMin": 0.929792,
+              "segmentMax": 0.940032,
+              "rawP95": 1.067008,
+              "samples": 5823
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.708725,
+              "segmentMin": 0.705,
+              "segmentMax": 0.7102,
+              "rawP95": 0.9509099999999999,
+              "samples": 5827
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 5827
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 5827
+            },
+            "draws": {
+              "medianOfSegments": 29.0,
+              "segmentMin": 29,
+              "segmentMax": 29,
+              "rawP95": 29.0,
+              "samples": 5827
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 906,
+              "medians": {
+                "frameMs": 1.3163973926566541,
+                "mainMs": 1.3139,
+                "renderMs": null,
+                "gpuMs": 1.094656,
+                "presentWaitMs": 0.79,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 900,
+              "medians": {
+                "frameMs": 1.3232993660494685,
+                "mainMs": 1.3209,
+                "renderMs": null,
+                "gpuMs": 1.10592,
+                "presentWaitMs": 0.8009,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 895,
+              "medians": {
+                "frameMs": 1.3286989415064454,
+                "mainMs": 1.3255,
+                "renderMs": null,
+                "gpuMs": 1.103872,
+                "presentWaitMs": 0.8028,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 899,
+              "medians": {
+                "frameMs": 1.323901698924601,
+                "mainMs": 1.3219,
+                "renderMs": null,
+                "gpuMs": 1.096704,
+                "presentWaitMs": 0.8024,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 900,
+              "medians": {
+                "frameMs": 1.3128472492098808,
+                "mainMs": 1.3108499999999998,
+                "renderMs": null,
+                "gpuMs": 1.078272,
+                "presentWaitMs": 0.7746500000000001,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 895,
+              "medians": {
+                "frameMs": 1.3322987360879779,
+                "mainMs": 1.3302,
+                "renderMs": null,
+                "gpuMs": 1.1084800000000001,
+                "presentWaitMs": 0.8095,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.3236005324870348,
+              "segmentMin": 1.3128472492098808,
+              "segmentMax": 1.3322987360879779,
+              "rawP95": 1.879843405913562,
+              "samples": 5395
+            },
+            "mainMs": {
+              "medianOfSegments": 1.3214000000000001,
+              "segmentMin": 1.3108499999999998,
+              "segmentMax": 1.3302,
+              "rawP95": 1.8799200000000005,
+              "samples": 5395
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 1.100288,
+              "segmentMin": 1.078272,
+              "segmentMax": 1.1084800000000001,
+              "rawP95": 1.229824,
+              "samples": 5388
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.80165,
+              "segmentMin": 0.7746500000000001,
+              "segmentMax": 0.8095,
+              "rawP95": 1.3519900000000002,
+              "samples": 5395
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 5395
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 5395
+            },
+            "draws": {
+              "medianOfSegments": 32.0,
+              "segmentMin": 32.0,
+              "segmentMax": 32.0,
+              "rawP95": 32.0,
+              "samples": 5395
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 905,
+              "medians": {
+                "frameMs": 1.318998052738607,
+                "mainMs": 1.3173,
+                "renderMs": null,
+                "gpuMs": 1.092608,
+                "presentWaitMs": 0.7906,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 904,
+              "medians": {
+                "frameMs": 1.3196499785408378,
+                "mainMs": 1.31755,
+                "renderMs": null,
+                "gpuMs": 1.093632,
+                "presentWaitMs": 0.7907,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 889,
+              "medians": {
+                "frameMs": 1.3143990654498339,
+                "mainMs": 1.3126,
+                "renderMs": null,
+                "gpuMs": 1.052672,
+                "presentWaitMs": 0.7629,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 903,
+              "medians": {
+                "frameMs": 1.319104339927435,
+                "mainMs": 1.317,
+                "renderMs": null,
+                "gpuMs": 1.087488,
+                "presentWaitMs": 0.7937,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 906,
+              "medians": {
+                "frameMs": 1.3126488192938268,
+                "mainMs": 1.31075,
+                "renderMs": null,
+                "gpuMs": 1.065984,
+                "presentWaitMs": 0.7807,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 901,
+              "medians": {
+                "frameMs": 1.332497107796371,
+                "mainMs": 1.3302,
+                "renderMs": null,
+                "gpuMs": 1.1054080000000002,
+                "presentWaitMs": 0.8053,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.319051196333021,
+              "segmentMin": 1.3126488192938268,
+              "segmentMax": 1.332497107796371,
+              "rawP95": 1.833129278384149,
+              "samples": 5408
+            },
+            "mainMs": {
+              "medianOfSegments": 1.3171499999999998,
+              "segmentMin": 1.31075,
+              "segmentMax": 1.3302,
+              "rawP95": 1.8317599999999998,
+              "samples": 5408
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 1.090048,
+              "segmentMin": 1.052672,
+              "segmentMax": 1.1054080000000002,
+              "rawP95": 1.222656,
+              "samples": 5397
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.79065,
+              "segmentMin": 0.7629,
+              "segmentMax": 0.8053,
+              "rawP95": 1.292765,
+              "samples": 5408
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 5408
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 5408
+            },
+            "draws": {
+              "medianOfSegments": 32.0,
+              "segmentMin": 32,
+              "segmentMax": 32,
+              "rawP95": 32.0,
+              "samples": 5408
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 900,
+              "medians": {
+                "frameMs": 1.3207022566348314,
+                "mainMs": 1.3182,
+                "renderMs": null,
+                "gpuMs": 1.088512,
+                "presentWaitMs": 0.7852,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 32.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 903,
+              "medians": {
+                "frameMs": 1.3213009806349874,
+                "mainMs": 1.3188,
+                "renderMs": null,
+                "gpuMs": 1.104896,
+                "presentWaitMs": 0.7991,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 897,
+              "medians": {
+                "frameMs": 1.3237952953204513,
+                "mainMs": 1.3213,
+                "renderMs": null,
+                "gpuMs": 1.097728,
+                "presentWaitMs": 0.7945,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 897,
+              "medians": {
+                "frameMs": 1.326105440966785,
+                "mainMs": 1.3245,
+                "renderMs": null,
+                "gpuMs": 1.097728,
+                "presentWaitMs": 0.7896,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 901,
+              "medians": {
+                "frameMs": 1.3243976281955838,
+                "mainMs": 1.3226,
+                "renderMs": null,
+                "gpuMs": 1.094144,
+                "presentWaitMs": 0.7951,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 899,
+              "medians": {
+                "frameMs": 1.3271967181935906,
+                "mainMs": 1.3253,
+                "renderMs": null,
+                "gpuMs": 1.09568,
+                "presentWaitMs": 0.799,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 32
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.3240964617580175,
+              "segmentMin": 1.3207022566348314,
+              "segmentMax": 1.3271967181935906,
+              "rawP95": 1.8849404528737066,
+              "samples": 5397
+            },
+            "mainMs": {
+              "medianOfSegments": 1.32195,
+              "segmentMin": 1.3182,
+              "segmentMax": 1.3253,
+              "rawP95": 1.88322,
+              "samples": 5397
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 1.096704,
+              "segmentMin": 1.088512,
+              "segmentMax": 1.104896,
+              "rawP95": 1.227776,
+              "samples": 5394
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.7948,
+              "segmentMin": 0.7852,
+              "segmentMax": 0.7991,
+              "rawP95": 1.3567799999999999,
+              "samples": 5397
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 5397
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 5397
+            },
+            "draws": {
+              "medianOfSegments": 32.0,
+              "segmentMin": 32.0,
+              "segmentMax": 32.0,
+              "rawP95": 32.0,
+              "samples": 5397
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 245,
+              "medians": {
+                "frameMs": 4.9422974698245525,
+                "mainMs": 4.9404,
+                "renderMs": null,
+                "gpuMs": 4.885504,
+                "presentWaitMs": 3.8468,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 245,
+              "medians": {
+                "frameMs": 4.939300008118153,
+                "mainMs": 4.9381,
+                "renderMs": null,
+                "gpuMs": 4.887552,
+                "presentWaitMs": 3.8639,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 245,
+              "medians": {
+                "frameMs": 4.93859825655818,
+                "mainMs": 4.9333,
+                "renderMs": null,
+                "gpuMs": 4.88448,
+                "presentWaitMs": 3.6633,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 243,
+              "medians": {
+                "frameMs": 4.945401102304459,
+                "mainMs": 4.9433,
+                "renderMs": null,
+                "gpuMs": 4.913152,
+                "presentWaitMs": 3.8738,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 244,
+              "medians": {
+                "frameMs": 4.944851854816079,
+                "mainMs": 4.94285,
+                "renderMs": null,
+                "gpuMs": 4.912128,
+                "presentWaitMs": 3.9242,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 244,
+              "medians": {
+                "frameMs": 4.944401793181896,
+                "mainMs": 4.94245,
+                "renderMs": null,
+                "gpuMs": 4.912128,
+                "presentWaitMs": 3.8445,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 4.943349631503224,
+              "segmentMin": 4.93859825655818,
+              "segmentMax": 4.945401102304459,
+              "rawP95": 5.38874720223248,
+              "samples": 1466
+            },
+            "mainMs": {
+              "medianOfSegments": 4.941425000000001,
+              "segmentMin": 4.9333,
+              "segmentMax": 4.9433,
+              "rawP95": 5.386950000000001,
+              "samples": 1466
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 4.89984,
+              "segmentMin": 4.88448,
+              "segmentMax": 4.913152,
+              "rawP95": 4.918272,
+              "samples": 1466
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 3.85535,
+              "segmentMin": 3.6633,
+              "segmentMax": 3.9242,
+              "rawP95": 4.2871749999999995,
+              "samples": 1466
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 1466
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 1466
+            },
+            "draws": {
+              "medianOfSegments": 321.0,
+              "segmentMin": 321,
+              "segmentMax": 321,
+              "rawP95": 321.0,
+              "samples": 1466
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 245,
+              "medians": {
+                "frameMs": 4.94159571826458,
+                "mainMs": 4.9387,
+                "renderMs": null,
+                "gpuMs": 4.888576,
+                "presentWaitMs": 3.8059,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 245,
+              "medians": {
+                "frameMs": 4.941999912261963,
+                "mainMs": 4.9392,
+                "renderMs": null,
+                "gpuMs": 4.8896,
+                "presentWaitMs": 3.7041,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 244,
+              "medians": {
+                "frameMs": 4.94385277852416,
+                "mainMs": 4.94195,
+                "renderMs": null,
+                "gpuMs": 4.891648,
+                "presentWaitMs": 3.7049000000000003,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 243,
+              "medians": {
+                "frameMs": 4.944600164890289,
+                "mainMs": 4.9426,
+                "renderMs": null,
+                "gpuMs": 4.9152,
+                "presentWaitMs": 3.8268,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 243,
+              "medians": {
+                "frameMs": 4.944699350744486,
+                "mainMs": 4.9424,
+                "renderMs": null,
+                "gpuMs": 4.914176,
+                "presentWaitMs": 3.8337,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 244,
+              "medians": {
+                "frameMs": 4.944649757817388,
+                "mainMs": 4.94265,
+                "renderMs": null,
+                "gpuMs": 4.913152,
+                "presentWaitMs": 3.8329,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 4.944226471707225,
+              "segmentMin": 4.94159571826458,
+              "segmentMax": 4.944699350744486,
+              "rawP95": 5.444890935905278,
+              "samples": 1464
+            },
+            "mainMs": {
+              "medianOfSegments": 4.942175000000001,
+              "segmentMin": 4.9387,
+              "segmentMax": 4.94265,
+              "rawP95": 5.44278,
+              "samples": 1464
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 4.9024,
+              "segmentMin": 4.888576,
+              "segmentMax": 4.9152,
+              "rawP95": 4.921344,
+              "samples": 1463
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 3.81635,
+              "segmentMin": 3.7041,
+              "segmentMax": 3.8337,
+              "rawP95": 4.2827649999999995,
+              "samples": 1464
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 1464
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 1464
+            },
+            "draws": {
+              "medianOfSegments": 321.0,
+              "segmentMin": 321,
+              "segmentMax": 321,
+              "rawP95": 321.0,
+              "samples": 1464
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 245,
+              "medians": {
+                "frameMs": 4.942099098116159,
+                "mainMs": 4.9393,
+                "renderMs": null,
+                "gpuMs": 4.888576,
+                "presentWaitMs": 3.8033,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 245,
+              "medians": {
+                "frameMs": 4.941900726407766,
+                "mainMs": 4.94,
+                "renderMs": null,
+                "gpuMs": 4.888576,
+                "presentWaitMs": 3.8147,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 321
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 244,
+              "medians": {
+                "frameMs": 4.940901417285204,
+                "mainMs": 4.9374,
+                "renderMs": null,
+                "gpuMs": 4.888576,
+                "presentWaitMs": 3.74615,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 244,
+              "medians": {
+                "frameMs": 4.944749176502228,
+                "mainMs": 4.94255,
+                "renderMs": null,
+                "gpuMs": 4.914176,
+                "presentWaitMs": 3.7912,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 244,
+              "medians": {
+                "frameMs": 4.944047657772899,
+                "mainMs": 4.941800000000001,
+                "renderMs": null,
+                "gpuMs": 4.914176,
+                "presentWaitMs": 3.79945,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 244,
+              "medians": {
+                "frameMs": 4.9449477810412645,
+                "mainMs": 4.943099999999999,
+                "renderMs": null,
+                "gpuMs": 4.9152,
+                "presentWaitMs": 3.8352,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 321.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 4.943073377944529,
+              "segmentMin": 4.940901417285204,
+              "segmentMax": 4.9449477810412645,
+              "rawP95": 5.420624162070453,
+              "samples": 1466
+            },
+            "mainMs": {
+              "medianOfSegments": 4.940900000000001,
+              "segmentMin": 4.9374,
+              "segmentMax": 4.943099999999999,
+              "rawP95": 5.41805,
+              "samples": 1466
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 4.901376,
+              "segmentMin": 4.888576,
+              "segmentMax": 4.9152,
+              "rawP95": 4.92032,
+              "samples": 1465
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 3.801375,
+              "segmentMin": 3.74615,
+              "segmentMax": 3.8352,
+              "rawP95": 4.279425,
+              "samples": 1466
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 1466
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 1466
+            },
+            "draws": {
+              "medianOfSegments": 321.0,
+              "segmentMin": 321,
+              "segmentMax": 321,
+              "rawP95": 321.0,
+              "samples": 1466
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 238,
+              "medians": {
+                "frameMs": 5.091347731649876,
+                "mainMs": 5.08975,
+                "renderMs": null,
+                "gpuMs": 5.041152,
+                "presentWaitMs": 3.9874,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 238,
+              "medians": {
+                "frameMs": 5.10029774159193,
+                "mainMs": 5.097799999999999,
+                "renderMs": null,
+                "gpuMs": 5.040128,
+                "presentWaitMs": 3.9785500000000003,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.102699622511864,
+                "mainMs": 5.1,
+                "renderMs": null,
+                "gpuMs": 5.041152,
+                "presentWaitMs": 3.9992,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.093601066619158,
+                "mainMs": 5.0922,
+                "renderMs": null,
+                "gpuMs": 5.040128,
+                "presentWaitMs": 3.9634,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.100899841636419,
+                "mainMs": 5.0975,
+                "renderMs": null,
+                "gpuMs": 5.041152,
+                "presentWaitMs": 3.9943,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.099496804177761,
+                "mainMs": 5.0973,
+                "renderMs": null,
+                "gpuMs": 5.040128,
+                "presentWaitMs": 4.0037,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 5.099897272884846,
+              "segmentMin": 5.091347731649876,
+              "segmentMax": 5.102699622511864,
+              "rawP95": 5.554222734645008,
+              "samples": 1424
+            },
+            "mainMs": {
+              "medianOfSegments": 5.0974,
+              "segmentMin": 5.08975,
+              "segmentMax": 5.1,
+              "rawP95": 5.55008,
+              "samples": 1424
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 5.04064,
+              "segmentMin": 5.040128,
+              "segmentMax": 5.041152,
+              "rawP95": 5.04832,
+              "samples": 1424
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 3.99085,
+              "segmentMin": 3.9634,
+              "segmentMax": 4.0037,
+              "rawP95": 4.477224999999999,
+              "samples": 1424
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 1424
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 1424
+            },
+            "draws": {
+              "medianOfSegments": 324.0,
+              "segmentMin": 324.0,
+              "segmentMax": 324.0,
+              "rawP95": 324.0,
+              "samples": 1424
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.101700779050589,
+                "mainMs": 5.0988,
+                "renderMs": null,
+                "gpuMs": 5.042176,
+                "presentWaitMs": 3.9386,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.102501250803471,
+                "mainMs": 5.0996,
+                "renderMs": null,
+                "gpuMs": 5.0432,
+                "presentWaitMs": 3.9351,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.1023028790950775,
+                "mainMs": 5.0997,
+                "renderMs": null,
+                "gpuMs": 5.042176,
+                "presentWaitMs": 3.9061,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.101700779050589,
+                "mainMs": 5.0989,
+                "renderMs": null,
+                "gpuMs": 5.042176,
+                "presentWaitMs": 3.951,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 238,
+              "medians": {
+                "frameMs": 5.100148962810636,
+                "mainMs": 5.094799999999999,
+                "renderMs": null,
+                "gpuMs": 5.042688,
+                "presentWaitMs": 3.8875,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 324.0
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.098001565784216,
+                "mainMs": 5.0954,
+                "renderMs": null,
+                "gpuMs": 5.042176,
+                "presentWaitMs": 3.9253,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 5.101700779050589,
+              "segmentMin": 5.098001565784216,
+              "segmentMax": 5.102501250803471,
+              "rawP95": 5.538676818832755,
+              "samples": 1423
+            },
+            "mainMs": {
+              "medianOfSegments": 5.0988500000000005,
+              "segmentMin": 5.094799999999999,
+              "segmentMax": 5.0997,
+              "rawP95": 5.53645,
+              "samples": 1423
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 5.042176,
+              "segmentMin": 5.042176,
+              "segmentMax": 5.0432,
+              "rawP95": 5.050368,
+              "samples": 1423
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 3.9302,
+              "segmentMin": 3.8875,
+              "segmentMax": 3.951,
+              "rawP95": 4.407449999999997,
+              "samples": 1423
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 1423
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 1423
+            },
+            "draws": {
+              "medianOfSegments": 324.0,
+              "segmentMin": 324,
+              "segmentMax": 324,
+              "rawP95": 324.0,
+              "samples": 1423
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.102104507386684,
+                "mainMs": 5.1003,
+                "renderMs": null,
+                "gpuMs": 5.042176,
+                "presentWaitMs": 3.9339,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.099695175886154,
+                "mainMs": 5.0974,
+                "renderMs": null,
+                "gpuMs": 5.0432,
+                "presentWaitMs": 3.894,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.1004961133003235,
+                "mainMs": 5.0982,
+                "renderMs": null,
+                "gpuMs": 5.0432,
+                "presentWaitMs": 3.9342,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.101601593196392,
+                "mainMs": 5.0991,
+                "renderMs": null,
+                "gpuMs": 5.0432,
+                "presentWaitMs": 3.9187,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.100701469928026,
+                "mainMs": 5.0966,
+                "renderMs": null,
+                "gpuMs": 5.042176,
+                "presentWaitMs": 3.9338,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 237,
+              "medians": {
+                "frameMs": 5.096804350614548,
+                "mainMs": 5.0943,
+                "renderMs": null,
+                "gpuMs": 5.042176,
+                "presentWaitMs": 3.9426,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 324
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 5.100598791614175,
+              "segmentMin": 5.096804350614548,
+              "segmentMax": 5.102104507386684,
+              "rawP95": 5.528414994478226,
+              "samples": 1422
+            },
+            "mainMs": {
+              "medianOfSegments": 5.0978,
+              "segmentMin": 5.0943,
+              "segmentMax": 5.1003,
+              "rawP95": 5.525755,
+              "samples": 1422
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 5.042688,
+              "segmentMin": 5.042176,
+              "segmentMax": 5.0432,
+              "rawP95": 5.051392,
+              "samples": 1421
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 3.93385,
+              "segmentMin": 3.894,
+              "segmentMax": 3.9426,
+              "rawP95": 4.445325,
+              "samples": 1422
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 1422
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 1422
+            },
+            "draws": {
+              "medianOfSegments": 324.0,
+              "segmentMin": 324,
+              "segmentMax": 324,
+              "rawP95": 324.0,
+              "samples": 1422
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "variant": 0,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 0,
+              "frames": 1180,
+              "medians": {
+                "frameMs": 0.9940015734173357,
+                "mainMs": 0.9919,
+                "renderMs": null,
+                "gpuMs": 0.418816,
+                "presentWaitMs": 0.4782,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 2,
+              "frames": 1168,
+              "medians": {
+                "frameMs": 0.9956490830518305,
+                "mainMs": 0.9929,
+                "renderMs": null,
+                "gpuMs": 0.418816,
+                "presentWaitMs": 0.46845000000000003,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 1,
+              "frames": 1184,
+              "medians": {
+                "frameMs": 0.9883999009616673,
+                "mainMs": 0.9837,
+                "renderMs": null,
+                "gpuMs": 0.418816,
+                "presentWaitMs": 0.44599999999999995,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 2,
+              "frames": 1182,
+              "medians": {
+                "frameMs": 0.9906993946060538,
+                "mainMs": 0.98655,
+                "renderMs": null,
+                "gpuMs": 0.418816,
+                "presentWaitMs": 0.4602,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 1,
+              "frames": 1181,
+              "medians": {
+                "frameMs": 0.9723001858219504,
+                "mainMs": 0.9721,
+                "renderMs": null,
+                "gpuMs": 0.417792,
+                "presentWaitMs": 0.4609,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 0,
+              "frames": 1183,
+              "medians": {
+                "frameMs": 0.9876062395051122,
+                "mainMs": 0.9798,
+                "renderMs": null,
+                "gpuMs": 0.417792,
+                "presentWaitMs": 0.4608,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 0.9895496477838606,
+              "segmentMin": 0.9723001858219504,
+              "segmentMax": 0.9956490830518305,
+              "rawP95": 1.421933132223785,
+              "samples": 7078
+            },
+            "mainMs": {
+              "medianOfSegments": 0.985125,
+              "segmentMin": 0.9721,
+              "segmentMax": 0.9929,
+              "rawP95": 1.420845,
+              "samples": 7078
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.418816,
+              "segmentMin": 0.417792,
+              "segmentMax": 0.418816,
+              "rawP95": 0.428032,
+              "samples": 7073
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.46085,
+              "segmentMin": 0.44599999999999995,
+              "segmentMax": 0.4782,
+              "rawP95": 0.9236499999999996,
+              "samples": 7078
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 7078
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 7078
+            },
+            "draws": {
+              "medianOfSegments": 69.0,
+              "segmentMin": 69.0,
+              "segmentMax": 69.0,
+              "rawP95": 69.0,
+              "samples": 7078
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "variant": 1,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 1,
+              "frames": 1097,
+              "medians": {
+                "frameMs": 1.1126984609290957,
+                "mainMs": 1.11,
+                "renderMs": null,
+                "gpuMs": 0.416768,
+                "presentWaitMs": 0.5392,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 0,
+              "frames": 1075,
+              "medians": {
+                "frameMs": 1.1556051904335618,
+                "mainMs": 1.1535,
+                "renderMs": null,
+                "gpuMs": 0.417792,
+                "presentWaitMs": 0.5659,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 2,
+              "frames": 1104,
+              "medians": {
+                "frameMs": 1.0955499019473791,
+                "mainMs": 1.0925,
+                "renderMs": null,
+                "gpuMs": 0.417792,
+                "presentWaitMs": 0.53925,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 1,
+              "frames": 1097,
+              "medians": {
+                "frameMs": 1.1205002665519714,
+                "mainMs": 1.1185,
+                "renderMs": null,
+                "gpuMs": 0.417792,
+                "presentWaitMs": 0.5564,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 0,
+              "frames": 1083,
+              "medians": {
+                "frameMs": 1.0904974769800901,
+                "mainMs": 1.0908,
+                "renderMs": null,
+                "gpuMs": 0.416768,
+                "presentWaitMs": 0.5422,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 2,
+              "frames": 1096,
+              "medians": {
+                "frameMs": 1.1187996133230627,
+                "mainMs": 1.11775,
+                "renderMs": null,
+                "gpuMs": 0.416768,
+                "presentWaitMs": 0.54025,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.1157490371260792,
+              "segmentMin": 1.0904974769800901,
+              "segmentMax": 1.1556051904335618,
+              "rawP95": 1.4882224437315017,
+              "samples": 6552
+            },
+            "mainMs": {
+              "medianOfSegments": 1.1138750000000002,
+              "segmentMin": 1.0908,
+              "segmentMax": 1.1535,
+              "rawP95": 1.486235,
+              "samples": 6552
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.41728,
+              "segmentMin": 0.416768,
+              "segmentMax": 0.417792,
+              "rawP95": 0.42496,
+              "samples": 6507
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.5412250000000001,
+              "segmentMin": 0.5392,
+              "segmentMax": 0.5659,
+              "rawP95": 0.9227,
+              "samples": 6552
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40,
+              "segmentMax": 40,
+              "rawP95": 40.0,
+              "samples": 6552
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0,
+              "segmentMax": 0,
+              "rawP95": 0.0,
+              "samples": 6552
+            },
+            "draws": {
+              "medianOfSegments": 69.0,
+              "segmentMin": 69,
+              "segmentMax": 69,
+              "rawP95": 69.0,
+              "samples": 6552
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "variant": 2,
+          "segments": [
+            {
+              "repetition": 0,
+              "order": 2,
+              "frames": 1090,
+              "medians": {
+                "frameMs": 1.1572526418603957,
+                "mainMs": 1.1564,
+                "renderMs": null,
+                "gpuMs": 0.417792,
+                "presentWaitMs": 0.5790500000000001,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 1,
+              "order": 1,
+              "frames": 1097,
+              "medians": {
+                "frameMs": 1.1164966272190213,
+                "mainMs": 1.1146,
+                "renderMs": null,
+                "gpuMs": 0.417792,
+                "presentWaitMs": 0.549,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 2,
+              "order": 0,
+              "frames": 1085,
+              "medians": {
+                "frameMs": 1.146201859228313,
+                "mainMs": 1.1452,
+                "renderMs": null,
+                "gpuMs": 0.417792,
+                "presentWaitMs": 0.55,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 3,
+              "order": 0,
+              "frames": 1098,
+              "medians": {
+                "frameMs": 1.103798218537122,
+                "mainMs": 1.1013,
+                "renderMs": null,
+                "gpuMs": 0.417792,
+                "presentWaitMs": 0.53335,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            },
+            {
+              "repetition": 4,
+              "order": 2,
+              "frames": 1103,
+              "medians": {
+                "frameMs": 1.114299870096147,
+                "mainMs": 1.1123,
+                "renderMs": null,
+                "gpuMs": 0.416768,
+                "presentWaitMs": 0.5465,
+                "gcBytes": 40,
+                "batches": 0,
+                "draws": 69
+              }
+            },
+            {
+              "repetition": 5,
+              "order": 1,
+              "frames": 1098,
+              "medians": {
+                "frameMs": 1.1116992682218552,
+                "mainMs": 1.1099,
+                "renderMs": null,
+                "gpuMs": 0.416768,
+                "presentWaitMs": 0.53685,
+                "gcBytes": 40.0,
+                "batches": 0.0,
+                "draws": 69.0
+              }
+            }
+          ],
+          "metrics": {
+            "frameMs": {
+              "medianOfSegments": 1.1153982486575842,
+              "segmentMin": 1.103798218537122,
+              "segmentMax": 1.1572526418603957,
+              "rawP95": 1.4782525831833482,
+              "samples": 6571
+            },
+            "mainMs": {
+              "medianOfSegments": 1.11345,
+              "segmentMin": 1.1013,
+              "segmentMax": 1.1564,
+              "rawP95": 1.47705,
+              "samples": 6571
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "medianOfSegments": 0.417792,
+              "segmentMin": 0.416768,
+              "segmentMax": 0.417792,
+              "rawP95": 0.42496,
+              "samples": 6544
+            },
+            "presentWaitMs": {
+              "medianOfSegments": 0.54775,
+              "segmentMin": 0.53335,
+              "segmentMax": 0.5790500000000001,
+              "rawP95": 0.9064,
+              "samples": 6571
+            },
+            "gcBytes": {
+              "medianOfSegments": 40.0,
+              "segmentMin": 40.0,
+              "segmentMax": 40.0,
+              "rawP95": 40.0,
+              "samples": 6571
+            },
+            "batches": {
+              "medianOfSegments": 0.0,
+              "segmentMin": 0.0,
+              "segmentMax": 0.0,
+              "rawP95": 0.0,
+              "samples": 6571
+            },
+            "draws": {
+              "medianOfSegments": 69.0,
+              "segmentMin": 69.0,
+              "segmentMax": 69.0,
+              "rawP95": 69.0,
+              "samples": 6571
+            }
+          }
+        }
+      ],
+      "pairedDeltas": [
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": 0.002295884769409895,
+              "min": -0.008496339432895184,
+              "max": 0.008248316589742899,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.0028000000000000247,
+              "min": -0.008300000000000196,
+              "max": 0.008449999999999847,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": -0.005120000000000013,
+              "min": -0.022527999999999992,
+              "max": 0.009216000000000002,
+              "positivePairs": 2,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": false,
+          "shadows": true,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": 0.0018990249373018742,
+              "min": -0.006997550372034311,
+              "max": 0.010097806807607412,
+              "positivePairs": 4,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.0023000000000000798,
+              "min": -0.006950000000000234,
+              "max": 0.010050000000000114,
+              "positivePairs": 5,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.0015360000000000373,
+              "min": -0.010239999999999916,
+              "max": 0.018432000000000004,
+              "positivePairs": 5,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": 0.0001026783138513565,
+              "min": -0.005102017894387245,
+              "max": 0.011550378985702991,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.00024999999999997247,
+              "min": -0.0049000000000001265,
+              "max": 0.01175000000000015,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": -0.0035839999999999206,
+              "min": -0.012800000000000145,
+              "max": 0.015872000000000108,
+              "positivePairs": 2,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "authored-three",
+          "ceiling": true,
+          "shadows": true,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": 0.004352652467787266,
+              "min": -0.005300389602780342,
+              "max": 0.011748808901757002,
+              "positivePairs": 5,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.004375000000000018,
+              "min": -0.0049000000000001265,
+              "max": 0.011849999999999916,
+              "positivePairs": 5,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.010752000000000095,
+              "min": -0.009728000000000181,
+              "max": 0.045055999999999985,
+              "positivePairs": 4,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": 0.1330463564954698,
+              "min": 0.11309882393106818,
+              "max": 0.16325106844305992,
+              "positivePairs": 6,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.1351500000000001,
+              "min": 0.11474999999999991,
+              "max": 0.1645000000000001,
+              "positivePairs": 6,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": -0.0010240000000000249,
+              "min": -0.0010240000000000249,
+              "max": -0.0010239999999999694,
+              "positivePairs": 0,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": false,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": 0.008351024007424712,
+              "min": -0.03910856321454048,
+              "max": 0.05065195728093386,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.006825000000000081,
+              "min": -0.038899999999999935,
+              "max": 0.05269999999999997,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.0,
+              "min": 0.0,
+              "max": 0.0010239999999999694,
+              "positivePairs": 1,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": 0.00017380807548761368,
+              "min": -0.0008041970431804657,
+              "max": 0.0026007182896137238,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "mainMs": {
+              "median": -5.000000000032756e-05,
+              "min": -0.001100000000000101,
+              "max": 0.004100000000000215,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.0025599999999998957,
+              "min": 0.0010239999999992477,
+              "max": 0.0040959999999996555,
+              "positivePairs": 6,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": false,
+          "shadows": true,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": 2.491287887096405e-05,
+              "min": -0.0029513612389564514,
+              "max": 0.0005033798515796661,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "mainMs": {
+              "median": 0.00019999999999953388,
+              "min": -0.004550000000000054,
+              "max": 0.0008000000000008001,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": -0.0005119999999996239,
+              "min": -0.0030720000000004077,
+              "max": 0.0020479999999993836,
+              "positivePairs": 1,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "comparison": "C-minus-A",
+          "metrics": {
+            "frameMs": {
+              "median": -0.00040046870708465576,
+              "min": -0.0026924535632133484,
+              "max": 0.010756775736808777,
+              "positivePairs": 2,
+              "count": 6
+            },
+            "mainMs": {
+              "median": -0.0006499999999998174,
+              "min": -0.0030000000000001137,
+              "max": 0.010549999999999393,
+              "positivePairs": 2,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.0020479999999998277,
+              "min": 0.001024000000000136,
+              "max": 0.0030719999999995196,
+              "positivePairs": 6,
+              "count": 6
+            }
+          }
+        },
+        {
+          "scenario": "dense-sixty",
+          "ceiling": true,
+          "shadows": true,
+          "comparison": "C-minus-B",
+          "metrics": {
+            "frameMs": {
+              "median": -0.000648200511932373,
+              "min": -0.0028060749173164368,
+              "max": 0.0005525071173906326,
+              "positivePairs": 2,
+              "count": 6
+            },
+            "mainMs": {
+              "median": -0.0004500000000002835,
+              "min": -0.0021999999999993136,
+              "max": 0.0018000000000002458,
+              "positivePairs": 3,
+              "count": 6
+            },
+            "renderMs": null,
+            "gpuMs": {
+              "median": 0.0,
+              "min": -0.0005119999999996239,
+              "max": 0.0010239999999992477,
+              "positivePairs": 2,
+              "count": 6
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs": "cef5e8df8496ab48a026e1f4cc8d1fd45856388c6c33b046ac625f5c508f4f5a",
+    "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs": "72d4366e80b294bb1a74de3113f0cda8e6346031edf0d66a42e43f438e6abe0c",
+    "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudyProfile.cs": "0976d792df185e5c91b54a6c970d20cfaf415849f770b77ceac2ba2a11aa0cf6",
+    "Assets/EmergencyShift/Materials/FurnitureLightStudy.shader": "4b9f1997a2f7c3b6f3c6e6909755f33845118c0e722d5c0f2eed61a4afbcbc45",
+    "Assets/EmergencyShift/Data/ArtReview/FurnitureLightStudy.asset": "cb4a375b310a7c4c2a77a6267db252e422b85d69dd92e017576b8937c756bb94",
+    "Assets/EmergencyShift/Scenes/ArtReview/FurnitureLightStudy.unity": "88f55ef217e805eed0d25a883544d46d583fdcb28664b51d27908c58c91d0423"
+  }
+}
