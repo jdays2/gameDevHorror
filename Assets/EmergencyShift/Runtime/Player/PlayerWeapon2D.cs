@@ -256,6 +256,7 @@ namespace EmergencyShift
             }
 
             inventory.ActiveCycle?.Tick(Time.time);
+            ReloadEmptyWeapon();
             var keyboard = Keyboard.current;
             if (keyboard != null)
             {
@@ -283,6 +284,15 @@ namespace EmergencyShift
                 {
                     TryFire();
                 }
+            }
+        }
+
+        private void ReloadEmptyWeapon()
+        {
+            var cycle = inventory.ActiveCycle;
+            if (CanUse && cycle != null && cycle.MagazineCapacity > 0 && cycle.Loaded == 0 && cycle.Reserve > 0)
+            {
+                cycle.TryReload(Time.time);
             }
         }
 
@@ -401,6 +411,7 @@ namespace EmergencyShift
                 impact.Play(visualProfile, true, -direction);
             }
 
+            ReloadEmptyWeapon();
             return true;
         }
 

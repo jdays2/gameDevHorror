@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-19",
+  "change": "Actual reload phase replaces the aim reticle with rotating arrows; an empty active magazine requests reload when reserve is available.",
+  "editMode": {
+    "fixtures": [
+      "MagazineWeaponTests",
+      "WeaponCycleTests"
+    ],
+    "jobId": "9d8c3f835dc04e28a74cfd8d628e90ed",
+    "passed": 16,
+    "failed": 0
+  },
+  "playMode": {
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "checks": [
+      "Normal reticle before final pistol shot",
+      "Actual final pistol shot succeeds",
+      "Final shot immediately starts reload and swaps reticle",
+      "One reload cue and one consumed cartridge",
+      "Reload is not restarted and blocks pistol firing",
+      "Reload completes with conserved ammo and normal reticle",
+      "Final cartridge can fire with no reserve",
+      "No reserve means no false reload icon or infinite reload",
+      "Empty weapon remains unable to fire",
+      "Picking up reserve for empty magazine starts reload",
+      "Partially loaded magazine does not auto reload",
+      "Manual X reload path remains available",
+      "Manual reload uses the same icon",
+      "Switching away from reload clears the icon",
+      "Actual final shotgun shot succeeds",
+      "Pump phase retains normal reticle",
+      "Empty shotgun auto reloads after pump",
+      "Single-shell loading conserves total ammo",
+      "Shotgun loading remains interruptible after first shell",
+      "Interrupted reload icon disappears during pump",
+      "Blocked gameplay hides reticle and does not start reload",
+      "Reload starts when gameplay resumes",
+      "Reload symbol produces visible mesh geometry"
+    ],
+    "passed": 23,
+    "reticleVertices": 332,
+    "runtimeOnly": true
+  },
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 15.062108299999998,
+    "scenes": [
+      "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+      "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
+    ]
+  },
+  "visualInspection": {
+    "image": "ReloadReticle01/Reload-detail.png",
+    "source": "Native 3840x2160 Game View screenshot; unscaled 300x300 crop around cursor",
+    "result": "Two pale rotating arrows, dark outline, readable over lit tile floor; normal aim ticks absent during reload.",
+    "captureOnly": "The current runtime reload timer was held for the screenshot; shared weapon definitions were not changed."
+  },
+  "scenePreservation": {
+    "endMode": "Edit",
+    "endDirty": false,
+    "savedSceneObjectsComparedWithHead": "Same YAML document IDs and identical serialized document contents; existing serialization order differences remain unstaged.",
+    "newSavedSceneObjects": 0
+  },
+  "limits": "Automated play checks advance cycle timers explicitly. Art remains open to owner feedback. No new door interaction cues."
+}
