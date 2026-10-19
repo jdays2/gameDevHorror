@@ -1,6 +1,7 @@
 using System;
 using EmergencyShift.Core.Composition;
 using EmergencyShift.Core.Time;
+using EmergencyShift.Features.DamageFeedback;
 using EmergencyShift.Features.Health;
 using EmergencyShift.Features.PlayerInput;
 using EmergencyShift.Features.PlayerInput.Logic;
@@ -56,6 +57,7 @@ namespace EmergencyShift
         {
             Container.Bind<IGameClock>().To<UnityGameClock>().AsSingle();
             HealthInstaller.Install(Container);
+            DamageFeedbackInstaller.Install(Container);
             LevelRegistriesInstaller.Install(Container);
             Container.Bind<ScenePrefabFactory>().AsSingle().WithArguments(transform);
             Container.Bind<PlayerLife2D>().FromInstance(player);

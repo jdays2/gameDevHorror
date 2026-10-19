@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-19",
+  "feature": "DirectionalDamage01",
+  "editor": "6000.6.5f1",
+  "focusedEditMode": {
+    "passed": 16,
+    "failed": 0
+  },
+  "workingTreeEditMode": {
+    "total": 157,
+    "passed": 157,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "native": {
+    "passed": 26,
+    "checks": [
+      "Gameplay Canvas is visible for the native screenshots",
+      "HUD owns a material instance",
+      "Overlay never intercepts input",
+      "Overlay has a visible full-screen rectangle",
+      "left edge from actual accepted damage",
+      "left preserves the existing health fill",
+      "right edge from actual accepted damage",
+      "right preserves the existing health fill",
+      "bottom edge from actual accepted damage",
+      "bottom preserves the existing health fill",
+      "top edge from actual accepted damage",
+      "top preserves the existing health fill",
+      "bottom-right edge from actual accepted damage",
+      "bottom-right preserves the existing health fill",
+      "rotated-camera-top edge from actual accepted damage",
+      "rotated-camera-top preserves the existing health fill",
+      "Protected hit produces no additional pulse",
+      "Restore clears without simulating a hit",
+      "Unknown direction keeps the directional overlay empty",
+      "Disabling HUD clears the overlay",
+      "Re-enable keeps one owned material and no stale pulse",
+      "Re-enable does not duplicate subscriptions",
+      "Effect fades on unscaled time while the world is paused",
+      "Fatal hit keeps its direction and the existing zero-health bar",
+      "Revive/restore clears fatal feedback",
+      "Shared style and material remain immutable"
+    ],
+    "screenshotFolder": "Docs/UI/DirectionalDamage01",
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "scenesSaved": false
+  },
+  "installation": {
+    "widget": "Assets/EmergencyShift/Prefabs/UI/Feedback/DirectionalDamage.prefab",
+    "style": "Assets/EmergencyShift/Data/UI/Feedback/DirectionalDamage01.asset",
+    "material": "Assets/EmergencyShift/Materials/UI/DamageFeedback/DirectionalBlood.mat",
+    "existingHudComponentsUnchanged": 115,
+    "savedScenesUnchanged": 11,
+    "scenesSaved": false
+  },
+  "references": {
+    "serializedAssets": 357,
+    "unresolvedExternalReferences": []
+  },
+  "windows64": {
+    "status": "completed",
+    "result": "Succeeded",
+    "totalErrors": 0,
+    "totalWarnings": 1,
+    "warnings": [
+      {
+        "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+      }
+    ]
+  },
+  "visualReview": "Both native captures inspected after HLSL fix: visible blood at left/bottom-right, transparent center, readable health bar.",
+  "scope": "Full working-tree test/build includes separate uncommitted PauseMenu work; this feature commit excludes it."
+}

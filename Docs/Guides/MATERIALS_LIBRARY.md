@@ -9,6 +9,7 @@
 | `Environment/Lighting` | Корпус/маска больничной лампы, трубка/TubeGlow, PropEmission и три материала практических источников света |
 | `Characters` | Тень силуэта существа и поверхность глаза Сталкера со своими шейдерами |
 | `Effects` | MuzzlePlume и TransientGlow со своими шейдерами |
+| `UI/DamageFeedback` | DirectionalBlood: общий шаблон материала и процедурный шейдер крови по краям HUD; экземпляр материала принадлежит HUD |
 | `Physics` | NoFriction.physicsMaterial2D |
 | `Development` | Изолированная проба FurnitureLightStudy и её шейдер |
 
