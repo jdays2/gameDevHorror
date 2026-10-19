@@ -1,0 +1,152 @@
+{
+  "scene": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+  "date": "2026-10-19",
+  "scope": "Native Unity authoring of the existing scene; no level regeneration or production C# changes.",
+  "prefabInstancesAdded": 31,
+  "oldFurnitureBlocksReplaced": 4,
+  "hierarchyRoot": "Basement dressing - hospital assets",
+  "placementLighting": "Inherited from current prefab sources; no height-class system added.",
+  "floorArtwork": "Reused existing FloorMaterials PNGs; no source image changes.",
+  "collisionCheck": {
+    "addedColliders": 30,
+    "missingScripts": 0,
+    "overlaps": [],
+    "clearances": [
+      {
+        "prop": "A - cabinet cover",
+        "other": "A - equipment case by weapon",
+        "separation": 0.06687592
+      },
+      {
+        "prop": "A - equipment case by weapon",
+        "other": "A - cabinet cover",
+        "separation": 0.06687592
+      },
+      {
+        "prop": "A - cot by north wall",
+        "other": "A - service records desk",
+        "separation": 0.08718978
+      },
+      {
+        "prop": "B - east handwash station",
+        "other": "B east",
+        "separation": 0.05972908
+      },
+      {
+        "prop": "A - autopsy wash station",
+        "other": "A south",
+        "separation": 0.0233776383
+      },
+      {
+        "prop": "A - service floor cabinet",
+        "other": "A south",
+        "separation": 0.00161264464
+      },
+      {
+        "prop": "Hall - pipe run west",
+        "other": "Corridor north",
+        "separation": 0.0261233859
+      },
+      {
+        "prop": "Hall - pipe run west",
+        "other": "Hall - pipe run east",
+        "separation": 0.00149868056
+      },
+      {
+        "prop": "Hall - pipe run east",
+        "other": "Corridor north",
+        "separation": 0.0261233859
+      },
+      {
+        "prop": "Hall - pipe run east",
+        "other": "B west upper",
+        "separation": 0.0261233859
+      },
+      {
+        "prop": "Hall - pipe run east",
+        "other": "Hall - pipe run west",
+        "separation": 0.00149868056
+      }
+    ]
+  },
+  "staticRoutes": {
+    "capsule": [
+      0.62,
+      0.94
+    ],
+    "gridStep": 0.16,
+    "reachedCells": 2809,
+    "virtualOpenDoors": 1,
+    "checks": [
+      {
+        "name": "Pistol",
+        "reachable": true,
+        "closestDistance": 0.300166577
+      },
+      {
+        "name": "Ammo A",
+        "reachable": true,
+        "closestDistance": 0.07615739
+      },
+      {
+        "name": "Range upgrade A south",
+        "reachable": true,
+        "closestDistance": 0.140772954
+      },
+      {
+        "name": "Upgrade A east",
+        "reachable": true,
+        "closestDistance": 0.120673388
+      },
+      {
+        "name": "Service card",
+        "reachable": true,
+        "closestDistance": 0.0721112043
+      },
+      {
+        "name": "Upgrade B north",
+        "reachable": true,
+        "closestDistance": 0.07000005
+      },
+      {
+        "name": "Upgrade B south",
+        "reachable": true,
+        "closestDistance": 0.09219521
+      },
+      {
+        "name": "Ammo B",
+        "reachable": true,
+        "closestDistance": 0.240208268
+      },
+      {
+        "name": "East room aisle",
+        "reachable": true,
+        "closestDistance": 0.08062251
+      }
+    ],
+    "limitation": "Static geometry only; not a dynamic enemy combat regression."
+  },
+  "preservation": {
+    "preservedOriginalTransformCount": 441,
+    "transformChangesOutsideRequestedScope": [],
+    "gameplayScalarChanges": [],
+    "note": "Lighting components changed concurrently in another task; their removal and boundary guides are excluded from gameplay comparison. Object reference instance IDs are not stable across reloads and are excluded."
+  },
+  "save": {
+    "saved": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+    "dirty": false,
+    "undo": ""
+  },
+  "playSmoke": {
+    "play": true,
+    "missingScripts": 0,
+    "flashlight": true,
+    "scene": "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
+  },
+  "console": "No Unity errors. One MCP duplicate-command suppression warning.",
+  "captures": {
+    "overview-before.png": "Isolated native unlit renderer preview, before dressing.",
+    "overview-after.png": "Isolated native unlit renderer preview, after dressing; not gameplay lighting.",
+    "game-start.png": "Actual Play screenshot with flashlight enabled."
+  }
+}
