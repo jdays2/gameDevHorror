@@ -1,0 +1,404 @@
+{
+  "date": "2026-10-19",
+  "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+  "scope": "Two reader doors; three saved text-free variants; B active provisionally; no card pictograms in scene",
+  "runtime": {
+    "passed": true,
+    "records": [
+      {
+        "door": "H-P - green access",
+        "measuredConfirmationDelay": 0.242286682,
+        "deniedEvents": 2,
+        "grantedEvents": 1,
+        "actualAudioSourcesVerified": true
+      },
+      {
+        "door": "H-P - green access",
+        "reopenWithoutReader": true,
+        "restoreCancellation": true,
+        "disableCancellation": true,
+        "silentRestore": true,
+        "capture": "green-closed"
+      },
+      {
+        "door": "H-O3 - blue access",
+        "measuredConfirmationDelay": 0.242774963,
+        "deniedEvents": 2,
+        "grantedEvents": 1,
+        "actualAudioSourcesVerified": true
+      },
+      {
+        "door": "H-O3 - blue access",
+        "reopenWithoutReader": true,
+        "restoreCancellation": true,
+        "disableCancellation": true,
+        "silentRestore": true,
+        "capture": "blue-closed"
+      }
+    ]
+  },
+  "finalAudit": {
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "editMode": true,
+    "dirty": false,
+    "doors": 11,
+    "closedDoors": 11,
+    "enemiesActive": 9,
+    "readerDoors": [
+      "H-O3 - blue access",
+      "H-P - green access"
+    ],
+    "variants": [
+      {
+        "door": "H-P - green access",
+        "children": [
+          {
+            "name": "A-solid-panel",
+            "active": false
+          },
+          {
+            "name": "B-striped-panel",
+            "active": true
+          },
+          {
+            "name": "C-double-outline",
+            "active": false
+          }
+        ]
+      },
+      {
+        "door": "H-O3 - blue access",
+        "children": [
+          {
+            "name": "A-solid-panel",
+            "active": false
+          },
+          {
+            "name": "B-striped-panel",
+            "active": true
+          },
+          {
+            "name": "C-double-outline",
+            "active": false
+          }
+        ]
+      }
+    ],
+    "missingScripts": 0,
+    "paint": [
+      {
+        "name": "White paint foundation",
+        "material": "FlatLit",
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default",
+        "order": -7,
+        "color": "RGBA(0.780, 0.790, 0.760, 1.000)",
+        "collider": false,
+        "shadowCaster": false
+      },
+      {
+        "name": "Access color",
+        "material": "FlatLit",
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default",
+        "order": -6,
+        "color": "RGBA(0.220, 0.580, 0.340, 1.000)",
+        "collider": false,
+        "shadowCaster": false
+      },
+      {
+        "name": "White paint foundation",
+        "material": "FlatLit",
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default",
+        "order": -7,
+        "color": "RGBA(0.780, 0.790, 0.760, 1.000)",
+        "collider": false,
+        "shadowCaster": false
+      },
+      {
+        "name": "Access color",
+        "material": "FlatLit",
+        "shader": "Universal Render Pipeline/2D/Sprite-Lit-Default",
+        "order": -6,
+        "color": "RGBA(0.180, 0.490, 0.780, 1.000)",
+        "collider": false,
+        "shadowCaster": false
+      }
+    ],
+    "profile": "{\"MonoBehaviour\":{\"m_Enabled\":true,\"m_EditorHideFlags\":0,\"m_Name\":\"ReaderFeedback\",\"m_EditorClassIdentifier\":\"EmergencyShift.Runtime::EmergencyShift.DoorAccessFeedbackProfile\",\"denied\":{\"fileID\":8300000,\"guid\":\"1f7571a7a1465a8499942f0b4266ce12\",\"type\":3},\"granted\":{\"fileID\":8300000,\"guid\":\"d088a4fe703a5804495eb25fcf31652c\",\"type\":3},\"confirmationDelay\":0.23999999463558197,\"denialCooldown\":0.800000011920929,\"volume\":0.3199999928474426,\"hearingDistance\":7.0}}"
+  },
+  "editMode": {
+    "mode": "EditMode",
+    "summary": {
+      "total": 14,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 0.6661637,
+      "resultState": "Passed"
+    },
+    "results": [
+      {
+        "name": "RestorationDoesNotEmitReaderFeedbackAndLegacyDoorsHaveNoDelay",
+        "fullName": "EmergencyShift.Tests.DoorAccessTests.RestorationDoesNotEmitReaderFeedbackAndLegacyDoorsHaveNoDelay",
+        "state": "Passed",
+        "durationSeconds": 0.0220939,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "SuccessfulReadingIsOnceAndUnlockPersistsWithoutTheCard",
+        "fullName": "EmergencyShift.Tests.DoorAccessTests.SuccessfulReadingIsOnceAndUnlockPersistsWithoutTheCard",
+        "state": "Passed",
+        "durationSeconds": 0.0012196,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "WrongCardCannotUnlockAndRepeatedAttemptDoesNotSpamFeedback",
+        "fullName": "EmergencyShift.Tests.DoorAccessTests.WrongCardCannotUnlockAndRepeatedAttemptDoesNotSpamFeedback",
+        "state": "Passed",
+        "durationSeconds": 0.0008328,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "BrokenJsonIsRejected",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.BrokenJsonIsRejected",
+        "state": "Passed",
+        "durationSeconds": 0.016898,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "CardRestoreReplacesInventoryWithoutSharingIt",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.CardRestoreReplacesInventoryWithoutSharingIt",
+        "state": "Passed",
+        "durationSeconds": 0.0007446,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ClearRemovesBackupAndSlot",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.ClearRemovesBackupAndSlot",
+        "state": "Passed",
+        "durationSeconds": 0.0205159,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "DiskRoundTripPreservesStableIdAndPayload",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.DiskRoundTripPreservesStableIdAndPayload",
+        "state": "Passed",
+        "durationSeconds": 0.0052965,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "DuplicateIdsAreRejectedBeforeWriting",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.DuplicateIdsAreRejectedBeforeWriting",
+        "state": "Passed",
+        "durationSeconds": 0.0005587,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "DuplicateSceneIdsFailRatherThanOverwritingAnEnemy",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.DuplicateSceneIdsFailRatherThanOverwritingAnEnemy",
+        "state": "Passed",
+        "durationSeconds": 0.0014485,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "HealthRestoreIsSilentAndStillPreventsSecondDeath",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.HealthRestoreIsSilentAndStillPreventsSecondDeath",
+        "state": "Passed",
+        "durationSeconds": 0.0007167,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "InactiveActorPayloadSurvivesJsonWithoutBecomingADeadActor",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.InactiveActorPayloadSurvivesJsonWithoutBecomingADeadActor",
+        "state": "Passed",
+        "durationSeconds": 0.0020955,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "NonFinitePositionIsRejected",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.NonFinitePositionIsRejected",
+        "state": "Passed",
+        "durationSeconds": 0.0003036,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ReplacementKeepsPreviousSlotBackup",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.ReplacementKeepsPreviousSlotBackup",
+        "state": "Passed",
+        "durationSeconds": 0.0164159,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "UnsupportedVersionDoesNotReplaceLastGoodSave",
+        "fullName": "EmergencyShift.Tests.PersistenceTests.UnsupportedVersionDoesNotReplaceLastGoodSave",
+        "state": "Passed",
+        "durationSeconds": 0.0040552,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      }
+    ]
+  },
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 11.603565399999999,
+    "bytes": 230639017,
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "output": "Builds/MorgueRouteTest-AccessDoors/MorgueRouteTest.exe"
+  },
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "priorAssetPreservation": {
+    "baseline": "After reader runtime source edits, before scene edits and import",
+    "changedExistingFiles": [
+      "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+      "Assets/EmergencyShift/Audio/PlayerWorld/PlayerWorldAudio.asset",
+      "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs"
+    ],
+    "ownedChanges": [
+      "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
+      "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
+    ],
+    "concurrentCommittedChangesPreserved": [
+      "Assets/EmergencyShift/Audio/PlayerWorld/PlayerWorldAudio.asset"
+    ],
+    "concurrentCommit": "21f5caf Replace shuffling player footsteps with short shoe contacts",
+    "allOtherExistingAssetsUnchanged": true
+  },
+  "previews": [
+    "AccessDoorTrial01/comparison.jpg",
+    "AccessDoorTrial01/A-solid-panel.jpg",
+    "AccessDoorTrial01/B-striped-panel.jpg",
+    "AccessDoorTrial01/C-double-outline.jpg",
+    "AccessDoorTrial01/B-green.jpg",
+    "AccessDoorTrial01/B-dark.jpg"
+  ],
+  "limits": [
+    "Visual and sound approval pending owner evaluation; no listening-based loudness judgement claimed",
+    "Only two trial doors have reader audio and confirmation delay; other locks keep prior behavior",
+    "No ambient hum, new enemy hearing or checkpoint format changes",
+    "Build and one scene run are not FPS/scalability guarantees"
+  ],
+  "revision": "02: owner rejected icon; three white/colored geometric treatments",
+  "initialAuthoring": {
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "preservedOriginalTransformsCollidersGameplay": true,
+    "targets": [
+      {
+        "name": "H-P - green access",
+        "position": "(18.85, 4.95, 0.00)",
+        "card": "green"
+      },
+      {
+        "name": "H-O3 - blue access",
+        "position": "(26.05, 4.95, 0.00)",
+        "card": "blue"
+      }
+    ],
+    "missingScripts": 0
+  },
+  "historicalPreviewsWithRejectedCardIcon": [
+    "AccessDoorTrial01/green-closed.jpg",
+    "AccessDoorTrial01/blue-closed.jpg",
+    "AccessDoorTrial01/green-dark.jpg",
+    "AccessDoorTrial01/blue-dark.jpg"
+  ],
+  "variantCaptureMetadata": [
+    {
+      "name": "A-solid-panel",
+      "doorPixel": [
+        1920.0,
+        1807.82617
+      ],
+      "screen": [
+        1918,
+        1006
+      ],
+      "aim": "(0.00, 1.00)",
+      "on": true
+    },
+    {
+      "name": "B-striped-panel",
+      "doorPixel": [
+        1920.0,
+        1807.82617
+      ],
+      "screen": [
+        3840,
+        2160
+      ],
+      "aim": "(0.00, 1.00)",
+      "on": true
+    },
+    {
+      "name": "C-double-outline",
+      "doorPixel": [
+        1920.0,
+        1807.82617
+      ],
+      "screen": [
+        3840,
+        2160
+      ],
+      "aim": "(0.00, 1.00)",
+      "on": true
+    },
+    {
+      "name": "B-green",
+      "doorPixel": [
+        1920.0,
+        1807.82617
+      ],
+      "screen": [
+        3840,
+        2160
+      ],
+      "aim": "(0.00, 1.00)",
+      "on": true
+    },
+    {
+      "name": "B-dark",
+      "doorPixel": [
+        1920.0,
+        1807.82617
+      ],
+      "screen": [
+        3840,
+        2160
+      ],
+      "aim": "(0.00, 1.00)",
+      "on": false
+    }
+  ],
+  "variantCaptureNote": "Raw images all verified 3840x2160 by compare.py; first capture reports stale Screen dimensions during Game View resize, but raw screenshot and camera viewport are full size. All crops use identical pixel bounds."
+}

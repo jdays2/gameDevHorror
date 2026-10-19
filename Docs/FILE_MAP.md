@@ -34,6 +34,7 @@
 - `Runtime/Definitions/AudioMoodProfile.cs`
 - `Runtime/Definitions/BloodPoolProfile.cs`
 - `Runtime/Definitions/CameraFramingProfile.cs`
+- `Runtime/Definitions/DoorAccessFeedbackProfile.cs`
 - `Runtime/Definitions/DoorAudioSet.cs`
 - `Runtime/Definitions/EnemyDeathAudioSet.cs`
 - `Runtime/Definitions/EnemyDefinition.cs`
@@ -193,6 +194,7 @@
 
 - `Runtime/World/Doors/Door2D.cs`
 - `Runtime/World/Doors/DoorAccess2D.cs`
+- `Runtime/World/Doors/DoorAccessFeedback2D.cs`
 - `Runtime/World/Doors/DoorAudio2D.cs`
 
 ### Runtime/World/Lighting
@@ -245,6 +247,7 @@
 - `Tests/EditMode/CeilingLightOcclusionTests.cs`
 - `Tests/EditMode/DialogueDataTests.cs`
 - `Tests/EditMode/DialoguePrefabTests.cs`
+- `Tests/EditMode/DoorAccessTests.cs`
 - `Tests/EditMode/EnemyDeathAudioTests.cs`
 - `Tests/EditMode/EnemySystemsTests.cs`
 - `Tests/EditMode/EnvironmentPresentationTests.cs`

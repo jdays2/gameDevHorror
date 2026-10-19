@@ -14,6 +14,7 @@ namespace EmergencyShift
         private float duration = 0.3f;
         private Vector3 closedPosition;
         private bool moving;
+        private bool awaitingAccess;
         private DoorAccess2D access;
         private static readonly System.Collections.Generic.List<Door2D> active = new System.Collections.Generic.List<Door2D>();
         public static System.Collections.Generic.IReadOnlyList<Door2D> Active => active;
@@ -25,7 +26,7 @@ namespace EmergencyShift
 
         public event System.Action<bool> MotionStarted;
         public event System.Action<bool> MotionStopped;
-        public bool CanInteract => !moving;
+        public bool CanInteract => !moving && !awaitingAccess;
         public Collider2D Blocker => leaf.GetComponent<Collider2D>();
         public Vector2 InteractionPosition => transform.position;
         public float InteractionRange => 1.6f;
@@ -43,13 +44,33 @@ namespace EmergencyShift
 
         public bool Interact(PlayerInteraction actor)
         {
-            if (!IsAvailable(actor) || (!IsOpen && access != null && !access.TryUnlock(actor)))
+            if (!IsAvailable(actor))
             {
                 return false;
             }
 
+            bool firstUnlock = !IsOpen && access != null && !access.IsUnlocked;
+            if (!IsOpen && access != null && !access.TryUnlock(actor))
+            {
+                return false;
+            }
+
+            if (firstUnlock && access.ConfirmationDelay > 0)
+            {
+                awaitingAccess = true;
+                StartCoroutine(OpenAfterConfirmation(access.ConfirmationDelay));
+                return true;
+            }
+
             Toggle();
             return true;
+        }
+
+        private IEnumerator OpenAfterConfirmation(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            awaitingAccess = false;
+            Toggle();
         }
 
         public void Configure(Transform doorLeaf) => leaf = doorLeaf;
@@ -70,6 +91,7 @@ namespace EmergencyShift
         public void RestoreState(bool open)
         {
             StopAllCoroutines();
+            awaitingAccess = false;
             IsOpen = open;
             moving = false;
             leaf.localPosition = open ? closedPosition + openOffset : closedPosition;
@@ -77,7 +99,7 @@ namespace EmergencyShift
 
         public void Toggle()
         {
-            if (moving || (!IsOpen && access != null && !access.IsUnlocked))
+            if (moving || awaitingAccess || (!IsOpen && access != null && !access.IsUnlocked))
             {
                 return;
             }
@@ -108,12 +130,13 @@ namespace EmergencyShift
         private void OnDisable()
         {
             active.Remove(this);
+            StopAllCoroutines();
+            awaitingAccess = false;
             if (!moving)
             {
                 return;
             }
 
-            StopAllCoroutines();
             moving = false;
             if (leaf != null)
             {

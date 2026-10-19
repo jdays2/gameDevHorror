@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace EmergencyShift
 {
-    /// <summary>Optional lock. The door still owns interaction, movement, collision and audio.</summary>
+    /// <summary>Optional card lock and reader events; Door2D owns interaction and movement.</summary>
     [DisallowMultipleComponent, RequireComponent(typeof(Door2D))]
     public sealed class DoorAccess2D : MonoBehaviour
     {
@@ -10,7 +10,13 @@ namespace EmergencyShift
         private string requiredCardId = "service";
         [SerializeField]
         private string cardName = "Служебная карта";
+        [SerializeField]
+        private DoorAccessFeedbackProfile feedbackProfile;
         private float nextNotice;
+        private float nextDeniedFeedback;
+        public event System.Action<bool> AccessChecked;
+        public DoorAccessFeedbackProfile FeedbackProfile => feedbackProfile;
+        public float ConfirmationDelay => feedbackProfile != null ? feedbackProfile.confirmationDelay : 0;
         public string RequiredCardId => requiredCardId;
         public bool IsUnlocked
         {
@@ -20,6 +26,13 @@ namespace EmergencyShift
         public void RestoreState(bool unlocked)
         {
             IsUnlocked = unlocked;
+            nextDeniedFeedback = 0;
+            nextNotice = 0;
+        }
+
+        public void ConfigureFeedback(DoorAccessFeedbackProfile profile)
+        {
+            feedbackProfile = profile;
         }
 
         public void Configure(string id, string label)
@@ -45,7 +58,14 @@ namespace EmergencyShift
             if (HasCard(actor))
             {
                 IsUnlocked = true;
+                AccessChecked?.Invoke(true);
                 return true;
+            }
+
+            if (Time.time >= nextDeniedFeedback)
+            {
+                nextDeniedFeedback = Time.time + (feedbackProfile != null ? feedbackProfile.denialCooldown : .8f);
+                AccessChecked?.Invoke(false);
             }
 
             if (actor != null && Time.time >= nextNotice)
