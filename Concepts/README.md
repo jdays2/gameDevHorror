@@ -23,7 +23,7 @@
 
 ### Environment
 
-- [Малые индикаторы карточных дверей и двусторонние звуки](Used/Environment/CardDoorIndicators01/README.md)
+- [Отклонённая проба индикаторов карточных дверей; двусторонние звуки сохранены](Used/Environment/CardDoorIndicators01/README.md)
 
 - [Износ полов остальных комнат · 03](Used/Environment/RoomFloorWear03/README.md)
 - [Разметка карточных дверей B · общий префаб с износом](Used/Environment/CardAccessZone01/README.md)
