@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-19",
+  "method": "Native geometric raster masks with supersampled paths and polygons; no imagegen.",
+  "generator": "Tools/Art/bake_corridor_floor_wear_02.py",
+  "runtimeGeneration": false,
+  "library": "Assets/EmergencyShift/Art/Environment/FloorWear01",
+  "existingReuse": "caster-scuff prefab references the existing FloorWear01/castor-scuff.png unchanged.",
+  "entries": [
+    {
+      "id": "vinyl-weld-seam",
+      "pixels": [
+        512,
+        32
+      ],
+      "pixelsPerUnit": 256,
+      "feature": "Straight thin weld; continuous ends, two restrained pressure changes, no raised lip.",
+      "sha256": "194e290755e2eecc3dd41115886a26c337d3624aa76c57e9ca038b6a92620028"
+    },
+    {
+      "id": "wheel-tracks-straight",
+      "pixels": [
+        768,
+        320
+      ],
+      "pixelsPerUnit": 256,
+      "feature": "Paired caster paths; unequal contact gaps, soft pressure taper; no tyre tread or footprints.",
+      "sha256": "a6e107c4c3e5c8b78cd81bcfb89a1eaa4bf1bb7362db8f5c447959958f00a05b"
+    },
+    {
+      "id": "wheel-tracks-turn",
+      "pixels": [
+        704,
+        480
+      ],
+      "pixelsPerUnit": 256,
+      "feature": "Paired caster paths; unequal contact gaps, soft pressure taper; no tyre tread or footprints.",
+      "sha256": "5f54402bcb57a024fe01c6fc671907e3698571de0f957efa5ab8e5dbc4387a73"
+    },
+    {
+      "id": "vinyl-patch-panel",
+      "pixels": [
+        512,
+        352
+      ],
+      "pixelsPerUnit": 256,
+      "feature": "Flat replacement vinyl, slightly different batch tone; clipped corner, welded edge, two local handling rubs. No lighting baked in.",
+      "sha256": "9e26d99285589982bc1c1a7394a10629514dbc3392a82ec8c29f5adacb78100c"
+    },
+    {
+      "id": "vinyl-patch-strip",
+      "pixels": [
+        640,
+        192
+      ],
+      "pixelsPerUnit": 256,
+      "feature": "Flat replacement vinyl, slightly different batch tone; clipped corner, welded edge, two local handling rubs. No lighting baked in.",
+      "sha256": "e7f817b20214cb93d33b90fdd7993597e77b757983e95c22036214fa7729cb0b"
+    }
+  ],
+  "import": {
+    "pixelsPerUnit": 256,
+    "mesh": "FullRect",
+    "compression": "Uncompressed",
+    "filter": "Bilinear",
+    "wrap": "Clamp",
+    "mipmap": false,
+    "generatePhysicsShape": false
+  },
+  "sourceReuseSha256": "91d6695bd10d165bcee8d09e322a2f20a0d5e0ddfa268ad787ab9335fc1010e6",
+  "validation": "Docs/Validation/CorridorFloorWear02.json"
+}
