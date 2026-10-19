@@ -1,0 +1,609 @@
+{
+  "date": "2026-10-19",
+  "scope": "Separate editable route/arena test. No decor or future exit. No runtime code changes.",
+  "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+  "route": {
+    "success": true,
+    "failure": null,
+    "seconds": 71.58619610000096,
+    "distance": 236.609741,
+    "initialGunBlocked": true,
+    "initialBlueBlocked": true,
+    "records": [
+      {
+        "target": "green",
+        "position": "(43.29, -14.75)",
+        "ammo": 0,
+        "hasPistol": false,
+        "cards": [
+          "green"
+        ]
+      },
+      {
+        "target": "pistol",
+        "position": "(18.79, 8.75)",
+        "ammo": 8,
+        "hasPistol": true,
+        "cards": [
+          "green"
+        ]
+      },
+      {
+        "target": "pre-arena-ammo",
+        "position": "(14.07, 14.25)",
+        "ammo": 24,
+        "hasPistol": true,
+        "cards": [
+          "green"
+        ]
+      },
+      {
+        "target": "blue",
+        "position": "(-6.17, 18.25)",
+        "ammo": 24,
+        "hasPistol": true,
+        "cards": [
+          "blue",
+          "green"
+        ]
+      },
+      {
+        "target": "post-arena-ammo",
+        "position": "(-7.16, 5.25)",
+        "ammo": 32,
+        "hasPistol": true,
+        "cards": [
+          "blue",
+          "green"
+        ]
+      },
+      {
+        "target": "start-return",
+        "position": "(-0.08, 0.00)",
+        "ammo": 32,
+        "hasPistol": true,
+        "cards": [
+          "blue",
+          "green"
+        ]
+      },
+      {
+        "target": "blue-branch-1",
+        "position": "(19.25, -8.95)",
+        "ammo": 32,
+        "hasPistol": true,
+        "cards": [
+          "blue",
+          "green"
+        ]
+      },
+      {
+        "target": "blue-branch-2",
+        "position": "(25.75, -8.93)",
+        "ammo": 32,
+        "hasPistol": true,
+        "cards": [
+          "blue",
+          "green"
+        ]
+      },
+      {
+        "target": "blue-branch-3",
+        "position": "(25.95, 7.99)",
+        "ammo": 32,
+        "hasPistol": true,
+        "cards": [
+          "blue",
+          "green"
+        ]
+      }
+    ],
+    "openedDoors": [
+      "S-C0 - ordinary",
+      "H-ER - ordinary",
+      "ER-ED - ordinary",
+      "G-R - ordinary",
+      "R-H - green access",
+      "H-P - green access",
+      "A-B - ordinary",
+      "S-W - blue access",
+      "H-O1 - blue access",
+      "H-O2 - blue access",
+      "H-O3 - blue access"
+    ],
+    "scope": "Real Rigidbody movement and collision, real auto-pickups/locks; enemies temporarily disabled in Play. Not a combat balance test."
+  },
+  "locksAndHud": {
+    "success": true,
+    "results": [
+      {
+        "door": "H-P - green access",
+        "inReach": true,
+        "deniedWithoutCard": true
+      },
+      {
+        "door": "S-W - blue access",
+        "inReach": true,
+        "deniedWithoutCard": true
+      }
+    ],
+    "hudPresent": true,
+    "hudCards": [
+      {
+        "id": "green",
+        "active": true
+      },
+      {
+        "id": "blue",
+        "active": true
+      },
+      {
+        "id": "red",
+        "active": false
+      }
+    ]
+  },
+  "shadows": {
+    "checks": {
+      "closed_door_blocks_light": true,
+      "open_door_transmits_light": true,
+      "solid_wall_blocks_light": true,
+      "cover_casts_shadow": true
+    },
+    "samples": {
+      "door-closed": {
+        "meanRgb255": [
+          4.0,
+          4.964497041420119,
+          4.0
+        ],
+        "pixel": [
+          2620,
+          1081
+        ],
+        "resolution": [
+          3840,
+          2160
+        ]
+      },
+      "door-open": {
+        "meanRgb255": [
+          45.71597633136095,
+          49.64497041420118,
+          48.11834319526627
+        ],
+        "pixel": [
+          2624,
+          1079
+        ],
+        "resolution": [
+          3840,
+          2160
+        ]
+      },
+      "solid-wall": {
+        "meanRgb255": [
+          4.005917159763314,
+          5.0,
+          4.384615384615385
+        ],
+        "pixel": [
+          1920,
+          351
+        ],
+        "resolution": [
+          3840,
+          2160
+        ]
+      },
+      "cover-shadow": {
+        "meanRgb255": [
+          4.0,
+          4.940828402366864,
+          4.0
+        ],
+        "pixel": [
+          1920,
+          234
+        ],
+        "resolution": [
+          3840,
+          2160
+        ]
+      },
+      "cover-reference-no-shadow": {
+        "meanRgb255": [
+          24.39644970414201,
+          27.011834319526628,
+          25.579881656804734
+        ],
+        "pixel": [
+          1920,
+          234
+        ],
+        "resolution": [
+          3840,
+          2160
+        ]
+      },
+      "cover-diagonal": {
+        "meanRgb255": [
+          4.0,
+          4.988165680473373,
+          4.106508875739645
+        ],
+        "pixel": [
+          2976,
+          328
+        ],
+        "resolution": [
+          3840,
+          2160
+        ]
+      }
+    },
+    "note": "13x13 pixel floor patches in real Game View captures. RGB values are gamma-encoded screenshot values, not physical luminance. Reference disables only one caster temporarily in Play."
+  },
+  "combatSmoke": {
+    "ammoBefore": 32,
+    "ammoAfter": 30,
+    "shots": 2,
+    "targetHealth": 0,
+    "targetAlive": false,
+    "aggro": 1,
+    "playerHealth": 3,
+    "remains": 1,
+    "enemies": [
+      {
+        "name": "Arena Stalker 01",
+        "health": 0,
+        "state": "Dead",
+        "aggro": true
+      },
+      {
+        "name": "Arena Stalker 02",
+        "health": 2,
+        "state": "Dormant",
+        "aggro": false
+      },
+      {
+        "name": "Arena Stalker 03",
+        "health": 2,
+        "state": "Dormant",
+        "aggro": false
+      },
+      {
+        "name": "Arena Stalker 04",
+        "health": 2,
+        "state": "Dormant",
+        "aggro": false
+      },
+      {
+        "name": "Arena Stalker 05",
+        "health": 2,
+        "state": "Dormant",
+        "aggro": false
+      },
+      {
+        "name": "Arena Stalker 06",
+        "health": 2,
+        "state": "Dormant",
+        "aggro": false
+      },
+      {
+        "name": "Arena Stalker 07",
+        "health": 2,
+        "state": "Dormant",
+        "aggro": false
+      },
+      {
+        "name": "Arena Stalker 08",
+        "health": 2,
+        "state": "Dormant",
+        "aggro": false
+      }
+    ],
+    "scope": "Live arena scene smoke with real shots and death. Does not prove combat balance or full clearability."
+  },
+  "restart": {
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "health": 3,
+    "ammo": 0,
+    "hasWeapon": false,
+    "cards": [],
+    "position": "(0.00, 0.00, 0.00)",
+    "enemies": 9,
+    "remainingLoot": 3,
+    "doorsClosed": true
+  },
+  "savedSceneAudit": {
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "dirty": false,
+    "play": false,
+    "compiling": false,
+    "missingScripts": 0,
+    "cameras": 1,
+    "players": 1,
+    "hud": 1,
+    "props": 0,
+    "arenaEnemies": 8,
+    "approachEnemies": 1,
+    "enemyGeometryOverlaps": [],
+    "enemyDefinitions": [
+      {
+        "name": "Arena Stalker 01",
+        "definition": "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset",
+        "speed": 1.2,
+        "hp": 2,
+        "referencesPlayer": true,
+        "referencesFlashlight": true
+      },
+      {
+        "name": "Arena Stalker 02",
+        "definition": "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset",
+        "speed": 1.2,
+        "hp": 2,
+        "referencesPlayer": true,
+        "referencesFlashlight": true
+      },
+      {
+        "name": "Arena Stalker 03",
+        "definition": "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset",
+        "speed": 1.2,
+        "hp": 2,
+        "referencesPlayer": true,
+        "referencesFlashlight": true
+      },
+      {
+        "name": "Arena Stalker 04",
+        "definition": "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset",
+        "speed": 1.2,
+        "hp": 2,
+        "referencesPlayer": true,
+        "referencesFlashlight": true
+      },
+      {
+        "name": "Arena Stalker 05",
+        "definition": "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset",
+        "speed": 1.2,
+        "hp": 2,
+        "referencesPlayer": true,
+        "referencesFlashlight": true
+      },
+      {
+        "name": "Arena Stalker 06",
+        "definition": "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset",
+        "speed": 1.2,
+        "hp": 2,
+        "referencesPlayer": true,
+        "referencesFlashlight": true
+      },
+      {
+        "name": "Arena Stalker 07",
+        "definition": "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset",
+        "speed": 1.2,
+        "hp": 2,
+        "referencesPlayer": true,
+        "referencesFlashlight": true
+      },
+      {
+        "name": "Arena Stalker 08",
+        "definition": "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset",
+        "speed": 1.2,
+        "hp": 2,
+        "referencesPlayer": true,
+        "referencesFlashlight": true
+      },
+      {
+        "name": "Approach Stalker - can be avoided",
+        "definition": "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset",
+        "speed": 1.2,
+        "hp": 2,
+        "referencesPlayer": true,
+        "referencesFlashlight": true
+      }
+    ],
+    "loot": [
+      {
+        "name": "Pistol - 8 cartridges",
+        "type": "Weapon",
+        "amount": 8
+      },
+      {
+        "name": "Pre-arena ammo - 16 cartridges",
+        "type": "Ammo",
+        "amount": 16
+      },
+      {
+        "name": "After-arena west return ammo - 8 cartridges",
+        "type": "Ammo",
+        "amount": 8
+      }
+    ],
+    "cards": [
+      {
+        "name": "Green card - eastern loop",
+        "CardId": "green"
+      },
+      {
+        "name": "Blue card - arena far end",
+        "CardId": "blue"
+      }
+    ],
+    "doors": [
+      {
+        "name": "S-C0 - ordinary",
+        "card": null,
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "H-ER - ordinary",
+        "card": null,
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "ER-ED - ordinary",
+        "card": null,
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "S-W - blue access",
+        "card": "blue",
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "H-P - green access",
+        "card": "green",
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "R-H - green access",
+        "card": "green",
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "H-O1 - blue access",
+        "card": "blue",
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "H-O2 - blue access",
+        "card": "blue",
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "H-O3 - blue access",
+        "card": "blue",
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "A-B - ordinary",
+        "card": null,
+        "shadow": true,
+        "fullHeightBlocker": true
+      },
+      {
+        "name": "G-R - ordinary",
+        "card": null,
+        "shadow": true,
+        "fullHeightBlocker": true
+      }
+    ],
+    "shadowCasters": 68,
+    "lights": [
+      {
+        "name": "Flashlight beam",
+        "style": 0,
+        "type": "Point",
+        "intensity": 1.5,
+        "shadows": true
+      },
+      {
+        "name": "Flashlight spill — close range",
+        "style": 0,
+        "type": "Point",
+        "intensity": 0.18,
+        "shadows": true
+      },
+      {
+        "name": "Darkness — ambient",
+        "style": 2,
+        "type": "Global",
+        "intensity": 0.008,
+        "shadows": true
+      }
+    ],
+    "checkpoints": 0,
+    "unlimitedAmmoSandboxSessions": 0,
+    "buildScenes": [
+      {
+        "path": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+        "enabled": true
+      },
+      {
+        "path": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+        "enabled": true
+      },
+      {
+        "path": "Assets/EmergencyShift/Scenes/LevelTemplate.unity",
+        "enabled": true
+      },
+      {
+        "path": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+        "enabled": true
+      }
+    ]
+  },
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 16.9740875,
+    "bytes": 181969049,
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "output": "Builds/MorgueRouteTest/MorgueRouteTest.exe"
+  },
+  "editMode": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "groups": [
+      "EnvironmentPresentationTests",
+      "CeilingLightOcclusionTests"
+    ],
+    "jobId": "53236c816f904d0b814ce58a5195ccfb"
+  },
+  "preservation": {
+    "existingAssetsChecked": 1666,
+    "changedExistingAssets": [],
+    "buildSettings": "Only appended MorgueRouteTest; original enabled entries and default scene preserved."
+  },
+  "previews": {
+    "door-closed.jpg": {
+      "sha256": "5be1d3343e943ad2ed21fd07b07378f5911db84392169f3b9398d214c3f81a88",
+      "originalSha256": "fa9f0cbc97a8e80b9ef070fe5b732230210602bbf996efd6d3f42c8bdf39a36a",
+      "note": "Downscaled diagnostic Game View capture; numeric checks use original PNG pixels."
+    },
+    "door-open.jpg": {
+      "sha256": "16d0d89ee10796ae2722f56832059c650d2ee740cff780572b78a24f7972a4f3",
+      "originalSha256": "875b3edadd4034203c079376720e773ab27b061b35186af70bf29e9f95f2a35d",
+      "note": "Downscaled diagnostic Game View capture; numeric checks use original PNG pixels."
+    },
+    "cover-diagonal.jpg": {
+      "sha256": "b98770ec0d631258f5e03dff39f0ec9cce83539c295da3b33e6f9951ec8f2594",
+      "originalSha256": "0eef3ba3b6087cbdf9ea29062610dcdcc6a0710c2c2d95e69c8cb5bb937f457d",
+      "note": "Downscaled diagnostic Game View capture; numeric checks use original PNG pixels."
+    },
+    "arena-game.jpg": {
+      "sha256": "25891d615b6e4995fb4f43adcabc32f708ab354a343e3c2b030601440eca48f5",
+      "originalSha256": "025462ebef96b814667485178c5e98853def23a7c3d4ae15ef84bba4fd756458",
+      "note": "Downscaled diagnostic Game View capture; numeric checks use original PNG pixels."
+    }
+  },
+  "verifiedFiles": {
+    "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity": "6f59063b89e28ff916c91e065ca092e4e984ed257202c366128aa2ce3a3b0bc5",
+    "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity.meta": "6d43fe5ee9d2cd8cc1ee5883aeff0c4ec33af64123fe9c2da42eb61e139c1e55",
+    "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset": "bc83db3815ff63e62b5c06609e0978efb7ab2b9b211c5db21d3df00826012e2e",
+    "Assets/EmergencyShift/Data/Enemies/Stalker-MorgueRouteTest.asset.meta": "6ec1823c9f3073086dd8d132cb65777a5d9a43c5cd65b4fc9c97929e3022ce3d"
+  },
+  "content": {
+    "source": "Owner sketch 2026-10-19 and proposal 04; existing project prefabs, sprites, materials and audio.",
+    "newAssets": "One authored scene and a copied enemy tuning definition; no new third-party assets or generated art.",
+    "runtimeOwnership": "Authoring positions and quantities belong to the scene. Immutable enemy tuning belongs to Stalker-MorgueRouteTest. HP/cards/ammo/aggro belong to runtime instances and reset on scene reload."
+  },
+  "limitations": [
+    "Route uses actual Rigidbody motion/locks/pickups with enemies disabled temporarily in Play; no claim that the unarmed route or full arena is balanced.",
+    "Combat smoke verifies two shots, one death and one remains record; it is not a full clear or crowd performance benchmark.",
+    "Shadows are current planar URP shadows. No new height projection or low furniture is present.",
+    "Restart calls the same public RestartRoom method as R after a forced death; a physical keyboard press is not automated."
+  ]
+}
