@@ -4,6 +4,8 @@
 
 ## Удобство следующего изменения
 
+Целевой стандарт теперь задаёт [SOD skill](../.agents/skills/sod-unity-architecture/SKILL.md), принятый владельцем 2026-10-19. Существующие MonoBehaviour-системы, Configure-проводка и отсутствие Zenject остаются долгом; установка правил не закрывает его. Будущая миграция выделяет Model/команды/Controller/View и отдельные моторы по фичам с регрессиями, без автоматической перестройки всего проекта. [Полный перенос и конфликты](Research/SOD_SKILLS_ADOPTION.md).
+
 - **Числовая разновидность Сталкера:** Duplicate EnemyDefinition/Behaviour/Patrol/GoreProfile, назначить ссылки. Пуля/HUD/сохранение не меняются, если контракт состояния тот же.
 - **Другой алгоритм врага:** собственный brain, presentation/audio/save адаптеры, существующие здоровье/мотор/восприятие/атака по необходимости. Спящий реализован в тестовых сценах; его отдельный рисунок пока отложен.
 - **Новая карта:** авторенная сцена, LevelDefinition/каталог/Build Profiles, настройка целей/выхода/volumes и команда Prepare persistence. Класс первого уровня не копируется. Автоматический перенос инвентаря между сценами пока не подключён.
@@ -19,7 +21,7 @@
 4. Пулы/пространственный поиск/ECS не добавлены. Следующий performance-сценарий — несколько последовательных боёв и сохранение при накоплении следов. Не подменять его счётом методов Update.
 5. Фонарик остаётся конкретным устройством с IThreatLight2D, его числовые апгрейды не требуют иерархии классов. Новый защитный стимул (флаер) — отдельная будущая реализация.
 
-Правила читаемости/границ обновлены и в трёх проектных skills, локальные копии синхронизированы. Использованы [workflow](../.agents/skills/emergency-shift-workflow/SKILL.md), [unity-migration](../.agents/skills/emergency-shift-unity-migration/SKILL.md), [content-library](../.agents/skills/emergency-shift-content-library/SKILL.md). Именованные guards и конечный switch допустимы; запрета любого if нет.
+Правила сохранности/контента остаются в [workflow](../.agents/skills/emergency-shift-workflow/SKILL.md), [unity-migration](../.agents/skills/emergency-shift-unity-migration/SKILL.md), [content-library](../.agents/skills/emergency-shift-content-library/SKILL.md); архитектурный приоритет у SOD. Прежние запрет DI и отказ от ориентиров зависимости/размера удалены. Именованные guards и конечный switch состояний допустимы; запрета любого if нет.
 
 ## Изученные открытые примеры
 
@@ -32,4 +34,6 @@
 | [AUN-PN · unity-agent-workflows](https://github.com/AUN-PN/unity-agent-workflows/blob/4193d84176e80fc38ee0252b0fa327119ef96d01/skills/unity-agent-workflows/SKILL.md) · MIT | Найти настоящий runtime-источник изменения, проверить путь состояния до результата | Большой обязательный протокол координат/IoU для несвязанных задач и правила автоматической остановки |
 | [Nice-Wolf-Studio · unity-data-driven](https://github.com/Nice-Wolf-Studio/unity-claude-skills/blob/a149d3e995420432f52b0899092daa4b069f441f/skills/unity-data-driven/SKILL.md) · MIT | Разделение конфигов, авторинга и версионирования данных | Автоматическое внедрение чужого save-фреймворка/пакетов и обобщение примеров на все сериализаторы |
 
-Для собственных правил опираемся также на [Unity: форматирование C#](https://unity.com/how-to/formatting-best-practices-c-scripting-unity): последовательная запись, скобки и пробелы помогают чтению. Разделение общих данных и логики поддерживает [Unity: ScriptableObject data containers](https://unity.com/how-to/separate-game-data-logic-scriptable-objects), при этом паттерн выбирается по пользе проекту. Правила хранения именно наших туш, агрессии и будущих чекпоинтов — проектные решения, а не готовая система из этих источников.
+Таблица выше отражает прежнюю оценку этих источников. С 2026-10-19 отказ от лимитов constructor dependencies и общий запрет строгих архитектурных ориентиров заменены явным решением владельца принять SOD. Остальные непринятые механики/инструменты не вводятся автоматически.
+
+Дополнительные источники: [Unity: форматирование C#](https://unity.com/how-to/formatting-best-practices-c-scripting-unity), [Unity: ScriptableObject data containers](https://unity.com/how-to/separate-game-data-logic-scriptable-objects). Правила хранения именно наших туш, агрессии и чекпоинтов остаются проектными решениями.
