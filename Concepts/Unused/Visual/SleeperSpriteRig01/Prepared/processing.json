@@ -1,0 +1,95 @@
+{
+  "authorization": "Owner explicitly approved programmatic background removal and animation assembly on2026-10-17",
+  "method": "Chroma seed against neutral charcoal, 3x3 morphological close, exterior flood fill,1px outline expansion,0.45px edge feather. Historical RGB retained for surviving pixels; alpha-zero RGB cleared. No new body painting.",
+  "headRemovalPolygonTopLeft": [
+    [
+      512,
+      22
+    ],
+    [
+      625,
+      111
+    ],
+    [
+      719,
+      261
+    ],
+    [
+      726,
+      326
+    ],
+    [
+      652,
+      390
+    ],
+    [
+      578,
+      414
+    ],
+    [
+      446,
+      414
+    ],
+    [
+      373,
+      390
+    ],
+    [
+      299,
+      326
+    ],
+    [
+      310,
+      262
+    ],
+    [
+      397,
+      109
+    ]
+  ],
+  "images": [
+    {
+      "source": "tripartite-closed-attempt.png",
+      "sourceSha256": "11fa8e374bbab186e64c51ceba892eecdd975e60cfa7bbe14bf3ea3fb53b400f",
+      "prepared": "closed-cutout.png",
+      "sha256": "e79da6b1ce1c5ee9732969649fe4f9d6a9b375fbf1d068c59e894a94223275cc",
+      "alphaZero": 955196,
+      "alphaPartial": 24545,
+      "opaqueBounds": [
+        25,
+        41,
+        998,
+        1439
+      ]
+    },
+    {
+      "source": "tripartite-open.png",
+      "sourceSha256": "9becfb89f0b7c07d0d51da58e0b08df2f327d3f3f5c042271ca1a823cba16212",
+      "prepared": "open-cutout.png",
+      "sha256": "0e6e2c077725d5318f7f14441c9e41f06bd3fb479647d3525775ac11afca919a",
+      "alphaZero": 948086,
+      "alphaPartial": 25962,
+      "opaqueBounds": [
+        25,
+        31,
+        998,
+        1439
+      ]
+    },
+    {
+      "source": "master-closed.png",
+      "sourceSha256": "318cab1bd06b0f6b3edab48cbd0265d442b23c948f4c8ebd85963fe268575428",
+      "prepared": "clean-cutout.png",
+      "sha256": "bf2a318f58087f64f4d5c88c9975cbed1d7cc2c8f8d80bdbe19dc5614b12b3c6",
+      "alphaZero": 965145,
+      "alphaPartial": 22656,
+      "opaqueBounds": [
+        25,
+        65,
+        997,
+        1439
+      ]
+    }
+  ],
+  "limitations": "RGB source has antialiased charcoal edges; check both light and dark composites and small-scale bake before accepting."
+}

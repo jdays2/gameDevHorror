@@ -1,0 +1,90 @@
+{
+  "created_date": "2026-10-19",
+  "status": "Owner approved below_the_ward_02.mp3 as suitable for pause or main menu. Final placement undecided; not integrated. Sublevel Signal has no owner verdict.",
+  "owner_acceptance": "acceptance.json",
+  "provider": "Runway",
+  "generation_requests": "requests.json",
+  "total_generation_credits": 16,
+  "credit_balance_after_submission": 354,
+  "reference_audio_conditioning": false,
+  "reference_analysis": "ANALYSIS.md",
+  "references": [
+    {
+      "title": "Alien Shooter — Menu Theme",
+      "youtube": "https://www.youtube.com/watch?v=hDAMYUpr2SM",
+      "analysis_source": "https://downloads.khinsider.com/game-soundtracks/album/alien-shooter/01.%2520Menu%2520Music.mp3",
+      "working_bpm": 70,
+      "tonal_center": "C",
+      "mode": "Minor profile supported, not complete chord transcription"
+    },
+    {
+      "title": "Alien Shooter 2 — Main Theme",
+      "youtube": "https://www.youtube.com/watch?v=ZbPOKUEM8fE",
+      "analysis_source": "https://downloads.khinsider.com/game-soundtracks/album/alien-shooter-2-gamerip/01.%2520Theme.mp3",
+      "working_bpm": 90,
+      "tonal_center": "F",
+      "mode": "Ambiguous global thirds; upper range favors minor"
+    }
+  ],
+  "analysis_methods": {
+    "signal": "librosa CQT, STFT, HPSS, onset autocorrelation, Krumhansl-Schmuckler correlation and frame/window comparisons",
+    "semantic_models": [
+      "YAMNet ONNX — relative audio event scores",
+      "Xenova/clap-htsat-unfused quantized ONNX — audio/text cosine similarity"
+    ],
+    "limitations": "No direct auditory input to the agent. Alternative gamerip files, not verified bit-identical to YouTube. Model scores are hypotheses and not instrument credits or calibrated probabilities.",
+    "scripts_note": "Analysis scripts are snapshots. Their ROOT expects the separately installed runtime, inference-runtime and model assets and reference MP3 filenames, which are intentionally not in this content family."
+  },
+  "processing": "Original generated MP3 bytes retained unchanged. FFmpeg measurement decode at 48 kHz stereo float32 only. No mixing, added samples, normalization, EQ or mastering.",
+  "checks_note": "Small over-full-scale decoded MP3 peaks are recorded rather than described as clipping-free. Owner approved Below the Ward for menu fit; seamless loop points and final in-game mix have not been verified. The agent has no direct auditory input.",
+  "loop_seam_verified": false,
+  "perceptual_listening_verified": false,
+  "originals": [
+    {
+      "file": "Originals/sublevel_signal_02.mp3",
+      "duration_seconds": 170.08327083333333,
+      "sha256": "32438f5443486d1c31f36b4fffaff3c8525bf15dbd778de74d91e8729d51f83d",
+      "bytes": 4089715,
+      "finite": true,
+      "decoded_sample_peak": 1.035649299621582,
+      "decoded_sample_peak_dbfs": 0.304,
+      "decoded_samples_at_or_above_0dbfs": 35,
+      "rms_dbfs": -14.271
+    },
+    {
+      "file": "Originals/below_the_ward_02.mp3",
+      "duration_seconds": 181.47266666666667,
+      "sha256": "14e3a3dc6feb3c28b57c5ad8ea5bb3e28a7da2f5d2bb6670d9c04a11861d3177",
+      "bytes": 4363060,
+      "finite": true,
+      "decoded_sample_peak": 1.0085208415985107,
+      "decoded_sample_peak_dbfs": 0.074,
+      "decoded_samples_at_or_above_0dbfs": 1,
+      "rms_dbfs": -14.279
+    }
+  ],
+  "rights": "Generated in the connected Runway account; no CC0 license asserted. Reference recordings were used for analysis, not imported into the generated output by this workflow. No third-party reference audio or model weights included in this family.",
+  "analysis_input_hashes": [
+    {
+      "filename": "alien_shooter_menu.mp3",
+      "sha256": "3eb3381ab36989c5176c040eda4cee5a9c3f405b46b64e8c4b40a494ee97bf2d"
+    },
+    {
+      "filename": "alien_shooter_2_theme.mp3",
+      "sha256": "a76162f42dd929eabfd8bbd341b03477cac7f510071f19e33bb853d320218947"
+    },
+    {
+      "filename": "yamnet.onnx",
+      "sha256": "d3835ffbbd4a1bb3e777f0ca217b5007907f5171dd5d17c4236b95b2af8f908e"
+    },
+    {
+      "filename": "clap-model/audio_model_quantized.onnx",
+      "sha256": "3fcff2c8824e7bcb83a983f2a49edab3b60cbcf4872ac70efee517355173bd1f"
+    },
+    {
+      "filename": "clap-model/text_model_quantized.onnx",
+      "sha256": "1a3df8b197e249816e08415fd040434c44762b2eea7eb7bf8a48a0f0bf3c14e5"
+    }
+  ],
+  "generated_semantic_check": "Analysis/clap_generated.json"
+}

@@ -255,7 +255,7 @@ namespace EmergencyShift.Editor
             return asset;
         }
 
-        private static GameObject Instance(string path, Transform parent, Vector2 position)
+        internal static GameObject Instance(string path, Transform parent, Vector2 position)
         {
             var obj = (GameObject)PrefabUtility.InstantiatePrefab(Load<GameObject>(path));
             obj.transform.SetParent(parent, false);
@@ -263,7 +263,7 @@ namespace EmergencyShift.Editor
             return obj;
         }
 
-        private static void Floor(Transform parent, string name, Vector2 position, Vector2 size, string texture)
+        internal static void Floor(Transform parent, string name, Vector2 position, Vector2 size, string texture)
         {
             var obj = new GameObject(name, typeof(SpriteRenderer));
             obj.transform.SetParent(parent, false);
@@ -276,7 +276,7 @@ namespace EmergencyShift.Editor
             renderer.sortingOrder = -10;
         }
 
-        private static void Wall(Transform parent, Vector2 position, Vector2 size)
+        internal static void Wall(Transform parent, Vector2 position, Vector2 size)
         {
             var obj = Instance(Root + "/Prefabs/World/Wall.prefab", parent, position);
             obj.transform.localScale = new Vector3(size.x, size.y, 1);
@@ -331,7 +331,7 @@ namespace EmergencyShift.Editor
             light.shadowsEnabled = true;
         }
 
-        private static void RecordOverrides(Scene scene)
+        internal static void RecordOverrides(Scene scene)
         {
             foreach (var root in scene.GetRootGameObjects())
             {

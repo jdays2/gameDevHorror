@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -20,6 +21,7 @@ namespace EmergencyShift
         private LayerMask obstacles;
         private bool landed;
         private WeaponAudioProfile audioProfile;
+        private GroundAudioSurfaceQuery2D surfaces;
         public bool Settled
         {
             get; private set;
@@ -27,8 +29,16 @@ namespace EmergencyShift
         public bool Landed => landed;
         public float Height => height;
         public Vector2 FloorPosition => floor;
+        public GroundSoundSurface LastSurface { get; private set; }
 
         public event System.Action<ShellCasing2D> FirstLanded;
+
+        [Inject]
+        private void Construct(GroundAudioSurfaceQuery2D groundSurfaces)
+        {
+            surfaces = groundSurfaces;
+        }
+
         public void Launch(Vector2 origin, Vector2 impulse, float verticalSpeed, float angularSpeed, PlayerAudio2D owner, LayerMask walls, WeaponAudioProfile profile = null)
         {
             floor = origin;
@@ -40,7 +50,9 @@ namespace EmergencyShift
             audioOwner = owner;
             audioProfile = profile;
             obstacles = walls;
-            landed = Settled = false;
+            landed = false;
+            Settled = false;
+            LastSurface = GroundSoundSurface.Concrete;
             bodyScale = profile != null ? new Vector3(profile.casingSize.x, profile.casingSize.y, 1) : new Vector3(.075f, .028f, 1);
             body.transform.localScale = bodyScale;
             body.color = profile != null ? profile.casingColor : new Color(.63f, .47f, .23f);
@@ -77,7 +89,8 @@ namespace EmergencyShift
                     spin *= .35f;
                     if (audioOwner != null)
                     {
-                        audioOwner.PlayCasingAt(floor, GroundAudioSurface2D.At(floor), audioProfile);
+                        LastSurface = surfaces.At(floor);
+                        audioOwner.PlayCasingAt(floor, LastSurface, audioProfile);
                     }
 
                     FirstLanded?.Invoke(this);

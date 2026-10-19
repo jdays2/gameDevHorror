@@ -5,9 +5,9 @@
   "method": "Manual boundary notes + current source hashes, lexical source hints and actual AssetDatabase scene/serialized GUID graph. No automatic unused-code deletion.",
   "limits": "Lexical references are hints, not semantic proof; reviewed_boundary does not certify the whole feature. Queued/partial entries must be completed.",
   "counts": {
-    "reviewed_boundary": 41,
-    "partial": 33,
-    "queued": 147
+    "reviewed_boundary": 46,
+    "partial": 36,
+    "queued": 143
   },
   "files": [
     {
@@ -537,7 +537,8 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -560,6 +561,9 @@
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs"
       ],
@@ -752,6 +756,8 @@
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
       ],
@@ -773,6 +779,8 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
       ],
       "entryPointHints": [],
@@ -793,6 +801,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs"
       ],
       "entryPointHints": [],
@@ -3028,13 +3037,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
-      "sha256": "966696fa5c399948a2f972f936e632f4d51b1c11a6265740653affecde6f0bf5",
+      "sha256": "4a46ba9d88662e419b90c5710c85817741495f00b023a68c2549062ea0d626c3",
       "baselineSha256": null,
       "guid": "0a79308db69301e4d968479a95aeff27",
       "types": [
         "LevelRegistriesInstaller"
       ],
-      "lines": 16,
+      "lines": 18,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -3773,13 +3782,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
-      "sha256": "3adfec19d4ea5686c7f53aba5d9226e2a73fb239a928e68026ed5d926ad9362d",
+      "sha256": "bc307899e8591eea974af9d980ac761561c1f445d757f86c813e229812309e1d",
       "baselineSha256": "3adfec19d4ea5686c7f53aba5d9226e2a73fb239a928e68026ed5d926ad9362d",
       "guid": "a6fe12f26af5a224294699ccfde10b37",
       "types": [
         "PlayerCasingEjector2D"
       ],
-      "lines": 119,
+      "lines": 135,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab"
       ],
@@ -3799,18 +3808,18 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "partial",
+      "notes": "Scene prefab factory injects reused casings; own cosmetic RNG; ejection/config/lifetime split still pending."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
-      "sha256": "2b235def8b1c88b3049d7a27805397ce0c7bcf7a696fd23133351f0d93123613",
+      "sha256": "88f16723c428adcedb26e2c4e04ca591c8d83eba5b493363e280d50154ff2cd9",
       "baselineSha256": "2b235def8b1c88b3049d7a27805397ce0c7bcf7a696fd23133351f0d93123613",
       "guid": "16cf2393ae1752a49abf3bc0dc96883c",
       "types": [
         "PlayerFootsteps2D"
       ],
-      "lines": 156,
+      "lines": 166,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab"
       ],
@@ -3831,8 +3840,8 @@
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "partial",
+      "notes": "Own surface query and cosmetic RNG injected; stride/audio/config split still pending."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
@@ -4037,13 +4046,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
-      "sha256": "ed8bd4cad0cb62bd5272dfb80a36269aff4df2fd1743a6737e25afc5c27e3ec2",
+      "sha256": "20017bc412f747144a42b9592708d2dc5c2c21dab68985ac92ef350dd9371476",
       "baselineSha256": "596fb7c3e90acf823fc8ecc665be76ec2f257bc91f18efb1d501753fb846d9aa",
       "guid": "a7c2f849920eead45b86e58e62166543",
       "types": [
         "PlayerWeapon2D"
       ],
-      "lines": 426,
+      "lines": 445,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -4537,13 +4546,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs",
-      "sha256": "28498b9b73aab11a5bdc91342b8e66df05041add9f40b6d7712cc3c9bb320f6c",
+      "sha256": "fca29522886020ccf74c535ec3fe11ead64f5741a1f2fb01530bc55195514993",
       "baselineSha256": "28498b9b73aab11a5bdc91342b8e66df05041add9f40b6d7712cc3c9bb320f6c",
       "guid": "f2bbea74bce42c848aa36884dbe263b4",
       "types": [
         "ShellCasing2D"
       ],
-      "lines": 107,
+      "lines": 120,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Combat/PistolCasing.prefab"
       ],
@@ -4563,8 +4572,8 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "partial",
+      "notes": "First-contact surface uses owning scope rather than active scene; motion/presentation model split still pending."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
@@ -5310,14 +5319,52 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
-      "sha256": "92483de229b2f359509e83b2a6bdd6ae43bbd6e4886ce4bbb303190b95a8d564",
+      "sha256": "49d7e7a033589b374a5214c0300149e814595c56a8bf484fa64580abf6521b36",
       "baselineSha256": "92483de229b2f359509e83b2a6bdd6ae43bbd6e4886ce4bbb303190b95a8d564",
       "guid": "e8415218d1e4972458e7bc3401cf97d9",
       "types": [
-        "GroundSoundSurface",
         "GroundAudioSurface2D"
       ],
-      "lines": 60,
+      "lines": 59,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Unity geometry/serialized placement adapter only; membership owned by injected level registry."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
+      "sha256": "d008fe3ce77792561eb651a9999cf6cb4e14f47916abca7ceb277c2f9f4ab54d",
+      "baselineSha256": null,
+      "guid": "33a7821b405e71a4787161fc386491ce",
+      "types": [
+        "GroundAudioSurfaceQuery2D"
+      ],
+      "lines": 31,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Pure ordered selection over scene-owned regions; priority/coverage/fallback/scope isolation tested."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/World/Surfaces/GroundSoundSurface.cs",
+      "sha256": "f67a5cbc0def8b88d923151f6169c23defd7aff43aa5cb075f29e55995fe46d9",
+      "baselineSha256": null,
+      "guid": "87638cc5cf4fd154e8205fa97be8d177",
+      "types": [
+        "GroundSoundSurface"
+      ],
+      "lines": 9,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -5326,11 +5373,36 @@
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Surfaces/IGroundAudioRegion.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Preserved serialized enum numeric order; one type per file."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/World/Surfaces/IGroundAudioRegion.cs",
+      "sha256": "1265ff802328808451c560b9d5a7ac7ab1c8de7436245741f59a52fc1b8fe790",
+      "baselineSha256": null,
+      "guid": "a194e4275a6629d4e90255ae2259ee9a",
+      "types": [
+        "IGroundAudioRegion"
+      ],
+      "lines": 11,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Small surface/priority/coverage contract; no MonoBehaviour dependency."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Surfaces/ImpactSurface2D.cs",
@@ -5538,6 +5610,25 @@
       ],
       "reviewStatus": "queued",
       "notes": "Not semantically reviewed yet; no unused/compliance claim."
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs",
+      "sha256": "21c0855f83b2e0b0d6d07caa29357be0aad1156e23d6ab869cc3f66972351c46",
+      "baselineSha256": null,
+      "guid": "fdbc06edb346b0e4497c25baf01b199d",
+      "types": [
+        "GroundAudioSurfaceQueryTests",
+        "Region"
+      ],
+      "lines": 93,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test"
+      ],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Five scene-independent tests of actual selection and independent/disposed scopes."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",

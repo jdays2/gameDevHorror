@@ -1,26 +1,35 @@
-using System.Collections.Generic;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace EmergencyShift
 {
-    public enum GroundSoundSurface
-    {
-        Concrete,
-        Wood,
-        Tile
-    }
-
     /// <summary>Optional floor region; independent from the material of a bullet's target.</summary>
     [RequireComponent(typeof(BoxCollider2D)), DisallowMultipleComponent]
-    public sealed class GroundAudioSurface2D : MonoBehaviour
+    public sealed class GroundAudioSurface2D : MonoBehaviour, IGroundAudioRegion
     {
-        private static readonly List<GroundAudioSurface2D> regions = new List<GroundAudioSurface2D>();
         [SerializeField]
         private GroundSoundSurface surface;
         [SerializeField]
         private int priority;
         private BoxCollider2D area;
+        private SceneRegistry<IGroundAudioRegion> registry;
+
+        public GroundSoundSurface Surface => surface;
+        public int Priority => priority;
+
+        [Inject]
+        private void Construct(SceneRegistry<IGroundAudioRegion> sceneRegistry)
+        {
+            registry?.Remove(this);
+            registry = sceneRegistry;
+            area = GetComponent<BoxCollider2D>();
+            if (isActiveAndEnabled)
+            {
+                registry.Register(this);
+            }
+        }
+
         private void Awake()
         {
             area = GetComponent<BoxCollider2D>();
@@ -34,27 +43,17 @@ namespace EmergencyShift
 
         private void OnEnable()
         {
-            regions.Add(this);
+            registry?.Register(this);
         }
 
         private void OnDisable()
         {
-            regions.Remove(this);
+            registry?.Remove(this);
         }
 
-        public static GroundSoundSurface At(Vector2 point) => At(point, SceneManager.GetActiveScene());
-        public static GroundSoundSurface At(Vector2 point, Scene scene)
+        public bool Contains(Vector2 point)
         {
-            GroundAudioSurface2D best = null;
-            foreach (var region in regions)
-            {
-                if (region != null && region.gameObject.scene == scene && region.area != null && region.area.enabled && region.area.OverlapPoint(point) && (best == null || region.priority > best.priority))
-                {
-                    best = region;
-                }
-            }
-
-            return best != null ? best.surface : GroundSoundSurface.Concrete;
+            return this != null && isActiveAndEnabled && area != null && area.enabled && area.OverlapPoint(point);
         }
     }
 }

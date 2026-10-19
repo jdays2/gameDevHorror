@@ -1,4 +1,6 @@
+using EmergencyShift.Core.Randomness;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -30,7 +32,8 @@ namespace EmergencyShift
             -1,
             -1
         };
-        private System.Random random;
+        private IRandomSource random;
+        private GroundAudioSurfaceQuery2D surfaces;
         public int StepsPlayed
         {
             get; private set;
@@ -40,11 +43,17 @@ namespace EmergencyShift
             get; private set;
         }
 
+        [Inject]
+        private void Construct(GroundAudioSurfaceQuery2D groundSurfaces, RandomSourceFactory randomSources)
+        {
+            surfaces = groundSurfaces;
+            random = randomSources.Create();
+        }
+
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>();
             life = GetComponent<PlayerLife2D>();
-            random = new System.Random(System.Guid.NewGuid().GetHashCode());
             Prepare(leftSource);
             Prepare(rightSource);
         }
@@ -105,7 +114,7 @@ namespace EmergencyShift
 
             travelled %= distancePerStep;
             nextStep = Time.time + minimumInterval;
-            LastSurface = GroundAudioSurface2D.At(position, gameObject.scene);
+            LastSurface = surfaces.At(position);
             var clips = sounds != null ? sounds.Steps(LastSurface) : null;
             if (clips == null || clips.Length == 0)
             {
@@ -119,10 +128,11 @@ namespace EmergencyShift
                 return;
             }
 
-            int id = random.Next(clips.Length), previousId = last[(int)LastSurface];
+            int id = random.NextInt(0, clips.Length);
+            int previousId = last[(int)LastSurface];
             if (clips.Length > 1 && id == previousId)
             {
-                id = (id + 1 + random.Next(clips.Length - 1)) % clips.Length;
+                id = (id + 1 + random.NextInt(0, clips.Length - 1)) % clips.Length;
             }
 
             last[(int)LastSurface] = id;
@@ -133,7 +143,7 @@ namespace EmergencyShift
 
             source.clip = clips[id];
             source.volume = sounds.stepVolume;
-            source.pitch = 1 + ((float)random.NextDouble() * 2 - 1) * pitchVariation;
+            source.pitch = 1 + ((float)random.NextUnit() * 2 - 1) * pitchVariation;
             source.Play();
             StepsPlayed++;
         }

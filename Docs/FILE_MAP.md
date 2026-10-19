@@ -277,6 +277,9 @@
 ### Runtime/World/Surfaces
 
 - [Runtime/World/Surfaces/GroundAudioSurface2D.cs](../Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs)
+- [Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs](../Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs)
+- [Runtime/World/Surfaces/GroundSoundSurface.cs](../Assets/EmergencyShift/Runtime/World/Surfaces/GroundSoundSurface.cs)
+- [Runtime/World/Surfaces/IGroundAudioRegion.cs](../Assets/EmergencyShift/Runtime/World/Surfaces/IGroundAudioRegion.cs)
 - [Runtime/World/Surfaces/ImpactSurface2D.cs](../Assets/EmergencyShift/Runtime/World/Surfaces/ImpactSurface2D.cs)
 
 ## Editor
@@ -321,6 +324,7 @@
 - [Tests/EditMode/EnvironmentPresentationTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs)
 - [Tests/EditMode/FlashlightOwnershipTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs)
 - [Tests/EditMode/GoreCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs)
+- [Tests/EditMode/GroundAudioSurfaceQueryTests.cs](../Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs)
 - [Tests/EditMode/HealthModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs)
 - [Tests/EditMode/LevelCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs)
 - [Tests/EditMode/LocalLampAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs)

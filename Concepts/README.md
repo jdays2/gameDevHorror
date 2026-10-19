@@ -87,6 +87,7 @@
 ### Audio
 
 - `Unused/Audio/DistantMemory/` — исходные материалы.
+- [Меню — две темы по референсам Alien Shooter, проба 02](Unused/Audio/MenuThemes02/README.md)
 - `Unused/Audio/ProceduralPlayer/` — исходные материалы.
 - `Unused/Audio/RunwayStudies/` — исходные материалы.
 - [Спящий — четыре звуковые пробы 01](Unused/Audio/SleeperVoice01/README.md)

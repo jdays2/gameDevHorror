@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using EmergencyShift.Core.Composition;
+using EmergencyShift.Core.Randomness;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -19,11 +22,13 @@ namespace EmergencyShift
         private PlayerWeapon2D weapon;
         private PlayerAudio2D audioOwner;
         private Transform root;
-        private System.Random random;
+        private IRandomSource random;
+        private ScenePrefabFactory prefabs;
         private int cursor;
         public bool CasingsEnabled
         {
-            get => casingsEnabled; set => casingsEnabled = value;
+            get => casingsEnabled;
+            set => casingsEnabled = value;
         }
         public int EmittedCount
         {
@@ -32,11 +37,18 @@ namespace EmergencyShift
         public int PooledCount => pool.Count;
 
         public event System.Action<ShellCasing2D> CasingEmitted;
+
+        [Inject]
+        private void Construct(ScenePrefabFactory scenePrefabs, RandomSourceFactory randomSources)
+        {
+            prefabs = scenePrefabs;
+            random = randomSources.Create();
+        }
+
         private void Awake()
         {
             weapon = GetComponent<PlayerWeapon2D>();
             audioOwner = GetComponent<PlayerAudio2D>();
-            random = new System.Random(System.Guid.NewGuid().GetHashCode());
         }
 
         private void OnEnable()
@@ -49,7 +61,7 @@ namespace EmergencyShift
             weapon.CasingEjected -= Eject;
         }
 
-        private float Between(float a, float b) => Mathf.Lerp(a, b, (float)random.NextDouble());
+        private float Between(float a, float b) => Mathf.Lerp(a, b, (float)random.NextUnit());
         private void Eject()
         {
             if (!casingsEnabled || casingPrefab == null)
@@ -66,7 +78,10 @@ namespace EmergencyShift
             ShellCasing2D casing;
             if (pool.Count < maximumCasings)
             {
-                casing = Instantiate(casingPrefab, root);
+                GameObject instance = prefabs.Instantiate(casingPrefab.gameObject,
+                    root.TransformPoint(casingPrefab.transform.localPosition),
+                    root.rotation * casingPrefab.transform.localRotation, root);
+                casing = instance.GetComponent<ShellCasing2D>();
                 pool.Add(casing);
             }
             else
@@ -74,7 +89,8 @@ namespace EmergencyShift
                 casing = pool[cursor++ % pool.Count];
             }
 
-            Vector2 direction = weapon.LastShotDirection, side = new Vector2(direction.y, -direction.x);
+            Vector2 direction = weapon.LastShotDirection;
+            Vector2 side = new Vector2(direction.y, -direction.x);
             Vector2 port = (Vector2)transform.position + direction * .16f + side * .16f;
             var blocked = Physics2D.Linecast(transform.position, port, obstacles);
             if (blocked.collider != null)
@@ -98,7 +114,7 @@ namespace EmergencyShift
 #if UNITY_EDITOR
         public void SetPreviewSeed(int seed)
         {
-            random = new System.Random(seed);
+            random = new SystemRandomSource(new System.Random(seed));
         }
 
         public void ClearForPreview()

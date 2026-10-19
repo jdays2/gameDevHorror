@@ -10,6 +10,8 @@ namespace EmergencyShift
             Container.BindInterfacesAndSelfTo<SceneRegistry<Door2D>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<CrowdAgent2D>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<StalkerAudio2D>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SceneRegistry<IGroundAudioRegion>>().AsSingle();
+            Container.Bind<GroundAudioSurfaceQuery2D>().AsSingle();
             Container.Bind<EnemyChasePathFactory>().AsSingle();
         }
     }
