@@ -10,6 +10,7 @@
 
 ### Audio
 
+- [Шаги игрока · короткий контакт 02](Used/Audio/PlayerFootsteps02/README.md)
 - [Общий короткий разрыв 06](Used/Audio/CreatureRupture06/README.md)
 - [FirearmMix02 · парный микс и пистолетная механика](Used/Audio/FirearmMix02/README.md)
 - [Звук больничной лампы · проба 01](Used/Audio/HospitalLamp01/README.md)

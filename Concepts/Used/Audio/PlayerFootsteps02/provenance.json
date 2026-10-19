@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-19",
+  "request": "Replace the player's rejected shuffling footsteps with short lifted shoe contacts.",
+  "origin": "AI-generated sound effect via Runway; not a field recording.",
+  "approval": "User requested replacement. This working bank is connected for evaluation; no artistic approval claimed.",
+  "sources": [
+    {
+      "file": "Sources/crisp-contacts.mp3",
+      "taskId": "0740fdf8-1246-4872-8732-0e9cda8500af",
+      "prompt": "Foley recording: a person walking in ordinary hard rubber sole shoes on a smooth hospital floor. Six distinct crisp short footstep taps at a steady pace. Audible natural midrange heel click and firm sole contact, light everyday shoes. Dry close microphone, quiet studio. Clean lifted steps without any dragging or scuffing. No room echo, no background sounds, no sub-bass thumps.",
+      "durationSeconds": 4,
+      "role": "Source of the six active contacts.",
+      "sha256": "d7ce604d21d41d5bfa755e6d3430c9f4a915b5baf2fc0a680b9f31b8b705e8e0"
+    },
+    {
+      "file": "Sources/dry-footfalls.mp3",
+      "taskId": "d4c7590e-7128-4fe1-9eb1-802ee56e38df",
+      "prompt": "Rubber-soled everyday shoes, eight separate natural walking footfalls on a dry smooth concrete floor, evenly spaced with silence between each. Same shoe and recording perspective throughout. Short firm heel-to-sole contacts, muted compact taps, restrained weight, close dry studio foley. No dragging, scraping, shuffling, sliding, squeaking, gravel, booming bass, voices, music or reverberation.",
+      "durationSeconds": 8,
+      "role": "Unused first study; excessive low-frequency body. Retained as provenance; not referenced by Unity.",
+      "sha256": "c0c214e8a0ac511ee630225e07a8a38f007a19f19a5c9a2a42a5defaae75ed42"
+    }
+  ],
+  "processing": "Tools/Audio/prepare_player_footsteps_02.py; FFmpeg 7.1 and numpy 2.3.5. See processing.json for exact cuts, gains and SHA-256."
+}
