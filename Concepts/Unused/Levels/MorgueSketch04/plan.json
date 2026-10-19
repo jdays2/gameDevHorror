@@ -1,0 +1,124 @@
+{
+  "date": "2026-10-19",
+  "status": "Proposal reconciled with the owner sketch; not implemented or approved as final blocking.",
+  "ownerClarifications": [
+    "Blue/green strokes require the matching access card; black strokes are ordinary doors.",
+    "No exit is shown yet. Blue card will provide a route toward an exit; those locations must not be designed now."
+  ],
+  "scope": "This fragment ends at acquiring blue access and opening local branches/return. No stairs, lift, exit room or second floor is added.",
+  "assumptions": [
+    "Unmarked joins Blue room-West corridor and Gun-Ammo are treated as traversable doorways; the sketch does not clearly erase their wall strokes.",
+    "Repeated same-colour strokes in a narrow side branch are collapsed into one access condition; exact leaf count/airlock geometry is not inferred."
+  ],
+  "nodes": {
+    "S": "Старт / морг",
+    "C0": "Входной коридор",
+    "H": "Распределительный зал",
+    "ER": "Верхний восточный проход",
+    "ED": "Восточный поворот",
+    "G": "Комната зелёной карты",
+    "R": "Служебный возврат",
+    "P": "Пистолет",
+    "A": "Патроны",
+    "B": "Комната синей карты",
+    "W": "Западный возврат",
+    "O1": "Синяя боковая ветка 1",
+    "O2": "Синяя боковая ветка 2",
+    "O3": "Синяя боковая ветка 3"
+  },
+  "loot": {
+    "G": "green",
+    "P": "pistol",
+    "A": "ammo",
+    "B": "blue"
+  },
+  "edges": [
+    {
+      "a": "S",
+      "b": "C0",
+      "requires": null
+    },
+    {
+      "a": "C0",
+      "b": "H",
+      "requires": null
+    },
+    {
+      "a": "S",
+      "b": "W",
+      "requires": "blue"
+    },
+    {
+      "a": "W",
+      "b": "B",
+      "requires": null
+    },
+    {
+      "a": "H",
+      "b": "ER",
+      "requires": null
+    },
+    {
+      "a": "ER",
+      "b": "ED",
+      "requires": null
+    },
+    {
+      "a": "ED",
+      "b": "G",
+      "requires": null
+    },
+    {
+      "a": "G",
+      "b": "R",
+      "requires": "green",
+      "proposedRequires": null,
+      "change": 2
+    },
+    {
+      "a": "R",
+      "b": "H",
+      "requires": "green"
+    },
+    {
+      "a": "H",
+      "b": "P",
+      "requires": "green"
+    },
+    {
+      "a": "P",
+      "b": "A",
+      "requires": null
+    },
+    {
+      "a": "A",
+      "b": "B",
+      "requires": "blue",
+      "proposedRequires": null,
+      "change": 1
+    },
+    {
+      "a": "H",
+      "b": "O1",
+      "requires": "blue"
+    },
+    {
+      "a": "H",
+      "b": "O2",
+      "requires": "blue"
+    },
+    {
+      "a": "H",
+      "b": "O3",
+      "requires": "blue"
+    }
+  ],
+  "proposalChanges": {
+    "1": "Make the door from Ammo to Blue-card room ordinary, preserving the blue shortcut near Start. This removes the self-locked blue key.",
+    "2": "Remove only the redundant green lock at G-R; retain the green lock at R-H to reward the return loop."
+  },
+  "limits": [
+    "A graph of room access, not collision navigation, combat simulation, pacing or exit reachability.",
+    "No door consumes a card in this model. Ammo amount, enemy counts and mandatory clearing are unspecified."
+  ]
+}

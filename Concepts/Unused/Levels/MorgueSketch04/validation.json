@@ -1,0 +1,215 @@
+{
+  "checks": {
+    "original_blue_self_lock_detected": true,
+    "proposal_all_loot_reachable_from_empty_inventory": true,
+    "proposal_all_local_nodes_reachable": true,
+    "blue_does_not_depend_on_optional_branches": true,
+    "green_gate_still_precedes_weapon_and_blue": true,
+    "no_exit_node_added_or_tested": true
+  },
+  "original": {
+    "reachableNodes": [
+      "A",
+      "C0",
+      "ED",
+      "ER",
+      "G",
+      "H",
+      "P",
+      "R",
+      "S"
+    ],
+    "acquiredItems": [
+      "ammo",
+      "green",
+      "pistol"
+    ],
+    "witnessPaths": {
+      "green": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G"
+      ],
+      "pistol": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G",
+        "R",
+        "H",
+        "P"
+      ],
+      "ammo": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G",
+        "R",
+        "H",
+        "P",
+        "A"
+      ]
+    }
+  },
+  "proposal": {
+    "reachableNodes": [
+      "A",
+      "B",
+      "C0",
+      "ED",
+      "ER",
+      "G",
+      "H",
+      "O1",
+      "O2",
+      "O3",
+      "P",
+      "R",
+      "S",
+      "W"
+    ],
+    "acquiredItems": [
+      "ammo",
+      "blue",
+      "green",
+      "pistol"
+    ],
+    "witnessPaths": {
+      "green": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G"
+      ],
+      "pistol": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G",
+        "R",
+        "H",
+        "P"
+      ],
+      "ammo": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G",
+        "R",
+        "H",
+        "P",
+        "A"
+      ],
+      "blue": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G",
+        "R",
+        "H",
+        "P",
+        "A",
+        "B"
+      ]
+    }
+  },
+  "optionalBranchesRemoved": {
+    "reachableNodes": [
+      "A",
+      "B",
+      "C0",
+      "ED",
+      "ER",
+      "G",
+      "H",
+      "P",
+      "R",
+      "S",
+      "W"
+    ],
+    "acquiredItems": [
+      "ammo",
+      "blue",
+      "green",
+      "pistol"
+    ],
+    "witnessPaths": {
+      "green": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G"
+      ],
+      "pistol": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G",
+        "R",
+        "H",
+        "P"
+      ],
+      "ammo": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G",
+        "R",
+        "H",
+        "P",
+        "A"
+      ],
+      "blue": [
+        "S",
+        "C0",
+        "H",
+        "ER",
+        "ED",
+        "G",
+        "R",
+        "H",
+        "P",
+        "A",
+        "B"
+      ]
+    }
+  },
+  "withoutGreenPickup": {
+    "reachableNodes": [
+      "C0",
+      "ED",
+      "ER",
+      "G",
+      "H",
+      "R",
+      "S"
+    ],
+    "acquiredItems": [],
+    "witnessPaths": {}
+  },
+  "limits": [
+    "A graph of room access, not collision navigation, combat simulation, pacing or exit reachability.",
+    "No door consumes a card in this model. Ammo amount, enemy counts and mandatory clearing are unspecified."
+  ]
+}

@@ -94,6 +94,7 @@
 
 - [Морг → больница → арена: схема 01](Unused/Levels/MorgueDemo01/README.md)
 - [Пространственная схема демо 03](Unused/Levels/MorgueDemo03/README.md)
+- [Зарисовка первого уровня и предложение 04](Unused/Levels/MorgueSketch04/README.md)
 
 ### UI
 
