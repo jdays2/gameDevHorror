@@ -1,0 +1,514 @@
+{
+  "date": "2026-10-19",
+  "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+  "scope": "Same reader signals expanded from two to six card doors, verified from both sides; two tiny card-colored lamps per door",
+  "authoring": {
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "added": [
+      "H-O2 - blue access",
+      "H-O1 - blue access",
+      "S-W - blue access",
+      "R-H - green access"
+    ],
+    "allReaders": 6,
+    "sharedProfile": "Assets/EmergencyShift/Audio/AccessDoorTrial01/ReaderFeedback.asset",
+    "protectedSceneDataPreserved": true,
+    "confirmationDelay": 0.24,
+    "denialCooldown": 0.8
+  },
+  "indicators": {
+    "doors": 6,
+    "lights": 12,
+    "prefab": "Assets/EmergencyShift/Prefabs/Environment/CardDoorIndicators.prefab",
+    "lensDiameter": 0.045,
+    "radius": 0.18,
+    "intensity": 0.12,
+    "existingSceneDataPreserved": true
+  },
+  "runtime": {
+    "passed": true,
+    "tests": 12,
+    "records": [
+      {
+        "door": "H-O1 - blue access",
+        "side": "marked side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242331028,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "H-O1 - blue access",
+        "side": "reverse side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242455959,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "H-O2 - blue access",
+        "side": "marked side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242166519,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "H-O2 - blue access",
+        "side": "reverse side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242315292,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "H-O3 - blue access",
+        "side": "marked side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242577553,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "H-O3 - blue access",
+        "side": "reverse side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242315292,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "H-P - green access",
+        "side": "marked side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242088318,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "H-P - green access",
+        "side": "reverse side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242399216,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "R-H - green access",
+        "side": "marked side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242284775,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "R-H - green access",
+        "side": "reverse side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.242591858,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "S-W - blue access",
+        "side": "marked side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.2423935,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      },
+      {
+        "door": "S-W - blue access",
+        "side": "reverse side",
+        "deniedEvents": 1,
+        "grantedEvents": 1,
+        "delay": 0.24240303,
+        "denyVolume": 0.32,
+        "grantVolume": 0.32,
+        "sourceClipPlaybackVerified": true
+      }
+    ],
+    "oppositeSideReopenUsesSharedUnlock": true
+  },
+  "finalAudit": {
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "dirty": false,
+    "records": [
+      {
+        "door": "R-H - green access",
+        "card": "green",
+        "reader": true,
+        "sharedProfile": true,
+        "sourceReady": true,
+        "lightCount": 2,
+        "lightColorsMatchCard": true,
+        "lights": [
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          },
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          }
+        ],
+        "lenses": 2,
+        "defensiveSources": 0
+      },
+      {
+        "door": "H-O1 - blue access",
+        "card": "blue",
+        "reader": true,
+        "sharedProfile": true,
+        "sourceReady": true,
+        "lightCount": 2,
+        "lightColorsMatchCard": true,
+        "lights": [
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          },
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          }
+        ],
+        "lenses": 2,
+        "defensiveSources": 0
+      },
+      {
+        "door": "H-O3 - blue access",
+        "card": "blue",
+        "reader": true,
+        "sharedProfile": true,
+        "sourceReady": true,
+        "lightCount": 2,
+        "lightColorsMatchCard": true,
+        "lights": [
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          },
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          }
+        ],
+        "lenses": 2,
+        "defensiveSources": 0
+      },
+      {
+        "door": "H-O2 - blue access",
+        "card": "blue",
+        "reader": true,
+        "sharedProfile": true,
+        "sourceReady": true,
+        "lightCount": 2,
+        "lightColorsMatchCard": true,
+        "lights": [
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          },
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          }
+        ],
+        "lenses": 2,
+        "defensiveSources": 0
+      },
+      {
+        "door": "S-W - blue access",
+        "card": "blue",
+        "reader": true,
+        "sharedProfile": true,
+        "sourceReady": true,
+        "lightCount": 2,
+        "lightColorsMatchCard": true,
+        "lights": [
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          },
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          }
+        ],
+        "lenses": 2,
+        "defensiveSources": 0
+      },
+      {
+        "door": "H-P - green access",
+        "card": "green",
+        "reader": true,
+        "sharedProfile": true,
+        "sourceReady": true,
+        "lightCount": 2,
+        "lightColorsMatchCard": true,
+        "lights": [
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          },
+          {
+            "radius": 0.18,
+            "intensity": 0.12,
+            "shadow": false
+          }
+        ],
+        "lenses": 2,
+        "defensiveSources": 0
+      }
+    ],
+    "missingScripts": 0,
+    "ordinaryDoorsPreserved": 5,
+    "enemiesActive": 9
+  },
+  "captures": [
+    {
+      "name": "blue-dark",
+      "door": "H-O3 - blue access",
+      "flashlight": false,
+      "doorPixel": [
+        1920.0,
+        1737.39136
+      ],
+      "lampPixels": [
+        [
+          1584.261,
+          1697.47827
+        ],
+        [
+          2255.7395,
+          1697.47827
+        ]
+      ]
+    },
+    {
+      "name": "green-dark",
+      "door": "H-P - green access",
+      "flashlight": false,
+      "doorPixel": [
+        1920.0,
+        1737.39136
+      ],
+      "lampPixels": [
+        [
+          1584.261,
+          1697.47827
+        ],
+        [
+          2255.7395,
+          1697.47827
+        ]
+      ]
+    },
+    {
+      "name": "blue-flashlight",
+      "door": "H-O3 - blue access",
+      "flashlight": true,
+      "doorPixel": [
+        1920.0,
+        1737.39136
+      ],
+      "lampPixels": [
+        [
+          1584.261,
+          1697.47827
+        ],
+        [
+          2255.7395,
+          1697.47827
+        ]
+      ]
+    },
+    {
+      "name": "green-flashlight",
+      "door": "H-P - green access",
+      "flashlight": true,
+      "doorPixel": [
+        1920.0,
+        1737.39136
+      ],
+      "lampPixels": [
+        [
+          1584.261,
+          1697.47827
+        ],
+        [
+          2255.7395,
+          1697.47827
+        ]
+      ]
+    },
+    {
+      "name": "blue-reverse-dark",
+      "door": "H-O3 - blue access",
+      "flashlight": false,
+      "doorPixel": [
+        1920.0,
+        422.608734
+      ],
+      "lampPixels": [
+        [
+          1584.261,
+          382.695648
+        ],
+        [
+          2255.7395,
+          382.695648
+        ]
+      ]
+    },
+    {
+      "name": "green-reverse-dark",
+      "door": "H-P - green access",
+      "flashlight": false,
+      "doorPixel": [
+        1920.0,
+        422.608734
+      ],
+      "lampPixels": [
+        [
+          1584.261,
+          382.695648
+        ],
+        [
+          2255.7395,
+          382.695648
+        ]
+      ]
+    }
+  ],
+  "editMode": {
+    "mode": "EditMode",
+    "summary": {
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 0.6559435,
+      "resultState": "Passed"
+    },
+    "results": [
+      {
+        "name": "AutomaticBlockersStayInTheirSceneAndUnregisterWhenDisabled",
+        "fullName": "EmergencyShift.Tests.CeilingLightOcclusionTests.AutomaticBlockersStayInTheirSceneAndUnregisterWhenDisabled",
+        "state": "Passed",
+        "durationSeconds": 0.0403568,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "CeilingLightIgnoresLowDeskButStopsAtWallAndMovingDoor",
+        "fullName": "EmergencyShift.Tests.CeilingLightOcclusionTests.CeilingLightIgnoresLowDeskButStopsAtWallAndMovingDoor",
+        "state": "Passed",
+        "durationSeconds": 0.002908,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "RotatedScaledAndDisabledBlockersUseWorldDistance",
+        "fullName": "EmergencyShift.Tests.CeilingLightOcclusionTests.RotatedScaledAndDisabledBlockersUseWorldDistance",
+        "state": "Passed",
+        "durationSeconds": 0.000651,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "RestorationDoesNotEmitReaderFeedbackAndLegacyDoorsHaveNoDelay",
+        "fullName": "EmergencyShift.Tests.DoorAccessTests.RestorationDoesNotEmitReaderFeedbackAndLegacyDoorsHaveNoDelay",
+        "state": "Passed",
+        "durationSeconds": 0.0036019,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "SuccessfulReadingIsOnceAndUnlockPersistsWithoutTheCard",
+        "fullName": "EmergencyShift.Tests.DoorAccessTests.SuccessfulReadingIsOnceAndUnlockPersistsWithoutTheCard",
+        "state": "Passed",
+        "durationSeconds": 0.0007261,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "WrongCardCannotUnlockAndRepeatedAttemptDoesNotSpamFeedback",
+        "fullName": "EmergencyShift.Tests.DoorAccessTests.WrongCardCannotUnlockAndRepeatedAttemptDoesNotSpamFeedback",
+        "state": "Passed",
+        "durationSeconds": 0.0007885,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      }
+    ]
+  },
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "seconds": 8.606124,
+    "bytes": 222051241,
+    "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+    "output": "Builds/MorgueRouteTest-CardIndicators/MorgueRouteTest.exe"
+  },
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "preservation": {
+    "changedExistingAssets": [
+      "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
+    ],
+    "allOtherExistingAssetsUnchanged": true,
+    "allOriginalTransformsRenderersLightsGameplayAndExistingAudioPreserved": true,
+    "preExistingSceneWorkingChanges": "Preserved in place; only task delta from the Editor baseline is staged, keeping the prior scene changes unstaged"
+  },
+  "limits": [
+    "No new reader sounds or runtime logic; existing unlock policy and .24-second confirmation retained",
+    "Success sounds once per first unlock; unlocked state shared across sides",
+    "Native Light2D indicators are not defensive sources; no LocalLamp2D component",
+    "Two-sided sound test checks real AudioSource playback and mix gain, not a listening-based artistic judgement",
+    "No performance/FPS claim; twelve very small Light2D points with shadows off"
+  ]
+}
