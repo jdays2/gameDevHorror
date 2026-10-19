@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 450563386735084237}
   - component: {fileID: 6790831325318586483}
   - component: {fileID: 7511587152656433495}
-  - component: {fileID: 6582954503666507727}
   m_Layer: 8
   m_Name: shelf-microscopes
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001004
-  m_SortingLayer: -1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 675e4a300f6a2794da0e5161e4a00646, type: 3}
@@ -161,7 +160,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700abdca700acdca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -1.3264122, y: -0.4421374, z: 0}
   - {x: -1.3264122, y: 0.4421374, z: 0}
@@ -253,30 +252,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &6582954503666507727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1267701086484405848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 2
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 7511587152656433495}
-    frame: {fileID: 8060556629097287647}
-    points:
-    - {x: 1.1908396, y: 0.28458014}
-    - {x: 1.201832, y: 0.28335878}
-    - {x: 1.201832, y: -0.28335878}
-    - {x: -1.201832, y: -0.28335878}
-    - {x: -1.201832, y: 0.27480915}
-    - {x: -1.1945038, y: 0.28458014}

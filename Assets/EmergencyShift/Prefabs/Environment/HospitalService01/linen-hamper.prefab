@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6408790998981248096}
   - component: {fileID: 8907123175528592350}
   - component: {fileID: 5503675387333683954}
-  - component: {fileID: 9059911780583461033}
   m_Layer: 8
   m_Name: linen-hamper
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001003
-  m_SortingLayer: -2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 39133d1fa20c44a4ba8f197aab801b78, type: 3}
@@ -161,7 +160,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700abdca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -0.50915885, y: -0.4388785, z: 0}
   - {x: -0.50915885, y: 0.42317757, z: 0}
@@ -523,70 +522,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &9059911780583461033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8121139245481393295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 1
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 5503675387333683954}
-    frame: {fileID: 5493351680269117826}
-    points:
-    - {x: -0.18258575, y: 0.26314864}
-    - {x: -0.18258575, y: 0.26244503}
-    - {x: 0.18399297, y: 0.26244503}
-    - {x: 0.18469657, y: 0.28425682}
-    - {x: 0.17906772, y: 0.28918207}
-    - {x: 0.17836411, y: 0.28988567}
-    - {x: 0.12277924, y: 0.28988567}
-    - {x: 0.11855761, y: 0.28636762}
-    - {x: 0.11574318, y: 0.28425682}
-    - {x: 0.1058927, y: 0.2835532}
-    - {x: 0.1058927, y: 0.28496042}
-    - {x: 0.08337731, y: 0.28425682}
-    - {x: 0.07985928, y: 0.28425682}
-    - {x: 0.079155676, y: 0.28496042}
-    - {x: 0.02708883, y: 0.28496042}
-    - {x: 0.02708883, y: 0.2835532}
-    - {x: 0.022163589, y: 0.28425682}
-    - {x: -0.11222515, y: 0.28425682}
-    - {x: -0.11996482, y: 0.28777486}
-    - {x: -0.12137203, y: 0.28988567}
-    - {x: -0.1769569, y: 0.28988567}
-    - {x: -0.18258575, y: 0.28566402}
-    - {x: -0.18399297, y: 0.26385224}
-  - caster: {fileID: 5503675387333683954}
-    frame: {fileID: 5493351680269117826}
-    points:
-    - {x: 0.21776605, y: 0.32647318}
-    - {x: -0.24168865, y: 0.32647318}
-    - {x: -0.31134564, y: 0.29058927}
-    - {x: -0.4007036, y: 0.22656113}
-    - {x: -0.4007036, y: 0.14635004}
-    - {x: -0.3873351, y: 0.13087071}
-    - {x: -0.3648197, y: 0.13579595}
-    - {x: -0.36904132, y: -0.1766051}
-    - {x: -0.38381708, y: -0.28003517}
-    - {x: -0.33878627, y: -0.3412489}
-    - {x: -0.24872471, y: -0.3412489}
-    - {x: -0.18469657, y: -0.28707123}
-    - {x: 0.18188214, y: -0.28566402}
-    - {x: 0.2817942, y: -0.3412489}
-    - {x: 0.33386102, y: -0.3412489}
-    - {x: 0.3662269, y: -0.32717678}
-    - {x: 0.3859279, y: 0.12805629}
-    - {x: 0.40211082, y: 0.14494283}
-    - {x: 0.40211082, y: 0.20474935}
-    - {x: 0.3859279, y: 0.235708}

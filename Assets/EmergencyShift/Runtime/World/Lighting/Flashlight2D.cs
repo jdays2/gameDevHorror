@@ -31,16 +31,6 @@ namespace EmergencyShift
         private float maximumTurnSpeed = 720f;
         [SerializeField, Min(0)]
         private float cursorDeadZone = .25f;
-        [Header("Source placement")]
-        [SerializeField, Min(.005f)]
-        private float surfaceClearance = .04f;
-        [SerializeField, Min(0)]
-        private float maximumOriginRetraction = .45f;
-        [SerializeField]
-        private LayerMask originBlockingLayers = (1 << 8) | (1 << 9);
-        private Vector3 authoredBeamPosition;
-        private float spillZ;
-        private bool placementInitialized;
         private float angularVelocity;
         public bool IsOn => beam != null && beam.enabled;
         public float Range => range;
@@ -56,7 +46,6 @@ namespace EmergencyShift
             aimPivot = pivot;
             beam = light;
             nearGlow = spillLight;
-            placementInitialized = false;
             ApplyOptics();
         }
 
@@ -72,39 +61,6 @@ namespace EmergencyShift
         }
 
         private void OnValidate() => ApplyOptics();
-
-        private void LateUpdate()
-        {
-            UpdateLightPlacement();
-        }
-
-        private void UpdateLightPlacement()
-        {
-            if (!Application.isPlaying || beam == null || beam.transform.parent == null)
-            {
-                return;
-            }
-
-            if (!placementInitialized)
-            {
-                authoredBeamPosition = beam.transform.localPosition;
-                spillZ = nearGlow != null ? nearGlow.transform.position.z : transform.position.z;
-                placementInitialized = true;
-            }
-
-            Vector3 desired = beam.transform.parent.TransformPoint(authoredBeamPosition);
-            Vector2 safe = LightOriginPlacement2D.Clamp(transform.position, desired, gameObject.scene,
-                surfaceClearance, maximumOriginRetraction, originBlockingLayers);
-            beam.transform.position = new Vector3(safe.x, safe.y, desired.z);
-            if (nearGlow != null)
-            {
-                Vector2 forward = aimPivot != null ? aimPivot.up : beam.transform.up;
-                Vector2 probe = (Vector2)transform.position + forward * .001f;
-                Vector2 spill = LightOriginPlacement2D.Clamp(transform.position, probe, gameObject.scene,
-                    surfaceClearance, maximumOriginRetraction, originBlockingLayers);
-                nearGlow.transform.position = new Vector3(spill.x, spill.y, spillZ);
-            }
-        }
         /// <summary>Меняет оптику, сохраняя состояние питания; используется модулями улучшения.</summary>
         public void SetOptics(float newRange, float newAngle)
         {
@@ -226,8 +182,6 @@ namespace EmergencyShift
                 aimPivot.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
                 angularVelocity = 0;
             }
-
-            UpdateLightPlacement();
         }
 
         /// <summary>Игровое освещение основным лучом. Слабый ближний свет не отпугивает врага.</summary>

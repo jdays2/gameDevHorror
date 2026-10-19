@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 264246214193146320}
   - component: {fileID: 5819753110430580033}
   - component: {fileID: 5664149774086278623}
-  - component: {fileID: 8461188045794609211}
   m_Layer: 8
   m_Name: pipe-straight
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001002
-  m_SortingLayer: -3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: fddd883128478ff45bc647db8d693be1, type: 3}
@@ -168,7 +167,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -1.3395594, y: -0.44651982, z: 0}
   - {x: -1.3395594, y: 0.44651982, z: 0}
@@ -280,30 +279,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &8461188045794609211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8205582252344598956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 0
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 5664149774086278623}
-    frame: {fileID: 8318217808669783522}
-    points:
-    - {x: 1.0318061, y: 0.083876655}
-    - {x: 1.2698678, y: 0.07524229}
-    - {x: 1.2698678, y: -0.08264317}
-    - {x: -1.2686343, y: -0.08264317}
-    - {x: -1.2686343, y: 0.07400881}
-    - {x: -1.0034361, y: 0.083876655}

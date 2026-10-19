@@ -136,7 +136,6 @@ namespace EmergencyShift
                 body.sprite = fragments[part.spriteIndex];
                 body.sharedMaterial = litMaterial;
                 body.sortingOrder = RemainsVisualStyle.DeadOrder;
-                body.sortingLayerName = EnvironmentShadowLayers.Floor;
                 part.body.Apply(body);
                 SpriteRenderer shadow = null;
                 if (part.hasShadow)
@@ -146,7 +145,6 @@ namespace EmergencyShift
                     shadow.sprite = contactShadowSprite;
                     shadow.sharedMaterial = shadowMaterial;
                     shadow.sortingOrder = RemainsVisualStyle.DeadOrder;
-                    shadow.sortingLayerName = EnvironmentShadowLayers.Floor;
                     part.shadow.Apply(shadow);
                 }
 

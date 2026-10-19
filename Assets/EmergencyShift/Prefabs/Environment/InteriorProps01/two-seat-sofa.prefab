@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3315423810661479293}
   - component: {fileID: 3751451243025316926}
   - component: {fileID: 3783432785534532452}
-  - component: {fileID: 3871704964482393944}
   m_Layer: 8
   m_Name: two-seat-sofa
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001003
-  m_SortingLayer: -2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 2b13ddf7a8bb4ea4c8675eba0a2ddbf7, type: 3}
@@ -161,7 +160,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700abdca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -0.8679452, y: -0.57863015, z: 0}
   - {x: -0.8679452, y: 0.57863015, z: 0}
@@ -303,36 +302,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &3871704964482393944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8791077620183296463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 1
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 3783432785534532452}
-    frame: {fileID: 5554456479769931848}
-    points:
-    - {x: 0.82839036, y: 0.34695205}
-    - {x: 0.82839036, y: -0.34356162}
-    - {x: 0.8114383, y: -0.38311642}
-    - {x: -0.5413356, y: -0.38311642}
-    - {x: -0.64078766, y: -0.38085616}
-    - {x: -0.6453082, y: -0.38311642}
-    - {x: -0.80804795, y: -0.38311642}
-    - {x: -0.8261301, y: -0.3333904}
-    - {x: -0.8261301, y: 0.34808218}
-    - {x: -0.8046575, y: 0.38311642}
-    - {x: 0.7425, y: 0.38311642}
-    - {x: 0.8069178, y: 0.37972602}

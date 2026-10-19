@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4629074034509670981}
   - component: {fileID: 7999926284494366359}
   - component: {fileID: 3366827185310213164}
-  - component: {fileID: 5745543971641005282}
   m_Layer: 8
   m_Name: workbench-documents
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001003
-  m_SortingLayer: -2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: b2550ce5af4257b4f871f7d0664cf6bb, type: 3}
@@ -161,7 +160,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700abdca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -1.2014623, y: -0.50050616, z: 0}
   - {x: -1.2014623, y: 0.50050616, z: 0}
@@ -293,35 +292,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &5745543971641005282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4267312413287403218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 1
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 3366827185310213164}
-    frame: {fileID: 6424941843010161438}
-    points:
-    - {x: 1.1037121, y: 0.35697412}
-    - {x: 1.1037121, y: -0.345838}
-    - {x: 1.0901012, y: -0.37058493}
-    - {x: -1.0851518, y: -0.37058493}
-    - {x: -1.1012373, y: -0.34955007}
-    - {x: -1.1012373, y: 0.3532621}
-    - {x: -1.0740157, y: 0.3730596}
-    - {x: -0.77581555, y: 0.3730596}
-    - {x: -0.48751405, y: 0.36934757}
-    - {x: 0.08785152, y: 0.3730596}
-    - {x: 1.0839145, y: 0.3730596}

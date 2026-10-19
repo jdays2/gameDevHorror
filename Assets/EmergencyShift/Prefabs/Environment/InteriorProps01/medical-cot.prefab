@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7211837448548241115}
   - component: {fileID: 3823168380163375318}
   - component: {fileID: 596301639412846571}
-  - component: {fileID: 8619624360908266863}
   m_Layer: 8
   m_Name: medical-cot
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001003
-  m_SortingLayer: -2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 9e785a25c549b654487607ba219ca6be, type: 3}
@@ -161,7 +160,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700abdca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -0.9612648, y: -1.4418972, z: 0}
   - {x: -0.9612648, y: 1.4418972, z: 0}
@@ -493,101 +492,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &8619624360908266863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1193237979021761807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 1
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 596301639412846571}
-    frame: {fileID: 1510528324503277059}
-    points:
-    - {x: -0.37737152, y: 1.2109684}
-    - {x: -0.35671934, y: 1.2203557}
-    - {x: -0.34545454, y: 1.2222332}
-    - {x: -0.34357706, y: 1.2241106}
-    - {x: -0.3360672, y: 1.2241106}
-    - {x: -0.3341897, y: 1.2259881}
-    - {x: -0.31541502, y: 1.2259881}
-    - {x: -0.31353754, y: 1.2278656}
-    - {x: -0.28162053, y: 1.2278656}
-    - {x: -0.27974308, y: 1.229743}
-    - {x: -0.16709486, y: 1.229743}
-    - {x: -0.16521738, y: 1.2316206}
-    - {x: 0.27598813, y: 1.2316206}
-    - {x: 0.27786562, y: 1.229743}
-    - {x: 0.3097826, y: 1.229743}
-    - {x: 0.31166008, y: 1.2278656}
-    - {x: 0.32480237, y: 1.2278656}
-    - {x: 0.32667983, y: 1.2259881}
-    - {x: 0.3416996, y: 1.2241106}
-    - {x: 0.347332, y: 1.2222332}
-    - {x: 0.36422923, y: 1.2147233}
-    - {x: 0.36798418, y: 1.2109684}
-    - {x: 0.37737152, y: 1.205336}
-    - {x: 0.37737152, y: 1.2034584}
-    - {x: 0.3867589, y: 1.2090908}
-    - {x: 0.3923913, y: 1.2147233}
-    - {x: 0.39614624, y: 1.2203557}
-    - {x: 0.39614624, y: 1.2259881}
-    - {x: 0.39990118, y: 1.233498}
-    - {x: 0.39990118, y: 1.2410079}
-    - {x: 0.40365613, y: 1.2485178}
-    - {x: 0.3923913, y: 1.2597826}
-    - {x: 0.38863635, y: 1.2597826}
-    - {x: 0.37737152, y: 1.265415}
-    - {x: 0.36610672, y: 1.265415}
-    - {x: 0.36422923, y: 1.2672925}
-    - {x: -0.36798418, y: 1.2672925}
-    - {x: -0.36986166, y: 1.265415}
-    - {x: -0.379249, y: 1.265415}
-    - {x: -0.38112646, y: 1.2635375}
-    - {x: -0.3867589, y: 1.2635375}
-    - {x: -0.39990118, y: 1.2560276}
-    - {x: -0.40741107, y: 1.2485178}
-    - {x: -0.40553358, y: 1.237253}
-    - {x: -0.40365613, y: 1.2353755}
-    - {x: -0.40365613, y: 1.229743}
-    - {x: -0.39990118, y: 1.2222332}
-    - {x: -0.3980237, y: 1.2166008}
-    - {x: -0.3980237, y: 1.2128458}
-    - {x: -0.3867589, y: 1.205336}
-    - {x: -0.38112646, y: 1.205336}
-  - caster: {fileID: 596301639412846571}
-    frame: {fileID: 1510528324503277059}
-    points:
-    - {x: -0.3848814, y: -1.1396245}
-    - {x: -0.38863635, y: -1.1339921}
-    - {x: -0.38863635, y: -1.137747}
-  - caster: {fileID: 596301639412846571}
-    frame: {fileID: 1510528324503277059}
-    points:
-    - {x: 0.39990118, y: -1.137747}
-    - {x: 0.39426875, y: -1.1321146}
-    - {x: 0.3923913, y: -1.1321146}
-    - {x: 0.38300395, y: -1.1415019}
-    - {x: 0.3923913, y: -1.1396245}
-    - {x: 0.39426875, y: -1.137747}
-  - caster: {fileID: 596301639412846571}
-    frame: {fileID: 1510528324503277059}
-    points:
-    - {x: 0.4731225, y: 1.3198617}
-    - {x: 0.4806324, y: 1.3029644}
-    - {x: 0.4806324, y: -1.2090908}
-    - {x: 0.44120553, y: -1.2748023}
-    - {x: -0.46373516, y: -1.2748023}
-    - {x: -0.4731225, y: -1.2691699}
-    - {x: -0.47687745, y: -1.1527668}
-    - {x: -0.47687745, y: 1.3198617}

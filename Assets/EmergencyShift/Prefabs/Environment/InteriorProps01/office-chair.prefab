@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6159153675991875192}
   - component: {fileID: 4527493434659644085}
   - component: {fileID: 2234140881341813869}
-  - component: {fileID: 5748300048889490010}
   m_Layer: 8
   m_Name: office-chair
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001002
-  m_SortingLayer: -3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 7930f24b249b30d428291ccd81e24998, type: 3}
@@ -222,7 +221,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -0.4540271, y: -0.4858689, z: 0}
   - {x: -0.4540271, y: 0.4858689, z: 0}
@@ -824,84 +823,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &5748300048889490010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8855399035478651455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 0
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 2234140881341813869}
-    frame: {fileID: 2586323153560432339}
-    points:
-    - {x: -0.23825184, y: 0.2712175}
-    - {x: -0.2180229, y: 0.25473467}
-    - {x: -0.118376695, y: 0.2449948}
-    - {x: -0.21277836, y: 0.2562331}
-    - {x: -0.23001042, y: 0.3056816}
-    - {x: -0.22926119, y: 0.33939648}
-    - {x: -0.20378773, y: 0.3776067}
-    - {x: -0.09365245, y: 0.40233094}
-    - {x: 0.083912596, y: 0.40233094}
-    - {x: 0.19854319, y: 0.37985432}
-    - {x: 0.22851197, y: 0.35737774}
-    - {x: 0.23225807, y: 0.29069722}
-    - {x: 0.20978148, y: 0.26597294}
-    - {x: 0.16407908, y: 0.24874091}
-    - {x: 0.059188347, y: 0.26072842}
-    - {x: 0.18206036, y: 0.21877213}
-    - {x: 0.22701354, y: 0.2644745}
-    - {x: 0.25173777, y: 0.27421436}
-    - {x: 0.2951925, y: 0.2404995}
-    - {x: 0.27271593, y: 0.18805411}
-    - {x: 0.24124871, y: 0.16258065}
-    - {x: 0.33115506, y: 0.1798127}
-    - {x: 0.36187306, y: 0.13036421}
-    - {x: 0.36187306, y: -0.067429766}
-    - {x: 0.34239337, y: -0.11013528}
-    - {x: 0.25398543, y: -0.13935484}
-    - {x: 0.29744017, y: -0.20903227}
-    - {x: 0.3169199, y: -0.2330073}
-    - {x: 0.31242457, y: -0.28170657}
-    - {x: 0.2682206, y: -0.2869511}
-    - {x: 0.24724247, y: -0.28095734}
-    - {x: 0.2330073, y: -0.23525496}
-    - {x: 0.19105099, y: -0.20978148}
-    - {x: 0.13785641, y: -0.22776276}
-    - {x: 0.08316337, y: -0.2330073}
-    - {x: 0.027721126, y: -0.23375651}
-    - {x: 0.03521332, y: -0.33714882}
-    - {x: 0.048699275, y: -0.39483872}
-    - {x: 0.034464102, y: -0.40233094}
-    - {x: -0.034464102, y: -0.40233094}
-    - {x: -0.05694069, y: -0.3558793}
-    - {x: -0.026222685, y: -0.23675339}
-    - {x: -0.24574402, y: -0.22476588}
-    - {x: -0.2404995, y: -0.23075964}
-    - {x: -0.23675339, y: -0.25848076}
-    - {x: -0.2644745, y: -0.30043706}
-    - {x: -0.32141522, y: -0.2682206}
-    - {x: -0.32965663, y: -0.24199793}
-    - {x: -0.252487, y: -0.15733612}
-    - {x: -0.25473467, y: -0.085411035}
-    - {x: -0.25848076, y: -0.09739855}
-    - {x: -0.27421436, y: -0.12362123}
-    - {x: -0.36112383, y: -0.100395426}
-    - {x: -0.36112383, y: 0.13186266}
-    - {x: -0.33864725, y: 0.16332987}
-    - {x: -0.27796048, y: 0.16857441}
-    - {x: -0.23375651, y: 0.1992924}
-    - {x: -0.2644745, y: 0.17831427}
-    - {x: -0.29744017, y: 0.23975027}
-    - {x: -0.27271593, y: 0.26222685}

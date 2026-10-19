@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7279583450397045496}
   - component: {fileID: 6341244962149166988}
   - component: {fileID: 5604510567695953496}
-  - component: {fileID: 731977002067411314}
   m_Layer: 8
   m_Name: water-cooler
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001003
-  m_SortingLayer: -2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: f51509fd2bd064440ad21b11fe404734, type: 3}
@@ -161,7 +160,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700abdca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -0.4284339, y: -0.35654688, z: 0}
   - {x: -0.4284339, y: 0.39890885, z: 0}
@@ -353,41 +352,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &731977002067411314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2307118849395492964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 1
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 5604510567695953496}
-    frame: {fileID: 5290348633022297242}
-    points:
-    - {x: 0.21930946, y: 0.21035805}
-    - {x: 0.21930946, y: -0.1157289}
-    - {x: 0.20460358, y: -0.13554987}
-    - {x: 0.17838874, y: -0.16815856}
-    - {x: 0.13107418, y: -0.20780051}
-    - {x: 0.10421995, y: -0.23017903}
-    - {x: -0.10613811, y: -0.23017903}
-    - {x: -0.17838874, y: -0.17263427}
-    - {x: -0.21803069, y: -0.1157289}
-    - {x: -0.21803069, y: 0.20524296}
-    - {x: -0.1898977, y: 0.24168798}
-    - {x: -0.060102303, y: 0.2723785}
-    - {x: 0.034526855, y: 0.2723785}
-    - {x: 0.083120205, y: 0.2640665}
-    - {x: 0.14066496, y: 0.2723785}
-    - {x: 0.16815856, y: 0.2723785}
-    - {x: 0.20332481, y: 0.27046037}

@@ -16,7 +16,6 @@ namespace EmergencyShift
             if (group != null)
             {
                 group.sortingOrder = DeadOrder;
-                group.sortingLayerName = EnvironmentShadowLayers.Floor;
             }
 
             Vector3 position = visual.localPosition;
@@ -25,7 +24,6 @@ namespace EmergencyShift
             foreach (SpriteRenderer renderer in visual.GetComponentsInChildren<SpriteRenderer>())
             {
                 renderer.color = Tint;
-                renderer.sortingLayerName = EnvironmentShadowLayers.Floor;
             }
         }
     }

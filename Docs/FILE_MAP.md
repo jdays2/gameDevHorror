@@ -34,7 +34,6 @@
 - `Runtime/Definitions/AudioMoodProfile.cs`
 - `Runtime/Definitions/BloodPoolProfile.cs`
 - `Runtime/Definitions/CameraFramingProfile.cs`
-- `Runtime/Definitions/FloorShadowProfile.cs`
 - `Runtime/Definitions/DoorAudioSet.cs`
 - `Runtime/Definitions/EnemyDeathAudioSet.cs`
 - `Runtime/Definitions/EnemyDefinition.cs`
@@ -199,13 +198,7 @@
 ### Runtime/World/Lighting
 
 - `Runtime/World/Lighting/CeilingLightOcclusion2D.cs`
-- `Runtime/World/Lighting/EnvironmentHeight2D.cs`
-- `Runtime/World/Lighting/EnvironmentShadowLayers.cs`
-- `Runtime/World/Lighting/FiniteFloorLight2D.cs`
 - `Runtime/World/Lighting/Flashlight2D.cs`
-- `Runtime/World/Lighting/FloorShadowContour2D.cs`
-- `Runtime/World/Lighting/FloorShadowMask.cs`
-- `Runtime/World/Lighting/LightOriginPlacement2D.cs`
 - `Runtime/World/Lighting/FullHeightLightBlocker2D.cs`
 - `Runtime/World/Lighting/LocalLamp2D.cs`
 - `Runtime/World/Lighting/LocalLampAudio2D.cs`
@@ -228,7 +221,6 @@
 
 - `Editor/Authoring/DialoguePrefabAuthoring.cs`
 - `Editor/Authoring/DialogueSandboxAuthoring.cs`
-- `Editor/Authoring/EnvironmentHeightEditor.cs`
 - `Editor/Authoring/EnvironmentLibraryReviewBuilder.cs`
 - `Editor/Authoring/EnvironmentReviewBuilder.cs`
 - `Editor/Authoring/EnvironmentSpriteAuthoring.cs`
@@ -255,8 +247,6 @@
 - `Tests/EditMode/DialoguePrefabTests.cs`
 - `Tests/EditMode/EnemyDeathAudioTests.cs`
 - `Tests/EditMode/EnemySystemsTests.cs`
-- `Tests/EditMode/EnvironmentHeightShadowTests.cs`
-- `Tests/EditMode/FiniteFloorShadowTests.cs`
 - `Tests/EditMode/EnvironmentPresentationTests.cs`
 - `Tests/EditMode/GoreCompositionTests.cs`
 - `Tests/EditMode/LocalLampAudioTests.cs`

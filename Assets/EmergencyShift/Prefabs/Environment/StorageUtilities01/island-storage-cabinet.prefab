@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2887452285485537238}
   - component: {fileID: 8875154162795453767}
   - component: {fileID: 8844201036092534429}
-  - component: {fileID: 4053760640661535917}
   m_Layer: 8
   m_Name: island-storage-cabinet
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001003
-  m_SortingLayer: -2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: fb0bf00a62e3a474e958eb2d64a1527e, type: 3}
@@ -161,7 +160,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700abdca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -0.9861643, y: -0.49308214, z: 0}
   - {x: -0.9861643, y: 0.49308214, z: 0}
@@ -323,35 +322,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &4053760640661535917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7268320849360698655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 1
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 8844201036092534429}
-    frame: {fileID: 5121530293563470368}
-    points:
-    - {x: 0.90277946, y: 0.24626312}
-    - {x: 0.90277946, y: -0.24626312}
-    - {x: 0.86164296, y: -0.2996294}
-    - {x: 0.76046944, y: -0.3063002}
-    - {x: -0.6793082, y: -0.3063002}
-    - {x: -0.8483014, y: -0.296294}
-    - {x: -0.90166765, y: -0.2518221}
-    - {x: -0.90166765, y: 0.24181594}
-    - {x: -0.86053115, y: 0.2996294}
-    - {x: 0.7248919, y: 0.2996294}
-    - {x: 0.8483014, y: 0.29295862}

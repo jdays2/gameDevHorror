@@ -96,24 +96,6 @@ namespace EmergencyShift.Editor
                 shadow.alphaCutoff = .2f;
                 shadow.trimEdge = 0;
 
-                var height = obj.AddComponent<EnvironmentHeight2D>();
-                height.heightClass = (EnvironmentHeightClass)Enum.Parse(typeof(EnvironmentHeightClass), recipe.heightClass);
-                // Use the installed project's shared shadow settings when its optional floor extension is present.
-                var serialized = new SerializedObject(height);
-                var profile = serialized.FindProperty("floorShadowProfile");
-                if (profile != null)
-                {
-                    var sharedProfile = AssetDatabase.LoadMainAssetAtPath("Assets/EmergencyShift/Settings/FloorShadows.asset");
-                    if (sharedProfile == null)
-                    {
-                        throw new InvalidOperationException("The installed floor-shadow extension needs FloorShadows.asset.");
-                    }
-
-                    profile.objectReferenceValue = sharedProfile;
-                    serialized.ApplyModifiedPropertiesWithoutUndo();
-                }
-
-                EnvironmentHeightAuthoring.Apply(height);
                 PrefabUtility.SaveAsPrefabAsset(obj, PrefabRoot + "/" + recipe.id + ".prefab");
             }
             finally

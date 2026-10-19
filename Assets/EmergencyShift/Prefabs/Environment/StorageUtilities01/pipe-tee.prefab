@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7916056705286884104}
   - component: {fileID: 2036423384803390831}
   - component: {fileID: 6463031935370161272}
-  - component: {fileID: 1317517118203873843}
   m_Layer: 8
   m_Name: pipe-tee
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001002
-  m_SortingLayer: -3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 3063f57f719a6144facacc7bfd1f898d, type: 3}
@@ -169,7 +168,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -0.7214795, y: -0.7214795, z: 0}
   - {x: -0.7214795, y: 0.7214795, z: 0}
@@ -281,31 +280,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &1317517118203873843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7556218547225962132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 0
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 6463031935370161272}
-    frame: {fileID: 7368944525527732834}
-    points:
-    - {x: 0.07479452, y: 0.43956164}
-    - {x: 0.69616437, y: -0.15189041}
-    - {x: 0.69616437, y: -0.32334247}
-    - {x: -0.6950137, y: -0.32334247}
-    - {x: -0.6950137, y: -0.16109589}
-    - {x: -0.07709589, y: 0.44876713}
-    - {x: 0.06558904, y: 0.44876713}

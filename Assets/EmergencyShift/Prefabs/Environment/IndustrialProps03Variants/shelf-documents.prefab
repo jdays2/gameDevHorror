@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3538157311363668110}
   - component: {fileID: 6435661935778356649}
   - component: {fileID: 4112781794250205892}
-  - component: {fileID: 6610149933704620349}
   m_Layer: 8
   m_Name: shelf-documents
   m_TagString: Untagged
@@ -80,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 11001004
-  m_SortingLayer: -1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 8ddb2976224672246a676b3cbdbbb909, type: 3}
@@ -161,7 +160,7 @@ MonoBehaviour:
   m_CastsShadows: 1
   m_SelfShadows: 0
   m_AlphaCutoff: 0.2
-  m_ApplyToSortingLayers: a9dca70000000000aadca700abdca700acdca700i
+  m_ApplyToSortingLayers: 00000000i
   m_ShapePath:
   - {x: -1.3277636, y: -0.44258785, z: 0}
   - {x: -1.3277636, y: 0.44258785, z: 0}
@@ -253,28 +252,3 @@ MonoBehaviour:
           rid: -2
         m_Provider2DCache:
           rid: -2
---- !u!114 &6610149933704620349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8381421090796959212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 196f30f10d4b5dc4db3f955a714f62ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnvironmentHeight2D
-  heightClass: 2
-  floorShadowProfile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
-  infiniteFloorShadow: 0
-  overrideFloorLength: 0
-  floorShadowLength: 1.4
-  floorContours:
-  - caster: {fileID: 4112781794250205892}
-    frame: {fileID: 7166267846356915576}
-    points:
-    - {x: -1.2018338, y: 0.28364748}
-    - {x: 1.2030566, y: 0.28364748}
-    - {x: 1.2030566, y: -0.28242487}
-    - {x: -1.2018338, y: -0.28242487}
