@@ -19,6 +19,11 @@ namespace EmergencyShift
         private Light2D nearGlow;
         [SerializeField]
         private bool startsOn = false;
+        [SerializeField, Tooltip("Disable in scenes where the player must first find a flashlight.")]
+        private bool startsOwned = true;
+        private FlashlightOwnership ownership;
+        public bool IsOwned => ownership != null ? ownership.IsOwned : startsOwned;
+        public event System.Action OwnershipChanged;
         [Header("Optics — world units and degrees")]
         [SerializeField, Min(0.5f)]
         private float range = 4.2f;
@@ -56,6 +61,7 @@ namespace EmergencyShift
 
         private void Awake()
         {
+            ownership = new FlashlightOwnership(startsOwned);
             ApplyOptics();
             SetPower(startsOn);
         }
@@ -85,6 +91,7 @@ namespace EmergencyShift
 
         public void SetPower(bool on)
         {
+            on = on && IsOwned;
             bool previous = IsOn;
             if (beam != null)
             {
@@ -208,5 +215,43 @@ namespace EmergencyShift
         }
 
         public void Toggle() => SetPower(!IsOn);
+
+        public bool Acquire()
+        {
+            EnsureOwnership();
+            var command = new AcquireFlashlightCommand(ownership);
+            if (!command.Execute())
+            {
+                return false;
+            }
+
+            OwnershipChanged?.Invoke();
+            SetPower(true);
+            return true;
+        }
+
+        public void RestoreOwnership(bool value)
+        {
+            EnsureOwnership();
+            bool changed = ownership.IsOwned != value;
+            ownership.Restore(value);
+            if (!ownership.IsOwned)
+            {
+                SetPower(false);
+            }
+
+            if (changed)
+            {
+                OwnershipChanged?.Invoke();
+            }
+        }
+
+        private void EnsureOwnership()
+        {
+            if (ownership == null)
+            {
+                ownership = new FlashlightOwnership(startsOwned);
+            }
+        }
     }
 }

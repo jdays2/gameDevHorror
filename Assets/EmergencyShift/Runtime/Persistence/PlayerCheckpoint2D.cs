@@ -23,6 +23,8 @@ namespace EmergencyShift
             public Vector2 direction;
             public bool hasInventory;
             public WeaponInventorySnapshot inventory;
+            public bool hasFlashlightState;
+            public bool flashlightOwned;
         }
 
         public string SaveKey => "player.v1";
@@ -39,7 +41,7 @@ namespace EmergencyShift
             var upgrades = GetComponent<FlashlightUpgrades>();
             return JsonUtility.ToJson(new State
             {
-                format = 2,
+                format = 3,
                 health = GetComponent<PlayerLife2D>().Health,
                 cards = GetComponent<PlayerAccessCards2D>().Capture(),
                 weapon = gun.HasWeapon,
@@ -50,7 +52,9 @@ namespace EmergencyShift
                 light = light.IsOn,
                 direction = light.Direction,
                 hasInventory = true,
-                inventory = gun.CaptureInventory()
+                inventory = gun.CaptureInventory(),
+                hasFlashlightState = true,
+                flashlightOwned = light.IsOwned
             });
         }
 
@@ -73,12 +77,16 @@ namespace EmergencyShift
                 return;
             }
 
-            if (state.format != 2 || !state.hasInventory)
+            if ((state.format != 2 && state.format != 3) || !state.hasInventory)
             {
                 throw new InvalidOperationException("Missing/unsupported player inventory payload");
             }
 
             WeaponInventory.Validate(state.inventory, weapons);
+            if (state.format == 3 && (!state.hasFlashlightState || (!state.flashlightOwned && state.light)))
+            {
+                throw new InvalidOperationException("Missing/invalid flashlight ownership payload");
+            }
         }
 
         public void RestoreCheckpoint(string json)
@@ -98,6 +106,7 @@ namespace EmergencyShift
             }
             GetComponent<FlashlightUpgrades>().Restore(saved.modules, saved.moduleCount);
             var light = GetComponent<Flashlight2D>();
+            light.RestoreOwnership(saved.format < 3 || saved.flashlightOwned);
             light.AimAt((Vector2)transform.position + saved.direction);
             light.SetPower(saved.light);
         }

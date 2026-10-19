@@ -7,7 +7,8 @@ namespace EmergencyShift
         Ammo,
         Weapon,
         FlashlightUpgrade,
-        AccessCard
+        AccessCard,
+        Flashlight
     }
 
     /// <summary>Ground loot is collected by proximity; doors keep IInteractable/E.</summary>

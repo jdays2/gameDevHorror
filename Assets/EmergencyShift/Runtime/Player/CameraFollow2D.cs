@@ -83,7 +83,7 @@ namespace EmergencyShift
                 view = GetComponent<Camera>();
             }
 
-            float size = framingProfile.OrthographicSize(flashlight.Range, view.aspect);
+            float size = framingProfile.OrthographicSize(flashlight.Range, view.aspect, flashlight.IsOwned);
             if (snap)
             {
                 zoomVelocity = 0;

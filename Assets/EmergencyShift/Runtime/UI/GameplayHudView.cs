@@ -27,6 +27,7 @@ namespace EmergencyShift
         [SerializeField] private CanvasGroup lamp;
         [SerializeField] private UnityEngine.UI.Image lampIcon;
         [SerializeField] private GameObject lampSlash;
+        [SerializeField] private GameObject lampBinding;
         [SerializeField] private RectTransform activeWeaponSlot;
         [SerializeField] private RectTransform spareWeaponSlot;
         [SerializeField] private HudWeaponRow[] weaponRows;
@@ -89,6 +90,7 @@ namespace EmergencyShift
             life.Damaged += OnDamaged;
             weapon.OwnershipChanged += RefreshWeapons;
             flashlight.PowerChanged += RefreshLamp;
+            flashlight.OwnershipChanged += RefreshLampOwnership;
             if (cards != null)
             {
                 cards.Changed += RefreshCards;
@@ -112,6 +114,7 @@ namespace EmergencyShift
             life.Damaged -= OnDamaged;
             weapon.OwnershipChanged -= RefreshWeapons;
             flashlight.PowerChanged -= RefreshLamp;
+            flashlight.OwnershipChanged -= RefreshLampOwnership;
             if (cards != null)
             {
                 cards.Changed -= RefreshCards;
@@ -193,9 +196,23 @@ namespace EmergencyShift
             }
         }
 
+        private void RefreshLampOwnership()
+        {
+            RefreshLamp(flashlight.IsOn);
+        }
+
         private void RefreshLamp(bool on)
         {
+            if (lampBinding != null)
+            {
+                lampBinding.SetActive(flashlight.IsOwned);
+            }
+
             lamp.alpha = on ? 1 : .7f;
+            if (!flashlight.IsOwned)
+            {
+                lamp.alpha = 0;
+            }
             lampIcon.gameObject.SetActive(on);
             lampSlash.SetActive(!on);
         }
