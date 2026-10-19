@@ -15,6 +15,8 @@ namespace EmergencyShift
         private Color nearColor = new Color(.45f, .47f, .48f, .8f);
         [SerializeField, Min(0)]
         private float reloadRotationSpeed = 120;
+        [SerializeField, Range(0, 1)]
+        private float reloadOpacity = .42f;
         private bool visible;
         private bool previousCursor;
         private bool forward = true;
@@ -64,7 +66,8 @@ namespace EmergencyShift
                 SetVerticesDirty();
             }
 
-            canvasRenderer.SetAlpha(show ? 1 : 0);
+            float opacity = reloading ? reloadOpacity : 1;
+            canvasRenderer.SetAlpha(show ? opacity : 0);
             if (show && !visible)
             {
                 previousCursor = Cursor.visible;
