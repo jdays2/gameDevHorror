@@ -22,6 +22,8 @@
 
 ### Environment
 
+- [Износ плитки морга · проба 01](Used/Environment/MorgueFloorWear01/README.md)
+
 - [HospitalService01 · 10 новых предметов для больницы, морга и служебных коридоров](Used/Environment/HospitalService01/README.md)
 
 - [Следы крови 05 · неровные смазы в песочнице](Used/Environment/BloodTraces05/README.md)
