@@ -22,6 +22,8 @@
 
 ### Environment
 
+- [HospitalService01 · 10 новых предметов для больницы, морга и служебных коридоров](Used/Environment/HospitalService01/README.md)
+
 - [Следы крови 05 · неровные смазы в песочнице](Used/Environment/BloodTraces05/README.md)
 - [Полная обзорная сцена окружения](Used/Environment/EnvironmentLibraryReview/README.md)
 - [FloorMarkings01](Used/Environment/FloorMarkings01/README.md)

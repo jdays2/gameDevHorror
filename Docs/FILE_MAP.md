@@ -1,5 +1,7 @@
 # Карта файлов
 
+Новый набор HospitalService01: Art/Environment/HospitalService01 — 10 PNG; Prefabs/Environment/HospitalService01 — 10 prefab; Editor/Authoring/HospitalServicePrefabAuthoring.cs — локальный импорт и сборка этой семьи, без сохранения сцен. Источники и параметры находятся в Concepts/Used/Environment/HospitalService01.
+
 Пути относительно Assets/EmergencyShift. Карта построена по фактическим файлам 2026-10-18. Ответственность систем и владение данными описаны в [архитектуре](ARCHITECTURE.md).
 
 Графика остаётся по прежним адресам в `Art`; единый стиль описан в [ART_DIRECTION](ART_DIRECTION.md), реестр 80 действующих замен и 25 возвращённых изображений крови и исходники — в [SimplifiedArt01](../Concepts/Used/Visual/SimplifiedArt01/README.md). GUID сохранены, переносов рабочих ресурсов нет.
