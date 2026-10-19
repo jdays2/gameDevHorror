@@ -1387,6 +1387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1699697587477108560}
   - component: {fileID: 3292622291985577942}
+  - component: {fileID: 7730889713767909853}
   m_Layer: 0
   m_Name: "Flashlight spill \u2014 close range"
   m_TagString: Untagged
@@ -1891,6 +1892,11 @@ MonoBehaviour:
   turnSmoothTime: 0.075
   maximumTurnSpeed: 720
   cursorDeadZone: 0.25
+  surfaceClearance: 0.04
+  maximumOriginRetraction: 0.45
+  originBlockingLayers:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!114 &5468575836828047699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4568,6 +4574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6630372183950149091}
   - component: {fileID: 5770085557351586450}
+  - component: {fileID: 1665829344176097562}
   m_Layer: 0
   m_Name: Flashlight beam
   m_TagString: Untagged
@@ -4825,3 +4832,29 @@ Transform:
   - {fileID: 646009931216248220}
   m_Father: {fileID: 488739754855179887}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7730889713767909853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4047427820346257455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cec653c05e34640a4b170e72393e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.FiniteFloorLight2D
+  profile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
+--- !u!114 &1665829344176097562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8857809160083952071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2cec653c05e34640a4b170e72393e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.FiniteFloorLight2D
+  profile: {fileID: 11400000, guid: 280b7908d23022545b84c141862fc18a, type: 2}
