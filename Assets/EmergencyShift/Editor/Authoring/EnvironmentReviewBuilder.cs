@@ -68,7 +68,7 @@ namespace EmergencyShift.Editor
             }
 
             AssetDatabase.Refresh();
-            var material = Load<Material>(Root + "/Materials/FlatLit.mat");
+            var material = Load<Material>(Root + "/Materials/Shared/FlatLit.mat");
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
             SceneManager.SetActiveScene(scene);
             foreach (var prop in library.outputs)
@@ -230,7 +230,7 @@ namespace EmergencyShift.Editor
             obj.transform.position = position;
             var renderer = obj.GetComponent<SpriteRenderer>();
             renderer.sprite = Load<Sprite>(Root + "/Art/Environment/FloorMaterials/" + texture + ".png");
-            renderer.sharedMaterial = Load<Material>(Root + "/Materials/FlatLit.mat");
+            renderer.sharedMaterial = Load<Material>(Root + "/Materials/Shared/FlatLit.mat");
             renderer.drawMode = SpriteDrawMode.Tiled;
             renderer.size = new Vector2(8, 10);
             obj.transform.localScale = Vector3.one;

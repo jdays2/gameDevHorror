@@ -35,7 +35,7 @@ namespace EmergencyShift.Editor
             }
 
             var recipes = JsonConvert.DeserializeObject<Recipe[]>(File.ReadAllText(RecipePath));
-            var material = AssetDatabase.LoadAssetAtPath<Material>("Assets/EmergencyShift/Materials/FlatLit.mat");
+            var material = AssetDatabase.LoadAssetAtPath<Material>("Assets/EmergencyShift/Materials/Shared/FlatLit.mat");
             if (material == null || recipes == null)
             {
                 throw new InvalidOperationException("Missing hospital prop recipes or FlatLit material.");

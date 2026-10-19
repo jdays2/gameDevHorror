@@ -16,7 +16,7 @@ namespace EmergencyShift.Editor
         private const string Root = "Assets/EmergencyShift";
         public const string ScenePath = Root + "/Scenes/ArtReview/FurnitureLightStudy.unity";
         private const string ProfilePath = Root + "/Data/ArtReview/FurnitureLightStudy.asset";
-        private const string MaterialPath = Root + "/Materials/FurnitureLightStudy.mat";
+        private const string MaterialPath = Root + "/Materials/Development/FurnitureLightStudy.mat";
 
         [MenuItem("Emergency Shift/Art/Create furniture light study (once)")]
         public static void Create()
@@ -38,7 +38,7 @@ namespace EmergencyShift.Editor
             var material = AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
             if (material == null)
             {
-                var shader = AssetDatabase.LoadAssetAtPath<Shader>(Root + "/Materials/FurnitureLightStudy.shader");
+                var shader = AssetDatabase.LoadAssetAtPath<Shader>(Root + "/Materials/Development/FurnitureLightStudy.shader");
                 if (shader == null)
                 {
                     throw new InvalidOperationException("Furniture study shader was not imported.");
@@ -159,7 +159,7 @@ namespace EmergencyShift.Editor
             obj.transform.position = position;
             var renderer = obj.GetComponent<SpriteRenderer>();
             renderer.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(Root + "/Art/Environment/FloorMaterials/" + texture + ".png");
-            renderer.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(Root + "/Materials/FlatLit.mat");
+            renderer.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(Root + "/Materials/Shared/FlatLit.mat");
             renderer.drawMode = SpriteDrawMode.Tiled;
             renderer.size = size;
             renderer.sortingOrder = -10;

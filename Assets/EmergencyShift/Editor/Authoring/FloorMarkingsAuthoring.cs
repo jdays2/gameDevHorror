@@ -229,7 +229,7 @@ namespace EmergencyShift.Editor
             {
                 var renderer = obj.GetComponent<SpriteRenderer>();
                 renderer.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(ArtPath + "/" + source + ".png");
-                renderer.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>("Assets/EmergencyShift/Materials/FlatLit.mat");
+                renderer.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>("Assets/EmergencyShift/Materials/Shared/FlatLit.mat");
                 renderer.color = Color.white;
                 renderer.sortingOrder = -9;
                 if (source.EndsWith("straight", StringComparison.Ordinal))

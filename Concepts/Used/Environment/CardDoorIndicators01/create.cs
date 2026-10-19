@@ -39,8 +39,8 @@ UnityEditor.AssetDatabase.CreateAsset(texture, artFolder + "/IndicatorLensTextur
 var sprite = UnityEngine.Sprite.Create(texture, new UnityEngine.Rect(0, 0, 32, 32), new UnityEngine.Vector2(.5f, .5f), 32, 0, UnityEngine.SpriteMeshType.FullRect);
 sprite.name = "IndicatorLens";
 UnityEditor.AssetDatabase.CreateAsset(sprite, artFolder + "/IndicatorLens.asset");
-var unlit = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Material>("Assets/EmergencyShift/Materials/FlatUnlit.mat");
-var lit = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Material>("Assets/EmergencyShift/Materials/FlatLit.mat");
+var unlit = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Material>("Assets/EmergencyShift/Materials/Shared/FlatUnlit.mat");
+var lit = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Material>("Assets/EmergencyShift/Materials/Shared/FlatLit.mat");
 var blue = new UnityEngine.Color(.18f, .49f, .78f, 1);
 var pair = new UnityEngine.GameObject("CardDoorIndicators");
 foreach (float side in new[] { -1f, 1f })

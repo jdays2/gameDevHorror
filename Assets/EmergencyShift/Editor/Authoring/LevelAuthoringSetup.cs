@@ -49,7 +49,7 @@ namespace EmergencyShift.Editor
                     floor.transform.position = new Vector3(0, 0, .1f);
                     var image = floor.GetComponent<SpriteRenderer>();
                     image.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(Root + "/Art/Shared/Shapes/Rectangle.asset");
-                    image.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(Root + "/Materials/FlatLit.mat");
+                    image.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(Root + "/Materials/Shared/FlatLit.mat");
                     image.color = new Color(.18f, .20f, .21f);
                     image.sortingOrder = -10;
                     Wall(geometry.transform, "North", new Vector2(0, 6), new Vector2(18.3f, .3f));
@@ -165,7 +165,7 @@ namespace EmergencyShift.Editor
             obj.transform.localPosition = position;
             obj.transform.localScale = new Vector3(size.x, size.y, 1);
             var r = obj.GetComponent<SpriteRenderer>();
-            r.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(Root + "/Materials/FlatUnlit.mat");
+            r.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(Root + "/Materials/Shared/FlatUnlit.mat");
             r.color = new Color(.055f, .06f, .065f);
             PrefabUtility.RecordPrefabInstancePropertyModifications(obj.transform);
             PrefabUtility.RecordPrefabInstancePropertyModifications(r);

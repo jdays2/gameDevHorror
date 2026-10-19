@@ -9,6 +9,12 @@ Read Concepts/README.md and Docs/SPEC.md. Production resources stay under Assets
 
 Before removing/moving a Unity resource, inspect dependencies from all saved scenes, prefabs and render-pipeline settings. An old folder name does not mean a texture is unused: active sprite subassets may reference it. Preserve .meta and source/license records. Keep historical duplicate GUIDs outside Assets. Never move caches, runtimes or secrets into the content library.
 
+## Readable asset libraries
+
+Organize production libraries by purpose and reusable family. Do not keep a growing flat Materials folder: separate shared rendering, environment families, characters, effects, physics and development studies as applicable. Create a folder when it has a real owner; avoid empty taxonomy and a folder per single asset. A family-specific shader, mask and supporting data stay beside their materials; genuinely shared resources have one shared owner. Reuse the existing material unless a persistent visual difference requires another; per-instance presentation does not justify duplicating shared assets.
+
+Apply organization to actual assets, not only documentation. Move them through AssetDatabase while Play is stopped; preserve GUIDs, file contents and unsaved scenes. Inspect saved scene/prefab/render-pipeline dependencies before and after. Update hardcoded paths, dynamically constructed output directories, editor builders and active offline processors so they cannot recreate the old flat layout. Keep dated validation/provenance captures intact; record old-to-new paths, GUIDs and hashes in a relocation manifest/catalogue. Verify loaded material/shader references and shader errors. The current project map is `Docs/Guides/MATERIALS_LIBRARY.md`.
+
 Retain source authors/licenses, prompts or generation provenance and processing instructions. Do not commit signed download URLs or tokens. Update Concepts/catalog.json when canonical materials move. Do not infer approval from an ambient browser URL.
 
 ## Generated visual assets: natural irregularity

@@ -125,7 +125,7 @@ namespace EmergencyShift
             floor.transform.localScale = new Vector3(18, 14, 1);
             var image = floor.GetComponent<SpriteRenderer>();
             image.sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/EmergencyShift/Art/Shared/Shapes/Rectangle.asset");
-            image.sharedMaterial = UnityEditor.AssetDatabase.LoadAssetAtPath<Material>("Assets/EmergencyShift/Materials/FlatLit.mat");
+            image.sharedMaterial = UnityEditor.AssetDatabase.LoadAssetAtPath<Material>("Assets/EmergencyShift/Materials/Shared/FlatLit.mat");
             image.color = new Color(.2f, .22f, .23f);
             image.sortingOrder = -10;
             var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab");

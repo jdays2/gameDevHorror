@@ -38,8 +38,8 @@ if (System.IO.Directory.Exists(directory) || System.IO.Directory.Exists(prefabDi
 System.IO.Directory.CreateDirectory(directory);
 System.IO.Directory.CreateDirectory(prefabDirectory);
 UnityEditor.AssetDatabase.Refresh();
-var lit = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Material>("Assets/EmergencyShift/Materials/FlatLit.mat");
-var unlit = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Material>("Assets/EmergencyShift/Materials/FlatUnlit.mat");
+var lit = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Material>("Assets/EmergencyShift/Materials/Shared/FlatLit.mat");
+var unlit = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Material>("Assets/EmergencyShift/Materials/Shared/FlatUnlit.mat");
 var rectangle = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Sprite>("Assets/EmergencyShift/Art/Shared/Shapes/Rectangle.asset");
 if (lit == null || unlit == null || rectangle == null || blocks.Length != 4)
 {

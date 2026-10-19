@@ -39,8 +39,8 @@ namespace EmergencyShift.Editor
 
             var previous = SceneManager.GetActiveScene();
             square = Load<Sprite>("/Art/Shared/Shapes/Rectangle.asset");
-            lit = Load<Material>("/Materials/FlatLit.mat");
-            unlit = Load<Material>("/Materials/FlatUnlit.mat");
+            lit = Load<Material>("/Materials/Shared/FlatLit.mat");
+            unlit = Load<Material>("/Materials/Shared/FlatUnlit.mat");
             scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
             SceneManager.SetActiveScene(scene);
             try

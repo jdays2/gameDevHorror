@@ -4,6 +4,8 @@
 
 ## 2026-10-19
 
+- Materials: 27 ресурсов перенесены через AssetDatabase в тематические папки; GUID, байты и зависимости сохранены. Обновлены адреса в авторинге/импортёрах, content-library и level-authoring skills, добавлена [карта библиотеки](Guides/MATERIALS_LIBRARY.md). [Проверки](Reports/MaterialsOrganization01.md).
+
 - BUG-001: из dirty-сцен удалены неиспользуемые ссылки старой системы теней через prefab API; сохранены действующие данные/позы. [Отчёт](Reports/CodeMigration03.md). Контрольный аудит: 0 отсутствующих внешних GUID.
 
 - BL-001: двери/CrowdAgent/голоса Сталкера получают сценовые реестры; история клипов смерти и прежние frame quotas — явные world services. Навигации передаются часы и отдельный RNG. [Проверка 116/116 и lifecycle](Reports/CodeMigration02.md); остальная миграция открыта.

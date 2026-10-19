@@ -65,7 +65,7 @@ namespace EmergencyShift.Editor
                 }
             }
 
-            var material = Load<Material>(Root + "/Materials/FlatLit.mat");
+            var material = Load<Material>(Root + "/Materials/Shared/FlatLit.mat");
             foreach (var prop in layout.placements)
             {
                 if (prop.family == "IndustrialProps02")
@@ -270,7 +270,7 @@ namespace EmergencyShift.Editor
             obj.transform.position = position;
             var renderer = obj.GetComponent<SpriteRenderer>();
             renderer.sprite = Load<Sprite>(Root + "/Art/Environment/FloorMaterials/" + texture + ".png");
-            renderer.sharedMaterial = Load<Material>(Root + "/Materials/FlatLit.mat");
+            renderer.sharedMaterial = Load<Material>(Root + "/Materials/Shared/FlatLit.mat");
             renderer.drawMode = SpriteDrawMode.Tiled;
             renderer.size = size;
             renderer.sortingOrder = -10;

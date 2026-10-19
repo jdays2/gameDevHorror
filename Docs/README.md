@@ -38,6 +38,7 @@
 | UI | [План UI](UI/UI_PLAN.md), [HUD](UI/HUD_DESIGN_SYSTEM.md), [диалог](UI/DIALOGUE_DESIGN_SYSTEM.md) | Текущий внешний контракт и будущие экраны |
 | Авторинг/сохранение | [LEVEL_AUTHORING](Guides/LEVEL_AUTHORING.md), [CHECKPOINTS](Guides/CHECKPOINTS.md), [C# для владельца](Guides/CSHARP.md) | Редактирование, ID/restore, понимание системы |
 | Арт/окружение | [ART_DIRECTION](ART_DIRECTION.md), [библиотека](Guides/ENVIRONMENT_LIBRARY.md), [идеи объектов](Environment/OBJECT_BACKLOG.md), [фотореференсы](Environment/VISUAL_REFERENCES.md) | Новые/заменяемые материалы и оценка |
+| Materials | [Карта материалов](Guides/MATERIALS_LIBRARY.md) | Тематические папки, общие материалы/шейдеры/маски, безопасный перенос |
 | Свет/тени | [Лампы](Guides/HOSPITAL_LAMPS.md), [стены](Guides/INTERIOR_WALL_FINISHES.md), [форма теней](Environment/FURNITURE_SHADOW_SHAPES.md), [проба мебели](Environment/FURNITURE_LIGHT_STUDY.md), [пустая комната](Guides/LIGHTING_PLAYGROUND.md) | Соответствующий источник/авторинг/регрессия |
 | Пол/следы | [Разметка](Guides/FLOOR_MARKINGS.md), [износ](Guides/FLOOR_WEAR.md), [исследование крови](Research/BLOOD_AND_BATTLE_AFTERMATH.md) | Составление пола, художественные пробы |
 | Аудио | [AUDIO_GUIDE](Audio/AUDIO_GUIDE.md) | Маршрутизация, микс, источники и согласованный звук |
