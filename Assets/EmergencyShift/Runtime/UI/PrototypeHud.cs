@@ -83,7 +83,9 @@ namespace EmergencyShift
             }
 
             string prompt = interaction.CurrentPrompt;
-            doorPrompt.gameObject.SetActive(!string.IsNullOrEmpty(prompt) && !dead);
+            string message = interaction.Notification;
+            bool showNotification = pickupNotification != null && !string.IsNullOrEmpty(message) && !dead;
+            doorPrompt.gameObject.SetActive(!showNotification && !string.IsNullOrEmpty(prompt) && !dead);
             if (!string.IsNullOrEmpty(prompt))
             {
                 doorPrompt.text = prompt;
@@ -91,8 +93,7 @@ namespace EmergencyShift
 
             if (pickupNotification != null)
             {
-                string message = interaction.Notification;
-                pickupNotification.gameObject.SetActive(!string.IsNullOrEmpty(message) && !dead);
+                pickupNotification.gameObject.SetActive(showNotification);
                 if (!string.IsNullOrEmpty(message))
                 {
                     pickupNotification.text = message;

@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Контекстные сообщения HUD | [HudMessagePriority01](Validation/HudMessagePriority01.json): 52 проверки в MorgueRouteTest, все 12 сторон карточных дверей; уведомление временно скрывает подсказку, возврат после таймера, уход от двери, подбор и необязательная ссылка UI. [Одна строка отказа](Validation/HudMessagePriority01/Denied.png). |
 | Прицел и автоматическая перезарядка | [ReloadReticle01](Validation/ReloadReticle01.json): 16/16 оружейных EditMode, 23 проверки в MorgueRouteTest (последний выстрел, резерв, помпа, прерывание, смена оружия, блокировка ввода); Windows64 build двух сцен без ошибок/предупреждений. [Значок в игре](Validation/ReloadReticle01/Reload-detail.png). |
 | Карточные двери | [CardDoorFeedback02](Validation/CardDoorFeedback02.json): все шесть замков, 12 двусторонних проверок звука. Огоньки из той пробы позднее отклонены и сняты: [проверка удаления](Validation/CardDoorIndicatorsRemoved01.json); разметка и считыватели сохранены. |
 | Единые проёмы и разметка B | [CardAccessZone01](Validation/CardAccessZone01.json): 11 дверей шириной 3, расширенный западный коридор, общий префаб на шести замках, полное примыкание и износ. |
