@@ -21,7 +21,9 @@
 
 ## Источники истины
 
-[Docs/README.md](Docs/README.md) — индекс; SPEC — требования; ARCHITECTURE — реальные границы/долг; MVP_PLAN — очередь; Enemies/STALKER — эталон; Guides — помощь владельцу; Concepts — история материалов. Не превращать этот файл в хронологию запросов.
+[Docs/README.md](Docs/README.md) — индекс; [Roadmap](Docs/Roadmap.md) — текущий этап; SPEC — требования; ARCHITECTURE/Features — фактические границы; Conventions — соглашения; Decisions — причины; Bugs/Backlog/Questions — активные записи; Reports/Archive — свидетельства/история. Enemies/STALKER — игровой эталон, Guides — помощь владельцу, Concepts — происхождение материалов.
+
+Начинать с индекса и текущего этапа. Остальное искать по теме; не читать весь Changelog/Reports/Archive при каждой задаче. [Рабочий паттерн](Docs/Guidelines/DOCUMENTATION.md) и [подбор skills](Docs/Roadmap/Skills.md) задают обновление затронутого контракта, плана, проверок и истории. Не превращать AGENTS в хронологию. Полный проход собственного кода сейчас явно поручен владельцем: [этап 00](Docs/Roadmap/00-ArchitectureMigration.md).
 
 ## Неизменяемые без нового задания ограничения
 
