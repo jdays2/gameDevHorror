@@ -23,6 +23,8 @@
 
 ### Environment
 
+- [Бордюры помещений, чёрные внутренние блоки, слив и влага · проба 01](Used/Environment/RoomFinish01/README.md)
+
 - [Отклонённая проба индикаторов карточных дверей; двусторонние звуки сохранены](Used/Environment/CardDoorIndicators01/README.md)
 
 - [Износ полов остальных комнат · 03](Used/Environment/RoomFloorWear03/README.md)

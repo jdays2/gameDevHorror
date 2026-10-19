@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Отделка комнат | [RoomFinish01](Validation/RoomFinish01.json): 8 помещений, 4 блока с прежними коллизиями/тенями, слив и 2 влажных следа; геометрическая доступность пяти целей маршрута, 0 missing scripts, Windows build без ошибок (1 предупреждение конфигурации служебного Pipeline). |
 | Контекстные сообщения HUD | [HudMessagePriority01](Validation/HudMessagePriority01.json): 52 проверки в MorgueRouteTest, все 12 сторон карточных дверей; уведомление временно скрывает подсказку, возврат после таймера, уход от двери, подбор и необязательная ссылка UI. [Одна строка отказа](Validation/HudMessagePriority01/Denied.png). |
 | Прицел и автоматическая перезарядка | [ReloadReticle01](Validation/ReloadReticle01.json): 16/16 оружейных EditMode, 23 проверки в MorgueRouteTest (последний выстрел, резерв, помпа, прерывание, смена оружия, блокировка ввода); Windows64 build двух сцен без ошибок/предупреждений. [Значок в игре](Validation/ReloadReticle01/Reload-detail.png). |
 | Карточные двери | [CardDoorFeedback02](Validation/CardDoorFeedback02.json): все шесть замков, 12 двусторонних проверок звука. Огоньки из той пробы позднее отклонены и сняты: [проверка удаления](Validation/CardDoorIndicatorsRemoved01.json); разметка и считыватели сохранены. |
