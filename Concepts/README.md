@@ -23,6 +23,8 @@
 
 ### Environment
 
+- [Разметка карточных дверей B · общий префаб с износом](Used/Environment/CardAccessZone01/README.md)
+
 - [Коридорный винил · швы, колёса и ремонт 02](Used/Environment/CorridorFloorWear02/README.md)
 - [Карточные двери · проба разметки и сигналов 01](Used/Environment/AccessDoorTrial01/README.md)
 
