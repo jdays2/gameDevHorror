@@ -2,103 +2,113 @@
   "family": "HospitalService01",
   "date": "2026-10-19",
   "tool": "OpenAI built-in image_gen",
-  "mode": "reference-guided generation; one targeted projection correction",
+  "mode": "precise-object-edit, built-in image_gen, all 10 sprites individually revised",
   "reference": "Assets/EmergencyShift/Art/Items/AccessCards01/blue.png",
   "externalSources": [],
   "rightsRecord": "AI-generated at project owner request; no third-party downloaded art or license claims.",
-  "status": "Integrated reusable prefab library, awaiting owner artistic review; no existing scene placements.",
-  "processing": "Exact generated PNG copies. No repaint, recolor, posterization or alpha edits. Pivot/PPU/outline configured in Unity. Pillow used only for review composites and inspection.",
+  "status": "Current revised PNGs installed in existing prefabs. Artistic evaluation remains with owner.",
+  "processing": "Exact generated PNG copies; no paint, noise, recolor, alpha or distortion filters. Python/Pillow only inspected alpha, measured dimensions and composed review sheets. Unity APIs updated PPU/pivot, alpha outlines and baked light contours. Physical colliders retained.",
   "alphaNote": "Generated solid surfaces are visually opaque but typically alpha 253/255, not numerically 255; alpha-zero exterior and actual holes retained. No visible exterior haze on actual alpha-composited previews.",
   "entries": [
     {
       "id": "autopsy-table",
       "source": "Sources/autopsy-table.png",
-      "prompt": "Prompts/autopsy-table.txt",
+      "prompt": "Prompts/Imperfections02/autopsy-table.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/autopsy-table.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/autopsy-table.prefab",
-      "sha256": "f8b0d203df38269f06ad566bf67934018cd5cd263f31aba386fec899f2a8d3ee",
-      "specificFeatureReviewed": "Слив в нижнем торце отличается тёплой сменной накладкой; виден на общем листе."
+      "sha256": "b25099f80e577e476815866c29da9275287b19549ec504f7811bc32f2376fbd4",
+      "specificFeatureReviewed": "На левой половине видна широкая неодинаковая дуга матового следа от протирки; на нижнем левом борту три локальных скола. Читаются на общем листе и на плитке.",
+      "basePrompt": "Prompts/autopsy-table.txt"
     },
     {
       "id": "transport-stretcher",
       "source": "Sources/transport-stretcher.png",
-      "prompt": "Prompts/transport-stretcher.txt",
+      "prompt": "Prompts/Imperfections02/transport-stretcher.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/transport-stretcher.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/transport-stretcher.prefab",
-      "sha256": "8603dd8fde9648b7412857f0e8f255a9334447a46967efa19ff1066a69e79748",
-      "specificFeatureReviewed": "Нижний правый ролик повёрнут по диагонали; проверено крупно и на общей композиции."
+      "sha256": "4817a5724f642fb7d23eac4014c6fe3721b504cee95ab01ae2bc7313de5b2939",
+      "specificFeatureReviewed": "Подушка несимметрично просела, в нижней части матраса широкая складка и заплата слева; на верхней ручке короткая обмотка. Сохранился повёрнутый нижний правый ролик.",
+      "basePrompt": "Prompts/transport-stretcher.txt"
     },
     {
       "id": "wheelchair",
       "source": "Sources/wheelchair.png",
-      "prompt": "Prompts/wheelchair.txt",
+      "prompt": "Prompts/Imperfections02/wheelchair.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/wheelchair.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/wheelchair.prefab",
-      "sha256": "f44d7118442bb694a9808c14ced24194030f86d3febe8bf0f676e00f08289ff1",
-      "specificFeatureReviewed": "Подножки выдвинуты неодинаково; заметно сверху без наклона камеры."
+      "sha256": "4af39aca7ef1da7844acb63a5348d54170ec348d9ada9ceb9f03081a449aa9b7",
+      "specificFeatureReviewed": "Ткань сиденья просела несимметрично; на правом нижнем углу сиденья заплата, справа на подлокотнике локальная потёртость. Подножки остались неодинаково выдвинутыми.",
+      "basePrompt": "Prompts/wheelchair.txt"
     },
     {
       "id": "iv-stand",
       "source": "Sources/iv-stand.png",
-      "prompt": "Prompts/iv-stand.txt",
+      "prompt": "Prompts/Imperfections02/iv-stand.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/iv-stand.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/iv-stand.prefab",
-      "sha256": "1d75db972875e4c57a925e019b8d3b4dba4109f5246815174ebf3946c7a6f5ec",
-      "specificFeatureReviewed": "Небольшой светлый пакет висит слева от центра; плечи подвеса неодинаковой длины."
+      "sha256": "c8aac8361c9808c781ab17e52af7fbf1f069e26901ba2a99964c6efa7fe26d79",
+      "specificFeatureReviewed": "На правой верхней опоре светлая ремонтная окраска, вокруг центральной втулки неравномерный пояс износа; подвесной пакет сложен несимметрично. Дополнительный разворот ролика не засчитывается как отчётливо различимый результат.",
+      "basePrompt": "Prompts/iv-stand.txt"
     },
     {
       "id": "oxygen-cart",
       "source": "Sources/oxygen-cart.png",
-      "prompt": "Prompts/oxygen-cart.txt",
+      "prompt": "Prompts/Imperfections02/oxygen-cart.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/oxygen-cart.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/oxygen-cart.prefab",
-      "sha256": "82fc94620e5fcc0117e3514e2512fe00d921b85386c2900cd95b889c9c98650f",
-      "specificFeatureReviewed": "Короткая тёплая сменная рукоять вентиля; исходный наклонный ракурс отклонён, оставлена исправленная верхняя проекция."
+      "sha256": "bf4c63b8b3aaa7b307cbe7f7d887588e3bc2bb624dac9f114c1c1d6f7170ac75",
+      "specificFeatureReviewed": "На зелёном плече баллона широкая светлая ремонтная окраска, на рукоятке справа локальная потёртость, на основании два неодинаковых скола. Верхняя проекция сохранена.",
+      "basePrompt": "Prompts/oxygen-cart.txt"
     },
     {
       "id": "linen-hamper",
       "source": "Sources/linen-hamper.png",
-      "prompt": "Prompts/linen-hamper.txt",
+      "prompt": "Prompts/Imperfections02/linen-hamper.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/linen-hamper.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/linen-hamper.prefab",
-      "sha256": "6bf8f5893ddbabd21bbaea973bd1b5138f604c1e5d6a07905910927837716e7f",
-      "specificFeatureReviewed": "Синие и светлые полотна сложены с неодинаковыми краями и зазорами."
+      "sha256": "7f019273df72139759f8444ba223e2a9dcf9d8bdb9a120e270f2a44dbe861586",
+      "specificFeatureReviewed": "Верхний светлый край частично развёрнут, нижнее бельё лежит под другим углом; слои синего полотенца неодинаковой длины; слева на вкладыше небольшая заплата.",
+      "basePrompt": "Prompts/linen-hamper.txt"
     },
     {
       "id": "janitor-cart",
       "source": "Sources/janitor-cart.png",
-      "prompt": "Prompts/janitor-cart.txt",
+      "prompt": "Prompts/Imperfections02/janitor-cart.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/janitor-cart.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/janitor-cart.prefab",
-      "sha256": "eb015672011d37ade720942f8305375d67f36a9a93ba4885c22d9b2d74e5df2d",
-      "specificFeatureReviewed": "Сложенная тряпка лежит под углом на краю лотка, флаконы расположены по рабочим местам."
+      "sha256": "0ba033a992a95157d1592bfec89fc01d21f637b1e1329b29e51e4d72c8fb6c22",
+      "specificFeatureReviewed": "В одном углу ведра локальный светлый налёт; на флаконе остаток этикетки; тряпка с неровным сложенным краем и подвернутым уголком; износ ручки и рамы ограничен местами контакта.",
+      "basePrompt": "Prompts/janitor-cart.txt"
     },
     {
       "id": "privacy-screen",
       "source": "Sources/privacy-screen.png",
-      "prompt": "Prompts/privacy-screen.txt",
+      "prompt": "Prompts/Imperfections02/privacy-screen.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/privacy-screen.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/privacy-screen.prefab",
-      "sha256": "cd7ebd3465498d46fb7667b83dc89ea92638d965dd9a7b8bb2b73f06588c0fbb",
-      "specificFeatureReviewed": "Небольшая светлая ремонтная вставка рядом с левым шарниром; сверху видна узкая кромка ширмы."
+      "sha256": "66d45077e0fabc40851892abe8798870413e758e2bf287ddcdebd1c4b720a881",
+      "specificFeatureReviewed": "Средняя кромка ткани слегка провисла, правое полотно светлее как заменённая секция, две крышки шарниров различаются тоном; сверху остаётся узкая кромка.",
+      "basePrompt": "Prompts/privacy-screen.txt"
     },
     {
       "id": "scrub-sink",
       "source": "Sources/scrub-sink.png",
-      "prompt": "Prompts/scrub-sink.txt",
+      "prompt": "Prompts/Imperfections02/scrub-sink.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/scrub-sink.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/scrub-sink.prefab",
-      "sha256": "2249dcca6cdb5551fb195a0fb6e6aca23bdd95963d1de5e52582d9e34d4ed891",
-      "specificFeatureReviewed": "Светлый брусок мыла сдвинут на левый сухой край; чаши имеют немного разную ширину."
+      "sha256": "e060b6409d4baed3ac830c4093033cff16582a0a2ceafbc3840ca5c92cb181de",
+      "specificFeatureReviewed": "Неполное кольцо налёта только возле левого слива, короткий след протирки справа, неодинаковая шайба крана справа и смягчённый угол мыла.",
+      "basePrompt": "Prompts/scrub-sink.txt"
     },
     {
       "id": "water-cooler",
       "source": "Sources/water-cooler.png",
-      "prompt": "Prompts/water-cooler.txt",
+      "prompt": "Prompts/Imperfections02/water-cooler.txt",
       "production": "Assets/EmergencyShift/Art/Environment/HospitalService01/water-cooler.png",
       "prefab": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/water-cooler.prefab",
-      "sha256": "90b4cd378c3ebfd1e94a67ddbe52173530a0dfe15b955934f22968ebc9a40af8",
-      "specificFeatureReviewed": "Серая сервисная защёлка в правом заднем углу; проверено на общей композиции."
+      "sha256": "863ef8df1ab6b0512fb0b1d3473293b567c1de43e28826231bd08c005f0fe383",
+      "specificFeatureReviewed": "Светлый след от снятой ленты на бутыли, локальная потёртость переднего левого угла корпуса, налёт на кромке каплесборника и небольшая неодинаковость шва крышки.",
+      "basePrompt": "Prompts/water-cooler.txt"
     }
   ],
   "revision": {
@@ -106,5 +116,9 @@
     "prompt": "Prompts/oxygen-cart-revision.txt",
     "rejectedSource": "Historical/oxygen-cart-oblique-rejected.png",
     "reason": "Visible cylinder side contradicted strict overhead projection."
-  }
+  },
+  "revisionName": "Imperfections02",
+  "revisionDate": "2026-10-19",
+  "history": "Historical/BeforeImperfections02 contains the previous 10 PNGs, metadata and previews; the earlier rejected oxygen projection remains separately recorded.",
+  "review": "Review/imperfections02-before-after.png shows before/after at close view and reduced scale. No claim that every requested microscopic mark or caster angle appeared."
 }

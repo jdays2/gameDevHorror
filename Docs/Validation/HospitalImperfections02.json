@@ -1,0 +1,598 @@
+{
+  "date": "2026-10-19",
+  "family": "HospitalService01",
+  "revision": "Imperfections02",
+  "scope": "10 existing prop sprites, exact image_gen edits; no runtime/code/scenes/floor/blood changes",
+  "native": {
+    "count": 10,
+    "failures": [],
+    "prefabs": [
+      {
+        "id": "autopsy-table",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/autopsy-table.prefab",
+        "guid": "f5cd402f73dab5141b16e64c64e58df8",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/autopsy-table.png",
+        "size": [
+          1.70060611,
+          2.80704546
+        ],
+        "collider": "BoxCollider2D",
+        "colliderBounds": [
+          0.9137638,
+          2.1159997
+        ],
+        "heightClass": "Furniture",
+        "sortingLayer": "ES Furniture",
+        "physicsShapes": 1,
+        "missingScripts": 0
+      },
+      {
+        "id": "transport-stretcher",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/transport-stretcher.prefab",
+        "guid": "60d60717509d03c4183a6a21d6ef24da",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/transport-stretcher.png",
+        "size": [
+          1.757063,
+          2.63559461
+        ],
+        "collider": "BoxCollider2D",
+        "colliderBounds": [
+          0.7677241,
+          1.97800016
+        ],
+        "heightClass": "Furniture",
+        "sortingLayer": "ES Furniture",
+        "physicsShapes": 3,
+        "missingScripts": 0
+      },
+      {
+        "id": "wheelchair",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/wheelchair.prefab",
+        "guid": "3c272212b1cc75443bea2a893db79b95",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/wheelchair.png",
+        "size": [
+          0.9177852,
+          1.205537
+        ],
+        "collider": "BoxCollider2D",
+        "colliderBounds": [
+          0.5834146,
+          0.92
+        ],
+        "heightClass": "Low",
+        "sortingLayer": "ES Low",
+        "physicsShapes": 9,
+        "missingScripts": 0
+      },
+      {
+        "id": "iv-stand",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/iv-stand.prefab",
+        "guid": "fc665b130ee9e1b40ae4c4a702f6f27d",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/iv-stand.png",
+        "size": [
+          1.23194122,
+          0.746353
+        ],
+        "collider": "CircleCollider2D",
+        "colliderBounds": [
+          0.5076475,
+          0.5076475
+        ],
+        "heightClass": "Tall",
+        "sortingLayer": "ES Tall",
+        "physicsShapes": 2,
+        "missingScripts": 0
+      },
+      {
+        "id": "oxygen-cart",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/oxygen-cart.prefab",
+        "guid": "89802c92d137b834dbc9365b3aa60226",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/oxygen-cart.png",
+        "size": [
+          1.02091908,
+          0.839323938
+        ],
+        "collider": "BoxCollider2D",
+        "colliderBounds": [
+          0.441600025,
+          0.5031233
+        ],
+        "heightClass": "Furniture",
+        "sortingLayer": "ES Furniture",
+        "physicsShapes": 4,
+        "missingScripts": 0
+      },
+      {
+        "id": "linen-hamper",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/linen-hamper.prefab",
+        "guid": "5d49454e65360c7488830f661ebb5cfd",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/linen-hamper.png",
+        "size": [
+          0.9597186,
+          0.8112577
+        ],
+        "collider": "BoxCollider2D",
+        "colliderBounds": [
+          0.736,
+          0.6218168
+        ],
+        "heightClass": "Furniture",
+        "sortingLayer": "ES Furniture",
+        "physicsShapes": 2,
+        "missingScripts": 0
+      },
+      {
+        "id": "janitor-cart",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/janitor-cart.prefab",
+        "guid": "9cf8c99d53bf72544baa3d853cb5c5ea",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/janitor-cart.png",
+        "size": [
+          1.4574945,
+          0.88300097
+        ],
+        "collider": "BoxCollider2D",
+        "colliderBounds": [
+          0.8298605,
+          0.59800005
+        ],
+        "heightClass": "Furniture",
+        "sortingLayer": "ES Furniture",
+        "physicsShapes": 2,
+        "missingScripts": 0
+      },
+      {
+        "id": "privacy-screen",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/privacy-screen.prefab",
+        "guid": "085658036bd29b24abb0370fc531c5d7",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/privacy-screen.png",
+        "size": [
+          1.80740464,
+          1.09498882
+        ],
+        "collider": "PolygonCollider2D",
+        "colliderBounds": [
+          1.50224888,
+          0.22151424
+        ],
+        "heightClass": "Tall",
+        "sortingLayer": "ES Tall",
+        "physicsShapes": 1,
+        "missingScripts": 0
+      },
+      {
+        "id": "scrub-sink",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/scrub-sink.prefab",
+        "guid": "e79416f3d8dcde94ba070582da2d1d07",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/scrub-sink.png",
+        "size": [
+          1.56788325,
+          0.949878335
+        ],
+        "collider": "BoxCollider2D",
+        "colliderBounds": [
+          1.10400009,
+          0.426892
+        ],
+        "heightClass": "Furniture",
+        "sortingLayer": "ES Furniture",
+        "physicsShapes": 1,
+        "missingScripts": 0
+      },
+      {
+        "id": "water-cooler",
+        "path": "Assets/EmergencyShift/Prefabs/Environment/HospitalService01/water-cooler.prefab",
+        "guid": "27b6a363c53cbca49acd54955c31f6b3",
+        "sprite": "Assets/EmergencyShift/Art/Environment/HospitalService01/water-cooler.png",
+        "size": [
+          0.854859352,
+          0.7525575
+        ],
+        "collider": "BoxCollider2D",
+        "colliderBounds": [
+          0.398587942,
+          0.460000038
+        ],
+        "heightClass": "Furniture",
+        "sortingLayer": "ES Furniture",
+        "physicsShapes": 1,
+        "missingScripts": 0
+      }
+    ],
+    "scene": "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
+    "dirty": false
+  },
+  "identityChecks": [
+    {
+      "id": "autopsy-table",
+      "prefabGuid": "f5cd402f73dab5141b16e64c64e58df8",
+      "spriteGuid": "59909667c977fb447a557a80aa0e4368",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    },
+    {
+      "id": "transport-stretcher",
+      "prefabGuid": "60d60717509d03c4183a6a21d6ef24da",
+      "spriteGuid": "7f6dc8c631fb4e941b0d4e96116b9e52",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    },
+    {
+      "id": "wheelchair",
+      "prefabGuid": "3c272212b1cc75443bea2a893db79b95",
+      "spriteGuid": "6a7a694d9f6a00340a3daa2cb720a91e",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    },
+    {
+      "id": "iv-stand",
+      "prefabGuid": "fc665b130ee9e1b40ae4c4a702f6f27d",
+      "spriteGuid": "3d0035b698ee57043982a34e1aca4ef3",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    },
+    {
+      "id": "oxygen-cart",
+      "prefabGuid": "89802c92d137b834dbc9365b3aa60226",
+      "spriteGuid": "dd1902c92f32f6d4fa707751978f12d3",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    },
+    {
+      "id": "linen-hamper",
+      "prefabGuid": "5d49454e65360c7488830f661ebb5cfd",
+      "spriteGuid": "39133d1fa20c44a4ba8f197aab801b78",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    },
+    {
+      "id": "janitor-cart",
+      "prefabGuid": "9cf8c99d53bf72544baa3d853cb5c5ea",
+      "spriteGuid": "b074c0b111cadf84ea31ac43df6cb3ed",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    },
+    {
+      "id": "privacy-screen",
+      "prefabGuid": "085658036bd29b24abb0370fc531c5d7",
+      "spriteGuid": "229df65c2eb018a408389a80e0180928",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    },
+    {
+      "id": "scrub-sink",
+      "prefabGuid": "e79416f3d8dcde94ba070582da2d1d07",
+      "spriteGuid": "fad7bbd7364415449910b46ce1471257",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    },
+    {
+      "id": "water-cooler",
+      "prefabGuid": "27b6a363c53cbca49acd54955c31f6b3",
+      "spriteGuid": "f51509fd2bd064440ad21b11fe404734",
+      "spriteLocalId": 21300000,
+      "physicalCollidersUnchanged": true,
+      "materialHeightSortingScaleUnchanged": true
+    }
+  ],
+  "physicalColliderComparison": "All serialized physical fields equal. Only Unity-managed m_SpriteTilingProperty cache excluded from equality comparison.",
+  "pngChecks": [
+    {
+      "id": "autopsy-table",
+      "sha256": "b25099f80e577e476815866c29da9275287b19549ec504f7811bc32f2376fbd4",
+      "size": [
+        976,
+        1611
+      ],
+      "alphaInteriorMedian": 253.0,
+      "alphaMin": 0,
+      "alphaMax": 255
+    },
+    {
+      "id": "transport-stretcher",
+      "sha256": "4817a5724f642fb7d23eac4014c6fe3721b504cee95ab01ae2bc7313de5b2939",
+      "size": [
+        1024,
+        1536
+      ],
+      "alphaInteriorMedian": 253.0,
+      "alphaMin": 0,
+      "alphaMax": 254
+    },
+    {
+      "id": "wheelchair",
+      "sha256": "4af39aca7ef1da7844acb63a5348d54170ec348d9ada9ceb9f03081a449aa9b7",
+      "size": [
+        1094,
+        1437
+      ],
+      "alphaInteriorMedian": 253.0,
+      "alphaMin": 0,
+      "alphaMax": 255
+    },
+    {
+      "id": "iv-stand",
+      "sha256": "c8aac8361c9808c781ab17e52af7fbf1f069e26901ba2a99964c6efa7fe26d79",
+      "size": [
+        1611,
+        976
+      ],
+      "alphaInteriorMedian": 253.0,
+      "alphaMin": 0,
+      "alphaMax": 255
+    },
+    {
+      "id": "oxygen-cart",
+      "sha256": "bf4c63b8b3aaa7b307cbe7f7d887588e3bc2bb624dac9f114c1c1d6f7170ac75",
+      "size": [
+        1383,
+        1137
+      ],
+      "alphaInteriorMedian": 253.0,
+      "alphaMin": 0,
+      "alphaMax": 255
+    },
+    {
+      "id": "linen-hamper",
+      "sha256": "7f019273df72139759f8444ba223e2a9dcf9d8bdb9a120e270f2a44dbe861586",
+      "size": [
+        1364,
+        1153
+      ],
+      "alphaInteriorMedian": 253.0,
+      "alphaMin": 0,
+      "alphaMax": 255
+    },
+    {
+      "id": "janitor-cart",
+      "sha256": "0ba033a992a95157d1592bfec89fc01d21f637b1e1329b29e51e4d72c8fb6c22",
+      "size": [
+        1611,
+        976
+      ],
+      "alphaInteriorMedian": 253.0,
+      "alphaMin": 0,
+      "alphaMax": 255
+    },
+    {
+      "id": "privacy-screen",
+      "sha256": "66d45077e0fabc40851892abe8798870413e758e2bf287ddcdebd1c4b720a881",
+      "size": [
+        1611,
+        976
+      ],
+      "alphaInteriorMedian": 252.0,
+      "alphaMin": 0,
+      "alphaMax": 255
+    },
+    {
+      "id": "scrub-sink",
+      "sha256": "e060b6409d4baed3ac830c4093033cff16582a0a2ceafbc3840ca5c92cb181de",
+      "size": [
+        1611,
+        976
+      ],
+      "alphaInteriorMedian": 253.0,
+      "alphaMin": 0,
+      "alphaMax": 255
+    },
+    {
+      "id": "water-cooler",
+      "sha256": "863ef8df1ab6b0512fb0b1d3473293b567c1de43e28826231bd08c005f0fe383",
+      "size": [
+        1337,
+        1177
+      ],
+      "alphaInteriorMedian": 253.0,
+      "alphaMin": 0,
+      "alphaMax": 255
+    }
+  ],
+  "visibleDimensionDeviation": [
+    {
+      "id": "autopsy-table",
+      "canvas": [
+        976,
+        1611
+      ],
+      "opaqueBounds": [
+        202,
+        146,
+        769,
+        1466
+      ],
+      "pixelsPerUnit": 573.9130434782609,
+      "actualWorldSize": [
+        0.9879545454545454,
+        2.3
+      ],
+      "dimensionDeviation": 0.00508102169733593
+    },
+    {
+      "id": "transport-stretcher",
+      "canvas": [
+        1024,
+        1536
+      ],
+      "opaqueBounds": [
+        284,
+        120,
+        767,
+        1373
+      ],
+      "pixelsPerUnit": 582.7906976744187,
+      "actualWorldSize": [
+        0.8287709497206703,
+        2.15
+      ],
+      "dimensionDeviation": 0.00626984445962786
+    },
+    {
+      "id": "wheelchair",
+      "canvas": [
+        1094,
+        1437
+      ],
+      "opaqueBounds": [
+        168,
+        97,
+        926,
+        1289
+      ],
+      "pixelsPerUnit": 1192.0,
+      "actualWorldSize": [
+        0.6359060402684564,
+        1.0
+      ],
+      "dimensionDeviation": 0.003006372663180379
+    },
+    {
+      "id": "iv-stand",
+      "canvas": [
+        1611,
+        976
+      ],
+      "opaqueBounds": [
+        380,
+        73,
+        1230,
+        865
+      ],
+      "pixelsPerUnit": 1307.6923076923076,
+      "actualWorldSize": [
+        0.65,
+        0.6056470588235294
+      ],
+      "dimensionDeviation": 0.002726918582002469
+    },
+    {
+      "id": "oxygen-cart",
+      "canvas": [
+        1383,
+        1137
+      ],
+      "opaqueBounds": [
+        365,
+        219,
+        1018,
+        960
+      ],
+      "pixelsPerUnit": 1354.6617915904935,
+      "actualWorldSize": [
+        0.4820391363022942,
+        0.547
+      ],
+      "dimensionDeviation": 0.004248200629779708
+    },
+    {
+      "id": "linen-hamper",
+      "canvas": [
+        1364,
+        1153
+      ],
+      "opaqueBounds": [
+        114,
+        109,
+        1251,
+        1053
+      ],
+      "pixelsPerUnit": 1421.25,
+      "actualWorldSize": [
+        0.8,
+        0.6642040457343887
+      ],
+      "dimensionDeviation": 0.01744963648759068
+    },
+    {
+      "id": "janitor-cart",
+      "canvas": [
+        1611,
+        976
+      ],
+      "opaqueBounds": [
+        294,
+        106,
+        1291,
+        828
+      ],
+      "pixelsPerUnit": 1105.321507760532,
+      "actualWorldSize": [
+        0.902,
+        0.6532036108324976
+      ],
+      "dimensionDeviation": 0.004928632049996162
+    },
+    {
+      "id": "privacy-screen",
+      "canvas": [
+        1611,
+        976
+      ],
+      "opaqueBounds": [
+        137,
+        386,
+        1474,
+        585
+      ],
+      "pixelsPerUnit": 891.3333333333334,
+      "actualWorldSize": [
+        1.5,
+        0.2232610321615557
+      ],
+      "dimensionDeviation": 0.024133175053007827
+    },
+    {
+      "id": "scrub-sink",
+      "canvas": [
+        1611,
+        976
+      ],
+      "opaqueBounds": [
+        189,
+        240,
+        1422,
+        720
+      ],
+      "pixelsPerUnit": 1027.5,
+      "actualWorldSize": [
+        1.2,
+        0.46715328467153283
+      ],
+      "dimensionDeviation": 0.006795872136924119
+    },
+    {
+      "id": "water-cooler",
+      "canvas": [
+        1337,
+        1177
+      ],
+      "opaqueBounds": [
+        327,
+        229,
+        1007,
+        1011
+      ],
+      "pixelsPerUnit": 1564.0,
+      "actualWorldSize": [
+        0.43478260869565216,
+        0.5
+      ],
+      "dimensionDeviation": 0.004116879204739465
+    }
+  ],
+  "console": {
+    "success": true,
+    "message": "Retrieved 0 log entries.",
+    "data": []
+  },
+  "verification": "Native import/reference/component/collider/identity inspection and actual Unity captures. Full gameplay suite/build not rerun for art-only revision.",
+  "artisticApproval": "Pending owner review"
+}
