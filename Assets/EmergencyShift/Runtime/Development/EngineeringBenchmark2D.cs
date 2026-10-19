@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using Unity.Profiling;
 using UnityEngine;
+using Zenject;
 using Debug = UnityEngine.Debug;
 
 namespace EmergencyShift
@@ -66,8 +67,14 @@ namespace EmergencyShift
                 actors = int.Parse(args[flag + 2]),
                 unity = Application.unityVersion
             };
+            FindAnyObjectByType<LevelContext2D>().InjectScoped(runner);
             runner.StartCoroutine(runner.Run());
         }
+
+        private NavigationWorkBudget2D navigationBudget;
+
+        [Inject]
+        private void Construct(NavigationWorkBudget2D navigation) => navigationBudget = navigation;
 
         private IEnumerator Run()
         {
@@ -128,7 +135,7 @@ namespace EmergencyShift
                 }
             }
 
-            report.peakPathBuilds = NavigationWorkBudget2D.PeakBuilds;
+            report.peakPathBuilds = navigationBudget.PeakBuilds;
             watch.Restart();
             foreach (var actor in actors)
             {

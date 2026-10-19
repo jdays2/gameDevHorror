@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
 using EmergencyShift.Features.PlayerInput.Logic;
 using Zenject;
@@ -28,12 +29,14 @@ namespace EmergencyShift
         private readonly Queue<string> notices = new Queue<string>();
         private IPlayerInput input;
         private GameplayInputBlock inputBlock;
+        private SceneRegistry<Door2D> doorRegistry;
 
         [Inject]
-        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block, SceneRegistry<Door2D> sceneDoors)
         {
             input = playerInput;
             inputBlock = block;
+            doorRegistry = sceneDoors;
         }
         public event System.Action<PickupKind> ItemCollected;
         public IInteractable CurrentTarget
@@ -135,7 +138,7 @@ namespace EmergencyShift
 
             float closest = float.PositiveInfinity;
             float bestAngle = float.PositiveInfinity;
-            foreach (Door2D door in Door2D.Active)
+            foreach (Door2D door in doorRegistry.Members)
             {
                 if (door != null && door.gameObject.scene == gameObject.scene)
                 {

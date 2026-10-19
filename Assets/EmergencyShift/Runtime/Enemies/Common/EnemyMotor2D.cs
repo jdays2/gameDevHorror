@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -8,7 +9,7 @@ namespace EmergencyShift
         private Rigidbody2D body;
         private CircleCollider2D shape;
         private CrowdAgent2D crowd;
-        private readonly EnemyChasePath2D path = new EnemyChasePath2D();
+        private EnemyChasePath2D path;
         private static readonly float[] angles =
         {
             45,
@@ -18,7 +19,10 @@ namespace EmergencyShift
         };
         private int solids;
         public float Radius => shape.radius * Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.y));
-        public int WaypointCount => path.WaypointCount;
+        public int WaypointCount => path?.WaypointCount ?? 0;
+
+        [Inject]
+        private void Construct(EnemyChasePathFactory paths) => path = paths.Create();
 
         private void Awake()
         {

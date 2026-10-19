@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -21,12 +22,16 @@ namespace EmergencyShift
         private Vector2 previousPosition;
         private float nextContact;
         private float nextHeard;
+        private EnemyDeathAudioVariants deathVariants;
         public int WakeCount { get; private set; }
         public int PainCount { get; private set; }
         public int DeathCount { get; private set; }
         public AudioSource BreathingSource => breathing;
         public AudioSource VoiceSource => voice;
         public event System.Action<float, float, bool> PerceptibleCue;
+
+        [Inject]
+        private void Construct(EnemyDeathAudioVariants variants) => deathVariants = variants;
 
         private void Awake()
         {
@@ -123,7 +128,7 @@ namespace EmergencyShift
             {
                 DeathCount++;
                 contact.Stop();
-                AudioClip rupture = profile.deathSounds != null ? EnemyDeathAudioVariants.Choose(profile.deathSounds) : profile.rupture;
+                AudioClip rupture = profile.deathSounds != null ? deathVariants.Choose(profile.deathSounds) : profile.rupture;
                 float gain = profile.deathSounds != null ? profile.deathSounds.Volume : 1;
                 PlayVoice(rupture, gain);
             }

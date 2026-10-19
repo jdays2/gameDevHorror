@@ -5,9 +5,9 @@
   "method": "Manual boundary notes + current source hashes, lexical source hints and actual AssetDatabase scene/serialized GUID graph. No automatic unused-code deletion.",
   "limits": "Lexical references are hints, not semantic proof; reviewed_boundary does not certify the whole feature. Queued/partial entries must be completed.",
   "counts": {
-    "reviewed_boundary": 26,
-    "partial": 25,
-    "queued": 159
+    "reviewed_boundary": 41,
+    "partial": 33,
+    "queued": 147
   },
   "files": [
     {
@@ -544,14 +544,38 @@
       "notes": "Inject before Awake; explicit owning scene and transform, no persistent-ID claim."
     },
     {
+      "path": "Assets/EmergencyShift/Runtime/Core/Composition/SceneRegistry.cs",
+      "sha256": "e3ea0fb12a3e40f53985bbfad2c4e7f5b68bd186cad2934be5cd5d7394e70bf4",
+      "baselineSha256": null,
+      "guid": "7045b1da7febbb348ac5dcd897242a78",
+      "types": [
+        "SceneRegistry"
+      ],
+      "lines": 57,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/CrowdAgent2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Scene-owned membership, immutable view, transient ordering; duplicates/unload/isolation tested."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
-      "sha256": "7719a1d3b3ff4c949d2eda6124cb7c4bcb1cebe83f411a38867a00b56e9943c7",
+      "sha256": "e446cb4c8262d045596d96d37400f28ad61fe7bb7f852295c197c042326d97ca",
       "baselineSha256": null,
       "guid": "db025a46dc7ec8748a1847f868571510",
       "types": [
         "WorldInstaller"
       ],
-      "lines": 15,
+      "lines": 22,
       "serializedUsers": [
         "Assets/EmergencyShift/Resources/ProjectContext.prefab"
       ],
@@ -714,6 +738,111 @@
       "notes": "Per-player leases; idempotent release and independent owners tested."
     },
     {
+      "path": "Assets/EmergencyShift/Runtime/Core/Randomness/IRandomSource.cs",
+      "sha256": "3b89f265e4b17896848b55a855e84583a31ef5d26f1522cad4715d0af72686e2",
+      "baselineSha256": null,
+      "guid": "3eb4005f5c41a62468cd26f6face234b",
+      "types": [
+        "IRandomSource"
+      ],
+      "lines": 8,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
+        "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit random-draw contract; no persistence or multiplayer claim."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
+      "sha256": "02a3929ff2a7c82fa4495ffe7016b306a0e3adbc9784065f949af0b2a4318496",
+      "baselineSha256": null,
+      "guid": "452a4acdc2a9b73419fe5c942dbdd95d",
+      "types": [
+        "RandomSourceFactory"
+      ],
+      "lines": 17,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Composition seeds independent actor streams; isolation test."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
+      "sha256": "3fa288036eeae8da0eb8fdbdce521887f9db06d09770a8381a6f89ea18f0f747",
+      "baselineSha256": null,
+      "guid": "fa520682fb5638b47b83d426b9dd23f2",
+      "types": [
+        "SystemRandomSource"
+      ],
+      "lines": 17,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Owned System.Random adapter; no static state."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Core/Scheduling/FrameWorkBudget.cs",
+      "sha256": "d7b1d1549d5c12b6430a09fdacc1755b380e95229dfc84e022b1e9634f25dd79",
+      "baselineSha256": null,
+      "guid": "0ba811bb441993041b25b01db27a6db8",
+      "types": [
+        "FrameWorkBudget"
+      ],
+      "lines": 48,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/NavigationWorkBudget2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Pure quota/metrics with frame clock; reset, rejection and independent domains tested."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Core/Time/IFrameClock.cs",
+      "sha256": "c5fda396199336b737535479c672162f1b48090349626bc0c96c2edcb4f24565",
+      "baselineSha256": null,
+      "guid": "d6f1c7c240570074aa2dbac870e89c1c",
+      "types": [
+        "IFrameClock"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Core/Scheduling/FrameWorkBudget.cs",
+        "Assets/EmergencyShift/Runtime/Core/Time/UnityFrameClock.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/NavigationWorkBudget2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Injected frame boundary, independent from scaled time."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Core/Time/IGameClock.cs",
       "sha256": "64a252e7b4e82b45090e38a212a992fc200f1bc937a2fec75136480e215a43bd",
       "baselineSha256": null,
@@ -726,6 +855,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
@@ -755,6 +886,24 @@
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
       "notes": "Explicit world time-scale adapter boundary."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Core/Time/UnityFrameClock.cs",
+      "sha256": "80b350265e87e9bfd144786363801acc361aabaaa16a9083168216e6e33f795b",
+      "baselineSha256": null,
+      "guid": "892c538cd3f9b114fa3382f8acecbd33",
+      "types": [
+        "UnityFrameClock"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Unity frame adapter only."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
@@ -1691,7 +1840,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
-      "sha256": "d9f8a4f7c16177c9a4f0b9db1b0c676b27c322752d6d224b411e2a4ce18ce00b",
+      "sha256": "ebd2bd20b2abedbadd9582a472c9ad29aeb0eb30c88c0e9863440fe4ab6091bd",
       "baselineSha256": "dea0753dde55163305e5bae42e34690433988d6ce2fb8cbb2fe6af2bedffb3be",
       "guid": "e01f2af1acc84714089a28a606ef19c7",
       "types": [
@@ -1699,7 +1848,7 @@
         "Sample",
         "Result"
       ],
-      "lines": 281,
+      "lines": 293,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -1716,7 +1865,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
-      "sha256": "f1bdf501400962c0548f6c1a96800447e3c4e7bf62706be449c30ec7cdd78c98",
+      "sha256": "3e60070674d117eb98c61f44e9826822922050e8ded9e1f2cd0cecc2d19fe061",
       "baselineSha256": "5056d5debaa0748fea5eb5fed2030bf51a3caffafcbfd4c189bb1f25155c526e",
       "guid": "7b71efe51bb80874fbf74d2e220cbe70",
       "types": [
@@ -1738,7 +1887,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
-      "sha256": "b9c54d29fc3f10900e98b11c66d423978ceb8be7fb828de9b0c10e1e2cd5b1d7",
+      "sha256": "e7a2e9d62acd3090c7e3a94edb173f340224b396b1dcbbcd573dc090a9bad688",
       "baselineSha256": "5c0c85c999120ef6267c13e0436ec7420ceac969c6cf89a2a195b98e213679db",
       "guid": "7f2e8bf6c7334664ca29403b54472cd3",
       "types": [
@@ -1746,7 +1895,7 @@
         "Sample",
         "Report"
       ],
-      "lines": 224,
+      "lines": 231,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -1880,7 +2029,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
-      "sha256": "530592111f42b35d8398d2822c01abbb5165447e033da39108c36dad6d5e4834",
+      "sha256": "4daddac0392735bce4507cff9c53067811462848fbae2236914578644dd452e0",
       "baselineSha256": "530592111f42b35d8398d2822c01abbb5165447e033da39108c36dad6d5e4834",
       "guid": "d5a0b592cd9ce0143acb9eb2fa369fef",
       "types": [
@@ -1902,8 +2051,8 @@
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "partial",
+      "notes": "Affected static door assertion replaced; complete probe review remains."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
@@ -2055,13 +2204,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/CrowdAgent2D.cs",
-      "sha256": "c482e784671c615f36a509bda14397edd080f3bc26c5befee4e366c37b7b2b68",
+      "sha256": "43da270b0d98d8826ce383d1cd1a12974746600352958cf41e7da6aa0478afbe",
       "baselineSha256": "c482e784671c615f36a509bda14397edd080f3bc26c5befee4e366c37b7b2b68",
       "guid": "3219746d0f2544a46be37f92477950f6",
       "types": [
         "CrowdAgent2D"
       ],
-      "lines": 97,
+      "lines": 110,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -2076,31 +2225,50 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxStationaryStalker2D.cs"
       ],
-      "entryPointHints": [
-        "RuntimeInitializeOnLoadMethod"
-      ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "entryPointHints": [],
+      "reviewStatus": "partial",
+      "notes": "Owned membership/ordinal and cleanup; remaining full physics/steering/style review."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
-      "sha256": "cf35402f8c133af54ea1b0f460fc9e96395c778ca43afbf574fe868917b623b5",
+      "sha256": "6ee96fab5d796e7455fe2a50b487d508b7471d2aad5cc667a1cdfe3de816027e",
       "baselineSha256": "cf35402f8c133af54ea1b0f460fc9e96395c778ca43afbf574fe868917b623b5",
       "guid": "3173718c069f4314a8a68a07766839d7",
       "types": [
         "EnemyChasePath2D"
       ],
-      "lines": 272,
+      "lines": 284,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "partial",
+      "notes": "Clock/quota/RNG injected; full bounded A-star and environment boundary review remains."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+      "sha256": "a0bbd0bfaaa978e482703b6e27ee72c2945517d028dc0de58568c1b9e14b1fb4",
+      "baselineSha256": null,
+      "guid": "3f58067470f4bc7499cf0a0437fa1eda",
+      "types": [
+        "EnemyChasePathFactory"
+      ],
+      "lines": 22,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit clock, quota and RNG factory (three distinct dependencies); independent per-actor paths."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyHealth2D.cs",
@@ -2169,13 +2337,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs",
-      "sha256": "ed82ec33f4b23ea21f0a2d6681d0445f1b75665a5c7e41a544d43ffc8f7d83c4",
+      "sha256": "fa0ea4027243ab699a75a79b324320c9e33105de24fb658c7374bd2c1388fbcc",
       "baselineSha256": "ed82ec33f4b23ea21f0a2d6681d0445f1b75665a5c7e41a544d43ffc8f7d83c4",
       "guid": "4b2ac4c295908534c9601c66eca4bd7d",
       "types": [
         "EnemyMotor2D"
       ],
-      "lines": 81,
+      "lines": 85,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -2191,8 +2359,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "partial",
+      "notes": "Own path via injected factory; full environment/controller review remains."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
@@ -2259,25 +2427,26 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/NavigationWorkBudget2D.cs",
-      "sha256": "da139dfad2d6cdfb9a1f09dea11d25c30c3f7fc157a52aa578e62d38d91231fc",
+      "sha256": "3951215a275d06a389e5396cd3444dc62b4b7f0302da00be2aec38dac5d0d4dd",
       "baselineSha256": "da139dfad2d6cdfb9a1f09dea11d25c30c3f7fc157a52aa578e62d38d91231fc",
       "guid": "daef35141e335df48ad18e24983e1994",
       "types": [
         "NavigationWorkBudget2D"
       ],
-      "lines": 46,
+      "lines": 22,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
-        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs"
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
       ],
-      "entryPointHints": [
-        "RuntimeInitializeOnLoadMethod"
-      ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Compatibility adapter to the common quota; existing maximum two preserved."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
@@ -2320,13 +2489,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
-      "sha256": "bbfc5553b4dcb7055dea53abc4fe4d4a18e54c44211ce2448afc01c4f50d75a3",
+      "sha256": "d033084d5a362ce54c2531d93adca927d78bbf242ab63956f2f9010244ea3977",
       "baselineSha256": "bbfc5553b4dcb7055dea53abc4fe4d4a18e54c44211ce2448afc01c4f50d75a3",
       "guid": "47aba92428eacdc47bbfb25e3f3bfacc",
       "types": [
         "SleeperAudio2D"
       ],
-      "lines": 268,
+      "lines": 273,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
       ],
@@ -2340,8 +2509,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "partial",
+      "notes": "World-owned death choice; remaining audio/config/RNG/lifetime review."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs",
@@ -2436,13 +2605,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
-      "sha256": "43544269e64f92b9036f0f3984999d54ef287e4cea82849f270e5ea0d5945f04",
+      "sha256": "7241e35c068170e5b3afd37bd541be9962e6ac82fc90f74b9603b4dc365fd4c5",
       "baselineSha256": "43544269e64f92b9036f0f3984999d54ef287e4cea82849f270e5ea0d5945f04",
       "guid": "1794a8d6db1a7104c8e68ef00753a601",
       "types": [
         "StalkerAudio2D"
       ],
-      "lines": 628,
+      "lines": 634,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -2459,13 +2628,12 @@
         "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
-        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs"
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs"
       ],
-      "entryPointHints": [
-        "RuntimeInitializeOnLoadMethod"
-      ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "entryPointHints": [],
+      "reviewStatus": "partial",
+      "notes": "Scene-owned voice budget and world-owned death choice; full audio/config/RNG/lifetime review remains."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
@@ -2759,13 +2927,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "65bdf410dbcf637d3f5eae582389c257831a291a52dff8c2c9c5787cb1465c77",
+      "sha256": "15b20ac6244f77dcfdd0f84f83e881a4365ed45d4a94c50acc89a33c64a54678",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 114,
+      "lines": 131,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -2857,6 +3025,24 @@
       "entryPointHints": [],
       "reviewStatus": "queued",
       "notes": "Not semantically reviewed yet; no unused/compliance claim."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+      "sha256": "966696fa5c399948a2f972f936e632f4d51b1c11a6265740653affecde6f0bf5",
+      "baselineSha256": null,
+      "guid": "0a79308db69301e4d968479a95aeff27",
+      "types": [
+        "LevelRegistriesInstaller"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Separate scene registries and actor path factory; world quotas inherited."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
@@ -3650,13 +3836,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-      "sha256": "a31ed6bf8aaab45cac5f8703731550a1825112e378aaa2d59824a4eafa8fef1a",
+      "sha256": "17fdba5a495f8f4a7f4cf65e42fa4c5f0cd9c6a3778e49d9edad1966d9439a96",
       "baselineSha256": "61e533ef3c071ac9d4bedb6ed4969c8e45d6695dbfccad01f446ef60ae4fe1c2",
       "guid": "500d12c8cbe97624898244a956ece442",
       "types": [
         "PlayerInteraction"
       ],
-      "lines": 226,
+      "lines": 229,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -3931,25 +4117,24 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
-      "sha256": "25e183d11db21237705fe713cf9197b170fb57e85c18a9b5e3155346ea7d5da1",
+      "sha256": "903db58619a57a32109a00765a6eeb0de09d923f842c8ebf5d173c49e2cafce0",
       "baselineSha256": "25e183d11db21237705fe713cf9197b170fb57e85c18a9b5e3155346ea7d5da1",
       "guid": "d2fed05e0692a774cbf356edb9ae680c",
       "types": [
         "EnemyDeathAudioVariants"
       ],
-      "lines": 68,
+      "lines": 81,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs"
       ],
-      "entryPointHints": [
-        "RuntimeInitializeOnLoadMethod"
-      ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "World-owned bank history and separate cosmetic RNG; assets unchanged, disposal/isolation tested."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
@@ -4177,13 +4362,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-      "sha256": "06b7c592281f925895c42dc2f371a448be2bff330b385121ef616a73c0033fac",
+      "sha256": "971af3b4e27b15102082fd2d9a9088b0bade9381d73af720b84cbce85f73fc76",
       "baselineSha256": "06b7c592281f925895c42dc2f371a448be2bff330b385121ef616a73c0033fac",
       "guid": "a44dfee537c76c74ca26aa0a3b1c491e",
       "types": [
         "GoreBurst2D"
       ],
-      "lines": 240,
+      "lines": 247,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -4204,29 +4389,29 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "partial",
+      "notes": "Owned quota validated through real death/settled remains surviving actor; full visual/RNG/lifetime review remains."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs",
-      "sha256": "ece1919530cce2e40d00881bb63828639ad3ced0fdb08ce0565ad2f2c123becc",
+      "sha256": "5d23a43bf265caea1fd5401066ce092327428b1aa27028b97042f234eafeef67",
       "baselineSha256": "ece1919530cce2e40d00881bb63828639ad3ced0fdb08ce0565ad2f2c123becc",
       "guid": "39d6da244128828468f4c70705917ccd",
       "types": [
         "GoreSpawnBudget2D"
       ],
-      "lines": 41,
+      "lines": 21,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
       ],
-      "entryPointHints": [
-        "RuntimeInitializeOnLoadMethod"
-      ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Compatibility adapter; existing maximum 32 preserved, no blood/remains eviction."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/PlayerShotShadow2D.cs",
@@ -4698,13 +4883,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
-      "sha256": "b69a976723eb70a5f8faab2f7a74543173a8342bad711b55ccc6a589a9428bd9",
+      "sha256": "7144713097fa1a11ea4e2c670e6c909bd8f56ce618779bf0e6ad80a0c59c7d00",
       "baselineSha256": "b69a976723eb70a5f8faab2f7a74543173a8342bad711b55ccc6a589a9428bd9",
       "guid": "b9ed2bf47fea2194d81220c054b2769c",
       "types": [
         "Door2D"
       ],
-      "lines": 155,
+      "lines": 159,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/World/Door.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
@@ -4722,17 +4907,17 @@
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Persistence/DoorCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
-        "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs"
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
       ],
-      "entryPointHints": [
-        "RuntimeInitializeOnLoadMethod"
-      ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "entryPointHints": [],
+      "reviewStatus": "partial",
+      "notes": "Scene-owned registry; command, motion/coroutine and config boundary review remains."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
@@ -5263,21 +5448,21 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
-      "sha256": "fbe45aa612c7aa425a41304c8f8c6f0d3e7c7e7333bee0154ac7a31dba37585a",
+      "sha256": "bec985390ad681f7b619956d027a240bb9a826f91bc16572cb7e0e435278c790",
       "baselineSha256": "fbe45aa612c7aa425a41304c8f8c6f0d3e7c7e7333bee0154ac7a31dba37585a",
       "guid": "b24504c8c5d035b4186b05eb8a90c5cb",
       "types": [
         "EnemyDeathAudioTests"
       ],
-      "lines": 99,
+      "lines": 124,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [
         "Test"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim."
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Full fixture read; bank repetition, asset immutability, empty/duplicate banks, world isolation/disposal."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
@@ -5379,13 +5564,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
-      "sha256": "4a66811031b72d425ac84470bece498f2e7232ac55f3c318d729312f35728ffa",
+      "sha256": "1a1c3f4b2886a4a36d9e41004afc5ce71a709a5a2ff87a4d16eead1eb6299f07",
       "baselineSha256": null,
       "guid": "120ffa7cd993cb543a3c2e081d0720ae",
       "types": [
         "LevelCompositionTests"
       ],
-      "lines": 64,
+      "lines": 69,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -5486,6 +5671,24 @@
       "notes": "Real action bindings and clone lifetime; restores temporary EditMode input settings and synthetic device."
     },
     {
+      "path": "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs",
+      "sha256": "a54bd71b25ab173b8f75ff939a6c68faf5bdccf32e92e21356d2a6b1c3d1c552",
+      "baselineSha256": null,
+      "guid": "c044ae95868bd1448906f0de85932e6b",
+      "types": [
+        "SceneRegistryTests"
+      ],
+      "lines": 44,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test"
+      ],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Registration, idempotent removal and independent scene teardown."
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
       "sha256": "26aa1363fe9c2909e53ae264b8696e5dc0f3a2709c92c68a840514e9c69016b3",
       "baselineSha256": "26aa1363fe9c2909e53ae264b8696e5dc0f3a2709c92c68a840514e9c69016b3",
@@ -5539,6 +5742,26 @@
       ],
       "reviewStatus": "queued",
       "notes": "Not semantically reviewed yet; no unused/compliance claim."
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+      "sha256": "f5612b26fe800e31544da6918473bbf5385c7d9cae2fffd48d558e70f783cc0f",
+      "baselineSha256": null,
+      "guid": "e4dff9083a9762b40ae78dc8bda7d2fd",
+      "types": [
+        "WorkBudgetTests",
+        "TestFrameClock"
+      ],
+      "lines": 77,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Quota/frame reset, separate existing limits and actor RNG isolation."
     }
   ],
   "unresolvedExternalReferences": [

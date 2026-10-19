@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
     /// <summary>Одноразовый разрыв тела. Лужа и куски независимы от игрового поведения врага.</summary>
     public sealed class GoreBurst2D : MonoBehaviour
     {
+        private GoreSpawnBudget2D spawnBudget;
+
         [SerializeField]
         private BloodPool2D bloodPoolPrefab;
         [SerializeField]
@@ -26,10 +29,14 @@ namespace EmergencyShift
         private Transform remainsRoot;
         private RemainsRecord2D record;
         private bool spawning;
-        public bool IsSettled => !spawning && (record == null || record.IsSettled);
-
         private bool emitted;
+
+        public bool IsSettled => !spawning && (record == null || record.IsSettled);
         public event System.Action<GibMotion2D> FragmentLaunched;
+
+        [Inject]
+        private void Construct(GoreSpawnBudget2D budget) => spawnBudget = budget;
+
         public void Configure(BloodPool2D pool, Sprite[] pieces, Material material)
         {
             bloodPoolPrefab = pool;
@@ -111,7 +118,7 @@ namespace EmergencyShift
 
             for (int i = 0; i < count; i++)
             {
-                while (!GoreSpawnBudget2D.TryReserve())
+                while (!spawnBudget.TryReserve())
                 {
                     yield return null;
                 }

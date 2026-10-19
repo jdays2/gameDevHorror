@@ -549,7 +549,7 @@ namespace EmergencyShift
             Bind();
             Check("R restarts while alive", player.Health == 3 && !weapon.HasWeapon && Vector2.Distance(body.position, new Vector2(10, -3)) < .1f);
             Check("Restart restores targets, loot and doors", FindObjectsByType<ShadowStalker2D>().Length == 5 && FindObjectsByType<RemainsRecord2D>().Length == 0 && !FindAnyObjectByType<DoorAccess2D>().IsUnlocked);
-            Check("Restart leaves one listener and four doors", FindObjectsByType<AudioListener>().Length == 1 && Door2D.Active.Count == 4);
+            Check("Restart leaves one listener and four doors", FindObjectsByType<AudioListener>().Length == 1 && FindObjectsByType<Door2D>().Length == 4);
             yield return Move(10, -1.1f);
             yield return Open(Entry(1));
             yield return Move(5, 4);

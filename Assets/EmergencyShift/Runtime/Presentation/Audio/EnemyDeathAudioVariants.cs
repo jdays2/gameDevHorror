@@ -1,22 +1,29 @@
+using System;
 using System.Collections.Generic;
+using EmergencyShift.Core.Randomness;
 using UnityEngine;
 
 namespace EmergencyShift
 {
     /// <summary>Session-owned last choice per bank; shared assets never hold playback state.</summary>
-    public static class EnemyDeathAudioVariants
+    public sealed class EnemyDeathAudioVariants : IDisposable
     {
-        private static readonly Dictionary<EnemyDeathAudioSet, AudioClip> lastPlayed = new Dictionary<EnemyDeathAudioSet, AudioClip>();
-        private static readonly System.Random random = new System.Random();
+        private readonly Dictionary<EnemyDeathAudioSet, AudioClip> lastPlayed = new Dictionary<EnemyDeathAudioSet, AudioClip>();
+        private readonly IRandomSource random;
+        private bool disposed;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetSession()
+        public EnemyDeathAudioVariants(IRandomSource random)
         {
-            lastPlayed.Clear();
+            this.random = random ?? throw new ArgumentNullException(nameof(random));
         }
 
-        public static AudioClip Choose(EnemyDeathAudioSet sounds)
+        public AudioClip Choose(EnemyDeathAudioSet sounds)
         {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(nameof(EnemyDeathAudioVariants));
+            }
+
             if (sounds == null || sounds.Clips == null)
             {
                 return null;
@@ -45,7 +52,7 @@ namespace EmergencyShift
                 return fallback;
             }
 
-            int selection = random.Next(alternatives);
+            int selection = random.NextInt(0, alternatives);
             foreach (AudioClip clip in sounds.Clips)
             {
                 if (clip == null || clip == previous)
@@ -63,6 +70,12 @@ namespace EmergencyShift
             }
 
             return fallback;
+        }
+
+        public void Dispose()
+        {
+            disposed = true;
+            lastPlayed.Clear();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.Profiling;
 using UnityEngine;
+using Zenject;
 using UnityEngine.Rendering.Universal;
 
 namespace EmergencyShift
@@ -68,8 +69,19 @@ namespace EmergencyShift
         public string Failure { get; private set; }
         public int Frames => samples.Count;
 
+        private NavigationWorkBudget2D navigationBudget;
+        private GoreSpawnBudget2D goreBudget;
+
+        [Inject]
+        private void Construct(NavigationWorkBudget2D navigation, GoreSpawnBudget2D gore)
+        {
+            navigationBudget = navigation;
+            goreBudget = gore;
+        }
+
         public void Begin(string output, int count = 20)
         {
+            FindAnyObjectByType<LevelContext2D>().InjectScoped(this);
             folder = output;
             Directory.CreateDirectory(folder);
             result = new Result();
@@ -137,7 +149,7 @@ namespace EmergencyShift
             watch.Stop();
             result.coldSpawnMs = watch.Elapsed.TotalMilliseconds;
             result.actors = count;
-            initialBuilds = NavigationWorkBudget2D.TotalBuilds;
+            initialBuilds = navigationBudget.TotalBuilds;
             Physics2D.SyncTransforms();
             var options = ProfilerRecorderOptions.Default | ProfilerRecorderOptions.StartImmediately;
             ticks = ProfilerRecorder.StartNew(ProfilerCategory.Scripts, "EmergencyShift.Stalker.Tick", 1, options);
@@ -191,8 +203,8 @@ namespace EmergencyShift
                 }
             }
 
-            result.pathBuilds = NavigationWorkBudget2D.TotalBuilds - initialBuilds;
-            result.peakPathBuilds = NavigationWorkBudget2D.PeakBuilds;
+            result.pathBuilds = navigationBudget.TotalBuilds - initialBuilds;
+            result.peakPathBuilds = navigationBudget.PeakBuilds;
             foreach (var light in FindObjectsByType<Light2D>())
             {
                 if (light.lightType == Light2D.LightType.Global)
@@ -213,7 +225,7 @@ namespace EmergencyShift
             watch.Stop();
             result.killDispatchMs = watch.Elapsed.TotalMilliseconds;
             yield return new WaitForSeconds(4);
-            result.peakFragments = GoreSpawnBudget2D.PeakFragments;
+            result.peakFragments = goreBudget.PeakFragments;
             foreach (var actor in actors)
             {
                 if (actor.isActiveAndEnabled)

@@ -1,6 +1,7 @@
-using System.Collections.Generic;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
 using Unity.Profiling;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -16,30 +17,48 @@ namespace EmergencyShift
         private CircleCollider2D shape;
         private Damageable2D life;
         private int ordinal;
-        private static int sequence;
-        private static readonly List<CrowdAgent2D> active = new List<CrowdAgent2D>(32);
+        private SceneRegistry<CrowdAgent2D> registry;
         private static readonly ProfilerMarker marker = new ProfilerMarker("EmergencyShift.Crowd.Separation");
         public float Radius => shape.radius * Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.y));
+
+        [Inject]
+        private void Construct(SceneRegistry<CrowdAgent2D> sceneRegistry)
+        {
+            registry?.Remove(this);
+            registry = sceneRegistry;
+            if (isActiveAndEnabled)
+            {
+                Register();
+            }
+        }
 
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>();
             shape = GetComponent<CircleCollider2D>();
             life = GetComponent<Damageable2D>();
-            ordinal = ++sequence;
         }
 
         private void OnEnable()
         {
-            if (!active.Contains(this))
+            if (registry != null)
             {
-                active.Add(this);
+                Register();
             }
         }
 
         private void OnDisable()
         {
-            active.Remove(this);
+            registry?.Remove(this);
+        }
+
+        private void Register()
+        {
+            int registration = registry.Register(this);
+            if (ordinal == 0)
+            {
+                ordinal = registration;
+            }
         }
 
         public Vector2 Adjust(Vector2 desired, LayerMask solids)
@@ -53,7 +72,7 @@ namespace EmergencyShift
                 }
 
                 Vector2 repel = Vector2.zero;
-                foreach (var other in active)
+                foreach (CrowdAgent2D other in registry.Members)
                 {
                     if (other == this || other.body == null || (other.life != null && !other.life.IsAlive) || other.gameObject.scene != gameObject.scene)
                     {
@@ -87,11 +106,5 @@ namespace EmergencyShift
             }
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Reset()
-        {
-            active.Clear();
-            sequence = 0;
-        }
     }
 }

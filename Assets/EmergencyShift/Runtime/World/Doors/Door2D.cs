@@ -1,5 +1,7 @@
 using System.Collections;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -16,8 +18,7 @@ namespace EmergencyShift
         private bool moving;
         private bool awaitingAccess;
         private DoorAccess2D access;
-        private static readonly System.Collections.Generic.List<Door2D> active = new System.Collections.Generic.List<Door2D>();
-        public static System.Collections.Generic.IReadOnlyList<Door2D> Active => active;
+        private SceneRegistry<Door2D> registry;
         public bool IsOpen
         {
             get; private set;
@@ -30,6 +31,17 @@ namespace EmergencyShift
         public Collider2D Blocker => leaf.GetComponent<Collider2D>();
         public Vector2 InteractionPosition => transform.position;
         public float InteractionRange => 1.6f;
+
+        [Inject]
+        private void Construct(SceneRegistry<Door2D> sceneRegistry)
+        {
+            registry?.Remove(this);
+            registry = sceneRegistry;
+            if (isActiveAndEnabled)
+            {
+                registry.Register(this);
+            }
+        }
 
         public bool IsAvailable(PlayerInteraction actor) => isActiveAndEnabled && CanInteract && actor.CanReach(InteractionPosition, InteractionRange, Blocker);
         public string GetPrompt(PlayerInteraction actor)
@@ -82,10 +94,7 @@ namespace EmergencyShift
 
         private void OnEnable()
         {
-            if (!active.Contains(this))
-            {
-                active.Add(this);
-            }
+            registry?.Register(this);
         }
 
         public void RestoreState(bool open)
@@ -129,7 +138,7 @@ namespace EmergencyShift
 
         private void OnDisable()
         {
-            active.Remove(this);
+            registry?.Remove(this);
             StopAllCoroutines();
             awaitingAccess = false;
             if (!moving)
@@ -146,10 +155,5 @@ namespace EmergencyShift
             MotionStopped?.Invoke(IsOpen);
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetRegistry()
-        {
-            active.Clear();
-        }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using EmergencyShift.Core.Randomness;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -8,6 +9,13 @@ namespace EmergencyShift.Tests
     public sealed class EnemyDeathAudioTests
     {
         private readonly List<Object> temporary = new List<Object>();
+        private EnemyDeathAudioVariants variants;
+
+        [SetUp]
+        public void CreateWorldChoiceHistory()
+        {
+            variants = new EnemyDeathAudioVariants(new SystemRandomSource(new System.Random(1234)));
+        }
 
         private AudioClip Clip(string name)
         {
@@ -34,6 +42,7 @@ namespace EmergencyShift.Tests
         [TearDown]
         public void Cleanup()
         {
+            variants.Dispose();
             foreach (Object item in temporary)
             {
                 Object.DestroyImmediate(item);
@@ -50,7 +59,7 @@ namespace EmergencyShift.Tests
             var seen = new HashSet<AudioClip>();
             for (int i = 0; i < 128; i++)
             {
-                AudioClip selected = EnemyDeathAudioVariants.Choose(bank);
+                AudioClip selected = variants.Choose(bank);
                 Assert.That(selected, Is.Not.Null);
                 Assert.That(selected, Is.Not.SameAs(previous));
                 seen.Add(selected);
@@ -67,11 +76,11 @@ namespace EmergencyShift.Tests
             AudioClip b = Clip("B");
             var first = Bank(a, b);
             var second = Bank(a);
-            AudioClip previous = EnemyDeathAudioVariants.Choose(first);
+            AudioClip previous = variants.Choose(first);
             for (int i = 0; i < 16; i++)
             {
-                EnemyDeathAudioVariants.Choose(second);
-                AudioClip next = EnemyDeathAudioVariants.Choose(first);
+                variants.Choose(second);
+                AudioClip next = variants.Choose(first);
                 Assert.That(next, Is.Not.SameAs(previous));
                 previous = next;
             }
@@ -80,9 +89,9 @@ namespace EmergencyShift.Tests
         [Test]
         public void MissingOrEmptyBankStaysSilent()
         {
-            Assert.That(EnemyDeathAudioVariants.Choose(null), Is.Null);
-            Assert.That(EnemyDeathAudioVariants.Choose(Bank()), Is.Null);
-            Assert.That(EnemyDeathAudioVariants.Choose(Bank(null, null)), Is.Null);
+            Assert.That(variants.Choose(null), Is.Null);
+            Assert.That(variants.Choose(Bank()), Is.Null);
+            Assert.That(variants.Choose(Bank(null, null)), Is.Null);
         }
 
         [Test]
@@ -92,7 +101,23 @@ namespace EmergencyShift.Tests
             var bank = Bank(null, clip, clip);
             for (int i = 0; i < 8; i++)
             {
-                Assert.That(EnemyDeathAudioVariants.Choose(bank), Is.SameAs(clip));
+                Assert.That(variants.Choose(bank), Is.SameAs(clip));
+            }
+        }
+
+        [Test]
+        public void ChoiceHistoryBelongsToTheWorldAndEndsWithIt()
+        {
+            var bank = Bank(Clip("A"), Clip("B"));
+            using (var otherWorld = new EnemyDeathAudioVariants(new SystemRandomSource(new System.Random(1234))))
+            {
+                AudioClip first = variants.Choose(bank);
+                Assert.That(variants.Choose(bank), Is.Not.SameAs(first));
+                Assert.That(otherWorld.Choose(bank), Is.SameAs(first));
+                variants.Dispose();
+                variants.Dispose();
+                Assert.Throws<System.ObjectDisposedException>(() => variants.Choose(bank));
+                Assert.That(otherWorld.Choose(bank), Is.Not.Null);
             }
         }
     }

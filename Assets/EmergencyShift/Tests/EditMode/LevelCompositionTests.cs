@@ -31,6 +31,9 @@ namespace EmergencyShift.Tests
                 IPlayerInput firstInput = first.Scope.Resolve<IPlayerInput>();
                 IPlayerInput secondInput = second.Scope.Resolve<IPlayerInput>();
                 Assert.That(firstInput, Is.Not.SameAs(secondInput));
+                SceneRegistry<Door2D> firstDoors = first.Scope.Resolve<SceneRegistry<Door2D>>();
+                SceneRegistry<Door2D> secondDoors = second.Scope.Resolve<SceneRegistry<Door2D>>();
+                Assert.That(firstDoors, Is.Not.SameAs(secondDoors));
 
                 GameplayInputBlock firstBlock = first.Scope.Resolve<GameplayInputBlock>();
                 GameplayInputBlock secondBlock = second.Scope.Resolve<GameplayInputBlock>();
@@ -43,6 +46,8 @@ namespace EmergencyShift.Tests
                 WorldMotionPause worldPause = world.Resolve<WorldMotionPause>();
                 Assert.That(first.Scope.Resolve<WorldMotionPause>(), Is.SameAs(worldPause));
                 Assert.That(second.Scope.Resolve<WorldMotionPause>(), Is.SameAs(worldPause));
+                Assert.Throws<System.ArgumentException>(() => second.InjectScoped(first.Player));
+                Assert.Throws<System.ArgumentException>(() => first.CreateInstance(firstRig, Vector3.zero, Quaternion.identity, secondRig.transform));
                 first.Dispose();
                 first.Dispose();
                 Assert.That(second.Scope.Resolve<IPlayerInput>(), Is.SameAs(secondInput));

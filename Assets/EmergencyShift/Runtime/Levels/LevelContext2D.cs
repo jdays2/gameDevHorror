@@ -56,6 +56,7 @@ namespace EmergencyShift
         {
             Container.Bind<IGameClock>().To<UnityGameClock>().AsSingle();
             HealthInstaller.Install(Container);
+            LevelRegistriesInstaller.Install(Container);
             Container.Bind<ScenePrefabFactory>().AsSingle().WithArguments(transform);
             Container.Bind<PlayerLife2D>().FromInstance(player);
             Container.Bind<Flashlight2D>().FromInstance(flashlight);
@@ -98,6 +99,22 @@ namespace EmergencyShift
             player = target;
             flashlight = light;
             controls = inputActions;
+        }
+
+        /// <summary>Composes opt-in probes/controllers; gameplay consumers receive their own contracts.</summary>
+        public void InjectScoped(object instance)
+        {
+            if (disposed || prefabs == null)
+            {
+                throw new InvalidOperationException("Scoped injection requires an active initialized level.");
+            }
+
+            if (instance is Component component && component.gameObject.scene != gameObject.scene)
+            {
+                throw new ArgumentException("A component must receive dependencies from its own scene.", nameof(instance));
+            }
+
+            Container.Inject(instance);
         }
 
         /// <summary>Explicit factory boundary for opt-in Development probes.</summary>

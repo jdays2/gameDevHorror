@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using EmergencyShift.Core.Randomness;
+using EmergencyShift.Core.Time;
 using UnityEngine;
 
 namespace EmergencyShift
@@ -22,9 +25,18 @@ namespace EmergencyShift
         private int height;
         private int cursor;
         private float nextRepath;
-        private readonly System.Random random = new System.Random(System.Guid.NewGuid().GetHashCode());
+        private readonly IRandomSource random;
+        private readonly IGameClock clock;
+        private readonly NavigationWorkBudget2D budget;
         private static readonly Unity.Profiling.ProfilerMarker marker = new Unity.Profiling.ProfilerMarker("EmergencyShift.Navigation.Build");
         public int WaypointCount => Mathf.Max(0, path.Count - cursor);
+
+        public EnemyChasePath2D(IGameClock clock, NavigationWorkBudget2D budget, IRandomSource random)
+        {
+            this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
+            this.budget = budget ?? throw new ArgumentNullException(nameof(budget));
+            this.random = random ?? throw new ArgumentNullException(nameof(random));
+        }
 
         public Vector2 Direction(Vector2 position, Vector2 goal, float radius, LayerMask solids)
         {
@@ -41,7 +53,7 @@ namespace EmergencyShift
                 return delta.normalized;
             }
 
-            if (Time.time >= nextRepath && NavigationWorkBudget2D.TryReserve())
+            if (clock.Time >= nextRepath && budget.TryReserve())
             {
                 using (marker.Auto())
                 {
@@ -49,7 +61,7 @@ namespace EmergencyShift
                 }
 
                 lastGoal = goal;
-                nextRepath = Time.time + .65f + (float)random.NextDouble() * .12f;
+                nextRepath = (float)clock.Time + .65f + (float)random.NextUnit() * .12f;
             }
 
             if ((goal - lastGoal).sqrMagnitude > 4)

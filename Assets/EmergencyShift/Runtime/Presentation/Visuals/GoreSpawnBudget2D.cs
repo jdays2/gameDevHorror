@@ -1,41 +1,21 @@
-using UnityEngine;
+using EmergencyShift.Core.Scheduling;
+using EmergencyShift.Core.Time;
 
 namespace EmergencyShift
 {
-    /// <summary>Spread simultaneous corpse fragment construction across frames; never remove permanent blood.</summary>
-    public static class GoreSpawnBudget2D
+    /// <summary>Existing fragment-construction quota; it never removes or rejects permanent remains.</summary>
+    public sealed class GoreSpawnBudget2D
     {
         public const int MaximumFragmentsPerFrame = 32;
-        private static int frame = -1;
-        private static int count;
-        public static int PeakFragments
+        private readonly FrameWorkBudget budget;
+
+        public int PeakFragments => budget.PeakReservations;
+
+        public GoreSpawnBudget2D(IFrameClock clock)
         {
-            get; private set;
+            budget = new FrameWorkBudget(clock, MaximumFragmentsPerFrame);
         }
 
-        public static bool TryReserve()
-        {
-            if (frame != Time.frameCount)
-            {
-                frame = Time.frameCount;
-                count = 0;
-            }
-
-            if (count >= MaximumFragmentsPerFrame)
-            {
-                return false;
-            }
-
-            count++;
-            PeakFragments = Mathf.Max(PeakFragments, count);
-            return true;
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Reset()
-        {
-            frame = -1;
-            count = PeakFragments = 0;
-        }
+        public bool TryReserve() => budget.TryReserve();
     }
 }

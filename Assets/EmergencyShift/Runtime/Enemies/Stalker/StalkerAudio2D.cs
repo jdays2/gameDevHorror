@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
+using Zenject;
 using Cue = EmergencyShift.StalkerAudioSet.Cue;
 
 namespace EmergencyShift
@@ -58,8 +60,8 @@ namespace EmergencyShift
         private float blockedCutoff = 1300;
         [SerializeField, Min(.05f)]
         private float obstructionInterval = .15f;
-        // Small registry for local voice budgets; no persistent manager or scene object.
-        private static readonly List<StalkerAudio2D> active = new List<StalkerAudio2D>();
+        private SceneRegistry<StalkerAudio2D> registry;
+        private EnemyDeathAudioVariants deathVariants;
         private readonly int[] lastVariant = new int[System.Enum.GetValues(typeof(Cue)).Length];
         private readonly int[] playCounts = new int[System.Enum.GetValues(typeof(Cue)).Length];
         private readonly List<GibMotion2D> fallingParts = new List<GibMotion2D>(8);
@@ -96,10 +98,16 @@ namespace EmergencyShift
         private float minimumHitCueInterval = .05f;
         private float nextHitCue;
         public int PlaybackCount(Cue cue) => playCounts[(int)cue];
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetRegistry()
+        [Inject]
+        private void Construct(EnemyDeathAudioVariants variants, SceneRegistry<StalkerAudio2D> sceneRegistry)
         {
-            active.Clear();
+            deathVariants = variants;
+            registry?.Remove(this);
+            registry = sceneRegistry;
+            if (isActiveAndEnabled)
+            {
+                registry.Register(this);
+            }
         }
 
         private void Awake()
@@ -134,10 +142,7 @@ namespace EmergencyShift
 
         private void OnEnable()
         {
-            if (!active.Contains(this))
-            {
-                active.Add(this);
-            }
+            registry?.Register(this);
 
             previousPosition = body.position;
             movementPosition = body.position;
@@ -158,7 +163,7 @@ namespace EmergencyShift
 
         private void OnDisable()
         {
-            active.Remove(this);
+            registry?.Remove(this);
             if (stalker != null)
             {
                 stalker.StateChanged -= OnState;
@@ -367,7 +372,7 @@ namespace EmergencyShift
         {
             if (cue == Cue.Death && sounds != null && sounds.DeathSounds != null)
             {
-                return EnemyDeathAudioVariants.Choose(sounds.DeathSounds);
+                return deathVariants.Choose(sounds.DeathSounds);
             }
 
             var clips = sounds != null ? sounds.Clips(cue) : null;
@@ -447,11 +452,12 @@ namespace EmergencyShift
                 return false;
             }
 
-            int nearer = 0, self = active.IndexOf(this);
+            int nearer = 0;
+            int self = registry.IndexOf(this);
             float distance = DistanceSquared;
-            for (int i = 0; i < active.Count; i++)
+            for (int i = 0; i < registry.Members.Count; i++)
             {
-                var other = active[i];
+                StalkerAudio2D other = registry.Members[i];
                 bool closer = other.DistanceSquared < distance - .0001f || Mathf.Abs(other.DistanceSquared - distance) <= .0001f && i < self;
                 if (other != this && other.stalker != null && other.stalker.State != ShadowStalker2D.BehaviourState.Dead && other.stalker.MovementSpeed > .05f && closer)
                 {
@@ -470,7 +476,7 @@ namespace EmergencyShift
             }
 
             int playing = 0;
-            foreach (var other in active)
+            foreach (StalkerAudio2D other in registry.Members)
             {
                 if (other != this && other.voiceSource != null && other.voiceSource.isPlaying && (other.voiceCue == Cue.Idle || other.voiceCue == Cue.Cower))
                 {
@@ -491,7 +497,7 @@ namespace EmergencyShift
             int count = 0;
             StalkerAudio2D furthest = null;
             float distance = DistanceSquared;
-            foreach (var other in active)
+            foreach (StalkerAudio2D other in registry.Members)
             {
                 if (other == this || other.voiceSource == null || !other.voiceSource.isPlaying || other.voiceCue != Cue.Death)
                 {

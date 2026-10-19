@@ -149,7 +149,7 @@ namespace EmergencyShift
                 yield break;
             }
 
-            if (!Check(Door2D.Active.Count == 0, "Old door registry cleared on unload"))
+            if (!Check(FindObjectsByType<Door2D>().Length == 0, "Old doors removed on scene unload"))
             {
                 yield break;
             }
