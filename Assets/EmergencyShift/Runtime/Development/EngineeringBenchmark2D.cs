@@ -100,7 +100,7 @@ namespace EmergencyShift
             for (int i = 0; i < report.actors; i++)
             {
                 Vector2 position = new Vector2(93 + (i % 4) * .8f, 97 + (i / 4) * 1.05f);
-                var actor = Instantiate(template.gameObject, position, Quaternion.identity).GetComponent<ShadowStalker2D>();
+                var actor = FindAnyObjectByType<LevelContext2D>().CreateInstance(template.gameObject, position, Quaternion.identity).GetComponent<ShadowStalker2D>();
                 actor.gameObject.SetActive(true);
                 actor.AttacksEnabled = false;
                 actor.ApplyBulletHit(1, position, Vector2.right);

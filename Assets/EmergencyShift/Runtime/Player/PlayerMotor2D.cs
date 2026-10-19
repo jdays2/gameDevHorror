@@ -1,5 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using EmergencyShift.Features.PlayerInput.Logic;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -11,25 +12,31 @@ namespace EmergencyShift
         private float moveSpeed = 3.5f;
         private Rigidbody2D body;
         private Vector2 movement;
+        private IPlayerInput input;
+        private GameplayInputBlock inputBlock;
+
+        [Inject]
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
+        {
+            input = playerInput;
+            inputBlock = block;
+        }
         private void Awake() => body = GetComponent<Rigidbody2D>();
         private void Update()
         {
-            var keyboard = Keyboard.current;
-            if (keyboard == null || GameplayInputBlock.IsBlocked)
+            if (inputBlock.IsBlocked)
             {
                 movement = Vector2.zero;
                 return;
             }
 
-            float x = (keyboard.dKey.isPressed ? 1f : 0f) - (keyboard.aKey.isPressed ? 1f : 0f);
-            float y = (keyboard.wKey.isPressed ? 1f : 0f) - (keyboard.sKey.isPressed ? 1f : 0f);
             // Нормализация не даёт двигаться быстрее по диагонали.
-            movement = new Vector2(x, y).normalized;
+            movement = input.Movement.normalized;
         }
 
         private void FixedUpdate()
         {
-            body.linearVelocity = GameplayInputBlock.IsBlocked ? Vector2.zero : movement * moveSpeed;
+            body.linearVelocity = inputBlock.IsBlocked ? Vector2.zero : movement * moveSpeed;
         }
         private void OnDisable()
         {

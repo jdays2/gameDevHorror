@@ -14,3 +14,6 @@
 | [Lighting](Lighting.md) | Контуры/URP-тени и Editor-границы | [Форма теней](../Environment/FURNITURE_SHADOW_SHAPES.md) |
 
 Новая фича — по [_template](_template.md), принятый стандарт — [ADR-001](../Decisions/001-sod-architecture.md). Наличие документа не означает полного покрытия системы тестами.
+
+- [Здоровье](Health.md): чистая модель, команды, защита и адаптеры.
+- [Ввод и composition scopes](PlayerInput.md): Input Actions, игрок/уровень/мир и сроки жизни.

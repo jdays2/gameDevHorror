@@ -1,5 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using EmergencyShift.Features.PlayerInput.Logic;
+using Zenject;
 using UnityEngine.SceneManagement;
 
 namespace EmergencyShift
@@ -9,6 +10,15 @@ namespace EmergencyShift
     {
         [SerializeField]
         private PlayerLife2D player;
+        private IPlayerInput input;
+        private GameplayInputBlock inputBlock;
+
+        [Inject]
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
+        {
+            input = playerInput;
+            inputBlock = block;
+        }
 
         public void Configure(PlayerLife2D life)
         {
@@ -17,20 +27,19 @@ namespace EmergencyShift
 
         private void Update()
         {
-            var keyboard = Keyboard.current;
-            if (GameplayInputBlock.IsBlocked || keyboard == null || player == null || player.IsDead)
+            if (inputBlock.IsBlocked || player == null || player.IsDead)
             {
                 return;
             }
 
             // PlayerLife2D already handles R after death.
-            if (keyboard.rKey.wasPressedThisFrame)
+            if (input.RestartPressed)
             {
                 SceneManager.LoadScene(gameObject.scene.buildIndex);
                 return;
             }
 
-            if (keyboard.tKey.wasPressedThisFrame)
+            if (input.RefillAmmoPressed)
             {
                 var weapon = player.GetComponent<PlayerWeapon2D>();
                 if (weapon != null && weapon.HasWeapon)

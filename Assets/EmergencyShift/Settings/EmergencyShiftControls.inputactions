@@ -1,0 +1,350 @@
+{
+  "name": "EmergencyShiftControls",
+  "maps": [
+    {
+      "name": "Gameplay",
+      "id": "e262e93a-2c7d-5f33-b3c5-847f1aba990c",
+      "actions": [
+        {
+          "name": "Move",
+          "type": "Value",
+          "id": "85f3867f-d0e3-51be-8bf1-73c9bebca73a",
+          "expectedControlType": "Vector2",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": true
+        },
+        {
+          "name": "Pointer",
+          "type": "Value",
+          "id": "7828c029-c0b2-596f-af9c-47363fa71941",
+          "expectedControlType": "Vector2",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": true
+        },
+        {
+          "name": "Fire",
+          "type": "Button",
+          "id": "91ed22b4-009e-5e71-b6ab-419bda9c23a6",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Interact",
+          "type": "Button",
+          "id": "324dd60e-9477-5859-8e19-6c2eb2ab9f6f",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Reload",
+          "type": "Button",
+          "id": "eff08a4e-5799-53f1-922b-dc5b23d51c6a",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "SelectPistol",
+          "type": "Button",
+          "id": "49c0a616-a1d9-5f96-968d-4b92efdd8fe6",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "SelectShotgun",
+          "type": "Button",
+          "id": "681c2fe5-4bd4-5770-92f6-ae0eeebdc9db",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "ToggleLight",
+          "type": "Button",
+          "id": "0b5bd4c0-9877-5159-a032-5ca4222f64a4",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "Restart",
+          "type": "Button",
+          "id": "bb67cea8-8183-5bfe-83a7-51b8718914dd",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "RefillAmmo",
+          "type": "Button",
+          "id": "62ab5f86-5c1d-568c-9ff0-37f6b5d9e3d7",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        }
+      ],
+      "bindings": [
+        {
+          "name": "WASD",
+          "id": "06b350cb-8ff0-5269-84e5-134af94da92f",
+          "path": "2DVector",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Move",
+          "isComposite": true,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "up",
+          "id": "317f969c-3a4e-510a-b50c-c067c83d6a86",
+          "path": "<Keyboard>/w",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Move",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "down",
+          "id": "45b17cbe-1cc4-5358-b063-b082d0024e5d",
+          "path": "<Keyboard>/s",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Move",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "left",
+          "id": "f6e00b6e-8989-59fd-8bab-81562c6f8076",
+          "path": "<Keyboard>/a",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Move",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "right",
+          "id": "e853bc3b-b601-5fb0-a8f7-f5cfd9bfbea8",
+          "path": "<Keyboard>/d",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Move",
+          "isComposite": false,
+          "isPartOfComposite": true
+        },
+        {
+          "name": "",
+          "id": "03573fe3-b39e-59f9-a326-bdec64f5176b",
+          "path": "<Mouse>/position",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Pointer",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "aa47a56b-0ff1-532a-b063-8395f474e2f0",
+          "path": "<Mouse>/leftButton",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Fire",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "063b7692-712f-54ae-be26-2ef12c14c0cd",
+          "path": "<Keyboard>/e",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Interact",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "2ac66baf-df8c-52e0-956c-96fb3e708e31",
+          "path": "<Keyboard>/x",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Reload",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "70d79d76-b343-55db-b333-cfc44ed65829",
+          "path": "<Keyboard>/1",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "SelectPistol",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "64d2cd05-dbb9-5110-b6e9-b6473ca6db62",
+          "path": "<Keyboard>/2",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "SelectShotgun",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "8071ea64-b338-5750-91a7-1a7986747a3e",
+          "path": "<Keyboard>/f",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "ToggleLight",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "5fc5d9ac-027f-51e6-8583-f72df789bcee",
+          "path": "<Keyboard>/r",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Restart",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "79557840-2c53-5cbc-9d2c-99bfbff89fb7",
+          "path": "<Keyboard>/t",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "RefillAmmo",
+          "isComposite": false,
+          "isPartOfComposite": false
+        }
+      ]
+    },
+    {
+      "name": "Dialogue",
+      "id": "f66d8bf5-843f-52ad-ae51-8c04b588ffd0",
+      "actions": [
+        {
+          "name": "Advance",
+          "type": "Button",
+          "id": "8d71a7af-a1fc-5e41-a7ca-6d5403068836",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        },
+        {
+          "name": "ConfirmationHeld",
+          "type": "Button",
+          "id": "45468b29-ed74-5d68-9512-5d689223c3ad",
+          "expectedControlType": "Button",
+          "processors": "",
+          "interactions": "",
+          "initialStateCheck": false
+        }
+      ],
+      "bindings": [
+        {
+          "name": "",
+          "id": "5fee9e5e-db88-584d-b263-f0f94ff4b317",
+          "path": "<Keyboard>/space",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Advance",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "c568a5e0-8604-5b73-a0db-99cd20c1be4c",
+          "path": "<Keyboard>/enter",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "Advance",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "268f3b61-19af-57e0-8652-5b43ce8cdce5",
+          "path": "<Keyboard>/space",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "ConfirmationHeld",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "b9318603-85fa-5230-bda4-2a84c2224dee",
+          "path": "<Keyboard>/enter",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "ConfirmationHeld",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "cc5b2098-29fc-53a7-9498-580b6e6f42b5",
+          "path": "<Keyboard>/e",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "ConfirmationHeld",
+          "isComposite": false,
+          "isPartOfComposite": false
+        },
+        {
+          "name": "",
+          "id": "811087b7-e548-5ca9-95cb-d362421a9754",
+          "path": "<Mouse>/leftButton",
+          "interactions": "",
+          "processors": "",
+          "groups": "",
+          "action": "ConfirmationHeld",
+          "isComposite": false,
+          "isPartOfComposite": false
+        }
+      ]
+    }
+  ],
+  "controlSchemes": []
+}

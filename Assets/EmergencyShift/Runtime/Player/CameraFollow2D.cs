@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -29,20 +30,18 @@ namespace EmergencyShift
             framingProfile = profile;
         }
 
+        [Inject]
+        private void Construct(PlayerLife2D scenePlayer)
+        {
+            if (target == null && scenePlayer != null)
+            {
+                Configure(scenePlayer.transform);
+            }
+        }
+
         private void Start()
         {
-            if (target == null)
-            {
-                var context = LevelContext2D.For(this);
-                if (context != null && context.Player != null)
-                {
-                    Configure(context.Player.transform);
-                }
-            }
-            else
-            {
-                Configure(target);
-            }
+            Configure(target);
 
             SnapToTarget();
         }

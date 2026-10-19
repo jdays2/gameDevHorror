@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -123,7 +124,13 @@ namespace EmergencyShift.Editor
                 hud.ConfigureWeapon(weapon, (Text)data.FindProperty("ammoStatus").objectReferenceValue);
                 hud.GetComponentInChildren<AimReticle2D>(true).Configure(player.GetComponent<PlayerAim2D>(), weapon);
                 var context = rig.AddComponent<LevelContext2D>();
-                context.Configure(life, light);
+                var controls = AssetDatabase.LoadAssetAtPath<InputActionAsset>(Root + "/Settings/EmergencyShiftControls.inputactions");
+                if (controls == null)
+                {
+                    throw new InvalidOperationException("Level authoring requires the shared Input Actions asset.");
+                }
+
+                context.Configure(life, light, controls);
                 foreach (var l in UnityEngine.Object.FindObjectsByType<Light2D>())
                 {
                     if (l.lightType == Light2D.LightType.Global)

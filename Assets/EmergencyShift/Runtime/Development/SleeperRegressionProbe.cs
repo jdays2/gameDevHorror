@@ -92,8 +92,8 @@ namespace EmergencyShift
             lamp.AimAt(origin);
             lamp.SetPower(false);
 
-            var first = Instantiate(prefab, origin, Quaternion.identity, fixture.transform).GetComponent<Sleeper2D>();
-            var second = Instantiate(prefab, origin + Vector2.right * 8, Quaternion.identity, fixture.transform).GetComponent<Sleeper2D>();
+            var first = FindAnyObjectByType<LevelContext2D>().CreateInstance(prefab, origin, Quaternion.identity, fixture.transform).GetComponent<Sleeper2D>();
+            var second = FindAnyObjectByType<LevelContext2D>().CreateInstance(prefab, origin + Vector2.right * 8, Quaternion.identity, fixture.transform).GetComponent<Sleeper2D>();
             first.Configure(target.transform, lamp, 1 << 8);
             second.Configure(target.transform, lamp, 1 << 8);
             var firstAudio = first.GetComponent<SleeperAudio2D>();

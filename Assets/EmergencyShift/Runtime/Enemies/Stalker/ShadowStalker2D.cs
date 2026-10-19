@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -141,23 +142,25 @@ namespace EmergencyShift
             }
         }
 
+        [Inject]
+        private void Construct(PlayerLife2D scenePlayer, Flashlight2D sceneLight)
+        {
+            if (player == null && scenePlayer != null)
+            {
+                player = scenePlayer.transform;
+            }
+
+            if (flashlight == null)
+            {
+                flashlight = sceneLight;
+            }
+        }
+
         private void Awake()
         {
             body = GetComponent<Rigidbody2D>();
             bodyCollider = GetComponent<CircleCollider2D>();
-            var context = LevelContext2D.For(this);
-            if (context != null)
-            {
-                if (player == null && context.Player != null)
-                {
-                    player = context.Player.transform;
-                }
 
-                if (flashlight == null)
-                {
-                    flashlight = context.Flashlight;
-                }
-            }
 
             crowd = GetComponent<CrowdAgent2D>();
             audioFeedback = GetComponent<StalkerAudio2D>();

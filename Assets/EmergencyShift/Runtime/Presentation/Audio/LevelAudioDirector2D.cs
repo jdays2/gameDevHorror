@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -22,6 +23,22 @@ namespace EmergencyShift
         [SerializeField, Range(0, 1)]
         private float volume = 1;
         private PlayerWeapon2D weapon;
+        private WorldMotionPause motionPause;
+
+        [Inject]
+        private void Construct(WorldMotionPause pause, PlayerLife2D scenePlayer, Flashlight2D sceneLight)
+        {
+            motionPause = pause;
+            if (player == null)
+            {
+                player = scenePlayer;
+            }
+
+            if (flashlight == null)
+            {
+                flashlight = sceneLight;
+            }
+        }
         private float nextObservation;
         private float lastThreat = float.NegativeInfinity;
         private float lastCombat = float.NegativeInfinity;
@@ -75,17 +92,6 @@ namespace EmergencyShift
                 return;
             }
 
-            var context = LevelContext2D.For(this);
-            if (player == null && context != null)
-            {
-                player = context.Player;
-            }
-
-            if (flashlight == null && context != null)
-            {
-                flashlight = context.Flashlight;
-            }
-
             if (player != null)
             {
                 weapon = player.GetComponent<PlayerWeapon2D>();
@@ -132,7 +138,7 @@ namespace EmergencyShift
                 return;
             }
 
-            bool wantPause = AudioListener.pause || (Time.timeScale <= 0 && !WorldMotionPause.PreservesAudioPlayback);
+            bool wantPause = AudioListener.pause || (Time.timeScale <= 0 && !motionPause.PreservesAudioPlayback);
             if (wantPause)
             {
                 if (!paused && started)

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using EmergencyShift.Features.PlayerInput.Logic;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -20,6 +21,17 @@ namespace EmergencyShift
         private bool previousCursor;
         private bool waitingForRelease;
         private int changedFrame;
+        private IPlayerInput input;
+        private GameplayInputBlock inputBlock;
+        private WorldMotionPause motionPause;
+
+        [Inject]
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block, WorldMotionPause pause)
+        {
+            input = playerInput;
+            inputBlock = block;
+            motionPause = pause;
+        }
         public bool IsOpen => run != null && !run.IsComplete;
         public int LineIndex => run == null ? -1 : run.LineIndex;
         public string LineId => IsOpen ? run.Current.id : null;
@@ -47,7 +59,7 @@ namespace EmergencyShift
 
         public bool TryBegin(DialogueSequence content)
         {
-            if (content == null || view == null || gameplayHud == null || inputLease != null || GameplayInputBlock.IsBlocked)
+            if (content == null || view == null || gameplayHud == null || inputLease != null || inputBlock.IsBlocked)
             {
                 return false;
             }
@@ -61,10 +73,10 @@ namespace EmergencyShift
             }
 
             previousCursor = Cursor.visible;
-            inputLease = GameplayInputBlock.Acquire();
+            inputLease = inputBlock.Acquire();
             gameplayHud.enabled = false;
             Cursor.visible = true;
-            motionLease = WorldMotionPause.Acquire();
+            motionLease = motionPause.Acquire();
             sequence = content;
             run = nextRun;
             changedFrame = Time.frameCount;
@@ -90,8 +102,7 @@ namespace EmergencyShift
                 return;
             }
 
-            var keyboard = Keyboard.current;
-            if (keyboard != null && (keyboard.spaceKey.wasPressedThisFrame || keyboard.enterKey.wasPressedThisFrame))
+            if (input.DialogueAdvancePressed)
             {
                 Advance();
             }
@@ -184,11 +195,6 @@ namespace EmergencyShift
             sequence = null;
         }
 
-        private static bool ConfirmationHeld()
-        {
-            var keyboard = Keyboard.current;
-            bool keyHeld = keyboard != null && (keyboard.spaceKey.isPressed || keyboard.enterKey.isPressed || keyboard.eKey.isPressed);
-            return keyHeld || (Mouse.current != null && Mouse.current.leftButton.isPressed);
-        }
+        private bool ConfirmationHeld() => input.ConfirmationHeld;
     }
 }

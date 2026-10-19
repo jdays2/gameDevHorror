@@ -1,5 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using EmergencyShift.Features.PlayerInput.Logic;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -13,6 +14,15 @@ namespace EmergencyShift
         private Vector2 scriptedPoint;
         private bool pointerValid;
         private bool scripted;
+        private IPlayerInput input;
+        private GameplayInputBlock inputBlock;
+
+        [Inject]
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
+        {
+            input = playerInput;
+            inputBlock = block;
+        }
         public bool HasTarget => isActiveAndEnabled && (scripted || (pointerValid && worldCamera != null));
         public bool UsesScriptedTarget => scripted;
         public Vector2 ScreenPosition => scripted && worldCamera != null ? (Vector2)worldCamera.WorldToScreenPoint(scriptedPoint) : pointer;
@@ -52,18 +62,18 @@ namespace EmergencyShift
 
         private void Update()
         {
-            if (GameplayInputBlock.IsBlocked)
+            if (inputBlock.IsBlocked)
             {
                 return;
             }
 
-            pointerValid = !scripted && Application.isFocused && Mouse.current != null && worldCamera != null;
+            pointerValid = !scripted && input.HasPointer && worldCamera != null;
             if (!pointerValid)
             {
                 return;
             }
 
-            pointer = Mouse.current.position.ReadValue();
+            pointer = input.PointerPosition;
             pointerValid = worldCamera.pixelRect.Contains(pointer);
         }
 

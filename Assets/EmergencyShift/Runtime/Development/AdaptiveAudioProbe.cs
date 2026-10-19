@@ -109,7 +109,7 @@ namespace EmergencyShift
         private ShadowStalker2D Spawn(Vector2 position, bool audible, bool attacks = false)
         {
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab");
-            var obj = Instantiate(prefab, new Vector3(position.x, position.y, 0), Quaternion.identity);
+            var obj = FindAnyObjectByType<LevelContext2D>().CreateInstance(prefab, new Vector3(position.x, position.y, 0), Quaternion.identity);
             var result = obj.GetComponent<ShadowStalker2D>();
             result.Configure(player.transform, flashlight, 1 << 8);
             result.AttacksEnabled = attacks;

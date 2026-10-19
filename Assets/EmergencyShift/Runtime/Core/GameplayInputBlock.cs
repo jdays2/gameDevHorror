@@ -1,29 +1,28 @@
 using System;
-using UnityEngine;
 
 namespace EmergencyShift
 {
     /// <summary>Modal owners hold a lease; releasing one owner cannot unblock another.</summary>
-    public static class GameplayInputBlock
+    public sealed class GameplayInputBlock
     {
-        private static int owners;
-        public static bool IsBlocked => owners > 0;
+        private int owners;
+        public bool IsBlocked => owners > 0;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Reset()
-        {
-            owners = 0;
-        }
-
-        public static IDisposable Acquire()
+        public IDisposable Acquire()
         {
             owners++;
-            return new Lease();
+            return new Lease(this);
         }
 
         private sealed class Lease : IDisposable
         {
             private bool disposed;
+            private readonly GameplayInputBlock owner;
+
+            public Lease(GameplayInputBlock owner)
+            {
+                this.owner = owner;
+            }
 
             public void Dispose()
             {
@@ -33,7 +32,7 @@ namespace EmergencyShift
                 }
 
                 disposed = true;
-                owners = Math.Max(0, owners - 1);
+                owner.owners = Math.Max(0, owner.owners - 1);
             }
         }
     }

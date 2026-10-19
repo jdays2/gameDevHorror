@@ -1,5 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using EmergencyShift.Features.PlayerInput.Logic;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -31,6 +32,15 @@ namespace EmergencyShift
         private PlayerShotShadow2D shotShadow;
         private readonly WeaponInventory inventory = new WeaponInventory();
         private WeaponCycle boundCycle;
+        private IPlayerInput input;
+        private GameplayInputBlock inputBlock;
+
+        [Inject]
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
+        {
+            input = playerInput;
+            inputBlock = block;
+        }
         private Vector3 restingWeaponScale;
         private float nextEmptyTrigger;
         public bool HasWeapon => inventory.ActiveCycle != null;
@@ -163,7 +173,7 @@ namespace EmergencyShift
             Equipped();
         }
 
-        private bool CanUse => !GameplayInputBlock.IsBlocked && isActiveAndEnabled && (life == null || !life.IsDead);
+        private bool CanUse => !inputBlock.IsBlocked && isActiveAndEnabled && (life == null || !life.IsDead);
 
         public bool Acquire(int cartridges, WeaponDefinition selected = null)
         {
@@ -250,40 +260,33 @@ namespace EmergencyShift
 
         private void Update()
         {
-            if (GameplayInputBlock.IsBlocked)
+            if (inputBlock.IsBlocked)
             {
                 return;
             }
 
             inventory.ActiveCycle?.Tick(Time.time);
             ReloadEmptyWeapon();
-            var keyboard = Keyboard.current;
-            if (keyboard != null)
+            if (input.SelectPistolPressed)
             {
-                if (keyboard.digit1Key.wasPressedThisFrame)
-                {
-                    TryEquip(0);
-                }
+                TryEquip(0);
+            }
 
-                if (keyboard.digit2Key.wasPressedThisFrame)
-                {
-                    TryEquip(1);
-                }
+            if (input.SelectShotgunPressed)
+            {
+                TryEquip(1);
+            }
 
-                if (keyboard.xKey.wasPressedThisFrame)
-                {
-                    TryReload();
-                }
+            if (input.ReloadPressed)
+            {
+                TryReload();
             }
 
             UpdatePose();
-            if (Mouse.current != null)
+            bool fire = Definition != null && Definition.automatic ? input.FireHeld : input.FirePressed;
+            if (fire)
             {
-                bool fire = Definition != null && Definition.automatic ? Mouse.current.leftButton.isPressed : Mouse.current.leftButton.wasPressedThisFrame;
-                if (fire)
-                {
-                    TryFire();
-                }
+                TryFire();
             }
         }
 

@@ -1,38 +1,78 @@
 using System;
-using UnityEngine;
+using EmergencyShift.Core.Time;
 
 namespace EmergencyShift
 {
     /// <summary>Scoped scaled-world freeze. Ambient playback is independent from motion.</summary>
-    public static class WorldMotionPause
+    public sealed class WorldMotionPause : IDisposable
     {
-        private static int owners;
-        private static float previousScale;
-        public static bool IsActive => owners > 0;
-        public static bool PreservesAudioPlayback => IsActive && previousScale > 0;
+        private readonly IWorldTimeScale timeScale;
+        private int owners;
+        private float previousScale;
+        private bool disposed;
+        public bool IsActive => owners > 0;
+        public bool PreservesAudioPlayback => IsActive && previousScale > 0;
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void Reset()
+        public WorldMotionPause(IWorldTimeScale timeScale)
         {
-            owners = 0;
-            previousScale = 1;
+            this.timeScale = timeScale ?? throw new ArgumentNullException(nameof(timeScale));
         }
 
-        public static IDisposable Acquire()
+        public IDisposable Acquire()
         {
+            if (disposed)
+            {
+                throw new ObjectDisposedException(nameof(WorldMotionPause));
+            }
+
             if (owners == 0)
             {
-                previousScale = Time.timeScale;
+                previousScale = timeScale.Scale;
             }
 
             owners++;
-            Time.timeScale = 0;
-            return new Lease();
+            timeScale.Scale = 0;
+            return new Lease(this);
+        }
+
+        public void Dispose()
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            disposed = true;
+            if (owners > 0)
+            {
+                owners = 0;
+                timeScale.Scale = previousScale;
+            }
+        }
+
+        private void Release()
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            owners--;
+            if (owners == 0)
+            {
+                timeScale.Scale = previousScale;
+            }
         }
 
         private sealed class Lease : IDisposable
         {
             private bool disposed;
+            private readonly WorldMotionPause owner;
+
+            public Lease(WorldMotionPause owner)
+            {
+                this.owner = owner;
+            }
 
             public void Dispose()
             {
@@ -42,11 +82,7 @@ namespace EmergencyShift
                 }
 
                 disposed = true;
-                owners--;
-                if (owners == 0)
-                {
-                    Time.timeScale = previousScale;
-                }
+                owner.Release();
             }
         }
     }

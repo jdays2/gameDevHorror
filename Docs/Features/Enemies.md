@@ -8,7 +8,7 @@
 
 | Ответственность | Владелец |
 |---|---|
-| Текущее HP и однократная смерть | EnemyHealth2D |
+| Текущее HP и однократная смерть | [HealthModel/команды](Health.md), EnemyHealth2D — адаптер |
 | Видимость, радиус, воздействие света | EnemyPerception2D, контракт IThreatLight2D |
 | Управление телом, обход, путь | EnemyMotor2D + EnemyChasePath2D |
 | Соседи и бюджет поиска | CrowdAgent2D + NavigationWorkBudget2D |

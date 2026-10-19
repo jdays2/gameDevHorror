@@ -91,7 +91,7 @@ namespace EmergencyShift
             }
 
             player = FindAnyObjectByType<PlayerLife2D>();
-            typeof(PlayerLife2D).GetField("<Health>k__BackingField", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(player, 1000);
+            player.SetHealthCapacity(1000, 1000);
             player.GetComponent<PlayerMotor2D>().enabled = false;
             player.GetComponent<PlayerInteraction>().enabled = false;
             player.GetComponent<Rigidbody2D>().simulated = false;
@@ -121,7 +121,7 @@ namespace EmergencyShift
             for (int i = 0; i < count; i++)
             {
                 var position = new Vector2(93 + (i % 4) * .8f, 97 + (i / 4) * 1.05f);
-                var actor = Instantiate(prefab, position, Quaternion.identity).GetComponent<ShadowStalker2D>();
+                var actor = FindAnyObjectByType<LevelContext2D>().CreateInstance(prefab, position, Quaternion.identity).GetComponent<ShadowStalker2D>();
                 actor.AttacksEnabled = false;
                 actor.ApplyBulletHit(1, position, Vector2.right);
                 actors.Add(actor);

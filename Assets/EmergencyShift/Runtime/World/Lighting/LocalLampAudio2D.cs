@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 using UnityEngine.Rendering.Universal;
 
 namespace EmergencyShift
@@ -50,13 +51,18 @@ namespace EmergencyShift
             listener = target;
         }
 
+        [Inject]
+        private void Construct(PlayerLife2D scenePlayer)
+        {
+            if (listener == null && scenePlayer != null)
+            {
+                listener = scenePlayer.transform;
+            }
+        }
+
         private void Awake()
         {
-            var context = LevelContext2D.For(this);
-            if (listener == null && context != null && context.Player != null)
-            {
-                listener = context.Player.transform;
-            }
+
 
             if (sounds == null || sourceLight == null || humSource == null || contactSource == null ||
                 humSource == contactSource || listener == null)

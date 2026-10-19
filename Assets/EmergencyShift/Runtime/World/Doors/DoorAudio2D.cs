@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -46,20 +47,20 @@ namespace EmergencyShift
             listener = target;
         }
 
+        [Inject]
+        private void Construct(PlayerLife2D scenePlayer)
+        {
+            if (listener == null && scenePlayer != null)
+            {
+                listener = scenePlayer.transform;
+            }
+        }
+
         private void Awake()
         {
             door = GetComponent<Door2D>();
             random = new System.Random(System.Guid.NewGuid().GetHashCode());
-            var context = LevelContext2D.For(this);
-            if (listener == null && context != null && context.Player != null)
-            {
-                listener = context.Player.transform;
-            }
 
-            if (listener == null && Camera.main != null)
-            {
-                listener = Camera.main.transform;
-            }
         }
 
         private void OnEnable()

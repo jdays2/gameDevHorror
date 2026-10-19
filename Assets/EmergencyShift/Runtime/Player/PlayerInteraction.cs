@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using EmergencyShift.Features.PlayerInput.Logic;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -25,6 +26,15 @@ namespace EmergencyShift
         private float notificationUntil;
         private string notification;
         private readonly Queue<string> notices = new Queue<string>();
+        private IPlayerInput input;
+        private GameplayInputBlock inputBlock;
+
+        [Inject]
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
+        {
+            input = playerInput;
+            inputBlock = block;
+        }
         public event System.Action<PickupKind> ItemCollected;
         public IInteractable CurrentTarget
         {
@@ -49,7 +59,7 @@ namespace EmergencyShift
 
         private void Update()
         {
-            if (GameplayInputBlock.IsBlocked)
+            if (inputBlock.IsBlocked)
             {
                 return;
             }
@@ -61,7 +71,7 @@ namespace EmergencyShift
 
             CollectNearbyLoot();
             RefreshTarget();
-            if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+            if (input.InteractPressed)
             {
                 TryInteractCurrent();
             }
@@ -77,7 +87,7 @@ namespace EmergencyShift
 
         public void CollectNearbyLoot()
         {
-            if (GameplayInputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
+            if (inputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
             {
                 return;
             }
@@ -95,7 +105,7 @@ namespace EmergencyShift
 
         public bool CanReach(Vector2 point, float targetRange, Collider2D allowedBlocker = null)
         {
-            if (GameplayInputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
+            if (inputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
             {
                 return false;
             }
@@ -118,7 +128,7 @@ namespace EmergencyShift
         public void RefreshTarget()
         {
             CurrentTarget = null;
-            if (GameplayInputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
+            if (inputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
             {
                 return;
             }

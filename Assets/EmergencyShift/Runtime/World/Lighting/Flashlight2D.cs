@@ -1,5 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using EmergencyShift.Features.PlayerInput.Logic;
+using Zenject;
 using UnityEngine.Rendering.Universal;
 
 namespace EmergencyShift
@@ -22,6 +23,15 @@ namespace EmergencyShift
         [SerializeField, Tooltip("Disable in scenes where the player must first find a flashlight.")]
         private bool startsOwned = true;
         private FlashlightOwnership ownership;
+        private IPlayerInput input;
+        private GameplayInputBlock inputBlock;
+
+        [Inject]
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
+        {
+            input = playerInput;
+            inputBlock = block;
+        }
         public bool IsOwned => ownership != null ? ownership.IsOwned : startsOwned;
         public event System.Action OwnershipChanged;
         [Header("Optics — world units and degrees")]
@@ -111,12 +121,12 @@ namespace EmergencyShift
 
         private void Update()
         {
-            if (GameplayInputBlock.IsBlocked)
+            if (inputBlock.IsBlocked)
             {
                 return;
             }
 
-            if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
+            if (input.ToggleLightPressed)
             {
                 Toggle();
             }
@@ -131,12 +141,12 @@ namespace EmergencyShift
                 return;
             }
 
-            if (Mouse.current == null || worldCamera == null || aimPivot == null)
+            if (!input.HasPointer || worldCamera == null || aimPivot == null)
             {
                 return;
             }
 
-            Vector3 world = worldCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            Vector3 world = worldCamera.ScreenToWorldPoint(input.PointerPosition);
             RotateTowards(world, Time.deltaTime);
         }
 

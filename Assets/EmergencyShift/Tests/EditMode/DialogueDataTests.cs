@@ -1,4 +1,5 @@
 using System;
+using EmergencyShift.Core.Time;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -9,15 +10,16 @@ namespace EmergencyShift.Tests
         [Test]
         public void ClosingOneModalCannotReleaseAnotherOwnersInput()
         {
-            using (var first = GameplayInputBlock.Acquire())
-            using (var second = GameplayInputBlock.Acquire())
+            var inputBlock = new GameplayInputBlock();
+            using (var first = inputBlock.Acquire())
+            using (var second = inputBlock.Acquire())
             {
                 first.Dispose();
                 first.Dispose();
-                Assert.That(GameplayInputBlock.IsBlocked, Is.True);
+                Assert.That(inputBlock.IsBlocked, Is.True);
             }
 
-            Assert.That(GameplayInputBlock.IsBlocked, Is.False);
+            Assert.That(inputBlock.IsBlocked, Is.False);
         }
 
         [Test]
@@ -160,33 +162,60 @@ namespace EmergencyShift.Tests
         [Test]
         public void NestedMotionPauseRestoresScaleOnlyAfterLastOwnerAndPreservesExistingPause()
         {
-            float original = Time.timeScale;
-            try
+            var scale = new TestTimeScale { Scale = .35f };
+            using (var pause = new WorldMotionPause(scale))
             {
-                Time.timeScale = .35f;
-                using (var first = WorldMotionPause.Acquire())
-                using (var second = WorldMotionPause.Acquire())
+                using (var first = pause.Acquire())
+                using (var second = pause.Acquire())
                 {
                     first.Dispose();
                     first.Dispose();
-                    Assert.That(Time.timeScale, Is.Zero);
-                    Assert.That(WorldMotionPause.PreservesAudioPlayback, Is.True);
+                    Assert.That(scale.Scale, Is.Zero);
+                    Assert.That(pause.PreservesAudioPlayback, Is.True);
                 }
 
-                Assert.That(Time.timeScale, Is.EqualTo(.35f));
-                Time.timeScale = 0;
-                using (WorldMotionPause.Acquire())
+                Assert.That(scale.Scale, Is.EqualTo(.35f));
+                scale.Scale = 0;
+                using (pause.Acquire())
                 {
-                    Assert.That(WorldMotionPause.PreservesAudioPlayback, Is.False);
+                    Assert.That(pause.PreservesAudioPlayback, Is.False);
                 }
 
-                Assert.That(Time.timeScale, Is.Zero);
-                Assert.That(WorldMotionPause.IsActive, Is.False);
+                Assert.That(scale.Scale, Is.Zero);
+                Assert.That(pause.IsActive, Is.False);
             }
-            finally
+        }
+
+        [Test]
+        public void InputBlocksBelongToTheirPlayer()
+        {
+            var firstPlayer = new GameplayInputBlock();
+            var secondPlayer = new GameplayInputBlock();
+            using (firstPlayer.Acquire())
             {
-                Time.timeScale = original;
+                Assert.That(firstPlayer.IsBlocked, Is.True);
+                Assert.That(secondPlayer.IsBlocked, Is.False);
             }
+        }
+
+        [Test]
+        public void DisposingWorldRestoresScaleAndLateLeasesCannotChangeItAgain()
+        {
+            var scale = new TestTimeScale { Scale = .5f };
+            var pause = new WorldMotionPause(scale);
+            IDisposable lease = pause.Acquire();
+            pause.Dispose();
+            Assert.That(scale.Scale, Is.EqualTo(.5f));
+            scale.Scale = .8f;
+            lease.Dispose();
+            pause.Dispose();
+            Assert.That(scale.Scale, Is.EqualTo(.8f));
+            Assert.Throws<ObjectDisposedException>(() => pause.Acquire());
+        }
+
+        private sealed class TestTimeScale : IWorldTimeScale
+        {
+            public float Scale { get; set; }
         }
 
         private static DialogueSequence BranchingSequence()

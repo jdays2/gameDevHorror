@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using EmergencyShift.Core.Time;
+using EmergencyShift.Features.Health.Logic;
 using UnityEngine;
 using UnityEditor;
 
@@ -13,6 +15,7 @@ namespace EmergencyShift.Tests
             try
             {
                 var health = obj.AddComponent<EnemyHealth2D>();
+                health.Construct(new HealthModelFactory(new UnityGameClock()));
                 health.Initialize(2);
                 int deaths = 0;
                 health.Died += () => deaths++;
@@ -39,6 +42,9 @@ namespace EmergencyShift.Tests
                 config.maximumHealth = 3;
                 var a = first.AddComponent<EnemyHealth2D>();
                 var b = second.AddComponent<EnemyHealth2D>();
+                var models = new HealthModelFactory(new UnityGameClock());
+                a.Construct(models);
+                b.Construct(models);
                 a.Initialize(config.maximumHealth);
                 b.Initialize(config.maximumHealth);
                 a.TakeDamage(1);

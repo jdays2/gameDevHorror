@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using EmergencyShift.Core.Time;
+using EmergencyShift.Features.Health.Logic;
 using UnityEngine;
 
 namespace EmergencyShift.Tests
@@ -128,6 +130,7 @@ namespace EmergencyShift.Tests
             try
             {
                 var health = obj.AddComponent<EnemyHealth2D>();
+                health.Construct(new HealthModelFactory(new UnityGameClock()));
                 health.Initialize(3);
                 int deaths = 0;
                 health.Died += () => deaths++;

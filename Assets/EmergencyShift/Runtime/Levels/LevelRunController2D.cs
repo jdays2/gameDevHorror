@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using EmergencyShift.Features.PlayerInput.Logic;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -19,6 +20,10 @@ namespace EmergencyShift
         public event Action Finished;
         private float startedAt;
         private float restoredElapsed;
+        private IPlayerInput input;
+
+        [Inject]
+        private void Construct(IPlayerInput playerInput) => input = playerInput;
         public bool Completed
         {
             get; private set;
@@ -47,7 +52,7 @@ namespace EmergencyShift
 
         private void Update()
         {
-            if (Completed && Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
+            if (Completed && input.RestartPressed)
             {
                 Restart();
             }

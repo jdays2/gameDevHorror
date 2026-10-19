@@ -63,12 +63,31 @@ namespace EmergencyShift
             return value;
         }
 
+        private static LevelContext2D FindLevelContext(Component owner)
+        {
+            if (owner == null)
+            {
+                return null;
+            }
+
+            foreach (GameObject root in owner.gameObject.scene.GetRootGameObjects())
+            {
+                LevelContext2D context = root.GetComponentInChildren<LevelContext2D>(true);
+                if (context != null)
+                {
+                    return context;
+                }
+            }
+
+            return null;
+        }
+
         private IEnumerator Run()
         {
             Application.logMessageReceived += OnLog;
             yield return null;
             var original = FindAnyObjectByType<PlayerLife2D>();
-            if (!Check(original != null && LevelContext2D.For(original) != null, "Initial level context"))
+            if (!Check(original != null && FindLevelContext(original) != null, "Initial level context"))
             {
                 yield break;
             }
@@ -119,7 +138,7 @@ namespace EmergencyShift
             yield return null;
             yield return null;
             var player = FindAnyObjectByType<PlayerLife2D>();
-            var context = LevelContext2D.For(player);
+            var context = FindLevelContext(player);
             if (!Check(context != null && context.Player == player, "New level context"))
             {
                 yield break;
