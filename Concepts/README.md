@@ -23,6 +23,7 @@
 
 ### Environment
 
+- [Износ полов остальных комнат · 03](Used/Environment/RoomFloorWear03/README.md)
 - [Разметка карточных дверей B · общий префаб с износом](Used/Environment/CardAccessZone01/README.md)
 
 - [Коридорный винил · швы, колёса и ремонт 02](Used/Environment/CorridorFloorWear02/README.md)
