@@ -16,6 +16,7 @@
 | Фотографии полов и окружения морга, коридоров и лабораторий | [Визуальные референсы](Environment/VISUAL_REFERENCES.md) |
 | Где код, кто владеет данными | [Архитектура](ARCHITECTURE.md), [карта файлов](FILE_MAP.md) |
 | Сравнение обычного света, тёмного верха и направленной кромки на трёх предметах | [Проба освещения мебели](Environment/FURNITURE_LIGHT_STUDY.md) |
+| Пустая сцена для собственной расстановки мебели и проверки теней | [LightingPlayground](Guides/LIGHTING_PLAYGROUND.md) |
 | Читаемость, будущие границы и изученные skills | [Инженерное ревью](ENGINEERING_REVIEW.md) |
 | Редактирование сцены/конфигов | [Авторинг](Guides/LEVEL_AUTHORING.md) |
 | Библиотека окружения и отдельные тестовые комнаты | [Окружение](Guides/ENVIRONMENT_LIBRARY.md), [новые типы](Environment/OBJECT_BACKLOG.md) |
