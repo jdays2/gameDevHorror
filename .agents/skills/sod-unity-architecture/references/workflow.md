@@ -2,7 +2,7 @@
 
 Adapted from SOD `.cursor/rules/workflow.mdc`, `docs-sync.mdc`, `git-commits.mdc`, `unity-cli.mdc` and `assets-animation.mdc` at `1479eec1bf8dc133093be05de164b46a6078e789`.
 
-Read the project's documentation index and current plan, then only task-relevant sections. Preserve manual plan edits and unfinished work. Roadmaps describe direction; unresolved gameplay choices require the owner, while routine technical choices and already authorized work continue. Do not introduce repeated approval for an action the human already requested.
+Read the project's documentation index and current plan, then only task-relevant sections. Emergency Shift keeps active plans/tasks/bugs/changelog in Notion: follow Docs/NOTION_WORKFLOW.md and .agents/notion-project.json before work and when recording results; local SPEC/Features remain the technical contract. Preserve manual plan edits and unfinished work. Roadmaps describe direction; unresolved gameplay choices require the owner, while routine technical choices and already authorized work continue. Do not introduce repeated approval for an action the human already requested.
 
 Capture Git status and inspect the touched diff before changing files. Keep changes reviewable and scoped. Do not modify vendored third-party sources; prefer project variants/adapters. Preserve licenses and Unity meta GUIDs. Do not replace a user-authored scene with a generator.
 

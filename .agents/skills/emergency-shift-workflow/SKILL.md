@@ -5,11 +5,11 @@ description: Work on Emergency Shift Unity horror with its current project rules
 
 # Emergency Shift workflow
 
-1. Locate the Unity project by its AGENTS.md and Assets/EmergencyShift. Read AGENTS.md, Docs/README.md, Docs/SPEC.md and the task-relevant document. User instructions override project defaults.
+1. Locate the Unity project by its AGENTS.md and Assets/EmergencyShift. Read AGENTS.md, Docs/README.md, Docs/NOTION_WORKFLOW.md, Docs/SPEC.md and the task-relevant document. Before every project task, fetch the Notion home/current plan and relevant cards/bugs using .agents/notion-project.json; local planning files are historical snapshots. User instructions override project defaults.
 2. Distinguish discussion from authorized mutation. Preserve manual scene tuning, placements, patrols and accepted sounds/art. Do not regenerate levels to solve local problems.
 3. Use the adopted [SOD architecture](../sod-unity-architecture/SKILL.md) for gameplay design/C# and review. Its MVC, command, dependency, config and identity rules replace older architecture advice. Separate shared tuning, per-spawn scene data and instance state; preserve the game's species contracts. Current MonoBehaviour code and Configure wiring are legacy, not proof of a completed MVC/Zenject migration.
    Readability is part of completion: one meaningful action per line, explicit control-flow blocks, no nested ternaries, meaningful names. Short code means less cognitive work, not compressed statements. Guards and a finite state switch are legitimate; growing type-dispatch chains need a design review.
-4. Update the canonical requirement/guide where behavior changed. Teach the owner the relevant C# reasoning briefly; do not bury it in implementation chronology.
+4. Follow Docs/NOTION_WORKFLOW.md without requiring a reminder: upsert reported/discovered bugs in Notion after checking duplicates, update work/fix statuses with actual evidence, and record significant results in the Notion changelog. Re-read cards before writes; preserve owner edits. If Notion fails, report unsynced work and do not create a competing local plan. Update the local canonical requirement/guide where behavior changed. Teach the owner the relevant C# reasoning briefly; do not bury it in implementation chronology.
 5. Validate the changed boundary. Use the migration and content skills for their domains. Do not claim creative approval, campaign support, scalability or FPS from a compile/build.
 6. Report outcome, evidence and remaining limitations. Follow existing Git authorization without sweeping unrelated manual changes into a commit.
 

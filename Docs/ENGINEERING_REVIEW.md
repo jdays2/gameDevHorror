@@ -1,3 +1,5 @@
+> **Снимок до переноса в Notion · 2026-10-20.** Актуальная очередь и статусы: [открыть в Notion](https://app.notion.com/p/a1b30c6e0f8343168ea91ae5990ee9fb). Ниже сохранён исходный текст для истории; новые планы, задачи, баги и события сюда не добавлять. [Порядок работы](NOTION_WORKFLOW.md).
+
 # Инженерные ограничения и расширение
 
 Текущий стандарт — [ADR-001](Decisions/001-sod-architecture.md), активный полный проход — [Roadmap](Roadmap/00-ArchitectureMigration.md). Фактические границы находятся в [ARCHITECTURE](ARCHITECTURE.md) и [Features](Features/README.md).
