@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "478 own C# explicitly read; 92 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest DoorFeedbackConfig12.",
+  "limits": "480 own C# explicitly read; 90 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PresentationConfig13.",
   "counts": {
-    "partial": 92,
-    "reviewed_boundary": 386
+    "partial": 90,
+    "reviewed_boundary": 390
   },
   "files": [
     {
@@ -755,13 +755,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs",
-      "sha256": "0781223de53be654088bc5d6b2a2c7cc2307b3d7ac293661b376e9c211f192b1",
+      "sha256": "c65bb746ba62d8891ae81bddffbeb908feb9b08060a7808c5977f3ac1f6f94b6",
       "baselineSha256": "0781223de53be654088bc5d6b2a2c7cc2307b3d7ac293661b376e9c211f192b1",
       "guid": "5ddb8c8d0fe7f304dbfd899134f567aa",
       "types": [
         "GameplayHudAuthoring"
       ],
-      "lines": 298,
+      "lines": 297,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -769,7 +769,7 @@
         "MenuItem"
       ],
       "reviewStatus": "partial",
-      "notes": "Edit/active-dirty/already-HUD guards, preview finally, существующий prefab не перезаписывается. Global Find для PrototypeHud/cards, не полный preflight зависимостей; может выбрать карту другой открытой сцены.",
+      "notes": "PresentationConfig13: readonly style consumers и default empty hit clips обновлены; authoring entry не запускался. Прежний global Find/выбор карты из другой открытой сцены, preflight/transaction и общий style pass остаются открыты.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -786,10 +786,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
-      "reviewedSha256": "0781223de53be654088bc5d6b2a2c7cc2307b3d7ac293661b376e9c211f192b1",
+      "reviewedSha256": "c65bb746ba62d8891ae81bddffbeb908feb9b08060a7808c5977f3ac1f6f94b6",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/PresentationConfig13.md",
+      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs",
@@ -3150,14 +3151,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs",
-      "sha256": "bba56014feab9f7d792ecd012b742b0099792c25abcc8d6776e3b01d4aba5898",
+      "sha256": "c9ba8e8a86ab580392d9c7db90823111c7ed00c090fb71c5745ea84d28d36bb5",
       "baselineSha256": "bba56014feab9f7d792ecd012b742b0099792c25abcc8d6776e3b01d4aba5898",
       "guid": "34e2679e50d7c50459145bc9b0d663bf",
       "types": [
         "AudioMood",
         "AudioMoodProfile"
       ],
-      "lines": 57,
+      "lines": 121,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Audio/SurvivalAudio.asset"
       ],
@@ -3176,11 +3177,12 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Общие perception/mix tuning, личные таймеры вне SO; нет полной finite/range/cross-field validation.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PresentationConfig13: readonly HUD/audio config, finite/cross-field/clip guard или regression boundary; старые serialized fields/refs и default timing/colors сохранены; assets/native регрессии проверены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3194,10 +3196,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
-      "reviewedSha256": "bba56014feab9f7d792ecd012b742b0099792c25abcc8d6776e3b01d4aba5898",
+      "reviewedSha256": "c9ba8e8a86ab580392d9c7db90823111c7ed00c090fb71c5745ea84d28d36bb5",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/PresentationConfig13.md",
+      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs",
@@ -3541,13 +3544,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/GameplayHudStyle.cs",
-      "sha256": "92d40e3122b876bcd5e42942d9752d6b5afabe0377b0a40f5d32c49fddd5ffbe",
+      "sha256": "ff2585bc74f1cbe142494d3d4caba48bacb1d45e822bffcf8c708f97296f1d01",
       "baselineSha256": "92d40e3122b876bcd5e42942d9752d6b5afabe0377b0a40f5d32c49fddd5ffbe",
       "guid": "889573aad30ce104b9cc31a9b0a06150",
       "types": [
         "GameplayHudStyle"
       ],
-      "lines": 21,
+      "lines": 74,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/UI/GameplayHud01.asset"
       ],
@@ -3558,11 +3561,12 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs",
-        "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs"
+        "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GameplayHudStyleTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Общие presentation data, но Min/Range не finite/cross-field validation.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PresentationConfig13: readonly HUD/audio config, finite/cross-field/clip guard или regression boundary; старые serialized fields/refs и default timing/colors сохранены; assets/native регрессии проверены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3576,10 +3580,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
-      "reviewedSha256": "92d40e3122b876bcd5e42942d9752d6b5afabe0377b0a40f5d32c49fddd5ffbe",
+      "reviewedSha256": "ff2585bc74f1cbe142494d3d4caba48bacb1d45e822bffcf8c708f97296f1d01",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/PresentationConfig13.md",
+      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
@@ -4491,7 +4496,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
-      "sha256": "a8557d0ff8a5e81a2bc42973946304a98a6a0f330b589cc69967dc479da832d0",
+      "sha256": "2695c660f6f1e212132229a375d765d1429114eea69e3e3875f06d6a4bbe2ab0",
       "baselineSha256": "ba731921247bbfe7b96ab5703ec235a489ca288a6a61306b462108de48a25beb",
       "guid": "14a28458a38c9304daa0849264690099",
       "types": [
@@ -4499,7 +4504,7 @@
         "Check",
         "Report"
       ],
-      "lines": 469,
+      "lines": 472,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -4520,8 +4525,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "BUG-016 fixed: 3 real negative stages; current weapon API and own-level surface injection, 34 probe checks/17 PlayMode passed. Explicit isolated destructive Development fixture; full lifecycle/style pass still pending, not a gameplay controller.",
-      "reviewedSha256": "a8557d0ff8a5e81a2bc42973946304a98a6a0f330b589cc69967dc479da832d0",
+      "notes": "PresentationConfig13: Editor-only destructive fixture меняет только transient clone через SerializedObject/Validate; полный native probe выполнен. BUG-016 остаётся закрытым. Остальной lifecycle/style pass временного инструмента открыт.",
+      "reviewedSha256": "2695c660f6f1e212132229a375d765d1429114eea69e3e3875f06d6a4bbe2ab0",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -4556,8 +4561,8 @@
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/AudioProbe02.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution.",
+      "reviewReport": "Docs/Reports/PresentationConfig13.md",
+      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -4724,7 +4729,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
-      "sha256": "3e60070674d117eb98c61f44e9826822922050e8ded9e1f2cd0cecc2d19fe061",
+      "sha256": "3a9b5dd6206bfe057340158318d06d2f4f1b3369f0a879ea41a0542ba8c0aa87",
       "baselineSha256": "5056d5debaa0748fea5eb5fed2030bf51a3caffafcbfd4c189bb1f25155c526e",
       "guid": "7b71efe51bb80874fbf74d2e220cbe70",
       "types": [
@@ -4742,8 +4747,8 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "Opt-in debug/native smoke, fixed LevelTemplate/audio voice ожидания, error unsubscribe/quit; fixture не доказывает текущую игровую сцену.",
-      "reviewedSha256": "3e60070674d117eb98c61f44e9826822922050e8ded9e1f2cd0cecc2d19fe061",
+      "notes": "PresentationConfig13: getter Profile.Exploration обновлён и скомпилирован. Opt-in development Player fixture/scene setup/lifetime/style pass остаётся открытым; standalone smoke в этом этапе не запускался.",
+      "reviewedSha256": "3a9b5dd6206bfe057340158318d06d2f4f1b3369f0a879ea41a0542ba8c0aa87",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -4764,8 +4769,9 @@
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/PresentationConfig13.md",
+      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
@@ -13940,13 +13946,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
-      "sha256": "1a9fcb885b21621ce403e7614195c72895ca2ff49d6525d7a16274ea324bdc84",
+      "sha256": "77378bfa314bafa80acd1a04f01948550a4769df1d7c8554ecb0809c4b9498e4",
       "baselineSha256": "19545652a3329fadd847a8cd2c53a3783e942f37fa848df947b0158a4ae0d91e",
       "guid": "51418a3b25a1e234cbefe1b1b6f6ebec",
       "types": [
         "LevelAudioDirector2D"
       ],
-      "lines": 432,
+      "lines": 437,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelAudio.prefab"
       ],
@@ -13971,8 +13977,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Свой scene scan и scope player/pause, три источника Stop/Unbind при disable; perceived threat/memory/mix/DSP в одном MB, concrete Flashlight/camera. Не AI authority.",
-      "reviewedSha256": "1a9fcb885b21621ce403e7614195c72895ca2ff49d6525d7a16274ea324bdc84",
+      "notes": "PresentationConfig13: readonly validated profile и defaults перенесённых параметров проверены. Perception/memory/mood/clock/DSP ещё объединены в MB; static emitters/lamp queries и общий model/controller/style pass открыты.",
+      "reviewedSha256": "77378bfa314bafa80acd1a04f01948550a4769df1d7c8554ecb0809c4b9498e4",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13994,8 +14000,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/PresentationConfig13.md",
+      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodHitSpray2D.cs",
@@ -15116,14 +15123,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
-      "sha256": "d43e3f690e2e2e53934f0f47b3fcbefb2c385a77098172ddca3dc05f6469d808",
+      "sha256": "6d97e72e64a3e35b786c3535152651cd1cda94298188359b3fc6650bb748fc08",
       "baselineSha256": "d43e3f690e2e2e53934f0f47b3fcbefb2c385a77098172ddca3dc05f6469d808",
       "guid": "a5fa57d8830d9f24a8a90301a8bbe11d",
       "types": [
         "CardDisplay",
         "GameplayHudView"
       ],
-      "lines": 276,
+      "lines": 282,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/UI/GameplayHud01.prefab"
       ],
@@ -15140,7 +15147,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Парный Bind/unsubscribe, events health/ownership и caches, но View зависит от concrete player и polling ammo; style numeric невалидирован, cosmetic hit Unity RNG общий с BUG-010.",
+      "notes": "PresentationConfig13: readonly style и validation до Bind/subscription проверены. Остаются concrete player refs, ammo polling и личные feedback/time/cosmetic RNG в MB; gameplay RNG отдельно. Model/presenter/style pass открыт.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15156,10 +15163,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
-      "reviewedSha256": "d43e3f690e2e2e53934f0f47b3fcbefb2c385a77098172ddca3dc05f6469d808",
+      "reviewedSha256": "6d97e72e64a3e35b786c3535152651cd1cda94298188359b3fc6650bb748fc08",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/PresentationConfig13.md",
+      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
@@ -16313,6 +16321,31 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "PresentationConfig13: readonly HUD/audio config, finite/cross-field/clip guard или regression boundary; старые serialized fields/refs и default timing/colors сохранены; assets/native регрессии проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs",
+      "sourceScope": "unity",
+      "sha256": "efdd3ab68df34091cf6be2f1cf4b68cdead3eb58383a7e5f13f575e49ce8864b",
+      "guid": "7862677c2d5e4f1b9693ee6019990209",
+      "types": [
+        "AudioMoodProfileTests"
+      ],
+      "lines": 125,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "efdd3ab68df34091cf6be2f1cf4b68cdead3eb58383a7e5f13f575e49ce8864b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PresentationConfig13.md",
+      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "BloodSafety01: 65 profile cases (33 original failures), source-scene/frozen-timer unload for both blood VFX (4 original failures). 481 own EditMode, 16 real PlayMode and normal Windows64 passed. Temporary objects and original resource guards; see limits.",
       "path": "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs",
       "sourceScope": "unity",
@@ -17340,6 +17373,31 @@
       "reviewedSha256": "8e73447c807af37fd10de47bdffd16c136a39de974cfbaea7045d5621c62487e",
       "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
       "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PresentationConfig13: readonly HUD/audio config, finite/cross-field/clip guard или regression boundary; старые serialized fields/refs и default timing/colors сохранены; assets/native регрессии проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/GameplayHudStyleTests.cs",
+      "sourceScope": "unity",
+      "sha256": "227c3258ddfb54b7b44265c1adf4eaf61f9f51afb0cab9b8e31fe673a69f0b5f",
+      "guid": "a37d45fcd0d349569a17b2cecbb6079c",
+      "types": [
+        "GameplayHudStyleTests"
+      ],
+      "lines": 134,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "227c3258ddfb54b7b44265c1adf4eaf61f9f51afb0cab9b8e31fe673a69f0b5f",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PresentationConfig13.md",
+      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
@@ -19250,7 +19308,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 459,
+    "unity": 461,
     "content_source": 8
   },
   "latestReview": {
@@ -19401,11 +19459,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 478,
-    "totalFiles": 478,
+    "reviewedFiles": 480,
+    "totalFiles": 480,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "DoorFeedbackConfig12 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "PresentationConfig13 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

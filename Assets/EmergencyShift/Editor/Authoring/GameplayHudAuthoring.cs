@@ -116,7 +116,6 @@ namespace EmergencyShift.Editor
             if (style == null)
             {
                 style = ScriptableObject.CreateInstance<GameplayHudStyle>();
-                style.hitSounds = Array.Empty<AudioClip>();
                 AssetDatabase.CreateAsset(style, StylePath);
             }
 
@@ -135,9 +134,9 @@ namespace EmergencyShift.Editor
                 Assign(view, "style", style);
                 var left = Rect("Health and access", root, new Vector2(36, 28), new Vector2(270, 110));
                 var track = Image("HP bar", left, Vector2.zero, new Vector2(270, 20), new Color(.12f, .17f, .16f));
-                var trail = Image("Lost health", track.transform, Vector2.zero, new Vector2(270, 20), style.lostHealth);
+                var trail = Image("Lost health", track.transform, Vector2.zero, new Vector2(270, 20), style.LostHealth);
                 Filled(trail);
-                var fill = Image("Current health", track.transform, Vector2.zero, new Vector2(270, 20), style.healthy);
+                var fill = Image("Current health", track.transform, Vector2.zero, new Vector2(270, 20), style.Healthy);
                 Filled(fill);
                 var number = Text("HP number - inside bar", track.transform, font, new Vector2(0, 0), new Vector2(262, 20), 14, Ink, "100");
                 number.alignment = TextAnchor.MiddleRight;
@@ -147,10 +146,10 @@ namespace EmergencyShift.Editor
                 Assign(view, "healthFill", fill);
                 Assign(view, "healthTrail", trail);
                 Assign(view, "healthNumber", number);
-                var loss = Text("Recent damage", left, font, new Vector2(180, 61), new Vector2(90, 22), 16, style.lostHealth, "");
+                var loss = Text("Recent damage", left, font, new Vector2(180, 61), new Vector2(90, 22), 16, style.LostHealth, "");
                 loss.alignment = TextAnchor.MiddleRight;
                 Assign(view, "lossLabel", loss);
-                Assign(view, "condition", Text("Health condition", left, font, new Vector2(0, -21), new Vector2(300, 17), 12, style.critical, ""));
+                Assign(view, "condition", Text("Health condition", left, font, new Vector2(0, -21), new Vector2(300, 17), 12, style.Critical, ""));
 
                 var lamp = Rect("Flashlight - above HP", left, new Vector2(0, 30), new Vector2(24, 24));
                 Assign(view, "lamp", lamp.gameObject.AddComponent<CanvasGroup>());
@@ -181,7 +180,7 @@ namespace EmergencyShift.Editor
                     rows[i] = row.gameObject.AddComponent<HudWeaponRow>();
                     Assign(rows[i], "definition", definition);
                     var alpha = row.gameObject.AddComponent<CanvasGroup>();
-                    alpha.alpha = i == 0 ? 1 : style.spareOpacity;
+                    alpha.alpha = i == 0 ? 1 : style.SpareOpacity;
                     Assign(rows[i], "opacity", alpha);
                     var key = Text("Fixed selection key", row, font, new Vector2(0, 25), new Vector2(16, 18), 10, Ink, (definition.selectionSlot + 1).ToString());
                     key.alignment = TextAnchor.MiddleCenter;

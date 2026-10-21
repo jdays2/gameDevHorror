@@ -161,7 +161,7 @@ namespace EmergencyShift
             }
 
             var atmosphere = FindObjectsByType<LevelAudioDirector2D>();
-            if (!Check(atmosphere.Length == 1 && atmosphere[0].Profile != null && atmosphere[0].Profile.exploration != null && AudioThreatEmitter2D.Active.Count == 0, "One scene atmosphere and cleared threat registry after unload"))
+            if (!Check(atmosphere.Length == 1 && atmosphere[0].Profile != null && atmosphere[0].Profile.Exploration != null && AudioThreatEmitter2D.Active.Count == 0, "One scene atmosphere and cleared threat registry after unload"))
             {
                 yield break;
             }

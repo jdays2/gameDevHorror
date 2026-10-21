@@ -2,6 +2,8 @@
 
 2026-10-18. Первая рабочая версия добавлена в MechanicsSandbox и BasementPrototype. По выбранной композиции Days Gone; графика игры не копируется. Владелец будет дорабатывать внешний вид в Unity. [Исходники и происхождение](../../Concepts/Used/UI/GameplayHud02/README.md).
 
+GameplayHudStyle настраивается в Inspector и доступен runtime C# только для чтения. Старые serialized names сохранены. Validate проверяет конечность цветов/интервалов, alpha/opacity/volume 0–1 и CriticalFraction ≤ WoundedFraction до Bind/subscription. HitSoundCount/HitSoundAt позволяют выбирать клип без выдачи массива на изменение; пустой список и null-клипы сохраняют тихую политику. Это конфигурационный контракт, макет не перестраивался. [Проверки и границы переноса](../Reports/PresentationConfig13.md).
+
 ## Что показывается
 
 - Слева снизу HP. **Фактическое число HP находится внутри полоски**, у правого края; длина заполнения равна Health / MaximumHealth. Тестовые 100 HP не заменяют здоровье игрока за пределами тира.

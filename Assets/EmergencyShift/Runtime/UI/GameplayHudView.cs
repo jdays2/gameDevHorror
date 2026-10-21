@@ -44,6 +44,11 @@ namespace EmergencyShift
 
         public void Bind(PlayerLife2D player, PlayerWeapon2D weapons, Flashlight2D light, PlayerAccessCards2D accessCards)
         {
+            if (style != null)
+            {
+                style.Validate();
+            }
+
             Unsubscribe();
             life = player;
             weapon = weapons;
@@ -86,6 +91,7 @@ namespace EmergencyShift
                 return;
             }
 
+            style.Validate();
             life.HealthChanged += OnHealthChanged;
             life.Damaged += OnDamaged;
             weapon.OwnershipChanged += RefreshWeapons;
@@ -142,20 +148,20 @@ namespace EmergencyShift
             }
 
             healthFill.fillAmount = fraction;
-            Color tint = style.healthy;
-            if (fraction <= style.criticalFraction)
+            Color tint = style.Healthy;
+            if (fraction <= style.CriticalFraction)
             {
-                tint = style.critical;
+                tint = style.Critical;
             }
-            else if (fraction <= style.woundedFraction)
+            else if (fraction <= style.WoundedFraction)
             {
-                tint = style.wounded;
+                tint = style.Wounded;
             }
 
             healthFill.color = tint;
             healthNumber.text = current.ToString();
             condition.text = current <= 0 ? "ПОРАЖЕНИЕ" : "";
-            if (current > 0 && fraction <= style.criticalFraction)
+            if (current > 0 && fraction <= style.CriticalFraction)
             {
                 condition.text = "КРИТИЧЕСКОЕ СОСТОЯНИЕ";
             }
@@ -170,17 +176,17 @@ namespace EmergencyShift
             damagedAt = Time.unscaledTime;
             trailAnimating = true;
             damageChangePending = true;
-            healthTrail.color = style.lostHealth;
+            healthTrail.color = style.LostHealth;
             healthTrail.fillAmount = trailFrom;
             lossLabel.text = "−" + amount;
-            lossLabel.color = style.lostHealth;
+            lossLabel.color = style.LostHealth;
             lossLabel.enabled = true;
-            if (hitAudio != null && style.hitSounds != null && style.hitSounds.Length > 0)
+            if (hitAudio != null && style.HitSoundCount > 0)
             {
-                var clip = style.hitSounds[UnityEngine.Random.Range(0, style.hitSounds.Length)];
+                var clip = style.HitSoundAt(UnityEngine.Random.Range(0, style.HitSoundCount));
                 if (clip != null)
                 {
-                    hitAudio.PlayOneShot(clip, style.hitVolume);
+                    hitAudio.PlayOneShot(clip, style.HitVolume);
                 }
             }
         }
@@ -237,7 +243,7 @@ namespace EmergencyShift
             {
                 bool owned = ownedWeapons.Contains(row.Definition.contentId);
                 bool active = weapon.HasWeapon && weapon.Definition.contentId == row.Definition.contentId;
-                row.Present(owned, active, activeWeaponSlot, spareWeaponSlot, style.spareOpacity);
+                row.Present(owned, active, activeWeaponSlot, spareWeaponSlot, style.SpareOpacity);
             }
         }
 
@@ -262,12 +268,12 @@ namespace EmergencyShift
             }
 
             float age = Time.unscaledTime - damagedAt;
-            float progress = Mathf.Clamp01((age - style.trailDelay) / Mathf.Max(.01f, style.trailDuration));
+            float progress = Mathf.Clamp01((age - style.TrailDelay) / Mathf.Max(.01f, style.TrailDuration));
             healthTrail.fillAmount = Mathf.Lerp(trailFrom, healthFill.fillAmount, progress);
             Color loss = lossLabel.color;
-            loss.a = 1 - Mathf.Clamp01(age / Mathf.Max(.01f, style.hitDuration));
+            loss.a = 1 - Mathf.Clamp01(age / Mathf.Max(.01f, style.HitDuration));
             lossLabel.color = loss;
-            if (progress >= 1 && age >= style.hitDuration)
+            if (progress >= 1 && age >= style.HitDuration)
             {
                 ClearFeedback();
             }

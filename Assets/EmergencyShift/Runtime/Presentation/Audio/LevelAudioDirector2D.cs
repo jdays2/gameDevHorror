@@ -73,6 +73,11 @@ namespace EmergencyShift
 
         private void OnEnable()
         {
+            if (profile != null)
+            {
+                profile.Validate();
+            }
+
             lastThreat = lastCombat = lastShot = duckUntil = float.NegativeInfinity;
             nextObservation = 0;
             Mood = AudioMood.Explore;
@@ -116,7 +121,7 @@ namespace EmergencyShift
 
             if (profile != null)
             {
-                duckUntil = Time.time + profile.shotDuckSeconds;
+                duckUntil = Time.time + profile.ShotDuckSeconds;
             }
         }
 
@@ -128,7 +133,7 @@ namespace EmergencyShift
             }
 
             lastCombat = lastThreat = Time.time;
-            duckUntil = Time.time + .6f;
+            duckUntil = Time.time + (profile != null ? profile.DamageDuckSeconds : AudioMoodProfile.DefaultDamageDuckSeconds);
         }
 
         private void Update()
@@ -195,25 +200,25 @@ namespace EmergencyShift
 
             if (Time.time >= nextObservation)
             {
-                nextObservation = Time.time + Mathf.Max(.05f, profile.observationInterval);
+                nextObservation = Time.time + Mathf.Max(.05f, profile.ObservationInterval);
                 Observe();
             }
 
             bool alive = !player.IsDead;
-            float threatGain = Mood != AudioMood.Explore ? profile.threatGain : 0;
-            float combatGain = Mood == AudioMood.Combat ? profile.combatGain : 0;
-            Vector3 target = alive ? new Vector3(profile.explorationGain, threatGain, combatGain) : Vector3.zero;
-            float duck = alive && Time.time < duckUntil ? profile.duckGain : 1;
-            float health = alive && player.Health < player.MaximumHealth ? profile.lowHealthGain : 1;
-            target *= profile.masterVolume * volume * duck * health;
-            float seconds = alive ? profile.fallSeconds : .55f;
+            float threatGain = Mood != AudioMood.Explore ? profile.ThreatGain : 0;
+            float combatGain = Mood == AudioMood.Combat ? profile.CombatGain : 0;
+            Vector3 target = alive ? new Vector3(profile.ExplorationGain, threatGain, combatGain) : Vector3.zero;
+            float duck = alive && Time.time < duckUntil ? profile.DuckGain : 1;
+            float health = alive && player.Health < player.MaximumHealth ? profile.LowHealthGain : 1;
+            target *= profile.MasterVolume * volume * duck * health;
+            float seconds = alive ? profile.FallSeconds : profile.DeathFadeSeconds;
             for (int i = 0; i < 3; i++)
             {
-                float tau = target[i] > gains[i] ? profile.riseSeconds : seconds;
+                float tau = target[i] > gains[i] ? profile.RiseSeconds : seconds;
                 // Urgent cues duck the bed promptly; recovery remains smooth.
                 if (alive && duck < 1 && target[i] < gains[i])
                 {
-                    tau = .06f;
+                    tau = profile.DuckResponseSeconds;
                 }
 
                 gains[i] = Mathf.Lerp(gains[i], target[i], 1 - Mathf.Exp(-Time.deltaTime / Mathf.Max(.02f, tau)));
@@ -249,7 +254,7 @@ namespace EmergencyShift
                 remembered.Remove(source);
             }
 
-            float maxSquared = profile.awarenessDistance * profile.awarenessDistance;
+            float maxSquared = profile.AwarenessDistance * profile.AwarenessDistance;
             foreach (var source in AudioThreatEmitter2D.Active)
             {
                 if (source == null || !source.IsAlive || source.gameObject.scene != gameObject.scene || (source.Target != null && source.Target != player.transform))
@@ -267,7 +272,7 @@ namespace EmergencyShift
                 bool heard = Time.time <= source.HeardUntil;
                 if (seen || heard)
                 {
-                    remembered[source] = Time.time + profile.perceptionMemorySeconds;
+                    remembered[source] = Time.time + profile.PerceptionMemorySeconds;
                 }
 
                 if (!seen && !heard && !remembered.ContainsKey(source))
@@ -279,7 +284,7 @@ namespace EmergencyShift
                 if (source.IsEngaged)
                 {
                     EngagedEnemies++;
-                    if (distanceSquared <= profile.closeCombatDistance * profile.closeCombatDistance)
+                    if (distanceSquared <= profile.CloseCombatDistance * profile.CloseCombatDistance)
                     {
                         close++;
                     }
@@ -288,7 +293,7 @@ namespace EmergencyShift
                 attack |= source.IsAttacking;
                 if (Time.time <= source.UrgentUntil)
                 {
-                    duckUntil = Mathf.Max(duckUntil, Time.time + profile.cueDuckSeconds);
+                    duckUntil = Mathf.Max(duckUntil, Time.time + profile.CueDuckSeconds);
                 }
             }
 
@@ -298,7 +303,7 @@ namespace EmergencyShift
             }
 
             // Pressure starts on approach, not only after the bite or the player's first shot.
-            if (attack || close > 0 || EngagedEnemies >= profile.crowdEnemiesForCombat || (EngagedEnemies > 0 && Time.time - lastShot < 2f))
+            if (attack || close > 0 || EngagedEnemies >= profile.CrowdEnemiesForCombat || (EngagedEnemies > 0 && Time.time - lastShot < profile.CombatAfterShotSeconds))
             {
                 lastCombat = Time.time;
             }
@@ -308,12 +313,12 @@ namespace EmergencyShift
 
         private AudioMood SelectMood()
         {
-            if (Time.time - lastCombat < profile.combatHoldSeconds)
+            if (Time.time - lastCombat < profile.CombatHoldSeconds)
             {
                 return AudioMood.Combat;
             }
 
-            if (Time.time - lastThreat < profile.threatHoldSeconds)
+            if (Time.time - lastThreat < profile.ThreatHoldSeconds)
             {
                 return AudioMood.Threat;
             }
@@ -357,14 +362,14 @@ namespace EmergencyShift
 
         private void StartLayers()
         {
-            scheduledStart = AudioSettings.dspTime + .15;
-            Schedule(explorationSource, profile.exploration, scheduledStart);
-            Schedule(threatSource, profile.threat, scheduledStart);
-            Schedule(combatSource, profile.combat, scheduledStart);
+            scheduledStart = AudioSettings.dspTime + profile.ScheduleLeadSeconds;
+            Schedule(explorationSource, profile.Exploration, scheduledStart, profile.LayerPriority);
+            Schedule(threatSource, profile.Threat, scheduledStart, profile.LayerPriority);
+            Schedule(combatSource, profile.Combat, scheduledStart, profile.LayerPriority);
             started = true;
         }
 
-        private static void Schedule(AudioSource source, AudioClip clip, double at)
+        private static void Schedule(AudioSource source, AudioClip clip, double at, int priority)
         {
             source.Stop();
             source.clip = clip;
@@ -375,7 +380,7 @@ namespace EmergencyShift
             // Keep three bed voices ahead of idle/footstep voices under the 32-real-voice budget.
             // Attack, wound and weapon cues still have higher priority.
             source.loop = true;
-            source.priority = 120;
+            source.priority = priority;
             source.volume = 0;
             if (clip != null)
             {

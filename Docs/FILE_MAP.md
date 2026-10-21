@@ -601,6 +601,7 @@
 
 - [AccessCardRestoreTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessCardRestoreTests.cs)
 - [AccessControlModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs)
+- [AudioMoodProfileTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs)
 - [BloodPoolProfileValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs)
 - [BloodPoolTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs)
 - [CeilingLightOcclusionTests.cs](../Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs)
@@ -625,6 +626,7 @@
 - [FlashlightOwnershipTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs)
 - [FlashlightStateTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs)
 - [FlashlightUpgradeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs)
+- [GameplayHudStyleTests.cs](../Assets/EmergencyShift/Tests/EditMode/GameplayHudStyleTests.cs)
 - [GoreCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs)
 - [GroundAudioSurfaceQueryTests.cs](../Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs)
 - [HealthModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs)
