@@ -40,6 +40,7 @@ namespace EmergencyShift
         private readonly List<Check> checks = new List<Check>();
         private readonly List<string> timeline = new List<string>();
         private LevelAudioDirector2D director;
+        private LevelContext2D context;
         private PlayerLife2D player;
         private PlayerWeapon2D weapon;
         private Flashlight2D flashlight;
@@ -87,13 +88,17 @@ namespace EmergencyShift
 
         private void Prepare()
         {
+            context = GetComponentInScene<LevelContext2D>();
             foreach (var enemy in FindObjectsByType<ShadowStalker2D>())
             {
-                enemy.gameObject.SetActive(false);
+                if (enemy.gameObject.scene == gameObject.scene)
+                {
+                    enemy.gameObject.SetActive(false);
+                }
             }
 
-            director = FindAnyObjectByType<LevelAudioDirector2D>();
-            player = FindAnyObjectByType<PlayerLife2D>();
+            director = GetComponentInScene<LevelAudioDirector2D>();
+            player = context.Player;
             weapon = player.GetComponent<PlayerWeapon2D>();
             flashlight = player.GetComponent<Flashlight2D>();
             feet = player.GetComponent<PlayerFootsteps2D>();
@@ -106,10 +111,31 @@ namespace EmergencyShift
             originalProfile = director.Profile;
         }
 
+        private T GetComponentInScene<T>() where T : Component
+        {
+            foreach (GameObject root in gameObject.scene.GetRootGameObjects())
+            {
+                T candidate = root.GetComponentInChildren<T>(true);
+                if (candidate != null)
+                {
+                    return candidate;
+                }
+            }
+
+            throw new InvalidOperationException("Audio probe requires " + typeof(T).Name + " in its own scene.");
+        }
+
+        private GameObject CreateProbeObject(string name)
+        {
+            var result = new GameObject(name);
+            SceneManager.MoveGameObjectToScene(result, gameObject.scene);
+            return result;
+        }
+
         private ShadowStalker2D Spawn(Vector2 position, bool audible, bool attacks = false)
         {
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab");
-            var obj = FindAnyObjectByType<LevelContext2D>().CreateInstance(prefab, new Vector3(position.x, position.y, 0), Quaternion.identity);
+            var obj = context.CreateInstance(prefab, new Vector3(position.x, position.y, 0), Quaternion.identity);
             var result = obj.GetComponent<ShadowStalker2D>();
             result.Configure(player.transform, flashlight, 1 << 8);
             result.AttacksEnabled = attacks;
@@ -145,7 +171,7 @@ namespace EmergencyShift
             var combat = Get<AudioSource>(director, "combatSource");
             CheckThat("Three bounded sources playing synchronous9s PCM loops", bed.isPlaying && threat.isPlaying && combat.isPlaying && bed.loop && threat.loop && combat.loop && bed.clip.samples == threat.clip.samples && bed.clip.samples == combat.clip.samples && Mathf.Abs(bed.timeSamples - threat.timeSamples) < 1024);
             actor = Spawn(new Vector2(103, 100), false);
-            var wall = new GameObject("Probe high wall");
+            var wall = CreateProbeObject("Probe high wall");
             wall.layer = 8;
             wall.transform.position = new Vector3(101.5f, 100, 0);
             wall.AddComponent<BoxCollider2D>().size = new Vector2(.3f, 4);
@@ -168,7 +194,7 @@ namespace EmergencyShift
             yield return SceneManager.UnloadSceneAsync(other);
             yield return new WaitForSeconds(1.7f);
             flashlight.SetPower(false);
-            var lampObject = new GameObject("Probe lamp");
+            var lampObject = CreateProbeObject("Probe lamp");
             lampObject.transform.position = new Vector3(103, 100.2f, 0);
             var light = lampObject.AddComponent<Light2D>();
             var lamp = lampObject.AddComponent<LocalLamp2D>();
@@ -228,13 +254,13 @@ namespace EmergencyShift
             CheckThat("Nonlethal player damage accepted", player.TakeDamage(1));
             CheckThat("Damage immediately ducks background", director.IsDucking);
             yield return new WaitForSeconds(.2f);
-            CheckThat("Damage escalates combat at low health", player.Health == 1 && director.Mood == AudioMood.Combat);
+            CheckThat("Damage escalates combat below full health", player.Health == player.MaximumHealth - 1 && director.Mood == AudioMood.Combat);
             var utility = player.GetComponent<PlayerUtilityAudio2D>();
             int switches = utility.SwitchesPlayed;
             flashlight.Toggle();
             yield return null;
             CheckThat("Flashlight toggling plays mechanical cue", utility.SwitchesPlayed == switches + 1);
-            Set(weapon, "<Ammo>k__BackingField", 0);
+            weapon.RestoreState(true, 0, weapon.Definition);
             int empty = utility.EmptyTriggersPlayed;
             weapon.TryFire();
             yield return null;
@@ -243,11 +269,12 @@ namespace EmergencyShift
             {
                 var material = (GroundSoundSurface)i;
                 Vector2 start = new Vector2(120 + i * 20, 100);
-                var floor = new GameObject("Probe " + material);
+                var floor = CreateProbeObject("Probe " + material);
                 floor.transform.position = start;
                 floor.AddComponent<BoxCollider2D>().size = new Vector2(8, 5);
                 var region = floor.AddComponent<GroundAudioSurface2D>();
                 Set(region, "surface", material);
+                context.InjectScoped(region);
                 playerBody.linearVelocity = Vector2.zero;
                 playerBody.position = start;
                 Physics2D.SyncTransforms();

@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Аудиопроба · BUG-016 | [AudioProbe02](AudioProbe02.md): 3 последовательных исходных отказа; после исправления 34/34 внутренних проверок и 17/17 PlayMode. Concrete/Wood/Metal, dry-fire, pause/death. Runtime и звук не менялись. |
 | Кровь: сцена / профиль · BUG-015 / BUG-017 | [BloodSafety01](BloodSafety01.md): 33 исходных EditMode и 4 PlayMode отказа; после исправления 481/481 EditMode, 16/16 PlayMode, Windows64 success. VFX удаляются со сценой при замороженном таймере; неконечный профиль не меняет renderer. |
 | Контроллер / геометрия оружия | [WeaponController02](WeaponController02.md): 416/416 EditMode, 12/12 PlayMode, Windows64 success. Отдельные модель/команды/DI-контроллер/прицеливание; препятствие дула и отключение зарядки. 0 bytes в чистом пассивном Update, без заявления об FPS. |
 | Оружейные модели / RNG · BUG-010 / BUG-018 | [WeaponModels01](WeaponModels01.md): immutable tuning/catalog, команды; 4 исходных отказа помпы, 394/394 EditMode, 10/10 PlayMode и Windows64 success. Реальный залп при разной косметике; полный перенос PlayerWeapon/физики остаётся открытым. |

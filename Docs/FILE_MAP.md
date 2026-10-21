@@ -439,6 +439,7 @@
 
 ## Assets/EmergencyShift/Tests/PlayMode
 
+- [AdaptiveAudioProbeRegressionTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs)
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)

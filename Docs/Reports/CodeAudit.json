@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "315 current own C# explicitly reviewed; 108 retain migration/style debt. complete=false. BloodSafety01 certifies only stated boundaries.",
+  "limits": "316 current own C# explicitly reviewed; 108 retain migration/style debt. complete=false. AudioProbe02 certifies only stated boundaries.",
   "counts": {
     "partial": 108,
-    "reviewed_boundary": 207
+    "reviewed_boundary": 208
   },
   "files": [
     {
@@ -4256,7 +4256,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
-      "sha256": "7690142601419dad8d85e90b83c5d7441d2832f3d1b45ff7be4b82a76b770a8e",
+      "sha256": "a8557d0ff8a5e81a2bc42973946304a98a6a0f330b589cc69967dc479da832d0",
       "baselineSha256": "ba731921247bbfe7b96ab5703ec235a489ca288a6a61306b462108de48a25beb",
       "guid": "14a28458a38c9304daa0849264690099",
       "types": [
@@ -4264,7 +4264,7 @@
         "Check",
         "Report"
       ],
-      "lines": 442,
+      "lines": 469,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -4280,18 +4280,24 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "BUG-016: reflection ищет удалённое поле <Ammo>k__BackingField; временные GroundAudioSurface2D не injected и не попадают в scene registry. Исторические HP/timing предположения.",
-      "reviewedSha256": "7690142601419dad8d85e90b83c5d7441d2832f3d1b45ff7be4b82a76b770a8e",
+      "notes": "BUG-016 fixed: 3 real negative stages; current weapon API and own-level surface injection, 34 probe checks/17 PlayMode passed. Explicit isolated destructive Development fixture; full lifecycle/style pass still pending, not a gameplay controller.",
+      "reviewedSha256": "a8557d0ff8a5e81a2bc42973946304a98a6a0f330b589cc69967dc479da832d0",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "partial",
           "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+          "reviewedSha256": "7690142601419dad8d85e90b83c5d7441d2832f3d1b45ff7be4b82a76b770a8e"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "BUG-016: reflection ищет удалённое поле <Ammo>k__BackingField; временные GroundAudioSurface2D не injected и не попадают в scene registry. Исторические HP/timing предположения.",
           "reviewedSha256": "7690142601419dad8d85e90b83c5d7441d2832f3d1b45ff7be4b82a76b770a8e"
         }
       ],
@@ -4315,8 +4321,9 @@
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/AudioProbe02.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
@@ -13031,6 +13038,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "Loads real MechanicsSandbox in disposable Play, invokes actual Editor-only probe, bounds wait at 70 seconds, unloads own scene and restores previous active/timeScale. 34 probe checks/17 full PlayMode passed. See AudioProbe02 limitations.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs",
+      "sourceScope": "unity",
+      "sha256": "eab545046434a30a9a4535e86acd9de690435644d358f9526edf5a81b1754594",
+      "guid": "a4122f618e2dee5449cb9d1e660f4aa7",
+      "types": [
+        "AdaptiveAudioProbeRegressionTests"
+      ],
+      "lines": 67,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "eab545046434a30a9a4535e86acd9de690435644d358f9526edf5a81b1754594",
+      "reviewReport": "Docs/Reports/AudioProbe02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "responsibility": "5 real PlayMode pending-save lifetime regressions",
       "notes": "Isolated runtime scene and temporary slot; real MonoBehaviour coroutine and moving door, controlled unsettled gore, Clear/deletion/revisit/new save/finish. Per-test registry/path cleanup; no user gameplay/scene or save files. 3 old failures, 5/5 after fix.",
       "dependencies": [
@@ -13548,14 +13582,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 296,
+    "unity": 297,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 5,
-    "report": "Docs/Reports/BloodSafety01.md",
-    "validation": "33 original EditMode + 4 PlayMode failures; after fix 481/481 own EditMode, 16/16 real PlayMode, normal Windows64 success. Original authored resources unchanged."
+    "files": 2,
+    "report": "Docs/Reports/AudioProbe02.md",
+    "validation": "3 original real probe failures in sequence; 34/34 internal checks, 17/17 full PlayMode after fix. Production Runtime/resources unchanged; no repeated EditMode/build."
   },
   "reviewPasses": [
     {
@@ -13629,15 +13663,21 @@
       "files": 5,
       "report": "Docs/Reports/BloodSafety01.md",
       "validation": "33 original EditMode + 4 PlayMode failures; after fix 481/481 own EditMode, 16/16 real PlayMode, normal Windows64 success. Original authored resources unchanged."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 2,
+      "report": "Docs/Reports/AudioProbe02.md",
+      "validation": "3 original real probe failures in sequence; 34/34 internal checks, 17/17 full PlayMode after fix. Production Runtime/resources unchanged; no repeated EditMode/build."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 315,
-    "totalFiles": 315,
+    "reviewedFiles": 316,
+    "totalFiles": 316,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "BloodSafety01 and earlier source reviews; remaining partial files are not certified migrated."
+    "validation": "AudioProbe02 and earlier reviews; remaining partial files are not certified migrated."
   }
 }

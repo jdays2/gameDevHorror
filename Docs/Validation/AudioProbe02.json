@@ -1,0 +1,580 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "82d1a7cc9e254fd08f3fea890e710e9570e8a121",
+  "bug": "BUG-016",
+  "unityVersion": "6000.6.5f1",
+  "playMode": {
+    "result": "Passed",
+    "total": "17",
+    "passed": "17",
+    "failed": "0",
+    "skipped": "0"
+  },
+  "caseNames": [
+    "EmergencyShift.Tests.AdaptiveAudioProbeRegressionTests.ExistingOptInProbeCompletesDryFireAndAllThreeGroundMaterials",
+    "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearImmediatelyCancelsOlderRequestAndDeletesAllSlotFiles",
+    "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileDoorMovesPreventsWriteAfterDoorSettles",
+    "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileGoreIsUnsettledPreventsWriteAfterItSettles",
+    "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FinishingLevelStillCancelsPendingSaveAndClearsSlot",
+    "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FreshRequestAfterClearCanSavePreviouslyVisitedCheckpoint",
+    "EmergencyShift.Tests.DialogueSessionLifetimeTests.DisabledComponentCannotOfferOrStartConversation",
+    "EmergencyShift.Tests.DialogueSessionLifetimeTests.DisablingAnOpenSessionRestoresPresentationAndKeepsOtherOwners",
+    "EmergencyShift.Tests.DialogueSessionLifetimeTests.InactiveRootCannotStartConversation",
+    "EmergencyShift.Tests.DialogueSessionLifetimeTests.ReenabledSessionCompletesBothBranchesAndFencesConfirmation",
+    "EmergencyShift.Tests.TransientBloodSceneTests.HitSprayIsRemovedWithOwnerWhileItsTimerIsFrozen",
+    "EmergencyShift.Tests.TransientBloodSceneTests.HitSprayUsesSourceScene",
+    "EmergencyShift.Tests.TransientBloodSceneTests.RuptureIsRemovedWithOwnerWhileItsTimerIsFrozen",
+    "EmergencyShift.Tests.TransientBloodSceneTests.RuptureUsesSourceScene",
+    "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ActualVolleyKeepsAllDirectionsWithDifferentFlashAndCosmeticDraws",
+    "EmergencyShift.Tests.WeaponSpreadLifetimeTests.BlockedMuzzleProducesImpactAndConsumesAmmoWithoutLaunchingBullets",
+    "EmergencyShift.Tests.WeaponSpreadLifetimeTests.DisablingViewCancelsPartialReloadAndReenableKeepsItsAmmo"
+  ],
+  "probe": {
+    "failure": "",
+    "mode": "tests",
+    "finished": true,
+    "frames": 0,
+    "sampleRate": 48000,
+    "peak": 0.0,
+    "checks": [
+      {
+        "name": "Three bounded sources playing synchronous9s PCM loops",
+        "passed": true,
+        "time": 1.160325050354004
+      },
+      {
+        "name": "Silent unseen aggro behind wall does not reveal enemy",
+        "passed": true,
+        "time": 1.5103254318237305
+      },
+      {
+        "name": "Real shot immediately ducks atmosphere",
+        "passed": true,
+        "time": 1.5103254318237305
+      },
+      {
+        "name": "Shooting an empty area does not start combat",
+        "passed": true,
+        "time": 1.8104606866836548
+      },
+      {
+        "name": "Visible source in another scene is ignored",
+        "passed": true,
+        "time": 2.1106936931610107
+      },
+      {
+        "name": "Lamp behind the player's wall does not reveal creature",
+        "passed": true,
+        "time": 4.1117095947265625
+      },
+      {
+        "name": "Local lamp reveals creature without fear-light activation",
+        "passed": true,
+        "time": 4.511861801147461
+      },
+      {
+        "name": "Darkness and expired memory remove lamp visibility",
+        "passed": true,
+        "time": 5.411972999572754
+      },
+      {
+        "name": "Flashlight discovery enters Threat",
+        "passed": true,
+        "time": 5.812239646911621
+      },
+      {
+        "name": "Known enemy is killed by the actual projectile",
+        "passed": true,
+        "time": 5.992368698120117
+      },
+      {
+        "name": "Shot at a known enemy enters Combat even when projectile kills it",
+        "passed": true,
+        "time": 5.992368698120117
+      },
+      {
+        "name": "Death and expired perception return to Explore",
+        "passed": true,
+        "time": 7.392632961273193
+      },
+      {
+        "name": "One perceived close pursuer starts Combat without a shot or attack",
+        "passed": true,
+        "time": 7.792765140533447
+      },
+      {
+        "name": "Two perceived pursuers start Combat outside close radius without a shot",
+        "passed": true,
+        "time": 9.692999839782715
+      },
+      {
+        "name": "Actually heard attack cue starts Combat without flashlight",
+        "passed": true,
+        "time": 11.393258094787598
+      },
+      {
+        "name": "Nonlethal player damage accepted",
+        "passed": true,
+        "time": 12.39349365234375
+      },
+      {
+        "name": "Damage immediately ducks background",
+        "passed": true,
+        "time": 12.39349365234375
+      },
+      {
+        "name": "Damage escalates combat below full health",
+        "passed": true,
+        "time": 12.593681335449219
+      },
+      {
+        "name": "Flashlight toggling plays mechanical cue",
+        "passed": true,
+        "time": 12.594295501708984
+      },
+      {
+        "name": "Empty pistol plays a bounded dry trigger cue",
+        "passed": true,
+        "time": 12.597990989685059
+      },
+      {
+        "name": "Teleport does not fake a footstep Concrete",
+        "passed": true,
+        "time": 12.678321838378906
+      },
+      {
+        "name": "Actual travel resolves Concrete footstep",
+        "passed": true,
+        "time": 13.52859115600586
+      },
+      {
+        "name": "Standing still is silent Concrete",
+        "passed": true,
+        "time": 13.878792762756348
+      },
+      {
+        "name": "Teleport does not fake a footstep Wood",
+        "passed": true,
+        "time": 13.959004402160645
+      },
+      {
+        "name": "Actual travel resolves Wood footstep",
+        "passed": true,
+        "time": 14.809149742126465
+      },
+      {
+        "name": "Standing still is silent Wood",
+        "passed": true,
+        "time": 15.1593017578125
+      },
+      {
+        "name": "Teleport does not fake a footstep Tile",
+        "passed": true,
+        "time": 15.239481925964355
+      },
+      {
+        "name": "Actual travel resolves Tile footstep",
+        "passed": true,
+        "time": 16.089773178100586
+      },
+      {
+        "name": "Standing still is silent Tile",
+        "passed": true,
+        "time": 16.440135955810547
+      },
+      {
+        "name": "Game pause freezes ambient playback",
+        "passed": true,
+        "time": 16.440135955810547
+      },
+      {
+        "name": "Resume preserves playing layers",
+        "passed": true,
+        "time": 16.69045066833496
+      },
+      {
+        "name": "Disable stops all scene audio layers",
+        "passed": true,
+        "time": 16.690799713134766
+      },
+      {
+        "name": "Re-enable resets scene mood and restarts",
+        "passed": true,
+        "time": 17.041053771972656
+      },
+      {
+        "name": "Player death fades the bed and stops new footsteps",
+        "passed": true,
+        "time": 19.041141510009766
+      }
+    ],
+    "timeline": []
+  },
+  "negativeStages": {
+    "baseline": {
+      "failure": "System.InvalidOperationException: Failed: Damage escalates combat at low health",
+      "checks": [
+        {
+          "name": "Three bounded sources playing synchronous9s PCM loops",
+          "passed": true,
+          "time": 1.1605085134506226
+        },
+        {
+          "name": "Silent unseen aggro behind wall does not reveal enemy",
+          "passed": true,
+          "time": 1.5105135440826416
+        },
+        {
+          "name": "Real shot immediately ducks atmosphere",
+          "passed": true,
+          "time": 1.5105135440826416
+        },
+        {
+          "name": "Shooting an empty area does not start combat",
+          "passed": true,
+          "time": 1.810715913772583
+        },
+        {
+          "name": "Visible source in another scene is ignored",
+          "passed": true,
+          "time": 2.1108238697052
+        },
+        {
+          "name": "Lamp behind the player's wall does not reveal creature",
+          "passed": true,
+          "time": 4.111728668212891
+        },
+        {
+          "name": "Local lamp reveals creature without fear-light activation",
+          "passed": true,
+          "time": 4.5118255615234375
+        },
+        {
+          "name": "Darkness and expired memory remove lamp visibility",
+          "passed": true,
+          "time": 5.41200065612793
+        },
+        {
+          "name": "Flashlight discovery enters Threat",
+          "passed": true,
+          "time": 5.812184810638428
+        },
+        {
+          "name": "Known enemy is killed by the actual projectile",
+          "passed": true,
+          "time": 5.992370128631592
+        },
+        {
+          "name": "Shot at a known enemy enters Combat even when projectile kills it",
+          "passed": true,
+          "time": 5.992370128631592
+        },
+        {
+          "name": "Death and expired perception return to Explore",
+          "passed": true,
+          "time": 7.392599582672119
+        },
+        {
+          "name": "One perceived close pursuer starts Combat without a shot or attack",
+          "passed": true,
+          "time": 7.792764663696289
+        },
+        {
+          "name": "Two perceived pursuers start Combat outside close radius without a shot",
+          "passed": true,
+          "time": 9.692974090576172
+        },
+        {
+          "name": "Actually heard attack cue starts Combat without flashlight",
+          "passed": true,
+          "time": 11.393287658691406
+        },
+        {
+          "name": "Nonlethal player damage accepted",
+          "passed": true,
+          "time": 12.39339542388916
+        },
+        {
+          "name": "Damage immediately ducks background",
+          "passed": true,
+          "time": 12.39339542388916
+        },
+        {
+          "name": "Damage escalates combat at low health",
+          "passed": false,
+          "time": 12.593697547912598
+        }
+      ]
+    },
+    "ammo-red": {
+      "failure": "System.InvalidOperationException: PlayerWeapon2D.<Ammo>k__BackingField",
+      "checks": [
+        {
+          "name": "Three bounded sources playing synchronous9s PCM loops",
+          "passed": true,
+          "time": 1.1678054332733154
+        },
+        {
+          "name": "Silent unseen aggro behind wall does not reveal enemy",
+          "passed": true,
+          "time": 1.5179420709609985
+        },
+        {
+          "name": "Real shot immediately ducks atmosphere",
+          "passed": true,
+          "time": 1.5179420709609985
+        },
+        {
+          "name": "Shooting an empty area does not start combat",
+          "passed": true,
+          "time": 1.817971110343933
+        },
+        {
+          "name": "Visible source in another scene is ignored",
+          "passed": true,
+          "time": 2.1179893016815186
+        },
+        {
+          "name": "Lamp behind the player's wall does not reveal creature",
+          "passed": true,
+          "time": 4.118816375732422
+        },
+        {
+          "name": "Local lamp reveals creature without fear-light activation",
+          "passed": true,
+          "time": 4.518879413604736
+        },
+        {
+          "name": "Darkness and expired memory remove lamp visibility",
+          "passed": true,
+          "time": 5.419133186340332
+        },
+        {
+          "name": "Flashlight discovery enters Threat",
+          "passed": true,
+          "time": 5.819207191467285
+        },
+        {
+          "name": "Known enemy is killed by the actual projectile",
+          "passed": true,
+          "time": 5.999269485473633
+        },
+        {
+          "name": "Shot at a known enemy enters Combat even when projectile kills it",
+          "passed": true,
+          "time": 5.999269485473633
+        },
+        {
+          "name": "Death and expired perception return to Explore",
+          "passed": true,
+          "time": 7.399395942687988
+        },
+        {
+          "name": "One perceived close pursuer starts Combat without a shot or attack",
+          "passed": true,
+          "time": 7.799421787261963
+        },
+        {
+          "name": "Two perceived pursuers start Combat outside close radius without a shot",
+          "passed": true,
+          "time": 9.699894905090332
+        },
+        {
+          "name": "Actually heard attack cue starts Combat without flashlight",
+          "passed": true,
+          "time": 11.402338981628418
+        },
+        {
+          "name": "Nonlethal player damage accepted",
+          "passed": true,
+          "time": 12.402371406555176
+        },
+        {
+          "name": "Damage immediately ducks background",
+          "passed": true,
+          "time": 12.402371406555176
+        },
+        {
+          "name": "Damage escalates combat below full health",
+          "passed": true,
+          "time": 12.602487564086914
+        },
+        {
+          "name": "Flashlight toggling plays mechanical cue",
+          "passed": true,
+          "time": 12.603140830993652
+        }
+      ]
+    },
+    "ground-red": {
+      "failure": "System.InvalidOperationException: Failed: Actual travel resolves Wood footstep",
+      "checks": [
+        {
+          "name": "Three bounded sources playing synchronous9s PCM loops",
+          "passed": true,
+          "time": 1.1605254411697388
+        },
+        {
+          "name": "Silent unseen aggro behind wall does not reveal enemy",
+          "passed": true,
+          "time": 1.5106189250946045
+        },
+        {
+          "name": "Real shot immediately ducks atmosphere",
+          "passed": true,
+          "time": 1.5106189250946045
+        },
+        {
+          "name": "Shooting an empty area does not start combat",
+          "passed": true,
+          "time": 1.8106831312179565
+        },
+        {
+          "name": "Visible source in another scene is ignored",
+          "passed": true,
+          "time": 2.110851764678955
+        },
+        {
+          "name": "Lamp behind the player's wall does not reveal creature",
+          "passed": true,
+          "time": 4.111947059631348
+        },
+        {
+          "name": "Local lamp reveals creature without fear-light activation",
+          "passed": true,
+          "time": 4.512092590332031
+        },
+        {
+          "name": "Darkness and expired memory remove lamp visibility",
+          "passed": true,
+          "time": 5.412185192108154
+        },
+        {
+          "name": "Flashlight discovery enters Threat",
+          "passed": true,
+          "time": 5.812344551086426
+        },
+        {
+          "name": "Known enemy is killed by the actual projectile",
+          "passed": true,
+          "time": 5.99237060546875
+        },
+        {
+          "name": "Shot at a known enemy enters Combat even when projectile kills it",
+          "passed": true,
+          "time": 5.99237060546875
+        },
+        {
+          "name": "Death and expired perception return to Explore",
+          "passed": true,
+          "time": 7.392587661743164
+        },
+        {
+          "name": "One perceived close pursuer starts Combat without a shot or attack",
+          "passed": true,
+          "time": 7.792720317840576
+        },
+        {
+          "name": "Two perceived pursuers start Combat outside close radius without a shot",
+          "passed": true,
+          "time": 9.693001747131348
+        },
+        {
+          "name": "Actually heard attack cue starts Combat without flashlight",
+          "passed": true,
+          "time": 11.393062591552734
+        },
+        {
+          "name": "Nonlethal player damage accepted",
+          "passed": true,
+          "time": 12.393104553222656
+        },
+        {
+          "name": "Damage immediately ducks background",
+          "passed": true,
+          "time": 12.393104553222656
+        },
+        {
+          "name": "Damage escalates combat below full health",
+          "passed": true,
+          "time": 12.593334197998047
+        },
+        {
+          "name": "Flashlight toggling plays mechanical cue",
+          "passed": true,
+          "time": 12.593941688537598
+        },
+        {
+          "name": "Empty pistol plays a bounded dry trigger cue",
+          "passed": true,
+          "time": 12.5978422164917
+        },
+        {
+          "name": "Teleport does not fake a footstep Concrete",
+          "passed": true,
+          "time": 12.678156852722168
+        },
+        {
+          "name": "Actual travel resolves Concrete footstep",
+          "passed": true,
+          "time": 13.528424263000488
+        },
+        {
+          "name": "Standing still is silent Concrete",
+          "passed": true,
+          "time": 13.878570556640625
+        },
+        {
+          "name": "Teleport does not fake a footstep Wood",
+          "passed": true,
+          "time": 13.958695411682129
+        },
+        {
+          "name": "Actual travel resolves Wood footstep",
+          "passed": false,
+          "time": 14.808760643005371
+        }
+      ]
+    }
+  },
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs": "a8557d0ff8a5e81a2bc42973946304a98a6a0f330b589cc69967dc479da832d0",
+    "Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs": "eab545046434a30a9a4535e86acd9de690435644d358f9526edf5a81b1754594"
+  },
+  "originalResourceGuards": {
+    "Assets/EmergencyShift/Audio/MenuMusic.meta": true,
+    "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseIntro.wav": true,
+    "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseIntro.wav.meta": true,
+    "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseLoop.wav": true,
+    "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseLoop.wav.meta": true,
+    "Assets/EmergencyShift/Data/Audio/PauseMenuAudio.asset": true,
+    "Assets/EmergencyShift/Data/Audio/PauseMenuAudio.asset.meta": true,
+    "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs.meta": true,
+    "Assets/EmergencyShift/Prefabs/UI/PauseMenuUI.prefab": true,
+    "Assets/EmergencyShift/Prefabs/UI/PauseMenuUI.prefab.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Config.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Config/PauseMenuAudioConfig.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/IPauseMenuEnvironment.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuModel.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs.meta": true,
+    "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs.meta": true,
+    "Assets/EmergencyShift/Tests/EditMode/PauseMenuTests.cs.meta": true,
+    "Concepts/Used/Audio/PauseMenuMusic01/Previews/BelowTheWardPauseLoop_Seam.wav": true,
+    "Concepts/Used/Audio/PauseMenuMusic01/Previews/BelowTheWardPauseLoop_TwoRepeats.wav": true,
+    "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity": true,
+    "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity": true,
+    "Assets/EmergencyShift/Settings/EmergencyShiftControls.inputactions": true,
+    "ProjectSettings/ProjectSettings.asset": true
+  },
+  "limits": "Disposable copy of dirty working tree includes accepted pause source. No new EditMode/build: production Runtime unchanged; prior BloodSafety01 481 EditMode and normal Windows64 remain evidence for that runtime, not new runs. No audition or profiler measurement."
+}
