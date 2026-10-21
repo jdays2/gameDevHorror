@@ -1,6 +1,6 @@
 # Враги и останки
 
-Health, общая melee-атака, патруль и обе видовые FSM имеют чистые модели/команды и scoped-фабрики. Навигация и другие оставшиеся границы ещё переносятся.
+Health, общая melee-атака, патруль, обе видовые FSM и расчёт пути имеют чистые личные модели и scoped-фабрики. Остальные config/style и игровые границы ещё переносятся.
 
 Архитектурная цель — [ADR-001](../Decisions/001-sod-architecture.md); фактическая карта ниже перенесена из ARCHITECTURE без изменения поведения. При кодовой миграции обновлять её по исходникам.
 
@@ -10,7 +10,7 @@ Health, общая melee-атака, патруль и обе видовые FSM
 |---|---|
 | Текущее HP и однократная смерть | [HealthModel/команды](Health.md), EnemyHealth2D — адаптер |
 | Видимость, радиус, воздействие света | EnemyPerception2D, контракт IThreatLight2D |
-| Управление телом, обход, путь | EnemyMotor2D + EnemyChasePath2D |
+| Управление телом, обход, путь | EnemyMotor2D — native movement; EnemyChasePathModel + geometry/schedule, прежний EnemyChasePath2D — API adapter |
 | Соседи и бюджет поиска | CrowdAgent2D + NavigationWorkBudget2D |
 | Тайминг выпада, дистанция/стена, доставка урона | EnemyMeleeModel/Controller/commands, отдельный EnemyMeleeEnvironment2D; EnemyMeleeAttack2D — bridge |
 | Мирные точки/паузы | EnemyPatrolModel/Controller, личный RNG и отдельная геометрия; EnemyPatrol2D — scene/DTO/gizmo adapter |
@@ -28,7 +28,9 @@ Health, общая melee-атака, патруль и обе видовые FSM
 
 FSM Спящего хранит экспозицию, агрессию, фазы и stagger в SleeperModel с settings/clock. Controller связывает команды с интерфейсами motor/melee, прежний Sleeper2D владеет native lifecycle, событиями и Snapshot. [Локальный живой цикл и ограничения](../Reports/SleeperBrain03.md).
 
-FSM Сталкера хранит состояние, агрессию, страх, ожог и stagger в StalkerModel с settings/clock. Controller передаёт решения в отдельные locomotion/melee-порты; ShadowStalker2D сохраняет native lifecycle, события и DTO, включая миграцию eyeBurned. Подписка сброса патруля освобождается controller.Dispose. [Реальная проверка цикла и цена](../Reports/StalkerBrain04.md). Навигация/остальные модули проверяются отдельно.
+FSM Сталкера хранит состояние, агрессию, страх, ожог и stagger в StalkerModel с settings/clock. Controller передаёт решения в отдельные locomotion/melee-порты; ShadowStalker2D сохраняет native lifecycle, события и DTO, включая миграцию eyeBurned. Подписка сброса патруля освобождается controller.Dispose. [Реальная проверка цикла и цена](../Reports/StalkerBrain04.md).
+
+Расчёт A* и личный кэш находятся в EnemyChasePathModel; Physics2D — в geometry, clock/RNG/квота — в schedule. Сохранены ограничения поиска и прежний recorder. Проверка размеров до умножения защищает массивы от переполнения. [BUG-021, настоящий обход стены и цена](../Reports/Navigation05.md). Параметры расписания и остальные configs/style остаются в общем проходе.
 
 ## Три вида данных
 

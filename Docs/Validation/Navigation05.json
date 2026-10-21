@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "40fd2e90aef8202bfccfc1b4ad772f5dc830bc63",
+  "unityVersion": "6000.6.5f1",
+  "baselineFailure": {
+    "result": "Failed(Child)",
+    "total": "1",
+    "passed": "0",
+    "failed": "1",
+    "skipped": "0",
+    "end-time": "2026-10-21 16:32:56Z",
+    "rawResultSha256": "ed7a0d6640d4c0010651c4cb7200b12f9802a739fcce4ef678ca637c1da08643",
+    "rawPath": "work/sod-evidence-20261021/nav-baseline-edit.xml",
+    "selectedCases": [
+      "EmergencyShift.Tests.EnemyNavigationSafetyTests.OversizedRouteCannotOverflowTheBoundedGrid"
+    ],
+    "failures": [
+      {
+        "test": "EmergencyShift.Tests.EnemyNavigationSafetyTests.OversizedRouteCannotOverflowTheBoundedGrid",
+        "message": "  Expected: No Exception to be thrown\n  But was:  <System.IndexOutOfRangeException: Index was outside the bounds of the array.\n  at EmergencyShift.EnemyChasePath2D.Walkable (System.Int32 node, System.Single radius, UnityEngine.LayerMask solids) [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Enemies\\Common\\EnemyChasePath2D.cs:268 \n  at EmergencyShift.EnemyChasePath2D.Nearest (UnityEngine.Vector2 point, System.Single radius, UnityEngine.LayerMask solids, System.Boolean start) [0x00098] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Enemies\\Common\\EnemyChasePath2D.cs:238 \n  at EmergencyShift.EnemyChasePath2D.Build (UnityEngine.Vector2 start, UnityEngine.Vector2 goal, System.Single radius, UnityEngine.LayerMask solids) [0x0017a] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Enemies\\Common\\EnemyChasePath2D.cs:135 \n  at EmergencyShift.EnemyChasePath2D.Direction (UnityEngine.Vector2 position, UnityEngine.Vector2 goal, System.Single radius, UnityEngine.LayerMask solids) [0x00072] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Enemies\\Common\\EnemyChasePath2D.cs:60 \n  at EmergencyShift.Tests.EnemyNavigationSafetyTests+<>c__DisplayClass0_0.<OversizedRouteCannotOverflowTheBoundedGrid>b__0 () [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Tests\\EditMode\\EnemyNavigationSafetyTests.cs:24 \n  at NUnit.Framework.Constraints.ThrowsConstraint+VoidInvocationDescriptor.Invoke () [0x00001] in <8b63e8ac0a4746599ed207982825ae6c>:0 \n  at NUnit.Framework.Constraints.ThrowsConstraint+ExceptionInterceptor.Intercept (System.Object invocation) [0x00050] in <8b63e8ac0a4746599ed207982825ae6c>:0 >\n"
+      }
+    ]
+  },
+  "baselineSource": {
+    "revision": "40fd2e90aef8202bfccfc1b4ad772f5dc830bc63",
+    "sourceSha256": {
+      "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs": "6ee96fab5d796e7455fe2a50b487d508b7471d2aad5cc667a1cdfe3de816027e",
+      "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs": "a0bbd0bfaaa978e482703b6e27ee72c2945517d028dc0de58568c1b9e14b1fb4"
+    }
+  },
+  "initialNewGeometryFixtureFailure": {
+    "result": "Failed(Child)",
+    "total": "1",
+    "passed": "0",
+    "failed": "1",
+    "skipped": "0",
+    "end-time": "2026-10-21 16:29:31Z",
+    "rawResultSha256": "b65bf932ecca904ec19f6eb75c0217145aa2b9e5b038f16c2b0db532f8fa26ca",
+    "rawPath": "work/sod-evidence-20261021/nav-debug-edit.xml",
+    "selectedCases": [
+      "EmergencyShift.Tests.EnemyPathModelTests.CachedBoundedPathFindsAWayAroundWallWithoutRebuildingEachStep"
+    ],
+    "failures": [
+      {
+        "test": "EmergencyShift.Tests.EnemyPathModelTests.CachedBoundedPathFindsAWayAroundWallWithoutRebuildingEachStep",
+        "message": "  0: (0.00, 0.00) => (0.45, -0.89), waypoints 7\n1: (0.03, -0.05) => (0.45, -0.89), waypoints 7\n2: (0.05, -0.11) => (0.45, -0.89), waypoints 7\n3: (0.08, -0.16) => (0.45, -0.89), waypoints 7\n4: (0.11, -0.21) => (0.45, -0.89), waypoints 7\n5: (0.13, -0.27) => (0.45, -0.89), waypoints 7\n6: (0.16, -0.32) => (0.45, -0.89), waypoints 7\n7: (0.19, -0.38) => (0.45, -0.89), waypoints 7\n8: (0.21, -0.43) => (0.45, -0.89), waypoints 7\n9: (0.24, -0.48) => (0.45, -0.89), waypoints 7\n10: (0.27, -0.54) => (0.45, -0.89), waypoints 7\n11: (0.30, -0.59) => (0.45, -0.89), waypoints 7\n12: (0.32, -0.64) => (0.45, -0.89), waypoints 7\n13: (0.35, -0.70) => (0.45, -0.89), waypoints 7\n14: (0.38, -0.75) => (0.45, -0.89), waypoints 7\n15: (0.40, -0.80) => (0.45, -0.89), waypoints 7\n16: (0.43, -0.86) => (0.45, -0.89), waypoints 7\n17: (0.46, -0.91) => (0.45, -0.89), waypoints 7\n18: (0.48, -0.97) => (0.45, -0.89), waypoints 7\n19: (0.51, -1.02) => (0.45, -0.89), waypoints 7\n20: (0.54, -1.07) => (0.98, -0.19), waypoints 6\n21: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n22: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n23: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n24: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n25: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n26: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n27: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n28: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n29: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n30: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n31: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n32: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n33: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n34: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n35: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n36: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n37: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n38: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n39: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n40: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n41: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n42: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n43: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n44: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n45: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n46: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n47: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n48: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n49: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n50: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n51: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n52: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n53: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n54: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n55: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n56: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n57: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n58: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n59: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n60: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n61: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n62: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n63: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n64: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n65: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n66: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n67: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n68: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n69: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n70: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n71: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n72: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n73: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n74: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n75: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n76: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n77: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n78: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n79: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n80: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n81: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n82: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n83: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n84: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n85: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n86: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n87: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n88: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n89: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n90: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n91: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n92: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n93: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n94: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n95: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n96: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n97: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n98: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n99: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n100: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n101: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n102: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n103: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n104: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n105: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n106: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n107: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n108: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n109: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n110: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n111: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n112: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n113: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n114: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n115: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n116: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n117: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n118: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n119: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n120: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n121: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n122: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n123: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n124: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n125: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n126: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n127: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n128: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n129: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n130: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n131: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n132: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n133: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n134: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n135: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n136: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n137: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n138: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n139: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n140: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n141: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n142: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n143: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n144: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n145: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n146: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n147: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n148: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n149: (0.60, -1.08) => (0.00, 0.00), waypoints 0\n\n  Expected: less than or equal to 0.119999997f\n  But was:  2.63770151f\n"
+      }
+    ]
+  },
+  "fixtureCorrection": "Controlled time permits normal replanning; exact swept-circle clearance replaces expanded-square corner approximation. Runtime path rules were not changed for that fixture.",
+  "editMode": {
+    "result": "Passed",
+    "total": "638",
+    "passed": "638",
+    "failed": "0",
+    "skipped": "0",
+    "end-time": "2026-10-21 16:40:33Z",
+    "rawResultSha256": "b4b039410df059e00f85995e2727b425d6f0824e916ab09db3ca66f33cbbfaeb",
+    "rawPath": "work/sod-evidence-20261021/nav-final-edit.xml",
+    "selectedCases": [
+      "EmergencyShift.Tests.EnemyPathModelTests.CachedBoundedPathFindsAWayAroundWallWithoutRebuildingEachStep",
+      "EmergencyShift.Tests.EnemyPathModelTests.ClearRouteNeedsNeitherBuildQuotaNorGridAndArrivalStops",
+      "EmergencyShift.Tests.EnemyPathModelTests.FiniteEndpointsCannotSendAnOverflowedDisplacementToGeometry",
+      "EmergencyShift.Tests.EnemyPathModelTests.InvalidClockDoesNotReserveAndInvalidationAllowsAnEarlyRetry",
+      "EmergencyShift.Tests.EnemyPathModelTests.InvalidInputIsRejectedBeforeGeometryOrQuota(float.NaN,0.2f)",
+      "EmergencyShift.Tests.EnemyPathModelTests.InvalidInputIsRejectedBeforeGeometryOrQuota(float.PositiveInfinity,0.2f)",
+      "EmergencyShift.Tests.EnemyPathModelTests.InvalidInputIsRejectedBeforeGeometryOrQuota(3,-1)",
+      "EmergencyShift.Tests.EnemyPathModelTests.InvalidInputIsRejectedBeforeGeometryOrQuota(3,float.NaN)",
+      "EmergencyShift.Tests.EnemyPathModelTests.MovingGoalInvalidatesCachedRouteAndDirectSightClearsIt",
+      "EmergencyShift.Tests.EnemyPathModelTests.OversizedGridDoesNotSampleCellsOrAllocateAWaypointRoute(39312.5f)",
+      "EmergencyShift.Tests.EnemyPathModelTests.OversizedGridDoesNotSampleCellsOrAllocateAWaypointRoute(1000000)",
+      "EmergencyShift.Tests.EnemyPathModelTests.ScheduleUsesSharedQuotaButPersonalTimeAndJitter",
+      "EmergencyShift.Tests.EnemyPathModelTests.TwoActorsDoNotShareRouteCursorOrInvalidation"
+    ],
+    "failures": []
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "25",
+    "passed": "25",
+    "failed": "0",
+    "skipped": "0",
+    "end-time": "2026-10-21 16:42:35Z",
+    "rawResultSha256": "e9470b7832a73876c2d48e8c8503a37f420cdd68bb34cc847defa43d980ceee5",
+    "rawPath": "work/sod-evidence-20261021/nav-final-play.xml",
+    "selectedCases": [
+      "EmergencyShift.Tests.EnemyNavigationSceneTests.RealAggroStalkerNavigatesAroundWallWithoutCrossingIt"
+    ],
+    "failures": []
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T16:43:47.350Z",
+    "endedAt": "2026-10-21T16:44:12.018Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyChasePathModel.cs": "dcf3234e3a985307745f1720c4408b0e3367d0eb148b2dfcc6bc9bae025964a7",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPathSchedule.cs": "ee0dad85d1a8ac73fb6b1e41dd0e53b49bd6109af14acbac41576950f4ab7f0b",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPathBuildBudget.cs": "58eae4736b6ea5a95fc4fdb9474ef486349ba432e2371cbfec477382c4033bd3",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPathGeometry.cs": "5b46a5785fda5585bb9e4ab06396e0ed7165f9cceee04e8665fb7a7f2651345d",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPathSchedule.cs": "10dbef673046ceee99272cb30e799685c9a70c66c5b0982abd51babf7a7194a2",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs": "21820f180f6d22d49aec1fcf799beb0be77c5ff259f8afc27b98b0af9247fb13",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs": "2ce863bc7e540823667c6c7d927263a1c8319252c1fe4ec37eb5797e7c825a89",
+    "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs": "c1118e46cecbeae8475f8848d0fd266707ed88f3f25783940a4e9baf8c9bc420",
+    "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs": "7520953d87306c105e7ef063d46f13bef43814acf6f0007d65667246790f5462",
+    "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs": "192c4df5a4c86f52d46d1eadfaef7ac2d3beb70a02f45c27b8f594007cc60044",
+    "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs": "beff82725c4d846719d1f93b2cc02a4159512346b63bef6146d6c7601774aca8",
+    "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs": "7192b25c7b5a2f8ecccbee80765b4cb1fad7225e5ebc407712ec92153b3b5402",
+    "Assets/EmergencyShift/Runtime/Enemies/Common/NavigationWorkBudget2D.cs": "8727e1919450e680a1c3afc2e59445a18b4a5f5fc2a78d139acf9d081718646e"
+  },
+  "diagramSha256": "4c9b4519e0ba41c511bfa3613fa821cb48031db9bd0e667dee19938156c085e2",
+  "resourceBaselineScope": "1794 current asset/meta/scene/settings/audio files captured after primary Editor closed and cleared Temp; supplements earlier committed resource guards, does not recreate the original lost task baseline.",
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "protectedResources": 1794,
+  "resourceDifferences": [],
+  "limits": "Disposable dirty working tree includes original accepted pause work. Native Stalker actually navigates a local physical detour; not full authored map, art/audio acceptance or profiler results. Timing constants remain config-pass debt. Native build marker retained; small schedule-finalization work included."
+}

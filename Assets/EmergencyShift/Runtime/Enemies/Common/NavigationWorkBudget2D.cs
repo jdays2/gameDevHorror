@@ -1,10 +1,11 @@
 using EmergencyShift.Core.Scheduling;
 using EmergencyShift.Core.Time;
+using EmergencyShift.Features.Enemies.Logic;
 
 namespace EmergencyShift
 {
     /// <summary>Compatibility boundary for the existing shared path-build quota.</summary>
-    public sealed class NavigationWorkBudget2D
+    public sealed class NavigationWorkBudget2D : IEnemyPathBuildBudget
     {
         public const int MaximumBuildsPerFrame = 2;
         private readonly FrameWorkBudget budget;

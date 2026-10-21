@@ -1,6 +1,8 @@
 using System;
 using EmergencyShift.Core.Randomness;
 using EmergencyShift.Core.Time;
+using EmergencyShift.Features.Enemies.Logic;
+using EmergencyShift.Features.Enemies.View;
 
 namespace EmergencyShift
 {
@@ -17,6 +19,11 @@ namespace EmergencyShift
             this.random = random ?? throw new ArgumentNullException(nameof(random));
         }
 
-        internal EnemyChasePath2D Create() => new EnemyChasePath2D(clock, budget, random.Create());
+        internal EnemyChasePath2D Create()
+        {
+            var schedule = new EnemyPathSchedule(clock, budget, random.Create());
+            var path = new EnemyChasePathModel(new EnemyPathGeometry2D(), new ProfiledEnemyPathSchedule2D(schedule));
+            return new EnemyChasePath2D(path);
+        }
     }
 }

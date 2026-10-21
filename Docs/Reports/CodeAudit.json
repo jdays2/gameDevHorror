@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "434 own C# explicitly read; 95 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest StalkerBrain04.",
+  "limits": "444 own C# explicitly read; 95 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest Navigation05.",
   "counts": {
     "partial": 95,
-    "reviewed_boundary": 339
+    "reviewed_boundary": 349
   },
   "files": [
     {
@@ -2655,11 +2655,12 @@
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettings.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
-        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPathSchedule.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
@@ -2706,6 +2707,7 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -2835,6 +2837,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/NavigationWorkBudget2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
@@ -2875,12 +2878,12 @@
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
-        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPathSchedule.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
@@ -2891,6 +2894,8 @@
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -5622,13 +5627,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
-      "sha256": "6ee96fab5d796e7455fe2a50b487d508b7471d2aad5cc667a1cdfe3de816027e",
+      "sha256": "beff82725c4d846719d1f93b2cc02a4159512346b63bef6146d6c7601774aca8",
       "baselineSha256": "cf35402f8c133af54ea1b0f460fc9e96395c778ca43afbf574fe868917b623b5",
       "guid": "3173718c069f4314a8a68a07766839d7",
       "types": [
         "EnemyChasePath2D"
       ],
-      "lines": 284,
+      "lines": 15,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -5636,9 +5641,9 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Clock/RNG/budget уже внедрены, массивы ограничены MaxCells=4096, expansion=1536. Правила поиска всё ещё напрямую делают Physics2D-запросы; независимый graph/environment contract отсутствует. Три зависимости оправданы отдельными clock/quota/RNG, не context bag. Есть объединённые объявления first/last, x/y; числовая сетка/repath ещё не тематический config.",
-      "reviewedSha256": "6ee96fab5d796e7455fe2a50b487d508b7471d2aad5cc667a1cdfe3de816027e",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "reviewedSha256": "beff82725c4d846719d1f93b2cc02a4159512346b63bef6146d6c7601774aca8",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -5646,6 +5651,11 @@
           "reviewStatus": "partial",
           "reviewedSha256": "6ee96fab5d796e7455fe2a50b487d508b7471d2aad5cc667a1cdfe3de816027e",
           "notes": "Clock/quota/RNG injected; full bounded A-star and environment boundary review remains."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Clock/RNG/budget уже внедрены, массивы ограничены MaxCells=4096, expansion=1536. Правила поиска всё ещё напрямую делают Physics2D-запросы; независимый graph/environment contract отсутствует. Три зависимости оправданы отдельными clock/quota/RNG, не context bag. Есть объединённые объявления first/last, x/y; числовая сетка/repath ещё не тематический config.",
+          "reviewedSha256": "6ee96fab5d796e7455fe2a50b487d508b7471d2aad5cc667a1cdfe3de816027e"
         }
       ],
       "responsibility": "Ограниченный A* и кэш маршрута одного врага",
@@ -5657,28 +5667,30 @@
       ],
       "usageEvidence": "EnemyChasePathFactory → EnemyMotor2D.Follow",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/Navigation05.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
-      "sha256": "a0bbd0bfaaa978e482703b6e27ee72c2945517d028dc0de58568c1b9e14b1fb4",
+      "sha256": "7192b25c7b5a2f8ecccbee80765b4cb1fad7225e5ebc407712ec92153b3b5402",
       "baselineSha256": null,
       "guid": "3f58067470f4bc7499cf0a0437fa1eda",
       "types": [
         "EnemyChasePathFactory"
       ],
-      "lines": 22,
+      "lines": 29,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs",
-        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs"
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Фабрика создаёт отдельный path/RNG для каждого motor и не хранит объекты. Три explicit dependency — узкая композиция пути; не добавлять контейнер ради уменьшения их числа.",
-      "reviewedSha256": "a0bbd0bfaaa978e482703b6e27ee72c2945517d028dc0de58568c1b9e14b1fb4",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "reviewedSha256": "7192b25c7b5a2f8ecccbee80765b4cb1fad7225e5ebc407712ec92153b3b5402",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -5686,6 +5698,11 @@
           "reviewStatus": "reviewed_boundary",
           "reviewedSha256": "a0bbd0bfaaa978e482703b6e27ee72c2945517d028dc0de58568c1b9e14b1fb4",
           "notes": "Explicit clock, quota and RNG factory (three distinct dependencies); independent per-actor paths."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Фабрика создаёт отдельный path/RNG для каждого motor и не хранит объекты. Три explicit dependency — узкая композиция пути; не добавлять контейнер ради уменьшения их числа.",
+          "reviewedSha256": "a0bbd0bfaaa978e482703b6e27ee72c2945517d028dc0de58568c1b9e14b1fb4"
         }
       ],
       "responsibility": "Создание индивидуального пути",
@@ -5696,8 +5713,9 @@
       ],
       "usageEvidence": "LevelRegistriesInstaller binding; EnemyMotor2D injection",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/Navigation05.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyHealth2D.cs",
@@ -5982,13 +6000,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/NavigationWorkBudget2D.cs",
-      "sha256": "3951215a275d06a389e5396cd3444dc62b4b7f0302da00be2aec38dac5d0d4dd",
+      "sha256": "8727e1919450e680a1c3afc2e59445a18b4a5f5fc2a78d139acf9d081718646e",
       "baselineSha256": "da139dfad2d6cdfb9a1f09dea11d25c30c3f7fc157a52aa578e62d38d91231fc",
       "guid": "daef35141e335df48ad18e24983e1994",
       "types": [
         "NavigationWorkBudget2D"
       ],
-      "lines": 22,
+      "lines": 23,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -5996,14 +6014,14 @@
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
-        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Прежние 2 build/frame сохранены явной константой; экземплярный budget с внедрённым frame clock. Счётчики reservations не доказывают время кадра.",
-      "reviewedSha256": "3951215a275d06a389e5396cd3444dc62b4b7f0302da00be2aec38dac5d0d4dd",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "reviewedSha256": "8727e1919450e680a1c3afc2e59445a18b4a5f5fc2a78d139acf9d081718646e",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -6011,6 +6029,11 @@
           "reviewStatus": "reviewed_boundary",
           "reviewedSha256": "3951215a275d06a389e5396cd3444dc62b4b7f0302da00be2aec38dac5d0d4dd",
           "notes": "Compatibility adapter to the common quota; existing maximum two preserved."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Прежние 2 build/frame сохранены явной константой; экземплярный budget с внедрённым frame clock. Счётчики reservations не доказывают время кадра.",
+          "reviewedSha256": "3951215a275d06a389e5396cd3444dc62b4b7f0302da00be2aec38dac5d0d4dd"
         }
       ],
       "responsibility": "World-scoped квота построения путей",
@@ -6020,8 +6043,9 @@
       ],
       "usageEvidence": "LevelRegistriesInstaller; EnemyChasePath2D.TryReserve",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/Navigation05.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
@@ -6065,6 +6089,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
@@ -6267,6 +6292,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
@@ -7706,6 +7732,37 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyChasePathModel.cs",
+      "sourceScope": "unity",
+      "sha256": "dcf3234e3a985307745f1720c4408b0e3367d0eb148b2dfcc6bc9bae025964a7",
+      "guid": "42b39a4cc49a426eabec1b4a8839970e",
+      "types": [
+        "EnemyChasePathModel"
+      ],
+      "lines": 303,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "dcf3234e3a985307745f1720c4408b0e3367d0eb148b2dfcc6bc9bae025964a7",
+      "reviewReport": "Docs/Reports/Navigation05.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
       "sourceScope": "unity",
@@ -7836,6 +7893,36 @@
       ],
       "reviewedSha256": "55d6540e455157beb2870c838b9a9cacf4b17cc48d2644760a2ffe67b345dc63",
       "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "partial",
+      "notes": "Navigation05: personal pure clock/quota/RNG schedule validated and isolated. Explicit .65/.12 cache timing constants remain thematic config-pass debt; no claim whole SOD complete.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPathSchedule.cs",
+      "sourceScope": "unity",
+      "sha256": "ee0dad85d1a8ac73fb6b1e41dd0e53b49bd6109af14acbac41576950f4ab7f0b",
+      "guid": "e51ee68c623a4407b08f56f172c7eca2",
+      "types": [
+        "EnemyPathSchedule"
+      ],
+      "lines": 39,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "ee0dad85d1a8ac73fb6b1e41dd0e53b49bd6109af14acbac41576950f4ab7f0b",
+      "reviewReport": "Docs/Reports/Navigation05.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -8135,6 +8222,100 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPathBuildBudget.cs",
+      "sourceScope": "unity",
+      "sha256": "58eae4736b6ea5a95fc4fdb9474ef486349ba432e2371cbfec477382c4033bd3",
+      "guid": "89f09472b6d54d4e8c787b7269a29871",
+      "types": [
+        "IEnemyPathBuildBudget"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/NavigationWorkBudget2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPathSchedule.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "58eae4736b6ea5a95fc4fdb9474ef486349ba432e2371cbfec477382c4033bd3",
+      "reviewReport": "Docs/Reports/Navigation05.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPathGeometry.cs",
+      "sourceScope": "unity",
+      "sha256": "5b46a5785fda5585bb9e4ab06396e0ed7165f9cceee04e8665fb7a7f2651345d",
+      "guid": "76908237cb92407f8d7f818de0f73f8b",
+      "types": [
+        "IEnemyPathGeometry"
+      ],
+      "lines": 10,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyChasePathModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "5b46a5785fda5585bb9e4ab06396e0ed7165f9cceee04e8665fb7a7f2651345d",
+      "reviewReport": "Docs/Reports/Navigation05.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPathSchedule.cs",
+      "sourceScope": "unity",
+      "sha256": "10dbef673046ceee99272cb30e799685c9a70c66c5b0982abd51babf7a7194a2",
+      "guid": "ff010cce41da4990aa3403f57b953da0",
+      "types": [
+        "IEnemyPathSchedule"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyChasePathModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPathSchedule.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "10dbef673046ceee99272cb30e799685c9a70c66c5b0982abd51babf7a7194a2",
+      "reviewReport": "Docs/Reports/Navigation05.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPatrolEnvironment.cs",
       "sourceScope": "unity",
@@ -8149,6 +8330,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPathGeometry.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
       ],
@@ -9069,6 +9251,35 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs",
+      "sourceScope": "unity",
+      "sha256": "21820f180f6d22d49aec1fcf799beb0be77c5ff259f8afc27b98b0af9247fb13",
+      "guid": "aa3f800fed894da788d002f190eb8c08",
+      "types": [
+        "EnemyPathGeometry2D"
+      ],
+      "lines": 13,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "21820f180f6d22d49aec1fcf799beb0be77c5ff259f8afc27b98b0af9247fb13",
+      "reviewReport": "Docs/Reports/Navigation05.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
       "sourceScope": "unity",
@@ -9093,6 +9304,35 @@
       ],
       "reviewedSha256": "be9fc3e6515d2bc2c9d8687d1fcc242daa4474baa16170a7b043d45ff75b978c",
       "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs",
+      "sourceScope": "unity",
+      "sha256": "2ce863bc7e540823667c6c7d927263a1c8319252c1fe4ec37eb5797e7c825a89",
+      "guid": "6a03485aa7cd4e0fb439460961d6dfcf",
+      "types": [
+        "ProfiledEnemyPathSchedule2D"
+      ],
+      "lines": 38,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "2ce863bc7e540823667c6c7d927263a1c8319252c1fe4ec37eb5797e7c825a89",
+      "reviewReport": "Docs/Reports/Navigation05.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -10706,6 +10946,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
@@ -11564,6 +11805,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -11715,6 +11957,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -11786,6 +12029,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -11931,6 +12175,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -12663,6 +12908,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
@@ -12723,6 +12969,7 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
@@ -15318,6 +15565,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -15838,6 +16087,8 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -15858,6 +16109,114 @@
       ],
       "reviewedSha256": "698f60218788952789d18f27f46299159d1a73295a38c03f938bb0b4b5bc5d41",
       "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+      "sourceScope": "unity",
+      "sha256": "c1118e46cecbeae8475f8848d0fd266707ed88f3f25783940a4e9baf8c9bc420",
+      "guid": "4256e01c48bd4a3692379eddd022b6e8",
+      "types": [
+        "Clock",
+        "EnemyNavigationSafetyTests"
+      ],
+      "lines": 40,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [
+        "Test"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "c1118e46cecbeae8475f8848d0fd266707ed88f3f25783940a4e9baf8c9bc420",
+      "reviewReport": "Docs/Reports/Navigation05.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "7520953d87306c105e7ef063d46f13bef43814acf6f0007d65667246790f5462",
+      "guid": "d142f8a13b574cd18f7a086bf81bbc78",
+      "types": [
+        "Budget",
+        "Clock",
+        "EnemyPathModelTests",
+        "Geometry",
+        "Random",
+        "Schedule"
+      ],
+      "lines": 264,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
+        "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
+        "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodHitSpray2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
+        "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "7520953d87306c105e7ef063d46f13bef43814acf6f0007d65667246790f5462",
+      "reviewReport": "Docs/Reports/Navigation05.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -15913,6 +16272,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
@@ -16683,6 +17044,8 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
@@ -16792,6 +17155,8 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
@@ -17214,6 +17579,33 @@
       ],
       "reviewedSha256": "9a9229ae6af11379006d546ba41c38e51c2094008d2fbcc93b0429e476fceb0d",
       "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "192c4df5a4c86f52d46d1eadfaef7ac2d3beb70a02f45c27b8f594007cc60044",
+      "guid": "0c5e74f06f09410a9aec8c50a2645699",
+      "types": [
+        "EnemyNavigationSceneTests"
+      ],
+      "lines": 100,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "192c4df5a4c86f52d46d1eadfaef7ac2d3beb70a02f45c27b8f594007cc60044",
+      "reviewReport": "Docs/Reports/Navigation05.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -17790,14 +18182,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 415,
+    "unity": 425,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 21,
-    "report": "Docs/Reports/StalkerBrain04.md",
-    "validation": "624/624 EditMode, 24/24 PlayMode, normal Windows64 success. Pure FSM commands/state isolation and real scoped Stalker detection/fear/burn/retreat/wait/attack interruption/legacy silent restore/death. Resources unchanged; map/profiler/owner acceptance open."
+    "files": 13,
+    "report": "Docs/Reports/Navigation05.md",
+    "validation": "638/638 EditMode, 25/25 PlayMode, normal Windows64 success. Original native BUG-021 repeated red then safe solver. Pure geometry/cache/schedule tests and actual moving Stalker detour; no authored resource changes. Config/profiler/full-route/owner acceptance limits retained."
   },
   "reviewPasses": [
     {
@@ -17925,15 +18317,21 @@
       "files": 21,
       "report": "Docs/Reports/StalkerBrain04.md",
       "validation": "624/624 EditMode, 24/24 PlayMode, normal Windows64 success. Pure FSM commands/state isolation and real scoped Stalker detection/fear/burn/retreat/wait/attack interruption/legacy silent restore/death. Resources unchanged; map/profiler/owner acceptance open."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 13,
+      "report": "Docs/Reports/Navigation05.md",
+      "validation": "638/638 EditMode, 25/25 PlayMode, normal Windows64 success. Original native BUG-021 repeated red then safe solver. Pure geometry/cache/schedule tests and actual moving Stalker detour; no authored resource changes. Config/profiler/full-route/owner acceptance limits retained."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 434,
-    "totalFiles": 434,
+    "reviewedFiles": 444,
+    "totalFiles": 444,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "StalkerBrain04 and prior reviews; boundary coverage does not finish all SOD tasks."
+    "validation": "Navigation05 and prior reviews; explicit remaining schedule config debt and other SOD tasks keep complete=false."
   }
 }
