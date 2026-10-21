@@ -6,4 +6,4 @@
 
 `EnemyHealth2D` сохраняет прежний GUID и внешний контракт, передаёт события модели. `PlayerLife2D` использует ту же модель, но ещё содержит legacy-управление Unity-компонентами, hit flash и перезапуском. Полная MVC-миграция представления игрока и перенос всех настроек в SO ещё не завершены.
 
-Проверки: независимые HealthModelTests, EnemySystemsTests/PersistenceTests и интеграционный запуск уровня. Формат checkpoint этим шагом не изменён. Статус общего прохода — [этап 00](../Roadmap/00-ArchitectureMigration.md).
+Проверки: независимые HealthModelTests, EnemySystemsTests/PersistenceTests и интеграционный запуск уровня. Формат checkpoint этим шагом не изменён. Статус общего прохода — [этап 00](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).

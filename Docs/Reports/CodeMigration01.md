@@ -21,7 +21,7 @@
 | Динамическое создание двух Stalker | Модели/цели внедрены до возврата фабрики; HP независимы; правильная сцена; временные объекты удалены, 0 ошибок/предупреждений |
 | Windows64 release | Succeeded; MechanicsSandbox, MorgueRouteTest, LevelTemplate, BasementPrototype. Runtime/Zenject присутствуют, собственные Editor/Development/Tests отсутствуют |
 | Запуск release | 8 с batchmode/nographics в MechanicsSandbox, нет Exception/Error/Assert в логе; проверенный процесс остановлен. Графика/ощущения не оценивались |
-| Сериализованные внешние GUID | 352 ресурса, 11 сцен; один отсутствующий GUID в 15 записях трёх старых сцен — [BUG-001](../Bugs.md#bug-001) |
+| Сериализованные внешние GUID | 352 ресурса, 11 сцен; один отсутствующий GUID в 15 записях трёх старых сцен — [BUG-001](https://app.notion.com/p/3ff8d6dc06b6812395d1c1f868457d4c) |
 
 Единственное предупреждение сборки — RuntimePipelineConfig отсутствует: служебный Pipeline выключен в Player. Editor Pipeline работает; настройка runtime-доступа не включалась автоматически.
 
@@ -31,4 +31,4 @@ Raw JSON/логи и резервная копия лежат в рабочей 
 
 На commit `8bbd57e` учёт содержал 210 C#: 26 reviewed_boundary, 25 partial, 159 queued. Текущий [CodeAudit.json](CodeAudit.json) обновляется последующими этапами. Для каждого есть hash, baseline при наличии, GUID, реальные ссылки из сериализованных ресурсов/scene dependency graph, лексические подсказки использования и явный статус. Отсутствие лексической ссылки не служит разрешением удаления.
 
-Остаются AI-модели/контроллеры, оружие, взаимодействия, конфиги/ID/DTO, глобальные реестры и бюджеты, presentation/lifetimes, полный Editor/Development/Tests review, локальные fileID/обязательные ссылки, структура сцен и prefab reuse. Авторинг правил не означает выполненную перегруппировку сцен. Общая задача остаётся открытой в [этапе 00](../Roadmap/00-ArchitectureMigration.md).
+Остаются AI-модели/контроллеры, оружие, взаимодействия, конфиги/ID/DTO, глобальные реестры и бюджеты, presentation/lifetimes, полный Editor/Development/Tests review, локальные fileID/обязательные ссылки, структура сцен и prefab reuse. Авторинг правил не означает выполненную перегруппировку сцен. Общая задача остаётся открытой в [этапе 00](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).

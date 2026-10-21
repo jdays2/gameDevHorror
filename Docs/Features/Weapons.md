@@ -20,4 +20,4 @@ PlayerCheckpoint2D пишет format3 с явными hasInventory/hasFlashlight
 
 Гильза создаётся через ScenePrefabFactory и получает GroundAudioSurfaceQuery2D своего уровня до использования. Активная сторонняя сцена не меняет звук первого контакта. LastSurface показывает фактически выбранное покрытие; профиль выстрелившего оружия по-прежнему сохраняется до приземления. PlayerCasingEjector2D и шаги получают отдельные косметические RNG-потоки из composition; bounded pool гильз, физика, тайминги и библиотека звуков сохранены. Полный перенос движения/показа гильзы и шагов в модели ещё не завершён.
 
-Контракт и авторинг: [Оружие](../Weapons/README.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](../Roadmap/00-ArchitectureMigration.md).
+Контракт и авторинг: [Оружие](../Weapons/README.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).

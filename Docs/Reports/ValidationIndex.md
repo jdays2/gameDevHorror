@@ -15,6 +15,7 @@
 | Пофайловый SOD-аудит врагов · 06 | [CodeAudit06](CodeAudit06.md): 33 C# / 3918 строк; 19 проверенных границ, 14 файлов с долгом. Общий реестр 90/49/130, complete=false. BUG-006/007 зарегистрированы по сообщениям владельца, BUG-008 требует JsonUtility/EditMode-проверки; исправлений и нового Unity-прогона нет. |
 | Пофайловый SOD-аудит · 05 | [CodeAudit05](CodeAudit05.md): прочитаны 45 C#, обновлён реестр 269 собственных исходников с разделением Unity/утилит/Concepts; 35 границ проверены, в 10 файлах зафиксирован долг. BUG-004 требует Play-воспроизведения. Новый Unity-прогон не выполнялся. |
 | Кровь по краям экрана | [DirectionalDamage01](DirectionalDamage01.md): 16/16 профильных EditMode, 26 native-проверок и просмотр игровых кадров, 0 отсутствующих внешних GUID, Windows64 без ошибок (1 предупреждение служебного Pipeline). |
+| Меню паузы / Below the Ward | [PauseMenu01](PauseMenu01.md): 24/24 профильных EditMode, UI/audio-ссылки обеих сцен и точный PCM-импорт. Проверочная Windows-сборка создана с ошибками отдельного DirectionalBlood; игровой прогон и прослушивание оставлены владельцу. |
 | Звуковые поверхности/гильзы | [CodeMigration04](CodeMigration04.md): 121/121, живая изоляция двух сцен и первый контакт/оседание, 0 отсутствующих GUID, release. Общий архитектурный проход открыт. |
 | Структура Materials | [MaterialsOrganization01](MaterialsOrganization01.md): 27 ресурсов, неизменные GUID/байты/.meta, 363 сериализованных ресурса и 345 графов зависимостей; все материалы/шейдеры загружаются. |
 | Неиспользуемые overrides | [CodeMigration03](CodeMigration03.md): очистка трёх старых сцен, сохранность авторенных данных, 0 отсутствующих внешних GUID, 116/116, release. Активная ручная карта не сохранялась. |
@@ -63,6 +64,6 @@
 
 [CheckpointRegression](../Validation/CheckpointRegression.json) относится к удалённому FirstShift. Старый fixture восстанавливается из Git; этот отчёт не доказывает работу сохранений в MechanicsSandbox. Политика системы — [CHECKPOINTS](../Guides/CHECKPOINTS.md).
 
-[CrowdBaseline](../Validation/CrowdBaseline.json) и [EngineeringNative](../Validation/EngineeringNative.json) сохранены как исходные измерения для [OPT-01](../OPTIMIZATION_BACKLOG.md). Editor/native, одиночный прогон и синхронный участок Kill нельзя смешивать с временем полного кадра. Массовый пул остаётся отложенным.
+[CrowdBaseline](../Validation/CrowdBaseline.json) и [EngineeringNative](../Validation/EngineeringNative.json) сохранены как исходные измерения для [OPT-01](https://app.notion.com/p/3ff8d6dc06b68151a93cc3b27f535ab8?pvs=204). Editor/native, одиночный прогон и синхронный участок Kill нельзя смешивать с временем полного кадра. Массовый пул остаётся отложенным.
 
 [Аудит контента](../CONTENT_AUDIT.md) проверяет зависимости и документацию отдельно от игровой регрессии. Удалённые промежуточные материалы доступны в Git; происхождение сохранено в отдельном реестре.

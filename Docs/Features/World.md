@@ -26,7 +26,7 @@ CameraFollow2D читает владение и текущую дальност�
 
 Двери используют внедряемый SceneRegistry уровня; статического Door2D.Active больше нет. Это ещё не полный перенос правил доступа/движения двери в команды/модели. Данные существующих экземпляров сохранены.
 
-Контракт и авторинг: [Мир, фонарь, камера и интеракции](../Guides/LEVEL_AUTHORING.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](../Roadmap/00-ArchitectureMigration.md).
+Контракт и авторинг: [Мир, фонарь, камера и интеракции](../Guides/LEVEL_AUTHORING.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).
 
 ## Поверхности звука
 

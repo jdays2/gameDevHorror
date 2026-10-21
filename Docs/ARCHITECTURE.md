@@ -31,6 +31,7 @@ Assets/EmergencyShift/
     Sandbox/             управление тестом, временное HP, закреплённые цели
   Editor/                авторинг/инспекторы, отсутствуют в игроке
   Tests/EditMode/        независимые регрессии общих систем
+  Tests/PlayMode/        изолированные проверки Unity lifecycle/корутин
   Data/                  Audio, Enemies, Weapons, Gore, Levels, Rendering
   Prefabs/               Player, Levels, Enemies, World, Loot, Combat
   Scenes/                авторенные тестовые сцены и ArtReview; включая MorgueRouteTest
@@ -38,7 +39,7 @@ Assets/EmergencyShift/
 Concepts/Used/ Unused/    за пределами Assets, не импортируются
 ```
 
-Сборки: Runtime, Development, Editor, EditModeTests. Runtime не зависит от Editor/Development. Development ограничена UNITY_EDITOR или UNITY_INCLUDE_INSTRUMENTATION; smoke запускается только в инструментированном development-игроке с явным аргументом. Служебные MonoBehaviour не перенесены в Editor-папку, где их временное добавление в Play могло бы сломаться.
+Сборки: Runtime, Development, Editor, EditModeTests и PlayModeTests. Runtime не зависит от Editor/Development/Tests. Development ограничена UNITY_EDITOR или UNITY_INCLUDE_INSTRUMENTATION; smoke запускается только в инструментированном development-игроке с явным аргументом. Тестовые сборки отсутствуют в обычном Player.
 
 ## Карта фич
 
@@ -55,7 +56,7 @@ Concepts/Used/ Unused/    за пределами Assets, не импортир�
 
 ## Статус приведения к SOD
 
-Проверка и обновление всей собственной кодовой базы прямо поручены владельцем 2026-10-19. Этап активен в [Roadmap](Roadmap/00-ArchitectureMigration.md), а не отложен до неизвестной будущей задачи. Принятие правил не закрывает задачи; итог по файлам и проверки фиксируются в Reports. Целевые слои/DI — [ADR-001](Decisions/001-sod-architecture.md), пути и стиль — [Conventions](Conventions.md).
+Проверка и обновление всей собственной кодовой базы прямо поручены владельцем 2026-10-19. Этап активен в [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204), а не отложен до неизвестной будущей задачи. Принятие правил не закрывает задачи; итог по файлам и проверки фиксируются в Reports. Целевые слои/DI — [ADR-001](Decisions/001-sod-architecture.md), пути и стиль — [Conventions](Conventions.md).
 
 ## Оставшиеся ограничения
 
@@ -63,46 +64,4 @@ StalkerAudio2D остаётся видовым адаптером. Баланс 
 
 Следующий вид ещё надо проверить реальным контентом. Есть небольшой инвентарь оружия; нет общего инвентаря предметов, автоматического переноса между уровнями, динамического спавнера с сохранением новых runtime-ID и пула actor. Сохранение поддерживает авторенные объекты данной сцены. Изменив контракт/библиотеку частей, увеличивайте saveRevision и явно начинайте новую попытку либо пишите мигратор.
 
-Локальный путь/раздвигание не рассчитаны на тысячи агентов. Сравнительный native-замер10/20 выполнен; большой пул/ECS и центральный Update не вводились; DI выбран целевым стандартом и ещё требует внедрения. Постоянные следы не удаляются ради цифр. [Аудит](ENGINEERING_REVIEW.md), [границы измерений](OPTIMIZATION_BACKLOG.md).
-
-## Совместимость прежних ссылок
-
-### Сталкер и повторное использование
-
-Перенесено в [Features/Enemies](Features/Enemies.md).
-
-### Три вида данных
-
-Перенесено в [Features/Enemies](Features/Enemies.md).
-
-### Останки и профили
-
-Перенесено в [Features/Enemies](Features/Enemies.md).
-
-### Остальные связи
-
-Перенесено в [Features/World](Features/World.md).
-
-### Уровень и сохранение
-
-Перенесено в [Features/Persistence](Features/Persistence.md).
-
-### Оружие: данные, наследование и композиция
-
-Перенесено в [Features/Weapons](Features/Weapons.md).
-
-### Пробный диалог
-
-Перенесено в [Features/Dialogue](Features/Dialogue.md).
-
-### Песочница
-
-Перенесено в [Features/Sandbox](Features/Sandbox.md).
-
-### Контуры теней окружения
-
-Перенесено в [Features/Lighting](Features/Lighting.md).
-
-### Игровой HUD
-
-Перенесено в [Features/Hud](Features/Hud.md).
+Локальный путь/раздвигание не рассчитаны на тысячи агентов. Сравнительный native-замер10/20 выполнен; большой пул/ECS и центральный Update не вводились; DI выбран целевым стандартом и ещё требует внедрения. Постоянные следы не удаляются ради цифр. [Аудит](https://app.notion.com/p/a1b30c6e0f8343168ea91ae5990ee9fb), [границы измерений](https://app.notion.com/p/3ff8d6dc06b68151a93cc3b27f535ab8?pvs=204).

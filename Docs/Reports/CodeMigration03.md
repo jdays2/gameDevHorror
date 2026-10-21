@@ -12,4 +12,4 @@ MorgueRouteTest не сохранялась; её активность и dirty-
 
 Результаты: 352 сериализованных ресурса — 0 отсутствующих внешних GUID; 116/116 EditMode (3.41 с); Windows64 release четырёх сцен — Succeeded, одно прежнее предупреждение RuntimePipelineConfig. Это не полная проверка локальных fileID/всех обязательных null-ссылок и не визуальная приёмка автора. Raw evidence — папка чата `work/code-migration-2026-10-19`; сценарий — AgentScripts/CleanUnusedShadowOverrides.cs.
 
-Общий [BL-001](../Roadmap/00-ArchitectureMigration.md) остаётся открытым. [Пофайловый статус](CodeAudit.json): 41 reviewed_boundary, 33 partial, 147 queued.
+Общий [BL-001](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204) остаётся открытым. [Пофайловый статус](CodeAudit.json): 41 reviewed_boundary, 33 partial, 147 queued.

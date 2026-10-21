@@ -12,4 +12,4 @@
 
 ## Проверки и связанные документы
 
-Контракт и авторинг: [Тени окружения](../Environment/FURNITURE_SHADOW_SHAPES.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](../Roadmap/00-ArchitectureMigration.md).
+Контракт и авторинг: [Тени окружения](../Environment/FURNITURE_SHADOW_SHAPES.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).
