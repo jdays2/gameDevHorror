@@ -66,6 +66,8 @@ namespace EmergencyShift
                 throw new InvalidOperationException("Invalid player checkpoint");
             }
 
+            FlashlightModuleValidation.Validate(state.modules, state.moduleCount);
+
             if (state.format == 1)
             {
                 var legacy = weapons.Find(state.weaponId);

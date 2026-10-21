@@ -42,9 +42,19 @@ namespace EmergencyShift
         public void ValidateCheckpoint(string json)
         {
             var saved = JsonUtility.FromJson<State>(json);
-            if (saved == null || saved.format != 1 || (saved.initialized && (saved.actor == null || saved.actor.health < 0 || saved.actor.melee == null || (saved.actor.health == 0) != (saved.actor.state == ShadowStalker2D.BehaviourState.Dead))))
+            if (saved == null || saved.format != 1)
             {
                 throw new InvalidOperationException("Invalid stalker checkpoint");
+            }
+
+            if (saved.initialized)
+            {
+                if (saved.actor == null || saved.actor.health < 0 || saved.actor.melee == null ||
+                    !Enum.IsDefined(typeof(ShadowStalker2D.BehaviourState), saved.actor.state) ||
+                    (saved.actor.health == 0) != (saved.actor.state == ShadowStalker2D.BehaviourState.Dead))
+                {
+                    throw new InvalidOperationException("Invalid stalker actor state");
+                }
             }
 
             if (saved.initialized && saved.actor.hasEyeDamageProgress)
@@ -66,6 +76,7 @@ namespace EmergencyShift
 
         public void RestoreCheckpoint(string json)
         {
+            ValidateCheckpoint(json);
             var saved = JsonUtility.FromJson<State>(json);
             if (!saved.initialized)
             {

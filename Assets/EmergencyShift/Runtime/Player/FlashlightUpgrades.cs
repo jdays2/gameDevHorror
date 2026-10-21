@@ -56,6 +56,7 @@ namespace EmergencyShift
 
         public void Restore(ModuleState[] modules, int count)
         {
+            FlashlightModuleValidation.Validate(modules, count);
             installed.Clear();
             if (modules != null)
             {
@@ -65,7 +66,7 @@ namespace EmergencyShift
                 }
             }
 
-            InstalledCount = Mathf.Max(0, count);
+            InstalledCount = count;
             float range = baseRange;
             float angle = baseAngle;
             foreach (var bonus in installed.Values)
