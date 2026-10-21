@@ -9,6 +9,7 @@ namespace EmergencyShift
     public abstract class AudioThreatEmitter2D : MonoBehaviour
     {
         private SceneRegistry<AudioThreatEmitter2D> registry;
+        public int ObservationId { get; private set; }
         public abstract bool IsAlive
         {
             get;
@@ -39,13 +40,13 @@ namespace EmergencyShift
             registry = emitters ?? throw new ArgumentNullException(nameof(emitters));
             if (isActiveAndEnabled)
             {
-                registry.Register(this);
+                Register();
             }
         }
 
         protected virtual void OnEnable()
         {
-            registry?.Register(this);
+            Register();
         }
 
         protected virtual void OnDisable()
@@ -66,6 +67,20 @@ namespace EmergencyShift
             if (urgent)
             {
                 UrgentUntil = Time.time + .4f;
+            }
+        }
+
+        private void Register()
+        {
+            if (registry == null)
+            {
+                return;
+            }
+
+            int ordinal = registry.Register(this);
+            if (ordinal > 0)
+            {
+                ObservationId = ordinal;
             }
         }
     }

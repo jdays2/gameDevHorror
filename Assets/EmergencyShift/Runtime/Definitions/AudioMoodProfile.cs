@@ -1,4 +1,5 @@
 using System;
+using EmergencyShift.Features.AudioMood.Config;
 using UnityEngine;
 
 namespace EmergencyShift
@@ -97,6 +98,14 @@ namespace EmergencyShift
         public float DuckResponseSeconds => duckResponseSeconds;
         public float ScheduleLeadSeconds => scheduleLeadSeconds;
         public int LayerPriority => layerPriority;
+
+        public AudioMoodSettings ToMoodSettings()
+        {
+            Validate();
+            return new AudioMoodSettings(observationInterval, perceptionMemorySeconds, awarenessDistance,
+                closeCombatDistance, crowdEnemiesForCombat, threatHoldSeconds, combatHoldSeconds,
+                combatAfterShotSeconds, shotDuckSeconds, damageDuckSeconds, cueDuckSeconds);
+        }
 
         public void Validate()
         {

@@ -52,7 +52,11 @@ namespace EmergencyShift.Tests
         {
             AudioThreatProbeSource a = Source(first, sourcesA);
             Source(second, sourcesB);
+            int firstObservation = a.ObservationId;
+            Assert.That(firstObservation, Is.GreaterThan(0));
             a.Construct(sourcesA);
+            int reboundObservation = a.ObservationId;
+            Assert.That(reboundObservation, Is.GreaterThan(firstObservation));
             Assert.That(sourcesA.Members.Count, Is.EqualTo(1));
             Assert.That(sourcesB.Members.Count, Is.EqualTo(1));
             a.Emit();
@@ -63,6 +67,7 @@ namespace EmergencyShift.Tests
             Assert.That(a.HeardUntil, Is.EqualTo(float.NegativeInfinity));
             Assert.That(a.UrgentUntil, Is.EqualTo(float.NegativeInfinity));
             a.enabled = true;
+            Assert.That(a.ObservationId, Is.GreaterThan(reboundObservation));
             Assert.That(sourcesA.Members.Count, Is.EqualTo(1));
             Assert.That(sourcesB.Members.Count, Is.EqualTo(1));
             yield return null;

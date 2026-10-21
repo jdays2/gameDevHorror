@@ -233,6 +233,28 @@
 - [RestoreAccessCardsCommand.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs)
 - [RestoreDoorAccessCommand.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/AudioMood
+
+- [AudioMoodControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs)
+- [AudioMoodInstaller.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/AudioMood/Config
+
+- [AudioMoodSettings.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/AudioMood/Logic
+
+- [AudioMoodController.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs)
+- [AudioMoodCueCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs)
+- [AudioMoodModel.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs)
+- [AudioThreatObservation.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatObservation.cs)
+- [IAudioMoodView.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs)
+- [ResetAudioMoodCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs)
+
+## Assets/EmergencyShift/Runtime/Features/AudioMood/View
+
+- [AudioThreatQuery2D.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/DamageFeedback
 
 - [DamageFeedbackInstaller.cs](../Assets/EmergencyShift/Runtime/Features/DamageFeedback/DamageFeedbackInstaller.cs)
@@ -657,7 +679,9 @@
 
 - [AccessCardRestoreTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessCardRestoreTests.cs)
 - [AccessControlModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs)
+- [AudioMoodModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs)
 - [AudioMoodProfileTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs)
+- [AudioMoodSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs)
 - [BloodPoolProfileValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs)
 - [BloodPoolTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs)
 - [CeilingLightOcclusionTests.cs](../Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs)

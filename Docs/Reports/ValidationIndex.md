@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Настроение аудио / память угроз | [AudioMood24](AudioMood24.md): 940/940 EditMode, 48/48 PlayMode, Windows64 success; pure memory/clock/commands, scoped native perception, transient ordinals, zero managed bytes в warmed model loop. Mix/emitter clock ещё открыты. |
 | Аудиоисточники уровня | [AudioThreatScopes23](AudioThreatScopes23.md): 905/905 EditMode, 48/48 PlayMode, Windows64 success; наследуемая DI-регистрация, disable/rebind/frozen unload/sibling. Mood/clock/config работа открыта. |
 | Свет уровня / BUG-025 | [LightScopes22](LightScopes22.md): две исходные native ошибки по 0/1, затем 905/905 EditMode, 46/46 PlayMode, Windows64 success; scoped lamp/FX query, disable/re-enable/frozen unload, source ownership. Lamp power/VFX/audio models открыты. |
 | Оружейный каталог readonly | [WeaponCatalog21](WeaponCatalog21.md): 905/905 EditMode, 42/42 PlayMode, Windows64 success; private array Count/At, ранние ID/slot guards, прежние refs и transient JSON. Visual/audio/item configs открыты. |

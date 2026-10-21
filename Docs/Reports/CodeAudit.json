@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "528 own C# explicitly read; 81 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioThreatScopes23.",
+  "limits": "540 own C# explicitly read; 81 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioMood24.",
   "counts": {
     "partial": 81,
-    "reviewed_boundary": 447
+    "reviewed_boundary": 459
   },
   "files": [
     {
@@ -937,6 +937,7 @@
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/FireOwnedWeaponCommand.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
@@ -2029,6 +2030,9 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/ConfigureDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
@@ -2141,6 +2145,8 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/ConfigureDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs",
@@ -2329,10 +2335,10 @@
         "Assets/EmergencyShift/Runtime/Development/CompositionFailureProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/CrowdAgent2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalIlluminationQuery2D.cs",
@@ -2957,6 +2963,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
@@ -2974,6 +2982,7 @@
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
@@ -3213,14 +3222,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs",
-      "sha256": "c9ba8e8a86ab580392d9c7db90823111c7ed00c090fb71c5745ea84d28d36bb5",
+      "sha256": "f3f3390f57396c922c1231a8ed1ea66c09364969b0d3a737bf19db798cadffbf",
       "baselineSha256": "bba56014feab9f7d792ecd012b742b0099792c25abcc8d6776e3b01d4aba5898",
       "guid": "34e2679e50d7c50459145bc9b0d663bf",
       "types": [
         "AudioMood",
         "AudioMoodProfile"
       ],
-      "lines": 121,
+      "lines": 130,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Audio/SurvivalAudio.asset"
       ],
@@ -3239,12 +3248,25 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatObservation.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "PresentationConfig13: readonly HUD/audio config, finite/cross-field/clip guard или regression boundary; старые serialized fields/refs и default timing/colors сохранены; assets/native регрессии проверены.",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3258,11 +3280,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
-      "reviewedSha256": "c9ba8e8a86ab580392d9c7db90823111c7ed00c090fb71c5745ea84d28d36bb5",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PresentationConfig13.md",
-      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
-      "previousReviewStatus": "partial"
+      "reviewedSha256": "f3f3390f57396c922c1231a8ed1ea66c09364969b0d3a737bf19db798cadffbf",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs",
@@ -7121,6 +7143,267 @@
       "reviewedSha256": "068433996f6bc851795a51463151a1b36a0a0b8eb13eac65059af3ded4f4f599",
       "reviewReport": "Docs/Reports/AccessControl01.md",
       "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "f9b65d08c0db335653813430caa3220dfa04e410f07aa49c542408226b3083f3",
+      "guid": "6a1cf7daf35bde4459acfbd64adf040c",
+      "types": [
+        "AudioMoodControllerFactory"
+      ],
+      "lines": 15,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f9b65d08c0db335653813430caa3220dfa04e410f07aa49c542408226b3083f3",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "b030831a1415670bd9e60e96118462552b8e71402782c80f6f16b861eab0b398",
+      "guid": "3dd77934fc72afb49be5cd2025d5e7e0",
+      "types": [
+        "AudioMoodInstaller"
+      ],
+      "lines": 14,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "b030831a1415670bd9e60e96118462552b8e71402782c80f6f16b861eab0b398",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "14e63f5e557fd93978665b18cce5a7bcb7939983bf6866664c48e810f5a02777",
+      "guid": "a6a8d91001f839147898c4d4be0f05ee",
+      "types": [
+        "AudioMoodSettings"
+      ],
+      "lines": 47,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "14e63f5e557fd93978665b18cce5a7bcb7939983bf6866664c48e810f5a02777",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
+      "sourceScope": "unity",
+      "sha256": "59b8abc750bd74b55024e0a49360985a8760624b71d622da6cc7afb6eee5a7bc",
+      "guid": "ec6ad8eb895bdf4449402fc5d8dbbabc",
+      "types": [
+        "AudioMoodController"
+      ],
+      "lines": 42,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "59b8abc750bd74b55024e0a49360985a8760624b71d622da6cc7afb6eee5a7bc",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "a8c5f7df892998c7d50889c84d96646107ac9c4e03033b9a989aa6d1304d6cac",
+      "guid": "6ea50e370db4afc4da4ef8134fb15a8d",
+      "types": [
+        "AudioMoodCueCommand"
+      ],
+      "lines": 41,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a8c5f7df892998c7d50889c84d96646107ac9c4e03033b9a989aa6d1304d6cac",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs",
+      "sourceScope": "unity",
+      "sha256": "fa30f35af7c78d2b8006a663e54fb2f877ebb77cc67e33a119ad5a71142b4bb8",
+      "guid": "f920b3f3c0a1c6045aecaabd7042dde9",
+      "types": [
+        "AudioMoodModel"
+      ],
+      "lines": 192,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "fa30f35af7c78d2b8006a663e54fb2f877ebb77cc67e33a119ad5a71142b4bb8",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatObservation.cs",
+      "sourceScope": "unity",
+      "sha256": "e9c1c4a6b175ee4da4ca50f137f05e4eb1efb57165b9272a6823a26a3186e2e3",
+      "guid": "9a65187215b7b7d42b242386d5e06e82",
+      "types": [
+        "AudioThreatObservation"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "e9c1c4a6b175ee4da4ca50f137f05e4eb1efb57165b9272a6823a26a3186e2e3",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs",
+      "sourceScope": "unity",
+      "sha256": "7aff2c06842365e44d402dc370f93823ba3041db49ae01f2ec2bcfbfc948c20b",
+      "guid": "c291fe0f83d166146908c1d62f7f61c2",
+      "types": [
+        "IAudioMoodView"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7aff2c06842365e44d402dc370f93823ba3041db49ae01f2ec2bcfbfc948c20b",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "ebca06de5213572e69171619991664ff647ac4a71ccf78a183d418cc17f4d57f",
+      "guid": "9c86012780dad1a4095e92fe03bd1389",
+      "types": [
+        "ResetAudioMoodCommand"
+      ],
+      "lines": 21,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "ebca06de5213572e69171619991664ff647ac4a71ccf78a183d418cc17f4d57f",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
+      "sourceScope": "unity",
+      "sha256": "812275289e3e6b57cc656a85513a48b27402b8411d7cc656716ed19ff103887d",
+      "guid": "1fd5bb5d4972b6046b17427f5f1361d3",
+      "types": [
+        "AudioThreatQuery2D"
+      ],
+      "lines": 70,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "812275289e3e6b57cc656a85513a48b27402b8411d7cc656716ed19ff103887d",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
     },
     {
       "baselineSha256": null,
@@ -12766,13 +13049,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
-      "sha256": "8c6a7429aeffae68bbd9cf3fc2620cea884a98fd6f2244f4ceb8420f71f15901",
+      "sha256": "705d900dd75db2fde6685274a6db5b5975c24560e1e0e0f92901a29c5e70e32d",
       "baselineSha256": null,
       "guid": "0a79308db69301e4d968479a95aeff27",
       "types": [
         "LevelRegistriesInstaller"
       ],
-      "lines": 22,
+      "lines": 24,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -12780,8 +13063,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioThreatScopes23: scoped registry/composition/native lifecycle boundary проверены.",
-      "reviewedSha256": "8c6a7429aeffae68bbd9cf3fc2620cea884a98fd6f2244f4ceb8420f71f15901",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "reviewedSha256": "705d900dd75db2fde6685274a6db5b5975c24560e1e0e0f92901a29c5e70e32d",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -12798,8 +13081,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
-      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -14811,26 +15094,26 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
-      "sha256": "f209ded39b1a4e0033956afaa4edd59aad692f9d61da46fca19cbd9e2de901f2",
+      "sha256": "ed4bbbdb400030a041c0b0a17148a8156cfe360dce4d77322dea75710d8a24d4",
       "baselineSha256": "047ac7c7ca151507d7eb11679f29e97ced2bd52ce5b66bb08463424e4f58365b",
       "guid": "05847cefe8139464780537d23f93883e",
       "types": [
         "AudioThreatEmitter2D"
       ],
-      "lines": 72,
+      "lines": 87,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AudioThreatProbeSource.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "AudioThreatScopes23: registry проверен; прежние personal audio timers/mood/config/style либо development probe долги сохранены.",
+      "notes": "AudioMood24: memory/holds/duck commands и clock проверены; mix smoothing/DSP либо emitter heard timers/config долги сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Факты слышимости и учёт источников угроз",
@@ -14840,10 +15123,10 @@
         "MonoBehaviour"
       ],
       "usageEvidence": "Sleeper/StalkerAudioThreat2D; LevelAudioDirector2D.Active enumeration",
-      "reviewedSha256": "f209ded39b1a4e0033956afaa4edd59aad692f9d61da46fca19cbd9e2de901f2",
+      "reviewedSha256": "ed4bbbdb400030a041c0b0a17148a8156cfe360dce4d77322dea75710d8a24d4",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
-      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -14890,13 +15173,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
-      "sha256": "9b6eb8ba32842ca9148af09849a776f6388ac6f4055c3d433773b3dec717fdb9",
+      "sha256": "4b6bebfefa93e2818ce522c09aa1b0b23f0e4b971839ba081ac2c156c5c30b5e",
       "baselineSha256": "19545652a3329fadd847a8cd2c53a3783e942f37fa848df947b0158a4ae0d91e",
       "guid": "51418a3b25a1e234cbefe1b1b6f6ebec",
       "types": [
         "LevelAudioDirector2D"
       ],
-      "lines": 437,
+      "lines": 316,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelAudio.prefab"
       ],
@@ -14921,8 +15204,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "AudioThreatScopes23: registry проверен; прежние personal audio timers/mood/config/style либо development probe долги сохранены.",
-      "reviewedSha256": "9b6eb8ba32842ca9148af09849a776f6388ac6f4055c3d433773b3dec717fdb9",
+      "notes": "AudioMood24: memory/holds/duck commands и clock проверены; mix smoothing/DSP либо emitter heard timers/config долги сохранены.",
+      "reviewedSha256": "4b6bebfefa93e2818ce522c09aa1b0b23f0e4b971839ba081ac2c156c5c30b5e",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14944,8 +15227,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
-      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -16569,6 +16852,7 @@
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
@@ -16692,9 +16976,9 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
@@ -17362,6 +17646,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -17390,6 +17675,77 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "e4333bb88022349022fd8a8133cbb588bd7c12aea77c912d0f8e244ae8bc4d09",
+      "guid": "00092d9ff3a982a48979d492c4979e22",
+      "types": [
+        "AudioMoodModelTests",
+        "Clock",
+        "View"
+      ],
+      "lines": 282,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/CheckDirectionalDamage.cs",
+        "AgentScripts/InstallDirectionalDamage.cs",
+        "AgentScripts/InstallPauseMenu.cs",
+        "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "e4333bb88022349022fd8a8133cbb588bd7c12aea77c912d0f8e244ae8bc4d09",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "PresentationConfig13: readonly HUD/audio config, finite/cross-field/clip guard или regression boundary; старые serialized fields/refs и default timing/colors сохранены; assets/native регрессии проверены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs",
       "sourceScope": "unity",
@@ -17411,6 +17767,31 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/PresentationConfig13.md",
       "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs",
+      "sourceScope": "unity",
+      "sha256": "34795ae47a2c745ffc21191da122d01e591abc10376b50e55cae5e4f5f531c9b",
+      "guid": "f28ff6e77e4ea334794ae630bf0262e5",
+      "types": [
+        "AudioMoodSettingsTests"
+      ],
+      "lines": 61,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "34795ae47a2c745ffc21191da122d01e591abc10376b50e55cae5e4f5f531c9b",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
     },
     {
       "baselineSha256": null,
@@ -17890,6 +18271,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
@@ -17907,8 +18290,10 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -18030,6 +18415,7 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -18104,6 +18490,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -18168,6 +18555,7 @@
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
@@ -18975,6 +19363,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
@@ -18992,8 +19382,10 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -19082,6 +19474,7 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -19369,6 +19762,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -19483,6 +19877,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -19944,24 +20339,25 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioThreatScopes23: scoped registry/composition/native lifecycle boundary проверены.",
+      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs",
       "sourceScope": "unity",
-      "sha256": "fc7312bd20ca15b91e3ac4337577b978ab6ab77081fc1c04bc0acfecbb6dba73",
+      "sha256": "65280c983fbd19253b76fd7e04643c9d4ae002a54814eaf80a03fecd75eaf51f",
       "guid": "59c5b2da76854a8e80199adea9cade8c",
       "types": [
         "AudioThreatScopeTests"
       ],
-      "lines": 97,
+      "lines": 102,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "fc7312bd20ca15b91e3ac4337577b978ab6ab77081fc1c04bc0acfecbb6dba73",
+      "reviewedSha256": "65280c983fbd19253b76fd7e04643c9d4ae002a54814eaf80a03fecd75eaf51f",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
-      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified."
+      "reviewReport": "Docs/Reports/AudioMood24.md",
+      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -20948,7 +21344,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 509,
+    "unity": 521,
     "content_source": 8
   },
   "latestReview": {
@@ -21099,11 +21495,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 528,
-    "totalFiles": 528,
+    "reviewedFiles": 540,
+    "totalFiles": 540,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "AudioThreatScopes23 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "AudioMood24 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

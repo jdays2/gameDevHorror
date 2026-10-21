@@ -1,0 +1,330 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "570dc08d0a5ac962175c1e04ebed33f3a8855119",
+  "editMode": {
+    "result": "Passed",
+    "total": "940",
+    "passed": "940",
+    "failed": "0",
+    "end-time": "2026-10-21 21:20:33Z",
+    "rawPath": "work/sod-evidence-20261021/audio-mood-edit.xml",
+    "rawSha256": "f28e994b5d777bc624c53bee77fd45ef6975b2d3915034971be8a8e64c9408c8",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.ClosePursuerAtBoundaryStartsCombatWithoutShooting",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.DeadOrUnregisteredSourceIsRemovedBeforeMemoryExpiry(False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.DeadOrUnregisteredSourceIsRemovedBeforeMemoryExpiry(True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.DeathClearsPresentedCountsAndMood",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.EmptyShotDucksWithoutStartingCombat",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.HeardDeadlineIsInclusiveAndWorksWithoutSight",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.IneligibleSourceCannotRevealItselfThroughSoundOrAttack",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.InvalidClockIsRejectedBeforeObservationMutation(double.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.InvalidClockIsRejectedBeforeObservationMutation(double.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.InvalidClockIsRejectedBeforeObservationMutation(-1.0d)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.InvalidOrDistantObservationIsNotPerceived(82)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.InvalidOrDistantObservationIsNotPerceived(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.InvalidOrDistantObservationIsNotPerceived(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.InvalidOrDistantObservationIsNotPerceived(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.LethalDamageDoesNotStartANewCombatCue(0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.LethalDamageDoesNotStartANewCombatCue(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.LethalProjectileBeforeNextObservationStillHoldsCombat",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.MemoryDeadlineIsInclusiveAndThenExpires",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.MissingModelCommandsRejectWithoutThrowing",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.NonlethalDamageDucksAndHoldsCombatWithoutEnemy",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.ObservationCadenceUsesInjectedClock",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.PerceivedAttackStartsCombat",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.RecentShotEscalatesNewlyPerceivedPursuer",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.ResetClearsPersonalStateWithoutChangingAnotherDirector",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.SeenUnengagedEnemyStartsThreat",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.SilentUnseenAggroDoesNotRevealTheEnemy",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.TwoDistantPursuersStartCombatButOneDoesNot",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.UrgentCueRequiresPerceptionAndExtendsDuck",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodModelTests.WarmedObservationLoopDoesNotAllocateManagedMemory",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.AllAuthoredProfilesValidateWithoutChangingThemOrLosingClips",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.ExistingSerializedNamesAndPriorHardcodedDefaultsAreRetained",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidCountsAndVoicePrioritiesAreRejected(\"crowdEnemiesForCombat\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidCountsAndVoicePrioritiesAreRejected(\"layerPriority\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidCountsAndVoicePrioritiesAreRejected(\"layerPriority\",257)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"masterVolume\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"masterVolume\",1.1f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"explorationGain\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"explorationGain\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"threatGain\",1.1f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"combatGain\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"duckGain\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"lowHealthGain\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"riseSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"riseSeconds\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"fallSeconds\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"threatHoldSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"combatHoldSeconds\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"awarenessDistance\",0.1f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"closeCombatDistance\",10)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"observationInterval\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"perceptionMemorySeconds\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"perceptionMemorySeconds\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"shotDuckSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"cueDuckSeconds\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"damageDuckSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"damageDuckSeconds\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"combatAfterShotSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"deathFadeSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"duckResponseSeconds\",0.01f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.InvalidTuningAndReversedPerceptionRadiiAreRejected(\"scheduleLeadSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodProfileTests.OptionalSilentLayersRemainValid",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodSettingsTests.CloseDistanceCannotExceedAwareness",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodSettingsTests.CrowdRequiresAtLeastOneEnemy",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodSettingsTests.InvalidObservationIntervalIsRejected(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodSettingsTests.InvalidObservationIntervalIsRejected(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodSettingsTests.InvalidObservationIntervalIsRejected(0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioMoodSettingsTests.SnapshotKeepsPreviousSerializedValuesAndIsIndependentOfLaterAuthoring",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "48",
+    "passed": "48",
+    "failed": "0",
+    "end-time": "2026-10-21 21:19:31Z",
+    "rawPath": "work/sod-evidence-20261021/audio-mood-play.xml",
+    "rawSha256": "d47d6903c5c9a7efa545613c6d85cb7a1da9620c77fe675c2075c584c7cd7dfd",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.AdaptiveAudioProbeRegressionTests.ExistingOptInProbeCompletesDryFireAndAllThreeGroundMaterials",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T21:21:31.607Z",
+    "endedAt": "2026-10-21T21:21:58.070Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs": "f9b65d08c0db335653813430caa3220dfa04e410f07aa49c542408226b3083f3",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs": "b030831a1415670bd9e60e96118462552b8e71402782c80f6f16b861eab0b398",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs": "14e63f5e557fd93978665b18cce5a7bcb7939983bf6866664c48e810f5a02777",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs": "59b8abc750bd74b55024e0a49360985a8760624b71d622da6cc7afb6eee5a7bc",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs": "a8c5f7df892998c7d50889c84d96646107ac9c4e03033b9a989aa6d1304d6cac",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs": "fa30f35af7c78d2b8006a663e54fb2f877ebb77cc67e33a119ad5a71142b4bb8",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatObservation.cs": "e9c1c4a6b175ee4da4ca50f137f05e4eb1efb57165b9272a6823a26a3186e2e3",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs": "7aff2c06842365e44d402dc370f93823ba3041db49ae01f2ec2bcfbfc948c20b",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs": "ebca06de5213572e69171619991664ff647ac4a71ccf78a183d418cc17f4d57f",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs": "812275289e3e6b57cc656a85513a48b27402b8411d7cc656716ed19ff103887d",
+    "Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs": "f3f3390f57396c922c1231a8ed1ea66c09364969b0d3a737bf19db798cadffbf",
+    "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs": "4b6bebfefa93e2818ce522c09aa1b0b23f0e4b971839ba081ac2c156c5c30b5e",
+    "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs": "ed4bbbdb400030a041c0b0a17148a8156cfe360dce4d77322dea75710d8a24d4",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs": "705d900dd75db2fde6685274a6db5b5975c24560e1e0e0f92901a29c5e70e32d",
+    "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs": "e4333bb88022349022fd8a8133cbb588bd7c12aea77c912d0f8e244ae8bc4d09",
+    "Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs": "34795ae47a2c745ffc21191da122d01e591abc10376b50e55cae5e4f5f531c9b",
+    "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs": "65280c983fbd19253b76fd7e04643c9d4ae002a54814eaf80a03fecd75eaf51f"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Post-editor-close guard supplements prior evidence, not deleted original Temp baseline. Pure mood memory/holds/duck commands and clock, scoped native perception adapter and transient registry ordinals verified. 35 new EditMode cases, existing native audio probe. Mix smoothing/DSP stay native, emitter heard clock/config remains partial. Snapshot refresh on enable/recomposition, no live asset writes. Warmed 1000 observation calls allocate zero managed bytes, not whole-game FPS evidence."
+}

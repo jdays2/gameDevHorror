@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
-using EmergencyShift.Core.Composition;
+using EmergencyShift.Features.AudioMood;
+using EmergencyShift.Features.AudioMood.Logic;
+using EmergencyShift.Features.AudioMood.View;
 using UnityEngine;
 using Zenject;
 
@@ -7,7 +10,7 @@ namespace EmergencyShift
 {
     /// <summary>Scene-local layered atmosphere. Only perceived threats affect it; AI remains independent.</summary>
     [DisallowMultipleComponent, DefaultExecutionOrder(80)]
-    public sealed class LevelAudioDirector2D : MonoBehaviour
+    public sealed class LevelAudioDirector2D : MonoBehaviour, IAudioMoodView
     {
         [SerializeField]
         private AudioMoodProfile profile;
@@ -25,16 +28,48 @@ namespace EmergencyShift
         private float volume = 1;
         private PlayerWeapon2D weapon;
         private WorldMotionPause motionPause;
-        private LocalIlluminationQuery2D lights;
-        private SceneRegistry<AudioThreatEmitter2D> emitters;
+        private AudioThreatQuery2D threatQuery;
+        private AudioMoodControllerFactory moodFactory;
+        private AudioMoodController mood;
+        private readonly List<AudioThreatObservation> observations = new List<AudioThreatObservation>();
+
+        private Vector3 gains;
+        private bool started;
+        private bool paused;
+        private bool bound;
+        private double scheduledStart;
+        public AudioMood Mood
+        {
+            get;
+            private set;
+        }
+        public int PerceivedEnemies
+        {
+            get;
+            private set;
+        }
+        public int EngagedEnemies
+        {
+            get;
+            private set;
+        }
+        public Vector3 LayerGains => gains;
+        public float Volume
+        {
+            get => volume;
+            set => volume = Mathf.Clamp01(value);
+        }
+        public AudioMoodProfile Profile => profile;
+        public int RegisteredThreatCount => threatQuery.RegisteredCount;
+        public bool IsDucking => mood != null && mood.IsDucking;
 
         [Inject]
         private void Construct(WorldMotionPause pause, PlayerLife2D scenePlayer, Flashlight2D sceneLight,
-            LocalIlluminationQuery2D illumination, SceneRegistry<AudioThreatEmitter2D> threats)
+            AudioMoodControllerFactory factory, AudioThreatQuery2D query)
         {
             motionPause = pause;
-            lights = illumination;
-            emitters = threats;
+            moodFactory = factory ?? throw new ArgumentNullException(nameof(factory));
+            threatQuery = query ?? throw new ArgumentNullException(nameof(query));
             if (player == null)
             {
                 player = scenePlayer;
@@ -44,39 +79,9 @@ namespace EmergencyShift
             {
                 flashlight = sceneLight;
             }
+
+            ConfigureMood();
         }
-        private float nextObservation;
-        private float lastThreat = float.NegativeInfinity;
-        private float lastCombat = float.NegativeInfinity;
-        private float lastShot = float.NegativeInfinity;
-        private float duckUntil = float.NegativeInfinity;
-        private Vector3 gains;
-        private bool started;
-        private bool paused;
-        private bool bound;
-        private readonly Dictionary<AudioThreatEmitter2D, float> remembered = new Dictionary<AudioThreatEmitter2D, float>();
-        private readonly List<AudioThreatEmitter2D> expired = new List<AudioThreatEmitter2D>();
-        private double scheduledStart;
-        public AudioMood Mood
-        {
-            get; private set;
-        }
-        public int PerceivedEnemies
-        {
-            get; private set;
-        }
-        public int EngagedEnemies
-        {
-            get; private set;
-        }
-        public Vector3 LayerGains => gains;
-        public float Volume
-        {
-            get => volume; set => volume = Mathf.Clamp01(value);
-        }
-        public AudioMoodProfile Profile => profile;
-        public int RegisteredThreatCount => emitters.Members.Count;
-        public bool IsDucking => Time.time < duckUntil;
 
         private void OnEnable()
         {
@@ -85,10 +90,7 @@ namespace EmergencyShift
                 profile.Validate();
             }
 
-            lastThreat = lastCombat = lastShot = duckUntil = float.NegativeInfinity;
-            nextObservation = 0;
-            Mood = AudioMood.Explore;
-            remembered.Clear();
+            ConfigureMood();
             AudioSettings.OnAudioConfigurationChanged += OnAudioConfigurationChanged;
         }
 
@@ -117,31 +119,26 @@ namespace EmergencyShift
             }
         }
 
-        private void OnShot()
+        private void ConfigureMood()
         {
-            lastShot = Time.time;
-            // A lethal projectile can resolve before the next observation tick.
-            if (EngagedEnemies > 0)
-            {
-                lastCombat = lastThreat = Time.time;
-            }
-
-            if (profile != null)
-            {
-                duckUntil = Time.time + profile.ShotDuckSeconds;
-            }
-        }
-
-        private void OnHealthChanged(int health)
-        {
-            if (health <= 0)
+            if (profile == null || moodFactory == null)
             {
                 return;
             }
 
-            lastCombat = lastThreat = Time.time;
-            duckUntil = Time.time + (profile != null ? profile.DamageDuckSeconds : AudioMoodProfile.DefaultDamageDuckSeconds);
+            mood = moodFactory.Create(profile.ToMoodSettings(), this);
+            mood.Reset();
         }
+
+        void IAudioMoodView.ApplyMood(AudioMood value, int perceived, int engaged)
+        {
+            Mood = value;
+            PerceivedEnemies = perceived;
+            EngagedEnemies = engaged;
+        }
+
+        private void OnShot() => mood?.Shot();
+        private void OnHealthChanged(int health) => mood?.Damage(health);
 
         private void Update()
         {
@@ -205,17 +202,22 @@ namespace EmergencyShift
                 StartLayers();
             }
 
-            if (Time.time >= nextObservation)
+            if (mood.ObservationDue)
             {
-                nextObservation = Time.time + Mathf.Max(.05f, profile.ObservationInterval);
-                Observe();
+                observations.Clear();
+                if (!player.IsDead)
+                {
+                    threatQuery.Collect(gameObject.scene, player.transform, flashlight, mood.AwarenessDistance, observations);
+                }
+
+                mood.Observe(observations, !player.IsDead);
             }
 
             bool alive = !player.IsDead;
             float threatGain = Mood != AudioMood.Explore ? profile.ThreatGain : 0;
             float combatGain = Mood == AudioMood.Combat ? profile.CombatGain : 0;
             Vector3 target = alive ? new Vector3(profile.ExplorationGain, threatGain, combatGain) : Vector3.zero;
-            float duck = alive && Time.time < duckUntil ? profile.DuckGain : 1;
+            float duck = alive && IsDucking ? profile.DuckGain : 1;
             float health = alive && player.Health < player.MaximumHealth ? profile.LowHealthGain : 1;
             target *= profile.MasterVolume * volume * duck * health;
             float seconds = alive ? profile.FallSeconds : profile.DeathFadeSeconds;
@@ -234,130 +236,6 @@ namespace EmergencyShift
             explorationSource.volume = gains.x;
             threatSource.volume = gains.y;
             combatSource.volume = gains.z;
-        }
-
-        private void Observe()
-        {
-            PerceivedEnemies = EngagedEnemies = 0;
-            if (player == null || player.IsDead)
-            {
-                Mood = AudioMood.Explore;
-                return;
-            }
-
-            int close = 0;
-            bool attack = false;
-            expired.Clear();
-            foreach (var pair in remembered)
-            {
-                if (pair.Key == null || !pair.Key.isActiveAndEnabled || !pair.Key.IsAlive || pair.Value < Time.time)
-                {
-                    expired.Add(pair.Key);
-                }
-            }
-
-            foreach (var source in expired)
-            {
-                remembered.Remove(source);
-            }
-
-            float maxSquared = profile.AwarenessDistance * profile.AwarenessDistance;
-            for (int index = 0; index < emitters.Members.Count; index++)
-            {
-                AudioThreatEmitter2D source = emitters.Members[index];
-                if (source == null || !source.IsAlive || source.gameObject.scene != gameObject.scene || (source.Target != null && source.Target != player.transform))
-                {
-                    continue;
-                }
-
-                float distanceSquared = ((Vector2)source.transform.position - (Vector2)player.transform.position).sqrMagnitude;
-                if (distanceSquared > maxSquared)
-                {
-                    continue;
-                }
-
-                bool seen = IsVisible(source);
-                bool heard = Time.time <= source.HeardUntil;
-                if (seen || heard)
-                {
-                    remembered[source] = Time.time + profile.PerceptionMemorySeconds;
-                }
-
-                if (!seen && !heard && !remembered.ContainsKey(source))
-                {
-                    continue;
-                }
-
-                PerceivedEnemies++;
-                if (source.IsEngaged)
-                {
-                    EngagedEnemies++;
-                    if (distanceSquared <= profile.CloseCombatDistance * profile.CloseCombatDistance)
-                    {
-                        close++;
-                    }
-                }
-
-                attack |= source.IsAttacking;
-                if (Time.time <= source.UrgentUntil)
-                {
-                    duckUntil = Mathf.Max(duckUntil, Time.time + profile.CueDuckSeconds);
-                }
-            }
-
-            if (PerceivedEnemies > 0)
-            {
-                lastThreat = Time.time;
-            }
-
-            // Pressure starts on approach, not only after the bite or the player's first shot.
-            if (attack || close > 0 || EngagedEnemies >= profile.CrowdEnemiesForCombat || (EngagedEnemies > 0 && Time.time - lastShot < profile.CombatAfterShotSeconds))
-            {
-                lastCombat = Time.time;
-            }
-
-            Mood = SelectMood();
-        }
-
-        private AudioMood SelectMood()
-        {
-            if (Time.time - lastCombat < profile.CombatHoldSeconds)
-            {
-                return AudioMood.Combat;
-            }
-
-            if (Time.time - lastThreat < profile.ThreatHoldSeconds)
-            {
-                return AudioMood.Threat;
-            }
-
-            return AudioMood.Explore;
-        }
-
-        private bool IsVisible(AudioThreatEmitter2D source)
-        {
-            Vector2 point = source.transform.position;
-            if (flashlight != null && flashlight.WorldCamera != null)
-            {
-                Vector3 view = flashlight.WorldCamera.WorldToViewportPoint(source.transform.position);
-                if (view.z <= 0 || view.x < 0 || view.x > 1 || view.y < 0 || view.y > 1)
-                {
-                    return false;
-                }
-            }
-
-            if (flashlight != null && flashlight.Illuminates(point, source.Obstacles))
-            {
-                return true;
-            }
-
-            // A lamp can reveal a creature, but neither its light nor the music can see through the player's wall.
-            if (Physics2D.Linecast(player.transform.position, point, source.Obstacles).collider != null)
-            {
-                return false;
-            }
-
-            return lights.AnyLampIlluminates(gameObject.scene, point, source.Obstacles);
         }
 
         private void StartLayers()
@@ -419,7 +297,8 @@ namespace EmergencyShift
             StopLayers();
             gains = Vector3.zero;
             paused = false;
-            remembered.Clear();
+            observations.Clear();
+            mood?.Reset();
             AudioSettings.OnAudioConfigurationChanged -= OnAudioConfigurationChanged;
             if (player != null)
             {
