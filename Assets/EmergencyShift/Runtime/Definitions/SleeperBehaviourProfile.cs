@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using EmergencyShift.Features.Enemies.Config;
 
 namespace EmergencyShift
 {
@@ -12,5 +14,16 @@ namespace EmergencyShift
         [Min(0)] public float recoverySeconds = .65f;
 
         public bool IsValid => lightExposureSeconds > 0 && exposureDecay > 0 && wakingSeconds > 0 && recoverySeconds >= 0;
+
+        public SleeperSettings ToSettings(EnemyDefinition definition)
+        {
+            if (definition == null)
+            {
+                throw new ArgumentNullException(nameof(definition));
+            }
+
+            return new SleeperSettings(definition.pursuitSpeed, definition.attackDuration, definition.attackCooldown,
+                definition.hitStaggerSeconds, definition.hitPushSpeed, lightExposureSeconds, exposureDecay, wakingSeconds, recoverySeconds);
+        }
     }
 }

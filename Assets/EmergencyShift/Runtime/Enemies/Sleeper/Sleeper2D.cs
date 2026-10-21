@@ -1,9 +1,13 @@
+using System;
+using EmergencyShift.Features.Enemies;
+using EmergencyShift.Features.Enemies.Logic;
+using EmergencyShift.Features.Enemies.View;
 using UnityEngine;
 using Zenject;
 
 namespace EmergencyShift
 {
-    /// <summary>Light-sensitive sleeper. Shared components execute combat; this brain owns decisions and instance state.</summary>
+    /// <summary>Authored references, native lifetime, presentation events and legacy save adapter.</summary>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(EnemyHealth2D), typeof(EnemyPerception2D), typeof(EnemyMotor2D))]
     [RequireComponent(typeof(EnemyMeleeAttack2D))]
@@ -26,35 +30,35 @@ namespace EmergencyShift
         private Rigidbody2D body;
         private CircleCollider2D shape;
         private SleeperAudio2D feedback;
-        private float stateTime;
-        private float exposure;
-        private float staggerUntil;
-        private Vector2 hitPush;
-        private Vector2 attackHeading;
+        private SleeperControllerFactory factory;
+        private SleeperController controller;
 
-        public event System.Action<BehaviourState> StateChanged;
-        public event System.Action Damaged;
-        public event System.Action AttackLunged;
-        public event System.Action<bool> AttackResolved;
-        public BehaviourState State { get; private set; } = BehaviourState.Sleeping;
+        public event Action<BehaviourState> StateChanged;
+        public event Action Damaged;
+        public event Action AttackLunged;
+        public event Action<bool> AttackResolved;
+        public BehaviourState State => controller != null ? (BehaviourState)controller.Model.State : BehaviourState.Sleeping;
         public EnemyDefinition Definition => definition;
         public SleeperBehaviourProfile BehaviourProfile => behaviourProfile;
         public int Health => health != null ? health.Current : 0;
         public override bool IsAlive => State != BehaviourState.Dead;
         public override bool OwnsHitAudio => feedback != null && feedback.isActiveAndEnabled;
-        public bool HasAggro { get; private set; }
-        public bool IsStaggered => IsAlive && Time.time < staggerUntil;
-        public float ExposureProgress => Mathf.Clamp01(exposure / behaviourProfile.lightExposureSeconds);
-        public float Closure => State == BehaviourState.Sleeping ? 1 : WakingClosure;
-        private float WakingClosure => State == BehaviourState.Waking ? 1 - Mathf.Clamp01(stateTime / behaviourProfile.wakingSeconds) : 0;
-        public float AttackProgress => State == BehaviourState.Attacking ? Mathf.Clamp01(stateTime / definition.attackDuration) : 0;
-        public float DeathTime => State == BehaviourState.Dead ? stateTime : 0;
+        public bool HasAggro => controller != null && controller.Model.HasAggro;
+        public bool IsStaggered => controller != null && controller.Model.IsStaggered;
+        public float ExposureProgress => controller?.Model.ExposureProgress ?? 0;
+        public float Closure => controller?.Model.Closure ?? 1;
+        public float AttackProgress => controller?.Model.AttackProgress ?? 0;
+        public float DeathTime => controller?.Model.DeathTime ?? 0;
         public Vector2 Velocity => body != null ? body.linearVelocity : Vector2.zero;
-        public Vector2 AttackHeading => attackHeading;
+        public Vector2 AttackHeading => controller?.Model.AttackHeading ?? Vector2.zero;
         public Transform Player => player;
         public Flashlight2D LightSource => flashlight;
         public LayerMask BlockingGeometry => blockingGeometry;
-        public bool AttacksEnabled { get => attacksEnabled; set => attacksEnabled = value; }
+        public bool AttacksEnabled
+        {
+            get => attacksEnabled;
+            set => attacksEnabled = value;
+        }
 
         public void Configure(Transform target, Flashlight2D lamp, LayerMask obstacles)
         {
@@ -69,8 +73,9 @@ namespace EmergencyShift
         }
 
         [Inject]
-        private void Construct(PlayerLife2D scenePlayer, Flashlight2D sceneLight)
+        private void Construct(PlayerLife2D scenePlayer, Flashlight2D sceneLight, SleeperControllerFactory controllers)
         {
+            factory = controllers ?? throw new ArgumentNullException(nameof(controllers));
             if (player == null && scenePlayer != null)
             {
                 player = scenePlayer.transform;
@@ -101,7 +106,13 @@ namespace EmergencyShift
                 return;
             }
 
+            if (factory == null)
+            {
+                throw new InvalidOperationException("Sleeper requires level composition before Awake.");
+            }
 
+            controller = factory.Create(behaviourProfile.ToSettings(definition), new EnemyBrainMotor2D(motor), new EnemyBrainMelee2D(melee));
+            controller.Model.StateChanged += ForwardState;
             perception.Configure(player, blockingGeometry, flashlight);
             motor.Configure(blockingGeometry);
             melee.Configure(definition, perception, motor);
@@ -114,100 +125,14 @@ namespace EmergencyShift
 
         private void FixedUpdate()
         {
-            stateTime += Time.fixedDeltaTime;
-            if (State == BehaviourState.Dead)
+            bool targetAlive = IsAlive && perception.TargetAlive;
+            bool exposed = targetAlive && State == BehaviourState.Sleeping && perception.Exposed(body.position);
+            Vector2 target = player != null ? (Vector2)player.position : body.position;
+            controller.Step(Time.fixedDeltaTime, targetAlive, exposed, attacksEnabled, body.position, target);
+            if (controller.Model.CanStopTicking)
             {
-                if (stateTime >= 3)
-                {
-                    enabled = false;
-                }
-                return;
+                enabled = false;
             }
-            if (!perception.TargetAlive)
-            {
-                if (HasAggro)
-                {
-                    Enter(BehaviourState.TargetDead);
-                }
-                motor.Move(Vector2.zero, false);
-                return;
-            }
-            if (State == BehaviourState.Sleeping)
-            {
-                exposure = perception.Exposed(body.position) ? exposure + Time.fixedDeltaTime : Mathf.Max(0, exposure - behaviourProfile.exposureDecay * Time.fixedDeltaTime);
-                motor.Move(Vector2.zero, false);
-                if (exposure >= behaviourProfile.lightExposureSeconds)
-                {
-                    Wake();
-                }
-                return;
-            }
-            if (IsStaggered)
-            {
-                motor.Move(hitPush * Mathf.Clamp01((staggerUntil - Time.time) / Mathf.Max(.01f, definition.hitStaggerSeconds)), false);
-                return;
-            }
-
-            Vector2 velocity = Vector2.zero;
-            switch (State)
-            {
-                case BehaviourState.Waking:
-                    if (stateTime >= behaviourProfile.wakingSeconds)
-                    {
-                        Enter(BehaviourState.Hunting);
-                    }
-                    break;
-                case BehaviourState.Hunting:
-                    if (attacksEnabled && melee.CanStart(body.position))
-                    {
-                        attackHeading = ((Vector2)player.position - body.position).normalized;
-                        melee.Begin();
-                        Enter(BehaviourState.Attacking);
-                    }
-                    else
-                    {
-                        velocity = motor.Follow(player.position, definition.pursuitSpeed);
-                    }
-                    break;
-                case BehaviourState.Attacking:
-                    velocity = melee.Step(AttackProgress, body.position, attackHeading, true);
-                    if (AttackProgress >= 1)
-                    {
-                        melee.Finish();
-                        Enter(BehaviourState.Recovering);
-                        velocity = Vector2.zero;
-                    }
-                    break;
-                case BehaviourState.Recovering:
-                    if (stateTime >= behaviourProfile.recoverySeconds)
-                    {
-                        Enter(BehaviourState.Hunting);
-                    }
-                    break;
-            }
-            motor.Move(velocity, State == BehaviourState.Hunting);
-        }
-
-        private void Wake()
-        {
-            if (HasAggro || !IsAlive)
-            {
-                return;
-            }
-            HasAggro = true;
-            exposure = 0;
-            Enter(BehaviourState.Waking);
-        }
-
-        private void Enter(BehaviourState next)
-        {
-            if (State == next)
-            {
-                return;
-            }
-            State = next;
-            stateTime = 0;
-            StateChanged?.Invoke(next);
         }
 
         public override void ReceiveBulletHit(int damage, Vector2 point, Vector2 direction)
@@ -216,35 +141,31 @@ namespace EmergencyShift
             {
                 return;
             }
+
             health.TakeDamage(damage);
             if (hitResponse != null)
             {
                 hitResponse.Play(point, direction, !IsAlive);
             }
-            if (!IsAlive)
+
+            if (IsAlive)
             {
-                return;
-            }
-            staggerUntil = Time.time + definition.hitStaggerSeconds;
-            hitPush = direction.normalized * definition.hitPushSpeed;
-            if (State == BehaviourState.Attacking)
-            {
-                melee.Interrupt(definition.attackCooldown);
-                Enter(BehaviourState.Recovering);
+                controller.Stagger(direction);
             }
         }
 
         private void OnDamaged()
         {
-            Wake();
+            controller.Wake();
             Damaged?.Invoke();
         }
+
+        private void ForwardState(SleeperState state) => StateChanged?.Invoke((BehaviourState)state);
         private void OnLunged() => AttackLunged?.Invoke();
         private void OnResolved(bool landed) => AttackResolved?.Invoke(landed);
-
         private void OnDied()
         {
-            Enter(BehaviourState.Dead);
+            controller.Kill();
             SetLivingPhysics(false);
         }
 
@@ -259,7 +180,7 @@ namespace EmergencyShift
             }
         }
 
-        [System.Serializable]
+        [Serializable]
         public sealed class Snapshot
         {
             public int health;
@@ -275,30 +196,44 @@ namespace EmergencyShift
 
         public Snapshot CaptureState()
         {
+            SleeperStateSnapshot state = controller.Model.Capture();
             return new Snapshot
             {
                 health = Health,
-                state = State,
-                aggro = HasAggro,
-                age = stateTime,
-                exposure = exposure,
-                staggerLeft = Mathf.Max(0, staggerUntil - Time.time),
-                push = hitPush,
-                heading = attackHeading,
+                state = (BehaviourState)state.State,
+                aggro = state.Aggro,
+                age = state.Age,
+                exposure = state.Exposure,
+                staggerLeft = state.StaggerLeft,
+                push = state.Push,
+                heading = state.Heading,
                 melee = melee.CaptureState()
             };
         }
 
         public void RestoreState(Snapshot saved)
         {
+            if (saved == null || saved.melee == null)
+            {
+                throw new ArgumentException("Sleeper snapshot requires actor and melee state.", nameof(saved));
+            }
+
+            var state = new SleeperStateSnapshot((SleeperState)saved.state, saved.aggro, saved.age, saved.exposure,
+                saved.staggerLeft, saved.push, saved.heading);
+            var validation = SleeperModel.ValidateSnapshot(state);
+            var meleeValidation = EnemyMeleeModel.ValidateSnapshot(new EnemyMeleeState(saved.melee.struck, saved.melee.lunged, saved.melee.cooldown));
+            if (!validation.Success || !meleeValidation.Success)
+            {
+                throw new InvalidOperationException("Invalid sleeper snapshot values.");
+            }
+
             health.Restore(saved.health);
-            State = saved.state;
-            HasAggro = saved.aggro;
-            stateTime = saved.age;
-            exposure = saved.exposure;
-            staggerUntil = Time.time + saved.staggerLeft;
-            hitPush = saved.push;
-            attackHeading = saved.heading;
+            var restored = controller.Restore(state);
+            if (!restored.Success)
+            {
+                throw new InvalidOperationException(restored.Reason);
+            }
+
             melee.RestoreState(saved.melee);
             SetLivingPhysics(saved.health > 0);
             enabled = saved.health > 0;
@@ -306,6 +241,7 @@ namespace EmergencyShift
             {
                 feedback.RestoreSilently();
             }
+
             if (saved.health == 0)
             {
                 GetComponent<CreatureSpriteAnimator2D>().RestoreDead();
@@ -314,11 +250,17 @@ namespace EmergencyShift
 
         private void OnDestroy()
         {
+            if (controller != null)
+            {
+                controller.Model.StateChanged -= ForwardState;
+            }
+
             if (health != null)
             {
                 health.Damaged -= OnDamaged;
                 health.Died -= OnDied;
             }
+
             if (melee != null)
             {
                 melee.Lunged -= OnLunged;

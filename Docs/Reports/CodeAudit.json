@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "397 own C# explicitly read; 97 partial. Boundary reviews certify stated scope, not all configuration/style tasks. complete=false. Latest: EnemyPatrol02.",
+  "limits": "416 own C# explicitly read; 96 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest SleeperBrain03.",
   "counts": {
-    "partial": 97,
-    "reviewed_boundary": 300
+    "partial": 96,
+    "reviewed_boundary": 320
   },
   "files": [
     {
@@ -2022,6 +2022,8 @@
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
@@ -2029,9 +2031,15 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillSleeperCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/WakeSleeperCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightStateModel.cs",
@@ -2095,12 +2103,18 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillSleeperCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/WakeSleeperCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
@@ -2853,6 +2867,8 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
@@ -2860,6 +2876,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -3391,6 +3408,7 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/SleeperBehaviourProfile.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
@@ -4103,13 +4121,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/SleeperBehaviourProfile.cs",
-      "sha256": "5b17b268ba64197a8abc03fb89b9335d551d4fc3d617e648c24a6b7ca3c3be70",
+      "sha256": "d768f909cbeb50de66a30a027e38cd33850a1d7ea980c32cbf4b84ad9edee0eb",
       "baselineSha256": "5b17b268ba64197a8abc03fb89b9335d551d4fc3d617e648c24a6b7ca3c3be70",
       "guid": "d2a690bc54ea6ac43911371b802ce30a",
       "types": [
         "SleeperBehaviourProfile"
       ],
-      "lines": 16,
+      "lines": 29,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Enemies/Sleeper-Behaviour.asset"
       ],
@@ -4122,7 +4140,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "IsValid отвергает отрицательные/нулевые интервалы, но +Infinity проходит сравнение >0; finite-проверки нет. Общие параметры не хранят текущую exposure. Профиль остаётся Unity config, будущая Model должна получать immutable values.",
+      "notes": "SleeperBrain03: validated immutable settings snapshot added and authored config tested without mutation. Legacy public API/IsValid finite guards remain for config pass.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Дозировка света, пробуждение и recovery",
@@ -4131,10 +4149,18 @@
         "IsValid"
       ],
       "usageEvidence": "Sleeper2D.Awake/FixedUpdate; Sleeper profile asset",
-      "reviewedSha256": "5b17b268ba64197a8abc03fb89b9335d551d4fc3d617e648c24a6b7ca3c3be70",
+      "reviewedSha256": "d768f909cbeb50de66a30a027e38cd33850a1d7ea980c32cbf4b84ad9edee0eb",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "IsValid отвергает отрицательные/нулевые интервалы, но +Infinity проходит сравнение >0; finite-проверки нет. Общие параметры не хранят текущую exposure. Профиль остаётся Unity config, будущая Model должна получать immutable values.",
+          "reviewedSha256": "5b17b268ba64197a8abc03fb89b9335d551d4fc3d617e648c24a6b7ca3c3be70"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerAudioSet.cs",
@@ -5724,6 +5750,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
@@ -5733,7 +5760,8 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -5784,6 +5812,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs"
       ],
       "entryPointHints": [],
@@ -5846,7 +5875,8 @@
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -5961,7 +5991,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
-      "sha256": "b6545d5c2e03d156f60bf0c2e345b1d0507e4f93fefbdd8c29dd982472db0fc5",
+      "sha256": "5ea9a3f54ec10efb9ae7557e56e751b8648c2a01eb1302676585158866e870bb",
       "baselineSha256": "65198c2ff4b8b5b181ad34efb7d661858e89d888c594f5d440b06cf535738314",
       "guid": "74ec39b20c26bf645b3250ec04d29d71",
       "types": [
@@ -5969,7 +5999,7 @@
         "Sleeper2D",
         "Snapshot"
       ],
-      "lines": 337,
+      "lines": 279,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
       ],
@@ -5996,15 +6026,17 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "337 строк объединяют authoritative FSM, clock, тело, hit response, presentation hooks и snapshot. Нужны pure Model/controller и environment, команды внешнего урона/restore по принятой границе. HasAggro не сбрасывается при потере LOS, death выключает body/crowd. Подписки Awake/OnDestroy парные; явный fixed attack heading сохранён.",
-      "reviewedSha256": "b6545d5c2e03d156f60bf0c2e345b1d0507e4f93fefbdd8c29dd982472db0fc5",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "reviewedSha256": "5ea9a3f54ec10efb9ae7557e56e751b8648c2a01eb1302676585158866e870bb",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -6012,6 +6044,11 @@
           "reviewStatus": "partial",
           "reviewedSha256": "b6545d5c2e03d156f60bf0c2e345b1d0507e4f93fefbdd8c29dd982472db0fc5",
           "notes": "Explicit player/light injection; AI rules/timers still mixed with Unity."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "337 строк объединяют authoritative FSM, clock, тело, hit response, presentation hooks и snapshot. Нужны pure Model/controller и environment, команды внешнего урона/restore по принятой границе. HasAggro не сбрасывается при потере LOS, death выключает body/crowd. Подписки Awake/OnDestroy парные; явный fixed attack heading сохранён.",
+          "reviewedSha256": "b6545d5c2e03d156f60bf0c2e345b1d0507e4f93fefbdd8c29dd982472db0fc5"
         }
       ],
       "responsibility": "Видовая FSM сна, пробуждения, преследования и выпада",
@@ -6024,8 +6061,9 @@
       ],
       "usageEvidence": "Sleeper.prefab; SleeperCheckpoint2D; presentation/audio adapters",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
@@ -6188,10 +6226,12 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -7275,15 +7315,47 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Config/SleeperSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "d13cc2e038d771c03626893fe5de8195bd331bc2bcf4f5f784519560daeecd71",
+      "guid": "5cc70baf83c847dea664102f2d0f0801",
+      "types": [
+        "SleeperSettings"
+      ],
+      "lines": 40,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/SleeperBehaviourProfile.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "d13cc2e038d771c03626893fe5de8195bd331bc2bcf4f5f784519560daeecd71",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs",
       "sourceScope": "unity",
-      "sha256": "16d9fd94885048d30bcdcc2acef6838abfc890e2e9a3166b1cdfc6e8f55b5a90",
+      "sha256": "11b90c72c918c72f37e81fb6f18bfe78fbbf1955863c4590d9cf573a4cef9549",
       "guid": "26052a9d7d5049cf87db6d2aa0b0b4d8",
       "types": [
         "EnemyInstaller"
       ],
-      "lines": 13,
+      "lines": 14,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -7300,10 +7372,15 @@
           "reviewStatus": "partial",
           "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
           "reviewedSha256": "dc4c39f01f79442075a21dd4188ad238fb3643b73f33d8cb5802c1f782e76740"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+          "reviewedSha256": "16d9fd94885048d30bcdcc2acef6838abfc890e2e9a3166b1cdfc6e8f55b5a90"
         }
       ],
-      "reviewedSha256": "16d9fd94885048d30bcdcc2acef6838abfc890e2e9a3166b1cdfc6e8f55b5a90",
-      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewedSha256": "11b90c72c918c72f37e81fb6f18bfe78fbbf1955863c4590d9cf573a4cef9549",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
       "reviewDate": "2026-10-21",
       "previousReviewStatus": "reviewed_boundary"
     },
@@ -7401,6 +7478,65 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "6644ae70c24734990602ba158ccaf6b5baeb1c8dd6aa869bbda024e0239cfe03",
+      "guid": "5a0d3b33ffad40d6abce269ce310e1c6",
+      "types": [
+        "BeginSleeperAttackCommand"
+      ],
+      "lines": 29,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "6644ae70c24734990602ba158ccaf6b5baeb1c8dd6aa869bbda024e0239cfe03",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "f49cf0d84229e6b7995c7b583f9d47c95ed1916835b163139f7f60890f7efc2a",
+      "guid": "dcdfaeacce8f4343a2878f59e60b7e15",
+      "types": [
+        "CompleteSleeperAttackCommand"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "f49cf0d84229e6b7995c7b583f9d47c95ed1916835b163139f7f60890f7efc2a",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
       "sourceScope": "unity",
@@ -7444,6 +7580,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
@@ -7512,6 +7649,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
@@ -7724,6 +7862,70 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyBrainMelee.cs",
+      "sourceScope": "unity",
+      "sha256": "8dab6c43d632a5ad8ab251cb2cc0b13a15d88928510454eafa536c534ed28a95",
+      "guid": "457d8c4cd2d94ecf9621f1476291fa7c",
+      "types": [
+        "IEnemyBrainMelee"
+      ],
+      "lines": 13,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "8dab6c43d632a5ad8ab251cb2cc0b13a15d88928510454eafa536c534ed28a95",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyBrainMotor.cs",
+      "sourceScope": "unity",
+      "sha256": "4129fbaff888fb5aa3e38ecdddc3ce2d700b33ea10aeedc1dd9acd6f0b376701",
+      "guid": "e7977b174dc945eab36c5f0a04299d44",
+      "types": [
+        "IEnemyBrainMotor"
+      ],
+      "lines": 10,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "4129fbaff888fb5aa3e38ecdddc3ce2d700b33ea10aeedc1dd9acd6f0b376701",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyMeleeEnvironment.cs",
       "sourceScope": "unity",
@@ -7846,6 +8048,36 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillSleeperCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "e952113f6c78d925e1baa337210fd8e1a5f982fa0caf63a83e9586f1f6582788",
+      "guid": "b314f25ccf2b42b2af6e75468699ff64",
+      "types": [
+        "KillSleeperCommand"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "e952113f6c78d925e1baa337210fd8e1a5f982fa0caf63a83e9586f1f6582788",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
       "sourceScope": "unity",
@@ -7928,6 +8160,351 @@
       ],
       "reviewedSha256": "70d4db1e56dfc2ee69485c4db747ee70d5597e3053d897ab2eb41e32f23b66a6",
       "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "a394eb2deec13de8f0e330dac379ea2c9f632e7283edf8f1eefc9025e649a594",
+      "guid": "f3b24770838a4eb3bf7996e890777aee",
+      "types": [
+        "RestoreSleeperCommand"
+      ],
+      "lines": 29,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "a394eb2deec13de8f0e330dac379ea2c9f632e7283edf8f1eefc9025e649a594",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+      "sourceScope": "unity",
+      "sha256": "b5a78d7d7cfc364e2c85d8efb5f396c807d3ccd812149d2927d81e9f4229ea4c",
+      "guid": "8cb71ec6cb464652a24ed2f8db568f1e",
+      "types": [
+        "SleeperController"
+      ],
+      "lines": 90,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "b5a78d7d7cfc364e2c85d8efb5f396c807d3ccd812149d2927d81e9f4229ea4c",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperIntent.cs",
+      "sourceScope": "unity",
+      "sha256": "26971856136966c18c12e214d41b5adf9911fe440f02af05b1ca65b05e07077e",
+      "guid": "1d4db6873bac42b984ab8fda3349bfc3",
+      "types": [
+        "SleeperIntent"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "26971856136966c18c12e214d41b5adf9911fe440f02af05b1ca65b05e07077e",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+      "sourceScope": "unity",
+      "sha256": "8430047781a8359f3aa5ce9e9fcf12cb172b72bc95d303e9f373ece5ab33c02a",
+      "guid": "e661aff4de35484cbc06ef1be4dd3e12",
+      "types": [
+        "SleeperModel"
+      ],
+      "lines": 177,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/WakeSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "8430047781a8359f3aa5ce9e9fcf12cb172b72bc95d303e9f373ece5ab33c02a",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperState.cs",
+      "sourceScope": "unity",
+      "sha256": "580905499ed793a0ef4ff627110a0f4d44947ccac9ee511e0ea5d5772ab11faa",
+      "guid": "4cf34f128ba84555b55d178480c8642f",
+      "types": [
+        "SleeperState"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "580905499ed793a0ef4ff627110a0f4d44947ccac9ee511e0ea5d5772ab11faa",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
+      "sourceScope": "unity",
+      "sha256": "3fed8939912dd0a015fc883021bfea1d93487fc5497f6dcfc3b80167df776a29",
+      "guid": "351c7e0acf5b469b94a7f384600e3b80",
+      "types": [
+        "SleeperStateSnapshot"
+      ],
+      "lines": 27,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "3fed8939912dd0a015fc883021bfea1d93487fc5497f6dcfc3b80167df776a29",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerSleeperCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "057d4ce19b37936fc6f501655e708264c9d875f3362b09455ad89fc7c18dc00b",
+      "guid": "2e2724f7d316441595a30ecb3030ab55",
+      "types": [
+        "StaggerSleeperCommand"
+      ],
+      "lines": 29,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "057d4ce19b37936fc6f501655e708264c9d875f3362b09455ad89fc7c18dc00b",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/WakeSleeperCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "c5dc62e35f9d42042568dceddd40c606667613308fe2a54fa39f6110e64dbf61",
+      "guid": "138cde51075d4a2a959f9caf2cb3a399",
+      "types": [
+        "WakeSleeperCommand"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "c5dc62e35f9d42042568dceddd40c606667613308fe2a54fa39f6110e64dbf61",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "435609adb93324641c3d3d8d8960973a456b8842cc4c3f89ff389ff7be538ca3",
+      "guid": "09fcb14e7c98447893fc3750a94edf41",
+      "types": [
+        "SleeperControllerFactory"
+      ],
+      "lines": 15,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "435609adb93324641c3d3d8d8960973a456b8842cc4c3f89ff389ff7be538ca3",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+      "sourceScope": "unity",
+      "sha256": "4749644b0844e7d8ccbf1d82f9302419cf72468d1054af00f427ad84faa57127",
+      "guid": "406e8fa7a7ab4c4e81fd1dc9933912b3",
+      "types": [
+        "EnemyBrainMelee2D"
+      ],
+      "lines": 17,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "4749644b0844e7d8ccbf1d82f9302419cf72468d1054af00f427ad84faa57127",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
+      "sourceScope": "unity",
+      "sha256": "7d1f8732080e90d7be275ccc2ca670db5ef1c982a80c9efbb42d6a93447c8199",
+      "guid": "bf427480d4c84ff0b3cea260bc27ad7e",
+      "types": [
+        "EnemyBrainMotor2D"
+      ],
+      "lines": 14,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "7d1f8732080e90d7be275ccc2ca670db5ef1c982a80c9efbb42d6a93447c8199",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -9571,7 +10148,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -10406,15 +10984,22 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -10544,15 +11129,22 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -10602,15 +11194,22 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -10734,15 +11333,22 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -11472,7 +12078,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -11530,7 +12137,8 @@
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -14124,6 +14732,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
       "entryPointHints": [
@@ -14643,6 +15252,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
         "Concepts/Used/Environment/RoomFinish01/create.cs"
@@ -15459,6 +16069,50 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "331126406779949a29107df6b63f5ea154348790b86b05e9370ef9804e587f1d",
+      "guid": "6318c6c23882462c9582623f539a659d",
+      "types": [
+        "Clock",
+        "Melee",
+        "Motor",
+        "SleeperModelTests"
+      ],
+      "lines": 253,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/EnemyDefinition.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "331126406779949a29107df6b63f5ea154348790b86b05e9370ef9804e587f1d",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
       "sha256": "26aa1363fe9c2909e53ae264b8696e5dc0f3a2709c92c68a840514e9c69016b3",
       "baselineSha256": "26aa1363fe9c2909e53ae264b8696e5dc0f3a2709c92c68a840514e9c69016b3",
@@ -15985,6 +16639,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "347d5f8553d1d6e86eeb079719ac9ada6a9e715cdb8dc1ab593f970ea0488cb2",
+      "guid": "7c2875b4eeec41a4a251ee069f307a8d",
+      "types": [
+        "SleeperBrainSceneTests"
+      ],
+      "lines": 131,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "347d5f8553d1d6e86eeb079719ac9ada6a9e715cdb8dc1ab593f970ea0488cb2",
+      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "BloodSafety01: 65 profile cases (33 original failures), source-scene/frozen-timer unload for both blood VFX (4 original failures). 481 own EditMode, 16 real PlayMode and normal Windows64 passed. Temporary objects and original resource guards; see limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs",
       "sourceScope": "unity",
@@ -16177,6 +16858,7 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
@@ -16293,6 +16975,7 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperJawBakeSource.cs",
@@ -16446,14 +17129,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 378,
+    "unity": 397,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 18,
-    "report": "Docs/Reports/EnemyPatrol02.md",
-    "validation": "588/588 EditMode, 22/22 PlayMode, normal Windows64 success. Pure patrol bounds/pause/RNG isolation/state validation and native geometry/restore check with brain disabled. Source tuning/resources unchanged; not full FSM/route/config pass."
+    "files": 22,
+    "report": "Docs/Reports/SleeperBrain03.md",
+    "validation": "604/604 EditMode, 23/23 PlayMode, normal Windows64 success. Pure FSM commands/state isolation and real scoped Sleeper cycle with beam/wall/committed heading/silent restore/death. No resource mutation; map/profiler/owner acceptance remain."
   },
   "reviewPasses": [
     {
@@ -16569,15 +17252,21 @@
       "files": 18,
       "report": "Docs/Reports/EnemyPatrol02.md",
       "validation": "588/588 EditMode, 22/22 PlayMode, normal Windows64 success. Pure patrol bounds/pause/RNG isolation/state validation and native geometry/restore check with brain disabled. Source tuning/resources unchanged; not full FSM/route/config pass."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 22,
+      "report": "Docs/Reports/SleeperBrain03.md",
+      "validation": "604/604 EditMode, 23/23 PlayMode, normal Windows64 success. Pure FSM commands/state isolation and real scoped Sleeper cycle with beam/wall/committed heading/silent restore/death. No resource mutation; map/profiler/owner acceptance remain."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 397,
-    "totalFiles": 397,
+    "reviewedFiles": 416,
+    "totalFiles": 416,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "EnemyPatrol02 and earlier reviews; targeted boundary certification does not complete all SOD tasks."
+    "validation": "SleeperBrain03 and prior reviews; boundary coverage does not finish all SOD tasks."
   }
 }

@@ -8,6 +8,7 @@ namespace EmergencyShift.Features.Enemies
         {
             container.Bind<EnemyMeleeControllerFactory>().AsSingle();
             container.Bind<EnemyPatrolControllerFactory>().AsSingle();
+            container.Bind<SleeperControllerFactory>().AsSingle();
         }
     }
 }

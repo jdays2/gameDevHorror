@@ -260,15 +260,19 @@
 - [EnemyInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs)
 - [EnemyMeleeControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs)
 - [EnemyPatrolControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs)
+- [SleeperControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Enemies/Config
 
 - [EnemyMeleeSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyMeleeSettings.cs)
 - [EnemyPatrolSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyPatrolSettings.cs)
+- [SleeperSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/SleeperSettings.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Enemies/Logic
 
 - [BeginEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs)
+- [BeginSleeperAttackCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs)
+- [CompleteSleeperAttackCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs)
 - [EnemyMeleeController.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs)
 - [EnemyMeleeModel.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs)
 - [EnemyMeleeObservation.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeObservation.cs)
@@ -279,16 +283,29 @@
 - [EnemyPatrolState.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolState.cs)
 - [EnemyPatrolStep.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolStep.cs)
 - [FinishEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs)
+- [IEnemyBrainMelee.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyBrainMelee.cs)
+- [IEnemyBrainMotor.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyBrainMotor.cs)
 - [IEnemyMeleeEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyMeleeEnvironment.cs)
 - [IEnemyPatrolEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPatrolEnvironment.cs)
 - [InitializeEnemyPatrolCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs)
 - [InterruptEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs)
+- [KillSleeperCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillSleeperCommand.cs)
 - [ResetEnemyPatrolCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs)
 - [RestoreEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs)
 - [RestoreEnemyPatrolCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs)
+- [RestoreSleeperCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs)
+- [SleeperController.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs)
+- [SleeperIntent.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperIntent.cs)
+- [SleeperModel.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs)
+- [SleeperState.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperState.cs)
+- [SleeperStateSnapshot.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs)
+- [StaggerSleeperCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerSleeperCommand.cs)
+- [WakeSleeperCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/WakeSleeperCommand.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Enemies/View
 
+- [EnemyBrainMelee2D.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs)
+- [EnemyBrainMotor2D.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs)
 - [EnemyMeleeEnvironment2D.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs)
 - [EnemyPatrolEnvironment2D.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs)
 
@@ -536,6 +553,7 @@
 - [PlayerInputTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
 - [SceneRegistryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs)
+- [SleeperModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs)
 - [SleeperTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs)
 - [StalkerEyeTests.cs](../Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs)
 - [WeaponAimEnvironmentTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponAimEnvironmentTests.cs)
@@ -556,6 +574,7 @@
 - [EnemyMeleeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs)
 - [EnemyPatrolSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
+- [SleeperBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)
 - [WeaponSpreadLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs)
 
