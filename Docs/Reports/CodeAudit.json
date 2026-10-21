@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "313 current own C# explicitly reviewed; 108 retain migration debt. complete=false. WeaponController02 certifies only stated boundaries.",
+  "limits": "315 current own C# explicitly reviewed; 108 retain migration/style debt. complete=false. BloodSafety01 certifies only stated boundaries.",
   "counts": {
     "partial": 108,
-    "reviewed_boundary": 205
+    "reviewed_boundary": 207
   },
   "files": [
     {
@@ -3008,14 +3008,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs",
-      "sha256": "e7455456a719d8c71efe9867e8c10f7b22511914728f3900b4540b45651b47eb",
+      "sha256": "e9f90ae6518844c37b8329386f517bfdf1f46c3fc7123d5fd7a2451ceac9ffbb",
       "baselineSha256": "e7455456a719d8c71efe9867e8c10f7b22511914728f3900b4540b45651b47eb",
       "guid": "207cba265a2d2b34fbabe2a317f2c92a",
       "types": [
         "BloodPoolProfile",
         "BloodPoolVariant"
       ],
-      "lines": 68,
+      "lines": 77,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Blood/ProceduralPools01.asset"
       ],
@@ -3026,17 +3026,25 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Варианты/дубли ID проверяются, но IsValid неполно отвергает NaN/Infinity/color; shared profile не мутируется. Учёт: BUG-017.",
+      "notes": "BUG-017 fixed: all scalar/vector/color components finite-checked before renderer; HDR/ranges retained; 65/65 profile tests and full regressions passed. Legacy public SO authoring API remains for the final configuration/style pass.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "queued",
           "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        },
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "e7455456a719d8c71efe9867e8c10f7b22511914728f3900b4540b45651b47eb",
+          "notes": "Варианты/дубли ID проверяются, но IsValid неполно отвергает NaN/Infinity/color; shared profile не мутируется. Учёт: BUG-017.",
+          "reviewReport": "Docs/Reports/CodeAudit09.md"
         }
       ],
       "responsibility": "Общие варианты лужи и размеры капель",
@@ -3045,10 +3053,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
-      "reviewedSha256": "e7455456a719d8c71efe9867e8c10f7b22511914728f3900b4540b45651b47eb",
+      "reviewedSha256": "e9f90ae6518844c37b8329386f517bfdf1f46c3fc7123d5fd7a2451ceac9ffbb",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/BloodSafety01.md",
+      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/CameraFramingProfile.cs",
@@ -3378,7 +3387,8 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -9535,7 +9545,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodRuptureBurst2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyHitResponse2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyHitResponse2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -9582,8 +9593,10 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodRuptureBurst2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -9624,7 +9637,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodHitSpray2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -9779,13 +9793,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyHitResponse2D.cs",
-      "sha256": "81ebc21e2908506c26f9e6818f65223456b68d5228226e08cec1b89914eb5b06",
+      "sha256": "90c45c55e8fde7a780b4d88583c68099c26fa2c69982bef9d6fe580a564da817",
       "baselineSha256": "81ebc21e2908506c26f9e6818f65223456b68d5228226e08cec1b89914eb5b06",
       "guid": "338c7d1a9e8f670409c139ba9c20a7c2",
       "types": [
         "EnemyHitResponse2D"
       ],
-      "lines": 128,
+      "lines": 129,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -9797,17 +9811,25 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
-        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs"
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Hit presentation не выдаёт damage, OnDisable reset; новый spray active-scene ownership. Visual pose имеет конкурирующих писателей с animator; actual conflict требует Play-проверки.",
+      "notes": "BUG-015 fixed: transient root is assigned to source scene before effect component creation; frozen-time unload verified. Still partial: potential shared pose writer with animator needs ownership review/real animation scenario.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "queued",
           "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        },
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "81ebc21e2908506c26f9e6818f65223456b68d5228226e08cec1b89914eb5b06",
+          "notes": "Hit presentation не выдаёт damage, OnDisable reset; новый spray active-scene ownership. Visual pose имеет конкурирующих писателей с animator; actual conflict требует Play-проверки.",
+          "reviewReport": "Docs/Reports/CodeAudit09.md"
         }
       ],
       "responsibility": "Визуальный отклик и кровь попадания",
@@ -9818,10 +9840,11 @@
         "Transform / SpriteRenderer"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
-      "reviewedSha256": "81ebc21e2908506c26f9e6818f65223456b68d5228226e08cec1b89914eb5b06",
+      "reviewedSha256": "90c45c55e8fde7a780b4d88583c68099c26fa2c69982bef9d6fe580a564da817",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/BloodSafety01.md",
+      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GibMotion2D.cs",
@@ -9868,13 +9891,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-      "sha256": "aef0403b739b70a815d8f3add693db6def19392dfeddbc7f1db44de3645390d1",
+      "sha256": "52ed401302223dfa8e77a3abcd6e1f17f88ece1d801aa6cd56e0393cb5bf8093",
       "baselineSha256": "06b7c592281f925895c42dc2f371a448be2bff330b385121ef616a73c0033fac",
       "guid": "a44dfee537c76c74ca26aa0a3b1c491e",
       "types": [
         "GoreBurst2D"
       ],
-      "lines": 244,
+      "lines": 245,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -9895,12 +9918,13 @@
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "BUG-014 исправлен: полная nested preflight и защита прямого RestoreRemains до остановки/удаления прежней записи. BUG-015 transient active-scene owner и общий cosmetic RNG/тюнинг остаются открытыми.",
-      "reviewedSha256": "aef0403b739b70a815d8f3add693db6def19392dfeddbc7f1db44de3645390d1",
+      "notes": "BUG-014 preflight retained; BUG-015 transient scene ownership fixed and verified in real additive scenes/unload. Still partial: emit/spawn state, shared tuning/RNG and general gore model/controller boundary.",
+      "reviewedSha256": "52ed401302223dfa8e77a3abcd6e1f17f88ece1d801aa6cd56e0393cb5bf8093",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -9928,6 +9952,13 @@
             "GibMotion2D"
           ],
           "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3."
+        },
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "aef0403b739b70a815d8f3add693db6def19392dfeddbc7f1db44de3645390d1",
+          "notes": "BUG-014 исправлен: полная nested preflight и защита прямого RestoreRemains до остановки/удаления прежней записи. BUG-015 transient active-scene owner и общий cosmetic RNG/тюнинг остаются открытыми.",
+          "reviewReport": "Docs/Reports/CheckpointValidation01.md"
         }
       ],
       "responsibility": "Однократная кровь и scene-owned останки",
@@ -9938,8 +9969,9 @@
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
-      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success."
+      "reviewReport": "Docs/Reports/BloodSafety01.md",
+      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs",
@@ -11723,6 +11755,30 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "BloodSafety01: 65 profile cases (33 original failures), source-scene/frozen-timer unload for both blood VFX (4 original failures). 481 own EditMode, 16 real PlayMode and normal Windows64 passed. Temporary objects and original resource guards; see limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs",
+      "sourceScope": "unity",
+      "sha256": "95a6a634df022d9d7514ca9b0b84a8fca7a82067e449067284ff311db365aa0f",
+      "guid": "b83baffe982b64a4aa47778ae27a615c",
+      "types": [
+        "BloodPoolProfileValidationTests"
+      ],
+      "lines": 124,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "95a6a634df022d9d7514ca9b0b84a8fca7a82067e449067284ff311db365aa0f",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/BloodSafety01.md",
+      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration."
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
       "sha256": "3ebbf1f57cd976afb2c78d4739b1a30d7cb538eb5f7dbb34270f7b1076d7413e",
       "baselineSha256": "3ebbf1f57cd976afb2c78d4739b1a30d7cb538eb5f7dbb34270f7b1076d7413e",
@@ -13036,6 +13092,28 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "BloodSafety01: 65 profile cases (33 original failures), source-scene/frozen-timer unload for both blood VFX (4 original failures). 481 own EditMode, 16 real PlayMode and normal Windows64 passed. Temporary objects and original resource guards; see limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "44e699c31f29c5aae44938a3d172f8d11baaa725fba8dd53dc032534ab490c91",
+      "guid": "20d86fa1a630c0140b8c7229b5ec70b0",
+      "types": [
+        "TransientBloodSceneTests"
+      ],
+      "lines": 135,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "44e699c31f29c5aae44938a3d172f8d11baaa725fba8dd53dc032534ab490c91",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/BloodSafety01.md",
+      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
       "sourceScope": "unity",
@@ -13470,14 +13548,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 294,
+    "unity": 296,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 20,
-    "report": "Docs/Reports/WeaponController02.md",
-    "validation": "416/416 own EditMode, 12/12 real PlayMode, normal Windows64 success. Three pure passive loop allocation checks: 0 bytes/1000 updates, not a whole-game performance claim."
+    "files": 5,
+    "report": "Docs/Reports/BloodSafety01.md",
+    "validation": "33 original EditMode + 4 PlayMode failures; after fix 481/481 own EditMode, 16/16 real PlayMode, normal Windows64 success. Original authored resources unchanged."
   },
   "reviewPasses": [
     {
@@ -13545,15 +13623,21 @@
       "files": 20,
       "report": "Docs/Reports/WeaponController02.md",
       "validation": "416/416 own EditMode, 12/12 real PlayMode, normal Windows64 success. Three pure passive loop allocation checks: 0 bytes/1000 updates, not a whole-game performance claim."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 5,
+      "report": "Docs/Reports/BloodSafety01.md",
+      "validation": "33 original EditMode + 4 PlayMode failures; after fix 481/481 own EditMode, 16/16 real PlayMode, normal Windows64 success. Original authored resources unchanged."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 313,
-    "totalFiles": 313,
+    "reviewedFiles": 315,
+    "totalFiles": 315,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "WeaponController02 and previous reviews; remaining partial files are not certified migrated."
+    "validation": "BloodSafety01 and earlier source reviews; remaining partial files are not certified migrated."
   }
 }

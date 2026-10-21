@@ -61,9 +61,10 @@ namespace EmergencyShift
             HitsShown++;
             if (bloodSprite != null && bloodMaterial != null)
             {
-                var obj = new GameObject("Bullet blood spray", typeof(BloodHitSpray2D));
+                var obj = new GameObject("Bullet blood spray");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(obj, gameObject.scene);
                 obj.transform.position = new Vector3(point.x, point.y, -.12f);
-                obj.GetComponent<BloodHitSpray2D>().Initialize(bloodSprite, bloodMaterial, heading);
+                obj.AddComponent<BloodHitSpray2D>().Initialize(bloodSprite, bloodMaterial, heading);
             }
 
             direction = heading.normalized;

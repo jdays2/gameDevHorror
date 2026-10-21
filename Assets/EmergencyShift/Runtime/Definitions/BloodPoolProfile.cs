@@ -37,7 +37,10 @@ namespace EmergencyShift
 
         public bool IsValid()
         {
-            if (variants == null || variants.Length == 0 || dropletSprites == null || dropletSprites.Length == 0)
+            if (variants == null || variants.Length == 0 || dropletSprites == null || dropletSprites.Length == 0
+                || !Finite(poolTint) || !Finite(dropletTint) || !Finite(scaleRange) || !Finite(dropletDistance)
+                || !Finite(dropletSize) || !Finite(dropletAspect) || !Finite(arrivalSeconds)
+                || !float.IsFinite(growSeconds) || !float.IsFinite(initialScale))
             {
                 return false;
             }
@@ -45,7 +48,8 @@ namespace EmergencyShift
             for (int i = 0; i < variants.Length; i++)
             {
                 BloodPoolVariant variant = variants[i];
-                if (variant == null || string.IsNullOrEmpty(variant.id) || variant.sprite == null || variant.canvasSize <= 0)
+                if (variant == null || string.IsNullOrEmpty(variant.id) || variant.sprite == null
+                    || !float.IsFinite(variant.canvasSize) || variant.canvasSize <= 0)
                 {
                     return false;
                 }
@@ -64,5 +68,10 @@ namespace EmergencyShift
                 && arrivalSeconds.x > 0 && arrivalSeconds.y >= arrivalSeconds.x
                 && growSeconds > 0 && initialScale > 0 && initialScale <= 1;
         }
+
+        private static bool Finite(Vector2 value) => float.IsFinite(value.x) && float.IsFinite(value.y);
+
+        private static bool Finite(Color value) => float.IsFinite(value.r) && float.IsFinite(value.g)
+            && float.IsFinite(value.b) && float.IsFinite(value.a);
     }
 }

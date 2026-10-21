@@ -401,6 +401,7 @@
 
 ## Assets/EmergencyShift/Tests/EditMode
 
+- [BloodPoolProfileValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs)
 - [BloodPoolTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs)
 - [CeilingLightOcclusionTests.cs](../Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs)
 - [CheckpointBooleanTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs)
@@ -440,6 +441,7 @@
 
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
+- [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)
 - [WeaponSpreadLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs)
 
 ## Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts

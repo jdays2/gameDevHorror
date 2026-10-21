@@ -90,9 +90,10 @@ namespace EmergencyShift
                 pool.BeginRupture();
                 if (bloodSpraySprite != null)
                 {
-                    var spray = new GameObject("Blood rupture burst", typeof(BloodRuptureBurst2D));
+                    var spray = new GameObject("Blood rupture burst");
+                    UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(spray, gameObject.scene);
                     spray.transform.position = new Vector3(transform.position.x, transform.position.y, -.034f);
-                    spray.GetComponent<BloodRuptureBurst2D>().Initialize(pool, bloodSpraySprite, litMaterial);
+                    spray.AddComponent<BloodRuptureBurst2D>().Initialize(pool, bloodSpraySprite, litMaterial);
                 }
             }
 
