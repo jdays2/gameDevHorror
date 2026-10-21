@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Движение игрока MVC/DI | [PlayerMovement07](PlayerMovement07.md): 655/655 EditMode, 27/27 PlayMode, Windows64 success; личный intent/command, modal boundary и native Rigidbody. SO/config-pass открыт. |
 | Общая атака врагов MVC/DI | [EnemyMelee01](EnemyMelee01.md): 572/572 EditMode, 21/21 PlayMode, Windows64 success. Чистый timeline/clock/commands, wall и один реальный hit у обоих prefab, без полного FSM/маршрута. |
 | Масштаб steering / BUG-022 | [MotorGeometry06](MotorGeometry06.md): 641/641 EditMode, 26/26 PlayMode, Windows64 success. Два исходных отказа, правильный мировой radius и реальное движение трёх масштабов. |
 | Навигация / BUG-021 | [Navigation05](Navigation05.md): 638/638 EditMode, 25/25 PlayMode, Windows64 success. Красный baseline переполнения, безопасные размеры, pure solver и настоящий физический обход стены. |

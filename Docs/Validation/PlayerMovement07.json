@@ -1,0 +1,111 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "d6eec33f57f6e8d987d4a1c136580f08175208ec",
+  "editMode": {
+    "result": "Passed",
+    "total": "655",
+    "passed": "655",
+    "failed": "0",
+    "end-time": "2026-10-21 17:09:24Z",
+    "rawPath": "work/sod-evidence-20261021/movement-final-edit.xml",
+    "rawSha256": "4c5c6398c0e35e53e2c9df5483a6eb796515c6abf7da5cea93e1d3c28cad3b7d",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.AuthoredSpeedAndLegacyFullSpeedNormalizationArePreserved(1,0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.AuthoredSpeedAndLegacyFullSpeedNormalizationArePreserved(1,1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.AuthoredSpeedAndLegacyFullSpeedNormalizationArePreserved(0.2f,0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.BlockAcquiredBetweenSampleAndPhysicsImmediatelyStopsVelocity",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.ContinuousValueCommandsAndVelocityReadsDoNotAllocateManagedObjects",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.InvalidAuthoredSpeedIsRejected(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.InvalidAuthoredSpeedIsRejected(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.InvalidAuthoredSpeedIsRejected(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.RejectedCommandIsAtomicAndMalformedInputSourceStopsSafely(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.RejectedCommandIsAtomicAndMalformedInputSourceStopsSafely(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.RejectedCommandIsAtomicAndMalformedInputSourceStopsSafely(float.MaxValue)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.ReleasingOneModalCannotUnblockAnotherOwner",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.StopClearsPersonalIntentWithoutAffectingAnotherController",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementTests.ZeroSpeedAndEmptyIntentProduceNoMovement",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "27",
+    "passed": "27",
+    "failed": "0",
+    "end-time": "2026-10-21 17:14:27Z",
+    "rawPath": "work/sod-evidence-20261021/movement-final-play.xml",
+    "rawSha256": "fba3b3435116c08c378db52adf08c45b2aaf99d3982374a2baaad003542aa1f0",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementSceneTests.AuthoredPlayerMovesStopsForModalAndClearsVelocityOnDisable",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T17:15:04.153Z",
+    "endedAt": "2026-10-21T17:15:29.943Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Config/PlayerMovementSettings.cs": "d55e2b4b5b5c95447d815c8101196521a36c16c35ac2dae3c81d9c4694bbdee7",
+    "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs": "8fb29337f93f9edb034781bbb5be3390729799780783d21ba6085667ce93caab",
+    "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementModel.cs": "c32bcdd84a4765aec506f91ea4ab65201a3670983f9a3de05c4897d89b4d65b2",
+    "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs": "a0ba9d973c10d935a99ed2aef55bf1f5314aa20c9f08f02ce2af6c65364fd5c1",
+    "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs": "2377d80d72e777f5a259a773971f89c83e451d2c0de53d17734190d79860b557",
+    "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementInstaller.cs": "30494182d439fe62d8bc8136f9230d73776b876258a46b2bfdd8c2f9962ecb89",
+    "Assets/EmergencyShift/Runtime/Player/PlayerMotor2D.cs": "7c2f07e174ef9edcc31a8eac02554217193c637d1a9bd05b1e968d52661a65d5",
+    "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs": "b563d5d88a3f5173941bbdecb0751162204c5030734076407f81ed3c5cb450ac",
+    "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs": "a8db7cfc844e1e500708a1b7d3b361f7b042f0301a52fab33c1480c4cf5bfcae",
+    "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs": "a9b7f70631d17358e4d14599eb63de861b103f30e5cc24483fb051c6be01b151"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. SO config-pass and author input-feel acceptance remain open. Allocation test covers 1000 pure input samples/velocity reads, not Unity/FPS."
+}

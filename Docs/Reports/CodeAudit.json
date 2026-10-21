@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "446 own C# explicitly read; 94 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest MotorGeometry06.",
+  "limits": "454 own C# explicitly read; 94 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PlayerMovement07.",
   "counts": {
     "partial": 94,
-    "reviewed_boundary": 352
+    "reviewed_boundary": 360
   },
   "files": [
     {
@@ -2063,7 +2063,9 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
-        "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs"
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2138,7 +2140,8 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
-        "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs"
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2607,10 +2610,11 @@
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAim2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerMotor2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxSession2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
@@ -2620,7 +2624,9 @@
         "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -6100,6 +6106,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
@@ -6304,6 +6311,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
@@ -10774,18 +10782,21 @@
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAim2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerMotor2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxSession2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -10871,6 +10882,160 @@
       "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Config/PlayerMovementSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "d55e2b4b5b5c95447d815c8101196521a36c16c35ac2dae3c81d9c4694bbdee7",
+      "guid": "1dc7a40750324da7b902e17eab85f25a",
+      "types": [
+        "PlayerMovementSettings"
+      ],
+      "lines": 20,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d55e2b4b5b5c95447d815c8101196521a36c16c35ac2dae3c81d9c4694bbdee7",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
+      "sourceScope": "unity",
+      "sha256": "8fb29337f93f9edb034781bbb5be3390729799780783d21ba6085667ce93caab",
+      "guid": "5eb5628a15734134a6437228aa40092b",
+      "types": [
+        "PlayerMovementController"
+      ],
+      "lines": 38,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerMotor2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "8fb29337f93f9edb034781bbb5be3390729799780783d21ba6085667ce93caab",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementModel.cs",
+      "sourceScope": "unity",
+      "sha256": "c32bcdd84a4765aec506f91ea4ab65201a3670983f9a3de05c4897d89b4d65b2",
+      "guid": "8187accf1cf1441ea8d8742e1c60a02f",
+      "types": [
+        "PlayerMovementModel"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c32bcdd84a4765aec506f91ea4ab65201a3670983f9a3de05c4897d89b4d65b2",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "a0ba9d973c10d935a99ed2aef55bf1f5314aa20c9f08f02ce2af6c65364fd5c1",
+      "guid": "fef649bc60f44eab846812fdd6e64df1",
+      "types": [
+        "SetMovementIntentCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a0ba9d973c10d935a99ed2aef55bf1f5314aa20c9f08f02ce2af6c65364fd5c1",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "2377d80d72e777f5a259a773971f89c83e451d2c0de53d17734190d79860b557",
+      "guid": "0b318d699a394bc7b241b0f9a2510f3b",
+      "types": [
+        "PlayerMovementControllerFactory"
+      ],
+      "lines": 21,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerMotor2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "2377d80d72e777f5a259a773971f89c83e451d2c0de53d17734190d79860b557",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "30494182d439fe62d8bc8136f9230d73776b876258a46b2bfdd8c2f9962ecb89",
+      "guid": "1cdb2ff515d24167b189ad196e405f02",
+      "types": [
+        "PlayerMovementInstaller"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "30494182d439fe62d8bc8136f9230d73776b876258a46b2bfdd8c2f9962ecb89",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
       "sha256": "611bf1757c21b2f17cb3185764e82feaa86b8ebde4fce5148329a05c6916caef",
       "baselineSha256": "611bf1757c21b2f17cb3185764e82feaa86b8ebde4fce5148329a05c6916caef",
@@ -10915,13 +11080,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "7dff3c26c5fc3256f4e2c05def29dbf8c4964d99d9cc6929abc2dacb958c7bb3",
+      "sha256": "b563d5d88a3f5173941bbdecb0751162204c5030734076407f81ed3c5cb450ac",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 211,
+      "lines": 213,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -10960,13 +11125,14 @@
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
-      "reviewedSha256": "7dff3c26c5fc3256f4e2c05def29dbf8c4964d99d9cc6929abc2dacb958c7bb3",
+      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "reviewedSha256": "b563d5d88a3f5173941bbdecb0751162204c5030734076407f81ed3c5cb450ac",
       "previousReviewStatus": "reviewed_boundary",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -10979,8 +11145,8 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/EnemyMelee01.md",
-      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified.",
       "reviewHistory": [
         {
           "reviewDate": "2026-10-21",
@@ -12943,13 +13109,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerMotor2D.cs",
-      "sha256": "45e762ce7a5779b65265149eb9532740e84c2b009f9ed1b9fb30d93e5fb99eee",
+      "sha256": "7c2f07e174ef9edcc31a8eac02554217193c637d1a9bd05b1e968d52661a65d5",
       "baselineSha256": "2be0ffd57f70ec16715c032d53a3a40d7f305e6c6227c7baf5c30c3dc1d00294",
       "guid": "b96f5d332188ae1418b13a363dbe5ea2",
       "types": [
         "PlayerMotor2D"
       ],
-      "lines": 49,
+      "lines": 43,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
@@ -12981,13 +13147,14 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Input/block injected, Rigidbody writes только здесь; input intent и motor/Time Unity adapter в одном MB, move tuning serialized вместо config.",
-      "reviewedSha256": "45e762ce7a5779b65265149eb9532740e84c2b009f9ed1b9fb30d93e5fb99eee",
+      "notes": "Личный MVC/controller, Rigidbody environment и OnDisable проверены. moveSpeed остаётся сериализованным compatibility bridge; общий SO config-pass открыт.",
+      "reviewedSha256": "7c2f07e174ef9edcc31a8eac02554217193c637d1a9bd05b1e968d52661a65d5",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13005,8 +13172,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 3; сцены по графу: 11.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs",
@@ -16981,6 +17149,42 @@
       "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
+      "sourceScope": "unity",
+      "sha256": "a8db7cfc844e1e500708a1b7d3b361f7b042f0301a52fab33c1480c4cf5bfcae",
+      "guid": "f45be7e275c3402195d3e70ed807d29a",
+      "types": [
+        "Input",
+        "PlayerMovementTests"
+      ],
+      "lines": 156,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/AssignPlayerInput.cs",
+        "Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/Logic/IPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a8db7cfc844e1e500708a1b7d3b361f7b042f0301a52fab33c1480c4cf5bfcae",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
       "reviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -17732,6 +17936,39 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "a9b7f70631d17358e4d14599eb63de861b103f30e5cc24483fb051c6be01b151",
+      "guid": "7f70cb037daf4c6789e94259db7f01b6",
+      "types": [
+        "Input",
+        "PlayerMovementSceneTests"
+      ],
+      "lines": 114,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/AssignPlayerInput.cs",
+        "Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/Logic/IPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a9b7f70631d17358e4d14599eb63de861b103f30e5cc24483fb051c6be01b151",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerMovement07.md",
+      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
       "sourceScope": "unity",
@@ -17976,6 +18213,7 @@
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
@@ -18093,6 +18331,7 @@
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
@@ -18249,7 +18488,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 427,
+    "unity": 435,
     "content_source": 8
   },
   "latestReview": {

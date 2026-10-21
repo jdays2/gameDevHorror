@@ -418,6 +418,21 @@
 
 - [InputActionPlayerInput.cs](../Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs)
 
+## Assets/EmergencyShift/Runtime/Features/PlayerMovement
+
+- [PlayerMovementControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs)
+- [PlayerMovementInstaller.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/PlayerMovement/Config
+
+- [PlayerMovementSettings.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Config/PlayerMovementSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic
+
+- [PlayerMovementController.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs)
+- [PlayerMovementModel.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementModel.cs)
+- [SetMovementIntentCommand.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs)
+
 ## Assets/EmergencyShift/Runtime/Levels
 
 - [EncounterActivation2D.cs](../Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs)
@@ -577,6 +592,7 @@
 - [PauseMenuTests.cs](../Assets/EmergencyShift/Tests/EditMode/PauseMenuTests.cs)
 - [PersistenceTests.cs](../Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs)
 - [PlayerInputTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs)
+- [PlayerMovementTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
 - [SceneRegistryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs)
 - [SleeperModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs)
@@ -603,6 +619,7 @@
 - [EnemyNavigationSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs)
 - [EnemyPatrolSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
+- [PlayerMovementSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs)
 - [SleeperBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs)
 - [StalkerBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)

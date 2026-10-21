@@ -1,45 +1,39 @@
 using UnityEngine;
-using EmergencyShift.Features.PlayerInput.Logic;
+using EmergencyShift.Features.PlayerMovement;
+using EmergencyShift.Features.PlayerMovement.Logic;
 using Zenject;
 
 namespace EmergencyShift
 {
-    /// <summary>Читает WASD и перемещает капсулу через физику Unity.</summary>
+    /// <summary>Legacy authored speed and native Rigidbody adapter for the personal movement controller.</summary>
     [RequireComponent(typeof(Rigidbody2D))]
     public sealed class PlayerMotor2D : MonoBehaviour
     {
         [SerializeField, Min(0.1f)]
         private float moveSpeed = 3.5f;
         private Rigidbody2D body;
-        private Vector2 movement;
-        private IPlayerInput input;
-        private GameplayInputBlock inputBlock;
+        private PlayerMovementController controller;
 
         [Inject]
-        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
+        public void Construct(PlayerMovementControllerFactory controllers)
         {
-            input = playerInput;
-            inputBlock = block;
-        }
-        private void Awake() => body = GetComponent<Rigidbody2D>();
-        private void Update()
-        {
-            if (inputBlock.IsBlocked)
+            if (controllers == null)
             {
-                movement = Vector2.zero;
-                return;
+                throw new System.ArgumentNullException(nameof(controllers));
             }
 
-            // Нормализация не даёт двигаться быстрее по диагонали.
-            movement = input.Movement.normalized;
+            controller = controllers.Create(moveSpeed);
         }
+        private void Awake() => body = GetComponent<Rigidbody2D>();
+        private void Update() => controller.SampleInput();
 
         private void FixedUpdate()
         {
-            body.linearVelocity = inputBlock.IsBlocked ? Vector2.zero : movement * moveSpeed;
+            body.linearVelocity = controller.Velocity;
         }
         private void OnDisable()
         {
+            controller?.Stop();
             if (body != null)
             {
                 body.linearVelocity = Vector2.zero;

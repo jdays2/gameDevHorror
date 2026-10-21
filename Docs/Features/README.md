@@ -18,3 +18,4 @@
 
 - [Здоровье](Health.md): чистая модель, команды, защита и адаптеры.
 - [Ввод и composition scopes](PlayerInput.md): Input Actions, игрок/уровень/мир и сроки жизни.
+- [Движение игрока](PlayerMovement.md): личная модель, команды ввода и Rigidbody environment.
