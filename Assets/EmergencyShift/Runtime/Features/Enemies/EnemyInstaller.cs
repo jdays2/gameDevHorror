@@ -7,6 +7,7 @@ namespace EmergencyShift.Features.Enemies
         public static void Install(DiContainer container)
         {
             container.Bind<EnemyMeleeControllerFactory>().AsSingle();
+            container.Bind<EnemyPatrolControllerFactory>().AsSingle();
         }
     }
 }

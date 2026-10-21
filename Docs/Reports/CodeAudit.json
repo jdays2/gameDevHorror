@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "383 own C# explicitly read; 98 partial. Boundary reviews certify stated scope, not all configuration/style tasks. complete=false. Latest: EnemyMelee01.",
+  "limits": "397 own C# explicitly read; 97 partial. Boundary reviews certify stated scope, not all configuration/style tasks. complete=false. Latest: EnemyPatrol02.",
   "counts": {
-    "partial": 98,
-    "reviewed_boundary": 285
+    "partial": 97,
+    "reviewed_boundary": 300
   },
   "files": [
     {
@@ -2024,9 +2024,14 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightStateModel.cs",
@@ -2091,8 +2096,11 @@
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
@@ -2620,9 +2628,11 @@
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
@@ -2664,9 +2674,12 @@
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
@@ -3410,13 +3423,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyPatrolProfile.cs",
-      "sha256": "01c104dc9e0eefce89f8fd4960596fb9c42496093cfb5485cf56de6f92bb8525",
+      "sha256": "42e0eae6642f0b6e78f0930759a0a4954185a9c73e77638cbc715b0cb39a8cb6",
       "baselineSha256": "01c104dc9e0eefce89f8fd4960596fb9c42496093cfb5485cf56de6f92bb8525",
       "guid": "3b6e291719817e6449601126f61f69b9",
       "types": [
         "EnemyPatrolProfile"
       ],
-      "lines": 14,
+      "lines": 34,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Enemies/Patrol-Default.asset"
       ],
@@ -3427,11 +3440,12 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Настройки вынесены правильно, progress в asset нет. Нет проверки конечности чисел и упорядоченности/неотрицательности pauseSeconds; runtime выбор использует глобальный Random. Отсутствие Validate — долг, текущие assets не объявляются сломанными.",
+      "notes": "EnemyPatrol02: immutable validated patrol settings; authored profiles load prior defaults without mutation. Private configurable search/stall parameters added; legacy public speed/pause API remains for config pass.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общий темп мирного патруля",
@@ -3440,10 +3454,18 @@
         "Vector2 pause range"
       ],
       "usageEvidence": "EnemyPatrol2D; Editor authoring; EnemySystemsTests",
-      "reviewedSha256": "01c104dc9e0eefce89f8fd4960596fb9c42496093cfb5485cf56de6f92bb8525",
+      "reviewedSha256": "42e0eae6642f0b6e78f0930759a0a4954185a9c73e77638cbc715b0cb39a8cb6",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Настройки вынесены правильно, progress в asset нет. Нет проверки конечности чисел и упорядоченности/неотрицательности pauseSeconds; runtime выбор использует глобальный Random. Отсутствие Validate — долг, текущие assets не объявляются сломанными.",
+          "reviewedSha256": "01c104dc9e0eefce89f8fd4960596fb9c42496093cfb5485cf56de6f92bb8525"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/GameplayHudStyle.cs",
@@ -5710,7 +5732,8 @@
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -5790,14 +5813,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
-      "sha256": "7bd9046f3701829fcd2a575a3b78e67a473547dcfff3e62110893bb80b3e82d1",
+      "sha256": "88be4e44a4a3c89e24cac722497397a6348cffec59439756389531121e12f7c8",
       "baselineSha256": "7bd9046f3701829fcd2a575a3b78e67a473547dcfff3e62110893bb80b3e82d1",
       "guid": "67da6c27f5070d84ba67196ab5dfe499",
       "types": [
         "EnemyPatrol2D",
         "Snapshot"
       ],
-      "lines": 205,
+      "lines": 172,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab"
       ],
@@ -5822,11 +5845,12 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Origin/target/pause принадлежат экземпляру; область и spawn overrides сохраняются. Доменный RNG глобальный, поиск точки смешан с Physics2D/MonoBehaviour, нет injected random/pure patrol model. 12 проб ограничены; слишком тесная область безопасно возвращает zero. RNG-state снимком не сохраняется.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Личный мирный маршрут и авторенная область",
@@ -5837,10 +5861,18 @@
         "Transform"
       ],
       "usageEvidence": "ShadowStalker2D.StepIdle; сцены/prefab; EnemySystemsTests",
-      "reviewedSha256": "7bd9046f3701829fcd2a575a3b78e67a473547dcfff3e62110893bb80b3e82d1",
+      "reviewedSha256": "88be4e44a4a3c89e24cac722497397a6348cffec59439756389531121e12f7c8",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Origin/target/pause принадлежат экземпляру; область и spawn overrides сохраняются. Доменный RNG глобальный, поиск точки смешан с Physics2D/MonoBehaviour, нет injected random/pure patrol model. 12 проб ограничены; слишком тесная область безопасно возвращает zero. RNG-state снимком не сохраняется.",
+          "reviewedSha256": "7bd9046f3701829fcd2a575a3b78e67a473547dcfff3e62110893bb80b3e82d1"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPerception2D.cs",
@@ -5966,7 +5998,8 @@
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -6157,7 +6190,8 @@
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -7209,15 +7243,47 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyPatrolSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "dd25b5ff923b403d2d4ceac8c8af5e9993f46eebf03fc820e7d7b4e352b84f47",
+      "guid": "5f3a0678ac7446b88d53318a179341a4",
+      "types": [
+        "EnemyPatrolSettings"
+      ],
+      "lines": 46,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/EnemyPatrolProfile.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "dd25b5ff923b403d2d4ceac8c8af5e9993f46eebf03fc820e7d7b4e352b84f47",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs",
       "sourceScope": "unity",
-      "sha256": "dc4c39f01f79442075a21dd4188ad238fb3643b73f33d8cb5802c1f782e76740",
+      "sha256": "16d9fd94885048d30bcdcc2acef6838abfc890e2e9a3166b1cdfc6e8f55b5a90",
       "guid": "26052a9d7d5049cf87db6d2aa0b0b4d8",
       "types": [
         "EnemyInstaller"
       ],
-      "lines": 12,
+      "lines": 13,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -7229,11 +7295,17 @@
         {
           "reviewStatus": "queued",
           "notes": "New inventory entry; no semantic review yet."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+          "reviewedSha256": "dc4c39f01f79442075a21dd4188ad238fb3643b73f33d8cb5802c1f782e76740"
         }
       ],
-      "reviewedSha256": "dc4c39f01f79442075a21dd4188ad238fb3643b73f33d8cb5802c1f782e76740",
-      "reviewReport": "Docs/Reports/EnemyMelee01.md",
-      "reviewDate": "2026-10-21"
+      "reviewedSha256": "16d9fd94885048d30bcdcc2acef6838abfc890e2e9a3166b1cdfc6e8f55b5a90",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -7263,6 +7335,38 @@
       ],
       "reviewedSha256": "ebe07b93da4958f6019afb3fb38d075785f7db66bb96cf1e62e4a785477ef27e",
       "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "10be9f62acdce0eeddd1d51f263077fef3172c173dff61155c4c9e026c8eb8df",
+      "guid": "dce880ad9c4d47ffab2987db960599db",
+      "types": [
+        "EnemyPatrolControllerFactory"
+      ],
+      "lines": 15,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "10be9f62acdce0eeddd1d51f263077fef3172c173dff61155c4c9e026c8eb8df",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -7428,6 +7532,169 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolBounds.cs",
+      "sourceScope": "unity",
+      "sha256": "90025590aa04fb4ffaf5a8517ec22a8bf1f96d137e18aeea9243ebad03953054",
+      "guid": "28ae63cca0ca4c6cacf2c28aa7662d58",
+      "types": [
+        "EnemyPatrolBounds"
+      ],
+      "lines": 38,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolStep.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "90025590aa04fb4ffaf5a8517ec22a8bf1f96d137e18aeea9243ebad03953054",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
+      "sourceScope": "unity",
+      "sha256": "97b29d11b0d16998fe180a86b114739ee1558f3f2542c98c966184983346f5bc",
+      "guid": "ebc49096b1694848bdf04ee54dc9b9a2",
+      "types": [
+        "EnemyPatrolController"
+      ],
+      "lines": 22,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "97b29d11b0d16998fe180a86b114739ee1558f3f2542c98c966184983346f5bc",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
+      "sourceScope": "unity",
+      "sha256": "a24e5b0ffa3d9e1ea04733c4bc1294182bd460a5b1a2ac6a79c924d33d16fc8b",
+      "guid": "14c65af833e142ec979154a532ba94d4",
+      "types": [
+        "EnemyPatrolModel"
+      ],
+      "lines": 178,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "a24e5b0ffa3d9e1ea04733c4bc1294182bd460a5b1a2ac6a79c924d33d16fc8b",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolState.cs",
+      "sourceScope": "unity",
+      "sha256": "ca61e1f4f11436ffd53a51911638dae32fef5e137a15788ffda7eee2c7fcfbf6",
+      "guid": "2195961851c94f06897c02bfaebfcf1f",
+      "types": [
+        "EnemyPatrolState"
+      ],
+      "lines": 24,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "ca61e1f4f11436ffd53a51911638dae32fef5e137a15788ffda7eee2c7fcfbf6",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolStep.cs",
+      "sourceScope": "unity",
+      "sha256": "717610886f6f619e9886a26a2c578308ce008132b05bf9f85c9612b7bcdc5184",
+      "guid": "30a49804645946978828016bc0444059",
+      "types": [
+        "EnemyPatrolStep"
+      ],
+      "lines": 26,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "717610886f6f619e9886a26a2c578308ce008132b05bf9f85c9612b7bcdc5184",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
       "sourceScope": "unity",
@@ -7489,6 +7756,67 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPatrolEnvironment.cs",
+      "sourceScope": "unity",
+      "sha256": "edc59b42e93f38a03d40342888a03f6f7261a72ef0ab8f6642f9336e74194861",
+      "guid": "f4dcb56c66454e93b7687f2be76181ff",
+      "types": [
+        "IEnemyPatrolEnvironment"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "edc59b42e93f38a03d40342888a03f6f7261a72ef0ab8f6642f9336e74194861",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "821f1b17c38974edfcdf88e6816d21d215bf42b4ca6c76fe5637567ed267fa5a",
+      "guid": "61fefcf35b404382bf72ec68dca36604",
+      "types": [
+        "InitializeEnemyPatrolCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "821f1b17c38974edfcdf88e6816d21d215bf42b4ca6c76fe5637567ed267fa5a",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
       "sourceScope": "unity",
@@ -7513,6 +7841,35 @@
       ],
       "reviewedSha256": "c6491d3446f78ac8d4aa217fded320e819093c11ded8564fbd28999a3f06527f",
       "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "2053a5d1ae448b14ffe20b1300938ce8be9c014bdc21680686e4577eb54e2f34",
+      "guid": "63e243f0fb7b48d283767d55491f455c",
+      "types": [
+        "ResetEnemyPatrolCommand"
+      ],
+      "lines": 21,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "2053a5d1ae448b14ffe20b1300938ce8be9c014bdc21680686e4577eb54e2f34",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -7547,6 +7904,35 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "70d4db1e56dfc2ee69485c4db747ee70d5597e3053d897ab2eb41e32f23b66a6",
+      "guid": "f7b9b39ba0bb48bc92f6630758e5742c",
+      "types": [
+        "RestoreEnemyPatrolCommand"
+      ],
+      "lines": 27,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "70d4db1e56dfc2ee69485c4db747ee70d5597e3053d897ab2eb41e32f23b66a6",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
       "sourceScope": "unity",
@@ -7571,6 +7957,35 @@
       ],
       "reviewedSha256": "9533b6b804f525d71ff017ca49f1ae3e43b641e53384e1f17757a027d0978a82",
       "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
+      "sourceScope": "unity",
+      "sha256": "be9fc3e6515d2bc2c9d8687d1fcc242daa4474baa16170a7b043d45ff75b978c",
+      "guid": "bf9dba0d66ef45678664098749319428",
+      "types": [
+        "EnemyPatrolEnvironment2D"
+      ],
+      "lines": 11,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "be9fc3e6515d2bc2c9d8687d1fcc242daa4474baa16170a7b043d45ff75b978c",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -9155,6 +9570,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs"
       ],
       "entryPointHints": [],
@@ -14226,6 +14642,7 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
         "Concepts/Used/Environment/RoomFinish01/create.cs"
@@ -14246,14 +14663,91 @@
       "reviewDate": "2026-10-21"
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "609a38bbbf12a3125a823a82f8e44bbaa25071d3355b0c23a49c09da36e60b09",
+      "guid": "82e6e76641a54215b428adc31fda513c",
+      "types": [
+        "EnemyPatrolModelTests",
+        "Environment",
+        "Random"
+      ],
+      "lines": 213,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/OrganizeMaterials.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FurnitureLightStudyBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponShotRequest.cs",
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
+        "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
+        "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
+        "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
+        "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
+        "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodHitSpray2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
+        "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
+        "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
+        "Concepts/Used/Environment/RoomFinish01/create.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "609a38bbbf12a3125a823a82f8e44bbaa25071d3355b0c23a49c09da36e60b09",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
-      "sha256": "b40df22ab00ec29d82858d318751c7f79b232522a2054aee2f862fb319619bda",
+      "sha256": "412b7b46818b3528674b5581ebddbfa4163975ff35b346451455a39373876983",
       "baselineSha256": "0166c873c7de4937a1f9ab70fc4aeb9fec6938440b4db385d5561ce7b31cfa96",
       "guid": "ba21fd37b5590e047b770b4ccc567e14",
       "types": [
         "EnemySystemsTests"
       ],
-      "lines": 115,
+      "lines": 117,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -14261,8 +14755,8 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Есть однократная death, изоляция двух HP при общем SO, стена для LOS, тесная область. Cleanup временных объектов в finally. Нет чистых FSM/clock/RNG/attack-window regression; атрибуты прочитаны, новый прогон не выполнен.",
-      "reviewedSha256": "b40df22ab00ec29d82858d318751c7f79b232522a2054aee2f862fb319619bda",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "reviewedSha256": "412b7b46818b3528674b5581ebddbfa4163975ff35b346451455a39373876983",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14270,6 +14764,11 @@
           "reviewStatus": "partial",
           "reviewedSha256": "b40df22ab00ec29d82858d318751c7f79b232522a2054aee2f862fb319619bda",
           "notes": "Affected health/pause/input construction updated and regression run; other fixture cases await complete source review."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Есть однократная death, изоляция двух HP при общем SO, стена для LOS, тесная область. Cleanup временных объектов в finally. Нет чистых FSM/clock/RNG/attack-window regression; атрибуты прочитаны, новый прогон не выполнен.",
+          "reviewedSha256": "b40df22ab00ec29d82858d318751c7f79b232522a2054aee2f862fb319619bda"
         }
       ],
       "responsibility": "Проверки общих здоровья, LOS и тесного патруля",
@@ -14282,8 +14781,9 @@
       ],
       "usageEvidence": "EditMode runner, 4 теста",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs",
@@ -15431,6 +15931,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "8fdb9ad4f580a11adf42348de6686ee9a2e460dbac6530d64523e79746b44f70",
+      "guid": "0c57dacecfd64723b56c945d3e273919",
+      "types": [
+        "EnemyPatrolSceneTests"
+      ],
+      "lines": 100,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "8fdb9ad4f580a11adf42348de6686ee9a2e460dbac6530d64523e79746b44f70",
+      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
       "sourceScope": "unity",
@@ -15919,14 +16446,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 364,
+    "unity": 378,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
     "files": 18,
-    "report": "Docs/Reports/EnemyMelee01.md",
-    "validation": "572/572 EditMode, 21/21 PlayMode, normal Windows64 success. Pure melee rules/events/reentry/cooldown and native wall/one-damage check for both species with brain disabled. Source tuning/resources unchanged; not full FSM/route/config pass."
+    "report": "Docs/Reports/EnemyPatrol02.md",
+    "validation": "588/588 EditMode, 22/22 PlayMode, normal Windows64 success. Pure patrol bounds/pause/RNG isolation/state validation and native geometry/restore check with brain disabled. Source tuning/resources unchanged; not full FSM/route/config pass."
   },
   "reviewPasses": [
     {
@@ -16036,15 +16563,21 @@
       "files": 18,
       "report": "Docs/Reports/EnemyMelee01.md",
       "validation": "572/572 EditMode, 21/21 PlayMode, normal Windows64 success. Pure melee rules/events/reentry/cooldown and native wall/one-damage check for both species with brain disabled. Source tuning/resources unchanged; not full FSM/route/config pass."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 18,
+      "report": "Docs/Reports/EnemyPatrol02.md",
+      "validation": "588/588 EditMode, 22/22 PlayMode, normal Windows64 success. Pure patrol bounds/pause/RNG isolation/state validation and native geometry/restore check with brain disabled. Source tuning/resources unchanged; not full FSM/route/config pass."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 383,
-    "totalFiles": 383,
+    "reviewedFiles": 397,
+    "totalFiles": 397,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "EnemyMelee01 and earlier reviews; targeted boundary certification does not complete all SOD tasks."
+    "validation": "EnemyPatrol02 and earlier reviews; targeted boundary certification does not complete all SOD tasks."
   }
 }

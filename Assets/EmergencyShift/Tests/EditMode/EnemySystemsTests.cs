@@ -102,6 +102,8 @@ namespace EmergencyShift.Tests
                 fields.FindProperty("patrolEnabled").boolValue = true;
                 fields.FindProperty("areaSize").vector2Value = new Vector2(.2f, .2f);
                 fields.ApplyModifiedPropertiesWithoutUndo();
+                patrol.Construct(new Features.Enemies.EnemyPatrolControllerFactory(
+                    new Core.Randomness.RandomSourceFactory(new System.Random(51))));
                 patrol.Initialize(Vector2.zero);
                 Assert.That(patrol.Step(Vector2.zero, .3f, 1 << 8, .02f), Is.EqualTo(Vector2.zero));
             }

@@ -1,6 +1,6 @@
 # Враги и останки
 
-Health и общая melee-атака имеют чистые модели/команды и scoped-фабрики. Видовые FSM, патруль и другие оставшиеся границы ещё переносятся.
+Health, общая melee-атака и патруль имеют чистые модели/команды и scoped-фабрики. Видовые FSM и другие оставшиеся границы ещё переносятся.
 
 Архитектурная цель — [ADR-001](../Decisions/001-sod-architecture.md); фактическая карта ниже перенесена из ARCHITECTURE без изменения поведения. При кодовой миграции обновлять её по исходникам.
 
@@ -13,7 +13,7 @@ Health и общая melee-атака имеют чистые модели/ко�
 | Управление телом, обход, путь | EnemyMotor2D + EnemyChasePath2D |
 | Соседи и бюджет поиска | CrowdAgent2D + NavigationWorkBudget2D |
 | Тайминг выпада, дистанция/стена, доставка урона | EnemyMeleeModel/Controller/commands, отдельный EnemyMeleeEnvironment2D; EnemyMeleeAttack2D — bridge |
-| Мирные точки/паузы | EnemyPatrol2D |
+| Мирные точки/паузы | EnemyPatrolModel/Controller, личный RNG и отдельная геометрия; EnemyPatrol2D — scene/DTO/gizmo adapter |
 | Решение, какое состояние нужно этому виду | ShadowStalker2D и Sleeper2D, отдельные машины состояний |
 | Кровь/разрыв по событию смерти | EnemyDeathEffects2D + GoreBurst2D |
 | Попадание/тени | EnemyHitResponse2D; CreatureGroundShadow2D через EnemyPresentationSource2D |
@@ -22,7 +22,9 @@ Health и общая melee-атака имеют чистые модели/ко�
 
 Это композиция: следующий AI получает нужные компоненты и собственные решения, не наследуется от Сталкера и не добавляет `if (enemyType==...)` в его код. Общие модули не содержат собственных Update: AI вызывает их в физическом шаге. События отделяют реакции представления от смерти/укуса. Общий проигрыватель кадров извлечён при подключении второго вида, использующего тот же набор анатомии; звук и решения остаются видовыми. Для Спящего общая атака поддерживает фиксированное направление без обходного поворота, прежний режим Сталкера сохранён.
 
-Общая melee-граница находится в `Features/Enemies`: immutable snapshot EnemyDefinition, личные флаги/cooldown, внедрённый clock и команды lifecycle/restore. Controller получает value-наблюдение, проверяет range/arc, затем отдельный Unity LOS/получатель. Урон одноразовый и не зависит от анимационного события; Snapshot/API и оба вида сохраняются. [Реальные проверки двух prefab и ограничения](../Reports/EnemyMelee01.md). Видовые FSM и патруль пока остаются следующим переносом.
+Общая melee-граница находится в `Features/Enemies`: immutable snapshot EnemyDefinition, личные флаги/cooldown, внедрённый clock и команды lifecycle/restore. Controller получает value-наблюдение, проверяет range/arc, затем отдельный Unity LOS/получатель. Урон одноразовый и не зависит от анимационного события; Snapshot/API и оба вида сохраняются. [Реальные проверки двух prefab и ограничения](../Reports/EnemyMelee01.md).
+
+Патруль в той же feature хранит личные route/pause/stall и получает отдельный RNG. Настройки поиска/отступа/застревания задаёт EnemyPatrolProfile; модель читает immutable копию. Physics2D остаётся в environment, область и gizmos — в прежнем компоненте. Snapshot не менял формат. [Проверки и цена переноса](../Reports/EnemyPatrol02.md). Видовые FSM остаются следующим переносом.
 
 ## Три вида данных
 

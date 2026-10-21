@@ -259,10 +259,12 @@
 
 - [EnemyInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs)
 - [EnemyMeleeControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs)
+- [EnemyPatrolControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Enemies/Config
 
 - [EnemyMeleeSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyMeleeSettings.cs)
+- [EnemyPatrolSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyPatrolSettings.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Enemies/Logic
 
@@ -271,14 +273,24 @@
 - [EnemyMeleeModel.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs)
 - [EnemyMeleeObservation.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeObservation.cs)
 - [EnemyMeleeState.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeState.cs)
+- [EnemyPatrolBounds.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolBounds.cs)
+- [EnemyPatrolController.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs)
+- [EnemyPatrolModel.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs)
+- [EnemyPatrolState.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolState.cs)
+- [EnemyPatrolStep.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolStep.cs)
 - [FinishEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs)
 - [IEnemyMeleeEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyMeleeEnvironment.cs)
+- [IEnemyPatrolEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyPatrolEnvironment.cs)
+- [InitializeEnemyPatrolCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs)
 - [InterruptEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs)
+- [ResetEnemyPatrolCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs)
 - [RestoreEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs)
+- [RestoreEnemyPatrolCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Enemies/View
 
 - [EnemyMeleeEnvironment2D.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs)
+- [EnemyPatrolEnvironment2D.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Flashlight
 
@@ -504,6 +516,7 @@
 - [DoorAccessTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs)
 - [EnemyDeathAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs)
 - [EnemyMeleeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs)
+- [EnemyPatrolModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs)
 - [EnemySystemsTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs)
 - [EnvironmentPresentationTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs)
 - [FlashlightOwnershipTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs)
@@ -541,6 +554,7 @@
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
 - [EnemyMeleeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs)
+- [EnemyPatrolSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)
 - [WeaponSpreadLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs)
