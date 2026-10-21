@@ -21,7 +21,7 @@ namespace EmergencyShift
         private DoorAccessController controller;
 
         public DoorAccessFeedbackProfile FeedbackProfile => feedbackProfile;
-        public float ConfirmationDelay => feedbackProfile != null ? feedbackProfile.confirmationDelay : 0;
+        public float ConfirmationDelay => feedbackProfile != null ? feedbackProfile.ConfirmationDelay : 0;
         public string RequiredCardId => requiredCardId;
         public bool IsUnlocked => controller != null && controller.IsUnlocked;
         public event Action<bool> AccessChecked;
@@ -39,6 +39,11 @@ namespace EmergencyShift
 
         public void ConfigureFeedback(DoorAccessFeedbackProfile profile)
         {
+            if (profile != null)
+            {
+                profile.Validate();
+            }
+
             feedbackProfile = profile;
             controller?.Configure(Settings());
         }
@@ -73,8 +78,16 @@ namespace EmergencyShift
             return result.Granted;
         }
 
+        private void Awake()
+        {
+            if (feedbackProfile != null)
+            {
+                feedbackProfile.Validate();
+            }
+        }
+
         private DoorAccessSettings Settings() => new DoorAccessSettings(requiredCardId,
-            feedbackProfile != null ? feedbackProfile.denialCooldown : .8f, 1.8f);
+            feedbackProfile != null ? feedbackProfile.DenialCooldown : .8f, 1.8f);
 
         private DoorAccessController RequireController()
         {

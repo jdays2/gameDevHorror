@@ -47,7 +47,7 @@ namespace EmergencyShift
                 return;
             }
 
-            source.clip = granted ? profile.granted : profile.denied;
+            source.clip = granted ? profile.Granted : profile.Denied;
             source.loop = false;
             source.pitch = 1;
             Mix();
@@ -71,9 +71,9 @@ namespace EmergencyShift
             }
 
             Vector2 delta = transform.position - listener.position;
-            float gain = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(2, profile.hearingDistance, delta.magnitude));
-            source.volume = profile.volume * gain;
-            source.panStereo = Mathf.Clamp(delta.x / 6, -.75f, .75f);
+            float gain = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(profile.FullVolumeRadius, profile.HearingDistance, delta.magnitude));
+            source.volume = profile.Volume * gain;
+            source.panStereo = Mathf.Clamp(delta.x / profile.PanDistance, -profile.MaximumPan, profile.MaximumPan);
         }
     }
 }

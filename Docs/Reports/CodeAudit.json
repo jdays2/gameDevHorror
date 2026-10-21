@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "477 own C# explicitly read; 93 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PlayerFootsteps11.",
+  "limits": "478 own C# explicitly read; 92 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest DoorFeedbackConfig12.",
   "counts": {
-    "partial": 93,
-    "reviewed_boundary": 384
+    "partial": 92,
+    "reviewed_boundary": 386
   },
   "files": [
     {
@@ -3044,6 +3044,7 @@
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
@@ -3308,13 +3309,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/DoorAccessFeedbackProfile.cs",
-      "sha256": "0bc73fa9032b6c9520bf72afb8fc1e345b67450f82431276b0cb807772839f24",
+      "sha256": "52d7fa86b7556c1102ea553e280bb660657f554cfaf2c69b476ee6fa673ad146",
       "baselineSha256": "0bc73fa9032b6c9520bf72afb8fc1e345b67450f82431276b0cb807772839f24",
       "guid": "a972f21143271b1448ca99e4a7e98ca3",
       "types": [
         "DoorAccessFeedbackProfile"
       ],
-      "lines": 15,
+      "lines": 52,
       "serializedUsers": [
         "Assets/EmergencyShift/Audio/AccessDoorTrial01/ReaderFeedback.asset"
       ],
@@ -3322,11 +3323,12 @@
         "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs"
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Runtime не мутирует SO. Min/Range — Inspector подсказки, нет finite/cross-field Validate перед использованием. Наличие некорректного текущего asset не установлено.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorFeedbackConfig12: readonly shared config API и старые serialized names/аудиоссылки; finite/cross-field guards до use/replacement. Прежние значения attenuation/pan сохранены как defaults; native doors проверены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3341,10 +3343,11 @@
         "AudioClip"
       ],
       "usageEvidence": "DoorAccess и reader playback",
-      "reviewedSha256": "0bc73fa9032b6c9520bf72afb8fc1e345b67450f82431276b0cb807772839f24",
+      "reviewedSha256": "52d7fa86b7556c1102ea553e280bb660657f554cfaf2c69b476ee6fa673ad146",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/DoorFeedbackConfig12.md",
+      "reviewScope": "Full source read: readonly config API with stable serialized fields, finite/cross-field guards, authored asset/audio references, atomic profile replacement and native doors; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/DoorAudioSet.cs",
@@ -6669,7 +6672,8 @@
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -15358,13 +15362,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
-      "sha256": "292d55e1a57613272563231432385b20da9787fa5f34d6cadd4d500483a1aaee",
+      "sha256": "011d9ef1f9dfba7ecd4be393b8246b3983e4d372804216729f29bd01e40850f7",
       "baselineSha256": "25d290f54b6ffa43979fb1f1e4d31d130acc392706534ed489872bbcc8fcb0f2",
       "guid": "12af7b2d2f7ed704d9467f3edfdc7abc",
       "types": [
         "DoorAccess2D"
       ],
-      "lines": 89,
+      "lines": 102,
       "serializedUsers": [
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
@@ -15384,13 +15388,14 @@
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAccessFeedback2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "notes": "DoorFeedbackConfig12: readonly shared config API и старые serialized names/аудиоссылки; finite/cross-field guards до use/replacement. Прежние значения attenuation/pan сохранены как defaults; native doors проверены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15411,15 +15416,15 @@
         "DoorAccessFeedbackProfile"
       ],
       "usageEvidence": "Door2D; DoorCheckpoint2D; DoorAccessTests",
-      "reviewedSha256": "292d55e1a57613272563231432385b20da9787fa5f34d6cadd4d500483a1aaee",
+      "reviewedSha256": "011d9ef1f9dfba7ecd4be393b8246b3983e4d372804216729f29bd01e40850f7",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/AccessControl01.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
-      "previousReviewStatus": "partial"
+      "reviewReport": "Docs/Reports/DoorFeedbackConfig12.md",
+      "reviewScope": "Full source read: readonly config API with stable serialized fields, finite/cross-field guards, authored asset/audio references, atomic profile replacement and native doors; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAccessFeedback2D.cs",
-      "sha256": "6681813bcf59a7d858e25397a136d6fa3abbc163f481cde90de6a8a04f25d496",
+      "sha256": "f3ec372acc86ec5a898a32d2fc7ef587d21240f678f0388e87898e38ca161cc5",
       "baselineSha256": "25e38ce6014c748eae96fb210e5af6d5953b05d9353a5343cd905d7d2aa0e1d7",
       "guid": "37b1a2fb0be41b14183b536d5e0c29ca",
       "types": [
@@ -15435,8 +15440,8 @@
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "View слушает AccessChecked, парная отписка/Stop, scope listener; не решает доступ.",
-      "reviewedSha256": "6681813bcf59a7d858e25397a136d6fa3abbc163f481cde90de6a8a04f25d496",
+      "notes": "DoorFeedbackConfig12: readonly shared config API и старые serialized names/аудиоссылки; finite/cross-field guards до use/replacement. Прежние значения attenuation/pan сохранены как defaults; native doors проверены.",
+      "reviewedSha256": "f3ec372acc86ec5a898a32d2fc7ef587d21240f678f0388e87898e38ca161cc5",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15453,8 +15458,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 1.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/DoorFeedbackConfig12.md",
+      "reviewScope": "Full source read: readonly config API with stable serialized fields, finite/cross-field guards, authored asset/audio references, atomic profile replacement and native doors; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
@@ -16730,6 +16736,31 @@
       "reviewReport": "Docs/Reports/AccessControl01.md",
       "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
       "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorFeedbackConfig12: readonly shared config API и старые serialized names/аудиоссылки; finite/cross-field guards до use/replacement. Прежние значения attenuation/pan сохранены как defaults; native doors проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs",
+      "sourceScope": "unity",
+      "sha256": "5288e0fb3e0e293f90a504bd2400099503b476c3f42318681cf09890199dbd38",
+      "guid": "496ed1441d28429893b716cabde84acb",
+      "types": [
+        "DoorFeedbackProfileTests"
+      ],
+      "lines": 112,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "5288e0fb3e0e293f90a504bd2400099503b476c3f42318681cf09890199dbd38",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorFeedbackConfig12.md",
+      "reviewScope": "Full source read: readonly config API with stable serialized fields, finite/cross-field guards, authored asset/audio references, atomic profile replacement and native doors; native scene and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -19219,7 +19250,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 458,
+    "unity": 459,
     "content_source": 8
   },
   "latestReview": {
@@ -19370,11 +19401,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 477,
-    "totalFiles": 477,
+    "reviewedFiles": 478,
+    "totalFiles": 478,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "PlayerFootsteps11 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "DoorFeedbackConfig12 and earlier boundary reviews; other SOD tasks remain open."
   }
 }
