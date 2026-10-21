@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "444 own C# explicitly read; 95 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest Navigation05.",
+  "limits": "446 own C# explicitly read; 94 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest MotorGeometry06.",
   "counts": {
-    "partial": 95,
-    "reviewed_boundary": 349
+    "partial": 94,
+    "reviewed_boundary": 352
   },
   "files": [
     {
@@ -5839,7 +5839,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs",
-      "sha256": "fa0ea4027243ab699a75a79b324320c9e33105de24fb658c7374bd2c1388fbcc",
+      "sha256": "44e23422bec7392805af282e203522eb8d5a2d9f8ed3f44769279cf81a844bfe",
       "baselineSha256": "ed82ec33f4b23ea21f0a2d6681d0445f1b75665a5c7e41a544d43ffc8f7d83c4",
       "guid": "4b2ac4c295908534c9601c66eca4bd7d",
       "types": [
@@ -5862,12 +5862,14 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
-        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs"
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMotorGeometryTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Физический адаптер отделён от input/camera, path индивидуален. В ClearDirection probe берётся из local shape.radius, а Radius/Follow учитывают lossyScale; нужно отдельно проверить масштабированные экземпляры. Brain всё ещё напрямую пишет body помимо motor. Не объявлено воспроизведённым collision-багом.",
-      "reviewedSha256": "fa0ea4027243ab699a75a79b324320c9e33105de24fb658c7374bd2c1388fbcc",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "MotorGeometry06: native physics/movement adapter remains separate from input, rendering and personal path/FSM models. Scale inconsistency reproduced with 2 red/1 control tests; probe now uses existing world Radius. 641 EditMode, 26 PlayMode with real movement of 3 scales, normal Windows64. Brain adapter death/disable writes own native lifetime, not FSM state. See fixture/config/profiler/full-route limits.",
+      "reviewedSha256": "44e23422bec7392805af282e203522eb8d5a2d9f8ed3f44769279cf81a844bfe",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -5875,6 +5877,11 @@
           "reviewStatus": "partial",
           "reviewedSha256": "fa0ea4027243ab699a75a79b324320c9e33105de24fb658c7374bd2c1388fbcc",
           "notes": "Own path via injected factory; full environment/controller review remains."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Физический адаптер отделён от input/camera, path индивидуален. В ClearDirection probe берётся из local shape.radius, а Radius/Follow учитывают lossyScale; нужно отдельно проверить масштабированные экземпляры. Brain всё ещё напрямую пишет body помимо motor. Не объявлено воспроизведённым collision-багом.",
+          "reviewedSha256": "fa0ea4027243ab699a75a79b324320c9e33105de24fb658c7374bd2c1388fbcc"
         }
       ],
       "responsibility": "Unity-физика, steering и использование пути",
@@ -5886,8 +5893,9 @@
       ],
       "usageEvidence": "Оба brain; EnemyPatrol2D не пишет позу, отдаёт velocity",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/MotorGeometry06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
@@ -6089,6 +6097,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
@@ -6292,6 +6301,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
@@ -10946,6 +10956,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
@@ -16114,6 +16125,35 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "MotorGeometry06: native physics/movement adapter remains separate from input, rendering and personal path/FSM models. Scale inconsistency reproduced with 2 red/1 control tests; probe now uses existing world Radius. 641 EditMode, 26 PlayMode with real movement of 3 scales, normal Windows64. Brain adapter death/disable writes own native lifetime, not FSM state. See fixture/config/profiler/full-route limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/EnemyMotorGeometryTests.cs",
+      "sourceScope": "unity",
+      "sha256": "de25b8163f8ce5c90dd4d1a08f5879f9a2bb8f6bd80f1da90ff6e92a211f2143",
+      "guid": "e85a76a3350843b199d14d67e41d2416",
+      "types": [
+        "EnemyMotorGeometryTests"
+      ],
+      "lines": 43,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "de25b8163f8ce5c90dd4d1a08f5879f9a2bb8f6bd80f1da90ff6e92a211f2143",
+      "reviewReport": "Docs/Reports/MotorGeometry06.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
       "sourceScope": "unity",
@@ -17584,6 +17624,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "MotorGeometry06: native physics/movement adapter remains separate from input, rendering and personal path/FSM models. Scale inconsistency reproduced with 2 red/1 control tests; probe now uses existing world Radius. 641 EditMode, 26 PlayMode with real movement of 3 scales, normal Windows64. Brain adapter death/disable writes own native lifetime, not FSM state. See fixture/config/profiler/full-route limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "ebfb2a71620136324b9cf1211b4f9457f669cc9694307990b71b4ef0a433af09",
+      "guid": "f84ea17c20374c47a67893d53b833719",
+      "types": [
+        "EnemyMotorSceneTests"
+      ],
+      "lines": 102,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "ebfb2a71620136324b9cf1211b4f9457f669cc9694307990b71b4ef0a433af09",
+      "reviewReport": "Docs/Reports/MotorGeometry06.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "Navigation05: bounded personal solver separated from native geometry and clock/quota/RNG schedule; safe grid dimensions before multiplication/indexing and finite displacement before physics. BUG-021 native red baseline -> green; 638 EditMode, 25 PlayMode including true actor detour, normal Windows64. See resource/fixture/profiler/config limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
       "sourceScope": "unity",
@@ -18182,14 +18249,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 425,
+    "unity": 427,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 13,
-    "report": "Docs/Reports/Navigation05.md",
-    "validation": "638/638 EditMode, 25/25 PlayMode, normal Windows64 success. Original native BUG-021 repeated red then safe solver. Pure geometry/cache/schedule tests and actual moving Stalker detour; no authored resource changes. Config/profiler/full-route/owner acceptance limits retained."
+    "files": 3,
+    "report": "Docs/Reports/MotorGeometry06.md",
+    "validation": "BUG-022: 2 red scaled native queries / 1 control -> 641/641 EditMode, 26/26 PlayMode, normal Windows64 success. Real scaled motors move on free axes; masks, prefabs and resources preserved. Config/full-route/profiler/owner acceptance remain."
   },
   "reviewPasses": [
     {
@@ -18323,15 +18390,21 @@
       "files": 13,
       "report": "Docs/Reports/Navigation05.md",
       "validation": "638/638 EditMode, 25/25 PlayMode, normal Windows64 success. Original native BUG-021 repeated red then safe solver. Pure geometry/cache/schedule tests and actual moving Stalker detour; no authored resource changes. Config/profiler/full-route/owner acceptance limits retained."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 3,
+      "report": "Docs/Reports/MotorGeometry06.md",
+      "validation": "BUG-022: 2 red scaled native queries / 1 control -> 641/641 EditMode, 26/26 PlayMode, normal Windows64 success. Real scaled motors move on free axes; masks, prefabs and resources preserved. Config/full-route/profiler/owner acceptance remain."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 444,
-    "totalFiles": 444,
+    "reviewedFiles": 446,
+    "totalFiles": 446,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "Navigation05 and prior reviews; explicit remaining schedule config debt and other SOD tasks keep complete=false."
+    "validation": "MotorGeometry06 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

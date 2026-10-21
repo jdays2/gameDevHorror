@@ -56,7 +56,7 @@ namespace EmergencyShift
         public bool Clear(Vector2 from, Vector2 to) => Physics2D.Linecast(from, to, solids).collider == null;
         public Vector2 ClearDirection(Vector2 preferred)
         {
-            float probe = shape.radius * .9f;
+            float probe = Radius * .9f;
             if (Physics2D.CircleCast(body.position, probe, preferred, .3f, solids).collider == null)
             {
                 return preferred;

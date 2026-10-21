@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "63b68d6dc4c5b81f90b0d0707544b264af594730",
+  "baselineFailure": {
+    "result": "Failed(Child)",
+    "total": "3",
+    "passed": "1",
+    "failed": "2",
+    "end-time": "2026-10-21 16:51:56Z",
+    "rawPath": "work/sod-evidence-20261021/motor-baseline-edit.xml",
+    "rawSha256": "c18c406ed5656b65f9c65b447d2df44fcd4c9c4e14364fc903a3edc6e0d9e3e9",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorGeometryTests.SteeringUsesScaledBodyRatherThanUnscaledColliderRadius(2,0.9f,False)",
+        "result": "Failed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorGeometryTests.SteeringUsesScaledBodyRatherThanUnscaledColliderRadius(0.5f,0.6f,True)",
+        "result": "Failed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorGeometryTests.SteeringUsesScaledBodyRatherThanUnscaledColliderRadius(1,0.9f,True)",
+        "result": "Passed"
+      }
+    ],
+    "failures": [
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorGeometryTests.SteeringUsesScaledBodyRatherThanUnscaledColliderRadius(2,0.9f,False)",
+        "message": "  scale=2, chosen=(1.00, 0.00)\n  Expected: False\n  But was:  True\n"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorGeometryTests.SteeringUsesScaledBodyRatherThanUnscaledColliderRadius(0.5f,0.6f,True)",
+        "message": "  scale=0,5, chosen=(0.00, 1.00)\n  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "baselineMotorGitBlobSha256": "fa0ea4027243ab699a75a79b324320c9e33105de24fb658c7374bd2c1388fbcc",
+  "editMode": {
+    "result": "Passed",
+    "total": "641",
+    "passed": "641",
+    "failed": "0",
+    "end-time": "2026-10-21 16:54:08Z",
+    "rawPath": "work/sod-evidence-20261021/motor-final-edit.xml",
+    "rawSha256": "41a5a002136aaa09d75cfef1a146b68c51ee4448d9c713ca0cd0dac1a6630c76",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorGeometryTests.SteeringUsesScaledBodyRatherThanUnscaledColliderRadius(2,0.9f,False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorGeometryTests.SteeringUsesScaledBodyRatherThanUnscaledColliderRadius(0.5f,0.6f,True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorGeometryTests.SteeringUsesScaledBodyRatherThanUnscaledColliderRadius(1,0.9f,True)",
+        "result": "Passed"
+      }
+    ],
+    "failures": []
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "26",
+    "passed": "26",
+    "failed": "0",
+    "end-time": "2026-10-21 16:58:47Z",
+    "rawPath": "work/sod-evidence-20261021/motor-final-play.xml",
+    "rawSha256": "76883ebd656bf3b04e7c80f69885fc60c1baf0ee64aa7ce546f4f170c50022ad",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorSceneTests.ScaledMotorSteersAndMovesOnTheFreeAxis",
+        "result": "Passed"
+      }
+    ],
+    "failures": []
+  },
+  "initialNewFixtureFailure": {
+    "result": "Failed(Child)",
+    "total": "26",
+    "passed": "25",
+    "failed": "1",
+    "end-time": "2026-10-21 16:56:21Z",
+    "rawPath": "work/sod-evidence-20261021/motor-initial-fixture-play.xml",
+    "rawSha256": "765057eab4f5ac52783e367076b1b838dfd790198fad8b186d28c2990408d0d6",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorSceneTests.ScaledMotorSteersAndMovesOnTheFreeAxis",
+        "result": "Failed"
+      }
+    ],
+    "failures": [
+      {
+        "name": "EmergencyShift.Tests.EnemyMotorSceneTests.ScaledMotorSteersAndMovesOnTheFreeAxis",
+        "message": "  Expected: greater than 0.100000001f\n  But was:  0.0f\n"
+      }
+    ]
+  },
+  "fixtureCorrection": "Native bare actor initially used layer 9 (LowObstacles), so steering saw its own collider. Fixture now uses the actual authored Stalker prefab layer; production layer matrix/masks are unchanged.",
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T16:59:11.834Z",
+    "endedAt": "2026-10-21T16:59:38.790Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs": "44e23422bec7392805af282e203522eb8d5a2d9f8ed3f44769279cf81a844bfe",
+    "Assets/EmergencyShift/Tests/EditMode/EnemyMotorGeometryTests.cs": "de25b8163f8ce5c90dd4d1a08f5879f9a2bb8f6bd80f1da90ff6e92a211f2143",
+    "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs": "ebfb2a71620136324b9cf1211b4f9457f669cc9694307990b71b4ef0a433af09"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Current post-Editor-close resource snapshot supplements previous committed guards; original Temp baseline was cleared. Disposable dirty tree includes original accepted pause work. Real motor moves scaled bodies; not every authored route, art/audio acceptance or profiler/FPS."
+}
