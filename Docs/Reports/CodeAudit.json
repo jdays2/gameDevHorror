@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "513 own C# explicitly read; 86 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest SingleUsePickups18.",
+  "limits": "522 own C# explicitly read; 85 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest WeaponLoot19.",
   "counts": {
-    "partial": 86,
-    "reviewed_boundary": 427
+    "partial": 85,
+    "reviewed_boundary": 437
   },
   "files": [
     {
@@ -2078,8 +2078,13 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectWeaponLootCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/ConfigureWeaponLootCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestoreWeaponLootCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootModel.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
@@ -2167,7 +2172,10 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectWeaponLootCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/ConfigureWeaponLootCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestoreWeaponLootCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/LaunchProjectileCommand.cs"
@@ -11389,6 +11397,55 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectWeaponLootCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "409fa7458526ba9dfa33279830d557650d03df400967052522fa8f4ea25019ab",
+      "guid": "712373e49f4e4f03bdab509694e9b13f",
+      "types": [
+        "CollectWeaponLootCommand"
+      ],
+      "lines": 25,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "409fa7458526ba9dfa33279830d557650d03df400967052522fa8f4ea25019ab",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/ConfigureWeaponLootCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "114b6754c4a9a41fb8b5011a5e298c61de54923b75eca5cba918527bcfbfb5fb",
+      "guid": "0564d28f64554b8cb198efc9d61b4eb7",
+      "types": [
+        "ConfigureWeaponLootCommand"
+      ],
+      "lines": 32,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "114b6754c4a9a41fb8b5011a5e298c61de54923b75eca5cba918527bcfbfb5fb",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
       "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/IPickupOperation.cs",
       "sourceScope": "unity",
@@ -11418,6 +11475,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/IWeaponLootOperation.cs",
+      "sourceScope": "unity",
+      "sha256": "4f249332d7d0e51023347ef63d2622bb444ac338619834ca69ccebb26d12d777",
+      "guid": "ff2fe201da7949a98f9d7f7426495afd",
+      "types": [
+        "IWeaponLootOperation"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectWeaponLootCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "4f249332d7d0e51023347ef63d2622bb444ac338619834ca69ccebb26d12d777",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
       "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs",
       "sourceScope": "unity",
@@ -11438,6 +11522,30 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/SingleUsePickups18.md",
       "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestoreWeaponLootCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "775918578cdc529df5e4b30fe0df05becfb67c44db6a6b28c329b923e5f5bd0e",
+      "guid": "7e949bb8ee7542f8b3731e7a644ce433",
+      "types": [
+        "RestoreWeaponLootCommand"
+      ],
+      "lines": 32,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "775918578cdc529df5e4b30fe0df05becfb67c44db6a6b28c329b923e5f5bd0e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -11498,15 +11606,97 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs",
+      "sourceScope": "unity",
+      "sha256": "3e76acdcd2fa9b08f1f44a112f24e403a04df76a578f53eb07d5e0b5cde3a855",
+      "guid": "bda8739744474a7c9ec366144e3d04c0",
+      "types": [
+        "WeaponLootController"
+      ],
+      "lines": 38,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectWeaponLootCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "3e76acdcd2fa9b08f1f44a112f24e403a04df76a578f53eb07d5e0b5cde3a855",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootGrant.cs",
+      "sourceScope": "unity",
+      "sha256": "9c15102606144107c3c1d60d7cb62289e3ef8cd7f74571378cb1a2edc1db66d4",
+      "guid": "af4a28e6f1e44a6095e6bd0e2f3f7599",
+      "types": [
+        "WeaponLootGrant"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/IWeaponLootOperation.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootModel.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "9c15102606144107c3c1d60d7cb62289e3ef8cd7f74571378cb1a2edc1db66d4",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootModel.cs",
+      "sourceScope": "unity",
+      "sha256": "7ba429ebaad05eace79a4e8f050603831c7e74f31d1f1f21e43bd5c8c335a7ca",
+      "guid": "6a3d6e893198458ebf66ce9f082d984c",
+      "types": [
+        "WeaponLootModel"
+      ],
+      "lines": 54,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/ConfigureWeaponLootCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestoreWeaponLootCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7ba429ebaad05eace79a4e8f050603831c7e74f31d1f1f21e43bd5c8c335a7ca",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
       "path": "Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs",
       "sourceScope": "unity",
-      "sha256": "fcfe73961b6d819de482063846eeb7ee268ad411699c7e1707f4cbba4da3bcea",
+      "sha256": "9886c313da48885f4ee0d1f4b0eac4048167ebb1e18caa2425328e08fad9135e",
       "guid": "aa764c1cbc6040ed841e4d81f39a9828",
       "types": [
         "PickupControllerFactory"
       ],
-      "lines": 9,
+      "lines": 10,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -11514,15 +11704,19 @@
         "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootPayloadTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "fcfe73961b6d819de482063846eeb7ee268ad411699c7e1707f4cbba4da3bcea",
+      "reviewedSha256": "9886c313da48885f4ee0d1f4b0eac4048167ebb1e18caa2425328e08fad9135e",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
-      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -12709,7 +12903,8 @@
         "Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/DoorCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/EncounterCheckpoint2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs"
+        "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false
@@ -13214,6 +13409,7 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
@@ -13368,6 +13564,7 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
@@ -13443,6 +13640,7 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
@@ -13545,14 +13743,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
-      "sha256": "4b02a95610d248f454d561c1ac8fddd060ecb9475573be0b8ab24dc4b009b9b6",
+      "sha256": "52a803eae0e56ec2b19e83959d651fb828d813f795904e587d586e97fef1ce31",
       "baselineSha256": "4b02a95610d248f454d561c1ac8fddd060ecb9475573be0b8ab24dc4b009b9b6",
       "guid": "014ad5d0c8c98d04f9f2bae9462f35ef",
       "types": [
         "State",
         "WeaponLootCheckpoint2D"
       ],
-      "lines": 41,
+      "lines": 51,
       "serializedUsers": [
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
       ],
@@ -13591,6 +13789,8 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
@@ -13599,8 +13799,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "DTO value-only и format1, но Validate проверяет только format/null, не remaining/consumed invariants; Restore молча clamp-ит remaining. Это пробел nested validation, сценарий повреждённого pickup ещё не запускался. Общая схема не изменялась.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Checkpoint остатка/collected оружейного лута",
@@ -13610,10 +13810,11 @@
         "JsonUtility"
       ],
       "usageEvidence": "Loot prefab checkpoint participants; Capture/Validate/Restore",
-      "reviewedSha256": "4b02a95610d248f454d561c1ac8fddd060ecb9475573be0b8ab24dc4b009b9b6",
+      "reviewedSha256": "52a803eae0e56ec2b19e83959d651fb828d813f795904e587d586e97fef1ce31",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/AcquireFlashlightCommand.cs",
@@ -16608,11 +16809,13 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
@@ -16663,10 +16866,12 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
@@ -16722,11 +16927,13 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
@@ -16755,14 +16962,15 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
-      "sha256": "49f193040cf1319d4eaa5dc2b99bccac0d5160b2a9d774d12432756c75f119bc",
+      "sha256": "47ef0268862c03a277ff01423298a797f0ac39d6176376e2534d6c88bc0818d8",
       "baselineSha256": "49f193040cf1319d4eaa5dc2b99bccac0d5160b2a9d774d12432756c75f119bc",
       "guid": "bb9d051bfe62a344e99d371c7b3f6728",
       "types": [
         "LootKind",
+        "Operation",
         "WeaponLootPickup"
       ],
-      "lines": 97,
+      "lines": 148,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Loot/AmmoPickup.prefab",
         "Assets/EmergencyShift/Prefabs/Loot/PistolPickup.prefab",
@@ -16778,12 +16986,27 @@
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs"
+        "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Логика выдачи/остатка/collected и scene UI вместе, без чистой pickup Model/command. Recheck IsAvailable/CanReach и weapon gate есть; частичный ammo pickup оставляет остаток, full capacity не удаляет коробку. Configure/Restore не обеспечивают полную validation входов.",
+      "notes": "WeaponLoot19: remaining/consumed/busy вынесены в модель и collect/configure/restore команды, partial box и native acquisition проверены. Concrete actor/weapon refs и serialized item tuning bridge остаются долгом.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Авто-подбор оружия/боезапаса и остаток коробки",
@@ -16793,10 +17016,11 @@
         "CircleCollider2D"
       ],
       "usageEvidence": "Pistol/Shotgun/Ammo pickups; IAutoPickup; WeaponLootCheckpoint2D",
-      "reviewedSha256": "49f193040cf1319d4eaa5dc2b99bccac0d5160b2a9d774d12432756c75f119bc",
+      "reviewedSha256": "47ef0268862c03a277ff01423298a797f0ac39d6176376e2534d6c88bc0818d8",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
@@ -18995,6 +19219,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
@@ -19005,6 +19230,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
@@ -19290,6 +19516,106 @@
           "reviewReport": "Docs/Reports/CodeAudit07.md"
         }
       ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "4a608fe4d989c7fe6bd0e1786572a5bbe8ac3dfd89a543d0555e5fc9122092fa",
+      "guid": "9a5a3c142d98498cb14edd09005a7f66",
+      "types": [
+        "Operation",
+        "State",
+        "WeaponLootModelTests"
+      ],
+      "lines": 170,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperPresentationSource2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "4a608fe4d989c7fe6bd0e1786572a5bbe8ac3dfd89a543d0555e5fc9122092fa",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/WeaponLootPayloadTests.cs",
+      "sourceScope": "unity",
+      "sha256": "370c0ae61839724b3ecdca0239987de139e00332ab6a9810eca85ced3e62e3c8",
+      "guid": "806f2774d73f4668887c9d06bade7229",
+      "types": [
+        "WeaponLootPayloadTests"
+      ],
+      "lines": 64,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "370c0ae61839724b3ecdca0239987de139e00332ab6a9810eca85ced3e62e3c8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -19776,24 +20102,25 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "WeaponLoot19/BUG-013 supplement: pure loot model/commands или DTO/adapter/factory/regression boundary проверены. Missing consumed/remaining, negative amount и direct format bypass отвергаются до изменения; полный legacy false/zero и quiet restore сохранены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs",
       "sourceScope": "unity",
-      "sha256": "7062d571f2b4b5c72f12d3052e54343426eec9f1cd78471b095d49f1275729d3",
+      "sha256": "ccbde616fab633646f0828ab933ce96021b1cba9d17a1e14be295dfc3cd9ff09",
       "guid": "0fe0caa5e9e045e7be12d941f3730e84",
       "types": [
         "PickupSceneTests"
       ],
-      "lines": 167,
+      "lines": 207,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "7062d571f2b4b5c72f12d3052e54343426eec9f1cd78471b095d49f1275729d3",
+      "reviewedSha256": "ccbde616fab633646f0828ab933ce96021b1cba9d17a1e14be295dfc3cd9ff09",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
-      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+      "reviewReport": "Docs/Reports/WeaponLoot19.md",
+      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -20403,7 +20730,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 494,
+    "unity": 503,
     "content_source": 8
   },
   "latestReview": {
@@ -20554,11 +20881,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 513,
-    "totalFiles": 513,
+    "reviewedFiles": 522,
+    "totalFiles": 522,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "SingleUsePickups18 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "WeaponLoot19 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

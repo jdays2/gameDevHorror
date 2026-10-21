@@ -24,18 +24,28 @@ namespace EmergencyShift
 
         public void ValidateCheckpoint(string json)
         {
-            var saved = JsonUtility.FromJson<State>(json);
-            if (saved == null || saved.format != 1)
-            {
-                throw new InvalidOperationException("Invalid saved pickup/encounter");
-            }
+            Read(json);
         }
 
         public void RestoreCheckpoint(string json)
         {
-            var saved = JsonUtility.FromJson<State>(json);
+            State saved = Read(json);
             var loot = GetComponent<WeaponLootPickup>();
             loot.RestoreState(saved.consumed, saved.remaining);
+        }
+
+        private static State Read(string json)
+        {
+            CheckpointBooleanPayload.ReadConsumed(json);
+            var saved = JsonUtility.FromJson<State>(json);
+            var presence = new State { remaining = -1 };
+            JsonUtility.FromJsonOverwrite(json, presence);
+            if (saved.remaining < 0 || saved.remaining != presence.remaining)
+            {
+                throw new InvalidOperationException("Missing or negative weapon loot remaining ammo");
+            }
+
+            return saved;
         }
     }
 }

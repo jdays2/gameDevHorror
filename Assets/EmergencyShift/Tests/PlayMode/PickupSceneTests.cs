@@ -162,6 +162,46 @@ namespace EmergencyShift.Tests
             Physics2D.SyncTransforms();
             return pickup;
         }
+
+        [UnityTest]
+        public IEnumerator NativeAmmoBoxKeepsPartialRemainderAndRestoresWithoutGivingAmmo()
+        {
+            var weapon = actor.Weapon;
+            weapon.RestoreState(true, weapon.MaximumAmmo - 2, weapon.Definition);
+            var pickup = Pickup<WeaponLootPickup>("Partial ammo fixture");
+            pickup.Configure(WeaponLootPickup.LootKind.Ammo, 8, weapon.Definition);
+            Assert.That(pickup.TryCollect(actor), Is.True);
+            Assert.That(weapon.Ammo, Is.EqualTo(weapon.MaximumAmmo));
+            Assert.That(pickup.RemainingCartridges, Is.EqualTo(6));
+            Assert.That(pickup.Collected, Is.False);
+            Assert.That(pickup.gameObject.activeSelf, Is.True);
+            Assert.That(pickup.TryCollect(actor), Is.False);
+            pickup.RestoreState(false, 3);
+            Assert.That(weapon.Ammo, Is.EqualTo(weapon.MaximumAmmo));
+            weapon.RestoreState(true, weapon.MaximumAmmo - 3, weapon.Definition);
+            Assert.That(pickup.TryCollect(actor), Is.True);
+            Assert.That(pickup.RemainingCartridges, Is.Zero);
+            Assert.That(pickup.Collected, Is.True);
+            Assert.That(pickup.gameObject.activeSelf, Is.False);
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator NativeWeaponPickupAcquiresEmptyWeaponAndDuplicateRemains()
+        {
+            var pickup = Pickup<WeaponLootPickup>("Empty weapon fixture");
+            pickup.Configure(WeaponLootPickup.LootKind.Weapon, 0, actor.Weapon.Definition);
+            Assert.That(pickup.TryCollect(actor), Is.True);
+            Assert.That(actor.Weapon.HasWeapon, Is.True);
+            Assert.That(actor.Weapon.Ammo, Is.Zero);
+            Assert.That(pickup.Collected, Is.True);
+            var duplicate = Pickup<WeaponLootPickup>("Already owned weapon fixture");
+            duplicate.Configure(WeaponLootPickup.LootKind.Weapon, 8, actor.Weapon.Definition);
+            Assert.That(duplicate.TryCollect(actor), Is.False);
+            Assert.That(duplicate.Collected, Is.False);
+            Assert.That(duplicate.gameObject.activeSelf, Is.True);
+            yield return null;
+        }
     }
 }
 #endif

@@ -1,4 +1,8 @@
+using System;
+using EmergencyShift.Features.Pickups;
+using EmergencyShift.Features.Pickups.Logic;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -20,15 +24,18 @@ namespace EmergencyShift
         private int cartridges = 8;
         [SerializeField, Min(0.1f)]
         private float pickupRange = 1f;
-        private bool collected;
+        private WeaponLootController controller;
         public LootKind Kind => kind;
-        public bool Collected => collected;
-        public int RemainingCartridges => cartridges;
+        public bool Collected => controller?.Collected ?? false;
+        public int RemainingCartridges => controller?.Remaining ?? cartridges;
 
         public void RestoreState(bool consumed, int remaining)
         {
-            collected = consumed;
-            cartridges = Mathf.Max(0, remaining);
+            var result = RequireController().Restore(consumed, Mathf.Max(0, remaining));
+            if (!result.Success)
+            {
+                throw new InvalidOperationException(result.Reason);
+            }
         }
 
         public Vector2 InteractionPosition => transform.position;
@@ -37,6 +44,21 @@ namespace EmergencyShift
 
         public void Configure(LootKind type, int amount, WeaponDefinition selected = null)
         {
+            ValidateKind(type);
+            if (amount < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(amount));
+            }
+
+            if (controller != null)
+            {
+                var result = controller.Configure(type == LootKind.Ammo, amount);
+                if (!result.Success)
+                {
+                    throw new InvalidOperationException(result.Reason);
+                }
+            }
+
             kind = type;
             cartridges = amount;
             if (selected != null)
@@ -49,49 +71,78 @@ namespace EmergencyShift
         private void Awake() => GetComponent<CircleCollider2D>().isTrigger = true;
         public bool IsAvailable(PlayerInteraction actor)
         {
-            return !collected && isActiveAndEnabled && actor != null && actor.Weapon != null && actor.CanReach(InteractionPosition, pickupRange);
+            return !Collected && isActiveAndEnabled && actor != null && actor.Weapon != null && actor.CanReach(InteractionPosition, pickupRange);
+        }
+
+        [Inject]
+        public void Construct(PickupControllerFactory factory)
+        {
+            if (controller != null)
+            {
+                throw new InvalidOperationException("Weapon loot is already composed.");
+            }
+
+            ValidateKind(kind);
+            controller = (factory ?? throw new ArgumentNullException(nameof(factory))).CreateWeaponLoot(kind == LootKind.Ammo, cartridges);
         }
 
         public bool TryCollect(PlayerInteraction actor)
         {
-            if (!IsAvailable(actor))
+            if (actor == null || !isActiveAndEnabled)
             {
                 return false;
             }
 
-            int received = 0;
-            bool success;
-            if (kind == LootKind.Weapon)
+            return RequireController().TryCollect(new Operation(this, actor)).Success;
+        }
+
+        private WeaponLootController RequireController() => controller ?? throw new InvalidOperationException("Weapon loot requires level composition.");
+
+        private static void ValidateKind(LootKind value)
+        {
+            if (value != LootKind.Weapon && value != LootKind.Ammo)
             {
-                success = actor.Weapon.Acquire(cartridges, weaponDefinition);
+                throw new ArgumentOutOfRangeException(nameof(value));
             }
-            else
+        }
+
+        private readonly struct Operation : IWeaponLootOperation
+        {
+            private readonly WeaponLootPickup owner;
+            private readonly PlayerInteraction actor;
+
+            public Operation(WeaponLootPickup owner, PlayerInteraction actor)
             {
-                received = actor.Weapon.AddAmmo(cartridges, weaponDefinition);
-                success = received > 0;
-            }
-            if (!success)
-            {
-                return false;
+                this.owner = owner;
+                this.actor = actor;
             }
 
-            if (kind == LootKind.Ammo)
+            public bool CanApply => owner.IsAvailable(actor);
+            public WeaponLootGrant Apply(bool isAmmo, int amount) => isAmmo
+                ? WeaponLootGrant.Ammo(actor.Weapon.AddAmmo(amount, owner.weaponDefinition))
+                : WeaponLootGrant.Weapon(actor.Weapon.Acquire(amount, owner.weaponDefinition));
+
+            public void Present(bool isAmmo, int received, bool consumed)
             {
-                cartridges -= received;
-                actor.ReportPickup(PickupKind.Ammo, "Патроны +" + received);
-                if (cartridges > 0)
+                try
                 {
-                    return true; // Preserve the remainder of a partially collected box.
+                    if (isAmmo)
+                    {
+                        actor.ReportPickup(PickupKind.Ammo, "Патроны +" + received);
+                    }
+                    else
+                    {
+                        actor.ReportPickup(PickupKind.Weapon, actor.Weapon.Definition != null ? actor.Weapon.Definition.displayName : "Пистолет");
+                    }
+                }
+                finally
+                {
+                    if (consumed)
+                    {
+                        owner.gameObject.SetActive(false);
+                    }
                 }
             }
-            else
-            {
-                actor.ReportPickup(PickupKind.Weapon, actor.Weapon.Definition != null ? actor.Weapon.Definition.displayName : "Пистолет");
-            }
-
-            collected = true;
-            gameObject.SetActive(false);
-            return true;
         }
     }
 }

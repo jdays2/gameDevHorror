@@ -451,10 +451,17 @@
 ## Assets/EmergencyShift/Runtime/Features/Pickups/Logic
 
 - [CollectPickupCommand.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs)
+- [CollectWeaponLootCommand.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectWeaponLootCommand.cs)
+- [ConfigureWeaponLootCommand.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/ConfigureWeaponLootCommand.cs)
 - [IPickupOperation.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/IPickupOperation.cs)
+- [IWeaponLootOperation.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/IWeaponLootOperation.cs)
 - [RestorePickupCommand.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs)
+- [RestoreWeaponLootCommand.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestoreWeaponLootCommand.cs)
 - [SingleUsePickupController.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs)
 - [SingleUsePickupModel.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupModel.cs)
+- [WeaponLootController.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs)
+- [WeaponLootGrant.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootGrant.cs)
+- [WeaponLootModel.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootModel.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/PlayerFootsteps
 
@@ -703,6 +710,8 @@
 - [WeaponAimEnvironmentTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponAimEnvironmentTests.cs)
 - [WeaponControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs)
 - [WeaponCycleTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs)
+- [WeaponLootModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs)
+- [WeaponLootPayloadTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponLootPayloadTests.cs)
 - [WeaponSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs)
 - [WorkBudgetTests.cs](../Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs)
 - [WorldProjectionTests.cs](../Assets/EmergencyShift/Tests/EditMode/WorldProjectionTests.cs)
