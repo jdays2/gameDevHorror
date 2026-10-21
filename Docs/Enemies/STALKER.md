@@ -18,6 +18,8 @@
 
 Returning оставлен в enum ради совместимости чисел; перехода/возврата домой нет. Обычные лампы/вспышка не являются отпугивающими. Флаер — будущее.
 
+FSM/агрессия/страх/ожог/stagger принадлежат личному StalkerModel с immutable settings и внедрённым clock. StalkerController соединяет команды с интерфейсами locomotion/melee; ShadowStalker2D сохраняет ссылки prefab, native lifetime, API/events и прежний Snapshot. [Проверки MVC-переноса и ограничения](../Reports/StalkerBrain04.md).
+
 ## Настройки
 
 EnemyDefinition — HP/преследование/укус. StalkerBehaviourProfile — страх. EnemyPatrolProfile — скорость/паузы патруля. Позиция, радиус, границы маршрута индивидуальны. HP/Aggro/State/таймеры локальны. [Ответственность компонентов](../ARCHITECTURE.md).

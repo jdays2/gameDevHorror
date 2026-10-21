@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "416 own C# explicitly read; 96 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest SleeperBrain03.",
+  "limits": "434 own C# explicitly read; 95 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest StalkerBrain04.",
   "counts": {
-    "partial": 96,
-    "reviewed_boundary": 320
+    "partial": 95,
+    "reviewed_boundary": 339
   },
   "files": [
     {
@@ -2021,9 +2021,12 @@
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ActivateStalkerAggroCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginStalkerAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
@@ -2032,13 +2035,18 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillStalkerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreStalkerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerStalkerCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/WakeSleeperCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs",
@@ -2102,18 +2110,24 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ActivateStalkerAggroCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginStalkerAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillStalkerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreStalkerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerSleeperCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerStalkerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/WakeSleeperCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
@@ -2868,7 +2882,9 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
@@ -2877,6 +2893,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -3409,11 +3426,13 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs",
         "Assets/EmergencyShift/Runtime/Definitions/SleeperBehaviourProfile.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/StalkerBehaviourProfile.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -4204,13 +4223,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerBehaviourProfile.cs",
-      "sha256": "f1ea6a1456a3c7d2e96797894b553628cd1939c3d5d3bf145ef0695057abddb8",
+      "sha256": "27e52aa0ba951be300b444d72ec238c87fc51be5782746636a7316e70665fd45",
       "baselineSha256": "f1ea6a1456a3c7d2e96797894b553628cd1939c3d5d3bf145ef0695057abddb8",
       "guid": "7f73bf11382ceda439c4e6b40b41fcb6",
       "types": [
         "StalkerBehaviourProfile"
       ],
-      "lines": 30,
+      "lines": 48,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Enemies/Stalker-Light-BasementPrototype.asset",
         "Assets/EmergencyShift/Data/Enemies/Stalker-Light-Default.asset"
@@ -4221,11 +4240,12 @@
         "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs"
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Нет единого runtime Validate/immutable settings. ShadowStalker.Awake проверяет только наличие профилей; Inspector-ограничения не защищают загрузку malformed data и связи скоростей/времён. Сценовые значения не менялись.",
+      "notes": "StalkerBrain04: validated immutable settings snapshot, all authored profiles tested without writes; previous interrupt cooldown now private configurable .35 default. Legacy public API/config pass remains.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Реакция на свет, отход и накопление ожога глаза",
@@ -4234,10 +4254,18 @@
         "числовые данные"
       ],
       "usageEvidence": "ShadowStalker2D; два light-профиля и authoring",
-      "reviewedSha256": "f1ea6a1456a3c7d2e96797894b553628cd1939c3d5d3bf145ef0695057abddb8",
+      "reviewedSha256": "27e52aa0ba951be300b444d72ec238c87fc51be5782746636a7316e70665fd45",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Нет единого runtime Validate/immutable settings. ShadowStalker.Awake проверяет только наличие профилей; Inspector-ограничения не защищают загрузку malformed data и связи скоростей/времён. Сценовые значения не менялись.",
+          "reviewedSha256": "f1ea6a1456a3c7d2e96797894b553628cd1939c3d5d3bf145ef0695057abddb8"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerLocomotionProfile.cs",
@@ -5759,9 +5787,11 @@
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -5813,7 +5843,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
-        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs"
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -5866,6 +5897,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
@@ -5875,8 +5907,10 @@
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -6029,9 +6063,11 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -6180,7 +6216,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
-      "sha256": "a436861f4e4cc4c77002bbbd76bc5f2e2ecfe19201392e1ad8babafb7f7a0463",
+      "sha256": "5384af169a46a1b10386408a536b91c16268a2c61f5180c098378d74a2f4c71e",
       "baselineSha256": "df18eadd844626c2b014a5ee30c3f12dc163bfbab5382b801925fcb0452a3812",
       "guid": "c7e9df3ce7c1ac4488a2ef46069492f2",
       "types": [
@@ -6188,7 +6224,7 @@
         "ShadowStalker2D",
         "Snapshot"
       ],
-      "lines": 678,
+      "lines": 386,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -6229,14 +6265,16 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "678 строк: доменные решения, clock, физическая запись, звук через concrete references и persistence. Нужна декомпозиция по ответственности, не слепое дробление по строкам. HasAggro сохраняется, световая реакция отложена, timing не animation-authorized. Configure обновляет perception, но не motor mask после Awake — условный integration-risk; Restore присваивает enum из payload (BUG-008).",
-      "reviewedSha256": "a436861f4e4cc4c77002bbbd76bc5f2e2ecfe19201392e1ad8babafb7f7a0463",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "reviewedSha256": "5384af169a46a1b10386408a536b91c16268a2c61f5180c098378d74a2f4c71e",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -6244,6 +6282,11 @@
           "reviewStatus": "partial",
           "reviewedSha256": "a436861f4e4cc4c77002bbbd76bc5f2e2ecfe19201392e1ad8babafb7f7a0463",
           "notes": "Explicit player/light injection; AI rules/timers still mixed with Unity."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "678 строк: доменные решения, clock, физическая запись, звук через concrete references и persistence. Нужна декомпозиция по ответственности, не слепое дробление по строкам. HasAggro сохраняется, световая реакция отложена, timing не animation-authorized. Configure обновляет perception, но не motor mask после Awake — условный integration-risk; Restore присваивает enum из payload (BUG-008).",
+          "reviewedSha256": "a436861f4e4cc4c77002bbbd76bc5f2e2ecfe19201392e1ad8babafb7f7a0463"
         }
       ],
       "responsibility": "Видовая FSM агрессии, света, отхода, укуса и ожога",
@@ -6256,8 +6299,9 @@
       ],
       "usageEvidence": "ShadowStalker.prefab; StalkerCheckpoint2D; видовые presentation/audio adapters",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
@@ -7347,15 +7391,47 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Config/StalkerSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "81eaf2244e23cd6976dcc45740d17d5bbd3febf7174bd55da6d3d5ef7a657ef5",
+      "guid": "300e498f09744a158c2555f291e1fb34",
+      "types": [
+        "StalkerSettings"
+      ],
+      "lines": 56,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/StalkerBehaviourProfile.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "81eaf2244e23cd6976dcc45740d17d5bbd3febf7174bd55da6d3d5ef7a657ef5",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs",
       "sourceScope": "unity",
-      "sha256": "11b90c72c918c72f37e81fb6f18bfe78fbbf1955863c4590d9cf573a4cef9549",
+      "sha256": "4e424b5f50665e1f6fc1b8f9db43f6da4a9e632f080b80a7ab26e9b1e541c49b",
       "guid": "26052a9d7d5049cf87db6d2aa0b0b4d8",
       "types": [
         "EnemyInstaller"
       ],
-      "lines": 14,
+      "lines": 15,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -7377,10 +7453,15 @@
           "reviewStatus": "partial",
           "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
           "reviewedSha256": "16d9fd94885048d30bcdcc2acef6838abfc890e2e9a3166b1cdfc6e8f55b5a90"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
+          "reviewedSha256": "11b90c72c918c72f37e81fb6f18bfe78fbbf1955863c4590d9cf573a4cef9549"
         }
       ],
-      "reviewedSha256": "11b90c72c918c72f37e81fb6f18bfe78fbbf1955863c4590d9cf573a4cef9549",
-      "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewedSha256": "4e424b5f50665e1f6fc1b8f9db43f6da4a9e632f080b80a7ab26e9b1e541c49b",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
       "reviewDate": "2026-10-21",
       "previousReviewStatus": "reviewed_boundary"
     },
@@ -7449,6 +7530,35 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ActivateStalkerAggroCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "a6b4b5f577e04365e677a95a6b16aa9138e7a80f62facce6bf9f111083b99b7b",
+      "guid": "462f5b1dca8c4d28b089b9192384dd75",
+      "types": [
+        "ActivateStalkerAggroCommand"
+      ],
+      "lines": 27,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "a6b4b5f577e04365e677a95a6b16aa9138e7a80f62facce6bf9f111083b99b7b",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
       "sourceScope": "unity",
@@ -7508,6 +7618,36 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginStalkerAttackCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "cccdfaaaca47c493041f908194190b4a2c095b0f7138dfe486467a4036078929",
+      "guid": "2585363f33fe402daf1ed7e418e1871d",
+      "types": [
+        "BeginStalkerAttackCommand"
+      ],
+      "lines": 29,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "cccdfaaaca47c493041f908194190b4a2c095b0f7138dfe486467a4036078929",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
       "sourceScope": "unity",
@@ -7532,6 +7672,35 @@
       ],
       "reviewedSha256": "f49cf0d84229e6b7995c7b583f9d47c95ed1916835b163139f7f60890f7efc2a",
       "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "a4c9a3479df3d064f55c0283b17d87527437f7f7eabe21902197f86760efa107",
+      "guid": "57b47ba8e76445bea69eae1d73a76d24",
+      "types": [
+        "CompleteStalkerAttackCommand"
+      ],
+      "lines": 27,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "a4c9a3479df3d064f55c0283b17d87527437f7f7eabe21902197f86760efa107",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -7581,6 +7750,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
@@ -7650,6 +7820,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
@@ -7746,6 +7917,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
@@ -7781,6 +7953,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
@@ -7875,9 +8048,12 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -7906,6 +8082,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IStalkerLocomotion.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
@@ -8048,6 +8225,38 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IStalkerLocomotion.cs",
+      "sourceScope": "unity",
+      "sha256": "7e659724a60633843665349b43af7047612e6bc36c48f66ede8c835370fb80a2",
+      "guid": "d5663781b3a945669c95b9a756f7754e",
+      "types": [
+        "IStalkerLocomotion"
+      ],
+      "lines": 14,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "7e659724a60633843665349b43af7047612e6bc36c48f66ede8c835370fb80a2",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillSleeperCommand.cs",
       "sourceScope": "unity",
@@ -8073,6 +8282,36 @@
       ],
       "reviewedSha256": "e952113f6c78d925e1baa337210fd8e1a5f982fa0caf63a83e9586f1f6582788",
       "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillStalkerCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "892b985f5b998d2869a1f13bfcf69afc78d41f352d407b8077c3c3c722e862ff",
+      "guid": "e5bad4ab17aa4fb7b9551f7692934d4c",
+      "types": [
+        "KillStalkerCommand"
+      ],
+      "lines": 27,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "892b985f5b998d2869a1f13bfcf69afc78d41f352d407b8077c3c3c722e862ff",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -8190,6 +8429,36 @@
       ],
       "reviewedSha256": "a394eb2deec13de8f0e330dac379ea2c9f632e7283edf8f1eefc9025e649a594",
       "reviewReport": "Docs/Reports/SleeperBrain03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreStalkerCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "0b621fc5666b6e1f55f85ef56249b3ea51a40a7742866ccb55be55525f4513ab",
+      "guid": "8926f692bde34407a3a4bfb74dce7b5f",
+      "types": [
+        "RestoreStalkerCommand"
+      ],
+      "lines": 29,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "0b621fc5666b6e1f55f85ef56249b3ea51a40a7742866ccb55be55525f4513ab",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -8392,6 +8661,236 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerStalkerCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "fddf8e1fb59659ee4b633deb44c883e4d4c916bb84867acd4632832d274947e6",
+      "guid": "d69f733a6e2743aebaf82a770eb68fa5",
+      "types": [
+        "StaggerStalkerCommand"
+      ],
+      "lines": 31,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "fddf8e1fb59659ee4b633deb44c883e4d4c916bb84867acd4632832d274947e6",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+      "sourceScope": "unity",
+      "sha256": "21678fdb016d19b2b3e69b3ba9b771c06ddedd43293e9f52c909e1121a54f83c",
+      "guid": "4215deecc650486eb8edd6cc0949fa97",
+      "types": [
+        "StalkerController"
+      ],
+      "lines": 99,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "21678fdb016d19b2b3e69b3ba9b771c06ddedd43293e9f52c909e1121a54f83c",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerIntent.cs",
+      "sourceScope": "unity",
+      "sha256": "1467d3bcc864f09e945b1071612767b894a5a692f060c29aec2207b393cd1801",
+      "guid": "d3ce0200a4c14db8936236e408d66ceb",
+      "types": [
+        "StalkerIntent"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "1467d3bcc864f09e945b1071612767b894a5a692f060c29aec2207b393cd1801",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+      "sourceScope": "unity",
+      "sha256": "48ca9ca28f783f7d1a7a33e7baf23741e4b1d497b4b95d064969f1bf6b76d080",
+      "guid": "801806425aa3483bb723dd0d43cb6365",
+      "types": [
+        "StalkerModel"
+      ],
+      "lines": 303,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ActivateStalkerAggroCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginStalkerAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/KillStalkerCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreStalkerCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerStalkerCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerObservation.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "48ca9ca28f783f7d1a7a33e7baf23741e4b1d497b4b95d064969f1bf6b76d080",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerObservation.cs",
+      "sourceScope": "unity",
+      "sha256": "2c04b5abf222ca60219deddb93ce96bfd41c25cb2b92f0cd7f6806757cd4d742",
+      "guid": "fd9a74baee764926b6845cea5c1761c6",
+      "types": [
+        "StalkerObservation"
+      ],
+      "lines": 48,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "2c04b5abf222ca60219deddb93ce96bfd41c25cb2b92f0cd7f6806757cd4d742",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerState.cs",
+      "sourceScope": "unity",
+      "sha256": "53e889d1ece2456e8b6014c92988a1deea6ba90ed52285c772200b6fe5589a31",
+      "guid": "9faad51629994d368e26acec8b7da392",
+      "types": [
+        "StalkerState"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerStateSnapshot.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "53e889d1ece2456e8b6014c92988a1deea6ba90ed52285c772200b6fe5589a31",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerStateSnapshot.cs",
+      "sourceScope": "unity",
+      "sha256": "7fe549895c69428fe6048b50397d8b15f02ed0451a0b78a564cd72d78bbfab98",
+      "guid": "71c10ecc161d400cb042d8760ebe80f5",
+      "types": [
+        "StalkerStateSnapshot"
+      ],
+      "lines": 35,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreStalkerCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "7fe549895c69428fe6048b50397d8b15f02ed0451a0b78a564cd72d78bbfab98",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/WakeSleeperCommand.cs",
       "sourceScope": "unity",
@@ -8452,6 +8951,36 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "4736e4ee974d8a0a97730401564c8c3c316f07355a507e04ace801ea0e212dc4",
+      "guid": "cb8e2d0131ca40fa9771e92de5191ab5",
+      "types": [
+        "StalkerControllerFactory"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "4736e4ee974d8a0a97730401564c8c3c316f07355a507e04ace801ea0e212dc4",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
       "sourceScope": "unity",
@@ -8464,7 +8993,8 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs"
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -8563,6 +9093,35 @@
       ],
       "reviewedSha256": "be9fc3e6515d2bc2c9d8687d1fcc242daa4474baa16170a7b043d45ff75b978c",
       "reviewReport": "Docs/Reports/EnemyPatrol02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+      "sourceScope": "unity",
+      "sha256": "586f461dc3f762a2f81ab6b1aebab4a89b2845def692a62e2940d752b3f16f3a",
+      "guid": "e0cc5fb370c145ad9f3cdb9a8aa637c5",
+      "types": [
+        "StalkerLocomotion2D"
+      ],
+      "lines": 26,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "586f461dc3f762a2f81ab6b1aebab4a89b2845def692a62e2940d752b3f16f3a",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -10149,7 +10708,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -10986,9 +11546,13 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerStateSnapshot.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
@@ -10998,8 +11562,10 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -11131,9 +11697,13 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerStateSnapshot.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
@@ -11143,8 +11713,10 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -11196,9 +11768,13 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerStateSnapshot.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
@@ -11208,8 +11784,10 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -11335,9 +11913,13 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerStateSnapshot.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
@@ -11347,8 +11929,10 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -12079,7 +12663,8 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -12138,7 +12723,8 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -14733,6 +15319,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
       "entryPointHints": [
@@ -15253,6 +15840,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
         "Concepts/Used/Environment/RoomFinish01/create.cs"
@@ -16095,6 +16683,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
       "entryPointHints": [
@@ -16175,6 +16764,51 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit06.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "3362417df341284ec4104bbe0c086502241f2ce2bc22206f22c99924c31b6743",
+      "guid": "842cab769234449e908e612e83371de3",
+      "types": [
+        "Clock",
+        "Locomotion",
+        "Melee",
+        "StalkerModelTests"
+      ],
+      "lines": 340,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/EnemyDefinition.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "3362417df341284ec4104bbe0c086502241f2ce2bc22206f22c99924c31b6743",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
     },
     {
       "baselineSha256": null,
@@ -16666,6 +17300,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "fc5ff0bbe8e5e43e2310b253b65fc12283d2203fdbaab8c4ee96404f05b8685e",
+      "guid": "3288797d81044f9ba3e5545262dbdeef",
+      "types": [
+        "StalkerBrainSceneTests"
+      ],
+      "lines": 154,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "fc5ff0bbe8e5e43e2310b253b65fc12283d2203fdbaab8c4ee96404f05b8685e",
+      "reviewReport": "Docs/Reports/StalkerBrain04.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "BloodSafety01: 65 profile cases (33 original failures), source-scene/frozen-timer unload for both blood VFX (4 original failures). 481 own EditMode, 16 real PlayMode and normal Windows64 passed. Temporary objects and original resource guards; see limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs",
       "sourceScope": "unity",
@@ -17129,14 +17790,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 397,
+    "unity": 415,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 22,
-    "report": "Docs/Reports/SleeperBrain03.md",
-    "validation": "604/604 EditMode, 23/23 PlayMode, normal Windows64 success. Pure FSM commands/state isolation and real scoped Sleeper cycle with beam/wall/committed heading/silent restore/death. No resource mutation; map/profiler/owner acceptance remain."
+    "files": 21,
+    "report": "Docs/Reports/StalkerBrain04.md",
+    "validation": "624/624 EditMode, 24/24 PlayMode, normal Windows64 success. Pure FSM commands/state isolation and real scoped Stalker detection/fear/burn/retreat/wait/attack interruption/legacy silent restore/death. Resources unchanged; map/profiler/owner acceptance open."
   },
   "reviewPasses": [
     {
@@ -17258,15 +17919,21 @@
       "files": 22,
       "report": "Docs/Reports/SleeperBrain03.md",
       "validation": "604/604 EditMode, 23/23 PlayMode, normal Windows64 success. Pure FSM commands/state isolation and real scoped Sleeper cycle with beam/wall/committed heading/silent restore/death. No resource mutation; map/profiler/owner acceptance remain."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 21,
+      "report": "Docs/Reports/StalkerBrain04.md",
+      "validation": "624/624 EditMode, 24/24 PlayMode, normal Windows64 success. Pure FSM commands/state isolation and real scoped Stalker detection/fear/burn/retreat/wait/attack interruption/legacy silent restore/death. Resources unchanged; map/profiler/owner acceptance open."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 416,
-    "totalFiles": 416,
+    "reviewedFiles": 434,
+    "totalFiles": 434,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "SleeperBrain03 and prior reviews; boundary coverage does not finish all SOD tasks."
+    "validation": "StalkerBrain04 and prior reviews; boundary coverage does not finish all SOD tasks."
   }
 }

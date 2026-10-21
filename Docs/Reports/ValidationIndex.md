@@ -7,6 +7,7 @@
 | Область | Свидетельства и границы |
 |---|---|
 | Общая атака врагов MVC/DI | [EnemyMelee01](EnemyMelee01.md): 572/572 EditMode, 21/21 PlayMode, Windows64 success. Чистый timeline/clock/commands, wall и один реальный hit у обоих prefab, без полного FSM/маршрута. |
+| FSM Сталкера MVC/DI | [StalkerBrain04](StalkerBrain04.md): 624/624 EditMode, 24/24 PlayMode, Windows64 success. Личная модель/clock/команды; настоящий цикл detection/fear/burn/retreat/wait/interrupt/legacy restore, без маршрута карты. |
 | FSM Спящего MVC/DI | [SleeperBrain03](SleeperBrain03.md): 604/604 EditMode, 23/23 PlayMode, Windows64 success. Личная модель/clock/команды, настоящий цикл beam/wall/aggro/heading/restore/death, без полного маршрута. |
 | Патруль MVC/DI | [EnemyPatrol02](EnemyPatrol02.md): 588/588 EditMode, 22/22 PlayMode, Windows64 success. Личные route/RNG, команды, bounds, настоящий collider/restore; без полного FSM/маршрута. |
 | Ошибка создания scope · BUG-020 | [ScopeFailure03](ScopeFailure03.md): 2 исходных отказа; 545/545 EditMode, 20/20 PlayMode, Windows64 success. Cleanup input/registry, sibling/world и обе причины ошибки/late stage; ограничения SDK/recovery указаны. |

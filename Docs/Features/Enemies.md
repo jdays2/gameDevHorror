@@ -1,6 +1,6 @@
 # Враги и останки
 
-Health, общая melee-атака, патруль и FSM Спящего имеют чистые модели/команды и scoped-фабрики. FSM Сталкера и другие оставшиеся границы ещё переносятся.
+Health, общая melee-атака, патруль и обе видовые FSM имеют чистые модели/команды и scoped-фабрики. Навигация и другие оставшиеся границы ещё переносятся.
 
 Архитектурная цель — [ADR-001](../Decisions/001-sod-architecture.md); фактическая карта ниже перенесена из ARCHITECTURE без изменения поведения. При кодовой миграции обновлять её по исходникам.
 
@@ -14,7 +14,7 @@ Health, общая melee-атака, патруль и FSM Спящего име
 | Соседи и бюджет поиска | CrowdAgent2D + NavigationWorkBudget2D |
 | Тайминг выпада, дистанция/стена, доставка урона | EnemyMeleeModel/Controller/commands, отдельный EnemyMeleeEnvironment2D; EnemyMeleeAttack2D — bridge |
 | Мирные точки/паузы | EnemyPatrolModel/Controller, личный RNG и отдельная геометрия; EnemyPatrol2D — scene/DTO/gizmo adapter |
-| Решение, какое состояние нужно этому виду | Личный SleeperModel/Controller; ShadowStalker2D ещё переносится, отдельная FSM |
+| Решение, какое состояние нужно этому виду | Личные SleeperModel/Controller и StalkerModel/Controller; прежние MB — native/event/DTO adapters |
 | Кровь/разрыв по событию смерти | EnemyDeathEffects2D + GoreBurst2D |
 | Попадание/тени | EnemyHitResponse2D; CreatureGroundShadow2D через EnemyPresentationSource2D |
 | Кадры | CreatureSpriteAnimator2D через EnemyPresentationSource2D; совместимая оболочка StalkerSpriteAnimator |
@@ -26,7 +26,9 @@ Health, общая melee-атака, патруль и FSM Спящего име
 
 Патруль в той же feature хранит личные route/pause/stall и получает отдельный RNG. Настройки поиска/отступа/застревания задаёт EnemyPatrolProfile; модель читает immutable копию. Physics2D остаётся в environment, область и gizmos — в прежнем компоненте. Snapshot не менял формат. [Проверки и цена переноса](../Reports/EnemyPatrol02.md).
 
-FSM Спящего хранит экспозицию, агрессию, фазы и stagger в SleeperModel с settings/clock. Controller связывает команды с интерфейсами motor/melee, прежний Sleeper2D владеет native lifecycle, событиями и Snapshot. [Локальный живой цикл и ограничения](../Reports/SleeperBrain03.md). FSM Сталкера пока остаётся следующим переносом.
+FSM Спящего хранит экспозицию, агрессию, фазы и stagger в SleeperModel с settings/clock. Controller связывает команды с интерфейсами motor/melee, прежний Sleeper2D владеет native lifecycle, событиями и Snapshot. [Локальный живой цикл и ограничения](../Reports/SleeperBrain03.md).
+
+FSM Сталкера хранит состояние, агрессию, страх, ожог и stagger в StalkerModel с settings/clock. Controller передаёт решения в отдельные locomotion/melee-порты; ShadowStalker2D сохраняет native lifecycle, события и DTO, включая миграцию eyeBurned. Подписка сброса патруля освобождается controller.Dispose. [Реальная проверка цикла и цена](../Reports/StalkerBrain04.md). Навигация/остальные модули проверяются отдельно.
 
 ## Три вида данных
 

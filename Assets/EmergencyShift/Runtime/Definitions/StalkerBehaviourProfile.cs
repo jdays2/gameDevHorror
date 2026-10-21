@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using EmergencyShift.Features.Enemies.Config;
 
 namespace EmergencyShift
 {
@@ -26,5 +28,21 @@ namespace EmergencyShift
         public float eyeBurnSeconds = 1.25f;
         [Min(.1f)]
         public float eyeBurnCueInterval = 1.2f;
+
+        [SerializeField, Min(0)]
+        private float interruptedAttackCooldown = .35f;
+
+        public StalkerSettings ToSettings(EnemyDefinition definition)
+        {
+            if (definition == null)
+            {
+                throw new ArgumentNullException(nameof(definition));
+            }
+
+            return new StalkerSettings(definition.pursuitSpeed, retreatSpeed, standOffDistance, recoilSeconds,
+                retreatSeconds, cooldownSeconds, lightFearDistance, reactionDelay, definition.attackDuration,
+                definition.hitStaggerSeconds, definition.hitPushSpeed, eyeBurnLeadSeconds, eyeBurnSeconds,
+                eyeBurnCueInterval, interruptedAttackCooldown);
+        }
     }
 }
