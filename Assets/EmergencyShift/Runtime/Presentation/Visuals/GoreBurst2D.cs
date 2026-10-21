@@ -186,12 +186,13 @@ namespace EmergencyShift
 
         public void ValidateRemains(RemainsSnapshot saved)
         {
-            if (saved == null || profile == null || System.Array.Find(profile.variants, item => item.id == saved.variantId) == null)
+            if (saved == null || profile == null || profile.variants == null ||
+                System.Array.Find(profile.variants, item => item != null && item.id == saved.variantId) == null)
             {
                 throw new System.InvalidOperationException("Missing saved gore variant");
             }
 
-            if (saved.hasPool && (bloodPoolPrefab == null || saved.pool == null || bloodPoolPrefab.GetComponentsInChildren<SpriteRenderer>(true).Length != saved.pool.Length))
+            if (saved.hasPool && bloodPoolPrefab == null)
             {
                 throw new System.InvalidOperationException("Blood prefab layout changed");
             }
@@ -201,18 +202,9 @@ namespace EmergencyShift
                 throw new System.InvalidOperationException("Missing saved blood variant");
             }
 
-            if (saved.parts == null)
-            {
-                throw new System.InvalidOperationException("Missing remains parts");
-            }
-
-            foreach (var part in saved.parts)
-            {
-                if (part.spriteIndex < 0 || part.spriteIndex >= fragments.Length || part.body == null)
-                {
-                    throw new System.InvalidOperationException("Missing saved fragment");
-                }
-            }
+            int poolRendererCount = saved.hasPool ? bloodPoolPrefab.GetComponentsInChildren<SpriteRenderer>(true).Length : 0;
+            int fragmentCount = fragments != null ? fragments.Length : 0;
+            RemainsSnapshotValidation.Validate(saved, fragmentCount, poolRendererCount);
         }
 
         public RemainsSnapshot CaptureRemains()
@@ -222,6 +214,11 @@ namespace EmergencyShift
 
         public void RestoreRemains(RemainsSnapshot saved)
         {
+            if (saved != null)
+            {
+                ValidateRemains(saved);
+            }
+
             StopAllCoroutines();
             spawning = false;
             emitted = true;
@@ -237,7 +234,7 @@ namespace EmergencyShift
 
             CreateRemainsRoot(saved.position);
             record.Restore(saved);
-            GoreVariant restoredVariant = System.Array.Find(profile.variants, item => item.id == saved.variantId);
+            GoreVariant restoredVariant = System.Array.Find(profile.variants, item => item != null && item.id == saved.variantId);
             if (restoredVariant != null && restoredVariant.replaceOriginalBody && replacedBody != null)
             {
                 replacedBody.enabled = false;

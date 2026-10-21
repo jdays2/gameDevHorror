@@ -78,6 +78,11 @@ namespace EmergencyShift
                 throw new InvalidDataException("Incomplete checkpoint");
             }
 
+            if (!float.IsFinite(data.elapsedSeconds) || data.elapsedSeconds < 0)
+            {
+                throw new InvalidDataException("Invalid checkpoint elapsed time");
+            }
+
             var ids = new HashSet<string>(StringComparer.Ordinal);
             foreach (var entity in data.entities)
             {
@@ -86,10 +91,7 @@ namespace EmergencyShift
                     throw new InvalidDataException("Invalid checkpoint entity ID");
                 }
 
-                if (!float.IsFinite(entity.position.x) || !float.IsFinite(entity.position.y))
-                {
-                    throw new InvalidDataException("Invalid checkpoint position");
-                }
+                CheckpointValueValidation.ValidatePose(entity.position, entity.rotation);
             }
         }
     }

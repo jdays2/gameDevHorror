@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "Source coverage is complete for the current 269 own C# hashes. partial means read with unresolved debt, not unread. reviewed_boundary certifies only the stated boundary. complete=false retains unresolved SOD migration/validation debt; no runtime or unused-code certification.",
+  "limits": "273 current own C# hashes have explicit source review. partial records retain known debt; complete=false is migration/remaining validation debt. CheckpointValidation01 tests only its stated scenarios.",
   "counts": {
     "partial": 121,
-    "reviewed_boundary": 148,
+    "reviewed_boundary": 152,
     "queued": 0
   },
   "files": [
@@ -2729,7 +2729,8 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -2768,7 +2769,9 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -2810,7 +2813,9 @@
         "Assets/EmergencyShift/Runtime/Definitions/LevelCatalog.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -4544,6 +4549,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -4642,7 +4649,9 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -4781,6 +4790,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -4967,6 +4978,8 @@
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxStationaryStalker2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -6499,7 +6512,8 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelExit2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
-        "Assets/EmergencyShift/Runtime/UI/LevelCompletionView2D.cs"
+        "Assets/EmergencyShift/Runtime/UI/LevelCompletionView2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -6558,6 +6572,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -6612,7 +6627,9 @@
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -6638,42 +6655,96 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs",
-      "sha256": "2cf8ec0e1a3aeabbaa8c54bedbdcb2258ea7fb317a3ba669d633bcfe119254a8",
+      "sha256": "d8be73dacb1dd5bb28bffd3197201832ae8e78e01d225123779891b8bcd119da",
       "baselineSha256": "2cf8ec0e1a3aeabbaa8c54bedbdcb2258ea7fb317a3ba669d633bcfe119254a8",
       "guid": "3fe27d11d44a5754b9251323b88bea18",
       "types": [
         "CheckpointStore"
       ],
-      "lines": 96,
+      "lines": 98,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Запись complete temp→Replace/Move и backup отделена от capture. BUG-011: проверены только finite X/Y, не Z/quaternion/elapsed. Backend/serialization остаются Unity-адаптером, не чистой доменной моделью.",
+      "notes": "BUG-011 исправлен: XYZ, unit quaternion и elapsed проверяются до записи temp/backup и применения. Store всё ещё объединяет JSON/IO и envelope orchestration; вложенные payload проверяют adapters.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "queued",
           "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Запись complete temp→Replace/Move и backup отделена от capture. BUG-011: проверены только finite X/Y, не Z/quaternion/elapsed. Backend/serialization остаются Unity-адаптером, не чистой доменной моделью.",
+          "reviewDate": "2026-10-21",
+          "reviewReport": "Docs/Reports/CodeAudit08.md",
+          "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+          "reviewedSha256": "2cf8ec0e1a3aeabbaa8c54bedbdcb2258ea7fb317a3ba669d633bcfe119254a8",
+          "responsibility": "Файловый slot, JSON и envelope validation",
+          "dependencies": [
+            "File/Directory",
+            "JsonUtility",
+            "CheckpointData"
+          ],
+          "usageEvidence": "LevelCheckpointController2D; PersistenceTests"
         }
       ],
-      "responsibility": "Файловый slot, JSON и envelope validation",
+      "responsibility": "Файловая запись/чтение checkpoint и envelope preflight",
       "dependencies": [
-        "File/Directory",
-        "JsonUtility",
-        "CheckpointData"
+        "System",
+        "System.IO",
+        "System.Collections.Generic",
+        "UnityEngine"
       ],
-      "usageEvidence": "LevelCheckpointController2D; PersistenceTests",
-      "reviewedSha256": "2cf8ec0e1a3aeabbaa8c54bedbdcb2258ea7fb317a3ba669d633bcfe119254a8",
+      "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
+      "reviewedSha256": "d8be73dacb1dd5bb28bffd3197201832ae8e78e01d225123779891b8bcd119da",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
+      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success."
+    },
+    {
+      "reviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued"
+        }
+      ],
+      "responsibility": "Чистые проверки значений checkpoint",
+      "notes": "Статические чистые функции над Vector/Quaternion/Color, без Unity Object/сцены/часов/глобального состояния; finite компоненты, явный допуск squared unit length, оба знака quaternion. Нет тихого исправления сохранения.",
+      "dependencies": [
+        "System",
+        "System.IO",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
+      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success.",
+      "reviewedSha256": "97658434e7371fa5ec69266cfe0b8e7b3ba39eb3f736574a651f964d3325733c",
+      "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointValueValidation.cs",
+      "sourceScope": "unity",
+      "sha256": "97658434e7371fa5ec69266cfe0b8e7b3ba39eb3f736574a651f964d3325733c",
+      "guid": "f38b972de2ca8ea4c91977176cbf7987",
+      "types": [
+        "CheckpointValueValidation"
+      ],
+      "lines": 51,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/PersistentEntity2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/RemainsSnapshotValidation.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointVolume2D.cs",
@@ -6748,6 +6819,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -6806,6 +6878,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -6849,7 +6922,9 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/CheckpointVolume2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
@@ -6880,13 +6955,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PersistentEntity2D.cs",
-      "sha256": "a7818319185631a4a9f364945869fb07729e76175dab728b1fe573ce8ece7364",
+      "sha256": "de3b58d4dd367b873da25ff52fde87f934f8328c122e05977cb43f82989c0503",
       "baselineSha256": "a7818319185631a4a9f364945869fb07729e76175dab728b1fe573ce8ece7364",
       "guid": "5b9ffea566130444b9decdfd3faa2e70",
       "types": [
         "PersistentEntity2D"
       ],
-      "lines": 122,
+      "lines": 128,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
@@ -6909,24 +6984,26 @@
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Collect отвергает пустые/дублированные ID; layout и SaveKey сверяются до restore. BUG-011: собственный pose не проверяется до SetPositionAndRotation. Предыдущая reviewed_boundary уточнена, а не сохранена как полная сертификация. Participants-словарь строится на checkpoint, не каждый игровой tick.",
+      "notes": "BUG-011 исправлен: прямой Validate тоже отвергает некорректную позу до participants/PrepareRestore. Сценовый traversal/компоненты/активация остаются Unity-адаптером, полная SOD-миграция не выполнена.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "responsibility": "Unity ID/participants и применение pose",
+      "responsibility": "Сценический ID, участники и применение позы",
       "dependencies": [
-        "ICheckpointParticipant",
-        "Checkpoint DTO",
-        "Scene/Transform"
+        "System",
+        "System.Collections.Generic",
+        "UnityEngine"
       ],
-      "usageEvidence": "LevelCheckpointController2D; authoring и PersistenceTests",
-      "reviewedSha256": "a7818319185631a4a9f364945869fb07729e76175dab728b1fe573ce8ece7364",
+      "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
+      "reviewedSha256": "de3b58d4dd367b873da25ff52fde87f934f8328c122e05977cb43f82989c0503",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
+      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success.",
       "reviewHistory": [
         {
           "reviewStatus": "reviewed_boundary",
@@ -6942,6 +7019,21 @@
           "reviewDate": "2026-10-21",
           "reviewReport": "Docs/Reports/CodeAudit06.md",
           "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Collect отвергает пустые/дублированные ID; layout и SaveKey сверяются до restore. BUG-011: собственный pose не проверяется до SetPositionAndRotation. Предыдущая reviewed_boundary уточнена, а не сохранена как полная сертификация. Participants-словарь строится на checkpoint, не каждый игровой tick.",
+          "reviewDate": "2026-10-21",
+          "reviewReport": "Docs/Reports/CodeAudit08.md",
+          "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+          "reviewedSha256": "a7818319185631a4a9f364945869fb07729e76175dab728b1fe573ce8ece7364",
+          "responsibility": "Unity ID/participants и применение pose",
+          "dependencies": [
+            "ICheckpointParticipant",
+            "Checkpoint DTO",
+            "Scene/Transform"
+          ],
+          "usageEvidence": "LevelCheckpointController2D; authoring и PersistenceTests"
         }
       ]
     },
@@ -6983,6 +7075,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -7022,6 +7115,42 @@
       ]
     },
     {
+      "reviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued"
+        }
+      ],
+      "responsibility": "Полный обход значений settled snapshot",
+      "notes": "Чистая проверка presence/array layout/индексов/finite pose/color; refs и разрешённые варианты проверяют Unity adapters. Обязательность pool/shadow следует явным флагам, unused optional DTO игнорируются ради старых снимков.",
+      "dependencies": [
+        "System",
+        "RemainsSnapshot",
+        "CheckpointValueValidation"
+      ],
+      "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
+      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success.",
+      "reviewedSha256": "4f1b809f3c4c5ff41550e001dc42eff562965c2b7dbe8e640daedbe53a4d3964",
+      "path": "Assets/EmergencyShift/Runtime/Persistence/RemainsSnapshotValidation.cs",
+      "sourceScope": "unity",
+      "sha256": "4f1b809f3c4c5ff41550e001dc42eff562965c2b7dbe8e640daedbe53a4d3964",
+      "guid": "70f47ce87c116f34281ef102dc6a21c7",
+      "types": [
+        "RemainsSnapshotValidation"
+      ],
+      "lines": 55,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
       "sha256": "bea2a5a92ece149a43475e9096f4afeb075c40a85bf7f61c29f2f6a9e39a4d7a",
       "baselineSha256": "bea2a5a92ece149a43475e9096f4afeb075c40a85bf7f61c29f2f6a9e39a4d7a",
@@ -7057,6 +7186,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -7115,6 +7245,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -7173,6 +7304,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -7235,6 +7367,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
@@ -8281,7 +8414,8 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodRuptureBurst2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -8537,7 +8671,8 @@
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -8565,13 +8700,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-      "sha256": "971af3b4e27b15102082fd2d9a9088b0bade9381d73af720b84cbce85f73fc76",
+      "sha256": "aef0403b739b70a815d8f3add693db6def19392dfeddbc7f1db44de3645390d1",
       "baselineSha256": "06b7c592281f925895c42dc2f371a448be2bff330b385121ef616a73c0033fac",
       "guid": "a44dfee537c76c74ca26aa0a3b1c491e",
       "types": [
         "GoreBurst2D"
       ],
-      "lines": 247,
+      "lines": 244,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -8590,12 +8725,13 @@
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "One-shot emitted, world-budget, remains root явно source.scene. ValidateRemains не проверяет null shadow/элементы pool/finite pose; transient spray создаётся в active scene. Coroutine создания частей привязана actor; future pool нельзя считать готовым. Учёт: BUG-014 / BUG-015.",
-      "reviewedSha256": "971af3b4e27b15102082fd2d9a9088b0bade9381d73af720b84cbce85f73fc76",
+      "notes": "BUG-014 исправлен: полная nested preflight и защита прямого RestoreRemains до остановки/удаления прежней записи. BUG-015 transient active-scene owner и общий cosmetic RNG/тюнинг остаются открытыми.",
+      "reviewedSha256": "aef0403b739b70a815d8f3add693db6def19392dfeddbc7f1db44de3645390d1",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -8603,23 +8739,38 @@
           "reviewStatus": "partial",
           "notes": "Owned quota validated through real death/settled remains surviving actor; full visual/RNG/lifetime review remains.",
           "reviewedSha256": "971af3b4e27b15102082fd2d9a9088b0bade9381d73af720b84cbce85f73fc76"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "One-shot emitted, world-budget, remains root явно source.scene. ValidateRemains не проверяет null shadow/элементы pool/finite pose; transient spray создаётся в active scene. Coroutine создания частей привязана actor; future pool нельзя считать готовым. Учёт: BUG-014 / BUG-015.",
+          "reviewDate": "2026-10-21",
+          "reviewReport": "Docs/Reports/CodeAudit09.md",
+          "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution.",
+          "reviewedSha256": "971af3b4e27b15102082fd2d9a9088b0bade9381d73af720b84cbce85f73fc76",
+          "responsibility": "Однократная смерть и создание останков",
+          "dependencies": [
+            "System.Collections",
+            "UnityEngine",
+            "Zenject",
+            "GoreProfile",
+            "BloodPool2D",
+            "GoreSpawnBudget2D",
+            "RemainsRecord2D",
+            "GibMotion2D"
+          ],
+          "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3."
         }
       ],
-      "responsibility": "Однократная смерть и создание останков",
+      "responsibility": "Однократная кровь и scene-owned останки",
       "dependencies": [
         "System.Collections",
         "UnityEngine",
-        "Zenject",
-        "GoreProfile",
-        "BloodPool2D",
-        "GoreSpawnBudget2D",
-        "RemainsRecord2D",
-        "GibMotion2D"
+        "Zenject"
       ],
-      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
+      "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
+      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs",
@@ -8747,13 +8898,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
-      "sha256": "2d0a8e8bfe88c8657f30c4606355cd365b9383700c099ddd8a4be22793bcb34e",
+      "sha256": "c3412a695f022c46224359a74032977ac2204e9256e42e5703d80526b3958a53",
       "baselineSha256": "2d0a8e8bfe88c8657f30c4606355cd365b9383700c099ddd8a4be22793bcb34e",
       "guid": "d37e7a79e4361944093c3243afe9739b",
       "types": [
         "RemainsRecord2D"
       ],
-      "lines": 155,
+      "lines": 164,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -8761,33 +8912,48 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Scene-owned record живёт независимо от actor, settled без AI. Restore доверяет shadow/pool element presence и numbers; некорректный payload может упасть после создания частей. Учёт: BUG-014.",
+      "notes": "BUG-014 исправлен: общий value-only validator применяется до изменения Transform/создания pool/частей. Snapshot Capture/Apply и Unity representation ещё не разделены в принятую полную Model/adapter границу.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "queued",
           "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Scene-owned record живёт независимо от actor, settled без AI. Restore доверяет shadow/pool element presence и numbers; некорректный payload может упасть после создания частей. Учёт: BUG-014.",
+          "reviewDate": "2026-10-21",
+          "reviewReport": "Docs/Reports/CodeAudit09.md",
+          "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution.",
+          "reviewedSha256": "2d0a8e8bfe88c8657f30c4606355cd365b9383700c099ddd8a4be22793bcb34e",
+          "responsibility": "Постоянный scene record и restore останков",
+          "dependencies": [
+            "System.Collections.Generic",
+            "UnityEngine",
+            "RemainsSnapshot",
+            "BloodPool2D",
+            "RemainsPartIdentity2D",
+            "SpriteRenderer"
+          ],
+          "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status."
         }
       ],
-      "responsibility": "Постоянный scene record и restore останков",
+      "responsibility": "Постоянная запись останков и silent restore",
       "dependencies": [
         "System.Collections.Generic",
-        "UnityEngine",
-        "RemainsSnapshot",
-        "BloodPool2D",
-        "RemainsPartIdentity2D",
-        "SpriteRenderer"
+        "UnityEngine"
       ],
-      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
-      "reviewedSha256": "2d0a8e8bfe88c8657f30c4606355cd365b9383700c099ddd8a4be22793bcb34e",
+      "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
+      "reviewedSha256": "c3412a695f022c46224359a74032977ac2204e9256e42e5703d80526b3958a53",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
+      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsSnapshot.cs",
@@ -8806,12 +8972,14 @@
         "AgentScripts/CheckWorldServices.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/RemainsSnapshotValidation.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsPartIdentity2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -10440,6 +10608,44 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
+      "reviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued"
+        }
+      ],
+      "responsibility": "37 регрессий сохранности слота и мира",
+      "notes": "Preview scene без сохранения/замены открытых сцен; изолированный temp slot. Invalid numeric rejection, отсутствие первой мутации, direct Validate и настоящий JsonUtility/disk round-trip v1. 37/37 после исправления.",
+      "dependencies": [
+        "System",
+        "System.IO",
+        "NUnit.Framework",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
+      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success.",
+      "reviewedSha256": "39239079fecabe0241146ba94258aabc8118d48613a7a9ca3685751d56b3bc1c",
+      "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+      "sourceScope": "unity",
+      "sha256": "39239079fecabe0241146ba94258aabc8118d48613a7a9ca3685751d56b3bc1c",
+      "guid": "e650284e1701499458266e8a41f872ab",
+      "types": [
+        "CheckpointValidationTests"
+      ],
+      "lines": 223,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
       "sha256": "39eab0db76f922420ba20049a55f1a76e683d1f74eae78b314eab49fd6b93275",
       "baselineSha256": "fde12195609b91f30d0d6c2eaf55f84e036e1639935266451186a76d760d4870",
@@ -11136,6 +11342,45 @@
       "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
     },
     {
+      "reviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued"
+        }
+      ],
+      "responsibility": "46 регрессий nested validation и silent remains restore",
+      "notes": "Preview scene, реальные prefab configs двух видов, corrupted slots/body/shadow, direct restore и Level.Apply preflight; profiles не меняются, launch events/движущиеся Gib не создаются. 46/46 после исправления.",
+      "dependencies": [
+        "System",
+        "NUnit.Framework",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
+      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success.",
+      "reviewedSha256": "299df9dc9bf4b51a4391715ff03c69d9590a1084b07de04cb5d34cc6fa1be1a5",
+      "path": "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+      "sourceScope": "unity",
+      "sha256": "299df9dc9bf4b51a4391715ff03c69d9590a1084b07de04cb5d34cc6fa1be1a5",
+      "guid": "f37122df06fa58d4f8c5aa01ea24c4fe",
+      "types": [
+        "RemainsValidationTests"
+      ],
+      "lines": 322,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs",
       "sha256": "a54bd71b25ab173b8f75ff939a6c68faf5bdccf32e92e21356d2a6b1c3d1c552",
       "baselineSha256": null,
@@ -11711,14 +11956,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 250,
+    "unity": 254,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 121,
-    "report": "Docs/Reports/CodeAudit09.md",
-    "validation": "Static source/hash/reference checks. All own source coverage reached 269/269, 0 queued. Existing tests read, not executed; Editor/Pipeline unavailable."
+    "files": 8,
+    "report": "Docs/Reports/CheckpointValidation01.md",
+    "validation": "BUG-011/014 reproduced then fixed: 102/102 focused, 192/192 all own EditMode; ordinary Windows64 Player built. No authored scene changes."
   },
   "reviewPasses": [
     {
@@ -11750,15 +11995,21 @@
       "files": 121,
       "report": "Docs/Reports/CodeAudit09.md",
       "validation": "Static source/hash/reference checks. All own source coverage reached 269/269, 0 queued. Existing tests read, not executed; Editor/Pipeline unavailable."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 8,
+      "report": "Docs/Reports/CheckpointValidation01.md",
+      "validation": "BUG-011/014 reproduced then fixed: 102/102 focused, 192/192 all own EditMode; ordinary Windows64 Player built. No authored scene changes."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 269,
-    "totalFiles": 269,
+    "reviewedFiles": 273,
+    "totalFiles": 273,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# under Assets/EmergencyShift, AgentScripts and Concepts; third-party packages/generated Library excluded.",
-    "validation": "Static semantic source coverage across CodeAudit05–09. Asset graphs are usage hints; scene rendering/gameplay/performance and migration completion are not certified."
+    "validation": "CodeAudit05–09 plus changed/new checkpoint sources reviewed and tested in CheckpointValidation01. This does not certify untested gameplay or full migration."
   }
 }

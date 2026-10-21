@@ -1,0 +1,1422 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "6f3f32dc1eea89632aff9ead5cf7e99b7e132149",
+  "method": "Unity 6000.6.5f1 batchmode in an independent full source/settings/package-cache copy; no shared Library or player save slots.",
+  "bugs": [
+    "BUG-011",
+    "BUG-014"
+  ],
+  "tests": {
+    "before": {
+      "total": 35,
+      "passed": 7,
+      "failed": 28,
+      "skipped": 0,
+      "durationSeconds": 0.3533194,
+      "cases": [
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.x\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.y\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.z\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.infinity\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.x\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.y\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.z\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.w\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.zero\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.non-unit\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.overflow\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"elapsed.nan\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"elapsed.infinity\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"elapsed.negative\")",
+          "result": "Failed",
+          "message": "  Expected: <System.IO.InvalidDataException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"position\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"parts.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"part.null\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  <System.NullReferenceException: Object reference not set to an instance of an object\n  at EmergencyShift.GoreBurst2D.ValidateRemains (EmergencyShift.RemainsSnapshot saved) [0x000f8] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\work\\critical-checkpoint-validation-20261021\\Assets\\EmergencyShift\\Runtime\\Presentation\\Visuals\\GoreBurst2D.cs:211 \n  at EmergencyShift.Tests.RemainsValidationTests+<>c__DisplayClass9_0.<GoreValidatorRejectsCorruptSnapshot>b__0 () [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\work\\critical-checkpoint-validation-20261021\\Assets\\EmergencyShift\\Tests\\EditMode\\RemainsValidationTests.cs:50 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x00043] in <8b63e8ac0a4746599ed207982825ae6c>:0 >\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"part.index\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"part.position\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.position\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.scale\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.rotation\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.color\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.null\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.position\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.rotation\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.color\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.length\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.element\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.position\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.scale\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.rotation\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.color\")",
+          "result": "Failed",
+          "message": "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+        }
+      ]
+    },
+    "focusedAfter": {
+      "total": 102,
+      "passed": 102,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 0.4490292,
+      "cases": [
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.IndependentDeathsWithTheSameSeedDoNotMutateTheSharedProfile",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.JsonRoundTripRetainsTheChosenShapeAndEverySettledTransform(\"fresh-01\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.JsonRoundTripRetainsTheChosenShapeAndEverySettledTransform(\"ejected-01\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.JsonRoundTripRetainsTheChosenShapeAndEverySettledTransform(\"clotted-01\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.OldSnapshotsKeepOriginalBloodSpritesAndUnknownNewVariantsFailExplicitly",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"position.x\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"position.y\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"position.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"position.infinity\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.x\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.y\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.w\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.zero\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.non-unit\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.overflow\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"elapsed.nan\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"elapsed.infinity\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"elapsed.negative\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectEntityValidationAlsoRejectsInvalidPose(\"position.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectEntityValidationAlsoRejectsInvalidPose(\"rotation.w\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectEntityValidationAlsoRejectsInvalidPose(\"rotation.zero\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectEntityValidationAlsoRejectsInvalidPose(\"rotation.non-unit\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.MalformedNumbersSurviveJsonAndAreRejectedWhenReadingDisk(\"rotation.zero\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.MalformedNumbersSurviveJsonAndAreRejectedWhenReadingDisk(\"rotation.non-unit\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.MalformedNumbersSurviveJsonAndAreRejectedWhenReadingDisk(\"elapsed.negative\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.x\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.y\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.infinity\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.x\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.y\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.w\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.zero\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.non-unit\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.overflow\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"elapsed.nan\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"elapsed.infinity\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"elapsed.negative\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ValidVersionOneDiskRoundTripPreservesQuaternionAndElapsed(False)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ValidVersionOneDiskRoundTripPreservesQuaternionAndElapsed(True)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GoreCompositionTests.AProfileWithoutNewDeathCompositionsFailsInsteadOfSpawningExtraLegs",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GoreCompositionTests.NewDeathsChooseAnatomicalBodiesWithAtMostSixLegsAndMoreFlesh(\"Stalker\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GoreCompositionTests.NewDeathsChooseAnatomicalBodiesWithAtMostSixLegsAndMoreFlesh(\"Sleeper\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.BrokenJsonIsRejected",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.CardRestoreReplacesInventoryWithoutSharingIt",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.ClearRemovesBackupAndSlot",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.DiskRoundTripPreservesStableIdAndPayload",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.DuplicateIdsAreRejectedBeforeWriting",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.DuplicateSceneIdsFailRatherThanOverwritingAnEnemy",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.HealthRestoreIsSilentAndStillPreventsSecondDeath",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.InactiveActorPayloadSurvivesJsonWithoutBecomingADeadActor",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.NonFinitePositionIsRejected",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.ReplacementKeepsPreviousSlotBackup",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.UnsupportedVersionDoesNotReplaceLastGoodSave",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"parts.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"part.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"part.index\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"part.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.scale\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"shadow.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"shadow.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"shadow.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"shadow.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.length\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.element\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.scale\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"parts.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"part.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"part.index\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"part.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.scale\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.length\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.element\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.scale\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.InvalidDirectGoreRestoreKeepsItsExistingRemains",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.InvalidNestedPayloadIsRejectedBeforeAnyLevelEntityIsPrepared",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.ValidJsonRoundTripRestoresSilentlyWithoutChangingProfiles(\"ShadowStalker\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.ValidJsonRoundTripRestoresSilentlyWithoutChangingProfiles(\"Sleeper\")",
+          "result": "Passed"
+        }
+      ]
+    },
+    "allOwnEditMode": {
+      "total": 192,
+      "passed": 192,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 1.873382,
+      "cases": [
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.IndependentDeathsWithTheSameSeedDoNotMutateTheSharedProfile",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.JsonRoundTripRetainsTheChosenShapeAndEverySettledTransform(\"fresh-01\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.JsonRoundTripRetainsTheChosenShapeAndEverySettledTransform(\"ejected-01\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.JsonRoundTripRetainsTheChosenShapeAndEverySettledTransform(\"clotted-01\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.BloodPoolTests.OldSnapshotsKeepOriginalBloodSpritesAndUnknownNewVariantsFailExplicitly",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CeilingLightOcclusionTests.AutomaticBlockersStayInTheirSceneAndUnregisterWhenDisabled",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CeilingLightOcclusionTests.CeilingLightIgnoresLowDeskButStopsAtWallAndMovingDoor",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CeilingLightOcclusionTests.RotatedScaledAndDisabledBlockersUseWorldDistance",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"position.x\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"position.y\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"position.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"position.infinity\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.x\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.y\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.w\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.zero\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.non-unit\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"rotation.overflow\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"elapsed.nan\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"elapsed.infinity\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ApplyRejectsInvalidNumbersBeforeActivatingOrMovingAnyEntity(\"elapsed.negative\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectEntityValidationAlsoRejectsInvalidPose(\"position.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectEntityValidationAlsoRejectsInvalidPose(\"rotation.w\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectEntityValidationAlsoRejectsInvalidPose(\"rotation.zero\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectEntityValidationAlsoRejectsInvalidPose(\"rotation.non-unit\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.MalformedNumbersSurviveJsonAndAreRejectedWhenReadingDisk(\"rotation.zero\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.MalformedNumbersSurviveJsonAndAreRejectedWhenReadingDisk(\"rotation.non-unit\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.MalformedNumbersSurviveJsonAndAreRejectedWhenReadingDisk(\"elapsed.negative\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.x\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.y\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"position.infinity\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.x\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.y\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.z\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.w\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.zero\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.non-unit\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"rotation.overflow\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"elapsed.nan\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"elapsed.infinity\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.StoreRejectsInvalidNumbersAndPreservesLastGoodSlot(\"elapsed.negative\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ValidVersionOneDiskRoundTripPreservesQuaternionAndElapsed(False)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.CheckpointValidationTests.ValidVersionOneDiskRoundTripPreservesQuaternionAndElapsed(True)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.BrokenGraphIsRejectedBeforeStarting(\"target\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.BrokenGraphIsRejectedBeforeStarting(\"duplicate-line\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.BrokenGraphIsRejectedBeforeStarting(\"duplicate-choice\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.BrokenGraphIsRejectedBeforeStarting(\"entry\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.BrokenGraphIsRejectedBeforeStarting(\"ambiguous-next\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.ChoiceRequiresSelectionAndFollowsStableTargetAfterReordering(0,\"left\",\"take-left\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.ChoiceRequiresSelectionAndFollowsStableTargetAfterReordering(1,\"right\",\"take-right\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.ClosingOneModalCannotReleaseAnotherOwnersInput",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.DifferentSpeakersCanUseTheSameWhitePlaceholder",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.DisposingWorldRestoresScaleAndLateLeasesCannotChangeItAgain",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.InputBlocksBelongToTheirPlayer",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.NestedMotionPauseRestoresScaleOnlyAfterLastOwnerAndPreservesExistingPause",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.RunsAndReplayDoNotShareProgressOrMutateTheAsset",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialogueDataTests.UnknownSpeakerIsRejectedWithoutChangingContent",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialoguePrefabTests.InstallerRejectsDuplicateIncludingInactiveSessionAndForeignHud",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialoguePrefabTests.SharedPrefabContainsItsUiButNoSceneContextOrTestConversation",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DialoguePrefabTests.TwoScenesBindDifferentHudContextsWithoutChangingTheSharedPrefabOrDuplicatingEvents",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DoorAccessTests.RestorationDoesNotEmitReaderFeedbackAndLegacyDoorsHaveNoDelay",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DoorAccessTests.SuccessfulReadingIsOnceAndUnlockPersistsWithoutTheCard",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.DoorAccessTests.WrongCardCannotUnlockAndRepeatedAttemptDoesNotSpamFeedback",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnemyDeathAudioTests.ChoiceHistoryBelongsToTheWorldAndEndsWithIt",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnemyDeathAudioTests.ConsecutiveChoicesAcrossConsumersNeverRepeat",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnemyDeathAudioTests.MissingOrEmptyBankStaysSilent",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnemyDeathAudioTests.SeparateBanksHaveIndependentHistories",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnemyDeathAudioTests.SingleRecordingAndDuplicateEntriesRemainUsable",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnemySystemsTests.OverkillAndRepeatedKillEmitOnlyOneDeath",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnemySystemsTests.PatrolAreaTooSmallForBodyDoesNotMove",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnemySystemsTests.PerceptionDoesNotSeeTargetThroughBlockingGeometry",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnemySystemsTests.SharedDefinitionDoesNotShareCurrentHealth",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnvironmentPresentationTests.BeamFitsShortViewportWithTheConfiguredMargin(1.777778f)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnvironmentPresentationTests.BeamFitsShortViewportWithTheConfiguredMargin(1.0f)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnvironmentPresentationTests.BeamFitsShortViewportWithTheConfiguredMargin(0.5625f)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnvironmentPresentationTests.InvalidFramingCannotCreateAnInvisibleOrNonFiniteCamera",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.EnvironmentPresentationTests.LightDropoutTurnsOffAndReturnsWithoutMutatingSharedTuning",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.FlashlightOwnershipTests.AcquisitionCommandRejectsDuplicateAndKeepsOtherPlayersIndependent",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.FlashlightOwnershipTests.CameraExpandsForAcquisitionAndRangeUpgrade(1.777778f)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.FlashlightOwnershipTests.CameraExpandsForAcquisitionAndRangeUpgrade(0.75f)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.FlashlightOwnershipTests.MissingFlashlightCannotBePoweredUntilAcquired",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GoreCompositionTests.AProfileWithoutNewDeathCompositionsFailsInsteadOfSpawningExtraLegs",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GoreCompositionTests.NewDeathsChooseAnatomicalBodiesWithAtMostSixLegsAndMoreFlesh(\"Stalker\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GoreCompositionTests.NewDeathsChooseAnatomicalBodiesWithAtMostSixLegsAndMoreFlesh(\"Sleeper\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GroundAudioSurfaceQueryTests.DisposingOneScopeDoesNotClearAnotherScopesSurface",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GroundAudioSurfaceQueryTests.HighestPriorityWinsAndEqualPriorityKeepsFirstRegion",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GroundAudioSurfaceQueryTests.IndependentScopesResolveTheirOwnSurfaceAtTheSamePoint",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GroundAudioSurfaceQueryTests.OutsideAllRegionsUsesConcreteFallback",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.GroundAudioSurfaceQueryTests.UncoveredAndRemovedRegionsRevealTheUnderlyingSurface",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.LevelCompositionTests.TwoAuthoredLevelsShareWorldPauseAndOwnIndependentInputLifetimes",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.LocalLampAudioTests.EvaluationDoesNotModifyTheSharedMix",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.LocalLampAudioTests.LampIsOnlyAudibleCloseToTheFixture",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.LocalLampSceneSettingsTests.DifferentSceneRadiiAndMuteStayIndependent",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.LocalLampSceneSettingsTests.InvalidDesignerValuesAreRejected",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.LocalLampSceneSettingsTests.SteadyLightDoesNotEnterFlickerWindows",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.MagazineWeaponTests.CancelledPartialReloadKeepsBothAmmoCounts",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.MagazineWeaponTests.FullMagazineEmptyReserveAndMalformedSnapshotsAreRejected",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.MagazineWeaponTests.LegacyUnlimitedPistolMigratesWithoutCreatingCartridges",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.MagazineWeaponTests.PendingReloadRoundTripCommitsOnceWithoutRestartCue",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.MagazineWeaponTests.ReserveCannotFireUntilAtomicReloadCompletes",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.MagazineWeaponTests.SharedDefinitionDoesNotShareMagazineOrReloadState",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.BrokenJsonIsRejected",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.CardRestoreReplacesInventoryWithoutSharingIt",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.ClearRemovesBackupAndSlot",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.DiskRoundTripPreservesStableIdAndPayload",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.DuplicateIdsAreRejectedBeforeWriting",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.DuplicateSceneIdsFailRatherThanOverwritingAnEnemy",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.HealthRestoreIsSilentAndStillPreventsSecondDeath",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.InactiveActorPayloadSurvivesJsonWithoutBecomingADeadActor",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.NonFinitePositionIsRejected",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.ReplacementKeepsPreviousSlotBackup",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.PersistenceTests.UnsupportedVersionDoesNotReplaceLastGoodSave",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"parts.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"part.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"part.index\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"part.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.scale\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"body.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"shadow.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"shadow.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"shadow.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"shadow.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.length\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.element\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.scale\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.DirectRecordRestoreRejectsBeforeChangingExistingRecord(\"pool.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"parts.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"part.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"part.index\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"part.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.scale\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"body.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"shadow.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.null\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.length\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.element\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.position\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.scale\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.rotation\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.GoreValidatorRejectsCorruptSnapshot(\"pool.color\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.InvalidDirectGoreRestoreKeepsItsExistingRemains",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.InvalidNestedPayloadIsRejectedBeforeAnyLevelEntityIsPrepared",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.ValidJsonRoundTripRestoresSilentlyWithoutChangingProfiles(\"ShadowStalker\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.RemainsValidationTests.ValidJsonRoundTripRestoresSilentlyWithoutChangingProfiles(\"Sleeper\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SceneRegistryTests.DuplicateRegistrationAndRepeatedRemovalDoNotDuplicateMembers",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SceneRegistryTests.UnloadingOneSceneCannotClearAnotherScenesMembers",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SleeperTests.ContradictoryCheckpointStateIsRejected(-1,Sleeping,False)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SleeperTests.ContradictoryCheckpointStateIsRejected(0,Hunting,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SleeperTests.ContradictoryCheckpointStateIsRejected(8,Sleeping,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SleeperTests.ContradictoryCheckpointStateIsRejected(8,Attacking,False)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SleeperTests.ContradictoryCheckpointStateIsRejected(8,999,True)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SleeperTests.InactiveSleeperCheckpointHasExplicitUninitializedPayload",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SleeperTests.MissingCheckpointPayloadIsRejected(\"{}\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SleeperTests.MissingCheckpointPayloadIsRejected(\"{\\\"format\\\":1,\\\"initialized\\\":true}\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.SleeperTests.MissingCheckpointPayloadIsRejected(\"{\\\"format\\\":1,\\\"initialized\\\":true,\\\"hasActor\\\":true}\")",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.StalkerEyeTests.InvalidEyeDamagePayloadIsRejected(-0.01f,0)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.StalkerEyeTests.InvalidEyeDamagePayloadIsRejected(1.01f,0)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.StalkerEyeTests.InvalidEyeDamagePayloadIsRejected(float.NaN,0)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.StalkerEyeTests.InvalidEyeDamagePayloadIsRejected(float.PositiveInfinity,0)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.StalkerEyeTests.InvalidEyeDamagePayloadIsRejected(0.5f,-1)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.StalkerEyeTests.InvalidEyeDamagePayloadIsRejected(0.5f,float.PositiveInfinity)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.DefinitionReplacementRejectsCollisionWithoutLosingEitherWeapon",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.FourShellsRequireFourPressesAndFourPumpCycles",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.FullMagazineOrEmptyReserveCannotReloadOrGainFreeShells",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.InvalidInventoryIsRejectedBeforeChangingLiveWeapon",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.InvalidMagazineAndNonFiniteSavedTimersAreExplicitErrors",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.JsonRoundTripPreservesPendingShellWithoutRepeatingPump",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.PelletDirectionsStayInSpreadWithoutOrderedAngularSlots",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.ReloadCommitsOneShellAndInterruptedInsertDoesNotCreateAmmo",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.SharedDefinitionKeepsIndependentAmmoAndReloadState",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WeaponCycleTests.TypedAmmoAndSwitchingPreserveEachOwnedWeapon",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WorkBudgetTests.InvalidQuotaIsRejectedBeforeUse(0)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WorkBudgetTests.InvalidQuotaIsRejectedBeforeUse(-1)",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WorkBudgetTests.NavigationAndFragmentsKeepTheirExistingIndependentQuotas",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WorkBudgetTests.OneActorsRandomDrawsCannotAdvanceAnotherActorsStream",
+          "result": "Passed"
+        },
+        {
+          "name": "EmergencyShift.Tests.WorkBudgetTests.QuotaResetsOnNextFrameWhileTotalsAndPeakRemain",
+          "result": "Passed"
+        }
+      ]
+    }
+  },
+  "build": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T07:54:40.125Z",
+    "endedAt": "2026-10-21T07:56:18.043Z",
+    "editor": {
+      "version": "6000.6.5f1",
+      "changeset": "3ff58d469c8a",
+      "architecture": "x86_64"
+    },
+    "build": {
+      "target": "StandaloneWindows64",
+      "outputPath": "Build/CheckpointValidation.exe"
+    }
+  },
+  "playerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "editorDevelopmentTestsExcluded": true,
+  "buildLogNotes": [
+    "LicensingClient signature warning; entitlement succeeded",
+    "Optional Unity analytics config endpoint unavailable"
+  ],
+  "sourceHashes": {
+    "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs": "d8be73dacb1dd5bb28bffd3197201832ae8e78e01d225123779891b8bcd119da",
+    "Assets/EmergencyShift/Runtime/Persistence/PersistentEntity2D.cs": "de3b58d4dd367b873da25ff52fde87f934f8328c122e05977cb43f82989c0503",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs": "aef0403b739b70a815d8f3add693db6def19392dfeddbc7f1db44de3645390d1",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs": "c3412a695f022c46224359a74032977ac2204e9256e42e5703d80526b3958a53",
+    "Assets/EmergencyShift/Runtime/Persistence/CheckpointValueValidation.cs": "97658434e7371fa5ec69266cfe0b8e7b3ba39eb3f736574a651f964d3325733c",
+    "Assets/EmergencyShift/Runtime/Persistence/RemainsSnapshotValidation.cs": "4f1b809f3c4c5ff41550e001dc42eff562965c2b7dbe8e640daedbe53a4d3964",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs": "39239079fecabe0241146ba94258aabc8118d48613a7a9ca3685751d56b3bc1c",
+    "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs": "299df9dc9bf4b51a4391715ff03c69d9590a1084b07de04cb5d34cc6fa1be1a5"
+  },
+  "protectedFiles": 69,
+  "protectedUnchanged": 68,
+  "concurrentScenePreserved": [
+    "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
+  ],
+  "sceneChange": "Moisture overlay transform changed in the open project during work; left untouched and excluded from commit.",
+  "limits": "No manual gameplay/visual acceptance, no FPS claim; other checkpoint bugs remain open."
+}

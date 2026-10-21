@@ -56,6 +56,12 @@ namespace EmergencyShift
 
         public void Validate(CheckpointEntityState saved)
         {
+            if (saved == null)
+            {
+                throw new System.IO.InvalidDataException("Missing checkpoint entity");
+            }
+
+            CheckpointValueValidation.ValidatePose(saved.position, saved.rotation);
             var participants = Participants();
             if (saved.parts == null || saved.parts.Length != participants.Count)
             {

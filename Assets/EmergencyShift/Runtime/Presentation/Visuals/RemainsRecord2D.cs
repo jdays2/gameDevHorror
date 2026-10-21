@@ -97,6 +97,15 @@ namespace EmergencyShift
                 return;
             }
 
+            if (saved.hasPool && (bloodPoolPrefab == null || !bloodPoolPrefab.SupportsVariant(saved.bloodVariantId)))
+            {
+                throw new System.InvalidOperationException("Missing saved blood variant");
+            }
+
+            int poolRendererCount = saved.hasPool ? bloodPoolPrefab.GetComponentsInChildren<SpriteRenderer>(true).Length : 0;
+            int fragmentCount = fragments != null ? fragments.Length : 0;
+            RemainsSnapshotValidation.Validate(saved, fragmentCount, poolRendererCount);
+
             variantId = saved.variantId;
             transform.position = saved.position;
             if (saved.hasPool && bloodPoolPrefab != null)
