@@ -5,9 +5,9 @@
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
   "limits": "Lexical references are hints, not semantic proof; reviewed_boundary does not certify the whole feature. Queued/partial entries must be completed.",
   "counts": {
-    "queued": 102,
-    "reviewed_boundary": 101,
-    "partial": 66
+    "queued": 71,
+    "reviewed_boundary": 112,
+    "partial": 86
   },
   "files": [
     {
@@ -471,10 +471,27 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Команда не запускалась. AssignId сохраняет непустой уникальный ID при обычном проходе и дополняет общий PersistentEntity pass. Legacy конкретные типы, FirstShift templates/hardcoded scenePath, нет Undo/Play guards и часть if без braces; нужны authoring validation и границы. Не регенерирует геометрию.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Явная подготовка checkpoint adapters/ID",
+      "dependencies": [
+        "AssetDatabase/Scene",
+        "конкретные adapters/prefabs",
+        "LevelCatalog"
+      ],
+      "usageEvidence": "MenuItem Prepare active level persistence",
+      "reviewedSha256": "6a978551c0a106b52ac3e58208286e5a1e054c3fee30a792a18f3cd5cac0956d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
@@ -1104,10 +1121,26 @@
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Общая точка вариативности без switch по виду врага; однако Core contract знает concrete actor View/controller. Для доменной команды нужен узкий interface/context без переноса правил в DTO.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Контракт Unity-подбора и presentation kind",
+      "dependencies": [
+        "Unity Vector2",
+        "concrete PlayerInteraction"
+      ],
+      "usageEvidence": "Три предмета плюс WeaponLootPickup/PlayerInteraction",
+      "reviewedSha256": "a64c277baf1014e3eff020f6eba4aecb7ba33abaed35cb80c26f1f2157cbb3df",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs",
@@ -1128,10 +1161,26 @@
         "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Контракт разделяет доступность/намерение и prompt, но UI prompt и concrete actor зависимость связаны с командным входом. Пока adapter-facing, не чистый доменный API.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Контракт Unity-interaction по E",
+      "dependencies": [
+        "Unity Vector2",
+        "concrete PlayerInteraction"
+      ],
+      "usageEvidence": "Door2D, dialogue и sandbox consumers",
+      "reviewedSha256": "b72bb67cab961afd4ba96f39003a6d691ec5b5ffd3d512bf7e6f95e40b954703",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IThreatLight2D.cs",
@@ -1577,10 +1626,26 @@
         "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Validate проверяет finite/ranges; aspect также проверяется. Вписывает beam в короткую сторону окна; acquisition и рост range учитываются данными. Runtime asset не изменяется; не новый визуальный тест камеры.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Данные и расчёт framing до/после подбора",
+      "dependencies": [
+        "ScriptableObject",
+        "Unity math"
+      ],
+      "usageEvidence": "FlashlightOwnershipTests; CameraFollow2D",
+      "reviewedSha256": "7f90718fa84307128925a88955718a350a2e443b97519e9059cd17d2ac2d8105",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/DoorAccessFeedbackProfile.cs",
@@ -1601,10 +1666,26 @@
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Runtime не мутирует SO. Min/Range — Inspector подсказки, нет finite/cross-field Validate перед использованием. Наличие некорректного текущего asset не установлено.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общий reader sound/feedback tuning",
+      "dependencies": [
+        "ScriptableObject",
+        "AudioClip"
+      ],
+      "usageEvidence": "DoorAccess и reader playback",
+      "reviewedSha256": "0bc73fa9032b6c9520bf72afb8fc1e345b67450f82431276b0cb807772839f24",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/DoorAudioSet.cs",
@@ -1627,10 +1708,26 @@
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Данные presentation без per-instance прогресса и gameplay-решений. Поддерживает вариации звука данными, без нового класса двери.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общие записанные clips двери",
+      "dependencies": [
+        "ScriptableObject",
+        "AudioClip arrays"
+      ],
+      "usageEvidence": "DoorAudio2D",
+      "reviewedSha256": "807f9950a5ac22853ea3c5983f2c6dd6c4c9e9a68e0ede6608472b264fc4c455",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyDeathAudioSet.cs",
@@ -1818,10 +1915,26 @@
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Find не проверяет целиком уникальность/пустые IDs и возвращает первый match. Стабильные level IDs используются, но Find не заменяет catalogue validation.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Поиск общего level definition по ID",
+      "dependencies": [
+        "ScriptableObject",
+        "LevelDefinition[]"
+      ],
+      "usageEvidence": "Checkpoint Apply; LevelPersistenceAuthoring",
+      "reviewedSha256": "856c29ca9316d25a255a5a13e161609ce1bbbe8676ed862b6775330ea1d64ebe",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LevelDefinition.cs",
@@ -1844,10 +1957,27 @@
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Runtime не мутирует asset, scene-authoring сохранён. Но Matches зависит от Unity actors; default неизвестного enum даёт true; нет явной проверки IDs/revision/null rules. Это долг валидации контента, не доказанный сломанный текущий asset.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общий level ID/compatibility/objective rules",
+      "dependencies": [
+        "ScriptableObject",
+        "PlayerAccessCards2D",
+        "PlayerWeapon2D"
+      ],
+      "usageEvidence": "Run/objectives/checkpoint и authoring",
+      "reviewedSha256": "6c15bbef9dedb0be6312f1d86e55bd20609bec0d2bc134f196e69af89c024584",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LocalLampAudioSet.cs",
@@ -2567,10 +2697,28 @@
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Не запускалась. Фиксирована на удалённый FirstShift (8 volumes/44 ID), не актуальный тест текущих сцен. Find/форматирование/cleanup и предварительный null controller до Guard требуют явной fixture-validation; старый JSON не новый успешный прогон.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Opt-in историческая disk/death/reload probe",
+      "dependencies": [
+        "Scene-global Find",
+        "FirstShift fixture",
+        "checkpoint",
+        "actor/gore/door/loot"
+      ],
+      "usageEvidence": "Runtime init только editor/instrumentation и --checkpoint-regression + debug build",
+      "reviewedSha256": "abab8292dd9fb429fee707a284967bac67cd76d6264706b474624176a24cb0b1",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/CombatProbeTarget2D.cs",
@@ -4864,10 +5012,27 @@
         "Assets/EmergencyShift/Runtime/Persistence/EncounterCheckpoint2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Awake не выключает уже живых врагов, повторная Activate отвергается. Личное Activated отделено от общих SO. Но правило однократности/изменение состояния и Unity activation объединены в MB; нет чистой Model/command-границы.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Однократное включение авторенных actors",
+      "dependencies": [
+        "GameObject[]",
+        "Collider2D",
+        "PlayerLife2D"
+      ],
+      "usageEvidence": "Trigger и EncounterCheckpoint2D",
+      "reviewedSha256": "611bf1757c21b2f17cb3185764e82feaa86b8ebde4fce5148329a05c6916caef",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
@@ -4942,10 +5107,27 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Передаёт actual actor в TryFinish; владелец уровня проверяет identity/death/card. Нет вида врага, кампании или собственного решения о законности победы.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Trigger намерения закончить уровень",
+      "dependencies": [
+        "Collider2D",
+        "PlayerLife2D",
+        "LevelRunController2D"
+      ],
+      "usageEvidence": "Авторенный flow; OnTriggerEnter2D",
+      "reviewedSha256": "780592d5e24e9530651ed61290a65072d56f67e91e78d0726d5fa7fcb604990a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
@@ -4964,10 +5146,27 @@
         "Assets/EmergencyShift/Runtime/UI/LevelCompletionView2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Есть парные OnEnable/OnDisable подписки, а не polling целей. Правило всё ещё в MB и читает конкретные Unity-компоненты; Configure активного компонента не переподписывает источники, Refresh без match оставляет прежние Phase/Text. Фактическая ошибка текущих assets не заявляется.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Выбор первой подходящей цели по событиям",
+      "dependencies": [
+        "LevelDefinition",
+        "PlayerAccessCards2D",
+        "PlayerWeapon2D"
+      ],
+      "usageEvidence": "Cards.Changed/OwnershipChanged; LevelCompletionView",
+      "reviewedSha256": "5fe624ef6caf87286df18cd5c3fd38f6a685226cc16ae7e3d3850aa56131a36a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
@@ -4993,10 +5192,26 @@
         "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Environment/lifetime adapter: отключает только явно назначенные компоненты; нет знания вида. Обнуление скорости и simulated принадлежат Unity-границе; не создаёт новый pool/manager.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Остановка авторенного набора activity и Rigidbody",
+      "dependencies": [
+        "Behaviour[]",
+        "Rigidbody2D"
+      ],
+      "usageEvidence": "LevelRun.TryFinish и authoring",
+      "reviewedSha256": "20bc8bc8d489f84703db3c8f603c2831576f4ab9bc33023f634865ce051efc72",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
@@ -5040,10 +5255,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Restart via intent; time/objective/lifetime boundaries remain.",
+      "notes": "TryFinish проверяет конкретного player, смерть, карту и повторный вызов. Правила завершения, Time, обход участников и SceneManager объединены; elapsed finite не проверяется (BUG-011). Ввод injected, но доменная модель попытки ещё не выделена.",
       "reviewedSha256": "1b6d9318b0de8d0be9f8544d1ad95d1ac49ffd88ddc996446f9b616b76ea5ecf",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Restart via intent; time/objective/lifetime boundaries remain.",
+          "reviewedSha256": "1b6d9318b0de8d0be9f8544d1ad95d1ac49ffd88ddc996446f9b616b76ea5ecf"
+        }
+      ],
+      "responsibility": "Завершение/elapsed/restart попытки",
+      "dependencies": [
+        "IPlayerInput",
+        "LevelDefinition",
+        "cards/player/objectives",
+        "Scene/Time"
+      ],
+      "usageEvidence": "LevelExit; checkpoint; completion view",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs",
@@ -5081,10 +5314,27 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Тонкий адаптер без повторной выдачи карты при Restore. BUG-013: format-only validation не проверяет присутствие consumed. remaining не используется; одинаковая схема скопирована из других adapters.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Payload состояния карты",
+      "dependencies": [
+        "PersistentEntity2D",
+        "AccessCardPickup2D",
+        "JsonUtility"
+      ],
+      "usageEvidence": "LevelPersistenceAuthoring; participant protocol",
+      "reviewedSha256": "9637c62d3f884da6ffacf5607a01d820a8e37c6975a4f27e5d635abea27da6a4",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointData.cs",
@@ -5117,10 +5367,26 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DTO хранит значения/ID, не живые Unity Objects. Версия задана; ICheckpointParticipant не импортирует конкретные виды. Несколько DTO в одном файле — связный формат, не gameplay-model.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Versioned DTO и контракт participant",
+      "dependencies": [
+        "System.Serializable",
+        "Unity math value types"
+      ],
+      "usageEvidence": "CheckpointStore и все adapters",
+      "reviewedSha256": "24d65ecd68010846526e4821565bc8172219274583b30da7968460d11f2c07b5",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs",
@@ -5139,10 +5405,27 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Запись complete temp→Replace/Move и backup отделена от capture. BUG-011: проверены только finite X/Y, не Z/quaternion/elapsed. Backend/serialization остаются Unity-адаптером, не чистой доменной моделью.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Файловый slot, JSON и envelope validation",
+      "dependencies": [
+        "File/Directory",
+        "JsonUtility",
+        "CheckpointData"
+      ],
+      "usageEvidence": "LevelCheckpointController2D; PersistenceTests",
+      "reviewedSha256": "2cf8ec0e1a3aeabbaa8c54bedbdcb2258ea7fb317a3ba669d633bcfe119254a8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointVolume2D.cs",
@@ -5159,10 +5442,27 @@
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Одно назначение: авторенный ID и делегирование запроса. Single-player сцена/владелец задаются ссылкой. Это Unity trigger adapter, не доменная модель; auto-checkpoint текущих сцен этим не включается.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Scene trigger запроса checkpoint",
+      "dependencies": [
+        "Collider2D",
+        "PlayerLife2D",
+        "LevelCheckpointController2D"
+      ],
+      "usageEvidence": "Явный авторинг volume; OnTriggerEnter2D",
+      "reviewedSha256": "ad79e8728f9145017c6f5f630c62d59884b9c2ab685096e93b0e66e9a6ffb022",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/DoorCheckpoint2D.cs",
@@ -5204,10 +5504,27 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Восстановление выполняется без считывания карты и motion events. BUG-013: только format, отсутствующие open/unlocked принимаются за значения по умолчанию. Владение доступом и движением остаётся у отдельных adapters.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Payload open/unlocked двери",
+      "dependencies": [
+        "PersistentEntity2D",
+        "Door2D/DoorAccess2D",
+        "JsonUtility"
+      ],
+      "usageEvidence": "LevelPersistenceAuthoring; participant protocol",
+      "reviewedSha256": "94ac03ebb53cb0008ea3ba7bc28e3a3c3d3e89b660dff80fc535766d987ad41b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/EncounterCheckpoint2D.cs",
@@ -5245,10 +5562,27 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Restore только выставляет Activated, не повторяет Activate/SetActive состава. BUG-013: consumed presence не проверяется. Неиспользуемый remaining и термин loot затрудняют чтение назначения.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Payload Activated авторенной группы",
+      "dependencies": [
+        "PersistentEntity2D",
+        "EncounterActivation2D",
+        "JsonUtility"
+      ],
+      "usageEvidence": "LevelPersistenceAuthoring; participant protocol",
+      "reviewedSha256": "344dc11b205def2bdc156cd6ad262fe9171ab69d61c6ce7e40281ebd5fae5cef",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
@@ -5272,10 +5606,29 @@
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Три этапа Validate всех→Prepare всех→Restore всех корректно выражены. BUG-012 Clear не отменяет pending. BUG-011 до pose/time mutation. Много обязанностей: store/path, run, scene scan, notification/camera, static mutable sessionPaths. WorldSettled выделяет arrays каждый кадр ожидания; цена не измерялась.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Capture/validate/apply и ожидание стабильного мира",
+      "dependencies": [
+        "LevelCatalog/Definition",
+        "PersistentEntity",
+        "PlayerLife/Interaction",
+        "LevelRun",
+        "Scene/Physics/Gore/Door"
+      ],
+      "usageEvidence": "Authoring и CheckpointVolume; историческая regression probe",
+      "reviewedSha256": "6b80611a9f8adc089d1627cd240c6a36e2200e5e5e8a960dadc26c50c0eab2d9",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PersistentEntity2D.cs",
@@ -5311,21 +5664,38 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "reviewed_boundary",
-      "notes": "ID не основан на имени/InstanceID; пустые/дубли Collect отвергает, layout/part keys проверяются. Participants выделяется при checkpoint, не каждый tick. Оркестратор действительно вызывает participant.Validate до изменения мира; он не компенсирует неполную валидацию вложенного Stalker payload.",
+      "reviewStatus": "partial",
+      "notes": "Collect отвергает пустые/дублированные ID; layout и SaveKey сверяются до restore. BUG-011: собственный pose не проверяется до SetPositionAndRotation. Предыдущая reviewed_boundary уточнена, а не сохранена как полная сертификация. Participants-словарь строится на checkpoint, не каждый игровой tick.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "responsibility": "Unity-граница стабильного ID и checkpoint participants",
+      "responsibility": "Unity ID/participants и применение pose",
       "dependencies": [
         "ICheckpointParticipant",
         "Checkpoint DTO",
-        "Transform/Scene/GameObject"
+        "Scene/Transform"
       ],
-      "usageEvidence": "LevelCheckpointController2D собирает → Validate всех → PrepareRestore → Restore; Editor AssignId",
+      "usageEvidence": "LevelCheckpointController2D; authoring и PersistenceTests",
       "reviewedSha256": "a7818319185631a4a9f364945869fb07729e76175dab728b1fe573ce8ece7364",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "ID не основан на имени/InstanceID; пустые/дубли Collect отвергает, layout/part keys проверяются. Participants выделяется при checkpoint, не каждый tick. Оркестратор действительно вызывает participant.Validate до изменения мира; он не компенсирует неполную валидацию вложенного Stalker payload.",
+          "responsibility": "Unity-граница стабильного ID и checkpoint participants",
+          "dependencies": [
+            "ICheckpointParticipant",
+            "Checkpoint DTO",
+            "Transform/Scene/GameObject"
+          ],
+          "usageEvidence": "LevelCheckpointController2D собирает → Validate всех → PrepareRestore → Restore; Editor AssignId",
+          "reviewedSha256": "a7818319185631a4a9f364945869fb07729e76175dab728b1fe573ce8ece7364",
+          "reviewDate": "2026-10-21",
+          "reviewReport": "Docs/Reports/CodeAudit06.md",
+          "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
@@ -5370,21 +5740,38 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Есть compatibility и explicit hasInventory/hasFlashlightState, runtime slots не трогались. BUG-009: modules/moduleCount не проверяются до RestoreHealth/cards/inventory, потом Upgrades.Restore может бросить. Полный nested payload должен проверяться до мутаций; сохранённый формат не исправлялся.",
+      "notes": "Полностью перечитан путь Apply; прежний BUG-009 остаётся: modules/count не проверены до изменения здоровья/инвентаря. Cards/direction также не имеют собственной полной numeric/ID validation. Не объявляет format1/2/3 сломанными на корректном save.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "responsibility": "Player DTO format1/2/3, Validate и восстановление",
+      "responsibility": "Player format1/2/3 DTO и restore",
       "dependencies": [
         "WeaponCatalog/Inventory",
-        "PlayerLife/Cards",
-        "Flashlight/Upgrades",
+        "PlayerLife/cards/upgrades/Flashlight",
         "JsonUtility"
       ],
-      "usageEvidence": "PersistentEntity2D; LevelCheckpointController validation path; authored player",
+      "usageEvidence": "LevelCheckpointController participant protocol",
       "reviewedSha256": "a7536c36c58f6aed4d4370cc7b0091a6765853a6977e4b592dd0240f470714fe",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Есть compatibility и explicit hasInventory/hasFlashlightState, runtime slots не трогались. BUG-009: modules/moduleCount не проверяются до RestoreHealth/cards/inventory, потом Upgrades.Restore может бросить. Полный nested payload должен проверяться до мутаций; сохранённый формат не исправлялся.",
+          "responsibility": "Player DTO format1/2/3, Validate и восстановление",
+          "dependencies": [
+            "WeaponCatalog/Inventory",
+            "PlayerLife/Cards",
+            "Flashlight/Upgrades",
+            "JsonUtility"
+          ],
+          "usageEvidence": "PersistentEntity2D; LevelCheckpointController validation path; authored player",
+          "reviewedSha256": "a7536c36c58f6aed4d4370cc7b0091a6765853a6977e4b592dd0240f470714fe",
+          "reviewDate": "2026-10-21",
+          "reviewReport": "Docs/Reports/CodeAudit07.md",
+          "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
@@ -5542,10 +5929,27 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Restore не устанавливает модуль повторно. BUG-013: format-only validation без consumed presence; remaining не используется. Личное состояние предмета не пишется в общий профиль.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Payload collected модуля",
+      "dependencies": [
+        "PersistentEntity2D",
+        "FlashlightUpgradePickup",
+        "JsonUtility"
+      ],
+      "usageEvidence": "LevelPersistenceAuthoring; participant protocol",
+      "reviewedSha256": "e3cd074d06fa5939e3560caba0c2ca592fc3bbd8df1629c7ead859748af65c48",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
@@ -5619,10 +6023,25 @@
         "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Чистый C#, одна constructor dependency, CanExecute и проверка в Execute. Дубликат — обычный false без исключения; внутреннее Acquire недоступно внешним потребителям.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Проверяемое приобретение фонаря",
+      "dependencies": [
+        "FlashlightOwnership"
+      ],
+      "usageEvidence": "Flashlight2D.Acquire; FlashlightOwnershipTests",
+      "reviewedSha256": "c29b3cbe8a863c14560ee1b9f494012b76f3fc7054aed66c1e4cd344e1edd77d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/CameraFollow2D.cs",
@@ -5688,10 +6107,25 @@
         "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Чистая небольшая модель с отдельным restore-путём; состояние не статическое и не в SO. Проверка двух владельцев есть в тестах. Не сертифицирует весь flashlight rendering.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Личное состояние владения фонарём",
+      "dependencies": [
+        "Нет Unity/input/View dependencies"
+      ],
+      "usageEvidence": "AcquireFlashlightCommand и Flashlight2D/persistence",
+      "reviewedSha256": "b9d854534177b8808d2587a982c5188e5fcb785a815252100f1e8a698409f43e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
@@ -5781,10 +6215,27 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Экземпляры независимы; Add отвергает пустые/дубли, Capture сортирует копию. State/rules остаются MB без чистой Model/command; Restore очищает до принятия массива и принимает пустые/дубли ID без отдельной валидации.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Личные access tokens игрока",
+      "dependencies": [
+        "HashSet<string>",
+        "MonoBehaviour",
+        "Changed"
+      ],
+      "usageEvidence": "DoorAccess/objectives/pickup/player checkpoint",
+      "reviewedSha256": "a123aa067d10d6944cb11cfdcd9e0035701b49f100bcaae166b28792df764001",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerAim2D.cs",
@@ -6039,10 +6490,29 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Input Actions/block injected; registry/command/physics boundaries remain.",
+      "notes": "Действие повторно проверяет доступность, pickup проверяет расстояние+LOS, notices ограничены 8 и очищаются. Input/controller, physics/environment и HUD объединены; legacy doors field Configure не читается. Два overlap query на активный кадр и GetComponent в запросах — наблюдение, не FPS-вывод.",
       "reviewedSha256": "17fdba5a495f8f4a7f4cf65e42fa4c5f0cd9c6a3778e49d9edad1966d9439a96",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Input Actions/block injected; registry/command/physics boundaries remain.",
+          "reviewedSha256": "17fdba5a495f8f4a7f4cf65e42fa4c5f0cd9c6a3778e49d9edad1966d9439a96"
+        }
+      ],
+      "responsibility": "Target/pickup/reach и очередь HUD notices",
+      "dependencies": [
+        "IPlayerInput",
+        "GameplayInputBlock",
+        "SceneRegistry",
+        "Physics",
+        "concrete player/light/loot adapters"
+      ],
+      "usageEvidence": "Update, IAutoPickup/IInteractable и feedback consumers",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
@@ -7241,10 +7711,27 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Парные lifecycle подписки, текст обновляется событиями; View не разрешает завершение и не выдаёт gameplay damage/reward. Граница предполагает заранее настроенные ссылки; runtime reconfigure/reenable-after-finish отдельно не проверялись.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Показ цели и результата попытки",
+      "dependencies": [
+        "LevelRun/Objectives",
+        "uGUI Text",
+        "FlashlightUpgrades count"
+      ],
+      "usageEvidence": "Changed/Finished, serialized Configure",
+      "reviewedSha256": "9161530efc74a273f37775dd6ebbe3a32f66546cdc312ac0fc8778f821efed4a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
@@ -7326,10 +7813,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Scene-owned registry; command, motion/coroutine and config boundary review remains.",
+      "notes": "Injected scene registry с парной регистрацией. OnDisable прекращает coroutines и доводит движущуюся створку; Restore без повторной анимации. Command/controller/motor пока объединены; range/duration/offset не общий тематический config. awaitingAccess отдельно от IsMoving требует явной политики сохранения, не заявлен воспроизведённый дефект.",
       "reviewedSha256": "7144713097fa1a11ea4e2c670e6c909bd8f56ce618779bf0e6ad80a0c59c7d00",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Scene-owned registry; command, motion/coroutine and config boundary review remains.",
+          "reviewedSha256": "7144713097fa1a11ea4e2c670e6c909bd8f56ce618779bf0e6ad80a0c59c7d00"
+        }
+      ],
+      "responsibility": "Доступ/interaction и движение створки",
+      "dependencies": [
+        "IInteractable/PlayerInteraction",
+        "DoorAccess",
+        "SceneRegistry",
+        "Transform/coroutine"
+      ],
+      "usageEvidence": "PlayerInteraction; checkpoint; DoorAudio",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
@@ -7361,10 +7866,27 @@
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Отказ не разблокирует, первая успешная проверка запоминается; Restore без events. Model доступа, presentation Prompt/notification и таймеры смешаны в MB; denial/notice fallback tuning частично в коде.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Проверка карты и reader feedback",
+      "dependencies": [
+        "PlayerInteraction/PlayerAccessCards2D",
+        "Time",
+        "DoorAccessFeedbackProfile"
+      ],
+      "usageEvidence": "Door2D; DoorCheckpoint2D; DoorAccessTests",
+      "reviewedSha256": "25d290f54b6ffa43979fb1f1e4d31d130acc392706534ed489872bbcc8fcb0f2",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAccessFeedback2D.cs",
@@ -7409,10 +7931,28 @@
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Explicit listener injection; audio/config/lifetime review remains.",
+      "notes": "Подписки парные, оба источника останавливаются при disable; System.Random косметический. Общие clips в SO, но gain/hearingDistance/pan tuning смешаны с MB playback; Update работает только при реально играющем звуке. Производительность не измерялась.",
       "reviewedSha256": "f3ea74310a5d642f61b04953ff1cdac14dc17635fa1e82faa1ae967af2fab4dc",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Explicit listener injection; audio/config/lifetime review remains.",
+          "reviewedSha256": "f3ea74310a5d642f61b04953ff1cdac14dc17635fa1e82faa1ae967af2fab4dc"
+        }
+      ],
+      "responsibility": "Playback рельса/старта/остановки двери",
+      "dependencies": [
+        "Door2D events",
+        "AudioSources",
+        "DoorAudioSet",
+        "listener"
+      ],
+      "usageEvidence": "События MotionStarted/MotionStopped",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/CeilingLightOcclusion2D.cs",
@@ -7668,10 +8208,27 @@
         "Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Повторный pickup/disabled/dead/reach ограничены общим actor guard, Add должен реально пройти до consumed. State/rule, inventory lookup и notification/GameObject объединены; ID/label принадлежат экземпляру без тематического item definition.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Авто-подбор одной карты",
+      "dependencies": [
+        "IAutoPickup/PlayerInteraction",
+        "PlayerAccessCards2D",
+        "collider"
+      ],
+      "usageEvidence": "PlayerInteraction.CollectNearbyLoot; CardCheckpoint2D",
+      "reviewedSha256": "3f3e9a6083239954636b5771c8107344224e19f5d39bac1743d4177774f6c105",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
@@ -7690,10 +8247,27 @@
       ],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Делегирует владение Acquire, повтор/reach/активность проверяются до consumption. Не Destroy, факт collected сохраняется локально. В текущей маршрутной сцене нет checkpoint adapter у этого предмета — известная граница, не новая подключённая persistence.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Unity-мост одноразового подбора фонаря",
+      "dependencies": [
+        "IAutoPickup",
+        "PlayerInteraction/Flashlight2D",
+        "collider"
+      ],
+      "usageEvidence": "PlayerInteraction.CollectNearbyLoot",
+      "reviewedSha256": "48e34bf17808c8d2840cb6be5aaecdf42be8866c1a0d75df9fd7d2761935257d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
@@ -7718,10 +8292,26 @@
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Повторяемость по типу не равна повторному потреблению экземпляра. TryInstall должен успешно улучшить оптику; после этого collected и feedback. Effect tuning range/angle в MB, не item SO; IsAvailable/reach и presentation конкретного actor ещё не command/domain boundary.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Авто-подбор одного модуля фонаря",
+      "dependencies": [
+        "PlayerInteraction/FlashlightUpgrades",
+        "Collider2D"
+      ],
+      "usageEvidence": "PlayerInteraction; UpgradeCheckpoint2D",
+      "reviewedSha256": "10b346e827eac520a96b47fd00e563e67fca42099e0026d3b4c821f0eade9f85",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
@@ -8061,10 +8651,26 @@
       "entryPointHints": [
         "Test"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Проверяет wrong card, suppression, one-time unlock и silent restore; inactive door setup избегает Awake до leaf wiring. Не доказывает корутины движения, звуковую приёмку или checkpoint transaction.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Регрессии доступа/feedback/restore",
+      "dependencies": [
+        "NUnit",
+        "DoorAccess/cards/PlayerInteraction GameObjects"
+      ],
+      "usageEvidence": "3 Test метода; source read only",
+      "reviewedSha256": "549c8f90df85df5dfd33f7a80c2e8f221c75f9edf29a2d58a68707214c897af7",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
@@ -8164,10 +8770,27 @@
         "Test",
         "TestCase"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Проверяет duplicate rejection/двух владельцев, запрет power без фонаря и рост framing при двух aspect. Это не Play-проверка реальной камеры и её smoothing.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Ownership command и framing регрессии",
+      "dependencies": [
+        "NUnit",
+        "ownership/acquire",
+        "Flashlight2D/CameraFramingProfile"
+      ],
+      "usageEvidence": "3 метода, 4 cases; source read only",
+      "reviewedSha256": "1191a7f289006b12c217fa51f1cbc631b21de4890ed16d5c13c09a04c30ad9d3",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
@@ -8254,10 +8877,27 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Actual authored rigs/installers; independent input, shared world and idempotent scope teardown.",
+      "notes": "Проверяет две независимые input/door scopes, shared world pause, запрет чужого scene owner и idempotent Dispose. Не является checkpoint/кампания regression.",
       "reviewedSha256": "1a1c3f4b2886a4a36d9e41004afc5ce71a709a5a2ff87a4d16eead1eb6299f07",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Actual authored rigs/installers; independent input, shared world and idempotent scope teardown.",
+          "reviewedSha256": "1a1c3f4b2886a4a36d9e41004afc5ce71a709a5a2ff87a4d16eead1eb6299f07"
+        }
+      ],
+      "responsibility": "Изоляция scoped уровней и общий world pause",
+      "dependencies": [
+        "Zenject",
+        "LevelContext/LevelRig",
+        "input/block/door registry"
+      ],
+      "usageEvidence": "1 Test метод; source read only",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs",
@@ -8415,10 +9055,28 @@
         "Test"
       ],
       "reviewStatus": "partial",
-      "notes": "Affected health/pause/input construction updated and regression run; other fixture cases await complete source review.",
+      "notes": "Папка GUID и cleanup исключают пользовательские слоты. Есть backup/version/duplicate ID/X-NaN tests; нет pose Z/quaternion/elapsed, Clear-pending и bool payload completeness (BUG-011/012/013). Эти сценарии не покрыты одним round-trip.",
       "reviewedSha256": "9b58be3f206fa26e1bb7d0dbdce7372134d2737c3d4fd023db1e02c0fdad5109",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Affected health/pause/input construction updated and regression run; other fixture cases await complete source review.",
+          "reviewedSha256": "9b58be3f206fa26e1bb7d0dbdce7372134d2737c3d4fd023db1e02c0fdad5109"
+        }
+      ],
+      "responsibility": "Изолированные storage/ID/restore регрессии",
+      "dependencies": [
+        "NUnit",
+        "CheckpointStore/DTO",
+        "temp folder",
+        "health/cards/stalker adapters"
+      ],
+      "usageEvidence": "11 Test методов; source read only",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit08.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
@@ -8838,9 +9496,9 @@
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 33,
-    "report": "Docs/Reports/CodeAudit07.md",
-    "validation": "Static source/hash/reference checks; 16 existing test cases read, not executed. Editor/Pipeline unavailable."
+    "files": 39,
+    "report": "Docs/Reports/CodeAudit08.md",
+    "validation": "Static source/hash/reference checks; 19 existing test cases read, not executed. Editor/Pipeline unavailable."
   },
   "reviewPasses": [
     {
@@ -8860,6 +9518,12 @@
       "files": 33,
       "report": "Docs/Reports/CodeAudit07.md",
       "validation": "Static source/hash/reference checks; 16 existing test cases read, not executed. Editor/Pipeline unavailable."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 39,
+      "report": "Docs/Reports/CodeAudit08.md",
+      "validation": "Static source/hash/reference checks; 19 existing test cases read, not executed. Editor/Pipeline unavailable."
     }
   ]
 }
