@@ -451,6 +451,15 @@
 - [PlayerMovementModel.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementModel.cs)
 - [SetMovementIntentCommand.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Remains/Logic
+
+- [RemainsPartState.cs](../Assets/EmergencyShift/Runtime/Features/Remains/Logic/RemainsPartState.cs)
+- [RemainsSpriteState.cs](../Assets/EmergencyShift/Runtime/Features/Remains/Logic/RemainsSpriteState.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Remains/View
+
+- [RemainsSpriteAdapter.cs](../Assets/EmergencyShift/Runtime/Features/Remains/View/RemainsSpriteAdapter.cs)
+
 ## Assets/EmergencyShift/Runtime/Levels
 
 - [EncounterActivation2D.cs](../Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs)

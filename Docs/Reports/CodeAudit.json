@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "465 own C# explicitly read; 94 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest DoorMotion08.",
+  "limits": "468 own C# explicitly read; 93 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest RemainsDto09.",
   "counts": {
-    "partial": 94,
-    "reviewed_boundary": 371
+    "partial": 93,
+    "reviewed_boundary": 375
   },
   "files": [
     {
@@ -11283,6 +11283,90 @@
       "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "RemainsDto09: value-only DTO или отдельный Unity SpriteRenderer adapter; поля/namespace сохранены, JSON/restore и validation регрессии пройдены. Генерация/RemainsRecord остаются отдельным долгом.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Remains/Logic/RemainsPartState.cs",
+      "sourceScope": "unity",
+      "sha256": "233e0c189aa22e504956d8ff23d51e94b81b150f594e2ef60af3f815035f6f0b",
+      "guid": "faa7c7fee8b84ce495b0d6e59e77994c",
+      "types": [
+        "RemainsPartState"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Persistence/RemainsSnapshotValidation.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsPartIdentity2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsSnapshot.cs",
+        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "233e0c189aa22e504956d8ff23d51e94b81b150f594e2ef60af3f815035f6f0b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/RemainsDto09.md",
+      "reviewScope": "Full source read: value-only snapshot schema and separate SpriteRenderer adapter; existing JSON/restore/preflight scenarios verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "RemainsDto09: value-only DTO или отдельный Unity SpriteRenderer adapter; поля/namespace сохранены, JSON/restore и validation регрессии пройдены. Генерация/RemainsRecord остаются отдельным долгом.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Remains/Logic/RemainsSpriteState.cs",
+      "sourceScope": "unity",
+      "sha256": "7b5adbbff82073c392a6ac2c1c7ee815eb47402820974ee54d07cbee40da0d19",
+      "guid": "9a2eb6a3f7774f7f9854977437f582f9",
+      "types": [
+        "RemainsSpriteState"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Features/Remains/Logic/RemainsPartState.cs",
+        "Assets/EmergencyShift/Runtime/Features/Remains/View/RemainsSpriteAdapter.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/RemainsSnapshotValidation.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsPartIdentity2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsSnapshot.cs",
+        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7b5adbbff82073c392a6ac2c1c7ee815eb47402820974ee54d07cbee40da0d19",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/RemainsDto09.md",
+      "reviewScope": "Full source read: value-only snapshot schema and separate SpriteRenderer adapter; existing JSON/restore/preflight scenarios verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "RemainsDto09: value-only DTO или отдельный Unity SpriteRenderer adapter; поля/namespace сохранены, JSON/restore и validation регрессии пройдены. Генерация/RemainsRecord остаются отдельным долгом.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Remains/View/RemainsSpriteAdapter.cs",
+      "sourceScope": "unity",
+      "sha256": "d6ed2589421bce08b34f458c723af2a8b45fada1d0941961f32bbfabb5686a96",
+      "guid": "df6255cee72d400598af43513a095615",
+      "types": [
+        "RemainsSpriteAdapter"
+      ],
+      "lines": 26,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d6ed2589421bce08b34f458c723af2a8b45fada1d0941961f32bbfabb5686a96",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/RemainsDto09.md",
+      "reviewScope": "Full source read: value-only snapshot schema and separate SpriteRenderer adapter; existing JSON/restore/preflight scenarios verified; native scene and normal Windows64 verified."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
       "sha256": "611bf1757c21b2f17cb3185764e82feaa86b8ebde4fce5148329a05c6916caef",
       "baselineSha256": "611bf1757c21b2f17cb3185764e82feaa86b8ebde4fce5148329a05c6916caef",
@@ -14332,15 +14416,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsSnapshot.cs",
-      "sha256": "87014460bc08af11b903fc04e31b461f18ac7be423ce30eea39f661d55e87a91",
+      "sha256": "7290a97871f61cdbcc978e691c254302cd668ea5d0c77a4bb15a4f4940262ee4",
       "baselineSha256": "87014460bc08af11b903fc04e31b461f18ac7be423ce30eea39f661d55e87a91",
       "guid": "96d6a3430ae9ab54dabfbf153ba17a98",
       "types": [
-        "RemainsPartState",
-        "RemainsSnapshot",
-        "RemainsSpriteState"
+        "RemainsSnapshot"
       ],
-      "lines": 53,
+      "lines": 16,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -14351,14 +14433,13 @@
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsPartIdentity2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "DTO хранит значения, но содержит методы Capture/Apply SpriteRenderer; данные и Unity serialization adapter не разделены. Numeric/presence guards делегированы неполному validator.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "RemainsDto09: value-only DTO или отдельный Unity SpriteRenderer adapter; поля/namespace сохранены, JSON/restore и validation регрессии пройдены. Генерация/RemainsRecord остаются отдельным долгом.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14375,10 +14456,11 @@
         "serialized Unity value types"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
-      "reviewedSha256": "87014460bc08af11b903fc04e31b461f18ac7be423ce30eea39f661d55e87a91",
+      "reviewedSha256": "7290a97871f61cdbcc978e691c254302cd668ea5d0c77a4bb15a4f4940262ee4",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/RemainsDto09.md",
+      "reviewScope": "Full source read: value-only snapshot schema and separate SpriteRenderer adapter; existing JSON/restore/preflight scenarios verified; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsVisualStyle.cs",
@@ -18557,6 +18639,7 @@
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Remains/Logic/RemainsPartState.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
@@ -18676,6 +18759,7 @@
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Remains/Logic/RemainsPartState.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
@@ -18833,7 +18917,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 446,
+    "unity": 449,
     "content_source": 8
   },
   "latestReview": {
@@ -18984,11 +19068,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 465,
-    "totalFiles": 465,
+    "reviewedFiles": 468,
+    "totalFiles": 468,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "DoorMotion08 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "RemainsDto09 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

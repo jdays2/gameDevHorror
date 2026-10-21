@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| DTO останков | [RemainsDto09](RemainsDto09.md): 671/671 EditMode, 28/28 PlayMode, Windows64 success; value-only DTO и отдельный SpriteRenderer adapter, прежняя схема сохранения. Остальная генерация открыта. |
 | Движение двери MVC/DI | [DoorMotion08](DoorMotion08.md): 671/671 EditMode, 28/28 PlayMode, Windows64 success; clock/commands, cancel/restore/disable и настоящий leaf/collider. Config/interaction-pass открыт. |
 | Движение игрока MVC/DI | [PlayerMovement07](PlayerMovement07.md): 655/655 EditMode, 27/27 PlayMode, Windows64 success; личный intent/command, modal boundary и native Rigidbody. SO/config-pass открыт. |
 | Общая атака врагов MVC/DI | [EnemyMelee01](EnemyMelee01.md): 572/572 EditMode, 21/21 PlayMode, Windows64 success. Чистый timeline/clock/commands, wall и один реальный hit у обоих prefab, без полного FSM/маршрута. |
