@@ -1,4 +1,5 @@
 using Zenject;
+using EmergencyShift.Features.Projectiles;
 
 namespace EmergencyShift
 {
@@ -7,6 +8,7 @@ namespace EmergencyShift
         public static void Install(DiContainer container)
         {
             container.Bind<WeaponControllerFactory>().AsSingle();
+            ProjectileInstaller.Install(container);
         }
     }
 }

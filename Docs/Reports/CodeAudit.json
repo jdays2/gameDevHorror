@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "482 own C# explicitly read; 86 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest EnemyConfig15.",
+  "limits": "491 own C# explicitly read; 86 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest ProjectileFlight16.",
   "counts": {
     "partial": 86,
-    "reviewed_boundary": 396
+    "reviewed_boundary": 405
   },
   "files": [
     {
@@ -1195,13 +1195,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
-      "sha256": "0f6e02d80f532d2b452ee7892c698036d269c9557dcd1972abfb494a7dd0c3e3",
+      "sha256": "41650c6950e7dd56b3a9231872750135d370edec5ddf115dc35f547ffb252829",
       "baselineSha256": "e4390f60d3de6a4d0cc81f8041c7bfeea4b7cd818a0ed0c8fcd0a2fa0a16042d",
       "guid": "451b59eebcf768440b13db6389ef7325",
       "types": [
         "BulletProjectile2D"
       ],
-      "lines": 158,
+      "lines": 160,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Combat/PistolBullet.prefab"
       ],
@@ -1226,8 +1226,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "BUG-023: native impact сразу создаётся в сцене пули; 3 red baseline -> source/unload/shot regressions passed. Полёт/урон/visual rules ещё объединены; model/config перенос открыт.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Полёт, segment hit, урон и визуализация projectile",
@@ -1239,10 +1239,10 @@
         "SpriteRenderer/Light2D"
       ],
       "usageEvidence": "PlayerWeapon2D.Instantiate→Launch; общий prefab пули/дроби",
-      "reviewedSha256": "0f6e02d80f532d2b452ee7892c698036d269c9557dcd1972abfb494a7dd0c3e3",
+      "reviewedSha256": "41650c6950e7dd56b3a9231872750135d370edec5ddf115dc35f547ffb252829",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileOwnership10.md",
-      "reviewScope": "Full source read: scene ownership at Instantiate, additive native shots/impacts, frozen source unload; projectile model/config migration remains open; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -1743,15 +1743,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInstaller.cs",
       "sourceScope": "unity",
-      "sha256": "c5db7a04857f4d3f4508425445551e864548c48ab7efebdf2fd59801cb5e4428",
+      "sha256": "5c988c984bea51dd5d09f2c2f098909c465a0bce579a53b280130a726791b3b1",
       "guid": "f93b36983d7d263489c01c734b7d1b04",
       "types": [
         "WeaponInstaller"
       ],
-      "lines": 12,
+      "lines": 14,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -1759,10 +1759,11 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "c5db7a04857f4d3f4508425445551e864548c48ab7efebdf2fd59801cb5e4428",
+      "reviewedSha256": "5c988c984bea51dd5d09f2c2f098909c465a0bce579a53b280130a726791b3b1",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponController02.md",
-      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
@@ -2076,7 +2077,9 @@
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
-        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs"
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/LaunchProjectileCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightController.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2156,7 +2159,8 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
-        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs"
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/LaunchProjectileCommand.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2255,7 +2259,11 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2395,7 +2403,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
-        "Assets/EmergencyShift/Runtime/World/Surfaces/ImpactSurface2D.cs"
+        "Assets/EmergencyShift/Runtime/World/Surfaces/ImpactSurface2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -4008,13 +4017,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/ProjectileVisualProfile.cs",
-      "sha256": "685b263fca9de1bf483d505d3da67fe59eedb8f15253737373f50759bc254ec6",
+      "sha256": "2a048674defafb1c49a76dcdf40909024a4e75941b0d8faa4a5f487a07a3619b",
       "baselineSha256": "685b263fca9de1bf483d505d3da67fe59eedb8f15253737373f50759bc254ec6",
       "guid": "d222b15af2e149749ae0b248263e4307",
       "types": [
         "ProjectileVisualProfile"
       ],
-      "lines": 42,
+      "lines": 61,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Weapons/CommonProjectile.asset"
       ],
@@ -4033,11 +4042,12 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
-        "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs"
+        "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Finite/range validation подробная. bulletSpeed реально меняет физический полёт, поэтому профиль смешивает gameplay ballistic data с trail/color/light/visibility. Runtime таймеров в SO нет; разделение баллистики и косметики ещё не выполнено.",
+      "notes": "ProjectileFlight16: flight/composition consumer проверен. ProjectileVisualProfile остаётся legacy public config/ballistic-presentation bridge; PlayerWeapon presentation/config или Development probe lifecycle/style остаются долгом.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общее оформление projectile и текущая скорость полёта",
@@ -4047,10 +4057,11 @@
         "float Validate"
       ],
       "usageEvidence": "CommonProjectile.asset; BulletProjectile2D.Launch/FixedUpdate",
-      "reviewedSha256": "685b263fca9de1bf483d505d3da67fe59eedb8f15253737373f50759bc254ec6",
+      "reviewedSha256": "2a048674defafb1c49a76dcdf40909024a4e75941b0d8faa4a5f487a07a3619b",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
@@ -5102,14 +5113,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
-      "sha256": "015d67bd0d258c7de96ef95b83fa8674278059ed6acf06121bb9a67d5e40014d",
+      "sha256": "64a56a1d1020de818cbf88aa818a7e0a7fc04e596d1d8df6451b4cac809d1dd3",
       "baselineSha256": "86634fc027c484d07a6613acd9039e8e3ab52e22c486d980b6fa55022f19e4bc",
       "guid": "90b4963dca84ff34786d816169a61451",
       "types": [
         "Report",
         "SleeperRegressionProbe"
       ],
-      "lines": 277,
+      "lines": 278,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -5123,8 +5134,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "EnemyConfig15: readonly config consumer API проверен; прежние authoring transaction/shared asset writes, probe lifecycle или checkpoint concrete-adapter debt остаются. Генератор не запускался.",
-      "reviewedSha256": "015d67bd0d258c7de96ef95b83fa8674278059ed6acf06121bb9a67d5e40014d",
+      "notes": "ProjectileFlight16: flight/composition consumer проверен. ProjectileVisualProfile остаётся legacy public config/ballistic-presentation bridge; PlayerWeapon presentation/config или Development probe lifecycle/style остаются долгом.",
+      "reviewedSha256": "64a56a1d1020de818cbf88aa818a7e0a7fc04e596d1d8df6451b4cac809d1dd3",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -5145,8 +5156,8 @@
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/EnemyConfig15.md",
-      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -11507,6 +11518,190 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Projectiles/Config/ProjectileFlightSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "941993a04022280a58638f9d3e890f88c6e81bf610ee5953b546279c8bb499a2",
+      "guid": "3ae8bc0ee4b44909b975efa3089c383f",
+      "types": [
+        "ProjectileFlightSettings"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/ProjectileVisualProfile.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileFlightControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "941993a04022280a58638f9d3e890f88c6e81bf610ee5953b546279c8bb499a2",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/IProjectileFlightEnvironment.cs",
+      "sourceScope": "unity",
+      "sha256": "54962ed08856a4db0d6d6e68198748c9230f285e61ab7fad42cf74bddf857c3d",
+      "guid": "88cfc1bf839d4c238743bbcfc6167e23",
+      "types": [
+        "IProjectileFlightEnvironment"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileFlightControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "54962ed08856a4db0d6d6e68198748c9230f285e61ab7fad42cf74bddf857c3d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/LaunchProjectileCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "cd7c65244ee12a4567e72d7248cf06869f6c21002fa03e359c0665ed00a81824",
+      "guid": "6df423821c8b42a2a906d413bb29c9f0",
+      "types": [
+        "LaunchProjectileCommand"
+      ],
+      "lines": 34,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileFlightControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "cd7c65244ee12a4567e72d7248cf06869f6c21002fa03e359c0665ed00a81824",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightController.cs",
+      "sourceScope": "unity",
+      "sha256": "28a4cc6009be132421505046a0f18e7c883a44915f388efaf691f80597982963",
+      "guid": "6abae76be41b4b2aa30c5003cbed1ad1",
+      "types": [
+        "ProjectileFlightController"
+      ],
+      "lines": 59,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileFlightControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "28a4cc6009be132421505046a0f18e7c883a44915f388efaf691f80597982963",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightModel.cs",
+      "sourceScope": "unity",
+      "sha256": "ba17c06868020d6b3d6f306fe5149d73c83dfc580140ef47b00543d0b9f23ef8",
+      "guid": "14b56709361a4746bc161eb94ee135b6",
+      "types": [
+        "ProjectileFlightModel"
+      ],
+      "lines": 52,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/LaunchProjectileCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileFlightControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "ba17c06868020d6b3d6f306fe5149d73c83dfc580140ef47b00543d0b9f23ef8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileFlightControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "551f4e1424a3bdc11337441f3290fb570553b4805fdf2db9865bc7cdb2dc7861",
+      "guid": "e1752e6b13c145de83a20cc4c88acc6d",
+      "types": [
+        "ProjectileFlightControllerFactory"
+      ],
+      "lines": 23,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileInstaller.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "551f4e1424a3bdc11337441f3290fb570553b4805fdf2db9865bc7cdb2dc7861",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "f3de618deb648f1069d61c88d2923720648e87a65ee628604b11f0c11397f18d",
+      "guid": "a7ced84133da495ea8cb856bb139c094",
+      "types": [
+        "ProjectileInstaller"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInstaller.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f3de618deb648f1069d61c88d2923720648e87a65ee628604b11f0c11397f18d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "RemainsDto09: value-only DTO или отдельный Unity SpriteRenderer adapter; поля/namespace сохранены, JSON/restore и validation регрессии пройдены. Генерация/RemainsRecord остаются отдельным долгом.",
       "path": "Assets/EmergencyShift/Runtime/Features/Remains/Logic/RemainsPartState.cs",
       "sourceScope": "unity",
@@ -13785,13 +13980,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
-      "sha256": "4386fab180dbb369f64ab9f3ff785c96b870bd07a4ab1ec28f67bc13f4dc21b8",
+      "sha256": "ead2c9d2bcf989c6d5de8977c1c7b2102da088cc4fba1d2bc4cfc2a946b8290f",
       "baselineSha256": "596fb7c3e90acf823fc8ecc665be76ec2f257bc91f18efb1d501753fb846d9aa",
       "guid": "a7c2f849920eead45b86e58e62166543",
       "types": [
         "PlayerWeapon2D"
       ],
-      "lines": 373,
+      "lines": 378,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -13840,9 +14035,9 @@
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "reviewed_boundary",
-      "notes": "ProjectileOwnership10: BUG-023 source scene при создании пуль/эффектов и regression boundary проверены. Направления/урон/ресурсы сохранены; другие SOD задачи открыты.",
-      "reviewedSha256": "4386fab180dbb369f64ab9f3ff785c96b870bd07a4ab1ec28f67bc13f4dc21b8",
+      "reviewStatus": "partial",
+      "notes": "ProjectileFlight16: flight/composition consumer проверен. ProjectileVisualProfile остаётся legacy public config/ballistic-presentation bridge; PlayerWeapon presentation/config или Development probe lifecycle/style остаются долгом.",
+      "reviewedSha256": "ead2c9d2bcf989c6d5de8977c1c7b2102da088cc4fba1d2bc4cfc2a946b8290f",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13876,8 +14071,8 @@
       ],
       "usageEvidence": "Player prefab/scene overrides; loot/checkpoint/audio/HUD",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileOwnership10.md",
-      "reviewScope": "Full source read: scene ownership at Instantiate, additive native shots/impacts, frozen source unload; projectile model/config migration remains open; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -16507,26 +16702,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "3ba92028362b9bec98efa7a9f1d4dc1a948bfbad797134f8a0b9788ab7c07a7a",
+      "reviewedSha256": "feceb3264006cb964f91807e25e76576056d3a1e90ec3471e49e3f72755dfa23",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/FlashlightState02.md",
-      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "3ba92028362b9bec98efa7a9f1d4dc1a948bfbad797134f8a0b9788ab7c07a7a",
+      "sha256": "feceb3264006cb964f91807e25e76576056d3a1e90ec3471e49e3f72755dfa23",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 446,
+      "lines": 448,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -16981,6 +17176,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -17200,6 +17396,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
@@ -18022,6 +18219,53 @@
       "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
+      "sourceScope": "unity",
+      "sha256": "778baaa0f136cd14cb9519b9cc6180a132621de1f3753ff1967c580e82da2564",
+      "guid": "3ad75058d0e54f83bbe3c499861fc4b0",
+      "types": [
+        "Environment",
+        "ProjectileFlightTests"
+      ],
+      "lines": 185,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/OrganizeMaterials.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FurnitureLightStudyBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponShotRequest.cs",
+        "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
+        "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
+        "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
+        "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
+        "Concepts/Used/Environment/RoomFinish01/create.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "778baaa0f136cd14cb9519b9cc6180a132621de1f3753ff1967c580e82da2564",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+    },
+    {
       "reviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -18836,24 +19080,49 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "ProjectileOwnership10: BUG-023 source scene при создании пуль/эффектов и regression boundary проверены. Направления/урон/ресурсы сохранены; другие SOD задачи открыты.",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs",
+      "sourceScope": "unity",
+      "sha256": "38323542ddda1f366e722abf725ccfc803830f23561171351e6429e3fa8049ba",
+      "guid": "493df5da46e943f18c86c00e38540f49",
+      "types": [
+        "ProjectileProbeTarget"
+      ],
+      "lines": 17,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "38323542ddda1f366e722abf725ccfc803830f23561171351e6429e3fa8049ba",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
       "sourceScope": "unity",
-      "sha256": "d9f165247cbfe0c85231ddea74bab5bb6593b6e4e60a6eebfcd1ddf92474f43a",
+      "sha256": "4839f4ab3d8c9f836b8a1880278998f348a7471ed7b20494ff05d23faa289b00",
       "guid": "ad3421187d2a435bb84a328f2834e240",
       "types": [
         "ProjectileSceneOwnershipTests"
       ],
-      "lines": 104,
+      "lines": 194,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "d9f165247cbfe0c85231ddea74bab5bb6593b6e4e60a6eebfcd1ddf92474f43a",
+      "reviewedSha256": "4839f4ab3d8c9f836b8a1880278998f348a7471ed7b20494ff05d23faa289b00",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileOwnership10.md",
-      "reviewScope": "Full source read: scene ownership at Instantiate, additive native shots/impacts, frozen source unload; projectile model/config migration remains open; native scene and normal Windows64 verified."
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -18936,10 +19205,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "ProjectileOwnership10: BUG-023 source scene при создании пуль/эффектов и regression boundary проверены. Направления/урон/ресурсы сохранены; другие SOD задачи открыты.",
+      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "1f021193994e609bf43c45228e247e49cbc36c3a196a50bb7250e7e7cdb91ff4",
+      "sha256": "a7761cca6495867ff34beeac5658a5be078d13ab50946ae0bf4887233ffb2b29",
       "guid": "f6f7021931ae9294a9d8993c8238be40",
       "types": [
         "RealClock",
@@ -18947,7 +19216,7 @@
         "TestInput",
         "WeaponSpreadLifetimeTests"
       ],
-      "lines": 324,
+      "lines": 331,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -18955,10 +19224,10 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "1f021193994e609bf43c45228e247e49cbc36c3a196a50bb7250e7e7cdb91ff4",
+      "reviewedSha256": "a7761cca6495867ff34beeac5658a5be078d13ab50946ae0bf4887233ffb2b29",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileOwnership10.md",
-      "reviewScope": "Full source read: scene ownership at Instantiate, additive native shots/impacts, frozen source unload; projectile model/config migration remains open; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
+      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -19383,7 +19652,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 463,
+    "unity": 472,
     "content_source": 8
   },
   "latestReview": {
@@ -19534,11 +19803,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 482,
-    "totalFiles": 482,
+    "reviewedFiles": 491,
+    "totalFiles": 491,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "EnemyConfig15 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "ProjectileFlight16 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

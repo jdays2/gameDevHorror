@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using EmergencyShift.Core.Composition;
+using EmergencyShift.Features.Projectiles;
 using EmergencyShift.Core.Randomness;
 using EmergencyShift.Core.Time;
 using EmergencyShift.Features.PlayerInput.Logic;
@@ -12,6 +14,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Zenject;
 
 namespace EmergencyShift.Tests
 {
@@ -184,8 +187,12 @@ namespace EmergencyShift.Tests
 
             Set(weapon, "definition", definition);
             weapon.Configure(pivot, muzzle, bullet, effect, definition.visuals);
+            var projectileScope = new DiContainer();
+            ProjectileInstaller.Install(projectileScope);
             typeof(PlayerWeapon2D).GetMethod("Construct", BindingFlags.Instance | BindingFlags.NonPublic)
-                .Invoke(weapon, new object[] { new TestInput(), new GameplayInputBlock(), new WeaponControllerFactory(new RealClock(), new RandomSourceFactory(new System.Random(seed))) });
+                .Invoke(weapon, new object[] { new TestInput(), new GameplayInputBlock(),
+                    new WeaponControllerFactory(new RealClock(), new RandomSourceFactory(new System.Random(seed))),
+                    new ScenePrefabFactory(projectileScope, root.transform) });
             root.SetActive(true);
             Assert.That(weapon.Acquire(12, definition), Is.True);
             return weapon;
@@ -269,7 +276,7 @@ namespace EmergencyShift.Tests
                 var owner = (Transform)Get(bullet, "owner");
                 if (owner == weapon.transform)
                 {
-                    directions.Add((Vector2)Get(bullet, "direction"));
+                    directions.Add(bullet.FlightDirection);
                 }
             }
 

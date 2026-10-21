@@ -1,6 +1,6 @@
 # Оружие
 
-Состояние на 2026-10-21: модели, команды, управление и прицеливание оружия разделены; DI-фабрика создаёт личное состояние. Полёт/урон/жизненный цикл BulletProjectile2D ещё требуют переноса.
+Состояние на 2026-10-21: модели, команды, управление и прицеливание оружия разделены; DI-фабрики создают личное состояние оружия и пуль. Конфиги и остальные presentation/style границы ещё переносятся.
 
 Принятая архитектура — [ADR-001](../Decisions/001-sod-architecture.md). Ниже описаны фактические границы; миграция остальных систем продолжается.
 
@@ -22,7 +22,11 @@ PlayerCheckpoint2D пишет format3 с явными hasInventory/hasFlashlight
 
 ## Проверки и связанные документы
 
-Вспышка дула, летящие пули, попадание и blocked-muzzle impact создаются с явной сценой владельца через InstantiateParameters.scene. Активность другой additive-сцены не меняет их lifetime; выгрузка источника удаляет замороженный эффект. [BUG-023: воспроизведение и проверка](../Reports/ProjectileOwnership10.md). Полёт/урон BulletProjectile2D этим исправлением ещё не выделены в модель.
+Вспышка дула, попадание и blocked-muzzle impact создаются с явной сценой владельца через InstantiateParameters.scene; пули — через scoped ScenePrefabFactory, который внедряет зависимости и оставляет экземпляр в сцене источника. Активность другой additive-сцены не меняет их lifetime; выгрузка источника удаляет замороженный эффект. [BUG-023: воспроизведение и проверка](../Reports/ProjectileOwnership10.md).
+
+`Features/Projectiles` содержит immutable ProjectileFlightSettings, личную ProjectileFlightModel и LaunchProjectileCommand. Контроллер управляет шагом и завершает модель перед единственным hit callback; native BulletProjectile2D выполняет полный CircleCast, пропускает владельца/детей и триггеры, выбирает ближайший collider, передаёт урон через Damageable2D и показывает эффект. Геометрия и визуал не владеют дальностью/возрастом. Пуля не зависит от вида врага и видимости трассера. ProjectileInstaller подключён через WeaponInstaller, обе species используют прежний контракт урона.
+
+ProjectileVisualProfile временно остаётся compatibility-конфигом ballistics/presentation: прежние bulletSpeed и visual fields сохранены, collisionRadius (.035) и maximumFlightSeconds (3) доступны в Inspector. ToFlightSettings копирует скорость/радиус/lifetime вместе с дальностью/уроном конкретного выстрела. Дальность ограничивается снизу .1 как раньше; истечение времени строго age > maximum, конец дальности удаляется следующим шагом. Летящие пули не сохраняются. [Проверки и стоимость](../Reports/ProjectileFlight16.md). Общий readonly/config-pass этого SO остаётся открыт.
 
 Гильза создаётся через ScenePrefabFactory и получает GroundAudioSurfaceQuery2D своего уровня до использования. Активная сторонняя сцена не меняет звук первого контакта. LastSurface показывает фактически выбранное покрытие; профиль выстрелившего оружия по-прежнему сохраняется до приземления. PlayerCasingEjector2D и шаги получают отдельные косметические RNG-потоки из composition; bounded pool гильз, физика, тайминги и библиотека звуков сохранены. Расстояние/cadence шагов выделены в личную модель с IGameClock/controller; PlayerFootsteps2D читает физическое перемещение и воспроизводит контакт. [Проверки и config-bridge](../Reports/PlayerFootsteps11.md). Перенос движения/показа гильзы и общий config-pass ещё открыты.
 

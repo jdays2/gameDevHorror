@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
 using EmergencyShift.Features.PlayerInput.Logic;
 using Zenject;
@@ -28,9 +29,11 @@ namespace EmergencyShift
         private readonly Dictionary<string, WeaponDefinition> definitions = new Dictionary<string, WeaponDefinition>();
         private IPlayerInput input;
         private GameplayInputBlock inputBlock;
+        private ScenePrefabFactory projectilePrefabs;
 
         [Inject]
-        private void Construct(IPlayerInput playerInput, GameplayInputBlock block, WeaponControllerFactory factory)
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block, WeaponControllerFactory factory,
+            ScenePrefabFactory scenePrefabs)
         {
             if (controller != null)
             {
@@ -39,6 +42,7 @@ namespace EmergencyShift
 
             input = playerInput;
             inputBlock = block;
+            projectilePrefabs = scenePrefabs;
             controller = factory.Create(this, this);
             controller.SelectionChanged += Equipped;
             controller.Operation += OnOperation;
@@ -342,7 +346,8 @@ namespace EmergencyShift
             {
                 foreach (Vector2 heading in plan.Directions)
                 {
-                    var bullet = Instantiate(bulletPrefab, new Vector3(origin.x, origin.y, -.1f), Quaternion.identity, spawn);
+                    var bullet = projectilePrefabs.Instantiate(bulletPrefab.gameObject,
+                        new Vector3(origin.x, origin.y, -.1f), Quaternion.identity).GetComponent<BulletProjectile2D>();
                     bullet.Launch(transform, heading, visualProfile, effectPrefab, bulletCollisionMask, plan.Damage,
                         plan.Range, plan.VolleyId);
                 }

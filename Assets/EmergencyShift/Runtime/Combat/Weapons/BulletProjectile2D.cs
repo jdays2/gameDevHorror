@@ -1,10 +1,15 @@
+using System;
+using EmergencyShift.Features.Projectiles;
+using EmergencyShift.Features.Projectiles.Logic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Zenject;
+using Random = UnityEngine.Random;
 
 namespace EmergencyShift
 {
     /// <summary>Летящая пуля с проверкой всего отрезка пути, чтобы не проскочить тонкую стену.</summary>
-    public sealed class BulletProjectile2D : MonoBehaviour
+    public sealed class BulletProjectile2D : MonoBehaviour, IProjectileFlightEnvironment
     {
         [SerializeField]
         private SpriteRenderer trail;
@@ -19,16 +24,17 @@ namespace EmergencyShift
         private ProjectileVisualProfile presentation;
         private ShotEffect2D effectPrefab;
         private LayerMask collisionMask;
-        private Vector2 direction;
-        private float distance;
-        private float maxDistance;
-        private float age;
-        private int damage;
+        private ProjectileFlightControllerFactory factory;
+        private ProjectileFlightController controller;
+        private RaycastHit2D collision;
         private int volleyId;
-        private bool active;
         private bool visible;
         private float trailScale;
-        public float DistanceTravelled => distance;
+        public float DistanceTravelled => controller?.Model.Distance ?? 0;
+        public Vector2 FlightDirection => controller?.Model.Direction ?? Vector2.zero;
+
+        [Inject]
+        private void Construct(ProjectileFlightControllerFactory flightFactory) => factory = flightFactory;
 
         public void ConfigureVisual(SpriteRenderer streak, SpriteRenderer head, Light2D light)
         {
@@ -44,20 +50,22 @@ namespace EmergencyShift
                 throw new System.InvalidOperationException("A projectile visual profile is required.");
             }
 
-            style.projectile.Validate();
+            if (factory == null)
+            {
+                throw new InvalidOperationException("Projectile requires its level composition before launch.");
+            }
+
+            ProjectileFlightController replacement = factory.Create(style.projectile.ToFlightSettings(range, hitDamage),
+                transform.position, heading, this);
             owner = shooter;
-            direction = heading.normalized;
             profile = style;
             presentation = style.projectile;
             effectPrefab = impact;
             weapon = shooter != null ? shooter.GetComponent<PlayerWeapon2D>() : null;
             collisionMask = mask;
-            damage = hitDamage;
             volleyId = shotId;
-            maxDistance = Mathf.Max(0.1f, range);
-            active = true;
-            age = 0;
-            distance = 0;
+            controller = replacement;
+            Vector2 direction = controller.Model.Direction;
             transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
             visible = Random.value < presentation.projectileVisibility;
             float variation = presentation.trailVariation;
@@ -74,29 +82,17 @@ namespace EmergencyShift
             UpdateTrail();
         }
 
-        private void FixedUpdate()
+        private void FixedUpdate() => controller?.Step(Time.fixedDeltaTime);
+
+        bool IProjectileFlightEnvironment.Sweep(Vector2 start, Vector2 direction, float radius, float step)
         {
-            if (!active)
-            {
-                return;
-            }
-
-            age += Time.fixedDeltaTime;
-            if (age > 3 || distance >= maxDistance)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            float step = Mathf.Min(presentation.bulletSpeed * Time.fixedDeltaTime, maxDistance - distance);
-            Vector2 start = transform.position;
             var filter = new ContactFilter2D
             {
                 useTriggers = false,
                 useLayerMask = true,
                 layerMask = collisionMask
             };
-            int count = Physics2D.CircleCast(start, 0.035f, direction, filter, hits, step);
+            int count = Physics2D.CircleCast(start, radius, direction, filter, hits, step);
             int closest = -1;
             float nearest = float.PositiveInfinity;
             for (int i = 0; i < count; i++)
@@ -114,42 +110,48 @@ namespace EmergencyShift
                 }
             }
 
-            if (closest >= 0)
+            if (closest < 0)
             {
-                RaycastHit2D hit = hits[closest];
-                if (weapon != null)
-                {
-                    weapon.ReportImpact(hit.collider, hit.point, volleyId);
-                }
-
-                var receiver = hit.collider.GetComponentInParent<Damageable2D>();
-                if (receiver != null && receiver.IsAlive)
-                {
-                    receiver.ReceiveBulletHit(damage, hit.point, direction);
-                }
-
-                Vector2 point = hit.centroid - direction * 0.01f;
-                if (ImpactSurface2D.Resolve(hit.collider) != ImpactMaterial.Flesh)
-                {
-                    var effect = Instantiate(effectPrefab, new Vector3(point.x, point.y, -0.1f), Quaternion.identity,
-                        new InstantiateParameters { scene = gameObject.scene, worldSpace = true });
-                    effect.Play(profile, true, -direction);
-                }
-
-                active = false;
-                Destroy(gameObject);
-                return;
+                return false;
             }
 
-            Vector2 next = start + direction * step;
-            transform.position = new Vector3(next.x, next.y, -0.1f);
-            distance += step;
+            collision = hits[closest];
+            return true;
+        }
+
+        void IProjectileFlightEnvironment.Impact(int damage, Vector2 direction)
+        {
+            if (weapon != null)
+            {
+                weapon.ReportImpact(collision.collider, collision.point, volleyId);
+            }
+
+            var receiver = collision.collider.GetComponentInParent<Damageable2D>();
+            if (receiver != null && receiver.IsAlive)
+            {
+                receiver.ReceiveBulletHit(damage, collision.point, direction);
+            }
+
+            Vector2 point = collision.centroid - direction * .01f;
+            if (ImpactSurface2D.Resolve(collision.collider) != ImpactMaterial.Flesh)
+            {
+                var effect = Instantiate(effectPrefab, new Vector3(point.x, point.y, -.1f), Quaternion.identity,
+                    new InstantiateParameters { scene = gameObject.scene, worldSpace = true });
+                effect.Play(profile, true, -direction);
+            }
+        }
+
+        void IProjectileFlightEnvironment.Move(Vector2 position)
+        {
+            transform.position = new Vector3(position.x, position.y, -.1f);
             UpdateTrail();
         }
 
+        void IProjectileFlightEnvironment.Release() => Destroy(gameObject);
+
         private void UpdateTrail()
         {
-            float length = Mathf.Min(presentation.trailLength * trailScale, distance);
+            float length = Mathf.Min(presentation.trailLength * trailScale, DistanceTravelled);
             trail.enabled = visible && length > 0.01f;
             trail.transform.localPosition = new Vector3(0, -length * 0.5f, 0.001f);
             trail.transform.localScale = new Vector3(presentation.trailWidth, length, 1);

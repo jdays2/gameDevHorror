@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using EmergencyShift.Features.Projectiles.Config;
 
 namespace EmergencyShift
 {
@@ -22,6 +23,22 @@ namespace EmergencyShift
         public float bulletLightRadius;
         [Min(0)]
         public float bulletLightIntensity;
+        [Header("Flight compatibility settings")]
+        [SerializeField, Min(0)]
+        private float collisionRadius = .035f;
+        [SerializeField, Min(.01f)]
+        private float maximumFlightSeconds = 3;
+
+        public ProjectileFlightSettings ToFlightSettings(float range, int damage)
+        {
+            Validate();
+            if (!float.IsFinite(range))
+            {
+                throw new ArgumentException("Projectile range must be finite.", nameof(range));
+            }
+
+            return new ProjectileFlightSettings(bulletSpeed, Mathf.Max(.1f, range), damage, collisionRadius, maximumFlightSeconds);
+        }
 
         public void Validate()
         {
@@ -33,7 +50,9 @@ namespace EmergencyShift
                 !float.IsFinite(bulletLightRadius) || bulletLightRadius < 0 ||
                 !float.IsFinite(bulletLightIntensity) || bulletLightIntensity < 0 ||
                 !float.IsFinite(bulletColor.r) || !float.IsFinite(bulletColor.g) || !float.IsFinite(bulletColor.b) ||
-                !float.IsFinite(bulletColor.a) || bulletColor.a < 0 || bulletColor.a > 1)
+                !float.IsFinite(bulletColor.a) || bulletColor.a < 0 || bulletColor.a > 1 ||
+                !float.IsFinite(collisionRadius) || collisionRadius < 0 ||
+                !float.IsFinite(maximumFlightSeconds) || maximumFlightSeconds <= 0)
             {
                 throw new InvalidOperationException("Invalid projectile presentation: " + name);
             }

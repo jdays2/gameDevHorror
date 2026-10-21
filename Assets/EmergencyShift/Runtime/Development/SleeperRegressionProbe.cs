@@ -162,7 +162,8 @@ namespace EmergencyShift
             Check("Real melee delivers exactly one hit per attack", target.Hits == 1 && target.TotalDamage == 1);
 
             second.AttacksEnabled = false;
-            var bullet = Instantiate(projectilePrefab, second.transform.position + Vector3.left * 2, Quaternion.identity, fixture.transform);
+            var bullet = FindAnyObjectByType<LevelContext2D>().CreateInstance(projectilePrefab.gameObject,
+                second.transform.position + Vector3.left * 2, Quaternion.identity, fixture.transform).GetComponent<BulletProjectile2D>();
             bullet.Launch(target.transform, Vector2.right, shotStyle, null, 1 << second.gameObject.layer, 1, 5);
             yield return new WaitForSeconds(.15f);
             Check("A real unlit projectile hits the shared damage contract and wakes once", second.Health == 7 && second.HasAggro && secondAudio.WakeCount == 1);

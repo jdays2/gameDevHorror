@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "62d95ea33f6326da2ec56a5aad027eb7640e17da",
+  "editMode": {
+    "result": "Passed",
+    "total": "839",
+    "passed": "839",
+    "failed": "0",
+    "end-time": "2026-10-21 19:19:05Z",
+    "rawPath": "work/sod-evidence-20261021/projectile-mvc-edit.xml",
+    "rawSha256": "3b3804fbb0b759642efc51c465aac5166afe1c4900d6c104aaf1fe89b25a5dbf",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.CollisionCompletesBeforeCallbackAndCannotHitTwice",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.FlightSnapshotRetainsLegacyProfileDefaultsAndMinimumRangePolicy",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.ImpactCallbackFailureStillReleasesAndCannotRepeatDamage",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.InvalidStepDoesNotChangeStateOrQueryEnvironment(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.InvalidStepDoesNotChangeStateOrQueryEnvironment(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.InvalidStepDoesNotChangeStateOrQueryEnvironment(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.InvalidTuningCannotCreateFlight(\"speed\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.InvalidTuningCannotCreateFlight(\"range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.InvalidTuningCannotCreateFlight(\"damage\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.InvalidTuningCannotCreateFlight(\"radius\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.InvalidTuningCannotCreateFlight(\"age\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.LaunchRechecksAfterCanExecuteAndRejectsInvalidGeometry",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.LifetimePreservesStrictGreaterThanBoundary",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.RepeatedFlightStepsDoNotAllocateManagedObjects",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.SharedSettingsDoNotShareFlightState",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileFlightTests.TravelIsClampedToRangeAndReleasesOnFollowingStep",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "34",
+    "passed": "34",
+    "failed": "0",
+    "end-time": "2026-10-21 19:22:41Z",
+    "rawPath": "work/sod-evidence-20261021/projectile-mvc-play.xml",
+    "rawSha256": "f7059d60677bd2615abc569613a4b43309f171a978788cd11fb8a3b882532f2e",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.ProjectileSceneOwnershipTests.FlyingBulletImpactBelongsToSource",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileSceneOwnershipTests.FlyingBulletImpactUnloadsWithSourceWhileFrozen",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileSceneOwnershipTests.InvisibleNativeBulletSkipsOwnerAndTriggerAndHitsNearestTargetOnce",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileSceneOwnershipTests.NativeBulletCannotDamageBeyondItsRange",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T19:23:09.902Z",
+    "endedAt": "2026-10-21T19:23:35.974Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileFlightControllerFactory.cs": "551f4e1424a3bdc11337441f3290fb570553b4805fdf2db9865bc7cdb2dc7861",
+    "Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileInstaller.cs": "f3de618deb648f1069d61c88d2923720648e87a65ee628604b11f0c11397f18d",
+    "Assets/EmergencyShift/Runtime/Features/Projectiles/Config/ProjectileFlightSettings.cs": "941993a04022280a58638f9d3e890f88c6e81bf610ee5953b546279c8bb499a2",
+    "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/IProjectileFlightEnvironment.cs": "54962ed08856a4db0d6d6e68198748c9230f285e61ab7fad42cf74bddf857c3d",
+    "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/LaunchProjectileCommand.cs": "cd7c65244ee12a4567e72d7248cf06869f6c21002fa03e359c0665ed00a81824",
+    "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightController.cs": "28a4cc6009be132421505046a0f18e7c883a44915f388efaf691f80597982963",
+    "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightModel.cs": "ba17c06868020d6b3d6f306fe5149d73c83dfc580140ef47b00543d0b9f23ef8",
+    "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs": "41650c6950e7dd56b3a9231872750135d370edec5ddf115dc35f547ffb252829",
+    "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInstaller.cs": "5c988c984bea51dd5d09f2c2f098909c465a0bce579a53b280130a726791b3b1",
+    "Assets/EmergencyShift/Runtime/Definitions/ProjectileVisualProfile.cs": "2a048674defafb1c49a76dcdf40909024a4e75941b0d8faa4a5f487a07a3619b",
+    "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs": "ead2c9d2bcf989c6d5de8977c1c7b2102da088cc4fba1d2bc4cfc2a946b8290f",
+    "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs": "64a56a1d1020de818cbf88aa818a7e0a7fc04e596d1d8df6451b4cac809d1dd3",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs": "feceb3264006cb964f91807e25e76576056d3a1e90ec3471e49e3f72755dfa23",
+    "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs": "778baaa0f136cd14cb9519b9cc6180a132621de1f3753ff1967c580e82da2564",
+    "Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs": "38323542ddda1f366e722abf725ccfc803830f23561171351e6429e3fa8049ba",
+    "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs": "4839f4ab3d8c9f836b8a1880278998f348a7471ed7b20494ff05d23faa289b00",
+    "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs": "a7761cca6495867ff34beeac5658a5be078d13ab50946ae0bf4887233ffb2b29"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. 16 new pure projectile cases; 2 new native flight cases plus strengthened thin-wall/scene ownership. 1000 pure controller steps zero managed allocations, no FPS assertion. ProjectileVisualProfile remains a compatibility config bridge; public fields/mixed ballistic presentation data still open. Other SOD tasks remain open."
+}

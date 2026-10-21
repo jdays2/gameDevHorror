@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using EmergencyShift.Core.Time;
+using EmergencyShift.Core.Composition;
 using EmergencyShift.Core.Randomness;
 using EmergencyShift.Features.AccessControl;
 using EmergencyShift.Features.Health.Logic;
@@ -59,7 +60,8 @@ namespace EmergencyShift.Tests
             gun = player.GetComponent<PlayerWeapon2D>();
             typeof(PlayerWeapon2D).GetMethod("Construct", BindingFlags.Instance | BindingFlags.NonPublic)
                 .Invoke(gun, new object[] { null, new GameplayInputBlock(),
-                    new WeaponControllerFactory(new TestClock(), new RandomSourceFactory(new System.Random(117))) });
+                    new WeaponControllerFactory(new TestClock(), new RandomSourceFactory(new System.Random(117))),
+                    new ScenePrefabFactory(new Zenject.DiContainer(), player.transform) });
             Awake(gun);
             gun.RestoreState(true, 6, gun.Definition);
             cards = player.GetComponent<PlayerAccessCards2D>();

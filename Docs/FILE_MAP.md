@@ -467,6 +467,22 @@
 - [PlayerMovementModel.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementModel.cs)
 - [SetMovementIntentCommand.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Projectiles
+
+- [ProjectileFlightControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileFlightControllerFactory.cs)
+- [ProjectileInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Projectiles/Config
+
+- [ProjectileFlightSettings.cs](../Assets/EmergencyShift/Runtime/Features/Projectiles/Config/ProjectileFlightSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Projectiles/Logic
+
+- [IProjectileFlightEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/IProjectileFlightEnvironment.cs)
+- [LaunchProjectileCommand.cs](../Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/LaunchProjectileCommand.cs)
+- [ProjectileFlightController.cs](../Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightController.cs)
+- [ProjectileFlightModel.cs](../Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/ProjectileFlightModel.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/Remains/Logic
 
 - [RemainsPartState.cs](../Assets/EmergencyShift/Runtime/Features/Remains/Logic/RemainsPartState.cs)
@@ -643,6 +659,7 @@
 - [PlayerFootstepTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs)
 - [PlayerInputTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs)
 - [PlayerMovementTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs)
+- [ProjectileFlightTests.cs](../Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
 - [SceneRegistryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs)
 - [SleeperModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs)
@@ -671,6 +688,7 @@
 - [EnemyPatrolSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
 - [PlayerMovementSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs)
+- [ProjectileProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs)
 - [ProjectileSceneOwnershipTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs)
 - [SleeperBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs)
 - [StalkerBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs)
