@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Сигналы слышимости врагов | [AudioThreatSignals26](AudioThreatSignals26.md): 979/979 EditMode, 49/49 PlayMode, Windows64 success; personal clock/deadlines/commands, mandatory readonly SO, source lifecycle. ProjectContext получил одну ссылку, 1793 других прежних ресурса unchanged; точный manifest сохранён. |
 | Громкость и playback аудио | [AudioLayerMix25](AudioLayerMix25.md): 959/959 EditMode, 49/49 PlayMode, Windows64 success; pure mix/reset, native DSP lifecycle, pause до schedule; 0 managed bytes в warmed mix loop. Прочие audio adapters открыты. |
 | Настроение аудио / память угроз | [AudioMood24](AudioMood24.md): 940/940 EditMode, 48/48 PlayMode, Windows64 success; pure memory/clock/commands, scoped native perception, transient ordinals, zero managed bytes в warmed model loop. Mix/emitter clock ещё открыты. |
 | Аудиоисточники уровня | [AudioThreatScopes23](AudioThreatScopes23.md): 905/905 EditMode, 48/48 PlayMode, Windows64 success; наследуемая DI-регистрация, disable/rebind/frozen unload/sibling. Mood/clock/config работа открыта. |

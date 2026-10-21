@@ -18,6 +18,7 @@ namespace EmergencyShift.Tests
             ZenjectManagersInstaller.Install(world);
             var installerObject = new GameObject("Disposable world installer fixture");
             WorldInstaller installer = installerObject.AddComponent<WorldInstaller>();
+            EmergencyShift.Editor.ThreatSignalAuthoring.ConfigureInstaller(installer);
             world.Inject(installer);
             installer.InstallBindings();
             GameObject firstRig = PrefabUtility.LoadPrefabContents(RigPath);

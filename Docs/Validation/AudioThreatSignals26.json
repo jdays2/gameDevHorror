@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "b3e0d93a826cd60845ec06a4c29a9d05a5d4f1de",
+  "editMode": {
+    "result": "Passed",
+    "total": "979",
+    "passed": "979",
+    "failed": "0",
+    "end-time": "2026-10-21 21:40:57Z",
+    "rawPath": "work/sod-evidence-20261021/audio-signal-edit.xml",
+    "rawSha256": "42c6c3bb2e4477ba9310d1ef0e9272b30a12fa00ef4f1edb06712f1abd62a26e",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.CheckDoesNotApplyAndExecutionRechecksClock",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.DeadOrNonFiniteCueCannotMutateState",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.DurationKeepsLegacyClamp(-1,10.25f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.DurationKeepsLegacyClamp(0.1f,10.25f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.DurationKeepsLegacyClamp(1,11)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.DurationKeepsLegacyClamp(10,12)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.ExecutionSamplesClockOnce",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.InvalidClockRejectsBeforeMutation(double.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.InvalidClockRejectsBeforeMutation(double.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.InvalidClockRejectsBeforeMutation(-1.0d)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.InvalidSettingsRejectBeforeComposition",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.MinimumGainBoundaryIsInclusive(0.019f,False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.MinimumGainBoundaryIsInclusive(0.02f,True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.ProductionProfileIsAssignedAndRetainsOriginalNumbers",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.ResetAndSeparateInstancesDoNotShareDeadlines",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.ShorterLaterCueCannotShortenHearingMemory",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.UrgencyUsesItsOwnHoldAndOrdinaryCueDoesNotClearIt",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.WarmedCueCommandsDoNotAllocateManagedMemory",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.WorldInvalidProfileFailsBeforeBindings",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatSignalTests.WorldMissingProfileFailsBeforeBindings",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "49",
+    "passed": "49",
+    "failed": "0",
+    "end-time": "2026-10-21 21:42:31Z",
+    "rawPath": "work/sod-evidence-20261021/audio-signal-play.xml",
+    "rawSha256": "3870ff5272f128d85ed87ef6efeea27e405567bbdbdaf5fcdd151ad42272c104",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.AudioThreatScopeTests.FrozenSceneUnloadDoesNotRemoveSiblingThreats",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatScopeTests.InheritedInjectionRegistersOnceAndDisableClearsPersonalCue",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T21:43:59.423Z",
+    "endedAt": "2026-10-21T21:44:26.960Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalSettings.cs": "4e05c8317e17d1af8a739a4c59fa1b7b45bce7c221505dec94574375071ea9ed",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalProfile.cs": "1ff2d0b2fb56b49e8925229981a017d6e6c30b2dbd72edacf6c076f3734f45e6",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs": "58aefe7163ab349c95ba7c27554276f3e0f4e89dd7a8861959768c36826d23a7",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs": "e8649b25733fd161d8cb22feffc8dd5e9d7083ad161b82936328d43a38167bcd",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetThreatSignalCommand.cs": "01ad51fdaf9317a30ce2dc605fbadb0fc68195bb28f54c188a3b00b196fd14f5",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs": "33d65f5b4c3487381e32c67d0033b47d2249f20e5245451bdeaf3de8259e9248",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioThreatSignalControllerFactory.cs": "d1ae104d579f974c416e196157823b579fb0fd5e43eb40b330034ec2144f2801",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs": "eaf31a01d78d01e1b922befc5540365e03b1ee919f3f4b37559a66e9615bb796",
+    "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs": "aa246d9c3dde0d4ca268b9270ffede72629d36fc2bc32d2ad795bba379a51d66",
+    "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs": "107bd9abab5b2e9b46f7cf50ffff5852f73b63f41a87727f70e2885588921fec",
+    "Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs": "056eccb4deaf11b302f66a125afe0fdbcafc8d272f9822b6581c7b2f35544ca7",
+    "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs": "8337d37dca0f149a4b5480e0dc8c4e524a0f9475f57213edd45917f6bf7312ce",
+    "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs": "b8c482867e96b2d4e240d7dae6bbeb34e2380fe50cb484f6288d7a56e214d75f",
+    "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs": "00d67f4b8544801ce4fbe337e3c16040f6ee46fb7c737497c4d2d3ca27a04533",
+    "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs": "609bcbba06acfea726ea09a3ea62a63a74fdc6140b42b96f52cb010ded73d156",
+    "AgentScripts/InstallWorldComposition.cs": "64075046f444381b90d474f8313da4153e609611b829703bc5b1e68b4f77bc81"
+  },
+  "protectedResources": 1805,
+  "resourceBaselineSha256": "d88bb27eb6157c7e5073c94144f400da0c0ece478a174eb55a1ce33f23c9db4d",
+  "resourceDifferences": [],
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. 1793 old resources unchanged, one deliberate ProjectContext reference addition and 11 new asset/meta imports; exact manifest retained. Updated resource baseline checks 1805 entries. Personal signal model/commands/controller with scaled clock and immutable mandatory world SO snapshot; inherited source lifecycle and native audio regression verified. 20 new EditMode cases. Warmed 1000 cue commands allocate zero managed bytes, not whole-game FPS. Other audio/lighting/config boundaries remain open.",
+  "assetChangeManifest": {
+    "path": "Docs/Validation/AudioThreatSignal26AssetChanges.json",
+    "sha256": "29a3ac434e45b6692d960542cf183c5c74c8efbf127ae46d60ec41c2bd58c015",
+    "originalResourcesUnchanged": 1793,
+    "intentionalExistingChanges": 1,
+    "newImports": 11
+  }
+}

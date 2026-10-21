@@ -8,6 +8,7 @@ namespace EmergencyShift.Features.AudioMood
         public static void Install(DiContainer container)
         {
             container.Bind<AudioMoodControllerFactory>().AsSingle();
+            container.Bind<AudioThreatSignalControllerFactory>().AsSingle();
             container.Bind<AudioThreatQuery2D>().AsSingle();
         }
     }

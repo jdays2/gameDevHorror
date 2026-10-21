@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using EmergencyShift.Core.Composition;
+using EmergencyShift.Core.Time;
+using EmergencyShift.Features.AudioMood;
+using EmergencyShift.Features.AudioMood.Config;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +19,7 @@ namespace EmergencyShift.Tests
         private SceneRegistry<AudioThreatEmitter2D> sourcesA;
         private SceneRegistry<AudioThreatEmitter2D> sourcesB;
         private float originalScale;
+        private AudioThreatSignalControllerFactory signals;
 
         [UnitySetUp]
         public IEnumerator Setup()
@@ -26,6 +30,7 @@ namespace EmergencyShift.Tests
             second = SceneManager.CreateScene("Threat B " + Guid.NewGuid().ToString("N"));
             sourcesA = new SceneRegistry<AudioThreatEmitter2D>();
             sourcesB = new SceneRegistry<AudioThreatEmitter2D>();
+            signals = new AudioThreatSignalControllerFactory(new AudioThreatSignalSettings(.02f, .25f, 2, .4f), new UnityGameClock());
             yield return null;
         }
 
@@ -54,12 +59,14 @@ namespace EmergencyShift.Tests
             Source(second, sourcesB);
             int firstObservation = a.ObservationId;
             Assert.That(firstObservation, Is.GreaterThan(0));
-            a.Construct(sourcesA);
+            a.Construct(sourcesA, signals);
             int reboundObservation = a.ObservationId;
             Assert.That(reboundObservation, Is.GreaterThan(firstObservation));
             Assert.That(sourcesA.Members.Count, Is.EqualTo(1));
             Assert.That(sourcesB.Members.Count, Is.EqualTo(1));
             a.Emit();
+            Assert.Throws<ArgumentNullException>(() => a.Construct(null, signals));
+            Assert.That(sourcesA.Members.Count, Is.EqualTo(1));
             Assert.That(a.HeardUntil, Is.GreaterThan(Time.time));
             Assert.That(a.UrgentUntil, Is.GreaterThan(Time.time));
             a.enabled = false;
@@ -86,7 +93,7 @@ namespace EmergencyShift.Tests
             Assert.That(sourcesB.Members[0], Is.SameAs(b));
         }
 
-        private static AudioThreatProbeSource Source(Scene scene, SceneRegistry<AudioThreatEmitter2D> registry)
+        private AudioThreatProbeSource Source(Scene scene, SceneRegistry<AudioThreatEmitter2D> registry)
         {
             var owner = new GameObject("Scoped threat source");
             owner.SetActive(false);
@@ -94,6 +101,7 @@ namespace EmergencyShift.Tests
             var source = owner.AddComponent<AudioThreatProbeSource>();
             var scope = new DiContainer();
             scope.Bind<SceneRegistry<AudioThreatEmitter2D>>().FromInstance(registry);
+            scope.Bind<AudioThreatSignalControllerFactory>().FromInstance(signals);
             scope.Inject(source);
             owner.SetActive(true);
             return source;

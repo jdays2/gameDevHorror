@@ -30,6 +30,7 @@ namespace EmergencyShift.Tests
             ZenjectManagersInstaller.Install(world);
             worldOwner = new GameObject("Isolated composition world");
             var installer = worldOwner.AddComponent<WorldInstaller>();
+            EmergencyShift.Editor.ThreatSignalAuthoring.ConfigureInstaller(installer);
             world.Inject(installer);
             installer.InstallBindings();
             rig = PrefabUtility.LoadPrefabContents(RigPath);

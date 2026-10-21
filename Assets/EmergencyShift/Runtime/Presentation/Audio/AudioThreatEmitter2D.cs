@@ -1,5 +1,7 @@
 using System;
 using EmergencyShift.Core.Composition;
+using EmergencyShift.Features.AudioMood;
+using EmergencyShift.Features.AudioMood.Logic;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +11,7 @@ namespace EmergencyShift
     public abstract class AudioThreatEmitter2D : MonoBehaviour
     {
         private SceneRegistry<AudioThreatEmitter2D> registry;
+        private AudioThreatSignalController signal;
         public int ObservationId { get; private set; }
         public abstract bool IsAlive
         {
@@ -30,14 +33,25 @@ namespace EmergencyShift
         {
             get;
         }
-        public float HeardUntil { get; private set; } = float.NegativeInfinity;
-        public float UrgentUntil { get; private set; } = float.NegativeInfinity;
+        public float HeardUntil => signal != null ? signal.HeardUntil : float.NegativeInfinity;
+        public float UrgentUntil => signal != null ? signal.UrgentUntil : float.NegativeInfinity;
 
         [Inject]
-        public void Construct(SceneRegistry<AudioThreatEmitter2D> emitters)
+        public void Construct(SceneRegistry<AudioThreatEmitter2D> emitters, AudioThreatSignalControllerFactory factory)
         {
+            if (factory == null)
+            {
+                throw new ArgumentNullException(nameof(factory));
+            }
+
+            if (emitters == null)
+            {
+                throw new ArgumentNullException(nameof(emitters));
+            }
+
             registry?.Remove(this);
-            registry = emitters ?? throw new ArgumentNullException(nameof(emitters));
+            registry = emitters;
+            signal = factory.Create();
             if (isActiveAndEnabled)
             {
                 Register();
@@ -52,22 +66,22 @@ namespace EmergencyShift
         protected virtual void OnDisable()
         {
             registry?.Remove(this);
-            HeardUntil = float.NegativeInfinity;
-            UrgentUntil = float.NegativeInfinity;
+            signal?.Reset();
         }
 
         protected void ReportHeard(float seconds, float gain, bool urgent)
         {
-            if (gain < .02f || !IsAlive)
+            if (!IsAlive)
             {
                 return;
             }
 
-            HeardUntil = Mathf.Max(HeardUntil, Time.time + Mathf.Clamp(seconds, .25f, 2f));
-            if (urgent)
+            if (signal == null)
             {
-                UrgentUntil = Time.time + .4f;
+                throw new InvalidOperationException("Threat signal source requires level composition before cues.");
             }
+
+            signal.Report(seconds, gain, IsAlive, urgent);
         }
 
         private void Register()

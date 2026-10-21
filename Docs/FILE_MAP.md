@@ -33,6 +33,7 @@
 - [PauseMenuAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs)
 - [SandboxSceneBuilder.cs](../Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs)
 - [ShotgunIntegrationAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs)
+- [ThreatSignalAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs)
 
 ## Assets/EmergencyShift/Editor/Build
 
@@ -238,11 +239,14 @@
 
 - [AudioMoodControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs)
 - [AudioMoodInstaller.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs)
+- [AudioThreatSignalControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/AudioThreatSignalControllerFactory.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/AudioMood/Config
 
 - [AudioLayerMixSettings.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioLayerMixSettings.cs)
 - [AudioMoodSettings.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs)
+- [AudioThreatSignalProfile.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalProfile.cs)
+- [AudioThreatSignalSettings.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalSettings.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/AudioMood/Logic
 
@@ -252,10 +256,14 @@
 - [AudioMoodCueCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs)
 - [AudioMoodModel.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs)
 - [AudioThreatObservation.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatObservation.cs)
+- [AudioThreatSignalController.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs)
+- [AudioThreatSignalModel.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs)
 - [IAudioLayerMixView.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioLayerMixView.cs)
 - [IAudioMoodView.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs)
+- [ReportThreatCueCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs)
 - [ResetAudioLayerMixCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs)
 - [ResetAudioMoodCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs)
+- [ResetThreatSignalCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetThreatSignalCommand.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/AudioMood/View
 
@@ -690,6 +698,7 @@
 - [AudioMoodModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs)
 - [AudioMoodProfileTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs)
 - [AudioMoodSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs)
+- [AudioThreatSignalTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs)
 - [BloodPoolProfileValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs)
 - [BloodPoolTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs)
 - [CeilingLightOcclusionTests.cs](../Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs)

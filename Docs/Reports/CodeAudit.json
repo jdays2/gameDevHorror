@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "549 own C# explicitly read; 80 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioLayerMix25.",
+  "limits": "558 own C# explicitly read; 79 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioThreatSignals26.",
   "counts": {
-    "partial": 80,
-    "reviewed_boundary": 469
+    "partial": 79,
+    "reviewed_boundary": 479
   },
   "files": [
     {
@@ -391,15 +391,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "Installer authoring не заменяет существующий ProjectContext; изолированная preview scene закрывается finally, Resource path принадлежит Extenject composition.",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
       "path": "AgentScripts/InstallWorldComposition.cs",
       "sourceScope": "agent_tool",
-      "sha256": "37a829ef90f1d14ab00b174dae8d941eea9a3f21f421aee84244790f7cafe868",
+      "sha256": "64075046f444381b90d474f8313da4153e609611b829703bc5b1e68b4f77bc81",
       "guid": null,
       "types": [
         "InstallWorldComposition"
       ],
-      "lines": 56,
+      "lines": 57,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -422,10 +422,11 @@
         "Zenject"
       ],
       "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
-      "reviewedSha256": "37a829ef90f1d14ab00b174dae8d941eea9a3f21f421aee84244790f7cafe868",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "64075046f444381b90d474f8313da4153e609611b829703bc5b1e68b4f77bc81",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -1090,6 +1091,35 @@
       "reviewReport": "Docs/Reports/WeaponCatalog21.md",
       "reviewScope": "Full source read: readonly catalog array boundary and ID/slot validation before Find/ToSettings, original serialized weapons refs, deliberate Editor/transient probe fixture writes, native inventory/save and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "path": "Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs",
+      "sourceScope": "unity",
+      "sha256": "056eccb4deaf11b302f66a125afe0fdbcafc8d272f9822b6581c7b2f35544ca7",
+      "guid": "8c10ad6a133ee6a4093b7cd01e292783",
+      "types": [
+        "ThreatSignalAuthoring"
+      ],
+      "lines": 61,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/InstallWorldComposition.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
+      ],
+      "entryPointHints": [
+        "MenuItem"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "056eccb4deaf11b302f66a125afe0fdbcafc8d272f9822b6581c7b2f35544ca7",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Build/ThirdPartyLicenseBuildStep.cs",
@@ -2033,8 +2063,12 @@
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetThreatSignalCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
@@ -2148,8 +2182,10 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetThreatSignalCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs",
@@ -2389,26 +2425,28 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
-      "sha256": "e446cb4c8262d045596d96d37400f28ad61fe7bb7f852295c197c042326d97ca",
+      "sha256": "aa246d9c3dde0d4ca268b9270ffede72629d36fc2bc32d2ad795bba379a51d66",
       "baselineSha256": null,
       "guid": "db025a46dc7ec8748a1847f868571510",
       "types": [
         "WorldInstaller"
       ],
-      "lines": 22,
+      "lines": 35,
       "serializedUsers": [
         "Assets/EmergencyShift/Resources/ProjectContext.prefab"
       ],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/InstallWorldComposition.cs",
+        "Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "World clocks/budgets/RNG/pause/cache compose в installer; per-actor state сюда не перенесено.",
-      "reviewedSha256": "e446cb4c8262d045596d96d37400f28ad61fe7bb7f852295c197c042326d97ca",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "reviewedSha256": "aa246d9c3dde0d4ca268b9270ffede72629d36fc2bc32d2ad795bba379a51d66",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -2425,9 +2463,10 @@
         "Zenject"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 0.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/Damageable2D.cs",
@@ -2967,7 +3006,9 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioThreatSignalControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
@@ -2986,6 +3027,7 @@
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
@@ -3119,6 +3161,7 @@
         "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
@@ -3238,30 +3281,42 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs",
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioThreatSignalControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioLayerMixSettings.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalProfile.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalSettings.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixModel.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatObservation.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioLayerMixView.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetThreatSignalCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -4665,7 +4720,12 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs"
       ],
       "entryPointHints": [],
@@ -4941,9 +5001,14 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs"
       ],
@@ -4999,7 +5064,12 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs"
       ],
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
@@ -5052,7 +5122,12 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs"
       ],
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
@@ -5201,7 +5276,12 @@
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs"
       ],
       "entryPointHints": [
@@ -5255,7 +5335,12 @@
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -7213,15 +7298,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
       "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
       "sourceScope": "unity",
-      "sha256": "b030831a1415670bd9e60e96118462552b8e71402782c80f6f16b861eab0b398",
+      "sha256": "eaf31a01d78d01e1b922befc5540365e03b1ee919f3f4b37559a66e9615bb796",
       "guid": "3dd77934fc72afb49be5cd2025d5e7e0",
       "types": [
         "AudioMoodInstaller"
       ],
-      "lines": 14,
+      "lines": 15,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -7229,10 +7314,38 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "b030831a1415670bd9e60e96118462552b8e71402782c80f6f16b861eab0b398",
+      "reviewedSha256": "eaf31a01d78d01e1b922befc5540365e03b1ee919f3f4b37559a66e9615bb796",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioMood24.md",
-      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified.",
+      "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioThreatSignalControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "d1ae104d579f974c416e196157823b579fb0fd5e43eb40b330034ec2144f2801",
+      "guid": "992089a196e31c840b3ab9ca93b516b1",
+      "types": [
+        "AudioThreatSignalControllerFactory"
+      ],
+      "lines": 20,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d1ae104d579f974c416e196157823b579fb0fd5e43eb40b330034ec2144f2801",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
     },
     {
       "baselineSha256": null,
@@ -7288,6 +7401,63 @@
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/AudioMood24.md",
       "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalProfile.cs",
+      "sourceScope": "unity",
+      "sha256": "1ff2d0b2fb56b49e8925229981a017d6e6c30b2dbd72edacf6c076f3734f45e6",
+      "guid": "fcb5b034f3981094c87fd920eb94490d",
+      "types": [
+        "AudioThreatSignalProfile"
+      ],
+      "lines": 25,
+      "serializedUsers": [
+        "Assets/EmergencyShift/Data/Audio/ThreatSignals.asset"
+      ],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1ff2d0b2fb56b49e8925229981a017d6e6c30b2dbd72edacf6c076f3734f45e6",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "4e05c8317e17d1af8a739a4c59fa1b7b45bce7c221505dec94574375071ea9ed",
+      "guid": "ccfe7eb1d0f32f74da6a30bafbc0d06a",
+      "types": [
+        "AudioThreatSignalSettings"
+      ],
+      "lines": 29,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioThreatSignalControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalProfile.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "4e05c8317e17d1af8a739a4c59fa1b7b45bce7c221505dec94574375071ea9ed",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
     },
     {
       "baselineSha256": null,
@@ -7452,6 +7622,60 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+      "sourceScope": "unity",
+      "sha256": "33d65f5b4c3487381e32c67d0033b47d2249f20e5245451bdeaf3de8259e9248",
+      "guid": "7bfb11e2320c5004c923eaa0eeca848a",
+      "types": [
+        "AudioThreatSignalController"
+      ],
+      "lines": 18,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioThreatSignalControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "33d65f5b4c3487381e32c67d0033b47d2249f20e5245451bdeaf3de8259e9248",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
+      "sourceScope": "unity",
+      "sha256": "58aefe7163ab349c95ba7c27554276f3e0f4e89dd7a8861959768c36826d23a7",
+      "guid": "bc36cf6add14182428b2fd897228534d",
+      "types": [
+        "AudioThreatSignalModel"
+      ],
+      "lines": 64,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioThreatSignalControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetThreatSignalCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "58aefe7163ab349c95ba7c27554276f3e0f4e89dd7a8861959768c36826d23a7",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
       "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioLayerMixView.cs",
       "sourceScope": "unity",
@@ -7506,6 +7730,31 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ReportThreatCueCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "e8649b25733fd161d8cb22feffc8dd5e9d7083ad161b82936328d43a38167bcd",
+      "guid": "83efafbe9b4b67a478ced91a5a31f842",
+      "types": [
+        "ReportThreatCueCommand"
+      ],
+      "lines": 27,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "e8649b25733fd161d8cb22feffc8dd5e9d7083ad161b82936328d43a38167bcd",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
       "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
       "sourceScope": "unity",
@@ -7552,6 +7801,31 @@
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/AudioMood24.md",
       "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetThreatSignalCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "01ad51fdaf9317a30ce2dc605fbadb0fc68195bb28f54c188a3b00b196fd14f5",
+      "guid": "c1caadfc9327e224685082d75fe311a8",
+      "types": [
+        "ResetThreatSignalCommand"
+      ],
+      "lines": 21,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "01ad51fdaf9317a30ce2dc605fbadb0fc68195bb28f54c188a3b00b196fd14f5",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
     },
     {
       "baselineSha256": null,
@@ -15292,13 +15566,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
-      "sha256": "ed4bbbdb400030a041c0b0a17148a8156cfe360dce4d77322dea75710d8a24d4",
+      "sha256": "107bd9abab5b2e9b46f7cf50ffff5852f73b63f41a87727f70e2885588921fec",
       "baselineSha256": "047ac7c7ca151507d7eb11679f29e97ced2bd52ce5b66bb08463424e4f58365b",
       "guid": "05847cefe8139464780537d23f93883e",
       "types": [
         "AudioThreatEmitter2D"
       ],
-      "lines": 87,
+      "lines": 101,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -15310,8 +15584,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "AudioMood24: memory/holds/duck commands и clock проверены; mix smoothing/DSP либо emitter heard timers/config долги сохранены.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Факты слышимости и учёт источников угроз",
@@ -15321,10 +15595,10 @@
         "MonoBehaviour"
       ],
       "usageEvidence": "Sleeper/StalkerAudioThreat2D; LevelAudioDirector2D.Active enumeration",
-      "reviewedSha256": "ed4bbbdb400030a041c0b0a17148a8156cfe360dce4d77322dea75710d8a24d4",
+      "reviewedSha256": "107bd9abab5b2e9b46f7cf50ffff5852f73b63f41a87727f70e2885588921fec",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioMood24.md",
-      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -17845,6 +18119,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -17986,6 +18261,7 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -18059,6 +18335,45 @@
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/AudioMood24.md",
       "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+      "sourceScope": "unity",
+      "sha256": "8337d37dca0f149a4b5480e0dc8c4e524a0f9475f57213edd45917f6bf7312ce",
+      "guid": "a3e6b0bfe3231a7458dcc9791eb64729",
+      "types": [
+        "AdvancingClock",
+        "AudioThreatSignalTests",
+        "Clock"
+      ],
+      "lines": 218,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "8337d37dca0f149a4b5480e0dc8c4e524a0f9475f57213edd45917f6bf7312ce",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
     },
     {
       "baselineSha256": null,
@@ -18563,6 +18878,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -18686,6 +19002,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -18761,6 +19078,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -18826,6 +19144,7 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
@@ -19288,17 +19607,17 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "ScopeFailure03: real partial Inject failure closes input/scene owners; stages/late cleanup continue with errors preserved, sibling/world remain alive; Configure locked after init. 2 original failures, 545 EditMode, 20 PlayMode, normal Windows64. Opt-in Development helper/preview test only; no scene regeneration. See SDK iteration/recovery/config limits in report.",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
       "sourceScope": "unity",
-      "sha256": "dbf997e95861d808677b818e72a4748fbf6f4546a20dbcb73ca5163885a7f201",
+      "sha256": "00d67f4b8544801ce4fbe337e3c16040f6ee46fb7c737497c4d2d3ca27a04533",
       "guid": "5e837244c731456abb184e859dbccfc9",
       "types": [
         "LateCleanup",
         "LevelCompositionFailureTests",
         "ThrowingCleanup"
       ],
-      "lines": 168,
+      "lines": 169,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -19312,19 +19631,21 @@
           "notes": "New inventory entry; no semantic review yet."
         }
       ],
-      "reviewedSha256": "dbf997e95861d808677b818e72a4748fbf6f4546a20dbcb73ca5163885a7f201",
-      "reviewReport": "Docs/Reports/ScopeFailure03.md",
-      "reviewDate": "2026-10-21"
+      "reviewedSha256": "00d67f4b8544801ce4fbe337e3c16040f6ee46fb7c737497c4d2d3ca27a04533",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewDate": "2026-10-22",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
-      "sha256": "1a1c3f4b2886a4a36d9e41004afc5ce71a709a5a2ff87a4d16eead1eb6299f07",
+      "sha256": "b8c482867e96b2d4e240d7dae6bbeb34e2380fe50cb484f6288d7a56e214d75f",
       "baselineSha256": null,
       "guid": "120ffa7cd993cb543a3c2e081d0720ae",
       "types": [
         "LevelCompositionTests"
       ],
-      "lines": 69,
+      "lines": 70,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -19332,8 +19653,8 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Проверяет две независимые input/door scopes, shared world pause, запрет чужого scene owner и idempotent Dispose. Не является checkpoint/кампания regression.",
-      "reviewedSha256": "1a1c3f4b2886a4a36d9e41004afc5ce71a709a5a2ff87a4d16eead1eb6299f07",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "reviewedSha256": "b8c482867e96b2d4e240d7dae6bbeb34e2380fe50cb484f6288d7a56e214d75f",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -19350,9 +19671,10 @@
         "input/block/door registry"
       ],
       "usageEvidence": "1 Test метод; source read only",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -19658,6 +19980,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -19748,6 +20071,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -20036,6 +20360,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -20151,6 +20476,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -20634,24 +20960,24 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs",
       "sourceScope": "unity",
-      "sha256": "65280c983fbd19253b76fd7e04643c9d4ae002a54814eaf80a03fecd75eaf51f",
+      "sha256": "609bcbba06acfea726ea09a3ea62a63a74fdc6140b42b96f52cb010ded73d156",
       "guid": "59c5b2da76854a8e80199adea9cade8c",
       "types": [
         "AudioThreatScopeTests"
       ],
-      "lines": 102,
+      "lines": 110,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "65280c983fbd19253b76fd7e04643c9d4ae002a54814eaf80a03fecd75eaf51f",
+      "reviewedSha256": "609bcbba06acfea726ea09a3ea62a63a74fdc6140b42b96f52cb010ded73d156",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioMood24.md",
-      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
+      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -21639,7 +21965,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 530,
+    "unity": 539,
     "content_source": 8
   },
   "latestReview": {
@@ -21790,11 +22116,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 549,
-    "totalFiles": 549,
+    "reviewedFiles": 558,
+    "totalFiles": 558,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "AudioLayerMix25 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "AudioThreatSignals26 and earlier boundary reviews; other SOD tasks remain open."
   }
 }
