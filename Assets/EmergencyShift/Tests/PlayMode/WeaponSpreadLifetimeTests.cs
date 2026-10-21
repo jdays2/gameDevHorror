@@ -19,6 +19,7 @@ namespace EmergencyShift.Tests
     {
         private Scene scene;
         private Scene previousScene;
+        private Scene foreignShotScene;
         private PumpShotgunDefinition source;
         private readonly List<UnityEngine.Object> ownedAssets = new List<UnityEngine.Object>();
         private UnityEngine.Random.State previousRandom;
@@ -48,6 +49,11 @@ namespace EmergencyShift.Tests
             if (scene.IsValid() && scene.isLoaded)
             {
                 yield return SceneManager.UnloadSceneAsync(scene);
+            }
+
+            if (foreignShotScene.IsValid() && foreignShotScene.isLoaded)
+            {
+                yield return SceneManager.UnloadSceneAsync(foreignShotScene);
             }
 
             foreach (UnityEngine.Object asset in ownedAssets)
@@ -183,6 +189,76 @@ namespace EmergencyShift.Tests
             root.SetActive(true);
             Assert.That(weapon.Acquire(12, definition), Is.True);
             return weapon;
+        }
+
+        [UnityTest]
+        public IEnumerator ForeignActiveSceneCannotOwnMuzzleFlashOrFlyingBullets() => VerifyShotScene(false);
+
+        [UnityTest]
+        public IEnumerator ForeignActiveSceneCannotOwnBlockedMuzzleImpact() => VerifyShotScene(true);
+
+        private IEnumerator VerifyShotScene(bool blocked)
+        {
+            PlayerWeapon2D weapon = CreateWeapon(79, false);
+            if (blocked)
+            {
+                var wall = new GameObject("Blocked muzzle wall");
+                wall.layer = 8;
+                wall.transform.position = Vector3.up * .2f;
+                wall.AddComponent<BoxCollider2D>().size = new Vector2(3, .1f);
+                Physics2D.SyncTransforms();
+            }
+
+            foreignShotScene = SceneManager.CreateScene("Foreign active shot " + Guid.NewGuid().ToString("N"));
+            try
+            {
+                SceneManager.SetActiveScene(foreignShotScene);
+                Assert.That(weapon.TryFire(), Is.True);
+                int bullets = 0;
+                int flashes = 0;
+                int foreignBullets = 0;
+                int foreignFlashes = 0;
+                foreach (BulletProjectile2D bullet in UnityEngine.Object.FindObjectsByType<BulletProjectile2D>(FindObjectsSortMode.None))
+                {
+                    if ((Transform)Get(bullet, "owner") != weapon.transform)
+                    {
+                        continue;
+                    }
+
+                    bullets++;
+                    if (bullet.gameObject.scene != scene)
+                    {
+                        foreignBullets++;
+                    }
+                }
+
+                foreach (ShotEffect2D effect in UnityEngine.Object.FindObjectsByType<ShotEffect2D>(FindObjectsSortMode.None))
+                {
+                    flashes++;
+                    if (effect.gameObject.scene != scene)
+                    {
+                        foreignFlashes++;
+                    }
+                }
+
+                if (blocked)
+                {
+                    Assert.That(bullets, Is.Zero, "A blocked muzzle cannot spawn flying pellets.");
+                    Assert.That(flashes, Is.EqualTo(2), "The blocked shot must create muzzle and impact effects.");
+                }
+                else
+                {
+                    Assert.That(bullets, Is.GreaterThan(0));
+                    Assert.That(flashes, Is.EqualTo(1));
+                }
+                Assert.That(foreignBullets + foreignFlashes, Is.Zero, $"Foreign scene owns {foreignBullets}/{bullets} bullets and {foreignFlashes}/{flashes} flashes.");
+            }
+            finally
+            {
+                SceneManager.SetActiveScene(scene);
+            }
+
+            yield return null;
         }
 
         private static Vector2[] Directions(PlayerWeapon2D weapon)

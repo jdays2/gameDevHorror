@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Сцена выстрела · BUG-023 | [ProjectileOwnership10](ProjectileOwnership10.md): 3 red baseline → 671/671 EditMode, 32/32 PlayMode, Windows64 success; native impact/frozen unload, muzzle/pellets и blocked muzzle в сцене владельца. |
 | DTO останков | [RemainsDto09](RemainsDto09.md): 671/671 EditMode, 28/28 PlayMode, Windows64 success; value-only DTO и отдельный SpriteRenderer adapter, прежняя схема сохранения. Остальная генерация открыта. |
 | Движение двери MVC/DI | [DoorMotion08](DoorMotion08.md): 671/671 EditMode, 28/28 PlayMode, Windows64 success; clock/commands, cancel/restore/disable и настоящий leaf/collider. Config/interaction-pass открыт. |
 | Движение игрока MVC/DI | [PlayerMovement07](PlayerMovement07.md): 655/655 EditMode, 27/27 PlayMode, Windows64 success; личный intent/command, modal boundary и native Rigidbody. SO/config-pass открыт. |

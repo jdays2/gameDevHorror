@@ -1,0 +1,320 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "5feac67701b94a936b5de16ed0aceaeeee68552f",
+  "editMode": {
+    "result": "Passed",
+    "total": "671",
+    "passed": "671",
+    "failed": "0",
+    "end-time": "2026-10-21 17:45:04Z",
+    "rawPath": "work/sod-evidence-20261021/projectile-final-edit.xml",
+    "rawSha256": "b622ecec68678ef6fd714fd32f74ed256a41a259b0cd16853092153d248b20ef",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.MagazineWeaponTests.CancelledPartialReloadKeepsBothAmmoCounts",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.MagazineWeaponTests.FullMagazineEmptyReserveAndMalformedSnapshotsAreRejected",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.MagazineWeaponTests.LegacyUnlimitedPistolMigratesWithoutCreatingCartridges",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.MagazineWeaponTests.PendingReloadRoundTripCommitsOnceWithoutRestartCue",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.MagazineWeaponTests.ReserveCannotFireUntilAtomicReloadCompletes",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.MagazineWeaponTests.SharedDefinitionDoesNotShareMagazineOrReloadState",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponAimEnvironmentTests.LegacyAimUsesFlashlightDirectionWithoutAnInputDevice",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponAimEnvironmentTests.RotatedMuzzleRayPassesThroughTargetWithLateralOffset(1.0f,3.0f,0.15f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponAimEnvironmentTests.RotatedMuzzleRayPassesThroughTargetWithLateralOffset(-3.0f,1.0f,-0.2f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponAimEnvironmentTests.RotatedMuzzleRayPassesThroughTargetWithLateralOffset(2.0f,-3.0f,0.15f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponAimEnvironmentTests.RotatedMuzzleRayPassesThroughTargetWithLateralOffset(-2.0f,-3.0f,0.0f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponAimEnvironmentTests.TargetUnderMuzzleCannotFireBackwardsIntoTheOwner",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.AutomaticSettingChoosesHeldIntentWithoutReadingInputDevices(False,False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.AutomaticSettingChoosesHeldIntentWithoutReadingInputDevices(True,True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.BlockedMuzzleConsumesOneRoundAndCreatesNoProjectileDirections",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.CommittedVolleyIsImmutableBeforeCosmeticPresentation",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.DisposingUnsubscribesEvenWhenPresentationRejectsCancellation",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.EmptyMagazineReloadStartsAfterShotPresentationAndCommitsOnlyOnce",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.EmptyTriggerIsThrottledAndBlockedOrDisposedOwnerCannotPlayIt",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.InputBlockFreezesWeaponTickWhileDeadOwnerStillFinishesExistingPump",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.InvalidEnvironmentRequestDoesNotSpendAmmoOrRng(\"zero\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.InvalidEnvironmentRequestDoesNotSpendAmmoOrRng(\"origin\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.InvalidEnvironmentRequestDoesNotSpendAmmoOrRng(\"target\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.InvalidEnvironmentRequestDoesNotSpendAmmoOrRng(\"overflow\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.PassiveControllerFramesDoNotAllocateCommandsWhileWaiting(\"ready\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.PassiveControllerFramesDoNotAllocateCommandsWhileWaiting(\"loading\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.PassiveControllerFramesDoNotAllocateCommandsWhileWaiting(\"pumping\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponControllerTests.TwoSlotIntentsKeepTheirOrderAndPumpingPreventsHolstering",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.DefinitionReplacementRejectsCollisionWithoutLosingEitherWeapon",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.FourShellsRequireFourPressesAndFourPumpCycles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.FullMagazineOrEmptyReserveCannotReloadOrGainFreeShells",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.InvalidInventoryIsRejectedBeforeChangingLiveWeapon",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.InvalidMagazineAndNonFiniteSavedTimersAreExplicitErrors",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.JsonRoundTripPreservesPendingShellWithoutRepeatingPump",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.PelletDirectionsStayInSpreadWithoutOrderedAngularSlots",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.ReloadCommitsOneShellAndInterruptedInsertDoesNotCreateAmmo",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.SharedDefinitionKeepsIndependentAmmoAndReloadState",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCycleTests.TypedAmmoAndSwitchingPreserveEachOwnedWeapon",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.AnotherOwnersShotsDoNotAdvanceThisOwnersStream",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.CatalogCopiesItsInputAndRejectsDuplicateIdsOrSlots",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.CommandsValidateWithoutMutatingAndRejectInvalidRestoreBeforeApplying",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.CosmeticDrawsBetweenEveryPelletCannotChangeGameplayStream(0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.CosmeticDrawsBetweenEveryPelletCannotChangeGameplayStream(1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.CosmeticDrawsBetweenEveryPelletCannotChangeGameplayStream(73)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.ElapsedUntickedPumpCanRestoreAndEmitItsPendingCueExactlyOnce",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.ExistingCycleAndInventoryIgnoreLaterAssetChanges",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.ImpossiblePumpSnapshotIsRejectedWithoutChangingTheCycle(\"cue-after-operation\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.ImpossiblePumpSnapshotIsRejectedWithoutChangingTheCycle(\"inactive-cue-duration\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.ImpossiblePumpSnapshotIsRejectedWithoutChangingTheCycle(\"full-magazine-pumping\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.ImpossiblePumpSnapshotIsRejectedWithoutChangingTheCycle(\"loading-uses-pump-limit\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.InvalidExternalTimeCannotChangeAmmoOrPhase(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.InvalidExternalTimeCannotChangeAmmoOrPhase(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.InvalidExternalTimeCannotChangeAmmoOrPhase(float.NegativeInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.InvalidExternalTimeCannotChangeAmmoOrPhase(-1.0f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.InventoryCommandsRejectConflictsAndBusySwitchesBeforeChangingOwnership",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSettingsTests.InventoryRestoreCommandValidatesBeforeApplyingAndKeepsLegacyFormat",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "32",
+    "passed": "32",
+    "failed": "0",
+    "end-time": "2026-10-21 17:47:16Z",
+    "rawPath": "work/sod-evidence-20261021/projectile-final-play.xml",
+    "rawSha256": "b719bffab57c567b55f59a4f3f462bc305fdbc5a9b10d5f25c9e9c163790dcfc",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.ProjectileSceneOwnershipTests.FlyingBulletImpactBelongsToSource",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileSceneOwnershipTests.FlyingBulletImpactUnloadsWithSourceWhileFrozen",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T17:47:46.507Z",
+    "endedAt": "2026-10-21T17:48:10.946Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs": "0f6e02d80f532d2b452ee7892c698036d269c9557dcd1972abfb494a7dd0c3e3",
+    "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs": "4386fab180dbb369f64ab9f3ff785c96b870bd07a4ab1ec28f67bc13f4dc21b8",
+    "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs": "d9f165247cbfe0c85231ddea74bab5bb6593b6e4e60a6eebfcd1ddf92474f43a",
+    "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs": "1f021193994e609bf43c45228e247e49cbc36c3a196a50bb7250e7e7cdb91ff4"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. SO config-pass and author input-feel acceptance remain open. BUG-023 additive source/unload ownership only; projectile model/config and other SOD debt remain open; no FPS claim.",
+  "baselineSource": {
+    "revision": "5feac67701b94a936b5de16ed0aceaeeee68552f",
+    "sources": {
+      "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs": "e4390f60d3de6a4d0cc81f8041c7bfeea4b7cd818a0ed0c8fcd0a2fa0a16042d",
+      "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs": "e8704c9ca9814690252936cfe13702e89b387cd8ee8d3fcf96d8161c3e9126cf"
+    }
+  },
+  "baselineFailure": {
+    "id": "2",
+    "testcasecount": "31",
+    "result": "Failed(Child)",
+    "total": "31",
+    "passed": "28",
+    "failed": "3",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-21 17:42:49Z",
+    "end-time": "2026-10-21 17:43:27Z",
+    "duration": "37,6833757",
+    "rawPath": "work/sod-evidence-20261021/projectile-all-baseline-play.xml",
+    "rawSha256": "97bef2ee65f502b72160d1e066072629363b9ebe351f9141fe408a349a3799bf",
+    "failures": [
+      {
+        "name": "EmergencyShift.Tests.ProjectileSceneOwnershipTests.FlyingBulletImpactBelongsToSource",
+        "message": "  Impact scene: Foreign projectile scene de758d986d2343b29da700ceeea477fc; expected source: Projectile owner 30de49046c3147babe68b6373b9be5f8\n  Expected: 22911:9472\n  But was:  22916:8960\n"
+      },
+      {
+        "name": "EmergencyShift.Tests.ProjectileSceneOwnershipTests.FlyingBulletImpactUnloadsWithSourceWhileFrozen",
+        "message": "  Frozen VFX must disappear with the source scene.\n  Expected: True\n  But was:  False\n"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ForeignActiveSceneCannotOwnMuzzleFlashOrFlyingBullets",
+        "message": "  Foreign scene owns 8/8 bullets and 1/1 flashes.\n  Expected: 0\n  But was:  9\n"
+      }
+    ]
+  },
+  "nativeShotCases": [
+    "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ForeignActiveSceneCannotOwnBlockedMuzzleImpact",
+    "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ForeignActiveSceneCannotOwnMuzzleFlashOrFlyingBullets"
+  ]
+}

@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "468 own C# explicitly read; 93 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest RemainsDto09.",
+  "limits": "469 own C# explicitly read; 93 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest ProjectileOwnership10.",
   "counts": {
     "partial": 93,
-    "reviewed_boundary": 375
+    "reviewed_boundary": 376
   },
   "files": [
     {
@@ -1192,13 +1192,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
-      "sha256": "e4390f60d3de6a4d0cc81f8041c7bfeea4b7cd818a0ed0c8fcd0a2fa0a16042d",
+      "sha256": "0f6e02d80f532d2b452ee7892c698036d269c9557dcd1972abfb494a7dd0c3e3",
       "baselineSha256": "e4390f60d3de6a4d0cc81f8041c7bfeea4b7cd818a0ed0c8fcd0a2fa0a16042d",
       "guid": "451b59eebcf768440b13db6389ef7325",
       "types": [
         "BulletProjectile2D"
       ],
-      "lines": 157,
+      "lines": 158,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Combat/PistolBullet.prefab"
       ],
@@ -1219,11 +1219,12 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Один компонент совмещает authoritative movement/hit/damage и View; скорость берётся из visual profile, Time.fixedDeltaTime читается прямо. 32-hit buffer ограничен, ищется ближайший hit, owner пропускается, вид врага не проверяется. Cosmetic Unity Random делится с разбросом (BUG-010). Impact Instantiate не имеет явного scene owner — integration-risk, не воспроизведённый additive-баг.",
+      "notes": "BUG-023: native impact сразу создаётся в сцене пули; 3 red baseline -> source/unload/shot regressions passed. Полёт/урон/visual rules ещё объединены; model/config перенос открыт.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Полёт, segment hit, урон и визуализация projectile",
@@ -1235,10 +1236,11 @@
         "SpriteRenderer/Light2D"
       ],
       "usageEvidence": "PlayerWeapon2D.Instantiate→Launch; общий prefab пули/дроби",
-      "reviewedSha256": "e4390f60d3de6a4d0cc81f8041c7bfeea4b7cd818a0ed0c8fcd0a2fa0a16042d",
+      "reviewedSha256": "0f6e02d80f532d2b452ee7892c698036d269c9557dcd1972abfb494a7dd0c3e3",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/ProjectileOwnership10.md",
+      "reviewScope": "Full source read: scene ownership at Instantiate, additive native shots/impacts, frozen source unload; projectile model/config migration remains open; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "baselineSha256": null,
@@ -4447,7 +4449,8 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -12314,6 +12317,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -12466,6 +12470,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -12538,6 +12543,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -12684,6 +12690,7 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -13557,13 +13564,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
-      "sha256": "e8704c9ca9814690252936cfe13702e89b387cd8ee8d3fcf96d8161c3e9126cf",
+      "sha256": "4386fab180dbb369f64ab9f3ff785c96b870bd07a4ab1ec28f67bc13f4dc21b8",
       "baselineSha256": "596fb7c3e90acf823fc8ecc665be76ec2f257bc91f18efb1d501753fb846d9aa",
       "guid": "a7c2f849920eead45b86e58e62166543",
       "types": [
         "PlayerWeapon2D"
       ],
-      "lines": 372,
+      "lines": 373,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -13613,8 +13620,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponController02: Unity input/render adapter; gameplay state and clocks delegated to pure scoped controller/model. Pose/Physics2D in separate environment. No direct Time/Physics2D/spread calculation. Serialized fields/GUID preserved; 416 EditMode, 12 PlayMode and Windows64 build. Projectile simulation remains in its own partial file.",
-      "reviewedSha256": "e8704c9ca9814690252936cfe13702e89b387cd8ee8d3fcf96d8161c3e9126cf",
+      "notes": "ProjectileOwnership10: BUG-023 source scene при создании пуль/эффектов и regression boundary проверены. Направления/урон/ресурсы сохранены; другие SOD задачи открыты.",
+      "reviewedSha256": "4386fab180dbb369f64ab9f3ff785c96b870bd07a4ab1ec28f67bc13f4dc21b8",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13648,9 +13655,9 @@
       ],
       "usageEvidence": "Player prefab/scene overrides; loot/checkpoint/audio/HUD",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponController02.md",
-      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
-      "previousReviewStatus": "partial"
+      "reviewReport": "Docs/Reports/ProjectileOwnership10.md",
+      "reviewScope": "Full source read: scene ownership at Instantiate, additive native shots/impacts, frozen source unload; projectile model/config migration remains open; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
@@ -14586,6 +14593,7 @@
         "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -16810,6 +16818,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs"
       ],
@@ -16888,6 +16897,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
         "Concepts/Used/Environment/RoomFinish01/create.cs"
@@ -18394,6 +18404,28 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "ProjectileOwnership10: BUG-023 source scene при создании пуль/эффектов и regression boundary проверены. Направления/урон/ресурсы сохранены; другие SOD задачи открыты.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
+      "sourceScope": "unity",
+      "sha256": "d9f165247cbfe0c85231ddea74bab5bb6593b6e4e60a6eebfcd1ddf92474f43a",
+      "guid": "ad3421187d2a435bb84a328f2834e240",
+      "types": [
+        "ProjectileSceneOwnershipTests"
+      ],
+      "lines": 104,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d9f165247cbfe0c85231ddea74bab5bb6593b6e4e60a6eebfcd1ddf92474f43a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/ProjectileOwnership10.md",
+      "reviewScope": "Full source read: scene ownership at Instantiate, additive native shots/impacts, frozen source unload; projectile model/config migration remains open; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
       "sourceScope": "unity",
@@ -18470,10 +18502,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "notes": "ProjectileOwnership10: BUG-023 source scene при создании пуль/эффектов и regression boundary проверены. Направления/урон/ресурсы сохранены; другие SOD задачи открыты.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "5caaa90bfa16f45eebc324b78362421fce1e75feb54c127a2d2a8ece26105df6",
+      "sha256": "1f021193994e609bf43c45228e247e49cbc36c3a196a50bb7250e7e7cdb91ff4",
       "guid": "f6f7021931ae9294a9d8993c8238be40",
       "types": [
         "RealClock",
@@ -18481,7 +18513,7 @@
         "TestInput",
         "WeaponSpreadLifetimeTests"
       ],
-      "lines": 248,
+      "lines": 324,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -18489,10 +18521,10 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "5caaa90bfa16f45eebc324b78362421fce1e75feb54c127a2d2a8ece26105df6",
+      "reviewedSha256": "1f021193994e609bf43c45228e247e49cbc36c3a196a50bb7250e7e7cdb91ff4",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/FlashlightState02.md",
-      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
+      "reviewReport": "Docs/Reports/ProjectileOwnership10.md",
+      "reviewScope": "Full source read: scene ownership at Instantiate, additive native shots/impacts, frozen source unload; projectile model/config migration remains open; native scene and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -18917,7 +18949,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 449,
+    "unity": 450,
     "content_source": 8
   },
   "latestReview": {
@@ -19068,11 +19100,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 468,
-    "totalFiles": 468,
+    "reviewedFiles": 469,
+    "totalFiles": 469,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "RemainsDto09 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "ProjectileOwnership10 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

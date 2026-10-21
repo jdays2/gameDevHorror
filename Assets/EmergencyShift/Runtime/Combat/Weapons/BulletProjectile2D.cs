@@ -131,7 +131,8 @@ namespace EmergencyShift
                 Vector2 point = hit.centroid - direction * 0.01f;
                 if (ImpactSurface2D.Resolve(hit.collider) != ImpactMaterial.Flesh)
                 {
-                    var effect = Instantiate(effectPrefab, new Vector3(point.x, point.y, -0.1f), Quaternion.identity);
+                    var effect = Instantiate(effectPrefab, new Vector3(point.x, point.y, -0.1f), Quaternion.identity,
+                        new InstantiateParameters { scene = gameObject.scene, worldSpace = true });
                     effect.Play(profile, true, -direction);
                 }
 

@@ -649,6 +649,7 @@
 - [EnemyPatrolSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
 - [PlayerMovementSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs)
+- [ProjectileSceneOwnershipTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs)
 - [SleeperBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs)
 - [StalkerBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)
