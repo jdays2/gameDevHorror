@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using EmergencyShift.Core.Randomness;
 using EmergencyShift.Features.PlayerInput.Logic;
 using Zenject;
 
@@ -9,7 +9,7 @@ namespace EmergencyShift
     /// <summary>Player input, common aiming and projectile presentation; definitions create independent firing cycles.</summary>
     [DisallowMultipleComponent, DefaultExecutionOrder(20)]
     [RequireComponent(typeof(Flashlight2D))]
-    public sealed class PlayerWeapon2D : MonoBehaviour
+    public sealed class PlayerWeapon2D : MonoBehaviour, IWeaponUseGate, IWeaponShotView
     {
         [SerializeField] private Transform weaponPivot;
         [SerializeField] private Transform muzzle;
@@ -23,74 +23,63 @@ namespace EmergencyShift
         private Flashlight2D flashlight;
         private PlayerLife2D life;
         private PlayerShotShadow2D shotShadow;
-        private readonly WeaponInventory inventory = new WeaponInventory();
+        private WeaponController controller;
+        private WeaponInventory Inventory => controller?.Inventory;
         private readonly Dictionary<string, WeaponDefinition> definitions = new Dictionary<string, WeaponDefinition>();
-        private WeaponCycle boundCycle;
         private IPlayerInput input;
         private GameplayInputBlock inputBlock;
-        private IRandomSource shotRandom;
 
         [Inject]
-        private void Construct(IPlayerInput playerInput, GameplayInputBlock block, RandomSourceFactory randoms)
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block, WeaponControllerFactory factory)
         {
+            if (controller != null)
+            {
+                throw new InvalidOperationException("Weapon controller is already composed.");
+            }
+
             input = playerInput;
             inputBlock = block;
-            shotRandom = randoms.Create();
+            controller = factory.Create(this, this);
+            controller.SelectionChanged += Equipped;
+            controller.Operation += OnOperation;
         }
 
+        private RaycastHit2D pendingMuzzleHit;
+        private WeaponAimEnvironment2D aimEnvironment;
+        bool IWeaponUseGate.InputBlocked => inputBlock == null || inputBlock.IsBlocked;
+        bool IWeaponUseGate.CanUseWeapon => CanUse;
+
         private Vector3 restingWeaponScale;
-        private float nextEmptyTrigger;
-        public bool HasWeapon => inventory.ActiveCycle != null;
-        public int Ammo => inventory.ActiveCycle != null ? inventory.ActiveCycle.TotalAmmo : 0;
-        public int MaximumAmmo => inventory.ActiveCycle != null ? inventory.ActiveCycle.Settings.MaximumAmmo : definition.maximumAmmo;
-        public int LoadedAmmo => inventory.ActiveCycle != null ? inventory.ActiveCycle.Loaded : 0;
-        public int ReserveAmmo => inventory.ActiveCycle != null ? inventory.ActiveCycle.Reserve : 0;
-        public int MagazineCapacity => inventory.ActiveCycle != null ? inventory.ActiveCycle.MagazineCapacity : 0;
-        public WeaponPhase Phase => inventory.ActiveCycle != null ? inventory.ActiveCycle.Phase : WeaponPhase.Ready;
-        public int OwnedCount => inventory.Count;
-        public int Damage => inventory.ActiveCycle != null ? inventory.ActiveCycle.Settings.Damage : definition.damage;
-        public float ShotInterval => inventory.ActiveCycle != null ? inventory.ActiveCycle.Settings.SecondsBetweenShots : definition.secondsBetweenShots;
-        public float BulletRange => inventory.ActiveCycle != null ? inventory.ActiveCycle.Settings.Range : definition.range;
+        public bool HasWeapon => Inventory?.ActiveCycle != null;
+        public int Ammo => Inventory?.ActiveCycle?.TotalAmmo ?? 0;
+        public int MaximumAmmo => Inventory?.ActiveDefinition?.MaximumAmmo ?? definition.maximumAmmo;
+        public int LoadedAmmo => Inventory?.ActiveCycle?.Loaded ?? 0;
+        public int ReserveAmmo => Inventory?.ActiveCycle?.Reserve ?? 0;
+        public int MagazineCapacity => Inventory?.ActiveCycle?.MagazineCapacity ?? 0;
+        public WeaponPhase Phase => Inventory?.ActiveCycle?.Phase ?? WeaponPhase.Ready;
+        public int OwnedCount => Inventory?.Count ?? 0;
+        public int Damage => Inventory?.ActiveDefinition?.Damage ?? definition.damage;
+        public float ShotInterval => Inventory?.ActiveDefinition?.SecondsBetweenShots ?? definition.secondsBetweenShots;
+        public float BulletRange => Inventory?.ActiveDefinition?.Range ?? definition.range;
 
         public WeaponDefinition Definition
         {
             get
             {
-                WeaponSettings active = inventory.ActiveDefinition;
+                WeaponSettings active = Inventory?.ActiveDefinition;
                 return active != null && definitions.TryGetValue(active.ContentId, out WeaponDefinition asset) ? asset : definition;
             }
         }
 
-        public int ShotsFired
-        {
-            get;
-            private set;
-        }
-
+        public int ShotsFired => controller?.ShotsFired ?? 0;
         public ShotVisualProfile VisualProfile => visualProfile;
-
-        public Vector2 LastShotDirection
-        {
-            get;
-            private set;
-        }
-
-        public Vector2 LastShotOrigin
-        {
-            get;
-            private set;
-        }
-
-        public Vector2 LastShotTarget
-        {
-            get;
-            private set;
-        }
+        public Vector2 LastShotDirection => controller?.LastShot?.Request.Direction ?? Vector2.zero;
+        public Vector2 LastShotOrigin => controller?.LastShot?.Request.Origin ?? Vector2.zero;
+        public Vector2 LastShotTarget => controller?.LastShot?.Request.Target ?? Vector2.zero;
 
         public bool IsOperational => CanUse;
 
-        public bool HasForwardAim => aim != null && aim.HasTarget && muzzle != null && weaponPivot != null &&
-                                     Vector2.Dot(aim.WorldPoint - (Vector2)muzzle.position, weaponPivot.up) > .025f;
+        public bool HasForwardAim => aimEnvironment != null && aimEnvironment.HasForwardAim;
 
         public event System.Action OwnershipChanged;
         public event System.Action ShotFired;
@@ -124,6 +113,7 @@ namespace EmergencyShift
             bulletPrefab = bullet;
             effectPrefab = effect;
             visualProfile = style;
+            RefreshAimEnvironment();
         }
 
         public void SetVisualProfile(ShotVisualProfile style)
@@ -137,6 +127,7 @@ namespace EmergencyShift
         public void ConfigureAim(PlayerAim2D target)
         {
             aim = target;
+            RefreshAimEnvironment();
         }
 
         public void SetDefinition(WeaponDefinition value, bool applyVisuals = true)
@@ -147,8 +138,8 @@ namespace EmergencyShift
             }
 
             value.Validate();
-            string previousId = inventory.ActiveDefinition?.ContentId;
-            inventory.ReplaceActiveDefinition(value.ToSettings());
+            string previousId = Inventory?.ActiveDefinition?.ContentId;
+            controller?.ReplaceDefinition(value.ToSettings());
             if (previousId != null)
             {
                 definitions.Remove(previousId);
@@ -159,8 +150,6 @@ namespace EmergencyShift
             {
                 visualProfile = value.visuals;
             }
-
-            BindCycle();
         }
 
         private void Awake()
@@ -175,6 +164,7 @@ namespace EmergencyShift
             flashlight = GetComponent<Flashlight2D>();
             life = GetComponent<PlayerLife2D>();
             shotShadow = GetComponent<PlayerShotShadow2D>();
+            RefreshAimEnvironment();
             if (weaponPivot != null)
             {
                 restingWeaponScale = weaponPivot.localScale;
@@ -186,26 +176,24 @@ namespace EmergencyShift
 
         public void RestoreState(bool owned, int ammo, WeaponDefinition savedDefinition)
         {
-            UnbindCycle();
+            RequireController();
             definition = savedDefinition != null ? savedDefinition : definition;
-            inventory.RestoreLegacy(owned, ammo, definition.ToSettings());
+            controller.RestoreLegacy(owned, ammo, definition.ToSettings());
             definitions.Clear();
             if (owned)
             {
                 definitions[definition.contentId] = definition;
             }
-            nextEmptyTrigger = 0;
             Equipped();
         }
 
-        public WeaponInventorySnapshot CaptureInventory() => inventory.Capture(Time.time);
+        public WeaponInventorySnapshot CaptureInventory() => RequireController().Capture();
 
         public void RestoreInventory(WeaponInventorySnapshot state, WeaponCatalog catalog)
         {
             WeaponSettingsCatalog settings = catalog.ToSettings();
             WeaponInventory.Validate(state, settings);
-            UnbindCycle();
-            inventory.Restore(state, settings, Time.time);
+            RequireController().Restore(state, settings);
             definitions.Clear();
             foreach (OwnedWeaponSnapshot record in state.weapons)
             {
@@ -214,12 +202,13 @@ namespace EmergencyShift
             Equipped();
         }
 
-        private bool CanUse => !inputBlock.IsBlocked && isActiveAndEnabled && (life == null || !life.IsDead);
+        private bool CanUse => controller != null && inputBlock != null && !inputBlock.IsBlocked
+            && isActiveAndEnabled && (life == null || !life.IsDead);
 
         public bool Acquire(int cartridges, WeaponDefinition selected = null)
         {
             WeaponDefinition asset = selected != null ? selected : Definition;
-            if (!CanUse || !inventory.Acquire(asset.ToSettings(), cartridges))
+            if (!CanUse || !controller.Acquire(asset.ToSettings(), cartridges))
             {
                 return false;
             }
@@ -236,24 +225,12 @@ namespace EmergencyShift
 
         public int AddAmmo(int cartridges, WeaponDefinition target = null)
         {
-            return CanUse ? inventory.AddAmmo(cartridges, target != null ? target.ToSettings() : null) : 0;
+            return CanUse ? controller.AddAmmo(cartridges, target != null ? target.ToSettings() : null) : 0;
         }
 
-        public bool TryEquip(int slot)
-        {
-            if (!CanUse || !inventory.Equip(slot))
-            {
-                return false;
-            }
+        public bool TryEquip(int slot) => controller != null && controller.Equip(slot);
 
-            Equipped();
-            return true;
-        }
-
-        public bool TryReload()
-        {
-            return CanUse && inventory.ActiveCycle != null && inventory.ActiveCycle.TryReload(Time.time);
-        }
+        public bool TryReload() => controller != null && controller.Reload();
 
         private void Equipped()
         {
@@ -262,7 +239,6 @@ namespace EmergencyShift
                 visualProfile = Definition.visuals;
             }
 
-            BindCycle();
             if (weaponPivot != null)
             {
                 weaponPivot.localScale = Vector3.Scale(restingWeaponScale, Definition.HeldScale);
@@ -270,26 +246,6 @@ namespace EmergencyShift
 
             UpdatePose();
             OwnershipChanged?.Invoke();
-        }
-
-        private void BindCycle()
-        {
-            UnbindCycle();
-            boundCycle = inventory.ActiveCycle;
-            if (boundCycle != null)
-            {
-                boundCycle.Operation += OnOperation;
-            }
-        }
-
-        private void UnbindCycle()
-        {
-            if (boundCycle != null)
-            {
-                boundCycle.CancelReload();
-                boundCycle.Operation -= OnOperation;
-                boundCycle = null;
-            }
         }
 
         private void OnOperation(WeaponOperation operation)
@@ -303,52 +259,34 @@ namespace EmergencyShift
 
         private void Update()
         {
-            if (inputBlock.IsBlocked)
+            if (controller == null || inputBlock.IsBlocked)
             {
                 return;
             }
 
-            inventory.ActiveCycle?.Tick(Time.time);
-            ReloadEmptyWeapon();
-            if (input.SelectPistolPressed)
-            {
-                TryEquip(0);
-            }
-
-            if (input.SelectShotgunPressed)
-            {
-                TryEquip(1);
-            }
-
-            if (input.ReloadPressed)
-            {
-                TryReload();
-            }
-
+            bool fire = controller.Update(new WeaponInputIntent(input.SelectPistolPressed,
+                input.SelectShotgunPressed, input.ReloadPressed, input.FirePressed, input.FireHeld));
             UpdatePose();
-            bool fire = inventory.ActiveCycle != null && inventory.ActiveCycle.Settings.Automatic ? input.FireHeld : input.FirePressed;
             if (fire)
             {
                 TryFire();
             }
         }
 
-        private void ReloadEmptyWeapon()
-        {
-            var cycle = inventory.ActiveCycle;
-            if (CanUse && cycle != null && cycle.MagazineCapacity > 0 && cycle.Loaded == 0 && cycle.Reserve > 0)
-            {
-                cycle.TryReload(Time.time);
-            }
-        }
-
         private void OnDisable()
         {
-            inventory.ActiveCycle?.CancelReload();
+            controller?.CancelReload();
             if (weaponPivot != null)
             {
                 weaponPivot.gameObject.SetActive(false);
             }
+        }
+
+        private void RefreshAimEnvironment()
+        {
+            var rig = new WeaponAimRig2D(transform, weaponPivot, muzzle);
+            var source = new WeaponAimSource2D(aim, flashlight);
+            aimEnvironment = new WeaponAimEnvironment2D(rig, source, blockingGeometry);
         }
 
         private void UpdatePose()
@@ -359,117 +297,76 @@ namespace EmergencyShift
             }
 
             weaponPivot.gameObject.SetActive(HasWeapon && CanUse);
-            if (aim != null)
-            {
-                if (!aim.HasTarget || muzzle == null)
-                {
-                    return;
-                }
-
-                Vector2 offset = aim.WorldPoint - (Vector2)weaponPivot.position;
-                float distance = offset.magnitude;
-                // Solve the sideways muzzle offset: aiming the player centre at the cursor would miss nearby targets.
-                float lateral = Vector2.Dot(muzzle.position - weaponPivot.position, weaponPivot.right);
-                if (distance <= Mathf.Abs(lateral) + .001f)
-                {
-                    return;
-                }
-
-                float heading = Mathf.Atan2(offset.y, offset.x) +
-                                Mathf.Asin(Mathf.Clamp(lateral / distance, -.999f, .999f));
-                weaponPivot.rotation = Quaternion.Euler(0, 0, heading * Mathf.Rad2Deg - 90f);
-            }
-            else
-            {
-                Vector2 direction = flashlight.Direction; // Compatibility for older, unconfigured scenes.
-                weaponPivot.rotation =
-                    Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
-            }
+            aimEnvironment?.UpdateRotation();
         }
 
         public bool TryFire()
         {
-            var cycle = inventory.ActiveCycle;
-            if (CanUse && cycle != null && cycle.CanDryFire)
-            {
-                if (Time.time >= nextEmptyTrigger)
-                {
-                    nextEmptyTrigger = Time.time + .25f;
-                    EmptyTriggerPulled?.Invoke();
-                }
-
-                return false;
-            }
-
-            if (!CanUse || cycle == null || !cycle.CanFire(Time.time) || visualProfile == null ||
-                bulletPrefab == null || effectPrefab == null || muzzle == null)
+            if (controller == null || !controller.CheckFireIntent() || visualProfile == null
+                || bulletPrefab == null || effectPrefab == null || muzzle == null)
             {
                 return false;
             }
 
             UpdatePose();
-            Vector2 origin = muzzle.position;
-            if (aim != null && !HasForwardAim)
-            {
-                return false; // Never fire backwards into the owner at a cursor under the gun.
-            }
-
-            if (!cycle.TryFire(Time.time))
+            if (aimEnvironment == null || !aimEnvironment.TryBuildShot(BulletRange,
+                out WeaponShotRequest request, out pendingMuzzleHit))
             {
                 return false;
             }
 
-            Vector2 target = aim != null ? aim.WorldPoint : origin + flashlight.Direction * BulletRange;
-            Vector2 direction = (target - origin).normalized;
-            // Не выпускаем пулю за преградой, даже если дуло выступает сквозь низкую мебель.
-            RaycastHit2D blockedMuzzle =
-                Physics2D.Linecast(transform.position, origin, blockingGeometry.value | (1 << 9));
-            if (blockedMuzzle.collider != null)
-            {
-                origin = blockedMuzzle.point - direction * 0.05f;
-            }
+            return controller.TryFire(request);
+        }
 
-            LastShotDirection = direction;
-            LastShotOrigin = origin;
-            LastShotTarget = target;
-            ShotsFired++;
+        void IWeaponShotView.PresentEmptyTrigger() => EmptyTriggerPulled?.Invoke();
+
+        void IWeaponShotView.PresentShot(WeaponShotPlan plan)
+        {
+            Vector2 origin = plan.Request.Origin;
+            Vector2 direction = plan.Request.Direction;
             ShotFired?.Invoke();
-            if (cycle.EjectsOnShot)
+            if (plan.EjectsOnShot)
             {
                 CasingEjected?.Invoke();
             }
 
-            var flash = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
+            var flash = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -.1f), Quaternion.identity);
             flash.Play(visualProfile, false, direction);
             if (shotShadow != null)
             {
                 shotShadow.Follow(flash.LightSource);
             }
 
-            if (blockedMuzzle.collider == null)
+            if (!plan.Request.MuzzleBlocked)
             {
-                for (int index = 0; index < cycle.Settings.ProjectileCount; index++)
+                foreach (Vector2 heading in plan.Directions)
                 {
-                    Vector2 heading = cycle.Settings.ProjectileDirection(direction, index, shotRandom);
-                    var bullet = Instantiate(bulletPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
-                    bullet.Launch(transform, heading, visualProfile, effectPrefab, bulletCollisionMask, Damage,
-                        BulletRange, ShotsFired);
+                    var bullet = Instantiate(bulletPrefab, new Vector3(origin.x, origin.y, -.1f), Quaternion.identity);
+                    bullet.Launch(transform, heading, visualProfile, effectPrefab, bulletCollisionMask, plan.Damage,
+                        plan.Range, plan.VolleyId);
                 }
             }
             else
             {
-                ReportImpact(blockedMuzzle.collider, blockedMuzzle.point, ShotsFired);
-                var impact = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
+                ReportImpact(pendingMuzzleHit.collider, pendingMuzzleHit.point, plan.VolleyId);
+                var impact = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -.1f), Quaternion.identity);
                 impact.Play(visualProfile, true, -direction);
             }
+        }
 
-            ReloadEmptyWeapon();
-            return true;
+        private WeaponController RequireController()
+        {
+            return controller ?? throw new InvalidOperationException("Weapon requires its level DI composition.");
         }
 
         private void OnDestroy()
         {
-            UnbindCycle();
+            if (controller != null)
+            {
+                controller.Dispose();
+                controller.SelectionChanged -= Equipped;
+                controller.Operation -= OnOperation;
+            }
         }
     }
 }

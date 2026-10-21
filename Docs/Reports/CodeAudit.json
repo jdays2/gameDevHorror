@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "297 current own C# explicitly reviewed; 109 retain migration debt. complete=false. WeaponModels01 certifies only stated boundaries.",
+  "limits": "313 current own C# explicitly reviewed; 108 retain migration debt. complete=false. WeaponController02 certifies only stated boundaries.",
   "counts": {
-    "partial": 109,
-    "reviewed_boundary": 188
+    "partial": 108,
+    "reviewed_boundary": 205
   },
   "files": [
     {
@@ -933,6 +933,8 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/FireOwnedWeaponCommand.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
@@ -1239,6 +1241,111 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/FireOwnedWeaponCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "e6cd0d99fb4433fff8e7455283edae199aef0ceee357c5fd93b0e1d1f49968f8",
+      "guid": "a55c396772affdd4f9fd19c214106877",
+      "types": [
+        "FireOwnedWeaponCommand"
+      ],
+      "lines": 39,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "e6cd0d99fb4433fff8e7455283edae199aef0ceee357c5fd93b0e1d1f49968f8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/IWeaponAimSource2D.cs",
+      "sourceScope": "unity",
+      "sha256": "cf703977d8e0fa71347235d6fb015bef7adef6075df972189620ddc62789a1e3",
+      "guid": "dd093cc26a6cbb34d8b9719d8fbcb39f",
+      "types": [
+        "IWeaponAimSource2D"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponAimSource2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponAimEnvironmentTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "cf703977d8e0fa71347235d6fb015bef7adef6075df972189620ddc62789a1e3",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/IWeaponShotView.cs",
+      "sourceScope": "unity",
+      "sha256": "99278793f7f200ecf2b30a6503d0cfaedcc9a519ef7384cde24f33b954707d29",
+      "guid": "f32eac792c0731548bbdd2b550c8fe1b",
+      "types": [
+        "IWeaponShotView"
+      ],
+      "lines": 8,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "99278793f7f200ecf2b30a6503d0cfaedcc9a519ef7384cde24f33b954707d29",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/IWeaponUseGate.cs",
+      "sourceScope": "unity",
+      "sha256": "d9e841dad74c355237ecd6f780c1e88274c1e585921b89b48e47acd76db7dda7",
+      "guid": "fb7392aea2caadc4aab4f534ebdfbb88",
+      "types": [
+        "IWeaponUseGate"
+      ],
+      "lines": 8,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d9e841dad74c355237ecd6f780c1e88274c1e585921b89b48e47acd76db7dda7",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponCycle.cs",
       "sha256": "97da6d2163abaea61861c988f25ac14b14586f87bf6e57f991b9a737dc44c333",
       "baselineSha256": "85ec80b5cc7b06b6ee5f14c853bb853e1235961df08eabe7c7f2f0cb0f7e7e9e",
@@ -1300,6 +1407,7 @@
         "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunSettings.cs",
         "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
       ],
       "entryPointHints": [],
@@ -1367,6 +1475,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs",
         "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
       ],
       "entryPointHints": [],
@@ -1375,6 +1484,135 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/WeaponModels01.md",
       "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponAimEnvironment2D.cs",
+      "sourceScope": "unity",
+      "sha256": "d9de48d8398d37a7c6fbab1246cc17aa646a27d4c429a884b2972c9ad8e82f35",
+      "guid": "687a0461423bc7f4e8801b5c12ef4e25",
+      "types": [
+        "WeaponAimEnvironment2D"
+      ],
+      "lines": 77,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponAimEnvironmentTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d9de48d8398d37a7c6fbab1246cc17aa646a27d4c429a884b2972c9ad8e82f35",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponAimRig2D.cs",
+      "sourceScope": "unity",
+      "sha256": "260107e3156eb48c4cf946bf52b339c4b12bbf0b21d81383f052c29cba899b96",
+      "guid": "4682614e7f68bac4eb597bb2cfd44f69",
+      "types": [
+        "WeaponAimRig2D"
+      ],
+      "lines": 19,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponAimEnvironmentTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "260107e3156eb48c4cf946bf52b339c4b12bbf0b21d81383f052c29cba899b96",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponAimSource2D.cs",
+      "sourceScope": "unity",
+      "sha256": "1fcf6069089348ffbee7132e2d79617c83e6c9611a75dba4421785b860afa88a",
+      "guid": "54ebcb916bc1db242a0f60bac7a52348",
+      "types": [
+        "WeaponAimSource2D"
+      ],
+      "lines": 21,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1fcf6069089348ffbee7132e2d79617c83e6c9611a75dba4421785b860afa88a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+      "sourceScope": "unity",
+      "sha256": "8e78b21078c68323a181f15e62310120c6e4872d98a782726d32d6268829e2f9",
+      "guid": "4a2a993a81965af4cb69153905e5dbd3",
+      "types": [
+        "WeaponController"
+      ],
+      "lines": 224,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "8e78b21078c68323a181f15e62310120c6e4872d98a782726d32d6268829e2f9",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "7ec7caf2995c2727edfe0c93ff97c5d3b8a0c832d94501312bd519183d9fa39b",
+      "guid": "8b8131d5b59093445915d5827bbefa48",
+      "types": [
+        "WeaponControllerFactory"
+      ],
+      "lines": 22,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7ec7caf2995c2727edfe0c93ff97c5d3b8a0c832d94501312bd519183d9fa39b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
@@ -1395,9 +1633,11 @@
         "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponSettings.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunSettings.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycleCommands.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponOwnerModel.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettings.cs",
         "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
@@ -1407,6 +1647,7 @@
         "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
         "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -1469,6 +1710,56 @@
       "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInputIntent.cs",
+      "sourceScope": "unity",
+      "sha256": "89421134558c62f5f018197c843bcf0c1f7694af9e5ab36d095db7a5f25635ac",
+      "guid": "b6a5603cdf3e0db47a3bcb5c3f81a2e5",
+      "types": [
+        "WeaponInputIntent"
+      ],
+      "lines": 20,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "89421134558c62f5f018197c843bcf0c1f7694af9e5ab36d095db7a5f25635ac",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "c5db7a04857f4d3f4508425445551e864548c48ab7efebdf2fd59801cb5e4428",
+      "guid": "f93b36983d7d263489c01c734b7d1b04",
+      "types": [
+        "WeaponInstaller"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c5db7a04857f4d3f4508425445551e864548c48ab7efebdf2fd59801cb5e4428",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
       "sha256": "58c775d45439d0f5ea0fcdc821dea874a78cbf2835bcd7bf2e50ee87e10b66c1",
       "baselineSha256": "b5744cd2433bcf448214c01a47cd71e9ddc745c1e8c774c518ebfd8799cbda2e",
@@ -1483,7 +1774,9 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponOwnerModel.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
@@ -1548,6 +1841,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponOwnerModel.cs",
+      "sourceScope": "unity",
+      "sha256": "66ff4d7fa0ed467133c991109db0039a5bcd569a6fd2393d2094df2d4f8fdd3d",
+      "guid": "bdc6a5f571157ca46bf6c6b5e5905419",
+      "types": [
+        "WeaponOwnerModel"
+      ],
+      "lines": 41,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/FireOwnedWeaponCommand.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "66ff4d7fa0ed467133c991109db0039a5bcd569a6fd2393d2094df2d4f8fdd3d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettings.cs",
       "sourceScope": "unity",
@@ -1561,15 +1881,19 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponSettings.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponOwnerModel.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettingsCatalog.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponShotPlan.cs",
         "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
         "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
         "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
       ],
@@ -1595,6 +1919,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
         "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
@@ -1609,6 +1934,65 @@
       "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponShotPlan.cs",
+      "sourceScope": "unity",
+      "sha256": "28f41cbac4424fb260e0d11d3edd0f4d58344a690b74175cc4135586f89e868a",
+      "guid": "277f8f112f93b404894d0469fbfac56b",
+      "types": [
+        "WeaponShotPlan"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/FireOwnedWeaponCommand.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/IWeaponShotView.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponOwnerModel.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "28f41cbac4424fb260e0d11d3edd0f4d58344a690b74175cc4135586f89e868a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponShotRequest.cs",
+      "sourceScope": "unity",
+      "sha256": "1cb60f66fd23a88656ddd735e375d7bbe87f889dba2f6d1ee3f1dd6dcc477054",
+      "guid": "f93f5b47f5eb84d45be05e0781eda30e",
+      "types": [
+        "WeaponShotRequest"
+      ],
+      "lines": 25,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/FireOwnedWeaponCommand.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponOwnerModel.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponShotPlan.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1cb60f66fd23a88656ddd735e375d7bbe87f889dba2f6d1ee3f1dd6dcc477054",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Core/Commands/CommandResult.cs",
       "sha256": "610b1fbf2157a3db671d060831c954d09323727dc60ba9e2b6e9bc35af9294a5",
       "baselineSha256": null,
@@ -1620,6 +2004,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/FireOwnedWeaponCommand.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycleCommands.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
@@ -1670,6 +2055,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/FireOwnedWeaponCommand.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycleCommands.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
@@ -2125,14 +2511,15 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunSettings.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponOwnerModel.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettings.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
       ],
@@ -2170,11 +2557,13 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -2338,6 +2727,8 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
@@ -2346,7 +2737,9 @@
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -6888,13 +7281,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "96cbe1603670f796d5b499d73981c9944050dd4f8651d773550d67701a446f18",
+      "sha256": "2455d98d7fd16e706eb54fd609571e1397ef60e7144abd5a659541c0447d5979",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 136,
+      "lines": 137,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -6929,8 +7322,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Dialogue installer reviewed and registered after local input binding. Existing scoped input/pause integration preserved. Initialization failure cleanup and remaining feature lifetime composition remain migration debt.",
-      "reviewedSha256": "96cbe1603670f796d5b499d73981c9944050dd4f8651d773550d67701a446f18",
+      "notes": "WeaponController02: weapon factory installer registered after local input/clock bindings; original pause integration preserved. Initialize failure cleanup and remaining scope/lifetime composition remain debt.",
+      "reviewedSha256": "2455d98d7fd16e706eb54fd609571e1397ef60e7144abd5a659541c0447d5979",
       "previousReviewStatus": "partial",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -6943,8 +7336,8 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/DialogueMvc01.md",
-      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests.",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "reviewHistory": [
         {
           "reviewDate": "2026-10-21",
@@ -6952,6 +7345,13 @@
           "reviewedSha256": "34ae9c123e0f219e8c071e50ca3a48d0815b1e0160493deab914a7c9d8e56bea",
           "notes": "Явная композиция до Awake consumers, отдельный player input subcontainer и managed disposal; models UI пока в level container выбранного игрока. Полная проверка failure cleanup Initialize/всех feature scopes остаётся; не объявлять обобщённую multi-player готовность.",
           "reviewReport": "Docs/Reports/CodeAudit05.md"
+        },
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "96cbe1603670f796d5b499d73981c9944050dd4f8651d773550d67701a446f18",
+          "notes": "Dialogue installer reviewed and registered after local input binding. Existing scoped input/pause integration preserved. Initialization failure cleanup and remaining feature lifetime composition remain migration debt.",
+          "reviewReport": "Docs/Reports/DialogueMvc01.md"
         }
       ]
     },
@@ -8410,6 +8810,7 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponAimSource2D.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
@@ -8888,13 +9289,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
-      "sha256": "03476ddc81ce5397d55e6d5a65d221240c0ac9bf4bd7501f194191ce76e2da56",
+      "sha256": "e8704c9ca9814690252936cfe13702e89b387cd8ee8d3fcf96d8161c3e9126cf",
       "baselineSha256": "596fb7c3e90acf823fc8ecc665be76ec2f257bc91f18efb1d501753fb846d9aa",
       "guid": "a7c2f849920eead45b86e58e62166543",
       "types": [
         "PlayerWeapon2D"
       ],
-      "lines": 475,
+      "lines": 372,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -8943,9 +9344,9 @@
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "WeaponModels01/BUG-010: separate injected gameplay RNG; ID-to-visual-asset mapping outside pure inventory, simulation tuning from active immutable settings. Still partial: Time/input, pose, muzzle physics, projectile/effect creation and presentation lifetimes require controller/environment split.",
-      "reviewedSha256": "03476ddc81ce5397d55e6d5a65d221240c0ac9bf4bd7501f194191ce76e2da56",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: Unity input/render adapter; gameplay state and clocks delegated to pure scoped controller/model. Pose/Physics2D in separate environment. No direct Time/Physics2D/spread calculation. Serialized fields/GUID preserved; 416 EditMode, 12 PlayMode and Windows64 build. Projectile simulation remains in its own partial file.",
+      "reviewedSha256": "e8704c9ca9814690252936cfe13702e89b387cd8ee8d3fcf96d8161c3e9126cf",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -8960,6 +9361,13 @@
           "reviewedSha256": "20017bc412f747144a42b9592708d2dc5c2c21dab68985ac92ef350dd9371476",
           "notes": "445 строк объединяют intent/controller, pose, authoritative fire, physics и VFX. BoundCycle Operation парно снимается/перевязывается. Generic cycle-based autoreload сохранён; конкретных проверок вида оружия для него нет. Projectile/effect raw Instantiate не закрепляет scene ownership как ScenePrefabFactory. RNG sequence см. BUG-010; атомарность при ошибке visuals требует отдельной проверки.",
           "reviewReport": "Docs/Reports/CodeAudit07.md"
+        },
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "03476ddc81ce5397d55e6d5a65d221240c0ac9bf4bd7501f194191ce76e2da56",
+          "notes": "WeaponModels01/BUG-010: separate injected gameplay RNG; ID-to-visual-asset mapping outside pure inventory, simulation tuning from active immutable settings. Still partial: Time/input, pose, muzzle physics, projectile/effect creation and presentation lifetimes require controller/environment split.",
+          "reviewReport": "Docs/Reports/WeaponModels01.md"
         }
       ],
       "responsibility": "Unity-мост input, inventory, прицеливания и выдачи выстрела",
@@ -8972,8 +9380,8 @@
       ],
       "usageEvidence": "Player prefab/scene overrides; loot/checkpoint/audio/HUD",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "previousReviewStatus": "partial"
     },
     {
@@ -10669,6 +11077,7 @@
         "Assets/EmergencyShift/Editor/Authoring/FurnitureLightStudyBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponAimSource2D.cs",
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
@@ -11424,37 +11833,48 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "Preview-scene fixture with real Player prefab and explicit adapter initialization; invalid preflight preserves world/player, valid legacy/repeated modules, isolated disk/death/Apply. Fixture is disposed without saving authored scenes. All 73 passed in focused and full 265 run.",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "7f42aecdc9da7db62db5fa6d2b0aaba143cc64d245e2359a459c90148f12d178",
+      "reviewedSha256": "f6f8133ab8fb8d1917711b72af227b74798bec19209a6ae20e609474672485f0",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointPayload02.md",
-      "reviewScope": "Full touched source and ownership/compatibility boundary review; 73/73 new, 265/265 own EditMode, Windows64 Succeeded.",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "7f42aecdc9da7db62db5fa6d2b0aaba143cc64d245e2359a459c90148f12d178",
+      "sha256": "f6f8133ab8fb8d1917711b72af227b74798bec19209a6ae20e609474672485f0",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 421,
+      "lines": 424,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [
         "Test",
         "TestCase"
       ],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "7f42aecdc9da7db62db5fa6d2b0aaba143cc64d245e2359a459c90148f12d178",
+          "notes": "Preview-scene fixture with real Player prefab and explicit adapter initialization; invalid preflight preserves world/player, valid legacy/repeated modules, isolated disk/death/Apply. Fixture is disposed without saving authored scenes. All 73 passed in focused and full 265 run.",
+          "reviewReport": "Docs/Reports/CheckpointPayload02.md"
+        }
+      ]
     },
     {
       "reviewStatus": "reviewed_boundary",
@@ -11512,6 +11932,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [
@@ -12382,6 +12803,67 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/WeaponAimEnvironmentTests.cs",
+      "sourceScope": "unity",
+      "sha256": "bf1a51af9ffaa7630a2540e818701d25c5a7d79d099f4e0ed43c4fc15ca1a87d",
+      "guid": "bdaa95b2202bbd64da3882cda70b9f17",
+      "types": [
+        "TestSource",
+        "WeaponAimEnvironmentTests"
+      ],
+      "lines": 76,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "bf1a51af9ffaa7630a2540e818701d25c5a7d79d099f4e0ed43c4fc15ca1a87d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+      "sourceScope": "unity",
+      "sha256": "8205d1faa2de254a0ce606ec3e921e2b66199ea4aac5f504c246141bc659a14a",
+      "guid": "78d80101b93d84942b864febacbdb785",
+      "types": [
+        "CountingRandom",
+        "Fixture",
+        "TestClock",
+        "TestGate",
+        "TestView",
+        "WeaponControllerTests"
+      ],
+      "lines": 299,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/LocalLampSceneSettings.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "8205d1faa2de254a0ce606ec3e921e2b66199ea4aac5f504c246141bc659a14a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards."
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
       "sha256": "1d2973d1628a85fdadc95bc6698c2c24ca910de7c1803a22547e780aa0664e93",
       "baselineSha256": "420110041eb7e11d0c982a527ab24fca301c7c5cb85e5ff6b64a69d593f9cfd4",
@@ -12518,7 +13000,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false
@@ -12553,17 +13036,18 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "f15a8167888aca9f6ce01e7d1c0d56c909a48bb3f434ad512cd1df8877336bda",
+      "sha256": "8473dcd71f302ccc25e958a01ddf3d24ff31967655825d985f3f166523e3f4e8",
       "guid": "f6f7021931ae9294a9d8993c8238be40",
       "types": [
+        "RealClock",
         "SpreadEvidence",
         "TestInput",
         "WeaponSpreadLifetimeTests"
       ],
-      "lines": 192,
+      "lines": 246,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -12571,10 +13055,20 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "f15a8167888aca9f6ce01e7d1c0d56c909a48bb3f434ad512cd1df8877336bda",
+      "reviewedSha256": "8473dcd71f302ccc25e958a01ddf3d24ff31967655825d985f3f166523e3f4e8",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
+      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "f15a8167888aca9f6ce01e7d1c0d56c909a48bb3f434ad512cd1df8877336bda",
+          "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+          "reviewReport": "Docs/Reports/WeaponModels01.md"
+        }
+      ]
     },
     {
       "baselineSha256": null,
@@ -12976,14 +13470,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 278,
+    "unity": 294,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
     "files": 20,
-    "report": "Docs/Reports/WeaponModels01.md",
-    "validation": "BUG-018: 4 original failures, 394/394 all own EditMode, 10/10 PlayMode including actual RNG/flash comparison, normal Windows64 success. See dirty working tree/test artifact limits."
+    "report": "Docs/Reports/WeaponController02.md",
+    "validation": "416/416 own EditMode, 12/12 real PlayMode, normal Windows64 success. Three pure passive loop allocation checks: 0 bytes/1000 updates, not a whole-game performance claim."
   },
   "reviewPasses": [
     {
@@ -13045,15 +13539,21 @@
       "files": 20,
       "report": "Docs/Reports/WeaponModels01.md",
       "validation": "BUG-018: 4 original failures, 394/394 all own EditMode, 10/10 PlayMode including actual RNG/flash comparison, normal Windows64 success. See dirty working tree/test artifact limits."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 20,
+      "report": "Docs/Reports/WeaponController02.md",
+      "validation": "416/416 own EditMode, 12/12 real PlayMode, normal Windows64 success. Three pure passive loop allocation checks: 0 bytes/1000 updates, not a whole-game performance claim."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 297,
-    "totalFiles": 297,
+    "reviewedFiles": 313,
+    "totalFiles": 313,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "WeaponModels01 and earlier source reviews; remaining partial files are not certified migrated."
+    "validation": "WeaponController02 and previous reviews; remaining partial files are not certified migrated."
   }
 }

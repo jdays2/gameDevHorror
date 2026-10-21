@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using EmergencyShift.Core.Time;
+using EmergencyShift.Core.Randomness;
 using EmergencyShift.Features.Health.Logic;
 using EmergencyShift.Features.PlayerInput.Logic;
 using NUnit.Framework;
@@ -53,7 +54,9 @@ namespace EmergencyShift.Tests
             upgrades = player.GetComponent<FlashlightUpgrades>();
             Awake(upgrades);
             gun = player.GetComponent<PlayerWeapon2D>();
-            Set(gun, "inputBlock", new GameplayInputBlock());
+            typeof(PlayerWeapon2D).GetMethod("Construct", BindingFlags.Instance | BindingFlags.NonPublic)
+                .Invoke(gun, new object[] { null, new GameplayInputBlock(),
+                    new WeaponControllerFactory(new TestClock(), new RandomSourceFactory(new System.Random(117))) });
             Awake(gun);
             gun.RestoreState(true, 6, gun.Definition);
             cards = player.GetComponent<PlayerAccessCards2D>();

@@ -78,6 +78,7 @@ namespace EmergencyShift
             Container.Bind<IPlayerInput>().FromInstance(localInput);
             Container.Bind<GameplayInputBlock>().FromInstance(localInputBlock);
             DialogueInstaller.Install(Container);
+            WeaponInstaller.Install(Container);
         }
 
         private void OnDestroy() => Dispose();

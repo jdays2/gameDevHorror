@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using EmergencyShift.Core.Randomness;
+using EmergencyShift.Core.Time;
 using EmergencyShift.Features.PlayerInput.Logic;
 using NUnit.Framework;
 using UnityEditor;
@@ -101,6 +102,54 @@ namespace EmergencyShift.Tests
             yield return null;
         }
 
+        [UnityTest]
+        public IEnumerator BlockedMuzzleProducesImpactAndConsumesAmmoWithoutLaunchingBullets()
+        {
+            PlayerWeapon2D weapon = CreateWeapon(491, false);
+            var wall = new GameObject("Muzzle blocker fixture");
+            wall.layer = 8;
+            wall.transform.position = Vector3.up * .2f;
+            var collider = wall.AddComponent<BoxCollider2D>();
+            collider.size = new Vector2(.4f, .05f);
+            Physics2D.SyncTransforms();
+            Assert.That(weapon.TryFire(), Is.True);
+            Assert.That(Directions(weapon), Is.Empty);
+            Assert.That(weapon.ShotsFired, Is.EqualTo(1));
+            Assert.That(weapon.Ammo, Is.EqualTo(11));
+            Assert.That(weapon.LastShotOrigin.y, Is.LessThan(collider.bounds.min.y));
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator DisablingViewCancelsPartialReloadAndReenableKeepsItsAmmo()
+        {
+            PlayerWeapon2D weapon = CreateWeapon(581, false);
+            Assert.That(weapon.TryFire(), Is.True);
+            float deadline = Time.realtimeSinceStartup + 3;
+            while (weapon.Phase == WeaponPhase.Pumping && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+
+            Assert.That(weapon.Phase, Is.EqualTo(WeaponPhase.Ready));
+            Assert.That(weapon.TryReload(), Is.True);
+            weapon.enabled = false;
+            Assert.That(weapon.Phase, Is.EqualTo(WeaponPhase.Ready));
+            yield return new WaitForSecondsRealtime(1);
+            Assert.That(weapon.LoadedAmmo, Is.EqualTo(source.magazineCapacity - 1));
+            Assert.That(weapon.Ammo, Is.EqualTo(11));
+            weapon.enabled = true;
+            Assert.That(weapon.TryReload(), Is.True);
+            deadline = Time.realtimeSinceStartup + 3;
+            while (weapon.Phase == WeaponPhase.Loading && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+
+            Assert.That(weapon.LoadedAmmo, Is.EqualTo(source.magazineCapacity));
+            Assert.That(weapon.Ammo, Is.EqualTo(11));
+        }
+
         private PlayerWeapon2D CreateWeapon(int seed, bool withoutPlume)
         {
             var definition = UnityEngine.Object.Instantiate(source);
@@ -128,7 +177,7 @@ namespace EmergencyShift.Tests
             Set(weapon, "definition", definition);
             weapon.Configure(pivot, muzzle, bullet, effect, definition.visuals);
             typeof(PlayerWeapon2D).GetMethod("Construct", BindingFlags.Instance | BindingFlags.NonPublic)
-                .Invoke(weapon, new object[] { new TestInput(), new GameplayInputBlock(), new RandomSourceFactory(new System.Random(seed)) });
+                .Invoke(weapon, new object[] { new TestInput(), new GameplayInputBlock(), new WeaponControllerFactory(new RealClock(), new RandomSourceFactory(new System.Random(seed))) });
             root.SetActive(true);
             Assert.That(weapon.Acquire(12, definition), Is.True);
             return weapon;
@@ -158,6 +207,11 @@ namespace EmergencyShift.Tests
         private static void Set(object target, string field, object value)
         {
             target.GetType().GetField(field, BindingFlags.Instance | BindingFlags.NonPublic).SetValue(target, value);
+        }
+
+        private sealed class RealClock : IGameClock
+        {
+            public double Time => UnityEngine.Time.timeAsDouble;
         }
 
         private sealed class TestInput : IPlayerInput
