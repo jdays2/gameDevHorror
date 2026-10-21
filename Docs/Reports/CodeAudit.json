@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "368 own C# explicitly read; 99 partial. Boundary reviews certify stated scope, not every configuration/style/lifetime task. complete=false. Latest: ScopeFailure03.",
+  "limits": "383 own C# explicitly read; 98 partial. Boundary reviews certify stated scope, not all configuration/style tasks. complete=false. Latest: EnemyMelee01.",
   "counts": {
-    "partial": 99,
-    "reviewed_boundary": 269
+    "partial": 98,
+    "reviewed_boundary": 285
   },
   "files": [
     {
@@ -2021,6 +2021,12 @@
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightStateModel.cs",
@@ -2083,6 +2089,10 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
@@ -2828,11 +2838,14 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
@@ -3343,13 +3356,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyDefinition.cs",
-      "sha256": "b4dbbfcbea7220576ca61744971cb4f682b7a0d7c644f87b0c0ef99b71545159",
+      "sha256": "7fa2c609c274b53f6fc3aec906378b457f7ff7613865907eabe4476596407b2b",
       "baselineSha256": "b4dbbfcbea7220576ca61744971cb4f682b7a0d7c644f87b0c0ef99b71545159",
       "guid": "c5ee07939d1c586488f21741759ee2be",
       "types": [
         "EnemyDefinition"
       ],
-      "lines": 40,
+      "lines": 44,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Enemies/SandboxTarget-20HP.asset",
         "Assets/EmergencyShift/Data/Enemies/SandboxTarget-2HP.asset",
@@ -3368,11 +3381,12 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Runtime HP/aggro не записываются в SO. Min/Range не заменяют finite/cross-field validation: общего Validate для attackDuration/lungeStart≤strikeAt≤lungeEnd и положительных скоростей нет; часть проверок дублируется только в Sleeper.Awake. Public fields ослабляют readonly-контракт.",
+      "notes": "EnemyMelee01: immutable validated melee settings snapshot added; all authored definitions checked without mutation. Other stats validation/public legacy config API remain debt.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общий баланс HP, преследования и укуса",
@@ -3381,10 +3395,18 @@
         "числовые данные"
       ],
       "usageEvidence": "Оба brain/melee; Stalker-Default и Sleeper assets; EnemySystemsTests",
-      "reviewedSha256": "b4dbbfcbea7220576ca61744971cb4f682b7a0d7c644f87b0c0ef99b71545159",
+      "reviewedSha256": "7fa2c609c274b53f6fc3aec906378b457f7ff7613865907eabe4476596407b2b",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Runtime HP/aggro не записываются в SO. Min/Range не заменяют finite/cross-field validation: общего Validate для attackDuration/lungeStart≤strikeAt≤lungeEnd и положительных скоростей нет; часть проверок дублируется только в Sleeper.Awake. Public fields ослабляют readonly-контракт.",
+          "reviewedSha256": "b4dbbfcbea7220576ca61744971cb4f682b7a0d7c644f87b0c0ef99b71545159"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyPatrolProfile.cs",
@@ -5657,14 +5679,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
-      "sha256": "a8b7a1b49aee67e9dff9d098ec585a457ba292eaffac18577b53a94cda8af50f",
+      "sha256": "eb3af46c8175318059a68ba2ac8a89dab970a9e34cd6390597255aaee00c5452",
       "baselineSha256": "a8b7a1b49aee67e9dff9d098ec585a457ba292eaffac18577b53a94cda8af50f",
       "guid": "4ac11a654f0818c4d8789e11e1995956",
       "types": [
         "EnemyMeleeAttack2D",
         "Snapshot"
       ],
-      "lines": 109,
+      "lines": 102,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -5687,11 +5709,12 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Правила/таймеры атаки остаются в MonoBehaviour и читают Time.time; Begin/Step/Restore — public без командной границы. Положительно: урон выдаётся расчётом Step один раз через struck, не animation event; fixed-heading ветка — настройка алгоритма, не switch по виду врага.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Таймлайн выпада, геометрия укуса и доставка урона",
@@ -5702,10 +5725,18 @@
         "Time"
       ],
       "usageEvidence": "Оба brain вызывают CanStart/Begin/Step/Finish/Interrupt; snapshots в обоих checkpoint",
-      "reviewedSha256": "a8b7a1b49aee67e9dff9d098ec585a457ba292eaffac18577b53a94cda8af50f",
+      "reviewedSha256": "eb3af46c8175318059a68ba2ac8a89dab970a9e34cd6390597255aaee00c5452",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Правила/таймеры атаки остаются в MonoBehaviour и читают Time.time; Begin/Step/Restore — public без командной границы. Положительно: урон выдаётся расчётом Step один раз через struck, не animation event; fixed-heading ветка — настройка алгоритма, не switch по виду врага.",
+          "reviewedSha256": "a8b7a1b49aee67e9dff9d098ec585a457ba292eaffac18577b53a94cda8af50f"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs",
@@ -5729,7 +5760,8 @@
         "AgentScripts/CheckWorldServices.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
-        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs"
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -5832,6 +5864,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs"
       ],
       "entryPointHints": [],
@@ -5932,7 +5965,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -6122,7 +6156,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -7138,6 +7173,405 @@
           "reviewedSha256": "e2c305db29837cf988b1516e86b1862517b76b0498f0d56e642f7a7d978c6aa7"
         }
       ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyMeleeSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "e272b3e7ceadd6a4294613d6d35365d95875bb4198f9577819b1f27dbdca5174",
+      "guid": "3197db5f8bcf40a38d71106da0db21c2",
+      "types": [
+        "EnemyMeleeSettings"
+      ],
+      "lines": 44,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/EnemyDefinition.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "e272b3e7ceadd6a4294613d6d35365d95875bb4198f9577819b1f27dbdca5174",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "dc4c39f01f79442075a21dd4188ad238fb3643b73f33d8cb5802c1f782e76740",
+      "guid": "26052a9d7d5049cf87db6d2aa0b0b4d8",
+      "types": [
+        "EnemyInstaller"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "dc4c39f01f79442075a21dd4188ad238fb3643b73f33d8cb5802c1f782e76740",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "ebe07b93da4958f6019afb3fb38d075785f7db66bb96cf1e62e4a785477ef27e",
+      "guid": "58b3b0f217f240c39fc9c702a3ebb7c3",
+      "types": [
+        "EnemyMeleeControllerFactory"
+      ],
+      "lines": 17,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "ebe07b93da4958f6019afb3fb38d075785f7db66bb96cf1e62e4a785477ef27e",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "7f7b87ec7f232535e8a25e450b0555f64e9665a08669c1b39699c21cf49a3275",
+      "guid": "dc1f0eb169664239b5da98c0dd6b6e98",
+      "types": [
+        "BeginEnemyMeleeCommand"
+      ],
+      "lines": 23,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "7f7b87ec7f232535e8a25e450b0555f64e9665a08669c1b39699c21cf49a3275",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
+      "sourceScope": "unity",
+      "sha256": "149ec9ff80e2b0d79b1b881a71f32738d370d54e408b799ac9218f204fc48c82",
+      "guid": "ed7808eb57f149ddb9daa1f6837476f1",
+      "types": [
+        "EnemyMeleeController"
+      ],
+      "lines": 56,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "149ec9ff80e2b0d79b1b881a71f32738d370d54e408b799ac9218f204fc48c82",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+      "sourceScope": "unity",
+      "sha256": "bdd9b41e75805d69c6b7f16e3a1fc96d41c94cb450d032a91a748fa479d5a245",
+      "guid": "b7d8a857fc52462a9f2eaf39b4c51e69",
+      "types": [
+        "EnemyMeleeModel"
+      ],
+      "lines": 82,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "bdd9b41e75805d69c6b7f16e3a1fc96d41c94cb450d032a91a748fa479d5a245",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeObservation.cs",
+      "sourceScope": "unity",
+      "sha256": "75dda1b947429b16419c5a8f21ef9e0b3125698432f2282cc1b538e8f07b5fb0",
+      "guid": "32e250522c844a4695c036999c2510d5",
+      "types": [
+        "EnemyMeleeObservation"
+      ],
+      "lines": 20,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyMeleeEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "75dda1b947429b16419c5a8f21ef9e0b3125698432f2282cc1b538e8f07b5fb0",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeState.cs",
+      "sourceScope": "unity",
+      "sha256": "55d6540e455157beb2870c838b9a9cacf4b17cc48d2644760a2ffe67b345dc63",
+      "guid": "45cd9333f8d54bb6a69640eaf3368848",
+      "types": [
+        "EnemyMeleeState"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "55d6540e455157beb2870c838b9a9cacf4b17cc48d2644760a2ffe67b345dc63",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "9cb0e4916b60a5c18e83611447b3a756264be3a3bd32478e891cdb22e7acce0c",
+      "guid": "aef233097a3545dc9f50caad7e5f1f26",
+      "types": [
+        "FinishEnemyMeleeCommand"
+      ],
+      "lines": 23,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "9cb0e4916b60a5c18e83611447b3a756264be3a3bd32478e891cdb22e7acce0c",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyMeleeEnvironment.cs",
+      "sourceScope": "unity",
+      "sha256": "4ecfe5ad3ad36d4bf46dfb0942bde4df0ee90236b6663349f0bfcfcaceedd69b",
+      "guid": "efce77c1ef9d420bb7ed7fd2d876e9f0",
+      "types": [
+        "IEnemyMeleeEnvironment"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "4ecfe5ad3ad36d4bf46dfb0942bde4df0ee90236b6663349f0bfcfcaceedd69b",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "c6491d3446f78ac8d4aa217fded320e819093c11ded8564fbd28999a3f06527f",
+      "guid": "0a3c1290f0cf4bd994333fbd587da277",
+      "types": [
+        "InterruptEnemyMeleeCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "c6491d3446f78ac8d4aa217fded320e819093c11ded8564fbd28999a3f06527f",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "8d37c5e63e8fb83dd70e3341e1b93befd7c20fcd33c22cb92fe544de5ef59777",
+      "guid": "e5f3fa04b8914179a098336d3c5b10a6",
+      "types": [
+        "RestoreEnemyMeleeCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "8d37c5e63e8fb83dd70e3341e1b93befd7c20fcd33c22cb92fe544de5ef59777",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+      "sourceScope": "unity",
+      "sha256": "9533b6b804f525d71ff017ca49f1ae3e43b641e53384e1f17757a027d0978a82",
+      "guid": "39839c9b765f4365aa886821ea3a9587",
+      "types": [
+        "EnemyMeleeEnvironment2D"
+      ],
+      "lines": 37,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "9533b6b804f525d71ff017ca49f1ae3e43b641e53384e1f17757a027d0978a82",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
     },
     {
       "baselineSha256": null,
@@ -8680,13 +9114,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "e1878542fe77f05fd195ff1aebc6a88e709c5c2129d8f6d83b4cbdf71570ae37",
+      "sha256": "7dff3c26c5fc3256f4e2c05def29dbf8c4964d99d9cc6929abc2dacb958c7bb3",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 209,
+      "lines": 211,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -8720,13 +9154,14 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "ScopeFailure03: real partial Inject failure closes input/scene owners; stages/late cleanup continue with errors preserved, sibling/world remain alive; Configure locked after init. 2 original failures, 545 EditMode, 20 PlayMode, normal Windows64. Opt-in Development helper/preview test only; no scene regeneration. See SDK iteration/recovery/config limits in report.",
-      "reviewedSha256": "e1878542fe77f05fd195ff1aebc6a88e709c5c2129d8f6d83b4cbdf71570ae37",
-      "previousReviewStatus": "partial",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "reviewedSha256": "7dff3c26c5fc3256f4e2c05def29dbf8c4964d99d9cc6929abc2dacb958c7bb3",
+      "previousReviewStatus": "reviewed_boundary",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewDate": "2026-10-21",
@@ -8738,7 +9173,7 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/ScopeFailure03.md",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
       "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "reviewHistory": [
         {
@@ -8774,6 +9209,11 @@
           "reviewStatus": "partial",
           "notes": "FlashlightState02: scoped optics/projection bindings and model factory installed. Initialization-failure cleanup and remaining scope/lifetime composition remain debt.",
           "reviewedSha256": "2f083b21cf8ca03d490adfde022459dbede3fe64655b5a7f6057c7430b5c3a91"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "ScopeFailure03: real partial Inject failure closes input/scene owners; stages/late cleanup continue with errors preserved, sibling/world remain alive; Configure locked after init. 2 original failures, 545 EditMode, 20 PlayMode, normal Windows64. Opt-in Development helper/preview test only; no scene regeneration. See SDK iteration/recovery/config limits in report.",
+          "reviewedSha256": "e1878542fe77f05fd195ff1aebc6a88e709c5c2129d8f6d83b4cbdf71570ae37"
         }
       ]
     },
@@ -10615,7 +11055,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -10672,7 +11113,8 @@
         "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -13265,6 +13707,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
       "entryPointHints": [
@@ -13748,6 +14191,59 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit09.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "698f60218788952789d18f27f46299159d1a73295a38c03f938bb0b4b5bc5d41",
+      "guid": "3249450d4a1c4f4b849202482988ac2a",
+      "types": [
+        "Clock",
+        "EnemyMeleeModelTests",
+        "Environment"
+      ],
+      "lines": 249,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/OrganizeMaterials.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FurnitureLightStudyBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponShotRequest.cs",
+        "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
+        "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
+        "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
+        "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
+        "Concepts/Used/Environment/RoomFinish01/create.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "698f60218788952789d18f27f46299159d1a73295a38c03f938bb0b4b5bc5d41",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
@@ -14908,6 +15404,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "9a9229ae6af11379006d546ba41c38e51c2094008d2fbcc93b0429e476fceb0d",
+      "guid": "b784f22e655c416b8a9e72fb2c0330b7",
+      "types": [
+        "EnemyMeleeSceneTests"
+      ],
+      "lines": 125,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "9a9229ae6af11379006d546ba41c38e51c2094008d2fbcc93b0429e476fceb0d",
+      "reviewReport": "Docs/Reports/EnemyMelee01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
       "sourceScope": "unity",
@@ -15396,14 +15919,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 349,
+    "unity": 364,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 3,
-    "report": "Docs/Reports/ScopeFailure03.md",
-    "validation": "2 real original scope failures; 545/545 EditMode, 20/20 PlayMode, normal Windows64 success. Input/registry cleanup, sibling/world isolation, aggregated errors/late stage and locked references. Original resources unchanged; see fixture/SDK limits."
+    "files": 18,
+    "report": "Docs/Reports/EnemyMelee01.md",
+    "validation": "572/572 EditMode, 21/21 PlayMode, normal Windows64 success. Pure melee rules/events/reentry/cooldown and native wall/one-damage check for both species with brain disabled. Source tuning/resources unchanged; not full FSM/route/config pass."
   },
   "reviewPasses": [
     {
@@ -15507,15 +16030,21 @@
       "files": 3,
       "report": "Docs/Reports/ScopeFailure03.md",
       "validation": "2 real original scope failures; 545/545 EditMode, 20/20 PlayMode, normal Windows64 success. Input/registry cleanup, sibling/world isolation, aggregated errors/late stage and locked references. Original resources unchanged; see fixture/SDK limits."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 18,
+      "report": "Docs/Reports/EnemyMelee01.md",
+      "validation": "572/572 EditMode, 21/21 PlayMode, normal Windows64 success. Pure melee rules/events/reentry/cooldown and native wall/one-damage check for both species with brain disabled. Source tuning/resources unchanged; not full FSM/route/config pass."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 368,
-    "totalFiles": 368,
+    "reviewedFiles": 383,
+    "totalFiles": 383,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "ScopeFailure03 and earlier reviews; targeted boundary certification does not complete all SOD tasks."
+    "validation": "EnemyMelee01 and earlier reviews; targeted boundary certification does not complete all SOD tasks."
   }
 }

@@ -1,77 +1,23 @@
+using System;
+using EmergencyShift.Features.Enemies;
+using EmergencyShift.Features.Enemies.Logic;
+using EmergencyShift.Features.Enemies.View;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
-    /// <summary>Reusable attack timeline and hit delivery. The brain decides when to start/interrupt.</summary>
+    /// <summary>Compatibility/event adapter; a pure personal model owns the attack timeline.</summary>
     [DisallowMultipleComponent]
     public sealed class EnemyMeleeAttack2D : MonoBehaviour
     {
-        private EnemyDefinition tuning;
-        private EnemyPerception2D senses;
-        private EnemyMotor2D motor;
-        private bool struck;
-        private bool lunged;
-        private float readyAt;
-        public event System.Action Lunged;
-        public event System.Action<bool> Resolved;
-        public void Configure(EnemyDefinition definition, EnemyPerception2D perception, EnemyMotor2D movement)
-        {
-            tuning = definition;
-            senses = perception;
-            motor = movement;
-        }
+        private EnemyMeleeControllerFactory factory;
+        private EnemyMeleeController controller;
 
-        public bool CanStart(Vector2 at)
-        {
-            if (tuning == null || senses.TargetHealth == null || Time.time < readyAt)
-            {
-                return false;
-            }
+        public event Action Lunged;
+        public event Action<bool> Resolved;
 
-            return senses.CanSeeTarget(at) && senses.Within(at, tuning.attackDistance);
-        }
-
-        private bool CanBite(Vector2 at)
-        {
-            return senses.TargetHealth != null && senses.TargetAlive && Vector2.Distance(at, senses.Target.position) < tuning.biteDistance && senses.CanSeeTarget(at);
-        }
-
-        public void Begin()
-        {
-            struck = false;
-            lunged = false;
-        }
-
-        public Vector2 Step(float progress, Vector2 at, Vector2 heading, bool fixedHeading = false)
-        {
-            if (!lunged && progress >= tuning.lungeStart)
-            {
-                lunged = true;
-                Lunged?.Invoke();
-            }
-
-            Vector2 velocity = Vector2.zero;
-            if (progress >= tuning.lungeStart && progress < tuning.lungeEnd)
-            {
-                velocity = fixedHeading ? motor.FixedHeadingVelocity(heading, tuning.lungeSpeed) : motor.ClearDirection(heading) * tuning.lungeSpeed;
-            }
-            if (!struck && progress >= tuning.strikeAt)
-            {
-                struck = true;
-                bool landed = false;
-                bool inArc = !fixedHeading || (senses.Target != null && Vector2.Angle(heading, (Vector2)senses.Target.position - at) <= tuning.attackArcDegrees * .5f);
-                if (inArc && CanBite(at))
-                {
-                    landed = senses.TargetHealth.TryTakeDamage(tuning.attackDamage, at, heading);
-                }
-
-                Resolved?.Invoke(landed);
-            }
-
-            return velocity;
-        }
-
-        [System.Serializable]
+        [Serializable]
         public sealed class Snapshot
         {
             public bool struck;
@@ -79,31 +25,78 @@ namespace EmergencyShift
             public float cooldown;
         }
 
+        [Inject]
+        public void Construct(EnemyMeleeControllerFactory controllers)
+        {
+            factory = controllers ?? throw new ArgumentNullException(nameof(controllers));
+        }
+
+        private void OnDestroy() => Unbind();
+
+        public void Configure(EnemyDefinition definition, EnemyPerception2D perception, EnemyMotor2D movement)
+        {
+            if (factory == null || definition == null || perception == null || movement == null)
+            {
+                throw new InvalidOperationException("Melee requires level composition, definition, perception and motor.");
+            }
+
+            EnemyMeleeController replacement = factory.Create(definition.ToMeleeSettings(),
+                new EnemyMeleeEnvironment2D(perception, movement));
+            if (controller != null)
+            {
+                var result = replacement.Restore(controller.Capture());
+                if (!result.Success)
+                {
+                    throw new InvalidOperationException(result.Reason);
+                }
+            }
+
+            Unbind();
+            controller = replacement;
+            controller.Lunged += ForwardLunge;
+            controller.Resolved += ForwardResolution;
+        }
+
+        public bool CanStart(Vector2 at) => controller != null && controller.CanStart(at);
+        public void Begin() => RequireController().Begin();
+        public void Finish() => RequireController().Finish();
+        public void Interrupt(float delay) => RequireController().Interrupt(delay);
+        public Vector2 Step(float progress, Vector2 at, Vector2 heading, bool fixedHeading = false) =>
+            RequireController().Step(progress, at, heading, fixedHeading);
+
         public Snapshot CaptureState()
         {
-            return new Snapshot
-            {
-                struck = struck,
-                lunged = lunged,
-                cooldown = Mathf.Max(0, readyAt - Time.time)
-            };
+            EnemyMeleeState state = controller != null ? controller.Capture() : default;
+            return new Snapshot { struck = state.Struck, lunged = state.Lunged, cooldown = state.Cooldown };
         }
 
         public void RestoreState(Snapshot saved)
         {
-            struck = saved.struck;
-            lunged = saved.lunged;
-            readyAt = Time.time + saved.cooldown;
+            if (saved == null)
+            {
+                throw new ArgumentNullException(nameof(saved));
+            }
+
+            var result = RequireController().Restore(new EnemyMeleeState(saved.struck, saved.lunged, saved.cooldown));
+            if (!result.Success)
+            {
+                throw new InvalidOperationException(result.Reason);
+            }
         }
 
-        public void Finish()
+        private void ForwardLunge() => Lunged?.Invoke();
+        private void ForwardResolution(bool landed) => Resolved?.Invoke(landed);
+
+        private void Unbind()
         {
-            readyAt = Time.time + tuning.attackCooldown;
+            if (controller != null)
+            {
+                controller.Lunged -= ForwardLunge;
+                controller.Resolved -= ForwardResolution;
+            }
         }
 
-        public void Interrupt(float delay)
-        {
-            readyAt = Time.time + delay;
-        }
+        private EnemyMeleeController RequireController() => controller ??
+            throw new InvalidOperationException("Melee must be configured by its actor after level composition.");
     }
 }

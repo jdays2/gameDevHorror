@@ -6,6 +6,7 @@ using EmergencyShift.Features.AccessControl;
 using EmergencyShift.Features.Flashlight;
 using EmergencyShift.Features.DamageFeedback;
 using EmergencyShift.Features.Health;
+using EmergencyShift.Features.Enemies;
 using EmergencyShift.Features.PlayerInput;
 using EmergencyShift.Features.PlayerInput.Logic;
 using UnityEngine;
@@ -106,6 +107,7 @@ namespace EmergencyShift
             WeaponInstaller.Install(Container);
             AccessControlInstaller.Install(Container);
             FlashlightInstaller.Install(Container, flashlight);
+            EnemyInstaller.Install(Container);
         }
 
         private void OnDestroy() => Dispose();

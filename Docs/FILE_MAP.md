@@ -255,6 +255,31 @@
 
 - [DirectionalDamageFeedbackView.cs](../Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Enemies
+
+- [EnemyInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs)
+- [EnemyMeleeControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Enemies/Config
+
+- [EnemyMeleeSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyMeleeSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Enemies/Logic
+
+- [BeginEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs)
+- [EnemyMeleeController.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs)
+- [EnemyMeleeModel.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs)
+- [EnemyMeleeObservation.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeObservation.cs)
+- [EnemyMeleeState.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeState.cs)
+- [FinishEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs)
+- [IEnemyMeleeEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/IEnemyMeleeEnvironment.cs)
+- [InterruptEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs)
+- [RestoreEnemyMeleeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Enemies/View
+
+- [EnemyMeleeEnvironment2D.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/Flashlight
 
 - [FlashlightControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs)
@@ -478,6 +503,7 @@
 - [DirectionalDamageTests.cs](../Assets/EmergencyShift/Tests/EditMode/DirectionalDamageTests.cs)
 - [DoorAccessTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs)
 - [EnemyDeathAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs)
+- [EnemyMeleeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs)
 - [EnemySystemsTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs)
 - [EnvironmentPresentationTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs)
 - [FlashlightOwnershipTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs)
@@ -514,6 +540,7 @@
 - [CameraOpticsTestSource.cs](../Assets/EmergencyShift/Tests/PlayMode/CameraOpticsTestSource.cs)
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
+- [EnemyMeleeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)
 - [WeaponSpreadLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs)
