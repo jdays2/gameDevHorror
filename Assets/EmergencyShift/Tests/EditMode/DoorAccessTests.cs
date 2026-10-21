@@ -25,6 +25,8 @@ namespace EmergencyShift.Tests
             cards = actorObject.AddComponent<PlayerAccessCards2D>();
             cards.Construct(new AccessControlFactory());
             actor = actorObject.AddComponent<PlayerInteraction>();
+            actor.Construct(null, new GameplayInputBlock(), new Core.Composition.SceneRegistry<Door2D>(),
+                new Features.Interaction.PlayerInteractionControllerFactory(new UnityGameClock()));
         }
 
         [TearDown]

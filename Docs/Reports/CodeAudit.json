@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "491 own C# explicitly read; 86 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest ProjectileFlight16.",
+  "limits": "504 own C# explicitly read; 86 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PlayerInteraction17.",
   "counts": {
     "partial": 86,
-    "reviewed_boundary": 405
+    "reviewed_boundary": 418
   },
   "files": [
     {
@@ -2071,6 +2071,9 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
@@ -2156,6 +2159,8 @@
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightPowerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
@@ -2311,11 +2316,15 @@
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2483,7 +2492,8 @@
         "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
-        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs"
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -2523,7 +2533,8 @@
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
-        "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs"
+        "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -2644,14 +2655,18 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxSession2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
@@ -2924,6 +2939,8 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepModel.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
@@ -2935,10 +2952,12 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -3059,7 +3078,9 @@
         "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -10693,6 +10714,276 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Config/PlayerInteractionSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "518daaf256801be54de45e0462f9ced18f6f730f624d8d5e08c2b23f8dd49d3c",
+      "guid": "089c36a2207e4fea972a98ad083b524d",
+      "types": [
+        "PlayerInteractionSettings"
+      ],
+      "lines": 26,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "518daaf256801be54de45e0462f9ced18f6f730f624d8d5e08c2b23f8dd49d3c",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/IInteractionEnvironment.cs",
+      "sourceScope": "unity",
+      "sha256": "14f4362040ba11dfb22716546735389e5100b26455a6cc845885fc8b89c39c48",
+      "guid": "7a0ae2b541b4402a95ea97ec08be8448",
+      "types": [
+        "IInteractionEnvironment"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "14f4362040ba11dfb22716546735389e5100b26455a6cc845885fc8b89c39c48",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionCandidate.cs",
+      "sourceScope": "unity",
+      "sha256": "45f20900a0c1b9198bbefff2133607aec609621928676b79ba0584dc4e0c6451",
+      "guid": "cbce031686774ea1819501b93f6352c1",
+      "types": [
+        "InteractionCandidate"
+      ],
+      "lines": 23,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/IInteractionEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionModel.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "45f20900a0c1b9198bbefff2133607aec609621928676b79ba0584dc4e0c6451",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs",
+      "sourceScope": "unity",
+      "sha256": "1a3fdbcf32dbd2dcb56f7cfe6c41fd23ba275708f84673887eaa9168e54806c8",
+      "guid": "0ef20abda3f04e06b1f276fc8f184e0b",
+      "types": [
+        "InteractionSelectionController"
+      ],
+      "lines": 47,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1a3fdbcf32dbd2dcb56f7cfe6c41fd23ba275708f84673887eaa9168e54806c8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionModel.cs",
+      "sourceScope": "unity",
+      "sha256": "db4890beac990e339687f482d4a99acd0f8b6259300003a3648878ce613bc289",
+      "guid": "2eac957e76ce4790a9954ee922e02ef8",
+      "types": [
+        "InteractionSelectionModel"
+      ],
+      "lines": 63,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "db4890beac990e339687f482d4a99acd0f8b6259300003a3648878ce613bc289",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "0f8579dc722b186eecf92df00e0185d2f7eac3495fe4112bfd507c2a09ea93c6",
+      "guid": "b35249fa9e954751809dbc12e2d3ba3a",
+      "types": [
+        "InteractSelectionCommand"
+      ],
+      "lines": 31,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "0f8579dc722b186eecf92df00e0185d2f7eac3495fe4112bfd507c2a09ea93c6",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs",
+      "sourceScope": "unity",
+      "sha256": "9f3f7fbed813b711f7d97dad6f7b1fecdcee7b58320cfa1de05de0462f3e2951",
+      "guid": "0f76a2abe07d4b14a21a63295dbd57da",
+      "types": [
+        "PickupNoticeModel"
+      ],
+      "lines": 64,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "9f3f7fbed813b711f7d97dad6f7b1fecdcee7b58320cfa1de05de0462f3e2951",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "c84703aa68b4124733eac287f7ac4f53811a1afe31ee92c9a3f961d5f7600cea",
+      "guid": "65a7c1b87aeb47da91631625fbdf50cc",
+      "types": [
+        "ShowPickupNoticeCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c84703aa68b4124733eac287f7ac4f53811a1afe31ee92c9a3f961d5f7600cea",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "ae757e7c9aa646a45cf7e65e591bbda416e5bac6ee85a297521c0a94448d23d4",
+      "guid": "80523f6e72ca4ae3bfbc8875fd27bbbc",
+      "types": [
+        "PlayerInteractionControllerFactory"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "ae757e7c9aa646a45cf7e65e591bbda416e5bac6ee85a297521c0a94448d23d4",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "3e0298409088a26a17d4e91adbd09b8a2f461a6a47352035f1e41f3e95ba79e4",
+      "guid": "35f9d4bbc56748b5b5c34b929334e7cc",
+      "types": [
+        "PlayerInteractionInstaller"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "3e0298409088a26a17d4e91adbd09b8a2f461a6a47352035f1e41f3e95ba79e4",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "Private serialized + getters; runtime-состояния в asset нет; Validate проверяет клипы/finite gains/durations и crossfade короче intro.",
       "path": "Assets/EmergencyShift/Runtime/Features/PauseMenu/Config/PauseMenuAudioConfig.cs",
       "sha256": "449aff87225f991dff8d269d2f9d18af5becf60d774b1ed936e4d8237022d2b9",
@@ -11828,13 +12119,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "63e6784b2aee3e6dc9cefc0300c6db56b6215063746caca29e4cdbaf2cd9fc56",
+      "sha256": "2692f67ca57430e029253647c6cc33d956a734a338f116edfa75678cead0e350",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 217,
+      "lines": 219,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -11879,8 +12170,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
-      "reviewedSha256": "63e6784b2aee3e6dc9cefc0300c6db56b6215063746caca29e4cdbaf2cd9fc56",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "reviewedSha256": "2692f67ca57430e029253647c6cc33d956a734a338f116edfa75678cead0e350",
       "previousReviewStatus": "reviewed_boundary",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -11893,8 +12184,8 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
-      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
       "reviewHistory": [
         {
           "reviewDate": "2026-10-21",
@@ -13684,13 +13975,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-      "sha256": "17fdba5a495f8f4a7f4cf65e42fa4c5f0cd9c6a3778e49d9edad1966d9439a96",
+      "sha256": "9379cd0a390fffb3f0352e7fe15e1b06765fdcbd52f7e42e2edd9fc477d02349",
       "baselineSha256": "61e533ef3c071ac9d4bedb6ed4969c8e45d6695dbfccad01f446ef60ae4fe1c2",
       "guid": "500d12c8cbe97624898244a956ece442",
       "types": [
         "PlayerInteraction"
       ],
-      "lines": 229,
+      "lines": 222,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -13732,15 +14023,18 @@
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Действие повторно проверяет доступность, pickup проверяет расстояние+LOS, notices ограничены 8 и очищаются. Input/controller, physics/environment и HUD объединены; legacy doors field Configure не читается. Два overlap query на активный кадр и GetComponent в запросах — наблюдение, не FPS-вывод.",
-      "reviewedSha256": "17fdba5a495f8f4a7f4cf65e42fa4c5f0cd9c6a3778e49d9edad1966d9439a96",
+      "notes": "PlayerInteraction17: selection/notice state и команды выделены; native Physics query/actor presentation adapter сохранён. Конкретные IInteractable/IAutoPickup actor contracts, item rules, static illumination queries и serialized tuning bridge ещё открыты.",
+      "reviewedSha256": "9379cd0a390fffb3f0352e7fe15e1b06765fdcbd52f7e42e2edd9fc477d02349",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13760,8 +14054,9 @@
       ],
       "usageEvidence": "Update, IAutoPickup/IInteractable и feedback consumers",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
@@ -15545,11 +15840,15 @@
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -16510,6 +16809,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -16662,26 +16962,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "51 mandatory-boolean regressions",
-      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "05f4ee80e06e3bcf289688ddd3adc45ce5eeff5971477e3b66300b256a7cc8ad",
+      "reviewedSha256": "6ea8f5862201e785db3b342bc7d0d2b2163c60876b97c8ba71ec9f026703eea5",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/DoorMotion08.md",
-      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
       "sourceScope": "unity",
-      "sha256": "05f4ee80e06e3bcf289688ddd3adc45ce5eeff5971477e3b66300b256a7cc8ad",
+      "sha256": "6ea8f5862201e785db3b342bc7d0d2b2163c60876b97c8ba71ec9f026703eea5",
       "guid": "6ff5dbeb7ad7232408aff07bf6b131e2",
       "types": [
         "CheckpointBooleanTests",
         "ConsumedRead"
       ],
-      "lines": 227,
+      "lines": 228,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -16702,26 +17002,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "feceb3264006cb964f91807e25e76576056d3a1e90ec3471e49e3f72755dfa23",
+      "reviewedSha256": "ebdc692c44cc7d1390df0cc78b6370a8397a4d310d4768ecb0b349658139dbfe",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
-      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "feceb3264006cb964f91807e25e76576056d3a1e90ec3471e49e3f72755dfa23",
+      "sha256": "ebdc692c44cc7d1390df0cc78b6370a8397a4d310d4768ecb0b349658139dbfe",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 448,
+      "lines": 450,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -16941,13 +17241,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
-      "sha256": "abf4dc42c7fa618271808cad2f83eed562cb7bd653ac4b441d9fe67f1ee92146",
+      "sha256": "1b00c485aea19e6dd5bb33896e31708a47b56595aa9b8303fc2a085b521e9a88",
       "baselineSha256": "549c8f90df85df5dfd33f7a80c2e8f221c75f9edf29a2d58a68707214c897af7",
       "guid": "b8d1047311c3cee48b6b3d867e9708d2",
       "types": [
         "DoorAccessTests"
       ],
-      "lines": 84,
+      "lines": 86,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -16955,7 +17255,7 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16975,10 +17275,10 @@
         "DoorAccess/cards/PlayerInteraction GameObjects"
       ],
       "usageEvidence": "3 Test метода; source read only",
-      "reviewedSha256": "abf4dc42c7fa618271808cad2f83eed562cb7bd653ac4b441d9fe67f1ee92146",
+      "reviewedSha256": "1b00c485aea19e6dd5bb33896e31708a47b56595aa9b8303fc2a085b521e9a88",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/AccessControl01.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -17058,6 +17358,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -17176,6 +17477,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -17248,6 +17550,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -17315,6 +17618,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -17396,6 +17700,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
@@ -18136,6 +18441,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -18181,6 +18487,63 @@
       "usageEvidence": "EditMode test runner; 3 теста",
       "reviewReport": "Docs/Reports/CodeAudit05.md",
       "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "9d5b6e7ba1d75e60fcb6a39bdb15c65bea979f7a013bbb007c39dc9cfa875380",
+      "guid": "bf3abac85e6b49a097a59556eb3744ed",
+      "types": [
+        "Clock",
+        "Environment",
+        "PlayerInteractionModelTests"
+      ],
+      "lines": 224,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/OrganizeMaterials.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FurnitureLightStudyBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponShotRequest.cs",
+        "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
+        "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
+        "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
+        "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
+        "Concepts/Used/Environment/RoomFinish01/create.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "9d5b6e7ba1d75e60fcb6a39bdb15c65bea979f7a013bbb007c39dc9cfa875380",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -18252,6 +18615,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
         "Concepts/Used/Environment/RoomFinish01/create.cs"
       ],
@@ -18373,6 +18737,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
@@ -18486,6 +18851,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
@@ -18822,26 +19188,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "5 real PlayMode pending-save lifetime regressions",
-      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "a0e29ebe942565edca4198c5a27c6d6120497d21d404196aca98cd01d09abb0c",
+      "reviewedSha256": "72f1428c7b0307c95200ee01d0b306f762fac0e189ec39c7079fcb3432863354",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/DoorMotion08.md",
-      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "a0e29ebe942565edca4198c5a27c6d6120497d21d404196aca98cd01d09abb0c",
+      "sha256": "72f1428c7b0307c95200ee01d0b306f762fac0e189ec39c7079fcb3432863354",
       "guid": "c44326cf15c577e4b89031b64fcda0ca",
       "types": [
         "CheckpointSaveLifetimeTests",
         "TestClock"
       ],
-      "lines": 216,
+      "lines": 217,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -18863,10 +19229,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "19bf6b8bb8bdee1e9439aceeb8d71e84c10ea2877f90f0d59e8a1738363c6885",
+      "sha256": "328f1ffa5f02d128c4b03d12bfd19a3d0370d96ab4c23a916d5e5c687fb5554a",
       "guid": "c2c48a0bbae36354798d6f696ebd9cfc",
       "types": [
         "DialogueSessionLifetimeTests",
@@ -18874,7 +19240,7 @@
         "RealScale",
         "TestInput"
       ],
-      "lines": 232,
+      "lines": 233,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -18882,10 +19248,11 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "19bf6b8bb8bdee1e9439aceeb8d71e84c10ea2877f90f0d59e8a1738363c6885",
+      "reviewedSha256": "328f1ffa5f02d128c4b03d12bfd19a3d0370d96ab4c23a916d5e5c687fb5554a",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/DialogueMvc01.md",
-      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -19043,6 +19410,52 @@
       "reviewedSha256": "1b51f600fbc8f69ca147596f4fe572aacef7b19ab1a913be8eae6d5e64297ada",
       "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
       "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs",
+      "sourceScope": "unity",
+      "sha256": "a0665976408ea6acd6175306f0ec3a14ec9b8c3c9f6ff4420a69257338870d64",
+      "guid": "57d49eb061ef4dfdb87549173899eb3c",
+      "types": [
+        "InteractionProbeTarget"
+      ],
+      "lines": 24,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a0665976408ea6acd6175306f0ec3a14ec9b8c3c9f6ff4420a69257338870d64",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "93f0a076be9d881ed22a2552f11f35837835f2bfe965f83aa96e0c0d0061cc2b",
+      "guid": "ccb3dbaa8bb8491ca9f8bb382497aaea",
+      "types": [
+        "InteractionSceneTests"
+      ],
+      "lines": 105,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "93f0a076be9d881ed22a2552f11f35837835f2bfe965f83aa96e0c0d0061cc2b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
+      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -19652,7 +20065,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 472,
+    "unity": 485,
     "content_source": 8
   },
   "latestReview": {
@@ -19803,11 +20216,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 491,
-    "totalFiles": 491,
+    "reviewedFiles": 504,
+    "totalFiles": 504,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "ProjectileFlight16 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "PlayerInteraction17 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

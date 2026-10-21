@@ -1,4 +1,8 @@
+using System;
 using System.Collections.Generic;
+using EmergencyShift.Features.Interaction;
+using EmergencyShift.Features.Interaction.Config;
+using EmergencyShift.Features.Interaction.Logic;
 using EmergencyShift.Core.Composition;
 using UnityEngine;
 using EmergencyShift.Features.PlayerInput.Logic;
@@ -7,7 +11,7 @@ using Zenject;
 namespace EmergencyShift
 {
     /// <summary>E selects a door; nearby loot collects automatically with queued HUD feedback.</summary>
-    public sealed class PlayerInteraction : MonoBehaviour
+    public sealed class PlayerInteraction : MonoBehaviour, IInteractionEnvironment
     {
         [SerializeField, Min(0.1f)]
         private float reach = 1.6f;
@@ -19,24 +23,42 @@ namespace EmergencyShift
         private float autoPickupRadius = .65f;
         [SerializeField, Min(.5f)]
         private float notificationSeconds = 1.8f;
+        [SerializeField, Min(0)]
+        private float selectionTieDistance = .05f;
+        [SerializeField, Range(1, 64)]
+        private int maximumPendingNotices = 8;
+        private readonly List<IInteractable> candidates = new List<IInteractable>(32);
+        private InteractionSelectionController selection;
+        private PickupNoticeModel notices;
         private readonly List<Collider2D> nearby = new List<Collider2D>(32);
         private Flashlight2D flashlight;
         private FlashlightUpgrades upgrades;
         private PlayerLife2D life;
         private PlayerWeapon2D weapon;
-        private float notificationUntil;
-        private string notification;
-        private readonly Queue<string> notices = new Queue<string>();
         private IPlayerInput input;
         private GameplayInputBlock inputBlock;
         private SceneRegistry<Door2D> doorRegistry;
 
         [Inject]
-        private void Construct(IPlayerInput playerInput, GameplayInputBlock block, SceneRegistry<Door2D> sceneDoors)
+        public void Construct(IPlayerInput playerInput, GameplayInputBlock block, SceneRegistry<Door2D> sceneDoors,
+            PlayerInteractionControllerFactory factory)
         {
+            if (selection != null)
+            {
+                throw new InvalidOperationException("Player interaction is already composed.");
+            }
+
+            if (factory == null)
+            {
+                throw new ArgumentNullException(nameof(factory));
+            }
+
             input = playerInput;
-            inputBlock = block;
-            doorRegistry = sceneDoors;
+            inputBlock = block ?? throw new ArgumentNullException(nameof(block));
+            doorRegistry = sceneDoors ?? throw new ArgumentNullException(nameof(sceneDoors));
+            var settings = new PlayerInteractionSettings(reach, selectionTieDistance, notificationSeconds, maximumPendingNotices);
+            selection = factory.Create(settings, this);
+            notices = factory.CreateNotices(settings);
         }
         public event System.Action<PickupKind> ItemCollected;
         public IInteractable CurrentTarget
@@ -49,7 +71,9 @@ namespace EmergencyShift
         public PlayerWeapon2D Weapon => weapon;
         public LayerMask BlockingGeometry => blockingGeometry;
         public string CurrentPrompt => CurrentTarget != null ? CurrentTarget.GetPrompt(this) : null;
-        public string Notification => Time.time < notificationUntil ? notification : null;
+        public string Notification => notices?.Current;
+        bool IInteractionEnvironment.CanAct => CanAct;
+        private bool CanAct => inputBlock != null && !inputBlock.IsBlocked && isActiveAndEnabled && (life == null || !life.IsDead);
 
         public void Configure(Door2D[] sceneDoors) => doors = sceneDoors;
         private void Awake()
@@ -67,14 +91,11 @@ namespace EmergencyShift
                 return;
             }
 
-            if (Time.time >= notificationUntil && notices.Count > 0)
-            {
-                StartNotice(notices.Dequeue());
-            }
+            RequireNotices().Tick();
 
             CollectNearbyLoot();
             RefreshTarget();
-            if (input.InteractPressed)
+            if (input != null && input.InteractPressed)
             {
                 TryInteractCurrent();
             }
@@ -82,15 +103,14 @@ namespace EmergencyShift
 
         private void OnDisable()
         {
-            CurrentTarget = null;
-            notification = null;
-            notices.Clear();
-            notificationUntil = 0;
+            selection?.Clear();
+            notices?.Clear();
+            candidates.Clear();
         }
 
         public void CollectNearbyLoot()
         {
-            if (inputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
+            if (!CanAct)
             {
                 return;
             }
@@ -108,13 +128,12 @@ namespace EmergencyShift
 
         public bool CanReach(Vector2 point, float targetRange, Collider2D allowedBlocker = null)
         {
-            if (inputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
+            if (!CanAct)
             {
                 return false;
             }
 
-            float effectiveRange = Mathf.Min(reach, targetRange);
-            if (((Vector2)transform.position - point).sqrMagnitude > effectiveRange * effectiveRange)
+            if (!RequireSelection().Model.WithinReach((Vector2)transform.position - point, targetRange))
             {
                 return false;
             }
@@ -128,97 +147,71 @@ namespace EmergencyShift
             return (flashlight != null && flashlight.Illuminates(point, blockingGeometry)) || LocalLamp2D.AnyIlluminates(point, blockingGeometry) || ShotEffect2D.IlluminatesPoint(point, blockingGeometry);
         }
 
-        public void RefreshTarget()
-        {
-            CurrentTarget = null;
-            if (inputBlock.IsBlocked || !isActiveAndEnabled || (life != null && life.IsDead))
-            {
-                return;
-            }
+        public void RefreshTarget() => RequireSelection().Refresh();
 
-            float closest = float.PositiveInfinity;
-            float bestAngle = float.PositiveInfinity;
+        int IInteractionEnvironment.ScanCandidates()
+        {
+            candidates.Clear();
             foreach (Door2D door in doorRegistry.Members)
             {
                 if (door != null && door.gameObject.scene == gameObject.scene)
                 {
-                    Consider(door, ref closest, ref bestAngle);
+                    candidates.Add(door);
                 }
             }
 
-            // Локальный запрос с переиспользуемым списком; каждый предмет не читает E самостоятельно.
-            Physics2D.OverlapCircle(transform.position, reach, new ContactFilter2D { useTriggers = true }, nearby);
+            Physics2D.OverlapCircle(transform.position, selection.Model.Reach, new ContactFilter2D { useTriggers = true }, nearby);
             foreach (Collider2D collider in nearby)
             {
                 IInteractable target = collider.GetComponentInParent<IInteractable>();
                 if (target != null)
                 {
-                    Consider(target, ref closest, ref bestAngle);
+                    candidates.Add(target);
                 }
             }
+
+            return candidates.Count;
         }
 
-        private void Consider(IInteractable target, ref float closest, ref float bestAngle)
+        InteractionCandidate IInteractionEnvironment.Observe(int index)
         {
-            if (!target.IsAvailable(this))
-            {
-                return;
-            }
-
-            Vector2 offset = target.InteractionPosition - (Vector2)transform.position;
-            float distance = offset.magnitude;
-            float angle = flashlight != null ? Vector2.Angle(flashlight.Direction, offset) : 0;
-            if (distance > closest + 0.05f || (Mathf.Abs(distance - closest) <= 0.05f && angle >= bestAngle))
-            {
-                return;
-            }
-
-            closest = distance;
-            bestAngle = angle;
-            CurrentTarget = target;
+            IInteractable target = TargetAt(index);
+            bool available = target != null && target.IsAvailable(this);
+            Vector2 offset = available ? target.InteractionPosition - (Vector2)transform.position : Vector2.zero;
+            return new InteractionCandidate(index, available, offset, flashlight != null ? flashlight.Direction : Vector2.zero, flashlight != null);
         }
 
-        /// <summary>Тот же путь используется клавишей E; повторно проверяет цель перед действием.</summary>
-        public bool TryInteractCurrent()
+        bool IInteractionEnvironment.IsAvailable(int index)
         {
-            RefreshTarget();
-            if (CurrentTarget == null)
-            {
-                return false;
-            }
-
-            bool succeeded = CurrentTarget.Interact(this);
-            RefreshTarget();
-            return succeeded;
+            IInteractable target = TargetAt(index);
+            return target != null && target.IsAvailable(this);
         }
 
-        private void StartNotice(string message)
+        bool IInteractionEnvironment.Interact(int index)
         {
-            notification = message;
-            notificationUntil = Time.time + notificationSeconds;
+            IInteractable target = TargetAt(index);
+            return target != null && target.Interact(this);
         }
 
-        public void ShowNotification(string message)
+        void IInteractionEnvironment.PresentTarget(int index) => CurrentTarget = TargetAt(index);
+
+        private IInteractable TargetAt(int index)
         {
-            if (string.IsNullOrEmpty(message))
+            if (index < 0 || index >= candidates.Count)
             {
-                return;
+                return null;
             }
 
-            if (Time.time >= notificationUntil && notices.Count == 0)
-            {
-                StartNotice(message);
-            }
-            else
-            {
-                if (notices.Count >= 8)
-                {
-                    notices.Dequeue();
-                }
-
-                notices.Enqueue(message);
-            }
+            IInteractable target = candidates[index];
+            return target is UnityEngine.Object unityObject && unityObject == null ? null : target;
         }
+
+        /// <summary>The E path refreshes and rechecks the target at command execution.</summary>
+        public bool TryInteractCurrent() => RequireSelection().TryInteract().Success;
+
+        public void ShowNotification(string message) => new ShowPickupNoticeCommand(RequireNotices(), message).Execute();
+        private InteractionSelectionController RequireSelection() => selection ?? throw new InvalidOperationException("Player interaction requires level composition.");
+        private PickupNoticeModel RequireNotices() => notices ?? throw new InvalidOperationException("Pickup notices require level composition.");
 
         public void ReportPickup(PickupKind kind, string description)
         {

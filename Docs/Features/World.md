@@ -34,6 +34,8 @@ CameraFramingProfile/LocalLightProfile/LocalLampAudioSet доступны runtim
 
 Двери используют внедряемый SceneRegistry уровня; статического Door2D.Active больше нет. [Движение створки](Doors.md) выделено в личную модель с командами/controller и scaled clock, Door2D исполняет Transform и события. Остальная интеракция и общий config-pass ещё открыты. Данные существующих экземпляров сохранены.
 
+PlayerInteraction получает личные InteractionSelectionModel/controller и PickupNoticeModel через PlayerInteractionInstaller. Чистая selection-модель выбирает transient index по прежним distance/facing/tie правилам; Unity query и target references остаются в адаптере. InteractSelectionCommand повторно проверяет доступ к действию и цель. Уведомления используют IGameClock, очередь максимум 8 и прежнюю длительность 1.8; modal не переключает очередь, disable очищает активное и ожидающие сообщения. Настройки пока копируются из serialized bridge при composition; изменение live Inspector не перестраивает эти snapshots. Сами item rules, concrete actor contracts и static illumination queries ещё переносятся. [Проверки и стоимость](../Reports/PlayerInteraction17.md).
+
 Контракт и авторинг: [Мир, фонарь, камера и интеракции](../Guides/LEVEL_AUTHORING.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).
 
 ## Поверхности звука

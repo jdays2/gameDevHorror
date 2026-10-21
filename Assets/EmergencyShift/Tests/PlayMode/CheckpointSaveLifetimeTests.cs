@@ -34,7 +34,8 @@ namespace EmergencyShift.Tests
             GameObject hero = Create("Inactive player health fixture", false);
             player = hero.AddComponent<PlayerLife2D>();
             Set(player, "model", new HealthModelFactory(new TestClock()).Create(new HealthSettings(2, 0)));
-            hero.AddComponent<PlayerInteraction>();
+            hero.AddComponent<PlayerInteraction>().Construct(null, new GameplayInputBlock(),
+                new Core.Composition.SceneRegistry<Door2D>(), new Features.Interaction.PlayerInteractionControllerFactory(new TestClock()));
             cards = hero.AddComponent<PlayerAccessCards2D>();
             cards.Construct(new EmergencyShift.Features.AccessControl.AccessControlFactory());
             definition = ScriptableObject.CreateInstance<LevelDefinition>();

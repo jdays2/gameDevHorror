@@ -401,6 +401,25 @@
 - [HealthModelFactory.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs)
 - [SetHealthCapacityCommand.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Interaction
+
+- [PlayerInteractionControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs)
+- [PlayerInteractionInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Interaction/Config
+
+- [PlayerInteractionSettings.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Config/PlayerInteractionSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Interaction/Logic
+
+- [IInteractionEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/IInteractionEnvironment.cs)
+- [InteractionCandidate.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionCandidate.cs)
+- [InteractionSelectionController.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs)
+- [InteractionSelectionModel.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionModel.cs)
+- [InteractSelectionCommand.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs)
+- [PickupNoticeModel.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs)
+- [ShowPickupNoticeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/PauseMenu
 
 - [PauseMenuInstaller.cs](../Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs)
@@ -658,6 +677,7 @@
 - [PersistenceTests.cs](../Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs)
 - [PlayerFootstepTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs)
 - [PlayerInputTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs)
+- [PlayerInteractionModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs)
 - [PlayerMovementTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs)
 - [ProjectileFlightTests.cs](../Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
@@ -687,6 +707,8 @@
 - [EnemyNavigationSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs)
 - [EnemyPatrolSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
+- [InteractionProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs)
+- [InteractionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs)
 - [PlayerMovementSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs)
 - [ProjectileProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs)
 - [ProjectileSceneOwnershipTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs)

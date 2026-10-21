@@ -54,7 +54,8 @@ namespace EmergencyShift.Tests
             run = owner.AddComponent<LevelRunController2D>();
             run.RestoreElapsed(12);
             var player = Create("player").AddComponent<PlayerLife2D>();
-            player.gameObject.AddComponent<PlayerInteraction>();
+            player.gameObject.AddComponent<PlayerInteraction>().Construct(null, new GameplayInputBlock(),
+                new Core.Composition.SceneRegistry<Door2D>(), new Features.Interaction.PlayerInteractionControllerFactory(new Core.Time.UnityGameClock()));
             controller = owner.AddComponent<LevelCheckpointController2D>();
             controller.Configure(catalog, definition, run, player);
         }

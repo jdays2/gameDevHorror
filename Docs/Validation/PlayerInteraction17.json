@@ -1,0 +1,153 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "a38aed5742a1b428a67d965375eff60abe0401b6",
+  "editMode": {
+    "result": "Passed",
+    "total": "860",
+    "passed": "860",
+    "failed": "0",
+    "end-time": "2026-10-21 19:35:00Z",
+    "rawPath": "work/sod-evidence-20261021/interaction-mvc-edit.xml",
+    "rawSha256": "ff86c376283e28bd07186e5c693c795f270ffba51867115b5df8c4d1d5294c2c",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.CommandRechecksActorAndTargetBeforeApplying",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.EmptyNoticeCannotChangeQueue(null)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.EmptyNoticeCannotChangeQueue(\"\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.ExpiredNoticeDoesNotDequeueUntilOwnerTicksAndDisableClearRemovesAllState",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.InvalidInteractionTuningCannotEnterModels(\"reach\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.InvalidInteractionTuningCannotEnterModels(\"tie\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.InvalidInteractionTuningCannotEnterModels(\"duration\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.InvalidInteractionTuningCannotEnterModels(\"capacity\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.InvalidOrOverflowingGeometryCannotSelectAnObject(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.InvalidOrOverflowingGeometryCannotSelectAnObject(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.InvalidOrOverflowingGeometryCannotSelectAnObject(float.MaxValue)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.NearbyDistanceTiePrefersFacingThenCloserDistanceWins",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.NoticeCommandRechecksItsClock(double.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.NoticeCommandRechecksItsClock(double.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.NoticeCommandRechecksItsClock(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.NoticeQueueIsBoundedAndDropsOldestPendingMessage",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.NotificationQueuesArePersonal",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.OnePlayersRefreshAndClearDoNotChangeAnotherSelection",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.ReachUsesBothActorAndTargetRangeAndRejectsMalformedValues",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.RefreshClearsOldSelectionWhenBlockedAndWhenCandidatesDisappear",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerInteractionModelTests.WithoutFacingDistanceTiePreservesFirstCandidate",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "36",
+    "passed": "36",
+    "failed": "0",
+    "end-time": "2026-10-21 19:36:30Z",
+    "rawPath": "work/sod-evidence-20261021/interaction-mvc-play.xml",
+    "rawSha256": "603bb01a985d40cb8dd15f26587b855d10a773956eb963176617075797ec405e",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.InteractionSceneTests.NativeDisableClearsActiveAndQueuedPickupNotices",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.InteractionSceneTests.NativeSelectionAndCommandRespectWallBlockAndDisable",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T19:36:58.608Z",
+    "endedAt": "2026-10-21T19:37:24.191Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs": "ae757e7c9aa646a45cf7e65e591bbda416e5bac6ee85a297521c0a94448d23d4",
+    "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionInstaller.cs": "3e0298409088a26a17d4e91adbd09b8a2f461a6a47352035f1e41f3e95ba79e4",
+    "Assets/EmergencyShift/Runtime/Features/Interaction/Config/PlayerInteractionSettings.cs": "518daaf256801be54de45e0462f9ced18f6f730f624d8d5e08c2b23f8dd49d3c",
+    "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/IInteractionEnvironment.cs": "14f4362040ba11dfb22716546735389e5100b26455a6cc845885fc8b89c39c48",
+    "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionCandidate.cs": "45f20900a0c1b9198bbefff2133607aec609621928676b79ba0584dc4e0c6451",
+    "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs": "1a3fdbcf32dbd2dcb56f7cfe6c41fd23ba275708f84673887eaa9168e54806c8",
+    "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionModel.cs": "db4890beac990e339687f482d4a99acd0f8b6259300003a3648878ce613bc289",
+    "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs": "0f8579dc722b186eecf92df00e0185d2f7eac3495fe4112bfd507c2a09ea93c6",
+    "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs": "9f3f7fbed813b711f7d97dad6f7b1fecdcee7b58320cfa1de05de0462f3e2951",
+    "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs": "c84703aa68b4124733eac287f7ac4f53811a1afe31ee92c9a3f961d5f7600cea",
+    "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs": "9379cd0a390fffb3f0352e7fe15e1b06765fdcbd52f7e42e2edd9fc477d02349",
+    "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs": "2692f67ca57430e029253647c6cc33d956a734a338f116edfa75678cead0e350",
+    "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs": "1b00c485aea19e6dd5bb33896e31708a47b56595aa9b8303fc2a085b521e9a88",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs": "6ea8f5862201e785db3b342bc7d0d2b2163c60876b97c8ba71ec9f026703eea5",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs": "ebdc692c44cc7d1390df0cc78b6370a8397a4d310d4768ecb0b349658139dbfe",
+    "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs": "328f1ffa5f02d128c4b03d12bfd19a3d0370d96ab4c23a916d5e5c687fb5554a",
+    "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs": "72f1428c7b0307c95200ee01d0b306f762fac0e189ec39c7079fcb3432863354",
+    "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs": "9d5b6e7ba1d75e60fcb6a39bdb15c65bea979f7a013bbb007c39dc9cfa875380",
+    "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs": "a0665976408ea6acd6175306f0ec3a14ec9b8c3c9f6ff4420a69257338870d64",
+    "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs": "93f0a076be9d881ed22a2552f11f35837835f2bfe965f83aa96e0c0d0061cc2b"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. 21 new pure interaction/notice cases and 2 native cases. Serialized tuning remains a bridge; item rules, concrete actor contracts and static illumination queries remain open. LevelContext source parity includes original uncommitted Pause installer lines deliberately excluded from this commit. Other SOD tasks remain open."
+}

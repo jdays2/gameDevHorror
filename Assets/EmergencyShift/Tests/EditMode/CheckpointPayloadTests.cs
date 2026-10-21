@@ -49,6 +49,8 @@ namespace EmergencyShift.Tests
             player = Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Player/Player.prefab"));
             SceneManager.MoveGameObjectToScene(player, scene);
             life = player.GetComponent<PlayerLife2D>();
+            player.GetComponent<PlayerInteraction>().Construct(null, new GameplayInputBlock(), new SceneRegistry<Door2D>(),
+                new Features.Interaction.PlayerInteractionControllerFactory(new TestClock()));
             Set(life, "models", new HealthModelFactory(new TestClock()));
             Awake(life);
             flashlight = player.GetComponent<Flashlight2D>();
