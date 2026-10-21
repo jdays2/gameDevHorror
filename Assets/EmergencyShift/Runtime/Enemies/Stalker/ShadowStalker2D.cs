@@ -70,8 +70,8 @@ namespace EmergencyShift
         public bool HasAggro => controller != null && controller.Model.HasAggro;
         public float EyeDamageProgress => controller?.Model.EyeDamageProgress ?? 0;
         public bool EyeBurned => EyeDamageProgress > 0;
-        public float PursuitSpeed => controller?.Model.PursuitSpeed ?? (definition != null ? definition.pursuitSpeed : 0);
-        public float RetreatSpeed => controller?.Model.RetreatSpeed ?? (behaviourProfile != null ? behaviourProfile.retreatSpeed : 0);
+        public float PursuitSpeed => controller?.Model.PursuitSpeed ?? (definition != null ? definition.PursuitSpeed : 0);
+        public float RetreatSpeed => controller?.Model.RetreatSpeed ?? (behaviourProfile != null ? behaviourProfile.RetreatSpeed : 0);
         public int ChaseWaypointCount => motor != null ? motor.WaypointCount : 0;
         public Vector2 Home => controller?.Model.Home ?? Vector2.zero;
         public float HabitatRadius => habitatRadius;
@@ -83,8 +83,8 @@ namespace EmergencyShift
         public Transform Player => player;
         public Flashlight2D LightSource => flashlight;
         public LayerMask BlockingGeometry => blockingGeometry;
-        public float LightFearDistance => controller?.Model.FearDistance ?? (behaviourProfile != null ? behaviourProfile.lightFearDistance : 0);
-        public float ReactionDelay => controller?.Model.ReactionDelay ?? (behaviourProfile != null ? behaviourProfile.reactionDelay : 0);
+        public float LightFearDistance => controller?.Model.FearDistance ?? (behaviourProfile != null ? behaviourProfile.LightFearDistance : 0);
+        public float ReactionDelay => controller?.Model.ReactionDelay ?? (behaviourProfile != null ? behaviourProfile.ReactionDelay : 0);
         public float LightReactionProgress => controller?.Model.ReactionProgress ?? 0;
         public float AttackProgress => controller?.Model.AttackProgress ?? 0;
         public float DeathTime => controller?.Model.DeathTime ?? 0;
@@ -153,7 +153,7 @@ namespace EmergencyShift
             perception.Configure(player, blockingGeometry, flashlight);
             motor.Configure(blockingGeometry);
             melee.Configure(definition, perception, motor);
-            health.Initialize(definition.maximumHealth);
+            health.Initialize(definition.MaximumHealth);
             health.Damaged += OnDamaged;
             health.Died += OnDied;
             melee.Lunged += OnLunged;

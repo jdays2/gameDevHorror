@@ -615,6 +615,7 @@
 - [DoorAccessTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs)
 - [DoorFeedbackProfileTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs)
 - [DoorMotionTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs)
+- [EnemyConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyConfigTests.cs)
 - [EnemyDeathAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs)
 - [EnemyMeleeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs)
 - [EnemyMotorGeometryTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyMotorGeometryTests.cs)

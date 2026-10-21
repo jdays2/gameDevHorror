@@ -112,7 +112,7 @@ namespace EmergencyShift.Tests
             }
 
             Assert.That(stalker.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Waiting));
-            yield return new WaitForSeconds(stalker.BehaviourProfile.cooldownSeconds + .1f);
+            yield return new WaitForSeconds(stalker.BehaviourProfile.CooldownSeconds + .1f);
             Assert.That(stalker.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Waiting));
             float eyeDamage = stalker.EyeDamageProgress;
             context.Flashlight.SetPower(false);

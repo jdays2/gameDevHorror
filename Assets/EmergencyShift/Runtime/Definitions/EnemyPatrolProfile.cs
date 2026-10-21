@@ -6,11 +6,12 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Enemies/Patrol profile")]
     public sealed class EnemyPatrolProfile : ScriptableObject
     {
-        [Min(.1f)]
-        public float speed = .6f;
-        [Min(.4f)]
-        public float wanderStepDistance = 1.6f;
-        public Vector2 pauseSeconds = new Vector2(.6f, 1.8f);
+        [SerializeField, Min(.1f)]
+        private float speed = .6f;
+        [SerializeField, Min(.4f)]
+        private float wanderStepDistance = 1.6f;
+        [SerializeField]
+        private Vector2 pauseSeconds = new Vector2(.6f, 1.8f);
         [Header("Route probing — previous defaults")]
         [SerializeField, Range(1, 64)]
         private int candidateAttempts = 12;
@@ -28,6 +29,7 @@ namespace EmergencyShift
         private float progressFraction = .15f;
 
         public float BodySkin => bodySkin;
+        public float Speed => speed;
         public EnemyPatrolSettings ToSettings() => new EnemyPatrolSettings(speed, wanderStepDistance, pauseSeconds,
             candidateAttempts, bodySkin, arrivalDistance, minimumCandidateDistance, failedSearchPause, stalledSeconds, progressFraction);
     }

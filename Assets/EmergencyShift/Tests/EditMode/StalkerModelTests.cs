@@ -263,7 +263,7 @@ namespace EmergencyShift.Tests
                 string path = AssetDatabase.GUIDToAssetPath(guid);
                 byte[] before = File.ReadAllBytes(path);
                 var profile = AssetDatabase.LoadAssetAtPath<StalkerBehaviourProfile>(path);
-                Assert.That(profile.ToSettings(definition).ReactionDelay, Is.EqualTo(profile.reactionDelay));
+                Assert.That(profile.ToSettings(definition).ReactionDelay, Is.EqualTo(profile.ReactionDelay));
                 CollectionAssert.AreEqual(before, File.ReadAllBytes(path));
             }
 

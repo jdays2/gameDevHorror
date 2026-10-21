@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Конфиги врагов | [EnemyConfig15](EnemyConfig15.md): 823/823 EditMode, 32/32 PlayMode, Windows64 success; readonly четыре общих профиля, finite health/movement/behaviour validation, старые поля и authored stats сохранены. |
 | Camera/light/lamp audio configs | [LightingConfig14](LightingConfig14.md): 802/802 EditMode, 32/32 PlayMode, Windows64 success; readonly API/arrays, old fields/refs/intervals, finite color/clock/framing. Lamp registry/model ещё открыты. |
 | HUD/audio configs | [PresentationConfig13](PresentationConfig13.md): 782/782 EditMode, 32/32 PlayMode, Windows64 success; readonly API, finite/threshold/radius validation, old fields/refs/defaults. Сами HUD/director ещё partial. |
 | Конфиг считывателя | [DoorFeedbackConfig12](DoorFeedbackConfig12.md): 711/711 EditMode, 32/32 PlayMode, Windows64 success; readonly API, прежние serialized names/audio refs, finite/falloff validation до use/replacement. |

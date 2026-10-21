@@ -173,7 +173,7 @@ namespace EmergencyShift
             second.ReceiveBulletHit(1, second.transform.position, Vector2.right);
             second.ReceiveBulletHit(1, second.transform.position, Vector2.right);
             Check("Pellet pain cues have a cooldown", secondAudio.PainCount == 1);
-            Check("Damage remains instance-owned", first.Health == 8 && second.Health == 3 && first.Definition.maximumHealth == 8);
+            Check("Damage remains instance-owned", first.Health == 8 && second.Health == 3 && first.Definition.MaximumHealth == 8);
 
             var checkpoint = second.GetComponent<SleeperCheckpoint2D>();
             string live = checkpoint.CaptureCheckpoint();

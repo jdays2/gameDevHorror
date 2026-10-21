@@ -166,7 +166,7 @@ namespace EmergencyShift.Tests
                 EnemyPatrolSettings settings = profile.ToSettings();
                 Assert.That(settings.Attempts, Is.EqualTo(12));
                 Assert.That(settings.Skin, Is.EqualTo(.04f));
-                Assert.That(settings.Speed, Is.EqualTo(profile.speed));
+                Assert.That(settings.Speed, Is.EqualTo(profile.Speed));
                 CollectionAssert.AreEqual(before, File.ReadAllBytes(path), path);
             }
         }

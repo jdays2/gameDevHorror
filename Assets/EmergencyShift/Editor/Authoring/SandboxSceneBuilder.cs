@@ -330,8 +330,11 @@ namespace EmergencyShift.Editor
             if (definition == null)
             {
                 definition = UnityEngine.Object.Instantiate(Load<EnemyDefinition>("/Data/Enemies/Stalker-Default.asset"));
-                definition.displayName = "Мишень · " + hp + " HP";
-                definition.maximumHealth = hp;
+                var data = new SerializedObject(definition);
+                data.FindProperty("displayName").stringValue = "Мишень · " + hp + " HP";
+                data.FindProperty("maximumHealth").intValue = hp;
+                data.ApplyModifiedPropertiesWithoutUndo();
+                definition.Validate();
                 AssetDatabase.CreateAsset(definition, path);
             }
 

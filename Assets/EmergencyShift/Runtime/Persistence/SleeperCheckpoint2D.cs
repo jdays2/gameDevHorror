@@ -48,7 +48,7 @@ namespace EmergencyShift
             {
                 var actor = saved.actor;
                 var definition = GetComponent<Sleeper2D>().Definition;
-                if (!Enum.IsDefined(typeof(Sleeper2D.BehaviourState), actor.state) || actor.health < 0 || actor.health > definition.maximumHealth ||
+                if (!Enum.IsDefined(typeof(Sleeper2D.BehaviourState), actor.state) || actor.health < 0 || actor.health > definition.MaximumHealth ||
                     (actor.health == 0) != (actor.state == Sleeper2D.BehaviourState.Dead) ||
                     (actor.state == Sleeper2D.BehaviourState.Sleeping && actor.aggro) ||
                     (actor.state != Sleeper2D.BehaviourState.Sleeping && actor.state != Sleeper2D.BehaviourState.Dead && !actor.aggro) ||

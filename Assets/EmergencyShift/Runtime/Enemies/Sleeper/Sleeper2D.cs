@@ -98,8 +98,8 @@ namespace EmergencyShift
             hitResponse = GetComponent<EnemyHitResponse2D>();
             crowd = GetComponent<CrowdAgent2D>();
             feedback = GetComponent<SleeperAudio2D>();
-            if (definition == null || behaviourProfile == null || !behaviourProfile.IsValid || definition.maximumHealth <= 0 ||
-                definition.attackDuration <= 0 || definition.lungeStart > definition.strikeAt || definition.strikeAt > definition.lungeEnd)
+            if (definition == null || behaviourProfile == null || !behaviourProfile.IsValid || definition.MaximumHealth <= 0 ||
+                definition.AttackDuration <= 0 || definition.LungeStart > definition.StrikeAt || definition.StrikeAt > definition.LungeEnd)
             {
                 Debug.LogError("Missing or invalid Sleeper profiles: " + name, this);
                 enabled = false;
@@ -116,7 +116,7 @@ namespace EmergencyShift
             perception.Configure(player, blockingGeometry, flashlight);
             motor.Configure(blockingGeometry);
             melee.Configure(definition, perception, motor);
-            health.Initialize(definition.maximumHealth);
+            health.Initialize(definition.MaximumHealth);
             health.Damaged += OnDamaged;
             health.Died += OnDied;
             melee.Lunged += OnLunged;

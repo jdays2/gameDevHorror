@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "511ff768cfb66c304168feb3bdfb74ca79473af4",
+  "editMode": {
+    "result": "Passed",
+    "total": "823",
+    "passed": "823",
+    "failed": "0",
+    "end-time": "2026-10-21 19:07:28Z",
+    "rawPath": "work/sod-evidence-20261021/enemy-config-edit.xml",
+    "rawSha256": "39cdead2b3c48cd64b757a188a0b3e2114be08d4ceacda2c9e827c2805f0a111",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.EveryAuthoredEnemyProfileIsValidWithoutSharedAssetMutation",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidCapacityIsRejectedBeforeBrainInitialization(0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidCapacityIsRejectedBeforeBrainInitialization(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidPatrolProfileCannotEnterItsModel(\"speed\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidPatrolProfileCannotEnterItsModel(\"wanderStepDistance\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSharedMovementCannotEnterEitherBrain(\"pursuitSpeed\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSharedMovementCannotEnterEitherBrain(\"pursuitSpeed\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSharedMovementCannotEnterEitherBrain(\"hitStaggerSeconds\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSharedMovementCannotEnterEitherBrain(\"hitStaggerSeconds\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSharedMovementCannotEnterEitherBrain(\"hitPushSpeed\",float.NegativeInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSharedMovementCannotEnterEitherBrain(\"hitPushSpeed\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSleeperProfileIsReportedAndRejected(\"lightExposureSeconds\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSleeperProfileIsReportedAndRejected(\"lightExposureSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSleeperProfileIsReportedAndRejected(\"exposureDecay\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSleeperProfileIsReportedAndRejected(\"wakingSeconds\",float.NegativeInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidSleeperProfileIsReportedAndRejected(\"recoverySeconds\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidStalkerProfileCannotEnterItsModel(\"retreatSpeed\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidStalkerProfileCannotEnterItsModel(\"reactionDelay\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidStalkerProfileCannotEnterItsModel(\"eyeBurnSeconds\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.InvalidStalkerProfileCannotEnterItsModel(\"cooldownSeconds\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.EnemyConfigTests.OldFieldsStillDeserializeAndZeroPursuitRemainsSupported",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "32",
+    "passed": "32",
+    "failed": "0",
+    "end-time": "2026-10-21 19:08:35Z",
+    "rawPath": "work/sod-evidence-20261021/enemy-config-play.xml",
+    "rawSha256": "03afa9ab8cdbe65c0e54434217d464e3dbdeb309c686698ccc5d38054bd1d24a",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.SleeperBrainSceneTests.RealSleeperWakesToBeamKeepsAggroCommitsLungeAndRestoresSilently",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.StalkerBrainSceneTests.RealStalkerKeepsDetectionFearBurnAggroHitAndLegacyRestoreRules",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T19:09:11.930Z",
+    "endedAt": "2026-10-21T19:09:43.393Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Definitions/EnemyDefinition.cs": "17d3985344e4f9ced3e1d5c6d5a7da200f73e3f901908b307ddd667a03c2b5fd",
+    "Assets/EmergencyShift/Runtime/Definitions/EnemyPatrolProfile.cs": "3e23390224bbda33dd3c12ad0471868cf7821b23cc33222a60796de9b47c2935",
+    "Assets/EmergencyShift/Runtime/Definitions/SleeperBehaviourProfile.cs": "3b04fbffca9e132bccc8010853b2901402ade82a7e8f8b0590257dae2d5eaa28",
+    "Assets/EmergencyShift/Runtime/Definitions/StalkerBehaviourProfile.cs": "248960d9129fd671097fb90808fda65fe0930788c2d9a850676bea6d780955e6",
+    "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs": "015d67bd0d258c7de96ef95b83fa8674278059ed6acf06121bb9a67d5e40014d",
+    "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs": "2c76502184a9376b161575f5e3ba1f7c832aca2940ffe2cba90f57a03dea5a56",
+    "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs": "c99df88c9b248c05c72eb6a24a973ff1ecf07bd7934f7317a58739ebd9f4a464",
+    "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs": "80b85bd63e9235a52492ed7bed8616acd9b993b2a1c8e75057812b62f14fcf32",
+    "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs": "b8162665a37993b0d7eeaba9e29136fcb8b1ff05bc2ed1261a5bb773294cc14f",
+    "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs": "31f674fe0333ed6553213a7d46b728c667361ce0c061f9eed45b9bd4ce75ec25",
+    "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs": "38055f06fdf2756e168c69162a6281c9e73c534f3bc2571e09588b8471e79f43",
+    "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs": "1ac544a7925fa96dd784ec834026980c0844fd44c7453770abc994db4c1a1766",
+    "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs": "c8ae5fdb19bb4ac63ae15b7db38233d035ff7bcc53542eba19a9d443fda31ca5",
+    "Assets/EmergencyShift/Tests/EditMode/EnemyConfigTests.cs": "de07f2832db395acff8669c9d9668620e6efe1558b2f4a6442339376fc27fe2d"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. 21 new config cases plus existing native patrol/melee/both brain regressions. Other SOD config/model/style tasks remain open. No authoring generation, art/audio/FPS acceptance."
+}

@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "481 own C# explicitly read; 90 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LightingConfig14.",
+  "limits": "482 own C# explicitly read; 86 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest EnemyConfig15.",
   "counts": {
-    "partial": 90,
-    "reviewed_boundary": 391
+    "partial": 86,
+    "reviewed_boundary": 396
   },
   "files": [
     {
@@ -1007,13 +1007,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs",
-      "sha256": "00ed965c67b38f9cb799966391e6c121a97c4c76bce29561ef16dc724d32491e",
+      "sha256": "b8162665a37993b0d7eeaba9e29136fcb8b1ff05bc2ed1261a5bb773294cc14f",
       "baselineSha256": "7ac251d6c64521f08f2fee3baea6db22f9eb788adaa30c73a887999029f2ffd3",
       "guid": "37db6091fd47ded4aa5cd903d59905d7",
       "types": [
         "SandboxSceneBuilder"
       ],
-      "lines": 348,
+      "lines": 351,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -1026,7 +1026,7 @@
         "MenuItem"
       ],
       "reviewStatus": "partial",
-      "notes": "Once-only/all-dirty guards, новая additive сцена закрывается при ошибке; fixed HP/count/targets и build ordering, shared asset mutations без общего rollback. Существующая сцена не регенерировалась.",
+      "notes": "EnemyConfig15: readonly config consumer API проверен; прежние authoring transaction/shared asset writes, probe lifecycle или checkpoint concrete-adapter debt остаются. Генератор не запускался.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -1048,10 +1048,11 @@
         "UnityEngine.UI"
       ],
       "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
-      "reviewedSha256": "00ed965c67b38f9cb799966391e6c121a97c4c76bce29561ef16dc724d32491e",
+      "reviewedSha256": "b8162665a37993b0d7eeaba9e29136fcb8b1ff05bc2ed1261a5bb773294cc14f",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
@@ -3444,13 +3445,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyDefinition.cs",
-      "sha256": "7fa2c609c274b53f6fc3aec906378b457f7ff7613865907eabe4476596407b2b",
+      "sha256": "17d3985344e4f9ced3e1d5c6d5a7da200f73e3f901908b307ddd667a03c2b5fd",
       "baselineSha256": "b4dbbfcbea7220576ca61744971cb4f682b7a0d7c644f87b0c0ef99b71545159",
       "guid": "c5ee07939d1c586488f21741759ee2be",
       "types": [
         "EnemyDefinition"
       ],
-      "lines": 44,
+      "lines": 68,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Enemies/SandboxTarget-20HP.asset",
         "Assets/EmergencyShift/Data/Enemies/SandboxTarget-2HP.asset",
@@ -3471,13 +3472,14 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "EnemyMelee01: immutable validated melee settings snapshot added; all authored definitions checked without mutation. Other stats validation/public legacy config API remain debt.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общий баланс HP, преследования и укуса",
@@ -3486,10 +3488,10 @@
         "числовые данные"
       ],
       "usageEvidence": "Оба brain/melee; Stalker-Default и Sleeper assets; EnemySystemsTests",
-      "reviewedSha256": "7fa2c609c274b53f6fc3aec906378b457f7ff7613865907eabe4476596407b2b",
+      "reviewedSha256": "17d3985344e4f9ced3e1d5c6d5a7da200f73e3f901908b307ddd667a03c2b5fd",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/EnemyMelee01.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
       "previousReviewStatus": "partial",
       "reviewHistory": [
         {
@@ -3501,13 +3503,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyPatrolProfile.cs",
-      "sha256": "42e0eae6642f0b6e78f0930759a0a4954185a9c73e77638cbc715b0cb39a8cb6",
+      "sha256": "3e23390224bbda33dd3c12ad0471868cf7821b23cc33222a60796de9b47c2935",
       "baselineSha256": "01c104dc9e0eefce89f8fd4960596fb9c42496093cfb5485cf56de6f92bb8525",
       "guid": "3b6e291719817e6449601126f61f69b9",
       "types": [
         "EnemyPatrolProfile"
       ],
-      "lines": 34,
+      "lines": 36,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Enemies/Patrol-Default.asset"
       ],
@@ -3518,12 +3520,13 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "EnemyPatrol02: immutable validated patrol settings; authored profiles load prior defaults without mutation. Private configurable search/stall parameters added; legacy public speed/pause API remains for config pass.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общий темп мирного патруля",
@@ -3532,10 +3535,10 @@
         "Vector2 pause range"
       ],
       "usageEvidence": "EnemyPatrol2D; Editor authoring; EnemySystemsTests",
-      "reviewedSha256": "42e0eae6642f0b6e78f0930759a0a4954185a9c73e77638cbc715b0cb39a8cb6",
+      "reviewedSha256": "3e23390224bbda33dd3c12ad0471868cf7821b23cc33222a60796de9b47c2935",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
       "previousReviewStatus": "partial",
       "reviewHistory": [
         {
@@ -4187,13 +4190,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/SleeperBehaviourProfile.cs",
-      "sha256": "d768f909cbeb50de66a30a027e38cd33850a1d7ea980c32cbf4b84ad9edee0eb",
+      "sha256": "3b04fbffca9e132bccc8010853b2901402ade82a7e8f8b0590257dae2d5eaa28",
       "baselineSha256": "5b17b268ba64197a8abc03fb89b9335d551d4fc3d617e648c24a6b7ca3c3be70",
       "guid": "d2a690bc54ea6ac43911371b802ce30a",
       "types": [
         "SleeperBehaviourProfile"
       ],
-      "lines": 29,
+      "lines": 40,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Enemies/Sleeper-Behaviour.asset"
       ],
@@ -4202,11 +4205,12 @@
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
       ],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs"
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyConfigTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "SleeperBrain03: validated immutable settings snapshot added and authored config tested without mutation. Legacy public API/IsValid finite guards remain for config pass.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Дозировка света, пробуждение и recovery",
@@ -4215,10 +4219,10 @@
         "IsValid"
       ],
       "usageEvidence": "Sleeper2D.Awake/FixedUpdate; Sleeper profile asset",
-      "reviewedSha256": "d768f909cbeb50de66a30a027e38cd33850a1d7ea980c32cbf4b84ad9edee0eb",
+      "reviewedSha256": "3b04fbffca9e132bccc8010853b2901402ade82a7e8f8b0590257dae2d5eaa28",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/SleeperBrain03.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
       "previousReviewStatus": "partial",
       "reviewHistory": [
         {
@@ -4270,13 +4274,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerBehaviourProfile.cs",
-      "sha256": "27e52aa0ba951be300b444d72ec238c87fc51be5782746636a7316e70665fd45",
+      "sha256": "248960d9129fd671097fb90808fda65fe0930788c2d9a850676bea6d780955e6",
       "baselineSha256": "f1ea6a1456a3c7d2e96797894b553628cd1939c3d5d3bf145ef0695057abddb8",
       "guid": "7f73bf11382ceda439c4e6b40b41fcb6",
       "types": [
         "StalkerBehaviourProfile"
       ],
-      "lines": 48,
+      "lines": 54,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Enemies/Stalker-Light-BasementPrototype.asset",
         "Assets/EmergencyShift/Data/Enemies/Stalker-Light-Default.asset"
@@ -4288,11 +4292,12 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "StalkerBrain04: validated immutable settings snapshot, all authored profiles tested without writes; previous interrupt cooldown now private configurable .35 default. Legacy public API/config pass remains.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Реакция на свет, отход и накопление ожога глаза",
@@ -4301,10 +4306,10 @@
         "числовые данные"
       ],
       "usageEvidence": "ShadowStalker2D; два light-профиля и authoring",
-      "reviewedSha256": "27e52aa0ba951be300b444d72ec238c87fc51be5782746636a7316e70665fd45",
+      "reviewedSha256": "248960d9129fd671097fb90808fda65fe0930788c2d9a850676bea6d780955e6",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/StalkerBrain04.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
       "previousReviewStatus": "partial",
       "reviewHistory": [
         {
@@ -5097,7 +5102,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
-      "sha256": "a14035881f48fc69f76e445f8e0e4222a2379563bd6d97ff95225c34c96bda46",
+      "sha256": "015d67bd0d258c7de96ef95b83fa8674278059ed6acf06121bb9a67d5e40014d",
       "baselineSha256": "86634fc027c484d07a6613acd9039e8e3ab52e22c486d980b6fa55022f19e4bc",
       "guid": "90b4963dca84ff34786d816169a61451",
       "types": [
@@ -5118,8 +5123,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Явная isolated fixture и actor/projectile/silent-checkpoint проверки; cleanup после RunSafely, scene discovery и временные actor transforms — test adapters. Нового результата нет.",
-      "reviewedSha256": "a14035881f48fc69f76e445f8e0e4222a2379563bd6d97ff95225c34c96bda46",
+      "notes": "EnemyConfig15: readonly config consumer API проверен; прежние authoring transaction/shared asset writes, probe lifecycle или checkpoint concrete-adapter debt остаются. Генератор не запускался.",
+      "reviewedSha256": "015d67bd0d258c7de96ef95b83fa8674278059ed6acf06121bb9a67d5e40014d",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -5140,8 +5145,9 @@
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "baselineSha256": null,
@@ -6110,7 +6116,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
-      "sha256": "5ea9a3f54ec10efb9ae7557e56e751b8648c2a01eb1302676585158866e870bb",
+      "sha256": "2c76502184a9376b161575f5e3ba1f7c832aca2940ffe2cba90f57a03dea5a56",
       "baselineSha256": "65198c2ff4b8b5b181ad34efb7d661858e89d888c594f5d440b06cf535738314",
       "guid": "74ec39b20c26bf645b3250ec04d29d71",
       "types": [
@@ -6160,8 +6166,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
-      "reviewedSha256": "5ea9a3f54ec10efb9ae7557e56e751b8648c2a01eb1302676585158866e870bb",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
+      "reviewedSha256": "2c76502184a9376b161575f5e3ba1f7c832aca2940ffe2cba90f57a03dea5a56",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -6186,9 +6192,9 @@
       ],
       "usageEvidence": "Sleeper.prefab; SleeperCheckpoint2D; presentation/audio adapters",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/SleeperBrain03.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
-      "previousReviewStatus": "partial"
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
@@ -6305,7 +6311,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
-      "sha256": "5384af169a46a1b10386408a536b91c16268a2c61f5180c098378d74a2f4c71e",
+      "sha256": "c99df88c9b248c05c72eb6a24a973ff1ecf07bd7934f7317a58739ebd9f4a464",
       "baselineSha256": "df18eadd844626c2b014a5ee30c3f12dc163bfbab5382b801925fcb0452a3812",
       "guid": "c7e9df3ce7c1ac4488a2ef46069492f2",
       "types": [
@@ -6366,8 +6372,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
-      "reviewedSha256": "5384af169a46a1b10386408a536b91c16268a2c61f5180c098378d74a2f4c71e",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
+      "reviewedSha256": "c99df88c9b248c05c72eb6a24a973ff1ecf07bd7934f7317a58739ebd9f4a464",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -6392,9 +6398,9 @@
       ],
       "usageEvidence": "ShadowStalker.prefab; StalkerCheckpoint2D; видовые presentation/audio adapters",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/StalkerBrain04.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
-      "previousReviewStatus": "partial"
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
@@ -12636,7 +12642,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
-      "sha256": "bea2a5a92ece149a43475e9096f4afeb075c40a85bf7f61c29f2f6a9e39a4d7a",
+      "sha256": "80b85bd63e9235a52492ed7bed8616acd9b993b2a1c8e75057812b62f14fcf32",
       "baselineSha256": "bea2a5a92ece149a43475e9096f4afeb075c40a85bf7f61c29f2f6a9e39a4d7a",
       "guid": "6dea5c21666e6184090e0a8e6788c9d9",
       "types": [
@@ -12690,7 +12696,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Есть format и explicit hasActor/hasMelee flags, enum/HP/aggro/time checks, запрет living remains. Полнота validation остальных вложенных значений (heading/push/visualRotation) ещё не обеспечена. Unity adapter допустим, но перенос pure snapshot validators нужен; runtime restore сценарий не запускался.",
+      "notes": "EnemyConfig15: readonly config consumer API проверен; прежние authoring transaction/shared asset writes, probe lifecycle или checkpoint concrete-adapter debt остаются. Генератор не запускался.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Сериализация/валидация/восстановление Спящего",
@@ -12702,10 +12708,11 @@
         "JsonUtility"
       ],
       "usageEvidence": "Sleeper.prefab; PersistentEntity2D.Validate/Restore; SleeperTests",
-      "reviewedSha256": "bea2a5a92ece149a43475e9096f4afeb075c40a85bf7f61c29f2f6a9e39a4d7a",
+      "reviewedSha256": "80b85bd63e9235a52492ed7bed8616acd9b993b2a1c8e75057812b62f14fcf32",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
@@ -16871,6 +16878,31 @@
       "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/EnemyConfigTests.cs",
+      "sourceScope": "unity",
+      "sha256": "de07f2832db395acff8669c9d9668620e6efe1558b2f4a6442339376fc27fe2d",
+      "guid": "80de71cadfc84c61853329366c431325",
+      "types": [
+        "EnemyConfigTests"
+      ],
+      "lines": 137,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "de07f2832db395acff8669c9d9668620e6efe1558b2f4a6442339376fc27fe2d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified."
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
       "sha256": "bec985390ad681f7b619956d027a240bb9a826f91bc16572cb7e0e435278c790",
       "baselineSha256": "fbe45aa612c7aa425a41304c8f8c6f0d3e7c7e7333bee0154ac7a31dba37585a",
@@ -17115,10 +17147,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
       "sourceScope": "unity",
-      "sha256": "609a38bbbf12a3125a823a82f8e44bbaa25071d3355b0c23a49c09da36e60b09",
+      "sha256": "31f674fe0333ed6553213a7d46b728c667361ce0c061f9eed45b9bd4ce75ec25",
       "guid": "82e6e76641a54215b428adc31fda513c",
       "types": [
         "EnemyPatrolModelTests",
@@ -17188,13 +17220,15 @@
           "notes": "New inventory entry; no semantic review yet."
         }
       ],
-      "reviewedSha256": "609a38bbbf12a3125a823a82f8e44bbaa25071d3355b0c23a49c09da36e60b09",
-      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
-      "reviewDate": "2026-10-21"
+      "reviewedSha256": "31f674fe0333ed6553213a7d46b728c667361ce0c061f9eed45b9bd4ce75ec25",
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewDate": "2026-10-21",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
-      "sha256": "412b7b46818b3528674b5581ebddbfa4163975ff35b346451455a39373876983",
+      "sha256": "38055f06fdf2756e168c69162a6281c9e73c534f3bc2571e09588b8471e79f43",
       "baselineSha256": "0166c873c7de4937a1f9ab70fc4aeb9fec6938440b4db385d5561ce7b31cfa96",
       "guid": "ba21fd37b5590e047b770b4ccc567e14",
       "types": [
@@ -17208,8 +17242,8 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "EnemyPatrol02: personal pure patrol state/rules, separate actor RNG and physics geometry, commands, scoped factory and unchanged DTO/gizmos. 588 EditMode, 22 PlayMode (actual Stalker patrol/wall/restore), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
-      "reviewedSha256": "412b7b46818b3528674b5581ebddbfa4163975ff35b346451455a39373876983",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
+      "reviewedSha256": "38055f06fdf2756e168c69162a6281c9e73c534f3bc2571e09588b8471e79f43",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17234,8 +17268,8 @@
       ],
       "usageEvidence": "EditMode runner, 4 теста",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/EnemyPatrol02.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution.",
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -18180,10 +18214,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
       "sourceScope": "unity",
-      "sha256": "3362417df341284ec4104bbe0c086502241f2ce2bc22206f22c99924c31b6743",
+      "sha256": "1ac544a7925fa96dd784ec834026980c0844fd44c7453770abc994db4c1a1766",
       "guid": "842cab769234449e908e612e83371de3",
       "types": [
         "Clock",
@@ -18222,9 +18256,11 @@
           "notes": "New inventory entry; no semantic review yet."
         }
       ],
-      "reviewedSha256": "3362417df341284ec4104bbe0c086502241f2ce2bc22206f22c99924c31b6743",
-      "reviewReport": "Docs/Reports/StalkerBrain04.md",
-      "reviewDate": "2026-10-21"
+      "reviewedSha256": "1ac544a7925fa96dd784ec834026980c0844fd44c7453770abc994db4c1a1766",
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewDate": "2026-10-21",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -18849,10 +18885,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "StalkerBrain04: pure personal FSM/aggro/light fear/eye damage/stagger and commands with clock/settings, separate locomotion/melee roles, scoped factory, explicit subscription cleanup; facade/events/enum/legacy eyeBurned DTO retained. 624 EditMode, 24 PlayMode including real scoped cycle, normal Windows64. See route/profiler/config limits.",
+      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
       "sourceScope": "unity",
-      "sha256": "fc5ff0bbe8e5e43e2310b253b65fc12283d2203fdbaab8c4ee96404f05b8685e",
+      "sha256": "c8ae5fdb19bb4ac63ae15b7db38233d035ff7bcc53542eba19a9d443fda31ca5",
       "guid": "3288797d81044f9ba3e5545262dbdeef",
       "types": [
         "StalkerBrainSceneTests"
@@ -18869,9 +18905,11 @@
           "notes": "New inventory entry; no semantic review yet."
         }
       ],
-      "reviewedSha256": "fc5ff0bbe8e5e43e2310b253b65fc12283d2203fdbaab8c4ee96404f05b8685e",
-      "reviewReport": "Docs/Reports/StalkerBrain04.md",
-      "reviewDate": "2026-10-21"
+      "reviewedSha256": "c8ae5fdb19bb4ac63ae15b7db38233d035ff7bcc53542eba19a9d443fda31ca5",
+      "reviewReport": "Docs/Reports/EnemyConfig15.md",
+      "reviewDate": "2026-10-21",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -19345,7 +19383,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 462,
+    "unity": 463,
     "content_source": 8
   },
   "latestReview": {
@@ -19496,11 +19534,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 481,
-    "totalFiles": 481,
+    "reviewedFiles": 482,
+    "totalFiles": 482,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "LightingConfig14 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "EnemyConfig15 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

@@ -39,18 +39,18 @@ namespace EmergencyShift.Tests
             var second = new GameObject("Second");
             try
             {
-                config.maximumHealth = 3;
+                JsonUtility.FromJsonOverwrite("{\"maximumHealth\":3}", config);
                 var a = first.AddComponent<EnemyHealth2D>();
                 var b = second.AddComponent<EnemyHealth2D>();
                 var models = new HealthModelFactory(new UnityGameClock());
                 a.Construct(models);
                 b.Construct(models);
-                a.Initialize(config.maximumHealth);
-                b.Initialize(config.maximumHealth);
+                a.Initialize(config.MaximumHealth);
+                b.Initialize(config.MaximumHealth);
                 a.TakeDamage(1);
                 Assert.That(a.Current, Is.EqualTo(2));
                 Assert.That(b.Current, Is.EqualTo(3));
-                Assert.That(config.maximumHealth, Is.EqualTo(3));
+                Assert.That(config.MaximumHealth, Is.EqualTo(3));
             }
             finally
             {

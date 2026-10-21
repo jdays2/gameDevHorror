@@ -7,13 +7,18 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Enemies/Sleeper behaviour")]
     public sealed class SleeperBehaviourProfile : ScriptableObject
     {
-        [Min(.05f)] public float lightExposureSeconds = .65f;
-        [Min(.01f), Tooltip("Exposure seconds lost per second outside the directed beam.")]
-        public float exposureDecay = .75f;
-        [Min(.05f)] public float wakingSeconds = .9f;
-        [Min(0)] public float recoverySeconds = .65f;
+        [SerializeField, Min(.05f)]
+        private float lightExposureSeconds = .65f;
+        [SerializeField, Min(.01f), Tooltip("Exposure seconds lost per second outside the directed beam.")]
+        private float exposureDecay = .75f;
+        [SerializeField, Min(.05f)]
+        private float wakingSeconds = .9f;
+        [SerializeField, Min(0)]
+        private float recoverySeconds = .65f;
 
-        public bool IsValid => lightExposureSeconds > 0 && exposureDecay > 0 && wakingSeconds > 0 && recoverySeconds >= 0;
+        public bool IsValid => float.IsFinite(lightExposureSeconds) && lightExposureSeconds > 0 &&
+            float.IsFinite(exposureDecay) && exposureDecay > 0 && float.IsFinite(wakingSeconds) && wakingSeconds > 0 &&
+            float.IsFinite(recoverySeconds) && recoverySeconds >= 0;
 
         public SleeperSettings ToSettings(EnemyDefinition definition)
         {
@@ -22,8 +27,14 @@ namespace EmergencyShift
                 throw new ArgumentNullException(nameof(definition));
             }
 
-            return new SleeperSettings(definition.pursuitSpeed, definition.attackDuration, definition.attackCooldown,
-                definition.hitStaggerSeconds, definition.hitPushSpeed, lightExposureSeconds, exposureDecay, wakingSeconds, recoverySeconds);
+            definition.Validate();
+            if (!IsValid)
+            {
+                throw new InvalidOperationException("Invalid Sleeper behaviour profile: " + name);
+            }
+
+            return new SleeperSettings(definition.PursuitSpeed, definition.AttackDuration, definition.AttackCooldown,
+                definition.HitStaggerSeconds, definition.HitPushSpeed, lightExposureSeconds, exposureDecay, wakingSeconds, recoverySeconds);
         }
     }
 }
