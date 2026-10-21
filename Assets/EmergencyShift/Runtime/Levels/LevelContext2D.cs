@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using EmergencyShift.Core.Composition;
 using EmergencyShift.Core.Time;
 using EmergencyShift.Features.AccessControl;
@@ -43,16 +44,38 @@ namespace EmergencyShift
                 throw new InvalidOperationException("A level composition can only initialize once.");
             }
 
-            Container = new DiContainer(worldContainer);
-            InstallBindings();
-            foreach (GameObject root in gameObject.scene.GetRootGameObjects())
+            if (worldContainer == null)
             {
-                Container.InjectGameObject(root);
+                throw new ArgumentNullException(nameof(worldContainer));
             }
 
-            Container.ResolveRoots();
-            lifetime = Container.Resolve<DisposableManager>();
-            prefabs = Container.Resolve<ScenePrefabFactory>();
+            Container = new DiContainer(worldContainer);
+            try
+            {
+                InstallBindings();
+                // Capture the completed local bindings before user Inject callbacks can fail.
+                lifetime = Container.Resolve<DisposableManager>();
+                foreach (GameObject root in gameObject.scene.GetRootGameObjects())
+                {
+                    Container.InjectGameObject(root);
+                }
+
+                Container.ResolveRoots();
+                prefabs = Container.Resolve<ScenePrefabFactory>();
+            }
+            catch (Exception initializationError)
+            {
+                try
+                {
+                    Dispose();
+                }
+                catch (Exception cleanupError)
+                {
+                    throw new AggregateException("Level initialization and cleanup both failed.", initializationError, cleanupError);
+                }
+
+                throw;
+            }
         }
 
         public override void InstallBindings()
@@ -71,8 +94,8 @@ namespace EmergencyShift
 
             DiContainer playerScope = Container.CreateSubContainer();
             PlayerInputInstaller.Install(playerScope, controls);
-            playerScope.ResolveRoots();
             playerLifetime = playerScope.Resolve<DisposableManager>();
+            playerScope.ResolveRoots();
             IPlayerInput localInput = playerScope.Resolve<IPlayerInput>();
             GameplayInputBlock localInputBlock = playerScope.Resolve<GameplayInputBlock>();
 
@@ -95,15 +118,34 @@ namespace EmergencyShift
             }
 
             disposed = true;
-            playerLifetime?.Dispose();
-            playerLifetime?.LateDispose();
-            lifetime?.Dispose();
-            lifetime?.LateDispose();
-            Container?.UnbindAll();
+            var errors = new List<Exception>();
+            DisposeManager(playerLifetime, errors);
+            DisposeManager(lifetime, errors);
+            try
+            {
+                Container?.UnbindAll();
+            }
+            catch (Exception error)
+            {
+                errors.Add(error);
+            }
+
+            playerLifetime = null;
+            lifetime = null;
+            prefabs = null;
+            if (errors.Count > 0)
+            {
+                throw new AggregateException("Errors while closing level composition.", errors);
+            }
         }
 
         public void Configure(PlayerLife2D target, Flashlight2D light, InputActionAsset inputActions)
         {
+            if (Container != null || disposed)
+            {
+                throw new InvalidOperationException("Level references must be configured before initialization.");
+            }
+
             player = target;
             flashlight = light;
             controls = inputActions;
@@ -134,6 +176,32 @@ namespace EmergencyShift
             }
 
             return prefabs.Instantiate(prefab, position, rotation, parent);
+        }
+
+        private static void DisposeManager(DisposableManager manager, List<Exception> errors)
+        {
+            if (manager == null)
+            {
+                return;
+            }
+
+            try
+            {
+                manager.Dispose();
+            }
+            catch (Exception error)
+            {
+                errors.Add(error);
+            }
+
+            try
+            {
+                manager.LateDispose();
+            }
+            catch (Exception error)
+            {
+                errors.Add(error);
+            }
         }
     }
 }

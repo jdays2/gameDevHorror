@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "67e0eb97355a9e65d22e0eb7dbad37c2b7a7bd13",
+  "bug": "BUG-020",
+  "unityVersion": "6000.6.5f1",
+  "negative": {
+    "result": "Failed(Child)",
+    "total": "3",
+    "passed": "1",
+    "failed": "2",
+    "skipped": "0",
+    "rawResultSha256": "e36e8196d83a83bad6c8c4df8b3812bdd77b76fce4a787216870e222f4c01fa1",
+    "selectedCases": [
+      "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionClosesPartiallyPopulatedRegistriesAndRejectsMoreComposition",
+      "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionImmediatelyReleasesItsOwnedInputActions",
+      "EmergencyShift.Tests.LevelCompositionFailureTests.FailedLevelDoesNotDisposeASiblingOrTheSharedWorld"
+    ],
+    "failedCases": [
+      "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionClosesPartiallyPopulatedRegistriesAndRejectsMoreComposition",
+      "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionImmediatelyReleasesItsOwnedInputActions"
+    ]
+  },
+  "editMode": {
+    "result": "Passed",
+    "total": "545",
+    "passed": "545",
+    "failed": "0",
+    "skipped": "0",
+    "rawResultSha256": "180caa2a0cb3020e90282df325eea83a9267347e16722f10130e725a8f2670ad",
+    "selectedCases": [
+      "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionClosesPartiallyPopulatedRegistriesAndRejectsMoreComposition",
+      "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionImmediatelyReleasesItsOwnedInputActions",
+      "EmergencyShift.Tests.LevelCompositionFailureTests.FailedLevelDoesNotDisposeASiblingOrTheSharedWorld",
+      "EmergencyShift.Tests.LevelCompositionFailureTests.InitializationAndCleanupErrorsArePreservedAndLateCleanupStillRuns",
+      "EmergencyShift.Tests.LevelCompositionFailureTests.LiveAndDisposedLevelsCannotReplaceAlreadyBoundReferences"
+    ],
+    "failedCases": []
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "20",
+    "passed": "20",
+    "failed": "0",
+    "skipped": "0",
+    "rawResultSha256": "ab46119a582bbe3402b2a11cb075309637cd00485ecb61d569bfb6c648f7b227",
+    "selectedCases": [
+      "EmergencyShift.Tests.AccessControlSceneTests.RealLevelCompositionInjectsPersonalInventoriesAndReaders",
+      "EmergencyShift.Tests.AdaptiveAudioProbeRegressionTests.ExistingOptInProbeCompletesDryFireAndAllThreeGroundMaterials",
+      "EmergencyShift.Tests.CameraOpticsLifetimeTests.EventsResizeAndRebindingOwnTheirSubscriptionsWithoutPerFrameOpticsReads",
+      "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearImmediatelyCancelsOlderRequestAndDeletesAllSlotFiles",
+      "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileDoorMovesPreventsWriteAfterDoorSettles",
+      "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileGoreIsUnsettledPreventsWriteAfterItSettles",
+      "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FinishingLevelStillCancelsPendingSaveAndClearsSlot",
+      "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FreshRequestAfterClearCanSavePreviouslyVisitedCheckpoint",
+      "EmergencyShift.Tests.DialogueSessionLifetimeTests.DisabledComponentCannotOfferOrStartConversation",
+      "EmergencyShift.Tests.DialogueSessionLifetimeTests.DisablingAnOpenSessionRestoresPresentationAndKeepsOtherOwners",
+      "EmergencyShift.Tests.DialogueSessionLifetimeTests.InactiveRootCannotStartConversation",
+      "EmergencyShift.Tests.DialogueSessionLifetimeTests.ReenabledSessionCompletesBothBranchesAndFencesConfirmation",
+      "EmergencyShift.Tests.FlashlightProgressionSceneTests.AuthoredRouteCameraExpandsForAcquisitionAndUpgradeAndRestoresBase",
+      "EmergencyShift.Tests.TransientBloodSceneTests.HitSprayIsRemovedWithOwnerWhileItsTimerIsFrozen",
+      "EmergencyShift.Tests.TransientBloodSceneTests.HitSprayUsesSourceScene",
+      "EmergencyShift.Tests.TransientBloodSceneTests.RuptureIsRemovedWithOwnerWhileItsTimerIsFrozen",
+      "EmergencyShift.Tests.TransientBloodSceneTests.RuptureUsesSourceScene",
+      "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ActualVolleyKeepsAllDirectionsWithDifferentFlashAndCosmeticDraws",
+      "EmergencyShift.Tests.WeaponSpreadLifetimeTests.BlockedMuzzleProducesImpactAndConsumesAmmoWithoutLaunchingBullets",
+      "EmergencyShift.Tests.WeaponSpreadLifetimeTests.DisablingViewCancelsPartialReloadAndReenableKeepsItsAmmo"
+    ],
+    "failedCases": []
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T13:30:11.018Z",
+    "endedAt": "2026-10-21T13:30:34.781Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs": "e1878542fe77f05fd195ff1aebc6a88e709c5c2129d8f6d83b4cbdf71570ae37",
+    "Assets/EmergencyShift/Runtime/Development/CompositionFailureProbe.cs": "4f25fdd93745afce6bf5c4cd8b6680131ba6e1790ca293245290e90956f8bd7a",
+    "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs": "dbf997e95861d808677b818e72a4748fbf6f4546a20dbcb73ca5163885a7f201"
+  },
+  "testAssemblySha256": "ff66a38d81d0394b84e528d916daf59ea782a68af47c618ace99cef3db0e72fa",
+  "originalResourceGuards": {
+    "Assets/EmergencyShift/Audio/MenuMusic.meta": true,
+    "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseIntro.wav": true,
+    "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseIntro.wav.meta": true,
+    "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseLoop.wav": true,
+    "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseLoop.wav.meta": true,
+    "Assets/EmergencyShift/Data/Audio/PauseMenuAudio.asset": true,
+    "Assets/EmergencyShift/Data/Audio/PauseMenuAudio.asset.meta": true,
+    "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs.meta": true,
+    "Assets/EmergencyShift/Prefabs/UI/PauseMenuUI.prefab": true,
+    "Assets/EmergencyShift/Prefabs/UI/PauseMenuUI.prefab.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Config.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Config/PauseMenuAudioConfig.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/IPauseMenuEnvironment.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuModel.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs.meta": true,
+    "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs.meta": true,
+    "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs.meta": true,
+    "Assets/EmergencyShift/Tests/EditMode/PauseMenuTests.cs.meta": true,
+    "Concepts/Used/Audio/PauseMenuMusic01/Previews/BelowTheWardPauseLoop_Seam.wav": true,
+    "Concepts/Used/Audio/PauseMenuMusic01/Previews/BelowTheWardPauseLoop_TwoRepeats.wav": true,
+    "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity": true,
+    "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity": true,
+    "Assets/EmergencyShift/Settings/EmergencyShiftControls.inputactions": true,
+    "ProjectSettings/ProjectSettings.asset": true
+  },
+  "fixtureCorrections": "MonoBehaviour cannot attach from Editor-only assembly; opt-in helper moved to Development/UNITY_EDITOR. Negative result above is after fixture placement corrected. ILateDisposable test explicitly references Zenject-usage and NUnit.",
+  "limits": "Disposable dirty working tree includes accepted pause source. Negative failure scenario is real Editor prefab-preview injection, not a failed Play bootstrap. In Play actions disable immediately, Destroy is deferred by existing input Dispose. Arbitrary callback side effects are not rolled back; SDK internal dispose iteration still stops at first throw. Other cleanup stages/errors are handled; not general scene recovery or performance claim."
+}

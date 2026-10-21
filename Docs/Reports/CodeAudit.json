@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "366 own C# explicitly read; 100 partial. Boundary reviews certify their stated scope, not every configuration/style/lifetime task. complete=false. Latest: FlashlightState02.",
+  "limits": "368 own C# explicitly read; 99 partial. Boundary reviews certify stated scope, not every configuration/style/lifetime task. complete=false. Latest: ScopeFailure03.",
   "counts": {
-    "partial": 100,
-    "reviewed_boundary": 266
+    "partial": 99,
+    "reviewed_boundary": 269
   },
   "files": [
     {
@@ -2230,6 +2230,7 @@
       "lexicalSourceUsers": [
         "AgentScripts/CheckGroundAudioScope.cs",
         "AgentScripts/CheckWorldServices.cs",
+        "Assets/EmergencyShift/Runtime/Development/CompositionFailureProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/CrowdAgent2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
@@ -2238,6 +2239,7 @@
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs"
       ],
@@ -2280,6 +2282,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/InstallWorldComposition.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
       ],
       "entryPointHints": [],
@@ -3032,6 +3035,7 @@
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
@@ -4500,6 +4504,35 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit09.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ScopeFailure03: real partial Inject failure closes input/scene owners; stages/late cleanup continue with errors preserved, sibling/world remain alive; Configure locked after init. 2 original failures, 545 EditMode, 20 PlayMode, normal Windows64. Opt-in Development helper/preview test only; no scene regeneration. See SDK iteration/recovery/config limits in report.",
+      "path": "Assets/EmergencyShift/Runtime/Development/CompositionFailureProbe.cs",
+      "sourceScope": "unity",
+      "sha256": "4f25fdd93745afce6bf5c4cd8b6680131ba6e1790ca293245290e90956f8bd7a",
+      "guid": "02e0cdd966824af4b17524fff6c315ad",
+      "types": [
+        "CompositionFailureProbe"
+      ],
+      "lines": 27,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "4f25fdd93745afce6bf5c4cd8b6680131ba6e1790ca293245290e90956f8bd7a",
+      "reviewReport": "Docs/Reports/ScopeFailure03.md",
+      "reviewDate": "2026-10-21"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
@@ -8502,6 +8535,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Development/CompositionFailureProbe.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
@@ -8514,6 +8548,7 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxSession2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -8579,6 +8614,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs"
       ],
       "entryPointHints": [],
@@ -8644,13 +8680,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "2f083b21cf8ca03d490adfde022459dbede3fe64655b5a7f6057c7430b5c3a91",
+      "sha256": "e1878542fe77f05fd195ff1aebc6a88e709c5c2129d8f6d83b4cbdf71570ae37",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 141,
+      "lines": 209,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -8681,14 +8717,15 @@
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "FlashlightState02: scoped optics/projection bindings and model factory installed. Initialization-failure cleanup and remaining scope/lifetime composition remain debt.",
-      "reviewedSha256": "2f083b21cf8ca03d490adfde022459dbede3fe64655b5a7f6057c7430b5c3a91",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ScopeFailure03: real partial Inject failure closes input/scene owners; stages/late cleanup continue with errors preserved, sibling/world remain alive; Configure locked after init. 2 original failures, 545 EditMode, 20 PlayMode, normal Windows64. Opt-in Development helper/preview test only; no scene regeneration. See SDK iteration/recovery/config limits in report.",
+      "reviewedSha256": "e1878542fe77f05fd195ff1aebc6a88e709c5c2129d8f6d83b4cbdf71570ae37",
       "previousReviewStatus": "partial",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -8701,7 +8738,7 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewReport": "Docs/Reports/ScopeFailure03.md",
       "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "reviewHistory": [
         {
@@ -8732,6 +8769,11 @@
           "reviewStatus": "partial",
           "notes": "FlashlightUpgrades01: factory installed after local bindings; lifetime/failure cleanup and remaining composition still debt.",
           "reviewedSha256": "7bbb5704110d62a9725a5d5c49c2708b402e66b555221443f99ca8812b2747f6"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "FlashlightState02: scoped optics/projection bindings and model factory installed. Initialization-failure cleanup and remaining scope/lifetime composition remain debt.",
+          "reviewedSha256": "2f083b21cf8ca03d490adfde022459dbede3fe64655b5a7f6057c7430b5c3a91"
         }
       ]
     },
@@ -10572,6 +10614,7 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -12259,6 +12302,7 @@
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/CompositionFailureProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
@@ -12268,6 +12312,7 @@
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
@@ -14012,6 +14057,37 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ScopeFailure03: real partial Inject failure closes input/scene owners; stages/late cleanup continue with errors preserved, sibling/world remain alive; Configure locked after init. 2 original failures, 545 EditMode, 20 PlayMode, normal Windows64. Opt-in Development helper/preview test only; no scene regeneration. See SDK iteration/recovery/config limits in report.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+      "sourceScope": "unity",
+      "sha256": "dbf997e95861d808677b818e72a4748fbf6f4546a20dbcb73ca5163885a7f201",
+      "guid": "5e837244c731456abb184e859dbccfc9",
+      "types": [
+        "LateCleanup",
+        "LevelCompositionFailureTests",
+        "ThrowingCleanup"
+      ],
+      "lines": 168,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "dbf997e95861d808677b818e72a4748fbf6f4546a20dbcb73ca5163885a7f201",
+      "reviewReport": "Docs/Reports/ScopeFailure03.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
       "sha256": "1a1c3f4b2886a4a36d9e41004afc5ce71a709a5a2ff87a4d16eead1eb6299f07",
       "baselineSha256": null,
@@ -15320,14 +15396,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 347,
+    "unity": 349,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 29,
-    "report": "Docs/Reports/FlashlightState02.md",
-    "validation": "540/540 EditMode, 20/20 real PlayMode, normal Windows64 success. Pure state/aim, camera event/subscription/cache lifecycle, actual route/audio regressions, separate HUD projection. Original resources unchanged; no performance/author acceptance claim."
+    "files": 3,
+    "report": "Docs/Reports/ScopeFailure03.md",
+    "validation": "2 real original scope failures; 545/545 EditMode, 20/20 PlayMode, normal Windows64 success. Input/registry cleanup, sibling/world isolation, aggregated errors/late stage and locked references. Original resources unchanged; see fixture/SDK limits."
   },
   "reviewPasses": [
     {
@@ -15425,15 +15501,21 @@
       "files": 29,
       "report": "Docs/Reports/FlashlightState02.md",
       "validation": "540/540 EditMode, 20/20 real PlayMode, normal Windows64 success. Pure state/aim, camera event/subscription/cache lifecycle, actual route/audio regressions, separate HUD projection. Original resources unchanged; no performance/author acceptance claim."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 3,
+      "report": "Docs/Reports/ScopeFailure03.md",
+      "validation": "2 real original scope failures; 545/545 EditMode, 20/20 PlayMode, normal Windows64 success. Input/registry cleanup, sibling/world isolation, aggregated errors/late stage and locked references. Original resources unchanged; see fixture/SDK limits."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 366,
-    "totalFiles": 366,
+    "reviewedFiles": 368,
+    "totalFiles": 368,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "FlashlightState02 and earlier reviews; targeted boundary certification is not completion of all SOD tasks."
+    "validation": "ScopeFailure03 and earlier reviews; targeted boundary certification does not complete all SOD tasks."
   }
 }

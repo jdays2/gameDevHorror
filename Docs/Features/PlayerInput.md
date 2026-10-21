@@ -10,6 +10,8 @@
 
 Не регистрировать DisposableManager повторно: стандартный ZenjectManagersInstaller уже копирует его в дочерние контейнеры. Не начинать fluent Bind до Resolve дочернего scope: незавершённая привязка может попасть во FlushBindings. Контекст освобождается один раз; повторный Dispose безопасен.
 
+После завершения bindings LevelContext захватывает managers до Inject callbacks/ResolveRoots. Отказ закрывает собственный input/scene scope, не трогая общий мир/соседа; последующие scoped-действия запрещены. Обе причины сохраняются, если cleanup тоже упал. Configure допустим до Initialize. Это очистка аварийного создания, не recovery повреждённого уровня. [Проверка реального prefab-preview и ограничения SDK](../Reports/ScopeFailure03.md).
+
 LevelRegistriesInstaller задаёт отдельные реестры дверей, участников группы и голосов Сталкера; общие квоты и история звуков смерти принадлежат миру. Временные probes получают необходимые зависимости через явную InjectScoped, не через доступ к сырому контейнеру. [Проверка сроков жизни](../Reports/CodeMigration02.md).
 
 Проверки: PlayerInputTests проверяет реальные bindings синтетической клавиатурой с временными настройками EditMode; LevelCompositionTests поднимает два настоящих LevelRig и проверяет общий мир, раздельный ввод и сроки жизни. Нынешние MonoBehaviour-потребители ещё требуют дальнейшего отделения правил от Unity. Общий статус — [этап 00](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).
