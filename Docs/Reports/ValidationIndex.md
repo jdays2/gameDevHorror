@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Однократный подбор / BUG-024 | [SingleUsePickups18](SingleUsePickups18.md): исходный native отказ 0/1, затем 870/870 EditMode, 40/40 PlayMode, Windows64 success; busy/once/quiet restore, repeatable экземпляры/caps/card/flashlight. WeaponLoot/config bridge открыт. |
 | Выбор интеракции и уведомления | [PlayerInteraction17](PlayerInteraction17.md): 860/860 EditMode, 36/36 PlayMode, Windows64 success; личные selection/notice models, команды/clock, native wall/modal/disable/queue. Item contracts/config bridge ещё открыты. |
 | Полёт пули MVC/DI | [ProjectileFlight16](ProjectileFlight16.md): 839/839 EditMode, 34/34 PlayMode, Windows64 success; личная trajectory/command, один hit/range/lifetime, native owner/trigger/nearest/thin wall, 0 bytes чистого tick. Ballistic/presentation config bridge ещё открыт. |
 | Конфиги врагов | [EnemyConfig15](EnemyConfig15.md): 823/823 EditMode, 32/32 PlayMode, Windows64 success; readonly четыре общих профиля, finite health/movement/behaviour validation, старые поля и authored stats сохранены. |

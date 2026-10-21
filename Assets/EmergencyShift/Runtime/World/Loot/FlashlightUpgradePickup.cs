@@ -1,4 +1,8 @@
+using System;
+using EmergencyShift.Features.Pickups;
+using EmergencyShift.Features.Pickups.Logic;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -19,13 +23,13 @@ namespace EmergencyShift
         private float pickupRange = 1f;
         [SerializeField, Tooltip("Можно собирать несколько экземпляров этого вида; каждый предмет всё равно однократный.")]
         private bool repeatable = true;
-        private bool collected;
+        private SingleUsePickupController controller;
         public string ModuleId => moduleId;
-        public bool Collected => collected;
+        public bool Collected => controller?.Collected ?? false;
 
         public void RestoreState(bool consumed)
         {
-            collected = consumed;
+            RestoreCollection(consumed);
         }
 
         public Vector2 InteractionPosition => transform.position;
@@ -47,7 +51,7 @@ namespace EmergencyShift
 
         public bool IsAvailable(PlayerInteraction actor)
         {
-            if (collected || !isActiveAndEnabled || actor == null || actor.Upgrades == null)
+            if (Collected || !isActiveAndEnabled || actor == null || actor.Upgrades == null)
             {
                 return false;
             }
@@ -60,24 +64,64 @@ namespace EmergencyShift
             return true;
         }
 
+        [Inject]
+        public void Construct(PickupControllerFactory factory)
+        {
+            if (controller != null)
+            {
+                throw new InvalidOperationException("Pickup is already composed.");
+            }
+
+            controller = (factory ?? throw new ArgumentNullException(nameof(factory))).CreateSingleUse();
+        }
+
         public bool TryCollect(PlayerInteraction actor)
         {
-            if (!IsAvailable(actor))
+            if (actor == null || !isActiveAndEnabled)
             {
                 return false;
             }
 
-            string message;
-            if (!actor.Upgrades.TryInstall(moduleId, displayName, rangeBonus, angleBonus, out message, repeatable))
+            return RequireController().TryCollect(new Operation(this, actor)).Success;
+        }
+
+        private SingleUsePickupController RequireController() => controller ?? throw new InvalidOperationException("Pickup requires level composition.");
+
+        private void RestoreCollection(bool consumed)
+        {
+            var result = RequireController().Restore(consumed);
+            if (!result.Success)
             {
-                return false;
+                throw new InvalidOperationException(result.Reason);
+            }
+        }
+
+        private readonly struct Operation : IPickupOperation
+        {
+            private readonly FlashlightUpgradePickup owner;
+            private readonly PlayerInteraction actor;
+
+            public Operation(FlashlightUpgradePickup owner, PlayerInteraction actor)
+            {
+                this.owner = owner;
+                this.actor = actor;
             }
 
-            collected = true;
-            actor.ReportPickup(PickupKind.FlashlightUpgrade, displayName);
-            // Не Destroy: экземпляр явно хранит факт подбора, а повторный вызов безопасен.
-            gameObject.SetActive(false);
-            return true;
+            public bool CanApply => owner.IsAvailable(actor);
+            public bool Apply() => actor.Upgrades.TryInstall(owner.moduleId, owner.displayName,
+                owner.rangeBonus, owner.angleBonus, out _, owner.repeatable);
+
+            public void Present()
+            {
+                try
+                {
+                    actor.ReportPickup(PickupKind.FlashlightUpgrade, owner.displayName);
+                }
+                finally
+                {
+                    owner.gameObject.SetActive(false);
+                }
+            }
         }
     }
 }

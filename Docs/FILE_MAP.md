@@ -443,6 +443,19 @@
 - [PauseMenuPresenter.cs](../Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs)
 - [PauseMenuView.cs](../Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Pickups
+
+- [PickupControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs)
+- [PickupInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/PickupInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Pickups/Logic
+
+- [CollectPickupCommand.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs)
+- [IPickupOperation.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/IPickupOperation.cs)
+- [RestorePickupCommand.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs)
+- [SingleUsePickupController.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs)
+- [SingleUsePickupModel.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupModel.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/PlayerFootsteps
 
 - [PlayerFootstepControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs)
@@ -682,6 +695,7 @@
 - [ProjectileFlightTests.cs](../Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
 - [SceneRegistryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs)
+- [SingleUsePickupTests.cs](../Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs)
 - [SleeperModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs)
 - [SleeperTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs)
 - [StalkerEyeTests.cs](../Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs)
@@ -709,6 +723,7 @@
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
 - [InteractionProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs)
 - [InteractionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs)
+- [PickupSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs)
 - [PlayerMovementSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs)
 - [ProjectileProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs)
 - [ProjectileSceneOwnershipTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs)

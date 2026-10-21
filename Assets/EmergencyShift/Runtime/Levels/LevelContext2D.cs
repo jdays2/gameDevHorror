@@ -7,6 +7,7 @@ using EmergencyShift.Features.Flashlight;
 using EmergencyShift.Features.DamageFeedback;
 using EmergencyShift.Features.Health;
 using EmergencyShift.Features.Interaction;
+using EmergencyShift.Features.Pickups;
 using EmergencyShift.Features.Enemies;
 using EmergencyShift.Features.PlayerInput;
 using EmergencyShift.Features.PlayerMovement;
@@ -116,6 +117,7 @@ namespace EmergencyShift
             DoorMotionInstaller.Install(Container);
             PlayerFootstepInstaller.Install(Container);
             PlayerInteractionInstaller.Install(Container);
+            PickupInstaller.Install(Container);
         }
 
         private void OnDestroy() => Dispose();

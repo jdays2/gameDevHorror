@@ -40,8 +40,10 @@ namespace EmergencyShift.Tests
             access.Construct(new EmergencyShift.Features.AccessControl.DoorAccessControllerFactory(new EmergencyShift.Core.Time.UnityGameClock()));
             participants.Add("door", doorObject.AddComponent<DoorCheckpoint2D>());
             card = Entity("card").gameObject.AddComponent<AccessCardPickup2D>();
+            card.Construct(new Features.Pickups.PickupControllerFactory());
             participants.Add("card", card.gameObject.AddComponent<CardCheckpoint2D>());
             upgrade = Entity("upgrade").gameObject.AddComponent<FlashlightUpgradePickup>();
+            upgrade.Construct(new Features.Pickups.PickupControllerFactory());
             participants.Add("upgrade", upgrade.gameObject.AddComponent<UpgradeCheckpoint2D>());
             encounter = Entity("encounter").gameObject.AddComponent<EncounterActivation2D>();
             participants.Add("encounter", encounter.gameObject.AddComponent<EncounterCheckpoint2D>());

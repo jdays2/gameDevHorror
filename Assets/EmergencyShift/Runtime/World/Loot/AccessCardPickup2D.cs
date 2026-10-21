@@ -1,4 +1,8 @@
+using System;
+using EmergencyShift.Features.Pickups;
+using EmergencyShift.Features.Pickups.Logic;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -10,14 +14,12 @@ namespace EmergencyShift
         [SerializeField]
         private string displayName = "Служебная карта";
         public string CardId => cardId;
-        public bool Collected
-        {
-            get; private set;
-        }
+        private SingleUsePickupController controller;
+        public bool Collected => controller?.Collected ?? false;
 
         public void RestoreState(bool consumed)
         {
-            Collected = consumed;
+            RestoreCollection(consumed);
         }
 
         public Vector2 PickupPosition => transform.position;
@@ -33,23 +35,67 @@ namespace EmergencyShift
             GetComponent<CircleCollider2D>().isTrigger = true;
         }
 
+        [Inject]
+        public void Construct(PickupControllerFactory factory)
+        {
+            if (controller != null)
+            {
+                throw new InvalidOperationException("Pickup is already composed.");
+            }
+
+            controller = (factory ?? throw new ArgumentNullException(nameof(factory))).CreateSingleUse();
+        }
+
         public bool TryCollect(PlayerInteraction actor)
         {
-            if (Collected || !isActiveAndEnabled || actor == null || !actor.CanReach(PickupPosition, 1))
+            if (actor == null || !isActiveAndEnabled)
             {
                 return false;
             }
 
-            var inventory = actor.GetComponent<PlayerAccessCards2D>();
-            if (inventory == null || !inventory.Add(cardId))
+            return RequireController().TryCollect(new Operation(this, actor)).Success;
+        }
+
+        private SingleUsePickupController RequireController() => controller ?? throw new InvalidOperationException("Pickup requires level composition.");
+
+        private void RestoreCollection(bool consumed)
+        {
+            var result = RequireController().Restore(consumed);
+            if (!result.Success)
             {
-                return false;
+                throw new InvalidOperationException(result.Reason);
+            }
+        }
+
+        private readonly struct Operation : IPickupOperation
+        {
+            private readonly AccessCardPickup2D owner;
+            private readonly PlayerInteraction actor;
+
+            public Operation(AccessCardPickup2D owner, PlayerInteraction actor)
+            {
+                this.owner = owner;
+                this.actor = actor;
             }
 
-            Collected = true;
-            actor.ReportPickup(PickupKind.AccessCard, displayName);
-            gameObject.SetActive(false);
-            return true;
+            public bool CanApply => owner.isActiveAndEnabled && actor.CanReach(owner.PickupPosition, 1);
+            public bool Apply()
+            {
+                var inventory = actor.GetComponent<PlayerAccessCards2D>();
+                return inventory != null && inventory.Add(owner.cardId);
+            }
+
+            public void Present()
+            {
+                try
+                {
+                    actor.ReportPickup(PickupKind.AccessCard, owner.displayName);
+                }
+                finally
+                {
+                    owner.gameObject.SetActive(false);
+                }
+            }
         }
     }
 }

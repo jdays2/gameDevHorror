@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "504 own C# explicitly read; 86 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PlayerInteraction17.",
+  "limits": "513 own C# explicitly read; 86 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest SingleUsePickups18.",
   "counts": {
     "partial": 86,
-    "reviewed_boundary": 418
+    "reviewed_boundary": 427
   },
   "files": [
     {
@@ -2077,6 +2077,9 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
@@ -2163,6 +2166,8 @@
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Projectiles/Logic/LaunchProjectileCommand.cs"
@@ -11359,6 +11364,193 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "933daf1d79b94b62144fa5926c91c13f01e78a3e2d16a1e0aedcfaac1ec1a153",
+      "guid": "f472741757cc4a41abf9cd89bd9423f5",
+      "types": [
+        "CollectPickupCommand"
+      ],
+      "lines": 44,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "933daf1d79b94b62144fa5926c91c13f01e78a3e2d16a1e0aedcfaac1ec1a153",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/IPickupOperation.cs",
+      "sourceScope": "unity",
+      "sha256": "c95c3483c241e293012fe18164d6c97b37754d34bb04dd815ffe8c34f984f1ea",
+      "guid": "28411ed1f76940b0998899580e0def4d",
+      "types": [
+        "IPickupOperation"
+      ],
+      "lines": 10,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c95c3483c241e293012fe18164d6c97b37754d34bb04dd815ffe8c34f984f1ea",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "6d9de4460d5aaeab5c73808aca8c45e875cf015d746fd7443e9441f1a34689fe",
+      "guid": "c3a809d3dcac4984bcc55e3c7b1fea2b",
+      "types": [
+        "RestorePickupCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "6d9de4460d5aaeab5c73808aca8c45e875cf015d746fd7443e9441f1a34689fe",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs",
+      "sourceScope": "unity",
+      "sha256": "7e838c498b37b4fbb093bea6444b6a08dccaefc3ae2728e666cfb70a139eb39d",
+      "guid": "69e54a58a28240e7a8c30e5408c13352",
+      "types": [
+        "SingleUsePickupController"
+      ],
+      "lines": 25,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7e838c498b37b4fbb093bea6444b6a08dccaefc3ae2728e666cfb70a139eb39d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupModel.cs",
+      "sourceScope": "unity",
+      "sha256": "cb1aa92e936cf7499ed756b7402712a7147846446d9df0c34b25ca44ec32e20a",
+      "guid": "a3dea3948b064581b6ec2c6e5005e268",
+      "types": [
+        "SingleUsePickupModel"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "cb1aa92e936cf7499ed756b7402712a7147846446d9df0c34b25ca44ec32e20a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "fcfe73961b6d819de482063846eeb7ee268ad411699c7e1707f4cbba4da3bcea",
+      "guid": "aa764c1cbc6040ed841e4d81f39a9828",
+      "types": [
+        "PickupControllerFactory"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Pickups/PickupInstaller.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "fcfe73961b6d819de482063846eeb7ee268ad411699c7e1707f4cbba4da3bcea",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/PickupInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "54b7ad3dc7bed6571b148f25b9f708e28ad17dc43653bb09f469639daa5c250e",
+      "guid": "874e294a5ec94513b76bd20d792aba6a",
+      "types": [
+        "PickupInstaller"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "54b7ad3dc7bed6571b148f25b9f708e28ad17dc43653bb09f469639daa5c250e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
       "path": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Config/PlayerFootstepSettings.cs",
       "sourceScope": "unity",
@@ -12119,13 +12311,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "2692f67ca57430e029253647c6cc33d956a734a338f116edfa75678cead0e350",
+      "sha256": "8517fa94cc2809c70806de964a6e1d16ebd2d538c7af2449b467e09a7667dde4",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 219,
+      "lines": 221,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -12164,14 +12356,15 @@
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
-      "reviewedSha256": "2692f67ca57430e029253647c6cc33d956a734a338f116edfa75678cead0e350",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "reviewedSha256": "8517fa94cc2809c70806de964a6e1d16ebd2d538c7af2449b467e09a7667dde4",
       "previousReviewStatus": "reviewed_boundary",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -12184,8 +12377,8 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
       "reviewHistory": [
         {
           "reviewDate": "2026-10-21",
@@ -13016,6 +13209,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
@@ -13169,6 +13363,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
@@ -13243,6 +13438,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
@@ -13390,6 +13586,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
@@ -13719,7 +13916,8 @@
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -14029,7 +14227,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -16378,13 +16577,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
-      "sha256": "3f3e9a6083239954636b5771c8107344224e19f5d39bac1743d4177774f6c105",
+      "sha256": "7b01b950e03ef870c2f78f5cd37fd3a5e2494fd3c18a887059c42d2eed5cc960",
       "baselineSha256": "3f3e9a6083239954636b5771c8107344224e19f5d39bac1743d4177774f6c105",
       "guid": "7976cc56c7510bf47918da5f14a64752",
       "types": [
-        "AccessCardPickup2D"
+        "AccessCardPickup2D",
+        "Operation"
       ],
-      "lines": 55,
+      "lines": 101,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Loot/AccessCardPickup.prefab",
         "Assets/EmergencyShift/Prefabs/World/AccessCards01/ResearchCard.prefab",
@@ -16400,13 +16600,25 @@
         "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Повторный pickup/disabled/dead/reach ограничены общим actor guard, Add должен реально пройти до consumed. State/rule, inventory lookup и notification/GameObject объединены; ID/label принадлежат экземпляру без тематического item definition.",
+      "notes": "SingleUsePickups18/BUG-024: личная once/busy state и collect/restore команды выделены; native reentry/caps/repeatability и quiet restore проверены. Concrete actor и serialized item definition/tuning bridge остаются долгом.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16422,30 +16634,45 @@
         "collider"
       ],
       "usageEvidence": "PlayerInteraction.CollectNearbyLoot; CardCheckpoint2D",
-      "reviewedSha256": "3f3e9a6083239954636b5771c8107344224e19f5d39bac1743d4177774f6c105",
+      "reviewedSha256": "7b01b950e03ef870c2f78f5cd37fd3a5e2494fd3c18a887059c42d2eed5cc960",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
-      "sha256": "48e34bf17808c8d2840cb6be5aaecdf42be8866c1a0d75df9fd7d2761935257d",
+      "sha256": "ed378f820401a70bf77c776d736c27717981557eff451fa936630f61b05696f9",
       "baselineSha256": "48e34bf17808c8d2840cb6be5aaecdf42be8866c1a0d75df9fd7d2761935257d",
       "guid": "e0a39b6819e49ac4fbd820adef14da59",
       "types": [
-        "FlashlightPickup2D"
+        "FlashlightPickup2D",
+        "Operation"
       ],
-      "lines": 36,
+      "lines": 86,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Loot/FlashlightPickup.prefab"
       ],
       "dependencyScenes": [
         "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
-      "lexicalSourceUsers": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
+      ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Делегирует владение Acquire, повтор/reach/активность проверяются до consumption. Не Destroy, факт collected сохраняется локально. В текущей маршрутной сцене нет checkpoint adapter у этого предмета — известная граница, не новая подключённая persistence.",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16461,20 +16688,22 @@
         "collider"
       ],
       "usageEvidence": "PlayerInteraction.CollectNearbyLoot",
-      "reviewedSha256": "48e34bf17808c8d2840cb6be5aaecdf42be8866c1a0d75df9fd7d2761935257d",
+      "reviewedSha256": "ed378f820401a70bf77c776d736c27717981557eff451fa936630f61b05696f9",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
-      "sha256": "10b346e827eac520a96b47fd00e563e67fca42099e0026d3b4c821f0eade9f85",
+      "sha256": "c77b19353e759c24da0eeb6cfa4be00036555bb04b347da3bad348dbd6964b04",
       "baselineSha256": "10b346e827eac520a96b47fd00e563e67fca42099e0026d3b4c821f0eade9f85",
       "guid": "f30341c95ca64144faba1612ebfd3509",
       "types": [
-        "FlashlightUpgradePickup"
+        "FlashlightUpgradePickup",
+        "Operation"
       ],
-      "lines": 83,
+      "lines": 127,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Loot/FlashlightRangeUpgrade.prefab"
       ],
@@ -16486,12 +16715,24 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
         "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Повторяемость по типу не равна повторному потреблению экземпляра. TryInstall должен успешно улучшить оптику; после этого collected и feedback. Effect tuning range/angle в MB, не item SO; IsAvailable/reach и presentation конкретного actor ещё не command/domain boundary.",
+      "notes": "SingleUsePickups18/BUG-024: личная once/busy state и collect/restore команды выделены; native reentry/caps/repeatability и quiet restore проверены. Concrete actor и serialized item definition/tuning bridge остаются долгом.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16506,10 +16747,11 @@
         "Collider2D"
       ],
       "usageEvidence": "PlayerInteraction; UpgradeCheckpoint2D",
-      "reviewedSha256": "10b346e827eac520a96b47fd00e563e67fca42099e0026d3b4c821f0eade9f85",
+      "reviewedSha256": "c77b19353e759c24da0eeb6cfa4be00036555bb04b347da3bad348dbd6964b04",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
@@ -16962,26 +17204,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "51 mandatory-boolean regressions",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "6ea8f5862201e785db3b342bc7d0d2b2163c60876b97c8ba71ec9f026703eea5",
+      "reviewedSha256": "fec05b2d4adc95236d7fe496e204b4dbabf01fbe6fbf31f9a0a143e29fe63f70",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
       "sourceScope": "unity",
-      "sha256": "6ea8f5862201e785db3b342bc7d0d2b2163c60876b97c8ba71ec9f026703eea5",
+      "sha256": "fec05b2d4adc95236d7fe496e204b4dbabf01fbe6fbf31f9a0a143e29fe63f70",
       "guid": "6ff5dbeb7ad7232408aff07bf6b131e2",
       "types": [
         "CheckpointBooleanTests",
         "ConsumedRead"
       ],
-      "lines": 228,
+      "lines": 230,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -18709,6 +18951,80 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
+      "sourceScope": "unity",
+      "sha256": "3a67cb8b5bae799668a316508d68ca1c98e856608f478ba090e05b6ef2b0e56f",
+      "guid": "5eaa67eea52742f8bb8d73dc45a4b686",
+      "types": [
+        "Operation",
+        "SingleUsePickupTests",
+        "State"
+      ],
+      "lines": 163,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperPresentationSource2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteSleeperAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/CompleteStalkerAttackCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "3a67cb8b5bae799668a316508d68ca1c98e856608f478ba090e05b6ef2b0e56f",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "SleeperBrain03: pure personal FSM/exposure/aggro/stagger state and commands with injected clock/settings, separate locomotion/melee interfaces and scoped factory; existing native facade/events/enum/DTO retained. 604 EditMode, 23 PlayMode including native cycle and normal Windows64. See report for map/profiler/config limits.",
       "path": "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
       "sourceScope": "unity",
@@ -19460,6 +19776,28 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "7062d571f2b4b5c72f12d3052e54343426eec9f1cd78471b095d49f1275729d3",
+      "guid": "0fe0caa5e9e045e7be12d941f3730e84",
+      "types": [
+        "PickupSceneTests"
+      ],
+      "lines": 167,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7062d571f2b4b5c72f12d3052e54343426eec9f1cd78471b095d49f1275729d3",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
+      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
       "sourceScope": "unity",
@@ -20065,7 +20403,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 485,
+    "unity": 494,
     "content_source": 8
   },
   "latestReview": {
@@ -20216,11 +20554,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 504,
-    "totalFiles": 504,
+    "reviewedFiles": 513,
+    "totalFiles": 513,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "PlayerInteraction17 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "SingleUsePickups18 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

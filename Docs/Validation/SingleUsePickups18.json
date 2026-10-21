@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "90909d9da1c1413b11f76623a5eb4e48db4d1774",
+  "editMode": {
+    "result": "Passed",
+    "total": "870",
+    "passed": "870",
+    "failed": "0",
+    "end-time": "2026-10-21 19:48:09Z",
+    "rawPath": "work/sod-evidence-20261021/pickup-once-edit.xml",
+    "rawSha256": "b23abbd16541ff60b050e2282d2439b405d9aef9209bd990088e311c93180998",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.ApplyFailureReleasesBusyGuard",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.CommandRechecksActorAuthorization",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.ConsumedPickupAttemptsDoNotAllocateOrCallTheOperation",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.PresentationFailureCannotReopenAnAppliedPickup",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.ReentrantInventoryEventCannotApplyOnePickupTwice",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.RejectedEffectLeavesPickupAvailableForLater",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.RestoreCannotClearTheGuardInsideAnInventoryCallback",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.RestoreIsQuietAndDoesNotChangeInventory(False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.RestoreIsQuietAndDoesNotChangeInventory(True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.SingleUsePickupTests.SeparateSceneInstancesCanApplyTheSameRepeatableEffect",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "40",
+    "passed": "40",
+    "failed": "0",
+    "end-time": "2026-10-21 19:49:35Z",
+    "rawPath": "work/sod-evidence-20261021/pickup-once-play.xml",
+    "rawSha256": "53b2b32e9c8bb3234883f47d6626ab6e2fc872778a67bfa8b1e50a0996b7cd74",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.NativeCappedUpgradeRemainsOnFloor",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.NativeCardChecksActorAndRestoresConsumptionQuietly",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.NativeFlashlightIsAcquiredOnceAndRestoreDoesNotReplayOwnership",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.OpticsEventCannotConsumeTheSameUpgradeTwice",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T19:50:01.848Z",
+    "endedAt": "2026-10-21T19:50:33.383Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs": "fcfe73961b6d819de482063846eeb7ee268ad411699c7e1707f4cbba4da3bcea",
+    "Assets/EmergencyShift/Runtime/Features/Pickups/PickupInstaller.cs": "54b7ad3dc7bed6571b148f25b9f708e28ad17dc43653bb09f469639daa5c250e",
+    "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs": "933daf1d79b94b62144fa5926c91c13f01e78a3e2d16a1e0aedcfaac1ec1a153",
+    "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/IPickupOperation.cs": "c95c3483c241e293012fe18164d6c97b37754d34bb04dd815ffe8c34f984f1ea",
+    "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/RestorePickupCommand.cs": "6d9de4460d5aaeab5c73808aca8c45e875cf015d746fd7443e9441f1a34689fe",
+    "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupController.cs": "7e838c498b37b4fbb093bea6444b6a08dccaefc3ae2728e666cfb70a139eb39d",
+    "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/SingleUsePickupModel.cs": "cb1aa92e936cf7499ed756b7402712a7147846446d9df0c34b25ca44ec32e20a",
+    "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs": "7b01b950e03ef870c2f78f5cd37fd3a5e2494fd3c18a887059c42d2eed5cc960",
+    "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs": "c77b19353e759c24da0eeb6cfa4be00036555bb04b347da3bad348dbd6964b04",
+    "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs": "ed378f820401a70bf77c776d736c27717981557eff451fa936630f61b05696f9",
+    "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs": "8517fa94cc2809c70806de964a6e1d16ebd2d538c7af2449b467e09a7667dde4",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs": "fec05b2d4adc95236d7fe496e204b4dbabf01fbe6fbf31f9a0a143e29fe63f70",
+    "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs": "3a67cb8b5bae799668a316508d68ca1c98e856608f478ba090e05b6ef2b0e56f",
+    "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs": "7062d571f2b4b5c72f12d3052e54343426eec9f1cd78471b095d49f1275729d3"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. BUG-024: native baseline one upgrade grants twice on OpticsChanged reentry. 10 new pure cases and 4 native cases; 1000 consumed attempts zero managed allocations, not FPS. Item configs/concrete actor contracts and WeaponLoot remain open. External inventory callback exceptions are not a general rollback transaction. LevelContext parity includes original uncommitted Pause lines excluded from this commit.",
+  "reentryBaseline": {
+    "result": "Failed(Child)",
+    "failed": "1",
+    "rawPath": "work/sod-evidence-20261021/pickup-reentry-before.xml",
+    "rawSha256": "cde7454bd13ac0260de1f0eb4b4443b11d211ee1a980f5d216d2ca47d895fb2f",
+    "failure": "  Nested pickup=True, installed delta=2; one scene instance must grant exactly one module.\n  Expected: True\n  But was:  False\n",
+    "sourceBefore": {
+      "Assets\\EmergencyShift\\Runtime\\World\\Loot\\AccessCardPickup2D.cs": "3f3e9a6083239954636b5771c8107344224e19f5d39bac1743d4177774f6c105",
+      "Assets\\EmergencyShift\\Runtime\\World\\Loot\\FlashlightUpgradePickup.cs": "10b346e827eac520a96b47fd00e563e67fca42099e0026d3b4c821f0eade9f85",
+      "Assets\\EmergencyShift\\Runtime\\World\\Loot\\FlashlightPickup2D.cs": "48e34bf17808c8d2840cb6be5aaecdf42be8866c1a0d75df9fd7d2761935257d"
+    }
+  },
+  "diagram": {
+    "path": "Docs/Reports/Images/SingleUsePickups18.png",
+    "sha256": "5ded92d6508d192616043366a821ce8cc9c210dbbc718696f6325d5018d3b6f8"
+  }
+}
