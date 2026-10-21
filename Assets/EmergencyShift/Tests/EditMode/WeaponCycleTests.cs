@@ -1,6 +1,7 @@
 using System;
 using EmergencyShift.Core.Randomness;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 
 namespace EmergencyShift.Tests
@@ -19,7 +20,12 @@ namespace EmergencyShift.Tests
             pistol = ScriptableObject.CreateInstance<WeaponDefinition>();
             JsonUtility.FromJsonOverwrite("{\"contentId\":\"test-pistol\"}", pistol);
             catalog = ScriptableObject.CreateInstance<WeaponCatalog>();
-            catalog.weapons = new WeaponDefinition[] { pistol, shotgun };
+            var data = new SerializedObject(catalog);
+            SerializedProperty definitions = data.FindProperty("weapons");
+            definitions.arraySize = 2;
+            definitions.GetArrayElementAtIndex(0).objectReferenceValue = pistol;
+            definitions.GetArrayElementAtIndex(1).objectReferenceValue = shotgun;
+            data.ApplyModifiedPropertiesWithoutUndo();
         }
 
         [TearDown]

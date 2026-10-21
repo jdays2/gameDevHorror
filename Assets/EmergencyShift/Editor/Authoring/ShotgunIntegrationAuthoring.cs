@@ -80,11 +80,24 @@ namespace EmergencyShift.Editor
             }
 
             var catalog = AssetDatabase.LoadAssetAtPath<WeaponCatalog>(Root + "/Data/Levels/Weapons.asset");
-            var entries = new List<WeaponDefinition>(catalog.weapons ?? Array.Empty<WeaponDefinition>());
+            var entries = new List<WeaponDefinition>();
+            for (int index = 0; index < catalog.DefinitionCount; index++)
+            {
+                entries.Add(catalog.DefinitionAt(index));
+            }
             if (!entries.Contains(definition))
             {
                 entries.Add(definition);
-                catalog.weapons = entries.ToArray();
+                var data = new SerializedObject(catalog);
+                SerializedProperty definitions = data.FindProperty("weapons");
+                definitions.arraySize = entries.Count;
+                for (int index = 0; index < entries.Count; index++)
+                {
+                    definitions.GetArrayElementAtIndex(index).objectReferenceValue = entries[index];
+                }
+
+                data.ApplyModifiedPropertiesWithoutUndo();
+                catalog.Validate();
                 EditorUtility.SetDirty(catalog);
             }
         }

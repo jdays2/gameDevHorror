@@ -708,6 +708,7 @@
 - [StalkerEyeTests.cs](../Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs)
 - [StalkerModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs)
 - [WeaponAimEnvironmentTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponAimEnvironmentTests.cs)
+- [WeaponCatalogConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs)
 - [WeaponControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs)
 - [WeaponCycleTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs)
 - [WeaponDefinitionConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs)

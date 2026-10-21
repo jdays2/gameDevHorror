@@ -108,13 +108,16 @@ namespace EmergencyShift.Editor
             System.IO.Directory.CreateDirectory(Data);
             AssetDatabase.Refresh();
             var weaponCatalog = LoadOrCreate<WeaponCatalog>(Data + "/Weapons.asset");
-            if (weaponCatalog.weapons == null || weaponCatalog.weapons.Length == 0)
+            if (weaponCatalog.DefinitionCount == 0)
             {
-                weaponCatalog.weapons = new[]
-                {
-                    AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset")
-                };
+                var data = new SerializedObject(weaponCatalog);
+                SerializedProperty definitions = data.FindProperty("weapons");
+                definitions.arraySize = 1;
+                definitions.GetArrayElementAtIndex(0).objectReferenceValue = AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset");
+                data.ApplyModifiedPropertiesWithoutUndo();
             }
+
+            weaponCatalog.Validate();
 
             EditorUtility.SetDirty(weaponCatalog);
             foreach (var root in scene.GetRootGameObjects())

@@ -4,7 +4,9 @@
 
 Принятая архитектура — [ADR-001](../Decisions/001-sod-architecture.md). Ниже описаны фактические границы; миграция остальных систем продолжается.
 
-WeaponDefinition, MagazineWeaponDefinition и PumpShotgunDefinition настраиваются в Inspector и доступны runtime C# только через readonly getters. Прежние serialized names/defaults/content IDs/refs сохранены, модели получают immutable snapshots. Authoring пишет через SerializedObject, deliberate transient tests — через JsonUtility. WeaponCatalog и вложенные visual/audio SO ещё проходят общий config-pass. [Проверки](../Reports/WeaponDefinition20.md).
+WeaponDefinition, MagazineWeaponDefinition и PumpShotgunDefinition настраиваются в Inspector и доступны runtime C# только через readonly getters. Прежние serialized names/defaults/content IDs/refs сохранены, модели получают immutable snapshots. Authoring пишет через SerializedObject, deliberate transient tests — через JsonUtility. Вложенные visual/audio SO ещё проходят общий config-pass. [Проверки](../Reports/WeaponDefinition20.md).
+
+WeaponCatalog сохраняет serialized weapons refs внутри SO; C# читает DefinitionCount/DefinitionAt. Validate/Find/ToSettings отвергают missing definition/ID и duplicate IDs/selection slots до выбора, согласно прежнему pure catalog. Find при null array сохраняет null, ToSettings требует заданный массив; явный empty поддерживается. Editor/transient fixtures сохраняют исходные ссылки, save DTO weapons не менялся. [Контракт и стоимость](../Reports/WeaponCatalog21.md).
 
 ## Оружие: данные, наследование и композиция
 

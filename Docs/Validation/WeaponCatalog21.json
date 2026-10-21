@@ -1,0 +1,92 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "4fbc8dcc7ada0b61f0995eede5df002b924a38f2",
+  "editMode": {
+    "result": "Passed",
+    "total": "905",
+    "passed": "905",
+    "failed": "0",
+    "end-time": "2026-10-21 20:33:40Z",
+    "rawPath": "work/sod-evidence-20261021/weapon-catalog-edit.xml",
+    "rawSha256": "319d032977f846edc35c77ec14a9af8e624e43b025c7df2d7b77ee9a0ba0a530",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.WeaponCatalogConfigTests.AuthoredCatalogsKeepValidIdsAndReferencesWithoutMutation",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCatalogConfigTests.ConflictingSlotsKeepTheExistingSimulationCatalogRule",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCatalogConfigTests.DuplicateIdsCannotSelectAnArbitraryFirstEntry",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCatalogConfigTests.MissingDefinitionOrIdIsRejectedBeforeLookup",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCatalogConfigTests.NullAndEmptyCatalogsKeepTheirDocumentedLookupPolicyAndIndexBounds",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponCatalogConfigTests.OriginalArrayNameAndObjectReferencesSupportTransientJsonFixtures",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "42",
+    "passed": "42",
+    "failed": "0",
+    "end-time": "2026-10-21 20:35:12Z",
+    "rawPath": "work/sod-evidence-20261021/weapon-catalog-play.xml",
+    "rawSha256": "8c0e458f259a109211dfb7a7b8e8422b57ee98dbb93af9aaa51f265a9e9ce307",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ActualVolleyKeepsAllDirectionsWithDifferentFlashAndCosmeticDraws",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.BlockedMuzzleProducesImpactAndConsumesAmmoWithoutLaunchingBullets",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.DisablingViewCancelsPartialReloadAndReenableKeepsItsAmmo",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ForeignActiveSceneCannotOwnBlockedMuzzleImpact",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ForeignActiveSceneCannotOwnMuzzleFlashOrFlyingBullets",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T20:36:41.876Z",
+    "endedAt": "2026-10-21T20:37:12.006Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs": "b8c3bca4c2e933c08e61b85efe5248b6535dc64c66cfad3454a2e850c55f1784",
+    "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs": "39ae88b9ab340cc61fc2dac2efbba9d2e27aa78483d9371a094498ea54ad1487",
+    "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs": "b7e2cc56ca69662f9b0162fcbf75d4c3fbbef7203d9220515cb9ed9441d0e454",
+    "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs": "afc0f0899a479e8bd1a05f7074f0d90f1895cfb3e9e5b6e6934fada7c565dc8a",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs": "b8d416c174d30df78880df5711a8792a5ba9982239c6eabefc4175f7a81a73bd",
+    "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs": "d26368ea4f9eaec49397ef4e6b20edf58e1f4aabd862bdafc5b69053ef44fecf",
+    "Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs": "db7ecb1adf09282b3ee2f97f7bf063a0d7107c2e589bcc569f8fb01ea53ea344"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. Readonly WeaponCatalog DefinitionCount/DefinitionAt; original weapons field/object refs preserved. Validate/Find reject missing/duplicate IDs and conflicting slots consistent with prior pure settings catalog. Six new cases incl transient JSON object refs and all authored catalogs; previous source consumer statuses preserved. Authoring/standalone Sandbox probe not run, no FPS claim. Visual/audio/item configs and overall migration remain open."
+}

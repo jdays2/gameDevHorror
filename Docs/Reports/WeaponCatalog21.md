@@ -1,0 +1,11 @@
+# Readonly каталог оружия
+
+Дата: 2026-10-21. База `4fbc8dc`. WeaponCatalog скрывает прежний serialized weapons array; C# читает DefinitionCount/DefinitionAt без выдачи массива на изменение. Validate и Find проверяют missing definition, scalar tuning, duplicate contentId и conflicting selectionSlot до выбора. Последнее соответствует прежнему WeaponSettingsCatalog: правило уникальных слотов не изменено. Null-array Find сохраняет null, ToSettings требует заданный массив; явный пустой массив допустим.
+
+Editor builders записывают прежние refs через SerializedObject. Намеренный transient catalog в SandboxRegressionProbe использует JsonUtility на сериализуемом fixture с Unity object refs; это данные одного сеанса для проверки, не формат сохранения и не persistent ID. Save DTO weapons/contentId не переименованы. Генераторы/отдельный standalone SandboxRegressionProbe не запускались; private array recipe обновлена без изменения сцен/asset contents.
+
+**905/905 EditMode**, шесть новых случаев: duplicate IDs, прежний конфликт слотов, null/missing ID, transient JSON object refs по старому имени поля, null/empty/index bounds и все authored catalogs без mutation. Первый прогон 903/905 исправил два допущения fixtures: существующий pure catalog уже запрещал повторный слот; SerializedObject arraySize=0 не превращал исходный null в явный empty array. Повтор прошёл после явного fixture JSON и согласования раннего native guard. **42/42 PlayMode**, прежние native inventory/save/weapon/pickup/audio сцены. Обычная Windows64 success; собственная Player-сборка только EmergencyShift.Runtime.
+
+[Source parity, raw hashes и 1794 неизменённых ресурса](../Validation/WeaponCatalog21.json). Копия включает исходную незавершённую паузу и не является clean HEAD. Нефатальное сообщение LicensingClient сохранено. FPS/авторская приёмка не заявляются.
+
+Count/At не выделяют память. Validate использует парное сравнение O(n²), вызывается при холодных Find/ToSettings; текущие небольшие каталоги не получают постоянный Update или cache. ToSettings создаёт immutable settings/list/dictionary как раньше. Новых физических запросов/реестров/голосов нет. Authoring transaction/style, Development probe lifecycle, visual/audio/item configs и общий SOD-перенос остаются открыты; прежние partial-статусы потребителей сохранены.

@@ -21,6 +21,19 @@ namespace EmergencyShift
             public List<string> passed = new List<string>();
         }
 
+        [Serializable]
+        private sealed class CatalogFixture
+        {
+            public WeaponDefinition[] weapons;
+        }
+
+        private static void ConfigureTransientCatalog(WeaponCatalog catalog, params WeaponDefinition[] definitions)
+        {
+            string json = JsonUtility.ToJson(new CatalogFixture { weapons = definitions });
+            JsonUtility.FromJsonOverwrite(json, catalog);
+            catalog.Validate();
+        }
+
         private readonly Report report = new Report();
         private string output;
         private PlayerLife2D player;
@@ -251,7 +264,7 @@ namespace EmergencyShift
             weapon.TryReload();
             yield return new WaitForSeconds(.3f);
             var catalog = ScriptableObject.CreateInstance<WeaponCatalog>();
-            catalog.weapons = new[] { pistol, shotgun };
+            ConfigureTransientCatalog(catalog, pistol, shotgun);
             var adapter = player.gameObject.AddComponent<PlayerCheckpoint2D>();
             adapter.Configure(catalog);
             string slot = Path.Combine(Path.GetDirectoryName(output), "isolated-pistol-payload.json");
@@ -291,7 +304,7 @@ namespace EmergencyShift
             yield return null;
             var shotgun = weapon.Definition;
             var catalog = ScriptableObject.CreateInstance<WeaponCatalog>();
-            catalog.weapons = new[] { pistol, shotgun };
+            ConfigureTransientCatalog(catalog, pistol, shotgun);
             Check("Shotgun auto pickup owns both weapons", weapon.OwnedCount == 2 && shotgun.ContentId == "pump-shotgun");
             Check("Shotgun starts with four loaded and twelve reserve", weapon.LoadedAmmo == 4 && weapon.ReserveAmmo == 12 && weapon.Ammo == 16);
             yield return Move(46, 5);

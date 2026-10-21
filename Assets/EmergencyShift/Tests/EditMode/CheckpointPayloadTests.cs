@@ -75,7 +75,11 @@ namespace EmergencyShift.Tests
             cards.Add("live-card");
             Assert.That(upgrades.TryInstall("live-lens", "Test", .2f, 2, out _), Is.True);
             weapons = ScriptableObject.CreateInstance<WeaponCatalog>();
-            weapons.weapons = new[] { gun.Definition };
+            var catalogData = new SerializedObject(weapons);
+            SerializedProperty definitions = catalogData.FindProperty("weapons");
+            definitions.arraySize = 1;
+            definitions.GetArrayElementAtIndex(0).objectReferenceValue = gun.Definition;
+            catalogData.ApplyModifiedPropertiesWithoutUndo();
             checkpoint = player.GetComponent<PlayerCheckpoint2D>();
             if (checkpoint == null)
             {
