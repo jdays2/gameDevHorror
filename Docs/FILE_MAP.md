@@ -206,6 +206,30 @@
 - [StalkerPresentationSource2D.cs](../Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs)
 - [StalkerSpriteAnimator.cs](../Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs)
 
+## Assets/EmergencyShift/Runtime/Features/AccessControl
+
+- [AccessControlFactory.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/AccessControlFactory.cs)
+- [AccessControlInstaller.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/AccessControlInstaller.cs)
+- [DoorAccessControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs)
+
+## Assets/EmergencyShift/Runtime/Features/AccessControl/Config
+
+- [DoorAccessSettings.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Config/DoorAccessSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/AccessControl/Logic
+
+- [AccessCardController.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardController.cs)
+- [AccessCardModel.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardModel.cs)
+- [AddAccessCardCommand.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AddAccessCardCommand.cs)
+- [CheckDoorAccessCommand.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/CheckDoorAccessCommand.cs)
+- [ConfigureDoorAccessCommand.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/ConfigureDoorAccessCommand.cs)
+- [DoorAccessAttempt.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessAttempt.cs)
+- [DoorAccessController.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs)
+- [DoorAccessModel.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessModel.cs)
+- [IAccessCardView.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/IAccessCardView.cs)
+- [RestoreAccessCardsCommand.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs)
+- [RestoreDoorAccessCommand.cs](../Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/DamageFeedback
 
 - [DamageFeedbackInstaller.cs](../Assets/EmergencyShift/Runtime/Features/DamageFeedback/DamageFeedbackInstaller.cs)
@@ -401,6 +425,8 @@
 
 ## Assets/EmergencyShift/Tests/EditMode
 
+- [AccessCardRestoreTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessCardRestoreTests.cs)
+- [AccessControlModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs)
 - [BloodPoolProfileValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs)
 - [BloodPoolTests.cs](../Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs)
 - [CeilingLightOcclusionTests.cs](../Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs)
@@ -439,6 +465,7 @@
 
 ## Assets/EmergencyShift/Tests/PlayMode
 
+- [AccessControlSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs)
 - [AdaptiveAudioProbeRegressionTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs)
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)

@@ -35,6 +35,7 @@ namespace EmergencyShift.Tests
             door = doorObject.AddComponent<Door2D>();
             door.Configure(leaf.transform);
             access = doorObject.AddComponent<DoorAccess2D>();
+            access.Construct(new EmergencyShift.Features.AccessControl.DoorAccessControllerFactory(new EmergencyShift.Core.Time.UnityGameClock()));
             participants.Add("door", doorObject.AddComponent<DoorCheckpoint2D>());
             card = Entity("card").gameObject.AddComponent<AccessCardPickup2D>();
             participants.Add("card", card.gameObject.AddComponent<CardCheckpoint2D>());

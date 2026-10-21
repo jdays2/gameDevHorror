@@ -1,3 +1,5 @@
+using EmergencyShift.Core.Time;
+using EmergencyShift.Features.AccessControl;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -17,9 +19,11 @@ namespace EmergencyShift.Tests
             doorObject = new GameObject("Reader test");
             doorObject.SetActive(false);
             access = doorObject.AddComponent<DoorAccess2D>();
+            access.Construct(new DoorAccessControllerFactory(new UnityGameClock()));
             access.Configure("blue", "Синяя карта");
             actorObject = new GameObject("Card holder");
             cards = actorObject.AddComponent<PlayerAccessCards2D>();
+            cards.Construct(new AccessControlFactory());
             actor = actorObject.AddComponent<PlayerInteraction>();
         }
 

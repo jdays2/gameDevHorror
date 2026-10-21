@@ -1,48 +1,50 @@
-using System.Collections.Generic;
+using System;
+using EmergencyShift.Features.AccessControl;
+using EmergencyShift.Features.AccessControl.Logic;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
     /// <summary>Only access tokens for this run; not a general inventory or a save system.</summary>
     [DisallowMultipleComponent]
-    public sealed class PlayerAccessCards2D : MonoBehaviour
+    public sealed class PlayerAccessCards2D : MonoBehaviour, IAccessCardView
     {
-        private readonly HashSet<string> cards = new HashSet<string>();
-        public bool Has(string id) => !string.IsNullOrWhiteSpace(id) && cards.Contains(id);
-        public event System.Action Changed;
-        public bool Add(string id)
-        {
-            if (string.IsNullOrWhiteSpace(id) || !cards.Add(id))
-            {
-                return false;
-            }
+        private AccessControlFactory factory;
+        private AccessCardController controller;
 
-            Changed?.Invoke();
-            return true;
+        public int Count => RequireController().Count;
+        public event Action Changed;
+
+        [Inject]
+        public void Construct(AccessControlFactory controllerFactory)
+        {
+            factory = controllerFactory ?? throw new ArgumentNullException(nameof(controllerFactory));
         }
 
-        public string[] Capture()
-        {
-            var values = new string[cards.Count];
-            cards.CopyTo(values);
-            System.Array.Sort(values);
-            return values;
-        }
+        public bool Has(string id) => RequireController().Has(id);
+        public bool Add(string id) => RequireController().Add(id).Success;
+        public string[] Capture() => RequireController().Capture();
 
         public void Restore(string[] values)
         {
-            cards.Clear();
-            if (values != null)
+            var result = RequireController().Restore(values);
+            if (!result.Success)
             {
-                foreach (var id in values)
-                {
-                    cards.Add(id);
-                }
+                throw new InvalidOperationException(result.Reason);
             }
-
-            Changed?.Invoke();
         }
 
-        public int Count => cards.Count;
+        void IAccessCardView.CardsChanged() => Changed?.Invoke();
+
+        private AccessCardController RequireController()
+        {
+            if (factory == null)
+            {
+                throw new InvalidOperationException("Access cards require their level composition.");
+            }
+
+            return controller ??= factory.CreateCards(this);
+        }
     }
 }

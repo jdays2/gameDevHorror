@@ -156,6 +156,8 @@ namespace EmergencyShift.Tests
             {
                 var first = a.AddComponent<PlayerAccessCards2D>();
                 var second = b.AddComponent<PlayerAccessCards2D>();
+                first.Construct(new EmergencyShift.Features.AccessControl.AccessControlFactory());
+                second.Construct(new EmergencyShift.Features.AccessControl.AccessControlFactory());
                 first.Add("service");
                 second.Add("other");
                 second.Restore(first.Capture());

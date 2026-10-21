@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "316 current own C# explicitly reviewed; 108 retain migration/style debt. complete=false. AudioProbe02 certifies only stated boundaries.",
+  "limits": "334 current own C# explicitly reviewed; 104 retain migration/style debt. complete=false. AccessControl01 certifies only stated boundaries.",
   "counts": {
-    "partial": 108,
-    "reviewed_boundary": 208
+    "partial": 104,
+    "reviewed_boundary": 230
   },
   "files": [
     {
@@ -2011,6 +2011,13 @@
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
         "Assets/EmergencyShift/Runtime/Core/Commands/ICommand.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AddAccessCardCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/CheckDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/ConfigureDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
@@ -2059,6 +2066,12 @@
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycleCommands.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AddAccessCardCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/CheckDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/ConfigureDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
@@ -2732,9 +2745,12 @@
         "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -2854,6 +2870,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
       ],
@@ -6193,6 +6211,481 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/AccessControlFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "95c6beb39f5375bbb5f87e36f950c723c91de93a9fa38d98b7c1b6b8da66aaed",
+      "guid": "a748bdeb92c343999bd5a9eded8dcce9",
+      "types": [
+        "AccessControlFactory"
+      ],
+      "lines": 13,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/AccessControlInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAccessCards2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessCardRestoreTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "95c6beb39f5375bbb5f87e36f950c723c91de93a9fa38d98b7c1b6b8da66aaed",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/AccessControlInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "1673f4f5739e5c3cb6fd2ac6e740904b7a8f56d150db89c337b768047386cd34",
+      "guid": "0fd4d5aad9c2419dba581fc5029756fe",
+      "types": [
+        "AccessControlInstaller"
+      ],
+      "lines": 13,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "1673f4f5739e5c3cb6fd2ac6e740904b7a8f56d150db89c337b768047386cd34",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Config/DoorAccessSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "b4455cd632359e4a254139e2de04d71adc42e044c45d067867b18a0815d731fb",
+      "guid": "0b388778b38b4c6dbfac55613a8ab5b1",
+      "types": [
+        "DoorAccessSettings"
+      ],
+      "lines": 24,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/ConfigureDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessModel.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "b4455cd632359e4a254139e2de04d71adc42e044c45d067867b18a0815d731fb",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "7f43d6f47aafb7214099fdb84bee32dabb8e863cf5d420bf7a9e93a05826defa",
+      "guid": "d5f5ddfdf62b495b9a4e2d03142ceea5",
+      "types": [
+        "DoorAccessControllerFactory"
+      ],
+      "lines": 22,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/AccessControlInstaller.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "7f43d6f47aafb7214099fdb84bee32dabb8e863cf5d420bf7a9e93a05826defa",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardController.cs",
+      "sourceScope": "unity",
+      "sha256": "a52e198edcb65a9e1ee2e1e221753bca8cb9d7c4b5ac7566a8fe0c7adf727db7",
+      "guid": "c91ae206007b44d292df604c26425453",
+      "types": [
+        "AccessCardController"
+      ],
+      "lines": 36,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/AccessControlFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAccessCards2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "a52e198edcb65a9e1ee2e1e221753bca8cb9d7c4b5ac7566a8fe0c7adf727db7",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardModel.cs",
+      "sourceScope": "unity",
+      "sha256": "7313427afef7f515bd5b5e66c850e212671d3bcad198b48d6897e4feb5194131",
+      "guid": "ca5fb4fe41a7499dabd3cf2651d94838",
+      "types": [
+        "AccessCardModel"
+      ],
+      "lines": 65,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/AccessControlFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AddAccessCardCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "7313427afef7f515bd5b5e66c850e212671d3bcad198b48d6897e4feb5194131",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AddAccessCardCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "f52bc7f9b912ffba1774215007c5fc4ac7954e92ed40480568f6915f1ea8343b",
+      "guid": "a22c86712dd94f87b9a0442c32a0c107",
+      "types": [
+        "AddAccessCardCommand"
+      ],
+      "lines": 29,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "f52bc7f9b912ffba1774215007c5fc4ac7954e92ed40480568f6915f1ea8343b",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/CheckDoorAccessCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "f019f614af1dd0dfbc9ad8ba1ca702ed061f9061216a251e97a58fcdf0ce9893",
+      "guid": "454e90db245d4bfd818f6faa33a27ba6",
+      "types": [
+        "CheckDoorAccessCommand"
+      ],
+      "lines": 37,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "f019f614af1dd0dfbc9ad8ba1ca702ed061f9061216a251e97a58fcdf0ce9893",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/ConfigureDoorAccessCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "394b11d8b47e36256d423508a7581614fb2c20f7a85305a7c3f53860aaaf9cb1",
+      "guid": "ded2d4dfe79745f38225e4d5c9a3f8d2",
+      "types": [
+        "ConfigureDoorAccessCommand"
+      ],
+      "lines": 31,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "394b11d8b47e36256d423508a7581614fb2c20f7a85305a7c3f53860aaaf9cb1",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessAttempt.cs",
+      "sourceScope": "unity",
+      "sha256": "ca3c0dd402105bab81574812677ab75b7e89262ae30a25e8ec311954ae50ea61",
+      "guid": "a8f68736c66749079d908051dd9111cc",
+      "types": [
+        "DoorAccessAttempt"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/CheckDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessModel.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "ca3c0dd402105bab81574812677ab75b7e89262ae30a25e8ec311954ae50ea61",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
+      "sourceScope": "unity",
+      "sha256": "8522c7a8ebb76f5f380d951f61f613e8a6642bb7d2ea75ebea80d540c7ff3860",
+      "guid": "8d13a3f8314e40ae8c950b46d51bc4fa",
+      "types": [
+        "DoorAccessController"
+      ],
+      "lines": 31,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "8522c7a8ebb76f5f380d951f61f613e8a6642bb7d2ea75ebea80d540c7ff3860",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessModel.cs",
+      "sourceScope": "unity",
+      "sha256": "34a5d08ced5c9e2135e611766f294f42bebcdca32941abb15425b8cdfe411d69",
+      "guid": "6a8d8c47fe6549ce8b17c27435f431fb",
+      "types": [
+        "DoorAccessModel"
+      ],
+      "lines": 60,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/CheckDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/ConfigureDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "34a5d08ced5c9e2135e611766f294f42bebcdca32941abb15425b8cdfe411d69",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/IAccessCardView.cs",
+      "sourceScope": "unity",
+      "sha256": "c49e4338b390eab745bf60d718843a285695701f19adfcbee42fb8faf1b62a61",
+      "guid": "08d4cb64fc5f4344ba952086a82ed2f7",
+      "types": [
+        "IAccessCardView"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/AccessControlFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardController.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAccessCards2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "c49e4338b390eab745bf60d718843a285695701f19adfcbee42fb8faf1b62a61",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "c5887bcbe1b70895acdc6dc37aacd1ec477b7af9aee2d82428aac3d9448db5e0",
+      "guid": "72915f1587ae423ea8ff9206ea141fdc",
+      "types": [
+        "RestoreAccessCardsCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/AccessCardController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "c5887bcbe1b70895acdc6dc37aacd1ec477b7af9aee2d82428aac3d9448db5e0",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "068433996f6bc851795a51463151a1b36a0a0b8eb13eac65059af3ded4f4f599",
+      "guid": "1da38f4361d846059d304163188bb120",
+      "types": [
+        "RestoreDoorAccessCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "068433996f6bc851795a51463151a1b36a0a0b8eb13eac65059af3ded4f4f599",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "Чистый readonly value config; malformed/default(struct) повторно проверяется в Model.",
       "path": "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Config/DamageFeedbackSettings.cs",
       "sha256": "b3881e8e6a538f20711b94fe26db7c45e3059482dfa0c7ebf6c58306ebffa8ae",
@@ -7298,13 +7791,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "2455d98d7fd16e706eb54fd609571e1397ef60e7144abd5a659541c0447d5979",
+      "sha256": "c8060f5ba9cd2095b8d863cda094efd54259c855ad773b733006609a6f560575",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 137,
+      "lines": 139,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -7335,12 +7828,13 @@
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
-        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "WeaponController02: weapon factory installer registered after local input/clock bindings; original pause integration preserved. Initialize failure cleanup and remaining scope/lifetime composition remain debt.",
-      "reviewedSha256": "2455d98d7fd16e706eb54fd609571e1397ef60e7144abd5a659541c0447d5979",
+      "notes": "AccessControl01: scoped access factories / card payload preflight added and verified (502 EditMode, 17+1 PlayMode, normal Windows64). Remaining level failure-cleanup or checkpoint controller/Unity adapter separation remains migration debt.",
+      "reviewedSha256": "c8060f5ba9cd2095b8d863cda094efd54259c855ad773b733006609a6f560575",
       "previousReviewStatus": "partial",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -7353,7 +7847,7 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
       "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "reviewHistory": [
         {
@@ -7369,6 +7863,11 @@
           "reviewedSha256": "96cbe1603670f796d5b499d73981c9944050dd4f8651d773550d67701a446f18",
           "notes": "Dialogue installer reviewed and registered after local input binding. Existing scoped input/pause integration preserved. Initialization failure cleanup and remaining feature lifetime composition remain migration debt.",
           "reviewReport": "Docs/Reports/DialogueMvc01.md"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "WeaponController02: weapon factory installer registered after local input/clock bindings; original pause integration preserved. Initialize failure cleanup and remaining scope/lifetime composition remain debt.",
+          "reviewedSha256": "2455d98d7fd16e706eb54fd609571e1397ef60e7144abd5a659541c0447d5979"
         }
       ]
     },
@@ -8117,14 +8616,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
-      "sha256": "d700d31a9608b1b70cbf3a2bb7b7a5e18d5d8eaf4ff343f5ef731044450bf0a5",
+      "sha256": "7e08f03105d0af128ee60510f38ccd81a982246549ed458a560f88450c1c8b7c",
       "baselineSha256": "a7536c36c58f6aed4d4370cc7b0091a6765853a6977e4b592dd0240f470714fe",
       "guid": "9b38f6979e5090b4cba6fdff18a3be8f",
       "types": [
         "PlayerCheckpoint2D",
         "State"
       ],
-      "lines": 116,
+      "lines": 122,
       "serializedUsers": [
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
         "Assets/EmergencyShift/Scenes/LevelTemplate.unity"
@@ -8158,7 +8657,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "WeaponModels01: inventory validation now receives pure catalog snapshot; payload formats/IDs unchanged. Full checkpoint controller/adapter separation and per-object restoration boundaries remain migration debt.",
+      "notes": "AccessControl01: scoped access factories / card payload preflight added and verified (502 EditMode, 17+1 PlayMode, normal Windows64). Remaining level failure-cleanup or checkpoint controller/Unity adapter separation remains migration debt.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Player checkpoint format1/2/3",
@@ -8168,9 +8667,9 @@
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "d700d31a9608b1b70cbf3a2bb7b7a5e18d5d8eaf4ff343f5ef731044450bf0a5",
+      "reviewedSha256": "7e08f03105d0af128ee60510f38ccd81a982246549ed458a560f88450c1c8b7c",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
       "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
       "reviewHistory": [
         {
@@ -8210,6 +8709,11 @@
           "reviewedSha256": "c1948d6e0dcc4829c73eca9b39adb3cedfaec9601afc135d1b76f8d97aee0152",
           "notes": "BUG-009 fixed: all formats preflight modules/count before any player mutation. Existing inventory and ownership checks retained. Cards/direction and broad SOD adapter/model migration debt remain.",
           "reviewReport": "Docs/Reports/CheckpointPayload02.md"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "WeaponModels01: inventory validation now receives pure catalog snapshot; payload formats/IDs unchanged. Full checkpoint controller/adapter separation and per-object restoration boundaries remain migration debt.",
+          "reviewedSha256": "d700d31a9608b1b70cbf3a2bb7b7a5e18d5d8eaf4ff343f5ef731044450bf0a5"
         }
       ],
       "previousReviewStatus": "partial"
@@ -8739,13 +9243,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerAccessCards2D.cs",
-      "sha256": "a123aa067d10d6944cb11cfdcd9e0035701b49f100bcaae166b28792df764001",
+      "sha256": "cb47e788da0d6d0c7e58e065ab9dca70ebf4a35d814d2ccc8b480e94fa146774",
       "baselineSha256": "a123aa067d10d6944cb11cfdcd9e0035701b49f100bcaae166b28792df764001",
       "guid": "8181198a36aacbc4fbae386f1c0ffd3c",
       "types": [
         "PlayerAccessCards2D"
       ],
-      "lines": 48,
+      "lines": 50,
       "serializedUsers": [
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
@@ -8770,20 +9274,27 @@
         "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessCardRestoreTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Экземпляры независимы; Add отвергает пустые/дубли, Capture сортирует копию. State/rules остаются MB без чистой Model/command; Restore очищает до принятия массива и принимает пустые/дубли ID без отдельной валидации.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "queued",
           "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Экземпляры независимы; Add отвергает пустые/дубли, Capture сортирует копию. State/rules остаются MB без чистой Model/command; Restore очищает до принятия массива и принимает пустые/дубли ID без отдельной валидации.",
+          "reviewedSha256": "a123aa067d10d6944cb11cfdcd9e0035701b49f100bcaae166b28792df764001"
         }
       ],
       "responsibility": "Личные access tokens игрока",
@@ -8793,10 +9304,11 @@
         "Changed"
       ],
       "usageEvidence": "DoorAccess/objectives/pickup/player checkpoint",
-      "reviewedSha256": "a123aa067d10d6944cb11cfdcd9e0035701b49f100bcaae166b28792df764001",
+      "reviewedSha256": "cb47e788da0d6d0c7e58e065ab9dca70ebf4a35d814d2ccc8b480e94fa146774",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerAim2D.cs",
@@ -9071,6 +9583,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
@@ -10870,6 +11383,7 @@
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -10899,13 +11413,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
-      "sha256": "25d290f54b6ffa43979fb1f1e4d31d130acc392706534ed489872bbcc8fcb0f2",
+      "sha256": "292d55e1a57613272563231432385b20da9787fa5f34d6cadd4d500483a1aaee",
       "baselineSha256": "25d290f54b6ffa43979fb1f1e4d31d130acc392706534ed489872bbcc8fcb0f2",
       "guid": "12af7b2d2f7ed704d9467f3edfdc7abc",
       "types": [
         "DoorAccess2D"
       ],
-      "lines": 80,
+      "lines": 89,
       "serializedUsers": [
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
@@ -10925,17 +11439,23 @@
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAccessFeedback2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Отказ не разблокирует, первая успешная проверка запоминается; Restore без events. Model доступа, presentation Prompt/notification и таймеры смешаны в MB; denial/notice fallback tuning частично в коде.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "queued",
           "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Отказ не разблокирует, первая успешная проверка запоминается; Restore без events. Model доступа, presentation Prompt/notification и таймеры смешаны в MB; denial/notice fallback tuning частично в коде.",
+          "reviewedSha256": "25d290f54b6ffa43979fb1f1e4d31d130acc392706534ed489872bbcc8fcb0f2"
         }
       ],
       "responsibility": "Проверка карты и reader feedback",
@@ -10945,10 +11465,11 @@
         "DoorAccessFeedbackProfile"
       ],
       "usageEvidence": "Door2D; DoorCheckpoint2D; DoorAccessTests",
-      "reviewedSha256": "25d290f54b6ffa43979fb1f1e4d31d130acc392706534ed489872bbcc8fcb0f2",
+      "reviewedSha256": "292d55e1a57613272563231432385b20da9787fa5f34d6cadd4d500483a1aaee",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAccessFeedback2D.cs",
@@ -11764,6 +12285,69 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/AccessCardRestoreTests.cs",
+      "sourceScope": "unity",
+      "sha256": "335e7ed36f175192e81c1d7cc4a7282fc0f104c58abc4b2fc69d34425d40a23f",
+      "guid": "0330fc8e310f4a8898598545387ee077",
+      "types": [
+        "AccessCardRestoreTests"
+      ],
+      "lines": 35,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "335e7ed36f175192e81c1d7cc4a7282fc0f104c58abc4b2fc69d34425d40a23f",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "b1859efb28b9cb85c220be8a4bc7318ba5f6841e85ec99347884b017da263ebe",
+      "guid": "27a41652bad648a1b2da1d9feb153ee5",
+      "types": [
+        "AccessControlModelTests",
+        "CardView",
+        "Clock"
+      ],
+      "lines": 164,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "b1859efb28b9cb85c220be8a4bc7318ba5f6841e85ec99347884b017da263ebe",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "BloodSafety01: 65 profile cases (33 original failures), source-scene/frozen-timer unload for both blood VFX (4 original failures). 481 own EditMode, 16 real PlayMode and normal Windows64 passed. Temporary objects and original resource guards; see limits.",
       "path": "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs",
       "sourceScope": "unity",
@@ -11801,14 +12385,19 @@
         "Test",
         "TestCase"
       ],
-      "reviewStatus": "partial",
-      "notes": "Round-trip новых вариантов, одинаковый seed и legacy prefab sprites проверяются, но нет malformed shadow/pool/finite payload; тесты не запускались. Учёт: BUG-014.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: full source reread; existing isolated disk/component/variant tests verified in 502 EditMode. Previously noted missing malformed-payload cases are now covered by separate checkpoint/blood regression fixtures; no duplicated suite required in this file. See explicit report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "queued",
           "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Round-trip новых вариантов, одинаковый seed и legacy prefab sprites проверяются, но нет malformed shadow/pool/finite payload; тесты не запускались. Учёт: BUG-014.",
+          "reviewedSha256": "3ebbf1f57cd976afb2c78d4739b1a30d7cb538eb5f7dbb34270f7b1076d7413e"
         }
       ],
       "responsibility": "Регрессии BloodPool",
@@ -11821,7 +12410,7 @@
       "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
       "reviewedSha256": "3ebbf1f57cd976afb2c78d4739b1a30d7cb538eb5f7dbb34270f7b1076d7413e",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
@@ -11864,58 +12453,66 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "51 mandatory-boolean regressions",
-      "notes": "Preview-scene validation/Apply/direct Restore preserve all flags and first entity on incomplete JSON; nested/string names are not presence. Twelve complete legacy/capture cases support false/true. Actual 51/51 focused, 316/316 own EditMode.",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "266199e5a818951c9ecb029045c5e5475bd8d9c7fec2cd092f01916a3b371828",
+      "reviewedSha256": "53592150b125b9d8727d5f8b271771b697eae8e87b687f52c8fc489686006c9a",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointConsistency03.md",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
       "reviewScope": "Full touched source review: ownership, complete bool payload, cancellation, legacy compatibility; actual 316/316 EditMode, 5/5 PlayMode and Windows64 success.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
       "sourceScope": "unity",
-      "sha256": "266199e5a818951c9ecb029045c5e5475bd8d9c7fec2cd092f01916a3b371828",
+      "sha256": "53592150b125b9d8727d5f8b271771b697eae8e87b687f52c8fc489686006c9a",
       "guid": "6ff5dbeb7ad7232408aff07bf6b131e2",
       "types": [
         "CheckpointBooleanTests",
         "ConsumedRead"
       ],
-      "lines": 224,
+      "lines": 225,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [
         "TestCase"
       ],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Preview-scene validation/Apply/direct Restore preserve all flags and first entity on incomplete JSON; nested/string names are not presence. Twelve complete legacy/capture cases support false/true. Actual 51/51 focused, 316/316 own EditMode.",
+          "reviewedSha256": "266199e5a818951c9ecb029045c5e5475bd8d9c7fec2cd092f01916a3b371828"
+        }
+      ]
     },
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "f6f8133ab8fb8d1917711b72af227b74798bec19209a6ae20e609474672485f0",
+      "reviewedSha256": "977d3a2530013e4c06783fc76c805c6a04ea0bd9b31ef8d07747e974e1151efb",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
       "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "f6f8133ab8fb8d1917711b72af227b74798bec19209a6ae20e609474672485f0",
+      "sha256": "977d3a2530013e4c06783fc76c805c6a04ea0bd9b31ef8d07747e974e1151efb",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 424,
+      "lines": 444,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -11936,6 +12533,11 @@
           "reviewedSha256": "7f42aecdc9da7db62db5fa6d2b0aaba143cc64d245e2359a459c90148f12d178",
           "notes": "Preview-scene fixture with real Player prefab and explicit adapter initialization; invalid preflight preserves world/player, valid legacy/repeated modules, isolated disk/death/Apply. Fixture is disposed without saving authored scenes. All 73 passed in focused and full 265 run.",
           "reviewReport": "Docs/Reports/CheckpointPayload02.md"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+          "reviewedSha256": "f6f8133ab8fb8d1917711b72af227b74798bec19209a6ae20e609474672485f0"
         }
       ]
     },
@@ -12120,13 +12722,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
-      "sha256": "549c8f90df85df5dfd33f7a80c2e8f221c75f9edf29a2d58a68707214c897af7",
+      "sha256": "abf4dc42c7fa618271808cad2f83eed562cb7bd653ac4b441d9fe67f1ee92146",
       "baselineSha256": "549c8f90df85df5dfd33f7a80c2e8f221c75f9edf29a2d58a68707214c897af7",
       "guid": "b8d1047311c3cee48b6b3d867e9708d2",
       "types": [
         "DoorAccessTests"
       ],
-      "lines": 80,
+      "lines": 84,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -12134,13 +12736,18 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Проверяет wrong card, suppression, one-time unlock и silent restore; inactive door setup избегает Awake до leaf wiring. Не доказывает корутины движения, звуковую приёмку или checkpoint transaction.",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "queued",
           "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Проверяет wrong card, suppression, one-time unlock и silent restore; inactive door setup избегает Awake до leaf wiring. Не доказывает корутины движения, звуковую приёмку или checkpoint transaction.",
+          "reviewedSha256": "549c8f90df85df5dfd33f7a80c2e8f221c75f9edf29a2d58a68707214c897af7"
         }
       ],
       "responsibility": "Регрессии доступа/feedback/restore",
@@ -12149,10 +12756,11 @@
         "DoorAccess/cards/PlayerInteraction GameObjects"
       ],
       "usageEvidence": "3 Test метода; source read only",
-      "reviewedSha256": "549c8f90df85df5dfd33f7a80c2e8f221c75f9edf29a2d58a68707214c897af7",
+      "reviewedSha256": "abf4dc42c7fa618271808cad2f83eed562cb7bd653ac4b441d9fe67f1ee92146",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
@@ -12655,28 +13263,33 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
-      "sha256": "9b58be3f206fa26e1bb7d0dbdce7372134d2737c3d4fd023db1e02c0fdad5109",
+      "sha256": "b016ef99c72fb3070eff78e3d1a0df0224364dd7980fe6fe0db263f4b6b30e69",
       "baselineSha256": "5a659f6c53b2eaea8a94884944930c13ce2d246dc0ea20de3edf928fafaeed79",
       "guid": "5efd08145ce56be43a626bf8f20d46af",
       "types": [
         "PersistenceTests"
       ],
-      "lines": 211,
+      "lines": 213,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [
         "Test"
       ],
-      "reviewStatus": "partial",
-      "notes": "Папка GUID и cleanup исключают пользовательские слоты. Есть backup/version/duplicate ID/X-NaN tests; нет pose Z/quaternion/elapsed, Clear-pending и bool payload completeness (BUG-011/012/013). Эти сценарии не покрыты одним round-trip.",
-      "reviewedSha256": "9b58be3f206fa26e1bb7d0dbdce7372134d2737c3d4fd023db1e02c0fdad5109",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: full source reread; existing isolated disk/component/variant tests verified in 502 EditMode. Previously noted missing malformed-payload cases are now covered by separate checkpoint/blood regression fixtures; no duplicated suite required in this file. See explicit report limits.",
+      "reviewedSha256": "b016ef99c72fb3070eff78e3d1a0df0224364dd7980fe6fe0db263f4b6b30e69",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "partial",
           "notes": "Affected health/pause/input construction updated and regression run; other fixture cases await complete source review.",
+          "reviewedSha256": "9b58be3f206fa26e1bb7d0dbdce7372134d2737c3d4fd023db1e02c0fdad5109"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Папка GUID и cleanup исключают пользовательские слоты. Есть backup/version/duplicate ID/X-NaN tests; нет pose Z/quaternion/elapsed, Clear-pending и bool payload completeness (BUG-011/012/013). Эти сценарии не покрыты одним round-trip.",
           "reviewedSha256": "9b58be3f206fa26e1bb7d0dbdce7372134d2737c3d4fd023db1e02c0fdad5109"
         }
       ],
@@ -12689,8 +13302,9 @@
       ],
       "usageEvidence": "11 Test методов; source read only",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
@@ -13038,6 +13652,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "4fc5f47b224ccc16733470aa242edd52a6c14207d118a91acb44cd8d08b3c360",
+      "guid": "e23c0f4d6aa74b7a9812dfb959c27cd7",
+      "types": [
+        "AccessControlSceneTests"
+      ],
+      "lines": 87,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "4fc5f47b224ccc16733470aa242edd52a6c14207d118a91acb44cd8d08b3c360",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "Loads real MechanicsSandbox in disposable Play, invokes actual Editor-only probe, bounds wait at 70 seconds, unloads own scene and restores previous active/timeScale. 34 probe checks/17 full PlayMode passed. See AudioProbe02 limitations.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs",
       "sourceScope": "unity",
@@ -13066,26 +13707,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "5 real PlayMode pending-save lifetime regressions",
-      "notes": "Isolated runtime scene and temporary slot; real MonoBehaviour coroutine and moving door, controlled unsettled gore, Clear/deletion/revisit/new save/finish. Per-test registry/path cleanup; no user gameplay/scene or save files. 3 old failures, 5/5 after fix.",
+      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "dd6ff93378cc6e465be6f3f00de212ba2161e6e067b6612b3731817d78a936e2",
+      "reviewedSha256": "b80a14eded52d484d48ee97fb64b6c3dfa25335d41860b9ed681c0befd3d0802",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointConsistency03.md",
+      "reviewReport": "Docs/Reports/AccessControl01.md",
       "reviewScope": "Full touched source review: ownership, complete bool payload, cancellation, legacy compatibility; actual 316/316 EditMode, 5/5 PlayMode and Windows64 success.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "dd6ff93378cc6e465be6f3f00de212ba2161e6e067b6612b3731817d78a936e2",
+      "sha256": "b80a14eded52d484d48ee97fb64b6c3dfa25335d41860b9ed681c0befd3d0802",
       "guid": "c44326cf15c577e4b89031b64fcda0ca",
       "types": [
         "CheckpointSaveLifetimeTests",
         "TestClock"
       ],
-      "lines": 213,
+      "lines": 214,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -13094,7 +13735,15 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Isolated runtime scene and temporary slot; real MonoBehaviour coroutine and moving door, controlled unsettled gore, Clear/deletion/revisit/new save/finish. Per-test registry/path cleanup; no user gameplay/scene or save files. 3 old failures, 5/5 after fix.",
+          "reviewedSha256": "dd6ff93378cc6e465be6f3f00de212ba2161e6e067b6612b3731817d78a936e2"
+        }
+      ]
     },
     {
       "baselineSha256": null,
@@ -13582,14 +14231,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 297,
+    "unity": 315,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 2,
-    "report": "Docs/Reports/AudioProbe02.md",
-    "validation": "3 original real probe failures in sequence; 34/34 internal checks, 17/17 full PlayMode after fix. Production Runtime/resources unchanged; no repeated EditMode/build."
+    "files": 28,
+    "report": "Docs/Reports/AccessControl01.md",
+    "validation": "4 original card Restore failures; 502/502 EditMode, 17/17 full PlayMode + 1/1 real scene composition (separate runs, same runtime), normal Windows64 success. Original authored resources unchanged."
   },
   "reviewPasses": [
     {
@@ -13669,15 +14318,21 @@
       "files": 2,
       "report": "Docs/Reports/AudioProbe02.md",
       "validation": "3 original real probe failures in sequence; 34/34 internal checks, 17/17 full PlayMode after fix. Production Runtime/resources unchanged; no repeated EditMode/build."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 28,
+      "report": "Docs/Reports/AccessControl01.md",
+      "validation": "4 original card Restore failures; 502/502 EditMode, 17/17 full PlayMode + 1/1 real scene composition (separate runs, same runtime), normal Windows64 success. Original authored resources unchanged."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 316,
-    "totalFiles": 316,
+    "reviewedFiles": 334,
+    "totalFiles": 334,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "AudioProbe02 and earlier reviews; remaining partial files are not certified migrated."
+    "validation": "AccessControl01 and earlier reviews; remaining partial files are not certified migrated."
   }
 }

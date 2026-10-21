@@ -1,4 +1,5 @@
 using System;
+using EmergencyShift.Features.AccessControl.Logic;
 using UnityEngine;
 
 namespace EmergencyShift
@@ -67,6 +68,11 @@ namespace EmergencyShift
             }
 
             FlashlightModuleValidation.Validate(state.modules, state.moduleCount);
+            var cards = AccessCardModel.ValidateSnapshot(state.cards);
+            if (!cards.Success)
+            {
+                throw new InvalidOperationException(cards.Reason);
+            }
 
             if (state.format == 1)
             {

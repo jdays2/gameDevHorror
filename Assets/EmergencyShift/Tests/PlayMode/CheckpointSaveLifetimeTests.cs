@@ -36,6 +36,7 @@ namespace EmergencyShift.Tests
             Set(player, "model", new HealthModelFactory(new TestClock()).Create(new HealthSettings(2, 0)));
             hero.AddComponent<PlayerInteraction>();
             cards = hero.AddComponent<PlayerAccessCards2D>();
+            cards.Construct(new EmergencyShift.Features.AccessControl.AccessControlFactory());
             definition = ScriptableObject.CreateInstance<LevelDefinition>();
             definition.levelId = "save-lifetime-" + Guid.NewGuid().ToString("N");
             definition.exitCardId = "test-exit";

@@ -1,4 +1,9 @@
+using System;
+using EmergencyShift.Features.AccessControl;
+using EmergencyShift.Features.AccessControl.Config;
+using EmergencyShift.Features.AccessControl.Logic;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -12,33 +17,37 @@ namespace EmergencyShift
         private string cardName = "Служебная карта";
         [SerializeField]
         private DoorAccessFeedbackProfile feedbackProfile;
-        private float nextNotice;
-        private float nextDeniedFeedback;
-        public event System.Action<bool> AccessChecked;
+        private DoorAccessControllerFactory factory;
+        private DoorAccessController controller;
+
         public DoorAccessFeedbackProfile FeedbackProfile => feedbackProfile;
         public float ConfirmationDelay => feedbackProfile != null ? feedbackProfile.confirmationDelay : 0;
         public string RequiredCardId => requiredCardId;
-        public bool IsUnlocked
+        public bool IsUnlocked => controller != null && controller.IsUnlocked;
+        public event Action<bool> AccessChecked;
+
+        [Inject]
+        public void Construct(DoorAccessControllerFactory controllerFactory)
         {
-            get; private set;
+            factory = controllerFactory ?? throw new ArgumentNullException(nameof(controllerFactory));
         }
 
         public void RestoreState(bool unlocked)
         {
-            IsUnlocked = unlocked;
-            nextDeniedFeedback = 0;
-            nextNotice = 0;
+            RequireController().Restore(unlocked);
         }
 
         public void ConfigureFeedback(DoorAccessFeedbackProfile profile)
         {
             feedbackProfile = profile;
+            controller?.Configure(Settings());
         }
 
         public void Configure(string id, string label)
         {
             requiredCardId = id;
             cardName = label;
+            controller?.Configure(Settings());
         }
 
         private bool HasCard(PlayerInteraction actor)
@@ -50,31 +59,31 @@ namespace EmergencyShift
         public string Prompt(PlayerInteraction actor) => IsUnlocked || HasCard(actor) ? "[E]  Открыть дверь" : "ЗАПЕРТО · Нужна «" + cardName + "»  [E]";
         public bool TryUnlock(PlayerInteraction actor)
         {
-            if (IsUnlocked)
+            DoorAccessAttempt result = RequireController().TryUnlock(HasCard(actor), actor != null);
+            if (result.HasFeedback)
             {
-                return true;
+                AccessChecked?.Invoke(result.Granted);
             }
 
-            if (HasCard(actor))
-            {
-                IsUnlocked = true;
-                AccessChecked?.Invoke(true);
-                return true;
-            }
-
-            if (Time.time >= nextDeniedFeedback)
-            {
-                nextDeniedFeedback = Time.time + (feedbackProfile != null ? feedbackProfile.denialCooldown : .8f);
-                AccessChecked?.Invoke(false);
-            }
-
-            if (actor != null && Time.time >= nextNotice)
+            if (result.ShowNotice)
             {
                 actor.ShowNotification("Нет доступа: нужна «" + cardName + "»");
-                nextNotice = Time.time + 1.8f;
             }
 
-            return false;
+            return result.Granted;
+        }
+
+        private DoorAccessSettings Settings() => new DoorAccessSettings(requiredCardId,
+            feedbackProfile != null ? feedbackProfile.denialCooldown : .8f, 1.8f);
+
+        private DoorAccessController RequireController()
+        {
+            if (factory == null)
+            {
+                throw new InvalidOperationException("Door access requires level composition.");
+            }
+
+            return controller ??= factory.Create(Settings());
         }
     }
 }

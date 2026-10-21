@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Карты и считыватели MVC/DI · BUG-019 | [AccessControl01](AccessControl01.md): 4 исходных отказа; 502/502 EditMode, 17/17 PlayMode + 1/1 real LevelContext, Windows64 success. Проверка ID до изменения игрока; постоянная разблокировка и независимые cooldown. |
 | Аудиопроба · BUG-016 | [AudioProbe02](AudioProbe02.md): 3 последовательных исходных отказа; после исправления 34/34 внутренних проверок и 17/17 PlayMode. Concrete/Wood/Metal, dry-fire, pause/death. Runtime и звук не менялись. |
 | Кровь: сцена / профиль · BUG-015 / BUG-017 | [BloodSafety01](BloodSafety01.md): 33 исходных EditMode и 4 PlayMode отказа; после исправления 481/481 EditMode, 16/16 PlayMode, Windows64 success. VFX удаляются со сценой при замороженном таймере; неконечный профиль не меняет renderer. |
 | Контроллер / геометрия оружия | [WeaponController02](WeaponController02.md): 416/416 EditMode, 12/12 PlayMode, Windows64 success. Отдельные модель/команды/DI-контроллер/прицеливание; препятствие дула и отключение зарядки. 0 bytes в чистом пассивном Update, без заявления об FPS. |

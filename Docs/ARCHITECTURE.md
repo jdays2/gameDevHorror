@@ -16,6 +16,7 @@ Extenject установлен по закреплённому commit офици
 Assets/EmergencyShift/
   Runtime/
     Core/Contracts/       урон, интеракции, защитный свет, факты для теней
+    Features/            чистые модели/команды/controller и feature installers перенесённых систем
     Definitions/          типы ScriptableObject
     Enemies/Common/      здоровье, восприятие, мотор, атака, патруль, навигация
     Enemies/Stalker/     решения вида, его звук/адаптеры

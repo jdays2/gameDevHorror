@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using EmergencyShift.Core.Time;
 using EmergencyShift.Core.Randomness;
+using EmergencyShift.Features.AccessControl;
 using EmergencyShift.Features.Health.Logic;
 using EmergencyShift.Features.PlayerInput.Logic;
 using NUnit.Framework;
@@ -64,6 +65,7 @@ namespace EmergencyShift.Tests
             {
                 cards = player.AddComponent<PlayerAccessCards2D>();
             }
+            cards.Construct(new AccessControlFactory());
             cards.Add("live-card");
             Assert.That(upgrades.TryInstall("live-lens", "Test", .2f, 2, out _), Is.True);
             weapons = ScriptableObject.CreateInstance<WeaponCatalog>();
@@ -103,6 +105,24 @@ namespace EmergencyShift.Tests
             Object.DestroyImmediate(weapons);
             Object.DestroyImmediate(levels);
             Object.DestroyImmediate(definition);
+        }
+
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase("live-card")]
+        public void InvalidCardsAreRejectedBeforeRestoringAnyPlayerState(string invalid)
+        {
+            var state = JsonUtility.FromJson<PlayerCheckpoint2D.State>(checkpoint.CaptureCheckpoint());
+            state.health = 1;
+            state.cards = new[] { "live-card", invalid };
+            string json = JsonUtility.ToJson(state);
+            int healthBefore = life.Health;
+            string[] cardsBefore = cards.Capture();
+            Assert.Throws<InvalidOperationException>(() => checkpoint.ValidateCheckpoint(json));
+            Assert.Throws<InvalidOperationException>(() => checkpoint.RestoreCheckpoint(json));
+            Assert.That(life.Health, Is.EqualTo(healthBefore));
+            Assert.That(cards.Capture(), Is.EqualTo(cardsBefore));
         }
 
         [TestCaseSource(nameof(InvalidModules))]
