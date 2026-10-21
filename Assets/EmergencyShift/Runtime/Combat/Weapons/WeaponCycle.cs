@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using EmergencyShift.Core.Commands;
 
 namespace EmergencyShift
 {
@@ -36,7 +37,8 @@ namespace EmergencyShift
     /// <summary>Instance-owned ammunition/cooldown, also the ordinary single-projectile weapon cycle.</summary>
     public class WeaponCycle
     {
-        protected readonly WeaponDefinition definition;
+        protected readonly WeaponSettings definition;
+        public WeaponSettings Settings => definition;
         protected float readyAt;
         public int TotalAmmo { get; protected set; }
         public virtual int Loaded => 0;
@@ -49,18 +51,18 @@ namespace EmergencyShift
         public virtual bool EjectsOnShot => true;
         public event Action<WeaponOperation> Operation;
 
-        public WeaponCycle(WeaponDefinition data, int cartridges)
+        public WeaponCycle(WeaponSettings data, int cartridges)
         {
-            definition = data;
-            TotalAmmo = Mathf.Clamp(cartridges, 0, definition.maximumAmmo);
+            definition = data ?? throw new ArgumentNullException(nameof(data));
+            TotalAmmo = Mathf.Clamp(cartridges, 0, definition.MaximumAmmo);
         }
 
         public virtual bool CanFire(float now)
         {
-            return HasReadyRound && now >= readyAt;
+            return ValidNow(now) && HasReadyRound && now >= readyAt;
         }
 
-        public virtual bool TryFire(float now)
+        internal virtual bool ApplyFire(float now)
         {
             if (!CanFire(now))
             {
@@ -68,20 +70,36 @@ namespace EmergencyShift
             }
 
             TotalAmmo--;
-            readyAt = now + definition.secondsBetweenShots;
+            readyAt = now + definition.SecondsBetweenShots;
             return true;
         }
 
+        public bool TryFire(float now) => new FireWeaponCommand(this, now).Execute().Success;
+
+        public bool TryReload(float now) => new ReloadWeaponCommand(this, now).Execute().Success;
+
+        public void CancelReload() => new CancelWeaponReloadCommand(this).Execute();
+
         public int AddAmmo(int count)
         {
-            int received = Mathf.Clamp(count, 0, definition.maximumAmmo - TotalAmmo);
+            var command = new AddWeaponAmmoCommand(this, count);
+            command.Execute();
+            return command.Received;
+        }
+
+        internal int ApplyAddAmmo(int count)
+        {
+            int received = Mathf.Clamp(count, 0, definition.MaximumAmmo - TotalAmmo);
             TotalAmmo += received;
             return received;
         }
 
         public virtual void Tick(float now) { }
-        public virtual bool TryReload(float now) => false;
-        public virtual void CancelReload() { }
+        public virtual bool CanReload(float now) => false;
+        internal virtual bool ApplyReload(float now) => false;
+        internal virtual void ApplyCancelReload() { }
+
+        internal static bool ValidNow(float now) => float.IsFinite(now) && now >= 0;
 
         protected void Emit(WeaponOperation operation)
         {
@@ -90,6 +108,11 @@ namespace EmergencyShift
 
         public virtual WeaponCycleSnapshot Capture(float now)
         {
+            if (!ValidNow(now))
+            {
+                throw new ArgumentOutOfRangeException(nameof(now));
+            }
+
             return new WeaponCycleSnapshot
             {
                 format = 1,
@@ -103,7 +126,7 @@ namespace EmergencyShift
         protected void ValidateCommon(WeaponCycleSnapshot state, int format = 1)
         {
             if (state == null || state.format != format || !state.initialized || state.ammo < 0 ||
-                state.ammo > definition.maximumAmmo || !ValidTime(state.cooldown, definition.secondsBetweenShots))
+                state.ammo > definition.MaximumAmmo || !ValidTime(state.cooldown, definition.SecondsBetweenShots))
             {
                 throw new InvalidOperationException("Invalid saved weapon cycle");
             }
@@ -124,9 +147,17 @@ namespace EmergencyShift
             }
         }
 
-        public virtual void Restore(WeaponCycleSnapshot state, float now)
+        public void Restore(WeaponCycleSnapshot state, float now)
         {
-            Validate(state);
+            CommandResult result = new RestoreWeaponCycleCommand(this, state, now).Execute();
+            if (!result.Success)
+            {
+                throw new InvalidOperationException(result.Reason);
+            }
+        }
+
+        internal virtual void ApplyRestore(WeaponCycleSnapshot state, float now)
+        {
             TotalAmmo = state.ammo;
             readyAt = now + state.cooldown;
         }

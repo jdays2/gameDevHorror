@@ -1,4 +1,5 @@
 using System;
+using EmergencyShift.Core.Randomness;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -93,15 +94,15 @@ namespace EmergencyShift.Tests
         public void TypedAmmoAndSwitchingPreserveEachOwnedWeapon()
         {
             var inventory = new WeaponInventory();
-            Assert.That(inventory.AddAmmo(10, shotgun), Is.Zero);
-            inventory.Acquire(pistol, 7);
+            Assert.That(inventory.AddAmmo(10, shotgun.ToSettings()), Is.Zero);
+            inventory.Acquire(pistol.ToSettings(), 7);
             inventory.ActiveCycle.TryFire(0);
-            inventory.Acquire(shotgun, 12);
+            inventory.Acquire(shotgun.ToSettings(), 12);
             inventory.ActiveCycle.TryFire(0);
             Assert.That(inventory.Equip(0), Is.False);
             inventory.ActiveCycle.Tick(1);
             inventory.ActiveCycle.TryReload(1);
-            inventory.AddAmmo(2, pistol);
+            inventory.AddAmmo(2, pistol.ToSettings());
             Assert.That(inventory.Equip(0), Is.True);
             Assert.That(inventory.ActiveCycle.TotalAmmo, Is.EqualTo(8));
             Assert.That(inventory.Equip(1), Is.True);
@@ -114,15 +115,15 @@ namespace EmergencyShift.Tests
         public void JsonRoundTripPreservesPendingShellWithoutRepeatingPump()
         {
             var inventory = new WeaponInventory();
-            inventory.Acquire(pistol, 7);
-            inventory.Acquire(shotgun, 12);
+            inventory.Acquire(pistol.ToSettings(), 7);
+            inventory.Acquire(shotgun.ToSettings(), 12);
             inventory.ActiveCycle.TryFire(0);
             inventory.ActiveCycle.Tick(1);
             inventory.ActiveCycle.TryReload(1);
             var saved = inventory.Capture(1.4f);
             var decoded = JsonUtility.FromJson<WeaponInventorySnapshot>(JsonUtility.ToJson(saved));
             var restored = new WeaponInventory();
-            restored.Restore(decoded, catalog, 10);
+            restored.Restore(decoded, catalog.ToSettings(), 10);
             int cues = 0;
             restored.ActiveCycle.Operation += op => cues++;
             restored.ActiveCycle.Tick(10.2f);
@@ -139,13 +140,13 @@ namespace EmergencyShift.Tests
         public void InvalidInventoryIsRejectedBeforeChangingLiveWeapon()
         {
             var inventory = new WeaponInventory();
-            inventory.Acquire(pistol, 7);
+            inventory.Acquire(pistol.ToSettings(), 7);
             var saved = inventory.Capture(0);
             saved.weapons[0].contentId = "unknown";
-            Assert.Throws<InvalidOperationException>(() => inventory.Restore(saved, catalog, 0));
-            Assert.That(inventory.ActiveDefinition, Is.SameAs(pistol));
+            Assert.Throws<InvalidOperationException>(() => inventory.Restore(saved, catalog.ToSettings(), 0));
+            Assert.That(inventory.ActiveDefinition.ContentId, Is.EqualTo(pistol.contentId));
             Assert.That(inventory.ActiveCycle.TotalAmmo, Is.EqualTo(7));
-            Assert.Throws<InvalidOperationException>(() => WeaponInventory.Validate(JsonUtility.FromJson<WeaponInventorySnapshot>("{}"), catalog));
+            Assert.Throws<InvalidOperationException>(() => WeaponInventory.Validate(JsonUtility.FromJson<WeaponInventorySnapshot>("{}"), catalog.ToSettings()));
         }
 
         [Test]
@@ -168,11 +169,11 @@ namespace EmergencyShift.Tests
         public void DefinitionReplacementRejectsCollisionWithoutLosingEitherWeapon()
         {
             var inventory = new WeaponInventory();
-            inventory.Acquire(pistol, 7);
-            inventory.Acquire(shotgun, 12);
-            Assert.Throws<InvalidOperationException>(() => inventory.ReplaceActiveDefinition(pistol));
+            inventory.Acquire(pistol.ToSettings(), 7);
+            inventory.Acquire(shotgun.ToSettings(), 12);
+            Assert.Throws<InvalidOperationException>(() => inventory.ReplaceActiveDefinition(pistol.ToSettings()));
             Assert.That(inventory.Count, Is.EqualTo(2));
-            Assert.That(inventory.ActiveDefinition, Is.SameAs(shotgun));
+            Assert.That(inventory.ActiveDefinition.ContentId, Is.EqualTo(shotgun.contentId));
             Assert.That(inventory.ActiveCycle.TotalAmmo, Is.EqualTo(12));
             Assert.That(inventory.Equip(0), Is.True);
             Assert.That(inventory.ActiveCycle.TotalAmmo, Is.EqualTo(7));
@@ -184,12 +185,13 @@ namespace EmergencyShift.Tests
             var previous = UnityEngine.Random.state;
             try
             {
-                UnityEngine.Random.InitState(4721);
+                var random = new SystemRandomSource(new System.Random(4721));
+                WeaponSettings settings = shotgun.ToSettings();
                 float previousAngle = -180;
                 bool hasUnorderedPair = false;
                 for (int index = 0; index < shotgun.ProjectileCount; index++)
                 {
-                    Vector2 direction = shotgun.ProjectileDirection(Vector2.up, index);
+                    Vector2 direction = settings.ProjectileDirection(Vector2.up, index, random);
                     float angle = Vector2.SignedAngle(Vector2.up, direction);
                     Assert.That(direction.magnitude, Is.EqualTo(1).Within(.0001f));
                     Assert.That(Mathf.Abs(angle), Is.LessThanOrEqualTo(shotgun.spreadDegrees * .5f));

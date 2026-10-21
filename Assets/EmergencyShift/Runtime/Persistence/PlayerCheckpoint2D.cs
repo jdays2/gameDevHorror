@@ -84,7 +84,7 @@ namespace EmergencyShift
                 throw new InvalidOperationException("Missing/unsupported player inventory payload");
             }
 
-            WeaponInventory.Validate(state.inventory, weapons);
+            WeaponInventory.Validate(state.inventory, weapons.ToSettings());
             if (state.format == 3 && (!state.hasFlashlightState || (!state.flashlightOwned && state.light)))
             {
                 throw new InvalidOperationException("Missing/invalid flashlight ownership payload");

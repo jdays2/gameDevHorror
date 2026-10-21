@@ -17,11 +17,11 @@ namespace EmergencyShift
         public override WeaponPhase Phase => phase;
         public override bool HasReadyRound => loaded > 0;
 
-        public MagazineWeaponCycle(WeaponDefinition data, int cartridges, int magazineCapacity, float reloadDuration)
+        public MagazineWeaponCycle(MagazineWeaponSettings data, int cartridges)
             : base(data, cartridges)
         {
-            capacity = magazineCapacity;
-            reloadSeconds = reloadDuration;
+            capacity = data.MagazineCapacity;
+            reloadSeconds = data.ReloadSeconds;
             loaded = Mathf.Min(TotalAmmo, capacity);
         }
 
@@ -30,9 +30,9 @@ namespace EmergencyShift
             return phase == WeaponPhase.Ready && base.CanFire(now);
         }
 
-        public override bool TryFire(float now)
+        internal override bool ApplyFire(float now)
         {
-            if (!base.TryFire(now))
+            if (!base.ApplyFire(now))
             {
                 return false;
             }
@@ -41,9 +41,14 @@ namespace EmergencyShift
             return true;
         }
 
-        public override bool TryReload(float now)
+        public override bool CanReload(float now)
         {
-            if (phase != WeaponPhase.Ready || loaded >= capacity || Reserve <= 0)
+            return ValidNow(now) && phase == WeaponPhase.Ready && loaded < capacity && Reserve > 0;
+        }
+
+        internal override bool ApplyReload(float now)
+        {
+            if (!CanReload(now))
             {
                 return false;
             }
@@ -54,7 +59,7 @@ namespace EmergencyShift
             return true;
         }
 
-        public override void CancelReload()
+        internal override void ApplyCancelReload()
         {
             if (phase == WeaponPhase.Loading)
             {
@@ -66,7 +71,7 @@ namespace EmergencyShift
 
         public override void Tick(float now)
         {
-            if (phase != WeaponPhase.Loading || now < operationEnds)
+            if (!ValidNow(now) || phase != WeaponPhase.Loading || now < operationEnds)
             {
                 return;
             }
@@ -107,9 +112,9 @@ namespace EmergencyShift
             }
         }
 
-        public override void Restore(WeaponCycleSnapshot state, float now)
+        internal override void ApplyRestore(WeaponCycleSnapshot state, float now)
         {
-            base.Restore(state, now);
+            base.ApplyRestore(state, now);
             bool legacy = state.format != SnapshotFormat;
             loaded = legacy ? Mathf.Min(TotalAmmo, capacity) : state.loaded;
             phase = legacy ? WeaponPhase.Ready : state.phase;

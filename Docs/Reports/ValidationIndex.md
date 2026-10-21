@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Оружейные модели / RNG · BUG-010 / BUG-018 | [WeaponModels01](WeaponModels01.md): immutable tuning/catalog, команды; 4 исходных отказа помпы, 394/394 EditMode, 10/10 PlayMode и Windows64 success. Реальный залп при разной косметике; полный перенос PlayerWeapon/физики остаётся открытым. |
 | Диалоги MVC/DI · BUG-004 | [DialogueMvc01](DialogueMvc01.md): 376/376 собственных EditMode, 9/9 PlayMode, Windows64 success. Immutable graph/commands/lease controller; disabled/inactive и обе ветви существующего prefab; ограничение состояния live Editor указано в отчёте. |
 | Очистка / полнота checkpoint · BUG-012 / BUG-013 | [CheckpointConsistency03](CheckpointConsistency03.md): 39 EditMode и 3 PlayMode исходных отказа; после исправления 316/316 собственных EditMode и 5/5 PlayMode, Windows64 success. Отмена pending/удаление slot/bak/tmp, новый запрос, отсутствие bool против legacy false, защита Apply/прямого Restore. |
 | AI / модули checkpoint · BUG-008 / BUG-009 | [CheckpointPayload02](CheckpointPayload02.md): 56 исходных отказов воспроизведены; 73/73 новых и 265/265 всех собственных EditMode, Windows64 Succeeded. JsonUtility/изолированный диск/смерть/Apply; format1/2/3 и повторяемые линзы сохранены. Схема в Notion. |

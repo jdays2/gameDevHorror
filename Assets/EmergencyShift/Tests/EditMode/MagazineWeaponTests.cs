@@ -102,7 +102,7 @@ namespace EmergencyShift.Tests
         [Test]
         public void LegacyUnlimitedPistolMigratesWithoutCreatingCartridges()
         {
-            var old = new WeaponCycle(definition, 29).Capture(0);
+            var old = new WeaponCycle(definition.ToSettings(), 29).Capture(0);
             var restored = definition.CreateCycle(0);
             restored.Restore(old, 10);
             Assert.That(restored.Loaded, Is.EqualTo(12));

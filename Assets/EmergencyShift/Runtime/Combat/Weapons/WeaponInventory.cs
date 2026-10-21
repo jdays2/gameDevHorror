@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EmergencyShift.Core.Commands;
 
 namespace EmergencyShift
 {
@@ -24,10 +25,10 @@ namespace EmergencyShift
     {
         private sealed class OwnedWeapon
         {
-            public readonly WeaponDefinition Definition;
+            public readonly WeaponSettings Definition;
             public readonly WeaponCycle Cycle;
 
-            public OwnedWeapon(WeaponDefinition definition, WeaponCycle cycle)
+            public OwnedWeapon(WeaponSettings definition, WeaponCycle cycle)
             {
                 Definition = definition;
                 Cycle = cycle;
@@ -36,56 +37,75 @@ namespace EmergencyShift
 
         private readonly Dictionary<string, OwnedWeapon> owned = new Dictionary<string, OwnedWeapon>();
         private OwnedWeapon active;
-        public WeaponDefinition ActiveDefinition => active?.Definition;
+        public WeaponSettings ActiveDefinition => active?.Definition;
         public WeaponCycle ActiveCycle => active?.Cycle;
         public int Count => owned.Count;
 
-        public bool Acquire(WeaponDefinition definition, int cartridges)
+        public bool Acquire(WeaponSettings definition, int cartridges)
         {
-            definition.Validate();
-            if (owned.ContainsKey(definition.contentId) || (active != null && !active.Cycle.CanHolster))
+            return new AcquireWeaponCommand(this, definition, cartridges).Execute().Success;
+        }
+
+        internal CommandResult CheckAcquire(WeaponSettings definition)
+        {
+            if (definition == null || owned.ContainsKey(definition.ContentId)
+                || (active != null && !active.Cycle.CanHolster))
             {
-                return false;
+                return CommandResult.Fail("The weapon is already owned or cannot be equipped.");
             }
 
-            foreach (var entry in owned.Values)
+            foreach (OwnedWeapon entry in owned.Values)
             {
-                if (entry.Definition.selectionSlot == definition.selectionSlot)
+                if (entry.Definition.SelectionSlot == definition.SelectionSlot)
                 {
-                    throw new InvalidOperationException("Two different weapons share a selection slot");
+                    return CommandResult.Fail("Two different weapons share a selection slot.");
                 }
             }
 
+            return CommandResult.Ok();
+        }
+
+        internal void ApplyAcquire(WeaponSettings definition, int cartridges)
+        {
+            var next = new OwnedWeapon(definition, definition.CreateCycle(cartridges));
             active?.Cycle.CancelReload();
-            active = new OwnedWeapon(definition, definition.CreateCycle(cartridges));
-            owned.Add(definition.contentId, active);
-            return true;
+            active = next;
+            owned.Add(definition.ContentId, next);
         }
 
-        public bool Equip(int selectionSlot)
-        {
-            if (active != null && !active.Cycle.CanHolster)
-            {
-                return false;
-            }
+        public bool Equip(int selectionSlot) => new EquipWeaponCommand(this, selectionSlot).Execute().Success;
 
-            foreach (var entry in owned.Values)
+        internal CommandResult CheckEquip(int selectionSlot)
+        {
+            OwnedWeapon next = FindSelection(selectionSlot);
+            return next != null && next != active && (active == null || active.Cycle.CanHolster)
+                ? CommandResult.Ok() : CommandResult.Fail("The requested weapon cannot be equipped now.");
+        }
+
+        internal void ApplyEquip(int selectionSlot)
+        {
+            OwnedWeapon next = FindSelection(selectionSlot);
+            active?.Cycle.CancelReload();
+            active = next;
+        }
+
+        private OwnedWeapon FindSelection(int selectionSlot)
+        {
+            foreach (OwnedWeapon entry in owned.Values)
             {
-                if (entry.Definition.selectionSlot == selectionSlot && entry != active)
+                if (entry.Definition.SelectionSlot == selectionSlot)
                 {
-                    active?.Cycle.CancelReload();
-                    active = entry;
-                    return true;
+                    return entry;
                 }
             }
 
-            return false;
+            return null;
         }
 
-        public int AddAmmo(int cartridges, WeaponDefinition target = null)
+        public int AddAmmo(int cartridges, WeaponSettings target = null)
         {
             var entry = active;
-            if (target != null && !owned.TryGetValue(target.contentId, out entry))
+            if (target != null && !owned.TryGetValue(target.ContentId, out entry))
             {
                 return 0;
             }
@@ -93,27 +113,45 @@ namespace EmergencyShift
             return entry != null ? entry.Cycle.AddAmmo(cartridges) : 0;
         }
 
-        public void ReplaceActiveDefinition(WeaponDefinition definition)
+        public void ReplaceActiveDefinition(WeaponSettings definition)
         {
             if (active == null)
             {
                 return;
             }
 
-            definition.Validate();
-            foreach (var entry in owned.Values)
+            CommandResult result = new ReplaceWeaponDefinitionCommand(this, definition).Execute();
+            if (!result.Success)
             {
-                if (entry != active && (entry.Definition.contentId == definition.contentId ||
-                    entry.Definition.selectionSlot == definition.selectionSlot))
+                throw new InvalidOperationException(result.Reason);
+            }
+        }
+
+        internal CommandResult CheckReplacement(WeaponSettings definition)
+        {
+            if (active == null || definition == null)
+            {
+                return CommandResult.Fail("No active weapon or replacement definition.");
+            }
+
+            foreach (OwnedWeapon entry in owned.Values)
+            {
+                if (entry != active && (entry.Definition.ContentId == definition.ContentId
+                    || entry.Definition.SelectionSlot == definition.SelectionSlot))
                 {
-                    throw new InvalidOperationException("Replacement conflicts with another owned weapon");
+                    return CommandResult.Fail("Replacement conflicts with another owned weapon.");
                 }
             }
 
+            return CommandResult.Ok();
+        }
+
+        internal void ApplyReplacement(WeaponSettings definition)
+        {
             var replacement = new OwnedWeapon(definition, definition.CreateCycle(active.Cycle.TotalAmmo));
-            owned.Remove(active.Definition.contentId);
+            owned.Remove(active.Definition.ContentId);
             active = replacement;
-            owned.Add(definition.contentId, active);
+            owned.Add(definition.ContentId, replacement);
         }
 
         public WeaponInventorySnapshot Capture(float now)
@@ -123,7 +161,7 @@ namespace EmergencyShift
             {
                 records.Add(new OwnedWeaponSnapshot
                 {
-                    contentId = entry.Definition.contentId,
+                    contentId = entry.Definition.ContentId,
                     cycle = entry.Cycle.Capture(now)
                 });
             }
@@ -132,12 +170,12 @@ namespace EmergencyShift
             {
                 format = 1,
                 initialized = true,
-                activeId = active != null ? active.Definition.contentId : "",
+                activeId = active != null ? active.Definition.ContentId : "",
                 weapons = records.ToArray()
             };
         }
 
-        public static void Validate(WeaponInventorySnapshot state, WeaponCatalog catalog)
+        public static void Validate(WeaponInventorySnapshot state, WeaponSettingsCatalog catalog)
         {
             if (state == null || state.format != 1 || !state.initialized || state.weapons == null || catalog == null)
             {
@@ -149,7 +187,7 @@ namespace EmergencyShift
             foreach (var entry in state.weapons)
             {
                 var data = entry != null ? catalog.Find(entry.contentId) : null;
-                if (data == null || !ids.Add(data.contentId) || !slots.Add(data.selectionSlot))
+                if (data == null || !ids.Add(data.ContentId) || !slots.Add(data.SelectionSlot))
                 {
                     throw new InvalidOperationException("Unknown/duplicate weapon in inventory snapshot");
                 }
@@ -164,33 +202,50 @@ namespace EmergencyShift
             }
         }
 
-        public void Restore(WeaponInventorySnapshot state, WeaponCatalog catalog, float now)
+        public void Restore(WeaponInventorySnapshot state, WeaponSettingsCatalog catalog, float now)
         {
-            Validate(state, catalog);
-            owned.Clear();
-            active = null;
-            foreach (var entry in state.weapons)
+            CommandResult result = new RestoreWeaponInventoryCommand(this, state, catalog, now).Execute();
+            if (!result.Success)
             {
-                var data = catalog.Find(entry.contentId);
-                var cycle = data.CreateCycle(0);
-                cycle.Restore(entry.cycle, now);
-                var restored = new OwnedWeapon(data, cycle);
-                owned.Add(data.contentId, restored);
-                if (data.contentId == state.activeId)
-                {
-                    active = restored;
-                }
+                throw new InvalidOperationException(result.Reason);
             }
         }
 
-        public void RestoreLegacy(bool hasWeapon, int cartridges, WeaponDefinition definition)
+        internal void ApplyRestore(WeaponInventorySnapshot state, WeaponSettingsCatalog catalog, float now)
         {
-            owned.Clear();
-            active = null;
-            if (hasWeapon)
+            var next = new Dictionary<string, OwnedWeapon>(StringComparer.Ordinal);
+            foreach (OwnedWeaponSnapshot entry in state.weapons)
             {
-                Acquire(definition, cartridges);
+                WeaponSettings data = catalog.Find(entry.contentId);
+                WeaponCycle cycle = data.CreateCycle(0);
+                cycle.Restore(entry.cycle, now);
+                next.Add(data.ContentId, new OwnedWeapon(data, cycle));
             }
+
+            // Construct the complete replacement before discarding any live state.
+            owned.Clear();
+            foreach (KeyValuePair<string, OwnedWeapon> entry in next)
+            {
+                owned.Add(entry.Key, entry.Value);
+            }
+
+            active = string.IsNullOrEmpty(state.activeId) ? null : owned[state.activeId];
+        }
+
+        public void RestoreLegacy(bool hasWeapon, int cartridges, WeaponSettings definition)
+        {
+            WeaponSettings[] definitions = hasWeapon ? new[] { definition } : Array.Empty<WeaponSettings>();
+            var catalog = new WeaponSettingsCatalog(definitions);
+            OwnedWeaponSnapshot[] records = hasWeapon
+                ? new[] { new OwnedWeaponSnapshot { contentId = definition.ContentId, cycle = definition.CreateCycle(cartridges).Capture(0) } }
+                : Array.Empty<OwnedWeaponSnapshot>();
+            Restore(new WeaponInventorySnapshot
+            {
+                format = 1,
+                initialized = true,
+                activeId = hasWeapon ? definition.ContentId : "",
+                weapons = records
+            }, catalog, 0);
         }
     }
 }

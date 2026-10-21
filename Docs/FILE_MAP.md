@@ -47,9 +47,15 @@
 
 - [BulletProjectile2D.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs)
 - [MagazineWeaponCycle.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponCycle.cs)
+- [MagazineWeaponSettings.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponSettings.cs)
 - [PumpShotgunCycle.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs)
+- [PumpShotgunSettings.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunSettings.cs)
 - [WeaponCycle.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs)
+- [WeaponCycleCommands.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycleCommands.cs)
 - [WeaponInventory.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs)
+- [WeaponInventoryCommands.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs)
+- [WeaponSettings.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettings.cs)
+- [WeaponSettingsCatalog.cs](../Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettingsCatalog.cs)
 
 ## Assets/EmergencyShift/Runtime/Core
 
@@ -411,12 +417,14 @@
 - [SleeperTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs)
 - [StalkerEyeTests.cs](../Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs)
 - [WeaponCycleTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs)
+- [WeaponSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs)
 - [WorkBudgetTests.cs](../Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs)
 
 ## Assets/EmergencyShift/Tests/PlayMode
 
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
+- [WeaponSpreadLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs)
 
 ## Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts
 

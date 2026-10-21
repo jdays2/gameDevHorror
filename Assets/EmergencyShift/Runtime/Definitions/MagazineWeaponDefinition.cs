@@ -11,10 +11,10 @@ namespace EmergencyShift
         [Min(.05f)]
         public float reloadSeconds = 1.4f;
 
-        public override WeaponCycle CreateCycle(int cartridges)
+        public override WeaponSettings ToSettings()
         {
             Validate();
-            return new MagazineWeaponCycle(this, cartridges, magazineCapacity, reloadSeconds);
+            return new MagazineWeaponSettings(base.ToSettings(), magazineCapacity, reloadSeconds);
         }
 
         public override void Validate()

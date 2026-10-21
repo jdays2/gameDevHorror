@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "289 current own C# explicitly reviewed; 113 retain migration debt. complete=false. DialogueMvc01 certifies only its stated scenarios.",
+  "limits": "297 current own C# explicitly reviewed; 109 retain migration debt. complete=false. WeaponModels01 certifies only stated boundaries.",
   "counts": {
-    "partial": 113,
-    "reviewed_boundary": 176
+    "partial": 109,
+    "reviewed_boundary": 188
   },
   "files": [
     {
@@ -1216,7 +1216,8 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -1239,22 +1240,22 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponCycle.cs",
-      "sha256": "85ec80b5cc7b06b6ee5f14c853bb853e1235961df08eabe7c7f2f0cb0f7e7e9e",
+      "sha256": "97da6d2163abaea61861c988f25ac14b14586f87bf6e57f991b9a737dc44c333",
       "baselineSha256": "85ec80b5cc7b06b6ee5f14c853bb853e1235961df08eabe7c7f2f0cb0f7e7e9e",
       "guid": "39748ee12301b464d83675e14e887454",
       "types": [
         "MagazineWeaponCycle"
       ],
-      "lines": 119,
+      "lines": 124,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs",
-        "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs"
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponSettings.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Магазин/резерв раздельны и не создают новые патроны; отмена сохраняет ammo. format1→2 миграция и повторная Validate в Restore присутствуют. SO зависимость/командная граница наследуются; public constructor может обойти factory Validate. Таймеры — экземпляр, не asset.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Заряженный магазин и атомарная замена",
@@ -1265,28 +1266,66 @@
         "Mathf"
       ],
       "usageEvidence": "MagazineWeaponDefinition.CreateCycle; PumpShotgunCycle base; MagazineWeaponTests",
-      "reviewedSha256": "85ec80b5cc7b06b6ee5f14c853bb853e1235961df08eabe7c7f2f0cb0f7e7e9e",
+      "reviewedSha256": "97da6d2163abaea61861c988f25ac14b14586f87bf6e57f991b9a737dc44c333",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "85ec80b5cc7b06b6ee5f14c853bb853e1235961df08eabe7c7f2f0cb0f7e7e9e",
+          "notes": "Магазин/резерв раздельны и не создают новые патроны; отмена сохраняет ammo. format1→2 миграция и повторная Validate в Restore присутствуют. SO зависимость/командная граница наследуются; public constructor может обойти factory Validate. Таймеры — экземпляр, не asset.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "514ce401e62128d66622708b1a8bc0462be7101fd20a1b870037c4c8113686f7",
+      "guid": "208b17984ed4adb448d11ce5feafe0ff",
+      "types": [
+        "MagazineWeaponSettings"
+      ],
+      "lines": 25,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponCycle.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunSettings.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "514ce401e62128d66622708b1a8bc0462be7101fd20a1b870037c4c8113686f7",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs",
-      "sha256": "5f5a77fef2185f9e6ecc8803719a4ceb9739e983c529bce44013a02e3de18f59",
+      "sha256": "bdf4e4d234321456a8f5e25104f9a54072f357ecc404e22465d25d60b7581dda",
       "baselineSha256": "5f5a77fef2185f9e6ecc8803719a4ceb9739e983c529bce44013a02e3de18f59",
       "guid": "8bd4e11b1ca15654f9d2783849a95da3",
       "types": [
         "PumpShotgunCycle"
       ],
-      "lines": 122,
+      "lines": 136,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs"
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunSettings.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Общая ammo-модель повторно используется; depth WeaponCycle→Magazine→Pump равен двум переходам и допустим. Урон не разрешается звуковым событием. Наследуемая SO-зависимость/командная граница остаются; snapshot проверяет фазу/finite durations, но полная связь pump cue и operation ещё требует сверки.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Помпа и прерываемая поштучная зарядка",
@@ -1296,14 +1335,50 @@
         "now/Operation"
       ],
       "usageEvidence": "PumpShotgunDefinition.CreateCycle; PlayerWeapon2D; WeaponCycleTests",
-      "reviewedSha256": "5f5a77fef2185f9e6ecc8803719a4ceb9739e983c529bce44013a02e3de18f59",
+      "reviewedSha256": "bdf4e4d234321456a8f5e25104f9a54072f357ecc404e22465d25d60b7581dda",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "5f5a77fef2185f9e6ecc8803719a4ceb9739e983c529bce44013a02e3de18f59",
+          "notes": "Общая ammo-модель повторно используется; depth WeaponCycle→Magazine→Pump равен двум переходам и допустим. Урон не разрешается звуковым событием. Наследуемая SO-зависимость/командная граница остаются; snapshot проверяет фазу/finite durations, но полная связь pump cue и operation ещё требует сверки.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "88867c34fa25fa5421fe873cef456fe30d7c69984161cbff3a37f19bdf486673",
+      "guid": "1748927296a0eb44eadf80f9cd9e013d",
+      "types": [
+        "PumpShotgunSettings"
+      ],
+      "lines": 49,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "88867c34fa25fa5421fe873cef456fe30d7c69984161cbff3a37f19bdf486673",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
-      "sha256": "08e8f6db7fc1ed9082e393a07a5dd8528cf9f8d95e17ff0f35947fcc0c8dd39b",
+      "sha256": "cf4488224b477af70e755edaf5fab97cb38fe3f1ade084b95130dc8fc1062c5e",
       "baselineSha256": "08e8f6db7fc1ed9082e393a07a5dd8528cf9f8d95e17ff0f35947fcc0c8dd39b",
       "guid": "e3bfd3d2e9e464844a9f08096a289941",
       "types": [
@@ -1312,15 +1387,18 @@
         "WeaponOperation",
         "WeaponPhase"
       ],
-      "lines": 134,
+      "lines": 165,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponCycle.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponSettings.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunSettings.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycleCommands.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
-        "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
-        "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettings.cs",
         "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
@@ -1329,11 +1407,13 @@
         "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
         "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Нет Input/View/Time API; ammo личное, now явный вход, finite snapshot timers проверяются. Но Model держит Unity SO, внешние изменения идут public TryFire/AddAmmo/Restore без принятой ICommand/Result-границы; несколько типов/DTO в файле. Пустые Tick/CancelReload — hooks вариаций, не лишние игровые менеджеры.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Боезапас и cooldown одного оружия, DTO фаз/операций",
@@ -1344,14 +1424,53 @@
         "Action<WeaponOperation>"
       ],
       "usageEvidence": "WeaponDefinition.CreateCycle; Magazine/Pump subclasses; WeaponInventory; tests",
-      "reviewedSha256": "08e8f6db7fc1ed9082e393a07a5dd8528cf9f8d95e17ff0f35947fcc0c8dd39b",
+      "reviewedSha256": "cf4488224b477af70e755edaf5fab97cb38fe3f1ade084b95130dc8fc1062c5e",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "08e8f6db7fc1ed9082e393a07a5dd8528cf9f8d95e17ff0f35947fcc0c8dd39b",
+          "notes": "Нет Input/View/Time API; ammo личное, now явный вход, finite snapshot timers проверяются. Но Model держит Unity SO, внешние изменения идут public TryFire/AddAmmo/Restore без принятой ICommand/Result-границы; несколько типов/DTO в файле. Пустые Tick/CancelReload — hooks вариаций, не лишние игровые менеджеры.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycleCommands.cs",
+      "sourceScope": "unity",
+      "sha256": "926911ae699a000d31759eec59ba2dc8e6700ef43b86f607873a2a7589b6902f",
+      "guid": "a8a7dd753b481dc47a45fc58e0d068e4",
+      "types": [
+        "AddWeaponAmmoCommand",
+        "CancelWeaponReloadCommand",
+        "FireWeaponCommand",
+        "ReloadWeaponCommand",
+        "RestoreWeaponCycleCommand"
+      ],
+      "lines": 149,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "926911ae699a000d31759eec59ba2dc8e6700ef43b86f607873a2a7589b6902f",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
-      "sha256": "b5744cd2433bcf448214c01a47cd71e9ddc745c1e8c774c518ebfd8799cbda2e",
+      "sha256": "58c775d45439d0f5ea0fcdc821dea874a78cbf2835bcd7bf2e50ee87e10b66c1",
       "baselineSha256": "b5744cd2433bcf448214c01a47cd71e9ddc745c1e8c774c518ebfd8799cbda2e",
       "guid": "83cf2e31cfbd69143b52ec9ae0219e9c",
       "types": [
@@ -1360,18 +1479,20 @@
         "WeaponInventory",
         "WeaponInventorySnapshot"
       ],
-      "lines": 196,
+      "lines": 251,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Cycle на каждый contentId, slot collision/unknown IDs отвергаются, Restore сначала Validate. Shared SO не меняется. Model напрямую зависит от SO/factory и выдаёт mutable ActiveCycle; public Acquire/Equip/AddAmmo/Replace/Restore ещё не команды с Result. Capture allocations происходят на checkpoint, не tick.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Владение, активное оружие, подбор/смена и snapshot",
@@ -1381,10 +1502,111 @@
         "dictionaries"
       ],
       "usageEvidence": "PlayerWeapon2D; PlayerCheckpoint2D; WeaponCycleTests",
-      "reviewedSha256": "b5744cd2433bcf448214c01a47cd71e9ddc745c1e8c774c518ebfd8799cbda2e",
+      "reviewedSha256": "58c775d45439d0f5ea0fcdc821dea874a78cbf2835bcd7bf2e50ee87e10b66c1",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "b5744cd2433bcf448214c01a47cd71e9ddc745c1e8c774c518ebfd8799cbda2e",
+          "notes": "Cycle на каждый contentId, slot collision/unknown IDs отвергаются, Restore сначала Validate. Shared SO не меняется. Model напрямую зависит от SO/factory и выдаёт mutable ActiveCycle; public Acquire/Equip/AddAmmo/Replace/Restore ещё не команды с Result. Capture allocations происходят на checkpoint, не tick.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
+      "sourceScope": "unity",
+      "sha256": "9ff29c7a351f72bd41606309f7b75abcd674d27d15273bfc8c6838bf24daedd0",
+      "guid": "914ab64c4c874f74185adb08846f7713",
+      "types": [
+        "AcquireWeaponCommand",
+        "EquipWeaponCommand",
+        "ReplaceWeaponDefinitionCommand",
+        "RestoreWeaponInventoryCommand"
+      ],
+      "lines": 131,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "9ff29c7a351f72bd41606309f7b75abcd674d27d15273bfc8c6838bf24daedd0",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "9742dddf368858fe75575ae4ef1ac41685548280ea72e038beb39820d3ecf874",
+      "guid": "0ca127b6f8442d04192171fb297ba4c8",
+      "types": [
+        "WeaponSettings"
+      ],
+      "lines": 56,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponSettings.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettingsCatalog.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "9742dddf368858fe75575ae4ef1ac41685548280ea72e038beb39820d3ecf874",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettingsCatalog.cs",
+      "sourceScope": "unity",
+      "sha256": "a6b4699e198071a7aceff4598eb357a94ab0d0bf7745a0b43f01a5961c3fdf7a",
+      "guid": "5baef6103448856479201b037c1d79fb",
+      "types": [
+        "WeaponSettingsCatalog"
+      ],
+      "lines": 35,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a6b4699e198071a7aceff4598eb357a94ab0d0bf7745a0b43f01a5961c3fdf7a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Commands/CommandResult.cs",
@@ -1398,6 +1620,10 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycleCommands.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
         "Assets/EmergencyShift/Runtime/Core/Commands/ICommand.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
@@ -1444,6 +1670,8 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycleCommands.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventoryCommands.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
@@ -1866,7 +2094,8 @@
         "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -1895,12 +2124,16 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunSettings.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettings.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
       ],
       "entryPointHints": [],
@@ -1941,7 +2174,10 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -1980,7 +2216,9 @@
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2992,7 +3230,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
-      "sha256": "d179dca690595bebb8540472e87ad8d70d55245e37ec7e391b22eb7a0d78ec1d",
+      "sha256": "08fa19fedf3646afeacd607aff46d91a8a03ffb06dd075c01100b506231b1a7d",
       "baselineSha256": "d179dca690595bebb8540472e87ad8d70d55245e37ec7e391b22eb7a0d78ec1d",
       "guid": "cab01b7640f147543b68d9f62a7f3494",
       "types": [
@@ -3020,7 +3258,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Validate расширяет общую проверку capacity≤maximumAmmo и finite reload duration. Конкретные фабрика/поля SO остаются legacy boundary с Model; текущий конфиг не менялся и не объявлен сломанным.",
+      "notes": "WeaponModels01: ToSettings builds validated immutable runtime data; model no longer retains SO and spread is outside SO. Public legacy authoring fields/API remain for configuration migration; not declared fully read-only yet.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Баланс сменного магазина и создание cycle",
@@ -3029,10 +3267,20 @@
         "MagazineWeaponCycle"
       ],
       "usageEvidence": "PistolDefinition.asset; MagazineWeaponTests; PlayerWeapon",
-      "reviewedSha256": "d179dca690595bebb8540472e87ad8d70d55245e37ec7e391b22eb7a0d78ec1d",
+      "reviewedSha256": "08fa19fedf3646afeacd607aff46d91a8a03ffb06dd075c01100b506231b1a7d",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "d179dca690595bebb8540472e87ad8d70d55245e37ec7e391b22eb7a0d78ec1d",
+          "notes": "Validate расширяет общую проверку capacity≤maximumAmmo и finite reload duration. Конкретные фабрика/поля SO остаются legacy boundary с Model; текущий конфиг не менялся и не объявлен сломанным.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PlayerAudioSet.cs",
@@ -3171,13 +3419,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
-      "sha256": "23aceb073870ed67530d79adc8682a0e9a78407885a8e691716eb42fb85bff43",
+      "sha256": "ea04eba9c79f902d82ce81c44c1237abdaabe0f2944347fcd28f99b0aeb4ea11",
       "baselineSha256": "23aceb073870ed67530d79adc8682a0e9a78407885a8e691716eb42fb85bff43",
       "guid": "27c6ed8d982e0ff46ad77f2c0f81589b",
       "types": [
         "PumpShotgunDefinition"
       ],
-      "lines": 52,
+      "lines": 44,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Weapons/PumpShotgun.asset"
       ],
@@ -3189,12 +3437,13 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
-        "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Числовая Validate проверяет pellet count/durations/автоматический режим. BUG-010: ProjectileDirection потребляет глобальный Unity Random рядом с cosmetic draws. Стратегия разброса/личный gameplay RNG должны быть вне SO; текущая форма и баланс не исправлялись.",
+      "notes": "WeaponModels01: ToSettings builds validated immutable runtime data; model no longer retains SO and spread is outside SO. Public legacy authoring fields/API remain for configuration migration; not declared fully read-only yet.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Баланс помпы и авторитетный веер дробин",
@@ -3204,10 +3453,20 @@
         "UnityEngine.Random/Quaternion"
       ],
       "usageEvidence": "PumpShotgun.asset; PlayerWeapon2D.ProjectileDirection; WeaponCycleTests",
-      "reviewedSha256": "23aceb073870ed67530d79adc8682a0e9a78407885a8e691716eb42fb85bff43",
+      "reviewedSha256": "ea04eba9c79f902d82ce81c44c1237abdaabe0f2944347fcd28f99b0aeb4ea11",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "23aceb073870ed67530d79adc8682a0e9a78407885a8e691716eb42fb85bff43",
+          "notes": "Числовая Validate проверяет pellet count/durations/автоматический режим. BUG-010: ProjectileDirection потребляет глобальный Unity Random рядом с cosmetic draws. Стратегия разброса/личный gameplay RNG должны быть вне SO; текущая форма и баланс не исправлялись.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs",
@@ -3492,13 +3751,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
-      "sha256": "59b2a58b7a6bb7d063d81ca26cfd0d275e604f9632f0805259265d3d4f66eb5a",
+      "sha256": "872af00f99a952f47e4e02733ba0ea155242d00afdb4f12a93e38e0e77ed2862",
       "baselineSha256": "59b2a58b7a6bb7d063d81ca26cfd0d275e604f9632f0805259265d3d4f66eb5a",
       "guid": "af38b0c71ccee794883387b6acf8fef1",
       "types": [
         "WeaponCatalog"
       ],
-      "lines": 27,
+      "lines": 50,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Levels/Weapons.asset"
       ],
@@ -3509,7 +3768,6 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
-        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
@@ -3518,7 +3776,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Find не зависит от filename/InstanceID, но возвращает первое совпадение; нет общей проверки пустых/дублированных IDs/slots всего каталога. Проверка только entries конкретного inventory не сертифицирует каталог. Это долг валидации контента.",
+      "notes": "WeaponModels01: ToSettings builds validated immutable runtime data; model no longer retains SO and spread is outside SO. Public legacy authoring fields/API remain for configuration migration; not declared fully read-only yet.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Разрешение стабильного contentId в definition",
@@ -3527,29 +3785,36 @@
         "WeaponDefinition[]"
       ],
       "usageEvidence": "PlayerCheckpoint2D/WeaponInventory.Validate; Weapons.asset; authoring",
-      "reviewedSha256": "59b2a58b7a6bb7d063d81ca26cfd0d275e604f9632f0805259265d3d4f66eb5a",
+      "reviewedSha256": "872af00f99a952f47e4e02733ba0ea155242d00afdb4f12a93e38e0e77ed2862",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "59b2a58b7a6bb7d063d81ca26cfd0d275e604f9632f0805259265d3d4f66eb5a",
+          "notes": "Find не зависит от filename/InstanceID, но возвращает первое совпадение; нет общей проверки пустых/дублированных IDs/slots всего каталога. Проверка только entries конкретного inventory не сертифицирует каталог. Это долг валидации контента.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
-      "sha256": "107c4ea24c01d51db1d4f8bf5664e73ee44a4c03fe9045637d557030c0e40cb4",
+      "sha256": "25dea4437ce494770c5f8d90e73bcf6dc1ec3e4ff7efcfb31d2c2bb027d7fca2",
       "baselineSha256": "107c4ea24c01d51db1d4f8bf5664e73ee44a4c03fe9045637d557030c0e40cb4",
       "guid": "dc34453363d9b334b8e8de06ab5467fb",
       "types": [
         "WeaponDefinition"
       ],
-      "lines": 48,
+      "lines": 49,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
-        "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponCycle.cs",
-        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
-        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
         "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
         "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
@@ -3560,7 +3825,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Есть finite/range/ID Validate, runtime ammo в SO нет. Asset также создаёт Model и определяет алгоритм направления, Model хранит этот SO: pure immutable settings/strategy не выделены. Public поля ослабляют read-only контракт; новые числовые pistol variants могут быть новыми assets без веток в HUD/пуле.",
+      "notes": "WeaponModels01: ToSettings builds validated immutable runtime data; model no longer retains SO and spread is outside SO. Public legacy authoring fields/API remain for configuration migration; not declared fully read-only yet.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общий баланс, идентичность и factory оружия",
@@ -3571,10 +3836,20 @@
         "WeaponCycle"
       ],
       "usageEvidence": "PlayerWeapon2D/Inventory; каталог; Magazine/Pump subclasses",
-      "reviewedSha256": "107c4ea24c01d51db1d4f8bf5664e73ee44a4c03fe9045637d557030c0e40cb4",
+      "reviewedSha256": "25dea4437ce494770c5f8d90e73bcf6dc1ec3e4ff7efcfb31d2c2bb027d7fca2",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "107c4ea24c01d51db1d4f8bf5664e73ee44a4c03fe9045637d557030c0e40cb4",
+          "notes": "Есть finite/range/ID Validate, runtime ammo в SO нет. Asset также создаёт Model и определяет алгоритм направления, Model хранит этот SO: pure immutable settings/strategy не выделены. Public поля ослабляют read-only контракт; новые числовые pistol variants могут быть новыми assets без веток в HUD/пуле.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
@@ -6484,7 +6759,8 @@
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxSession2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -7424,7 +7700,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
-      "sha256": "c1948d6e0dcc4829c73eca9b39adb3cedfaec9601afc135d1b76f8d97aee0152",
+      "sha256": "d700d31a9608b1b70cbf3a2bb7b7a5e18d5d8eaf4ff343f5ef731044450bf0a5",
       "baselineSha256": "a7536c36c58f6aed4d4370cc7b0091a6765853a6977e4b592dd0240f470714fe",
       "guid": "9b38f6979e5090b4cba6fdff18a3be8f",
       "types": [
@@ -7459,11 +7735,13 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "BUG-009 fixed: all formats preflight modules/count before any player mutation. Existing inventory and ownership checks retained. Cards/direction and broad SOD adapter/model migration debt remain.",
+      "notes": "WeaponModels01: inventory validation now receives pure catalog snapshot; payload formats/IDs unchanged. Full checkpoint controller/adapter separation and per-object restoration boundaries remain migration debt.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Player checkpoint format1/2/3",
@@ -7473,10 +7751,10 @@
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "c1948d6e0dcc4829c73eca9b39adb3cedfaec9601afc135d1b76f8d97aee0152",
+      "reviewedSha256": "d700d31a9608b1b70cbf3a2bb7b7a5e18d5d8eaf4ff343f5ef731044450bf0a5",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointPayload02.md",
-      "reviewScope": "Full touched source and ownership/compatibility boundary review; 73/73 new, 265/265 own EditMode, Windows64 Succeeded.",
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
       "reviewHistory": [
         {
           "reviewStatus": "partial",
@@ -7508,8 +7786,16 @@
           "reviewDate": "2026-10-21",
           "reviewReport": "Docs/Reports/CodeAudit08.md",
           "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+        },
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "c1948d6e0dcc4829c73eca9b39adb3cedfaec9601afc135d1b76f8d97aee0152",
+          "notes": "BUG-009 fixed: all formats preflight modules/count before any player mutation. Existing inventory and ownership checks retained. Cards/direction and broad SOD adapter/model migration debt remain.",
+          "reviewReport": "Docs/Reports/CheckpointPayload02.md"
         }
-      ]
+      ],
+      "previousReviewStatus": "partial"
     },
     {
       "reviewStatus": "reviewed_boundary",
@@ -7582,7 +7868,9 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -7638,7 +7926,9 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -7768,7 +8058,9 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -8596,13 +8888,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
-      "sha256": "20017bc412f747144a42b9592708d2dc5c2c21dab68985ac92ef350dd9371476",
+      "sha256": "03476ddc81ce5397d55e6d5a65d221240c0ac9bf4bd7501f194191ce76e2da56",
       "baselineSha256": "596fb7c3e90acf823fc8ecc665be76ec2f257bc91f18efb1d501753fb846d9aa",
       "guid": "a7c2f849920eead45b86e58e62166543",
       "types": [
         "PlayerWeapon2D"
       ],
-      "lines": 445,
+      "lines": 475,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -8647,12 +8939,13 @@
         "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
         "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
         "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
-        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "445 строк объединяют intent/controller, pose, authoritative fire, physics и VFX. BoundCycle Operation парно снимается/перевязывается. Generic cycle-based autoreload сохранён; конкретных проверок вида оружия для него нет. Projectile/effect raw Instantiate не закрепляет scene ownership как ScenePrefabFactory. RNG sequence см. BUG-010; атомарность при ошибке visuals требует отдельной проверки.",
-      "reviewedSha256": "20017bc412f747144a42b9592708d2dc5c2c21dab68985ac92ef350dd9371476",
+      "notes": "WeaponModels01/BUG-010: separate injected gameplay RNG; ID-to-visual-asset mapping outside pure inventory, simulation tuning from active immutable settings. Still partial: Time/input, pose, muzzle physics, projectile/effect creation and presentation lifetimes require controller/environment split.",
+      "reviewedSha256": "03476ddc81ce5397d55e6d5a65d221240c0ac9bf4bd7501f194191ce76e2da56",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -8660,6 +8953,13 @@
           "reviewStatus": "partial",
           "reviewedSha256": "20017bc412f747144a42b9592708d2dc5c2c21dab68985ac92ef350dd9371476",
           "notes": "Input Actions/block injected; shooting rules, timing and presentation remain mixed."
+        },
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "20017bc412f747144a42b9592708d2dc5c2c21dab68985ac92ef350dd9371476",
+          "notes": "445 строк объединяют intent/controller, pose, authoritative fire, physics и VFX. BoundCycle Operation парно снимается/перевязывается. Generic cycle-based autoreload сохранён; конкретных проверок вида оружия для него нет. Projectile/effect raw Instantiate не закрепляет scene ownership как ScenePrefabFactory. RNG sequence см. BUG-010; атомарность при ошибке visuals требует отдельной проверки.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
         }
       ],
       "responsibility": "Unity-мост input, inventory, прицеливания и выдачи выстрела",
@@ -8672,8 +8972,9 @@
       ],
       "usageEvidence": "Player prefab/scene overrides; loot/checkpoint/audio/HUD",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
@@ -9588,7 +9889,8 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -10391,7 +10693,8 @@
         "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
         "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -11758,7 +12061,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
-      "sha256": "1ae260a553436227ccac6ba48e2321334d95291f0827bfb5f2ad3104e56066f9",
+      "sha256": "e428a22439745c37e13699a3fa6d5c6c0789bcf2609dd989e33c1c3a3fb55f4f",
       "baselineSha256": "1ae260a553436227ccac6ba48e2321334d95291f0827bfb5f2ad3104e56066f9",
       "guid": "18ddab6f6fe329f47bb891ef7a36d363",
       "types": [
@@ -11772,7 +12075,7 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Проверяет no free ammo, запрет выстрела резервом, атомарный reload/cancel, повтор restore без start-cue, SO instance isolation, malformed timers. Читать тесты не значит заново их выполнить; Input/View интеграция здесь не покрыта.",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Регрессии магазина, отмены и legacy reload snapshot",
@@ -11783,10 +12086,20 @@
         "JsonUtility"
       ],
       "usageEvidence": "EditMode runner, 6 тестов",
-      "reviewedSha256": "1ae260a553436227ccac6ba48e2321334d95291f0827bfb5f2ad3104e56066f9",
+      "reviewedSha256": "e428a22439745c37e13699a3fa6d5c6c0789bcf2609dd989e33c1c3a3fb55f4f",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "1ae260a553436227ccac6ba48e2321334d95291f0827bfb5f2ad3104e56066f9",
+          "notes": "Проверяет no free ammo, запрет выстрела резервом, атомарный reload/cancel, повтор restore без start-cue, SO instance isolation, malformed timers. Читать тесты не значит заново их выполнить; Input/View интеграция здесь не покрыта.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
     },
     {
       "baselineSha256": null,
@@ -12070,13 +12383,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
-      "sha256": "420110041eb7e11d0c982a527ab24fca301c7c5cb85e5ff6b64a69d593f9cfd4",
+      "sha256": "1d2973d1628a85fdadc95bc6698c2c24ca910de7c1803a22547e780aa0664e93",
       "baselineSha256": "420110041eb7e11d0c982a527ab24fca301c7c5cb85e5ff6b64a69d593f9cfd4",
       "guid": "9e2a8c2408b067f4fa9f99dcd921ed25",
       "types": [
         "WeaponCycleTests"
       ],
-      "lines": 220,
+      "lines": 222,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -12084,7 +12397,7 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Есть independent state, смена/typed ammo, prevalidation restore/collision, pump/shell count, finite timers. RNG тест сохраняет/восстанавливает global state, но проверяет ProjectileDirection изолированно, не interleaving VFX/Launch; BUG-010 этим не покрыт.",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Регрессии помпы, инвентаря, snapshots и диапазона веера",
@@ -12095,10 +12408,45 @@
         "JsonUtility"
       ],
       "usageEvidence": "EditMode runner, 10 тестов",
-      "reviewedSha256": "420110041eb7e11d0c982a527ab24fca301c7c5cb85e5ff6b64a69d593f9cfd4",
+      "reviewedSha256": "1d2973d1628a85fdadc95bc6698c2c24ca910de7c1803a22547e780aa0664e93",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "420110041eb7e11d0c982a527ab24fca301c7c5cb85e5ff6b64a69d593f9cfd4",
+          "notes": "Есть independent state, смена/typed ammo, prevalidation restore/collision, pump/shell count, finite timers. RNG тест сохраняет/восстанавливает global state, но проверяет ProjectileDirection изолированно, не interleaving VFX/Launch; BUG-010 этим не покрыт.",
+          "reviewReport": "Docs/Reports/CodeAudit07.md"
+        }
+      ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+      "sourceScope": "unity",
+      "sha256": "101befe4e7e8998d2499faed42363aeb3d48c7a30d22059080d02bd0063c1b4a",
+      "guid": "fd94e6959dc0dcf4cab45e72937aba6d",
+      "types": [
+        "WeaponSettingsTests"
+      ],
+      "lines": 246,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "101befe4e7e8998d2499faed42363aeb3d48c7a30d22059080d02bd0063c1b4a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
@@ -12192,13 +12540,41 @@
       "lines": 232,
       "serializedUsers": [],
       "dependencyScenes": [],
-      "lexicalSourceUsers": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
+      ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
       "reviewedSha256": "19bf6b8bb8bdee1e9439aceeb8d71e84c10ea2877f90f0d59e8a1738363c6885",
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/DialogueMvc01.md",
       "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
+      "sourceScope": "unity",
+      "sha256": "f15a8167888aca9f6ce01e7d1c0d56c909a48bb3f434ad512cd1df8877336bda",
+      "guid": "f6f7021931ae9294a9d8993c8238be40",
+      "types": [
+        "SpreadEvidence",
+        "TestInput",
+        "WeaponSpreadLifetimeTests"
+      ],
+      "lines": 192,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f15a8167888aca9f6ce01e7d1c0d56c909a48bb3f434ad512cd1df8877336bda",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponModels01.md",
+      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
     },
     {
       "baselineSha256": null,
@@ -12600,14 +12976,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 270,
+    "unity": 278,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 19,
-    "report": "Docs/Reports/DialogueMvc01.md",
-    "validation": "376/376 isolated own EditMode; 9/9 PlayMode, of which 4 dialogue prefab lifecycle. Normal Windows64 build. See live-editor failure limitation."
+    "files": 20,
+    "report": "Docs/Reports/WeaponModels01.md",
+    "validation": "BUG-018: 4 original failures, 394/394 all own EditMode, 10/10 PlayMode including actual RNG/flash comparison, normal Windows64 success. See dirty working tree/test artifact limits."
   },
   "reviewPasses": [
     {
@@ -12663,15 +13039,21 @@
       "files": 19,
       "report": "Docs/Reports/DialogueMvc01.md",
       "validation": "376/376 isolated own EditMode; 9/9 PlayMode, of which 4 dialogue prefab lifecycle. Normal Windows64 build. See live-editor failure limitation."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 20,
+      "report": "Docs/Reports/WeaponModels01.md",
+      "validation": "BUG-018: 4 original failures, 394/394 all own EditMode, 10/10 PlayMode including actual RNG/flash comparison, normal Windows64 success. See dirty working tree/test artifact limits."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 289,
-    "totalFiles": 289,
+    "reviewedFiles": 297,
+    "totalFiles": 297,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "DialogueMvc01 covers the stated dialogue boundaries; remaining partial files are not certified migrated."
+    "validation": "WeaponModels01 and earlier source reviews; remaining partial files are not certified migrated."
   }
 }

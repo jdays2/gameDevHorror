@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using EmergencyShift.Core.Randomness;
 using EmergencyShift.Features.PlayerInput.Logic;
 using Zenject;
 
@@ -22,33 +24,42 @@ namespace EmergencyShift
         private PlayerLife2D life;
         private PlayerShotShadow2D shotShadow;
         private readonly WeaponInventory inventory = new WeaponInventory();
+        private readonly Dictionary<string, WeaponDefinition> definitions = new Dictionary<string, WeaponDefinition>();
         private WeaponCycle boundCycle;
         private IPlayerInput input;
         private GameplayInputBlock inputBlock;
+        private IRandomSource shotRandom;
 
         [Inject]
-        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
+        private void Construct(IPlayerInput playerInput, GameplayInputBlock block, RandomSourceFactory randoms)
         {
             input = playerInput;
             inputBlock = block;
+            shotRandom = randoms.Create();
         }
 
         private Vector3 restingWeaponScale;
         private float nextEmptyTrigger;
         public bool HasWeapon => inventory.ActiveCycle != null;
         public int Ammo => inventory.ActiveCycle != null ? inventory.ActiveCycle.TotalAmmo : 0;
-        public int MaximumAmmo => Definition.maximumAmmo;
+        public int MaximumAmmo => inventory.ActiveCycle != null ? inventory.ActiveCycle.Settings.MaximumAmmo : definition.maximumAmmo;
         public int LoadedAmmo => inventory.ActiveCycle != null ? inventory.ActiveCycle.Loaded : 0;
         public int ReserveAmmo => inventory.ActiveCycle != null ? inventory.ActiveCycle.Reserve : 0;
         public int MagazineCapacity => inventory.ActiveCycle != null ? inventory.ActiveCycle.MagazineCapacity : 0;
         public WeaponPhase Phase => inventory.ActiveCycle != null ? inventory.ActiveCycle.Phase : WeaponPhase.Ready;
         public int OwnedCount => inventory.Count;
-        public int Damage => Definition.damage;
-        public float ShotInterval => Mathf.Max(.05f, Definition.secondsBetweenShots);
-        public float BulletRange => Definition.range;
+        public int Damage => inventory.ActiveCycle != null ? inventory.ActiveCycle.Settings.Damage : definition.damage;
+        public float ShotInterval => inventory.ActiveCycle != null ? inventory.ActiveCycle.Settings.SecondsBetweenShots : definition.secondsBetweenShots;
+        public float BulletRange => inventory.ActiveCycle != null ? inventory.ActiveCycle.Settings.Range : definition.range;
 
-        public WeaponDefinition Definition =>
-            inventory.ActiveDefinition != null ? inventory.ActiveDefinition : definition;
+        public WeaponDefinition Definition
+        {
+            get
+            {
+                WeaponSettings active = inventory.ActiveDefinition;
+                return active != null && definitions.TryGetValue(active.ContentId, out WeaponDefinition asset) ? asset : definition;
+            }
+        }
 
         public int ShotsFired
         {
@@ -136,7 +147,13 @@ namespace EmergencyShift
             }
 
             value.Validate();
-            inventory.ReplaceActiveDefinition(value);
+            string previousId = inventory.ActiveDefinition?.ContentId;
+            inventory.ReplaceActiveDefinition(value.ToSettings());
+            if (previousId != null)
+            {
+                definitions.Remove(previousId);
+                definitions[value.contentId] = value;
+            }
             definition = value;
             if (applyVisuals && value.visuals != null)
             {
@@ -171,7 +188,12 @@ namespace EmergencyShift
         {
             UnbindCycle();
             definition = savedDefinition != null ? savedDefinition : definition;
-            inventory.RestoreLegacy(owned, ammo, definition);
+            inventory.RestoreLegacy(owned, ammo, definition.ToSettings());
+            definitions.Clear();
+            if (owned)
+            {
+                definitions[definition.contentId] = definition;
+            }
             nextEmptyTrigger = 0;
             Equipped();
         }
@@ -180,9 +202,15 @@ namespace EmergencyShift
 
         public void RestoreInventory(WeaponInventorySnapshot state, WeaponCatalog catalog)
         {
-            WeaponInventory.Validate(state, catalog);
+            WeaponSettingsCatalog settings = catalog.ToSettings();
+            WeaponInventory.Validate(state, settings);
             UnbindCycle();
-            inventory.Restore(state, catalog, Time.time);
+            inventory.Restore(state, settings, Time.time);
+            definitions.Clear();
+            foreach (OwnedWeaponSnapshot record in state.weapons)
+            {
+                definitions.Add(record.contentId, catalog.Find(record.contentId));
+            }
             Equipped();
         }
 
@@ -190,11 +218,13 @@ namespace EmergencyShift
 
         public bool Acquire(int cartridges, WeaponDefinition selected = null)
         {
-            if (!CanUse || !inventory.Acquire(selected != null ? selected : Definition, cartridges))
+            WeaponDefinition asset = selected != null ? selected : Definition;
+            if (!CanUse || !inventory.Acquire(asset.ToSettings(), cartridges))
             {
                 return false;
             }
 
+            definitions[asset.contentId] = asset;
             Equipped();
             return true;
         }
@@ -206,7 +236,7 @@ namespace EmergencyShift
 
         public int AddAmmo(int cartridges, WeaponDefinition target = null)
         {
-            return CanUse ? inventory.AddAmmo(cartridges, target) : 0;
+            return CanUse ? inventory.AddAmmo(cartridges, target != null ? target.ToSettings() : null) : 0;
         }
 
         public bool TryEquip(int slot)
@@ -296,7 +326,7 @@ namespace EmergencyShift
             }
 
             UpdatePose();
-            bool fire = Definition != null && Definition.automatic ? input.FireHeld : input.FirePressed;
+            bool fire = inventory.ActiveCycle != null && inventory.ActiveCycle.Settings.Automatic ? input.FireHeld : input.FirePressed;
             if (fire)
             {
                 TryFire();
@@ -418,9 +448,9 @@ namespace EmergencyShift
 
             if (blockedMuzzle.collider == null)
             {
-                for (int index = 0; index < Definition.ProjectileCount; index++)
+                for (int index = 0; index < cycle.Settings.ProjectileCount; index++)
                 {
-                    Vector2 heading = Definition.ProjectileDirection(direction, index);
+                    Vector2 heading = cycle.Settings.ProjectileDirection(direction, index, shotRandom);
                     var bullet = Instantiate(bulletPrefab, new Vector3(origin.x, origin.y, -0.1f), Quaternion.identity);
                     bullet.Launch(transform, heading, visualProfile, effectPrefab, bulletCollisionMask, Damage,
                         BulletRange, ShotsFired);

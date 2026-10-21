@@ -27,12 +27,13 @@ namespace EmergencyShift
         public virtual WeaponCycle CreateCycle(int cartridges)
         {
             Validate();
-            return new WeaponCycle(this, cartridges);
+            return ToSettings().CreateCycle(cartridges);
         }
 
-        public virtual Vector2 ProjectileDirection(Vector2 heading, int index)
+        public virtual WeaponSettings ToSettings()
         {
-            return heading;
+            Validate();
+            return new WeaponSettings(contentId, selectionSlot, damage, maximumAmmo, secondsBetweenShots, range, automatic);
         }
 
         public virtual void Validate()

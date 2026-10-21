@@ -21,19 +21,11 @@ namespace EmergencyShift
         public override int ProjectileCount => pellets;
         public override Vector3 HeldScale => new Vector3(1.15f, 1.8f, 1);
 
-        public override WeaponCycle CreateCycle(int cartridges)
+        public override WeaponSettings ToSettings()
         {
             Validate();
-            return new PumpShotgunCycle(this, cartridges);
-        }
-
-        public override Vector2 ProjectileDirection(Vector2 heading, int index)
-        {
-            // Independent, centre-weighted angles avoid the old evenly spaced comb.
-            // The sum of two uniforms stays inside the same full spread limit.
-            float offset = Random.value + Random.value - 1;
-            float angle = offset * spreadDegrees * .5f;
-            return Quaternion.Euler(0, 0, angle) * heading;
+            var magazine = new MagazineWeaponSettings(base.ToSettings(), magazineCapacity, shellInsertSeconds);
+            return new PumpShotgunSettings(magazine, pellets, spreadDegrees, pumpSeconds, pumpCueDelay);
         }
 
         public override void Validate()
