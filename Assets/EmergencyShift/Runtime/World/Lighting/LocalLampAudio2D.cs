@@ -28,9 +28,9 @@ namespace EmergencyShift
         private float lastContactTime = float.NegativeInfinity;
         private LocalLampSceneSettings sceneSettings;
         public int ContactsPlayed { get; private set; }
-        private float HearingDistance => sceneSettings != null ? sceneSettings.soundRadius : sounds.hearingDistance;
-        private float HumVolume => sceneSettings != null ? sceneSettings.humVolume : sounds.humVolume;
-        private float ContactVolume => sceneSettings != null ? sceneSettings.contactVolume : sounds.contactVolume;
+        private float HearingDistance => sceneSettings != null ? sceneSettings.soundRadius : sounds.HearingDistance;
+        private float HumVolume => sceneSettings != null ? sceneSettings.humVolume : sounds.HumVolume;
+        private float ContactVolume => sceneSettings != null ? sceneSettings.contactVolume : sounds.ContactVolume;
 
         public void ConfigureScene(LocalLampSceneSettings settings)
         {
@@ -74,7 +74,7 @@ namespace EmergencyShift
 
             sounds.Validate();
             random = new System.Random(System.Guid.NewGuid().GetHashCode());
-            humSource.clip = sounds.hum;
+            humSource.clip = sounds.Hum;
             humSource.loop = true;
             humSource.playOnAwake = false;
             contactSource.loop = false;
@@ -118,7 +118,7 @@ namespace EmergencyShift
             }
 
             float intensity = sourceLight.isActiveAndEnabled ? sourceLight.intensity : 0;
-            bool lit = intensity > sounds.darkThreshold;
+            bool lit = intensity > sounds.DarkThreshold;
             Vector2 delta = (Vector2)transform.position - (Vector2)listener.position;
             float gain = sceneSettings != null ? sceneSettings.SoundGain(delta.magnitude) : sounds.DistanceGain(delta.magnitude);
             if (gain > 0 && Physics2D.Linecast(transform.position, listener.position, soundBlockingLayers).collider != null)
@@ -127,11 +127,11 @@ namespace EmergencyShift
             }
 
             contactSource.volume = ContactVolume * gain;
-            float pan = Mathf.Clamp(delta.x / Mathf.Max(HearingDistance, .001f), -.5f, .5f);
+            float pan = Mathf.Clamp(delta.x / Mathf.Max(HearingDistance, .001f), -sounds.MaximumPan, sounds.MaximumPan);
             humSource.panStereo = pan;
             contactSource.panStereo = pan;
             UpdateHum(intensity, gain);
-            if (initialized && lit != wasLit && gain > 0 && Time.time - lastContactTime >= sounds.contactCooldown)
+            if (initialized && lit != wasLit && gain > 0 && Time.time - lastContactTime >= sounds.ContactCooldown)
             {
                 PlayContact();
             }
@@ -144,7 +144,7 @@ namespace EmergencyShift
 
         private void UpdateHum(float intensity, float gain)
         {
-            if (gain <= 0 || intensity <= sounds.darkThreshold || HumVolume <= 0)
+            if (gain <= 0 || intensity <= sounds.DarkThreshold || HumVolume <= 0)
             {
                 humSource.volume = 0;
                 if (humSource.isPlaying)
@@ -158,28 +158,28 @@ namespace EmergencyShift
             if (!humSource.isPlaying)
             {
                 humSource.volume = 0;
-                humSource.time = (float)random.NextDouble() * sounds.hum.length;
+                humSource.time = (float)random.NextDouble() * sounds.Hum.length;
                 humSource.Play();
             }
 
-            float referenceIntensity = sceneSettings != null ? Mathf.Max(sceneSettings.intensity, .01f) : sounds.referenceIntensity;
+            float referenceIntensity = sceneSettings != null ? Mathf.Max(sceneSettings.intensity, .01f) : sounds.ReferenceIntensity;
             float brightness = Mathf.Clamp01(intensity / referenceIntensity);
             float target = HumVolume * brightness * gain;
             humSource.volume = Mathf.MoveTowards(humSource.volume, target,
-                Time.deltaTime * HumVolume / sounds.humFadeSeconds);
+                Time.deltaTime * HumVolume / sounds.HumFadeSeconds);
         }
 
         private void PlayContact()
         {
-            int index = random.Next(sounds.contacts.Length);
-            if (sounds.contacts.Length > 1 && index == lastContact)
+            int index = random.Next(sounds.ContactCount);
+            if (sounds.ContactCount > 1 && index == lastContact)
             {
-                index = (index + 1) % sounds.contacts.Length;
+                index = (index + 1) % sounds.ContactCount;
             }
 
             lastContact = index;
             lastContactTime = Time.time;
-            contactSource.clip = sounds.contacts[index];
+            contactSource.clip = sounds.ContactAt(index);
             contactSource.pitch = 1;
             contactSource.Play();
             ContactsPlayed++;

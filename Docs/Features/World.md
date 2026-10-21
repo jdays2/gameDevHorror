@@ -28,6 +28,8 @@ FlashlightStateModel хранит личные владение/питание/�
 
 ## Проверки и связанные документы
 
+CameraFramingProfile/LocalLightProfile/LocalLampAudioSet доступны runtime C# только для чтения; Inspector сохраняет старые serialized names/настройки. Интервалы мерцания не выдаются на изменение, lamp contacts доступны через ContactCount/ContactAt. Свет проверяет finite color/clock/арифметику, камера — конечность итогового размера. LocalLampSceneSettings остаётся отдельным приоритетным авторенным override экземпляра. [Конфигурационный контракт и проверки](../Reports/LightingConfig14.md).
+
 Карты и доступ перенесены в `Features/AccessControl`: личные чистые модели, команды Add/Restore/CheckAccess, controller и фабрики через LevelContext. Компоненты PlayerAccessCards2D/DoorAccess2D сохраняют публичный API и служат Unity/View-адаптерами. Время считывателя поступает через IGameClock; независимые cooldown и постоянная разблокировка принадлежат модели. Прямое восстановление и player checkpoint проверяют ID карт до изменения состояния; null-коллекция поддерживается как legacy-пустая. Подробности и границы — [AccessControl01](../Reports/AccessControl01.md).
 
 Двери используют внедряемый SceneRegistry уровня; статического Door2D.Active больше нет. [Движение створки](Doors.md) выделено в личную модель с командами/controller и scaled clock, Door2D исполняет Transform и события. Остальная интеракция и общий config-pass ещё открыты. Данные существующих экземпляров сохранены.

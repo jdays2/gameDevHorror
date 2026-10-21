@@ -223,41 +223,53 @@ namespace EmergencyShift.Editor
             {
                 var prop = library.outputs[i];
                 var profile = LoadOrCreate<LocalLightProfile>(Root + "/Settings/EnvironmentLights/" + prop.id + ".asset");
+                var data = new SerializedObject(profile);
                 Color key;
                 Vector2 outlet = new Vector2(0, -.5f);
                 if (prop.id == "working-laptop")
                 {
                     key = new Color(0, .8f, 1);
-                    profile.color = new Color(.5f, .8f, 1);
-                    profile.radius = 1.55f;
-                    profile.intensity = .9f;
-                    profile.cycleSeconds = 5.4f;
-                    profile.minimumFactor = .72f;
-                    profile.darkIntervals = new[] { new Vector2(.62f, .67f), new Vector2(.7f, .725f) };
+                    data.FindProperty("color").colorValue = new Color(.5f, .8f, 1);
+                    data.FindProperty("radius").floatValue = 1.55f;
+                    data.FindProperty("intensity").floatValue = .9f;
+                    data.FindProperty("cycleSeconds").floatValue = 5.4f;
+                    data.FindProperty("minimumFactor").floatValue = .72f;
+                    SetDarkIntervals(data, new[] { new Vector2(.62f, .67f), new Vector2(.7f, .725f) });
                 }
                 else if (prop.id == "lab-desk-lamp")
                 {
                     key = new Color(1, .65f, .1f);
-                    profile.color = new Color(1, .78f, .43f);
-                    profile.radius = 2.15f;
-                    profile.intensity = 1;
-                    profile.minimumFactor = .97f;
+                    data.FindProperty("color").colorValue = new Color(1, .78f, .43f);
+                    data.FindProperty("radius").floatValue = 2.15f;
+                    data.FindProperty("intensity").floatValue = 1;
+                    data.FindProperty("minimumFactor").floatValue = .97f;
                 }
                 else
                 {
                     key = new Color(1, .05f, .03f);
-                    profile.color = new Color(1, .15f, .065f);
-                    profile.radius = 1.8f;
-                    profile.intensity = 1.2f;
-                    profile.cycleSeconds = 5.8f;
-                    profile.minimumFactor = .85f;
-                    profile.darkIntervals = new[] { new Vector2(.12f, .17f), new Vector2(.21f, .27f), new Vector2(.39f, 1) };
+                    data.FindProperty("color").colorValue = new Color(1, .15f, .065f);
+                    data.FindProperty("radius").floatValue = 1.8f;
+                    data.FindProperty("intensity").floatValue = 1.2f;
+                    data.FindProperty("cycleSeconds").floatValue = 5.8f;
+                    data.FindProperty("minimumFactor").floatValue = .85f;
+                    SetDarkIntervals(data, new[] { new Vector2(.12f, .17f), new Vector2(.21f, .27f), new Vector2(.39f, 1) });
                     outlet = new Vector2(0, -.18f);
                 }
 
+                data.ApplyModifiedPropertiesWithoutUndo();
                 profile.Validate();
                 EditorUtility.SetDirty(profile);
                 CreateLightPrefab(prop, profile, key, outlet);
+            }
+        }
+
+        private static void SetDarkIntervals(SerializedObject data, Vector2[] intervals)
+        {
+            SerializedProperty target = data.FindProperty("darkIntervals");
+            target.arraySize = intervals.Length;
+            for (int i = 0; i < intervals.Length; i++)
+            {
+                target.GetArrayElementAtIndex(i).vector2Value = intervals[i];
             }
         }
 
@@ -303,7 +315,7 @@ namespace EmergencyShift.Editor
                 spill.transform.SetParent(obj.transform, false);
                 spill.transform.localPosition = outlet;
                 var lamp = spill.GetComponent<LocalLamp2D>();
-                lamp.Configure(spill.GetComponent<Light2D>(), glow, profile.color, false);
+                lamp.Configure(spill.GetComponent<Light2D>(), glow, profile.Color, false);
                 lamp.SetProfile(profile);
                 PrefabUtility.SaveAsPrefabAsset(obj, directory + "/" + prop.id + ".prefab");
             }

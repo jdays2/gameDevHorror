@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "480 own C# explicitly read; 90 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PresentationConfig13.",
+  "limits": "481 own C# explicitly read; 90 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LightingConfig14.",
   "counts": {
     "partial": 90,
-    "reviewed_boundary": 390
+    "reviewed_boundary": 391
   },
   "files": [
     {
@@ -916,7 +916,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
-      "sha256": "c5868bbec994303e565b2309d64e94783cf474db8317254701fff1c4fa766bcb",
+      "sha256": "e9579c6cad147df4824de263f404b49bdba9b6607eeadfe669acc315f14e0ac9",
       "baselineSha256": "42869b9caf22f13d7364bc222f2d8b3570adaf7fce2297efa422cde71104b183",
       "guid": "2b522bcdc9c9dd54db1227c36beb539a",
       "types": [
@@ -928,7 +928,7 @@
         "Source",
         "SourceLibrary"
       ],
-      "lines": 316,
+      "lines": 328,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -944,7 +944,7 @@
         "MenuItem"
       ],
       "reviewStatus": "partial",
-      "notes": "Once-only/stable/all-dirty guards защищают существующую scene; PrepareLighting всё же перезаписывает общие profiles/LevelRig/prefabs, нет transaction на ошибки. Не запускался.",
+      "notes": "LightingConfig14: private profile authoring через SerializedObject с прежними recipe values; generator не запускался. Прежние shared profiles/LevelRig/prefab mutations, отсутствие общей transaction и общий style/lifetime pass остаются открыты.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -966,10 +966,11 @@
         "UnityEngine.UI"
       ],
       "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
-      "reviewedSha256": "c5868bbec994303e565b2309d64e94783cf474db8317254701fff1c4fa766bcb",
+      "reviewedSha256": "e9579c6cad147df4824de263f404b49bdba9b6607eeadfe669acc315f14e0ac9",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "baselineSha256": null,
@@ -3257,13 +3258,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/CameraFramingProfile.cs",
-      "sha256": "7f90718fa84307128925a88955718a350a2e443b97519e9059cd17d2ac2d8105",
+      "sha256": "aea3fe8f02f0f062a9499424a34c90a8703b5361a07cdadabf33a49429b6afc3",
       "baselineSha256": "7f90718fa84307128925a88955718a350a2e443b97519e9059cd17d2ac2d8105",
       "guid": "83176230377555f44bb4dc8700996e72",
       "types": [
         "CameraFramingProfile"
       ],
-      "lines": 54,
+      "lines": 70,
       "serializedUsers": [
         "Assets/EmergencyShift/Settings/CameraFraming.asset",
         "Assets/EmergencyShift/Settings/MorgueCameraFraming.asset"
@@ -3286,11 +3287,12 @@
         "Assets/EmergencyShift/Runtime/Player/CameraFollow2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Validate проверяет finite/ranges; aspect также проверяется. Вписывает beam в короткую сторону окна; acquisition и рост range учитываются данными. Runtime asset не изменяется; не новый визуальный тест камеры.",
+      "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3305,10 +3307,11 @@
         "Unity math"
       ],
       "usageEvidence": "FlashlightOwnershipTests; CameraFollow2D",
-      "reviewedSha256": "7f90718fa84307128925a88955718a350a2e443b97519e9059cd17d2ac2d8105",
+      "reviewedSha256": "aea3fe8f02f0f062a9499424a34c90a8703b5361a07cdadabf33a49429b6afc3",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/DoorAccessFeedbackProfile.cs",
@@ -3728,13 +3731,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LocalLampAudioSet.cs",
-      "sha256": "dc583b52c30e7d5aaff7138964031664acad602243985b2ffc82cc46c028e684",
+      "sha256": "9a9ca62cfca0cc6dd5f490d870bfb098debfcde4dfc4086f5b9463437b58f326",
       "baselineSha256": "dc583b52c30e7d5aaff7138964031664acad602243985b2ffc82cc46c028e684",
       "guid": "5300b2c100b77dc4287dcea8a4ad0d35",
       "types": [
         "LocalLampAudioSet"
       ],
-      "lines": 68,
+      "lines": 94,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Audio/HospitalLampQuiet.asset"
       ],
@@ -3745,11 +3748,12 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Общие clips/mix валидируются на finite/порядок/refs; личное playback state вне SO.",
+      "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3764,10 +3768,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
-      "reviewedSha256": "dc583b52c30e7d5aaff7138964031664acad602243985b2ffc82cc46c028e684",
+      "reviewedSha256": "9a9ca62cfca0cc6dd5f490d870bfb098debfcde4dfc4086f5b9463437b58f326",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LocalLampSceneSettings.cs",
@@ -3810,13 +3815,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LocalLightProfile.cs",
-      "sha256": "0547aa55e0230318b7459b3a65325745f7efb3aa5760d5a8b776b81ba920edaa",
+      "sha256": "7ab0a562b5ec4741103c26677a711019266e17ec0bdd87e0e043bd6b084ecef2",
       "baselineSha256": "0547aa55e0230318b7459b3a65325745f7efb3aa5760d5a8b776b81ba920edaa",
       "guid": "bb0eb56874e95814e97e7a98161900e9",
       "types": [
         "LocalLightProfile"
       ],
-      "lines": 59,
+      "lines": 80,
       "serializedUsers": [
         "Assets/EmergencyShift/Settings/EnvironmentLights/emergency-beacon.asset",
         "Assets/EmergencyShift/Settings/EnvironmentLights/lab-desk-lamp.asset",
@@ -3829,11 +3834,12 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Общие данные с явной finite/range/interval validation; Evaluate без изменения asset. Фаза принадлежит экземпляру.",
+      "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3848,10 +3854,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 3; сцены по графу: 2.",
-      "reviewedSha256": "0547aa55e0230318b7459b3a65325745f7efb3aa5760d5a8b776b81ba920edaa",
+      "reviewedSha256": "7ab0a562b5ec4741103c26677a711019266e17ec0bdd87e0e043bd6b084ecef2",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
@@ -12955,7 +12962,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/CameraFollow2D.cs",
-      "sha256": "acf999d99eb2c669398288553cb15cca37575cb422e177c3265fc34074d64f48",
+      "sha256": "14c0b333714b6a8ab344be09973b35d70d690dae52d7e88516b2565137a42b69",
       "baselineSha256": "0a8d6e9a667ecd3dd756b456753418b7bd4e76006ea7de5b9f23d50102b5dbbc",
       "guid": "bf1f88b6d6017a246b2268818ad6c403",
       "types": [
@@ -12997,8 +13004,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
-      "reviewedSha256": "acf999d99eb2c669398288553cb15cca37575cb422e177c3265fc34074d64f48",
+      "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
+      "reviewedSha256": "14c0b333714b6a8ab344be09973b35d70d690dae52d7e88516b2565137a42b69",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13023,9 +13030,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 3; сцены по графу: 11.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/FlashlightState02.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution.",
-      "previousReviewStatus": "partial"
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -15719,7 +15726,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
-      "sha256": "5609ff3341ae1d0cfcde5048bb68dbbc9593480b10a999832fb15a2872ee0673",
+      "sha256": "2e6d194856cf3aac204ca65157b30bb3b364aa5bfa7dd5abc03cb255bceb4ab7",
       "baselineSha256": "5609ff3341ae1d0cfcde5048bb68dbbc9593480b10a999832fb15a2872ee0673",
       "guid": "035ebd6dd9cb57943ad66d69e5c6e6fc",
       "types": [
@@ -15752,7 +15759,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Оформление/Time и запрос игрового света объединены; static active общий для сцен, AnyIlluminates не фильтрует сцену. Переключение питания/профиля не сбрасывает личные таймеры в SO.",
+      "notes": "LightingConfig14: readonly light profile getters и finite color/clock проверены; текущие assets/сцены не менялись. Power/visibility/Time ещё в MB; static Active/AnyIlluminates без scoped query остаются открытым долгом.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15772,14 +15779,15 @@
         "Light2D"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 6; сцены по графу: 5.",
-      "reviewedSha256": "5609ff3341ae1d0cfcde5048bb68dbbc9593480b10a999832fb15a2872ee0673",
+      "reviewedSha256": "2e6d194856cf3aac204ca65157b30bb3b364aa5bfa7dd5abc03cb255bceb4ab7",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
-      "sha256": "92ed9162250d897d81274baf6f2b39cb47068860753f2e4cb069b1d78cb2dc98",
+      "sha256": "e5b1493f68f8e4180fdf2e6504278be18d1d18098dd168614a2123f0c7715e3e",
       "baselineSha256": "efb82d9441107ead61e6e3b84815fd326a390fc17326ae1937c21f8faeab9d96",
       "guid": "537cefc4072ae1d4bbe7920067dfd7dc",
       "types": [
@@ -15800,8 +15808,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Два источника, listener через scope, события контакта следуют фактическому Light2D; Silence при disable, cosmetic RNG отдельный. Не защитный стимул.",
-      "reviewedSha256": "92ed9162250d897d81274baf6f2b39cb47068860753f2e4cb069b1d78cb2dc98",
+      "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
+      "reviewedSha256": "e5b1493f68f8e4180fdf2e6504278be18d1d18098dd168614a2123f0c7715e3e",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15823,8 +15831,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampConfiguration2D.cs",
@@ -17231,13 +17240,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs",
-      "sha256": "63c5ffbadc7cb4d705a4562c98de86b6c5225e47860dea06ea0cde894a3c1b0a",
+      "sha256": "5c93f18f50eea9824301d30b9a8d0fb6a42c6660887a9e551cb6baccdd4a41db",
       "baselineSha256": "63c5ffbadc7cb4d705a4562c98de86b6c5225e47860dea06ea0cde894a3c1b0a",
       "guid": "e23b036cb4eeefa4ab1db08db4fbcfdd",
       "types": [
         "EnvironmentPresentationTests"
       ],
-      "lines": 70,
+      "lines": 73,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -17246,7 +17255,7 @@
         "TestCase"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Framing 3 aspects, invalid numeric и dropout/shared immutability; не игровой кадр.",
+      "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17262,20 +17271,21 @@
         "UnityEngine"
       ],
       "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
-      "reviewedSha256": "63c5ffbadc7cb4d705a4562c98de86b6c5225e47860dea06ea0cde894a3c1b0a",
+      "reviewedSha256": "5c93f18f50eea9824301d30b9a8d0fb6a42c6660887a9e551cb6baccdd4a41db",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
-      "sha256": "5851693e1bbf631d400cf8fd7da3bef36ed6c6ff79fa7413fdd5b6e4b990b560",
+      "sha256": "75ece18929855ced87bd351c8d3a8003aece2e5f410095e048f78101557a9232",
       "baselineSha256": "1191a7f289006b12c217fa51f1cbc631b21de4890ed16d5c13c09a04c30ad9d3",
       "guid": "f1497b54f20de6c47ab771af7758c52e",
       "types": [
         "FlashlightOwnershipTests"
       ],
-      "lines": 76,
+      "lines": 75,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -17284,7 +17294,7 @@
         "TestCase"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17305,10 +17315,10 @@
         "Flashlight2D/CameraFramingProfile"
       ],
       "usageEvidence": "3 метода, 4 cases; source read only",
-      "reviewedSha256": "5851693e1bbf631d400cf8fd7da3bef36ed6c6ff79fa7413fdd5b6e4b990b560",
+      "reviewedSha256": "75ece18929855ced87bd351c8d3a8003aece2e5f410095e048f78101557a9232",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/FlashlightState02.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -17589,6 +17599,31 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit08.md",
       "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs",
+      "sourceScope": "unity",
+      "sha256": "c391112f138bdd1d2c9fcfcd598a4ad880eccc9a851f1add9d8dfe14faef9177",
+      "guid": "44c8f1c42cac4bc4ab3d051edf0db508",
+      "types": [
+        "LightingConfigTests"
+      ],
+      "lines": 153,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c391112f138bdd1d2c9fcfcd598a4ad880eccc9a851f1add9d8dfe14faef9177",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs",
@@ -18448,15 +18483,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "95b0e898cea692431984b7cea989dfbfd9b6aa676422cf62b95815be65295836",
+      "sha256": "77a13edcd1126db06c5a182f78761060117a8fd8f5476ba72296831a356e3068",
       "guid": "99757c8fce324aedb03b6d52c73af313",
       "types": [
         "CameraOpticsLifetimeTests"
       ],
-      "lines": 92,
+      "lines": 91,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -18468,9 +18503,11 @@
           "notes": "New inventory entry; no semantic review yet."
         }
       ],
-      "reviewedSha256": "95b0e898cea692431984b7cea989dfbfd9b6aa676422cf62b95815be65295836",
-      "reviewReport": "Docs/Reports/FlashlightState02.md",
-      "reviewDate": "2026-10-21"
+      "reviewedSha256": "77a13edcd1126db06c5a182f78761060117a8fd8f5476ba72296831a356e3068",
+      "reviewReport": "Docs/Reports/LightingConfig14.md",
+      "reviewDate": "2026-10-21",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -19308,7 +19345,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 461,
+    "unity": 462,
     "content_source": 8
   },
   "latestReview": {
@@ -19459,11 +19496,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 480,
-    "totalFiles": 480,
+    "reviewedFiles": 481,
+    "totalFiles": 481,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "PresentationConfig13 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "LightingConfig14 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

@@ -43,8 +43,7 @@ namespace EmergencyShift.Tests
             camera.aspect = 1.5f;
             var follow = owner.AddComponent<CameraFollow2D>();
             profile = ScriptableObject.CreateInstance<CameraFramingProfile>();
-            profile.unarmedViewRadius = 2;
-            profile.lightRangeMargin = .25f;
+            JsonUtility.FromJsonOverwrite("{\"unarmedViewRadius\":2,\"lightRangeMargin\":0.25}", profile);
             follow.SetFraming(profile);
             follow.Configure(first.transform);
             owner.SetActive(true);

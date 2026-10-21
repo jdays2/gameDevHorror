@@ -632,6 +632,7 @@
 - [HealthModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs)
 - [LevelCompositionFailureTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs)
 - [LevelCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs)
+- [LightingConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs)
 - [LocalLampAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs)
 - [LocalLampSceneSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampSceneSettingsTests.cs)
 - [MagazineWeaponTests.cs](../Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs)

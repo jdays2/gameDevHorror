@@ -6,12 +6,16 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Camera framing")]
     public sealed class CameraFramingProfile : ScriptableObject
     {
-        [Min(0)]
-        public float lightRangeMargin = .4f;
-        [Min(.01f)]
-        public float zoomSmoothTime = .35f;
-        [Min(.5f), Tooltip("Half-height before a flashlight is found, in world units.")]
-        public float unarmedViewRadius = 2.4f;
+        [SerializeField, Min(0)]
+        private float lightRangeMargin = .4f;
+        [SerializeField, Min(.01f)]
+        private float zoomSmoothTime = .35f;
+        [SerializeField, Min(.5f), Tooltip("Half-height before a flashlight is found, in world units.")]
+        private float unarmedViewRadius = 2.4f;
+
+        public float LightRangeMargin => lightRangeMargin;
+        public float ZoomSmoothTime => zoomSmoothTime;
+        public float UnarmedViewRadius => unarmedViewRadius;
 
         public float OrthographicSize(float lightRange, float aspect, bool ownsFlashlight)
         {
@@ -26,7 +30,13 @@ namespace EmergencyShift
                 throw new ArgumentOutOfRangeException(nameof(aspect));
             }
 
-            return unarmedViewRadius / Mathf.Min(1, aspect);
+            float size = unarmedViewRadius / Mathf.Min(1, aspect);
+            if (!float.IsFinite(size) || size <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(aspect));
+            }
+
+            return size;
         }
 
         public float OrthographicSize(float lightRange, float aspect)
@@ -38,7 +48,13 @@ namespace EmergencyShift
             }
 
             // Fit the beam into the shorter viewport dimension, including portrait windows.
-            return (lightRange + lightRangeMargin) / Mathf.Min(1, aspect);
+            float size = (lightRange + lightRangeMargin) / Mathf.Min(1, aspect);
+            if (!float.IsFinite(size) || size <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(lightRange));
+            }
+
+            return size;
         }
 
         public void Validate()

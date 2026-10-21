@@ -1,0 +1,136 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "3e79740b1a478b61cfd3f3a4f2806f2dd4d9efcd",
+  "editMode": {
+    "result": "Passed",
+    "total": "802",
+    "passed": "802",
+    "failed": "0",
+    "end-time": "2026-10-21 18:51:06Z",
+    "rawPath": "work/sod-evidence-20261021/light-config-edit.xml",
+    "rawSha256": "fcf25e268da1fe8ac62743b2cac17daec465477dc4ec32bc7306d6dee06007fe",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.EveryAuthoredCameraLightAndLampAudioAssetIsValidAndUnchanged",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.FiniteClockCannotOverflowCycleOrNoiseArithmetic",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.FiniteInputsCannotOverflowTheCameraProjection",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidCameraTuningIsRejected(\"lightRangeMargin\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidCameraTuningIsRejected(\"lightRangeMargin\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidCameraTuningIsRejected(\"zoomSmoothTime\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidCameraTuningIsRejected(\"zoomSmoothTime\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidCameraTuningIsRejected(\"unarmedViewRadius\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidCameraTuningIsRejected(\"unarmedViewRadius\",0.1f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidFlickerClockIsRejected(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidFlickerClockIsRejected(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidFlickerClockIsRejected(float.NegativeInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidLightColorCannotReachRenderer(0,float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidLightColorCannotReachRenderer(1,float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidLightColorCannotReachRenderer(2,float.NegativeInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidLightColorCannotReachRenderer(3,float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidLightColorCannotReachRenderer(3,1.1f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.InvalidLightColorCannotReachRenderer(3,-0.1f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.LampClipArrayIsReadByIndexAndPriorPanDefaultIsRetained",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightingConfigTests.OldLightFieldsAndDropoutIntervalsRemainSerializedAndHdrIsRetained",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "32",
+    "passed": "32",
+    "failed": "0",
+    "end-time": "2026-10-21 18:52:25Z",
+    "rawPath": "work/sod-evidence-20261021/light-config-play.xml",
+    "rawSha256": "4f187911300ea1620f23a956283580ad59d3cacfa4fc44a445afd95ca5f9ae81",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.CameraOpticsLifetimeTests.EventsResizeAndRebindingOwnTheirSubscriptionsWithoutPerFrameOpticsReads",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T18:53:06.729Z",
+    "endedAt": "2026-10-21T18:53:47.660Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Definitions/CameraFramingProfile.cs": "aea3fe8f02f0f062a9499424a34c90a8703b5361a07cdadabf33a49429b6afc3",
+    "Assets/EmergencyShift/Runtime/Definitions/LocalLightProfile.cs": "7ab0a562b5ec4741103c26677a711019266e17ec0bdd87e0e043bd6b084ecef2",
+    "Assets/EmergencyShift/Runtime/Definitions/LocalLampAudioSet.cs": "9a9ca62cfca0cc6dd5f490d870bfb098debfcde4dfc4086f5b9463437b58f326",
+    "Assets/EmergencyShift/Runtime/Player/CameraFollow2D.cs": "14c0b333714b6a8ab344be09973b35d70d690dae52d7e88516b2565137a42b69",
+    "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs": "2e6d194856cf3aac204ca65157b30bb3b364aa5bfa7dd5abc03cb255bceb4ab7",
+    "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs": "e5b1493f68f8e4180fdf2e6504278be18d1d18098dd168614a2123f0c7715e3e",
+    "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs": "e9579c6cad147df4824de263f404b49bdba9b6607eeadfe669acc315f14e0ac9",
+    "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs": "5c93f18f50eea9824301d30b9a8d0fb6a42c6660887a9e551cb6baccdd4a41db",
+    "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs": "75ece18929855ced87bd351c8d3a8003aece2e5f410095e048f78101557a9232",
+    "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs": "77a13edcd1126db06c5a182f78761060117a8fd8f5476ba72296831a356e3068",
+    "Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs": "c391112f138bdd1d2c9fcfcd598a4ad880eccc9a851f1add9d8dfe14faef9177"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. SO config-pass and author input-feel acceptance remain open. 20 new config cases and existing native camera/flashlight/scene regression. No new authoring generation, visual/listening/FPS acceptance; LocalLamp model/static registry and authoring transaction remain open."
+}

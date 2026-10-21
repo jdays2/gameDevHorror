@@ -43,7 +43,7 @@ namespace EmergencyShift
                     return sceneSettings.lightRadius;
                 }
 
-                return profile != null ? profile.radius : radius;
+                return profile != null ? profile.Radius : radius;
             }
         }
         public float CurrentIntensity => source != null && source.enabled ? source.intensity : 0;
@@ -146,12 +146,12 @@ namespace EmergencyShift
             }
 
             source.lightType = Light2D.LightType.Point;
-            source.color = profile != null ? profile.color : color;
+            source.color = profile != null ? profile.Color : color;
             source.pointLightOuterAngle = 360;
             source.pointLightInnerAngle = 360;
             source.pointLightOuterRadius = Radius;
             source.pointLightInnerRadius = .12f;
-            float strength = profile != null ? profile.intensity : intensity;
+            float strength = profile != null ? profile.Intensity : intensity;
             if (sceneSettings != null)
             {
                 source.color = sceneSettings.color;
@@ -166,7 +166,7 @@ namespace EmergencyShift
             }
             else if (profile != null)
             {
-                source.shadowsEnabled = profile.castsShadows;
+                source.shadowsEnabled = profile.CastsShadows;
             }
             else
             {
@@ -218,10 +218,10 @@ namespace EmergencyShift
             if (profile != null)
             {
                 float brightness = profile.Evaluate(clock);
-                source.intensity = profile.intensity * brightness;
+                source.intensity = profile.Intensity * brightness;
                 if (bulb != null)
                 {
-                    Color tint = profile.color;
+                    Color tint = profile.Color;
                     tint.a = brightness;
                     bulb.color = tint;
                     bulb.enabled = brightness > .01f;

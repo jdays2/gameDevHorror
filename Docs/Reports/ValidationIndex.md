@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Camera/light/lamp audio configs | [LightingConfig14](LightingConfig14.md): 802/802 EditMode, 32/32 PlayMode, Windows64 success; readonly API/arrays, old fields/refs/intervals, finite color/clock/framing. Lamp registry/model ещё открыты. |
 | HUD/audio configs | [PresentationConfig13](PresentationConfig13.md): 782/782 EditMode, 32/32 PlayMode, Windows64 success; readonly API, finite/threshold/radius validation, old fields/refs/defaults. Сами HUD/director ещё partial. |
 | Конфиг считывателя | [DoorFeedbackConfig12](DoorFeedbackConfig12.md): 711/711 EditMode, 32/32 PlayMode, Windows64 success; readonly API, прежние serialized names/audio refs, finite/falloff validation до use/replacement. |
 | Шаги игрока MVC | [PlayerFootsteps11](PlayerFootsteps11.md): 690/690 EditMode, 32/32 PlayMode, Windows64 success; личные stride/clock/controller, прежние клипы и реальные три покрытия. Общий config-pass открыт. |

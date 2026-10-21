@@ -152,7 +152,7 @@ namespace EmergencyShift
             }
 
             view.orthographicSize = Mathf.SmoothDamp(view.orthographicSize, targetSize,
-                ref zoomVelocity, framingProfile.zoomSmoothTime);
+                ref zoomVelocity, framingProfile.ZoomSmoothTime);
         }
     }
 }

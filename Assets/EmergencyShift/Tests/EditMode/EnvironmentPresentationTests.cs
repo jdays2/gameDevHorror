@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 
 namespace EmergencyShift.Tests
@@ -16,7 +17,7 @@ namespace EmergencyShift.Tests
             {
                 float size = profile.OrthographicSize(4.2f, aspect);
                 float shortExtent = Mathf.Min(size, size * aspect);
-                Assert.That(shortExtent - 4.2f, Is.EqualTo(profile.lightRangeMargin).Within(.0001f));
+                Assert.That(shortExtent - 4.2f, Is.EqualTo(profile.LightRangeMargin).Within(.0001f));
                 Assert.That(profile.OrthographicSize(7, aspect), Is.GreaterThan(size));
             }
             finally
@@ -33,7 +34,9 @@ namespace EmergencyShift.Tests
             {
                 Assert.Throws<ArgumentOutOfRangeException>(() => profile.OrthographicSize(4.2f, 0));
                 Assert.Throws<ArgumentOutOfRangeException>(() => profile.OrthographicSize(float.NaN, 1));
-                profile.lightRangeMargin = -.1f;
+                var serialized = new SerializedObject(profile);
+                serialized.FindProperty("lightRangeMargin").floatValue = -.1f;
+                serialized.ApplyModifiedPropertiesWithoutUndo();
                 Assert.Throws<InvalidOperationException>(() => profile.Validate());
             }
             finally
@@ -48,9 +51,7 @@ namespace EmergencyShift.Tests
             var profile = ScriptableObject.CreateInstance<LocalLightProfile>();
             try
             {
-                profile.cycleSeconds = 10;
-                profile.minimumFactor = .75f;
-                profile.darkIntervals = new[] { new Vector2(.2f, .3f), new Vector2(.7f, .72f) };
+                JsonUtility.FromJsonOverwrite("{\"cycleSeconds\":10,\"minimumFactor\":0.75,\"darkIntervals\":[{\"x\":0.2,\"y\":0.3},{\"x\":0.7,\"y\":0.72}]}", profile);
                 profile.Validate();
                 string before = JsonUtility.ToJson(profile);
                 Assert.That(profile.Evaluate(2.5f), Is.Zero);
@@ -58,7 +59,9 @@ namespace EmergencyShift.Tests
                 Assert.That(profile.Evaluate(3.1f), Is.InRange(.75f, 1));
                 Assert.That(profile.Evaluate(12.5f), Is.Zero);
                 Assert.That(JsonUtility.ToJson(profile), Is.EqualTo(before));
-                profile.darkIntervals[0] = new Vector2(.8f, .2f);
+                var serialized = new SerializedObject(profile);
+                serialized.FindProperty("darkIntervals").GetArrayElementAtIndex(0).vector2Value = new Vector2(.8f, .2f);
+                serialized.ApplyModifiedPropertiesWithoutUndo();
                 Assert.Throws<InvalidOperationException>(() => profile.Validate());
             }
             finally

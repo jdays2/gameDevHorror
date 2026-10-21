@@ -58,8 +58,7 @@ namespace EmergencyShift.Tests
             var profile = ScriptableObject.CreateInstance<CameraFramingProfile>();
             try
             {
-                profile.unarmedViewRadius = 2.4f;
-                profile.lightRangeMargin = .25f;
+                JsonUtility.FromJsonOverwrite("{\"unarmedViewRadius\":2.4,\"lightRangeMargin\":0.25}", profile);
                 float before = profile.OrthographicSize(3.2f, aspect, false);
                 float acquired = profile.OrthographicSize(3.2f, aspect, true);
                 float upgraded = profile.OrthographicSize(4.2f, aspect, true);

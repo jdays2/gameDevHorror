@@ -7,24 +7,49 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Local lamp audio set")]
     public sealed class LocalLampAudioSet : ScriptableObject
     {
-        public AudioClip hum;
-        public AudioClip[] contacts = Array.Empty<AudioClip>();
-        [Range(0, 1)]
-        public float humVolume = .07f;
-        [Range(0, 1)]
-        public float contactVolume = .12f;
-        [Min(0)]
-        public float fullVolumeDistance = .7f;
-        [Min(.1f)]
-        public float hearingDistance = 4;
-        [Min(.01f)]
-        public float referenceIntensity = .28f;
-        [Min(0)]
-        public float darkThreshold = .01f;
-        [Min(0)]
-        public float contactCooldown = .07f;
-        [Min(.01f)]
-        public float humFadeSeconds = .06f;
+        [SerializeField]
+        private AudioClip hum;
+        [SerializeField]
+        private AudioClip[] contacts = Array.Empty<AudioClip>();
+        [SerializeField, Range(0, 1)]
+        private float humVolume = .07f;
+        [SerializeField, Range(0, 1)]
+        private float contactVolume = .12f;
+        [SerializeField, Min(0)]
+        private float fullVolumeDistance = .7f;
+        [SerializeField, Min(.1f)]
+        private float hearingDistance = 4;
+        [SerializeField, Min(.01f)]
+        private float referenceIntensity = .28f;
+        [SerializeField, Min(0)]
+        private float darkThreshold = .01f;
+        [SerializeField, Min(0)]
+        private float contactCooldown = .07f;
+        [SerializeField, Min(.01f)]
+        private float humFadeSeconds = .06f;
+        [SerializeField, Range(0, 1)]
+        private float maximumPan = .5f;
+
+        public AudioClip Hum => hum;
+        public int ContactCount => contacts != null ? contacts.Length : 0;
+        public float HumVolume => humVolume;
+        public float ContactVolume => contactVolume;
+        public float HearingDistance => hearingDistance;
+        public float ReferenceIntensity => referenceIntensity;
+        public float DarkThreshold => darkThreshold;
+        public float ContactCooldown => contactCooldown;
+        public float HumFadeSeconds => humFadeSeconds;
+        public float MaximumPan => maximumPan;
+
+        public AudioClip ContactAt(int index)
+        {
+            if (index < 0 || index >= ContactCount)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
+            return contacts[index];
+        }
 
         public float DistanceGain(float distance)
         {
@@ -59,7 +84,8 @@ namespace EmergencyShift
                 !float.IsFinite(contactCooldown) || contactCooldown < 0 ||
                 !float.IsFinite(humFadeSeconds) || humFadeSeconds <= 0 ||
                 !float.IsFinite(humVolume) || humVolume < 0 || humVolume > 1 ||
-                !float.IsFinite(contactVolume) || contactVolume < 0 || contactVolume > 1)
+                !float.IsFinite(contactVolume) || contactVolume < 0 || contactVolume > 1 ||
+                !float.IsFinite(maximumPan) || maximumPan < 0 || maximumPan > 1)
             {
                 throw new InvalidOperationException("Invalid local lamp audio mix: " + name);
             }
