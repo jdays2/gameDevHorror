@@ -51,6 +51,7 @@ namespace EmergencyShift.Tests
             Set(life, "models", new HealthModelFactory(new TestClock()));
             Awake(life);
             flashlight = player.GetComponent<Flashlight2D>();
+            flashlight.Construct(null, new GameplayInputBlock(), new EmergencyShift.Features.Flashlight.FlashlightControllerFactory());
             Awake(flashlight);
             upgrades = player.GetComponent<FlashlightUpgrades>();
             upgrades.Construct(new EmergencyShift.Features.Flashlight.FlashlightControllerFactory());

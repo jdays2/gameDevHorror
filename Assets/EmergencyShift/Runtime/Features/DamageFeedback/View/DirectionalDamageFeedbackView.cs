@@ -20,23 +20,23 @@ namespace EmergencyShift.Features.DamageFeedback.View
         private UnityEngine.UI.RawImage image;
         private Material ownedMaterial;
         private PlayerLife2D life;
-        private Flashlight2D cameraSource;
+        private IWorldProjection2D projection;
         private DirectionalDamageFactory factory;
         private DirectionalDamageController controller;
         private bool damagePending;
         private bool subscribed;
 
         [Inject]
-        private void Construct(PlayerLife2D player, Flashlight2D sceneLight, DirectionalDamageFactory controllers)
+        private void Construct(PlayerLife2D player, IWorldProjection2D worldProjection, DirectionalDamageFactory controllers)
         {
             life = player;
-            cameraSource = sceneLight;
+            projection = worldProjection;
             factory = controllers;
         }
 
         private void Awake()
         {
-            if (life == null || cameraSource == null || factory == null || style == null || style.Material == null)
+            if (life == null || projection == null || factory == null || style == null || style.Material == null)
             {
                 throw new InvalidOperationException("Directional damage needs level composition and its authored style/material.");
             }
@@ -80,16 +80,12 @@ namespace EmergencyShift.Features.DamageFeedback.View
                 return;
             }
 
-            Camera worldCamera = cameraSource.WorldCamera;
-            if (worldCamera == null)
+            if (!projection.TryProjectViewportOffset(life.transform.position, -incomingDirection, out Vector2 direction))
             {
                 return;
             }
 
-            Vector3 origin = life.transform.position;
-            Vector3 playerPoint = worldCamera.WorldToViewportPoint(origin);
-            Vector3 sourcePoint = worldCamera.WorldToViewportPoint(origin - (Vector3)incomingDirection);
-            controller.Show(amount, (Vector2)(sourcePoint - playerPoint));
+            controller.Show(amount, direction);
         }
 
         private void OnHealthChanged(int health)

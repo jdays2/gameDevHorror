@@ -1,12 +1,17 @@
-using UnityEngine;
+using System;
+using EmergencyShift.Features.Flashlight;
+using EmergencyShift.Features.Flashlight.Config;
+using EmergencyShift.Features.Flashlight.Logic;
+using EmergencyShift.Features.Flashlight.View;
 using EmergencyShift.Features.PlayerInput.Logic;
-using Zenject;
+using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Zenject;
 
 namespace EmergencyShift
 {
-    /// <summary>Управляет направлением, оптикой и обоими источниками света фонаря.</summary>
-    public sealed class Flashlight2D : MonoBehaviour, IThreatLight2D
+    /// <summary>Input/View bridge; state, interpolation and Unity obstruction are separate boundaries.</summary>
+    public sealed class Flashlight2D : MonoBehaviour, IThreatLight2D, IFlashlightOpticsSource, IFlashlightView
     {
         [SerializeField]
         private Camera worldCamera;
@@ -22,100 +27,62 @@ namespace EmergencyShift
         private bool startsOn = false;
         [SerializeField, Tooltip("Disable in scenes where the player must first find a flashlight.")]
         private bool startsOwned = true;
-        private FlashlightOwnership ownership;
-        private IPlayerInput input;
-        private GameplayInputBlock inputBlock;
-
-        [Inject]
-        private void Construct(IPlayerInput playerInput, GameplayInputBlock block)
-        {
-            input = playerInput;
-            inputBlock = block;
-        }
-        public bool IsOwned => ownership != null ? ownership.IsOwned : startsOwned;
-        public event System.Action OwnershipChanged;
         [Header("Optics — world units and degrees")]
-        [SerializeField, Min(0.5f)]
+        [SerializeField, Min(.5f)]
         private float range = 4.2f;
         [SerializeField, Range(20f, 140f)]
         private float beamAngle = 80f;
         [Header("Aim — player input")]
-        [SerializeField, Min(0.01f)]
+        [SerializeField, Min(.01f)]
         private float turnSmoothTime = .075f;
         [SerializeField, Min(30)]
         private float maximumTurnSpeed = 720f;
         [SerializeField, Min(0)]
         private float cursorDeadZone = .25f;
-        private float angularVelocity;
-        public bool IsOn => beam != null && beam.enabled;
-        public float Range => range;
-        public float BeamAngle => beamAngle;
+        private IPlayerInput input;
+        private GameplayInputBlock inputBlock;
+        private FlashlightControllerFactory factory;
+        private FlashlightController controller;
+        private FlashlightAimController aiming;
+        private readonly FlashlightObstruction2D obstruction = new FlashlightObstruction2D();
+
+        public bool IsOwned => controller?.IsOwned ?? startsOwned;
+        public bool IsOn => controller != null ? controller.IsOn : beam != null && beam.enabled;
+        public float Range => controller?.Range ?? range;
+        public float BeamAngle => controller?.BeamAngle ?? beamAngle;
         public Camera WorldCamera => worldCamera;
         public Vector2 Origin => beam != null ? (Vector2)beam.transform.position : (Vector2)transform.position;
         public Vector2 Direction => aimPivot != null ? (Vector2)aimPivot.up : Vector2.up;
+        bool IFlashlightView.HasBeam => beam != null;
 
-        public event System.Action<bool> PowerChanged;
-        public void Configure(Camera camera, Transform pivot, Light2D light, Light2D spillLight = null)
-        {
-            worldCamera = camera;
-            aimPivot = pivot;
-            beam = light;
-            nearGlow = spillLight;
-            ApplyOptics();
-        }
+        public event Action OwnershipChanged;
+        public event Action OpticsChanged;
+        public event Action<bool> PowerChanged;
 
-        public void ConfigureAim(PlayerAim2D target)
+        [Inject]
+        public void Construct(IPlayerInput playerInput, GameplayInputBlock block, FlashlightControllerFactory controllers)
         {
-            aim = target;
+            input = playerInput;
+            inputBlock = block;
+            factory = controllers ?? throw new ArgumentNullException(nameof(controllers));
         }
 
         private void Awake()
         {
-            ownership = new FlashlightOwnership(startsOwned);
-            ApplyOptics();
+            RequireController();
             SetPower(startsOn);
         }
 
-        private void OnValidate() => ApplyOptics();
-        /// <summary>Меняет оптику, сохраняя состояние питания; используется модулями улучшения.</summary>
-        public void SetOptics(float newRange, float newAngle)
+        private void OnValidate()
         {
-            range = Mathf.Max(0.5f, newRange);
-            beamAngle = Mathf.Clamp(newAngle, 20f, 140f);
-            ApplyOptics();
-        }
-
-        private void ApplyOptics()
-        {
-            range = Mathf.Max(0.5f, range);
-            beamAngle = Mathf.Clamp(beamAngle, 20f, 140f);
-            if (beam == null)
+            aiming = null;
+            if (controller != null)
             {
-                return;
+                controller.SetOptics(new Vector2(range, beamAngle));
             }
-
-            beam.pointLightOuterRadius = range;
-            beam.pointLightInnerAngle = beamAngle * 0.6f;
-            beam.pointLightOuterAngle = beamAngle;
-        }
-
-        public void SetPower(bool on)
-        {
-            on = on && IsOwned;
-            bool previous = IsOn;
-            if (beam != null)
+            else if (FlashlightStateModel.CanSetOptics(new Vector2(range, beamAngle)).Success)
             {
-                beam.enabled = on;
-            }
-
-            if (nearGlow != null)
-            {
-                nearGlow.enabled = on;
-            }
-
-            if (previous != IsOn)
-            {
-                PowerChanged?.Invoke(IsOn);
+                RenderOptics(new Vector2(Mathf.Max(.5f, range), Mathf.Clamp(beamAngle, 20, 140)));
             }
         }
 
@@ -135,133 +102,123 @@ namespace EmergencyShift
             {
                 if (aim.HasTarget)
                 {
-                    RotateTowards(aim.WorldPoint, Time.deltaTime);
+                    RequireAim().Smooth(aim.WorldPoint, Time.deltaTime);
                 }
 
                 return;
             }
 
-            if (!input.HasPointer || worldCamera == null || aimPivot == null)
+            if (input.HasPointer && worldCamera != null && aimPivot != null)
             {
-                return;
+                RequireAim().Smooth(worldCamera.ScreenToWorldPoint(input.PointerPosition), Time.deltaTime);
             }
-
-            Vector3 world = worldCamera.ScreenToWorldPoint(input.PointerPosition);
-            RotateTowards(world, Time.deltaTime);
         }
 
-        /// <summary>Scenario/test input; ordinary pointer input comes from PlayerAim2D.</summary>
+        public void Configure(Camera camera, Transform pivot, Light2D light, Light2D spillLight = null)
+        {
+            worldCamera = camera;
+            aimPivot = pivot;
+            beam = light;
+            nearGlow = spillLight;
+            aiming = null;
+            if (controller != null)
+            {
+                controller.RefreshPresentation();
+            }
+            else
+            {
+                OnValidate();
+            }
+        }
+
+        public void ConfigureAim(PlayerAim2D target) => aim = target;
+
+        public void SetOptics(float newRange, float newAngle)
+        {
+            var result = RequireController().SetOptics(new Vector2(newRange, newAngle));
+            if (!result.Success)
+            {
+                throw new ArgumentException(result.Reason);
+            }
+        }
+
+        public void SetPower(bool on) => RequireController().SetPower(on);
+        public void Toggle() => SetPower(!IsOn);
+        public bool Acquire() => RequireController().Acquire();
+        public void RestoreOwnership(bool owned) => RequireController().RestoreOwnership(owned);
+
+        /// <summary>Scenario input uses the same interpolation as normal aim intent.</summary>
         public void AimTowards(Vector2 worldPoint, float deltaTime)
         {
-            if (aim != null)
-            {
-                aim.SetScriptedTarget(worldPoint);
-            }
-
-            RotateTowards(worldPoint, deltaTime);
+            aim?.SetScriptedTarget(worldPoint);
+            RequireAim().Smooth(worldPoint, deltaTime);
         }
 
-        private void RotateTowards(Vector2 worldPoint, float deltaTime)
-        {
-            if (aimPivot == null || deltaTime <= 0)
-            {
-                return;
-            }
-
-            Vector2 offset = worldPoint - (Vector2)transform.position;
-            if (offset.sqrMagnitude < cursorDeadZone * cursorDeadZone)
-            {
-                angularVelocity = 0;
-                return;
-            }
-
-            float target = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg - 90;
-            float angle = Mathf.SmoothDampAngle(aimPivot.eulerAngles.z, target, ref angularVelocity, turnSmoothTime, maximumTurnSpeed, deltaTime);
-            aimPivot.rotation = Quaternion.Euler(0, 0, angle);
-        }
-
-        /// <summary>Явная установка позы для сценарных демонстраций и телепорта; ввод использует AimTowards.</summary>
         public void AimAt(Vector2 worldPoint)
         {
-            if (aim != null)
-            {
-                aim.SetScriptedTarget(worldPoint);
-            }
-
-            if (aimPivot == null)
-            {
-                return;
-            }
-
-            Vector2 direction = worldPoint - (Vector2)transform.position;
-            if (direction.sqrMagnitude > 0.001f)
-            {
-                aimPivot.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
-                angularVelocity = 0;
-            }
+            aim?.SetScriptedTarget(worldPoint);
+            RequireAim().Snap(worldPoint);
         }
 
-        /// <summary>Игровое освещение основным лучом. Слабый ближний свет не отпугивает врага.</summary>
         public bool Illuminates(Vector2 worldPoint, LayerMask blockingGeometry)
         {
-            if (!IsOn)
-            {
-                return false;
-            }
-
-            Vector2 offset = worldPoint - Origin;
-            if (offset.sqrMagnitude > range * range * 0.81f)
-            {
-                return false;
-            }
-
-            if (offset.sqrMagnitude > 0.0001f && Vector2.Angle(Direction, offset) > beamAngle * 0.45f)
-            {
-                return false;
-            }
-
-            // Коллайдеры тех же стен и двери перекрывают свет и игровую реакцию.
-            return Physics2D.Linecast(Origin, worldPoint, blockingGeometry).collider == null;
+            Vector2 origin = Origin;
+            return RequireController().Covers(origin, Direction, worldPoint) &&
+                obstruction.IsUnblocked(origin, worldPoint, blockingGeometry);
         }
 
-        public void Toggle() => SetPower(!IsOn);
-
-        public bool Acquire()
+        void IFlashlightView.RenderPower(bool on)
         {
-            EnsureOwnership();
-            var command = new AcquireFlashlightCommand(ownership);
-            if (!command.Execute())
+            if (beam != null)
             {
-                return false;
+                beam.enabled = on;
             }
 
-            OwnershipChanged?.Invoke();
-            SetPower(true);
-            return true;
-        }
-
-        public void RestoreOwnership(bool value)
-        {
-            EnsureOwnership();
-            bool changed = ownership.IsOwned != value;
-            ownership.Restore(value);
-            if (!ownership.IsOwned)
+            if (nearGlow != null)
             {
-                SetPower(false);
-            }
-
-            if (changed)
-            {
-                OwnershipChanged?.Invoke();
+                nearGlow.enabled = on;
             }
         }
 
-        private void EnsureOwnership()
+        void IFlashlightView.RenderOptics(Vector2 optics) => RenderOptics(optics);
+        void IFlashlightView.OwnershipChanged() => OwnershipChanged?.Invoke();
+        void IFlashlightView.PowerChanged(bool on) => PowerChanged?.Invoke(on);
+        void IFlashlightView.OpticsChanged() => OpticsChanged?.Invoke();
+
+        private void RenderOptics(Vector2 optics)
         {
-            if (ownership == null)
+            range = optics.x;
+            beamAngle = optics.y;
+            if (beam != null)
             {
-                ownership = new FlashlightOwnership(startsOwned);
+                beam.pointLightOuterRadius = range;
+                beam.pointLightInnerAngle = beamAngle * .6f;
+                beam.pointLightOuterAngle = beamAngle;
             }
+        }
+
+        private FlashlightController RequireController()
+        {
+            if (factory == null)
+            {
+                throw new InvalidOperationException("Flashlight requires level composition.");
+            }
+
+            if (controller == null)
+            {
+                controller = factory.Create(startsOwned, beam != null && beam.enabled,
+                    new Vector2(range, beamAngle), this);
+                controller.RefreshPresentation();
+            }
+
+            return controller;
+        }
+
+        private FlashlightAimController RequireAim()
+        {
+            RequireController();
+            return aiming ??= factory.CreateAim(new FlashlightAimSettings(turnSmoothTime, maximumTurnSpeed, cursorDeadZone),
+                new FlashlightAimEnvironment2D(transform, aimPivot));
         }
     }
 }

@@ -158,6 +158,8 @@ namespace EmergencyShift.Tests
             root.SetActive(false);
             var weapon = root.AddComponent<PlayerWeapon2D>();
             root.GetComponent<Flashlight2D>().enabled = false;
+            root.GetComponent<Flashlight2D>().Construct(null, new GameplayInputBlock(),
+                new EmergencyShift.Features.Flashlight.FlashlightControllerFactory());
             var pivot = new GameObject("Pivot").transform;
             pivot.SetParent(root.transform, false);
             var muzzle = new GameObject("Muzzle").transform;

@@ -82,7 +82,7 @@ namespace EmergencyShift
             DialogueInstaller.Install(Container);
             WeaponInstaller.Install(Container);
             AccessControlInstaller.Install(Container);
-            FlashlightInstaller.Install(Container);
+            FlashlightInstaller.Install(Container, flashlight);
         }
 
         private void OnDestroy() => Dispose();

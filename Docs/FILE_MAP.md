@@ -84,6 +84,7 @@
 ## Assets/EmergencyShift/Runtime/Core/Composition
 
 - [AssemblyInfo.cs](../Assets/EmergencyShift/Runtime/Core/Composition/AssemblyInfo.cs)
+- [CameraWorldProjection2D.cs](../Assets/EmergencyShift/Runtime/Core/Composition/CameraWorldProjection2D.cs)
 - [ScenePrefabFactory.cs](../Assets/EmergencyShift/Runtime/Core/Composition/ScenePrefabFactory.cs)
 - [SceneRegistry.cs](../Assets/EmergencyShift/Runtime/Core/Composition/SceneRegistry.cs)
 - [WorldInstaller.cs](../Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs)
@@ -95,6 +96,7 @@
 - [IAutoPickup.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs)
 - [IInteractable.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs)
 - [IThreatLight2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IThreatLight2D.cs)
+- [IWorldProjection2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IWorldProjection2D.cs)
 
 ## Assets/EmergencyShift/Runtime/Core/Randomness
 
@@ -259,17 +261,34 @@
 
 ## Assets/EmergencyShift/Runtime/Features/Flashlight/Config
 
+- [FlashlightAimSettings.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Config/FlashlightAimSettings.cs)
 - [FlashlightUpgradeLimits.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Config/FlashlightUpgradeLimits.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Flashlight/Logic
 
+- [AcquireFlashlightStateCommand.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs)
+- [FlashlightAimController.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightAimController.cs)
+- [FlashlightAimModel.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightAimModel.cs)
+- [FlashlightController.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs)
 - [FlashlightModule.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightModule.cs)
 - [FlashlightModuleRequest.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightModuleRequest.cs)
+- [FlashlightStateModel.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightStateModel.cs)
 - [FlashlightUpgradeController.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs)
 - [FlashlightUpgradeModel.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeModel.cs)
+- [IFlashlightAimEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightAimEnvironment.cs)
+- [IFlashlightOpticsSource.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightOpticsSource.cs)
 - [IFlashlightUpgradeEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightUpgradeEnvironment.cs)
+- [IFlashlightView.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightView.cs)
 - [InstallFlashlightModuleCommand.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs)
 - [RestoreFlashlightModulesCommand.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs)
+- [RestoreFlashlightOwnershipCommand.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightOwnershipCommand.cs)
+- [SetFlashlightOpticsCommand.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightOpticsCommand.cs)
+- [SetFlashlightPowerCommand.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightPowerCommand.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Flashlight/View
+
+- [FlashlightAimEnvironment2D.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs)
+- [FlashlightObstruction2D.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Health
 
@@ -461,6 +480,7 @@
 - [EnemySystemsTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs)
 - [EnvironmentPresentationTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs)
 - [FlashlightOwnershipTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs)
+- [FlashlightStateTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs)
 - [FlashlightUpgradeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs)
 - [GoreCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs)
 - [GroundAudioSurfaceQueryTests.cs](../Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs)
@@ -482,11 +502,14 @@
 - [WeaponCycleTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs)
 - [WeaponSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs)
 - [WorkBudgetTests.cs](../Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs)
+- [WorldProjectionTests.cs](../Assets/EmergencyShift/Tests/EditMode/WorldProjectionTests.cs)
 
 ## Assets/EmergencyShift/Tests/PlayMode
 
 - [AccessControlSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs)
 - [AdaptiveAudioProbeRegressionTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs)
+- [CameraOpticsLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs)
+- [CameraOpticsTestSource.cs](../Assets/EmergencyShift/Tests/PlayMode/CameraOpticsTestSource.cs)
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)

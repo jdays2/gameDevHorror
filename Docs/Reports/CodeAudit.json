@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "346 current own C# explicitly reviewed; 103 retain migration/style debt. complete=false. FlashlightUpgrades01 certifies only stated boundaries.",
+  "limits": "366 own C# explicitly read; 100 partial. Boundary reviews certify their stated scope, not every configuration/style/lifetime task. complete=false. Latest: FlashlightState02.",
   "counts": {
-    "partial": 103,
-    "reviewed_boundary": 243
+    "partial": 100,
+    "reviewed_boundary": 266
   },
   "files": [
     {
@@ -2021,10 +2021,16 @@
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightStateModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightOwnershipCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightOpticsCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightPowerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
@@ -2077,8 +2083,12 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightOwnershipCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightOpticsCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightPowerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
@@ -2137,6 +2147,36 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit09.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Core/Composition/CameraWorldProjection2D.cs",
+      "sourceScope": "unity",
+      "sha256": "2610cc6bffa44b2f2fb38febe95c2a4a50739469d6f1f9397e50ce1278f8753c",
+      "guid": "aa911604157e4cb0ba4097ecc74624fe",
+      "types": [
+        "CameraWorldProjection2D"
+      ],
+      "lines": 34,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorldProjectionTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "2610cc6bffa44b2f2fb38febe95c2a4a50739469d6f1f9397e50ce1278f8753c",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Composition/ScenePrefabFactory.cs",
@@ -2470,6 +2510,37 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IWorldProjection2D.cs",
+      "sourceScope": "unity",
+      "sha256": "46a98e4e1f6d242e514a882408061c32b0f2864507f0e23918695dc5c7d5ff7a",
+      "guid": "fbb0f91a511b435690857eccc391bc9c",
+      "types": [
+        "IWorldProjection2D"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/CameraWorldProjection2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "46a98e4e1f6d242e514a882408061c32b0f2864507f0e23918695dc5c7d5ff7a",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Core/GameplayInputBlock.cs",
       "sha256": "df1bc7168488e0161b0128d5aa3535bc89b46d6822d74e386d57ec0b83b64780",
       "baselineSha256": "98b48bccca8e7a2c65b1b8dc47c0216320770386c696aaad074185e21b42f8bf",
@@ -2497,6 +2568,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
@@ -3113,7 +3185,8 @@
         "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
         "Assets/EmergencyShift/Runtime/Player/CameraFollow2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -6988,15 +7061,15 @@
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "partial",
-      "notes": "Подписки симметричны; личный material уничтожается, pulse buffer фиксирован. Три injected dependency + asset; камера берётся через конкретный Flashlight2D — ненужная связь HUD с feature фонаря. Выделить узкий camera/projection contract, не контейнер зависимостей.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
       "path": "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
-      "sha256": "e2c305db29837cf988b1516e86b1862517b76b0498f0d56e642f7a7d978c6aa7",
+      "sha256": "3d972f2923093f937694075a028189de67f8b9894c54bc02f1b4b64a6743c4e0",
       "guid": "271cfbe34e35ee44da037a0015d5cf93",
       "types": [
         "DirectionalDamageFeedbackView"
       ],
-      "lines": 140,
+      "lines": 136,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/UI/Feedback/DirectionalDamage.prefab"
       ],
@@ -7012,7 +7085,7 @@
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "reviewedSha256": "e2c305db29837cf988b1516e86b1862517b76b0498f0d56e642f7a7d978c6aa7",
+      "reviewedSha256": "3d972f2923093f937694075a028189de67f8b9894c54bc02f1b4b64a6743c4e0",
       "reviewDate": "2026-10-21",
       "responsibility": "Unity-адаптер событий здоровья, камеры и GPU material",
       "dependencies": [
@@ -7022,8 +7095,48 @@
         "style/RawImage"
       ],
       "usageEvidence": "GameplayHUD.prefab; LevelContext injection; PlayerLife2D.Damaged/HealthChanged",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Подписки симметричны; личный material уничтожается, pulse buffer фиксирован. Три injected dependency + asset; камера берётся через конкретный Flashlight2D — ненужная связь HUD с feature фонаря. Выделить узкий camera/projection contract, не контейнер зависимостей.",
+          "reviewedSha256": "e2c305db29837cf988b1516e86b1862517b76b0498f0d56e642f7a7d978c6aa7"
+        }
+      ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Config/FlashlightAimSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "6f35fa46842694b5c6477ca8c78092783091f1aa369e239315af00b18a7e02bf",
+      "guid": "3b8de253b4a54809b05555ebd49425f9",
+      "types": [
+        "FlashlightAimSettings"
+      ],
+      "lines": 24,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightAimModel.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "6f35fa46842694b5c6477ca8c78092783091f1aa369e239315af00b18a7e02bf",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
     },
     {
       "baselineSha256": null,
@@ -7062,22 +7175,26 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
       "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
       "sourceScope": "unity",
-      "sha256": "a142482cf62e6fb57f7c5d3123caa713fb1631a339288252acd7d1f3bd7b8f36",
+      "sha256": "3081007a3d426fbf1446393d4cae18f2e4a9ad96cc6af1a83af99afc5c9a986d",
       "guid": "d1e38a88c85d49d79f86ae1c10d52c64",
       "types": [
         "FlashlightControllerFactory"
       ],
-      "lines": 13,
+      "lines": 24,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -7085,24 +7202,30 @@
         {
           "reviewStatus": "queued",
           "notes": "New inventory entry; no semantic review yet."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+          "reviewedSha256": "a142482cf62e6fb57f7c5d3123caa713fb1631a339288252acd7d1f3bd7b8f36"
         }
       ],
-      "reviewedSha256": "a142482cf62e6fb57f7c5d3123caa713fb1631a339288252acd7d1f3bd7b8f36",
-      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
-      "reviewDate": "2026-10-21"
+      "reviewedSha256": "3081007a3d426fbf1446393d4cae18f2e4a9ad96cc6af1a83af99afc5c9a986d",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
       "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs",
       "sourceScope": "unity",
-      "sha256": "060caa7819b4a9821110f0afacaceea6e719b8ec2ad8fd1eeea23c5d50ed870c",
+      "sha256": "01bb2137c64af665dd3ecdcedcbd311cc60ff11672a840a10bf77224ab0f344c",
       "guid": "1e7ab457a4cb4d5a80af0aee3833f350",
       "types": [
         "FlashlightInstaller"
       ],
-      "lines": 12,
+      "lines": 16,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -7114,10 +7237,139 @@
         {
           "reviewStatus": "queued",
           "notes": "New inventory entry; no semantic review yet."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+          "reviewedSha256": "060caa7819b4a9821110f0afacaceea6e719b8ec2ad8fd1eeea23c5d50ed870c"
         }
       ],
-      "reviewedSha256": "060caa7819b4a9821110f0afacaceea6e719b8ec2ad8fd1eeea23c5d50ed870c",
-      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewedSha256": "01bb2137c64af665dd3ecdcedcbd311cc60ff11672a840a10bf77224ab0f344c",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21",
+      "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "9488fc78244a0df04d5b8c7d489efdd6b7d2e3fe9be235b0ae743b6e0c839c22",
+      "guid": "f2a7e0ef1ab447e5a7f54bd42d215fa1",
+      "types": [
+        "AcquireFlashlightStateCommand"
+      ],
+      "lines": 25,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "9488fc78244a0df04d5b8c7d489efdd6b7d2e3fe9be235b0ae743b6e0c839c22",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightAimController.cs",
+      "sourceScope": "unity",
+      "sha256": "0a168353af75f59381a8f870366abfb3a8dabe150536505d7192d75e10e2a72d",
+      "guid": "078fd09812164371a3520a0ebe2824f9",
+      "types": [
+        "FlashlightAimController"
+      ],
+      "lines": 33,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "0a168353af75f59381a8f870366abfb3a8dabe150536505d7192d75e10e2a72d",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightAimModel.cs",
+      "sourceScope": "unity",
+      "sha256": "e78de8d7aee5d2b1b4b247002994975465f6ac15d51d906bef931ec925e33d83",
+      "guid": "22f8e5c983ee4eb68b93d9baa530e300",
+      "types": [
+        "FlashlightAimModel"
+      ],
+      "lines": 54,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightAimController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "e78de8d7aee5d2b1b4b247002994975465f6ac15d51d906bef931ec925e33d83",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs",
+      "sourceScope": "unity",
+      "sha256": "d881fba16533715baf4c7343fadf780565eb69ccbb4aca8245dc8e68c8f8fd9f",
+      "guid": "665aa6c0e02f4a7b82533f7f196571d9",
+      "types": [
+        "FlashlightController"
+      ],
+      "lines": 92,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "d881fba16533715baf4c7343fadf780565eb69ccbb4aca8245dc8e68c8f8fd9f",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -7189,6 +7441,42 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightStateModel.cs",
+      "sourceScope": "unity",
+      "sha256": "cea071d2f149a6386abe24a2a0efce45156904fa8c4471332c449da5fb676368",
+      "guid": "c6165431fa484e408f9543fafe7a439b",
+      "types": [
+        "FlashlightStateModel"
+      ],
+      "lines": 70,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/AcquireFlashlightStateCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightOwnershipCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightOpticsCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightPowerCommand.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "cea071d2f149a6386abe24a2a0efce45156904fa8c4471332c449da5fb676368",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
       "sourceScope": "unity",
@@ -7254,6 +7542,70 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightAimEnvironment.cs",
+      "sourceScope": "unity",
+      "sha256": "4256a7682a7ccfbda2a40b23551c8a4b61d8b80a43603eb511bf30b145c5f126",
+      "guid": "6c2b09c33e5b49f4bf136d41c7732699",
+      "types": [
+        "IFlashlightAimEnvironment"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightAimController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "4256a7682a7ccfbda2a40b23551c8a4b61d8b80a43603eb511bf30b145c5f126",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightOpticsSource.cs",
+      "sourceScope": "unity",
+      "sha256": "386e157ee105d175a5175d74c01f5812ac06cd556ff7e8f2f744b12d445b57c6",
+      "guid": "ce2be656ce074d2a99a8381f4f499b42",
+      "types": [
+        "IFlashlightOpticsSource"
+      ],
+      "lines": 15,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/CameraFollow2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsTestSource.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "386e157ee105d175a5175d74c01f5812ac06cd556ff7e8f2f744b12d445b57c6",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightUpgradeEnvironment.cs",
       "sourceScope": "unity",
@@ -7281,6 +7633,38 @@
       ],
       "reviewedSha256": "892d1fbda1f595f194a6e143b8b084ad4b83204e46dd6ea99d227398ba30e36a",
       "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightView.cs",
+      "sourceScope": "unity",
+      "sha256": "3f755a4f7a259b604e71b302ad8146f90a71540c38fe1e3dbe38d8bcc0b94925",
+      "guid": "2a7f229583744ac28520458161d8fb90",
+      "types": [
+        "IFlashlightView"
+      ],
+      "lines": 14,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "3f755a4f7a259b604e71b302ad8146f90a71540c38fe1e3dbe38d8bcc0b94925",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -7341,6 +7725,151 @@
       ],
       "reviewedSha256": "798b875b70721c31195d9f8a59d3959cb94b73f25d3de469454719f6bad32947",
       "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightOwnershipCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "008275dd5760b7dfcd8afc3c066252688536c7438fe5cd894c57e91b38cb27ad",
+      "guid": "d934c25fc3fc4d8db1508fbdc9595613",
+      "types": [
+        "RestoreFlashlightOwnershipCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "008275dd5760b7dfcd8afc3c066252688536c7438fe5cd894c57e91b38cb27ad",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightOpticsCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "4d6db0c63b8bb476d2d5127a9b6bc03b9917778d875aee1cb1b087d29d47c720",
+      "guid": "7d177e8968c6469b926e508dcfc60b0e",
+      "types": [
+        "SetFlashlightOpticsCommand"
+      ],
+      "lines": 31,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "4d6db0c63b8bb476d2d5127a9b6bc03b9917778d875aee1cb1b087d29d47c720",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightPowerCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "2e4fed6802520d0e8039eee6b03b0f0111379a7806f092f005622f4d78335c5e",
+      "guid": "c66d2ae14d4b4541a4e95f62863daf6d",
+      "types": [
+        "SetFlashlightPowerCommand"
+      ],
+      "lines": 32,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "2e4fed6802520d0e8039eee6b03b0f0111379a7806f092f005622f4d78335c5e",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
+      "sourceScope": "unity",
+      "sha256": "59f60620d21ed4aa5e5e91b0e03d56cbb023a33423b723e306bce3bef679c737",
+      "guid": "aeb3f064341d44aca36cb8ef285e448c",
+      "types": [
+        "FlashlightAimEnvironment2D"
+      ],
+      "lines": 23,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "59f60620d21ed4aa5e5e91b0e03d56cbb023a33423b723e306bce3bef679c737",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+      "sourceScope": "unity",
+      "sha256": "e0839270b9eab38ead05612962ec3376099744b20f0f55f4db3310cc0f35b119",
+      "guid": "9e56f5f18b3c42208ae41a53cab80bfe",
+      "types": [
+        "FlashlightObstruction2D"
+      ],
+      "lines": 11,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "e0839270b9eab38ead05612962ec3376099744b20f0f55f4db3310cc0f35b119",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -8115,7 +8644,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "7bbb5704110d62a9725a5d5c49c2708b402e66b555221443f99ca8812b2747f6",
+      "sha256": "2f083b21cf8ca03d490adfde022459dbede3fe64655b5a7f6057c7430b5c3a91",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
@@ -8158,8 +8687,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "FlashlightUpgrades01: factory installed after local bindings; lifetime/failure cleanup and remaining composition still debt.",
-      "reviewedSha256": "7bbb5704110d62a9725a5d5c49c2708b402e66b555221443f99ca8812b2747f6",
+      "notes": "FlashlightState02: scoped optics/projection bindings and model factory installed. Initialization-failure cleanup and remaining scope/lifetime composition remain debt.",
+      "reviewedSha256": "2f083b21cf8ca03d490adfde022459dbede3fe64655b5a7f6057c7430b5c3a91",
       "previousReviewStatus": "partial",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -8172,7 +8701,7 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
       "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "reviewHistory": [
         {
@@ -8198,6 +8727,11 @@
           "reviewStatus": "partial",
           "notes": "AccessControl01: scoped access factories / card payload preflight added and verified (502 EditMode, 17+1 PlayMode, normal Windows64). Remaining level failure-cleanup or checkpoint controller/Unity adapter separation remains migration debt.",
           "reviewedSha256": "c8060f5ba9cd2095b8d863cda094efd54259c855ad773b733006609a6f560575"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "FlashlightUpgrades01: factory installed after local bindings; lifetime/failure cleanup and remaining composition still debt.",
+          "reviewedSha256": "7bbb5704110d62a9725a5d5c49c2708b402e66b555221443f99ca8812b2747f6"
         }
       ]
     },
@@ -9342,7 +9876,6 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs"
       ],
       "entryPointHints": [],
@@ -9368,13 +9901,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/CameraFollow2D.cs",
-      "sha256": "d2c4e4182ff3d55153e6972bb4a215f882d57a98d73a204cf7dd5a39e183c384",
+      "sha256": "acf999d99eb2c669398288553cb15cca37575cb422e177c3265fc34074d64f48",
       "baselineSha256": "0a8d6e9a667ecd3dd756b456753418b7bd4e76006ea7de5b9f23d50102b5dbbc",
       "guid": "bf1f88b6d6017a246b2268818ad6c403",
       "types": [
         "CameraFollow2D"
       ],
-      "lines": 97,
+      "lines": 158,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/ArtReview/FurnitureLightStudy.unity",
@@ -9405,18 +9938,24 @@
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Личный target через scope, framing по range/ownership, Camera кэшируется. Конкретная Flashlight2D-зависимость и polling optics вместо узкого projection/event API.",
-      "reviewedSha256": "d2c4e4182ff3d55153e6972bb4a215f882d57a98d73a204cf7dd5a39e183c384",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "reviewedSha256": "acf999d99eb2c669398288553cb15cca37575cb422e177c3265fc34074d64f48",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "partial",
           "notes": "Explicit fallback target injection; framing/config/presentation review remains.",
+          "reviewedSha256": "d2c4e4182ff3d55153e6972bb4a215f882d57a98d73a204cf7dd5a39e183c384"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Личный target через scope, framing по range/ownership, Camera кэшируется. Конкретная Flashlight2D-зависимость и polling optics вместо узкого projection/event API.",
           "reviewedSha256": "d2c4e4182ff3d55153e6972bb4a215f882d57a98d73a204cf7dd5a39e183c384"
         }
       ],
@@ -9430,8 +9969,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 3; сцены по графу: 11.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "baselineSha256": null,
@@ -9485,8 +10025,8 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightStateModel.cs",
         "Assets/EmergencyShift/Runtime/Player/AcquireFlashlightCommand.cs",
-        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs"
       ],
       "entryPointHints": [],
@@ -11951,13 +12491,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
-      "sha256": "eb87c2e6c06e6570723c4fa83088e75044959f889074702287b5a147d634cd28",
+      "sha256": "6db31535250908ff5f55c51716e6d7f4045df17aad82b60993bad0bb37bdd73e",
       "baselineSha256": "7b4a3e5ff3d372eb1352bb368a43c907009a3b845f8fc7712af13992769585fb",
       "guid": "5d3c9775b72850a4bae63a49ab0b939b",
       "types": [
         "Flashlight2D"
       ],
-      "lines": 267,
+      "lines": 224,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -11995,10 +12535,9 @@
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
-        "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/CameraFollow2D.cs",
         "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
@@ -12013,15 +12552,20 @@
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Ownership command выделен; input, rotation/motor, Unity lighting и authoritative LOS ещё в одном MB, tuning не весь в SO. SetOptics Clamp/Max не заменяет finite validation.",
-      "reviewedSha256": "eb87c2e6c06e6570723c4fa83088e75044959f889074702287b5a147d634cd28",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "reviewedSha256": "6db31535250908ff5f55c51716e6d7f4045df17aad82b60993bad0bb37bdd73e",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "partial",
           "notes": "Input Actions/block injected; ownership/optics/presentation/config boundaries remain.",
+          "reviewedSha256": "eb87c2e6c06e6570723c4fa83088e75044959f889074702287b5a147d634cd28"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Ownership command выделен; input, rotation/motor, Unity lighting и authoritative LOS ещё в одном MB, tuning не весь в SO. SetOptics Clamp/Max не заменяет finite validation.",
           "reviewedSha256": "eb87c2e6c06e6570723c4fa83088e75044959f889074702287b5a147d634cd28"
         }
       ],
@@ -12039,8 +12583,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 6; сцены по графу: 11.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/FullHeightLightBlocker2D.cs",
@@ -12840,26 +13385,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "8a1470c06060b33e7c182c815268ae1062a83db838cb4ca79ba22ce71119bc31",
+      "reviewedSha256": "3ba92028362b9bec98efa7a9f1d4dc1a948bfbad797134f8a0b9788ab7c07a7a",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
       "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "8a1470c06060b33e7c182c815268ae1062a83db838cb4ca79ba22ce71119bc31",
+      "sha256": "3ba92028362b9bec98efa7a9f1d4dc1a948bfbad797134f8a0b9788ab7c07a7a",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 445,
+      "lines": 446,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -12890,6 +13435,11 @@
           "reviewStatus": "partial",
           "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
           "reviewedSha256": "977d3a2530013e4c06783fc76c805c6a04ea0bd9b31ef8d07747e974e1151efb"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+          "reviewedSha256": "8a1470c06060b33e7c182c815268ae1062a83db838cb4ca79ba22ce71119bc31"
         }
       ]
     },
@@ -13234,13 +13784,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
-      "sha256": "1191a7f289006b12c217fa51f1cbc631b21de4890ed16d5c13c09a04c30ad9d3",
+      "sha256": "5851693e1bbf631d400cf8fd7da3bef36ed6c6ff79fa7413fdd5b6e4b990b560",
       "baselineSha256": "1191a7f289006b12c217fa51f1cbc631b21de4890ed16d5c13c09a04c30ad9d3",
       "guid": "f1497b54f20de6c47ab771af7758c52e",
       "types": [
         "FlashlightOwnershipTests"
       ],
-      "lines": 73,
+      "lines": 76,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -13249,13 +13799,18 @@
         "TestCase"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Проверяет duplicate rejection/двух владельцев, запрет power без фонаря и рост framing при двух aspect. Это не Play-проверка реальной камеры и её smoothing.",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
         {
           "reviewStatus": "queued",
           "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Проверяет duplicate rejection/двух владельцев, запрет power без фонаря и рост framing при двух aspect. Это не Play-проверка реальной камеры и её smoothing.",
+          "reviewedSha256": "1191a7f289006b12c217fa51f1cbc631b21de4890ed16d5c13c09a04c30ad9d3"
         }
       ],
       "responsibility": "Ownership command и framing регрессии",
@@ -13265,10 +13820,43 @@
         "Flashlight2D/CameraFramingProfile"
       ],
       "usageEvidence": "3 метода, 4 cases; source read only",
-      "reviewedSha256": "1191a7f289006b12c217fa51f1cbc631b21de4890ed16d5c13c09a04c30ad9d3",
+      "reviewedSha256": "5851693e1bbf631d400cf8fd7da3bef36ed6c6ff79fa7413fdd5b6e4b990b560",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution.",
+      "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs",
+      "sourceScope": "unity",
+      "sha256": "d180dd7e2ef09d874e08c4ecdf1f595f97d7605783c673904671999bcc4c0be0",
+      "guid": "fa16e23f626c4c13a770b90766dbae7a",
+      "types": [
+        "AimPort",
+        "FlashlightStateTests",
+        "LightView"
+      ],
+      "lines": 175,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "d180dd7e2ef09d874e08c4ecdf1f595f97d7605783c673904671999bcc4c0be0",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
     },
     {
       "baselineSha256": null,
@@ -14035,6 +14623,36 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/WorldProjectionTests.cs",
+      "sourceScope": "unity",
+      "sha256": "3ddeaed1fe8bf669e87df437cc7b910dab40077c99e47687348e20b4d5acc2f8",
+      "guid": "4e55554331e94682879bf42590d05ecf",
+      "types": [
+        "WorldProjectionTests"
+      ],
+      "lines": 56,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "3ddeaed1fe8bf669e87df437cc7b910dab40077c99e47687348e20b4d5acc2f8",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
       "sourceScope": "unity",
@@ -14084,6 +14702,62 @@
       ],
       "reviewedSha256": "eab545046434a30a9a4535e86acd9de690435644d358f9526edf5a81b1754594",
       "reviewReport": "Docs/Reports/AudioProbe02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs",
+      "sourceScope": "unity",
+      "sha256": "95b0e898cea692431984b7cea989dfbfd9b6aa676422cf62b95815be65295836",
+      "guid": "99757c8fce324aedb03b6d52c73af313",
+      "types": [
+        "CameraOpticsLifetimeTests"
+      ],
+      "lines": 92,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "95b0e898cea692431984b7cea989dfbfd9b6aa676422cf62b95815be65295836",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsTestSource.cs",
+      "sourceScope": "unity",
+      "sha256": "256f3fc2932954e4676dd40c0e1479f6db76b3ac8bb6e4fe8014fd07d69e0652",
+      "guid": "4e9b8aaad4874df4af59a5bdcf004644",
+      "types": [
+        "CameraOpticsTestSource"
+      ],
+      "lines": 75,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "256f3fc2932954e4676dd40c0e1479f6db76b3ac8bb6e4fe8014fd07d69e0652",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
       "reviewDate": "2026-10-21"
     },
     {
@@ -14207,10 +14881,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+      "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "8473dcd71f302ccc25e958a01ddf3d24ff31967655825d985f3f166523e3f4e8",
+      "sha256": "5caaa90bfa16f45eebc324b78362421fce1e75feb54c127a2d2a8ece26105df6",
       "guid": "f6f7021931ae9294a9d8993c8238be40",
       "types": [
         "RealClock",
@@ -14218,7 +14892,7 @@
         "TestInput",
         "WeaponSpreadLifetimeTests"
       ],
-      "lines": 246,
+      "lines": 248,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -14226,9 +14900,9 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "8473dcd71f302ccc25e958a01ddf3d24ff31967655825d985f3f166523e3f4e8",
+      "reviewedSha256": "5caaa90bfa16f45eebc324b78362421fce1e75feb54c127a2d2a8ece26105df6",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponController02.md",
+      "reviewReport": "Docs/Reports/FlashlightState02.md",
       "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
@@ -14238,6 +14912,11 @@
           "reviewedSha256": "f15a8167888aca9f6ce01e7d1c0d56c909a48bb3f434ad512cd1df8877336bda",
           "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
           "reviewReport": "Docs/Reports/WeaponModels01.md"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
+          "reviewedSha256": "8473dcd71f302ccc25e958a01ddf3d24ff31967655825d985f3f166523e3f4e8"
         }
       ]
     },
@@ -14641,14 +15320,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 327,
+    "unity": 347,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 16,
-    "report": "Docs/Reports/FlashlightUpgrades01.md",
-    "validation": "519/519 EditMode, 19/19 real PlayMode including authored route camera/optics progression and restore, normal Windows64 success. Initial fixture Start ordering corrected; original authored resources unchanged."
+    "files": 29,
+    "report": "Docs/Reports/FlashlightState02.md",
+    "validation": "540/540 EditMode, 20/20 real PlayMode, normal Windows64 success. Pure state/aim, camera event/subscription/cache lifecycle, actual route/audio regressions, separate HUD projection. Original resources unchanged; no performance/author acceptance claim."
   },
   "reviewPasses": [
     {
@@ -14740,15 +15419,21 @@
       "files": 16,
       "report": "Docs/Reports/FlashlightUpgrades01.md",
       "validation": "519/519 EditMode, 19/19 real PlayMode including authored route camera/optics progression and restore, normal Windows64 success. Initial fixture Start ordering corrected; original authored resources unchanged."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 29,
+      "report": "Docs/Reports/FlashlightState02.md",
+      "validation": "540/540 EditMode, 20/20 real PlayMode, normal Windows64 success. Pure state/aim, camera event/subscription/cache lifecycle, actual route/audio regressions, separate HUD projection. Original resources unchanged; no performance/author acceptance claim."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 346,
-    "totalFiles": 346,
+    "reviewedFiles": 366,
+    "totalFiles": 366,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "FlashlightUpgrades01 and earlier reviews; remaining partial files are not certified migrated."
+    "validation": "FlashlightState02 and earlier reviews; targeted boundary certification is not completion of all SOD tasks."
   }
 }

@@ -25,11 +25,14 @@ namespace EmergencyShift.Tests
         public void MissingFlashlightCannotBePoweredUntilAcquired()
         {
             var player = new GameObject("Ownership test");
+            player.SetActive(false);
             var source = new GameObject("Beam");
             try
             {
                 var light = source.AddComponent<UnityEngine.Rendering.Universal.Light2D>();
                 var flashlight = player.AddComponent<Flashlight2D>();
+                flashlight.Construct(null, new GameplayInputBlock(),
+                    new EmergencyShift.Features.Flashlight.FlashlightControllerFactory());
                 flashlight.Configure(null, source.transform, light);
                 flashlight.RestoreOwnership(false);
                 flashlight.SetPower(true);
