@@ -5,9 +5,9 @@
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
   "limits": "Lexical references are hints, not semantic proof; reviewed_boundary does not certify the whole feature. Queued/partial entries must be completed.",
   "counts": {
-    "queued": 152,
-    "reviewed_boundary": 74,
-    "partial": 43
+    "queued": 130,
+    "reviewed_boundary": 90,
+    "partial": 49
   },
   "files": [
     {
@@ -977,10 +977,21 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Контракт presentation-adapter, не pure domain interface; abstract Unity properties допустимы здесь, но Model не должен от него зависеть. Не содержит видового enum и не авторизует бой.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Общий Unity-контракт визуальных фактов врага",
+      "dependencies": [
+        "MonoBehaviour",
+        "Transform/Vector2/LayerMask",
+        "IThreatLight2D"
+      ],
+      "usageEvidence": "Видовые Source adapters → CreatureSpriteAnimator2D/ground shadow/hit",
+      "reviewedSha256": "6b8cbc04ce99a365f7d0d9ee9dad44fba307ab829fc994f56501d83a5c1e504b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs",
@@ -1594,10 +1605,20 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Runtime HP/aggro не записываются в SO. Min/Range не заменяют finite/cross-field validation: общего Validate для attackDuration/lungeStart≤strikeAt≤lungeEnd и положительных скоростей нет; часть проверок дублируется только в Sleeper.Awake. Public fields ослабляют readonly-контракт.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Общий баланс HP, преследования и укуса",
+      "dependencies": [
+        "ScriptableObject",
+        "числовые данные"
+      ],
+      "usageEvidence": "Оба brain/melee; Stalker-Default и Sleeper assets; EnemySystemsTests",
+      "reviewedSha256": "b4dbbfcbea7220576ca61744971cb4f682b7a0d7c644f87b0c0ef99b71545159",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyPatrolProfile.cs",
@@ -1621,10 +1642,20 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Настройки вынесены правильно, progress в asset нет. Нет проверки конечности чисел и упорядоченности/неотрицательности pauseSeconds; runtime выбор использует глобальный Random. Отсутствие Validate — долг, текущие assets не объявляются сломанными.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Общий темп мирного патруля",
+      "dependencies": [
+        "ScriptableObject",
+        "Vector2 pause range"
+      ],
+      "usageEvidence": "EnemyPatrol2D; Editor authoring; EnemySystemsTests",
+      "reviewedSha256": "01c104dc9e0eefce89f8fd4960596fb9c42496093cfb5485cf56de6f92bb8525",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/GameplayHudStyle.cs",
@@ -2037,10 +2068,21 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Только конфигурация; runtime таймеры/выбор хранятся в Audio2D. Общий contact bank переиспользует данные, не Stalker brain/state. Public fields/отсутствие полной Validate — ограничение защищённости данных, не найденная запись состояния в asset.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Общие клипы и микс Спящего",
+      "dependencies": [
+        "AudioClip",
+        "EnemyDeathAudioSet",
+        "StalkerAudioSet contact bank"
+      ],
+      "usageEvidence": "SleeperAudio2D; Sleeper audio asset",
+      "reviewedSha256": "aa373b5827f71fb4abf6c73b94d8a712155c16954270555670419fa6de25737d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/SleeperBehaviourProfile.cs",
@@ -2062,10 +2104,20 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "IsValid отвергает отрицательные/нулевые интервалы, но +Infinity проходит сравнение >0; finite-проверки нет. Общие параметры не хранят текущую exposure. Профиль остаётся Unity config, будущая Model должна получать immutable values.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Дозировка света, пробуждение и recovery",
+      "dependencies": [
+        "ScriptableObject",
+        "IsValid"
+      ],
+      "usageEvidence": "Sleeper2D.Awake/FixedUpdate; Sleeper profile asset",
+      "reviewedSha256": "5b17b268ba64197a8abc03fb89b9335d551d4fc3d617e648c24a6b7ca3c3be70",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerAudioSet.cs",
@@ -2092,10 +2144,20 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Cue switch выбирает данные набора, не алгоритм вида. Clips возвращает сам массив; потребители в прочитанной выборке только читают. Runtime lastVariant в Audio2D/variants-service; общий SO не меняется.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Банк клипов, cue и лимиты голосов",
+      "dependencies": [
+        "ScriptableObject/AudioClip[]",
+        "EnemyDeathAudioSet"
+      ],
+      "usageEvidence": "StalkerAudio2D; Sleeper contact foley; death variants",
+      "reviewedSha256": "4f496b99540010bb121589ddc2c5d019a02cab4953e1485964178fed1be0a90f",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerBehaviourProfile.cs",
@@ -2119,10 +2181,20 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Нет единого runtime Validate/immutable settings. ShadowStalker.Awake проверяет только наличие профилей; Inspector-ограничения не защищают загрузку malformed data и связи скоростей/времён. Сценовые значения не менялись.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Реакция на свет, отход и накопление ожога глаза",
+      "dependencies": [
+        "ScriptableObject",
+        "числовые данные"
+      ],
+      "usageEvidence": "ShadowStalker2D; два light-профиля и authoring",
+      "reviewedSha256": "f1ea6a1456a3c7d2e96797894b553628cd1939c3d5d3bf145ef0695057abddb8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerLocomotionProfile.cs",
@@ -2145,10 +2217,20 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Тематический визуальный config, не источник урона/агрессии; собственных таймеров/прогресса нет. Проверка алгоритма общего CreatureSpriteAnimator2D целиком остаётся за пределами этой выборки.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Косметический темп походки и сглаживание позы",
+      "dependencies": [
+        "ScriptableObject",
+        "числовые параметры"
+      ],
+      "usageEvidence": "CreatureSpriteAnimator2D ссылки/профиль походки",
+      "reviewedSha256": "d97f613dd6a3147048f01e14b1f41eb8134ba73d1dc9046d6065d64a343d8430",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponAudioProfile.cs",
@@ -2816,11 +2898,29 @@
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxStationaryStalker2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Owned membership/ordinal and cleanup; remaining full physics/steering/style review.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Реестр внедряется по сцене; Construct/OnEnable регистрируют, OnDisable удаляет, есть фильтр сцены/мёртвых соседей. Это Unity steering-adapter; полный перебор соседей остаётся O(n²) для группы, но замер/новый менеджер или пул не запрошены.",
       "reviewedSha256": "43da270b0d98d8826ce383d1cd1a12974746600352958cf41e7da6aa0478afbe",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "43da270b0d98d8826ce383d1cd1a12974746600352958cf41e7da6aa0478afbe",
+          "notes": "Owned membership/ordinal and cleanup; remaining full physics/steering/style review."
+        }
+      ],
+      "responsibility": "Локальное разведение движущихся тел",
+      "dependencies": [
+        "SceneRegistry<CrowdAgent2D>",
+        "Rigidbody2D/CircleCollider2D",
+        "Damageable2D",
+        "Physics2D"
+      ],
+      "usageEvidence": "Оба enemy prefab; EnemyMotor2D.Move → Adjust; LevelRegistriesInstaller",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs",
@@ -2839,10 +2939,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Clock/quota/RNG injected; full bounded A-star and environment boundary review remains.",
+      "notes": "Clock/RNG/budget уже внедрены, массивы ограничены MaxCells=4096, expansion=1536. Правила поиска всё ещё напрямую делают Physics2D-запросы; независимый graph/environment contract отсутствует. Три зависимости оправданы отдельными clock/quota/RNG, не context bag. Есть объединённые объявления first/last, x/y; числовая сетка/repath ещё не тематический config.",
       "reviewedSha256": "6ee96fab5d796e7455fe2a50b487d508b7471d2aad5cc667a1cdfe3de816027e",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "6ee96fab5d796e7455fe2a50b487d508b7471d2aad5cc667a1cdfe3de816027e",
+          "notes": "Clock/quota/RNG injected; full bounded A-star and environment boundary review remains."
+        }
+      ],
+      "responsibility": "Ограниченный A* и кэш маршрута одного врага",
+      "dependencies": [
+        "IGameClock",
+        "NavigationWorkBudget2D",
+        "IRandomSource",
+        "Physics2D"
+      ],
+      "usageEvidence": "EnemyChasePathFactory → EnemyMotor2D.Follow",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
@@ -2861,10 +2979,27 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Explicit clock, quota and RNG factory (three distinct dependencies); independent per-actor paths.",
+      "notes": "Фабрика создаёт отдельный path/RNG для каждого motor и не хранит объекты. Три explicit dependency — узкая композиция пути; не добавлять контейнер ради уменьшения их числа.",
       "reviewedSha256": "a0bbd0bfaaa978e482703b6e27ee72c2945517d028dc0de58568c1b9e14b1fb4",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "reviewedSha256": "a0bbd0bfaaa978e482703b6e27ee72c2945517d028dc0de58568c1b9e14b1fb4",
+          "notes": "Explicit clock, quota and RNG factory (three distinct dependencies); independent per-actor paths."
+        }
+      ],
+      "responsibility": "Создание индивидуального пути",
+      "dependencies": [
+        "IGameClock",
+        "NavigationWorkBudget2D",
+        "RandomSourceFactory"
+      ],
+      "usageEvidence": "LevelRegistriesInstaller binding; EnemyMotor2D injection",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyHealth2D.cs",
@@ -2898,10 +3033,27 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Preserved component GUID/API, required factory injection and named subscription cleanup.",
+      "notes": "Damage проходит команду; текущее здоровье в личной Model. Initialize снимает старые model-подписки, OnDestroy отключает, Restore молчалив. Проверен HealthModel.ApplyDamage: при летальном уроне только Died, без ложного предварительного Wake через Damaged.",
       "reviewedSha256": "c263fe9a30a7638be2d06495e6cd044948dedfde19ca41b5917dc21af4c3f352",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "reviewedSha256": "c263fe9a30a7638be2d06495e6cd044948dedfde19ca41b5917dc21af4c3f352",
+          "notes": "Preserved component GUID/API, required factory injection and named subscription cleanup."
+        }
+      ],
+      "responsibility": "Unity-адаптер здоровья и однократной смерти",
+      "dependencies": [
+        "HealthModelFactory",
+        "HealthModel/HealthSettings",
+        "DamageHealthCommand"
+      ],
+      "usageEvidence": "ShadowStalker2D/Sleeper2D; оба prefab; EnemySystemsTests",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
@@ -2934,10 +3086,22 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Правила/таймеры атаки остаются в MonoBehaviour и читают Time.time; Begin/Step/Restore — public без командной границы. Положительно: урон выдаётся расчётом Step один раз через struck, не animation event; fixed-heading ветка — настройка алгоритма, не switch по виду врага.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Таймлайн выпада, геометрия укуса и доставка урона",
+      "dependencies": [
+        "EnemyDefinition",
+        "EnemyPerception2D",
+        "EnemyMotor2D",
+        "Time"
+      ],
+      "usageEvidence": "Оба brain вызывают CanStart/Begin/Step/Finish/Interrupt; snapshots в обоих checkpoint",
+      "reviewedSha256": "a8b7a1b49aee67e9dff9d098ec585a457ba292eaffac18577b53a94cda8af50f",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs",
@@ -2965,10 +3129,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Own path via injected factory; full environment/controller review remains.",
+      "notes": "Физический адаптер отделён от input/camera, path индивидуален. В ClearDirection probe берётся из local shape.radius, а Radius/Follow учитывают lossyScale; нужно отдельно проверить масштабированные экземпляры. Brain всё ещё напрямую пишет body помимо motor. Не объявлено воспроизведённым collision-багом.",
       "reviewedSha256": "fa0ea4027243ab699a75a79b324320c9e33105de24fb658c7374bd2c1388fbcc",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "fa0ea4027243ab699a75a79b324320c9e33105de24fb658c7374bd2c1388fbcc",
+          "notes": "Own path via injected factory; full environment/controller review remains."
+        }
+      ],
+      "responsibility": "Unity-физика, steering и использование пути",
+      "dependencies": [
+        "EnemyChasePathFactory/path",
+        "Rigidbody2D/Collider",
+        "CrowdAgent2D",
+        "Physics2D"
+      ],
+      "usageEvidence": "Оба brain; EnemyPatrol2D не пишет позу, отдаёт velocity",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
@@ -3003,10 +3185,22 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Origin/target/pause принадлежат экземпляру; область и spawn overrides сохраняются. Доменный RNG глобальный, поиск точки смешан с Physics2D/MonoBehaviour, нет injected random/pure patrol model. 12 проб ограничены; слишком тесная область безопасно возвращает zero. RNG-state снимком не сохраняется.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Личный мирный маршрут и авторенная область",
+      "dependencies": [
+        "EnemyPatrolProfile",
+        "UnityEngine.Random",
+        "Physics2D",
+        "Transform"
+      ],
+      "usageEvidence": "ShadowStalker2D.StepIdle; сцены/prefab; EnemySystemsTests",
+      "reviewedSha256": "7bd9046f3701829fcd2a575a3b78e67a473547dcfff3e62110893bb80b3e82d1",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPerception2D.cs",
@@ -3033,10 +3227,21 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Это environment-adapter, не Model: target lookup один раз при Configure, нет общего mutable registry/видовых enum. Возвращает факты, а страх/агрессию выбирает brain. Concrete TargetHealth — существующая Unity-граница, не чистый доменный контракт.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Unity-запросы LOS, расстояния и направленного света",
+      "dependencies": [
+        "Transform/Damageable2D target",
+        "IThreatLight2D",
+        "Physics2D/LayerMask"
+      ],
+      "usageEvidence": "Configure обоих brain; EnemySystemsTests; melee",
+      "reviewedSha256": "10e232a1a2f6143480825b2052cabe72a178e22a30dc9289846d01c68984d2e0",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/NavigationWorkBudget2D.cs",
@@ -3060,10 +3265,26 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Compatibility adapter to the common quota; existing maximum two preserved.",
+      "notes": "Прежние 2 build/frame сохранены явной константой; экземплярный budget с внедрённым frame clock. Счётчики reservations не доказывают время кадра.",
       "reviewedSha256": "3951215a275d06a389e5396cd3444dc62b4b7f0302da00be2aec38dac5d0d4dd",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "reviewedSha256": "3951215a275d06a389e5396cd3444dc62b4b7f0302da00be2aec38dac5d0d4dd",
+          "notes": "Compatibility adapter to the common quota; existing maximum two preserved."
+        }
+      ],
+      "responsibility": "World-scoped квота построения путей",
+      "dependencies": [
+        "FrameWorkBudget",
+        "IFrameClock"
+      ],
+      "usageEvidence": "LevelRegistriesInstaller; EnemyChasePath2D.TryReserve",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
@@ -3103,10 +3324,29 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Explicit player/light injection; AI rules/timers still mixed with Unity.",
+      "notes": "337 строк объединяют authoritative FSM, clock, тело, hit response, presentation hooks и snapshot. Нужны pure Model/controller и environment, команды внешнего урона/restore по принятой границе. HasAggro не сбрасывается при потере LOS, death выключает body/crowd. Подписки Awake/OnDestroy парные; явный fixed attack heading сохранён.",
       "reviewedSha256": "b6545d5c2e03d156f60bf0c2e345b1d0507e4f93fefbdd8c29dd982472db0fc5",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "b6545d5c2e03d156f60bf0c2e345b1d0507e4f93fefbdd8c29dd982472db0fc5",
+          "notes": "Explicit player/light injection; AI rules/timers still mixed with Unity."
+        }
+      ],
+      "responsibility": "Видовая FSM сна, пробуждения, преследования и выпада",
+      "dependencies": [
+        "EnemyDefinition/SleeperBehaviourProfile",
+        "health/perception/motor/melee",
+        "hit/audio",
+        "Rigidbody2D/Time",
+        "player/light"
+      ],
+      "usageEvidence": "Sleeper.prefab; SleeperCheckpoint2D; presentation/audio adapters",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
@@ -3130,11 +3370,29 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "World-owned death choice; remaining audio/config/RNG/lifetime review.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Адаптер не наносит урон/не будит врага: только наблюдает события/путь. Подписки симметричны, RestoreSilently гасит звук без replay смерти, OnDisable останавливает источники. Random/Time используются для косметики; наличие этих API здесь не равно доменному RNG-дефекту. Аудио/производительность не прослушивались/не измерялись.",
       "reviewedSha256": "d033084d5a362ce54c2531d93adca927d78bbf242ab63956f2f9010244ea3977",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "d033084d5a362ce54c2531d93adca927d78bbf242ab63956f2f9010244ea3977",
+          "notes": "World-owned death choice; remaining audio/config/RNG/lifetime review."
+        }
+      ],
+      "responsibility": "Видовая аудиопрезентация сна, реакций и контактов",
+      "dependencies": [
+        "Sleeper2D",
+        "SleeperAudioProfile",
+        "три AudioSource/filter",
+        "EnemyDeathAudioVariants"
+      ],
+      "usageEvidence": "Sleeper.prefab; actor events; SleeperAudioThreat2D",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs",
@@ -3154,10 +3412,21 @@
       ],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Тонкий видовой адаптер; подписка PerceptibleCue парная, не управляет HasAggro. Статический реестр находится в базовом AudioThreatEmitter2D и отмечен отдельно.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Проекция фактов Спящего в аудиоугрозу",
+      "dependencies": [
+        "Sleeper2D",
+        "SleeperAudio2D",
+        "AudioThreatEmitter2D"
+      ],
+      "usageEvidence": "Sleeper.prefab; LevelAudioDirector2D через base.Active",
+      "reviewedSha256": "f8ae1889088f3c79ef1c9a9437175f46d58449a2f5902711c6c96cf30d9f1942",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperPresentationSource2D.cs",
@@ -3177,10 +3446,20 @@
       ],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Нормальное место knowledge о видовом enum: адаптер к общему presentation contract. Не выбирает урон/маршрут и не заставляет общий renderer импортировать Sleeper state.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Проекция FSM Спящего в общие визуальные факты",
+      "dependencies": [
+        "Sleeper2D",
+        "EnemyPresentationSource2D"
+      ],
+      "usageEvidence": "Sleeper.prefab → CreatureSpriteAnimator2D/ground shadow",
+      "reviewedSha256": "34109b1efb4e32c1f722ff53d66f69381f43c102ac7547658c68aa40791f7f51",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
@@ -3231,10 +3510,29 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Explicit player/light injection; AI rules/timers still mixed with Unity.",
+      "notes": "678 строк: доменные решения, clock, физическая запись, звук через concrete references и persistence. Нужна декомпозиция по ответственности, не слепое дробление по строкам. HasAggro сохраняется, световая реакция отложена, timing не animation-authorized. Configure обновляет perception, но не motor mask после Awake — условный integration-risk; Restore присваивает enum из payload (BUG-008).",
       "reviewedSha256": "a436861f4e4cc4c77002bbbd76bc5f2e2ecfe19201392e1ad8babafb7f7a0463",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "a436861f4e4cc4c77002bbbd76bc5f2e2ecfe19201392e1ad8babafb7f7a0463",
+          "notes": "Explicit player/light injection; AI rules/timers still mixed with Unity."
+        }
+      ],
+      "responsibility": "Видовая FSM агрессии, света, отхода, укуса и ожога",
+      "dependencies": [
+        "EnemyDefinition/StalkerBehaviourProfile",
+        "общие combat modules",
+        "patrol/crowd/hit/audio",
+        "player/light",
+        "Rigidbody2D/Time"
+      ],
+      "usageEvidence": "ShadowStalker.prefab; StalkerCheckpoint2D; видовые presentation/audio adapters",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
@@ -3267,10 +3565,29 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Scene-owned voice budget and world-owned death choice; full audio/config/RNG/lifetime review remains.",
+      "notes": "634 строки объединяют локальный playback/mix и scene voice arbitration/landing tracking; tuning микса/интервалов в компоненте, не тематическом profile. OnDisable снимает actor/gore/part subscriptions и registry. Cosmetic Guid-seeded Random не authority RNG; не заявлять его причиной AI-недетерминизма. Квоты уже scoped, старые serialized значения сохранять при будущей миграции.",
       "reviewedSha256": "7241e35c068170e5b3afd37bd541be9962e6ac82fc90f74b9603b4dc365fd4c5",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "7241e35c068170e5b3afd37bd541be9962e6ac82fc90f74b9603b4dc365fd4c5",
+          "notes": "Scene-owned voice budget and world-owned death choice; full audio/config/RNG/lifetime review remains."
+        }
+      ],
+      "responsibility": "Голоса, контакты, occlusion, сценовые квоты и foley частей",
+      "dependencies": [
+        "ShadowStalker2D",
+        "StalkerAudioSet",
+        "SceneRegistry<StalkerAudio2D>",
+        "EnemyDeathAudioVariants",
+        "audio/filter/body/gore"
+      ],
+      "usageEvidence": "ShadowStalker.prefab; actor/gore/FirstLanded events; StalkerAudioThreat2D",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
@@ -3294,10 +3611,21 @@
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "State-specific knowledge локален адаптеру; регистрация через base lifecycle, cue event отписывается. Не активирует и не сбрасывает AI.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Проекция фактов Сталкера в аудиоугрозу",
+      "dependencies": [
+        "ShadowStalker2D",
+        "StalkerAudio2D",
+        "AudioThreatEmitter2D"
+      ],
+      "usageEvidence": "ShadowStalker.prefab; LevelAudioDirector2D",
+      "reviewedSha256": "402d2f0a0b41ec888933db84ee09c7019c4c3a0491921fe6bf7a8f6d637915d0",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
@@ -3320,10 +3648,20 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Тонкий видовой адаптер, отделяет общий presentation от enum Сталкера; readonly facts, нет урона/движения/clock.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Проекция FSM Сталкера в визуальные факты",
+      "dependencies": [
+        "ShadowStalker2D",
+        "EnemyPresentationSource2D"
+      ],
+      "usageEvidence": "ShadowStalker.prefab → общий renderer/shadow/hit",
+      "reviewedSha256": "fa86423c0c2975370424525c059cb9d59d557d5d91f6ac765ea0d3654a5fa05e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs",
@@ -3350,10 +3688,21 @@
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Сохраняет GUID/API и сериализованное поле behaviour; не удалять поле по одному отсутствию чтений без serialized graph. Наследование оболочка→общий renderer допустимо; общий renderer этой выборкой целиком не проверен.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Совместимая оболочка общего renderer",
+      "dependencies": [
+        "CreatureSpriteAnimator2D",
+        "ShadowStalker2D",
+        "StalkerPresentationSource2D"
+      ],
+      "usageEvidence": "ShadowStalker prefab/Editor Configure API; StalkerCheckpoint2D.RestoreDead/VisualRotation",
+      "reviewedSha256": "31ddf7375e503feb52bebdca08a843648717de21aad70443a5b6324ade050692",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
@@ -4782,10 +5131,21 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ID не основан на имени/InstanceID; пустые/дубли Collect отвергает, layout/part keys проверяются. Participants выделяется при checkpoint, не каждый tick. Оркестратор действительно вызывает participant.Validate до изменения мира; он не компенсирует неполную валидацию вложенного Stalker payload.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Unity-граница стабильного ID и checkpoint participants",
+      "dependencies": [
+        "ICheckpointParticipant",
+        "Checkpoint DTO",
+        "Transform/Scene/GameObject"
+      ],
+      "usageEvidence": "LevelCheckpointController2D собирает → Validate всех → PrepareRestore → Restore; Editor AssignId",
+      "reviewedSha256": "a7818319185631a4a9f364945869fb07729e76175dab728b1fe573ce8ece7364",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
@@ -4874,10 +5234,23 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Есть format и explicit hasActor/hasMelee flags, enum/HP/aggro/time checks, запрет living remains. Полнота validation остальных вложенных значений (heading/push/visualRotation) ещё не обеспечена. Unity adapter допустим, но перенос pure snapshot validators нужен; runtime restore сценарий не запускался.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Сериализация/валидация/восстановление Спящего",
+      "dependencies": [
+        "PersistentEntity2D/ICheckpointParticipant",
+        "Sleeper2D Snapshot",
+        "CreatureSpriteAnimator2D",
+        "GoreBurst2D",
+        "JsonUtility"
+      ],
+      "usageEvidence": "Sleeper.prefab; PersistentEntity2D.Validate/Restore; SleeperTests",
+      "reviewedSha256": "bea2a5a92ece149a43475e9096f4afeb075c40a85bf7f61c29f2f6a9e39a4d7a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
@@ -4919,10 +5292,23 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "BUG-008: state=999 при health=1/melee={} не отвергается текущим guard. Нет Enum.IsDefined, верхней HP-границы и полной finite/cross-state проверки. Presence markers actor/melee слабее Sleeper; отдельно сохранена совместимость legacy eyeBurned. Source counterexample не выдаётся за выполненный JsonUtility-тест.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Сериализация/валидация/восстановление Сталкера",
+      "dependencies": [
+        "PersistentEntity2D/ICheckpointParticipant",
+        "ShadowStalker2D Snapshot",
+        "StalkerSpriteAnimator",
+        "GoreBurst2D",
+        "JsonUtility"
+      ],
+      "usageEvidence": "ShadowStalker.prefab; PersistentEntity2D.Validate/Restore; StalkerEyeTests/PersistenceTests",
+      "reviewedSha256": "93daff91b5e8e4033762765621e83b667e265aeae4341292e8265ea0e1ff7153",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
@@ -5649,10 +6035,21 @@
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Сохранился static mutable registry и прямой Time.time. ResetRegistry/OnDisable очищают, а consumer фильтрует сцену/target; это не гарантированный текущий cross-scene сбой, но противоречит целевому scoped ownership. HeardUntil/UrgentUntil — экземплярные, не нужно делать звук авторитетным AI.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Факты слышимости и учёт источников угроз",
+      "dependencies": [
+        "static List<AudioThreatEmitter2D>",
+        "Time",
+        "MonoBehaviour"
+      ],
+      "usageEvidence": "Sleeper/StalkerAudioThreat2D; LevelAudioDirector2D.Active enumeration",
+      "reviewedSha256": "047ac7c7ca151507d7eb11679f29e97ced2bd52ce5b66bb08463424e4f58365b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
@@ -7326,11 +7723,30 @@
       "entryPointHints": [
         "Test"
       ],
-      "reviewStatus": "partial",
-      "notes": "Affected health/pause/input construction updated and regression run; other fixture cases await complete source review.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Есть однократная death, изоляция двух HP при общем SO, стена для LOS, тесная область. Cleanup временных объектов в finally. Нет чистых FSM/clock/RNG/attack-window regression; атрибуты прочитаны, новый прогон не выполнен.",
       "reviewedSha256": "b40df22ab00ec29d82858d318751c7f79b232522a2054aee2f862fb319619bda",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "b40df22ab00ec29d82858d318751c7f79b232522a2054aee2f862fb319619bda",
+          "notes": "Affected health/pause/input construction updated and regression run; other fixture cases await complete source review."
+        }
+      ],
+      "responsibility": "Проверки общих здоровья, LOS и тесного патруля",
+      "dependencies": [
+        "NUnit",
+        "EnemyHealth2D/HealthModelFactory",
+        "Physics2D",
+        "EnemyPatrol2D",
+        "SerializedObject"
+      ],
+      "usageEvidence": "EditMode runner, 4 теста",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs",
@@ -7682,10 +8098,22 @@
         "Test",
         "TestCase"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Проверяет pristine inactive payload, explicit missing markers, противоречия HP/state/aggro и enum999. Изменений prefab не делает; не покрывает всю FSM пробуждения/атаки и визуальную индивидуальность.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Проверки checkpoint payload Спящего",
+      "dependencies": [
+        "NUnit",
+        "AssetDatabase/Sleeper prefab",
+        "SleeperCheckpoint2D",
+        "JsonUtility"
+      ],
+      "usageEvidence": "EditMode runner, 9 test cases",
+      "reviewedSha256": "26aa1363fe9c2909e53ae264b8696e5dc0f3a2709c92c68a840514e9c69016b3",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
@@ -7702,10 +8130,21 @@
       "entryPointHints": [
         "TestCase"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "6 входов malformed eye damage/contact, временный GameObject удаляется finally. Не проверяет неизвестный AI enum/остальные сроки и HP; этим объясняется пробел BUG-008, а не полная проверенность checkpoint.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Проверки checkpoint-диапазона повреждения глаза",
+      "dependencies": [
+        "NUnit",
+        "StalkerCheckpoint2D/ShadowStalker2D.Snapshot",
+        "JsonUtility"
+      ],
+      "usageEvidence": "EditMode runner, 6 test cases",
+      "reviewedSha256": "505907a4cae9d34db69f03816307332366d426e47df7f19c6ecf2d5580dc23a5",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit06.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
@@ -7996,8 +8435,22 @@
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 45,
-    "report": "Docs/Reports/CodeAudit05.md",
-    "validation": "Static source/reference/hash checks only; no available Editor/Pipeline."
-  }
+    "files": 33,
+    "report": "Docs/Reports/CodeAudit06.md",
+    "validation": "Static source/hash/reference checks; 19 existing test cases read, not executed. Editor/Pipeline unavailable."
+  },
+  "reviewPasses": [
+    {
+      "date": "2026-10-21",
+      "files": 45,
+      "report": "Docs/Reports/CodeAudit05.md",
+      "validation": "Static source/reference/hash checks only; no available Editor/Pipeline."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 33,
+      "report": "Docs/Reports/CodeAudit06.md",
+      "validation": "Static source/hash/reference checks; 19 existing test cases read, not executed. Editor/Pipeline unavailable."
+    }
+  ]
 }
