@@ -723,6 +723,8 @@
 
 - [AccessControlSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs)
 - [AdaptiveAudioProbeRegressionTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs)
+- [AudioThreatProbeSource.cs](../Assets/EmergencyShift/Tests/PlayMode/AudioThreatProbeSource.cs)
+- [AudioThreatScopeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs)
 - [CameraOpticsLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs)
 - [CameraOpticsTestSource.cs](../Assets/EmergencyShift/Tests/PlayMode/CameraOpticsTestSource.cs)
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)

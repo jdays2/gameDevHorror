@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
 using Zenject;
 
@@ -25,12 +26,15 @@ namespace EmergencyShift
         private PlayerWeapon2D weapon;
         private WorldMotionPause motionPause;
         private LocalIlluminationQuery2D lights;
+        private SceneRegistry<AudioThreatEmitter2D> emitters;
 
         [Inject]
-        private void Construct(WorldMotionPause pause, PlayerLife2D scenePlayer, Flashlight2D sceneLight, LocalIlluminationQuery2D illumination)
+        private void Construct(WorldMotionPause pause, PlayerLife2D scenePlayer, Flashlight2D sceneLight,
+            LocalIlluminationQuery2D illumination, SceneRegistry<AudioThreatEmitter2D> threats)
         {
             motionPause = pause;
             lights = illumination;
+            emitters = threats;
             if (player == null)
             {
                 player = scenePlayer;
@@ -71,6 +75,7 @@ namespace EmergencyShift
             get => volume; set => volume = Mathf.Clamp01(value);
         }
         public AudioMoodProfile Profile => profile;
+        public int RegisteredThreatCount => emitters.Members.Count;
         public bool IsDucking => Time.time < duckUntil;
 
         private void OnEnable()
@@ -257,8 +262,9 @@ namespace EmergencyShift
             }
 
             float maxSquared = profile.AwarenessDistance * profile.AwarenessDistance;
-            foreach (var source in AudioThreatEmitter2D.Active)
+            for (int index = 0; index < emitters.Members.Count; index++)
             {
+                AudioThreatEmitter2D source = emitters.Members[index];
                 if (source == null || !source.IsAlive || source.gameObject.scene != gameObject.scene || (source.Target != null && source.Target != player.transform))
                 {
                     continue;

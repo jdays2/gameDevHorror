@@ -1,13 +1,14 @@
-using System.Collections.Generic;
+using System;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
-    /// <summary>Small scene-filtered registry. New enemy adapters expose state without changing the music director.</summary>
+    /// <summary>Scene-owned signal adapter. New enemy adapters expose state without changing the director.</summary>
     public abstract class AudioThreatEmitter2D : MonoBehaviour
     {
-        private static readonly List<AudioThreatEmitter2D> active = new List<AudioThreatEmitter2D>();
-        public static IReadOnlyList<AudioThreatEmitter2D> Active => active;
+        private SceneRegistry<AudioThreatEmitter2D> registry;
         public abstract bool IsAlive
         {
             get;
@@ -31,18 +32,27 @@ namespace EmergencyShift
         public float HeardUntil { get; private set; } = float.NegativeInfinity;
         public float UrgentUntil { get; private set; } = float.NegativeInfinity;
 
+        [Inject]
+        public void Construct(SceneRegistry<AudioThreatEmitter2D> emitters)
+        {
+            registry?.Remove(this);
+            registry = emitters ?? throw new ArgumentNullException(nameof(emitters));
+            if (isActiveAndEnabled)
+            {
+                registry.Register(this);
+            }
+        }
+
         protected virtual void OnEnable()
         {
-            if (!active.Contains(this))
-            {
-                active.Add(this);
-            }
+            registry?.Register(this);
         }
 
         protected virtual void OnDisable()
         {
-            active.Remove(this);
-            HeardUntil = UrgentUntil = float.NegativeInfinity;
+            registry?.Remove(this);
+            HeardUntil = float.NegativeInfinity;
+            UrgentUntil = float.NegativeInfinity;
         }
 
         protected void ReportHeard(float seconds, float gain, bool urgent)
@@ -57,12 +67,6 @@ namespace EmergencyShift
             {
                 UrgentUntil = Time.time + .4f;
             }
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetRegistry()
-        {
-            active.Clear();
         }
     }
 }

@@ -1,12 +1,12 @@
 {
   "baselineRevision": "abeb23c4565639faeec8d04ab4b7fdd21d67c85f",
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "526 own C# explicitly read; 81 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LightScopes22.",
+  "limits": "528 own C# explicitly read; 81 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioThreatScopes23.",
   "counts": {
     "partial": 81,
-    "reviewed_boundary": 445
+    "reviewed_boundary": 447
   },
   "files": [
     {
@@ -937,6 +937,7 @@
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/FireOwnedWeaponCommand.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponController.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
@@ -2330,6 +2331,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalIlluminationQuery2D.cs",
@@ -2343,6 +2346,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
@@ -4808,7 +4812,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
-      "sha256": "6d40ece6c2bbc157383f77657e85c2022a2ce3435b9f95f873ec73e018510fba",
+      "sha256": "c95ef95661be717ac8c08723a213aa98d29c1963ce3b9907153aad70e4984365",
       "baselineSha256": "5056d5debaa0748fea5eb5fed2030bf51a3caffafcbfd4c189bb1f25155c526e",
       "guid": "7b71efe51bb80874fbf74d2e220cbe70",
       "types": [
@@ -4826,8 +4830,8 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
-      "reviewedSha256": "6d40ece6c2bbc157383f77657e85c2022a2ce3435b9f95f873ec73e018510fba",
+      "notes": "AudioThreatScopes23: registry проверен; прежние personal audio timers/mood/config/style либо development probe долги сохранены.",
+      "reviewedSha256": "c95ef95661be717ac8c08723a213aa98d29c1963ce3b9907153aad70e4984365",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -4847,9 +4851,9 @@
         "UnityEngine.SceneManagement"
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
+      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -12762,13 +12766,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
-      "sha256": "4a60934036bce739a85cc754949e2ec09fac4db202c3519171b292bd54de1a79",
+      "sha256": "8c6a7429aeffae68bbd9cf3fc2620cea884a98fd6f2244f4ceb8420f71f15901",
       "baselineSha256": null,
       "guid": "0a79308db69301e4d968479a95aeff27",
       "types": [
         "LevelRegistriesInstaller"
       ],
-      "lines": 21,
+      "lines": 22,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -12776,8 +12780,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
-      "reviewedSha256": "4a60934036bce739a85cc754949e2ec09fac4db202c3519171b292bd54de1a79",
+      "notes": "AudioThreatScopes23: scoped registry/composition/native lifecycle boundary проверены.",
+      "reviewedSha256": "8c6a7429aeffae68bbd9cf3fc2620cea884a98fd6f2244f4ceb8420f71f15901",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -12793,9 +12797,9 @@
         "Zenject"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
+      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -14807,26 +14811,26 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
-      "sha256": "047ac7c7ca151507d7eb11679f29e97ced2bd52ce5b66bb08463424e4f58365b",
+      "sha256": "f209ded39b1a4e0033956afaa4edd59aad692f9d61da46fca19cbd9e2de901f2",
       "baselineSha256": "047ac7c7ca151507d7eb11679f29e97ced2bd52ce5b66bb08463424e4f58365b",
       "guid": "05847cefe8139464780537d23f93883e",
       "types": [
         "AudioThreatEmitter2D"
       ],
-      "lines": 68,
+      "lines": 72,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs"
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioThreatProbeSource.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs"
       ],
-      "entryPointHints": [
-        "RuntimeInitializeOnLoadMethod"
-      ],
+      "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Сохранился static mutable registry и прямой Time.time. ResetRegistry/OnDisable очищают, а consumer фильтрует сцену/target; это не гарантированный текущий cross-scene сбой, но противоречит целевому scoped ownership. HeardUntil/UrgentUntil — экземплярные, не нужно делать звук авторитетным AI.",
+      "notes": "AudioThreatScopes23: registry проверен; прежние personal audio timers/mood/config/style либо development probe долги сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Факты слышимости и учёт источников угроз",
@@ -14836,10 +14840,11 @@
         "MonoBehaviour"
       ],
       "usageEvidence": "Sleeper/StalkerAudioThreat2D; LevelAudioDirector2D.Active enumeration",
-      "reviewedSha256": "047ac7c7ca151507d7eb11679f29e97ced2bd52ce5b66bb08463424e4f58365b",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewedSha256": "f209ded39b1a4e0033956afaa4edd59aad692f9d61da46fca19cbd9e2de901f2",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
+      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
@@ -14885,13 +14890,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
-      "sha256": "645dc3c96cba78a9202a27d0f7691efb298170c462cbedfa94e3966dfef0bd19",
+      "sha256": "9b6eb8ba32842ca9148af09849a776f6388ac6f4055c3d433773b3dec717fdb9",
       "baselineSha256": "19545652a3329fadd847a8cd2c53a3783e942f37fa848df947b0158a4ae0d91e",
       "guid": "51418a3b25a1e234cbefe1b1b6f6ebec",
       "types": [
         "LevelAudioDirector2D"
       ],
-      "lines": 431,
+      "lines": 437,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelAudio.prefab"
       ],
@@ -14916,8 +14921,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
-      "reviewedSha256": "645dc3c96cba78a9202a27d0f7691efb298170c462cbedfa94e3966dfef0bd19",
+      "notes": "AudioThreatScopes23: registry проверен; прежние personal audio timers/mood/config/style либо development probe долги сохранены.",
+      "reviewedSha256": "9b6eb8ba32842ca9148af09849a776f6388ac6f4055c3d433773b3dec717fdb9",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14938,9 +14943,9 @@
         "AudioSource"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
+      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -19915,6 +19920,52 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatScopes23: scoped registry/composition/native lifecycle boundary проверены.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/AudioThreatProbeSource.cs",
+      "sourceScope": "unity",
+      "sha256": "17440c21cb6fe683eb01a9abb881cca8fc6d0e6ca23de413d83eeb266c9a72ac",
+      "guid": "ba1c85e4bee041b899853b808baf8e7f",
+      "types": [
+        "AudioThreatProbeSource"
+      ],
+      "lines": 14,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "17440c21cb6fe683eb01a9abb881cca8fc6d0e6ca23de413d83eeb266c9a72ac",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
+      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioThreatScopes23: scoped registry/composition/native lifecycle boundary проверены.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs",
+      "sourceScope": "unity",
+      "sha256": "fc7312bd20ca15b91e3ac4337577b978ab6ab77081fc1c04bc0acfecbb6dba73",
+      "guid": "59c5b2da76854a8e80199adea9cade8c",
+      "types": [
+        "AudioThreatScopeTests"
+      ],
+      "lines": 97,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "fc7312bd20ca15b91e3ac4337577b978ab6ab77081fc1c04bc0acfecbb6dba73",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioThreatScopes23.md",
+      "reviewScope": "Full source read: scoped threat membership, inherited injection, paired enable/disable, repeated bind, frozen unload/sibling, director consumer and development smoke; normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs",
       "sourceScope": "unity",
@@ -20897,7 +20948,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 507,
+    "unity": 509,
     "content_source": 8
   },
   "latestReview": {
@@ -21048,11 +21099,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 526,
-    "totalFiles": 526,
+    "reviewedFiles": 528,
+    "totalFiles": 528,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "LightScopes22 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "AudioThreatScopes23 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

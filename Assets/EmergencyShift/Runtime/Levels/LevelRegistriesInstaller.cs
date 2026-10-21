@@ -13,6 +13,7 @@ namespace EmergencyShift
             Container.BindInterfacesAndSelfTo<SceneRegistry<IGroundAudioRegion>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<LocalLamp2D>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<ShotEffect2D>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SceneRegistry<AudioThreatEmitter2D>>().AsSingle();
             Container.Bind<LocalIlluminationQuery2D>().AsSingle();
             Container.Bind<GroundAudioSurfaceQuery2D>().AsSingle();
             Container.Bind<EnemyChasePathFactory>().AsSingle();

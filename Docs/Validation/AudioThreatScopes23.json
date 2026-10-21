@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "eedd61b8d2aeee0c8f201c8ae0c55ea3e6233167",
+  "editMode": {
+    "result": "Passed",
+    "total": "905",
+    "passed": "905",
+    "failed": "0",
+    "end-time": "2026-10-21 21:06:49Z",
+    "rawPath": "work/sod-evidence-20261021/audio-scope-edit.xml",
+    "rawSha256": "53839d75a4cf47770f87aabcc505f7be34a154f5584ed00b7798aa38743a8d9e",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionClosesPartiallyPopulatedRegistriesAndRejectsMoreComposition",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionImmediatelyReleasesItsOwnedInputActions",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.FailedLevelDoesNotDisposeASiblingOrTheSharedWorld",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.InitializationAndCleanupErrorsArePreservedAndLateCleanupStillRuns",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.LiveAndDisposedLevelsCannotReplaceAlreadyBoundReferences",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionTests.TwoAuthoredLevelsShareWorldPauseAndOwnIndependentInputLifetimes",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "48",
+    "passed": "48",
+    "failed": "0",
+    "end-time": "2026-10-21 21:07:55Z",
+    "rawPath": "work/sod-evidence-20261021/audio-scope-play.xml",
+    "rawSha256": "8d9434a08293b514a69685a1b663f8b34e90294b5e45adca0a78789a732e410b",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.AudioThreatScopeTests.FrozenSceneUnloadDoesNotRemoveSiblingThreats",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioThreatScopeTests.InheritedInjectionRegistersOnceAndDisableClearsPersonalCue",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T21:08:17.545Z",
+    "endedAt": "2026-10-21T21:08:48.252Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs": "f209ded39b1a4e0033956afaa4edd59aad692f9d61da46fca19cbd9e2de901f2",
+    "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs": "9b6eb8ba32842ca9148af09849a776f6388ac6f4055c3d433773b3dec717fdb9",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs": "8c6a7429aeffae68bbd9cf3fc2620cea884a98fd6f2244f4ceb8420f71f15901",
+    "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs": "c95ef95661be717ac8c08723a213aa98d29c1963ce3b9907153aad70e4984365",
+    "Assets/EmergencyShift/Tests/PlayMode/AudioThreatProbeSource.cs": "17440c21cb6fe683eb01a9abb881cca8fc6d0e6ca23de413d83eeb266c9a72ac",
+    "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs": "fc7312bd20ca15b91e3ac4337577b978ab6ab77081fc1c04bc0acfecbb6dba73"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Post-editor-close guard supplements prior evidence, not deleted original Temp baseline. Native inherited injection/rebind/disable/frozen unload/sibling tested. Existing director scene filter retained. No new bug claimed. Mood/clock/config/style debts remain open."
+}

@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Аудиоисточники уровня | [AudioThreatScopes23](AudioThreatScopes23.md): 905/905 EditMode, 48/48 PlayMode, Windows64 success; наследуемая DI-регистрация, disable/rebind/frozen unload/sibling. Mood/clock/config работа открыта. |
 | Свет уровня / BUG-025 | [LightScopes22](LightScopes22.md): две исходные native ошибки по 0/1, затем 905/905 EditMode, 46/46 PlayMode, Windows64 success; scoped lamp/FX query, disable/re-enable/frozen unload, source ownership. Lamp power/VFX/audio models открыты. |
 | Оружейный каталог readonly | [WeaponCatalog21](WeaponCatalog21.md): 905/905 EditMode, 42/42 PlayMode, Windows64 success; private array Count/At, ранние ID/slot guards, прежние refs и transient JSON. Visual/audio/item configs открыты. |
 | Weapon definitions readonly | [WeaponDefinition20](WeaponDefinition20.md): 899/899 EditMode, 42/42 PlayMode, Windows64 success; три определения, прежние inherited fields/refs/defaults и immutable cycle snapshots. Catalog/visual/audio configs ещё открыты. |
