@@ -5,9 +5,9 @@
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
   "limits": "Lexical references are hints, not semantic proof; reviewed_boundary does not certify the whole feature. Queued/partial entries must be completed.",
   "counts": {
-    "queued": 130,
-    "reviewed_boundary": 90,
-    "partial": 49
+    "queued": 102,
+    "reviewed_boundary": 101,
+    "partial": 66
   },
   "files": [
     {
@@ -583,10 +583,21 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Menu guard требует Edit Mode, сохранённый Sandbox; не генерирует стены/комнаты. Existing assets/fixtures переиспользуются, все новые ресурсы создаются по явной команде. ApplyTo сам менее защищён; authoring не запускался и не является runtime Model. Missing clip — явная ошибка.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Установка готового дробовика/патронов в существующий тир",
+      "dependencies": [
+        "UnityEditor/PrefabUtility/Scene",
+        "weapon/audio/visual configs",
+        "sandbox HUD/zone"
+      ],
+      "usageEvidence": "MenuItem Apply; creates missing definitions/pickup variants/catalog entry",
+      "reviewedSha256": "73d7a4d1d11024643796179b7b98c7093f541c90baa1b848a8fd9fbc5d20582d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Build/ThirdPartyLicenseBuildStep.cs",
@@ -674,10 +685,23 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Один компонент совмещает authoritative movement/hit/damage и View; скорость берётся из visual profile, Time.fixedDeltaTime читается прямо. 32-hit buffer ограничен, ищется ближайший hit, owner пропускается, вид врага не проверяется. Cosmetic Unity Random делится с разбросом (BUG-010). Impact Instantiate не имеет явного scene owner — integration-risk, не воспроизведённый additive-баг.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Полёт, segment hit, урон и визуализация projectile",
+      "dependencies": [
+        "Physics2D",
+        "Damageable2D",
+        "PlayerWeapon2D callback",
+        "Shot/Projectile profiles",
+        "SpriteRenderer/Light2D"
+      ],
+      "usageEvidence": "PlayerWeapon2D.Instantiate→Launch; общий prefab пули/дроби",
+      "reviewedSha256": "e4390f60d3de6a4d0cc81f8041c7bfeea4b7cd818a0ed0c8fcd0a2fa0a16042d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/MagazineWeaponCycle.cs",
@@ -695,10 +719,22 @@
         "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Магазин/резерв раздельны и не создают новые патроны; отмена сохраняет ammo. format1→2 миграция и повторная Validate в Restore присутствуют. SO зависимость/командная граница наследуются; public constructor может обойти factory Validate. Таймеры — экземпляр, не asset.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Заряженный магазин и атомарная замена",
+      "dependencies": [
+        "WeaponCycle",
+        "WeaponDefinition",
+        "capacity/reload duration",
+        "Mathf"
+      ],
+      "usageEvidence": "MagazineWeaponDefinition.CreateCycle; PumpShotgunCycle base; MagazineWeaponTests",
+      "reviewedSha256": "85ec80b5cc7b06b6ee5f14c853bb853e1235961df08eabe7c7f2f0cb0f7e7e9e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/PumpShotgunCycle.cs",
@@ -715,10 +751,21 @@
         "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Общая ammo-модель повторно используется; depth WeaponCycle→Magazine→Pump равен двум переходам и допустим. Урон не разрешается звуковым событием. Наследуемая SO-зависимость/командная граница остаются; snapshot проверяет фазу/finite durations, но полная связь pump cue и operation ещё требует сверки.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Помпа и прерываемая поштучная зарядка",
+      "dependencies": [
+        "MagazineWeaponCycle",
+        "PumpShotgunDefinition",
+        "now/Operation"
+      ],
+      "usageEvidence": "PumpShotgunDefinition.CreateCycle; PlayerWeapon2D; WeaponCycleTests",
+      "reviewedSha256": "5f5a77fef2185f9e6ecc8803719a4ceb9739e983c529bce44013a02e3de18f59",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponCycle.cs",
@@ -751,10 +798,22 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Нет Input/View/Time API; ammo личное, now явный вход, finite snapshot timers проверяются. Но Model держит Unity SO, внешние изменения идут public TryFire/AddAmmo/Restore без принятой ICommand/Result-границы; несколько типов/DTO в файле. Пустые Tick/CancelReload — hooks вариаций, не лишние игровые менеджеры.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Боезапас и cooldown одного оружия, DTO фаз/операций",
+      "dependencies": [
+        "WeaponDefinition (SO)",
+        "Mathf",
+        "now аргумент",
+        "Action<WeaponOperation>"
+      ],
+      "usageEvidence": "WeaponDefinition.CreateCycle; Magazine/Pump subclasses; WeaponInventory; tests",
+      "reviewedSha256": "08e8f6db7fc1ed9082e393a07a5dd8528cf9f8d95e17ff0f35947fcc0c8dd39b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponInventory.cs",
@@ -776,10 +835,21 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Cycle на каждый contentId, slot collision/unknown IDs отвергаются, Restore сначала Validate. Shared SO не меняется. Model напрямую зависит от SO/factory и выдаёт mutable ActiveCycle; public Acquire/Equip/AddAmmo/Replace/Restore ещё не команды с Result. Capture allocations происходят на checkpoint, не tick.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Владение, активное оружие, подбор/смена и snapshot",
+      "dependencies": [
+        "WeaponDefinition/Catalog (SO)",
+        "WeaponCycle",
+        "dictionaries"
+      ],
+      "usageEvidence": "PlayerWeapon2D; PlayerCheckpoint2D; WeaponCycleTests",
+      "reviewedSha256": "b5744cd2433bcf448214c01a47cd71e9ddc745c1e8c774c518ebfd8799cbda2e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Commands/CommandResult.cs",
@@ -870,10 +940,26 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Inject before Awake; explicit owning scene and transform, no persistent-ID claim.",
+      "notes": "Parent проверяется по scene; временно родитель sceneRoot обеспечивает ownership и DI до Awake, затем root detach. Не выделяет persistent spawn IDs и не обещает campaign spawn/save. Projectile/effect путь пока эту фабрику не использует.",
       "reviewedSha256": "b653fa3c3084ee75899abe9b157e1a994aff996327a1abe728c5b6d299eb9a75",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "reviewedSha256": "b653fa3c3084ee75899abe9b157e1a994aff996327a1abe728c5b6d299eb9a75",
+          "notes": "Inject before Awake; explicit owning scene and transform, no persistent-ID claim."
+        }
+      ],
+      "responsibility": "Создание экземпляра в своём scope до Awake",
+      "dependencies": [
+        "DiContainer",
+        "authored Transform sceneRoot"
+      ],
+      "usageEvidence": "LevelContext2D; CasingEjector и другие scoped factories",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Composition/SceneRegistry.cs",
@@ -1871,10 +1957,20 @@
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Validate расширяет общую проверку capacity≤maximumAmmo и finite reload duration. Конкретные фабрика/поля SO остаются legacy boundary с Model; текущий конфиг не менялся и не объявлен сломанным.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Баланс сменного магазина и создание cycle",
+      "dependencies": [
+        "WeaponDefinition",
+        "MagazineWeaponCycle"
+      ],
+      "usageEvidence": "PistolDefinition.asset; MagazineWeaponTests; PlayerWeapon",
+      "reviewedSha256": "d179dca690595bebb8540472e87ad8d70d55245e37ec7e391b22eb7a0d78ec1d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PlayerAudioSet.cs",
@@ -1905,10 +2001,20 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Switch выбирает данные по материалу/типу события, не вид врага; default casing fallback явный. Runtime last-choice и counters остаются в Audio2D, не SO.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Общие выборки pickup/shot/impact/casing по данным",
+      "dependencies": [
+        "AudioClip arrays",
+        "PickupKind/ImpactMaterial/GroundSoundSurface"
+      ],
+      "usageEvidence": "PlayerAudio2D; fallback при отсутствии weapon profile",
+      "reviewedSha256": "b22c01f0dfe9b16db608809e4038c9b926bcca84f3ad35e1d40bb3b59b3475b9",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PlayerWorldAudioSet.cs",
@@ -1940,10 +2046,20 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Данные без экземплярного progress; surface mapping/fallback не зависит от brain. Public fields legacy, текущие потребители не переписывают массивы/уровни в Play.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Общие world foley/switch/empty clips и gain",
+      "dependencies": [
+        "AudioClip arrays",
+        "GroundSoundSurface"
+      ],
+      "usageEvidence": "PlayerUtilityAudio2D; PlayerFootsteps2D (вне полной выборки)",
+      "reviewedSha256": "2c429cb13e2199437ed5c2f4528f8a72a4272c7c39649ec834c5094a5ac694d7",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/ProjectileVisualProfile.cs",
@@ -1975,10 +2091,21 @@
         "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Finite/range validation подробная. bulletSpeed реально меняет физический полёт, поэтому профиль смешивает gameplay ballistic data с trail/color/light/visibility. Runtime таймеров в SO нет; разделение баллистики и косметики ещё не выполнено.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Общее оформление projectile и текущая скорость полёта",
+      "dependencies": [
+        "ScriptableObject",
+        "Color",
+        "float Validate"
+      ],
+      "usageEvidence": "CommonProjectile.asset; BulletProjectile2D.Launch/FixedUpdate",
+      "reviewedSha256": "685b263fca9de1bf483d505d3da67fe59eedb8f15253737373f50759bc254ec6",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
@@ -2004,10 +2131,21 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Числовая Validate проверяет pellet count/durations/автоматический режим. BUG-010: ProjectileDirection потребляет глобальный Unity Random рядом с cosmetic draws. Стратегия разброса/личный gameplay RNG должны быть вне SO; текущая форма и баланс не исправлялись.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Баланс помпы и авторитетный веер дробин",
+      "dependencies": [
+        "WeaponDefinition",
+        "PumpShotgunCycle",
+        "UnityEngine.Random/Quaternion"
+      ],
+      "usageEvidence": "PumpShotgun.asset; PlayerWeapon2D.ProjectileDirection; WeaponCycleTests",
+      "reviewedSha256": "23aceb073870ed67530d79adc8682a0e9a78407885a8e691716eb42fb85bff43",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs",
@@ -2043,10 +2181,20 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Только shared tuning, но нет Validate целостности/finite values и обязательного projectile reference. PlayerWeapon проверяет visualProfile до расхода, вложенный projectile валидируется позднее в Launch. Это риск ошибки авторинга после частичной выдачи выстрела; реальный сценарий не запускался.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Оформление вспышки/impact и ссылка на projectile profile",
+      "dependencies": [
+        "ScriptableObject",
+        "ProjectileVisualProfile"
+      ],
+      "usageEvidence": "WeaponDefinition; PlayerWeapon2D; ShotEffect2D; BulletProjectile2D",
+      "reviewedSha256": "5d4dd2ad36d1c451e722aeef46de00da37ed6ec7d4088ecb2f6459f27f65d698",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/SleeperAudioProfile.cs",
@@ -2265,10 +2413,20 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Тематический data-only SO; playback/progress хранятся в экземплярах. Arrays/public fields доступны для записи, но прочитанные runtime-потребители только читают. Full finite/range Validate и неизменяемые views — ограничение защищённости данных, не найденная запись ammo в asset.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Общие weapon clips, gain и внешний вид гильзы",
+      "dependencies": [
+        "AudioClip[]",
+        "Color/Vector2"
+      ],
+      "usageEvidence": "PlayerAudio/UtilityAudio; CasingEjector/ShellCasing; weapon definitions",
+      "reviewedSha256": "9725603e0bbfaac36c7531f5f40eb6baa90c26393f403209cbcdec8697ec4e23",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
@@ -2296,10 +2454,20 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Find не зависит от filename/InstanceID, но возвращает первое совпадение; нет общей проверки пустых/дублированных IDs/slots всего каталога. Проверка только entries конкретного inventory не сертифицирует каталог. Это долг валидации контента.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Разрешение стабильного contentId в definition",
+      "dependencies": [
+        "ScriptableObject",
+        "WeaponDefinition[]"
+      ],
+      "usageEvidence": "PlayerCheckpoint2D/WeaponInventory.Validate; Weapons.asset; authoring",
+      "reviewedSha256": "59b2a58b7a6bb7d063d81ca26cfd0d275e604f9632f0805259265d3d4f66eb5a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
@@ -2328,10 +2496,22 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Есть finite/range/ID Validate, runtime ammo в SO нет. Asset также создаёт Model и определяет алгоритм направления, Model хранит этот SO: pure immutable settings/strategy не выделены. Public поля ослабляют read-only контракт; новые числовые pistol variants могут быть новыми assets без веток в HUD/пуле.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Общий баланс, идентичность и factory оружия",
+      "dependencies": [
+        "ScriptableObject",
+        "ShotVisualProfile",
+        "WeaponAudioProfile",
+        "WeaponCycle"
+      ],
+      "usageEvidence": "PlayerWeapon2D/Inventory; каталог; Magazine/Pump subclasses",
+      "reviewedSha256": "107c4ea24c01d51db1d4f8bf5664e73ee44a4c03fe9045637d557030c0e40cb4",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
@@ -5189,10 +5369,22 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Есть compatibility и explicit hasInventory/hasFlashlightState, runtime slots не трогались. BUG-009: modules/moduleCount не проверяются до RestoreHealth/cards/inventory, потом Upgrades.Restore может бросить. Полный nested payload должен проверяться до мутаций; сохранённый формат не исправлялся.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Player DTO format1/2/3, Validate и восстановление",
+      "dependencies": [
+        "WeaponCatalog/Inventory",
+        "PlayerLife/Cards",
+        "Flashlight/Upgrades",
+        "JsonUtility"
+      ],
+      "usageEvidence": "PersistentEntity2D; LevelCheckpointController validation path; authored player",
+      "reviewedSha256": "a7536c36c58f6aed4d4370cc7b0091a6765853a6977e4b592dd0240f470714fe",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
@@ -5395,10 +5587,21 @@
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "DTO value-only и format1, но Validate проверяет только format/null, не remaining/consumed invariants; Restore молча clamp-ит remaining. Это пробел nested validation, сценарий повреждённого pickup ещё не запускался. Общая схема не изменялась.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Checkpoint остатка/collected оружейного лута",
+      "dependencies": [
+        "PersistentEntity2D/ICheckpointParticipant",
+        "WeaponLootPickup",
+        "JsonUtility"
+      ],
+      "usageEvidence": "Loot prefab checkpoint participants; Capture/Validate/Restore",
+      "reviewedSha256": "4b02a95610d248f454d561c1ac8fddd060ecb9475573be0b8ab24dc4b009b9b6",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/AcquireFlashlightCommand.cs",
@@ -5525,10 +5728,21 @@
         "Assets/EmergencyShift/Runtime/UI/LevelCompletionView2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Модель прогресса/расчёт/Unity optics/UI-message совмещены в MonoBehaviour; общие limits в компоненте. Normal TryInstall проверяет ID/finite bonuses и repeatable accumulation. BUG-009: Restore очищает словарь и Add-ит непроверенный payload, дубли/null вызывают ошибку после частичной мутации.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Личные установленные модули, лимиты и пересчёт оптики",
+      "dependencies": [
+        "Flashlight2D",
+        "PlayerLife2D",
+        "Dictionary<string,Vector2>"
+      ],
+      "usageEvidence": "PlayerCheckpoint2D.Restore; module pickups; Player prefab",
+      "reviewedSha256": "ce66e521103859ad98e0137a5f73995d065bc473a443e28bf2e71397c3190cad",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerAccessCards2D.cs",
@@ -5609,11 +5823,28 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Input Actions/block injected; camera fallback and presentation boundary remain.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Input Actions и личная блокировка явные; камера/проекция относятся к Unity adapter. Camera.main fallback только в Awake, не каждый tick. Не решает легальность выстрела. Scripted API используется probes; Update блокируется модальным контекстом, firing guard остаётся в weapon.",
       "reviewedSha256": "ac5ad8b2f8677b84c53a286cb3d844aa8d8f376aa3fd7fef9446aa28e5086bf9",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "ac5ad8b2f8677b84c53a286cb3d844aa8d8f376aa3fd7fef9446aa28e5086bf9",
+          "notes": "Input Actions/block injected; camera fallback and presentation boundary remain."
+        }
+      ],
+      "responsibility": "Проекция pointer/scripted target на XY",
+      "dependencies": [
+        "IPlayerInput",
+        "GameplayInputBlock",
+        "Camera/Plane"
+      ],
+      "usageEvidence": "PlayerWeapon2D; aim reticle; Player prefab, scoped injection",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
@@ -5648,10 +5879,23 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Подписки парные, OnDisable гасит voices/volley caches, remembered volleys≤64, данные SO не мутируются. 460 строк объединяют несколько причин изменения и tuning; есть объединённые declarations. Cosmetic System.Random отдельный от Unity RNG разброса; этот класс не объявлен причиной BUG-010. Cache last variant принадлежит player lifetime, не static.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Ограниченный playback pickup/shot/mechanism/impact/casing",
+      "dependencies": [
+        "PlayerInteraction",
+        "PlayerWeapon2D",
+        "PlayerAudioSet/WeaponAudioProfile",
+        "saved AudioSources",
+        "System.Random"
+      ],
+      "usageEvidence": "Player prefab; ItemCollected/ShotFired/SurfaceHit/Operation events",
+      "reviewedSha256": "53c4f69cfe7182e3d0cddaa3e8b12e7b6840e17a54024809c858ff5c7aa3e2a8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
@@ -5683,10 +5927,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Scene prefab factory injects reused casings; own cosmetic RNG; ejection/config/lifetime split still pending.",
+      "notes": "Factory/личный cosmetic RNG уже внедрены, root явно в scene игрока; максимум48 сохраняется, не новый пул. Смешаны selection/reuse, порт/коллизия и tuning импульса, часть чисел в компоненте/коде. Подписки парные, OnDestroy удаляет root; расширять pooling не запрошено.",
       "reviewedSha256": "bc307899e8591eea974af9d980ac761561c1f445d757f86c813e229812309e1d",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "bc307899e8591eea974af9d980ac761561c1f445d757f86c813e229812309e1d",
+          "notes": "Scene prefab factory injects reused casings; own cosmetic RNG; ejection/config/lifetime split still pending."
+        }
+      ],
+      "responsibility": "Один spent casing по событию и bounded collection",
+      "dependencies": [
+        "PlayerWeapon2D/PlayerAudio2D",
+        "ScenePrefabFactory",
+        "RandomSourceFactory",
+        "Physics2D"
+      ],
+      "usageEvidence": "Player prefab, CasingEjected; Magazine ejects on shot/Pump ejects on operation",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
@@ -5949,10 +6211,22 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Только View/audio: не расходует патроны и не включает свет. OnEnable/OnDisable парные, источник останавливается. GetComponent<PlayerLife2D> вызывается на switch event, не hot tick; micro-оптимизация без замера не предлагается.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Звук фонаря/пустого спуска в одном канале",
+      "dependencies": [
+        "Flashlight2D",
+        "PlayerWeapon2D",
+        "PlayerWorldAudioSet/WeaponAudioProfile",
+        "AudioSource"
+      ],
+      "usageEvidence": "Player prefab; PowerChanged/EmptyTriggerPulled",
+      "reviewedSha256": "1375727ae2475921af36d39635da63b15c4ccbd0535c12572db269e3b5452d49",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
@@ -6010,10 +6284,29 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Input Actions/block injected; shooting rules, timing and presentation remain mixed.",
+      "notes": "445 строк объединяют intent/controller, pose, authoritative fire, physics и VFX. BoundCycle Operation парно снимается/перевязывается. Generic cycle-based autoreload сохранён; конкретных проверок вида оружия для него нет. Projectile/effect raw Instantiate не закрепляет scene ownership как ScenePrefabFactory. RNG sequence см. BUG-010; атомарность при ошибке visuals требует отдельной проверки.",
       "reviewedSha256": "20017bc412f747144a42b9592708d2dc5c2c21dab68985ac92ef350dd9371476",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "20017bc412f747144a42b9592708d2dc5c2c21dab68985ac92ef350dd9371476",
+          "notes": "Input Actions/block injected; shooting rules, timing and presentation remain mixed."
+        }
+      ],
+      "responsibility": "Unity-мост input, inventory, прицеливания и выдачи выстрела",
+      "dependencies": [
+        "IPlayerInput/GameplayInputBlock",
+        "WeaponInventory",
+        "Aim/Life/Flashlight",
+        "projectile/effect/shadow",
+        "Physics2D/Time"
+      ],
+      "usageEvidence": "Player prefab/scene overrides; loot/checkpoint/audio/HUD",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
@@ -6409,10 +6702,22 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Только визуал, не visibility authority/урон. MPB переиспользуется, OnDisable гасит проекцию. Объединённые parent/scale declarations нарушают one action per line, tuning в компоненте. Новые тени не добавлялись, прежний откат теней этим чтением не менялся.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Косметическая проекция игрока от света дула",
+      "dependencies": [
+        "Light2D",
+        "SpriteRenderer",
+        "MPB",
+        "Physics2D"
+      ],
+      "usageEvidence": "PlayerWeapon2D.Follow(flash.LightSource), Player prefab",
+      "reviewedSha256": "bd3b1ad8c9dba7de063043da3b28747b2158787e480d710e9dddfba0d253fb99",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsPartIdentity2D.cs",
@@ -6546,10 +6851,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "First-contact surface uses owning scope rather than active scene; motion/presentation model split still pending.",
+      "notes": "Launch сбрасывает landed/settled/profile/surface; первый контакт один, settled выключает Update. Ground query scoped и profile выстрелившего оружия сохранён. Движение/визуал/звук и gravity/drag tuning смешаны; это cosmetic debt, не авторитетный урон.",
       "reviewedSha256": "fca29522886020ccf74c535ec3fe11ead64f5741a1f2fb01530bc55195514993",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "reviewedSha256": "fca29522886020ccf74c535ec3fe11ead64f5741a1f2fb01530bc55195514993",
+          "notes": "First-contact surface uses owning scope rather than active scene; motion/presentation model split still pending."
+        }
+      ],
+      "responsibility": "Косметическая XY/virtual-height физика, контакт и вид",
+      "dependencies": [
+        "GroundAudioSurfaceQuery2D",
+        "PlayerAudio2D/WeaponAudioProfile",
+        "SpriteRenderer",
+        "Physics2D/Time"
+      ],
+      "usageEvidence": "PlayerCasingEjector bounded pool, scene DI before use",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
@@ -6582,10 +6905,22 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Static mutable registry, нет scene filter/Subsystem reset. Вспышка помогает видимости подбора, не становится IThreatLight для AI. OnDisable удаляет запись, свет заканчивается с plume. Play выделяет arrays/MPB; стоимость не измерялась. Cosmetic Random потребляет gameplay-global stream (BUG-010); не вводить пул автоматически.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Вспышка/плюм/impact, локальный свет и запрос видимости",
+      "dependencies": [
+        "ShotVisualProfile",
+        "Light2D/SpriteRenderer/MPB",
+        "static active list",
+        "Unity Random/Time"
+      ],
+      "usageEvidence": "PlayerWeapon/Bullet Instantiate→Play; PlayerInteraction.IlluminatesPoint для подбора",
+      "reviewedSha256": "0bf75bd967f5b66f88ac487851335d6b1afbca0632d3818a9dbaf13a372a6252",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
@@ -6604,10 +6939,21 @@
       ],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Тестовая сценовая утилита явно запрошенного режима, не campaign unlimited-ammo правило. Повторяет reach/ownership checks и использует обычную границу максимума, не присваивает ammo напрямую.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Повторяемое пополнение активного резерва в тире",
+      "dependencies": [
+        "PlayerInteraction/IInteractable",
+        "PlayerWeapon2D",
+        "BoxCollider2D"
+      ],
+      "usageEvidence": "Авторенный sandbox crate; normal AddAmmo limits",
+      "reviewedSha256": "e361c630958848dec470927f6af3a93df85c717e7fd1ed1c79c0645deb6e9852",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Sandbox/SandboxHealthZone2D.cs",
@@ -6866,10 +7212,21 @@
         "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Не решает правила выстрела/зарядки; показывает общую phase без проверок класса оружия. Значения текста кешируются; parent меняется только при смене slot. Прямой PlayerWeapon — текущая presentation boundary, не pure Model dependency.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Выбранная/запасная строка и ammo/phase presentation",
+      "dependencies": [
+        "WeaponDefinition",
+        "PlayerWeapon2D",
+        "CanvasGroup/Text/RectTransform"
+      ],
+      "usageEvidence": "GameplayHudView inventory rows; GameplayHUD prefab",
+      "reviewedSha256": "2af0d695225d4896ea862bf1c8bcfd6e701f6861136c896b1665192a1a03b581",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/LevelCompletionView2D.cs",
@@ -7395,10 +7752,21 @@
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Логика выдачи/остатка/collected и scene UI вместе, без чистой pickup Model/command. Recheck IsAvailable/CanReach и weapon gate есть; частичный ammo pickup оставляет остаток, full capacity не удаляет коробку. Configure/Restore не обеспечивают полную validation входов.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Авто-подбор оружия/боезапаса и остаток коробки",
+      "dependencies": [
+        "PlayerInteraction/PlayerWeapon2D",
+        "WeaponDefinition",
+        "CircleCollider2D"
+      ],
+      "usageEvidence": "Pistol/Shotgun/Ammo pickups; IAutoPickup; WeaponLootCheckpoint2D",
+      "reviewedSha256": "49f193040cf1319d4eaa5dc2b99bccac0d5160b2a9d774d12432756c75f119bc",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
@@ -7521,10 +7889,21 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Нет Stalker/Sleeper type switch: Damageable2D универсально означает Flesh, явный surface override приоритетнее. Lookup на impact, не глобальный поиск в tick; enum — material vocabulary.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Материал попадания по collider/parent",
+      "dependencies": [
+        "Collider2D",
+        "optional ImpactSurface2D",
+        "Damageable2D"
+      ],
+      "usageEvidence": "BulletProjectile2D/PlayerAudio2D; environment/actor prefabs",
+      "reviewedSha256": "c4bfb8ce909d551f5483f0ea8d03dd197e9f15419166f58fed6ae9ca65530d83",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
@@ -7935,10 +8314,22 @@
       "entryPointHints": [
         "Test"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Проверяет no free ammo, запрет выстрела резервом, атомарный reload/cancel, повтор restore без start-cue, SO instance isolation, malformed timers. Читать тесты не значит заново их выполнить; Input/View интеграция здесь не покрыта.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Регрессии магазина, отмены и legacy reload snapshot",
+      "dependencies": [
+        "NUnit",
+        "ScriptableObject config",
+        "MagazineWeaponCycle",
+        "JsonUtility"
+      ],
+      "usageEvidence": "EditMode runner, 6 тестов",
+      "reviewedSha256": "1ae260a553436227ccac6ba48e2321334d95291f0827bfb5f2ad3104e56066f9",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
@@ -8161,10 +8552,22 @@
       "entryPointHints": [
         "Test"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Есть independent state, смена/typed ammo, prevalidation restore/collision, pump/shell count, finite timers. RNG тест сохраняет/восстанавливает global state, но проверяет ProjectileDirection изолированно, не interleaving VFX/Launch; BUG-010 этим не покрыт.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "responsibility": "Регрессии помпы, инвентаря, snapshots и диапазона веера",
+      "dependencies": [
+        "NUnit",
+        "cycles/inventory/catalog/SO",
+        "Unity Random state",
+        "JsonUtility"
+      ],
+      "usageEvidence": "EditMode runner, 10 тестов",
+      "reviewedSha256": "420110041eb7e11d0c982a527ab24fca301c7c5cb85e5ff6b64a69d593f9cfd4",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit07.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
@@ -8436,8 +8839,8 @@
   "latestReview": {
     "date": "2026-10-21",
     "files": 33,
-    "report": "Docs/Reports/CodeAudit06.md",
-    "validation": "Static source/hash/reference checks; 19 existing test cases read, not executed. Editor/Pipeline unavailable."
+    "report": "Docs/Reports/CodeAudit07.md",
+    "validation": "Static source/hash/reference checks; 16 existing test cases read, not executed. Editor/Pipeline unavailable."
   },
   "reviewPasses": [
     {
@@ -8451,6 +8854,12 @@
       "files": 33,
       "report": "Docs/Reports/CodeAudit06.md",
       "validation": "Static source/hash/reference checks; 19 existing test cases read, not executed. Editor/Pipeline unavailable."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 33,
+      "report": "Docs/Reports/CodeAudit07.md",
+      "validation": "Static source/hash/reference checks; 16 existing test cases read, not executed. Editor/Pipeline unavailable."
     }
   ]
 }
