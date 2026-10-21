@@ -183,6 +183,8 @@ namespace EmergencyShift.Tests
             leaf.transform.SetParent(obj.transform, false);
             var door = obj.AddComponent<Door2D>();
             door.Configure(leaf.transform);
+            door.Construct(new EmergencyShift.Core.Composition.SceneRegistry<Door2D>(),
+                new EmergencyShift.Features.Doors.DoorMotionControllerFactory(new UnityGameClock()));
             obj.SetActive(true);
             return door;
         }

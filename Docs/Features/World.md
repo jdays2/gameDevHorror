@@ -28,7 +28,7 @@ FlashlightStateModel хранит личные владение/питание/�
 
 Карты и доступ перенесены в `Features/AccessControl`: личные чистые модели, команды Add/Restore/CheckAccess, controller и фабрики через LevelContext. Компоненты PlayerAccessCards2D/DoorAccess2D сохраняют публичный API и служат Unity/View-адаптерами. Время считывателя поступает через IGameClock; независимые cooldown и постоянная разблокировка принадлежат модели. Прямое восстановление и player checkpoint проверяют ID карт до изменения состояния; null-коллекция поддерживается как legacy-пустая. Подробности и границы — [AccessControl01](../Reports/AccessControl01.md).
 
-Двери используют внедряемый SceneRegistry уровня; статического Door2D.Active больше нет. Перенос движения створки и остальной интеракции ещё не завершён. Данные существующих экземпляров сохранены.
+Двери используют внедряемый SceneRegistry уровня; статического Door2D.Active больше нет. [Движение створки](Doors.md) выделено в личную модель с командами/controller и scaled clock, Door2D исполняет Transform и события. Остальная интеракция и общий config-pass ещё открыты. Данные существующих экземпляров сохранены.
 
 Контракт и авторинг: [Мир, фонарь, камера и интеракции](../Guides/LEVEL_AUTHORING.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).
 

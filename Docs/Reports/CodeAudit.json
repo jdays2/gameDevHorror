@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "454 own C# explicitly read; 94 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PlayerMovement07.",
+  "limits": "465 own C# explicitly read; 94 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest DoorMotion08.",
   "counts": {
     "partial": 94,
-    "reviewed_boundary": 360
+    "reviewed_boundary": 371
   },
   "files": [
     {
@@ -2021,6 +2021,10 @@
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ActivateStalkerAggroCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
@@ -2112,6 +2116,9 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ActivateStalkerAggroCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
@@ -2287,10 +2294,12 @@
         "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2887,6 +2896,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/DoorAccessControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/DoorAccessController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyMeleeControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPathSchedule.cs",
@@ -2899,6 +2910,7 @@
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -3025,7 +3037,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -6102,6 +6115,7 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
@@ -6307,6 +6321,7 @@
         "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
@@ -7335,6 +7350,238 @@
           "reviewedSha256": "e2c305db29837cf988b1516e86b1862517b76b0498f0d56e642f7a7d978c6aa7"
         }
       ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Doors/Config/DoorMotionSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "f86fb64c32578da3b09af9f0d1eb0945e56082acad4032aba116e94fa08b2996",
+      "guid": "6c0173d6dc5b464aa91344adbb29e0ce",
+      "types": [
+        "DoorMotionSettings"
+      ],
+      "lines": 19,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f86fb64c32578da3b09af9f0d1eb0945e56082acad4032aba116e94fa08b2996",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "e6726487316b9d08fb417f4c357ee795bfa4893e379802c8e681fd1380b71f21",
+      "guid": "5c920eafe7d64a7480252f56424ceeaa",
+      "types": [
+        "DoorMotionControllerFactory"
+      ],
+      "lines": 15,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionInstaller.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "e6726487316b9d08fb417f4c357ee795bfa4893e379802c8e681fd1380b71f21",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "37902fa766d60a3fdb5f8b8a4bf109471d9a311771d8fc59f524c954368be36b",
+      "guid": "559d25a755074895a1be69db5c6f9fd1",
+      "types": [
+        "DoorMotionInstaller"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "37902fa766d60a3fdb5f8b8a4bf109471d9a311771d8fc59f524c954368be36b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs",
+      "sourceScope": "unity",
+      "sha256": "f59fd77b2c5854c77071ccf6dae04151817173aaeaf2b272e69cf972c1ce5055",
+      "guid": "750a7b7837064a06b76cae43a4ac92ea",
+      "types": [
+        "DoorMotionController"
+      ],
+      "lines": 82,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f59fd77b2c5854c77071ccf6dae04151817173aaeaf2b272e69cf972c1ce5055",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionModel.cs",
+      "sourceScope": "unity",
+      "sha256": "b1537f5a830cee99df298614af671e1bf99d1b80bb2cc1e5b5365a956cb60eb0",
+      "guid": "32b1f84a0de44c139927b8bf92c3c570",
+      "types": [
+        "DoorMotionModel"
+      ],
+      "lines": 92,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "b1537f5a830cee99df298614af671e1bf99d1b80bb2cc1e5b5365a956cb60eb0",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Doors/Logic/IDoorMotionView.cs",
+      "sourceScope": "unity",
+      "sha256": "07f91545eb933b6da472ac5ae62b829f1f56137e2d016650118dc54c7314766d",
+      "guid": "70eb1ea2b41747c8b9f6e5f7dae5cacb",
+      "types": [
+        "IDoorMotionView"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "07f91545eb933b6da472ac5ae62b829f1f56137e2d016650118dc54c7314766d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "d31b90f83fb955ba5f0e5e5f7f78a0faf858a209d2bda017ea5a0a13a1b1ce2e",
+      "guid": "09a11e1e4cb24dd0bc485dca7f9e563f",
+      "types": [
+        "RestoreDoorMotionCommand"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d31b90f83fb955ba5f0e5e5f7f78a0faf858a209d2bda017ea5a0a13a1b1ce2e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "769126aa8ca04c45944d898784dfa29831fac1386934d96a33597cf8a37e384f",
+      "guid": "6dfc6d4c3dd347a08689d2839f5ff964",
+      "types": [
+        "StopDoorMotionCommand"
+      ],
+      "lines": 21,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "769126aa8ca04c45944d898784dfa29831fac1386934d96a33597cf8a37e384f",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "d59853e57ba3ed6620df76027b98051158a3e5aa97a6e313f8ad0af8ec914c8c",
+      "guid": "942fafd4aad743d2a381e526e709c1c0",
+      "types": [
+        "ToggleDoorCommand"
+      ],
+      "lines": 33,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d59853e57ba3ed6620df76027b98051158a3e5aa97a6e313f8ad0af8ec914c8c",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -11080,13 +11327,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "b563d5d88a3f5173941bbdecb0751162204c5030734076407f81ed3c5cb450ac",
+      "sha256": "9b10f901bf451e277778c00778a431b865d823e4719e302dd675c1924fe4ec71",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 213,
+      "lines": 215,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -11131,8 +11378,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
-      "reviewedSha256": "b563d5d88a3f5173941bbdecb0751162204c5030734076407f81ed3c5cb450ac",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "reviewedSha256": "9b10f901bf451e277778c00778a431b865d823e4719e302dd675c1924fe4ec71",
       "previousReviewStatus": "reviewed_boundary",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -11145,8 +11392,8 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/PlayerMovement07.md",
-      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified.",
       "reviewHistory": [
         {
           "reviewDate": "2026-10-21",
@@ -14758,13 +15005,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
-      "sha256": "7144713097fa1a11ea4e2c670e6c909bd8f56ce618779bf0e6ad80a0c59c7d00",
+      "sha256": "42f865617cca7b37ba6977d6289cb097c19f9ee48777f5999ee9affe10d7d773",
       "baselineSha256": "b69a976723eb70a5f8faab2f7a74543173a8342bad711b55ccc6a589a9428bd9",
       "guid": "b9ed2bf47fea2194d81220c054b2769c",
       "types": [
         "Door2D"
       ],
-      "lines": 159,
+      "lines": 142,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/World/Door.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
@@ -14793,12 +15040,13 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Injected scene registry с парной регистрацией. OnDisable прекращает coroutines и доводит движущуюся створку; Restore без повторной анимации. Command/controller/motor пока объединены; range/duration/offset не общий тематический config. awaitingAccess отдельно от IsMoving требует явной политики сохранения, не заявлен воспроизведённый дефект.",
-      "reviewedSha256": "7144713097fa1a11ea4e2c670e6c909bd8f56ce618779bf0e6ad80a0c59c7d00",
+      "notes": "Личный motion MVC/controller и native leaf, restore/disable проверены. duration/openOffset и actor interaction остаются compatibility bridge; общий config/interaction pass открыт.",
+      "reviewedSha256": "42f865617cca7b37ba6977d6289cb097c19f9ee48777f5999ee9affe10d7d773",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14817,8 +15065,9 @@
       ],
       "usageEvidence": "PlayerInteraction; checkpoint; DoorAudio",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
@@ -14849,6 +15098,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs"
       ],
       "entryPointHints": [],
@@ -15743,6 +15993,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -15873,26 +16124,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "51 mandatory-boolean regressions",
-      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "53592150b125b9d8727d5f8b271771b697eae8e87b687f52c8fc489686006c9a",
+      "reviewedSha256": "05f4ee80e06e3bcf289688ddd3adc45ce5eeff5971477e3b66300b256a7cc8ad",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/AccessControl01.md",
-      "reviewScope": "Full touched source review: ownership, complete bool payload, cancellation, legacy compatibility; actual 316/316 EditMode, 5/5 PlayMode and Windows64 success.",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
       "sourceScope": "unity",
-      "sha256": "53592150b125b9d8727d5f8b271771b697eae8e87b687f52c8fc489686006c9a",
+      "sha256": "05f4ee80e06e3bcf289688ddd3adc45ce5eeff5971477e3b66300b256a7cc8ad",
       "guid": "6ff5dbeb7ad7232408aff07bf6b131e2",
       "types": [
         "CheckpointBooleanTests",
         "ConsumedRead"
       ],
-      "lines": 225,
+      "lines": 227,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -16193,6 +16444,71 @@
       "previousReviewStatus": "reviewed_boundary"
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+      "sourceScope": "unity",
+      "sha256": "2a26d0d3372c974639028aa7fea837840cf60dd3f9037bdf88791b0593797e5a",
+      "guid": "f703757758414c2cae0af9c8cf085f9f",
+      "types": [
+        "Clock",
+        "DoorMotionTests",
+        "View"
+      ],
+      "lines": 200,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/CheckDirectionalDamage.cs",
+        "AgentScripts/InstallDirectionalDamage.cs",
+        "AgentScripts/InstallPauseMenu.cs",
+        "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "2a26d0d3372c974639028aa7fea837840cf60dd3f9037bdf88791b0593797e5a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
       "sha256": "bec985390ad681f7b619956d027a240bb9a826f91bc16572cb7e0e435278c790",
       "baselineSha256": "fbe45aa612c7aa425a41304c8f8c6f0d3e7c7e7333bee0154ac7a31dba37585a",
@@ -16266,6 +16582,7 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
@@ -16336,6 +16653,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -16398,6 +16716,7 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -17287,6 +17606,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -17398,6 +17718,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -17733,26 +18054,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "5 real PlayMode pending-save lifetime regressions",
-      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "b80a14eded52d484d48ee97fb64b6c3dfa25335d41860b9ed681c0befd3d0802",
+      "reviewedSha256": "a0e29ebe942565edca4198c5a27c6d6120497d21d404196aca98cd01d09abb0c",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/AccessControl01.md",
-      "reviewScope": "Full touched source review: ownership, complete bool payload, cancellation, legacy compatibility; actual 316/316 EditMode, 5/5 PlayMode and Windows64 success.",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "b80a14eded52d484d48ee97fb64b6c3dfa25335d41860b9ed681c0befd3d0802",
+      "sha256": "a0e29ebe942565edca4198c5a27c6d6120497d21d404196aca98cd01d09abb0c",
       "guid": "c44326cf15c577e4b89031b64fcda0ca",
       "types": [
         "CheckpointSaveLifetimeTests",
         "TestClock"
       ],
-      "lines": 214,
+      "lines": 216,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -17797,6 +18118,28 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/DialogueMvc01.md",
       "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "6bc5de86d271239526e3d2032a21c3fe0f1aac12413f396d6f5bc1f0baf96f21",
+      "guid": "741bcd054e42484994840aee4579f844",
+      "types": [
+        "DoorMotionSceneTests"
+      ],
+      "lines": 93,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "6bc5de86d271239526e3d2032a21c3fe0f1aac12413f396d6f5bc1f0baf96f21",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DoorMotion08.md",
+      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -18216,6 +18559,7 @@
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
@@ -18334,6 +18678,7 @@
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
@@ -18488,7 +18833,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 435,
+    "unity": 446,
     "content_source": 8
   },
   "latestReview": {
@@ -18639,11 +18984,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 446,
-    "totalFiles": 446,
+    "reviewedFiles": 465,
+    "totalFiles": 465,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "MotorGeometry06 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "DoorMotion08 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

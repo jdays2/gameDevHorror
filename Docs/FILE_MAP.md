@@ -255,6 +255,24 @@
 
 - [DirectionalDamageFeedbackView.cs](../Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Doors
+
+- [DoorMotionControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs)
+- [DoorMotionInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Doors/Config
+
+- [DoorMotionSettings.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Config/DoorMotionSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Doors/Logic
+
+- [DoorMotionController.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs)
+- [DoorMotionModel.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionModel.cs)
+- [IDoorMotionView.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/IDoorMotionView.cs)
+- [RestoreDoorMotionCommand.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs)
+- [StopDoorMotionCommand.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs)
+- [ToggleDoorCommand.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/Enemies
 
 - [EnemyInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs)
@@ -569,6 +587,7 @@
 - [DialoguePrefabTests.cs](../Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs)
 - [DirectionalDamageTests.cs](../Assets/EmergencyShift/Tests/EditMode/DirectionalDamageTests.cs)
 - [DoorAccessTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs)
+- [DoorMotionTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs)
 - [EnemyDeathAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs)
 - [EnemyMeleeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs)
 - [EnemyMotorGeometryTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyMotorGeometryTests.cs)
@@ -614,6 +633,7 @@
 - [CameraOpticsTestSource.cs](../Assets/EmergencyShift/Tests/PlayMode/CameraOpticsTestSource.cs)
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
+- [DoorMotionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs)
 - [EnemyMeleeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs)
 - [EnemyMotorSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs)
 - [EnemyNavigationSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs)

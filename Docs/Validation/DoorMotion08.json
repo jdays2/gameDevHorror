@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "64184523441fbbd3bcd892cc0fdb610bff3181c9",
+  "editMode": {
+    "result": "Passed",
+    "total": "671",
+    "passed": "671",
+    "failed": "0",
+    "end-time": "2026-10-21 17:22:55Z",
+    "rawPath": "work/sod-evidence-20261021/door-final-edit.xml",
+    "rawSha256": "44ee8fcdbff142d3a323aff9174c7b4f7da8c47dc24f5a989409a791f085635e",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.ConfirmationWaitKeepsDoorClosedAndStartsOnlyAfterDeadline",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.DisableCancelsPendingConfirmationWithoutOpeningOrAudioEvents",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.DisposalUnsubscribesAndPreventsFurtherControllerWrites",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.InterruptedMotionSettlesToRequestedEndpointAndStopsOnlyOnce",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.InvalidConfirmationCannotChangeState(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.InvalidConfirmationCannotChangeState(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.InvalidConfirmationCannotChangeState(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.InvalidDurationIsRejectedAtComposition(0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.InvalidDurationIsRejectedAtComposition(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.InvalidDurationIsRejectedAtComposition(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.InvalidDurationIsRejectedAtComposition(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.LockedDoorRejectsAndOpeningDoorCannotBeRetoggled",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.RestoreIsSilentCancelsAllWorkAndCannotResumeOldTimeline(False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.RestoreIsSilentCancelsAllWorkAndCannotResumeOldTimeline(True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.ScaledClockDrivesSmoothOpeningAndClosingWithOneStartStopPair",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.DoorMotionTests.SharedClockDoesNotShareDoorState",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "28",
+    "passed": "28",
+    "failed": "0",
+    "end-time": "2026-10-21 17:25:54Z",
+    "rawPath": "work/sod-evidence-20261021/door-final-play.xml",
+    "rawSha256": "165b99a601bbdc679e285740afd7403b60dc28f8267c06256f4e32000c704a68",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.DoorMotionSceneTests.NativeLeafAndColliderFollowTimelineRestoreAndDisable",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T17:27:12.475Z",
+    "endedAt": "2026-10-21T17:27:39.340Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/Doors/Config/DoorMotionSettings.cs": "f86fb64c32578da3b09af9f0d1eb0945e56082acad4032aba116e94fa08b2996",
+    "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs": "e6726487316b9d08fb417f4c357ee795bfa4893e379802c8e681fd1380b71f21",
+    "Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionInstaller.cs": "37902fa766d60a3fdb5f8b8a4bf109471d9a311771d8fc59f524c954368be36b",
+    "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs": "f59fd77b2c5854c77071ccf6dae04151817173aaeaf2b272e69cf972c1ce5055",
+    "Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionModel.cs": "b1537f5a830cee99df298614af671e1bf99d1b80bb2cc1e5b5365a956cb60eb0",
+    "Assets/EmergencyShift/Runtime/Features/Doors/Logic/IDoorMotionView.cs": "07f91545eb933b6da472ac5ae62b829f1f56137e2d016650118dc54c7314766d",
+    "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs": "d31b90f83fb955ba5f0e5e5f7f78a0faf858a209d2bda017ea5a0a13a1b1ce2e",
+    "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs": "769126aa8ca04c45944d898784dfa29831fac1386934d96a33597cf8a37e384f",
+    "Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs": "d59853e57ba3ed6620df76027b98051158a3e5aa97a6e313f8ad0af8ec914c8c",
+    "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs": "42f865617cca7b37ba6977d6289cb097c19f9ee48777f5999ee9affe10d7d773",
+    "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs": "9b10f901bf451e277778c00778a431b865d823e4719e302dd675c1924fe4ec71",
+    "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs": "2a26d0d3372c974639028aa7fea837840cf60dd3f9037bdf88791b0593797e5a",
+    "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs": "6bc5de86d271239526e3d2032a21c3fe0f1aac12413f396d6f5bc1f0baf96f21",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs": "05f4ee80e06e3bcf289688ddd3adc45ce5eeff5971477e3b66300b256a7cc8ad",
+    "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs": "a0e29ebe942565edca4198c5a27c6d6120497d21d404196aca98cd01d09abb0c"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. SO config-pass and author input-feel acceptance remain open. Native leaf/collider and pause/restore/disable tested; not full route/art/audio acceptance or FPS.",
+  "initialFixtureFailure": {
+    "rawPath": "work/sod-evidence-20261021/door-initial-fixture-play.xml",
+    "rawSha256": "73f928921ec292734380e222a65336ec80d7392052f04a1a149f5b1209bcff66",
+    "passed": 27,
+    "failed": 1,
+    "reason": "Artificial checkpoint lifetime door lacked explicit new factory before Awake; fixture corrected, no gameplay fallback."
+  }
+}
