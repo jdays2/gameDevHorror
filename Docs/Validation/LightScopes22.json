@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "5510d7b7abf5faef4b002d78e8f507245ec5921f",
+  "editMode": {
+    "result": "Passed",
+    "total": "905",
+    "passed": "905",
+    "failed": "0",
+    "end-time": "2026-10-21 20:50:09Z",
+    "rawPath": "work/sod-evidence-20261021/light-scope-edit.xml",
+    "rawSha256": "c02afd1b3c48e015a6deb9364a2743d8152b94478c2c03b8529ad6e334eabfa1",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionClosesPartiallyPopulatedRegistriesAndRejectsMoreComposition",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.FailedInjectionImmediatelyReleasesItsOwnedInputActions",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.FailedLevelDoesNotDisposeASiblingOrTheSharedWorld",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.InitializationAndCleanupErrorsArePreservedAndLateCleanupStillRuns",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionFailureTests.LiveAndDisposedLevelsCannotReplaceAlreadyBoundReferences",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelCompositionTests.TwoAuthoredLevelsShareWorldPauseAndOwnIndependentInputLifetimes",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "46",
+    "passed": "46",
+    "failed": "0",
+    "end-time": "2026-10-21 20:54:02Z",
+    "rawPath": "work/sod-evidence-20261021/light-scope-play.xml",
+    "rawSha256": "68261632ad92241bb63a6fb4e7401f9ef6558073279de7c848f58d3abc3ddc03",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.ForeignAdditiveLampCannotLightAnActorsPickupQuery",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.ForeignAdditiveShotCannotLightAnActorsPickupQuery",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.FrozenEffectUnloadsWithItsSceneAndSiblingLampRemains",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.OwnLampRegistersOnceAndDisableRemovesIt",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T20:54:16.079Z",
+    "endedAt": "2026-10-21T20:54:42.320Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/World/Lighting/LocalIlluminationQuery2D.cs": "0481190065da59798a7df2957c02440920ffad34525b3528fcc1dfa09d3a17af",
+    "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs": "e2dbe4b526b91ae2b560684b0c64f71edf9fdd9644cbce96fdea1c5373fd5392",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs": "c200fd24f6ba4339a0da66c7fa22046606f8f26b7349cf24375562b5ece65646",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs": "4a60934036bce739a85cc754949e2ec09fac4db202c3519171b292bd54de1a79",
+    "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs": "91f5ca6af47782000f3f94c4a3b2d91ae4486d44c4ae8f4579ee7cd0bd985f15",
+    "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs": "9c755dbd02aa4350d02612d7aae6b8af03b55a67523d65a6c498995845096740",
+    "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs": "13e5b73bf391262cb9db20c8be46959abc08b0eae7657460c46199dca2e8b4be",
+    "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs": "645dc3c96cba78a9202a27d0f7691efb298170c462cbedfa94e3966dfef0bd19",
+    "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs": "b1993d6e6cfd830be4d1da117c7dccaff5588ceb061ca3526fae192e1128e4c8",
+    "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs": "6f4533dc22efb53ad44685f0a6f8a3e9006e168b3bd0d3b5548266d745aeaa94",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs": "032f4b0310aa3560ce89cc230ea0f8634284d4a4d85529d4d54ed8f9baad3e9d",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs": "c616305be3fa34abb71c2fd6295fe07bb0ac6d13e996c49540823a5defc6487d",
+    "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs": "235dbe135405f52d5fc3318387f5d54b3c36447f767372ab8ce577fe6e880739",
+    "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs": "2b931a64602d59f8425bbd6670cfae1c6673699c9094feb9728777e181915df1",
+    "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs": "abffc45b113916676c5e2beae8093ca77c4514dbfdae8aa38ac10fd86c57df63",
+    "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs": "c55223f25ce3d97f2b5526539b0120da29977f2f8dee86e88ff9a3a5a2e8fccd",
+    "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs": "43257c411dfc041de1e58c2a26bcc3fbed874c5d73747fd9c497444a84f136fb",
+    "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs": "0c07e892031d80cf0ca4ff1f25d28aa66affe740603968f9bfbfed8625ca411a"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. BUG-025: two native red baselines, foreign lamp and flash each leak into actor query. Native scope query/membership replaces static lists; source scene defensive filter, DI effects creation, disable/re-enable/frozen unload tested. Lamp power/flicker/height/geometry/audio values unchanged; no new defensive lights. Existing Lamp/ShotEffect/Director/PlayerInteraction partial debts remain open; original pause outside commit.",
+  "crossSceneBaselines": [
+    {
+      "rawPath": "work/sod-evidence-20261021/light-scope-before.xml",
+      "rawSha256": "625ae8af454b185e925e15b91d514be052423d2e77f1cd46e0184fc9a8ce0857",
+      "failure": "  Scene A must not see the lamp belonging to scene B.\n  Expected: False\n  But was:  True\n"
+    },
+    {
+      "rawPath": "work/sod-evidence-20261021/light-effect-scope-before.xml",
+      "rawSha256": "c1bfef27052366200967ce67501f8fc480e4edcdcbeb244cf917b3d0f93d9588",
+      "failure": "  Scene A must not see the configured flash belonging to B.\n  Expected: False\n  But was:  True\n"
+    }
+  ],
+  "sourceBefore": {
+    "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs": "2e6d194856cf3aac204ca65157b30bb3b364aa5bfa7dd5abc03cb255bceb4ab7",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs": "0bf75bd967f5b66f88ac487851335d6b1afbca0632d3818a9dbaf13a372a6252",
+    "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs": "9379cd0a390fffb3f0352e7fe15e1b06765fdcbd52f7e42e2edd9fc477d02349"
+  },
+  "diagram": {
+    "path": "Docs/Reports/Images/LightScopes22.png",
+    "sha256": "4c9fb0578cd1541292443e4020478b846ba8cd7aea130486c5cf708e5cb9b7bf"
+  }
+}

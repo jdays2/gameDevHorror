@@ -63,7 +63,8 @@ namespace EmergencyShift.Tests
             Set(interaction, "session", session);
             actor = Create("Interaction fixture").AddComponent<PlayerInteraction>();
             actor.Construct(input, block, new EmergencyShift.Core.Composition.SceneRegistry<Door2D>(),
-                new EmergencyShift.Features.Interaction.PlayerInteractionControllerFactory(new EmergencyShift.Core.Time.UnityGameClock()));
+                new EmergencyShift.Features.Interaction.PlayerInteractionControllerFactory(new EmergencyShift.Core.Time.UnityGameClock()),
+                new LocalIlluminationQuery2D(new EmergencyShift.Core.Composition.SceneRegistry<LocalLamp2D>(), new EmergencyShift.Core.Composition.SceneRegistry<ShotEffect2D>()));
             actor.gameObject.SetActive(false);
             yield return null;
         }

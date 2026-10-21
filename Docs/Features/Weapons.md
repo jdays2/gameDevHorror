@@ -26,7 +26,7 @@ PlayerCheckpoint2D пишет format3 с явными hasInventory/hasFlashlight
 
 ## Проверки и связанные документы
 
-Вспышка дула, попадание и blocked-muzzle impact создаются с явной сценой владельца через InstantiateParameters.scene; пули — через scoped ScenePrefabFactory, который внедряет зависимости и оставляет экземпляр в сцене источника. Активность другой additive-сцены не меняет их lifetime; выгрузка источника удаляет замороженный эффект. [BUG-023: воспроизведение и проверка](../Reports/ProjectileOwnership10.md).
+Вспышка дула, попадание, blocked-muzzle impact и пули создаются через scoped ScenePrefabFactory, который внедряет зависимости и оставляет экземпляр в сцене источника. ShotEffect2D регистрируется только в своём level scope; visibility query дополнительно проверяет сцену. [Изоляция запросов света](../Reports/LightScopes22.md). Активность другой additive-сцены не меняет их lifetime; выгрузка источника удаляет замороженный эффект. [BUG-023: воспроизведение и проверка](../Reports/ProjectileOwnership10.md).
 
 `Features/Projectiles` содержит immutable ProjectileFlightSettings, личную ProjectileFlightModel и LaunchProjectileCommand. Контроллер управляет шагом и завершает модель перед единственным hit callback; native BulletProjectile2D выполняет полный CircleCast, пропускает владельца/детей и триггеры, выбирает ближайший collider, передаёт урон через Damageable2D и показывает эффект. Геометрия и визуал не владеют дальностью/возрастом. Пуля не зависит от вида врага и видимости трассера. ProjectileInstaller подключён через WeaponInstaller, обе species используют прежний контракт урона.
 

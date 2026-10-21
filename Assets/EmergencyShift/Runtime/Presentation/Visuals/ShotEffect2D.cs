@@ -1,38 +1,40 @@
+using System;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.Rendering.Universal;
+using Zenject;
+using Random = UnityEngine.Random;
 
 namespace EmergencyShift
 {
     /// <summary>Огонь и свет дула затухают вместе; штрихи используются для попаданий.</summary>
     public sealed class ShotEffect2D : MonoBehaviour
     {
-        private static readonly List<ShotEffect2D> active = new List<ShotEffect2D>();
-        private void OnEnable()
+        private SceneRegistry<ShotEffect2D> registry;
+
+        [Inject]
+        public void Construct(SceneRegistry<ShotEffect2D> sceneEffects)
         {
-            if (!active.Contains(this))
+            registry?.Remove(this);
+            registry = sceneEffects ?? throw new ArgumentNullException(nameof(sceneEffects));
+            if (isActiveAndEnabled)
             {
-                active.Add(this);
+                registry.Register(this);
             }
         }
+
+        private void OnEnable() => registry?.Register(this);
 
         private void OnDisable()
         {
-            active.Remove(this);
+            registry?.Remove(this);
         }
 
-        public static bool IlluminatesPoint(Vector2 point, LayerMask opaque)
+        public bool Illuminates(Vector2 point, LayerMask opaque)
         {
-            foreach (var effect in active)
-            {
-                var light = effect.flash;
-                if (effect.configured && light != null && light.enabled && light.intensity > .12f && Vector2.Distance(point, light.transform.position) < light.pointLightOuterRadius * .9f && Physics2D.Linecast(light.transform.position, point, opaque).collider == null)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return isActiveAndEnabled && configured && flash != null && flash.enabled && flash.intensity > .12f &&
+                Vector2.Distance(point, flash.transform.position) < flash.pointLightOuterRadius * .9f &&
+                Physics2D.Linecast(flash.transform.position, point, opaque).collider == null;
         }
 
         [SerializeField]

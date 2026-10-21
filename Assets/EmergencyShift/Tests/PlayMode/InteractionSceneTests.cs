@@ -29,7 +29,8 @@ namespace EmergencyShift.Tests
             GameObject hero = Create("Interaction actor", origin);
             hero.SetActive(false);
             actor = hero.AddComponent<PlayerInteraction>();
-            actor.Construct(null, block, new SceneRegistry<Door2D>(), scope.Resolve<PlayerInteractionControllerFactory>());
+            actor.Construct(null, block, new SceneRegistry<Door2D>(), scope.Resolve<PlayerInteractionControllerFactory>(),
+                new LocalIlluminationQuery2D(new SceneRegistry<LocalLamp2D>(), new SceneRegistry<ShotEffect2D>()));
             hero.SetActive(true);
             yield return null;
         }

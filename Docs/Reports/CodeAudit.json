@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "524 own C# explicitly read; 81 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest WeaponCatalog21.",
+  "limits": "526 own C# explicitly read; 81 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LightScopes22.",
   "counts": {
     "partial": 81,
-    "reviewed_boundary": 443
+    "reviewed_boundary": 445
   },
   "files": [
     {
@@ -1197,13 +1197,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
-      "sha256": "41650c6950e7dd56b3a9231872750135d370edec5ddf115dc35f547ffb252829",
+      "sha256": "13e5b73bf391262cb9db20c8be46959abc08b0eae7657460c46199dca2e8b4be",
       "baselineSha256": "e4390f60d3de6a4d0cc81f8041c7bfeea4b7cd818a0ed0c8fcd0a2fa0a16042d",
       "guid": "451b59eebcf768440b13db6389ef7325",
       "types": [
         "BulletProjectile2D"
       ],
-      "lines": 160,
+      "lines": 166,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Combat/PistolBullet.prefab"
       ],
@@ -1229,7 +1229,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Полёт, segment hit, урон и визуализация projectile",
@@ -1241,11 +1241,11 @@
         "SpriteRenderer/Light2D"
       ],
       "usageEvidence": "PlayerWeapon2D.Instantiate→Launch; общий prefab пули/дроби",
-      "reviewedSha256": "41650c6950e7dd56b3a9231872750135d370edec5ddf115dc35f547ffb252829",
+      "reviewedSha256": "13e5b73bf391262cb9db20c8be46959abc08b0eae7657460c46199dca2e8b4be",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
-      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
-      "previousReviewStatus": "partial"
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -2280,6 +2280,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
@@ -2329,7 +2330,10 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalIlluminationQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
@@ -2341,7 +2345,10 @@
         "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2684,6 +2691,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
@@ -3097,7 +3105,8 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -4533,6 +4542,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs"
       ],
       "entryPointHints": [],
@@ -4565,7 +4575,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
-      "sha256": "2695c660f6f1e212132229a375d765d1429114eea69e3e3875f06d6a4bbe2ab0",
+      "sha256": "b1993d6e6cfd830be4d1da117c7dccaff5588ceb061ca3526fae192e1128e4c8",
       "baselineSha256": "ba731921247bbfe7b96ab5703ec235a489ca288a6a61306b462108de48a25beb",
       "guid": "14a28458a38c9304daa0849264690099",
       "types": [
@@ -4573,7 +4583,7 @@
         "Check",
         "Report"
       ],
-      "lines": 472,
+      "lines": 473,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -4594,8 +4604,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "PresentationConfig13: Editor-only destructive fixture меняет только transient clone через SerializedObject/Validate; полный native probe выполнен. BUG-016 остаётся закрытым. Остальной lifecycle/style pass временного инструмента открыт.",
-      "reviewedSha256": "2695c660f6f1e212132229a375d765d1429114eea69e3e3875f06d6a4bbe2ab0",
+      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
+      "reviewedSha256": "b1993d6e6cfd830be4d1da117c7dccaff5588ceb061ca3526fae192e1128e4c8",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -4630,8 +4640,8 @@
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PresentationConfig13.md",
-      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -10975,7 +10985,8 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -12751,13 +12762,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
-      "sha256": "4a46ba9d88662e419b90c5710c85817741495f00b023a68c2549062ea0d626c3",
+      "sha256": "4a60934036bce739a85cc754949e2ec09fac4db202c3519171b292bd54de1a79",
       "baselineSha256": null,
       "guid": "0a79308db69301e4d968479a95aeff27",
       "types": [
         "LevelRegistriesInstaller"
       ],
-      "lines": 18,
+      "lines": 21,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -12765,8 +12776,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Scene-owned registries/factories, installer связывает concrete Unity adapters.",
-      "reviewedSha256": "4a46ba9d88662e419b90c5710c85817741495f00b023a68c2549062ea0d626c3",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "reviewedSha256": "4a60934036bce739a85cc754949e2ec09fac4db202c3519171b292bd54de1a79",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -12783,8 +12794,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
@@ -13427,6 +13439,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
@@ -13582,6 +13595,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
@@ -13658,6 +13672,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
@@ -13808,6 +13823,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponLootPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
@@ -14391,13 +14407,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-      "sha256": "9379cd0a390fffb3f0352e7fe15e1b06765fdcbd52f7e42e2edd9fc477d02349",
+      "sha256": "91f5ca6af47782000f3f94c4a3b2d91ae4486d44c4ae8f4579ee7cd0bd985f15",
       "baselineSha256": "61e533ef3c071ac9d4bedb6ed4969c8e45d6695dbfccad01f446ef60ae4fe1c2",
       "guid": "500d12c8cbe97624898244a956ece442",
       "types": [
         "PlayerInteraction"
       ],
-      "lines": 222,
+      "lines": 229,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -14446,12 +14462,13 @@
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "PlayerInteraction17: selection/notice state и команды выделены; native Physics query/actor presentation adapter сохранён. Конкретные IInteractable/IAutoPickup actor contracts, item rules, static illumination queries и serialized tuning bridge ещё открыты.",
-      "reviewedSha256": "9379cd0a390fffb3f0352e7fe15e1b06765fdcbd52f7e42e2edd9fc477d02349",
+      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
+      "reviewedSha256": "91f5ca6af47782000f3f94c4a3b2d91ae4486d44c4ae8f4579ee7cd0bd985f15",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14471,8 +14488,8 @@
       ],
       "usageEvidence": "Update, IAutoPickup/IInteractable и feedback consumers",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -14693,13 +14710,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
-      "sha256": "f9bce2d033352bef52c91c55b09d61fa2540d88e58c340056dc91ede6b036b6d",
+      "sha256": "9c755dbd02aa4350d02612d7aae6b8af03b55a67523d65a6c498995845096740",
       "baselineSha256": "596fb7c3e90acf823fc8ecc665be76ec2f257bc91f18efb1d501753fb846d9aa",
       "guid": "a7c2f849920eead45b86e58e62166543",
       "types": [
         "PlayerWeapon2D"
       ],
-      "lines": 378,
+      "lines": 379,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -14749,8 +14766,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
-      "reviewedSha256": "f9bce2d033352bef52c91c55b09d61fa2540d88e58c340056dc91ede6b036b6d",
+      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
+      "reviewedSha256": "9c755dbd02aa4350d02612d7aae6b8af03b55a67523d65a6c498995845096740",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14784,8 +14801,8 @@
       ],
       "usageEvidence": "Player prefab/scene overrides; loot/checkpoint/audio/HUD",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -14868,13 +14885,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
-      "sha256": "77378bfa314bafa80acd1a04f01948550a4769df1d7c8554ecb0809c4b9498e4",
+      "sha256": "645dc3c96cba78a9202a27d0f7691efb298170c462cbedfa94e3966dfef0bd19",
       "baselineSha256": "19545652a3329fadd847a8cd2c53a3783e942f37fa848df947b0158a4ae0d91e",
       "guid": "51418a3b25a1e234cbefe1b1b6f6ebec",
       "types": [
         "LevelAudioDirector2D"
       ],
-      "lines": 437,
+      "lines": 431,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelAudio.prefab"
       ],
@@ -14899,8 +14916,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "PresentationConfig13: readonly validated profile и defaults перенесённых параметров проверены. Perception/memory/mood/clock/DSP ещё объединены в MB; static emitters/lamp queries и общий model/controller/style pass открыты.",
-      "reviewedSha256": "77378bfa314bafa80acd1a04f01948550a4769df1d7c8554ecb0809c4b9498e4",
+      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
+      "reviewedSha256": "645dc3c96cba78a9202a27d0f7691efb298170c462cbedfa94e3966dfef0bd19",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14922,8 +14939,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PresentationConfig13.md",
-      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -15696,13 +15713,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
-      "sha256": "0bf75bd967f5b66f88ac487851335d6b1afbca0632d3818a9dbaf13a372a6252",
+      "sha256": "c200fd24f6ba4339a0da66c7fa22046606f8f26b7349cf24375562b5ece65646",
       "baselineSha256": "0bf75bd967f5b66f88ac487851335d6b1afbca0632d3818a9dbaf13a372a6252",
       "guid": "52f3d9d541841ba4783acf4f960c88f6",
       "types": [
         "ShotEffect2D"
       ],
-      "lines": 212,
+      "lines": 214,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Combat/PistolShotEffect.prefab"
       ],
@@ -15721,14 +15738,22 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalIlluminationQuery2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Static mutable registry, нет scene filter/Subsystem reset. Вспышка помогает видимости подбора, не становится IThreatLight для AI. OnDisable удаляет запись, свет заканчивается с plume. Play выделяет arrays/MPB; стоимость не измерялась. Cosmetic Random потребляет gameplay-global stream (BUG-010); не вводить пул автоматически.",
+      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Вспышка/плюм/impact, локальный свет и запрос видимости",
@@ -15739,10 +15764,11 @@
         "Unity Random/Time"
       ],
       "usageEvidence": "PlayerWeapon/Bullet Instantiate→Play; PlayerInteraction.IlluminatesPoint для подбора",
-      "reviewedSha256": "0bf75bd967f5b66f88ac487851335d6b1afbca0632d3818a9dbaf13a372a6252",
+      "reviewedSha256": "c200fd24f6ba4339a0da66c7fa22046606f8f26b7349cf24375562b5ece65646",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
@@ -16268,7 +16294,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -16646,14 +16673,47 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalIlluminationQuery2D.cs",
+      "sourceScope": "unity",
+      "sha256": "0481190065da59798a7df2957c02440920ffad34525b3528fcc1dfa09d3a17af",
+      "guid": "c2b2753872804248989970ff1501d02d",
+      "types": [
+        "LocalIlluminationQuery2D"
+      ],
+      "lines": 53,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "0481190065da59798a7df2957c02440920ffad34525b3528fcc1dfa09d3a17af",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
-      "sha256": "2e6d194856cf3aac204ca65157b30bb3b364aa5bfa7dd5abc03cb255bceb4ab7",
+      "sha256": "e2dbe4b526b91ae2b560684b0c64f71edf9fdd9644cbce96fdea1c5373fd5392",
       "baselineSha256": "5609ff3341ae1d0cfcde5048bb68dbbc9593480b10a999832fb15a2872ee0673",
       "guid": "035ebd6dd9cb57943ad66d69e5c6e6fc",
       "types": [
         "LocalLamp2D"
       ],
-      "lines": 266,
+      "lines": 263,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Environment/HospitalLamp01.prefab",
         "Assets/EmergencyShift/Prefabs/Environment/PracticalLights01/emergency-beacon.prefab",
@@ -16673,14 +16733,21 @@
         "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/CeilingLightOcclusion2D.cs",
-        "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampConfiguration2D.cs"
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalIlluminationQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampConfiguration2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "LightingConfig14: readonly light profile getters и finite color/clock проверены; текущие assets/сцены не менялись. Power/visibility/Time ещё в MB; static Active/AnyIlluminates без scoped query остаются открытым долгом.",
+      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16700,10 +16767,10 @@
         "Light2D"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 6; сцены по графу: 5.",
-      "reviewedSha256": "2e6d194856cf3aac204ca65157b30bb3b364aa5bfa7dd5abc03cb255bceb4ab7",
+      "reviewedSha256": "e2dbe4b526b91ae2b560684b0c64f71edf9fdd9644cbce96fdea1c5373fd5392",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightingConfig14.md",
-      "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -17448,26 +17515,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "51 mandatory-boolean regressions",
-      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "fec05b2d4adc95236d7fe496e204b4dbabf01fbe6fbf31f9a0a143e29fe63f70",
+      "reviewedSha256": "032f4b0310aa3560ce89cc230ea0f8634284d4a4d85529d4d54ed8f9baad3e9d",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
-      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
       "sourceScope": "unity",
-      "sha256": "fec05b2d4adc95236d7fe496e204b4dbabf01fbe6fbf31f9a0a143e29fe63f70",
+      "sha256": "032f4b0310aa3560ce89cc230ea0f8634284d4a4d85529d4d54ed8f9baad3e9d",
       "guid": "6ff5dbeb7ad7232408aff07bf6b131e2",
       "types": [
         "CheckpointBooleanTests",
         "ConsumedRead"
       ],
-      "lines": 230,
+      "lines": 231,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -17488,26 +17555,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "WeaponCatalog21: readonly DefinitionCount/At, ранние duplicate/missing IDs/slot guards либо fixture/regression boundary проверены; serialized weapons/object refs и save DTO поля сохранены. Runtime transient object-ref JSON и текущие каталоги проверены.",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "b8d416c174d30df78880df5711a8792a5ba9982239c6eabefc4175f7a81a73bd",
+      "reviewedSha256": "c616305be3fa34abb71c2fd6295fe07bb0ac6d13e996c49540823a5defc6487d",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponCatalog21.md",
-      "reviewScope": "Full source read: readonly catalog array boundary and ID/slot validation before Find/ToSettings, original serialized weapons refs, deliberate Editor/transient probe fixture writes, native inventory/save and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "b8d416c174d30df78880df5711a8792a5ba9982239c6eabefc4175f7a81a73bd",
+      "sha256": "c616305be3fa34abb71c2fd6295fe07bb0ac6d13e996c49540823a5defc6487d",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 454,
+      "lines": 455,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -17727,13 +17794,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
-      "sha256": "1b00c485aea19e6dd5bb33896e31708a47b56595aa9b8303fc2a085b521e9a88",
+      "sha256": "6f4533dc22efb53ad44685f0a6f8a3e9006e168b3bd0d3b5548266d745aeaa94",
       "baselineSha256": "549c8f90df85df5dfd33f7a80c2e8f221c75f9edf29a2d58a68707214c897af7",
       "guid": "b8d1047311c3cee48b6b3d867e9708d2",
       "types": [
         "DoorAccessTests"
       ],
-      "lines": 86,
+      "lines": 87,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -17741,7 +17808,7 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17761,10 +17828,10 @@
         "DoorAccess/cards/PlayerInteraction GameObjects"
       ],
       "usageEvidence": "3 Test метода; source read only",
-      "reviewedSha256": "1b00c485aea19e6dd5bb33896e31708a47b56595aa9b8303fc2a085b521e9a88",
+      "reviewedSha256": "6f4533dc22efb53ad44685f0a6f8a3e9006e168b3bd0d3b5548266d745aeaa94",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -18111,6 +18178,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs"
@@ -18192,6 +18260,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
@@ -19253,6 +19322,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
@@ -19650,6 +19720,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
@@ -19903,26 +19974,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "5 real PlayMode pending-save lifetime regressions",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "72f1428c7b0307c95200ee01d0b306f762fac0e189ec39c7079fcb3432863354",
+      "reviewedSha256": "235dbe135405f52d5fc3318387f5d54b3c36447f767372ab8ce577fe6e880739",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "72f1428c7b0307c95200ee01d0b306f762fac0e189ec39c7079fcb3432863354",
+      "sha256": "235dbe135405f52d5fc3318387f5d54b3c36447f767372ab8ce577fe6e880739",
       "guid": "c44326cf15c577e4b89031b64fcda0ca",
       "types": [
         "CheckpointSaveLifetimeTests",
         "TestClock"
       ],
-      "lines": 217,
+      "lines": 218,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -19944,10 +20015,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "328f1ffa5f02d128c4b03d12bfd19a3d0370d96ab4c23a916d5e5c687fb5554a",
+      "sha256": "2b931a64602d59f8425bbd6670cfae1c6673699c9094feb9728777e181915df1",
       "guid": "c2c48a0bbae36354798d6f696ebd9cfc",
       "types": [
         "DialogueSessionLifetimeTests",
@@ -19955,7 +20026,7 @@
         "RealScale",
         "TestInput"
       ],
-      "lines": 233,
+      "lines": 234,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -19963,10 +20034,10 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "328f1ffa5f02d128c4b03d12bfd19a3d0370d96ab4c23a916d5e5c687fb5554a",
+      "reviewedSha256": "2b931a64602d59f8425bbd6670cfae1c6673699c9094feb9728777e181915df1",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -20153,24 +20224,47 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
       "sourceScope": "unity",
-      "sha256": "93f0a076be9d881ed22a2552f11f35837835f2bfe965f83aa96e0c0d0061cc2b",
+      "sha256": "abffc45b113916676c5e2beae8093ca77c4514dbfdae8aa38ac10fd86c57df63",
       "guid": "ccb3dbaa8bb8491ca9f8bb382497aaea",
       "types": [
         "InteractionSceneTests"
       ],
-      "lines": 105,
+      "lines": 106,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "93f0a076be9d881ed22a2552f11f35837835f2bfe965f83aa96e0c0d0061cc2b",
+      "reviewedSha256": "abffc45b113916676c5e2beae8093ca77c4514dbfdae8aa38ac10fd86c57df63",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "0c07e892031d80cf0ca4ff1f25d28aa66affe740603968f9bfbfed8625ca411a",
+      "guid": "8e8fc5925f014ad9a6b8db5f501aaa28",
+      "types": [
+        "LightScopeSceneTests"
+      ],
+      "lines": 156,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "0c07e892031d80cf0ca4ff1f25d28aa66affe740603968f9bfbfed8625ca411a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -20255,24 +20349,24 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
       "sourceScope": "unity",
-      "sha256": "944cc078f1e6158fdd9d661aba88c9f191b9d505c046b1e8e976f76d0ff944f7",
+      "sha256": "c55223f25ce3d97f2b5526539b0120da29977f2f8dee86e88ff9a3a5a2e8fccd",
       "guid": "ad3421187d2a435bb84a328f2834e240",
       "types": [
         "ProjectileSceneOwnershipTests"
       ],
-      "lines": 194,
+      "lines": 199,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "944cc078f1e6158fdd9d661aba88c9f191b9d505c046b1e8e976f76d0ff944f7",
+      "reviewedSha256": "c55223f25ce3d97f2b5526539b0120da29977f2f8dee86e88ff9a3a5a2e8fccd",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -20356,10 +20450,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
+      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "3c5bec667db5798f9e5f17a2f8f621b92cee0250fd7239c79e6ea2cdf1ac6aa5",
+      "sha256": "43257c411dfc041de1e58c2a26bcc3fbed874c5d73747fd9c497444a84f136fb",
       "guid": "f6f7021931ae9294a9d8993c8238be40",
       "types": [
         "RealClock",
@@ -20367,7 +20461,7 @@
         "TestInput",
         "WeaponSpreadLifetimeTests"
       ],
-      "lines": 331,
+      "lines": 334,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -20375,10 +20469,10 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "3c5bec667db5798f9e5f17a2f8f621b92cee0250fd7239c79e6ea2cdf1ac6aa5",
+      "reviewedSha256": "43257c411dfc041de1e58c2a26bcc3fbed874c5d73747fd9c497444a84f136fb",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LightScopes22.md",
+      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -20803,7 +20897,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 505,
+    "unity": 507,
     "content_source": 8
   },
   "latestReview": {
@@ -20954,11 +21048,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 524,
-    "totalFiles": 524,
+    "reviewedFiles": 526,
+    "totalFiles": 526,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "WeaponCatalog21 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "LightScopes22 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

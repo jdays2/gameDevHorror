@@ -1,4 +1,5 @@
 using System;
+using EmergencyShift.Core.Composition;
 using EmergencyShift.Features.Projectiles;
 using EmergencyShift.Features.Projectiles.Logic;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace EmergencyShift
         private ShotEffect2D effectPrefab;
         private LayerMask collisionMask;
         private ProjectileFlightControllerFactory factory;
+        private ScenePrefabFactory prefabs;
         private ProjectileFlightController controller;
         private RaycastHit2D collision;
         private int volleyId;
@@ -34,7 +36,11 @@ namespace EmergencyShift
         public Vector2 FlightDirection => controller?.Model.Direction ?? Vector2.zero;
 
         [Inject]
-        private void Construct(ProjectileFlightControllerFactory flightFactory) => factory = flightFactory;
+        private void Construct(ProjectileFlightControllerFactory flightFactory, ScenePrefabFactory scenePrefabs)
+        {
+            factory = flightFactory ?? throw new ArgumentNullException(nameof(flightFactory));
+            prefabs = scenePrefabs ?? throw new ArgumentNullException(nameof(scenePrefabs));
+        }
 
         public void ConfigureVisual(SpriteRenderer streak, SpriteRenderer head, Light2D light)
         {
@@ -135,8 +141,8 @@ namespace EmergencyShift
             Vector2 point = collision.centroid - direction * .01f;
             if (ImpactSurface2D.Resolve(collision.collider) != ImpactMaterial.Flesh)
             {
-                var effect = Instantiate(effectPrefab, new Vector3(point.x, point.y, -.1f), Quaternion.identity,
-                    new InstantiateParameters { scene = gameObject.scene, worldSpace = true });
+                var effect = prefabs.Instantiate(effectPrefab.gameObject,
+                    new Vector3(point.x, point.y, -.1f), Quaternion.identity).GetComponent<ShotEffect2D>();
                 effect.Play(profile, true, -direction);
             }
         }

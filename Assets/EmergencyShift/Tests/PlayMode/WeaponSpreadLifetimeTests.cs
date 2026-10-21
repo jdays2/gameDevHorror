@@ -189,10 +189,13 @@ namespace EmergencyShift.Tests
             weapon.Configure(pivot, muzzle, bullet, effect, definition.Visuals);
             var projectileScope = new DiContainer();
             ProjectileInstaller.Install(projectileScope);
+            projectileScope.Bind<SceneRegistry<ShotEffect2D>>().AsSingle();
+            var prefabs = new ScenePrefabFactory(projectileScope, root.transform);
+            projectileScope.Bind<ScenePrefabFactory>().FromInstance(prefabs);
             typeof(PlayerWeapon2D).GetMethod("Construct", BindingFlags.Instance | BindingFlags.NonPublic)
                 .Invoke(weapon, new object[] { new TestInput(), new GameplayInputBlock(),
                     new WeaponControllerFactory(new RealClock(), new RandomSourceFactory(new System.Random(seed))),
-                    new ScenePrefabFactory(projectileScope, root.transform) });
+                    prefabs });
             root.SetActive(true);
             Assert.That(weapon.Acquire(12, definition), Is.True);
             return weapon;

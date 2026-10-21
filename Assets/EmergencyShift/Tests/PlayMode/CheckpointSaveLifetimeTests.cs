@@ -35,7 +35,8 @@ namespace EmergencyShift.Tests
             player = hero.AddComponent<PlayerLife2D>();
             Set(player, "model", new HealthModelFactory(new TestClock()).Create(new HealthSettings(2, 0)));
             hero.AddComponent<PlayerInteraction>().Construct(null, new GameplayInputBlock(),
-                new Core.Composition.SceneRegistry<Door2D>(), new Features.Interaction.PlayerInteractionControllerFactory(new TestClock()));
+                new Core.Composition.SceneRegistry<Door2D>(), new Features.Interaction.PlayerInteractionControllerFactory(new TestClock()),
+                new LocalIlluminationQuery2D(new Core.Composition.SceneRegistry<LocalLamp2D>(), new Core.Composition.SceneRegistry<ShotEffect2D>()));
             cards = hero.AddComponent<PlayerAccessCards2D>();
             cards.Construct(new EmergencyShift.Features.AccessControl.AccessControlFactory());
             definition = ScriptableObject.CreateInstance<LevelDefinition>();

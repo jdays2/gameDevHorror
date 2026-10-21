@@ -38,10 +38,11 @@ namespace EmergencyShift
         private IPlayerInput input;
         private GameplayInputBlock inputBlock;
         private SceneRegistry<Door2D> doorRegistry;
+        private LocalIlluminationQuery2D lights;
 
         [Inject]
         public void Construct(IPlayerInput playerInput, GameplayInputBlock block, SceneRegistry<Door2D> sceneDoors,
-            PlayerInteractionControllerFactory factory)
+            PlayerInteractionControllerFactory factory, LocalIlluminationQuery2D illumination)
         {
             if (selection != null)
             {
@@ -56,6 +57,7 @@ namespace EmergencyShift
             input = playerInput;
             inputBlock = block ?? throw new ArgumentNullException(nameof(block));
             doorRegistry = sceneDoors ?? throw new ArgumentNullException(nameof(sceneDoors));
+            lights = illumination ?? throw new ArgumentNullException(nameof(illumination));
             var settings = new PlayerInteractionSettings(reach, selectionTieDistance, notificationSeconds, maximumPendingNotices);
             selection = factory.Create(settings, this);
             notices = factory.CreateNotices(settings);
@@ -144,7 +146,12 @@ namespace EmergencyShift
 
         public bool IsCurrentlyLit(Vector2 point)
         {
-            return (flashlight != null && flashlight.Illuminates(point, blockingGeometry)) || LocalLamp2D.AnyIlluminates(point, blockingGeometry) || ShotEffect2D.IlluminatesPoint(point, blockingGeometry);
+            if (lights == null)
+            {
+                throw new InvalidOperationException("Player visibility requires level composition.");
+            }
+
+            return (flashlight != null && flashlight.Illuminates(point, blockingGeometry)) || lights.AnyIlluminates(gameObject.scene, point, blockingGeometry);
         }
 
         public void RefreshTarget() => RequireSelection().Refresh();

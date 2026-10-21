@@ -24,11 +24,13 @@ namespace EmergencyShift
         private float volume = 1;
         private PlayerWeapon2D weapon;
         private WorldMotionPause motionPause;
+        private LocalIlluminationQuery2D lights;
 
         [Inject]
-        private void Construct(WorldMotionPause pause, PlayerLife2D scenePlayer, Flashlight2D sceneLight)
+        private void Construct(WorldMotionPause pause, PlayerLife2D scenePlayer, Flashlight2D sceneLight, LocalIlluminationQuery2D illumination)
         {
             motionPause = pause;
+            lights = illumination;
             if (player == null)
             {
                 player = scenePlayer;
@@ -349,15 +351,7 @@ namespace EmergencyShift
                 return false;
             }
 
-            foreach (var lamp in LocalLamp2D.Active)
-            {
-                if (lamp != null && lamp.gameObject.scene == gameObject.scene && lamp.Illuminates(point, source.Obstacles))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return lights.AnyLampIlluminates(gameObject.scene, point, source.Obstacles);
         }
 
         private void StartLayers()

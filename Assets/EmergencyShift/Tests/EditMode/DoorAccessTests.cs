@@ -26,7 +26,8 @@ namespace EmergencyShift.Tests
             cards.Construct(new AccessControlFactory());
             actor = actorObject.AddComponent<PlayerInteraction>();
             actor.Construct(null, new GameplayInputBlock(), new Core.Composition.SceneRegistry<Door2D>(),
-                new Features.Interaction.PlayerInteractionControllerFactory(new UnityGameClock()));
+                new Features.Interaction.PlayerInteractionControllerFactory(new UnityGameClock()),
+                new LocalIlluminationQuery2D(new Core.Composition.SceneRegistry<LocalLamp2D>(), new Core.Composition.SceneRegistry<ShotEffect2D>()));
         }
 
         [TearDown]

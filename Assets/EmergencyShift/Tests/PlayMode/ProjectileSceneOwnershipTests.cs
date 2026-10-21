@@ -141,7 +141,10 @@ namespace EmergencyShift.Tests
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Combat/PistolBullet.prefab");
             var scope = new DiContainer();
             ProjectileInstaller.Install(scope);
-            return new ScenePrefabFactory(scope, owner).Instantiate(prefab, Vector3.zero, Quaternion.identity).GetComponent<BulletProjectile2D>();
+            scope.Bind<SceneRegistry<ShotEffect2D>>().AsSingle();
+            var prefabs = new ScenePrefabFactory(scope, owner);
+            scope.Bind<ScenePrefabFactory>().FromInstance(prefabs);
+            return prefabs.Instantiate(prefab, Vector3.zero, Quaternion.identity).GetComponent<BulletProjectile2D>();
         }
 
         private IEnumerator Verify(bool unload)
@@ -159,7 +162,9 @@ namespace EmergencyShift.Tests
             ProjectileProbeTarget behindWall = Target("Behind thin wall", .7f);
             var scope = new DiContainer();
             ProjectileInstaller.Install(scope);
+            scope.Bind<SceneRegistry<ShotEffect2D>>().AsSingle();
             var prefabs = new ScenePrefabFactory(scope, shooter.transform);
+            scope.Bind<ScenePrefabFactory>().FromInstance(prefabs);
             var bullet = prefabs.Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity).GetComponent<BulletProjectile2D>();
             bullet.Launch(shooter.transform, Vector2.right, definition.Visuals, effectPrefab, (1 << 8) | (1 << 9), 1, 2);
             Physics2D.SyncTransforms();

@@ -334,8 +334,8 @@ namespace EmergencyShift
                 CasingEjected?.Invoke();
             }
 
-            var spawn = new InstantiateParameters { scene = gameObject.scene, worldSpace = true };
-            var flash = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -.1f), Quaternion.identity, spawn);
+            var flash = projectilePrefabs.Instantiate(effectPrefab.gameObject,
+                new Vector3(origin.x, origin.y, -.1f), Quaternion.identity).GetComponent<ShotEffect2D>();
             flash.Play(visualProfile, false, direction);
             if (shotShadow != null)
             {
@@ -355,7 +355,8 @@ namespace EmergencyShift
             else
             {
                 ReportImpact(pendingMuzzleHit.collider, pendingMuzzleHit.point, plan.VolleyId);
-                var impact = Instantiate(effectPrefab, new Vector3(origin.x, origin.y, -.1f), Quaternion.identity, spawn);
+                var impact = projectilePrefabs.Instantiate(effectPrefab.gameObject,
+                    new Vector3(origin.x, origin.y, -.1f), Quaternion.identity).GetComponent<ShotEffect2D>();
                 impact.Play(visualProfile, true, -direction);
             }
         }

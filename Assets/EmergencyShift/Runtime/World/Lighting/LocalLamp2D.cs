@@ -1,6 +1,8 @@
-using System.Collections.Generic;
+using System;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -8,8 +10,18 @@ namespace EmergencyShift
     [RequireComponent(typeof(Light2D)), DisallowMultipleComponent]
     public sealed class LocalLamp2D : MonoBehaviour
     {
-        private static readonly List<LocalLamp2D> active = new List<LocalLamp2D>();
-        public static IReadOnlyList<LocalLamp2D> Active => active;
+        private SceneRegistry<LocalLamp2D> registry;
+
+        [Inject]
+        public void Construct(SceneRegistry<LocalLamp2D> lamps)
+        {
+            registry?.Remove(this);
+            registry = lamps ?? throw new ArgumentNullException(nameof(lamps));
+            if (isActiveAndEnabled)
+            {
+                registry.Register(this);
+            }
+        }
 
         [SerializeField]
         private Light2D source;
@@ -94,10 +106,7 @@ namespace EmergencyShift
 
         private void OnEnable()
         {
-            if (!active.Contains(this))
-            {
-                active.Add(this);
-            }
+            registry?.Register(this);
 
             if (!Application.isPlaying)
             {
@@ -109,7 +118,7 @@ namespace EmergencyShift
 
         private void OnDisable()
         {
-            active.Remove(this);
+            registry?.Remove(this);
             if (source != null)
             {
                 source.enabled = false;
@@ -250,17 +259,5 @@ namespace EmergencyShift
             return isActiveAndEnabled && CurrentIntensity * (1 - distance / Radius) > .10f && distance < Radius * .9f && Physics2D.Linecast(Origin, point, opaque).collider == null;
         }
 
-        public static bool AnyIlluminates(Vector2 point, LayerMask opaque)
-        {
-            foreach (var lamp in active)
-            {
-                if (lamp != null && lamp.Illuminates(point, opaque))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
     }
 }

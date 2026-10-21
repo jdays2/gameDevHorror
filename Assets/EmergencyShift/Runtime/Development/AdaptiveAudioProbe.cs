@@ -201,6 +201,7 @@ namespace EmergencyShift
             lampObject.transform.position = new Vector3(103, 100.2f, 0);
             var light = lampObject.AddComponent<Light2D>();
             var lamp = lampObject.AddComponent<LocalLamp2D>();
+            context.InjectScoped(lamp);
             lamp.Configure(light, null, Color.white, false);
             lamp.SetPower(true);
             yield return new WaitForSeconds(.3f);
