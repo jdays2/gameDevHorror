@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "469 own C# explicitly read; 93 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest ProjectileOwnership10.",
+  "limits": "477 own C# explicitly read; 93 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PlayerFootsteps11.",
   "counts": {
     "partial": 93,
-    "reviewed_boundary": 376
+    "reviewed_boundary": 384
   },
   "files": [
     {
@@ -2070,6 +2070,8 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementController.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs"
       ],
@@ -2150,6 +2152,7 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs"
       ],
       "entryPointHints": [],
@@ -2909,6 +2912,8 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
@@ -2917,6 +2922,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -4679,6 +4685,9 @@
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs"
       ],
       "entryPointHints": [],
@@ -4778,7 +4787,10 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs"
       ],
       "entryPointHints": [
@@ -4942,6 +4954,9 @@
         "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs"
       ],
       "entryPointHints": [],
@@ -11017,6 +11032,187 @@
       "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Config/PlayerFootstepSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "6562f8a8cd6270f9bfc8a889e2a90e13e9a228c08a348ab75ae18938a72fc746",
+      "guid": "f5592705bf154ff0b509eace948e9c02",
+      "types": [
+        "PlayerFootstepSettings"
+      ],
+      "lines": 26,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "6562f8a8cd6270f9bfc8a889e2a90e13e9a228c08a348ab75ae18938a72fc746",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/IPlayerFootstepView.cs",
+      "sourceScope": "unity",
+      "sha256": "ecf39838844c920fd4e65f7db4f39588a436e0f0d30840e4643bcde66e4906db",
+      "guid": "9b94c1b3db4a420e95f40b5da016cc9e",
+      "types": [
+        "IPlayerFootstepView"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "ecf39838844c920fd4e65f7db4f39588a436e0f0d30840e4643bcde66e4906db",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
+      "sourceScope": "unity",
+      "sha256": "2cda876392e5cac52959d87f7fb076dfb418ce892557de6282773e73a1c98dfa",
+      "guid": "dfefb643ebeb4c518c0c1c1a5884378c",
+      "types": [
+        "PlayerFootstepController"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "2cda876392e5cac52959d87f7fb076dfb418ce892557de6282773e73a1c98dfa",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepModel.cs",
+      "sourceScope": "unity",
+      "sha256": "1aa506b6f03ed1fae297745c7a723ec292f07ea4952facff0fec322e214c6d5a",
+      "guid": "2af74621787043d1bbd8721fe93ceabd",
+      "types": [
+        "PlayerFootstepModel"
+      ],
+      "lines": 96,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1aa506b6f03ed1fae297745c7a723ec292f07ea4952facff0fec322e214c6d5a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "3ac2e2518ac4ed2d84ef5f96d9363f1b5b286f2a5a090d71fc5c07a48eab2166",
+      "guid": "291ab41a0818430dba160241982e1679",
+      "types": [
+        "ResetFootstepCommand"
+      ],
+      "lines": 31,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "3ac2e2518ac4ed2d84ef5f96d9363f1b5b286f2a5a090d71fc5c07a48eab2166",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "45bd0f0a0f75f33a545a693f1204e849737f02d01c0f6a8f9a0f097bd8352634",
+      "guid": "478a369e825e4b63a99e82bbcc8f7a49",
+      "types": [
+        "PlayerFootstepControllerFactory"
+      ],
+      "lines": 15,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "45bd0f0a0f75f33a545a693f1204e849737f02d01c0f6a8f9a0f097bd8352634",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "6651496131d706a6d678173fab2e7a5709d02f6b050281cd3a8eecc8585ea322",
+      "guid": "2e8dbe3a4da045899a80cc920fb3b014",
+      "types": [
+        "PlayerFootstepInstaller"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "6651496131d706a6d678173fab2e7a5709d02f6b050281cd3a8eecc8585ea322",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Features/PlayerInput/Logic/IPlayerInput.cs",
       "sha256": "14642eead37da8e3cbc87be505fb7d7492b29c0495c3ce99816f1687d041a629",
       "baselineSha256": null,
@@ -11414,13 +11610,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "9b10f901bf451e277778c00778a431b865d823e4719e302dd675c1924fe4ec71",
+      "sha256": "63e6784b2aee3e6dc9cefc0300c6db56b6215063746caca29e4cdbaf2cd9fc56",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 215,
+      "lines": 217,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -11465,8 +11661,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "DoorMotion08: личная модель/команды/factory/installer или regression boundary; clock timeline и Unity leaf разделены, проверки пройдены.",
-      "reviewedSha256": "9b10f901bf451e277778c00778a431b865d823e4719e302dd675c1924fe4ec71",
+      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
+      "reviewedSha256": "63e6784b2aee3e6dc9cefc0300c6db56b6215063746caca29e4cdbaf2cd9fc56",
       "previousReviewStatus": "reviewed_boundary",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -11479,8 +11675,8 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/DoorMotion08.md",
-      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified.",
       "reviewHistory": [
         {
           "reviewDate": "2026-10-21",
@@ -13211,13 +13407,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
-      "sha256": "88f16723c428adcedb26e2c4e04ca591c8d83eba5b493363e280d50154ff2cd9",
+      "sha256": "3acec1ed29c5952b22661e633be23cfaafa036d3a3a88ec57904118d874aa1ca",
       "baselineSha256": "2b235def8b1c88b3049d7a27805397ce0c7bcf7a696fd23133351f0d93123613",
       "guid": "16cf2393ae1752a49abf3bc0dc96883c",
       "types": [
         "PlayerFootsteps2D"
       ],
-      "lines": 166,
+      "lines": 149,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab"
       ],
@@ -13240,8 +13436,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Реальное перемещение, wall/teleport protection, scoped surface/RNG и Stop при disable; distance/timing/mix state всё ещё в MB.",
-      "reviewedSha256": "88f16723c428adcedb26e2c4e04ca591c8d83eba5b493363e280d50154ff2cd9",
+      "notes": "PlayerFootsteps11: личный stride/clock/controller отделён от физики/аудио; три покрытия/телепорт/тишина/смерть проверены. distance/interval остаются serialized compatibility bridge; общий SO config-pass открыт.",
+      "reviewedSha256": "3acec1ed29c5952b22661e633be23cfaafa036d3a3a88ec57904118d874aa1ca",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13263,8 +13459,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
@@ -16087,6 +16284,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -16583,6 +16781,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -16676,6 +16875,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -16746,6 +16946,7 @@
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -16812,6 +17013,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -17528,6 +17730,72 @@
       "previousReviewStatus": "partial"
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerFootsteps11: личные stride/cadence/clock/reset/controller/factory или regression boundary; исходные клипы/поверхности и RNG сохранены, проверки пройдены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+      "sourceScope": "unity",
+      "sha256": "2453b9498b9e55ed5659f9f8a4b3d7313fb00131869fe193eeeedfb3372ba754",
+      "guid": "1178f0ed010145f09089d89a66488ea4",
+      "types": [
+        "Clock",
+        "PlayerFootstepTests",
+        "View"
+      ],
+      "lines": 171,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/CheckDirectionalDamage.cs",
+        "AgentScripts/InstallDirectionalDamage.cs",
+        "AgentScripts/InstallPauseMenu.cs",
+        "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "2453b9498b9e55ed5659f9f8a4b3d7313fb00131869fe193eeeedfb3372ba754",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
+      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified."
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
       "sha256": "b87878e112898ae41c59e7d474e41039d9635f5c87eea1985ac137cb9cc56e4f",
       "baselineSha256": null,
@@ -17702,6 +17970,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
@@ -17814,6 +18083,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
@@ -18949,7 +19219,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 450,
+    "unity": 458,
     "content_source": 8
   },
   "latestReview": {
@@ -19100,11 +19370,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 469,
-    "totalFiles": 469,
+    "reviewedFiles": 477,
+    "totalFiles": 477,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "ProjectileOwnership10 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "PlayerFootsteps11 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

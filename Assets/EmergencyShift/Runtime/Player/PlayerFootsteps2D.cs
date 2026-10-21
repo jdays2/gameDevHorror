@@ -1,4 +1,7 @@
 using EmergencyShift.Core.Randomness;
+using EmergencyShift.Features.PlayerFootsteps;
+using EmergencyShift.Features.PlayerFootsteps.Config;
+using EmergencyShift.Features.PlayerFootsteps.Logic;
 using UnityEngine;
 using Zenject;
 
@@ -6,7 +9,7 @@ namespace EmergencyShift
 {
     /// <summary>Contacts follow real travel, so walking into a wall or teleporting produces no fake steps.</summary>
     [DisallowMultipleComponent, RequireComponent(typeof(Rigidbody2D), typeof(PlayerLife2D))]
-    public sealed class PlayerFootsteps2D : MonoBehaviour
+    public sealed class PlayerFootsteps2D : MonoBehaviour, IPlayerFootstepView
     {
         [SerializeField]
         private PlayerWorldAudioSet sounds;
@@ -22,9 +25,8 @@ namespace EmergencyShift
         private float pitchVariation = .025f;
         private Rigidbody2D body;
         private PlayerLife2D life;
-        private Vector2 previous;
-        private float travelled;
-        private float nextStep;
+        private PlayerFootstepControllerFactory controllers;
+        private PlayerFootstepController controller;
         private bool left;
         private readonly int[] last =
         {
@@ -44,10 +46,12 @@ namespace EmergencyShift
         }
 
         [Inject]
-        private void Construct(GroundAudioSurfaceQuery2D groundSurfaces, RandomSourceFactory randomSources)
+        private void Construct(GroundAudioSurfaceQuery2D groundSurfaces, RandomSourceFactory randomSources,
+            PlayerFootstepControllerFactory footstepControllers)
         {
             surfaces = groundSurfaces;
             random = randomSources.Create();
+            controllers = footstepControllers;
         }
 
         private void Awake()
@@ -56,6 +60,7 @@ namespace EmergencyShift
             life = GetComponent<PlayerLife2D>();
             Prepare(leftSource);
             Prepare(rightSource);
+            controller = controllers.Create(new PlayerFootstepSettings(distancePerStep, minimumInterval), this);
         }
 
         private static void Prepare(AudioSource source)
@@ -77,43 +82,18 @@ namespace EmergencyShift
         {
             if (body != null)
             {
-                previous = body.position;
+                controller.Reset(body.position);
             }
-
-            travelled = 0;
-            nextStep = 0;
         }
 
         private void Update()
         {
-            Vector2 position = body.position;
-            float distance = Vector2.Distance(position, previous);
-            previous = position;
-            if (life.IsDead || !body.simulated || Time.timeScale <= 0 || distance > 2f)
-            {
-                travelled = 0;
-                return;
-            }
+            controller.Sample(body.position, body.linearVelocity.sqrMagnitude,
+                !life.IsDead && body.simulated && Time.timeScale > 0);
+        }
 
-            // Render frames may occur between physics ticks; do not erase a partial stride then.
-            if (distance < .00001f)
-            {
-                if (body.linearVelocity.sqrMagnitude < .001f)
-                {
-                    travelled = 0;
-                }
-
-                return;
-            }
-
-            travelled += distance;
-            if (travelled < distancePerStep || Time.time < nextStep)
-            {
-                return;
-            }
-
-            travelled %= distancePerStep;
-            nextStep = Time.time + minimumInterval;
+        void IPlayerFootstepView.PlayStep(Vector2 position)
+        {
             LastSurface = surfaces.At(position);
             var clips = sounds != null ? sounds.Steps(LastSurface) : null;
             if (clips == null || clips.Length == 0)
@@ -160,7 +140,10 @@ namespace EmergencyShift
                 rightSource.Stop();
             }
 
-            travelled = 0;
+            if (body != null)
+            {
+                controller?.Reset(body.position);
+            }
         }
     }
 }

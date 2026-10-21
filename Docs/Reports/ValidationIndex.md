@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Шаги игрока MVC | [PlayerFootsteps11](PlayerFootsteps11.md): 690/690 EditMode, 32/32 PlayMode, Windows64 success; личные stride/clock/controller, прежние клипы и реальные три покрытия. Общий config-pass открыт. |
 | Сцена выстрела · BUG-023 | [ProjectileOwnership10](ProjectileOwnership10.md): 3 red baseline → 671/671 EditMode, 32/32 PlayMode, Windows64 success; native impact/frozen unload, muzzle/pellets и blocked muzzle в сцене владельца. |
 | DTO останков | [RemainsDto09](RemainsDto09.md): 671/671 EditMode, 28/28 PlayMode, Windows64 success; value-only DTO и отдельный SpriteRenderer adapter, прежняя схема сохранения. Остальная генерация открыта. |
 | Движение двери MVC/DI | [DoorMotion08](DoorMotion08.md): 671/671 EditMode, 28/28 PlayMode, Windows64 success; clock/commands, cancel/restore/disable и настоящий leaf/collider. Config/interaction-pass открыт. |

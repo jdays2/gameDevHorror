@@ -1,0 +1,131 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "b214308d9e8de991f76673954247db35e5940da0",
+  "editMode": {
+    "result": "Passed",
+    "total": "690",
+    "passed": "690",
+    "failed": "0",
+    "end-time": "2026-10-21 17:57:58Z",
+    "rawPath": "work/sod-evidence-20261021/footstep-final-edit.xml",
+    "rawSha256": "b2ba2c6a77c71f214cff9bd72fa1c79fd8813d08b0167b5a0373cd289f0ce713",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.ContinuousSamplingDoesNotAllocateManagedObjects",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.DisabledDeadOrPausedTravelClearsStrideAndTracksPosition",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidCadenceIsRejected(0,0.2f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidCadenceIsRejected(float.NaN,0.2f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidCadenceIsRejected(float.PositiveInfinity,0.2f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidCadenceIsRejected(1,-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidCadenceIsRejected(1,float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidClockCannotEmitContact(double.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidClockCannotEmitContact(double.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidClockCannotEmitContact(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidResetIsAtomicAndInvalidSampleRecoversWithoutPhantomContact(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidResetIsAtomicAndInvalidSampleRecoversWithoutPhantomContact(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.InvalidResetIsAtomicAndInvalidSampleRecoversWithoutPhantomContact(float.MaxValue)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.MinimumIntervalDefersContactAndKeepsRemainderWithoutBurst",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.PersonalModelsAndViewsDoNotShareStride",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.RenderFramesBetweenPhysicsTicksPreservePartialStride",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.ResetClearsBothStrideAndCooldown",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.StandingAtWallClearsStrideEvenWhenInputCouldStillBeHeld",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerFootstepTests.TeleportDoesNotSoundOrCarryItsDistanceIntoNextStride",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "32",
+    "passed": "32",
+    "failed": "0",
+    "end-time": "2026-10-21 18:00:00Z",
+    "rawPath": "work/sod-evidence-20261021/footstep-final-play.xml",
+    "rawSha256": "0df79e97c9b473ee50621c65163de1a0536a85c1abc2d12417e81c766628c2ba",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.AdaptiveAudioProbeRegressionTests.ExistingOptInProbeCompletesDryFireAndAllThreeGroundMaterials",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T18:01:49.764Z",
+    "endedAt": "2026-10-21T18:02:20.900Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Config/PlayerFootstepSettings.cs": "6562f8a8cd6270f9bfc8a889e2a90e13e9a228c08a348ab75ae18938a72fc746",
+    "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/IPlayerFootstepView.cs": "ecf39838844c920fd4e65f7db4f39588a436e0f0d30840e4643bcde66e4906db",
+    "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs": "2cda876392e5cac52959d87f7fb076dfb418ce892557de6282773e73a1c98dfa",
+    "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepModel.cs": "1aa506b6f03ed1fae297745c7a723ec292f07ea4952facff0fec322e214c6d5a",
+    "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs": "3ac2e2518ac4ed2d84ef5f96d9363f1b5b286f2a5a090d71fc5c07a48eab2166",
+    "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs": "45bd0f0a0f75f33a545a693f1204e849737f02d01c0f6a8f9a0f097bd8352634",
+    "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepInstaller.cs": "6651496131d706a6d678173fab2e7a5709d02f6b050281cd3a8eecc8585ea322",
+    "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs": "3acec1ed29c5952b22661e633be23cfaafa036d3a3a88ec57904118d874aa1ca",
+    "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs": "63e6784b2aee3e6dc9cefc0300c6db56b6215063746caca29e4cdbaf2cd9fc56",
+    "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs": "2453b9498b9e55ed5659f9f8a4b3d7313fb00131869fe193eeeedfb3372ba754"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. SO config-pass and author input-feel acceptance remain open. Allocation test covers 1000 pure footstep samples/view callbacks, not Unity audio/FPS. Existing AdaptiveAudioProbe verifies actual three surfaces, teleport/standing/death; not new listening acceptance."
+}

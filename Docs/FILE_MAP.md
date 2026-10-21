@@ -424,6 +424,22 @@
 - [PauseMenuPresenter.cs](../Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs)
 - [PauseMenuView.cs](../Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs)
 
+## Assets/EmergencyShift/Runtime/Features/PlayerFootsteps
+
+- [PlayerFootstepControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs)
+- [PlayerFootstepInstaller.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Config
+
+- [PlayerFootstepSettings.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Config/PlayerFootstepSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic
+
+- [IPlayerFootstepView.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/IPlayerFootstepView.cs)
+- [PlayerFootstepController.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs)
+- [PlayerFootstepModel.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepModel.cs)
+- [ResetFootstepCommand.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/PlayerInput
 
 - [PlayerInputInstaller.cs](../Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs)
@@ -619,6 +635,7 @@
 - [PauseMenuEnvironmentTests.cs](../Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs)
 - [PauseMenuTests.cs](../Assets/EmergencyShift/Tests/EditMode/PauseMenuTests.cs)
 - [PersistenceTests.cs](../Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs)
+- [PlayerFootstepTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs)
 - [PlayerInputTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs)
 - [PlayerMovementTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)

@@ -10,6 +10,7 @@ using EmergencyShift.Features.Enemies;
 using EmergencyShift.Features.PlayerInput;
 using EmergencyShift.Features.PlayerMovement;
 using EmergencyShift.Features.Doors;
+using EmergencyShift.Features.PlayerFootsteps;
 using EmergencyShift.Features.PlayerInput.Logic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -112,6 +113,7 @@ namespace EmergencyShift
             EnemyInstaller.Install(Container);
             PlayerMovementInstaller.Install(Container);
             DoorMotionInstaller.Install(Container);
+            PlayerFootstepInstaller.Install(Container);
         }
 
         private void OnDestroy() => Dispose();
