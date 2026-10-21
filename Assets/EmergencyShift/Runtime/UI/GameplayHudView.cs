@@ -241,8 +241,8 @@ namespace EmergencyShift
 
             foreach (var row in weaponRows)
             {
-                bool owned = ownedWeapons.Contains(row.Definition.contentId);
-                bool active = weapon.HasWeapon && weapon.Definition.contentId == row.Definition.contentId;
+                bool owned = ownedWeapons.Contains(row.Definition.ContentId);
+                bool active = weapon.HasWeapon && weapon.Definition.ContentId == row.Definition.ContentId;
                 row.Present(owned, active, activeWeaponSlot, spareWeaponSlot, style.SpareOpacity);
             }
         }
@@ -256,7 +256,7 @@ namespace EmergencyShift
 
             foreach (var row in weaponRows)
             {
-                if (row.isActiveAndEnabled && weapon.HasWeapon && row.Definition.contentId == weapon.Definition.contentId)
+                if (row.isActiveAndEnabled && weapon.HasWeapon && row.Definition.ContentId == weapon.Definition.ContentId)
                 {
                     row.RefreshAmmunition(weapon);
                 }

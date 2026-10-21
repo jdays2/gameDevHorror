@@ -7,17 +7,30 @@ namespace EmergencyShift
     public sealed class PumpShotgunDefinition : WeaponDefinition
     {
         [Min(1)]
-        public int magazineCapacity = 4;
+        [SerializeField]
+        private int magazineCapacity = 4;
         [Min(2)]
-        public int pellets = 8;
+        [SerializeField]
+        private int pellets = 8;
         [Range(1, 80)]
-        public float spreadDegrees = 18;
+        [SerializeField]
+        private float spreadDegrees = 18;
         [Min(.05f)]
-        public float pumpSeconds = .85f;
+        [SerializeField]
+        private float pumpSeconds = .85f;
         [Min(0)]
-        public float pumpCueDelay = .16f;
+        [SerializeField]
+        private float pumpCueDelay = .16f;
         [Min(.05f)]
-        public float shellInsertSeconds = .8f;
+        [SerializeField]
+        private float shellInsertSeconds = .8f;
+        public int MagazineCapacity => magazineCapacity;
+        public int Pellets => pellets;
+        public float SpreadDegrees => spreadDegrees;
+        public float PumpSeconds => pumpSeconds;
+        public float PumpCueDelay => pumpCueDelay;
+        public float ShellInsertSeconds => shellInsertSeconds;
+
         public override int ProjectileCount => pellets;
         public override Vector3 HeldScale => new Vector3(1.15f, 1.8f, 1);
 
@@ -31,11 +44,11 @@ namespace EmergencyShift
         public override void Validate()
         {
             base.Validate();
-            if (magazineCapacity < 1 || magazineCapacity > maximumAmmo || pellets < 2 || pellets > 32 ||
+            if (magazineCapacity < 1 || magazineCapacity > MaximumAmmo || pellets < 2 || pellets > 32 ||
                 !float.IsFinite(spreadDegrees) || spreadDegrees <= 0 || spreadDegrees > 80 ||
                 !float.IsFinite(pumpSeconds) || pumpSeconds < .05f ||
                 !float.IsFinite(pumpCueDelay) || pumpCueDelay < 0 || pumpCueDelay >= pumpSeconds ||
-                !float.IsFinite(shellInsertSeconds) || shellInsertSeconds < .05f || automatic)
+                !float.IsFinite(shellInsertSeconds) || shellInsertSeconds < .05f || Automatic)
             {
                 throw new System.InvalidOperationException("Invalid pump shotgun tuning: " + name);
             }

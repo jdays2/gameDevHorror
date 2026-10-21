@@ -132,7 +132,7 @@ namespace EmergencyShift
                     }
                     else
                     {
-                        actor.ReportPickup(PickupKind.Weapon, actor.Weapon.Definition != null ? actor.Weapon.Definition.displayName : "Пистолет");
+                        actor.ReportPickup(PickupKind.Weapon, actor.Weapon.Definition != null ? actor.Weapon.Definition.DisplayName : "Пистолет");
                     }
                 }
                 finally

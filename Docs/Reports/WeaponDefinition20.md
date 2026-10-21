@@ -1,0 +1,11 @@
+# Readonly оружейные definitions
+
+Дата: 2026-10-21. База `1a9f950`. WeaponDefinition, MagazineWeaponDefinition и PumpShotgunDefinition используют private SerializeField с прежними именами, типами и defaults. Все числовые параметры, contentId/selectionSlot, имя, visual/audio refs доступны C# только для чтения. Проверка диапазонов и immutable WeaponSettings/MagazineWeaponSettings/PumpShotgunSettings остаются прежними; владельцы оружия не удерживают mutable tuning в своей симуляции.
+
+Native потребители/тесты читают getters. ShotgunIntegrationAuthoring записывает прежнюю recipe через SerializedObject, включая наследуемые поля и refs; генератор не запускался. Намеренные изменения временных clones в unit/Development fixtures выполняются через JsonUtility.FromJsonOverwrite; shared assets не изменяются. Save DTO contentId/weapons и прочие одноимённые dialogue/visual fields не переименованы. WeaponCatalog здесь обновил только чтение ContentId; его mutable array/полная валидация остаются открыты.
+
+**899/899 EditMode**, четыре новых случая: прежние имена base/subtype при JSON-десериализации обоих подвидов, Editor refs через inherited private fields и все authored definitions без mutation. Существующие cycle/inventory snapshot tests подтверждают независимость от последующей правки transient asset. **42/42 PlayMode**, включая реальный залп/пулю/урон, reload, pickup/remainder, сохранения и аудиопробу. Обычная Windows64 success; собственная Player-сборка только EmergencyShift.Runtime.
+
+[Source parity, raw hashes и 1794 неизменённых ресурса](../Validation/WeaponDefinition20.json). Копия включает исходную незавершённую паузу, не является clean HEAD. LicensingClient остаётся нефатальным сообщением окружения. Отдельные Standalone DevelopmentBuildSmoke/SandboxRegressionProbe и авторing builders не запускались; их изменённый исходник компилируется в Editor, это не их поведенческая приёмка. FPS/художественная/слуховая приёмка не заявляются.
+
+Getter не выделяет память, новые Update/физические запросы/кеши/голоса не добавлены. Runtime симуляция продолжает читать ранее построенные immutable settings. Это readonly API трёх definitions; вложенные visual/audio SO, catalog arrays и общий config/MVC/style проход остаются открыты. Старые partial-статусы потребителей сохранены, три definitions закрывают свой config-pass.

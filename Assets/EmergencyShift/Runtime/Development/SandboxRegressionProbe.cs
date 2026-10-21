@@ -211,7 +211,7 @@ namespace EmergencyShift
             yield return Move(46, 2);
             yield return null;
             var shotgun = weapon.Definition;
-            Check("Both weapons share flying projectile presentation", shotgun.visuals.projectile == pistol.visuals.projectile);
+            Check("Both weapons share flying projectile presentation", shotgun.Visuals.projectile == pistol.Visuals.projectile);
             yield return KeyPress(Key.Digit1);
             yield return Move(48.5f, 5);
             player.GetComponent<PlayerAim2D>().SetScriptedTarget(new Vector2(48.5f, 14));
@@ -286,13 +286,13 @@ namespace EmergencyShift
             yield return null;
             var pistol = weapon.Definition;
             int pistolAmmo = weapon.Ammo;
-            Check("Pistol pickup has a loaded magazine", weapon.HasWeapon && pistol.contentId == "pistol" && weapon.MagazineCapacity > 0 && weapon.LoadedAmmo == Mathf.Min(weapon.Ammo, weapon.MagazineCapacity));
+            Check("Pistol pickup has a loaded magazine", weapon.HasWeapon && pistol.ContentId == "pistol" && weapon.MagazineCapacity > 0 && weapon.LoadedAmmo == Mathf.Min(weapon.Ammo, weapon.MagazineCapacity));
             yield return Move(46, 2);
             yield return null;
             var shotgun = weapon.Definition;
             var catalog = ScriptableObject.CreateInstance<WeaponCatalog>();
             catalog.weapons = new[] { pistol, shotgun };
-            Check("Shotgun auto pickup owns both weapons", weapon.OwnedCount == 2 && shotgun.contentId == "pump-shotgun");
+            Check("Shotgun auto pickup owns both weapons", weapon.OwnedCount == 2 && shotgun.ContentId == "pump-shotgun");
             Check("Shotgun starts with four loaded and twelve reserve", weapon.LoadedAmmo == 4 && weapon.ReserveAmmo == 12 && weapon.Ammo == 16);
             yield return Move(46, 5);
             yield return Move(55, 6.4f);
@@ -311,7 +311,7 @@ namespace EmergencyShift
             yield return new WaitForFixedUpdate();
             Check("One click creates eight real projectiles", FindObjectsByType<BulletProjectile2D>().Length == shotgun.ProjectileCount);
             Check("One volley consumes one shell and plays one shot", weapon.LoadedAmmo == 3 && weapon.Ammo == 15 && audio.ShotAudioCount == shotSounds + 1);
-            Check("Shotgun selects its own recorded shot", Array.Exists(shotgun.audioProfile.shots, clip => clip != null && clip.name == audio.LastShotClip));
+            Check("Shotgun selects its own recorded shot", Array.Exists(shotgun.AudioProfile.shots, clip => clip != null && clip.name == audio.LastShotClip));
             Check("Hull is not ejected at muzzle event", ejector.EmittedCount == ejected);
             Check("Pump blocks immediate second shot and switching", !weapon.TryFire() && !weapon.TryEquip(0));
             yield return new WaitForSeconds(1.15f);
@@ -399,7 +399,7 @@ namespace EmergencyShift
             yield return KeyPress(Key.Digit2);
             Check("Typed ammo refills the holstered shotgun", weapon.Ammo == 21);
             yield return KeyPress(Key.T);
-            Check("Sandbox T fills selected weapon total", weapon.Ammo == shotgun.maximumAmmo);
+            Check("Sandbox T fills selected weapon total", weapon.Ammo == shotgun.MaximumAmmo);
             yield return Move(50, 2);
             yield return Move(50, -2);
             aim.SetScriptedTarget(new Vector2(50, -5));
@@ -462,7 +462,7 @@ namespace EmergencyShift
             Check("Pistol survives death/disk/reload independently", weapon.Definition == pistol && weapon.Ammo == pistolAmmo);
             var legacy = new PlayerCheckpoint2D.State
             {
-                format = 1, health = player.Health, weapon = true, weaponId = pistol.contentId, ammo = 7,
+                format = 1, health = player.Health, weapon = true, weaponId = pistol.ContentId, ammo = 7,
                 cards = Array.Empty<string>(), modules = Array.Empty<FlashlightUpgrades.ModuleState>(), direction = Vector2.up
             };
             adapter.RestoreCheckpoint(JsonUtility.ToJson(legacy));

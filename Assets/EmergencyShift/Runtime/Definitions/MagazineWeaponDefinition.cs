@@ -7,9 +7,14 @@ namespace EmergencyShift
     public sealed class MagazineWeaponDefinition : WeaponDefinition
     {
         [Min(1)]
-        public int magazineCapacity = 8;
+        [SerializeField]
+        private int magazineCapacity = 8;
         [Min(.05f)]
-        public float reloadSeconds = 1.4f;
+        [SerializeField]
+        private float reloadSeconds = 1.4f;
+
+        public int MagazineCapacity => magazineCapacity;
+        public float ReloadSeconds => reloadSeconds;
 
         public override WeaponSettings ToSettings()
         {
@@ -20,7 +25,7 @@ namespace EmergencyShift
         public override void Validate()
         {
             base.Validate();
-            if (magazineCapacity < 1 || magazineCapacity > maximumAmmo ||
+            if (magazineCapacity < 1 || magazineCapacity > MaximumAmmo ||
                 !float.IsFinite(reloadSeconds) || reloadSeconds < .05f)
             {
                 throw new InvalidOperationException("Invalid magazine weapon tuning: " + name);

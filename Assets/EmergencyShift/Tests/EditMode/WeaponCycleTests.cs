@@ -15,12 +15,9 @@ namespace EmergencyShift.Tests
         public void SetUp()
         {
             shotgun = ScriptableObject.CreateInstance<PumpShotgunDefinition>();
-            shotgun.contentId = "test-shotgun";
-            shotgun.selectionSlot = 1;
-            shotgun.secondsBetweenShots = .9f;
-            shotgun.maximumAmmo = 36;
+            JsonUtility.FromJsonOverwrite("{\"contentId\":\"test-shotgun\",\"selectionSlot\":1,\"secondsBetweenShots\":0.9,\"maximumAmmo\":36}", shotgun);
             pistol = ScriptableObject.CreateInstance<WeaponDefinition>();
-            pistol.contentId = "test-pistol";
+            JsonUtility.FromJsonOverwrite("{\"contentId\":\"test-pistol\"}", pistol);
             catalog = ScriptableObject.CreateInstance<WeaponCatalog>();
             catalog.weapons = new WeaponDefinition[] { pistol, shotgun };
         }
@@ -87,7 +84,7 @@ namespace EmergencyShift.Tests
             Assert.That(second.TotalAmmo, Is.EqualTo(12));
             Assert.That(second.Loaded, Is.EqualTo(4));
             Assert.That(second.Phase, Is.EqualTo(WeaponPhase.Ready));
-            Assert.That(shotgun.magazineCapacity, Is.EqualTo(4));
+            Assert.That(shotgun.MagazineCapacity, Is.EqualTo(4));
         }
 
         [Test]
@@ -144,7 +141,7 @@ namespace EmergencyShift.Tests
             var saved = inventory.Capture(0);
             saved.weapons[0].contentId = "unknown";
             Assert.Throws<InvalidOperationException>(() => inventory.Restore(saved, catalog.ToSettings(), 0));
-            Assert.That(inventory.ActiveDefinition.ContentId, Is.EqualTo(pistol.contentId));
+            Assert.That(inventory.ActiveDefinition.ContentId, Is.EqualTo(pistol.ContentId));
             Assert.That(inventory.ActiveCycle.TotalAmmo, Is.EqualTo(7));
             Assert.Throws<InvalidOperationException>(() => WeaponInventory.Validate(JsonUtility.FromJson<WeaponInventorySnapshot>("{}"), catalog.ToSettings()));
         }
@@ -173,7 +170,7 @@ namespace EmergencyShift.Tests
             inventory.Acquire(shotgun.ToSettings(), 12);
             Assert.Throws<InvalidOperationException>(() => inventory.ReplaceActiveDefinition(pistol.ToSettings()));
             Assert.That(inventory.Count, Is.EqualTo(2));
-            Assert.That(inventory.ActiveDefinition.ContentId, Is.EqualTo(shotgun.contentId));
+            Assert.That(inventory.ActiveDefinition.ContentId, Is.EqualTo(shotgun.ContentId));
             Assert.That(inventory.ActiveCycle.TotalAmmo, Is.EqualTo(12));
             Assert.That(inventory.Equip(0), Is.True);
             Assert.That(inventory.ActiveCycle.TotalAmmo, Is.EqualTo(7));
@@ -194,7 +191,7 @@ namespace EmergencyShift.Tests
                     Vector2 direction = settings.ProjectileDirection(Vector2.up, index, random);
                     float angle = Vector2.SignedAngle(Vector2.up, direction);
                     Assert.That(direction.magnitude, Is.EqualTo(1).Within(.0001f));
-                    Assert.That(Mathf.Abs(angle), Is.LessThanOrEqualTo(shotgun.spreadDegrees * .5f));
+                    Assert.That(Mathf.Abs(angle), Is.LessThanOrEqualTo(shotgun.SpreadDegrees * .5f));
                     hasUnorderedPair |= angle < previousAngle;
                     previousAngle = angle;
                 }
@@ -210,9 +207,9 @@ namespace EmergencyShift.Tests
         [Test]
         public void InvalidMagazineAndNonFiniteSavedTimersAreExplicitErrors()
         {
-            shotgun.magazineCapacity = 0;
+            JsonUtility.FromJsonOverwrite("{\"magazineCapacity\":0}", shotgun);
             Assert.Throws<InvalidOperationException>(() => shotgun.CreateCycle(5));
-            shotgun.magazineCapacity = 4;
+            JsonUtility.FromJsonOverwrite("{\"magazineCapacity\":4}", shotgun);
             var cycle = shotgun.CreateCycle(5);
             var state = cycle.Capture(0);
             state.cooldown = float.NaN;

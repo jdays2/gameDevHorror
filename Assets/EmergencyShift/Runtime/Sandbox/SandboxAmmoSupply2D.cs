@@ -35,7 +35,7 @@ namespace EmergencyShift
                 return "ЯЩИК ПАТРОНОВ · Запас полный";
             }
 
-            return "[E] Пополнить «" + actor.Weapon.Definition.displayName + "» · без ограничений";
+            return "[E] Пополнить «" + actor.Weapon.Definition.DisplayName + "» · без ограничений";
         }
 
         public bool Interact(PlayerInteraction actor)

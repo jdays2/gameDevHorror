@@ -89,8 +89,8 @@ namespace EmergencyShift.Tests
                 Vector2[] actual = Directions(noisy);
                 Assert.That(expected.Length, Is.EqualTo(source.ProjectileCount));
                 Assert.That(actual, Is.EqualTo(expected));
-                Assert.That(first.LoadedAmmo, Is.EqualTo(source.magazineCapacity - 1));
-                Assert.That(noisy.LoadedAmmo, Is.EqualTo(source.magazineCapacity - 1));
+                Assert.That(first.LoadedAmmo, Is.EqualTo(source.MagazineCapacity - 1));
+                Assert.That(noisy.LoadedAmmo, Is.EqualTo(source.MagazineCapacity - 1));
                 Assert.That(first.Phase, Is.EqualTo(WeaponPhase.Pumping));
                 Assert.That(noisy.Phase, Is.EqualTo(WeaponPhase.Pumping));
                 string path = Path.GetFullPath(Path.Combine(Application.dataPath, "../Logs/WeaponSpreadEvidence.json"));
@@ -145,7 +145,7 @@ namespace EmergencyShift.Tests
             weapon.enabled = false;
             Assert.That(weapon.Phase, Is.EqualTo(WeaponPhase.Ready));
             yield return new WaitForSecondsRealtime(1);
-            Assert.That(weapon.LoadedAmmo, Is.EqualTo(source.magazineCapacity - 1));
+            Assert.That(weapon.LoadedAmmo, Is.EqualTo(source.MagazineCapacity - 1));
             Assert.That(weapon.Ammo, Is.EqualTo(11));
             weapon.enabled = true;
             Assert.That(weapon.TryReload(), Is.True);
@@ -155,7 +155,7 @@ namespace EmergencyShift.Tests
                 yield return null;
             }
 
-            Assert.That(weapon.LoadedAmmo, Is.EqualTo(source.magazineCapacity));
+            Assert.That(weapon.LoadedAmmo, Is.EqualTo(source.MagazineCapacity));
             Assert.That(weapon.Ammo, Is.EqualTo(11));
         }
 
@@ -186,7 +186,7 @@ namespace EmergencyShift.Tests
             }
 
             Set(weapon, "definition", definition);
-            weapon.Configure(pivot, muzzle, bullet, effect, definition.visuals);
+            weapon.Configure(pivot, muzzle, bullet, effect, definition.Visuals);
             var projectileScope = new DiContainer();
             ProjectileInstaller.Install(projectileScope);
             typeof(PlayerWeapon2D).GetMethod("Construct", BindingFlags.Instance | BindingFlags.NonPublic)

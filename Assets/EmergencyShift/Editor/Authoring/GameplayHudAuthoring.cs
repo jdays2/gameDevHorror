@@ -176,18 +176,18 @@ namespace EmergencyShift.Editor
                 for (int i = 0; i < rows.Length; i++)
                 {
                     var definition = AssetDatabase.LoadAssetAtPath<WeaponDefinition>(Root + "/Data/Weapons/" + definitions[i] + ".asset");
-                    var row = Rect(definition.displayName, i == 0 ? active : spare, Vector2.zero, new Vector2(260, 60));
+                    var row = Rect(definition.DisplayName, i == 0 ? active : spare, Vector2.zero, new Vector2(260, 60));
                     rows[i] = row.gameObject.AddComponent<HudWeaponRow>();
                     Assign(rows[i], "definition", definition);
                     var alpha = row.gameObject.AddComponent<CanvasGroup>();
                     alpha.alpha = i == 0 ? 1 : style.SpareOpacity;
                     Assign(rows[i], "opacity", alpha);
-                    var key = Text("Fixed selection key", row, font, new Vector2(0, 25), new Vector2(16, 18), 10, Ink, (definition.selectionSlot + 1).ToString());
+                    var key = Text("Fixed selection key", row, font, new Vector2(0, 25), new Vector2(16, 18), 10, Ink, (definition.SelectionSlot + 1).ToString());
                     key.alignment = TextAnchor.MiddleCenter;
                     var icon = Image("Replaceable weapon icon", row, new Vector2(24, 22), new Vector2(128, 34), Ink);
                     icon.sprite = Sprite(icons[i]);
                     icon.preserveAspect = true;
-                    var name = Text("Weapon name", row, font, new Vector2(24, 2), new Vector2(128, 16), 10, Ink, definition.displayName.ToUpperInvariant());
+                    var name = Text("Weapon name", row, font, new Vector2(24, 2), new Vector2(128, 16), 10, Ink, definition.DisplayName.ToUpperInvariant());
                     name.alignment = TextAnchor.MiddleCenter;
                     Assign(rows[i], "ammunition", Text("Active ammunition", row, font, new Vector2(172, 24), new Vector2(40, 32), 28, Ink, "0 / 0"));
                     Assign(rows[i], "reserve", Text("Reserve ammunition", row, font, new Vector2(210, 26), new Vector2(60, 23), 14, Ink, "/ 0"));

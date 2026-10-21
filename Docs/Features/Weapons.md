@@ -4,6 +4,8 @@
 
 Принятая архитектура — [ADR-001](../Decisions/001-sod-architecture.md). Ниже описаны фактические границы; миграция остальных систем продолжается.
 
+WeaponDefinition, MagazineWeaponDefinition и PumpShotgunDefinition настраиваются в Inspector и доступны runtime C# только через readonly getters. Прежние serialized names/defaults/content IDs/refs сохранены, модели получают immutable snapshots. Authoring пишет через SerializedObject, deliberate transient tests — через JsonUtility. WeaponCatalog и вложенные visual/audio SO ещё проходят общий config-pass. [Проверки](../Reports/WeaponDefinition20.md).
+
 ## Оружие: данные, наследование и композиция
 
 `WeaponDefinition` хранит авторские числа и копирует их через `ToSettings` в проверенный неизменяемый `WeaponSettings`; его чистая фабрика создаёт `WeaponCycle`. Аналогичные MagazineWeaponSettings/PumpShotgunSettings задают варианты без ссылок на SO. Существующие CreateCycle-фасады только переводят авторский контент в эти данные. Текущий пистолет использует `MagazineWeaponDefinition` и `MagazineWeaponCycle` для атомарной замены магазина. `PumpShotgunCycle` теперь наследует общие loaded/reserve/отмену/снимок от MagazineWeaponCycle, добавляя собственную помпу и поштучный Tick. `PumpShotgunDefinition` наследует описание и создаёт соответствующий снимок; чистый PumpShotgunSettings задаёт веер/фабрику, `PumpShotgunCycle` расширяет общий расход патрона/cooldown помпой и поштучной зарядкой. Это две реальные вариации алгоритма. Новая числовая разновидность пистолета обходится новым asset; другой цикл потребует собственной реализации за тем же контрактом.

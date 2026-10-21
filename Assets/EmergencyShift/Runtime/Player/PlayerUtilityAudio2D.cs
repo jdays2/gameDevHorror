@@ -68,7 +68,7 @@ namespace EmergencyShift
 
         private void OnEmpty()
         {
-            var profile = weapon.Definition.audioProfile;
+            var profile = weapon.Definition.AudioProfile;
             AudioClip clip = sounds != null ? sounds.emptyTrigger : null;
             if (profile != null && profile.emptyTrigger != null)
             {

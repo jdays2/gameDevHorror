@@ -6,21 +6,42 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Weapon definition")]
     public class WeaponDefinition : ScriptableObject
     {
-        public string contentId = "pistol";
-        public string displayName = "Пистолет";
+        [SerializeField]
+        private string contentId = "pistol";
+        [SerializeField]
+        private string displayName = "Пистолет";
         [Min(1)]
-        public int damage = 1;
+        [SerializeField]
+        private int damage = 1;
         [Min(1)]
-        public int maximumAmmo = 120;
+        [SerializeField]
+        private int maximumAmmo = 120;
         [Min(.05f)]
-        public float secondsBetweenShots = .3f;
+        [SerializeField]
+        private float secondsBetweenShots = .3f;
         [Min(.5f)]
-        public float range = 10;
-        public ShotVisualProfile visuals;
-        public bool automatic;
+        [SerializeField]
+        private float range = 10;
+        [SerializeField]
+        private ShotVisualProfile visuals;
+        [SerializeField]
+        private bool automatic;
         [Min(0)]
-        public int selectionSlot;
-        public WeaponAudioProfile audioProfile;
+        [SerializeField]
+        private int selectionSlot;
+        [SerializeField]
+        private WeaponAudioProfile audioProfile;
+        public string ContentId => contentId;
+        public string DisplayName => displayName;
+        public int Damage => damage;
+        public int MaximumAmmo => maximumAmmo;
+        public float SecondsBetweenShots => secondsBetweenShots;
+        public float Range => range;
+        public ShotVisualProfile Visuals => visuals;
+        public bool Automatic => automatic;
+        public int SelectionSlot => selectionSlot;
+        public WeaponAudioProfile AudioProfile => audioProfile;
+
         public virtual int ProjectileCount => 1;
         public virtual Vector3 HeldScale => Vector3.one;
 

@@ -98,7 +98,7 @@ namespace EmergencyShift
                 port = blocked.point - (port - (Vector2)transform.position).normalized * .03f;
             }
 
-            casing.Launch(port, side * Between(1.2f, 1.8f) + direction * Between(-.25f, .4f), Between(1.35f, 1.85f), Between(-650, 650), audioOwner, obstacles, weapon.Definition.audioProfile);
+            casing.Launch(port, side * Between(1.2f, 1.8f) + direction * Between(-.25f, .4f), Between(1.35f, 1.85f), Between(-650, 650), audioOwner, obstacles, weapon.Definition.AudioProfile);
             EmittedCount++;
             CasingEmitted?.Invoke(casing);
         }

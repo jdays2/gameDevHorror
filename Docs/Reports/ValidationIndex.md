@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Weapon definitions readonly | [WeaponDefinition20](WeaponDefinition20.md): 899/899 EditMode, 42/42 PlayMode, Windows64 success; три определения, прежние inherited fields/refs/defaults и immutable cycle snapshots. Catalog/visual/audio configs ещё открыты. |
 | Оружейный лут / дополнение BUG-013 | [WeaponLoot19](WeaponLoot19.md): 9 исходных payload отказов, 895/895 EditMode, 42/42 PlayMode, Windows64 success; partial remainder/once/commands, обязательные consumed+remaining и direct Restore guard. Item config bridge открыт. |
 | Однократный подбор / BUG-024 | [SingleUsePickups18](SingleUsePickups18.md): исходный native отказ 0/1, затем 870/870 EditMode, 40/40 PlayMode, Windows64 success; busy/once/quiet restore, repeatable экземпляры/caps/card/flashlight. WeaponLoot/config bridge открыт. |
 | Выбор интеракции и уведомления | [PlayerInteraction17](PlayerInteraction17.md): 860/860 EditMode, 36/36 PlayMode, Windows64 success; личные selection/notice models, команды/clock, native wall/modal/disable/queue. Item contracts/config bridge ещё открыты. |

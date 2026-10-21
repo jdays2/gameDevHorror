@@ -38,7 +38,7 @@ namespace EmergencyShift
 
             foreach (var weapon in weapons)
             {
-                if (weapon != null && weapon.contentId == id)
+                if (weapon != null && weapon.ContentId == id)
                 {
                     return weapon;
                 }

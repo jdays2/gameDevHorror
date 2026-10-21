@@ -46,7 +46,7 @@ namespace EmergencyShift
                 health = GetComponent<PlayerLife2D>().Health,
                 cards = GetComponent<PlayerAccessCards2D>().Capture(),
                 weapon = gun.HasWeapon,
-                weaponId = gun.Definition.contentId,
+                weaponId = gun.Definition.ContentId,
                 ammo = gun.Ammo,
                 modules = upgrades.Capture(),
                 moduleCount = upgrades.InstalledCount,
@@ -77,7 +77,7 @@ namespace EmergencyShift
             if (state.format == 1)
             {
                 var legacy = weapons.Find(state.weaponId);
-                if (legacy == null || state.ammo < 0 || state.ammo > legacy.maximumAmmo)
+                if (legacy == null || state.ammo < 0 || state.ammo > legacy.MaximumAmmo)
                 {
                     throw new InvalidOperationException("Invalid legacy player weapon payload");
                 }

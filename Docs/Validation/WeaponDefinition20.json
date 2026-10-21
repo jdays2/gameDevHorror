@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-21",
+  "baseRevision": "1a9f9500e50c3afc4163e84d7057fca6f21b3290",
+  "editMode": {
+    "result": "Passed",
+    "total": "899",
+    "passed": "899",
+    "failed": "0",
+    "end-time": "2026-10-21 20:20:23Z",
+    "rawPath": "work/sod-evidence-20261021/weapon-definition-edit.xml",
+    "rawSha256": "d6eeecfea87dacc2bd87b6180332db781b13364668838636bc07b63071232e9e",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.WeaponDefinitionConfigTests.EditorAuthoringStillAssignsBaseVisualAndAudioReferencesByTheirOriginalNames",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponDefinitionConfigTests.EveryAuthoredWeaponDefinitionBuildsSettingsWithoutMutation",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponDefinitionConfigTests.OriginalNamesDeserializeIntoPrivateBaseAndSubtypeFields(EmergencyShift.MagazineWeaponDefinition)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponDefinitionConfigTests.OriginalNamesDeserializeIntoPrivateBaseAndSubtypeFields(EmergencyShift.PumpShotgunDefinition)",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "42",
+    "passed": "42",
+    "failed": "0",
+    "end-time": "2026-10-21 20:21:56Z",
+    "rawPath": "work/sod-evidence-20261021/weapon-definition-play.xml",
+    "rawSha256": "6e943d1c3da61a2937ceebe25015ff80a31395c7abcb3953ff40a36332b221c1",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ActualVolleyKeepsAllDirectionsWithDifferentFlashAndCosmeticDraws",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.BlockedMuzzleProducesImpactAndConsumesAmmoWithoutLaunchingBullets",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.DisablingViewCancelsPartialReloadAndReenableKeepsItsAmmo",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ForeignActiveSceneCannotOwnBlockedMuzzleImpact",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ForeignActiveSceneCannotOwnMuzzleFlashOrFlyingBullets",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T20:23:16.616Z",
+    "endedAt": "2026-10-21T20:23:42.472Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs": "238fa5cdfb8a91c3da77d51dede23b26279188d66e0dba22c8960ac89d6573ae",
+    "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs": "83483926776cdab981d226f9c84b6f7882b54c9152986379d8209a3a7c80f77e",
+    "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs": "7dbed468ed5d34062bcb8f5a0c9f23dacc3f710fe67bd6d2ffa758d9feea7b73",
+    "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs": "d0f0b2a5ba5ee06a70f8d5852d19203d51787406b4ce0dc2f7b67aa76d0bfa2f",
+    "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs": "f9bce2d033352bef52c91c55b09d61fa2540d88e58c340056dc91ede6b036b6d",
+    "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs": "f5924efea4d3a5a7c5f9c54fee942ad954bbe95c78a6d35b37dd20f456e8f3d2",
+    "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs": "e438dd9fd0d1a54e84807f4b9c10f153bb4cb4205c201d04a02727cf1b63fd66",
+    "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs": "39a02cf94d13a3795ea1bc5e0923b91d2f92ba53b5bae2d265f8d0ffcc34392d",
+    "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs": "ba6554f5864d8e0538558760c8e78b2c03af800918278ac8644c5b3a53fd85eb",
+    "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs": "cbade63f86f1a2536bfeb13f76e553e13878d640d4c2a1c35e5bc2e84b31fd1c",
+    "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs": "7792a53badac7d5cfcdb41dfc61edd85700043d0953ad76869ba1eba375bd27d",
+    "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs": "c546d5a37f94aad014174e42ca2cc934df96f806e38c0d2b95df4cce04f129a5",
+    "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs": "5dfc691cb76de57344263efe53ec31d1ed150661eb75570768c5d314ea8653ea",
+    "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs": "6d40ece6c2bbc157383f77657e85c2022a2ce3435b9f95f873ec73e018510fba",
+    "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs": "3bab2e7ec43adba25c5cb1ce347bc36a3384944454dbd1c91bfa8a0d5f323300",
+    "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs": "52b2ca8e896f6a08fb0e027ad505e4bfdf612b33323241443753769af55b032f",
+    "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs": "135493525e85166e8200524282ab0cb77ac99f3985014dd86da2dead6ccb6f4a",
+    "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs": "e5585bcee312789f6725dd8f5ea9bd58adf6824ea4ec2c14cdc80af2af795822",
+    "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs": "16a883a87fc2d4b0cd65423349b8bf0696046a0babdf1406cbe36be39f1aafd1",
+    "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs": "0619e70f99b9be7d9b6950be6ae7f3eb3c5b57d62743307fe76ef384a15bad52",
+    "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs": "3c5bec667db5798f9e5f17a2f8f621b92cee0250fd7239c79e6ea2cdf1ac6aa5",
+    "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs": "944cc078f1e6158fdd9d661aba88c9f191b9d505c046b1e8e976f76d0ff944f7",
+    "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs": "194099b1ea0e09b0b0d568da53ef3cb8d2c1678f844eac5fcd0d87babca6bd0f"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Disposable dirty copy includes original accepted pause work; not clean HEAD. Post-Editor-close resource snapshot supplements earlier guards, not original deleted Temp baseline. Readonly three WeaponDefinition types, same field paths/values/refs and immutable cycle snapshots. Four new serialization/authoring/current-asset cases plus all existing regressions. Other touched consumers preserve earlier partial status; only API reads changed. Catalog array, visual/audio profiles and other SOD tasks remain open. Authoring/standalone Development smoke not executed."
+}

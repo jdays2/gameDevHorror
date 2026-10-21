@@ -12,9 +12,7 @@ namespace EmergencyShift.Tests
         public void SetUp()
         {
             definition = ScriptableObject.CreateInstance<MagazineWeaponDefinition>();
-            definition.magazineCapacity = 12;
-            definition.secondsBetweenShots = .1f;
-            definition.maximumAmmo = 120;
+            JsonUtility.FromJsonOverwrite("{\"magazineCapacity\":12,\"secondsBetweenShots\":0.1,\"maximumAmmo\":120}", definition);
         }
 
         [TearDown]
@@ -121,7 +119,7 @@ namespace EmergencyShift.Tests
             first.TryReload(1);
             Assert.That(second.Loaded, Is.EqualTo(12));
             Assert.That(second.Phase, Is.EqualTo(WeaponPhase.Ready));
-            Assert.That(definition.magazineCapacity, Is.EqualTo(12));
+            Assert.That(definition.MagazineCapacity, Is.EqualTo(12));
         }
 
         [Test]

@@ -56,15 +56,15 @@ namespace EmergencyShift
         private Vector3 restingWeaponScale;
         public bool HasWeapon => Inventory?.ActiveCycle != null;
         public int Ammo => Inventory?.ActiveCycle?.TotalAmmo ?? 0;
-        public int MaximumAmmo => Inventory?.ActiveDefinition?.MaximumAmmo ?? definition.maximumAmmo;
+        public int MaximumAmmo => Inventory?.ActiveDefinition?.MaximumAmmo ?? definition.MaximumAmmo;
         public int LoadedAmmo => Inventory?.ActiveCycle?.Loaded ?? 0;
         public int ReserveAmmo => Inventory?.ActiveCycle?.Reserve ?? 0;
         public int MagazineCapacity => Inventory?.ActiveCycle?.MagazineCapacity ?? 0;
         public WeaponPhase Phase => Inventory?.ActiveCycle?.Phase ?? WeaponPhase.Ready;
         public int OwnedCount => Inventory?.Count ?? 0;
-        public int Damage => Inventory?.ActiveDefinition?.Damage ?? definition.damage;
-        public float ShotInterval => Inventory?.ActiveDefinition?.SecondsBetweenShots ?? definition.secondsBetweenShots;
-        public float BulletRange => Inventory?.ActiveDefinition?.Range ?? definition.range;
+        public int Damage => Inventory?.ActiveDefinition?.Damage ?? definition.Damage;
+        public float ShotInterval => Inventory?.ActiveDefinition?.SecondsBetweenShots ?? definition.SecondsBetweenShots;
+        public float BulletRange => Inventory?.ActiveDefinition?.Range ?? definition.Range;
 
         public WeaponDefinition Definition
         {
@@ -147,12 +147,12 @@ namespace EmergencyShift
             if (previousId != null)
             {
                 definitions.Remove(previousId);
-                definitions[value.contentId] = value;
+                definitions[value.ContentId] = value;
             }
             definition = value;
-            if (applyVisuals && value.visuals != null)
+            if (applyVisuals && value.Visuals != null)
             {
-                visualProfile = value.visuals;
+                visualProfile = value.Visuals;
             }
         }
 
@@ -186,7 +186,7 @@ namespace EmergencyShift
             definitions.Clear();
             if (owned)
             {
-                definitions[definition.contentId] = definition;
+                definitions[definition.ContentId] = definition;
             }
             Equipped();
         }
@@ -217,7 +217,7 @@ namespace EmergencyShift
                 return false;
             }
 
-            definitions[asset.contentId] = asset;
+            definitions[asset.ContentId] = asset;
             Equipped();
             return true;
         }
@@ -238,9 +238,9 @@ namespace EmergencyShift
 
         private void Equipped()
         {
-            if (Definition.visuals != null)
+            if (Definition.Visuals != null)
             {
-                visualProfile = Definition.visuals;
+                visualProfile = Definition.Visuals;
             }
 
             if (weaponPivot != null)

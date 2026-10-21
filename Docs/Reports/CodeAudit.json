@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "522 own C# explicitly read; 85 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest WeaponLoot19.",
+  "limits": "523 own C# explicitly read; 82 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest WeaponDefinition20.",
   "counts": {
-    "partial": 85,
-    "reviewed_boundary": 437
+    "partial": 82,
+    "reviewed_boundary": 441
   },
   "files": [
     {
@@ -755,7 +755,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs",
-      "sha256": "c65bb746ba62d8891ae81bddffbeb908feb9b08060a7808c5977f3ac1f6f94b6",
+      "sha256": "52b2ca8e896f6a08fb0e027ad505e4bfdf612b33323241443753769af55b032f",
       "baselineSha256": "0781223de53be654088bc5d6b2a2c7cc2307b3d7ac293661b376e9c211f192b1",
       "guid": "5ddb8c8d0fe7f304dbfd899134f567aa",
       "types": [
@@ -769,7 +769,7 @@
         "MenuItem"
       ],
       "reviewStatus": "partial",
-      "notes": "PresentationConfig13: readonly style consumers и default empty hit clips обновлены; authoring entry не запускался. Прежний global Find/выбор карты из другой открытой сцены, preflight/transaction и общий style pass остаются открыты.",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -786,10 +786,10 @@
         "UnityEngine"
       ],
       "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
-      "reviewedSha256": "c65bb746ba62d8891ae81bddffbeb908feb9b08060a7808c5977f3ac1f6f94b6",
+      "reviewedSha256": "52b2ca8e896f6a08fb0e027ad505e4bfdf612b33323241443753769af55b032f",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PresentationConfig13.md",
-      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -1056,13 +1056,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
-      "sha256": "73d7a4d1d11024643796179b7b98c7093f541c90baa1b848a8fd9fbc5d20582d",
+      "sha256": "135493525e85166e8200524282ab0cb77ac99f3985014dd86da2dead6ccb6f4a",
       "baselineSha256": "73d7a4d1d11024643796179b7b98c7093f541c90baa1b848a8fd9fbc5d20582d",
       "guid": "1a346ad2f27349943b43b4cb1846fb19",
       "types": [
         "ShotgunIntegrationAuthoring"
       ],
-      "lines": 220,
+      "lines": 222,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -1072,7 +1072,7 @@
         "MenuItem"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Menu guard требует Edit Mode, сохранённый Sandbox; не генерирует стены/комнаты. Existing assets/fixtures переиспользуются, все новые ресурсы создаются по явной команде. ApplyTo сам менее защищён; authoring не запускался и не является runtime Model. Missing clip — явная ошибка.",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Установка готового дробовика/патронов в существующий тир",
@@ -1082,10 +1082,11 @@
         "sandbox HUD/zone"
       ],
       "usageEvidence": "MenuItem Apply; creates missing definitions/pickup variants/catalog entry",
-      "reviewedSha256": "73d7a4d1d11024643796179b7b98c7093f541c90baa1b848a8fd9fbc5d20582d",
+      "reviewedSha256": "135493525e85166e8200524282ab0cb77ac99f3985014dd86da2dead6ccb6f4a",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Editor/Build/ThirdPartyLicenseBuildStep.cs",
@@ -1654,6 +1655,7 @@
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
@@ -1901,6 +1903,7 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
       ],
       "entryPointHints": [],
@@ -3908,13 +3911,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
-      "sha256": "08fa19fedf3646afeacd607aff46d91a8a03ffb06dd075c01100b506231b1a7d",
+      "sha256": "83483926776cdab981d226f9c84b6f7882b54c9152986379d8209a3a7c80f77e",
       "baselineSha256": "d179dca690595bebb8540472e87ad8d70d55245e37ec7e391b22eb7a0d78ec1d",
       "guid": "cab01b7640f147543b68d9f62a7f3494",
       "types": [
         "MagazineWeaponDefinition"
       ],
-      "lines": 30,
+      "lines": 35,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset"
       ],
@@ -3932,11 +3935,12 @@
         "Assets/_Recovery/0.unity"
       ],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "WeaponModels01: ToSettings builds validated immutable runtime data; model no longer retains SO and spread is outside SO. Public legacy authoring fields/API remain for configuration migration; not declared fully read-only yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Баланс сменного магазина и создание cycle",
@@ -3945,10 +3949,10 @@
         "MagazineWeaponCycle"
       ],
       "usageEvidence": "PistolDefinition.asset; MagazineWeaponTests; PlayerWeapon",
-      "reviewedSha256": "08fa19fedf3646afeacd607aff46d91a8a03ffb06dd075c01100b506231b1a7d",
+      "reviewedSha256": "83483926776cdab981d226f9c84b6f7882b54c9152986379d8209a3a7c80f77e",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "partial",
       "reviewHistory": [
         {
@@ -4099,13 +4103,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
-      "sha256": "ea04eba9c79f902d82ce81c44c1237abdaabe0f2944347fcd28f99b0aeb4ea11",
+      "sha256": "7dbed468ed5d34062bcb8f5a0c9f23dacc3f710fe67bd6d2ffa758d9feea7b73",
       "baselineSha256": "23aceb073870ed67530d79adc8682a0e9a78407885a8e691716eb42fb85bff43",
       "guid": "27c6ed8d982e0ff46ad77f2c0f81589b",
       "types": [
         "PumpShotgunDefinition"
       ],
-      "lines": 44,
+      "lines": 57,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Weapons/PumpShotgun.asset"
       ],
@@ -4118,12 +4122,13 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "WeaponModels01: ToSettings builds validated immutable runtime data; model no longer retains SO and spread is outside SO. Public legacy authoring fields/API remain for configuration migration; not declared fully read-only yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Баланс помпы и авторитетный веер дробин",
@@ -4133,10 +4138,10 @@
         "UnityEngine.Random/Quaternion"
       ],
       "usageEvidence": "PumpShotgun.asset; PlayerWeapon2D.ProjectileDirection; WeaponCycleTests",
-      "reviewedSha256": "ea04eba9c79f902d82ce81c44c1237abdaabe0f2944347fcd28f99b0aeb4ea11",
+      "reviewedSha256": "7dbed468ed5d34062bcb8f5a0c9f23dacc3f710fe67bd6d2ffa758d9feea7b73",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "partial",
       "reviewHistory": [
         {
@@ -4179,7 +4184,8 @@
         "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -4430,7 +4436,8 @@
         "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -4450,7 +4457,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
-      "sha256": "872af00f99a952f47e4e02733ba0ea155242d00afdb4f12a93e38e0e77ed2862",
+      "sha256": "d0f0b2a5ba5ee06a70f8d5852d19203d51787406b4ce0dc2f7b67aa76d0bfa2f",
       "baselineSha256": "59b2a58b7a6bb7d063d81ca26cfd0d275e604f9632f0805259265d3d4f66eb5a",
       "guid": "af38b0c71ccee794883387b6acf8fef1",
       "types": [
@@ -4475,7 +4482,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "WeaponModels01: ToSettings builds validated immutable runtime data; model no longer retains SO and spread is outside SO. Public legacy authoring fields/API remain for configuration migration; not declared fully read-only yet.",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Разрешение стабильного contentId в definition",
@@ -4484,10 +4491,10 @@
         "WeaponDefinition[]"
       ],
       "usageEvidence": "PlayerCheckpoint2D/WeaponInventory.Validate; Weapons.asset; authoring",
-      "reviewedSha256": "872af00f99a952f47e4e02733ba0ea155242d00afdb4f12a93e38e0e77ed2862",
+      "reviewedSha256": "d0f0b2a5ba5ee06a70f8d5852d19203d51787406b4ce0dc2f7b67aa76d0bfa2f",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "partial",
       "reviewHistory": [
         {
@@ -4501,13 +4508,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
-      "sha256": "25dea4437ce494770c5f8d90e73bcf6dc1ec3e4ff7efcfb31d2c2bb027d7fca2",
+      "sha256": "238fa5cdfb8a91c3da77d51dede23b26279188d66e0dba22c8960ac89d6573ae",
       "baselineSha256": "107c4ea24c01d51db1d4f8bf5664e73ee44a4c03fe9045637d557030c0e40cb4",
       "guid": "dc34453363d9b334b8e8de06ab5467fb",
       "types": [
         "WeaponDefinition"
       ],
-      "lines": 49,
+      "lines": 70,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -4521,11 +4528,12 @@
         "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "WeaponModels01: ToSettings builds validated immutable runtime data; model no longer retains SO and spread is outside SO. Public legacy authoring fields/API remain for configuration migration; not declared fully read-only yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общий баланс, идентичность и factory оружия",
@@ -4536,10 +4544,10 @@
         "WeaponCycle"
       ],
       "usageEvidence": "PlayerWeapon2D/Inventory; каталог; Magazine/Pump subclasses",
-      "reviewedSha256": "25dea4437ce494770c5f8d90e73bcf6dc1ec3e4ff7efcfb31d2c2bb027d7fca2",
+      "reviewedSha256": "238fa5cdfb8a91c3da77d51dede23b26279188d66e0dba22c8960ac89d6573ae",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "partial",
       "reviewHistory": [
         {
@@ -4786,14 +4794,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
-      "sha256": "3a9b5dd6206bfe057340158318d06d2f4f1b3369f0a879ea41a0542ba8c0aa87",
+      "sha256": "6d40ece6c2bbc157383f77657e85c2022a2ce3435b9f95f873ec73e018510fba",
       "baselineSha256": "5056d5debaa0748fea5eb5fed2030bf51a3caffafcbfd4c189bb1f25155c526e",
       "guid": "7b71efe51bb80874fbf74d2e220cbe70",
       "types": [
         "DevelopmentBuildSmoke",
         "Result"
       ],
-      "lines": 267,
+      "lines": 264,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -4804,8 +4812,8 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "PresentationConfig13: getter Profile.Exploration обновлён и скомпилирован. Opt-in development Player fixture/scene setup/lifetime/style pass остаётся открытым; standalone smoke в этом этапе не запускался.",
-      "reviewedSha256": "3a9b5dd6206bfe057340158318d06d2f4f1b3369f0a879ea41a0542ba8c0aa87",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
+      "reviewedSha256": "6d40ece6c2bbc157383f77657e85c2022a2ce3435b9f95f873ec73e018510fba",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -4826,8 +4834,8 @@
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PresentationConfig13.md",
-      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -5095,7 +5103,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
-      "sha256": "4daddac0392735bce4507cff9c53067811462848fbae2236914578644dd452e0",
+      "sha256": "3bab2e7ec43adba25c5cb1ce347bc36a3384944454dbd1c91bfa8a0d5f323300",
       "baselineSha256": "530592111f42b35d8398d2822c01abbb5165447e033da39108c36dad6d5e4834",
       "guid": "d5a0b592cd9ce0143acb9eb2fa369fef",
       "types": [
@@ -5118,8 +5126,8 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "Исторический dev route, synthetic InputSystem devices, временные checkpoint paths и cleanup на завершении/ошибке; при прерывании нет OnDisable cleanup, старые counts/HP/timing требуют сверки fixture.",
-      "reviewedSha256": "4daddac0392735bce4507cff9c53067811462848fbae2236914578644dd452e0",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
+      "reviewedSha256": "3bab2e7ec43adba25c5cb1ce347bc36a3384944454dbd1c91bfa8a0d5f323300",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -5142,8 +5150,9 @@
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
@@ -13361,7 +13370,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
-      "sha256": "7e08f03105d0af128ee60510f38ccd81a982246549ed458a560f88450c1c8b7c",
+      "sha256": "ba6554f5864d8e0538558760c8e78b2c03af800918278ac8644c5b3a53fd85eb",
       "baselineSha256": "a7536c36c58f6aed4d4370cc7b0091a6765853a6977e4b592dd0240f470714fe",
       "guid": "9b38f6979e5090b4cba6fdff18a3be8f",
       "types": [
@@ -13419,7 +13428,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "AccessControl01: scoped access factories / card payload preflight added and verified (502 EditMode, 17+1 PlayMode, normal Windows64). Remaining level failure-cleanup or checkpoint controller/Unity adapter separation remains migration debt.",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Player checkpoint format1/2/3",
@@ -13429,10 +13438,10 @@
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "7e08f03105d0af128ee60510f38ccd81a982246549ed458a560f88450c1c8b7c",
+      "reviewedSha256": "ba6554f5864d8e0538558760c8e78b2c03af800918278ac8644c5b3a53fd85eb",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/AccessControl01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "reviewHistory": [
         {
           "reviewStatus": "partial",
@@ -14212,7 +14221,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
-      "sha256": "53c4f69cfe7182e3d0cddaa3e8b12e7b6840e17a54024809c858ff5c7aa3e2a8",
+      "sha256": "f5924efea4d3a5a7c5f9c54fee942ad954bbe95c78a6d35b37dd20f456e8f3d2",
       "baselineSha256": "53c4f69cfe7182e3d0cddaa3e8b12e7b6840e17a54024809c858ff5c7aa3e2a8",
       "guid": "cae3a2c8574036f40ba8f85a211681c7",
       "types": [
@@ -14244,7 +14253,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Подписки парные, OnDisable гасит voices/volley caches, remembered volleys≤64, данные SO не мутируются. 460 строк объединяют несколько причин изменения и tuning; есть объединённые declarations. Cosmetic System.Random отдельный от Unity RNG разброса; этот класс не объявлен причиной BUG-010. Cache last variant принадлежит player lifetime, не static.",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Ограниченный playback pickup/shot/mechanism/impact/casing",
@@ -14256,14 +14265,15 @@
         "System.Random"
       ],
       "usageEvidence": "Player prefab; ItemCollected/ShotFired/SurfaceHit/Operation events",
-      "reviewedSha256": "53c4f69cfe7182e3d0cddaa3e8b12e7b6840e17a54024809c858ff5c7aa3e2a8",
+      "reviewedSha256": "f5924efea4d3a5a7c5f9c54fee942ad954bbe95c78a6d35b37dd20f456e8f3d2",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
-      "sha256": "bc307899e8591eea974af9d980ac761561c1f445d757f86c813e229812309e1d",
+      "sha256": "39a02cf94d13a3795ea1bc5e0923b91d2f92ba53b5bae2d265f8d0ffcc34392d",
       "baselineSha256": "3adfec19d4ea5686c7f53aba5d9226e2a73fb239a928e68026ed5d926ad9362d",
       "guid": "a6fe12f26af5a224294699ccfde10b37",
       "types": [
@@ -14291,8 +14301,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Factory/личный cosmetic RNG уже внедрены, root явно в scene игрока; максимум48 сохраняется, не новый пул. Смешаны selection/reuse, порт/коллизия и tuning импульса, часть чисел в компоненте/коде. Подписки парные, OnDestroy удаляет root; расширять pooling не запрошено.",
-      "reviewedSha256": "bc307899e8591eea974af9d980ac761561c1f445d757f86c813e229812309e1d",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
+      "reviewedSha256": "39a02cf94d13a3795ea1bc5e0923b91d2f92ba53b5bae2d265f8d0ffcc34392d",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14311,8 +14321,9 @@
       ],
       "usageEvidence": "Player prefab, CasingEjected; Magazine ejects on shot/Pump ejects on operation",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
@@ -14627,7 +14638,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs",
-      "sha256": "1375727ae2475921af36d39635da63b15c4ccbd0535c12572db269e3b5452d49",
+      "sha256": "e438dd9fd0d1a54e84807f4b9c10f153bb4cb4205c201d04a02727cf1b63fd66",
       "baselineSha256": "1375727ae2475921af36d39635da63b15c4ccbd0535c12572db269e3b5452d49",
       "guid": "0273599e2de5e05479ed337a52a695f3",
       "types": [
@@ -14657,7 +14668,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Только View/audio: не расходует патроны и не включает свет. OnEnable/OnDisable парные, источник останавливается. GetComponent<PlayerLife2D> вызывается на switch event, не hot tick; micro-оптимизация без замера не предлагается.",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Звук фонаря/пустого спуска в одном канале",
@@ -14668,14 +14679,15 @@
         "AudioSource"
       ],
       "usageEvidence": "Player prefab; PowerChanged/EmptyTriggerPulled",
-      "reviewedSha256": "1375727ae2475921af36d39635da63b15c4ccbd0535c12572db269e3b5452d49",
+      "reviewedSha256": "e438dd9fd0d1a54e84807f4b9c10f153bb4cb4205c201d04a02727cf1b63fd66",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
-      "sha256": "ead2c9d2bcf989c6d5de8977c1c7b2102da088cc4fba1d2bc4cfc2a946b8290f",
+      "sha256": "f9bce2d033352bef52c91c55b09d61fa2540d88e58c340056dc91ede6b036b6d",
       "baselineSha256": "596fb7c3e90acf823fc8ecc665be76ec2f257bc91f18efb1d501753fb846d9aa",
       "guid": "a7c2f849920eead45b86e58e62166543",
       "types": [
@@ -14731,8 +14743,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "ProjectileFlight16: flight/composition consumer проверен. ProjectileVisualProfile остаётся legacy public config/ballistic-presentation bridge; PlayerWeapon presentation/config или Development probe lifecycle/style остаются долгом.",
-      "reviewedSha256": "ead2c9d2bcf989c6d5de8977c1c7b2102da088cc4fba1d2bc4cfc2a946b8290f",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
+      "reviewedSha256": "f9bce2d033352bef52c91c55b09d61fa2540d88e58c340056dc91ede6b036b6d",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14766,9 +14778,9 @@
       ],
       "usageEvidence": "Player prefab/scene overrides; loot/checkpoint/audio/HUD",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
-      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
-      "previousReviewStatus": "reviewed_boundary"
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
@@ -15728,7 +15740,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
-      "sha256": "e361c630958848dec470927f6af3a93df85c717e7fd1ed1c79c0645deb6e9852",
+      "sha256": "c546d5a37f94aad014174e42ca2cc934df96f806e38c0d2b95df4cce04f129a5",
       "baselineSha256": "e361c630958848dec470927f6af3a93df85c717e7fd1ed1c79c0645deb6e9852",
       "guid": "6d562d41e4fb0864e8479751c6291fe2",
       "types": [
@@ -15744,7 +15756,7 @@
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Тестовая сценовая утилита явно запрошенного режима, не campaign unlimited-ammo правило. Повторяет reach/ownership checks и использует обычную границу максимума, не присваивает ammo напрямую.",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Повторяемое пополнение активного резерва в тире",
@@ -15754,10 +15766,11 @@
         "BoxCollider2D"
       ],
       "usageEvidence": "Авторенный sandbox crate; normal AddAmmo limits",
-      "reviewedSha256": "e361c630958848dec470927f6af3a93df85c717e7fd1ed1c79c0645deb6e9852",
+      "reviewedSha256": "c546d5a37f94aad014174e42ca2cc934df96f806e38c0d2b95df4cce04f129a5",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Sandbox/SandboxHealthZone2D.cs",
@@ -16027,7 +16040,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
-      "sha256": "6d97e72e64a3e35b786c3535152651cd1cda94298188359b3fc6650bb748fc08",
+      "sha256": "cbade63f86f1a2536bfeb13f76e553e13878d640d4c2a1c35e5bc2e84b31fd1c",
       "baselineSha256": "d43e3f690e2e2e53934f0f47b3fcbefb2c385a77098172ddca3dc05f6469d808",
       "guid": "a5fa57d8830d9f24a8a90301a8bbe11d",
       "types": [
@@ -16051,7 +16064,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "PresentationConfig13: readonly style и validation до Bind/subscription проверены. Остаются concrete player refs, ammo polling и личные feedback/time/cosmetic RNG в MB; gameplay RNG отдельно. Model/presenter/style pass открыт.",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16067,10 +16080,10 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
-      "reviewedSha256": "6d97e72e64a3e35b786c3535152651cd1cda94298188359b3fc6650bb748fc08",
+      "reviewedSha256": "cbade63f86f1a2536bfeb13f76e553e13878d640d4c2a1c35e5bc2e84b31fd1c",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PresentationConfig13.md",
-      "reviewScope": "Full source read: readonly HUD/audio configs, finite/cross-field/clip validation, old serialized fields/defaults, consumer and cloned Editor fixture API; native scenes and normal Player verified; native scene and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -16148,7 +16161,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
-      "sha256": "2233812416e597c864f8c0f4e50763222b3ffedb385afc53f90fe5647801f07b",
+      "sha256": "7792a53badac7d5cfcdb41dfc61edd85700043d0953ad76869ba1eba375bd27d",
       "baselineSha256": "2233812416e597c864f8c0f4e50763222b3ffedb385afc53f90fe5647801f07b",
       "guid": "c6ce1f5dc6e5bc3449c497aa69b10f1d",
       "types": [
@@ -16186,7 +16199,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Legacy HUD строит строки/SetActive каждый Update, конкретные player refs и polling; не выделен presenter/cache. Не доказательство FPS-проблемы.",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16201,10 +16214,11 @@
         "UnityEngine.UI"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 11.",
-      "reviewedSha256": "2233812416e597c864f8c0f4e50763222b3ffedb385afc53f90fe5647801f07b",
+      "reviewedSha256": "7792a53badac7d5cfcdb41dfc61edd85700043d0953ad76869ba1eba375bd27d",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
@@ -16962,7 +16976,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
-      "sha256": "47ef0268862c03a277ff01423298a797f0ac39d6176376e2534d6c88bc0818d8",
+      "sha256": "5dfc691cb76de57344263efe53ec31d1ed150661eb75570768c5d314ea8653ea",
       "baselineSha256": "49f193040cf1319d4eaa5dc2b99bccac0d5160b2a9d774d12432756c75f119bc",
       "guid": "bb9d051bfe62a344e99d371c7b3f6728",
       "types": [
@@ -17006,7 +17020,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "WeaponLoot19: remaining/consumed/busy вынесены в модель и collect/configure/restore команды, partial box и native acquisition проверены. Concrete actor/weapon refs и serialized item tuning bridge остаются долгом.",
+      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Авто-подбор оружия/боезапаса и остаток коробки",
@@ -17016,10 +17030,10 @@
         "CircleCollider2D"
       ],
       "usageEvidence": "Pistol/Shotgun/Ammo pickups; IAutoPickup; WeaponLootCheckpoint2D",
-      "reviewedSha256": "47ef0268862c03a277ff01423298a797f0ac39d6176376e2534d6c88bc0818d8",
+      "reviewedSha256": "5dfc691cb76de57344263efe53ec31d1ed150661eb75570768c5d314ea8653ea",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponLoot19.md",
-      "reviewScope": "Full source read: personal weapon loot remainder/consumed/busy, collect/configure/restore commands, validated complete legacy payload before direct mutation, partial ammo/empty weapon/duplicate native checks and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -18702,13 +18716,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
-      "sha256": "e428a22439745c37e13699a3fa6d5c6c0789bcf2609dd989e33c1c3a3fb55f4f",
+      "sha256": "e5585bcee312789f6725dd8f5ea9bd58adf6824ea4ec2c14cdc80af2af795822",
       "baselineSha256": "1ae260a553436227ccac6ba48e2321334d95291f0827bfb5f2ad3104e56066f9",
       "guid": "18ddab6f6fe329f47bb891ef7a36d363",
       "types": [
         "MagazineWeaponTests"
       ],
-      "lines": 142,
+      "lines": 140,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -18716,7 +18730,7 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Регрессии магазина, отмены и legacy reload snapshot",
@@ -18727,10 +18741,10 @@
         "JsonUtility"
       ],
       "usageEvidence": "EditMode runner, 6 тестов",
-      "reviewedSha256": "e428a22439745c37e13699a3fa6d5c6c0789bcf2609dd989e33c1c3a3fb55f4f",
+      "reviewedSha256": "e5585bcee312789f6725dd8f5ea9bd58adf6824ea4ec2c14cdc80af2af795822",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -19477,13 +19491,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
-      "sha256": "1d2973d1628a85fdadc95bc6698c2c24ca910de7c1803a22547e780aa0664e93",
+      "sha256": "16a883a87fc2d4b0cd65423349b8bf0696046a0babdf1406cbe36be39f1aafd1",
       "baselineSha256": "420110041eb7e11d0c982a527ab24fca301c7c5cb85e5ff6b64a69d593f9cfd4",
       "guid": "9e2a8c2408b067f4fa9f99dcd921ed25",
       "types": [
         "WeaponCycleTests"
       ],
-      "lines": 222,
+      "lines": 219,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -19491,7 +19505,7 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Регрессии помпы, инвентаря, snapshots и диапазона веера",
@@ -19502,10 +19516,10 @@
         "JsonUtility"
       ],
       "usageEvidence": "EditMode runner, 10 тестов",
-      "reviewedSha256": "1d2973d1628a85fdadc95bc6698c2c24ca910de7c1803a22547e780aa0664e93",
+      "reviewedSha256": "16a883a87fc2d4b0cd65423349b8bf0696046a0babdf1406cbe36be39f1aafd1",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -19516,6 +19530,31 @@
           "reviewReport": "Docs/Reports/CodeAudit07.md"
         }
       ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs",
+      "sourceScope": "unity",
+      "sha256": "194099b1ea0e09b0b0d568da53ef3cb8d2c1678f844eac5fcd0d87babca6bd0f",
+      "guid": "2186b30cfb8142169dd7b3b7e5610f14",
+      "types": [
+        "WeaponDefinitionConfigTests"
+      ],
+      "lines": 76,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "194099b1ea0e09b0b0d568da53ef3cb8d2c1678f844eac5fcd0d87babca6bd0f",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified."
     },
     {
       "baselineSha256": null,
@@ -19620,15 +19659,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponModels01: immutable validated C# settings/catalog, command-guarded state changes, pure model traversal and explicit gameplay RNG. 394 EditMode / 10 real PlayMode passed. Existing JSON formats and legacy migration retained; see report limits.",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
       "sourceScope": "unity",
-      "sha256": "101befe4e7e8998d2499faed42363aeb3d48c7a30d22059080d02bd0063c1b4a",
+      "sha256": "0619e70f99b9be7d9b6950be6ae7f3eb3c5b57d62743307fe76ef384a15bad52",
       "guid": "fd94e6959dc0dcf4cab45e72937aba6d",
       "types": [
         "WeaponSettingsTests"
       ],
-      "lines": 246,
+      "lines": 241,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -19637,10 +19676,11 @@
         "TestCase"
       ],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "101befe4e7e8998d2499faed42363aeb3d48c7a30d22059080d02bd0063c1b4a",
+      "reviewedSha256": "0619e70f99b9be7d9b6950be6ae7f3eb3c5b57d62743307fe76ef384a15bad52",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponModels01.md",
-      "reviewScope": "Touched source read; model/settings/commands/RNG and original save format regressions. See explicit remaining boundaries."
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
@@ -20182,10 +20222,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
       "sourceScope": "unity",
-      "sha256": "4839f4ab3d8c9f836b8a1880278998f348a7471ed7b20494ff05d23faa289b00",
+      "sha256": "944cc078f1e6158fdd9d661aba88c9f191b9d505c046b1e8e976f76d0ff944f7",
       "guid": "ad3421187d2a435bb84a328f2834e240",
       "types": [
         "ProjectileSceneOwnershipTests"
@@ -20196,10 +20236,10 @@
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "4839f4ab3d8c9f836b8a1880278998f348a7471ed7b20494ff05d23faa289b00",
+      "reviewedSha256": "944cc078f1e6158fdd9d661aba88c9f191b9d505c046b1e8e976f76d0ff944f7",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
-      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -20283,10 +20323,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "a7761cca6495867ff34beeac5658a5be078d13ab50946ae0bf4887233ffb2b29",
+      "sha256": "3c5bec667db5798f9e5f17a2f8f621b92cee0250fd7239c79e6ea2cdf1ac6aa5",
       "guid": "f6f7021931ae9294a9d8993c8238be40",
       "types": [
         "RealClock",
@@ -20302,10 +20342,10 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "a7761cca6495867ff34beeac5658a5be078d13ab50946ae0bf4887233ffb2b29",
+      "reviewedSha256": "3c5bec667db5798f9e5f17a2f8f621b92cee0250fd7239c79e6ea2cdf1ac6aa5",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
-      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
+      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -20730,7 +20770,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 503,
+    "unity": 504,
     "content_source": 8
   },
   "latestReview": {
@@ -20881,11 +20921,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 522,
-    "totalFiles": 522,
+    "reviewedFiles": 523,
+    "totalFiles": 523,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "WeaponLoot19 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "WeaponDefinition20 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

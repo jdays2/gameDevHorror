@@ -190,10 +190,7 @@ namespace EmergencyShift
             }
 
             var definition = Instantiate(weapon.Definition);
-            definition.damage = 3;
-            definition.secondsBetweenShots = .05f;
-            definition.maximumAmmo = 77;
-            definition.range = 8;
+            JsonUtility.FromJsonOverwrite("{\"damage\":3,\"secondsBetweenShots\":0.05,\"maximumAmmo\":77,\"range\":8}", definition);
             weapon.SetDefinition(definition);
             weapon.TryAddAmmo(200);
             if (!Check(weapon.Ammo == 77 && weapon.Damage == 3 && Mathf.Approximately(weapon.ShotInterval, .05f), "Weapon data controls stats"))

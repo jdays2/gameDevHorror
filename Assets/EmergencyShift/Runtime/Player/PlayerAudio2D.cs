@@ -225,7 +225,7 @@ namespace EmergencyShift
                 return;
             }
 
-            var profile = weapon.Definition.audioProfile;
+            var profile = weapon.Definition.AudioProfile;
             var clip = Choose(profile != null ? profile.shots : sounds.Shots(indoorShot));
             if (clip == null)
             {
@@ -277,7 +277,7 @@ namespace EmergencyShift
                 return;
             }
 
-            var profile = weapon.Definition.audioProfile;
+            var profile = weapon.Definition.AudioProfile;
             if (!combatAudioEnabled || profile == null || casingSources == null)
             {
                 return;

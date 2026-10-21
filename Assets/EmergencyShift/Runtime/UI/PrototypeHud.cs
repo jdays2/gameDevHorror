@@ -78,7 +78,7 @@ namespace EmergencyShift
                         operation = " · ЗАРЯДКА";
                     }
 
-                    ammoStatus.text = weapon.Definition.displayName.ToUpperInvariant() + "  " + ammunition + operation + "   [ЛКМ]";
+                    ammoStatus.text = weapon.Definition.DisplayName.ToUpperInvariant() + "  " + ammunition + operation + "   [ЛКМ]";
                 }
             }
 

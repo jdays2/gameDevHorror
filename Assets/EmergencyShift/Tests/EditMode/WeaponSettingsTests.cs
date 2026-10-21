@@ -13,17 +13,12 @@ namespace EmergencyShift.Tests
             var asset = ScriptableObject.CreateInstance<PumpShotgunDefinition>();
             try
             {
-                asset.contentId = "frozen-shotgun";
+                JsonUtility.FromJsonOverwrite("{\"contentId\":\"frozen-shotgun\"}", asset);
                 var inventory = new WeaponInventory();
                 WeaponSettings settings = asset.ToSettings();
                 Assert.That(inventory.Acquire(settings, 12), Is.True);
                 WeaponCycle cycle = inventory.ActiveCycle;
-                asset.contentId = "changed";
-                asset.magazineCapacity = 1;
-                asset.maximumAmmo = 1;
-                asset.pumpSeconds = 40;
-                asset.secondsBetweenShots = 40;
-                asset.selectionSlot = 25;
+                JsonUtility.FromJsonOverwrite("{\"contentId\":\"changed\",\"magazineCapacity\":1,\"maximumAmmo\":1,\"pumpSeconds\":40,\"secondsBetweenShots\":40,\"selectionSlot\":25}", asset);
                 Assert.That(cycle.TryFire(0), Is.True);
                 cycle.Tick(1);
                 Assert.That(cycle.Phase, Is.EqualTo(WeaponPhase.Ready));

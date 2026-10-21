@@ -83,7 +83,7 @@ namespace EmergencyShift.Tests
             ProjectileProbeTarget nearest = Target("Nearest", .45f);
             ProjectileProbeTarget farther = Target("Farther", .7f);
             var definition = AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset");
-            var style = Object.Instantiate(definition.visuals);
+            var style = Object.Instantiate(definition.Visuals);
             var visual = Object.Instantiate(style.projectile);
             assets.Add(style);
             assets.Add(visual);
@@ -114,7 +114,7 @@ namespace EmergencyShift.Tests
             ProjectileProbeTarget beyond = Target("Beyond range", .4f);
             var definition = AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset");
             BulletProjectile2D bullet = Spawn(owner.transform);
-            bullet.Launch(owner.transform, Vector2.right, definition.visuals, null, 1 << 9, 3, .1f);
+            bullet.Launch(owner.transform, Vector2.right, definition.Visuals, null, 1 << 9, 3, .1f);
             Physics2D.SyncTransforms();
             float deadline = Time.realtimeSinceStartup + 2;
             while (bullet != null && Time.realtimeSinceStartup < deadline)
@@ -161,7 +161,7 @@ namespace EmergencyShift.Tests
             ProjectileInstaller.Install(scope);
             var prefabs = new ScenePrefabFactory(scope, shooter.transform);
             var bullet = prefabs.Instantiate(bulletPrefab, Vector3.zero, Quaternion.identity).GetComponent<BulletProjectile2D>();
-            bullet.Launch(shooter.transform, Vector2.right, definition.visuals, effectPrefab, (1 << 8) | (1 << 9), 1, 2);
+            bullet.Launch(shooter.transform, Vector2.right, definition.Visuals, effectPrefab, (1 << 8) | (1 << 9), 1, 2);
             Physics2D.SyncTransforms();
             ShotEffect2D impact = null;
             float deadline = Time.realtimeSinceStartup + 2;

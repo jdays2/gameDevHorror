@@ -710,6 +710,7 @@
 - [WeaponAimEnvironmentTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponAimEnvironmentTests.cs)
 - [WeaponControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs)
 - [WeaponCycleTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs)
+- [WeaponDefinitionConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs)
 - [WeaponLootModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs)
 - [WeaponLootPayloadTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponLootPayloadTests.cs)
 - [WeaponSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs)
