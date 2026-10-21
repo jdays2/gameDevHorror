@@ -37,14 +37,16 @@ namespace EmergencyShift
         public Speaker[] speakers = Array.Empty<Speaker>();
         public Line[] lines = Array.Empty<Line>();
 
-        public void Validate()
+        public void Validate() => ToGraph();
+
+        public DialogueGraph ToGraph()
         {
             if (speakers == null || speakers.Length == 0 || lines == null || lines.Length == 0)
             {
                 throw new InvalidOperationException("Dialogue requires speakers and lines: " + name);
             }
 
-            foreach (var speaker in speakers)
+            foreach (Speaker speaker in speakers)
             {
                 if (speaker == null || string.IsNullOrWhiteSpace(speaker.displayName))
                 {
@@ -52,54 +54,32 @@ namespace EmergencyShift
                 }
             }
 
-            var ids = new HashSet<string>(StringComparer.Ordinal);
-            foreach (var line in lines)
+            var nodes = new List<DialogueNode>(lines.Length);
+            foreach (Line line in lines)
             {
-                if (line == null || line.speaker < 0 || line.speaker >= speakers.Length || string.IsNullOrWhiteSpace(line.text))
+                if (line == null)
                 {
-                    throw new InvalidOperationException("Dialogue line has invalid speaker or text: " + name);
+                    throw new InvalidOperationException("Dialogue line is missing: " + name);
                 }
 
-                if (string.IsNullOrWhiteSpace(line.id) || !ids.Add(line.id))
+                var choices = new List<DialogueOption>();
+                if (line.choices != null)
                 {
-                    throw new InvalidOperationException("Dialogue line IDs must be nonempty and unique: " + name);
-                }
-            }
-
-            if (string.IsNullOrWhiteSpace(entryId) || !ids.Contains(entryId))
-            {
-                throw new InvalidOperationException("Dialogue entry does not exist: " + name);
-            }
-
-            foreach (var line in lines)
-            {
-                bool hasChoices = line.choices != null && line.choices.Length > 0;
-                if (hasChoices && !string.IsNullOrEmpty(line.nextId))
-                {
-                    throw new InvalidOperationException("A line cannot have both nextId and choices: " + line.id);
-                }
-
-                if (!string.IsNullOrEmpty(line.nextId) && !ids.Contains(line.nextId))
-                {
-                    throw new InvalidOperationException("Dialogue next target does not exist: " + line.id);
-                }
-
-                if (!hasChoices)
-                {
-                    continue;
-                }
-
-                var choiceIds = new HashSet<string>(StringComparer.Ordinal);
-                foreach (var choice in line.choices)
-                {
-                    if (choice == null || string.IsNullOrWhiteSpace(choice.id) || !choiceIds.Add(choice.id)
-                        || string.IsNullOrWhiteSpace(choice.text) || string.IsNullOrWhiteSpace(choice.targetId)
-                        || !ids.Contains(choice.targetId))
+                    foreach (Choice choice in line.choices)
                     {
-                        throw new InvalidOperationException("Dialogue choice has invalid ID, text or target: " + line.id);
+                        if (choice == null)
+                        {
+                            throw new InvalidOperationException("Dialogue choice is missing: " + line.id);
+                        }
+
+                        choices.Add(new DialogueOption(choice.id, choice.text, choice.targetId));
                     }
                 }
+
+                nodes.Add(new DialogueNode(line.id, line.speaker, line.text, line.nextId, choices));
             }
+
+            return new DialogueGraph(entryId, speakers.Length, nodes);
         }
     }
 }

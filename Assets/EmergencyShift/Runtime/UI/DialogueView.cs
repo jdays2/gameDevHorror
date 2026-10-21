@@ -57,7 +57,7 @@ namespace EmergencyShift
             AdvanceRequested?.Invoke();
         }
 
-        public void Present(DialogueSequence.Speaker speaker, DialogueSequence.Line line, bool last)
+        public void Present(DialogueSequence.Speaker speaker, DialogueNode line, bool last)
         {
             speakerName.font = style.font;
             speakerName.fontSize = style.nameSize;
@@ -66,9 +66,9 @@ namespace EmergencyShift
             body.font = style.font;
             body.fontSize = style.textSize;
             body.color = style.textColor;
-            body.text = line.text;
-            choiceCount = line.choices == null ? 0 : line.choices.Length;
-            PrepareChoices(line.choices);
+            body.text = line.Text;
+            choiceCount = line.Choices.Count;
+            PrepareChoices(line.Choices);
             advance.gameObject.SetActive(choiceCount == 0);
             backgroundAdvance.interactable = choiceCount == 0;
             advanceLabel.font = style.font;
@@ -89,7 +89,7 @@ namespace EmergencyShift
             }
         }
 
-        private void PrepareChoices(DialogueSequence.Choice[] choices)
+        private void PrepareChoices(IReadOnlyList<DialogueOption> choices)
         {
             while (choiceButtons.Count < choiceCount)
             {
@@ -114,7 +114,7 @@ namespace EmergencyShift
                 label.font = style.font;
                 label.fontSize = style.choiceSize;
                 label.color = style.textColor;
-                label.text = (i + 1) + "   " + choices[i].text;
+                label.text = (i + 1) + "   " + choices[i].Text;
                 choiceButtons[i].targetGraphic.color = style.choiceColor;
                 int previous = (i + choiceCount - 1) % choiceCount;
                 int next = (i + 1) % choiceCount;

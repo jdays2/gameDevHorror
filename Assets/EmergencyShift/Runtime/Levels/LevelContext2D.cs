@@ -77,6 +77,7 @@ namespace EmergencyShift
             // This is the local input selection for UI/adapters, never a global player model.
             Container.Bind<IPlayerInput>().FromInstance(localInput);
             Container.Bind<GameplayInputBlock>().FromInstance(localInputBlock);
+            DialogueInstaller.Install(Container);
         }
 
         private void OnDestroy() => Dispose();

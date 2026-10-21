@@ -14,7 +14,7 @@ namespace EmergencyShift
         public bool IsAvailable(PlayerInteraction actor)
         {
             return isActiveAndEnabled && actor != null && sequence != null && session != null
-                && !session.IsOpen && actor.CanReach(InteractionPosition, interactionRange);
+                && session.CanBegin && actor.CanReach(InteractionPosition, interactionRange);
         }
 
         public string GetPrompt(PlayerInteraction actor)

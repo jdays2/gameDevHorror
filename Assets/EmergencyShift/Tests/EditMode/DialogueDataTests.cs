@@ -74,19 +74,19 @@ namespace EmergencyShift.Tests
             try
             {
                 Array.Reverse(sequence.lines);
-                var run = new DialogueRun(sequence);
-                Assert.That(run.Current.id, Is.EqualTo("fork"));
+                var run = new DialogueRun(sequence.ToGraph());
+                Assert.That(run.Current.Id, Is.EqualTo("fork"));
                 Assert.That(run.Advance(), Is.False);
                 Assert.That(run.Choose(-1), Is.False);
                 Assert.That(run.Choose(2), Is.False);
-                Assert.That(run.Current.id, Is.EqualTo("fork"));
+                Assert.That(run.Current.Id, Is.EqualTo("fork"));
                 Assert.That(run.Choose(choice), Is.True);
-                Assert.That(run.Current.id, Is.EqualTo(target));
+                Assert.That(run.Current.Id, Is.EqualTo(target));
                 Assert.That(run.LastTransition.ChoiceId, Is.EqualTo(choiceId));
                 Assert.That(run.LastTransition.FromId, Is.EqualTo("fork"));
                 Assert.That(run.LastTransition.Kind, Is.EqualTo(DialogueTransitionKind.ChoiceSelected));
                 Assert.That(run.Advance(), Is.True);
-                Assert.That(run.Current.id, Is.EqualTo("join"));
+                Assert.That(run.Current.Id, Is.EqualTo("join"));
                 Assert.That(run.Advance(), Is.True);
                 Assert.That(run.IsComplete, Is.True);
                 Assert.That(run.LastTransition.Kind, Is.EqualTo(DialogueTransitionKind.Completed));
@@ -106,14 +106,14 @@ namespace EmergencyShift.Tests
             try
             {
                 string before = JsonUtility.ToJson(sequence);
-                var first = new DialogueRun(sequence);
-                var second = new DialogueRun(sequence);
+                var first = new DialogueRun(sequence.ToGraph());
+                var second = new DialogueRun(sequence.ToGraph());
                 first.Choose(0);
                 second.Choose(1);
                 first.Cancel();
                 Assert.That(first.LastTransition.Kind, Is.EqualTo(DialogueTransitionKind.Cancelled));
-                Assert.That(second.Current.id, Is.EqualTo("right"));
-                Assert.That(new DialogueRun(sequence).Current.id, Is.EqualTo("fork"));
+                Assert.That(second.Current.Id, Is.EqualTo("right"));
+                Assert.That(new DialogueRun(sequence.ToGraph()).Current.Id, Is.EqualTo("fork"));
                 Assert.That(JsonUtility.ToJson(sequence), Is.EqualTo(before));
             }
             finally
@@ -151,7 +151,7 @@ namespace EmergencyShift.Tests
                         break;
                 }
 
-                Assert.Throws<InvalidOperationException>(() => new DialogueRun(sequence));
+                Assert.Throws<InvalidOperationException>(() => new DialogueRun(sequence.ToGraph()));
             }
             finally
             {

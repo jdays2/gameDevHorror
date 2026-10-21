@@ -5,7 +5,7 @@ using Zenject;
 
 namespace EmergencyShift
 {
-    /// <summary>Owns one modal conversation, previous presentation state and input-release fence.</summary>
+    /// <summary>Unity input/presentation adapter. Modal lifecycle belongs to its injected controller.</summary>
     [DefaultExecutionOrder(-200)]
     public sealed class DialogueSession : MonoBehaviour
     {
@@ -13,29 +13,34 @@ namespace EmergencyShift
         [SerializeField] private Canvas gameplayHud;
         [SerializeField] private AimReticle2D reticle;
         private DialogueSequence sequence;
-        private DialogueRun run;
-        private IDisposable inputLease;
-        private IDisposable motionLease;
+        private DialogueController controller;
+        private IPlayerInput input;
         private bool previousHud;
         private bool previousReticle;
         private bool previousCursor;
-        private bool waitingForRelease;
-        private int changedFrame;
-        private IPlayerInput input;
-        private GameplayInputBlock inputBlock;
-        private WorldMotionPause motionPause;
+        private bool presentationCaptured;
 
         [Inject]
-        private void Construct(IPlayerInput playerInput, GameplayInputBlock block, WorldMotionPause pause)
+        private void Construct(DialogueControllerFactory factory, IPlayerInput playerInput)
         {
+            if (controller != null)
+            {
+                throw new InvalidOperationException("Dialogue session is already composed.");
+            }
+
             input = playerInput;
-            inputBlock = block;
-            motionPause = pause;
+            controller = factory.Create();
+            controller.ContextAcquired += CapturePresentation;
+            controller.ContextReleased += RestorePresentation;
+            controller.Transitioned += PresentTransition;
         }
-        public bool IsOpen => run != null && !run.IsComplete;
-        public int LineIndex => run == null ? -1 : run.LineIndex;
-        public string LineId => IsOpen ? run.Current.id : null;
-        public bool RequiresChoice => IsOpen && run.RequiresChoice;
+
+        public bool IsOpen => controller != null && controller.IsOpen;
+        public bool CanBegin => isActiveAndEnabled && view != null && gameplayHud != null
+            && controller != null && controller.CanBegin;
+        public int LineIndex => controller == null ? -1 : controller.LineIndex;
+        public string LineId => IsOpen ? controller.Current.Id : null;
+        public bool RequiresChoice => IsOpen && controller.RequiresChoice;
         public event Action<DialogueTransition> Transitioned;
 
         private void OnEnable()
@@ -54,50 +59,38 @@ namespace EmergencyShift
                 view.AdvanceRequested -= Advance;
                 view.ChoiceRequested -= Choose;
             }
+
             Cancel();
+        }
+
+        private void OnDestroy()
+        {
+            if (controller == null)
+            {
+                return;
+            }
+
+            controller.Dispose();
+            controller.ContextAcquired -= CapturePresentation;
+            controller.ContextReleased -= RestorePresentation;
+            controller.Transitioned -= PresentTransition;
         }
 
         public bool TryBegin(DialogueSequence content)
         {
-            if (content == null || view == null || gameplayHud == null || inputLease != null || inputBlock.IsBlocked)
+            if (content == null || !CanBegin)
             {
                 return false;
             }
 
-            var nextRun = new DialogueRun(content);
-            previousHud = gameplayHud.enabled;
-            previousReticle = reticle != null && reticle.enabled;
-            if (reticle != null)
-            {
-                reticle.enabled = false;
-            }
-
-            previousCursor = Cursor.visible;
-            inputLease = inputBlock.Acquire();
-            gameplayHud.enabled = false;
-            Cursor.visible = true;
-            motionLease = motionPause.Acquire();
+            DialogueGraph graph = content.ToGraph();
             sequence = content;
-            run = nextRun;
-            changedFrame = Time.frameCount;
-            PresentLine();
-            Transitioned?.Invoke(run.LastTransition);
-            return true;
+            return controller.TryBegin(graph);
         }
 
         private void Update()
         {
-            if (waitingForRelease)
-            {
-                if (Time.frameCount > changedFrame + 1 && !ConfirmationHeld())
-                {
-                    ReleaseContext();
-                }
-
-                return;
-            }
-
-            if (!IsOpen)
+            if (controller == null)
             {
                 return;
             }
@@ -106,95 +99,68 @@ namespace EmergencyShift
             {
                 Advance();
             }
+
+            controller.Tick(input.ConfirmationHeld);
         }
 
-        public void Advance()
+        public void Advance() => controller?.Advance();
+
+        public void Choose(int index) => controller?.Choose(index);
+
+        public void Cancel() => controller?.Cancel();
+
+        private void CapturePresentation()
         {
-            if (!IsOpen || Time.frameCount <= changedFrame || !run.Advance())
+            previousHud = gameplayHud.enabled;
+            previousReticle = reticle != null && reticle.enabled;
+            previousCursor = Cursor.visible;
+            presentationCaptured = true;
+            gameplayHud.enabled = false;
+            Cursor.visible = true;
+            if (reticle != null)
             {
-                return;
+                reticle.enabled = false;
             }
-
-            RefreshAfterTransition();
         }
 
-        public void Choose(int index)
+        private void PresentTransition(DialogueStep step)
         {
-            if (!IsOpen || Time.frameCount <= changedFrame || !run.Choose(index))
+            if (IsOpen)
             {
-                return;
+                DialogueNode line = controller.Current;
+                view.Present(sequence.speakers[line.Speaker], line, string.IsNullOrEmpty(line.NextId));
             }
-
-            RefreshAfterTransition();
-        }
-
-        private void RefreshAfterTransition()
-        {
-            changedFrame = Time.frameCount;
-            var transition = run.LastTransition;
-            if (run.IsComplete)
+            else if (view != null)
             {
                 view.Hide();
-                motionLease.Dispose();
-                motionLease = null;
-                waitingForRelease = true;
-            }
-            else
-            {
-                PresentLine();
             }
 
-            Transitioned?.Invoke(transition);
+            Transitioned?.Invoke(new DialogueTransition(sequence, step));
         }
 
-        private void PresentLine()
+        private void RestorePresentation()
         {
-            var line = run.Current;
-            view.Present(sequence.speakers[line.speaker], line, string.IsNullOrEmpty(line.nextId));
-        }
-
-        public void Cancel()
-        {
-            if (inputLease == null)
+            if (!presentationCaptured)
             {
                 return;
             }
 
-            bool cancelled = IsOpen;
-            run.Cancel();
-            var transition = run.LastTransition;
+            presentationCaptured = false;
             if (view != null)
             {
                 view.Hide();
             }
-            motionLease?.Dispose();
-            motionLease = null;
-            ReleaseContext();
-            if (cancelled)
-            {
-                Transitioned?.Invoke(transition);
-            }
-        }
 
-        private void ReleaseContext()
-        {
-            waitingForRelease = false;
             if (gameplayHud != null)
             {
                 gameplayHud.enabled = previousHud;
             }
+
             Cursor.visible = previousCursor;
             if (reticle != null)
             {
                 reticle.enabled = previousReticle;
             }
-
-            inputLease.Dispose();
-            inputLease = null;
-            run = null;
-            sequence = null;
         }
-
-        private bool ConfirmationHeld() => input.ConfirmationHeld;
     }
 }

@@ -144,11 +144,20 @@
 
 ## Assets/EmergencyShift/Runtime/Dialogue
 
+- [DialogueCommands.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs)
+- [DialogueController.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs)
+- [DialogueControllerFactory.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueControllerFactory.cs)
+- [DialogueGraph.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs)
+- [DialogueInstaller.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueInstaller.cs)
 - [DialogueInteraction2D.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs)
+- [DialogueNode.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueNode.cs)
+- [DialogueOption.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueOption.cs)
 - [DialogueRun.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueRun.cs)
 - [DialogueSequence.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueSequence.cs)
 - [DialogueSession.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs)
+- [DialogueStep.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueStep.cs)
 - [DialogueStyle.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueStyle.cs)
+- [DialogueTransition.cs](../Assets/EmergencyShift/Runtime/Dialogue/DialogueTransition.cs)
 
 ## Assets/EmergencyShift/Runtime/Enemies/Common
 
@@ -377,6 +386,7 @@
 - [CheckpointBooleanTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs)
 - [CheckpointPayloadTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs)
 - [CheckpointValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs)
+- [DialogueControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs)
 - [DialogueDataTests.cs](../Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs)
 - [DialoguePrefabTests.cs](../Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs)
 - [DirectionalDamageTests.cs](../Assets/EmergencyShift/Tests/EditMode/DirectionalDamageTests.cs)
@@ -406,6 +416,7 @@
 ## Assets/EmergencyShift/Tests/PlayMode
 
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
+- [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
 
 ## Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts
 

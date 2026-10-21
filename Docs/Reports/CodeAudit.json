@@ -3,11 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "278 current own C# have explicit source review. partial files retain migration/validation debt; complete=false. CheckpointConsistency03 certifies only its stated scenarios.",
+  "limits": "289 current own C# explicitly reviewed; 113 retain migration debt. complete=false. DialogueMvc01 certifies only its stated scenarios.",
   "counts": {
-    "partial": 117,
-    "reviewed_boundary": 161,
-    "queued": 0
+    "partial": 113,
+    "reviewed_boundary": 176
   },
   "files": [
     {
@@ -1400,6 +1399,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Core/Commands/ICommand.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
@@ -1444,6 +1444,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
@@ -1849,7 +1850,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Core/WorldMotionPause.cs",
-        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
@@ -1860,9 +1862,11 @@
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxSession2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2054,9 +2058,13 @@
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Core/Scheduling/FrameWorkBudget.cs",
         "Assets/EmergencyShift/Runtime/Core/Time/UnityFrameClock.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/NavigationWorkBudget2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2139,8 +2147,10 @@
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Core/Time/UnityWorldTimeScale.cs",
         "Assets/EmergencyShift/Runtime/Core/WorldMotionPause.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -2289,12 +2299,15 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Core/GameplayInputBlock.cs",
-        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -4160,8 +4173,143 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
+      "sourceScope": "unity",
+      "sha256": "13bdbb2fd797a6153baf904d99fba533f6b037d71ac4867d69da43620fe5ea97",
+      "guid": "296a770b12b4f074ca5bb78d20a2e5f2",
+      "types": [
+        "AdvanceDialogueCommand",
+        "BeginDialogueCommand",
+        "CancelDialogueCommand",
+        "ChooseDialogueCommand"
+      ],
+      "lines": 120,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueRun.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "13bdbb2fd797a6153baf904d99fba533f6b037d71ac4867d69da43620fe5ea97",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs",
+      "sourceScope": "unity",
+      "sha256": "7563119db00f0703916e9e7c35ff3f202cdae3c32a532817cc679ff84050f5e9",
+      "guid": "7527a01d1bd58f54c9959fd5d8230e8a",
+      "types": [
+        "DialogueController"
+      ],
+      "lines": 165,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7563119db00f0703916e9e7c35ff3f202cdae3c32a532817cc679ff84050f5e9",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "c8b5f0e8de5d5a5e8ac97240cd1c494f95ea0f8edfae4e4998f647e6f5cbea5b",
+      "guid": "28a153e1703670d41b55c8f691a46c60",
+      "types": [
+        "DialogueControllerFactory"
+      ],
+      "lines": 21,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c8b5f0e8de5d5a5e8ac97240cd1c494f95ea0f8edfae4e4998f647e6f5cbea5b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
+      "sourceScope": "unity",
+      "sha256": "41034b33982f7cad1c00b37fe742f77471d725bf0df81a130e420b191464e980",
+      "guid": "7030686e490eab14cb6c941e3ab4e203",
+      "types": [
+        "DialogueGraph"
+      ],
+      "lines": 75,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueRun.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSequence.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "41034b33982f7cad1c00b37fe742f77471d725bf0df81a130e420b191464e980",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "08828c27458a734fa88645ff21364f1ba3cfaec030dde6cfeb199bde64edccdb",
+      "guid": "bfeaf18f7fce3434cbb619eaecc26a3f",
+      "types": [
+        "DialogueInstaller"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "08828c27458a734fa88645ff21364f1ba3cfaec030dde6cfeb199bde64edccdb",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs",
-      "sha256": "6ff1fc3142b62aa0ca1531d1f4b284f9728570d19f64b82b49b6723b59fd5912",
+      "sha256": "94910233101403c1c72075b1da8a7bb5afc697d039c5624113eb3332aaa27684",
       "baselineSha256": "6ff1fc3142b62aa0ca1531d1f4b284f9728570d19f64b82b49b6723b59fd5912",
       "guid": "966f8ed9169ee6b42aca89bc87fedacf",
       "types": [
@@ -4176,14 +4324,15 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/DialogueSandboxAuthoring.cs",
-        "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "BUG-004: IsAvailable не проверяет session.isActiveAndEnabled. Interaction сам активен при отключении только Session; TryBegin может захватить мир без работающего Update.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "reviewedSha256": "6ff1fc3142b62aa0ca1531d1f4b284f9728570d19f64b82b49b6723b59fd5912",
+      "reviewedSha256": "94910233101403c1c72075b1da8a7bb5afc697d039c5624113eb3332aaa27684",
       "reviewDate": "2026-10-21",
       "responsibility": "Адаптер взаимодействия E с точкой разговора",
       "dependencies": [
@@ -4192,32 +4341,101 @@
         "DialogueSession"
       ],
       "usageEvidence": "Conversation point в MechanicsSandbox; PlayerInteraction вызывает IsAvailable/Interact",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "6ff1fc3142b62aa0ca1531d1f4b284f9728570d19f64b82b49b6723b59fd5912",
+          "notes": "BUG-004: IsAvailable не проверяет session.isActiveAndEnabled. Interaction сам активен при отключении только Session; TryBegin может захватить мир без работающего Update.",
+          "reviewReport": "Docs/Reports/CodeAudit05.md"
+        }
+      ]
     },
     {
-      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueRun.cs",
-      "sha256": "2e0e86f27c37044148b70b96c5c47e0abec7815e9f57d2a5347136ea178cabcc",
-      "baselineSha256": "2e0e86f27c37044148b70b96c5c47e0abec7815e9f57d2a5347136ea178cabcc",
-      "guid": "a9ab7cba677bbf54389914311475ffd1",
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueNode.cs",
+      "sourceScope": "unity",
+      "sha256": "c252d17ff4166747e8a88b185e079e178a3351242a407d7bf5248e3ec9c23b7f",
+      "guid": "e0709a7652ad6be42a449b5784ea6f4e",
       "types": [
-        "DialogueRun",
-        "DialogueTransition",
-        "DialogueTransitionKind"
+        "DialogueNode"
       ],
-      "lines": 113,
+      "lines": 24,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueRun.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSequence.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
+        "Assets/EmergencyShift/Runtime/UI/DialogueView.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c252d17ff4166747e8a88b185e079e178a3351242a407d7bf5248e3ec9c23b7f",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueOption.cs",
+      "sourceScope": "unity",
+      "sha256": "cf502e602f0eb21fcd1ddbacbd9986a20c58287f16d33a9db155626fab3b09e7",
+      "guid": "51f1525edcd40bd4da746e74d8be7b3f",
+      "types": [
+        "DialogueOption"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueNode.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueRun.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSequence.cs",
+        "Assets/EmergencyShift/Runtime/UI/DialogueView.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "cf502e602f0eb21fcd1ddbacbd9986a20c58287f16d33a9db155626fab3b09e7",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueRun.cs",
+      "sha256": "9213d95c5d2cb9e191478784e52727a6db1487bd9917a69893cc4fa55b9eb48b",
+      "baselineSha256": "2e0e86f27c37044148b70b96c5c47e0abec7815e9f57d2a5347136ea178cabcc",
+      "guid": "a9ab7cba677bbf54389914311475ffd1",
+      "types": [
+        "DialogueRun"
+      ],
+      "lines": 58,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueCommands.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Прогресс индивидуален и asset не записывается; модель всё ещё напрямую зависит от ScriptableObject, Current отдаёт mutable asset Line. Внешние Advance/Choose/Cancel обходят стандарт ICommand/Result. Нужны чистое описание графа и команды; эффекты/сохранение не добавлять.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "reviewedSha256": "2e0e86f27c37044148b70b96c5c47e0abec7815e9f57d2a5347136ea178cabcc",
+      "reviewedSha256": "9213d95c5d2cb9e191478784e52727a6db1487bd9917a69893cc4fa55b9eb48b",
       "reviewDate": "2026-10-21",
       "responsibility": "Позиция одного прохождения графа и уведомления переходов",
       "dependencies": [
@@ -4225,12 +4443,22 @@
         "Dictionary<string,int>"
       ],
       "usageEvidence": "DialogueSession создаёт прохождение; DialogueDataTests проверяет ветки/ID/изоляцию",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "2e0e86f27c37044148b70b96c5c47e0abec7815e9f57d2a5347136ea178cabcc",
+          "notes": "Прогресс индивидуален и asset не записывается; модель всё ещё напрямую зависит от ScriptableObject, Current отдаёт mutable asset Line. Внешние Advance/Choose/Cancel обходят стандарт ICommand/Result. Нужны чистое описание графа и команды; эффекты/сохранение не добавлять.",
+          "reviewReport": "Docs/Reports/CodeAudit05.md"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueSequence.cs",
-      "sha256": "56e44264b03f39df460f8fa6439375419e05b1fa5266298e164620f9102001ec",
+      "sha256": "36747e415a0e50a5f1bfc5c37bbbc6ce1650726af037f48a1d8196a31fbc67c1",
       "baselineSha256": "56e44264b03f39df460f8fa6439375419e05b1fa5266298e164620f9102001ec",
       "guid": "cf8fe0a398451c64d83082d14cf804c4",
       "types": [
@@ -4239,7 +4467,7 @@
         "Line",
         "Speaker"
       ],
-      "lines": 105,
+      "lines": 85,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Dialogue/SandboxConversation.asset"
       ],
@@ -4248,18 +4476,22 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/DialogueSandboxAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs",
-        "Assets/EmergencyShift/Runtime/Dialogue/DialogueRun.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueNode.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueTransition.cs",
         "Assets/EmergencyShift/Runtime/UI/DialogueView.cs",
-        "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Валидация до захвата контекста отвергает неоднозначные и отсутствующие цели. DTO графа и портреты связаны с SO; для чистой модели нужен immutable runtime-снимок отдельно от Unity-представления. Недостижимые узлы/циклы сами по себе не объявлены багом.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "reviewedSha256": "56e44264b03f39df460f8fa6439375419e05b1fa5266298e164620f9102001ec",
+      "reviewedSha256": "36747e415a0e50a5f1bfc5c37bbbc6ce1650726af037f48a1d8196a31fbc67c1",
       "reviewDate": "2026-10-21",
       "responsibility": "Общий граф реплик и валидация ID/переходов",
       "dependencies": [
@@ -4267,18 +4499,28 @@
         "вложенные Speaker/Line/Choice"
       ],
       "usageEvidence": "SandboxConversation.asset; DialogueRun.Validate; Editor-authoring и DialogueDataTests",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "56e44264b03f39df460f8fa6439375419e05b1fa5266298e164620f9102001ec",
+          "notes": "Валидация до захвата контекста отвергает неоднозначные и отсутствующие цели. DTO графа и портреты связаны с SO; для чистой модели нужен immutable runtime-снимок отдельно от Unity-представления. Недостижимые узлы/циклы сами по себе не объявлены багом.",
+          "reviewReport": "Docs/Reports/CodeAudit05.md"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
-      "sha256": "432563bc47a7bdc37559497d9e26ac79835ba1f89a86c22902a21d60209385db",
+      "sha256": "71d7759d8ecb0b9c3f09a6a394d8b9cb7a52787b95b75774cfa6706a55014d3b",
       "baselineSha256": "d58eeddbeb7aaa0abdbb106fb9c9a9516b160502125f15aaca0f2e655927803f",
       "guid": "f353b605464799049889834185a25580",
       "types": [
         "DialogueSession"
       ],
-      "lines": 200,
+      "lines": 166,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/UI/DialogueUI.prefab",
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
@@ -4290,12 +4532,13 @@
         "Assets/EmergencyShift/Editor/Authoring/DialoguePrefabAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/DialogueSandboxAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Смешаны доменный переход, Time.frameCount, захваты и визуальное восстановление; не delegation-only coordinator. Нужен controller/environment/presenter без context bag. BUG-004: TryBegin допускает disabled/inactive Session. Cancel/OnDisable освобождают контекст; подписки симметричны.",
-      "reviewedSha256": "432563bc47a7bdc37559497d9e26ac79835ba1f89a86c22902a21d60209385db",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "reviewedSha256": "71d7759d8ecb0b9c3f09a6a394d8b9cb7a52787b95b75774cfa6706a55014d3b",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewDate": "2026-10-21",
@@ -4310,8 +4553,48 @@
         "DialogueRun"
       ],
       "usageEvidence": "DialogueUI.prefab + overrides MechanicsSandbox; DialogueInteraction2D; LevelContext injection",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests.",
+      "previousReviewStatus": "partial",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "432563bc47a7bdc37559497d9e26ac79835ba1f89a86c22902a21d60209385db",
+          "notes": "Смешаны доменный переход, Time.frameCount, захваты и визуальное восстановление; не delegation-only coordinator. Нужен controller/environment/presenter без context bag. BUG-004: TryBegin допускает disabled/inactive Session. Cancel/OnDisable освобождают контекст; подписки симметричны.",
+          "reviewReport": "Docs/Reports/CodeAudit05.md"
+        }
+      ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueStep.cs",
+      "sourceScope": "unity",
+      "sha256": "f7f964fc7752c5b405540d0201c22cfc172fb473b94c9954dbe1bcc9446d50c7",
+      "guid": "cd53cfe298ef66e43862e2e99cfd6755",
+      "types": [
+        "DialogueStep",
+        "DialogueTransitionKind"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueController.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueRun.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueTransition.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f7f964fc7752c5b405540d0201c22cfc172fb473b94c9954dbe1bcc9446d50c7",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueStyle.cs",
@@ -4334,7 +4617,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Только оформление; текущие runtime-потребители читают поля, прогресса/таймеров в SO нет. Public fields — ослабленная защита immutable-контракта, а не найденная runtime-запись.",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewedSha256": "7eb331d322f7873327e7791f0e470fef775783075590b8d1464703484295e349",
@@ -4345,8 +4628,32 @@
         "Font/Color"
       ],
       "usageEvidence": "CinematicDialogueStyle.asset; DialogueView и Editor authoring",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueTransition.cs",
+      "sourceScope": "unity",
+      "sha256": "0018fdc979ee6f7d634490cdd41438da4194146bb09933e51c91e0232b358ba5",
+      "guid": "0f7d3ccd473f40746b147f8a0b9899bf",
+      "types": [
+        "DialogueTransition"
+      ],
+      "lines": 21,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "0018fdc979ee6f7d634490cdd41438da4194146bb09933e51c91e0232b358ba5",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Common/CrowdAgent2D.cs",
@@ -6176,7 +6483,8 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxSession2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -6304,13 +6612,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "34ae9c123e0f219e8c071e50ca3a48d0815b1e0160493deab914a7c9d8e56bea",
+      "sha256": "96cbe1603670f796d5b499d73981c9944050dd4f8651d773550d67701a446f18",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 135,
+      "lines": 136,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -6345,9 +6653,9 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Явная композиция до Awake consumers, отдельный player input subcontainer и managed disposal; models UI пока в level container выбранного игрока. Полная проверка failure cleanup Initialize/всех feature scopes остаётся; не объявлять обобщённую multi-player готовность.",
-      "reviewedSha256": "34ae9c123e0f219e8c071e50ca3a48d0815b1e0160493deab914a7c9d8e56bea",
-      "previousReviewStatus": "reviewed_boundary",
+      "notes": "Dialogue installer reviewed and registered after local input binding. Existing scoped input/pause integration preserved. Initialization failure cleanup and remaining feature lifetime composition remain migration debt.",
+      "reviewedSha256": "96cbe1603670f796d5b499d73981c9944050dd4f8651d773550d67701a446f18",
+      "previousReviewStatus": "partial",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewDate": "2026-10-21",
@@ -6359,8 +6667,17 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests.",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "34ae9c123e0f219e8c071e50ca3a48d0815b1e0160493deab914a7c9d8e56bea",
+          "notes": "Явная композиция до Awake consumers, отдельный player input subcontainer и managed disposal; models UI пока в level container выбранного игрока. Полная проверка failure cleanup Initialize/всех feature scopes остаётся; не объявлять обобщённую multi-player готовность.",
+          "reviewReport": "Docs/Reports/CodeAudit05.md"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelExit2D.cs",
@@ -8044,7 +8361,8 @@
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -9483,7 +9801,8 @@
         "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
-        "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -9540,7 +9859,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/DialogueView.cs",
-      "sha256": "a83fda0914f603180a7790fdfb2b8989de16d36362445b3d47d28797a92a153d",
+      "sha256": "2efd86cebeda73a48e6a7b6bca06950aa342fe031c279de3b6c8759381543216",
       "baselineSha256": "a83fda0914f603180a7790fdfb2b8989de16d36362445b3d47d28797a92a153d",
       "guid": "975000dc6e8dac64a9c8dec1804e82c1",
       "types": [
@@ -9557,14 +9876,15 @@
         "Assets/EmergencyShift/Editor/Authoring/DialoguePrefabAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/DialogueSandboxAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Dialogue/DialogueSession.cs",
-        "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Не решает легальность ветки, повторно использует кнопки; слушатели основных кнопок снимаются OnDestroy, лямбды принадлежат дочерним кнопкам. ForceUpdateCanvases/GetComponent выполняются при показе/перекомпоновке, не заявлены измеренной проблемой FPS.",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "reviewedSha256": "a83fda0914f603180a7790fdfb2b8989de16d36362445b3d47d28797a92a153d",
+      "reviewedSha256": "2efd86cebeda73a48e6a7b6bca06950aa342fe031c279de3b6c8759381543216",
       "reviewDate": "2026-10-21",
       "responsibility": "Отображение текста, портрета и ответов",
       "dependencies": [
@@ -9574,8 +9894,18 @@
         "входные Line/Speaker DTO"
       ],
       "usageEvidence": "DialogueUI.prefab; DialogueSession.Present/Hide; выбор отдаётся событиями",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests.",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "a83fda0914f603180a7790fdfb2b8989de16d36362445b3d47d28797a92a153d",
+          "notes": "Не решает легальность ветки, повторно использует кнопки; слушатели основных кнопок снимаются OnDestroy, лямбды принадлежат дочерним кнопкам. ForceUpdateCanvases/GetComponent выполняются при показе/перекомпоновке, не заявлены измеренной проблемой FPS.",
+          "reviewReport": "Docs/Reports/CodeAudit05.md"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
@@ -10814,6 +11144,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [
@@ -10861,8 +11192,38 @@
       "sourceChangedSinceReview": false
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+      "sourceScope": "unity",
+      "sha256": "0e0237204a3c2d4feea0a91b4ad37a012decdc6dfd36c49ab55a44c185078ae1",
+      "guid": "af81d2f0d933de24782062f115c59fa4",
+      "types": [
+        "DialogueControllerTests",
+        "TestClock",
+        "TestScale"
+      ],
+      "lines": 219,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "0e0237204a3c2d4feea0a91b4ad37a012decdc6dfd36c49ab55a44c185078ae1",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
+    },
+    {
       "path": "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
-      "sha256": "39eab0db76f922420ba20049a55f1a76e683d1f74eae78b314eab49fd6b93275",
+      "sha256": "cd420b974525f5bac8b407d5370f22a43b75ce880e598841b46ff619684a873e",
       "baselineSha256": "fde12195609b91f30d0d6c2eaf55f84e036e1639935266451186a76d760d4870",
       "guid": "ea39c6b87138be64598e3e8f075e6a61",
       "types": [
@@ -10880,8 +11241,8 @@
         "TestCase"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Есть независимые ветки, отказ/ID, отсутствие записи в asset, изоляция прогресса, вложенные/поздние аренды. Нет сценария disabled DialogueSession и его UI release fence; тесты прочитаны, заново не запускались.",
-      "reviewedSha256": "39eab0db76f922420ba20049a55f1a76e683d1f74eae78b314eab49fd6b93275",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "reviewedSha256": "cd420b974525f5bac8b407d5370f22a43b75ce880e598841b46ff619684a873e",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewDate": "2026-10-21",
@@ -10893,8 +11254,18 @@
         "WorldMotionPause/fake clock"
       ],
       "usageEvidence": "EditMode test runner; 14 test cases по атрибутам",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests.",
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewDate": "2026-10-21",
+          "reviewStatus": "partial",
+          "reviewedSha256": "39eab0db76f922420ba20049a55f1a76e683d1f74eae78b314eab49fd6b93275",
+          "notes": "Есть независимые ветки, отказ/ID, отсутствие записи в asset, изоляция прогресса, вложенные/поздние аренды. Нет сценария disabled DialogueSession и его UI release fence; тесты прочитаны, заново не запускались.",
+          "reviewReport": "Docs/Reports/CodeAudit05.md"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs",
@@ -11798,10 +12169,36 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
+      "sourceScope": "unity",
+      "sha256": "19bf6b8bb8bdee1e9439aceeb8d71e84c10ea2877f90f0d59e8a1738363c6885",
+      "guid": "c2c48a0bbae36354798d6f696ebd9cfc",
+      "types": [
+        "DialogueSessionLifetimeTests",
+        "RealFrame",
+        "RealScale",
+        "TestInput"
+      ],
+      "lines": 232,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "19bf6b8bb8bdee1e9439aceeb8d71e84c10ea2877f90f0d59e8a1738363c6885",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/DialogueMvc01.md",
+      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests."
     },
     {
       "baselineSha256": null,
@@ -11930,7 +12327,7 @@
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
-        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSequence.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
@@ -12046,7 +12443,7 @@
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
-        "Assets/EmergencyShift/Runtime/Dialogue/DialogueSequence.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueGraph.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
@@ -12203,14 +12600,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 259,
+    "unity": 270,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 8,
-    "report": "Docs/Reports/CheckpointConsistency03.md",
-    "validation": "BUG-012/013 reproduced then fixed: 39 EditMode + 3 PlayMode old failures; 316/316 own EditMode, 5/5 real PlayMode, ordinary Windows64 success. No authored scene changes."
+    "files": 19,
+    "report": "Docs/Reports/DialogueMvc01.md",
+    "validation": "376/376 isolated own EditMode; 9/9 PlayMode, of which 4 dialogue prefab lifecycle. Normal Windows64 build. See live-editor failure limitation."
   },
   "reviewPasses": [
     {
@@ -12260,15 +12657,21 @@
       "files": 8,
       "report": "Docs/Reports/CheckpointConsistency03.md",
       "validation": "BUG-012/013 reproduced then fixed: 39 EditMode + 3 PlayMode old failures; 316/316 own EditMode, 5/5 real PlayMode, ordinary Windows64 success. No authored scene changes."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 19,
+      "report": "Docs/Reports/DialogueMvc01.md",
+      "validation": "376/376 isolated own EditMode; 9/9 PlayMode, of which 4 dialogue prefab lifecycle. Normal Windows64 build. See live-editor failure limitation."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 278,
-    "totalFiles": 278,
+    "reviewedFiles": 289,
+    "totalFiles": 289,
     "queuedFiles": 0,
     "hashesCurrent": true,
-    "scope": "All own C# under Assets/EmergencyShift, AgentScripts and Concepts; third-party packages/generated Library excluded.",
-    "validation": "CodeAudit05-09 and CheckpointValidation01/CheckpointPayload02/CheckpointConsistency03 touched source reviews. Full migration and untested gameplay are not certified."
+    "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
+    "validation": "DialogueMvc01 covers the stated dialogue boundaries; remaining partial files are not certified migrated."
   }
 }

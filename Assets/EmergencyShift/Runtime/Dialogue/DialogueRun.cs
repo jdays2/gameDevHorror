@@ -1,102 +1,47 @@
 using System;
-using System.Collections.Generic;
 
 namespace EmergencyShift
 {
-    public enum DialogueTransitionKind
-    {
-        Started,
-        Advanced,
-        ChoiceSelected,
-        Completed,
-        Cancelled
-    }
-
-    /// <summary>Stable content IDs for observers; contains no world-event implementation.</summary>
-    public readonly struct DialogueTransition
-    {
-        public DialogueSequence Sequence { get; }
-        public DialogueTransitionKind Kind { get; }
-        public string FromId { get; }
-        public string ToId { get; }
-        public string ChoiceId { get; }
-
-        public DialogueTransition(DialogueSequence sequence, DialogueTransitionKind kind, string fromId, string toId, string choiceId = null)
-        {
-            Sequence = sequence;
-            Kind = kind;
-            FromId = fromId;
-            ToId = toId;
-            ChoiceId = choiceId;
-        }
-    }
-
-    /// <summary>One traversal of shared dialogue data. Independent from UI, input and game events.</summary>
+    /// <summary>One pure traversal of an immutable graph. UI, input and clocks live outside the model.</summary>
     public sealed class DialogueRun
     {
-        private readonly DialogueSequence sequence;
-        private readonly Dictionary<string, int> indices = new Dictionary<string, int>(StringComparer.Ordinal);
+        private readonly DialogueGraph graph;
         public int LineIndex { get; private set; }
         public bool IsComplete { get; private set; }
-        public DialogueSequence.Line Current => IsComplete ? null : sequence.lines[LineIndex];
-        public bool RequiresChoice => Current != null && Current.choices != null && Current.choices.Length > 0;
-        public DialogueTransition LastTransition { get; private set; }
+        public DialogueNode Current => IsComplete ? null : graph.Nodes[LineIndex];
+        public bool RequiresChoice => Current != null && Current.Choices.Count > 0;
+        public DialogueStep LastTransition { get; private set; }
 
-        public DialogueRun(DialogueSequence content)
+        public DialogueRun(DialogueGraph content)
         {
-            if (content == null)
-            {
-                throw new ArgumentNullException(nameof(content));
-            }
-
-            content.Validate();
-            sequence = content;
-            for (int i = 0; i < content.lines.Length; i++)
-            {
-                indices.Add(content.lines[i].id, i);
-            }
-
-            LineIndex = indices[content.entryId];
-            LastTransition = new DialogueTransition(sequence, DialogueTransitionKind.Started, null, Current.id);
+            graph = content ?? throw new ArgumentNullException(nameof(content));
+            LineIndex = graph.EntryIndex;
+            LastTransition = new DialogueStep(DialogueTransitionKind.Started, null, Current.Id);
         }
 
-        public bool Advance()
-        {
-            if (IsComplete || RequiresChoice)
-            {
-                return false;
-            }
+        public bool Advance() => new AdvanceDialogueCommand(this).Execute().Success;
 
-            Move(Current.nextId, DialogueTransitionKind.Advanced);
-            return true;
+        public bool Choose(int index) => new ChooseDialogueCommand(this, index).Execute().Success;
+
+        public void Cancel() => new CancelDialogueCommand(this).Execute();
+
+        internal void ApplyAdvance() => Move(Current.NextId, DialogueTransitionKind.Advanced);
+
+        internal void ApplyChoice(int index)
+        {
+            DialogueOption choice = Current.Choices[index];
+            Move(choice.TargetId, DialogueTransitionKind.ChoiceSelected, choice.Id);
         }
 
-        public bool Choose(int index)
+        internal void ApplyCancel()
         {
-            if (!RequiresChoice || index < 0 || index >= Current.choices.Length)
-            {
-                return false;
-            }
-
-            var choice = Current.choices[index];
-            Move(choice.targetId, DialogueTransitionKind.ChoiceSelected, choice.id);
-            return true;
-        }
-
-        public void Cancel()
-        {
-            if (IsComplete)
-            {
-                return;
-            }
-
-            LastTransition = new DialogueTransition(sequence, DialogueTransitionKind.Cancelled, Current.id, null);
+            LastTransition = new DialogueStep(DialogueTransitionKind.Cancelled, Current.Id, null);
             IsComplete = true;
         }
 
         private void Move(string targetId, DialogueTransitionKind kind, string choiceId = null)
         {
-            string from = Current.id;
+            string from = Current.Id;
             IsComplete = string.IsNullOrEmpty(targetId);
             if (IsComplete)
             {
@@ -104,10 +49,10 @@ namespace EmergencyShift
             }
             else
             {
-                LineIndex = indices[targetId];
+                LineIndex = graph.IndexOf(targetId);
             }
 
-            LastTransition = new DialogueTransition(sequence, kind, from, targetId, choiceId);
+            LastTransition = new DialogueStep(kind, from, targetId, choiceId);
         }
     }
 }

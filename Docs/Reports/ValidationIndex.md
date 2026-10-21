@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Диалоги MVC/DI · BUG-004 | [DialogueMvc01](DialogueMvc01.md): 376/376 собственных EditMode, 9/9 PlayMode, Windows64 success. Immutable graph/commands/lease controller; disabled/inactive и обе ветви существующего prefab; ограничение состояния live Editor указано в отчёте. |
 | Очистка / полнота checkpoint · BUG-012 / BUG-013 | [CheckpointConsistency03](CheckpointConsistency03.md): 39 EditMode и 3 PlayMode исходных отказа; после исправления 316/316 собственных EditMode и 5/5 PlayMode, Windows64 success. Отмена pending/удаление slot/bak/tmp, новый запрос, отсутствие bool против legacy false, защита Apply/прямого Restore. |
 | AI / модули checkpoint · BUG-008 / BUG-009 | [CheckpointPayload02](CheckpointPayload02.md): 56 исходных отказов воспроизведены; 73/73 новых и 265/265 всех собственных EditMode, Windows64 Succeeded. JsonUtility/изолированный диск/смерть/Apply; format1/2/3 и повторяемые линзы сохранены. Схема в Notion. |
 | Защита checkpoint · BUG-011 / BUG-014 | [CheckpointValidation01](CheckpointValidation01.md): исходные 28 отказов воспроизведены, после исправления 102/102 профильных и 192/192 собственных EditMode; Windows64 успешно. Схема и решения в Notion, Play/авторская оценка не выполнялись. |
