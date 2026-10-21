@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Очистка / полнота checkpoint · BUG-012 / BUG-013 | [CheckpointConsistency03](CheckpointConsistency03.md): 39 EditMode и 3 PlayMode исходных отказа; после исправления 316/316 собственных EditMode и 5/5 PlayMode, Windows64 success. Отмена pending/удаление slot/bak/tmp, новый запрос, отсутствие bool против legacy false, защита Apply/прямого Restore. |
 | AI / модули checkpoint · BUG-008 / BUG-009 | [CheckpointPayload02](CheckpointPayload02.md): 56 исходных отказов воспроизведены; 73/73 новых и 265/265 всех собственных EditMode, Windows64 Succeeded. JsonUtility/изолированный диск/смерть/Apply; format1/2/3 и повторяемые линзы сохранены. Схема в Notion. |
 | Защита checkpoint · BUG-011 / BUG-014 | [CheckpointValidation01](CheckpointValidation01.md): исходные 28 отказов воспроизведены, после исправления 102/102 профильных и 192/192 собственных EditMode; Windows64 успешно. Схема и решения в Notion, Play/авторская оценка не выполнялись. |
 | Пофайловый SOD-аудит освещения/крови и полного покрытия · 09 | [CodeAudit09](CodeAudit09.md): 121 C# / 20024 строки; итого 269/269 источников, 148 границ / 121 с долгом / 0 queued. BUG-014–017 — высокий приоритет в общей доске. Только чтение; нового Unity-прогона нет. |

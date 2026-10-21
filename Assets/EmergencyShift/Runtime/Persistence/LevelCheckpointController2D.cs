@@ -90,18 +90,18 @@ namespace EmergencyShift
 
         private void OnFinished()
         {
-            if (pending != null)
-            {
-                StopCoroutine(pending);
-            }
-
-            pending = null;
             Clear();
         }
 
         [ContextMenu("Clear local checkpoint slot")]
         public void Clear()
         {
+            if (pending != null)
+            {
+                StopCoroutine(pending);
+            }
+
+            pending = null;
             Store.Delete();
             visited.Clear();
             LastCheckpointId = null;
