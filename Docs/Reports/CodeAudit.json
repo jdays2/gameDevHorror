@@ -3,17 +3,17 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "Lexical references are hints, not semantic proof; reviewed_boundary does not certify the whole feature. Queued/partial entries must be completed.",
+  "limits": "Source coverage is complete for the current 269 own C# hashes. partial means read with unresolved debt, not unread. reviewed_boundary certifies only the stated boundary. complete=false retains unresolved SOD migration/validation debt; no runtime or unused-code certification.",
   "counts": {
-    "queued": 71,
-    "reviewed_boundary": 112,
-    "partial": 86
+    "partial": 121,
+    "reviewed_boundary": 148,
+    "queued": 0
   },
   "files": [
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "partial",
+      "notes": "Одноразовый authoring: prefab меняется раньше проверки dirty basement; loaded-scene/active restoration и stable GUID сохранены, общей транзакции нет. Не запускался.",
       "path": "AgentScripts/AssignPlayerInput.cs",
       "sourceScope": "agent_tool",
       "sha256": "c5dd5ea90d2639171bf5404f31899025ffa54189ed96962e583a09039c5f6884",
@@ -26,12 +26,34 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Одноразовый input authoring",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "EmergencyShift",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.InputSystem",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "c5dd5ea90d2639171bf5404f31899025ffa54189ed96962e583a09039c5f6884",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Read-only внешний GUID/AssetDatabase отчёт; не unused-code и не local fileID валидатор. LINQ допустим вне hot path.",
       "path": "AgentScripts/AuditProjectReferences.cs",
       "sourceScope": "agent_tool",
       "sha256": "e291ab36d0d6d6ba4bea1e6e168460b8d3ab7b3b1e7ce3fb306293b2027d6aad",
@@ -44,12 +66,32 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Read-only отчёт ссылок",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Linq",
+        "System.Text.RegularExpressions",
+        "UnityEditor"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "e291ab36d0d6d6ba4bea1e6e168460b8d3ab7b3b1e7ce3fb306293b2027d6aad",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "partial",
+      "notes": "Play-only visual fixture со скриншотами, finally восстанавливает health/camera/timeScale; concrete private serialized refs и lethal test требуют изолированного сеанса.",
       "path": "AgentScripts/CheckDirectionalDamage.cs",
       "sourceScope": "agent_tool",
       "sha256": "1b305641f456bac55cbe0c6fac29b034fc6f5574e1d4420aefcb0554ffbe9dc0",
@@ -62,12 +104,37 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Play fixture HUD крови",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Linq",
+        "System.Threading.Tasks",
+        "EmergencyShift",
+        "EmergencyShift.Features.DamageFeedback.Config",
+        "EmergencyShift.Features.DamageFeedback.View",
+        "UnityEditor",
+        "UnityEngine",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "1b305641f456bac55cbe0c6fac29b034fc6f5574e1d4420aefcb0554ffbe9dc0",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Play-only два scene scopes с явным injection floor/casing/event, cleanup finally/unload/Dispose. Новый прогон не выполнялся.",
       "path": "AgentScripts/CheckGroundAudioScope.cs",
       "sourceScope": "agent_tool",
       "sha256": "27596e041358512645119b5d1a20ca6cdd0a3651e3752c751ca9e4fb483f760d",
@@ -85,12 +152,34 @@
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Play fixture двух звуковых scopes",
+      "dependencies": [
+        "System",
+        "System.Threading.Tasks",
+        "EmergencyShift",
+        "EmergencyShift.Core.Composition",
+        "UnityEditor",
+        "UnityEngine",
+        "UnityEngine.SceneManagement",
+        "Zenject"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "27596e041358512645119b5d1a20ca6cdd0a3651e3752c751ca9e4fb483f760d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Play-only scoped factory двух actors, независимое health и owner scene; finally удаляет только созданные objects.",
       "path": "AgentScripts/CheckInjectedActorCreation.cs",
       "sourceScope": "agent_tool",
       "sha256": "28e7cdd01ffd0f074782eb83aa0137622cde9e28dda913963bc1fd18d40d2903",
@@ -103,12 +192,30 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Play fixture actor factories",
+      "dependencies": [
+        "System",
+        "EmergencyShift",
+        "UnityEditor",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "28e7cdd01ffd0f074782eb83aa0137622cde9e28dda913963bc1fd18d40d2903",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Play-only scopes/budgets/death/settled remains fixture; finally cleanup. Это точечная проба, не общий источник runtime state.",
       "path": "AgentScripts/CheckWorldServices.cs",
       "sourceScope": "agent_tool",
       "sha256": "27fbc77ec0d04b8af16fbb6cde275316576e814df7227bd3b8fea0a185ce5b5b",
@@ -123,12 +230,36 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Play fixture world quotas/remains",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.Linq",
+        "System.Threading.Tasks",
+        "EmergencyShift",
+        "EmergencyShift.Core.Composition",
+        "UnityEditor",
+        "UnityEngine",
+        "UnityEngine.SceneManagement",
+        "Zenject"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "27fbc77ec0d04b8af16fbb6cde275316576e814df7227bd3b8fea0a185ce5b5b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "partial",
+      "notes": "Apply отклоняет loaded targets, создаёт backup и сверяет effective state. InspectChangesAt не имеет аналогичного loaded/dirty guard и всегда CloseScene: риск для уже открытой сцены требует отдельной безопасной Editor-проверки.",
       "path": "AgentScripts/CleanUnusedShadowOverrides.cs",
       "sourceScope": "agent_tool",
       "sha256": "080382de55df1f385081e2cfa8c7f137c03d62bdc04ac5d38efb955f9f84e132",
@@ -141,12 +272,38 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Проверка/очистка старых overrides",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Linq",
+        "System.Threading.Tasks",
+        "EmergencyShift",
+        "Newtonsoft.Json",
+        "Newtonsoft.Json.Linq",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "080382de55df1f385081e2cfa8c7f137c03d62bdc04ac5d38efb955f9f84e132",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "partial",
+      "notes": "Explicit Edit/compile/already-installed guards, backup prefab/hash/sibling checks; serialized private structure и частичные asset mutations не составляют общую transaction. Не запускался.",
       "path": "AgentScripts/InstallDirectionalDamage.cs",
       "sourceScope": "agent_tool",
       "sha256": "5cdb546dbb94dd2b5d063bc49d28e5b0af1dcc698fa2926b285a0e62927c8b14",
@@ -159,12 +316,38 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Одноразовый authoring HUD крови",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Linq",
+        "System.Security.Cryptography",
+        "EmergencyShift",
+        "EmergencyShift.Features.DamageFeedback.Config",
+        "EmergencyShift.Features.DamageFeedback.View",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "5cdb546dbb94dd2b5d063bc49d28e5b0af1dcc698fa2926b285a0e62927c8b14",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "partial",
+      "notes": "Существующий незакоммиченный tool: stable Edit guard, concrete scene/resources/build. Validate вызывает Install и может dirty сцену, поэтому не read-only validator. Без выполнения/правок.",
       "path": "AgentScripts/InstallPauseMenu.cs",
       "sourceScope": "agent_tool",
       "sha256": "6d4729f2b8d0493daf71a6ce7d002f6f7e69ea81100eba60016b2c7fbde51f9a",
@@ -177,12 +360,39 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Одноразовый authoring меню паузы",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Linq",
+        "EmergencyShift",
+        "EmergencyShift.Editor",
+        "EmergencyShift.Features.PauseMenu.Config",
+        "EmergencyShift.Features.PauseMenu.View",
+        "UnityEditor",
+        "UnityEditor.Build.Reporting",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "6d4729f2b8d0493daf71a6ce7d002f6f7e69ea81100eba60016b2c7fbde51f9a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Installer authoring не заменяет существующий ProjectContext; изолированная preview scene закрывается finally, Resource path принадлежит Extenject composition.",
       "path": "AgentScripts/InstallWorldComposition.cs",
       "sourceScope": "agent_tool",
       "sha256": "37a829ef90f1d14ab00b174dae8d941eea9a3f21f421aee84244790f7cafe868",
@@ -195,12 +405,33 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Authoring ProjectContext",
+      "dependencies": [
+        "System",
+        "EmergencyShift.Core.Composition",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.SceneManagement",
+        "Zenject"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "37a829ef90f1d14ab00b174dae8d941eea9a3f21f421aee84244790f7cafe868",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Одноразовый MoveAsset с GUID/hash/live-graph сверкой и rollback, stable Edit guard; Verify read-only. Не запускался, текущее дерево не переносилось.",
       "path": "AgentScripts/OrganizeMaterials.cs",
       "sourceScope": "agent_tool",
       "sha256": "f8924d267ea2c89de5eb4db7dc7118de4d2ad738c2cfe2c3c318e86d3b231ae8",
@@ -213,7 +444,30 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Безопасный MoveAsset материалов",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Linq",
+        "System.Security.Cryptography",
+        "Newtonsoft.Json",
+        "UnityEditor",
+        "UnityEngine",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
+      "reviewedSha256": "f8924d267ea2c89de5eb4db7dc7118de4d2ad738c2cfe2c3c318e86d3b231ae8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/DialoguePrefabAuthoring.cs",
@@ -300,10 +554,32 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Once-only existing-scene/all-dirty guards; additive authoring, concrete asset helpers/layout, нет полного rollback при исключении. Не запускался.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Одноразовая scene библиотеки окружения",
+      "dependencies": [
+        "System",
+        "System.IO",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement",
+        "UnityEngine.UI"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "0b60f3bf60d296773290e29ba553a4c4a5e6f3141b46b184cb6d925b754f3ae8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
@@ -325,10 +601,32 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Once-only/stable/dirty guards; offline imports и fixed scene placements, helper coupling и authoring transaction остаются долгом.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Одноразовая scene сравнения окружения",
+      "dependencies": [
+        "System",
+        "System.IO",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement",
+        "UnityEngine.UI"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "87be9e35fbc04d60b96eefddae0d1bc7c500ee94bcaea1f437fd9fb00963729d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/EnvironmentSpriteAuthoring.cs",
@@ -348,10 +646,31 @@
         "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Offline Tight-outline import, Unity internal-reflection capability check, temp texture finally; O(n²) simplification/area/self-intersection fallback вне gameplay hot path.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Offline import и Tight-outline sprite",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Reflection",
+        "UnityEditor",
+        "UnityEditor.U2D.Sprites",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "d8d49d07f58b37b24a249fc8351f3c52a2ba500e7ad75616239209a39d6c505a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
@@ -369,10 +688,28 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit stable Edit guard, offline raster recipes и authored placements; existing prefab сохраняется, temp texture finally, не runtime decor generation.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Offline генерация floor overlays",
+      "dependencies": [
+        "System",
+        "System.IO",
+        "UnityEditor",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "8709d741db5c52c9d22942bce88cdf4ea93b1c2b12b7810f903887d458c78a9d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/FurnitureLightStudyBuilder.cs",
@@ -389,10 +726,33 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Once-only all-dirty/existing guards, profile validation и authored A/B/C scene; normal build восстанавливает instrumentation switch finally. Конкретный dev fixture, не gameplay.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Authoring dev A/B/C light scene",
+      "dependencies": [
+        "System",
+        "System.IO",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.EventSystems",
+        "UnityEngine.InputSystem.UI",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "3477e90a4b1463ed8599c4ae306ae606ff07648d9ca02b84bfb402e0d424f4b9",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs",
@@ -409,10 +769,28 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Edit/active-dirty/already-HUD guards, preview finally, существующий prefab не перезаписывается. Global Find для PrototypeHud/cards, не полный preflight зависимостей; может выбрать карту другой открытой сцены.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Authoring reusable HUD в Canvas",
+      "dependencies": [
+        "System",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "0781223de53be654088bc5d6b2a2c7cc2307b3d7ac293661b376e9c211f192b1",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs",
@@ -430,10 +808,30 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Explicit Edit guard и preview finally; fixed recipe array без полной validation, SaveAsPrefabAsset может переписать существующий family prefab. Не запускался.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Authoring family hospital prefab",
+      "dependencies": [
+        "System",
+        "System.IO",
+        "Newtonsoft.Json",
+        "UnityEditor",
+        "UnityEngine",
+        "UnityEngine.Rendering.Universal"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "2284a3e340d3a92457a4cf6b72be0ab2d8aefeb3c4ab9ad72fe37303b744addf",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs",
@@ -451,10 +849,33 @@
         "MenuItem"
       ],
       "reviewStatus": "partial",
-      "notes": "Required actions assigned to new rigs; remaining authoring responsibilities/style still need full review.",
+      "notes": "Создаёт только missing rig/template, additive scene/active cleanup; concrete hierarchy/paths и build settings остаются one-off authoring связями, не регенератор уровня при Play.",
       "reviewedSha256": "0894d7b30dcfa4877436db19db2c362e0e8114691a542e0fdfb239d2f00a62cd",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Required actions assigned to new rigs; remaining authoring responsibilities/style still need full review.",
+          "reviewedSha256": "0894d7b30dcfa4877436db19db2c362e0e8114691a542e0fdfb239d2f00a62cd"
+        }
+      ],
+      "responsibility": "Authoring missing level rig/template",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.InputSystem",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement",
+        "UnityEngine.UI"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
@@ -520,10 +941,33 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Once-only/stable/all-dirty guards защищают существующую scene; PrepareLighting всё же перезаписывает общие profiles/LevelRig/prefabs, нет transaction на ошибки. Не запускался.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Одноразовая narrative stress scene",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement",
+        "UnityEngine.UI"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "c5868bbec994303e565b2309d64e94783cf474db8317254701fff1c4fa766bcb",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
@@ -578,10 +1022,33 @@
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Once-only/all-dirty guards, новая additive сцена закрывается при ошибке; fixed HP/count/targets и build ordering, shared asset mutations без общего rollback. Существующая сцена не регенерировалась.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Одноразовый authoring MechanicsSandbox",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement",
+        "UnityEngine.UI"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "00ed965c67b38f9cb799966391e6c121a97c4c76bce29561ef16dc724d32491e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
@@ -630,10 +1097,28 @@
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Copies pinned MIT notice beside built Player; build output inspected.",
+      "notes": "Postbuild копирует существующий Extenject license в output; runtime не зависит от Editor.",
       "reviewedSha256": "52afaadf223862ca32057a961e0e5282eb37b7afc91a061b9eb2867cae04fa08",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Copies pinned MIT notice beside built Player; build output inspected.",
+          "reviewedSha256": "52afaadf223862ca32057a961e0e5282eb37b7afc91a061b9eb2867cae04fa08"
+        }
+      ],
+      "responsibility": "Копирование сторонней лицензии в build",
+      "dependencies": [
+        "System.IO",
+        "UnityEditor.Build",
+        "UnityEditor.Build.Reporting",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Inspectors/EnemyPatrol2DEditor.cs",
@@ -648,10 +1133,27 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Editor handles с Undo и prefab overrides для личной patrol area; не меняет shared EnemyDefinition.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Редактирование личной patrol area",
+      "dependencies": [
+        "UnityEditor",
+        "UnityEditor.IMGUI.Controls",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "36f75ab09243db3805f94df8b589b041c1fc8c29f24590a252ad2ff4755b039c",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Editor/Inspectors/LevelAudioDirectorEditor.cs",
@@ -666,10 +1168,26 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Только диагностический Inspector, Repaint в Play; editor assembly отдельно от runtime.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Диагностический Inspector audio director",
+      "dependencies": [
+        "UnityEditor",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
+      "reviewedSha256": "eb9ac4e1f9bf56b452b4b63d943018be7804671cbf78b24cf2931d567d7e89ea",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
@@ -893,10 +1411,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Immutable success/rejection value; no Unity state.",
+      "notes": "Readonly success/reason value, обычный отказ без исключений.",
       "reviewedSha256": "610b1fbf2157a3db671d060831c954d09323727dc60ba9e2b6e9bc35af9294a5",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Immutable success/rejection value; no Unity state.",
+          "reviewedSha256": "610b1fbf2157a3db671d060831c954d09323727dc60ba9e2b6e9bc35af9294a5"
+        }
+      ],
+      "responsibility": "Значение результата команды",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Commands/ICommand.cs",
@@ -918,10 +1451,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Command validation/execution boundary.",
+      "notes": "CanExecute/Execute оба возвращают Result, без Unity/View dependencies.",
       "reviewedSha256": "98eb178061db88bb4aabfe1056b60f3729f21e90f88be9ffdc5a1530a905c02c",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Command validation/execution boundary.",
+          "reviewedSha256": "98eb178061db88bb4aabfe1056b60f3729f21e90f88be9ffdc5a1530a905c02c"
+        }
+      ],
+      "responsibility": "Проверяемый контракт команды",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Composition/AssemblyInfo.cs",
@@ -935,10 +1483,25 @@
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Friend access limited to the own EditMode assembly.",
+      "notes": "Только InternalsVisibleTo тестовой сборке.",
       "reviewedSha256": "533afa49f549105a6bfa4771a976bcfcf55f0985be37be4a928d3490cf7c5632",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Friend access limited to the own EditMode assembly.",
+          "reviewedSha256": "533afa49f549105a6bfa4771a976bcfcf55f0985be37be4a928d3490cf7c5632"
+        }
+      ],
+      "responsibility": "Доступ тестов к internal API",
+      "dependencies": [
+        "System.Runtime.CompilerServices"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Composition/ScenePrefabFactory.cs",
@@ -1005,10 +1568,27 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Scene-owned membership, immutable view, transient ordering; duplicates/unload/isolation tested.",
+      "notes": "Личный registry с read-only view, idempotent Dispose, ordinals не persistent ID.",
       "reviewedSha256": "e3ea0fb12a3e40f53985bbfad2c4e7f5b68bd186cad2934be5cd5d7394e70bf4",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Scene-owned membership, immutable view, transient ordering; duplicates/unload/isolation tested.",
+          "reviewedSha256": "e3ea0fb12a3e40f53985bbfad2c4e7f5b68bd186cad2934be5cd5d7394e70bf4"
+        }
+      ],
+      "responsibility": "Личный упорядоченный scene registry",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.Collections.ObjectModel"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
@@ -1029,10 +1609,27 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Application/world pause service, no player singleton.",
+      "notes": "World clocks/budgets/RNG/pause/cache compose в installer; per-actor state сюда не перенесено.",
       "reviewedSha256": "e446cb4c8262d045596d96d37400f28ad61fe7bb7f852295c197c042326d97ca",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Application/world pause service, no player singleton.",
+          "reviewedSha256": "e446cb4c8262d045596d96d37400f28ad61fe7bb7f852295c197c042326d97ca"
+        }
+      ],
+      "responsibility": "Composition общих world services",
+      "dependencies": [
+        "EmergencyShift.Core.Randomness",
+        "EmergencyShift.Core.Time",
+        "Zenject"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 0.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/Damageable2D.cs",
@@ -1057,10 +1654,25 @@
         "Assets/EmergencyShift/Runtime/World/Surfaces/ImpactSurface2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Общий combat adapter contract, expected rejection dead/nonpositive, species-independent.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общий Unity combat receiver",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "93b1b437dadc91609460d904b537e02106b75264e13bd0f02b2dfb43048c4ade",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/EnemyPresentationSource2D.cs",
@@ -1202,10 +1814,25 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Малый stimulus interface, не зависит от вида врага. Unity value types/LOS mask адаптерны; обычные лампы его не реализуют.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Контракт защитного светового стимула",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "17299944b5d9f3406816a0c72b38927925847d7fde7cd40cedac53a863aef812",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/GameplayInputBlock.cs",
@@ -1272,10 +1899,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Explicit random-draw contract; no persistence or multiplayer claim.",
+      "notes": "Узкий injected RNG contract.",
       "reviewedSha256": "3b89f265e4b17896848b55a855e84583a31ef5d26f1522cad4715d0af72686e2",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Explicit random-draw contract; no persistence or multiplayer claim.",
+          "reviewedSha256": "3b89f265e4b17896848b55a855e84583a31ef5d26f1522cad4715d0af72686e2"
+        }
+      ],
+      "responsibility": "Контракт источника случайности",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
@@ -1297,10 +1939,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Composition seeds independent actor streams; isolation test.",
+      "notes": "Composition seeds; каждый consumer получает свой instance stream.",
       "reviewedSha256": "02a3929ff2a7c82fa4495ffe7016b306a0e3adbc9784065f949af0b2a4318496",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Composition seeds independent actor streams; isolation test.",
+          "reviewedSha256": "02a3929ff2a7c82fa4495ffe7016b306a0e3adbc9784065f949af0b2a4318496"
+        }
+      ],
+      "responsibility": "Создание отдельных RNG streams",
+      "dependencies": [
+        "System"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
@@ -1321,10 +1978,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Owned System.Random adapter; no static state.",
+      "notes": "Адаптер System.Random без static state.",
       "reviewedSha256": "3fa288036eeae8da0eb8fdbdce521887f9db06d09770a8381a6f89ea18f0f747",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Owned System.Random adapter; no static state.",
+          "reviewedSha256": "3fa288036eeae8da0eb8fdbdce521887f9db06d09770a8381a6f89ea18f0f747"
+        }
+      ],
+      "responsibility": "Адаптер личного System.Random",
+      "dependencies": [
+        "System"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Scheduling/FrameWorkBudget.cs",
@@ -1344,10 +2016,26 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Pure quota/metrics with frame clock; reset, rejection and independent domains tested.",
+      "notes": "Чистая per-frame quota с injected frame clock, rejection при исчерпании без потери authoritative state.",
       "reviewedSha256": "d7b1d1549d5c12b6430a09fdacc1755b380e95229dfc84e022b1e9634f25dd79",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Pure quota/metrics with frame clock; reset, rejection and independent domains tested.",
+          "reviewedSha256": "d7b1d1549d5c12b6430a09fdacc1755b380e95229dfc84e022b1e9634f25dd79"
+        }
+      ],
+      "responsibility": "Квота работы на кадр",
+      "dependencies": [
+        "System",
+        "EmergencyShift.Core.Time"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Time/IFrameClock.cs",
@@ -1370,10 +2058,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Injected frame boundary, independent from scaled time.",
+      "notes": "Чистый frame contract.",
       "reviewedSha256": "c5fda396199336b737535479c672162f1b48090349626bc0c96c2edcb4f24565",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Injected frame boundary, independent from scaled time.",
+          "reviewedSha256": "c5fda396199336b737535479c672162f1b48090349626bc0c96c2edcb4f24565"
+        }
+      ],
+      "responsibility": "Контракт номера кадра",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Time/IGameClock.cs",
@@ -1397,10 +2100,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Injected read-only simulation clock contract.",
+      "notes": "Чистый time contract.",
       "reviewedSha256": "64a252e7b4e82b45090e38a212a992fc200f1bc937a2fec75136480e215a43bd",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Injected read-only simulation clock contract.",
+          "reviewedSha256": "64a252e7b4e82b45090e38a212a992fc200f1bc937a2fec75136480e215a43bd"
+        }
+      ],
+      "responsibility": "Контракт игрового времени",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Time/IWorldTimeScale.cs",
@@ -1422,10 +2140,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Explicit world time-scale adapter boundary.",
+      "notes": "Узкий environment time scale boundary.",
       "reviewedSha256": "523458d2cb717799fe495b434024f94c7ccc6a427b5043c930c10d1f69d62193",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Explicit world time-scale adapter boundary.",
+          "reviewedSha256": "523458d2cb717799fe495b434024f94c7ccc6a427b5043c930c10d1f69d62193"
+        }
+      ],
+      "responsibility": "Контракт global time adapter",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Time/UnityFrameClock.cs",
@@ -1443,10 +2176,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Unity frame adapter only.",
+      "notes": "Unity Time только в адаптере.",
       "reviewedSha256": "80b350265e87e9bfd144786363801acc361aabaaa16a9083168216e6e33f795b",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Unity frame adapter only.",
+          "reviewedSha256": "80b350265e87e9bfd144786363801acc361aabaaa16a9083168216e6e33f795b"
+        }
+      ],
+      "responsibility": "Unity адаптер номера кадра",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
@@ -1466,10 +2214,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Unity time adapter, no model state.",
+      "notes": "Scaled Unity Time только в адаптере.",
       "reviewedSha256": "87a19261933fb3f5e20fc1aea1fd8c9247021f6436cf4eb9aed91a4a38980d00",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Unity time adapter, no model state.",
+          "reviewedSha256": "87a19261933fb3f5e20fc1aea1fd8c9247021f6436cf4eb9aed91a4a38980d00"
+        }
+      ],
+      "responsibility": "Unity адаптер scaled time",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Time/UnityWorldTimeScale.cs",
@@ -1487,10 +2250,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Unity global time-scale writes isolated in one adapter.",
+      "notes": "Unity global timeScale доступ через environment adapter; scope pause владеет политикой.",
       "reviewedSha256": "dcb2896a31c44991a670534f31410c79c61fcdfa9a20b260c58c4d88524bc8c8",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Unity global time-scale writes isolated in one adapter.",
+          "reviewedSha256": "dcb2896a31c44991a670534f31410c79c61fcdfa9a20b260c58c4d88524bc8c8"
+        }
+      ],
+      "responsibility": "Unity адаптер timeScale",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/WorldMotionPause.cs",
@@ -1560,10 +2338,25 @@
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Общие perception/mix tuning, личные таймеры вне SO; нет полной finite/range/cross-field validation.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общий адаптивный audio tuning",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
+      "reviewedSha256": "bba56014feab9f7d792ecd012b742b0099792c25abcc8d6776e3b01d4aba5898",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs",
@@ -1588,10 +2381,26 @@
         "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Варианты/дубли ID проверяются, но IsValid неполно отвергает NaN/Infinity/color; shared profile не мутируется. Учёт: BUG-017.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общие варианты лужи и размеры капель",
+      "dependencies": [
+        "System",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
+      "reviewedSha256": "e7455456a719d8c71efe9867e8c10f7b22511914728f3900b4540b45651b47eb",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/CameraFramingProfile.cs",
@@ -1753,10 +2562,26 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Immutable shared clips/volume, выбор и последний клип принадлежат внедрённому runtime cache.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общие клипы смерти",
+      "dependencies": [
+        "System.Collections.Generic",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
+      "reviewedSha256": "c5dbf2e55a2d58f628b2c60eec064b363ac3f8fe52892c4089d78d57229c3293",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyDefinition.cs",
@@ -1862,10 +2687,25 @@
         "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Общие presentation data, но Min/Range не finite/cross-field validation.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общие параметры оформления HUD",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
+      "reviewedSha256": "92d40e3122b876bcd5e42942d9752d6b5afabe0377b0a40f5d32c49fddd5ffbe",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
@@ -1892,10 +2732,26 @@
         "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Данные вариантов и restorationOnly отделены от экземпляра; нет полной Validate чисел/ID/составов; ChooseVariant потребляет общий Unity RNG (связан с BUG-010).",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Варианты состава разрыва тела",
+      "dependencies": [
+        "System",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
+      "reviewedSha256": "b36519bd6841c8ebc15cb6e208afed6b2873b3ec86d07c5c35a11e47932103e1",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LevelCatalog.cs",
@@ -2001,10 +2857,26 @@
         "Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Общие clips/mix валидируются на finite/порядок/refs; личное playback state вне SO.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общие клипы и параметры слышимости лампы",
+      "dependencies": [
+        "System",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
+      "reviewedSha256": "dc583b52c30e7d5aaff7138964031664acad602243985b2ffc82cc46c028e684",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LocalLampSceneSettings.cs",
@@ -2024,10 +2896,26 @@
         "Assets/EmergencyShift/Tests/EditMode/LocalLampSceneSettingsTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Личные authoring overrides валидируются; Brightness содержит жёстко заданные интервалы/цикл вместо тематического профиля.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Личные overrides света/звука в сцене",
+      "dependencies": [
+        "System",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "f81d73987d4b06b799e458b83ed0e75ca329a9c9c5a39acb298c4375f74bac41",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LocalLightProfile.cs",
@@ -2053,10 +2941,26 @@
         "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Общие данные с явной finite/range/interval validation; Evaluate без изменения asset. Фаза принадлежит экземпляру.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общие световые данные и оценка цикла",
+      "dependencies": [
+        "System",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 3; сцены по графу: 2.",
+      "reviewedSha256": "0547aa55e0230318b7459b3a65325745f7efb3aa5760d5a8b776b81ba920edaa",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
@@ -2673,10 +3577,39 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+      "notes": "BUG-016: reflection ищет удалённое поле <Ammo>k__BackingField; временные GroundAudioSurface2D не injected и не попадают в scene registry. Исторические HP/timing предположения.",
       "reviewedSha256": "7690142601419dad8d85e90b83c5d7441d2832f3d1b45ff7be4b82a76b770a8e",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+          "reviewedSha256": "7690142601419dad8d85e90b83c5d7441d2832f3d1b45ff7be4b82a76b770a8e"
+        }
+      ],
+      "responsibility": "Историческая audio regression fixture",
+      "dependencies": [
+        "System",
+        "System.Collections",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Reflection",
+        "Unity.Collections",
+        "UnityEditor",
+        "UnityEngine",
+        "UnityEngine.Audio",
+        "UnityEngine.SceneManagement",
+        "UnityEngine.Rendering.Universal",
+        "private reflection",
+        "PlayerWeapon2D",
+        "GroundAudioSurface2D",
+        "LevelAudioDirector2D"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
@@ -2737,10 +3670,25 @@
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Instrumentation-only fake receiver, не production behavior; условная компиляция.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Instrumentation fake damage target",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
+      "reviewedSha256": "73af3c27952b33ea6323746fa083819ffdf23c704d6d24f2cc1ca43c17b26a78",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
@@ -2766,10 +3714,32 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+      "notes": "Editor-only временные акторы/физика/light toggles в fixture; runInBackground восстановлен, полное состояние fixture не восстанавливается. Требуется отдельный Play-сеанс.",
       "reviewedSha256": "316b2b8abe6122a9257b21a9e7185107f90ee671d6407b94743e600a952e9521",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+          "reviewedSha256": "316b2b8abe6122a9257b21a9e7185107f90ee671d6407b94743e600a952e9521"
+        }
+      ],
+      "responsibility": "Editor crowd fixture",
+      "dependencies": [
+        "System",
+        "System.Collections",
+        "System.Collections.Generic",
+        "System.IO",
+        "Unity.Profiling",
+        "UnityEngine",
+        "Zenject",
+        "UnityEngine.Rendering.Universal"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
@@ -2791,10 +3761,30 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+      "notes": "Opt-in debug/native smoke, fixed LevelTemplate/audio voice ожидания, error unsubscribe/quit; fixture не доказывает текущую игровую сцену.",
       "reviewedSha256": "3e60070674d117eb98c61f44e9826822922050e8ded9e1f2cd0cecc2d19fe061",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+          "reviewedSha256": "3e60070674d117eb98c61f44e9826822922050e8ded9e1f2cd0cecc2d19fe061"
+        }
+      ],
+      "responsibility": "Opt-in native smoke",
+      "dependencies": [
+        "System",
+        "System.Collections",
+        "System.Collections.Generic",
+        "System.IO",
+        "UnityEngine",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
@@ -2826,10 +3816,32 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+      "notes": "Opt-in native instrumentation, scoped budgets, fixed movement route; dispatch_ms отделён от frame time, profiler Dispose. Fixture и проверяющий controller соединены.",
       "reviewedSha256": "e7a2e9d62acd3090c7e3a94edb173f340224b396b1dcbbcd573dc090a9bad688",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+          "reviewedSha256": "e7a2e9d62acd3090c7e3a94edb173f340224b396b1dcbbcd573dc090a9bad688"
+        }
+      ],
+      "responsibility": "Dev benchmark crowd/path/death",
+      "dependencies": [
+        "System",
+        "System.Collections",
+        "System.Collections.Generic",
+        "System.Diagnostics",
+        "System.IO",
+        "Unity.Profiling",
+        "UnityEngine",
+        "Zenject"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
@@ -2857,10 +3869,32 @@
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Opt-in историческая benchmark fixture, Profiler handles Dispose, manual physics restores finally; fixed camera/scene ожидания. Исходники прочитаны, измерений этого прогона нет.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Историческая измерительная fixture окружения",
+      "dependencies": [
+        "System",
+        "System.Collections",
+        "System.Collections.Generic",
+        "System.IO",
+        "Unity.Profiling",
+        "UnityEngine",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
+      "reviewedSha256": "5ac31ce3e711a112a4b06cf4624150a39de261ad878bcdb5a6a180cba97e4297",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
@@ -2888,10 +3922,34 @@
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Instrumentation-only 90 сценариев, 60 runtime копий через reflection; dispose counters, fixed fixture/camera/controls и shutdown. Не гарантия FPS и не штатный scene authoring.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Dev native benchmark света мебели",
+      "dependencies": [
+        "System",
+        "System.Collections",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Reflection",
+        "Unity.Profiling",
+        "UnityEngine",
+        "UnityEngine.InputSystem",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
+      "reviewedSha256": "cef5e8df8496ab48a026e1f4cc8d1fd45856388c6c33b046ac625f5c508f4f5a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs",
@@ -2918,10 +3976,28 @@
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Явный dev-only A/B/C input, MPB и runtime materials с Destroy cleanup/restore originals. Нет разделения study controller/view, disable до Destroy не завершает cleanup.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Dev управление сравнением освещения",
+      "dependencies": [
+        "System",
+        "UnityEngine",
+        "UnityEngine.InputSystem",
+        "UnityEngine.Rendering.Universal"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась. Прямых сохранённых YAML users: 1; сцены по графу: 1.",
+      "reviewedSha256": "fdce226fdda5bc1a7c69655a22b2a6649a86c3705809dd9cc166902b87b29814",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudyProfile.cs",
@@ -2946,10 +4022,26 @@
         "Assets/EmergencyShift/Runtime/UI/DialogueView.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Dev-only общие A/B/C gains/materials; explicit Validate refs и диапазонов, runtime state вне SO.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общий профиль dev A/B/C исследования",
+      "dependencies": [
+        "System",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась. Прямых сохранённых YAML users: 1; сцены по графу: 1.",
+      "reviewedSha256": "0976d792df185e5c91b54a6c970d20cfaf415849f770b77ceac2ba2a11aa0cf6",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
@@ -2976,10 +4068,32 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "Affected static door assertion replaced; complete probe review remains.",
+      "notes": "Исторический dev route, synthetic InputSystem devices, временные checkpoint paths и cleanup на завершении/ошибке; при прерывании нет OnDisable cleanup, старые counts/HP/timing требуют сверки fixture.",
       "reviewedSha256": "4daddac0392735bce4507cff9c53067811462848fbae2236914578644dd452e0",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Affected static door assertion replaced; complete probe review remains.",
+          "reviewedSha256": "4daddac0392735bce4507cff9c53067811462848fbae2236914578644dd452e0"
+        }
+      ],
+      "responsibility": "Исторический sandbox route probe",
+      "dependencies": [
+        "System",
+        "System.Collections",
+        "System.Collections.Generic",
+        "System.IO",
+        "UnityEngine",
+        "UnityEngine.InputSystem",
+        "UnityEngine.InputSystem.LowLevel",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
@@ -3004,10 +4118,30 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+      "notes": "Явная isolated fixture и actor/projectile/silent-checkpoint проверки; cleanup после RunSafely, scene discovery и временные actor transforms — test adapters. Нового результата нет.",
       "reviewedSha256": "a14035881f48fc69f76e445f8e0e4222a2379563bd6d97ff95225c34c96bda46",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Affected dynamic actor creation/context and health access updated; full Development review remains.",
+          "reviewedSha256": "a14035881f48fc69f76e445f8e0e4222a2379563bd6d97ff95225c34c96bda46"
+        }
+      ],
+      "responsibility": "Изолированная регрессия второго вида",
+      "dependencies": [
+        "System",
+        "System.Collections",
+        "System.Collections.Generic",
+        "System.IO",
+        "UnityEngine",
+        "UnityEngine.Rendering.Universal"
+      ],
+      "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs",
@@ -4388,10 +5522,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Immutable validated projection; the remaining SO-authoring migration belongs to actor configs.",
+      "notes": "Immutable projection чисел с range/finite validation, не runtime state.",
       "reviewedSha256": "09b13f9198d399d374c4bd2faaa06e0c6f7598df538c662f910b6b27b8f62c68",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Immutable validated projection; the remaining SO-authoring migration belongs to actor configs.",
+          "reviewedSha256": "09b13f9198d399d374c4bd2faaa06e0c6f7598df538c662f910b6b27b8f62c68"
+        }
+      ],
+      "responsibility": "Неизменяемый health tuning",
+      "dependencies": [
+        "System"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Features/Health/HealthInstaller.cs",
@@ -4409,10 +5558,26 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Feature-local factory binding.",
+      "notes": "Только HealthModelFactory binding.",
       "reviewedSha256": "f1b2061263cab9fc30d6d204e7ac138e4a0dcff6f2cd594cd25e221a46adcfa2",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Feature-local factory binding.",
+          "reviewedSha256": "f1b2061263cab9fc30d6d204e7ac138e4a0dcff6f2cd594cd25e221a46adcfa2"
+        }
+      ],
+      "responsibility": "Composition фабрики здоровья",
+      "dependencies": [
+        "EmergencyShift.Features.Health.Logic",
+        "Zenject"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
@@ -4432,10 +5597,26 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Validates again on execution; no per-hit heap allocation.",
+      "notes": "Проверяет перед ApplyDamage и возвращает expected Result.",
       "reviewedSha256": "560b2de04d5cc9b4624b1f0ec49c029898844efcb0cc1f24281e689e07cd8b55",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Validates again on execution; no per-hit heap allocation.",
+          "reviewedSha256": "560b2de04d5cc9b4624b1f0ec49c029898844efcb0cc1f24281e689e07cd8b55"
+        }
+      ],
+      "responsibility": "Команда нанесения урона",
+      "dependencies": [
+        "System",
+        "EmergencyShift.Core.Commands"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
@@ -4458,10 +5639,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Pure instance state, clock, mutually exclusive hit/death and silent restore; behavior tests.",
+      "notes": "Чистые личные HP/protection, injected clock/config, silent trusted Restore и события без View.",
       "reviewedSha256": "6f8805bcb1181015f436d638463eeb8437e66138426cb06b3442762ea9801b3c",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Pure instance state, clock, mutually exclusive hit/death and silent restore; behavior tests.",
+          "reviewedSha256": "6f8805bcb1181015f436d638463eeb8437e66138426cb06b3442762ea9801b3c"
+        }
+      ],
+      "responsibility": "Чистое личное состояние здоровья",
+      "dependencies": [
+        "System",
+        "EmergencyShift.Core.Commands",
+        "EmergencyShift.Core.Time",
+        "EmergencyShift.Features.Health.Config"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
@@ -4483,10 +5682,27 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Shares clock only; creates independent actor models.",
+      "notes": "Общий clock, каждый Create даёт новый личный model.",
       "reviewedSha256": "b97bb0fa302b22f04c5e52c347270bbc307c81a1f286f21e84a6cd0a1fb1a7fe",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Shares clock only; creates independent actor models.",
+          "reviewedSha256": "b97bb0fa302b22f04c5e52c347270bbc307c81a1f286f21e84a6cd0a1fb1a7fe"
+        }
+      ],
+      "responsibility": "Создание индивидуальных HealthModel",
+      "dependencies": [
+        "System",
+        "EmergencyShift.Core.Time",
+        "EmergencyShift.Features.Health.Config"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
@@ -4505,10 +5721,26 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Instance-only capacity, does not revive a dead actor; preserves existing clamping policy.",
+      "notes": "Проверяет живого target перед временной сменой capacity, мёртвого не возрождает.",
       "reviewedSha256": "a93db769ad42cac19611f3c25a89b8843ad9f4de3f0d56fafd2c9a56b3a364af",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Instance-only capacity, does not revive a dead actor; preserves existing clamping policy.",
+          "reviewedSha256": "a93db769ad42cac19611f3c25a89b8843ad9f4de3f0d56fafd2c9a56b3a364af"
+        }
+      ],
+      "responsibility": "Команда смены временного capacity",
+      "dependencies": [
+        "System",
+        "EmergencyShift.Core.Commands"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
@@ -5229,10 +6461,26 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Separate scene registries and actor path factory; world quotas inherited.",
+      "notes": "Scene-owned registries/factories, installer связывает concrete Unity adapters.",
       "reviewedSha256": "4a46ba9d88662e419b90c5710c85817741495f00b023a68c2549062ea0d626c3",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Separate scene registries and actor path factory; world quotas inherited.",
+          "reviewedSha256": "4a46ba9d88662e419b90c5710c85817741495f00b023a68c2549062ea0d626c3"
+        }
+      ],
+      "responsibility": "Composition scene registries/factories",
+      "dependencies": [
+        "EmergencyShift.Core.Composition",
+        "Zenject"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
@@ -6085,10 +7333,29 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Explicit fallback target injection; framing/config/presentation review remains.",
+      "notes": "Личный target через scope, framing по range/ownership, Camera кэшируется. Конкретная Flashlight2D-зависимость и polling optics вместо узкого projection/event API.",
       "reviewedSha256": "d2c4e4182ff3d55153e6972bb4a215f882d57a98d73a204cf7dd5a39e183c384",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Explicit fallback target injection; framing/config/presentation review remains.",
+          "reviewedSha256": "d2c4e4182ff3d55153e6972bb4a215f882d57a98d73a204cf7dd5a39e183c384"
+        }
+      ],
+      "responsibility": "Камера и framing по текущему фонарю",
+      "dependencies": [
+        "UnityEngine",
+        "Zenject",
+        "CameraFramingProfile",
+        "Flashlight2D",
+        "scoped player target"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 3; сцены по графу: 11.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/FlashlightOwnership.cs",
@@ -6432,10 +7699,31 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Own surface query and cosmetic RNG injected; stride/audio/config split still pending.",
+      "notes": "Реальное перемещение, wall/teleport protection, scoped surface/RNG и Stop при disable; distance/timing/mix state всё ещё в MB.",
       "reviewedSha256": "88f16723c428adcedb26e2c4e04ca591c8d83eba5b493363e280d50154ff2cd9",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Own surface query and cosmetic RNG injected; stride/audio/config split still pending.",
+          "reviewedSha256": "88f16723c428adcedb26e2c4e04ca591c8d83eba5b493363e280d50154ff2cd9"
+        }
+      ],
+      "responsibility": "Шаги от фактического пути и материала",
+      "dependencies": [
+        "EmergencyShift.Core.Randomness",
+        "UnityEngine",
+        "Zenject",
+        "GroundAudioSurfaceQuery2D",
+        "IRandomSource",
+        "AudioSource",
+        "player movement"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
@@ -6645,10 +7933,27 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Input Actions/block injected; controller/motor separation remains.",
+      "notes": "Input/block injected, Rigidbody writes только здесь; input intent и motor/Time Unity adapter в одном MB, move tuning serialized вместо config.",
       "reviewedSha256": "45e762ce7a5779b65265149eb9532740e84c2b009f9ed1b9fb30d93e5fb99eee",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Input Actions/block injected; controller/motor separation remains.",
+          "reviewedSha256": "45e762ce7a5779b65265149eb9532740e84c2b009f9ed1b9fb30d93e5fb99eee"
+        }
+      ],
+      "responsibility": "Ввод движения и запись Rigidbody игрока",
+      "dependencies": [
+        "UnityEngine",
+        "EmergencyShift.Features.PlayerInput.Logic",
+        "Zenject"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 3; сцены по графу: 11.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs",
@@ -6833,10 +8138,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "World-owned bank history and separate cosmetic RNG; assets unchanged, disposal/isolation tested.",
+      "notes": "World-owned IDisposable cache, injected RNG, пропуск null и immediate-repeat; SO immutable, Dispose очищает кэш.",
       "reviewedSha256": "903db58619a57a32109a00765a6eeb0de09d923f842c8ebf5d173c49e2cafce0",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "World-owned bank history and separate cosmetic RNG; assets unchanged, disposal/isolation tested.",
+          "reviewedSha256": "903db58619a57a32109a00765a6eeb0de09d923f842c8ebf5d173c49e2cafce0"
+        }
+      ],
+      "responsibility": "Личный runtime cache вариантов смерти",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "EmergencyShift.Core.Randomness",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
@@ -6871,10 +8194,31 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Explicit world pause/player/light injection; threat registry and observation/presentation separation remain.",
+      "notes": "Свой scene scan и scope player/pause, три источника Stop/Unbind при disable; perceived threat/memory/mix/DSP в одном MB, concrete Flashlight/camera. Не AI authority.",
       "reviewedSha256": "1a9fcb885b21621ce403e7614195c72895ca2ff49d6525d7a16274ea324bdc84",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Explicit world pause/player/light injection; threat registry and observation/presentation separation remain.",
+          "reviewedSha256": "1a9fcb885b21621ce403e7614195c72895ca2ff49d6525d7a16274ea324bdc84"
+        }
+      ],
+      "responsibility": "Выбор audio mood и mix по perception",
+      "dependencies": [
+        "System.Collections.Generic",
+        "UnityEngine",
+        "Zenject",
+        "AudioMoodProfile",
+        "scoped player/pause",
+        "Flashlight2D",
+        "AudioSource"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodHitSpray2D.cs",
@@ -6893,10 +8237,25 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyHitResponse2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Ограниченный cosmetic VFX .24s, без постоянного loot/damage; root создаётся вызывающим кодом в active scene, tuning/Random захардкожены.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Короткий брызг крови при попадании",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "2c4bc4ca86d70bdc0414d4c53d408859e09bcff15f37fc4aa6154e5659852b90",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
@@ -6925,10 +8284,29 @@
         "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Личная генерация форм seeded System.Random, постоянная лужа/animation до отключения. BeginRupture использует Unity RNG и массивы; legacy tuning в коде. RestoreVariant(null) сохраняет prefab sprites; legacy-тест сверяет их, а не пересоздаёт новые формы.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Процедурная лужа и прилёт капель",
+      "dependencies": [
+        "UnityEngine",
+        "BloodPoolProfile",
+        "System.Random",
+        "Physics2D.Linecast",
+        "SpriteRenderer"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
+      "reviewedSha256": "9f12582b957b8429a85d3af2ac2031f7f83a6512b2832763e47ff3825ee5faff",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodRuptureBurst2D.cs",
@@ -6947,10 +8325,25 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Согласован с arrival постоянных капель, уничтожается через .36s. Root active-scene ownership не закреплён; timing/цвет/число в коде.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Короткий разрывной брызг при смерти",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "1bf7369a2acb1b966532ecab9d5e74d44b9ccf99df7fb5cf29cc6fbbde973f01",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureGroundShadow2D.cs",
@@ -6972,10 +8365,25 @@
       ],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "MaterialPropertyBlock/IDs кэшируются, presentation source без видового dispatch, settled прекращает пересчёт. Physics/LOS и tuning в MB; не возвращает отклонённую модель высоты мебели.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Контактная тень персонажа/останка",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
+      "reviewedSha256": "51ad1310854874657b43535c92c429a5de0511b61d19a9682d43a9b1ce386893",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
@@ -7000,10 +8408,30 @@
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Общий visual adapter без species enum, cached MPB и distance-driven locomotion; 416 строк совмещают frame/eye/material/gaze/turn, много presentation tuning в коде.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общий visual animator персонажа",
+      "dependencies": [
+        "UnityEngine",
+        "UnityEngine.Serialization",
+        "EnemyPresentationSource2D",
+        "StalkerLocomotionProfile",
+        "Sprite[]",
+        "MaterialPropertyBlock"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 2.",
+      "reviewedSha256": "f810d41b1111f190179550d9a461e8a00f0f4e9fcba8081ebb46802e428b029d",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs",
@@ -7025,10 +8453,27 @@
       ],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Единый health event→gore без видового if; парная Awake/OnDestroy подписка. Логика смерти принадлежит health.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Мост события смерти в gore presentation",
+      "dependencies": [
+        "UnityEngine",
+        "EnemyHealth2D.Died",
+        "GoreBurst2D"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
+      "reviewedSha256": "f472995a637b07ff782535949d72e40e16cbdfd2afe22bc3ebb98fc42418773b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyHitResponse2D.cs",
@@ -7053,10 +8498,28 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Hit presentation не выдаёт damage, OnDisable reset; новый spray active-scene ownership. Visual pose имеет конкурирующих писателей с animator; actual conflict требует Play-проверки.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Визуальный отклик и кровь попадания",
+      "dependencies": [
+        "UnityEngine",
+        "EnemyHealth2D",
+        "BloodHitSpray2D",
+        "Transform / SpriteRenderer"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
+      "reviewedSha256": "81ebc21e2908506c26f9e6818f65223456b68d5228226e08cec1b89914eb5b06",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GibMotion2D.cs",
@@ -7077,10 +8540,28 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Личная transient motion, первое приземление one-shot event и отключение при settled. Physics/virtual height/presentation вместе, constants tuning в коде; модель не выделена.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Полёт/контакт/оседание одной части",
+      "dependencies": [
+        "UnityEngine",
+        "Physics2D ray/line geometry query",
+        "SpriteRenderer body/contact shadow",
+        "FirstLanded event"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "5b8faccdeb9ed9b179c8442bd413386d07ab2af59fe016e250792ad9b999a8cb",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
@@ -7113,10 +8594,32 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Owned quota validated through real death/settled remains surviving actor; full visual/RNG/lifetime review remains.",
+      "notes": "One-shot emitted, world-budget, remains root явно source.scene. ValidateRemains не проверяет null shadow/элементы pool/finite pose; transient spray создаётся в active scene. Coroutine создания частей привязана actor; future pool нельзя считать готовым. Учёт: BUG-014 / BUG-015.",
       "reviewedSha256": "971af3b4e27b15102082fd2d9a9088b0bade9381d73af720b84cbce85f73fc76",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Owned quota validated through real death/settled remains surviving actor; full visual/RNG/lifetime review remains.",
+          "reviewedSha256": "971af3b4e27b15102082fd2d9a9088b0bade9381d73af720b84cbce85f73fc76"
+        }
+      ],
+      "responsibility": "Однократная смерть и создание останков",
+      "dependencies": [
+        "System.Collections",
+        "UnityEngine",
+        "Zenject",
+        "GoreProfile",
+        "BloodPool2D",
+        "GoreSpawnBudget2D",
+        "RemainsRecord2D",
+        "GibMotion2D"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs",
@@ -7138,10 +8641,26 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Compatibility adapter; existing maximum 32 preserved, no blood/remains eviction.",
+      "notes": "World-owned существующая квота 32/frame через IFrameClock; не отказывает навсегда в постоянных останках, нового пула нет.",
       "reviewedSha256": "5d23a43bf265caea1fd5401066ce092327428b1aa27028b97042f234eafeef67",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Compatibility adapter; existing maximum 32 preserved, no blood/remains eviction.",
+          "reviewedSha256": "5d23a43bf265caea1fd5401066ce092327428b1aa27028b97042f234eafeef67"
+        }
+      ],
+      "responsibility": "World quota существующего gore spawn",
+      "dependencies": [
+        "EmergencyShift.Core.Scheduling",
+        "EmergencyShift.Core.Time"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/PlayerShotShadow2D.cs",
@@ -7206,10 +8725,25 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Малая settled presentation identity, Capture значений, без Update/AI/физики после оседания.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Индекс и settled presentation одной части",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "3e0c0c1f1c7a1701352ea0d4f2b012011d9d15f5b12cde05c9d3b497b666bf9a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
@@ -7230,10 +8764,30 @@
         "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Scene-owned record живёт независимо от actor, settled без AI. Restore доверяет shadow/pool element presence и numbers; некорректный payload может упасть после создания частей. Учёт: BUG-014.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Постоянный scene record и restore останков",
+      "dependencies": [
+        "System.Collections.Generic",
+        "UnityEngine",
+        "RemainsSnapshot",
+        "BloodPool2D",
+        "RemainsPartIdentity2D",
+        "SpriteRenderer"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "2d0a8e8bfe88c8657f30c4606355cd365b9383700c099ddd8a4be22793bcb34e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsSnapshot.cs",
@@ -7260,10 +8814,28 @@
         "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "DTO хранит значения, но содержит методы Capture/Apply SpriteRenderer; данные и Unity serialization adapter не разделены. Numeric/presence guards делегированы неполному validator.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "DTO позы лужи и частей останков",
+      "dependencies": [
+        "System",
+        "UnityEngine",
+        "SpriteRenderer Capture/Apply",
+        "serialized Unity value types"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "87014460bc08af11b903fc04e31b461f18ac7be423ce30eea39f661d55e87a91",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsVisualStyle.cs",
@@ -7285,10 +8857,26 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Чистые константы отображения и явное применение; нет mutable-global состояния или gameplay mutation.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Общие правила порядка и цвета останков",
+      "dependencies": [
+        "UnityEngine",
+        "UnityEngine.Rendering"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewedSha256": "399661a2b36630facdaf4fa48ee33dba601d2b70a162669f87389aad56b6b0f6",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs",
@@ -7445,10 +9033,26 @@
         "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Явное dev правило временного HP; не мутирует config, collider occupants и restore при exit/disable. Это ограниченный sandbox, не campaign logic.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Тестовое временное здоровье в тире",
+      "dependencies": [
+        "System.Collections.Generic",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 1.",
+      "reviewedSha256": "63fbaf116752f72706c99eaf4441655658a386a68dd6acb2d95a5610ae710be9",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Sandbox/SandboxSession2D.cs",
@@ -7470,10 +9074,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Restart/refill intent and player-owned block; remaining domain/controller review.",
+      "notes": "Scoped dev intents/block, но SceneManager/GetComponent и ammo mutation в MB, отдельная command boundary не выделена.",
       "reviewedSha256": "89faaeb6cf258bfb5ff752b494d2fe025b9fff020b686a0bc2061d3ddfe78a42",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Restart/refill intent and player-owned block; remaining domain/controller review.",
+          "reviewedSha256": "89faaeb6cf258bfb5ff752b494d2fe025b9fff020b686a0bc2061d3ddfe78a42"
+        }
+      ],
+      "responsibility": "Sandbox reset/refill orchestration",
+      "dependencies": [
+        "UnityEngine",
+        "EmergencyShift.Features.PlayerInput.Logic",
+        "Zenject",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 1.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Sandbox/SandboxStationaryStalker2D.cs",
@@ -7496,10 +9118,25 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Явная sandbox адаптация реального первого вида; фиксирует Rigidbody и выключает crowd, не общий species dispatcher.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Адаптер неподвижной настоящей мишени",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 1.",
+      "reviewedSha256": "f779fcfe7363ef6696c918b06c42a204f389aeaa410e0e0911b34443425a2b74",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/AimReticle2D.cs",
@@ -7655,10 +9292,27 @@
         "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Парный Bind/unsubscribe, events health/ownership и caches, но View зависит от concrete player и polling ammo; style numeric невалидирован, cosmetic hit Unity RNG общий с BUG-010.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Canvas gameplay View и подписки",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
+      "reviewedSha256": "d43e3f690e2e2e53934f0f47b3fcbefb2c385a77098172ddca3dc05f6469d808",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
@@ -7772,10 +9426,26 @@
         "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Legacy HUD строит строки/SetActive каждый Update, конкретные player refs и polling; не выделен presenter/cache. Не доказательство FPS-проблемы.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Legacy текстовый gameplay HUD",
+      "dependencies": [
+        "UnityEngine",
+        "UnityEngine.UI"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 11.",
+      "reviewedSha256": "2233812416e597c864f8c0f4e50763222b3ffedb385afc53f90fe5647801f07b",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
@@ -7905,11 +9575,27 @@
       ],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Explicit listener injection; full source/config/lifetime review remains.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "View слушает AccessChecked, парная отписка/Stop, scope listener; не решает доступ.",
       "reviewedSha256": "6681813bcf59a7d858e25397a136d6fa3abbc163f481cde90de6a8a04f25d496",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Explicit listener injection; full source/config/lifetime review remains.",
+          "reviewedSha256": "6681813bcf59a7d858e25397a136d6fa3abbc163f481cde90de6a8a04f25d496"
+        }
+      ],
+      "responsibility": "View звука проверки доступа",
+      "dependencies": [
+        "UnityEngine",
+        "Zenject"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 1.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
@@ -7979,10 +9665,30 @@
         "Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Cookie/Texture lifetime закрыт OnDisable; geometry hash кеширует перестройку. Все blockers пересчитываются на лампу; explicit blockers не ограничены своей сценой. 512 rays×blockers и 128² upload при изменении, без Profiler нет FPS-вывода.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Cookie потолочного света по полным преградам",
+      "dependencies": [
+        "System.Collections.Generic",
+        "UnityEngine",
+        "UnityEngine.Rendering.Universal",
+        "Light2D",
+        "FullHeightLightBlocker2D",
+        "Texture2D / Sprite lifetime"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 4; сцены по графу: 3.",
+      "reviewedSha256": "afbe93a402bfb673c8bf30f52dd960966297d3def8a0bb9f6190f316e8c3a447",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
@@ -8045,10 +9751,33 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Input Actions/block injected; ownership/optics/presentation/config boundaries remain.",
+      "notes": "Ownership command выделен; input, rotation/motor, Unity lighting и authoritative LOS ещё в одном MB, tuning не весь в SO. SetOptics Clamp/Max не заменяет finite validation.",
       "reviewedSha256": "eb87c2e6c06e6570723c4fa83088e75044959f889074702287b5a147d634cd28",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Input Actions/block injected; ownership/optics/presentation/config boundaries remain.",
+          "reviewedSha256": "eb87c2e6c06e6570723c4fa83088e75044959f889074702287b5a147d634cd28"
+        }
+      ],
+      "responsibility": "Фонарь игрока: ownership/input/свет/LOS",
+      "dependencies": [
+        "UnityEngine",
+        "EmergencyShift.Features.PlayerInput.Logic",
+        "Zenject",
+        "UnityEngine.Rendering.Universal",
+        "IPlayerInput",
+        "FlashlightOwnership",
+        "PlayerMotor2D",
+        "Physics2D",
+        "Light2D"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 6; сцены по графу: 11.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/FullHeightLightBlocker2D.cs",
@@ -8083,10 +9812,28 @@
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "CollectFor ограничен owner.scene, версия обновляется парной регистрацией; static mutable registry вместо scope. SubsystemRegistration очищает список.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Регистрация и геометрия полной преграды",
+      "dependencies": [
+        "System.Collections.Generic",
+        "UnityEngine",
+        "own scene geometry",
+        "static registration version"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 11.",
+      "reviewedSha256": "b3ea3422c52443bec62eb6cb1343aea901c33ec0af9650cbd4860fe8389a7ee0",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
@@ -8122,10 +9869,31 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampConfiguration2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Оформление/Time и запрос игрового света объединены; static active общий для сцен, AnyIlluminates не фильтрует сцену. Переключение питания/профиля не сбрасывает личные таймеры в SO.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Личное состояние и запрос освещения лампы",
+      "dependencies": [
+        "System.Collections.Generic",
+        "UnityEngine",
+        "UnityEngine.Rendering.Universal",
+        "LocalLightProfile",
+        "LocalLampSceneSettings",
+        "LocalLampAudio2D",
+        "Light2D"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 6; сцены по графу: 5.",
+      "reviewedSha256": "5609ff3341ae1d0cfcde5048bb68dbbc9593480b10a999832fb15a2872ee0673",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
@@ -8149,11 +9917,32 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampConfiguration2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Explicit listener injection; audio/config/lifetime review remains.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Два источника, listener через scope, события контакта следуют фактическому Light2D; Silence при disable, cosmetic RNG отдельный. Не защитный стимул.",
       "reviewedSha256": "92ed9162250d897d81274baf6f2b39cb47068860753f2e4cb069b1d78cb2dc98",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Explicit listener injection; audio/config/lifetime review remains.",
+          "reviewedSha256": "92ed9162250d897d81274baf6f2b39cb47068860753f2e4cb069b1d78cb2dc98"
+        }
+      ],
+      "responsibility": "Playback фонового гула и контактов лампы",
+      "dependencies": [
+        "UnityEngine",
+        "Zenject",
+        "UnityEngine.Rendering.Universal",
+        "PlayerLife2D scoped listener",
+        "LocalLampAudioSet",
+        "LocalLampSceneSettings",
+        "AudioSource"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampConfiguration2D.cs",
@@ -8175,10 +9964,25 @@
       ],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ExecuteAlways authoring entry; личные scene settings, валидация и калибровка fixture, не генератор сцены.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Настраиваемый authoring потолочной лампы",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
+      "reviewedSha256": "2ac38a47241b785e8f2bbc37c9ea841d11cd7f70b17d8a39b21d2400ef5e0460",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
@@ -8375,10 +10179,27 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Unity geometry/serialized placement adapter only; membership owned by injected level registry.",
+      "notes": "Unity area adapter, scope registry, парная регистрация и explicit geometry query.",
       "reviewedSha256": "49d7e7a033589b374a5214c0300149e814595c56a8bf484fa64580abf6521b36",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Unity geometry/serialized placement adapter only; membership owned by injected level registry.",
+          "reviewedSha256": "49d7e7a033589b374a5214c0300149e814595c56a8bf484fa64580abf6521b36"
+        }
+      ],
+      "responsibility": "Авторенная область материала пола",
+      "dependencies": [
+        "EmergencyShift.Core.Composition",
+        "UnityEngine",
+        "Zenject"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
@@ -8400,10 +10221,28 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Pure ordered selection over scene-owned regions; priority/coverage/fallback/scope isolation tested.",
+      "notes": "Одна injected scene registry, выбор priority с устойчивым порядком; нет глобального Find.",
       "reviewedSha256": "d008fe3ce77792561eb651a9999cf6cb4e14f47916abca7ceb277c2f9f4ab54d",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Pure ordered selection over scene-owned regions; priority/coverage/fallback/scope isolation tested.",
+          "reviewedSha256": "d008fe3ce77792561eb651a9999cf6cb4e14f47916abca7ceb277c2f9f4ab54d"
+        }
+      ],
+      "responsibility": "Выбор материала из scene registry",
+      "dependencies": [
+        "System",
+        "EmergencyShift.Core.Composition",
+        "UnityEngine",
+        "SceneRegistry<IGroundAudioRegion>"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Surfaces/GroundSoundSurface.cs",
@@ -8431,10 +10270,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Preserved serialized enum numeric order; one type per file.",
+      "notes": "Малый enum семейства материала, не dispatch по виду врага.",
       "reviewedSha256": "f67a5cbc0def8b88d923151f6169c23defd7aff43aa5cb075f29e55995fe46d9",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Preserved serialized enum numeric order; one type per file.",
+          "reviewedSha256": "f67a5cbc0def8b88d923151f6169c23defd7aff43aa5cb075f29e55995fe46d9"
+        }
+      ],
+      "responsibility": "Семейства материала звуковой поверхности",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Surfaces/IGroundAudioRegion.cs",
@@ -8456,10 +10310,25 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Small surface/priority/coverage contract; no MonoBehaviour dependency.",
+      "notes": "Узкий material/priority/geometry contract, без concrete actor.",
       "reviewedSha256": "1265ff802328808451c560b9d5a7ac7ab1c8de7436245741f59a52fc1b8fe790",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Small surface/priority/coverage contract; no MonoBehaviour dependency.",
+          "reviewedSha256": "1265ff802328808451c560b9d5a7ac7ab1c8de7436245741f59a52fc1b8fe790"
+        }
+      ],
+      "responsibility": "Контракт области звукового материала",
+      "dependencies": [
+        "UnityEngine"
+      ],
+      "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Surfaces/ImpactSurface2D.cs",
@@ -8511,10 +10380,28 @@
         "Test",
         "TestCase"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "partial",
+      "notes": "Round-trip новых вариантов, одинаковый seed и legacy prefab sprites проверяются, но нет malformed shadow/pool/finite payload; тесты не запускались. Учёт: BUG-014.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Регрессии BloodPool",
+      "dependencies": [
+        "System.Collections.Generic",
+        "NUnit.Framework",
+        "UnityEditor",
+        "UnityEngine"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewedSha256": "3ebbf1f57cd976afb2c78d4739b1a30d7cb538eb5f7dbb34270f7b1076d7413e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs",
@@ -8531,10 +10418,26 @@
       "entryPointHints": [
         "Test"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Automatic own-scene/unregister, low-desk/wall и scaled/rotated rectangle tests; не полная cookie/render проверка.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Регрессии CeilingLightOcclusion",
+      "dependencies": [
+        "NUnit.Framework",
+        "UnityEngine"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewedSha256": "a4a5cdae037285525eebddeb967604e2b3f87294247fa0c5e1251ec7d809a39e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs",
@@ -8688,10 +10591,29 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Full fixture read; bank repetition, asset immutability, empty/duplicate banks, world isolation/disposal.",
+      "notes": "Null/repeat/independent cache/RNG и Dispose; SO и runtime выбор разделены. Нового playback прогона нет.",
       "reviewedSha256": "bec985390ad681f7b619956d027a240bb9a826f91bc16572cb7e0e435278c790",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Full fixture read; bank repetition, asset immutability, empty/duplicate banks, world isolation/disposal.",
+          "reviewedSha256": "bec985390ad681f7b619956d027a240bb9a826f91bc16572cb7e0e435278c790"
+        }
+      ],
+      "responsibility": "Регрессии EnemyDeathAudio",
+      "dependencies": [
+        "System.Collections.Generic",
+        "EmergencyShift.Core.Randomness",
+        "NUnit.Framework",
+        "UnityEditor",
+        "UnityEngine"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
@@ -8749,10 +10671,27 @@
         "Test",
         "TestCase"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Framing 3 aspects, invalid numeric и dropout/shared immutability; не игровой кадр.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Регрессии EnvironmentPresentation",
+      "dependencies": [
+        "System",
+        "NUnit.Framework",
+        "UnityEngine"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewedSha256": "63c5ffbadc7cb4d705a4562c98de86b6c5225e47860dea06ea0cde894a3c1b0a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
@@ -8808,10 +10747,28 @@
         "Test",
         "TestCase"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Два species cases и отказ profile без новых вариантов; проверяют данные и immutability, не malformed-remains или Play-смерть.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Регрессии GoreComposition",
+      "dependencies": [
+        "System",
+        "NUnit.Framework",
+        "UnityEditor",
+        "UnityEngine"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewedSha256": "116005420a10ead6ccc2dae0598b09559dd9bca360ee74f3950acb73425270f3",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs",
@@ -8830,10 +10787,27 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Five scene-independent tests of actual selection and independent/disposed scopes.",
+      "notes": "Личные registry и fake regions: material/priority/tie/fallback, без глобального Find и Unity-сцены.",
       "reviewedSha256": "21c0855f83b2e0b0d6d07caa29357be0aad1156e23d6ab869cc3f66972351c46",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Five scene-independent tests of actual selection and independent/disposed scopes.",
+          "reviewedSha256": "21c0855f83b2e0b0d6d07caa29357be0aad1156e23d6ab869cc3f66972351c46"
+        }
+      ],
+      "responsibility": "Регрессии GroundAudioSurfaceQuery",
+      "dependencies": [
+        "EmergencyShift.Core.Composition",
+        "NUnit.Framework",
+        "UnityEngine"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
@@ -8856,10 +10830,28 @@
         "TestCase"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Health rejection, protection boundary, death, restore and instance isolation.",
+      "notes": "Изолированные tests health/protection/death/capacity с injected clock; чистые личные models, не проверка всей player life. Только чтение, не новый прогон.",
       "reviewedSha256": "741fff3f0006a03287e72e90501f2eb9bef82292baae137865990664a7cc6450",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Health rejection, protection boundary, death, restore and instance isolation.",
+          "reviewedSha256": "741fff3f0006a03287e72e90501f2eb9bef82292baae137865990664a7cc6450"
+        }
+      ],
+      "responsibility": "Регрессии HealthModel",
+      "dependencies": [
+        "EmergencyShift.Core.Time",
+        "EmergencyShift.Features.Health.Config",
+        "EmergencyShift.Features.Health.Logic",
+        "NUnit.Framework"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
@@ -8914,10 +10906,27 @@
       "entryPointHints": [
         "Test"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Только gain и immutable mix + invalid distance; не actual playback/occlusion.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Регрессии LocalLampAudio",
+      "dependencies": [
+        "System",
+        "NUnit.Framework",
+        "UnityEngine"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewedSha256": "4c123da2d8b49f1373cfbb4a42491c9e9840ab50262ebdac4b9068f9aec5e289",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/LocalLampSceneSettingsTests.cs",
@@ -8934,10 +10943,26 @@
       "entryPointHints": [
         "Test"
       ],
-      "reviewStatus": "queued",
-      "notes": "Not semantically reviewed yet; no unused/compliance claim.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Личные overrides/mute/flicker windows/invalid values, без Editor scene mutation.",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "Not semantically reviewed yet; no unused/compliance claim."
+        }
+      ],
+      "responsibility": "Регрессии LocalLampSceneSettings",
+      "dependencies": [
+        "System",
+        "NUnit.Framework"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewedSha256": "30af525f3c8535527235aa9093e9fb405719e82d39a884836769befa915b9aa8",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
@@ -9126,10 +11151,27 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Registration, idempotent removal and independent scene teardown.",
+      "notes": "Проверяет duplicate/null/порядок и idempotent Dispose личного registry; без scene/global fixture.",
       "reviewedSha256": "a54bd71b25ab173b8f75ff939a6c68faf5bdccf32e92e21356d2a6b1c3d1c552",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Registration, idempotent removal and independent scene teardown.",
+          "reviewedSha256": "a54bd71b25ab173b8f75ff939a6c68faf5bdccf32e92e21356d2a6b1c3d1c552"
+        }
+      ],
+      "responsibility": "Регрессии SceneRegistry",
+      "dependencies": [
+        "System",
+        "EmergencyShift.Core.Composition",
+        "NUnit.Framework"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs",
@@ -9245,15 +11287,34 @@
         "TestCase"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Quota/frame reset, separate existing limits and actor RNG isolation.",
+      "notes": "Контролируемый frame clock, отдельные quota и повторяемый RNG; не benchmark производительности.",
       "reviewedSha256": "f5612b26fe800e31544da6918473bbf5385c7d9cae2fffd48d558e70f783cc0f",
       "sourceChangedSinceReview": false,
-      "sourceScope": "unity"
+      "sourceScope": "unity",
+      "reviewHistory": [
+        {
+          "reviewStatus": "reviewed_boundary",
+          "notes": "Quota/frame reset, separate existing limits and actor RNG isolation.",
+          "reviewedSha256": "f5612b26fe800e31544da6918473bbf5385c7d9cae2fffd48d558e70f783cc0f"
+        }
+      ],
+      "responsibility": "Регрессии WorkBudget",
+      "dependencies": [
+        "System",
+        "EmergencyShift.Core.Randomness",
+        "EmergencyShift.Core.Scheduling",
+        "EmergencyShift.Core.Time",
+        "NUnit.Framework"
+      ],
+      "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Исторический offline mesh/UV источник: проверяет вход, finite pose, clone eye array, Dispose всех meshes/materials и собственного scene root. Не runtime-компонент, художественная пригодность не утверждается.",
       "path": "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
       "sourceScope": "content_source",
       "sha256": "b1aba13da7c37fe3adb1d6b784d95af3c107f216b47f949905cbfc6333bf6bfa",
@@ -9272,12 +11333,31 @@
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperJawBakeSource.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Исторический offline источник челюсти из native portraits",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "UnityEngine",
+        "UnityEngine.Rendering",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Исторический offline источник вне Assets; не компилируется в игровой runtime. Наличие в Used не означает текущую художественную приёмку.",
+      "reviewedSha256": "b1aba13da7c37fe3adb1d6b784d95af3c107f216b47f949905cbfc6333bf6bfa",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Исторический offline baker: preview scene/RT/textures/materials/meshes закрываются finally/Dispose, альфа/размер/числа проверяются, явные output PNG+manifest и input hash. Hardcoded rig/QA не является runtime SOD-model и не доказывает анатомию/контакт в игре.",
       "path": "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
       "sourceScope": "content_source",
       "sha256": "7fff758026ab02bc164a8c4aaf25e56ce3ea7e9d20146a1f4a07d6ef3adf47a2",
@@ -9306,12 +11386,36 @@
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Исторический bake шести клипов и numeric QA",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Security.Cryptography",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.Rendering",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Исторический offline источник вне Assets; не компилируется в игровой runtime. Наличие в Used не означает текущую художественную приёмку.",
+      "reviewedSha256": "7fff758026ab02bc164a8c4aaf25e56ce3ea7e9d20146a1f4a07d6ef3adf47a2",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Прочитан полный PausedAttempt jaw source; draft копия побайтово совпадает (SHA-256 56739834…). Native UV/panel/tether/tooth/eye offline geometry, finite pose и Dispose; исторический непринятый дизайн, не активный враг.",
       "path": "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperJawBakeSource.cs",
       "sourceScope": "content_source",
       "sha256": "567398345a98cc518edaf57b6f083a2283d728e5a7772281be1a94014266536a",
@@ -9345,12 +11449,31 @@
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Архивный native-art jaw baker / идентичная копия",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "UnityEngine",
+        "UnityEngine.Rendering",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Исторический offline источник вне Assets; не компилируется в игровой runtime. Наличие в Used не означает текущую художественную приёмку.",
+      "reviewedSha256": "567398345a98cc518edaf57b6f083a2283d728e5a7772281be1a94014266536a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full PausedAttempt source read; identical draft copy verified by SHA-256. Offline source only, no execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Проверен полный diff относительно полностью прочитанного AuthoringDrafts baker: меньший stride/attack, grid12, blend/visibility pixel scan, export каждого frame+hash/area QA. Draft побайтово совпадает (SHA-256 d4f7af18…). Offline, вне Assets и player build.",
       "path": "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
       "sourceScope": "content_source",
       "sha256": "d4f7af18dc5d4db0539435e64f5ea7516c2ab7ee0eb49b9536e81b9441fa06a4",
@@ -9379,12 +11502,36 @@
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Архивный bake/экспорт кадров с расширенной QA",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Security.Cryptography",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.Rendering",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Исторический offline источник вне Assets; не компилируется в игровой runtime. Наличие в Used не означает текущую художественную приёмку.",
+      "reviewedSha256": "d4f7af18dc5d4db0539435e64f5ea7516c2ab7ee0eb49b9536e81b9441fa06a4",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full AuthoringDrafts base read plus complete unified diff to PausedAttempt; identical draft copy verified by SHA-256. Offline source only, no execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Прочитан полный PausedAttempt jaw source; draft копия побайтово совпадает (SHA-256 56739834…). Native UV/panel/tether/tooth/eye offline geometry, finite pose и Dispose; исторический непринятый дизайн, не активный враг.",
       "path": "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperJawBakeSource.cs",
       "sourceScope": "content_source",
       "sha256": "567398345a98cc518edaf57b6f083a2283d728e5a7772281be1a94014266536a",
@@ -9418,12 +11565,31 @@
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Архивный native-art jaw baker / идентичная копия",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "UnityEngine",
+        "UnityEngine.Rendering",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Исторический offline источник вне Assets; не компилируется в игровой runtime. Наличие в Used не означает текущую художественную приёмку.",
+      "reviewedSha256": "567398345a98cc518edaf57b6f083a2283d728e5a7772281be1a94014266536a",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full PausedAttempt source read; identical draft copy verified by SHA-256. Offline source only, no execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Проверен полный diff относительно полностью прочитанного AuthoringDrafts baker: меньший stride/attack, grid12, blend/visibility pixel scan, export каждого frame+hash/area QA. Draft побайтово совпадает (SHA-256 d4f7af18…). Offline, вне Assets и player build.",
       "path": "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs",
       "sourceScope": "content_source",
       "sha256": "d4f7af18dc5d4db0539435e64f5ea7516c2ab7ee0eb49b9536e81b9441fa06a4",
@@ -9452,12 +11618,36 @@
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Архивный bake/экспорт кадров с расширенной QA",
+      "dependencies": [
+        "System",
+        "System.Collections.Generic",
+        "System.IO",
+        "System.Security.Cryptography",
+        "UnityEditor",
+        "UnityEditor.SceneManagement",
+        "UnityEngine",
+        "UnityEngine.Rendering",
+        "UnityEngine.Rendering.Universal",
+        "UnityEngine.SceneManagement"
+      ],
+      "usageEvidence": "Исторический offline источник вне Assets; не компилируется в игровой runtime. Наличие в Used не означает текущую художественную приёмку.",
+      "reviewedSha256": "d4f7af18dc5d4db0539435e64f5ea7516c2ab7ee0eb49b9536e81b9441fa06a4",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full AuthoringDrafts base read plus complete unified diff to PausedAttempt; identical draft copy verified by SHA-256. Offline source only, no execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "partial",
+      "notes": "Исторический one-off script с route/Edit/existing-prefab guards, snapshots исходных компонентов и Undo новых объектов. Global door Find, absolute work path, нет общего rollback/temp cleanup при исключении; не переиспользуемый runtime свет.",
       "path": "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
       "sourceScope": "content_source",
       "sha256": "60f2d18b7f7759f3ecf9cde47a6125387f25301d4538fd8f4f2ba023b17a300e",
@@ -9468,12 +11658,27 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Исторический authoring индикаторов карточных дверей",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Исторический offline источник вне Assets; не компилируется в игровой runtime. Наличие в Used не означает текущую художественную приёмку.",
+      "reviewedSha256": "60f2d18b7f7759f3ecf9cde47a6125387f25301d4538fd8f4f2ba023b17a300e",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "partial",
+      "notes": "Исторический route/Edit/existing-assets guards, allowed-delta snapshots и Undo; захардкоженная разметка/пути, частичные изменения без rollback. Создаёт составной drain из GameObject — подтверждает происхождение уже открытого BUG-007, новый дубликат не заводился.",
       "path": "Concepts/Used/Environment/RoomFinish01/create.cs",
       "sourceScope": "content_source",
       "sha256": "f6ed5f79a862f8b922533cf29a6553c4e66e399bb37a47ff3aa244f20afda3bf",
@@ -9484,7 +11689,22 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "responsibility": "Исторический authoring плинтусов/влаги/слива",
+      "dependencies": [
+        "Локальные типы/Unity API в теле; см. пофайловое заключение"
+      ],
+      "usageEvidence": "Исторический offline источник вне Assets; не компилируется в игровой runtime. Наличие в Used не означает текущую художественную приёмку.",
+      "reviewedSha256": "f6ed5f79a862f8b922533cf29a6553c4e66e399bb37a47ff3aa244f20afda3bf",
+      "reviewDate": "2026-10-21",
+      "reviewReport": "Docs/Reports/CodeAudit09.md",
+      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     }
   ],
   "unresolvedExternalReferences": [],
@@ -9496,9 +11716,9 @@
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 39,
-    "report": "Docs/Reports/CodeAudit08.md",
-    "validation": "Static source/hash/reference checks; 19 existing test cases read, not executed. Editor/Pipeline unavailable."
+    "files": 121,
+    "report": "Docs/Reports/CodeAudit09.md",
+    "validation": "Static source/hash/reference checks. All own source coverage reached 269/269, 0 queued. Existing tests read, not executed; Editor/Pipeline unavailable."
   },
   "reviewPasses": [
     {
@@ -9524,6 +11744,21 @@
       "files": 39,
       "report": "Docs/Reports/CodeAudit08.md",
       "validation": "Static source/hash/reference checks; 19 existing test cases read, not executed. Editor/Pipeline unavailable."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 121,
+      "report": "Docs/Reports/CodeAudit09.md",
+      "validation": "Static source/hash/reference checks. All own source coverage reached 269/269, 0 queued. Existing tests read, not executed; Editor/Pipeline unavailable."
     }
-  ]
+  ],
+  "sourceCoverageComplete": true,
+  "sourceCoverage": {
+    "reviewedFiles": 269,
+    "totalFiles": 269,
+    "queuedFiles": 0,
+    "hashesCurrent": true,
+    "scope": "All own C# under Assets/EmergencyShift, AgentScripts and Concepts; third-party packages/generated Library excluded.",
+    "validation": "Static semantic source coverage across CodeAudit05–09. Asset graphs are usage hints; scene rendering/gameplay/performance and migration completion are not certified."
+  }
 }
