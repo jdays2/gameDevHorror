@@ -1,41 +1,35 @@
 using System;
-using System.Collections.Generic;
+using EmergencyShift.Features.Flashlight.Logic;
 
 namespace EmergencyShift
 {
-    /// <summary>Checks serialized module values before a player or module collection is changed.</summary>
+    /// <summary>Legacy JSON adapter; the pure progression validator owns all module rules.</summary>
     public static class FlashlightModuleValidation
     {
         public static void Validate(FlashlightUpgrades.ModuleState[] modules, int count)
         {
-            int uniqueCount = modules == null ? 0 : modules.Length;
-            // A repeatable module accumulates its bonuses under one ID, but counts every install.
-            if (count < uniqueCount || (uniqueCount == 0 && count != 0))
+            var result = FlashlightUpgradeModel.ValidateSnapshot(ToModules(modules), count);
+            if (!result.Success)
             {
-                throw new InvalidOperationException("Invalid flashlight module count");
+                throw new InvalidOperationException(result.Reason);
             }
+        }
 
+        public static FlashlightModule[] ToModules(FlashlightUpgrades.ModuleState[] modules)
+        {
             if (modules == null)
             {
-                return;
+                return null;
             }
 
-            var ids = new HashSet<string>(StringComparer.Ordinal);
-            foreach (FlashlightUpgrades.ModuleState module in modules)
+            var result = new FlashlightModule[modules.Length];
+            for (int index = 0; index < modules.Length; index++)
             {
-                if (module == null || string.IsNullOrWhiteSpace(module.id) || !ids.Add(module.id))
-                {
-                    throw new InvalidOperationException("Missing or duplicate flashlight module ID");
-                }
-
-                float range = module.bonus.x;
-                float angle = module.bonus.y;
-                if (!float.IsFinite(range) || !float.IsFinite(angle) || range < 0 || angle < 0 ||
-                    (range == 0 && angle == 0))
-                {
-                    throw new InvalidOperationException("Invalid flashlight module bonus");
-                }
+                FlashlightUpgrades.ModuleState module = modules[index];
+                result[index] = module == null ? default : new FlashlightModule(module.id, module.bonus);
             }
+
+            return result;
         }
     }
 }

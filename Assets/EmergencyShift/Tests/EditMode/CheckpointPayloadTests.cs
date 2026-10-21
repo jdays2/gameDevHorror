@@ -53,6 +53,7 @@ namespace EmergencyShift.Tests
             flashlight = player.GetComponent<Flashlight2D>();
             Awake(flashlight);
             upgrades = player.GetComponent<FlashlightUpgrades>();
+            upgrades.Construct(new EmergencyShift.Features.Flashlight.FlashlightControllerFactory());
             Awake(upgrades);
             gun = player.GetComponent<PlayerWeapon2D>();
             typeof(PlayerWeapon2D).GetMethod("Construct", BindingFlags.Instance | BindingFlags.NonPublic)

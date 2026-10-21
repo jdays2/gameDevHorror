@@ -1,54 +1,54 @@
-using System.Collections.Generic;
+using System;
+using EmergencyShift.Features.Flashlight;
+using EmergencyShift.Features.Flashlight.Config;
+using EmergencyShift.Features.Flashlight.Logic;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
-    [DisallowMultipleComponent]
-    [RequireComponent(typeof(Flashlight2D))]
-    /// <summary>Хранит модули игрока в текущем запуске комнаты; пересчитывает оптику от базы.</summary>
-    public sealed class FlashlightUpgrades : MonoBehaviour
+    /// <summary>Unity optics and compatibility snapshot adapter for personal upgrade progression.</summary>
+    [DisallowMultipleComponent, RequireComponent(typeof(Flashlight2D))]
+    public sealed class FlashlightUpgrades : MonoBehaviour, IFlashlightUpgradeEnvironment
     {
         [Header("Progression limits — editable balance")]
-        [SerializeField, Min(0.5f)]
+        [SerializeField, Min(.5f)]
         private float maximumRange = 7f;
         [SerializeField, Range(20f, 140f)]
         private float maximumAngle = 110f;
         private Flashlight2D flashlight;
         private PlayerLife2D life;
-        private readonly Dictionary<string, Vector2> installed = new Dictionary<string, Vector2>();
-        private float baseRange;
-        private float baseAngle;
-        public int InstalledCount
-        {
-            get; private set;
-        }
+        private FlashlightControllerFactory factory;
+        private FlashlightUpgradeController controller;
 
-        private void Awake()
-        {
-            flashlight = GetComponent<Flashlight2D>();
-            life = GetComponent<PlayerLife2D>();
-            baseRange = flashlight.Range;
-            baseAngle = flashlight.BeamAngle;
-        }
+        public int InstalledCount => RequireController().InstalledCount;
+        bool IFlashlightUpgradeEnvironment.CanUpgrade => flashlight != null && isActiveAndEnabled && (life == null || !life.IsDead);
+        Vector2 IFlashlightUpgradeEnvironment.Optics => new Vector2(flashlight.Range, flashlight.BeamAngle);
+        FlashlightUpgradeLimits IFlashlightUpgradeEnvironment.Limits => new FlashlightUpgradeLimits(maximumRange, maximumAngle);
 
-        [System.Serializable]
+        // Retains the existing checkpoint JSON and public authoring API.
+        [Serializable]
         public sealed class ModuleState
         {
             public string id;
             public Vector2 bonus;
         }
 
+        [Inject]
+        public void Construct(FlashlightControllerFactory controllerFactory)
+        {
+            factory = controllerFactory ?? throw new ArgumentNullException(nameof(controllerFactory));
+        }
+
+        private void Awake() => RequireController();
+
         public ModuleState[] Capture()
         {
-            var result = new ModuleState[installed.Count];
-            int i = 0;
-            foreach (var item in installed)
+            FlashlightModule[] modules = RequireController().Capture();
+            var result = new ModuleState[modules.Length];
+            for (int index = 0; index < modules.Length; index++)
             {
-                result[i++] = new ModuleState
-                {
-                    id = item.Key,
-                    bonus = item.Value
-                };
+                result[index] = new ModuleState { id = modules[index].Id, bonus = modules[index].Bonus };
             }
 
             return result;
@@ -56,74 +56,31 @@ namespace EmergencyShift
 
         public void Restore(ModuleState[] modules, int count)
         {
-            FlashlightModuleValidation.Validate(modules, count);
-            installed.Clear();
-            if (modules != null)
+            var result = RequireController().Restore(FlashlightModuleValidation.ToModules(modules), count);
+            if (!result.Success)
             {
-                foreach (var module in modules)
-                {
-                    installed.Add(module.id, module.bonus);
-                }
+                throw new InvalidOperationException(result.Reason);
             }
-
-            InstalledCount = count;
-            float range = baseRange;
-            float angle = baseAngle;
-            foreach (var bonus in installed.Values)
-            {
-                range += bonus.x;
-                angle += bonus.y;
-            }
-
-            flashlight.SetOptics(Mathf.Min(range, Mathf.Max(baseRange, maximumRange)), Mathf.Min(angle, Mathf.Max(baseAngle, maximumAngle)));
         }
 
-        public bool HasModule(string moduleId) => !string.IsNullOrWhiteSpace(moduleId) && installed.ContainsKey(moduleId);
-        public bool CanImprove(float rangeBonus, float angleBonus)
-        {
-            if (flashlight == null || !isActiveAndEnabled || (life != null && life.IsDead) || float.IsNaN(rangeBonus) || float.IsInfinity(rangeBonus) || float.IsNaN(angleBonus) || float.IsInfinity(angleBonus) || rangeBonus < 0 || angleBonus < 0 || (rangeBonus == 0 && angleBonus == 0))
-            {
-                return false;
-            }
+        public bool HasModule(string moduleId) => RequireController().HasModule(moduleId);
 
-            Vector2 optics = CalculateOptics(rangeBonus, angleBonus);
-            return !Mathf.Approximately(flashlight.Range, optics.x) || !Mathf.Approximately(flashlight.BeamAngle, optics.y);
-        }
+        public bool CanImprove(float rangeBonus, float angleBonus) => RequireController().CanImprove(new Vector2(rangeBonus, angleBonus));
 
-        private Vector2 CalculateOptics(float rangeBonus, float angleBonus)
-        {
-            // Сумма от базы, включая все успешные находки повторяемых модулей.
-            float totalRange = baseRange + rangeBonus;
-            float totalAngle = baseAngle + angleBonus;
-            foreach (Vector2 bonus in installed.Values)
-            {
-                totalRange += bonus.x;
-                totalAngle += bonus.y;
-            }
-
-            // Снижение лимита в Inspector не должно превратить следующий апгрейд в ухудшение.
-            float range = Mathf.Max(flashlight.Range, Mathf.Min(totalRange, Mathf.Max(baseRange, maximumRange)));
-            float angle = Mathf.Max(flashlight.BeamAngle, Mathf.Clamp(totalAngle, 20f, Mathf.Max(baseAngle, maximumAngle)));
-            return new Vector2(range, angle);
-        }
-
-        public bool TryInstall(string moduleId, string displayName, float rangeBonus, float angleBonus, out string message, bool repeatable = false)
+        public bool TryInstall(string moduleId, string displayName, float rangeBonus, float angleBonus,
+            out string message, bool repeatable = false)
         {
             message = null;
-            if (string.IsNullOrWhiteSpace(moduleId) || (!repeatable && HasModule(moduleId)) || !CanImprove(rangeBonus, angleBonus))
+            FlashlightUpgradeController upgrades = RequireController();
+            float previousRange = flashlight.Range;
+            float previousAngle = flashlight.BeamAngle;
+            if (!upgrades.TryInstall(moduleId, new Vector2(rangeBonus, angleBonus), repeatable).Success)
             {
                 return false;
             }
 
-            float previousRange = flashlight.Range;
-            float previousAngle = flashlight.BeamAngle;
-            Vector2 optics = CalculateOptics(rangeBonus, angleBonus);
-            Vector2 accumulated;
-            installed.TryGetValue(moduleId, out accumulated);
-            installed[moduleId] = accumulated + new Vector2(rangeBonus, angleBonus);
-            InstalledCount++;
-            flashlight.SetOptics(optics.x, optics.y);
-            string change = !Mathf.Approximately(previousRange, flashlight.Range) ? $"дальность {previousRange:0.#} → {flashlight.Range:0.#}" : "";
+            string change = !Mathf.Approximately(previousRange, flashlight.Range)
+                ? $"дальность {previousRange:0.#} → {flashlight.Range:0.#}" : "";
             if (!Mathf.Approximately(previousAngle, flashlight.BeamAngle))
             {
                 change += (change.Length > 0 ? "; " : "") + $"угол {previousAngle:0.#}° → {flashlight.BeamAngle:0.#}°";
@@ -131,6 +88,25 @@ namespace EmergencyShift
 
             message = displayName + " · " + change;
             return true;
+        }
+
+        void IFlashlightUpgradeEnvironment.ApplyOptics(Vector2 optics) => flashlight.SetOptics(optics.x, optics.y);
+
+        private FlashlightUpgradeController RequireController()
+        {
+            if (factory == null)
+            {
+                throw new InvalidOperationException("Flashlight upgrades require level composition.");
+            }
+
+            if (controller == null)
+            {
+                flashlight = GetComponent<Flashlight2D>();
+                life = GetComponent<PlayerLife2D>();
+                controller = factory.CreateUpgrades(new Vector2(flashlight.Range, flashlight.BeamAngle), this);
+            }
+
+            return controller;
         }
     }
 }

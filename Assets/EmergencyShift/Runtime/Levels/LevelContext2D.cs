@@ -2,6 +2,7 @@ using System;
 using EmergencyShift.Core.Composition;
 using EmergencyShift.Core.Time;
 using EmergencyShift.Features.AccessControl;
+using EmergencyShift.Features.Flashlight;
 using EmergencyShift.Features.DamageFeedback;
 using EmergencyShift.Features.Health;
 using EmergencyShift.Features.PlayerInput;
@@ -81,6 +82,7 @@ namespace EmergencyShift
             DialogueInstaller.Install(Container);
             WeaponInstaller.Install(Container);
             AccessControlInstaller.Install(Container);
+            FlashlightInstaller.Install(Container);
         }
 
         private void OnDestroy() => Dispose();

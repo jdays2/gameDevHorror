@@ -252,6 +252,25 @@
 
 - [DirectionalDamageFeedbackView.cs](../Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Flashlight
+
+- [FlashlightControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs)
+- [FlashlightInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Flashlight/Config
+
+- [FlashlightUpgradeLimits.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Config/FlashlightUpgradeLimits.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Flashlight/Logic
+
+- [FlashlightModule.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightModule.cs)
+- [FlashlightModuleRequest.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightModuleRequest.cs)
+- [FlashlightUpgradeController.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs)
+- [FlashlightUpgradeModel.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeModel.cs)
+- [IFlashlightUpgradeEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightUpgradeEnvironment.cs)
+- [InstallFlashlightModuleCommand.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs)
+- [RestoreFlashlightModulesCommand.cs](../Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/Health
 
 - [HealthInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Health/HealthInstaller.cs)
@@ -442,6 +461,7 @@
 - [EnemySystemsTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs)
 - [EnvironmentPresentationTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs)
 - [FlashlightOwnershipTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs)
+- [FlashlightUpgradeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs)
 - [GoreCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs)
 - [GroundAudioSurfaceQueryTests.cs](../Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs)
 - [HealthModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs)
@@ -469,6 +489,7 @@
 - [AdaptiveAudioProbeRegressionTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs)
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
+- [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)
 - [WeaponSpreadLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs)
 

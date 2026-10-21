@@ -3,10 +3,10 @@
   "date": "2026-10-21",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "334 current own C# explicitly reviewed; 104 retain migration/style debt. complete=false. AccessControl01 certifies only stated boundaries.",
+  "limits": "346 current own C# explicitly reviewed; 103 retain migration/style debt. complete=false. FlashlightUpgrades01 certifies only stated boundaries.",
   "counts": {
-    "partial": 104,
-    "reviewed_boundary": 230
+    "partial": 103,
+    "reviewed_boundary": 243
   },
   "files": [
     {
@@ -2021,6 +2021,10 @@
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
@@ -2073,6 +2077,8 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
@@ -7020,6 +7026,324 @@
       "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Config/FlashlightUpgradeLimits.cs",
+      "sourceScope": "unity",
+      "sha256": "c57d907be6675e5b39a610bd22c830845bacd0133ed7b94873b90c5061c180d1",
+      "guid": "eaffe9cf4afa4659acc1929188b7aec2",
+      "types": [
+        "FlashlightUpgradeLimits"
+      ],
+      "lines": 22,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightModuleRequest.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightUpgradeEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "c57d907be6675e5b39a610bd22c830845bacd0133ed7b94873b90c5061c180d1",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "a142482cf62e6fb57f7c5d3123caa713fb1631a339288252acd7d1f3bd7b8f36",
+      "guid": "d1e38a88c85d49d79f86ae1c10d52c64",
+      "types": [
+        "FlashlightControllerFactory"
+      ],
+      "lines": 13,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "a142482cf62e6fb57f7c5d3123caa713fb1631a339288252acd7d1f3bd7b8f36",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "060caa7819b4a9821110f0afacaceea6e719b8ec2ad8fd1eeea23c5d50ed870c",
+      "guid": "1e7ab457a4cb4d5a80af0aee3833f350",
+      "types": [
+        "FlashlightInstaller"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "060caa7819b4a9821110f0afacaceea6e719b8ec2ad8fd1eeea23c5d50ed870c",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightModule.cs",
+      "sourceScope": "unity",
+      "sha256": "c3287805ae8d5984191f435b9a4a3befd36376d362f385489c6322857857762a",
+      "guid": "f073ae13fa1947a9aeec3b1836f46547",
+      "types": [
+        "FlashlightModule"
+      ],
+      "lines": 16,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Player/FlashlightModuleValidation.cs",
+        "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "c3287805ae8d5984191f435b9a4a3befd36376d362f385489c6322857857762a",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightModuleRequest.cs",
+      "sourceScope": "unity",
+      "sha256": "7f28b7c74b064643effcf12dbbabfc6e5f78c5f3589b47195ca4421ec5f52981",
+      "guid": "58d7f5d7589441b4b0d65f29b148da95",
+      "types": [
+        "FlashlightModuleRequest"
+      ],
+      "lines": 26,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "7f28b7c74b064643effcf12dbbabfc6e5f78c5f3589b47195ca4421ec5f52981",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
+      "sourceScope": "unity",
+      "sha256": "7783c1d6a77b71c723d1eb0591b73e9002eeb848ffe4bcc9d7a6d942515164cf",
+      "guid": "88666dc8552b40d7aeaab69ec59f96b3",
+      "types": [
+        "FlashlightUpgradeController"
+      ],
+      "lines": 51,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "7783c1d6a77b71c723d1eb0591b73e9002eeb848ffe4bcc9d7a6d942515164cf",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeModel.cs",
+      "sourceScope": "unity",
+      "sha256": "3fbbd5cab4841959a1c5dfa5844525c7e5094a6b1309b9312177a53fccae2f51",
+      "guid": "ca43f0828a1e419bab3a145ae9841dbd",
+      "types": [
+        "FlashlightUpgradeModel"
+      ],
+      "lines": 145,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Player/FlashlightModuleValidation.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "3fbbd5cab4841959a1c5dfa5844525c7e5094a6b1309b9312177a53fccae2f51",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/IFlashlightUpgradeEnvironment.cs",
+      "sourceScope": "unity",
+      "sha256": "892d1fbda1f595f194a6e143b8b084ad4b83204e46dd6ea99d227398ba30e36a",
+      "guid": "80519fbc262245cea5961ae4e83efad1",
+      "types": [
+        "IFlashlightUpgradeEnvironment"
+      ],
+      "lines": 14,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
+        "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "892d1fbda1f595f194a6e143b8b084ad4b83204e46dd6ea99d227398ba30e36a",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/InstallFlashlightModuleCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "50b5779888c0bae031525ecf0c505b4680eb5e21a1af5a6a3d2dbd2b09236fdb",
+      "guid": "95f45c14dad84352bb509c34907d5b3e",
+      "types": [
+        "InstallFlashlightModuleCommand"
+      ],
+      "lines": 33,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "50b5779888c0bae031525ecf0c505b4680eb5e21a1af5a6a3d2dbd2b09236fdb",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/RestoreFlashlightModulesCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "798b875b70721c31195d9f8a59d3959cb94b73f25d3de469454719f6bad32947",
+      "guid": "5dbe2adf2d3e4109af812123cfa67c77",
+      "types": [
+        "RestoreFlashlightModulesCommand"
+      ],
+      "lines": 41,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/FlashlightUpgradeController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "798b875b70721c31195d9f8a59d3959cb94b73f25d3de469454719f6bad32947",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Features/Health/Config/HealthSettings.cs",
       "sha256": "09b13f9198d399d374c4bd2faaa06e0c6f7598df538c662f910b6b27b8f62c68",
       "baselineSha256": null,
@@ -7791,13 +8115,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "c8060f5ba9cd2095b8d863cda094efd54259c855ad773b733006609a6f560575",
+      "sha256": "7bbb5704110d62a9725a5d5c49c2708b402e66b555221443f99ca8812b2747f6",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 139,
+      "lines": 141,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -7829,12 +8153,13 @@
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "AccessControl01: scoped access factories / card payload preflight added and verified (502 EditMode, 17+1 PlayMode, normal Windows64). Remaining level failure-cleanup or checkpoint controller/Unity adapter separation remains migration debt.",
-      "reviewedSha256": "c8060f5ba9cd2095b8d863cda094efd54259c855ad773b733006609a6f560575",
+      "notes": "FlashlightUpgrades01: factory installed after local bindings; lifetime/failure cleanup and remaining composition still debt.",
+      "reviewedSha256": "7bbb5704110d62a9725a5d5c49c2708b402e66b555221443f99ca8812b2747f6",
       "previousReviewStatus": "partial",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -7847,7 +8172,7 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
       "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "reviewHistory": [
         {
@@ -7868,6 +8193,11 @@
           "reviewStatus": "partial",
           "notes": "WeaponController02: weapon factory installer registered after local input/clock bindings; original pause integration preserved. Initialize failure cleanup and remaining scope/lifetime composition remain debt.",
           "reviewedSha256": "2455d98d7fd16e706eb54fd609571e1397ef60e7144abd5a659541c0447d5979"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "AccessControl01: scoped access factories / card payload preflight added and verified (502 EditMode, 17+1 PlayMode, normal Windows64). Remaining level failure-cleanup or checkpoint controller/Unity adapter separation remains migration debt.",
+          "reviewedSha256": "c8060f5ba9cd2095b8d863cda094efd54259c855ad773b733006609a6f560575"
         }
       ]
     },
@@ -9074,7 +9404,8 @@
         "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -9106,25 +9437,25 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "Value-only flashlight module snapshot validation",
-      "notes": "Finite nonnegative nonzero bonuses; filled ordinal-unique IDs; count>=unique and empty iff count=0. No scene, clock, Unity Object access or mutable static state. DTO remains the existing nested ModuleState for compatibility.",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "c4758a207530236f796dab39a2073cb2b054d7ffc0c02ff0dbd2b6fdf4b95851",
+      "reviewedSha256": "81cba895185a695cccee85d0747c8c79e679b9c7dc50e0fabd8a661b9a0225ca",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointPayload02.md",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
       "reviewScope": "Full touched source and ownership/compatibility boundary review; 73/73 new, 265/265 own EditMode, Windows64 Succeeded.",
       "path": "Assets/EmergencyShift/Runtime/Player/FlashlightModuleValidation.cs",
       "sourceScope": "unity",
-      "sha256": "c4758a207530236f796dab39a2073cb2b054d7ffc0c02ff0dbd2b6fdf4b95851",
+      "sha256": "81cba895185a695cccee85d0747c8c79e679b9c7dc50e0fabd8a661b9a0225ca",
       "guid": "d3f5b3e74df5abd4b85c5674fdf6651d",
       "types": [
         "FlashlightModuleValidation"
       ],
-      "lines": 41,
+      "lines": 35,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -9132,7 +9463,15 @@
         "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "previousReviewStatus": "reviewed_boundary",
+      "reviewHistory": [
+        {
+          "reviewStatus": "partial",
+          "notes": "Finite nonnegative nonzero bonuses; filled ordinal-unique IDs; count>=unique and empty iff count=0. No scene, clock, Unity Object access or mutable static state. DTO remains the existing nested ModuleState for compatibility.",
+          "reviewedSha256": "c4758a207530236f796dab39a2073cb2b054d7ffc0c02ff0dbd2b6fdf4b95851"
+        }
+      ]
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/FlashlightOwnership.cs",
@@ -9173,14 +9512,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
-      "sha256": "32de9bd351cbe40ef6cff9f3c23d9ebab3464fa3c47f63425c96f77f8d245509",
+      "sha256": "2f8478b4782f39ed1d13d60cbff9610ad367243d50a8ab4acdb185fda3346739",
       "baselineSha256": "ce66e521103859ad98e0137a5f73995d065bc473a443e28bf2e71397c3190cad",
       "guid": "c78d76bc435c2ab4ca844bfaa93c193c",
       "types": [
         "FlashlightUpgrades",
         "ModuleState"
       ],
-      "lines": 136,
+      "lines": 112,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab"
       ],
@@ -9205,11 +9544,12 @@
         "Assets/EmergencyShift/Runtime/Player/FlashlightModuleValidation.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/UI/LevelCompletionView2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Restore now preflights before Clear/optics, preserving repeated-install totals. Existing MonoBehaviour still owns dictionary/progression and presentation; full model/command extraction is outside these bug fixes.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Instance flashlight modules and optics",
@@ -9219,9 +9559,9 @@
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "32de9bd351cbe40ef6cff9f3c23d9ebab3464fa3c47f63425c96f77f8d245509",
+      "reviewedSha256": "2f8478b4782f39ed1d13d60cbff9610ad367243d50a8ab4acdb185fda3346739",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointPayload02.md",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
       "reviewScope": "Full touched source and ownership/compatibility boundary review; 73/73 new, 265/265 own EditMode, Windows64 Succeeded.",
       "reviewHistory": [
         {
@@ -9238,8 +9578,14 @@
           "reviewDate": "2026-10-21",
           "reviewReport": "Docs/Reports/CodeAudit07.md",
           "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "Restore now preflights before Clear/optics, preserving repeated-install totals. Existing MonoBehaviour still owns dictionary/progression and presentation; full model/command extraction is outside these bug fixes.",
+          "reviewedSha256": "32de9bd351cbe40ef6cff9f3c23d9ebab3464fa3c47f63425c96f77f8d245509"
         }
-      ]
+      ],
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerAccessCards2D.cs",
@@ -11663,6 +12009,7 @@
         "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -12493,26 +12840,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "977d3a2530013e4c06783fc76c805c6a04ea0bd9b31ef8d07747e974e1151efb",
+      "reviewedSha256": "8a1470c06060b33e7c182c815268ae1062a83db838cb4ca79ba22ce71119bc31",
       "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/AccessControl01.md",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
       "reviewScope": "Touched source and serialized boundary review; full own EditMode/PlayMode, normal Windows64, original authored resource byte guards.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "977d3a2530013e4c06783fc76c805c6a04ea0bd9b31ef8d07747e974e1151efb",
+      "sha256": "8a1470c06060b33e7c182c815268ae1062a83db838cb4ca79ba22ce71119bc31",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 444,
+      "lines": 445,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -12538,6 +12885,11 @@
           "reviewStatus": "partial",
           "notes": "WeaponController02: pure shot model/commands/input coordinator and explicit Unity aim adapter/test boundary. Committed immutable plan precedes cosmetics; scoped factories and owned subscriptions. 416 EditMode, 12 real PlayMode and normal Windows64. See report and allocation-measurement limits.",
           "reviewedSha256": "f6f8133ab8fb8d1917711b72af227b74798bec19209a6ae20e609474672485f0"
+        },
+        {
+          "reviewStatus": "partial",
+          "notes": "AccessControl01: pure personal access/card rules, validated commands and immutable reader settings, scoped factories and Unity/View adapters; independent clocks/state/copies, corrupt snapshot preflight. 4 original failures, 502 EditMode, 17+1 real PlayMode, normal Windows64. Serialized fields/GUID/resources preserved; see report limits.",
+          "reviewedSha256": "977d3a2530013e4c06783fc76c805c6a04ea0bd9b31ef8d07747e974e1151efb"
         }
       ]
     },
@@ -12917,6 +13269,37 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit08.md",
       "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs",
+      "sourceScope": "unity",
+      "sha256": "8e73447c807af37fd10de47bdffd16c136a39de974cfbaea7045d5621c62487e",
+      "guid": "65a26ff4610f44a9b02d1290b1b7e467",
+      "types": [
+        "FlashlightUpgradeModelTests",
+        "OpticsPort"
+      ],
+      "lines": 182,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "8e73447c807af37fd10de47bdffd16c136a39de974cfbaea7045d5621c62487e",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
@@ -13775,6 +14158,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "FlashlightUpgrades01: pure per-player progression/model/commands, immutable live limit value, scoped factory and compatibility DTO/Unity adapter. Repeated IDs/count, atomic restore/copies, caps/gates validated; 519 EditMode, 19 PlayMode including real route camera, normal Windows64 success. Serialized fields/GUID preserved; see limits.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "1b51f600fbc8f69ca147596f4fe572aacef7b19ab1a913be8eae6d5e64297ada",
+      "guid": "dfeba6980ea9479fb00cf95f4664e416",
+      "types": [
+        "FlashlightProgressionSceneTests"
+      ],
+      "lines": 77,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "1b51f600fbc8f69ca147596f4fe572aacef7b19ab1a913be8eae6d5e64297ada",
+      "reviewReport": "Docs/Reports/FlashlightUpgrades01.md",
+      "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "BloodSafety01: 65 profile cases (33 original failures), source-scene/frozen-timer unload for both blood VFX (4 original failures). 481 own EditMode, 16 real PlayMode and normal Windows64 passed. Temporary objects and original resource guards; see limits.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs",
       "sourceScope": "unity",
@@ -14231,14 +14641,14 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 315,
+    "unity": 327,
     "content_source": 8
   },
   "latestReview": {
     "date": "2026-10-21",
-    "files": 28,
-    "report": "Docs/Reports/AccessControl01.md",
-    "validation": "4 original card Restore failures; 502/502 EditMode, 17/17 full PlayMode + 1/1 real scene composition (separate runs, same runtime), normal Windows64 success. Original authored resources unchanged."
+    "files": 16,
+    "report": "Docs/Reports/FlashlightUpgrades01.md",
+    "validation": "519/519 EditMode, 19/19 real PlayMode including authored route camera/optics progression and restore, normal Windows64 success. Initial fixture Start ordering corrected; original authored resources unchanged."
   },
   "reviewPasses": [
     {
@@ -14324,15 +14734,21 @@
       "files": 28,
       "report": "Docs/Reports/AccessControl01.md",
       "validation": "4 original card Restore failures; 502/502 EditMode, 17/17 full PlayMode + 1/1 real scene composition (separate runs, same runtime), normal Windows64 success. Original authored resources unchanged."
+    },
+    {
+      "date": "2026-10-21",
+      "files": 16,
+      "report": "Docs/Reports/FlashlightUpgrades01.md",
+      "validation": "519/519 EditMode, 19/19 real PlayMode including authored route camera/optics progression and restore, normal Windows64 success. Initial fixture Start ordering corrected; original authored resources unchanged."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 334,
-    "totalFiles": 334,
+    "reviewedFiles": 346,
+    "totalFiles": 346,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "AccessControl01 and earlier reviews; remaining partial files are not certified migrated."
+    "validation": "FlashlightUpgrades01 and earlier reviews; remaining partial files are not certified migrated."
   }
 }
