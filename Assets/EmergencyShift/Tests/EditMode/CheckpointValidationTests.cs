@@ -36,9 +36,9 @@ namespace EmergencyShift.Tests
             path = Path.Combine(folder, "slot.json");
             store = new CheckpointStore(path);
             definition = ScriptableObject.CreateInstance<LevelDefinition>();
-            definition.levelId = "validation-test";
+            EmergencyShift.Editor.LevelPersistenceAuthoring.ConfigureIdentity(definition, "validation-test");
             catalog = ScriptableObject.CreateInstance<LevelCatalog>();
-            catalog.levels = new[] { definition };
+            EmergencyShift.Editor.LevelPersistenceAuthoring.ReplaceCatalogEntries(catalog, new[] { definition });
             GameObject owner = CreateObject("Checkpoint test controller");
             run = owner.AddComponent<LevelRunController2D>();
             run.RestoreElapsed(12);
@@ -160,8 +160,8 @@ namespace EmergencyShift.Tests
         {
             return new CheckpointData
             {
-                levelId = definition.levelId,
-                levelRevision = definition.saveRevision,
+                levelId = definition.LevelId,
+                levelRevision = definition.SaveRevision,
                 checkpointId = "checkpoint-a",
                 elapsedSeconds = 8,
                 entities = new[] { first.Capture(), second.Capture() }

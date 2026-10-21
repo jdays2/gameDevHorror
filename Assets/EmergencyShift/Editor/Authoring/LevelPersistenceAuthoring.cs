@@ -37,43 +37,104 @@ namespace EmergencyShift.Editor
             }
 
             var data = LoadOrCreate<LevelDefinition>(Data + "/" + sceneName + ".asset");
-            data.levelId = sceneName == "FirstShift" ? "first-shift" : sceneName.ToLowerInvariant();
-            data.scenePath = "Assets/EmergencyShift/Scenes/" + sceneName + ".unity";
+            ConfigureIdentity(data, sceneName == "FirstShift" ? "first-shift" : sceneName.ToLowerInvariant(),
+                "Assets/EmergencyShift/Scenes/" + sceneName + ".unity");
             if (sceneName == "FirstShift")
             {
-                data.objectives = new[]
+                LevelObjectiveRule[] rules =
                 {
-                    new LevelObjectiveRule
-                    {
-                        condition = ObjectiveCondition.HasCard,
-                        cardId = "evacuation",
-                        phase = 3,
-                        text = "ЦЕЛЬ: восточный шлюз → зелёный выход"
-                    },
-                    new LevelObjectiveRule
-                    {
-                        condition = ObjectiveCondition.MissingCard,
-                        cardId = "service",
-                        phase = 0,
-                        text = "ЦЕЛЬ: найти служебную карту · северная комната ↑"
-                    },
-                    new LevelObjectiveRule
-                    {
-                        condition = ObjectiveCondition.WeaponMissing,
-                        phase = 1,
-                        text = "ЦЕЛЬ: найти пистолет · распределитель →"
-                    },
-                    new LevelObjectiveRule
-                    {
-                        condition = ObjectiveCondition.Always,
-                        phase = 2,
-                        text = "ЦЕЛЬ: найти эвакуационную карту · узел управления ↑"
-                    }
+                    new LevelObjectiveRule(ObjectiveCondition.HasCard, "evacuation", 3, "ЦЕЛЬ: восточный шлюз → зелёный выход"),
+                    new LevelObjectiveRule(ObjectiveCondition.MissingCard, "service", 0, "ЦЕЛЬ: найти служебную карту · северная комната ↑"),
+                    new LevelObjectiveRule(ObjectiveCondition.WeaponMissing, null, 1, "ЦЕЛЬ: найти пистолет · распределитель →"),
+                    new LevelObjectiveRule(ObjectiveCondition.Always, null, 2, "ЦЕЛЬ: найти эвакуационную карту · узел управления ↑")
                 };
+                var serialized = new SerializedObject(data);
+                SerializedProperty entries = serialized.FindProperty("objectives");
+                entries.arraySize = rules.Length;
+                for (int index = 0; index < rules.Length; index++)
+                {
+                    SerializedProperty entry = entries.GetArrayElementAtIndex(index);
+                    entry.FindPropertyRelative("condition").intValue = (int)rules[index].Condition;
+                    entry.FindPropertyRelative("cardId").stringValue = rules[index].CardId;
+                    entry.FindPropertyRelative("phase").intValue = rules[index].Phase;
+                    entry.FindPropertyRelative("text").stringValue = rules[index].Text;
+                }
+
+                serialized.ApplyModifiedPropertiesWithoutUndo();
             }
 
             EditorUtility.SetDirty(data);
             return data;
+        }
+
+        public static void ConfigureIdentity(LevelDefinition data, string levelId, string scenePath = null, string exitCardId = null)
+        {
+            if (data == null || string.IsNullOrWhiteSpace(levelId))
+            {
+                throw new ArgumentException("A level definition and stable ID are required.");
+            }
+
+            LevelDefinition preview = UnityEngine.Object.Instantiate(data);
+            try
+            {
+                ApplyIdentity(preview, levelId, scenePath, exitCardId);
+                preview.Validate();
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(preview);
+            }
+
+            ApplyIdentity(data, levelId, scenePath, exitCardId);
+        }
+
+        private static void ApplyIdentity(LevelDefinition data, string levelId, string scenePath, string exitCardId)
+        {
+            var serialized = new SerializedObject(data);
+            serialized.FindProperty("levelId").stringValue = levelId;
+            if (scenePath != null)
+            {
+                serialized.FindProperty("scenePath").stringValue = scenePath;
+            }
+
+            if (exitCardId != null)
+            {
+                serialized.FindProperty("exitCardId").stringValue = exitCardId;
+            }
+
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        public static void ReplaceCatalogEntries(LevelCatalog catalog, LevelDefinition[] levels)
+        {
+            if (catalog == null || levels == null)
+            {
+                throw new ArgumentException("A catalog and its entries are required.");
+            }
+            var ids = new HashSet<string>(StringComparer.Ordinal);
+            foreach (LevelDefinition level in levels)
+            {
+                if (level == null)
+                {
+                    throw new InvalidOperationException("Missing level definition.");
+                }
+
+                level.Validate();
+                if (!ids.Add(level.LevelId))
+                {
+                    throw new InvalidOperationException("Duplicate level ID: " + level.LevelId);
+                }
+            }
+
+            var serialized = new SerializedObject(catalog);
+            SerializedProperty entries = serialized.FindProperty("levels");
+            entries.arraySize = levels.Length;
+            for (int index = 0; index < levels.Length; index++)
+            {
+                entries.GetArrayElementAtIndex(index).objectReferenceValue = levels[index];
+            }
+
+            serialized.ApplyModifiedPropertiesWithoutUndo();
         }
 
         private static T Ensure<T>(GameObject root)
@@ -189,11 +250,16 @@ namespace EmergencyShift.Editor
                     objectives.Configure(definition, flow.Player.GetComponent<PlayerAccessCards2D>(), flow.Player.GetComponent<PlayerWeapon2D>());
                     flow.SetDefinition(definition, objectives);
                     var catalog = LoadOrCreate<LevelCatalog>(Data + "/Campaign.asset");
-                    if (catalog.Find(definition.levelId) == null)
+                    if (catalog.Find(definition.LevelId) == null)
                     {
-                        var entries = new List<LevelDefinition>(catalog.levels ?? Array.Empty<LevelDefinition>());
+                        var entries = new List<LevelDefinition>();
+                        for (int index = 0; index < catalog.DefinitionCount; index++)
+                        {
+                            entries.Add(catalog.DefinitionAt(index));
+                        }
+
                         entries.Add(definition);
-                        catalog.levels = entries.ToArray();
+                        ReplaceCatalogEntries(catalog, entries.ToArray());
                         EditorUtility.SetDirty(catalog);
                     }
 

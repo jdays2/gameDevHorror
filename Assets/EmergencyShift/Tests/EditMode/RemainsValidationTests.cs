@@ -86,8 +86,8 @@ namespace EmergencyShift.Tests
             var catalog = ScriptableObject.CreateInstance<LevelCatalog>();
             try
             {
-                definition.levelId = "remains-validation";
-                catalog.levels = new[] { definition };
+                EmergencyShift.Editor.LevelPersistenceAuthoring.ConfigureIdentity(definition, "remains-validation");
+                EmergencyShift.Editor.LevelPersistenceAuthoring.ReplaceCatalogEntries(catalog, new[] { definition });
                 GameObject owner = CreateObject("Test checkpoint controller");
                 var controller = owner.AddComponent<LevelCheckpointController2D>();
                 controller.Configure(catalog, definition, null, null);
@@ -119,8 +119,8 @@ namespace EmergencyShift.Tests
                 firstState.active = true;
                 var saved = new CheckpointData
                 {
-                    levelId = definition.levelId,
-                    levelRevision = definition.saveRevision,
+                    levelId = definition.LevelId,
+                    levelRevision = definition.SaveRevision,
                     checkpointId = "test",
                     entities = new[]
                     {

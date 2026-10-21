@@ -49,9 +49,9 @@ namespace EmergencyShift.Tests
             participants.Add("encounter", encounter.gameObject.AddComponent<EncounterCheckpoint2D>());
             SetFlags(true);
             definition = ScriptableObject.CreateInstance<LevelDefinition>();
-            definition.levelId = "boolean-payload-test";
+            EmergencyShift.Editor.LevelPersistenceAuthoring.ConfigureIdentity(definition, "boolean-payload-test");
             catalog = ScriptableObject.CreateInstance<LevelCatalog>();
-            catalog.levels = new[] { definition };
+            EmergencyShift.Editor.LevelPersistenceAuthoring.ReplaceCatalogEntries(catalog, new[] { definition });
             GameObject owner = Create("checkpoint");
             run = owner.AddComponent<LevelRunController2D>();
             run.RestoreElapsed(12);
@@ -178,8 +178,8 @@ namespace EmergencyShift.Tests
             }
             return new CheckpointData
             {
-                levelId = definition.levelId,
-                levelRevision = definition.saveRevision,
+                levelId = definition.LevelId,
+                levelRevision = definition.SaveRevision,
                 checkpointId = "snapshot",
                 elapsedSeconds = 4,
                 entities = entities.ToArray()

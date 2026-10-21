@@ -134,10 +134,12 @@
 - [GoreProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs)
 - [LevelCatalog.cs](../Assets/EmergencyShift/Runtime/Definitions/LevelCatalog.cs)
 - [LevelDefinition.cs](../Assets/EmergencyShift/Runtime/Definitions/LevelDefinition.cs)
+- [LevelObjectiveRule.cs](../Assets/EmergencyShift/Runtime/Definitions/LevelObjectiveRule.cs)
 - [LocalLampAudioSet.cs](../Assets/EmergencyShift/Runtime/Definitions/LocalLampAudioSet.cs)
 - [LocalLampSceneSettings.cs](../Assets/EmergencyShift/Runtime/Definitions/LocalLampSceneSettings.cs)
 - [LocalLightProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/LocalLightProfile.cs)
 - [MagazineWeaponDefinition.cs](../Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs)
+- [ObjectiveCondition.cs](../Assets/EmergencyShift/Runtime/Definitions/ObjectiveCondition.cs)
 - [PlayerAudioSet.cs](../Assets/EmergencyShift/Runtime/Definitions/PlayerAudioSet.cs)
 - [PlayerWorldAudioSet.cs](../Assets/EmergencyShift/Runtime/Definitions/PlayerWorldAudioSet.cs)
 - [ProjectileVisualProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/ProjectileVisualProfile.cs)
@@ -458,6 +460,11 @@
 - [PickupNoticeModel.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs)
 - [ShowPickupNoticeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic
+
+- [IObjectiveFacts.cs](../Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/IObjectiveFacts.cs)
+- [ObjectiveRuleMatcher.cs](../Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveRuleMatcher.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/PauseMenu
 
 - [PauseMenuInstaller.cs](../Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs)
@@ -733,6 +740,7 @@
 - [HealthModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs)
 - [LevelCompositionFailureTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs)
 - [LevelCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs)
+- [LevelConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs)
 - [LightingConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs)
 - [LocalLampAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs)
 - [LocalLampSceneSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampSceneSettingsTests.cs)

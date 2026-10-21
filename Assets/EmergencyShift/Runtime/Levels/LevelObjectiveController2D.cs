@@ -1,9 +1,10 @@
 using System;
+using EmergencyShift.Features.LevelObjectives.Logic;
 using UnityEngine;
 
 namespace EmergencyShift
 {
-    public sealed class LevelObjectiveController2D : MonoBehaviour
+    public sealed class LevelObjectiveController2D : MonoBehaviour, IObjectiveFacts
     {
         [SerializeField]
         private LevelDefinition definition;
@@ -18,6 +19,8 @@ namespace EmergencyShift
         public string Text { get; private set; } = "";
 
         public event Action Changed;
+        bool IObjectiveFacts.HasWeapon => weapon != null && weapon.HasWeapon;
+        bool IObjectiveFacts.HasCard(string id) => cards != null && cards.Has(id);
         public void Configure(LevelDefinition data, PlayerAccessCards2D inventory, PlayerWeapon2D equipment)
         {
             definition = data;
@@ -63,15 +66,17 @@ namespace EmergencyShift
                 return;
             }
 
-            foreach (var rule in definition.objectives)
+            definition.Validate();
+            for (int index = 0; index < definition.ObjectiveCount; index++)
             {
-                if (!rule.Matches(cards, weapon))
+                LevelObjectiveRule rule = definition.ObjectiveAt(index);
+                if (!ObjectiveRuleMatcher.Matches(rule.Condition, rule.CardId, this))
                 {
                     continue;
                 }
 
-                Phase = rule.phase;
-                Text = rule.text;
+                Phase = rule.Phase;
+                Text = rule.Text;
                 Changed?.Invoke();
                 return;
             }

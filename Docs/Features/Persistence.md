@@ -18,4 +18,6 @@
 
 ## Проверки и связанные документы
 
+LevelDefinition/LevelCatalog и inline LevelObjectiveRule имеют readonly runtime API со старыми serialized names и enum values. Lookup валидирует весь каталог до первого match: nonempty IDs, saveRevision, supplied scene-path shape, null/duplicate entries и неизвестные rules. Пустой/null catalog поддержан; scenePath может отсутствовать у legacy/transient fixtures, nextLevelId остаётся резервом. Чистый ObjectiveRuleMatcher использует IObjectiveFacts, unknown условие не считается Always. Текущих production LevelDefinitions нет после удаления FirstShift; новые сцены/кампания не создавались. [Контракт и BUG-026](../Reports/LevelConfig28.md).
+
 Контракт и авторинг: [Уровень, цели и сохранение](../Guides/CHECKPOINTS.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).

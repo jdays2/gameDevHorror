@@ -40,10 +40,9 @@ namespace EmergencyShift.Tests
             cards = hero.AddComponent<PlayerAccessCards2D>();
             cards.Construct(new EmergencyShift.Features.AccessControl.AccessControlFactory());
             definition = ScriptableObject.CreateInstance<LevelDefinition>();
-            definition.levelId = "save-lifetime-" + Guid.NewGuid().ToString("N");
-            definition.exitCardId = "test-exit";
+            JsonUtility.FromJsonOverwrite("{\"levelId\":\"save-lifetime-" + Guid.NewGuid().ToString("N") + "\",\"exitCardId\":\"test-exit\"}", definition);
             catalog = ScriptableObject.CreateInstance<LevelCatalog>();
-            catalog.levels = new[] { definition };
+            JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(new CatalogFixture { levels = new[] { definition } }), catalog);
             GameObject owner = Create("Checkpoint owner");
             run = owner.AddComponent<LevelRunController2D>();
             run.enabled = false;
@@ -66,7 +65,7 @@ namespace EmergencyShift.Tests
             {
                 var paths = (Dictionary<string, string>)typeof(LevelCheckpointController2D)
                     .GetField("sessionPaths", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-                paths.Remove(definition.levelId);
+                paths.Remove(definition.LevelId);
             }
             UnityEngine.Object.Destroy(catalog);
             UnityEngine.Object.Destroy(definition);
@@ -161,7 +160,7 @@ namespace EmergencyShift.Tests
         {
             Assert.That(controller.TrySaveNow("old"), Is.True);
             Assert.That(controller.RequestSave("pending"), Is.True);
-            cards.Add(definition.exitCardId);
+            cards.Add(definition.ExitCardId);
 
             Assert.That(run.TryFinish(player), Is.True);
 
@@ -213,6 +212,11 @@ namespace EmergencyShift.Tests
         private sealed class TestClock : IGameClock
         {
             public double Time => 0;
+        }
+        [Serializable]
+        private sealed class CatalogFixture
+        {
+            public LevelDefinition[] levels;
         }
     }
 }

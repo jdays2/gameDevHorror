@@ -27,7 +27,7 @@ namespace EmergencyShift
             sessionPaths.Clear();
         }
 
-        private string StorePath => sessionPaths.TryGetValue(definition.levelId, out var path) ? path : Path.Combine(StorageDirectory(), definition.levelId + ".json");
+        private string StorePath => sessionPaths.TryGetValue(definition.LevelId, out var path) ? path : Path.Combine(StorageDirectory(), definition.LevelId + ".json");
 
         private CheckpointStore store;
         private Coroutine pending;
@@ -66,7 +66,7 @@ namespace EmergencyShift
 
         public void UseStore(string path, bool autoResume = false)
         {
-            sessionPaths[definition.levelId] = Path.GetFullPath(path);
+            sessionPaths[definition.LevelId] = Path.GetFullPath(path);
             store = new CheckpointStore(path);
             resumeOnStart = autoResume;
         }
@@ -180,8 +180,8 @@ namespace EmergencyShift
             var entities = PersistentEntity2D.Collect(gameObject.scene);
             var saved = new CheckpointData
             {
-                levelId = definition.levelId,
-                levelRevision = definition.saveRevision,
+                levelId = definition.LevelId,
+                levelRevision = definition.SaveRevision,
                 checkpointId = id,
                 elapsedSeconds = run.ElapsedSeconds,
                 entities = new CheckpointEntityState[entities.Count]
@@ -235,7 +235,7 @@ namespace EmergencyShift
         public void Apply(CheckpointData saved)
         {
             CheckpointStore.Validate(saved);
-            if (catalog.Find(saved.levelId) != definition || saved.levelId != definition.levelId || saved.levelRevision != definition.saveRevision)
+            if (catalog.Find(saved.levelId) != definition || saved.levelId != definition.LevelId || saved.levelRevision != definition.SaveRevision)
             {
                 throw new InvalidOperationException("Checkpoint belongs to another level");
             }

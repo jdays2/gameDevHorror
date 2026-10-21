@@ -1,0 +1,15 @@
+# Конфигурации уровней / BUG-026
+
+Дата: 2026-10-22. База `9f8566a`. Исходный EditMode baseline **0/2** подтвердил: condition=99 трактуется как Always, два одинаковых levelId возвращают первую запись. Это дефекты обработки некорректной конфигурации, повреждение текущего контента не заявляется.
+
+LevelDefinition, LevelCatalog и inline LevelObjectiveRule теперь имеют private SerializeField и readonly getters/Count/At. Serialized names, defaults, enum values 0–3, порядок правил и ID не менялись. Catalog.Find проверяет весь каталог перед поиском: null entry, некорректный header/rule и duplicate ID отклоняются даже после подходящей первой записи. ID сравниваются Ordinal, не переименовываются; null/empty catalog остаётся пустым. ScenePath может отсутствовать в legacy/transient metadata; предоставленный путь проверяется по форме Assets/...unity. Наличие файла и campaign routing не добавлялись, nextLevelId остаётся резервом.
+
+ObjectiveRuleMatcher — чистый статический evaluator через небольшой IObjectiveFacts, без PlayerAccessCards2D/PlayerWeapon2D в данных. Unknown condition и отсутствующие условные facts возвращают false; конфиг также явно отвергает неизвестный enum. Native objective adapter передаёт факты, сохраняет первый подходящий rule и события; его собственные phase/text/lifecycle и весь run controller ещё переносятся. Новый пустой state model ради статического предиката не создавался.
+
+Editor recipe использует SerializedObject. ConfigureIdentity сначала проверяет clone и лишь затем пишет цель; invalid catalog replacement тоже отклоняется до изменения. Сохранены прежние recipe strings/order, builder не запускался. Сame-session JSON fixture catalog содержит Unity refs только для тестовой сборки объектов, это не checkpoint DTO. Все реальные save fields/schema/saveRevision и ID остались прежними; native checkpoint getters обновлены без изменения файлов слотов.
+
+**1031/1031 EditMode**, 28 новых: оба исходных сценария, known/unknown/missing facts, invalid revision/card/rule, полная validation до первого match, readonly API, inline serialization/order, rejection без partial Editor mutation, exact-case IDs и reserved scene metadata. **49/49 PlayMode**, включая checkpoint pending/Clear/death/reload и прежние native regression probes. Обычная Windows64 success, собственная Player assembly только EmergencyShift.Runtime. [Baseline failures, XML, source/meta parity и 1805 неизменённых ресурсов](../Validation/LevelConfig28.json).
+
+Сейчас production LevelDefinition assets **0**, каталог **1 и пустой** после намеренного удаления FirstShift. Совместимость проверена fixtures; удалённая сцена/профиль не восстанавливались. Сцены, уровневые data assets и существующие GUID не менялись. Новые meta импортированы из копии через exclusive create. Копия содержит исходную незавершённую паузу, не clean HEAD; нефатальный LicensingClient остаётся.
+
+Matcher не создаёт объектов. Catalog validation — O(N² + число rules) на холодном lookup, без нового cache/Update; масштабирование кампании/FPS не заявляется. Общая MVC/DI, остальные configs/persistence/authoring/style и авторская приёмка открыты.

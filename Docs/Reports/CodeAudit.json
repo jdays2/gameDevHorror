@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "561 own C# explicitly read; 79 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioConfig27.",
+  "limits": "566 own C# explicitly read; 77 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LevelConfig28.",
   "counts": {
-    "partial": 79,
-    "reviewed_boundary": 482
+    "partial": 77,
+    "reviewed_boundary": 489
   },
   "files": [
     {
@@ -880,21 +880,27 @@
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
-      "sha256": "afc0f0899a479e8bd1a05f7074f0d90f1895cfb3e9e5b6e6934fada7c565dc8a",
+      "sha256": "37fd1abb5770d59f409e50cc0d851c3d216a5db9aa5d3a568c37276760f33f9f",
       "baselineSha256": "6a978551c0a106b52ac3e58208286e5a1e054c3fee30a792a18f3cd5cac0956d",
       "guid": "86739122e02c4434a9d663c80e3b22c7",
       "types": [
         "LevelPersistenceAuthoring"
       ],
-      "lines": 208,
+      "lines": 274,
       "serializedUsers": [],
       "dependencyScenes": [],
-      "lexicalSourceUsers": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
+      ],
       "entryPointHints": [
         "MenuItem"
       ],
       "reviewStatus": "partial",
-      "notes": "WeaponCatalog21: private array consumer/authoring API проверен. Прежние probe lifetime, FirstShift/authoring guard/transaction/style замечания остаются; генераторы/отдельный standalone probe не запускались.",
+      "notes": "LevelConfig28/BUG-026: config getters/pure matcher проверены; прежние run/objective state, persistence/authoring/style долги сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -910,10 +916,10 @@
         "LevelCatalog"
       ],
       "usageEvidence": "MenuItem Prepare active level persistence",
-      "reviewedSha256": "afc0f0899a479e8bd1a05f7074f0d90f1895cfb3e9e5b6e6934fada7c565dc8a",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponCatalog21.md",
-      "reviewScope": "Full source read: readonly catalog array boundary and ID/slot validation before Find/ToSettings, original serialized weapons refs, deliberate Editor/transient probe fixture writes, native inventory/save and normal Windows64 verified.",
+      "reviewedSha256": "37fd1abb5770d59f409e50cc0d851c3d216a5db9aa5d3a568c37276760f33f9f",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -3852,13 +3858,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LevelCatalog.cs",
-      "sha256": "856c29ca9316d25a255a5a13e161609ce1bbbe8676ed862b6775330ea1d64ebe",
+      "sha256": "dac6bcf7e8415fba830bfc524996b594c783b03179f2d23cd1b17698678b0084",
       "baselineSha256": "856c29ca9316d25a255a5a13e161609ce1bbbe8676ed862b6775330ea1d64ebe",
       "guid": "0cab57ea97451d149a3178af1757a198",
       "types": [
         "LevelCatalog"
       ],
-      "lines": 27,
+      "lines": 48,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Levels/Campaign.asset"
       ],
@@ -3869,12 +3875,13 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Find не проверяет целиком уникальность/пустые IDs и возвращает первый match. Стабильные level IDs используются, но Find не заменяет catalogue validation.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3889,22 +3896,21 @@
         "LevelDefinition[]"
       ],
       "usageEvidence": "Checkpoint Apply; LevelPersistenceAuthoring",
-      "reviewedSha256": "856c29ca9316d25a255a5a13e161609ce1bbbe8676ed862b6775330ea1d64ebe",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewedSha256": "dac6bcf7e8415fba830bfc524996b594c783b03179f2d23cd1b17698678b0084",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LevelDefinition.cs",
-      "sha256": "6c15bbef9dedb0be6312f1d86e55bd20609bec0d2bc134f196e69af89c024584",
+      "sha256": "4671d4a020f75e0a8fa4606bb908f1e9051a0bba356fabcb447f1b41d85139af",
       "baselineSha256": "6c15bbef9dedb0be6312f1d86e55bd20609bec0d2bc134f196e69af89c024584",
       "guid": "e6326da62d73e97418e2e37b4f66b436",
       "types": [
-        "LevelDefinition",
-        "LevelObjectiveRule",
-        "ObjectiveCondition"
+        "LevelDefinition"
       ],
-      "lines": 50,
+      "lines": 51,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -3916,12 +3922,13 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Runtime не мутирует asset, scene-authoring сохранён. Но Matches зависит от Unity actors; default неизвестного enum даёт true; нет явной проверки IDs/revision/null rules. Это долг валидации контента, не доказанный сломанный текущий asset.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3937,10 +3944,38 @@
         "PlayerWeapon2D"
       ],
       "usageEvidence": "Run/objectives/checkpoint и authoring",
-      "reviewedSha256": "6c15bbef9dedb0be6312f1d86e55bd20609bec0d2bc134f196e69af89c024584",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewedSha256": "4671d4a020f75e0a8fa4606bb908f1e9051a0bba356fabcb447f1b41d85139af",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "previousReviewStatus": "partial"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Definitions/LevelObjectiveRule.cs",
+      "sourceScope": "unity",
+      "sha256": "232fc7b69118a4d4be64183ea56cec8fb4337734d209df18795c68094764f7cf",
+      "guid": "d5880df894251fe4b95b1d9a5cb0a562",
+      "types": [
+        "LevelObjectiveRule"
+      ],
+      "lines": 45,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/LevelDefinition.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "232fc7b69118a4d4be64183ea56cec8fb4337734d209df18795c68094764f7cf",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LocalLampAudioSet.cs",
@@ -4127,6 +4162,33 @@
           "reviewReport": "Docs/Reports/CodeAudit07.md"
         }
       ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Definitions/ObjectiveCondition.cs",
+      "sourceScope": "unity",
+      "sha256": "7ebb0fa1a2c5d24fc11f58746e6d369d896c7459bc02051115d8d6aab062f45d",
+      "guid": "c01eea27101a515429729630b1fa6e9a",
+      "types": [
+        "ObjectiveCondition"
+      ],
+      "lines": 10,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/LevelObjectiveRule.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveRuleMatcher.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7ebb0fa1a2c5d24fc11f58746e6d369d896c7459bc02051115d8d6aab062f45d",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PlayerAudioSet.cs",
@@ -5325,7 +5387,8 @@
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [
         "RuntimeInitializeOnLoadMethod"
@@ -11827,6 +11890,57 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/IObjectiveFacts.cs",
+      "sourceScope": "unity",
+      "sha256": "892bac7d67f896f1009599680f549bf3c6f1f97a7e278b6287c68b045ec36255",
+      "guid": "30d8ae74a05746449bf25614f3690cb0",
+      "types": [
+        "IObjectiveFacts"
+      ],
+      "lines": 8,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveRuleMatcher.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "892bac7d67f896f1009599680f549bf3c6f1f97a7e278b6287c68b045ec36255",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveRuleMatcher.cs",
+      "sourceScope": "unity",
+      "sha256": "5421bce7e518cc206a471e2d59767034071c0ffa4ad6fd10f1b0ee5e25adac5a",
+      "guid": "26016b4254bad15409946188d9b3267c",
+      "types": [
+        "ObjectiveRuleMatcher"
+      ],
+      "lines": 23,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "5421bce7e518cc206a471e2d59767034071c0ffa4ad6fd10f1b0ee5e25adac5a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "Private serialized + getters; runtime-состояния в asset нет; Validate проверяет клипы/finite gains/durations и crossfade короче intro.",
       "path": "Assets/EmergencyShift/Runtime/Features/PauseMenu/Config/PauseMenuAudioConfig.cs",
       "sha256": "449aff87225f991dff8d269d2f9d18af5becf60d774b1ed936e4d8237022d2b9",
@@ -13482,13 +13596,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
-      "sha256": "5fe624ef6caf87286df18cd5c3fd38f6a685226cc16ae7e3d3850aa56131a36a",
+      "sha256": "3d7705cf812104f3abba3ca6a7ec35c9ace5c63f0724ba55217545be83f8be58",
       "baselineSha256": "5fe624ef6caf87286df18cd5c3fd38f6a685226cc16ae7e3d3850aa56131a36a",
       "guid": "889331533222cf74a9db875b8c2e8373",
       "types": [
         "LevelObjectiveController2D"
       ],
-      "lines": 80,
+      "lines": 85,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -13498,7 +13612,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Есть парные OnEnable/OnDisable подписки, а не polling целей. Правило всё ещё в MB и читает конкретные Unity-компоненты; Configure активного компонента не переподписывает источники, Refresh без match оставляет прежние Phase/Text. Фактическая ошибка текущих assets не заявляется.",
+      "notes": "LevelConfig28/BUG-026: config getters/pure matcher проверены; прежние run/objective state, persistence/authoring/style долги сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13514,10 +13628,11 @@
         "PlayerWeapon2D"
       ],
       "usageEvidence": "Cards.Changed/OwnershipChanged; LevelCompletionView",
-      "reviewedSha256": "5fe624ef6caf87286df18cd5c3fd38f6a685226cc16ae7e3d3850aa56131a36a",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewedSha256": "3d7705cf812104f3abba3ca6a7ec35c9ace5c63f0724ba55217545be83f8be58",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
@@ -13604,7 +13719,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
-      "sha256": "1b6d9318b0de8d0be9f8544d1ad95d1ac49ffd88ddc996446f9b616b76ea5ecf",
+      "sha256": "bb49d236e26b1f2116b68f643f9afe8c614be69f78b5251f19a090c0389bb945",
       "baselineSha256": "d9b868d442f8e80cd20291559c86d8e08102bda04c33371e91c1e4e2649fdbbf",
       "guid": "5893e27947941234a9b09af659c1d39d",
       "types": [
@@ -13627,8 +13742,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "TryFinish проверяет конкретного player, смерть, карту и повторный вызов. Правила завершения, Time, обход участников и SceneManager объединены; elapsed finite не проверяется (BUG-011). Ввод injected, но доменная модель попытки ещё не выделена.",
-      "reviewedSha256": "1b6d9318b0de8d0be9f8544d1ad95d1ac49ffd88ddc996446f9b616b76ea5ecf",
+      "notes": "LevelConfig28/BUG-026: config getters/pure matcher проверены; прежние run/objective state, persistence/authoring/style долги сохранены.",
+      "reviewedSha256": "bb49d236e26b1f2116b68f643f9afe8c614be69f78b5251f19a090c0389bb945",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13646,9 +13761,10 @@
         "Scene/Time"
       ],
       "usageEvidence": "LevelExit; checkpoint; completion view",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs",
@@ -14040,7 +14156,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
-      "sha256": "97ca6efb6e9b2cf3292e91f3028115da6825ab589835a7d190f26f76dd31a8d4",
+      "sha256": "0be0ac0697b2939c4b00a25dc35cd8d88dd4157311dd71aecfe0bae1b569f754",
       "baselineSha256": "6b80611a9f8adc089d1627cd240c6a36e2200e5e5e8a960dadc26c50c0eab2d9",
       "guid": "292c3ef7fa47a79418ae4043271ae7a2",
       "types": [
@@ -14066,7 +14182,7 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "BUG-012 fixed: Clear cancels pending before disk deletion; OnFinished shares Clear. BUG-011/014 and BUG-008/009 guards are prior verified boundaries. Static sessionPaths, store/path/run/world traversal/HUD/camera coupling and allocating WorldSettled scan remain migration/performance debt.",
+      "notes": "LevelConfig28/BUG-026: config getters/pure matcher проверены; прежние run/objective state, persistence/authoring/style долги сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14099,10 +14215,11 @@
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "97ca6efb6e9b2cf3292e91f3028115da6825ab589835a7d190f26f76dd31a8d4",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointConsistency03.md",
-      "reviewScope": "Full touched source review: ownership, complete bool payload, cancellation, legacy compatibility; actual 316/316 EditMode, 5/5 PlayMode and Windows64 success."
+      "reviewedSha256": "0be0ac0697b2939c4b00a25dc35cd8d88dd4157311dd71aecfe0bae1b569f754",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PersistentEntity2D.cs",
@@ -14937,7 +15054,6 @@
         "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs",
-        "Assets/EmergencyShift/Runtime/Definitions/LevelDefinition.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
@@ -15547,7 +15663,6 @@
         "Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
-        "Assets/EmergencyShift/Runtime/Definitions/LevelDefinition.cs",
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
@@ -18593,20 +18708,20 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "51 mandatory-boolean regressions",
-      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "032f4b0310aa3560ce89cc230ea0f8634284d4a4d85529d4d54ed8f9baad3e9d",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewedSha256": "77e97f7adcfa9c218cc08425d26249c7c7a27631325ad0340e9cf90c5736caf9",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
       "sourceScope": "unity",
-      "sha256": "032f4b0310aa3560ce89cc230ea0f8634284d4a4d85529d4d54ed8f9baad3e9d",
+      "sha256": "77e97f7adcfa9c218cc08425d26249c7c7a27631325ad0340e9cf90c5736caf9",
       "guid": "6ff5dbeb7ad7232408aff07bf6b131e2",
       "types": [
         "CheckpointBooleanTests",
@@ -18633,20 +18748,20 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "c616305be3fa34abb71c2fd6295fe07bb0ac6d13e996c49540823a5defc6487d",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewedSha256": "f87c27e073fe02405f7726ee5884bf834670a282d9d81d53e4606e8ab36f78dc",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "c616305be3fa34abb71c2fd6295fe07bb0ac6d13e996c49540823a5defc6487d",
+      "sha256": "f87c27e073fe02405f7726ee5884bf834670a282d9d81d53e4606e8ab36f78dc",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
@@ -18699,7 +18814,7 @@
         }
       ],
       "responsibility": "37 регрессий сохранности слота и мира",
-      "notes": "Preview scene без сохранения/замены открытых сцен; изолированный temp slot. Invalid numeric rejection, отсутствие первой мутации, direct Validate и настоящий JsonUtility/disk round-trip v1. 37/37 после исправления.",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
       "dependencies": [
         "System",
         "System.IO",
@@ -18709,13 +18824,13 @@
         "UnityEngine.SceneManagement"
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
-      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success.",
-      "reviewedSha256": "39239079fecabe0241146ba94258aabc8118d48613a7a9ca3685751d56b3bc1c",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "reviewedSha256": "8042c3f54461865625931db00075ef9db40befd9b1d267bd4eba6055832ca59b",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
       "sourceScope": "unity",
-      "sha256": "39239079fecabe0241146ba94258aabc8118d48613a7a9ca3685751d56b3bc1c",
+      "sha256": "8042c3f54461865625931db00075ef9db40befd9b1d267bd4eba6055832ca59b",
       "guid": "e650284e1701499458266e8a41f872ab",
       "types": [
         "CheckpointValidationTests"
@@ -18727,7 +18842,8 @@
       "entryPointHints": [
         "TestCase"
       ],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -19789,6 +19905,32 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
+      "sourceScope": "unity",
+      "sha256": "7091352012b00b11821c151285546040a065950df3df2cee3e2a2d74e1d64176",
+      "guid": "212bb883866881140b725d2f55e15db3",
+      "types": [
+        "Facts",
+        "LevelConfigTests"
+      ],
+      "lines": 214,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7091352012b00b11821c151285546040a065950df3df2cee3e2a2d74e1d64176",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "LightingConfig14: readonly config/consumer или regression boundary; старые serialized fields/refs, framing/brightness/intervals и default pan сохранены. finite math и authored/native проверки пройдены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs",
       "sourceScope": "unity",
@@ -20297,7 +20439,7 @@
         }
       ],
       "responsibility": "46 регрессий nested validation и silent remains restore",
-      "notes": "Preview scene, реальные prefab configs двух видов, corrupted slots/body/shadow, direct restore и Level.Apply preflight; profiles не меняются, launch events/движущиеся Gib не создаются. 46/46 после исправления.",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
       "dependencies": [
         "System",
         "NUnit.Framework",
@@ -20307,13 +20449,13 @@
         "UnityEngine.SceneManagement"
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
-      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success.",
-      "reviewedSha256": "299df9dc9bf4b51a4391715ff03c69d9590a1084b07de04cb5d34cc6fa1be1a5",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "reviewedSha256": "26970574a07eb654bd466f2bb0809f51155ddf628aa49c3399958cad393ba288",
       "path": "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
       "sourceScope": "unity",
-      "sha256": "299df9dc9bf4b51a4391715ff03c69d9590a1084b07de04cb5d34cc6fa1be1a5",
+      "sha256": "26970574a07eb654bd466f2bb0809f51155ddf628aa49c3399958cad393ba288",
       "guid": "f37122df06fa58d4f8c5aa01ea24c4fe",
       "types": [
         "RemainsValidationTests"
@@ -20326,7 +20468,8 @@
         "Test",
         "TestCase"
       ],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs",
@@ -20655,7 +20798,8 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs"
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [
         "Test"
@@ -21152,31 +21296,34 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "5 real PlayMode pending-save lifetime regressions",
-      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "235dbe135405f52d5fc3318387f5d54b3c36447f767372ab8ce577fe6e880739",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewedSha256": "6f1e604053c5d77ef1e6c2f6650cad72614a76dab6d3223e2f547b661d65bcc3",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelConfig28.md",
+      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "235dbe135405f52d5fc3318387f5d54b3c36447f767372ab8ce577fe6e880739",
+      "sha256": "6f1e604053c5d77ef1e6c2f6650cad72614a76dab6d3223e2f547b661d65bcc3",
       "guid": "c44326cf15c577e4b89031b64fcda0ca",
       "types": [
+        "CatalogFixture",
         "CheckpointSaveLifetimeTests",
         "TestClock"
       ],
-      "lines": 218,
+      "lines": 222,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
       "entryPointHints": [],
@@ -22075,7 +22222,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 542,
+    "unity": 547,
     "content_source": 8
   },
   "latestReview": {
@@ -22226,11 +22373,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 561,
-    "totalFiles": 561,
+    "reviewedFiles": 566,
+    "totalFiles": 566,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "AudioConfig27 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "LevelConfig28 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

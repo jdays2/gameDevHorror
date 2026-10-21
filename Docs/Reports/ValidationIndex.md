@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Level config / BUG-026 | [LevelConfig28](LevelConfig28.md): baseline 0/2, затем 1031/1031 EditMode, 49/49 PlayMode, Windows64 success; readonly IDs/rules/catalog, pure matcher, duplicate/unknown guards. Production definitions отсутствуют после удаления FirstShift; проверены fixtures и пустой каталог. |
 | Readonly аудионаборы | [AudioConfig27](AudioConfig27.md): 1003/1003 EditMode, 49/49 PlayMode, Windows64 success; семь SO, readonly value banks/identity, прежние refs/order/fallback, numeric guards. Native consumers сохраняют отдельные timing/model долги. |
 | Сигналы слышимости врагов | [AudioThreatSignals26](AudioThreatSignals26.md): 979/979 EditMode, 49/49 PlayMode, Windows64 success; personal clock/deadlines/commands, mandatory readonly SO, source lifecycle. ProjectContext получил одну ссылку, 1793 других прежних ресурса unchanged; точный manifest сохранён. |
 | Громкость и playback аудио | [AudioLayerMix25](AudioLayerMix25.md): 959/959 EditMode, 49/49 PlayMode, Windows64 success; pure mix/reset, native DSP lifecycle, pause до schedule; 0 managed bytes в warmed mix loop. Прочие audio adapters открыты. |

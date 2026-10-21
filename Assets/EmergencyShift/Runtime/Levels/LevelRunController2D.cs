@@ -66,7 +66,7 @@ namespace EmergencyShift
 
         public bool TryFinish(PlayerLife2D actor)
         {
-            if (Completed || actor != player || player.IsDead || definition == null || !cards.Has(definition.exitCardId))
+            if (Completed || actor != player || player.IsDead || definition == null || !cards.Has(definition.ExitCardId))
             {
                 return false;
             }
