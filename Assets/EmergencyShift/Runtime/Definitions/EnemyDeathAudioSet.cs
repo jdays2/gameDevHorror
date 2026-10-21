@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace EmergencyShift
@@ -11,7 +11,15 @@ namespace EmergencyShift
         private AudioClip[] clips = System.Array.Empty<AudioClip>();
         [SerializeField, Range(0, 1), Tooltip("Shared rupture volume multiplier; other creature voices are unaffected.")]
         private float volume = 1;
-        public IReadOnlyList<AudioClip> Clips => clips;
+        public AudioClipBank Clips => clips;
         public float Volume => Mathf.Clamp01(volume);
+
+        public void Validate()
+        {
+            if (!AudioProfileValidation.Unit(volume))
+            {
+                throw new InvalidOperationException("Invalid enemy death audio set: " + name);
+            }
+        }
     }
 }

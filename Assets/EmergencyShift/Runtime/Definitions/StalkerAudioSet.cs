@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace EmergencyShift
@@ -50,14 +51,12 @@ namespace EmergencyShift
         private AudioClip[] death;
         [SerializeField]
         private EnemyDeathAudioSet deathSounds;
-        public EnemyDeathAudioSet DeathSounds => deathSounds;
         [SerializeField]
         private AudioClip[] debris;
         [SerializeField]
         private AudioClip[] eyeBurn;
         [SerializeField, Range(0, 1)]
         private float eyeBurnGain = .8f;
-        public float EyeBurnGain => eyeBurnGain;
         [Header("Shared simultaneous voice limits")]
         [SerializeField, Min(1)]
         private int movementVoices = 8;
@@ -65,12 +64,16 @@ namespace EmergencyShift
         private int idleVoices = 2;
         [SerializeField, Min(1)]
         private int deathVoices = 3;
+
+        public EnemyDeathAudioSet DeathSounds => deathSounds;
+        public float EyeBurnGain => eyeBurnGain;
         public int MovementVoices => movementVoices;
         public int IdleVoices => idleVoices;
         public int DeathVoices => deathVoices;
 
-        public AudioClip[] Clips(Cue cue)
+        public AudioClipBank Clips(Cue cue)
         {
+            Validate();
             switch (cue)
             {
                 case Cue.Step:
@@ -102,7 +105,15 @@ namespace EmergencyShift
                 case Cue.EyeBurn:
                     return eyeBurn;
                 default:
-                    return null;
+                    return default;
+            }
+        }
+
+        public void Validate()
+        {
+            if (!AudioProfileValidation.Unit(eyeBurnGain) || movementVoices < 1 || idleVoices < 1 || deathVoices < 1)
+            {
+                throw new InvalidOperationException("Invalid Stalker audio set: " + name);
             }
         }
     }

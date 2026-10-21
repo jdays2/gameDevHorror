@@ -2,10 +2,11 @@
 
 Основная сцена — MechanicsSandbox. Ниже — индекс сохранённых свидетельств, а не результат нового общего прогона. Даты и состав проверенного состояния находятся внутри отчётов. Позднейшие ручные изменения требуют проверки затронутой области; успешная сборка не подтверждает художественное качество, готовность кампании или FPS.
 
-## Актуальные области
+## Сохранённые проверки по областям
 
 | Область | Свидетельства и границы |
 |---|---|
+| Readonly аудионаборы | [AudioConfig27](AudioConfig27.md): 1003/1003 EditMode, 49/49 PlayMode, Windows64 success; семь SO, readonly value banks/identity, прежние refs/order/fallback, numeric guards. Native consumers сохраняют отдельные timing/model долги. |
 | Сигналы слышимости врагов | [AudioThreatSignals26](AudioThreatSignals26.md): 979/979 EditMode, 49/49 PlayMode, Windows64 success; personal clock/deadlines/commands, mandatory readonly SO, source lifecycle. ProjectContext получил одну ссылку, 1793 других прежних ресурса unchanged; точный manifest сохранён. |
 | Громкость и playback аудио | [AudioLayerMix25](AudioLayerMix25.md): 959/959 EditMode, 49/49 PlayMode, Windows64 success; pure mix/reset, native DSP lifecycle, pause до schedule; 0 managed bytes в warmed mix loop. Прочие audio adapters открыты. |
 | Настроение аудио / память угроз | [AudioMood24](AudioMood24.md): 940/940 EditMode, 48/48 PlayMode, Windows64 success; pure memory/clock/commands, scoped native perception, transient ordinals, zero managed bytes в warmed model loop. Mix/emitter clock ещё открыты. |

@@ -41,6 +41,7 @@ namespace EmergencyShift
 
         public void Launch(Vector2 origin, Vector2 impulse, float verticalSpeed, float angularSpeed, PlayerAudio2D owner, LayerMask walls, WeaponAudioProfile profile = null)
         {
+            profile?.Validate();
             floor = origin;
             velocity = impulse;
             height = .04f;
@@ -53,9 +54,9 @@ namespace EmergencyShift
             landed = false;
             Settled = false;
             LastSurface = GroundSoundSurface.Concrete;
-            bodyScale = profile != null ? new Vector3(profile.casingSize.x, profile.casingSize.y, 1) : new Vector3(.075f, .028f, 1);
+            bodyScale = profile != null ? new Vector3(profile.CasingSize.x, profile.CasingSize.y, 1) : new Vector3(.075f, .028f, 1);
             body.transform.localScale = bodyScale;
-            body.color = profile != null ? profile.casingColor : new Color(.63f, .47f, .23f);
+            body.color = profile != null ? profile.CasingColor : new Color(.63f, .47f, .23f);
             enabled = true;
             gameObject.SetActive(true);
             ApplyVisual();

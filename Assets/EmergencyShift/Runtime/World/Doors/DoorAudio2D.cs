@@ -84,16 +84,16 @@ namespace EmergencyShift
                 return;
             }
 
-            var clips = opening ? sounds.openStart : sounds.closeStart;
-            if (clips != null && clips.Length > 0)
+            var clips = opening ? sounds.OpenStart : sounds.CloseStart;
+            if (clips.Count > 0)
             {
-                transient.clip = clips[random.Next(clips.Length)];
+                transient.clip = clips[random.Next(clips.Count)];
                 transient.pitch = 1;
                 transient.Play();
                 StartsPlayed++;
             }
 
-            motion.clip = sounds.slideLoop;
+            motion.clip = sounds.SlideLoop;
             motion.loop = true;
             motion.pitch = 1;
             Mix();
@@ -107,19 +107,19 @@ namespace EmergencyShift
         {
             motion?.Stop();
             // Child sources may already be disabled when Door2D emits its interrupted-motion event.
-            if (!isActiveAndEnabled || sounds == null || transient == null || !transient.isActiveAndEnabled || sounds.stop == null || sounds.stop.Length == 0)
+            if (!isActiveAndEnabled || sounds == null || transient == null || !transient.isActiveAndEnabled || sounds.Stop.Count == 0)
             {
                 return;
             }
 
-            int index = random.Next(sounds.stop.Length);
-            if (sounds.stop.Length > 1 && index == lastStop)
+            int index = random.Next(sounds.Stop.Count);
+            if (sounds.Stop.Count > 1 && index == lastStop)
             {
-                index = (index + 1) % sounds.stop.Length;
+                index = (index + 1) % sounds.Stop.Count;
             }
 
             lastStop = index;
-            transient.clip = sounds.stop[index];
+            transient.clip = sounds.Stop[index];
             transient.pitch = 1;
             Mix();
             transient.Play();

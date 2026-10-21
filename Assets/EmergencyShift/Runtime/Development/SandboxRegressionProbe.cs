@@ -136,6 +136,19 @@ namespace EmergencyShift
             }
         }
 
+        private static bool ContainsClipName(AudioClipBank clips, string name)
+        {
+            foreach (AudioClip clip in clips)
+            {
+                if (clip != null && clip.name == name)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private void Check(string name, bool passed)
         {
             if (!passed)
@@ -324,7 +337,7 @@ namespace EmergencyShift
             yield return new WaitForFixedUpdate();
             Check("One click creates eight real projectiles", FindObjectsByType<BulletProjectile2D>().Length == shotgun.ProjectileCount);
             Check("One volley consumes one shell and plays one shot", weapon.LoadedAmmo == 3 && weapon.Ammo == 15 && audio.ShotAudioCount == shotSounds + 1);
-            Check("Shotgun selects its own recorded shot", Array.Exists(shotgun.AudioProfile.shots, clip => clip != null && clip.name == audio.LastShotClip));
+            Check("Shotgun selects its own recorded shot", ContainsClipName(shotgun.AudioProfile.Shots, audio.LastShotClip));
             Check("Hull is not ejected at muzzle event", ejector.EmittedCount == ejected);
             Check("Pump blocks immediate second shot and switching", !weapon.TryFire() && !weapon.TryEquip(0));
             yield return new WaitForSeconds(1.15f);

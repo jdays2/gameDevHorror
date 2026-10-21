@@ -23,6 +23,7 @@ namespace EmergencyShift
 
         private void Awake()
         {
+            sounds?.Validate();
             flashlight = GetComponent<Flashlight2D>();
             weapon = GetComponent<PlayerWeapon2D>();
             if (source != null)
@@ -60,7 +61,7 @@ namespace EmergencyShift
                 return;
             }
 
-            if (sounds != null && Play(sounds.flashlightSwitch, sounds.switchVolume))
+            if (sounds != null && Play(sounds.FlashlightSwitch, sounds.SwitchVolume))
             {
                 SwitchesPlayed++;
             }
@@ -69,15 +70,16 @@ namespace EmergencyShift
         private void OnEmpty()
         {
             var profile = weapon.Definition.AudioProfile;
-            AudioClip clip = sounds != null ? sounds.emptyTrigger : null;
-            if (profile != null && profile.emptyTrigger != null)
+            profile?.Validate();
+            AudioClip clip = sounds != null ? sounds.EmptyTrigger : null;
+            if (profile != null && profile.EmptyTrigger != null)
             {
-                clip = profile.emptyTrigger;
+                clip = profile.EmptyTrigger;
             }
-            float gain = sounds != null ? sounds.emptyVolume : .45f;
+            float gain = sounds != null ? sounds.EmptyVolume : .45f;
             if (profile != null)
             {
-                gain = profile.emptyGain;
+                gain = profile.EmptyGain;
             }
             if (Play(clip, gain))
             {

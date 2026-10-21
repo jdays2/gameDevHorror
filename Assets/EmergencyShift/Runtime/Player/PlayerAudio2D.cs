@@ -38,7 +38,7 @@ namespace EmergencyShift
         private float shotGainVariationDb = .4f;
         private PlayerInteraction interaction;
         private PlayerWeapon2D weapon;
-        private readonly Dictionary<AudioClip[], int> last = new Dictionary<AudioClip[], int>();
+        private readonly Dictionary<AudioClipBank, int> last = new Dictionary<AudioClipBank, int>();
         private readonly int[] pickupCounts = new int[System.Enum.GetValues(typeof(PickupKind)).Length];
         private System.Random random;
         private System.Random casingRandom;
@@ -157,18 +157,18 @@ namespace EmergencyShift
             }
         }
 
-        private AudioClip Choose(AudioClip[] clips, System.Random generator = null)
+        private AudioClip Choose(AudioClipBank clips, System.Random generator = null)
         {
-            if (clips == null || clips.Length == 0)
+            if (clips.Count == 0)
             {
                 return null;
             }
 
             generator = generator ?? random;
-            int index = generator.Next(clips.Length), previous;
-            if (clips.Length > 1 && last.TryGetValue(clips, out previous) && index == previous)
+            int index = generator.Next(clips.Count), previous;
+            if (clips.Count > 1 && last.TryGetValue(clips, out previous) && index == previous)
             {
-                index = (index + generator.Next(1, clips.Length)) % clips.Length;
+                index = (index + generator.Next(1, clips.Count)) % clips.Count;
             }
 
             last[clips] = index;
@@ -226,7 +226,8 @@ namespace EmergencyShift
             }
 
             var profile = weapon.Definition.AudioProfile;
-            var clip = Choose(profile != null ? profile.shots : sounds.Shots(indoorShot));
+            profile?.Validate();
+            var clip = Choose(profile != null ? profile.Shots : sounds.Shots(indoorShot));
             if (clip == null)
             {
                 return;
@@ -255,7 +256,7 @@ namespace EmergencyShift
 
             LastShotClip = clip.name;
             LastShotPitch = 1 + ((float)random.NextDouble() * 2 - 1) * shotPitchVariation;
-            float gain = profile != null ? profile.shotGain : shotVolume;
+            float gain = profile != null ? profile.ShotGain : shotVolume;
             LastShotGain = gain * Mathf.Pow(10, (((float)random.NextDouble() * 2 - 1) * shotGainVariationDb) / 20);
             selected.clip = clip;
             selected.pitch = LastShotPitch;
@@ -278,22 +279,23 @@ namespace EmergencyShift
             }
 
             var profile = weapon.Definition.AudioProfile;
+            profile?.Validate();
             if (!combatAudioEnabled || profile == null || casingSources == null)
             {
                 return;
             }
 
-            AudioClip[] clips;
+            AudioClipBank clips;
             switch (operation)
             {
                 case WeaponOperation.Pump:
-                    clips = profile.pump;
+                    clips = profile.Pump;
                     break;
                 case WeaponOperation.ShellInserted:
-                    clips = profile.shellInsert;
+                    clips = profile.ShellInsert;
                     break;
                 case WeaponOperation.MagazineReloadStarted:
-                    clips = profile.magazineReload;
+                    clips = profile.MagazineReload;
                     break;
                 case WeaponOperation.MagazineLoaded:
                     reloadVoice = null;
@@ -313,7 +315,7 @@ namespace EmergencyShift
                 if (source != null && !source.isPlaying)
                 {
                     source.clip = clip;
-                    source.volume = profile.mechanismGain;
+                    source.volume = profile.MechanismGain;
                     source.pitch = 1;
                     source.panStereo = 0;
                     source.Play();
@@ -417,7 +419,8 @@ namespace EmergencyShift
                 return;
             }
 
-            var clip = Choose(profile != null ? profile.casings : sounds.Casings(surface), casingRandom);
+            profile?.Validate();
+            var clip = Choose(profile != null ? profile.Casings : sounds.Casings(surface), casingRandom);
             if (clip == null)
             {
                 return;
@@ -431,7 +434,7 @@ namespace EmergencyShift
 
             voice.clip = clip;
             voice.pitch = 1;
-            float gain = profile != null ? profile.casingGain : casingVolume;
+            float gain = profile != null ? profile.CasingGain : casingVolume;
             voice.volume = gain * Mathf.Clamp01(1 - distance / 12);
             voice.panStereo = Mathf.Clamp((point.x - transform.position.x) / 6, -.75f, .75f);
             voice.Play();

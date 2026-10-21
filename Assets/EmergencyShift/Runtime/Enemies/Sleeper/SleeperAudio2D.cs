@@ -35,6 +35,7 @@ namespace EmergencyShift
 
         private void Awake()
         {
+            profile?.Validate();
             actor = GetComponent<Sleeper2D>();
             breathingFilter = Prepare(breathing, true);
             voiceFilter = Prepare(voice, false);
@@ -79,7 +80,7 @@ namespace EmergencyShift
             bool asleep = actor.State == Sleeper2D.BehaviourState.Sleeping;
             if (asleep && !breathing.isPlaying)
             {
-                breathing.clip = profile.sleeping;
+                breathing.clip = profile.Sleeping;
                 if (breathing.clip != null)
                 {
                     breathing.Play();
@@ -102,9 +103,9 @@ namespace EmergencyShift
             else
             {
                 travelled += distance;
-                if (travelled >= profile.distancePerContact && Time.time >= nextContact)
+                if (travelled >= profile.DistancePerContact && Time.time >= nextContact)
                 {
-                    travelled %= profile.distancePerContact;
+                    travelled %= profile.DistancePerContact;
                     nextContact = Time.time + .1f;
                     PlayContact(StalkerAudioSet.Cue.Step);
                 }
@@ -121,15 +122,15 @@ namespace EmergencyShift
             if (state == Sleeper2D.BehaviourState.Waking)
             {
                 WakeCount++;
-                PlayVoice(profile.waking);
-                nextPain = Time.time + (profile.waking != null ? profile.waking.length : profile.painCooldown);
+                PlayVoice(profile.Waking);
+                nextPain = Time.time + (profile.Waking != null ? profile.Waking.length : profile.PainCooldown);
             }
             else if (state == Sleeper2D.BehaviourState.Dead)
             {
                 DeathCount++;
                 contact.Stop();
-                AudioClip rupture = profile.deathSounds != null ? deathVariants.Choose(profile.deathSounds) : profile.rupture;
-                float gain = profile.deathSounds != null ? profile.deathSounds.Volume : 1;
+                AudioClip rupture = profile.DeathSounds != null ? deathVariants.Choose(profile.DeathSounds) : profile.Rupture;
+                float gain = profile.DeathSounds != null ? profile.DeathSounds.Volume : 1;
                 PlayVoice(rupture, gain);
             }
             else if (state == Sleeper2D.BehaviourState.TargetDead)
@@ -144,9 +145,9 @@ namespace EmergencyShift
             {
                 return;
             }
-            nextPain = Time.time + profile.painCooldown;
+            nextPain = Time.time + profile.PainCooldown;
             PainCount++;
-            PlayVoice(profile.pain);
+            PlayVoice(profile.Pain);
         }
 
         private void OnLunge() => PlayContact(StalkerAudioSet.Cue.Lunge);
@@ -171,12 +172,12 @@ namespace EmergencyShift
 
         private void PlayContact(StalkerAudioSet.Cue cue)
         {
-            var clips = profile.contactSounds != null ? profile.contactSounds.Clips(cue) : null;
-            if (clips == null || clips.Length == 0)
+            var clips = profile.ContactSounds != null ? profile.ContactSounds.Clips(cue) : default(AudioClipBank);
+            if (clips.Count == 0)
             {
                 return;
             }
-            contact.clip = clips[Random.Range(0, clips.Length)];
+            contact.clip = clips[Random.Range(0, clips.Count)];
             UpdateMix();
             contact.Play();
         }
@@ -192,21 +193,21 @@ namespace EmergencyShift
             }
             if (Time.time >= nextObstruction)
             {
-                nextObstruction = Time.time + profile.obstructionInterval;
+                nextObstruction = Time.time + profile.ObstructionInterval;
                 bool blocked = Physics2D.Linecast(transform.position, actor.Player.position, actor.BlockingGeometry).collider != null;
-                obstruction = blocked ? profile.blockedVolume : 1;
-                float cutoff = blocked ? profile.blockedCutoff : 22000;
+                obstruction = blocked ? profile.BlockedVolume : 1;
+                float cutoff = blocked ? profile.BlockedCutoff : 22000;
                 SetFilter(breathingFilter, cutoff);
                 SetFilter(voiceFilter, cutoff);
                 SetFilter(contactFilter, cutoff);
             }
             float distance = Vector2.Distance(transform.position, actor.Player.position);
-            float falloff = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(profile.fullVolumeDistance, Mathf.Max(profile.fullVolumeDistance + .1f, profile.hearingDistance), distance));
+            float falloff = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(profile.FullVolumeDistance, Mathf.Max(profile.FullVolumeDistance + .1f, profile.HearingDistance), distance));
             float gain = falloff * obstruction;
-            float pan = Mathf.Clamp((transform.position.x - actor.Player.position.x) / profile.panDistance, -profile.maximumPan, profile.maximumPan);
-            Mix(breathing, profile.breathingVolume * gain, pan);
-            Mix(voice, profile.voiceVolume * voiceGain * gain, pan);
-            Mix(contact, profile.contactVolume * gain, pan);
+            float pan = Mathf.Clamp((transform.position.x - actor.Player.position.x) / profile.PanDistance, -profile.MaximumPan, profile.MaximumPan);
+            Mix(breathing, profile.BreathingVolume * gain, pan);
+            Mix(voice, profile.VoiceVolume * voiceGain * gain, pan);
+            Mix(contact, profile.ContactVolume * gain, pan);
             if (Time.time >= nextHeard)
             {
                 nextHeard = Time.time + .15f;
@@ -243,7 +244,7 @@ namespace EmergencyShift
             StopAll();
             travelled = 0;
             previousPosition = transform.position;
-            nextPain = Time.time + profile.painCooldown;
+            nextPain = Time.time + profile.PainCooldown;
             nextObstruction = 0;
             enabled = actor.IsAlive;
         }

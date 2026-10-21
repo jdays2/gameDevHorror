@@ -24,12 +24,13 @@ namespace EmergencyShift
                 throw new ObjectDisposedException(nameof(EnemyDeathAudioVariants));
             }
 
-            if (sounds == null || sounds.Clips == null)
+            if (sounds == null || sounds.Clips.Count == 0)
             {
                 return null;
             }
 
             lastPlayed.TryGetValue(sounds, out AudioClip previous);
+            sounds.Validate();
             int alternatives = 0;
             AudioClip fallback = null;
             foreach (AudioClip clip in sounds.Clips)

@@ -122,6 +122,7 @@
 
 - [AudioMood.cs](../Assets/EmergencyShift/Runtime/Definitions/AudioMood.cs)
 - [AudioMoodProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs)
+- [AudioProfileValidation.cs](../Assets/EmergencyShift/Runtime/Definitions/AudioProfileValidation.cs)
 - [BloodPoolProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs)
 - [CameraFramingProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/CameraFramingProfile.cs)
 - [DoorAccessFeedbackProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/DoorAccessFeedbackProfile.cs)
@@ -617,6 +618,7 @@
 
 ## Assets/EmergencyShift/Runtime/Presentation/Audio
 
+- [AudioClipBank.cs](../Assets/EmergencyShift/Runtime/Presentation/Audio/AudioClipBank.cs)
 - [AudioThreatEmitter2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs)
 - [EnemyDeathAudioVariants.cs](../Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs)
 - [LevelAudioDirector2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs)
@@ -694,6 +696,7 @@
 
 - [AccessCardRestoreTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessCardRestoreTests.cs)
 - [AccessControlModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs)
+- [AudioBankConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs)
 - [AudioLayerMixTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs)
 - [AudioMoodModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs)
 - [AudioMoodProfileTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs)

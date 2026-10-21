@@ -28,7 +28,7 @@ namespace EmergencyShift
         private AudioClip[] woodCasings;
         [SerializeField]
         private AudioClip[] tileCasings;
-        public AudioClip[] Pickup(PickupKind kind)
+        public AudioClipBank Pickup(PickupKind kind)
         {
             switch (kind)
             {
@@ -41,8 +41,8 @@ namespace EmergencyShift
             }
         }
 
-        public AudioClip[] Shots(bool indoor) => indoor ? roomShots : dryShots;
-        public AudioClip[] Impact(ImpactMaterial material)
+        public AudioClipBank Shots(bool indoor) => indoor ? roomShots : dryShots;
+        public AudioClipBank Impact(ImpactMaterial material)
         {
             switch (material)
             {
@@ -55,7 +55,7 @@ namespace EmergencyShift
             }
         }
 
-        public AudioClip[] Casings(GroundSoundSurface material)
+        public AudioClipBank Casings(GroundSoundSurface material)
         {
             AudioClip[] selected;
             switch (material)

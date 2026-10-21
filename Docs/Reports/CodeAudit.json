@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "558 own C# explicitly read; 79 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioThreatSignals26.",
+  "limits": "561 own C# explicitly read; 79 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioConfig27.",
   "counts": {
     "partial": 79,
-    "reviewed_boundary": 479
+    "reviewed_boundary": 482
   },
   "files": [
     {
@@ -1060,13 +1060,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
-      "sha256": "b7e2cc56ca69662f9b0162fcbf75d4c3fbbef7203d9220515cb9ed9441d0e454",
+      "sha256": "67083c0fd0a4cb06f632237125c84cdd55f3c85ce37c24cee7fed6d7303fbff2",
       "baselineSha256": "73d7a4d1d11024643796179b7b98c7093f541c90baa1b848a8fd9fbc5d20582d",
       "guid": "1a346ad2f27349943b43b4cb1846fb19",
       "types": [
         "ShotgunIntegrationAuthoring"
       ],
-      "lines": 235,
+      "lines": 248,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -1076,7 +1076,7 @@
         "MenuItem"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponCatalog21: readonly DefinitionCount/At, ранние duplicate/missing IDs/slot guards либо fixture/regression boundary проверены; serialized weapons/object refs и save DTO поля сохранены. Runtime transient object-ref JSON и текущие каталоги проверены.",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Установка готового дробовика/патронов в существующий тир",
@@ -1086,10 +1086,10 @@
         "sandbox HUD/zone"
       ],
       "usageEvidence": "MenuItem Apply; creates missing definitions/pickup variants/catalog entry",
-      "reviewedSha256": "b7e2cc56ca69662f9b0162fcbf75d4c3fbbef7203d9220515cb9ed9441d0e454",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponCatalog21.md",
-      "reviewScope": "Full source read: readonly catalog array boundary and ID/slot validation before Find/ToSettings, original serialized weapons refs, deliberate Editor/transient probe fixture writes, native inventory/save and normal Windows64 verified.",
+      "reviewedSha256": "67083c0fd0a4cb06f632237125c84cdd55f3c85ce37c24cee7fed6d7303fbff2",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -2569,6 +2569,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
       ],
       "entryPointHints": [],
@@ -3382,6 +3383,34 @@
       "previousReviewStatus": "reviewed_boundary"
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Definitions/AudioProfileValidation.cs",
+      "sourceScope": "unity",
+      "sha256": "3a6368e40041b4dbc15bfdcf281f231f16da081d9cb41e6309144e1a3725df31",
+      "guid": "f91c74182463bec4690eb3f43d074c44",
+      "types": [
+        "AudioProfileValidation"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/EnemyDeathAudioSet.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/PlayerWorldAudioSet.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/SleeperAudioProfile.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/StalkerAudioSet.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/WeaponAudioProfile.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "3a6368e40041b4dbc15bfdcf281f231f16da081d9cb41e6309144e1a3725df31",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs",
       "sha256": "e9f90ae6518844c37b8329386f517bfdf1f46c3fc7123d5fd7a2451ceac9ffbb",
       "baselineSha256": "e7455456a719d8c71efe9867e8c10f7b22511914728f3900b4540b45651b47eb",
@@ -3535,13 +3564,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/DoorAudioSet.cs",
-      "sha256": "807f9950a5ac22853ea3c5983f2c6dd6c4c9e9a68e0ede6608472b264fc4c455",
+      "sha256": "1a5d2f4908c02c5e43f1315a3a155fdd3c011d4dfaec37963c7c414edc49a556",
       "baselineSha256": "807f9950a5ac22853ea3c5983f2c6dd6c4c9e9a68e0ede6608472b264fc4c455",
       "guid": "eddbca74c383090448cdd8cdd2eed56b",
       "types": [
         "DoorAudioSet"
       ],
-      "lines": 13,
+      "lines": 22,
       "serializedUsers": [
         "Assets/EmergencyShift/Audio/WorldFoley/DoorFoley.asset"
       ],
@@ -3551,11 +3580,12 @@
         "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs"
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Данные presentation без per-instance прогресса и gameplay-решений. Поддерживает вариации звука данными, без нового класса двери.",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3570,20 +3600,21 @@
         "AudioClip arrays"
       ],
       "usageEvidence": "DoorAudio2D",
-      "reviewedSha256": "807f9950a5ac22853ea3c5983f2c6dd6c4c9e9a68e0ede6608472b264fc4c455",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewedSha256": "1a5d2f4908c02c5e43f1315a3a155fdd3c011d4dfaec37963c7c414edc49a556",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyDeathAudioSet.cs",
-      "sha256": "c5dbf2e55a2d58f628b2c60eec064b363ac3f8fe52892c4089d78d57229c3293",
+      "sha256": "966f23a886775cb0761de634db1e4b231c6d49a2ed0797246ecb0cb45d853e84",
       "baselineSha256": "c5dbf2e55a2d58f628b2c60eec064b363ac3f8fe52892c4089d78d57229c3293",
       "guid": "3148786a39f7d5a4083a5b0ba17d1466",
       "types": [
         "EnemyDeathAudioSet"
       ],
-      "lines": 17,
+      "lines": 25,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Audio/CreatureRupture06.asset"
       ],
@@ -3596,11 +3627,12 @@
         "Assets/EmergencyShift/Runtime/Definitions/SleeperAudioProfile.cs",
         "Assets/EmergencyShift/Runtime/Definitions/StalkerAudioSet.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Immutable shared clips/volume, выбор и последний клип принадлежат внедрённому runtime cache.",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3615,10 +3647,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
-      "reviewedSha256": "c5dbf2e55a2d58f628b2c60eec064b363ac3f8fe52892c4089d78d57229c3293",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "966f23a886775cb0761de634db1e4b231c6d49a2ed0797246ecb0cb45d853e84",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/EnemyDefinition.cs",
@@ -4097,7 +4130,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PlayerAudioSet.cs",
-      "sha256": "b22c01f0dfe9b16db608809e4038c9b926bcca84f3ad35e1d40bb3b59b3475b9",
+      "sha256": "c201fe3edb0017aa8cbdff677d64c7786eda901acce7e9e747e2445d7bc7a209",
       "baselineSha256": "b22c01f0dfe9b16db608809e4038c9b926bcca84f3ad35e1d40bb3b59b3475b9",
       "guid": "c95816b202bb3bb40bb256780bc80f4c",
       "types": [
@@ -4121,11 +4154,12 @@
         "Assets/_Recovery/0.unity"
       ],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Switch выбирает данные по материалу/типу события, не вид врага; default casing fallback явный. Runtime last-choice и counters остаются в Audio2D, не SO.",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общие выборки pickup/shot/impact/casing по данным",
@@ -4134,20 +4168,21 @@
         "PickupKind/ImpactMaterial/GroundSoundSurface"
       ],
       "usageEvidence": "PlayerAudio2D; fallback при отсутствии weapon profile",
-      "reviewedSha256": "b22c01f0dfe9b16db608809e4038c9b926bcca84f3ad35e1d40bb3b59b3475b9",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewedSha256": "c201fe3edb0017aa8cbdff677d64c7786eda901acce7e9e747e2445d7bc7a209",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PlayerWorldAudioSet.cs",
-      "sha256": "2c429cb13e2199437ed5c2f4528f8a72a4272c7c39649ec834c5094a5ac694d7",
+      "sha256": "d1efac6a595aa46f323b4861fc90f251242c7c4add3417bb408c93e5fd8ada1d",
       "baselineSha256": "2c429cb13e2199437ed5c2f4528f8a72a4272c7c39649ec834c5094a5ac694d7",
       "guid": "9a9fd117284bd0c4689920ff92626219",
       "types": [
         "PlayerWorldAudioSet"
       ],
-      "lines": 38,
+      "lines": 66,
       "serializedUsers": [
         "Assets/EmergencyShift/Audio/PlayerWorld/PlayerWorldAudio.asset"
       ],
@@ -4166,11 +4201,12 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs"
+        "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Данные без экземплярного progress; surface mapping/fallback не зависит от brain. Public fields legacy, текущие потребители не переписывают массивы/уровни в Play.",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общие world foley/switch/empty clips и gain",
@@ -4179,10 +4215,11 @@
         "GroundSoundSurface"
       ],
       "usageEvidence": "PlayerUtilityAudio2D; PlayerFootsteps2D (вне полной выборки)",
-      "reviewedSha256": "2c429cb13e2199437ed5c2f4528f8a72a4272c7c39649ec834c5094a5ac694d7",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewedSha256": "d1efac6a595aa46f323b4861fc90f251242c7c4add3417bb408c93e5fd8ada1d",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/ProjectileVisualProfile.cs",
@@ -4336,13 +4373,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/SleeperAudioProfile.cs",
-      "sha256": "aa373b5827f71fb4abf6c73b94d8a712155c16954270555670419fa6de25737d",
+      "sha256": "b210b5ee6c497147b6d551a4e0a2a946fe7dd7421ed760556c5a11e816214fdf",
       "baselineSha256": "aa373b5827f71fb4abf6c73b94d8a712155c16954270555670419fa6de25737d",
       "guid": "a5095c9bbe38b7347a52005df2cacc16",
       "types": [
         "SleeperAudioProfile"
       ],
-      "lines": 28,
+      "lines": 91,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Enemies/Sleeper-Audio.asset"
       ],
@@ -4351,11 +4388,12 @@
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
       ],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs"
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Только конфигурация; runtime таймеры/выбор хранятся в Audio2D. Общий contact bank переиспользует данные, не Stalker brain/state. Public fields/отсутствие полной Validate — ограничение защищённости данных, не найденная запись состояния в asset.",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общие клипы и микс Спящего",
@@ -4365,10 +4403,11 @@
         "StalkerAudioSet contact bank"
       ],
       "usageEvidence": "SleeperAudio2D; Sleeper audio asset",
-      "reviewedSha256": "aa373b5827f71fb4abf6c73b94d8a712155c16954270555670419fa6de25737d",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewedSha256": "b210b5ee6c497147b6d551a4e0a2a946fe7dd7421ed760556c5a11e816214fdf",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/SleeperBehaviourProfile.cs",
@@ -4416,14 +4455,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerAudioSet.cs",
-      "sha256": "4f496b99540010bb121589ddc2c5d019a02cab4953e1485964178fed1be0a90f",
+      "sha256": "ed4b6804406fc9116372425fb8d99488031c6a762d2288cc955b323dc4d3efb4",
       "baselineSha256": "4f496b99540010bb121589ddc2c5d019a02cab4953e1485964178fed1be0a90f",
       "guid": "a0e95ae7e4a77be4c81c15d4d7c3a43b",
       "types": [
         "Cue",
         "StalkerAudioSet"
       ],
-      "lines": 109,
+      "lines": 120,
       "serializedUsers": [
         "Assets/EmergencyShift/Audio/Stalker/StalkerMembrane.asset"
       ],
@@ -4436,11 +4475,12 @@
         "Assets/EmergencyShift/Runtime/Definitions/SleeperAudioProfile.cs",
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
-        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs"
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Cue switch выбирает данные набора, не алгоритм вида. Clips возвращает сам массив; потребители в прочитанной выборке только читают. Runtime lastVariant в Audio2D/variants-service; общий SO не меняется.",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Банк клипов, cue и лимиты голосов",
@@ -4449,10 +4489,11 @@
         "EnemyDeathAudioSet"
       ],
       "usageEvidence": "StalkerAudio2D; Sleeper contact foley; death variants",
-      "reviewedSha256": "4f496b99540010bb121589ddc2c5d019a02cab4953e1485964178fed1be0a90f",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewedSha256": "ed4b6804406fc9116372425fb8d99488031c6a762d2288cc955b323dc4d3efb4",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerBehaviourProfile.cs",
@@ -4539,13 +4580,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponAudioProfile.cs",
-      "sha256": "9725603e0bbfaac36c7531f5f40eb6baa90c26393f403209cbcdec8697ec4e23",
+      "sha256": "1a3af034ef9302df545b06930c7629021592c2694debd1951db704d972d7799f",
       "baselineSha256": "9725603e0bbfaac36c7531f5f40eb6baa90c26393f403209cbcdec8697ec4e23",
       "guid": "686cd98072cc121499a030a3da456bcf",
       "types": [
         "WeaponAudioProfile"
       ],
-      "lines": 26,
+      "lines": 62,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Audio/PistolMagazine.asset",
         "Assets/EmergencyShift/Data/Audio/ShotgunPump.asset"
@@ -4568,11 +4609,12 @@
         "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Тематический data-only SO; playback/progress хранятся в экземплярах. Arrays/public fields доступны для записи, но прочитанные runtime-потребители только читают. Full finite/range Validate и неизменяемые views — ограничение защищённости данных, не найденная запись ammo в asset.",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общие weapon clips, gain и внешний вид гильзы",
@@ -4581,10 +4623,11 @@
         "Color/Vector2"
       ],
       "usageEvidence": "PlayerAudio/UtilityAudio; CasingEjector/ShellCasing; weapon definitions",
-      "reviewedSha256": "9725603e0bbfaac36c7531f5f40eb6baa90c26393f403209cbcdec8697ec4e23",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewedSha256": "1a3af034ef9302df545b06930c7629021592c2694debd1951db704d972d7799f",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
@@ -5258,7 +5301,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
-      "sha256": "39ae88b9ab340cc61fc2dac2efbba9d2e27aa78483d9371a094498ea54ad1487",
+      "sha256": "8d77684f2d3d2c8d402b52d09ea603fe5abc24a3ea15ab92b1c1ada13a1f0749",
       "baselineSha256": "530592111f42b35d8398d2822c01abbb5165447e033da39108c36dad6d5e4834",
       "guid": "d5a0b592cd9ce0143acb9eb2fa369fef",
       "types": [
@@ -5266,7 +5309,7 @@
         "Report",
         "SandboxRegressionProbe"
       ],
-      "lines": 589,
+      "lines": 602,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -5288,8 +5331,8 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "WeaponCatalog21: private array consumer/authoring API проверен. Прежние probe lifetime, FirstShift/authoring guard/transaction/style замечания остаются; генераторы/отдельный standalone probe не запускались.",
-      "reviewedSha256": "39ae88b9ab340cc61fc2dac2efbba9d2e27aa78483d9371a094498ea54ad1487",
+      "notes": "AudioConfig27: readonly audio bank/getter consumption проверен; прежние personal timing/model/config/style либо authoring долги сохранены.",
+      "reviewedSha256": "8d77684f2d3d2c8d402b52d09ea603fe5abc24a3ea15ab92b1c1ada13a1f0749",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -5311,9 +5354,9 @@
         "UnityEngine.SceneManagement"
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponCatalog21.md",
-      "reviewScope": "Full source read: readonly catalog array boundary and ID/slot validation before Find/ToSettings, original serialized weapons refs, deliberate Editor/transient probe fixture writes, native inventory/save and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -6419,13 +6462,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
-      "sha256": "d033084d5a362ce54c2531d93adca927d78bbf242ab63956f2f9010244ea3977",
+      "sha256": "a8bfd57dc0f8f743f1406db1319153fded2a0dafaea114563d21713a884c71bf",
       "baselineSha256": "bbfc5553b4dcb7055dea53abc4fe4d4a18e54c44211ce2448afc01c4f50d75a3",
       "guid": "47aba92428eacdc47bbfb25e3f3bfacc",
       "types": [
         "SleeperAudio2D"
       ],
-      "lines": 273,
+      "lines": 274,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
       ],
@@ -6440,8 +6483,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Адаптер не наносит урон/не будит врага: только наблюдает события/путь. Подписки симметричны, RestoreSilently гасит звук без replay смерти, OnDisable останавливает источники. Random/Time используются для косметики; наличие этих API здесь не равно доменному RNG-дефекту. Аудио/производительность не прослушивались/не измерялись.",
-      "reviewedSha256": "d033084d5a362ce54c2531d93adca927d78bbf242ab63956f2f9010244ea3977",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
+      "reviewedSha256": "a8bfd57dc0f8f743f1406db1319153fded2a0dafaea114563d21713a884c71bf",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -6459,9 +6502,10 @@
         "EnemyDeathAudioVariants"
       ],
       "usageEvidence": "Sleeper.prefab; actor events; SleeperAudioThreat2D",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs",
@@ -6625,13 +6669,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
-      "sha256": "7241e35c068170e5b3afd37bd541be9962e6ac82fc90f74b9603b4dc365fd4c5",
+      "sha256": "c4e8df038a544ea44f696a92db38b59ae6713d71baa42624c04d336ea7b1df93",
       "baselineSha256": "43544269e64f92b9036f0f3984999d54ef287e4cea82849f270e5ea0d5945f04",
       "guid": "1794a8d6db1a7104c8e68ef00753a601",
       "types": [
         "StalkerAudio2D"
       ],
-      "lines": 634,
+      "lines": 635,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -6654,8 +6698,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "634 строки объединяют локальный playback/mix и scene voice arbitration/landing tracking; tuning микса/интервалов в компоненте, не тематическом profile. OnDisable снимает actor/gore/part subscriptions и registry. Cosmetic Guid-seeded Random не authority RNG; не заявлять его причиной AI-недетерминизма. Квоты уже scoped, старые serialized значения сохранять при будущей миграции.",
-      "reviewedSha256": "7241e35c068170e5b3afd37bd541be9962e6ac82fc90f74b9603b4dc365fd4c5",
+      "notes": "AudioConfig27: readonly audio bank/getter consumption проверен; прежние personal timing/model/config/style либо authoring долги сохранены.",
+      "reviewedSha256": "c4e8df038a544ea44f696a92db38b59ae6713d71baa42624c04d336ea7b1df93",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -6674,9 +6718,10 @@
         "audio/filter/body/gore"
       ],
       "usageEvidence": "ShadowStalker.prefab; actor/gore/FirstLanded events; StalkerAudioThreat2D",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit06.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
@@ -15002,13 +15047,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
-      "sha256": "f5924efea4d3a5a7c5f9c54fee942ad954bbe95c78a6d35b37dd20f456e8f3d2",
+      "sha256": "28979a1394a250c385c5f4beb0014aff2846c06a5726de4f3246c998ba77d540",
       "baselineSha256": "53c4f69cfe7182e3d0cddaa3e8b12e7b6840e17a54024809c858ff5c7aa3e2a8",
       "guid": "cae3a2c8574036f40ba8f85a211681c7",
       "types": [
         "PlayerAudio2D"
       ],
-      "lines": 460,
+      "lines": 463,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab"
       ],
@@ -15034,7 +15079,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
+      "notes": "AudioConfig27: readonly audio bank/getter consumption проверен; прежние personal timing/model/config/style либо authoring долги сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Ограниченный playback pickup/shot/mechanism/impact/casing",
@@ -15046,10 +15091,10 @@
         "System.Random"
       ],
       "usageEvidence": "Player prefab; ItemCollected/ShotFired/SurfaceHit/Operation events",
-      "reviewedSha256": "f5924efea4d3a5a7c5f9c54fee942ad954bbe95c78a6d35b37dd20f456e8f3d2",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewedSha256": "28979a1394a250c385c5f4beb0014aff2846c06a5726de4f3246c998ba77d540",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -15108,13 +15153,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
-      "sha256": "3acec1ed29c5952b22661e633be23cfaafa036d3a3a88ec57904118d874aa1ca",
+      "sha256": "8234e91609f75c793c506d41854ebe6b75fde05afe1c503c8befcbf3107a70e1",
       "baselineSha256": "2b235def8b1c88b3049d7a27805397ce0c7bcf7a696fd23133351f0d93123613",
       "guid": "16cf2393ae1752a49abf3bc0dc96883c",
       "types": [
         "PlayerFootsteps2D"
       ],
-      "lines": 149,
+      "lines": 150,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab"
       ],
@@ -15137,8 +15182,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "PlayerFootsteps11: личный stride/clock/controller отделён от физики/аудио; три покрытия/телепорт/тишина/смерть проверены. distance/interval остаются serialized compatibility bridge; общий SO config-pass открыт.",
-      "reviewedSha256": "3acec1ed29c5952b22661e633be23cfaafa036d3a3a88ec57904118d874aa1ca",
+      "notes": "AudioConfig27: readonly audio bank/getter consumption проверен; прежние personal timing/model/config/style либо authoring долги сохранены.",
+      "reviewedSha256": "8234e91609f75c793c506d41854ebe6b75fde05afe1c503c8befcbf3107a70e1",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15159,9 +15204,9 @@
         "player movement"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerFootsteps11.md",
-      "reviewScope": "Full source read: personal stride/cadence, clock, reset command and audio/physics adapter; three native surfaces and zero-allocation pure sampling verified; native scene and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -15420,13 +15465,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs",
-      "sha256": "e438dd9fd0d1a54e84807f4b9c10f153bb4cb4205c201d04a02727cf1b63fd66",
+      "sha256": "118269bf8f7edcfafd1d7b316d0b0f4700eca3de3c3d191a789a6aa8170ab053",
       "baselineSha256": "1375727ae2475921af36d39635da63b15c4ccbd0535c12572db269e3b5452d49",
       "guid": "0273599e2de5e05479ed337a52a695f3",
       "types": [
         "PlayerUtilityAudio2D"
       ],
-      "lines": 103,
+      "lines": 105,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab"
       ],
@@ -15450,7 +15495,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Звук фонаря/пустого спуска в одном канале",
@@ -15461,10 +15506,10 @@
         "AudioSource"
       ],
       "usageEvidence": "Player prefab; PowerChanged/EmptyTriggerPulled",
-      "reviewedSha256": "e438dd9fd0d1a54e84807f4b9c10f153bb4cb4205c201d04a02727cf1b63fd66",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewedSha256": "118269bf8f7edcfafd1d7b316d0b0f4700eca3de3c3d191a789a6aa8170ab053",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -15565,6 +15610,42 @@
       "previousReviewStatus": "partial"
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioClipBank.cs",
+      "sourceScope": "unity",
+      "sha256": "7b8f00467eee4fc9e88c94cbb6bdc71fbca964c02757fe52dea282fadc5fca0a",
+      "guid": "beb5e657d7301b74685a4f0b24a7a625",
+      "types": [
+        "AudioClipBank",
+        "Enumerator"
+      ],
+      "lines": 52,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/DoorAudioSet.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/EnemyDeathAudioSet.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/PlayerAudioSet.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/PlayerWorldAudioSet.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/StalkerAudioSet.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/WeaponAudioProfile.cs",
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7b8f00467eee4fc9e88c94cbb6bdc71fbca964c02757fe52dea282fadc5fca0a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
       "sha256": "107bd9abab5b2e9b46f7cf50ffff5852f73b63f41a87727f70e2885588921fec",
       "baselineSha256": "047ac7c7ca151507d7eb11679f29e97ced2bd52ce5b66bb08463424e4f58365b",
@@ -15603,13 +15684,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
-      "sha256": "903db58619a57a32109a00765a6eeb0de09d923f842c8ebf5d173c49e2cafce0",
+      "sha256": "9664edee7756b03a86026d0ae036ce047e06c0733235149c1d8ddc8742448d7e",
       "baselineSha256": "25e183d11db21237705fe713cf9197b170fb57e85c18a9b5e3155346ea7d5da1",
       "guid": "d2fed05e0692a774cbf356edb9ae680c",
       "types": [
         "EnemyDeathAudioVariants"
       ],
-      "lines": 81,
+      "lines": 82,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -15620,8 +15701,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "World-owned IDisposable cache, injected RNG, пропуск null и immediate-repeat; SO immutable, Dispose очищает кэш.",
-      "reviewedSha256": "903db58619a57a32109a00765a6eeb0de09d923f842c8ebf5d173c49e2cafce0",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
+      "reviewedSha256": "9664edee7756b03a86026d0ae036ce047e06c0733235149c1d8ddc8742448d7e",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15639,9 +15720,10 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
@@ -16419,13 +16501,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShellCasing2D.cs",
-      "sha256": "fca29522886020ccf74c535ec3fe11ead64f5741a1f2fb01530bc55195514993",
+      "sha256": "53a7b5daa68aea16b5f1968676dd39d10e44125b54d013edb4e915588494829a",
       "baselineSha256": "28498b9b73aab11a5bdc91342b8e66df05041add9f40b6d7712cc3c9bb320f6c",
       "guid": "f2bbea74bce42c848aa36884dbe263b4",
       "types": [
         "ShellCasing2D"
       ],
-      "lines": 120,
+      "lines": 121,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Combat/PistolCasing.prefab"
       ],
@@ -16448,8 +16530,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Launch сбрасывает landed/settled/profile/surface; первый контакт один, settled выключает Update. Ground query scoped и profile выстрелившего оружия сохранён. Движение/визуал/звук и gravity/drag tuning смешаны; это cosmetic debt, не авторитетный урон.",
-      "reviewedSha256": "fca29522886020ccf74c535ec3fe11ead64f5741a1f2fb01530bc55195514993",
+      "notes": "AudioConfig27: readonly audio bank/getter consumption проверен; прежние personal timing/model/config/style либо authoring долги сохранены.",
+      "reviewedSha256": "53a7b5daa68aea16b5f1968676dd39d10e44125b54d013edb4e915588494829a",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16467,9 +16549,10 @@
         "Physics2D/Time"
       ],
       "usageEvidence": "PlayerCasingEjector bounded pool, scene DI before use",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
@@ -17187,7 +17270,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
-      "sha256": "f3ea74310a5d642f61b04953ff1cdac14dc17635fa1e82faa1ae967af2fab4dc",
+      "sha256": "74fd7e066768754c8ae76f09b71226c3c2f3d6b577b8eadb0fb7debd59e6e8d3",
       "baselineSha256": "5ac6f55d251e86db3b95be18a976ce186ebe1d743d01dd0a96d37d2cf3ebf82a",
       "guid": "38585f3308335b248bba7028c855ac33",
       "types": [
@@ -17205,8 +17288,8 @@
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Подписки парные, оба источника останавливаются при disable; System.Random косметический. Общие clips в SO, но gain/hearingDistance/pan tuning смешаны с MB playback; Update работает только при реально играющем звуке. Производительность не измерялась.",
-      "reviewedSha256": "f3ea74310a5d642f61b04953ff1cdac14dc17635fa1e82faa1ae967af2fab4dc",
+      "notes": "AudioConfig27: readonly audio bank/getter consumption проверен; прежние personal timing/model/config/style либо authoring долги сохранены.",
+      "reviewedSha256": "74fd7e066768754c8ae76f09b71226c3c2f3d6b577b8eadb0fb7debd59e6e8d3",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17224,9 +17307,10 @@
         "listener"
       ],
       "usageEvidence": "События MotionStarted/MotionStopped",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/CeilingLightOcclusion2D.cs",
@@ -17974,6 +18058,7 @@
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/IGroundAudioRegion.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs"
       ],
       "entryPointHints": [],
@@ -18144,6 +18229,31 @@
       "reviewedSha256": "b1859efb28b9cb85c220be8a4bc7318ba5f6841e85ec99347884b017da263ebe",
       "reviewReport": "Docs/Reports/AccessControl01.md",
       "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs",
+      "sourceScope": "unity",
+      "sha256": "d54aed9e6b982f200b45d14b91a1886b76382f72eb1fd160918d8815cf8292a8",
+      "guid": "a6f3d278172275a4fbfadee9d1ed9e8c",
+      "types": [
+        "AudioBankConfigTests"
+      ],
+      "lines": 187,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d54aed9e6b982f200b45d14b91a1886b76382f72eb1fd160918d8815cf8292a8",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioConfig27.md",
+      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained."
     },
     {
       "baselineSha256": null,
@@ -21965,7 +22075,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 539,
+    "unity": 542,
     "content_source": 8
   },
   "latestReview": {
@@ -22116,11 +22226,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 558,
-    "totalFiles": 558,
+    "reviewedFiles": 561,
+    "totalFiles": 561,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "AudioThreatSignals26 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "AudioConfig27 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

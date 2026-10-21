@@ -112,6 +112,7 @@ namespace EmergencyShift
 
         private void Awake()
         {
+            sounds?.Validate();
             stalker = GetComponent<ShadowStalker2D>();
             body = GetComponent<Rigidbody2D>();
             gore = GetComponent<GoreBurst2D>();
@@ -375,16 +376,16 @@ namespace EmergencyShift
                 return deathVariants.Choose(sounds.DeathSounds);
             }
 
-            var clips = sounds != null ? sounds.Clips(cue) : null;
-            if (clips == null || clips.Length == 0)
+            var clips = sounds != null ? sounds.Clips(cue) : default(AudioClipBank);
+            if (clips.Count == 0)
             {
                 return null;
             }
 
-            int index = random.Next(clips.Length);
-            if (clips.Length > 1 && index == lastVariant[(int)cue])
+            int index = random.Next(clips.Count);
+            if (clips.Count > 1 && index == lastVariant[(int)cue])
             {
-                index = (index + random.Next(1, clips.Length)) % clips.Length;
+                index = (index + random.Next(1, clips.Count)) % clips.Count;
             }
 
             lastVariant[(int)cue] = index;

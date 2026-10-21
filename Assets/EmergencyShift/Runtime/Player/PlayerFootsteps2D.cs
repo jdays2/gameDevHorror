@@ -56,6 +56,7 @@ namespace EmergencyShift
 
         private void Awake()
         {
+            sounds?.Validate();
             body = GetComponent<Rigidbody2D>();
             life = GetComponent<PlayerLife2D>();
             Prepare(leftSource);
@@ -95,8 +96,8 @@ namespace EmergencyShift
         void IPlayerFootstepView.PlayStep(Vector2 position)
         {
             LastSurface = surfaces.At(position);
-            var clips = sounds != null ? sounds.Steps(LastSurface) : null;
-            if (clips == null || clips.Length == 0)
+            var clips = sounds != null ? sounds.Steps(LastSurface) : default(AudioClipBank);
+            if (clips.Count == 0)
             {
                 return;
             }
@@ -108,11 +109,11 @@ namespace EmergencyShift
                 return;
             }
 
-            int id = random.NextInt(0, clips.Length);
+            int id = random.NextInt(0, clips.Count);
             int previousId = last[(int)LastSurface];
-            if (clips.Length > 1 && id == previousId)
+            if (clips.Count > 1 && id == previousId)
             {
-                id = (id + 1 + random.NextInt(0, clips.Length - 1)) % clips.Length;
+                id = (id + 1 + random.NextInt(0, clips.Count - 1)) % clips.Count;
             }
 
             last[(int)LastSurface] = id;
@@ -122,7 +123,7 @@ namespace EmergencyShift
             }
 
             source.clip = clips[id];
-            source.volume = sounds.stepVolume;
+            source.volume = sounds.StepVolume;
             source.pitch = 1 + ((float)random.NextUnit() * 2 - 1) * pitchVariation;
             source.Play();
             StepsPlayed++;

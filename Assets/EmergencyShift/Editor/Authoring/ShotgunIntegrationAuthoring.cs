@@ -111,13 +111,16 @@ namespace EmergencyShift.Editor
             }
 
             var audio = ScriptableObject.CreateInstance<WeaponAudioProfile>();
-            audio.shots = Clips("shotgun", 3, Root + "/Audio/FirearmMix02");
-            audio.pump = Clips("pump", 3);
-            audio.shellInsert = Clips("shell_insert", 3);
-            audio.casings = Clips("hull_concrete", 1);
-            audio.emptyTrigger = Clips("empty", 1, Root + "/Audio/FirearmMix02")[0];
-            audio.shotGain = .92f;
-            audio.emptyGain = .3f;
+            var audioData = new SerializedObject(audio);
+            SetClips(audioData, "shots", Clips("shotgun", 3, Root + "/Audio/FirearmMix02"));
+            SetClips(audioData, "pump", Clips("pump", 3));
+            SetClips(audioData, "shellInsert", Clips("shell_insert", 3));
+            SetClips(audioData, "casings", Clips("hull_concrete", 1));
+            audioData.FindProperty("emptyTrigger").objectReferenceValue = Clips("empty", 1, Root + "/Audio/FirearmMix02")[0];
+            audioData.FindProperty("shotGain").floatValue = .92f;
+            audioData.FindProperty("emptyGain").floatValue = .3f;
+            audioData.ApplyModifiedPropertiesWithoutUndo();
+            audio.Validate();
             AssetDatabase.CreateAsset(audio, Root + "/Data/Audio/ShotgunPump.asset");
             var visual = UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<WeaponDefinition>(Root + "/Data/Weapons/PistolDefinition.asset").Visuals);
             visual.displayName = "Дробовик · короткая вспышка";
@@ -139,6 +142,16 @@ namespace EmergencyShift.Editor
             definition.Validate();
             AssetDatabase.CreateAsset(definition, DefinitionPath);
             return definition;
+        }
+
+        private static void SetClips(SerializedObject data, string field, AudioClip[] clips)
+        {
+            SerializedProperty list = data.FindProperty(field);
+            list.arraySize = clips.Length;
+            for (int index = 0; index < clips.Length; index++)
+            {
+                list.GetArrayElementAtIndex(index).objectReferenceValue = clips[index];
+            }
         }
 
         private static AudioClip[] Clips(string prefix, int count, string folder = null)
