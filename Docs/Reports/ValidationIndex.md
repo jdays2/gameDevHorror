@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Громкость и playback аудио | [AudioLayerMix25](AudioLayerMix25.md): 959/959 EditMode, 49/49 PlayMode, Windows64 success; pure mix/reset, native DSP lifecycle, pause до schedule; 0 managed bytes в warmed mix loop. Прочие audio adapters открыты. |
 | Настроение аудио / память угроз | [AudioMood24](AudioMood24.md): 940/940 EditMode, 48/48 PlayMode, Windows64 success; pure memory/clock/commands, scoped native perception, transient ordinals, zero managed bytes в warmed model loop. Mix/emitter clock ещё открыты. |
 | Аудиоисточники уровня | [AudioThreatScopes23](AudioThreatScopes23.md): 905/905 EditMode, 48/48 PlayMode, Windows64 success; наследуемая DI-регистрация, disable/rebind/frozen unload/sibling. Mood/clock/config работа открыта. |
 | Свет уровня / BUG-025 | [LightScopes22](LightScopes22.md): две исходные native ошибки по 0/1, затем 905/905 EditMode, 46/46 PlayMode, Windows64 success; scoped lamp/FX query, disable/re-enable/frozen unload, source ownership. Lamp power/VFX/audio models открыты. |

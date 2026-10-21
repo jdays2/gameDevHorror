@@ -4,13 +4,6 @@ using UnityEngine;
 
 namespace EmergencyShift
 {
-    public enum AudioMood
-    {
-        Explore,
-        Threat,
-        Combat
-    }
-
     /// <summary>Shared tuning and replaceable sounds; runtime perception is owned by the scene director.</summary>
     [CreateAssetMenu(menuName = "Emergency Shift/Audio mood profile")]
     public sealed class AudioMoodProfile : ScriptableObject
@@ -105,6 +98,13 @@ namespace EmergencyShift
             return new AudioMoodSettings(observationInterval, perceptionMemorySeconds, awarenessDistance,
                 closeCombatDistance, crowdEnemiesForCombat, threatHoldSeconds, combatHoldSeconds,
                 combatAfterShotSeconds, shotDuckSeconds, damageDuckSeconds, cueDuckSeconds);
+        }
+
+        public AudioLayerMixSettings ToMixSettings()
+        {
+            Validate();
+            return new AudioLayerMixSettings(masterVolume, new Vector3(explorationGain, threatGain, combatGain),
+                riseSeconds, fallSeconds, deathFadeSeconds, duckGain, duckResponseSeconds, lowHealthGain);
         }
 
         public void Validate()

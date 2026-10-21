@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "540 own C# explicitly read; 81 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioMood24.",
+  "limits": "549 own C# explicitly read; 80 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AudioLayerMix25.",
   "counts": {
-    "partial": 81,
-    "reviewed_boundary": 459
+    "partial": 80,
+    "reviewed_boundary": 469
   },
   "files": [
     {
@@ -2030,8 +2030,10 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/ConfigureDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
@@ -2146,6 +2148,7 @@
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreAccessCardsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AccessControl/Logic/RestoreDoorAccessCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
@@ -3221,12 +3224,58 @@
       "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "path": "Assets/EmergencyShift/Runtime/Definitions/AudioMood.cs",
+      "sourceScope": "unity",
+      "sha256": "1e2e5fffba14eb98a6039874fc084d97ad8faee32dad1e3f65988a677b9d2c1b",
+      "guid": "7a8a278f6ef0e834d9029f594bf94065",
+      "types": [
+        "AudioMood"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs",
+        "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioLayerMixSettings.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatObservation.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioLayerMixView.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1e2e5fffba14eb98a6039874fc084d97ad8faee32dad1e3f65988a677b9d2c1b",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs",
-      "sha256": "f3f3390f57396c922c1231a8ed1ea66c09364969b0d3a737bf19db798cadffbf",
+      "sha256": "e7537f13ad3adf70d915f2f51aa9748d5db73f6ae886a941bf063d6b74f9a972",
       "baselineSha256": "bba56014feab9f7d792ecd012b742b0099792c25abcc8d6776e3b01d4aba5898",
       "guid": "34e2679e50d7c50459145bc9b0d663bf",
       "types": [
-        "AudioMood",
         "AudioMoodProfile"
       ],
       "lines": 130,
@@ -3248,25 +3297,16 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatObservation.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
-        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
-        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3280,10 +3320,10 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
-      "reviewedSha256": "f3f3390f57396c922c1231a8ed1ea66c09364969b0d3a737bf19db798cadffbf",
+      "reviewedSha256": "e7537f13ad3adf70d915f2f51aa9748d5db73f6ae886a941bf063d6b74f9a972",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioMood24.md",
-      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -7147,15 +7187,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
       "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
       "sourceScope": "unity",
-      "sha256": "f9b65d08c0db335653813430caa3220dfa04e410f07aa49c542408226b3083f3",
+      "sha256": "2d105d8640691d89ede06f8fcba375f0a14d07d8780681d5fd35858758e3b26f",
       "guid": "6a1cf7daf35bde4459acfbd64adf040c",
       "types": [
         "AudioMoodControllerFactory"
       ],
-      "lines": 15,
+      "lines": 17,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -7164,10 +7204,11 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "f9b65d08c0db335653813430caa3220dfa04e410f07aa49c542408226b3083f3",
+      "reviewedSha256": "2d105d8640691d89ede06f8fcba375f0a14d07d8780681d5fd35858758e3b26f",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioMood24.md",
-      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -7196,6 +7237,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioLayerMixSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "3c563eea7984e25e8d7e2f2eb0f4b78e3a9f2a2b5de8aed253d0418106d637dd",
+      "guid": "94f08db696b59fc40a09e9bb1f4ae6df",
+      "types": [
+        "AudioLayerMixSettings"
+      ],
+      "lines": 40,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixModel.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "3c563eea7984e25e8d7e2f2eb0f4b78e3a9f2a2b5de8aed253d0418106d637dd",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
       "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs",
       "sourceScope": "unity",
@@ -7220,6 +7288,59 @@
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/AudioMood24.md",
       "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs",
+      "sourceScope": "unity",
+      "sha256": "081df88d938fa9b40592baa37c5f5fddff6966bd241b91f5268459a4ca550c49",
+      "guid": "5b13a68e90b9fac4aacfce15ed1791df",
+      "types": [
+        "AudioLayerMixController"
+      ],
+      "lines": 34,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "081df88d938fa9b40592baa37c5f5fddff6966bd241b91f5268459a4ca550c49",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixModel.cs",
+      "sourceScope": "unity",
+      "sha256": "5c0cb04ce4f447b657846f39f91a433e9bc8d510570186ba3b92ec5dd34cf716",
+      "guid": "bee83e05a7ad6074ca3a57fa6d8c2383",
+      "types": [
+        "AudioLayerMixModel"
+      ],
+      "lines": 48,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "5c0cb04ce4f447b657846f39f91a433e9bc8d510570186ba3b92ec5dd34cf716",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified."
     },
     {
       "baselineSha256": null,
@@ -7331,6 +7452,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioLayerMixView.cs",
+      "sourceScope": "unity",
+      "sha256": "1df8b29f4c76bdff6ed1d85bdd35bd9a3db0f13fa6d88ab10dfd134c3fe4e312",
+      "guid": "acff7638bbc54be4789d3ae8c4f25106",
+      "types": [
+        "IAudioLayerMixView"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1df8b29f4c76bdff6ed1d85bdd35bd9a3db0f13fa6d88ab10dfd134c3fe4e312",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
       "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs",
       "sourceScope": "unity",
@@ -7358,6 +7506,31 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "82210d815d219987a710eb270cbdaab10bfda5abe19abbbfe16cc6dfb5f8e6a8",
+      "guid": "dce02f6e0a36d454dbdf97072c685ac6",
+      "types": [
+        "ResetAudioLayerMixCommand"
+      ],
+      "lines": 21,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "82210d815d219987a710eb270cbdaab10bfda5abe19abbbfe16cc6dfb5f8e6a8",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
       "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
       "sourceScope": "unity",
@@ -7379,6 +7552,31 @@
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/AudioMood24.md",
       "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "path": "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
+      "sourceScope": "unity",
+      "sha256": "d68d7229a0b09ce0393e5117bcd57654d648fdfb6c9b5065895419c47cf104d4",
+      "guid": "d0b47b35486e88047aed33d489883fcc",
+      "types": [
+        "AudioLayerPlayback"
+      ],
+      "lines": 127,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d68d7229a0b09ce0393e5117bcd57654d648fdfb6c9b5065895419c47cf104d4",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified."
     },
     {
       "baselineSha256": null,
@@ -15173,13 +15371,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
-      "sha256": "4b6bebfefa93e2818ce522c09aa1b0b23f0e4b971839ba081ac2c156c5c30b5e",
+      "sha256": "db6d6d421acf3b9b7dc835b467c5d1f13fe04ae23f7a4dfb3224612c31c24127",
       "baselineSha256": "19545652a3329fadd847a8cd2c53a3783e942f37fa848df947b0158a4ae0d91e",
       "guid": "51418a3b25a1e234cbefe1b1b6f6ebec",
       "types": [
         "LevelAudioDirector2D"
       ],
-      "lines": 316,
+      "lines": 234,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelAudio.prefab"
       ],
@@ -15203,9 +15401,9 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "AudioMood24: memory/holds/duck commands и clock проверены; mix smoothing/DSP либо emitter heard timers/config долги сохранены.",
-      "reviewedSha256": "4b6bebfefa93e2818ce522c09aa1b0b23f0e4b971839ba081ac2c156c5c30b5e",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "reviewedSha256": "db6d6d421acf3b9b7dc835b467c5d1f13fe04ae23f7a4dfb3224612c31c24127",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15227,8 +15425,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioMood24.md",
-      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified.",
       "previousReviewStatus": "partial"
     },
     {
@@ -17675,6 +17873,72 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
+      "sourceScope": "unity",
+      "sha256": "58c8e1f072e7e6839c30ee69889225cfe1af2e88798e9b833865e75aa7273a5a",
+      "guid": "3629d9695bb7dff4faeb0a2641344437",
+      "types": [
+        "AudioLayerMixTests",
+        "View"
+      ],
+      "lines": 191,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/CheckDirectionalDamage.cs",
+        "AgentScripts/InstallDirectionalDamage.cs",
+        "AgentScripts/InstallPauseMenu.cs",
+        "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "58c8e1f072e7e6839c30ee69889225cfe1af2e88798e9b833865e75aa7273a5a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
       "sourceScope": "unity",
@@ -17699,6 +17963,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
@@ -17720,6 +17985,7 @@
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -17731,7 +17997,8 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
       ],
       "entryPointHints": [
         "Test",
@@ -18272,6 +18539,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
@@ -18293,6 +18561,7 @@
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
@@ -18304,7 +18573,8 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
       ],
       "entryPointHints": [
         "Test",
@@ -18543,9 +18813,9 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodHitSpray2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
@@ -19364,6 +19634,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
@@ -19385,6 +19656,7 @@
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
@@ -19396,7 +19668,8 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
       ],
       "entryPointHints": [
         "Test",
@@ -20311,6 +20584,28 @@
       "reviewedSha256": "eab545046434a30a9a4535e86acd9de690435644d358f9526edf5a81b1754594",
       "reviewReport": "Docs/Reports/AudioProbe02.md",
       "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AudioLayerMix25: mix model/controller/reset, native playback lifetime и coordinator граница проверены; DSP/AudioSource намеренно Unity adapter. Остальные audio emitter/config границы отдельно открыты.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs",
+      "sourceScope": "unity",
+      "sha256": "1e18df60a788811fa57d6cc657bb9cf84925ed2f8991e290df22b887ae125baf",
+      "guid": "68abfdbdf04e8b84aa1b38687698dc4e",
+      "types": [
+        "AudioLayerPlaybackTests"
+      ],
+      "lines": 49,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1e18df60a788811fa57d6cc657bb9cf84925ed2f8991e290df22b887ae125baf",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AudioLayerMix25.md",
+      "reviewScope": "Full source read: immutable mix snapshot, personal smoothing/gain model/controller/reset, pure enum, native DSP/three-source playback ownership and delegating coordinator. Native probe, pre-schedule pause, disable/restart/death and normal build verified."
     },
     {
       "baselineSha256": null,
@@ -21344,7 +21639,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 521,
+    "unity": 530,
     "content_source": 8
   },
   "latestReview": {
@@ -21495,11 +21790,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 540,
-    "totalFiles": 540,
+    "reviewedFiles": 549,
+    "totalFiles": 549,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "AudioMood24 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "AudioLayerMix25 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

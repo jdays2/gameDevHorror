@@ -119,6 +119,7 @@
 
 ## Assets/EmergencyShift/Runtime/Definitions
 
+- [AudioMood.cs](../Assets/EmergencyShift/Runtime/Definitions/AudioMood.cs)
 - [AudioMoodProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs)
 - [BloodPoolProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs)
 - [CameraFramingProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/CameraFramingProfile.cs)
@@ -240,19 +241,25 @@
 
 ## Assets/EmergencyShift/Runtime/Features/AudioMood/Config
 
+- [AudioLayerMixSettings.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioLayerMixSettings.cs)
 - [AudioMoodSettings.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioMoodSettings.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/AudioMood/Logic
 
+- [AudioLayerMixController.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs)
+- [AudioLayerMixModel.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixModel.cs)
 - [AudioMoodController.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodController.cs)
 - [AudioMoodCueCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodCueCommand.cs)
 - [AudioMoodModel.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioMoodModel.cs)
 - [AudioThreatObservation.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatObservation.cs)
+- [IAudioLayerMixView.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioLayerMixView.cs)
 - [IAudioMoodView.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioMoodView.cs)
+- [ResetAudioLayerMixCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs)
 - [ResetAudioMoodCommand.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/AudioMood/View
 
+- [AudioLayerPlayback.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs)
 - [AudioThreatQuery2D.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/DamageFeedback
@@ -679,6 +686,7 @@
 
 - [AccessCardRestoreTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessCardRestoreTests.cs)
 - [AccessControlModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs)
+- [AudioLayerMixTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs)
 - [AudioMoodModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs)
 - [AudioMoodProfileTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodProfileTests.cs)
 - [AudioMoodSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs)
@@ -747,6 +755,7 @@
 
 - [AccessControlSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs)
 - [AdaptiveAudioProbeRegressionTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs)
+- [AudioLayerPlaybackTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs)
 - [AudioThreatProbeSource.cs](../Assets/EmergencyShift/Tests/PlayMode/AudioThreatProbeSource.cs)
 - [AudioThreatScopeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs)
 - [CameraOpticsLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs)

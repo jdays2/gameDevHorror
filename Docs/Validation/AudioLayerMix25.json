@@ -1,0 +1,133 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "939d59cd7beb661f74087cf921ade92124464363",
+  "editMode": {
+    "result": "Passed",
+    "total": "959",
+    "passed": "959",
+    "failed": "0",
+    "end-time": "2026-10-21 21:27:54Z",
+    "rawPath": "work/sod-evidence-20261021/audio-mix-edit.xml",
+    "rawSha256": "5ce5bd7bf886a6408e200c14871235a1f41848713524d3868652e46a04e2b35d",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.DeathUsesItsOwnFadeAndDoesNotApplyUrgentDuckResponse",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.DuckUsesPromptResponseAndRecoveryUsesNormalRise",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.FiniteExternalVolumeKeepsLegacyClamping(-1,0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.FiniteExternalVolumeKeepsLegacyClamping(2,0.42f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.InvalidDeltaCannotMutateMixOrPresentANewValue(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.InvalidDeltaCannotMutateMixOrPresentANewValue(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.InvalidDeltaCannotMutateMixOrPresentANewValue(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.InvalidMoodOrNonFiniteVolumeIsRejected",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.InvalidSettingsAreRejectedAtComposition",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.LeavingCombatUsesFallTimeForOverlayLayers",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.MoodSelectsOnlyItsLayers(Explore,0.42f,0,0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.MoodSelectsOnlyItsLayers(Threat,0.42f,0.595f,0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.MoodSelectsOnlyItsLayers(Combat,0.42f,0.595f,0.63f)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.OneRiseTimeConstantReachesExpectedExponentialFraction",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.ProfileSnapshotPreservesFieldsAndDoesNotWriteBack",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.ResetIsQuietAndDoesNotChangeAnotherMix",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.WarmedMixLoopDoesNotAllocateManagedMemory",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.WoundedVolumeAndDuckingMultiplyWithoutChangingSettings",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.AudioLayerMixTests.ZeroScaledDeltaFreezesSmoothing",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "49",
+    "passed": "49",
+    "failed": "0",
+    "end-time": "2026-10-21 21:29:36Z",
+    "rawPath": "work/sod-evidence-20261021/audio-mix-play.xml",
+    "rawSha256": "f90e246512def2379b8066f7e0360f1c4ab03cc4b2e70844dddea705fa7211a6",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.AudioLayerPlaybackTests.PauseBeforeScheduledStartStopsAndAllowsFreshScheduling",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-21T21:30:27.815Z",
+    "endedAt": "2026-10-21T21:30:55.386Z"
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioLayerMixSettings.cs": "3c563eea7984e25e8d7e2f2eb0f4b78e3a9f2a2b5de8aed253d0418106d637dd",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixModel.cs": "5c0cb04ce4f447b657846f39f91a433e9bc8d510570186ba3b92ec5dd34cf716",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/IAudioLayerMixView.cs": "1df8b29f4c76bdff6ed1d85bdd35bd9a3db0f13fa6d88ab10dfd134c3fe4e312",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs": "82210d815d219987a710eb270cbdaab10bfda5abe19abbbfe16cc6dfb5f8e6a8",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioLayerMixController.cs": "081df88d938fa9b40592baa37c5f5fddff6966bd241b91f5268459a4ca550c49",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs": "d68d7229a0b09ce0393e5117bcd57654d648fdfb6c9b5065895419c47cf104d4",
+    "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodControllerFactory.cs": "2d105d8640691d89ede06f8fcba375f0a14d07d8780681d5fd35858758e3b26f",
+    "Assets/EmergencyShift/Runtime/Definitions/AudioMood.cs": "1e2e5fffba14eb98a6039874fc084d97ad8faee32dad1e3f65988a677b9d2c1b",
+    "Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs": "e7537f13ad3adf70d915f2f51aa9748d5db73f6ae886a941bf063d6b74f9a972",
+    "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs": "db6d6d421acf3b9b7dc835b467c5d1f13fe04ae23f7a4dfb3224612c31c24127",
+    "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs": "58c8e1f072e7e6839c30ee69889225cfe1af2e88798e9b833865e75aa7273a5a",
+    "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs": "1e18df60a788811fa57d6cc657bb9cf84925ed2f8991e290df22b887ae125baf"
+  },
+  "protectedResources": 1794,
+  "resourceBaselineSha256": "cd7320f5f08a063e94a779e1188c887b5fcc79583ff9f678dbf759965d53392a",
+  "resourceDifferences": [],
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Resource guard supplements prior evidence, not deleted original Temp baseline. Mix model/controller/reset with immutable profile snapshot, native three-source playback/DSP ownership and coordinator verified. 19 new EditMode and one native pre-schedule pause test; existing full audio probe. Warmed 1000 mix calls allocate zero managed bytes, not whole-game FPS. Director reviewed as native delegating view/coordinator; remaining source signal clock/config and other audio adapters remain open."
+}

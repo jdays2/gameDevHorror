@@ -11,5 +11,7 @@ namespace EmergencyShift.Features.AudioMood
         public AudioMoodControllerFactory(IGameClock clock) => this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
         public AudioMoodController Create(AudioMoodSettings settings, IAudioMoodView view) =>
             new AudioMoodController(new AudioMoodModel(settings, clock), view);
+        public AudioLayerMixController CreateMix(AudioLayerMixSettings settings, IAudioLayerMixView view) =>
+            new AudioLayerMixController(new AudioLayerMixModel(settings), view);
     }
 }
