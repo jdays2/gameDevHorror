@@ -282,6 +282,7 @@ namespace EmergencyShift
 
         public void RestoreState(Snapshot saved)
         {
+            ActorCheckpointValidation.ValidateStalker(saved, definition != null ? definition.MaximumHealth : int.MaxValue);
             if (saved == null || saved.melee == null)
             {
                 throw new ArgumentException("Stalker snapshot requires actor and melee state.", nameof(saved));

@@ -46,16 +46,10 @@ namespace EmergencyShift
             }
             if (saved.initialized)
             {
-                var actor = saved.actor;
-                var definition = GetComponent<Sleeper2D>().Definition;
-                if (!Enum.IsDefined(typeof(Sleeper2D.BehaviourState), actor.state) || actor.health < 0 || actor.health > definition.MaximumHealth ||
-                    (actor.health == 0) != (actor.state == Sleeper2D.BehaviourState.Dead) ||
-                    (actor.state == Sleeper2D.BehaviourState.Sleeping && actor.aggro) ||
-                    (actor.state != Sleeper2D.BehaviourState.Sleeping && actor.state != Sleeper2D.BehaviourState.Dead && !actor.aggro) ||
-                    !ValidTime(actor.age) || !ValidTime(actor.exposure) || !ValidTime(actor.staggerLeft) || !ValidTime(actor.melee.cooldown))
-                {
-                    throw new InvalidOperationException("Invalid Sleeper checkpoint state");
-                }
+                var actor = GetComponent<Sleeper2D>();
+                int maximum = actor != null && actor.Definition != null ? actor.Definition.MaximumHealth : int.MaxValue;
+                ActorCheckpointValidation.ValidateSleeper(saved.actor, maximum);
+                ActorCheckpointValidation.ValidateVisualRotation(saved.visualRotation);
             }
             if (saved.hasRemains)
             {
@@ -63,14 +57,19 @@ namespace EmergencyShift
                 {
                     throw new InvalidOperationException("Living Sleeper cannot own remains");
                 }
-                GetComponent<GoreBurst2D>().ValidateRemains(saved.remains);
+                var gore = GetComponent<GoreBurst2D>();
+                if (gore == null)
+                {
+                    throw new InvalidOperationException("Sleeper remains require their native adapter.");
+                }
+
+                gore.ValidateRemains(saved.remains);
             }
         }
 
-        private static bool ValidTime(float value) => !float.IsNaN(value) && !float.IsInfinity(value) && value >= 0;
-
         public void RestoreCheckpoint(string json)
         {
+            ValidateCheckpoint(json);
             var saved = JsonUtility.FromJson<State>(json);
             if (!saved.initialized)
             {

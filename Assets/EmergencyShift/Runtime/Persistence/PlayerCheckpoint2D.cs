@@ -67,6 +67,7 @@ namespace EmergencyShift
                 throw new InvalidOperationException("Invalid player checkpoint");
             }
 
+            ActorCheckpointValidation.ValidateAim(state.direction);
             FlashlightModuleValidation.Validate(state.modules, state.moduleCount);
             var cards = AccessCardModel.ValidateSnapshot(state.cards);
             if (!cards.Success)

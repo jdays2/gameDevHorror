@@ -633,6 +633,7 @@
 
 ## Assets/EmergencyShift/Runtime/Persistence
 
+- [ActorCheckpointValidation.cs](../Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs)
 - [CardCheckpoint2D.cs](../Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs)
 - [CheckpointBooleanPayload.cs](../Assets/EmergencyShift/Runtime/Persistence/CheckpointBooleanPayload.cs)
 - [CheckpointData.cs](../Assets/EmergencyShift/Runtime/Persistence/CheckpointData.cs)

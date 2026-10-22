@@ -311,6 +311,80 @@ namespace EmergencyShift.Tests
             Assert.DoesNotThrow(() => stalker.ValidateCheckpoint("{\"format\":1,\"initialized\":false}"));
         }
 
+        [TestCase("age")]
+        [TestCase("exposure")]
+        [TestCase("closure")]
+        [TestCase("escape")]
+        [TestCase("melee")]
+        [TestCase("patrol")]
+        [TestCase("rotation")]
+        public void StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves(string fault)
+        {
+            var stalker = Create("Preflight Stalker").AddComponent<StalkerCheckpoint2D>();
+            var entity = stalker.GetComponent<PersistentEntity2D>();
+            entity.AssignId("stalker");
+            var state = JsonUtility.FromJson<StalkerCheckpoint2D.State>(StalkerJson(ShadowStalker2D.BehaviourState.Dormant));
+            switch (fault)
+            {
+                case "age":
+                    state.actor.age = -1;
+                    break;
+                case "exposure":
+                    state.actor.exposure = float.NaN;
+                    break;
+                case "closure":
+                    state.actor.closure = 2;
+                    break;
+                case "escape":
+                    state.actor.escape = Vector2.one * float.PositiveInfinity;
+                    break;
+                case "melee":
+                    state.actor.melee.cooldown = -1;
+                    break;
+                case "patrol":
+                    state.actor.patrol = new EnemyPatrol2D.Snapshot { pause = -1 };
+                    break;
+                case "rotation":
+                    state.visualRotation = new Quaternion();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(fault));
+            }
+            var saved = new CheckpointEntityState
+            {
+                id = entity.Id,
+                active = true,
+                position = Vector3.one * 90,
+                rotation = Quaternion.identity,
+                parts = new[] { new CheckpointPart { key = stalker.SaveKey, json = JsonUtility.ToJson(state) } }
+            };
+            string before = checkpoint.CaptureCheckpoint();
+            Assert.Throws<InvalidOperationException>(() => controller.Apply(World(SavedHero(before), saved)));
+            AssertUnchangedWorld();
+            Assert.That(checkpoint.CaptureCheckpoint(), Is.EqualTo(before));
+        }
+
+        [TestCase(float.NaN)]
+        [TestCase(float.PositiveInfinity)]
+        [TestCase(float.MaxValue)]
+        public void PlayerPayloadPreflightRejectsInvalidAimBeforeHealthOrInventoryChanges(float x)
+        {
+            var saved = SavedPlayer();
+            saved.health = 1;
+            saved.direction = new Vector2(x, x);
+            string before = checkpoint.CaptureCheckpoint();
+            Assert.Throws<InvalidOperationException>(() => checkpoint.RestoreCheckpoint(JsonUtility.ToJson(saved)));
+            Assert.That(checkpoint.CaptureCheckpoint(), Is.EqualTo(before));
+        }
+
+        [TestCase("{}")]
+        [TestCase("{\"format\":77,\"initialized\":false}")]
+        public void DirectSleeperRestoreChecksEnvelopeBeforePristineEarlyReturn(string json)
+        {
+            var saved = Create("Pristine Sleeper").AddComponent<SleeperCheckpoint2D>();
+            Assert.Throws<InvalidOperationException>(() => saved.RestoreCheckpoint(json));
+        }
+
         private static Array KnownStalkerStates => Enum.GetValues(typeof(ShadowStalker2D.BehaviourState));
 
         private static string StalkerJson(ShadowStalker2D.BehaviourState state)

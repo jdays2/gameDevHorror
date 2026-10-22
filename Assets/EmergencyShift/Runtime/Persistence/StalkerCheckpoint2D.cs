@@ -49,28 +49,26 @@ namespace EmergencyShift
 
             if (saved.initialized)
             {
-                if (saved.actor == null || saved.actor.health < 0 || saved.actor.melee == null ||
-                    !Enum.IsDefined(typeof(ShadowStalker2D.BehaviourState), saved.actor.state) ||
-                    (saved.actor.health == 0) != (saved.actor.state == ShadowStalker2D.BehaviourState.Dead))
-                {
-                    throw new InvalidOperationException("Invalid stalker actor state");
-                }
-            }
-
-            if (saved.initialized && saved.actor.hasEyeDamageProgress)
-            {
-                float damage = saved.actor.eyeDamage;
-                float contact = saved.actor.burnContact;
-                if (float.IsNaN(damage) || float.IsInfinity(damage) || damage < 0 || damage > 1 ||
-                    float.IsNaN(contact) || float.IsInfinity(contact) || contact < 0)
-                {
-                    throw new InvalidOperationException("Invalid stalker eye damage");
-                }
+                var actor = GetComponent<ShadowStalker2D>();
+                int maximum = actor != null && actor.Definition != null ? actor.Definition.MaximumHealth : int.MaxValue;
+                ActorCheckpointValidation.ValidateStalker(saved.actor, maximum);
+                ActorCheckpointValidation.ValidateVisualRotation(saved.visualRotation);
             }
 
             if (saved.hasRemains)
             {
-                GetComponent<GoreBurst2D>().ValidateRemains(saved.remains);
+                if (!saved.initialized || saved.actor.health > 0)
+                {
+                    throw new InvalidOperationException("Living Stalker cannot own remains.");
+                }
+
+                var gore = GetComponent<GoreBurst2D>();
+                if (gore == null)
+                {
+                    throw new InvalidOperationException("Stalker remains require their native adapter.");
+                }
+
+                gore.ValidateRemains(saved.remains);
             }
         }
 

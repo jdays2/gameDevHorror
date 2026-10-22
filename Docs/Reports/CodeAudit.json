@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "603 own C# explicitly read; 66 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest ActorPorts33.",
+  "limits": "604 own C# explicitly read; 63 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest ActorCheckpoint34.",
   "counts": {
-    "partial": 66,
-    "reviewed_boundary": 537
+    "partial": 63,
+    "reviewed_boundary": 541
   },
   "files": [
     {
@@ -6504,6 +6504,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
@@ -6633,6 +6634,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
@@ -6766,7 +6768,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
-      "sha256": "2c76502184a9376b161575f5e3ba1f7c832aca2940ffe2cba90f57a03dea5a56",
+      "sha256": "c1c711eafefe9fbb67c2170f108e114a717416b8ffd119ffee4fee8fc0481d5e",
       "baselineSha256": "65198c2ff4b8b5b181ad34efb7d661858e89d888c594f5d440b06cf535738314",
       "guid": "74ec39b20c26bf645b3250ec04d29d71",
       "types": [
@@ -6774,7 +6776,7 @@
         "Sleeper2D",
         "Snapshot"
       ],
-      "lines": 279,
+      "lines": 280,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
       ],
@@ -6797,6 +6799,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
@@ -6818,8 +6821,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
-      "reviewedSha256": "2c76502184a9376b161575f5e3ba1f7c832aca2940ffe2cba90f57a03dea5a56",
+      "notes": "ActorCheckpoint34/BUG-030: raw actor payload guards до mutation и legacy форматы проверены; native serialization adapter не владеет правилами игры.",
+      "reviewedSha256": "c1c711eafefe9fbb67c2170f108e114a717416b8ffd119ffee4fee8fc0481d5e",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -6843,9 +6846,9 @@
         "player/light"
       ],
       "usageEvidence": "Sleeper.prefab; SleeperCheckpoint2D; presentation/audio adapters",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/EnemyConfig15.md",
-      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorCheckpoint34.md",
+      "reviewScope": "Actor checkpoint adapters fully read: only DTO/native serialization adapters, pure model validators shared before all mutations; raw timers/vectors/melee/patrol/health/visual rotation and finite player aim. Existing legacy formats retained. Native actor restore reuses raw guard. No session-state/IO completion claim.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -6964,7 +6967,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
-      "sha256": "c99df88c9b248c05c72eb6a24a973ff1ecf07bd7934f7317a58739ebd9f4a464",
+      "sha256": "3be10e4fd1f03ae28dc30b3bb37be1796fef97a97921434494b6f06fbb12f550",
       "baselineSha256": "df18eadd844626c2b014a5ee30c3f12dc163bfbab5382b801925fcb0452a3812",
       "guid": "c7e9df3ce7c1ac4488a2ef46069492f2",
       "types": [
@@ -6972,7 +6975,7 @@
         "ShadowStalker2D",
         "Snapshot"
       ],
-      "lines": 386,
+      "lines": 387,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -7005,6 +7008,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxStationaryStalker2D.cs",
@@ -7027,8 +7031,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "EnemyConfig15: readonly config/consumer или regression boundary; старые serialized fields/refs, HP/скорости/таймеры и правила обоих видов сохранены. Общие SO остаются неизменяемыми; authored/native проверки пройдены.",
-      "reviewedSha256": "c99df88c9b248c05c72eb6a24a973ff1ecf07bd7934f7317a58739ebd9f4a464",
+      "notes": "ActorCheckpoint34/BUG-030: raw actor payload guards до mutation и legacy форматы проверены; native serialization adapter не владеет правилами игры.",
+      "reviewedSha256": "3be10e4fd1f03ae28dc30b3bb37be1796fef97a97921434494b6f06fbb12f550",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -7052,9 +7056,9 @@
         "Rigidbody2D/Time"
       ],
       "usageEvidence": "ShadowStalker.prefab; StalkerCheckpoint2D; видовые presentation/audio adapters",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/EnemyConfig15.md",
-      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorCheckpoint34.md",
+      "reviewScope": "Actor checkpoint adapters fully read: only DTO/native serialization adapters, pure model validators shared before all mutations; raw timers/vectors/melee/patrol/health/visual rotation and finite player aim. Existing legacy formats retained. Native actor restore reuses raw guard. No session-state/IO completion claim.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -9386,6 +9390,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/FinishEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InterruptEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs"
       ],
       "entryPointHints": [],
@@ -9453,6 +9458,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyMeleeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyMeleeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs"
       ],
       "entryPointHints": [],
@@ -9582,6 +9588,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/InitializeEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ResetEnemyPatrolCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
       ],
       "entryPointHints": [],
@@ -9616,6 +9623,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs"
       ],
       "entryPointHints": [],
@@ -10300,6 +10308,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerSleeperCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/WakeSleeperCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/SleeperControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
       ],
       "entryPointHints": [],
@@ -10335,6 +10344,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
       ],
       "entryPointHints": [],
@@ -10368,6 +10378,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs"
       ],
       "entryPointHints": [],
@@ -10529,6 +10540,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerObservation.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/StalkerControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
       ],
       "entryPointHints": [],
@@ -10595,6 +10607,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerStateSnapshot.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
       ],
       "entryPointHints": [],
@@ -10628,6 +10641,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreStalkerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs"
       ],
       "entryPointHints": [],
@@ -14659,6 +14673,34 @@
       "previousReviewStatus": "partial"
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorCheckpoint34/BUG-030: raw actor payload guards до mutation и legacy форматы проверены; native serialization adapter не владеет правилами игры.",
+      "path": "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
+      "sourceScope": "unity",
+      "sha256": "5609a1eef74988115d4f5305f81efbf72c279303d5f1c1095c414f83c3194d9b",
+      "guid": "c7ed122aec530f143965355014f4ad63",
+      "types": [
+        "ActorCheckpointValidation"
+      ],
+      "lines": 83,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "5609a1eef74988115d4f5305f81efbf72c279303d5f1c1095c414f83c3194d9b",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorCheckpoint34.md",
+      "reviewScope": "Actor checkpoint adapters fully read: only DTO/native serialization adapters, pure model validators shared before all mutations; raw timers/vectors/melee/patrol/health/visual rotation and finite player aim. Existing legacy formats retained. Native actor restore reuses raw guard. No session-state/IO completion claim."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs",
       "sha256": "09377a2262c810d020f7fce551f5fc9ec52d0698dfb228afbacb27c116542e48",
       "baselineSha256": "9637c62d3f884da6ffacf5607a01d820a8e37c6975a4f27e5d635abea27da6a4",
@@ -14892,6 +14934,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs",
         "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PersistentEntity2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/RemainsSnapshotValidation.cs"
@@ -15201,14 +15244,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
-      "sha256": "ba6554f5864d8e0538558760c8e78b2c03af800918278ac8644c5b3a53fd85eb",
+      "sha256": "febe2aefd82659f26837259a4aec952410493e8cdac7059301f6f9bc59fd05ca",
       "baselineSha256": "a7536c36c58f6aed4d4370cc7b0091a6765853a6977e4b592dd0240f470714fe",
       "guid": "9b38f6979e5090b4cba6fdff18a3be8f",
       "types": [
         "PlayerCheckpoint2D",
         "State"
       ],
-      "lines": 122,
+      "lines": 123,
       "serializedUsers": [
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
         "Assets/EmergencyShift/Scenes/LevelTemplate.unity"
@@ -15260,8 +15303,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorCheckpoint34/BUG-030: raw actor payload guards до mutation и legacy форматы проверены; native serialization adapter не владеет правилами игры.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Player checkpoint format1/2/3",
@@ -15271,10 +15314,10 @@
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "ba6554f5864d8e0538558760c8e78b2c03af800918278ac8644c5b3a53fd85eb",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewedSha256": "febe2aefd82659f26837259a4aec952410493e8cdac7059301f6f9bc59fd05ca",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorCheckpoint34.md",
+      "reviewScope": "Actor checkpoint adapters fully read: only DTO/native serialization adapters, pure model validators shared before all mutations; raw timers/vectors/melee/patrol/health/visual rotation and finite player aim. Existing legacy formats retained. Native actor restore reuses raw guard. No session-state/IO completion claim.",
       "reviewHistory": [
         {
           "reviewStatus": "partial",
@@ -15360,14 +15403,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
-      "sha256": "80b85bd63e9235a52492ed7bed8616acd9b993b2a1c8e75057812b62f14fcf32",
+      "sha256": "b0e5d39552541c9ecb2f1c0f2876c6f6325f015042689baabf5854ad7379da92",
       "baselineSha256": "bea2a5a92ece149a43475e9096f4afeb075c40a85bf7f61c29f2f6a9e39a4d7a",
       "guid": "6dea5c21666e6184090e0a8e6788c9d9",
       "types": [
         "SleeperCheckpoint2D",
         "State"
       ],
-      "lines": 87,
+      "lines": 86,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
       ],
@@ -15417,8 +15460,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "EnemyConfig15: readonly config consumer API проверен; прежние authoring transaction/shared asset writes, probe lifecycle или checkpoint concrete-adapter debt остаются. Генератор не запускался.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorCheckpoint34/BUG-030: raw actor payload guards до mutation и legacy форматы проверены; native serialization adapter не владеет правилами игры.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Сериализация/валидация/восстановление Спящего",
@@ -15430,22 +15473,22 @@
         "JsonUtility"
       ],
       "usageEvidence": "Sleeper.prefab; PersistentEntity2D.Validate/Restore; SleeperTests",
-      "reviewedSha256": "80b85bd63e9235a52492ed7bed8616acd9b993b2a1c8e75057812b62f14fcf32",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/EnemyConfig15.md",
-      "reviewScope": "Full source read: readonly enemy definition/patrol/both behaviour profiles, preserved fields and authored stats; health/movement/behaviour validation, old fixtures and native both brain/melee/patrol integration; normal Windows64 verified.",
+      "reviewedSha256": "b0e5d39552541c9ecb2f1c0f2876c6f6325f015042689baabf5854ad7379da92",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorCheckpoint34.md",
+      "reviewScope": "Actor checkpoint adapters fully read: only DTO/native serialization adapters, pure model validators shared before all mutations; raw timers/vectors/melee/patrol/health/visual rotation and finite player aim. Existing legacy formats retained. Native actor restore reuses raw guard. No session-state/IO completion claim.",
       "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
-      "sha256": "6770af330bc3c06eb89aca9e71c01dbf9f722ff735dc38401688a5fd3bf8d56f",
+      "sha256": "713acb4441927ea32853636b640af216c3efba37b5ecc4813bf9941d107d9e1d",
       "baselineSha256": "93daff91b5e8e4033762765621e83b667e265aeae4341292e8265ea0e1ff7153",
       "guid": "0d6df61419b63534f95834aef895846a",
       "types": [
         "StalkerCheckpoint2D",
         "State"
       ],
-      "lines": 94,
+      "lines": 92,
       "serializedUsers": [
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
       ],
@@ -15495,8 +15538,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "BUG-008 fixed: known enum required before Apply/direct Restore. Legacy eye and uninitialized spawn supported. Remaining full actor timer/vector/presence validation and legacy adapter coupling are not declared resolved.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorCheckpoint34/BUG-030: raw actor payload guards до mutation и legacy форматы проверены; native serialization adapter не владеет правилами игры.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Stalker checkpoint adapter",
@@ -15506,10 +15549,10 @@
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "6770af330bc3c06eb89aca9e71c01dbf9f722ff735dc38401688a5fd3bf8d56f",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointPayload02.md",
-      "reviewScope": "Full touched source and ownership/compatibility boundary review; 73/73 new, 265/265 own EditMode, Windows64 Succeeded.",
+      "reviewedSha256": "713acb4441927ea32853636b640af216c3efba37b5ecc4813bf9941d107d9e1d",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorCheckpoint34.md",
+      "reviewScope": "Actor checkpoint adapters fully read: only DTO/native serialization adapters, pure model validators shared before all mutations; raw timers/vectors/melee/patrol/health/visual rotation and finite player aim. Existing legacy formats retained. Native actor restore reuses raw guard. No session-state/IO completion claim.",
       "reviewHistory": [
         {
           "reviewStatus": "partial",
@@ -15528,7 +15571,8 @@
           "reviewReport": "Docs/Reports/CodeAudit06.md",
           "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
         }
-      ]
+      ],
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/UpgradeCheckpoint2D.cs",
@@ -19652,26 +19696,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "notes": "ActorCheckpoint34/BUG-030: raw actor payload guards до mutation и legacy форматы проверены; native serialization adapter не владеет правилами игры.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "a71c5f5e83ce615263a5cb22e49ed4a919c901f15e4c76c13aad98314500368c",
+      "reviewedSha256": "55bfa4d7888486996513309c55a25a51c7a36b229d7f086f7a83b6d0419391a3",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelProgress29.md",
-      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
+      "reviewReport": "Docs/Reports/ActorCheckpoint34.md",
+      "reviewScope": "Actor checkpoint adapters fully read: only DTO/native serialization adapters, pure model validators shared before all mutations; raw timers/vectors/melee/patrol/health/visual rotation and finite player aim. Existing legacy formats retained. Native actor restore reuses raw guard. No session-state/IO completion claim.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "a71c5f5e83ce615263a5cb22e49ed4a919c901f15e4c76c13aad98314500368c",
+      "sha256": "55bfa4d7888486996513309c55a25a51c7a36b229d7f086f7a83b6d0419391a3",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 456,
+      "lines": 530,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -23471,7 +23515,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 584,
+    "unity": 585,
     "content_source": 8
   },
   "latestReview": {
@@ -23622,11 +23666,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 603,
-    "totalFiles": 603,
+    "reviewedFiles": 604,
+    "totalFiles": 604,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "ActorPorts33 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "ActorCheckpoint34 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

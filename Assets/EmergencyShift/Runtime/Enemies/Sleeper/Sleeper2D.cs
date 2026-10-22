@@ -213,6 +213,7 @@ namespace EmergencyShift
 
         public void RestoreState(Snapshot saved)
         {
+            ActorCheckpointValidation.ValidateSleeper(saved, definition != null ? definition.MaximumHealth : int.MaxValue);
             if (saved == null || saved.melee == null)
             {
                 throw new ArgumentException("Sleeper snapshot requires actor and melee state.", nameof(saved));

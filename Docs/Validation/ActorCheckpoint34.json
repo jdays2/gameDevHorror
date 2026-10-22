@@ -1,0 +1,469 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "c80ce5978fddc584d353ca52df6624dd48513581",
+  "editMode": {
+    "result": "Passed",
+    "total": "1129",
+    "passed": "1129",
+    "failed": "0",
+    "end-time": "2026-10-22 05:17:22Z",
+    "rawPath": "work/sod-evidence-20261022-final/actor-checkpoint-edit.xml",
+    "rawSha256": "83d04734c28024b25aafb44385389aca74a09acf989bdd9e843021990e01bac6",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ActualRepeatableInstallsSurviveIsolatedDiskSaveDeathAndApply",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"duplicate\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"null-entry\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"null-id\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"empty-id\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"whitespace-id\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"negative-range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"negative-angle\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"nan-range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"nan-angle\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"infinite-range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"infinite-angle\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"zero-bonus\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"negative-count\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"count-below-unique\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"empty-with-count\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsModulesBeforeChangingAnyEntityOrPlayerState(\"null-with-count\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsUnknownStalkerStateBeforePreparingAnyEntity(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsUnknownStalkerStateBeforePreparingAnyEntity(999)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ApplyRejectsUnknownStalkerStateBeforePreparingAnyEntity(int.MaxValue)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"duplicate\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"null-entry\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"null-id\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"empty-id\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"whitespace-id\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"negative-range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"negative-angle\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"nan-range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"nan-angle\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"infinite-range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"infinite-angle\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"zero-bonus\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"negative-count\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"count-below-unique\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"empty-with-count\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectModuleRestoreRejectsBeforeClearingInstalledModulesOrChangingOptics(\"null-with-count\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectPlayerRestoreRejectsDuplicatesInEverySupportedFormatWithoutChanges(1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectPlayerRestoreRejectsDuplicatesInEverySupportedFormatWithoutChanges(2)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectPlayerRestoreRejectsDuplicatesInEverySupportedFormatWithoutChanges(3)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectSleeperRestoreChecksEnvelopeBeforePristineEarlyReturn(\"{}\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectSleeperRestoreChecksEnvelopeBeforePristineEarlyReturn(\"{\\\"format\\\":77,\\\"initialized\\\":false}\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectStalkerRestoreRejectsUnknownStateBeforeResolvingActor(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.DirectStalkerRestoreRejectsUnknownStateBeforeResolvingActor(999)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(Sneaking)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(Recoiling)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(Retreating)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(Waiting)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(Attacking)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(Dead)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(Dormant)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(Returning)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(Patrolling)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.ExistingStalkerStatesIncludingDeadAndLegacyEyePayloadRemainValid(TargetDead)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidCardsAreRejectedBeforeRestoringAnyPlayerState(null)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidCardsAreRejectedBeforeRestoringAnyPlayerState(\"\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidCardsAreRejectedBeforeRestoringAnyPlayerState(\" \")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidCardsAreRejectedBeforeRestoringAnyPlayerState(\"live-card\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"duplicate\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"null-entry\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"null-id\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"empty-id\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"whitespace-id\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"negative-range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"negative-angle\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"nan-range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"nan-angle\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"infinite-range\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"infinite-angle\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"zero-bonus\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"negative-count\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"count-below-unique\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"empty-with-count\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.InvalidModulesAreRejectedByPlayerValidationAfterJsonRoundTrip(\"null-with-count\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.LegacyNullModulesWithZeroCountRestoreBaseOptics(1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.LegacyNullModulesWithZeroCountRestoreBaseOptics(2)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.LegacyNullModulesWithZeroCountRestoreBaseOptics(3)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.PlayerPayloadPreflightRejectsInvalidAimBeforeHealthOrInventoryChanges(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.PlayerPayloadPreflightRejectsInvalidAimBeforeHealthOrInventoryChanges(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.PlayerPayloadPreflightRejectsInvalidAimBeforeHealthOrInventoryChanges(float.MaxValue)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves(\"age\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves(\"exposure\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves(\"closure\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves(\"escape\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves(\"melee\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves(\"patrol\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves(\"rotation\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.SupportedPlayerFormatsRestoreRepeatedLensWithTotalCountAboveUniqueIds(1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.SupportedPlayerFormatsRestoreRepeatedLensWithTotalCountAboveUniqueIds(2)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointPayloadTests.SupportedPlayerFormatsRestoreRepeatedLensWithTotalCountAboveUniqueIds(3)",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "60",
+    "passed": "60",
+    "failed": "0",
+    "end-time": "2026-10-22 05:19:22Z",
+    "rawPath": "work/sod-evidence-20261022-final/actor-checkpoint-play.xml",
+    "rawSha256": "733ffb4fd0a1b9f975b62f073de0ee9042f5c4858c4bacd1c549b78e475bf25c",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearImmediatelyCancelsOlderRequestAndDeletesAllSlotFiles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileDoorMovesPreventsWriteAfterDoorSettles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileGoreIsUnsettledPreventsWriteAfterItSettles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FinishingLevelStillCancelsPendingSaveAndClearsSlot",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FinishStopsOnlyParticipantsOfItsOwnSceneBeforeNotification",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FreshRequestAfterClearCanSavePreviouslyVisitedCheckpoint",
+        "result": "Passed"
+      }
+    ]
+  },
+  "redBaseline": {
+    "rawPath": "work/sod-evidence-20261022-final/actor-checkpoint-before.xml",
+    "rawSha256": "0ef0e4ec6fa430df4af3800c9fcfa61d40d2e98ca30392384e75e56301104331",
+    "failed": 12,
+    "passed": 0,
+    "failures": [
+      "  Expected: <System.InvalidOperationException>\n  But was:  null\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  null\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  null\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  null\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  null\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  <System.NullReferenceException: Object reference not set to an instance of an object\n  at EmergencyShift.StalkerCheckpoint2D.RestoreCheckpoint (System.String json) [0x00017] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\StalkerCheckpoint2D.cs:86 \n  at EmergencyShift.PersistentEntity2D.Restore (EmergencyShift.CheckpointEntityState saved) [0x00016] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\PersistentEntity2D.cs:98 \n  at EmergencyShift.LevelCheckpointController2D.Apply (EmergencyShift.CheckpointData saved) [0x0010b] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\LevelCheckpointController2D.cs:267 \n  at EmergencyShift.Tests.CheckpointPayloadTests+<>c__DisplayClass29_0.<StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves>b__0 () [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Tests\\EditMode\\CheckpointPayloadTests.cs:347 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x00043] in <8b63e8ac0a4746599ed207982825ae6c>:0 >\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  <System.NullReferenceException: Object reference not set to an instance of an object\n  at EmergencyShift.StalkerCheckpoint2D.RestoreCheckpoint (System.String json) [0x00017] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\StalkerCheckpoint2D.cs:86 \n  at EmergencyShift.PersistentEntity2D.Restore (EmergencyShift.CheckpointEntityState saved) [0x00016] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\PersistentEntity2D.cs:98 \n  at EmergencyShift.LevelCheckpointController2D.Apply (EmergencyShift.CheckpointData saved) [0x0010b] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\LevelCheckpointController2D.cs:267 \n  at EmergencyShift.Tests.CheckpointPayloadTests+<>c__DisplayClass29_0.<StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves>b__0 () [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Tests\\EditMode\\CheckpointPayloadTests.cs:347 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x00043] in <8b63e8ac0a4746599ed207982825ae6c>:0 >\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  <System.NullReferenceException: Object reference not set to an instance of an object\n  at EmergencyShift.StalkerCheckpoint2D.RestoreCheckpoint (System.String json) [0x00017] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\StalkerCheckpoint2D.cs:86 \n  at EmergencyShift.PersistentEntity2D.Restore (EmergencyShift.CheckpointEntityState saved) [0x00016] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\PersistentEntity2D.cs:98 \n  at EmergencyShift.LevelCheckpointController2D.Apply (EmergencyShift.CheckpointData saved) [0x0010b] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\LevelCheckpointController2D.cs:267 \n  at EmergencyShift.Tests.CheckpointPayloadTests+<>c__DisplayClass29_0.<StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves>b__0 () [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Tests\\EditMode\\CheckpointPayloadTests.cs:347 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x00043] in <8b63e8ac0a4746599ed207982825ae6c>:0 >\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  <System.NullReferenceException: Object reference not set to an instance of an object\n  at EmergencyShift.StalkerCheckpoint2D.RestoreCheckpoint (System.String json) [0x00017] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\StalkerCheckpoint2D.cs:86 \n  at EmergencyShift.PersistentEntity2D.Restore (EmergencyShift.CheckpointEntityState saved) [0x00016] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\PersistentEntity2D.cs:98 \n  at EmergencyShift.LevelCheckpointController2D.Apply (EmergencyShift.CheckpointData saved) [0x0010b] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\LevelCheckpointController2D.cs:267 \n  at EmergencyShift.Tests.CheckpointPayloadTests+<>c__DisplayClass29_0.<StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves>b__0 () [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Tests\\EditMode\\CheckpointPayloadTests.cs:347 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x00043] in <8b63e8ac0a4746599ed207982825ae6c>:0 >\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  <System.NullReferenceException: Object reference not set to an instance of an object\n  at EmergencyShift.StalkerCheckpoint2D.RestoreCheckpoint (System.String json) [0x00017] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\StalkerCheckpoint2D.cs:86 \n  at EmergencyShift.PersistentEntity2D.Restore (EmergencyShift.CheckpointEntityState saved) [0x00016] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\PersistentEntity2D.cs:98 \n  at EmergencyShift.LevelCheckpointController2D.Apply (EmergencyShift.CheckpointData saved) [0x0010b] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\LevelCheckpointController2D.cs:267 \n  at EmergencyShift.Tests.CheckpointPayloadTests+<>c__DisplayClass29_0.<StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves>b__0 () [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Tests\\EditMode\\CheckpointPayloadTests.cs:347 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x00043] in <8b63e8ac0a4746599ed207982825ae6c>:0 >\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  <System.NullReferenceException: Object reference not set to an instance of an object\n  at EmergencyShift.StalkerCheckpoint2D.RestoreCheckpoint (System.String json) [0x00017] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\StalkerCheckpoint2D.cs:86 \n  at EmergencyShift.PersistentEntity2D.Restore (EmergencyShift.CheckpointEntityState saved) [0x00016] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\PersistentEntity2D.cs:98 \n  at EmergencyShift.LevelCheckpointController2D.Apply (EmergencyShift.CheckpointData saved) [0x0010b] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\LevelCheckpointController2D.cs:267 \n  at EmergencyShift.Tests.CheckpointPayloadTests+<>c__DisplayClass29_0.<StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves>b__0 () [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Tests\\EditMode\\CheckpointPayloadTests.cs:347 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x00043] in <8b63e8ac0a4746599ed207982825ae6c>:0 >\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  <System.NullReferenceException: Object reference not set to an instance of an object\n  at EmergencyShift.StalkerCheckpoint2D.RestoreCheckpoint (System.String json) [0x00017] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\StalkerCheckpoint2D.cs:86 \n  at EmergencyShift.PersistentEntity2D.Restore (EmergencyShift.CheckpointEntityState saved) [0x00016] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\PersistentEntity2D.cs:98 \n  at EmergencyShift.LevelCheckpointController2D.Apply (EmergencyShift.CheckpointData saved) [0x0010b] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Runtime\\Persistence\\LevelCheckpointController2D.cs:267 \n  at EmergencyShift.Tests.CheckpointPayloadTests+<>c__DisplayClass29_0.<StalkerPayloadPreflightRejectsInvalidTimelineBeforeAnyEntityMoves>b__0 () [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\work\\sod-dialogue-20261021\\Assets\\EmergencyShift\\Tests\\EditMode\\CheckpointPayloadTests.cs:347 \n  at NUnit.Framework.Assert.Throws (NUnit.Framework.Constraints.IResolveConstraint expression, NUnit.Framework.TestDelegate code, System.String message, System.Object[] args) [0x00043] in <8b63e8ac0a4746599ed207982825ae6c>:0 >\n"
+    ],
+    "sourceRevision": "c80ce5978fddc584d353ca52df6624dd48513581",
+    "nativeSourceSha256": {
+      "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs": "43beea175e697a0be6c895bc2f023ba8264d41285fcb61efb3b06318ef34eb0b",
+      "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs": "9e992e1d92cc31708b1fa5d639299005ab5ffbd9f91ba15d9d5966c8bd8aab02",
+      "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs": "6770af330bc3c06eb89aca9e71c01dbf9f722ff735dc38401688a5fd3bf8d56f"
+    },
+    "fixtureNote": "Original twelve actor preflight/direct restore cases ran before validation; all retained with line-layout-only formatting changes. Legacy supported states/eye/pristine/module formats and native checkpoints checked."
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-22T05:20:23.051Z",
+    "endedAt": "2026-10-22T05:20:59.017Z",
+    "generator": {
+      "name": "unity-cli",
+      "version": "1.0.0-beta.14"
+    }
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs": "5609a1eef74988115d4f5305f81efbf72c279303d5f1c1095c414f83c3194d9b",
+    "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs": "febe2aefd82659f26837259a4aec952410493e8cdac7059301f6f9bc59fd05ca",
+    "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs": "b0e5d39552541c9ecb2f1c0f2876c6f6325f015042689baabf5854ad7379da92",
+    "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs": "713acb4441927ea32853636b640af216c3efba37b5ecc4813bf9941d107d9e1d",
+    "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs": "c1c711eafefe9fbb67c2170f108e114a717416b8ffd119ffee4fee8fc0481d5e",
+    "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs": "3be10e4fd1f03ae28dc30b3bb37be1796fef97a97921434494b6f06fbb12f550",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs": "55bfa4d7888486996513309c55a25a51c7a36b229d7f086f7a83b6d0419391a3"
+  },
+  "metadataSha256": {
+    "Assets/EmergencyShift/Runtime/Persistence/ActorCheckpointValidation.cs.meta": "8de79a05739ee2e13d97fc2fc507d862f0b8548c817bb65c0056dd1fbe2e37d1",
+    "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs.meta": "b1ab05265530398f145413e90f472e7157b8d9bd75b6ed0b827b13abd29f2275",
+    "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs.meta": "9099199a77b5438e6bca6366e5582e65f030fcef7eac62ab2cc0797e6e90e4d0",
+    "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs.meta": "a04838feb249fe2af97aef1572ad89e29dfd8f42fcf8e72e390e35b043b52e06",
+    "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs.meta": "9349d647f1fc963218591dec9e5fef8fd19fd4a602012b33ba7764de0664d727",
+    "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs.meta": "53ed0d64e83dd9491ba28117b7b077b2105c851d93a832405c76dc6695b28dc0",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs.meta": "765dbe45fcae8680d753b3d0608a2dd9fd9748584fc6a8dfddc985eb7c80839d"
+  },
+  "protectedResources": 1805,
+  "resourceBaselineSha256": "d88bb27eb6157c7e5073c94144f400da0c0ece478a174eb55a1ce33f23c9db4d",
+  "resourceDifferences": [],
+  "originalDirtyFilesPreserved": 60,
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Raw actor snapshot numerical/rotation/aim guards run before any world mutation and direct restore. Red baseline 0/12; existing DTO formats/legacy eye/pristine states retained. No production resources or values changed. Session paths/state/controller work still open. Other SOD work and owner acceptance remain open."
+}
