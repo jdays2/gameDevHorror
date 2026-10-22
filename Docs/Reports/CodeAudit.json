@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "591 own C# explicitly read; 75 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LampPower30.",
+  "limits": "592 own C# explicitly read; 73 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest VisualConfig31.",
   "counts": {
-    "partial": 75,
-    "reviewed_boundary": 516
+    "partial": 73,
+    "reviewed_boundary": 519
   },
   "files": [
     {
@@ -1066,13 +1066,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
-      "sha256": "67083c0fd0a4cb06f632237125c84cdd55f3c85ce37c24cee7fed6d7303fbff2",
+      "sha256": "78561fac6801a6ed26b7d3b02f91568305247a6f959bb5216acb7fab8270f4e5",
       "baselineSha256": "73d7a4d1d11024643796179b7b98c7093f541c90baa1b848a8fd9fbc5d20582d",
       "guid": "1a346ad2f27349943b43b4cb1846fb19",
       "types": [
         "ShotgunIntegrationAuthoring"
       ],
-      "lines": 248,
+      "lines": 250,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -1082,7 +1082,7 @@
         "MenuItem"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioConfig27: readonly audio config/bank/validation boundary проверен; текущие serialized fields/refs/defaults сохранены.",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Установка готового дробовика/патронов в существующий тир",
@@ -1092,10 +1092,10 @@
         "sandbox HUD/zone"
       ],
       "usageEvidence": "MenuItem Apply; creates missing definitions/pickup variants/catalog entry",
-      "reviewedSha256": "67083c0fd0a4cb06f632237125c84cdd55f3c85ce37c24cee7fed6d7303fbff2",
+      "reviewedSha256": "78561fac6801a6ed26b7d3b02f91568305247a6f959bb5216acb7fab8270f4e5",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioConfig27.md",
-      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -1235,13 +1235,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
-      "sha256": "13e5b73bf391262cb9db20c8be46959abc08b0eae7657460c46199dca2e8b4be",
+      "sha256": "d987e79f0fd6601236da6784caacdafdde5480c81692b659eed26603961ba73a",
       "baselineSha256": "e4390f60d3de6a4d0cc81f8041c7bfeea4b7cd818a0ed0c8fcd0a2fa0a16042d",
       "guid": "451b59eebcf768440b13db6389ef7325",
       "types": [
         "BulletProjectile2D"
       ],
-      "lines": 166,
+      "lines": 167,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Combat/PistolBullet.prefab"
       ],
@@ -1267,7 +1267,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Полёт, segment hit, урон и визуализация projectile",
@@ -1279,10 +1279,10 @@
         "SpriteRenderer/Light2D"
       ],
       "usageEvidence": "PlayerWeapon2D.Instantiate→Launch; общий prefab пули/дроби",
-      "reviewedSha256": "13e5b73bf391262cb9db20c8be46959abc08b0eae7657460c46199dca2e8b4be",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewedSha256": "d987e79f0fd6601236da6784caacdafdde5480c81692b659eed26603961ba73a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -2416,6 +2416,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
@@ -4323,13 +4324,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/ProjectileVisualProfile.cs",
-      "sha256": "2a048674defafb1c49a76dcdf40909024a4e75941b0d8faa4a5f487a07a3619b",
+      "sha256": "1bc64de51d0e484187df1749ac892f100dc7f7d74b26365e0104dd17b7b0d883",
       "baselineSha256": "685b263fca9de1bf483d505d3da67fe59eedb8f15253737373f50759bc254ec6",
       "guid": "d222b15af2e149749ae0b248263e4307",
       "types": [
         "ProjectileVisualProfile"
       ],
-      "lines": 61,
+      "lines": 78,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Weapons/CommonProjectile.asset"
       ],
@@ -4349,11 +4350,14 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
         "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs",
-        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs"
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "ProjectileFlight16: flight/composition consumer проверен. ProjectileVisualProfile остаётся legacy public config/ballistic-presentation bridge; PlayerWeapon presentation/config или Development probe lifecycle/style остаются долгом.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общее оформление projectile и текущая скорость полёта",
@@ -4363,10 +4367,10 @@
         "float Validate"
       ],
       "usageEvidence": "CommonProjectile.asset; BulletProjectile2D.Launch/FixedUpdate",
-      "reviewedSha256": "2a048674defafb1c49a76dcdf40909024a4e75941b0d8faa4a5f487a07a3619b",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
-      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified.",
+      "reviewedSha256": "1bc64de51d0e484187df1749ac892f100dc7f7d74b26365e0104dd17b7b0d883",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
       "previousReviewStatus": "partial"
     },
     {
@@ -4423,13 +4427,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs",
-      "sha256": "5d4dd2ad36d1c451e722aeef46de00da37ed6ec7d4088ecb2f6459f27f65d698",
+      "sha256": "389240a1ec64dea4d6d47fb6ccba9f334db01b4630e3b54784dd384665ba6ec4",
       "baselineSha256": "5d4dd2ad36d1c451e722aeef46de00da37ed6ec7d4088ecb2f6459f27f65d698",
       "guid": "8b4cd31d12c29fd4995071f87ce56c08",
       "types": [
         "ShotVisualProfile"
       ],
-      "lines": 31,
+      "lines": 69,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Weapons/ShotgunVisual.asset",
         "Assets/EmergencyShift/Settings/WeaponProfiles/WarmFlash.asset"
@@ -4453,11 +4457,12 @@
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Только shared tuning, но нет Validate целостности/finite values и обязательного projectile reference. PlayerWeapon проверяет visualProfile до расхода, вложенный projectile валидируется позднее в Launch. Это риск ошибки авторинга после частичной выдачи выстрела; реальный сценарий не запускался.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Оформление вспышки/impact и ссылка на projectile profile",
@@ -4466,10 +4471,11 @@
         "ProjectileVisualProfile"
       ],
       "usageEvidence": "WeaponDefinition; PlayerWeapon2D; ShotEffect2D; BulletProjectile2D",
-      "reviewedSha256": "5d4dd2ad36d1c451e722aeef46de00da37ed6ec7d4088ecb2f6459f27f65d698",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewedSha256": "389240a1ec64dea4d6d47fb6ccba9f334db01b4630e3b54784dd384665ba6ec4",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/SleeperAudioProfile.cs",
@@ -4783,13 +4789,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
-      "sha256": "238fa5cdfb8a91c3da77d51dede23b26279188d66e0dba22c8960ac89d6573ae",
+      "sha256": "c7de1470e34569adccfa4f5c07ebeb7d7e6acb2e46235b615da265bf59ff2b15",
       "baselineSha256": "107c4ea24c01d51db1d4f8bf5664e73ee44a4c03fe9045637d557030c0e40cb4",
       "guid": "dc34453363d9b334b8e8de06ab5467fb",
       "types": [
         "WeaponDefinition"
       ],
-      "lines": 70,
+      "lines": 75,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -4803,6 +4809,7 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs",
@@ -4811,7 +4818,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Общий баланс, идентичность и factory оружия",
@@ -4822,11 +4829,11 @@
         "WeaponCycle"
       ],
       "usageEvidence": "PlayerWeapon2D/Inventory; каталог; Magazine/Pump subclasses",
-      "reviewedSha256": "238fa5cdfb8a91c3da77d51dede23b26279188d66e0dba22c8960ac89d6573ae",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
-      "previousReviewStatus": "partial",
+      "reviewedSha256": "c7de1470e34569adccfa4f5c07ebeb7d7e6acb2e46235b615da265bf59ff2b15",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
+      "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
           "reviewDate": "2026-10-21",
@@ -5401,15 +5408,16 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
-      "sha256": "8d77684f2d3d2c8d402b52d09ea603fe5abc24a3ea15ab92b1c1ada13a1f0749",
+      "sha256": "fbf5f6a52b4ebd80b018f8242a2ac820b64a0a6de90de8fc1cb5f2b9ee43c0cc",
       "baselineSha256": "530592111f42b35d8398d2822c01abbb5165447e033da39108c36dad6d5e4834",
       "guid": "d5a0b592cd9ce0143acb9eb2fa369fef",
       "types": [
         "CatalogFixture",
         "Report",
-        "SandboxRegressionProbe"
+        "SandboxRegressionProbe",
+        "ShotVisualFixture"
       ],
-      "lines": 602,
+      "lines": 609,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -5432,8 +5440,8 @@
         "RuntimeInitializeOnLoadMethod"
       ],
       "reviewStatus": "partial",
-      "notes": "AudioConfig27: readonly audio bank/getter consumption проверен; прежние personal timing/model/config/style либо authoring долги сохранены.",
-      "reviewedSha256": "8d77684f2d3d2c8d402b52d09ea603fe5abc24a3ea15ab92b1c1ada13a1f0749",
+      "notes": "VisualConfig31: readonly visual config consumption/guards проверены; прежние actor, presentation lifetime и probe долги сохранены.",
+      "reviewedSha256": "fbf5f6a52b4ebd80b018f8242a2ac820b64a0a6de90de8fc1cb5f2b9ee43c0cc",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -5456,8 +5464,8 @@
       ],
       "usageEvidence": "Опциональная Development/instrumentation fixture; не является production gameplay dependency и не запускалась.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioConfig27.md",
-      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
       "previousReviewStatus": "partial"
     },
     {
@@ -16239,13 +16247,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
-      "sha256": "9c755dbd02aa4350d02612d7aae6b8af03b55a67523d65a6c498995845096740",
+      "sha256": "12ed7a0c3931d3edbd2019e1e03dee927d567dda3825832917a9a359b3f3155e",
       "baselineSha256": "596fb7c3e90acf823fc8ecc665be76ec2f257bc91f18efb1d501753fb846d9aa",
       "guid": "a7c2f849920eead45b86e58e62166543",
       "types": [
         "PlayerWeapon2D"
       ],
-      "lines": 379,
+      "lines": 381,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -16295,8 +16303,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
-      "reviewedSha256": "9c755dbd02aa4350d02612d7aae6b8af03b55a67523d65a6c498995845096740",
+      "notes": "VisualConfig31: readonly visual config consumption/guards проверены; прежние actor, presentation lifetime и probe долги сохранены.",
+      "reviewedSha256": "12ed7a0c3931d3edbd2019e1e03dee927d567dda3825832917a9a359b3f3155e",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16329,9 +16337,9 @@
         "Physics2D/Time"
       ],
       "usageEvidence": "Player prefab/scene overrides; loot/checkpoint/audio/HUD",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
       "previousReviewStatus": "partial"
     },
     {
@@ -17281,13 +17289,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
-      "sha256": "c200fd24f6ba4339a0da66c7fa22046606f8f26b7349cf24375562b5ece65646",
+      "sha256": "7badfd318c91545878d4a16ab76fafa116c785c9b1bfe358afd3daf7c9669fbb",
       "baselineSha256": "0bf75bd967f5b66f88ac487851335d6b1afbca0632d3818a9dbaf13a372a6252",
       "guid": "52f3d9d541841ba4783acf4f960c88f6",
       "types": [
         "ShotEffect2D"
       ],
-      "lines": 214,
+      "lines": 225,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Combat/PistolShotEffect.prefab"
       ],
@@ -17312,6 +17320,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
@@ -17321,7 +17330,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
+      "notes": "VisualConfig31: readonly visual config consumption/guards проверены; прежние actor, presentation lifetime и probe долги сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Вспышка/плюм/impact, локальный свет и запрос видимости",
@@ -17332,10 +17341,10 @@
         "Unity Random/Time"
       ],
       "usageEvidence": "PlayerWeapon/Bullet Instantiate→Play; PlayerInteraction.IlluminatesPoint для подбора",
-      "reviewedSha256": "c200fd24f6ba4339a0da66c7fa22046606f8f26b7349cf24375562b5ece65646",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewedSha256": "7badfd318c91545878d4a16ab76fafa116c785c9b1bfe358afd3daf7c9669fbb",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
       "previousReviewStatus": "partial"
     },
     {
@@ -21230,16 +21239,16 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "ProjectileFlight16: pure личные flight state/settings/launch command/controller или native environment/composition/regression boundary. Старые speed/range/radius/lifetime, nearest hit/one damage и явная сцена владельца сохранены; native physics/presentation adapter не содержит authoritative flight timing.",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
       "sourceScope": "unity",
-      "sha256": "778baaa0f136cd14cb9519b9cc6180a132621de1f3753ff1967c580e82da2564",
+      "sha256": "7ecc2289f427e2b4fe3cf454620b4811fb511c085f96ff476e0c3cb0d34955d5",
       "guid": "3ad75058d0e54f83bbe3c499861fc4b0",
       "types": [
         "Environment",
         "ProjectileFlightTests"
       ],
-      "lines": 185,
+      "lines": 187,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -21271,10 +21280,11 @@
         "TestCase"
       ],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "778baaa0f136cd14cb9519b9cc6180a132621de1f3753ff1967c580e82da2564",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/ProjectileFlight16.md",
-      "reviewScope": "Full source read: projectile flight model/settings/launch command/controller, explicit DI prefab composition, nearest whole-segment native cast/owner and trigger exclusions/one damage/range/lifetime; source scene ownership and normal Windows64 verified."
+      "reviewedSha256": "7ecc2289f427e2b4fe3cf454620b4811fb511c085f96ff476e0c3cb0d34955d5",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "reviewStatus": "reviewed_boundary",
@@ -21353,6 +21363,31 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit09.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs",
+      "sourceScope": "unity",
+      "sha256": "8550c287b26cbc3cd5c9a60e3bd570f1afe5588242cc5d0129a3b216ae7a4f14",
+      "guid": "1d17efe2c2cbc94459fe4707a046d101",
+      "types": [
+        "ShotVisualBoundaryTests"
+      ],
+      "lines": 128,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "8550c287b26cbc3cd5c9a60e3bd570f1afe5588242cc5d0129a3b216ae7a4f14",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution."
     },
     {
       "baselineSha256": null,
@@ -21739,15 +21774,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs",
       "sourceScope": "unity",
-      "sha256": "194099b1ea0e09b0b0d568da53ef3cb8d2c1678f844eac5fcd0d87babca6bd0f",
+      "sha256": "5fb3d83a1a019270d779098702638fc5afc65e2adc20da58a3df23fb981c4fb7",
       "guid": "2186b30cfb8142169dd7b3b7e5610f14",
       "types": [
         "WeaponDefinitionConfigTests"
       ],
-      "lines": 76,
+      "lines": 80,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -21756,10 +21791,11 @@
         "TestCase"
       ],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "194099b1ea0e09b0b0d568da53ef3cb8d2c1678f844eac5fcd0d87babca6bd0f",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified."
+      "reviewedSha256": "5fb3d83a1a019270d779098702638fc5afc65e2adc20da58a3df23fb981c4fb7",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -22547,24 +22583,24 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
       "sourceScope": "unity",
-      "sha256": "c55223f25ce3d97f2b5526539b0120da29977f2f8dee86e88ff9a3a5a2e8fccd",
+      "sha256": "72c3a607d3d844bd1fb1ad4b18ccba85704aeaa68394569587f7527938c96e4d",
       "guid": "ad3421187d2a435bb84a328f2834e240",
       "types": [
         "ProjectileSceneOwnershipTests"
       ],
-      "lines": 199,
+      "lines": 203,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "c55223f25ce3d97f2b5526539b0120da29977f2f8dee86e88ff9a3a5a2e8fccd",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewedSha256": "72c3a607d3d844bd1fb1ad4b18ccba85704aeaa68394569587f7527938c96e4d",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -22648,10 +22684,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "notes": "VisualConfig31/BUG-028: readonly visual configuration/nested guards и original native rejection проверены; serialization и refs сохранены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "43257c411dfc041de1e58c2a26bcc3fbed874c5d73747fd9c497444a84f136fb",
+      "sha256": "0a28d794ffbf1854be29b3804226584eff12aa15ea02fc5c2f54530a3cf19d90",
       "guid": "f6f7021931ae9294a9d8993c8238be40",
       "types": [
         "RealClock",
@@ -22659,7 +22695,7 @@
         "TestInput",
         "WeaponSpreadLifetimeTests"
       ],
-      "lines": 334,
+      "lines": 370,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -22667,10 +22703,10 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "43257c411dfc041de1e58c2a26bcc3fbed874c5d73747fd9c497444a84f136fb",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewedSha256": "0a28d794ffbf1854be29b3804226584eff12aa15ea02fc5c2f54530a3cf19d90",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/VisualConfig31.md",
+      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
       "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -23095,7 +23131,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 572,
+    "unity": 573,
     "content_source": 8
   },
   "latestReview": {
@@ -23246,11 +23282,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 591,
-    "totalFiles": 591,
+    "reviewedFiles": 592,
+    "totalFiles": 592,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "LampPower30 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "VisualConfig31 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

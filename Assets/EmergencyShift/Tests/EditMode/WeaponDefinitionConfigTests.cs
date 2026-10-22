@@ -43,6 +43,10 @@ namespace EmergencyShift.Tests
         {
             var definition = Own(ScriptableObject.CreateInstance<PumpShotgunDefinition>());
             var visuals = Own(ScriptableObject.CreateInstance<ShotVisualProfile>());
+            var projectile = Own(ScriptableObject.CreateInstance<ProjectileVisualProfile>());
+            var visualData = new SerializedObject(visuals);
+            visualData.FindProperty("projectile").objectReferenceValue = projectile;
+            visualData.ApplyModifiedPropertiesWithoutUndo();
             var audio = Own(ScriptableObject.CreateInstance<WeaponAudioProfile>());
             var data = new SerializedObject(definition);
             data.FindProperty("visuals").objectReferenceValue = visuals;

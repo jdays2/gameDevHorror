@@ -124,6 +124,7 @@ namespace EmergencyShift
         {
             if (style != null)
             {
+                style.Validate();
                 visualProfile = style;
             }
         }
@@ -312,6 +313,7 @@ namespace EmergencyShift
                 return false;
             }
 
+            visualProfile.Validate();
             UpdatePose();
             if (aimEnvironment == null || !aimEnvironment.TryBuildShot(BulletRange,
                 out WeaponShotRequest request, out pendingMuzzleHit))

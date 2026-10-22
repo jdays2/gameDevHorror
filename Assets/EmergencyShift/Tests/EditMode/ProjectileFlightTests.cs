@@ -141,7 +141,9 @@ namespace EmergencyShift.Tests
                 Assert.That(settings.Radius, Is.EqualTo(.035f));
                 Assert.That(settings.MaximumAge, Is.EqualTo(3));
                 Assert.That(settings.Range, Is.EqualTo(.1f));
-                profile.bulletSpeed = 10;
+                var authored = new UnityEditor.SerializedObject(profile);
+                authored.FindProperty("bulletSpeed").floatValue = 10;
+                authored.ApplyModifiedPropertiesWithoutUndo();
                 Assert.That(settings.Speed, Is.EqualTo(44));
                 Assert.Throws<ArgumentException>(() => profile.ToFlightSettings(float.NaN, 2));
             }

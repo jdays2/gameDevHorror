@@ -202,6 +202,42 @@ namespace EmergencyShift.Tests
         }
 
         [UnityTest]
+        public IEnumerator InvalidLiveVisualCannotSpendAmmoOrSpawnEffects() => VerifyVisualRejection(false);
+
+        [UnityTest]
+        public IEnumerator MissingProjectileCannotSpendAmmoOrSpawnEffects() => VerifyVisualRejection(true);
+
+        private IEnumerator VerifyVisualRejection(bool missingProjectile)
+        {
+            PlayerWeapon2D weapon = CreateWeapon(123, false);
+            var visual = UnityEngine.Object.Instantiate(weapon.VisualProfile);
+            ownedAssets.Add(visual);
+            weapon.SetVisualProfile(visual);
+            var data = new SerializedObject(visual);
+            if (missingProjectile)
+            {
+                data.FindProperty("projectile").objectReferenceValue = null;
+            }
+            else
+            {
+                data.FindProperty("flashSeconds").floatValue = float.NaN;
+            }
+
+            data.ApplyModifiedPropertiesWithoutUndo();
+            int ammo = weapon.Ammo;
+            int shots = weapon.ShotsFired;
+            int effects = UnityEngine.Object.FindObjectsByType<ShotEffect2D>(FindObjectsSortMode.None).Length;
+            Assert.Throws<InvalidOperationException>(() => weapon.TryFire());
+            Assert.That(weapon.Ammo, Is.EqualTo(ammo));
+            Assert.That(weapon.ShotsFired, Is.EqualTo(shots));
+            Assert.That(UnityEngine.Object.FindObjectsByType<ShotEffect2D>(FindObjectsSortMode.None).Length, Is.EqualTo(effects));
+            weapon.SetVisualProfile(source.Visuals);
+            Assert.Throws<InvalidOperationException>(() => weapon.SetVisualProfile(visual));
+            Assert.That(weapon.VisualProfile, Is.SameAs(source.Visuals));
+            yield return null;
+        }
+
+        [UnityTest]
         public IEnumerator ForeignActiveSceneCannotOwnMuzzleFlashOrFlyingBullets() => VerifyShotScene(false);
 
         [UnityTest]

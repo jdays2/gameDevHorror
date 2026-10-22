@@ -123,9 +123,11 @@ namespace EmergencyShift.Editor
             audio.Validate();
             AssetDatabase.CreateAsset(audio, Root + "/Data/Audio/ShotgunPump.asset");
             var visual = UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<WeaponDefinition>(Root + "/Data/Weapons/PistolDefinition.asset").Visuals);
-            visual.displayName = "Дробовик · короткая вспышка";
-            visual.plumeWidth = 1.1f;
-            visual.plumeLength = .9f;
+            var visualData = new SerializedObject(visual);
+            visualData.FindProperty("displayName").stringValue = "Дробовик · короткая вспышка";
+            visualData.FindProperty("plumeWidth").floatValue = 1.1f;
+            visualData.FindProperty("plumeLength").floatValue = .9f;
+            visualData.ApplyModifiedPropertiesWithoutUndo();
             AssetDatabase.CreateAsset(visual, Root + "/Data/Weapons/ShotgunVisual.asset");
             var definition = ScriptableObject.CreateInstance<PumpShotgunDefinition>();
             var data = new SerializedObject(definition);

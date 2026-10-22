@@ -1,0 +1,11 @@
+# Конфиги вспышки и снаряда · VisualConfig31
+
+2026-10-22, после ae83093. ShotVisualProfile и ProjectileVisualProfile предоставляют readonly runtime API: прежние поля стали private SerializeField, свойства — только для чтения. Имена, GUID, ссылки и значения assets сохранены. ProjectileFlightSettings остаётся отдельным immutable снимком скорости/дальности/радиуса/lifetime; модель полёта не зависит от SO.
+
+ShotVisualProfile.Validate проверяет finite значения, диапазоны цвета/длительности/размеров и обязательный projectile вместе с его Validate. Валидация выполняется до ShotEffect.Play/Launch, смены visual profile и выстрела PlayerWeapon; вложенные visuals проверяются при Validate WeaponDefinition, если назначены. Headless definitions без visuals по прежнему допустимы. Невалидные live Inspector значения не расходуют патрон, не повышают ShotsFired и не создают вспышку. SetVisualProfile при отказе сохраняет прежнюю ссылку.
+
+BUG-028 воспроизведён на исходном коде: **0/2 EditMode** для flashSeconds=NaN и отсутствующего projectile. После исправления **1091/1091 EditMode**, включая 21 новый случай: исходные отказы, scalar guards, nested projectile, readonly API и все authored assets без мутации. Один старый authoring fixture был дополнен валидной связью projectile; требование к профилю не ослаблялось. **60/60 PlayMode**, включая два новых native случая отказа до ammo/spawn и прежние volley/impact/range/ownership проверки.
+
+Обычная Windows64 success; собственная Player assembly только EmergencyShift.Runtime. [XML/source/meta hashes и baseline](../Validation/VisualConfig31.json). 1805 защищённых ресурсов и 60 исходных dirty файлов неизменны. Новая meta теста импортирована из копии через exclusive create. Сцены/профили/prefab не регенерировались. Копия включает исходную незавершённую паузу, не clean HEAD; она исключена из коммита. Имеющийся нефатальный LicensingClient warning остался.
+
+Проверки конфигов — холодный путь, O(1), без нового Update/cache или native запроса. Инструментированные visual overrides изменяют только transient clones через SerializedObject/одноразовый JsonUtility fixture; это не save DTO и не runtime setter конфига. Рецепт дробовика переведён на SerializedObject, но не запускался. Полный SOD, другие конфиги/эффекты/жизненные циклы и авторская приёмка остаются в работе.

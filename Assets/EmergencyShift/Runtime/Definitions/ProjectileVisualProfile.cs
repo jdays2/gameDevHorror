@@ -8,26 +8,43 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Projectile visual profile")]
     public sealed class ProjectileVisualProfile : ScriptableObject
     {
-        public Color bulletColor = new Color(.8f, .74f, .62f, .25f);
+        [SerializeField]
+        private Color bulletColor = new Color(.8f, .74f, .62f, .25f);
         [Min(1)]
-        public float bulletSpeed = 44;
+        [SerializeField]
+        private float bulletSpeed = 44;
         [Min(.02f)]
-        public float trailLength = .12f;
+        [SerializeField]
+        private float trailLength = .12f;
         [Min(.01f)]
-        public float trailWidth = .012f;
+        [SerializeField]
+        private float trailWidth = .012f;
         [Range(0, 1)]
-        public float projectileVisibility = 1;
+        [SerializeField]
+        private float projectileVisibility = 1;
         [Range(0, .8f)]
-        public float trailVariation = .45f;
+        [SerializeField]
+        private float trailVariation = .45f;
         [Min(0)]
-        public float bulletLightRadius;
+        [SerializeField]
+        private float bulletLightRadius;
         [Min(0)]
-        public float bulletLightIntensity;
+        [SerializeField]
+        private float bulletLightIntensity;
         [Header("Flight compatibility settings")]
         [SerializeField, Min(0)]
         private float collisionRadius = .035f;
         [SerializeField, Min(.01f)]
         private float maximumFlightSeconds = 3;
+
+        public Color BulletColor => bulletColor;
+        public float BulletSpeed => bulletSpeed;
+        public float TrailLength => trailLength;
+        public float TrailWidth => trailWidth;
+        public float ProjectileVisibility => projectileVisibility;
+        public float TrailVariation => trailVariation;
+        public float BulletLightRadius => bulletLightRadius;
+        public float BulletLightIntensity => bulletLightIntensity;
 
         public ProjectileFlightSettings ToFlightSettings(float range, int damage)
         {

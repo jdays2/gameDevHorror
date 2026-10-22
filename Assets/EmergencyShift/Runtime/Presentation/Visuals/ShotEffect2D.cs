@@ -82,19 +82,30 @@ namespace EmergencyShift
 
         public void Play(ShotVisualProfile profile, bool impact, Vector2 direction)
         {
+            if (profile == null)
+            {
+                throw new ArgumentNullException(nameof(profile));
+            }
+
+            profile.Validate();
+            if (!float.IsFinite(direction.x) || !float.IsFinite(direction.y))
+            {
+                throw new ArgumentOutOfRangeException(nameof(direction));
+            }
+
             configured = true;
             elapsed = 0;
             isImpact = impact;
-            duration = impact ? profile.impactSeconds : profile.flashSeconds;
+            duration = impact ? profile.ImpactSeconds : profile.FlashSeconds;
             duration = Mathf.Max(0.02f, duration);
-            tint = profile.flashColor;
-            initialIntensity = Mathf.Max(0, profile.flashIntensity) * (impact ? 0.5f : 1);
+            tint = profile.FlashColor;
+            initialIntensity = Mathf.Max(0, profile.FlashIntensity) * (impact ? 0.5f : 1);
             flash.color = Color.Lerp(tint, Color.white, 0.35f);
             flash.intensity = initialIntensity;
-            flash.pointLightOuterRadius = Mathf.Max(0.1f, profile.flashRadius) * (impact ? 0.35f : 1);
+            flash.pointLightOuterRadius = Mathf.Max(0.1f, profile.FlashRadius) * (impact ? 0.35f : 1);
             flash.enabled = true;
             transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
-            transform.localScale = Vector3.one * (impact ? 0.55f : Mathf.Max(0.1f, profile.muzzleSize) * Random.Range(0.92f, 1.08f));
+            transform.localScale = Vector3.one * (impact ? 0.55f : Mathf.Max(0.1f, profile.MuzzleSize) * Random.Range(0.92f, 1.08f));
             foreach (SpriteRenderer stroke in strokes)
             {
                 stroke.color = tint;
@@ -127,15 +138,15 @@ namespace EmergencyShift
             if (plume != null)
             {
                 plume.enabled = !impact;
-                plumeDuration = Mathf.Clamp(profile.plumeSeconds, .02f, duration);
+                plumeDuration = Mathf.Clamp(profile.PlumeSeconds, .02f, duration);
                 // The muzzle light must never outlive its visible fire. Impacts retain their own timing.
                 if (!impact)
                 {
                     duration = plumeDuration;
                 }
 
-                plume.transform.localPosition = new Vector3(0, profile.plumeLength * .42f, -.003f);
-                plume.transform.localScale = new Vector3(profile.plumeWidth, profile.plumeLength, 1);
+                plume.transform.localPosition = new Vector3(0, profile.PlumeLength * .42f, -.003f);
+                plume.transform.localScale = new Vector3(profile.PlumeWidth, profile.PlumeLength, 1);
                 plume.color = Color.Lerp(Color.white, tint, .22f);
                 plumeProperties = new MaterialPropertyBlock();
                 plumeProperties.SetFloat(SeedId, Random.Range(0f, 100f));

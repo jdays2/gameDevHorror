@@ -237,7 +237,7 @@ namespace EmergencyShift
             yield return Move(46, 2);
             yield return null;
             var shotgun = weapon.Definition;
-            Check("Both weapons share flying projectile presentation", shotgun.Visuals.projectile == pistol.Visuals.projectile);
+            Check("Both weapons share flying projectile presentation", shotgun.Visuals.Projectile == pistol.Visuals.Projectile);
             yield return KeyPress(Key.Digit1);
             yield return Move(48.5f, 5);
             player.GetComponent<PlayerAim2D>().SetScriptedTarget(new Vector2(48.5f, 14));
@@ -389,8 +389,9 @@ namespace EmergencyShift
             Physics2D.SyncTransforms();
             var normalVisuals = weapon.VisualProfile;
             var hiddenVisuals = Instantiate(normalVisuals);
-            hiddenVisuals.projectile = Instantiate(normalVisuals.projectile);
-            hiddenVisuals.projectile.projectileVisibility = 0;
+            var hiddenProjectile = Instantiate(normalVisuals.Projectile);
+            JsonUtility.FromJsonOverwrite("{\"projectileVisibility\":0}", hiddenProjectile);
+            JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(new ShotVisualFixture { projectile = hiddenProjectile }), hiddenVisuals);
             weapon.SetVisualProfile(hiddenVisuals);
             UnityEngine.Random.InitState(4471);
             Check("Generic two-target volley fires", weapon.TryFire());
@@ -398,7 +399,7 @@ namespace EmergencyShift
             yield return new WaitForSeconds(1);
             Check("One cone can hit two independent damage receivers", left.Hits > 0 && right.Hits > 0);
             weapon.SetVisualProfile(normalVisuals);
-            Destroy(hiddenVisuals.projectile);
+            Destroy(hiddenProjectile);
             Destroy(hiddenVisuals);
             int leftHits = left.Hits;
             int rightHits = right.Hits;
@@ -596,6 +597,12 @@ namespace EmergencyShift
             yield return new WaitForSeconds(.4f);
             Bind();
             Check("R restarts after death", player.Health == 3 && !player.IsDead && Vector2.Distance(body.position, new Vector2(10, -3)) < .1f);
+        }
+
+        [Serializable]
+        private sealed class ShotVisualFixture
+        {
+            public ProjectileVisualProfile projectile;
         }
     }
 }

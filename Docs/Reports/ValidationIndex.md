@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Shot/projectile readonly config / BUG-028 | [VisualConfig31](VisualConfig31.md): baseline 0/2, затем 1091/1091 EditMode, 60/60 PlayMode, Windows64 success. Невалидный профиль отклоняется до ammo/spawn/Light mutation; прежние поля/refs/assets сохранены. |
 | Питание и clock ламп | [LampPower30](LampPower30.md): 1070/1070 EditMode, 58/58 PlayMode, Windows64 success. Личная power model/command, scaled clock, реальные scene/profile/legacy outputs и rebind; 0 managed bytes в warmed model loop. Legacy config/style и audio timing открыты. |
 | Цели и прохождение MVC/DI / BUG-027 | [LevelProgress29](LevelProgress29.md): 1058/1058 EditMode, 55/55 PlayMode, Windows64 success. Pure progress/run/clock/commands, исходные 0/2 lifetime failures, rebind/disable/destroy и остановка только своей сцены. Общая persistence/остальная миграция открыты. |
 | Level config / BUG-026 | [LevelConfig28](LevelConfig28.md): baseline 0/2, затем 1031/1031 EditMode, 49/49 PlayMode, Windows64 success; readonly IDs/rules/catalog, pure matcher, duplicate/unknown guards. Production definitions отсутствуют после удаления FirstShift; проверены fixtures и пустой каталог. |

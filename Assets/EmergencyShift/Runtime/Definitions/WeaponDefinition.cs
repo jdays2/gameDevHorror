@@ -65,6 +65,11 @@ namespace EmergencyShift
             {
                 throw new System.InvalidOperationException("Invalid weapon definition: " + name);
             }
+
+            if (visuals != null)
+            {
+                visuals.Validate();
+            }
         }
     }
 }

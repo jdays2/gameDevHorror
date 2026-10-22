@@ -84,11 +84,15 @@ namespace EmergencyShift.Tests
             ProjectileProbeTarget farther = Target("Farther", .7f);
             var definition = AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset");
             var style = Object.Instantiate(definition.Visuals);
-            var visual = Object.Instantiate(style.projectile);
+            var visual = Object.Instantiate(style.Projectile);
             assets.Add(style);
             assets.Add(visual);
-            visual.projectileVisibility = 0;
-            style.projectile = visual;
+            var projectileData = new SerializedObject(visual);
+            projectileData.FindProperty("projectileVisibility").floatValue = 0;
+            projectileData.ApplyModifiedPropertiesWithoutUndo();
+            var styleData = new SerializedObject(style);
+            styleData.FindProperty("projectile").objectReferenceValue = visual;
+            styleData.ApplyModifiedPropertiesWithoutUndo();
             BulletProjectile2D bullet = Spawn(owner.transform);
             bullet.Launch(owner.transform, Vector2.right, style, null, 1 << 9, 3, 3);
             Assert.That(bullet.GetComponentInChildren<SpriteRenderer>().enabled, Is.False);

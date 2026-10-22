@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "ae830935ebab4c1d67ea1dd34b18ec33a332e4e1",
+  "editMode": {
+    "result": "Passed",
+    "total": "1091",
+    "passed": "1091",
+    "failed": "0",
+    "end-time": "2026-10-22 04:32:44Z",
+    "rawPath": "work/sod-evidence-20261022-final/visual-config-edit.xml",
+    "rawSha256": "e0a5608c58bc000b602e37f545b576db8115ad99cc9b3d73cde749907ede2476",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotConfigRejectsBeforeChangingNativeEffect(False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotConfigRejectsBeforeChangingNativeEffect(True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"flashSeconds\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"flashSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"flashRadius\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"flashRadius\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"flashIntensity\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"flashIntensity\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"muzzleSize\",float.NegativeInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"muzzleSize\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"plumeSeconds\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"plumeSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"plumeWidth\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"plumeWidth\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"plumeLength\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"plumeLength\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"impactSeconds\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.InvalidShotScalarRejectsAtConfigurationBoundary(\"impactSeconds\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.ProfilesExposeOnlyReadonlyPropertiesAndPreserveAllAuthoredAssets(EmergencyShift.ShotVisualProfile)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.ProfilesExposeOnlyReadonlyPropertiesAndPreserveAllAuthoredAssets(EmergencyShift.ProjectileVisualProfile)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ShotVisualBoundaryTests.ShotValidationIncludesNestedProjectileWithoutMutatingSharedAsset",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "60",
+    "passed": "60",
+    "failed": "0",
+    "end-time": "2026-10-22 04:32:15Z",
+    "rawPath": "work/sod-evidence-20261022-final/visual-config-play.xml",
+    "rawSha256": "4e82c5dc16aed4accc12b95037866b80df9a1a0c41c7da8522fe5ba041f929dc",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ActualVolleyKeepsAllDirectionsWithDifferentFlashAndCosmeticDraws",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.BlockedMuzzleProducesImpactAndConsumesAmmoWithoutLaunchingBullets",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.DisablingViewCancelsPartialReloadAndReenableKeepsItsAmmo",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ForeignActiveSceneCannotOwnBlockedMuzzleImpact",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.ForeignActiveSceneCannotOwnMuzzleFlashOrFlyingBullets",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.InvalidLiveVisualCannotSpendAmmoOrSpawnEffects",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.WeaponSpreadLifetimeTests.MissingProjectileCannotSpendAmmoOrSpawnEffects",
+        "result": "Passed"
+      }
+    ]
+  },
+  "redBaseline": {
+    "rawPath": "work/sod-evidence-20261022-final/visual-config-before.xml",
+    "rawSha256": "52ad2dbf32e152e3f1c1bf8ec455e0c96a6b18bf4ac2b540c51ce684baa4af90",
+    "failed": 2,
+    "passed": 0,
+    "failures": [
+      "  Expected: <System.InvalidOperationException>\n  But was:  null\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    ],
+    "sourceRevision": "ae830935ebab4c1d67ea1dd34b18ec33a332e4e1",
+    "nativeSourceSha256": {
+      "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs": "5d4dd2ad36d1c451e722aeef46de00da37ed6ec7d4088ecb2f6459f27f65d698",
+      "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs": "0e1d9d145cc59fbf53a512162dbd230d4d21d4f2fa175c07a54458ede64488a7",
+      "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs": "c200fd24f6ba4339a0da66c7fa22046606f8f26b7349cf24375562b5ece65646"
+    },
+    "fixtureNote": "Original two native effect tests ran before validation; final fixture retains both scenarios and adds numeric/readonly/nested config tests. Play verifies rejection before ammo/spawn."
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-22T04:33:39.170Z",
+    "endedAt": "2026-10-22T04:34:06.801Z",
+    "generator": {
+      "name": "unity-cli",
+      "version": "1.0.0-beta.14"
+    }
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs": "389240a1ec64dea4d6d47fb6ccba9f334db01b4630e3b54784dd384665ba6ec4",
+    "Assets/EmergencyShift/Runtime/Definitions/ProjectileVisualProfile.cs": "1bc64de51d0e484187df1749ac892f100dc7f7d74b26365e0104dd17b7b0d883",
+    "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs": "c7de1470e34569adccfa4f5c07ebeb7d7e6acb2e46235b615da265bf59ff2b15",
+    "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs": "12ed7a0c3931d3edbd2019e1e03dee927d567dda3825832917a9a359b3f3155e",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs": "7badfd318c91545878d4a16ab76fafa116c785c9b1bfe358afd3daf7c9669fbb",
+    "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs": "d987e79f0fd6601236da6784caacdafdde5480c81692b659eed26603961ba73a",
+    "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs": "fbf5f6a52b4ebd80b018f8242a2ac820b64a0a6de90de8fc1cb5f2b9ee43c0cc",
+    "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs": "78561fac6801a6ed26b7d3b02f91568305247a6f959bb5216acb7fab8270f4e5",
+    "Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs": "8550c287b26cbc3cd5c9a60e3bd570f1afe5588242cc5d0129a3b216ae7a4f14",
+    "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs": "7ecc2289f427e2b4fe3cf454620b4811fb511c085f96ff476e0c3cb0d34955d5",
+    "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs": "5fb3d83a1a019270d779098702638fc5afc65e2adc20da58a3df23fb981c4fb7",
+    "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs": "72c3a607d3d844bd1fb1ad4b18ccba85704aeaa68394569587f7527938c96e4d",
+    "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs": "0a28d794ffbf1854be29b3804226584eff12aa15ea02fc5c2f54530a3cf19d90"
+  },
+  "metadataSha256": {
+    "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs.meta": "3a4cfaa138c0f8fb2d0145306f35e9b24081b429fe7833b91df0edbef70aec86",
+    "Assets/EmergencyShift/Runtime/Definitions/ProjectileVisualProfile.cs.meta": "267ec58204cd3e2777e61ea0fafa1c483792d74eacfad1818bcb50b66170dc83",
+    "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs.meta": "972ede9c29d499cef7ba90d90d6cb04e060f0e65d350e9bbed27f13b1e2ae29f",
+    "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs.meta": "2b5a348f5b0b5ec37f78563de7fa4b0e47ba831b4b07d00cdacd9a99688dcbfb",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs.meta": "7b9ccea8f970cb273ad2c23cecab2824712ee3273c769082b51bd8638eb71708",
+    "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs.meta": "52d312021bd9de4cd5b130a5f26457ace75c5796fe8dc24fd778a4e189c238e4",
+    "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs.meta": "08d5c8a20e531398e9f178ea2ace441b4f2e85e92d2b7fe07342d4cd329cc3a9",
+    "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs.meta": "b3feabebd10316bb70abe6b73c7af253eafb788087564bb8dcc34dc617b1c95e",
+    "Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs.meta": "4a7c77674f67f8791067971a2a56daf87c0120857a4fb77a742bacff431eca02",
+    "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs.meta": "ff4cf5c2c99e2499b19bab775b3b23b8fd4d12c53b6015160b62a389b3baaf7d",
+    "Assets/EmergencyShift/Tests/EditMode/WeaponDefinitionConfigTests.cs.meta": "c7d19525b4279549b3f135dd97b28cebd188fca331422a1acaa714fb08b7b3a8",
+    "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs.meta": "df53b89f08be8955219e5b55629d5d256728667d026c78858103c8f07f3af329",
+    "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs.meta": "5a382ae6d1bda3d8deb88b8c1fe2b51173779a261e25a1ac316d4fda7945938c"
+  },
+  "protectedResources": 1805,
+  "resourceBaselineSha256": "d88bb27eb6157c7e5073c94144f400da0c0ece478a174eb55a1ce33f23c9db4d",
+  "resourceDifferences": [],
+  "originalDirtyFilesPreserved": 60,
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Readonly shot/projectile configs preserve serialized names/refs and all assets. Invalid native effect config red baseline 0/2; rejection now before ammo/spawn/Light changes. Visual fixtures use valid projectile links and transient clones; authoring recipe not executed. Other SOD/config/actor/style work and owner acceptance remain open."
+}

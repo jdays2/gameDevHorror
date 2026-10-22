@@ -794,6 +794,7 @@
 - [ProjectileFlightTests.cs](../Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
 - [SceneRegistryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs)
+- [ShotVisualBoundaryTests.cs](../Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs)
 - [SingleUsePickupTests.cs](../Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs)
 - [SleeperModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs)
 - [SleeperTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs)
