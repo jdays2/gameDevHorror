@@ -1,6 +1,7 @@
 using EmergencyShift.Features.Health.Config;
 using EmergencyShift.Features.Interaction.Config;
 using EmergencyShift.Features.PlayerMovement.Config;
+using UnityEngine;
 
 namespace EmergencyShift.Features.PlayerRules.Config
 {
@@ -15,6 +16,9 @@ namespace EmergencyShift.Features.PlayerRules.Config
         public const float LegacyTieDistance = .05f;
         public const float LegacyNoticeSeconds = 1.8f;
         public const int LegacyMaximumNotices = 8;
+        public const float LegacyHitFlashSeconds = .16f;
+        public static readonly Color LegacyHitTint = new Color(1, .25f, .25f);
+        public static readonly Color LegacyDefeatedTint = new Color(.35f, .08f, .10f);
 
         public static readonly PlayerRulesSettings LegacyDefaults = new PlayerRulesSettings(
             LegacyMaximumHealth, LegacyProtectionSeconds, LegacyMoveSpeed, LegacyReach,
@@ -28,13 +32,29 @@ namespace EmergencyShift.Features.PlayerRules.Config
         public float TieDistance { get; }
         public float NoticeSeconds { get; }
         public int MaximumNotices { get; }
+        public float HitFlashSeconds { get; }
+        public Color HitTint { get; }
+        public Color DefeatedTint { get; }
 
         public PlayerRulesSettings(int maximumHealth, float protectionSeconds, float moveSpeed, float reach,
             float pickupRadius, float tieDistance, float noticeSeconds, int maximumNotices)
+            : this(maximumHealth, protectionSeconds, moveSpeed, reach, pickupRadius, tieDistance,
+                noticeSeconds, maximumNotices, LegacyHitFlashSeconds, LegacyHitTint, LegacyDefeatedTint)
+        {
+        }
+
+        public PlayerRulesSettings(int maximumHealth, float protectionSeconds, float moveSpeed, float reach,
+            float pickupRadius, float tieDistance, float noticeSeconds, int maximumNotices,
+            float hitFlashSeconds, Color hitTint, Color defeatedTint)
         {
             _ = new HealthSettings(maximumHealth, protectionSeconds);
             _ = new PlayerMovementSettings(moveSpeed);
             _ = new PlayerInteractionSettings(reach, tieDistance, noticeSeconds, maximumNotices, pickupRadius);
+            if (!float.IsFinite(hitFlashSeconds) || hitFlashSeconds < 0 || !ValidTint(hitTint) || !ValidTint(defeatedTint))
+            {
+                throw new System.ArgumentException("Player hit presentation requires a finite duration and colors.");
+            }
+
             MaximumHealth = maximumHealth;
             ProtectionSeconds = protectionSeconds;
             MoveSpeed = moveSpeed;
@@ -43,6 +63,9 @@ namespace EmergencyShift.Features.PlayerRules.Config
             TieDistance = tieDistance;
             NoticeSeconds = noticeSeconds;
             MaximumNotices = maximumNotices;
+            HitFlashSeconds = hitFlashSeconds;
+            HitTint = hitTint;
+            DefeatedTint = defeatedTint;
         }
 
         public HealthSettings ProjectHealth(int authoredMaximum, float authoredProtection, bool forceAuthored = false)
@@ -76,5 +99,8 @@ namespace EmergencyShift.Features.PlayerRules.Config
 
         private static float Select(float authored, float legacyDefault, float shared, bool forceAuthored) =>
             forceAuthored || authored != legacyDefault ? authored : shared;
+
+        private static bool ValidTint(Color color) => float.IsFinite(color.r) && float.IsFinite(color.g) &&
+            float.IsFinite(color.b) && float.IsFinite(color.a) && color.a >= 0 && color.a <= 1;
     }
 }

@@ -15,5 +15,8 @@ namespace EmergencyShift.Features.Health.Logic
         }
 
         public HealthModel Create(HealthSettings settings) => new HealthModel(settings, clock);
+
+        public PlayerLifeController CreatePlayer(HealthSettings settings, IPlayerLifeEnvironment environment, IPlayerLifeView view) =>
+            new PlayerLifeController(Create(settings), environment, view);
     }
 }

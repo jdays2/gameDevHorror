@@ -21,9 +21,17 @@ namespace EmergencyShift.Features.PlayerRules.Config
         private float noticeSeconds = PlayerRulesSettings.LegacyNoticeSeconds;
         [SerializeField, Range(1, 64)]
         private int maximumNotices = PlayerRulesSettings.LegacyMaximumNotices;
+        [Header("Life presentation")]
+        [SerializeField, Min(0)]
+        private float hitFlashSeconds = PlayerRulesSettings.LegacyHitFlashSeconds;
+        [SerializeField]
+        private Color hitTint = PlayerRulesSettings.LegacyHitTint;
+        [SerializeField]
+        private Color defeatedTint = PlayerRulesSettings.LegacyDefeatedTint;
 
         public PlayerRulesSettings ToSettings() => new PlayerRulesSettings(maximumHealth, protectionSeconds,
-            moveSpeed, reach, pickupRadius, tieDistance, noticeSeconds, maximumNotices);
+            moveSpeed, reach, pickupRadius, tieDistance, noticeSeconds, maximumNotices,
+            hitFlashSeconds, hitTint, defeatedTint);
 
         public void Validate() => ToSettings();
     }

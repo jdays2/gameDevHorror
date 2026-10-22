@@ -79,6 +79,16 @@ namespace EmergencyShift.Tests
                 "Temporary capacity belongs to the instance model, never its authored tuning field.");
             context.Player.SetHealthCapacity(originalMaximum, originalMaximum);
 
+            var visual = context.Player.transform.Find("Capsule visual").GetComponent<SpriteRenderer>();
+            Color normal = visual.color;
+            Assert.That(context.Player.TakeDamage(1), Is.True);
+            Assert.That(visual.color, Is.Not.EqualTo(normal));
+            context.Player.enabled = false;
+            Assert.That(visual.color, Is.EqualTo(normal), "Closing the life view cancels its transient hit presentation.");
+            yield return new WaitForSeconds(.2f);
+            Assert.That(visual.color, Is.EqualTo(normal));
+            context.Player.enabled = true;
+
             var rules = new PlayerRulesSettings(2, .7f, 5, 1.6f, .65f, .05f, 1.8f, 8);
             motor.Construct(new PlayerMovementControllerFactory(input, block, rules));
             yield return null;

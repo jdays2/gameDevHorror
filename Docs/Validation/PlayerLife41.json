@@ -1,0 +1,312 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "90a7015bc96e93c14d8722c0b59c0e764ea96c77",
+  "redBaseline": {
+    "result": "Failed(Child)",
+    "total": "1",
+    "passed": "0",
+    "failed": "1",
+    "end-time": "2026-10-22 13:14:17Z",
+    "rawPath": "work/sod-evidence-20261022-final/player-life-before.xml",
+    "rawSha256": "ddc34b31688cc244a0ee4d1bb0c6cedb8c972b8978264949971298230361e141",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementSceneTests.AuthoredPlayerMovesStopsForModalAndClearsVelocityOnDisable",
+        "result": "Failed",
+        "failure": "  Closing the life view cancels its transient hit presentation.\n  Expected: RGBA(0.600, 0.620, 0.620, 1.000)\n  But was:  RGBA(1.000, 0.250, 0.250, 1.000)\n"
+      }
+    ]
+  },
+  "editMode": {
+    "result": "Passed",
+    "total": "1218",
+    "passed": "1218",
+    "failed": "0",
+    "end-time": "2026-10-22 13:47:22Z",
+    "rawPath": "work/sod-evidence-20261022-final/player-life-edit.xml",
+    "rawSha256": "f7b9c5e1941f1e76e30072dfaf8c77a3d9d66010e1ce7543d8ab3abdfcf4b1cc",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.CapacityIsPersonalAndCannotReviveTheDead",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.DefeatDoesNotWaitForACosmeticViewOrCoroutine",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.InvalidDirectionCannotPartiallyDamageHealth(float.NaN,0)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.InvalidDirectionCannotPartiallyDamageHealth(0,float.PositiveInfinity)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.MissingRestoreTargetIsAnExpectedRejection",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.ProtectionAndDeathAreAuthoritativeBeforeNativeFeedback",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.RejectedDamageDoesNotReachTheEnvironmentOrView(0)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.RejectedDamageDoesNotReachTheEnvironmentOrView(-1)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.RestartRequiresTheDefeatedModelRatherThanAViewFlag",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.TrustedRestoreRevivesSilentlyWithTheExistingClamp(0,1)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.TrustedRestoreRevivesSilentlyWithTheExistingClamp(2,2)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerLifeControllerTests.TrustedRestoreRevivesSilentlyWithTheExistingClamp(20,3)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.ExplicitOverrideCanKeepValuesThatEqualTheOldDefault",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.FactoriesUseTheInjectedProfileRatherThanHardcodedDefaults",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidPresentationColorIsRejectedByTheSharedProjection(\"hitTint\",True)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidPresentationColorIsRejectedByTheSharedProjection(\"hitTint\",False)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidPresentationColorIsRejectedByTheSharedProjection(\"defeatedTint\",True)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidPresentationColorIsRejectedByTheSharedProjection(\"defeatedTint\",False)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"maximumHealth\",0)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"protectionSeconds\",-1)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"protectionSeconds\",float.NaN)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"moveSpeed\",float.NaN)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"moveSpeed\",-1)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"reach\",0.01f)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"pickupRadius\",0.01f)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"pickupRadius\",float.PositiveInfinity)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"tieDistance\",-1)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"noticeSeconds\",0.1f)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"maximumNotices\",0)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"maximumNotices\",65)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"hitFlashSeconds\",-1)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.InvalidProfileFailsBeforeWorldBindings(\"hitFlashSeconds\",float.NaN)",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.MissingPlayerProfileFailsBeforeAnyWorldBinding",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.PersonalHealthAndCapacityNeverMutateSharedSettings",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.ProductionProfileIsReadOnlyAndKeepsCurrentBalance",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.Tests.PlayerRulesTests.SharedChangesApplyToLegacyDefaultsWhileAuthoredDifferencesRemain",
+        "result": "Passed",
+        "failure": null
+      }
+    ]
+  },
+  "productionEditModeCases": 1215,
+  "validationOnlyCases": 3,
+  "playMode": {
+    "result": "Passed",
+    "total": "69",
+    "passed": "69",
+    "failed": "0",
+    "end-time": "2026-10-22 13:48:15Z",
+    "rawPath": "work/sod-evidence-20261022-final/player-life-play.xml",
+    "rawSha256": "19983cc9117af3b59ac516c9e9eb7b6b6b084fc38268d88bb8642fed8682e51d",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.PlayerMovementSceneTests.AuthoredPlayerMovesStopsForModalAndClearsVelocityOnDisable",
+        "result": "Passed",
+        "failure": null
+      }
+    ]
+  },
+  "copyOnlyStyleAuthoring": {
+    "result": "Passed",
+    "total": "1",
+    "passed": "1",
+    "failed": "0",
+    "end-time": "2026-10-22 13:27:29Z",
+    "rawPath": "work/sod-evidence-20261022-final/player-life-style-authoring.xml",
+    "rawSha256": "ca28ebd503c246aacabead62d9600c25b5e16f1f279d7f4825551ed7d106bf5e",
+    "cases": []
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-22T13:48:19.452Z",
+    "endedAt": "2026-10-22T13:48:35.843Z",
+    "generator": {
+      "name": "unity-cli",
+      "version": "1.0.0-beta.14"
+    }
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs": "5885e470e9debb0abeb16fbee0b0589489dc1e7941a6c488b2e7460b29949eb2",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeEnvironment.cs": "e7e9e0af0afc07edf7f0c448162f5e647c5c72da9b3f810a0062da9f88fa706a",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeView.cs": "9decf284d1df2eddd6bac42f604e2c8d92b6815efc216b85a6eacdee6f9a121b",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs": "d9c5c3269fbc8a60d5c6e2595f87dc012b3851d388b2c59683b28a8f21c4766f",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestartPlayerRoomCommand.cs": "546c52e24945af58e7535b71f0fdca1d515e8d1505ac781f59e35d0e5587efcb",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestorePlayerHealthCommand.cs": "07f3d67a83b594133a129d97f2aabe7e65bb431e261f6922ed7fe070f9c91acf",
+    "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs": "a1ad1ba64b444b9bb40fc137f9386d6f50b8a82929c688a7d218e4db351e8bcd",
+    "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesProfile.cs": "1d49397a56ec35b1d7b805a378a235c16c9979618c2b90595ffd051be3a02e1d",
+    "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesSettings.cs": "c5b364f683464ab070f3accf2a2e20d7695aaa583e8e3e36ccc07582b05e078d",
+    "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs": "fce04b2183b9fe651dc5bba0b9a048a216e7421313d50a8f3f5c5b505ffc897b",
+    "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs": "1b10595de18b15c66e43646b8c3dfb02f196fa7640ede7b8fe2345da20731092",
+    "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs": "476c29898b2a32e9a688c1d3e524e3fea7e42ca40cdcd0c13fef5d0913c7f2e1",
+    "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs": "8102a27a900196fef1dc41da2c96f90cc383b6e7912a8eb9349ecc664684b212"
+  },
+  "metadataSha256": {
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestartPlayerRoomCommand.cs.meta": "3c5c8e0329553e507b180661ac4bd24719a2bab58c04861f5b8cb95882bf28f0",
+    "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs.meta": "c2ce7ff8421984f51d123aa6c013c9922070d88e5a3bab95df30b463ff6390bc",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs.meta": "5b11048600c22b2beca88d7721345fa3437e6dc3a27d9c917724adbc7404988c",
+    "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesProfile.cs.meta": "4dbcb02acb0b50f38660499fc6dd147c75333a5fb9f9fac67b1a904a002fd5ff",
+    "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs.meta": "7c350ae8c5be14786d793c505e67a7d776deea9d4c424e8d6c0f763c7305477a",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeView.cs.meta": "f3e93436f86a0ca5f2e9bbc7a4f95bd064244adc817a0834891a304cb3e30579",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeEnvironment.cs.meta": "528e3cae2f7b7f870c16f46cf5c8e05bdbe6d357bd7c7e8c947bdfd405f120ce",
+    "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs.meta": "f40d6a7fce196e24ec03d8350aa6c9b9d819fcd17f9bf462e8e0a14dea1c1f96",
+    "Assets/EmergencyShift/Runtime/Features/Health/View.meta": "dfadd1c3ed895b6508a12029d062d03774f3a14e58534cd31b42ada52b39edce",
+    "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs.meta": "1c3058972579e012c69094c9d42750cc9e893bb47718fd41ed4bbffbb53fc805",
+    "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesSettings.cs.meta": "158b663fc90764a8e83dab84e9c43d77dcbd59b38d18c4487709bb13ec39ab9f",
+    "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs.meta": "25016aa1a6d3e1f6d273db4bdfdd3c493f9c4a12131f83eab2ba10c7ada24d72",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs.meta": "fd5a1560909e91e2459d2178061139b1db81f1fd7bd0ccf6d92cf5e00ec178bc",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestorePlayerHealthCommand.cs.meta": "ba53389d68f4b636a41de36b30703a2a2d293f80292667ddfec277acadbeb154"
+  },
+  "newMetadata": [
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeEnvironment.cs.meta",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeView.cs.meta",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs.meta",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestartPlayerRoomCommand.cs.meta",
+    "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestorePlayerHealthCommand.cs.meta",
+    "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs.meta",
+    "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs.meta",
+    "Assets/EmergencyShift/Runtime/Features/Health/View.meta"
+  ],
+  "protectedResourcesBefore": 2020,
+  "resourceBaselineSha256": "3a6a60cf1af71641b12ee73671dd7061b3280014c44a48c59e349610694a2f88",
+  "resourceDifferences": [
+    "Assets/EmergencyShift/Data/Player/PlayerRules.asset"
+  ],
+  "intentionalResourceDelta": {
+    "modifiedResource": "Assets/EmergencyShift/Data/Player/PlayerRules.asset",
+    "beforeSha256": "2cbb94235f94f1c8e97d33407d180978bac00e3d6a1976f4939750bf3a6f5872",
+    "afterSha256": "60bccf4aae54935230e7d905365b235b67a95ea6fa1b786f14bcb73dcaf0a734",
+    "onlyAddedLines": [
+      "hitFlashSeconds: 0.16",
+      "hitTint: {r: 1, g: 0.25, b: 0.25, a: 1}",
+      "defeatedTint: {r: 0.35, g: 0.08, b: 0.1, a: 1}"
+    ],
+    "existingEightRulesAndGuidPreserved": true
+  },
+  "allOtherProtectedResourcesUnchanged": true,
+  "originalDirtyFilesPreserved": 60,
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD.1218=1215 production plus3 authoring guard cases. Controller/commands are pure; physical defeat/reload is a distinct native adapter, hit flash/events remain a native view with disable cleanup. Health authority does not wait for visibility/animation. Existing clamp/event order, Scene/health/weapon/light behavior, profile/scene values and save format retained. PlayerRules asset only gained three former native constants; prior8 fields and GUID exact. Native red0/1 now passes; no shader/geometry/shadow-height changes. Remaining audio/door/lamp/navigation/UI/tools/style and owner acceptance open; no FPS/campaign claim."
+}

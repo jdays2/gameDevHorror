@@ -95,6 +95,8 @@ namespace EmergencyShift.Tests
         [TestCase("noticeSeconds", .1f)]
         [TestCase("maximumNotices", 0)]
         [TestCase("maximumNotices", 65)]
+        [TestCase("hitFlashSeconds", -1)]
+        [TestCase("hitFlashSeconds", float.NaN)]
         public void InvalidProfileFailsBeforeWorldBindings(string field, float value)
         {
             var owner = new GameObject("Invalid player rules world");
@@ -151,6 +153,36 @@ namespace EmergencyShift.Tests
             }
         }
 
+        [TestCase("hitTint", true)]
+        [TestCase("hitTint", false)]
+        [TestCase("defeatedTint", true)]
+        [TestCase("defeatedTint", false)]
+        public void InvalidPresentationColorIsRejectedByTheSharedProjection(string field, bool nonfinite)
+        {
+            var profile = ScriptableObject.CreateInstance<PlayerRulesProfile>();
+            try
+            {
+                var data = new SerializedObject(profile);
+                Color invalid = Color.white;
+                if (nonfinite)
+                {
+                    invalid.r = float.NaN;
+                }
+                else
+                {
+                    invalid.a = 2;
+                }
+
+                data.FindProperty(field).colorValue = invalid;
+                data.ApplyModifiedPropertiesWithoutUndo();
+                Assert.Throws<ArgumentException>(() => profile.ToSettings());
+            }
+            finally
+            {
+                UnityEngine.Object.DestroyImmediate(profile);
+            }
+        }
+
         [Test]
         public void ProductionProfileIsReadOnlyAndKeepsCurrentBalance()
         {
@@ -162,6 +194,9 @@ namespace EmergencyShift.Tests
             Assert.That(rules.MoveSpeed, Is.EqualTo(3.5f));
             Assert.That(rules.Reach, Is.EqualTo(1.6f));
             Assert.That(rules.PickupRadius, Is.EqualTo(.65f));
+            Assert.That(rules.HitFlashSeconds, Is.EqualTo(.16f));
+            Assert.That(rules.HitTint, Is.EqualTo(new Color(1, .25f, .25f)));
+            Assert.That(rules.DefeatedTint, Is.EqualTo(new Color(.35f, .08f, .10f)));
             Assert.That(JsonUtility.ToJson(profile), Is.EqualTo(before));
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(EmergencyShift.Editor.ThreatSignalAuthoring.ContextPath);
             var data = new SerializedObject(prefab.GetComponent<WorldInstaller>());

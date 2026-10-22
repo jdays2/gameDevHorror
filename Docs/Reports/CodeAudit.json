@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "628 own C# explicitly read;40 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PlayerRules40.",
+  "limits": "635 own C# explicitly read;39 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PlayerLife41.",
   "counts": {
-    "reviewed_boundary": 588,
-    "partial": 40
+    "reviewed_boundary": 596,
+    "partial": 39
   },
   "files": [
     {
@@ -2189,6 +2189,9 @@
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightPowerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestartPlayerRoomCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestorePlayerHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
@@ -2308,6 +2311,8 @@
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightOpticsCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/Logic/SetFlashlightPowerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestartPlayerRoomCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestorePlayerHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
@@ -3339,6 +3344,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -12235,6 +12241,7 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesSettings.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -12309,7 +12316,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyHealth2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
@@ -12351,9 +12358,13 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyHealth2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestartPlayerRoomCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestorePlayerHealthCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
       "entryPointHints": [],
@@ -12383,13 +12394,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
-      "sha256": "b97bb0fa302b22f04c5e52c347270bbc307c81a1f286f21e84a6cd0a1fb1a7fe",
+      "sha256": "5885e470e9debb0abeb16fbee0b0589489dc1e7941a6c488b2e7460b29949eb2",
       "baselineSha256": null,
       "guid": "5668fda29dd506a4c8156ad81626a519",
       "types": [
         "HealthModelFactory"
       ],
-      "lines": 19,
+      "lines": 22,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -12399,14 +12410,15 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Общий clock, каждый Create даёт новый личный model.",
-      "reviewedSha256": "b97bb0fa302b22f04c5e52c347270bbc307c81a1f286f21e84a6cd0a1fb1a7fe",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
+      "reviewedSha256": "5885e470e9debb0abeb16fbee0b0589489dc1e7941a6c488b2e7460b29949eb2",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -12423,9 +12435,141 @@
         "EmergencyShift.Features.Health.Config"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved.",
+      "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeEnvironment.cs",
+      "sourceScope": "unity",
+      "sha256": "e7e9e0af0afc07edf7f0c448162f5e647c5c72da9b3f810a0062da9f88fa706a",
+      "guid": "828e14cf95c1d3c4c93e5e353d28e7d4",
+      "types": [
+        "IPlayerLifeEnvironment"
+      ],
+      "lines": 8,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestartPlayerRoomCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "e7e9e0af0afc07edf7f0c448162f5e647c5c72da9b3f810a0062da9f88fa706a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeView.cs",
+      "sourceScope": "unity",
+      "sha256": "9decf284d1df2eddd6bac42f604e2c8d92b6815efc216b85a6eacdee6f9a121b",
+      "guid": "d697e90288f66594da8d6f71ed952552",
+      "types": [
+        "IPlayerLifeView"
+      ],
+      "lines": 10,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "9decf284d1df2eddd6bac42f604e2c8d92b6815efc216b85a6eacdee6f9a121b",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs",
+      "sourceScope": "unity",
+      "sha256": "d9c5c3269fbc8a60d5c6e2595f87dc012b3851d388b2c59683b28a8f21c4766f",
+      "guid": "b7cf68829db184e47991dc9c260c1c0e",
+      "types": [
+        "PlayerLifeController"
+      ],
+      "lines": 73,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d9c5c3269fbc8a60d5c6e2595f87dc012b3851d388b2c59683b28a8f21c4766f",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestartPlayerRoomCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "546c52e24945af58e7535b71f0fdca1d515e8d1505ac781f59e35d0e5587efcb",
+      "guid": "0c2b5747dadf4494a841e9d4185dd505",
+      "types": [
+        "RestartPlayerRoomCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "546c52e24945af58e7535b71f0fdca1d515e8d1505ac781f59e35d0e5587efcb",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/RestorePlayerHealthCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "07f3d67a83b594133a129d97f2aabe7e65bb431e261f6922ed7fe070f9c91acf",
+      "guid": "002e89286915bd540833c83138d9731d",
+      "types": [
+        "RestorePlayerHealthCommand"
+      ],
+      "lines": 32,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "07f3d67a83b594133a129d97f2aabe7e65bb431e261f6922ed7fe070f9c91acf",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
@@ -12439,7 +12583,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
@@ -12465,6 +12609,30 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit09.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
+      "sourceScope": "unity",
+      "sha256": "a1ad1ba64b444b9bb40fc137f9386d6f50b8a82929c688a7d218e4db351e8bcd",
+      "guid": "60dc0c53b03fa984dada861168bad13f",
+      "types": [
+        "PlayerLifeEnvironment2D"
+      ],
+      "lines": 68,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a1ad1ba64b444b9bb40fc137f9386d6f50b8a82929c688a7d218e4db351e8bcd",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved."
     },
     {
       "baselineSha256": null,
@@ -14561,15 +14729,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
       "path": "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesProfile.cs",
       "sourceScope": "unity",
-      "sha256": "433b9cb1b69fdaabce9c2ccc7ecb11674861fe36054afa3ff609e99c3770d8ed",
+      "sha256": "1d49397a56ec35b1d7b805a378a235c16c9979618c2b90595ffd051be3a02e1d",
       "guid": "a0e3d3edf4f52d84283003fec3d63571",
       "types": [
         "PlayerRulesProfile"
       ],
-      "lines": 30,
+      "lines": 38,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Player/PlayerRules.asset"
       ],
@@ -14581,23 +14749,24 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "433b9cb1b69fdaabce9c2ccc7ecb11674861fe36054afa3ff609e99c3770d8ed",
+      "reviewedSha256": "1d49397a56ec35b1d7b805a378a235c16c9979618c2b90595ffd051be3a02e1d",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/PlayerRules40.md",
-      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained."
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
       "path": "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesSettings.cs",
       "sourceScope": "unity",
-      "sha256": "17312edccf849686f4f9518a081526515e425d96decafdf7d99e77bcc786f6e8",
+      "sha256": "c5b364f683464ab070f3accf2a2e20d7695aaa583e8e3e36ccc07582b05e078d",
       "guid": "8c7588a1e83e7c04ab9ade2fecdbe4a0",
       "types": [
         "PlayerRulesSettings"
       ],
-      "lines": 80,
+      "lines": 106,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -14611,10 +14780,11 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "17312edccf849686f4f9518a081526515e425d96decafdf7d99e77bcc786f6e8",
+      "reviewedSha256": "c5b364f683464ab070f3accf2a2e20d7695aaa583e8e3e36ccc07582b05e078d",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/PlayerRules40.md",
-      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained."
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -15710,9 +15880,9 @@
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/CheckpointVolume2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
@@ -16905,9 +17075,9 @@
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
@@ -16949,13 +17119,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
-      "sha256": "d7ac4008e05bd6d79fb83d18e6e95e0a787ed7124eb6527dfe453c3a45f95c28",
+      "sha256": "fce04b2183b9fe651dc5bba0b9a048a216e7421313d50a8f3f5c5b505ffc897b",
       "baselineSha256": "e79fb73a68b189d23e7c13612c120698888667b23fa8effd3ecf183e6136de28",
       "guid": "7d88942bc97261748be6ab11968ac481",
       "types": [
         "PlayerLife2D"
       ],
-      "lines": 179,
+      "lines": 173,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -17028,9 +17198,9 @@
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "PlayerRules40: shared tuning и model-owned capacity проверены; native health/controller/view scope ещё открыт.",
-      "reviewedSha256": "d7ac4008e05bd6d79fb83d18e6e95e0a787ed7124eb6527dfe453c3a45f95c28",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
+      "reviewedSha256": "fce04b2183b9fe651dc5bba0b9a048a216e7421313d50a8f3f5c5b505ffc897b",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewDate": "2026-10-22",
@@ -17042,8 +17212,8 @@
         "checkpoint/SceneManager"
       ],
       "usageEvidence": "Player prefab/LevelContext; damage receivers; PauseMenuEnvironment и damage feedback",
-      "reviewReport": "Docs/Reports/PlayerRules40.md",
-      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved.",
       "previousReviewStatus": "partial"
     },
     {
@@ -17083,7 +17253,7 @@
         "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
@@ -17203,12 +17373,12 @@
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxSession2D.cs",
@@ -19075,11 +19245,11 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/FlashlightInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Player/FlashlightUpgrades.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerUtilityAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
@@ -19883,6 +20053,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -19966,6 +20137,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
@@ -19973,6 +20145,7 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
@@ -20036,6 +20209,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
@@ -20043,6 +20217,7 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
@@ -20061,6 +20236,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -20154,6 +20330,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -20692,6 +20869,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
@@ -20699,6 +20877,7 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
@@ -20717,6 +20896,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -20771,6 +20951,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
@@ -20778,6 +20959,7 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
@@ -20911,6 +21093,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -20989,6 +21172,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -21063,6 +21247,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -21612,6 +21797,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
@@ -21619,6 +21805,7 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
@@ -21637,6 +21824,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -21797,6 +21985,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -21994,6 +22183,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
@@ -22001,6 +22191,7 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
@@ -22177,6 +22368,7 @@
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
@@ -22184,6 +22376,7 @@
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
@@ -22202,6 +22395,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -22294,6 +22488,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -22311,6 +22506,50 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/PlayerInteraction17.md",
       "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
+      "sourceScope": "unity",
+      "sha256": "1b10595de18b15c66e43646b8c3dfb02f196fa7640ede7b8fe2345da20731092",
+      "guid": "fa19686c87a56bc489985e6c95491096",
+      "types": [
+        "Clock",
+        "PlayerLifeControllerTests",
+        "Ports",
+        "SilentView"
+      ],
+      "lines": 152,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1b10595de18b15c66e43646b8c3dfb02f196fa7640ede7b8fe2345da20731092",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved."
     },
     {
       "baselineSha256": null,
@@ -22352,17 +22591,17 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
       "sourceScope": "unity",
-      "sha256": "7d1a10fb14b521e9ad38a738a13d2a5d430de5dfe865c349116b3c6db0697c5e",
+      "sha256": "476c29898b2a32e9a688c1d3e524e3fea7e42ca40cdcd0c13fef5d0913c7f2e1",
       "guid": "0c569cc4719b2274a86bdaefa0ff745f",
       "types": [
         "Clock",
         "Input",
         "PlayerRulesTests"
       ],
-      "lines": 198,
+      "lines": 233,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -22382,6 +22621,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -22396,10 +22636,11 @@
         "TestCase"
       ],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "7d1a10fb14b521e9ad38a738a13d2a5d430de5dfe865c349116b3c6db0697c5e",
+      "reviewedSha256": "476c29898b2a32e9a688c1d3e524e3fea7e42ca40cdcd0c13fef5d0913c7f2e1",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/PlayerRules40.md",
-      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained."
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -22693,6 +22934,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -22812,6 +23054,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -23722,16 +23965,16 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "notes": "PlayerLife41/BUG-037: pure life controller/commands, отдельный native environment, scoped presentation и прежние style defaults проверены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
       "sourceScope": "unity",
-      "sha256": "2a5057d7b66051a0c3e1cf4ba4ce9df6e7742cd467f8734d4b166b45deab508d",
+      "sha256": "8102a27a900196fef1dc41da2c96f90cc383b6e7912a8eb9349ecc664684b212",
       "guid": "7f70cb037daf4c6789e94259db7f01b6",
       "types": [
         "Input",
         "PlayerMovementSceneTests"
       ],
-      "lines": 130,
+      "lines": 140,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -23748,10 +23991,10 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "2a5057d7b66051a0c3e1cf4ba4ce9df6e7742cd467f8734d4b166b45deab508d",
+      "reviewedSha256": "8102a27a900196fef1dc41da2c96f90cc383b6e7912a8eb9349ecc664684b212",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/PlayerRules40.md",
-      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
+      "reviewReport": "Docs/Reports/PlayerLife41.md",
+      "reviewScope": "Pure player life controller/damage/capacity/restore/restart commands; model authority separated from native physical/reload environment and renderer/events view. Explicit3 collaborators, no service bag. Disable hit-flash cancellation, known clamp/event order, per-instance health/shared style and real room/persistence regressions verified; original GUID/serialized fields preserved.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -24332,7 +24575,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 609,
+    "unity": 616,
     "content_source": 8
   },
   "latestReview": {
@@ -24483,11 +24726,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 628,
-    "totalFiles": 628,
+    "reviewedFiles": 635,
+    "totalFiles": 635,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "PlayerRules40 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "PlayerLife41 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

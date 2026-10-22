@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Player life MVC/lifetime / BUG-037 | [PlayerLife41](PlayerLife41.md):baseline0/1 →1218 EditMode(1215+3 scratch),69 PlayMode,Windows64 success. Pure commands/controller, отдельный physical/reload adapter и scoped native flash; player asset добавил3 прежних style values, старые rules/ID/формат сохранены. |
 | Shared player tuning/overrides | [PlayerRules40](PlayerRules40.md):1200 EditMode(1197+3 scratch),69 PlayMode,Windows64 success. Immutable profile/early world guards, authored override policy, model-only capacity, native3.5→5/modal; ProjectContext добавил одну ссылку, сцены/значения прежние. |
 | Authoring preflight / BUG-036 | [AuthoringSafety39](AuthoringSafety39.md): baseline0/2 →3 guard cases и1182 EditMode (1179 production+3 scratch). Dirty scene/sentinel и prefab/art bytes сохранены; Runtime неизменен, новая Player-сборка этого Editor-only этапа не выполнялась. |
 | Native light/encounter / BUG-035 | [NativeLight38](NativeLight38.md): baseline0/2 PlayMode →1179/1179 EditMode,69/69 PlayMode,Windows64 success. Output cleanup, scoped blockers, standalone preview и one-shot model/commands; геометрия/сцены/DTO прежние. |

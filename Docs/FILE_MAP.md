@@ -477,7 +477,16 @@
 - [DamageHealthCommand.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/DamageHealthCommand.cs)
 - [HealthModel.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs)
 - [HealthModelFactory.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs)
+- [IPlayerLifeEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeEnvironment.cs)
+- [IPlayerLifeView.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/IPlayerLifeView.cs)
+- [PlayerLifeController.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/PlayerLifeController.cs)
+- [RestartPlayerRoomCommand.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/RestartPlayerRoomCommand.cs)
+- [RestorePlayerHealthCommand.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/RestorePlayerHealthCommand.cs)
 - [SetHealthCapacityCommand.cs](../Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Health/View
+
+- [PlayerLifeEnvironment2D.cs](../Assets/EmergencyShift/Runtime/Features/Health/View/PlayerLifeEnvironment2D.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Interaction
 
@@ -839,6 +848,7 @@
 - [PlayerFootstepTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs)
 - [PlayerInputTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs)
 - [PlayerInteractionModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs)
+- [PlayerLifeControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs)
 - [PlayerMovementTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs)
 - [PlayerRulesTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs)
 - [ProjectileFlightTests.cs](../Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs)
