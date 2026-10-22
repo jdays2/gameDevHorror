@@ -18,6 +18,8 @@
 
 ## Проверки и связанные документы
 
+Цели и прохождение имеют отдельные личные ObjectiveProgressModel/LevelRunModel и команды, созданные LevelProgressInstaller/factory. Rules копируются при Configure/enable; состояние и scaled clock не принадлежат SO/MonoBehaviour. Native фасады сохраняют прежний API, фактические подписки, выбор владельца и scene stop/reload. Finish фиксируется один раз до stop/event; RestoreElapsed переживает поздний Start, обычный timer учитывает паузу. Формат checkpoint не менялся. [Перенос, BUG-027 и реальные lifecycle-проверки](../Reports/LevelProgress29.md).
+
 LevelDefinition/LevelCatalog и inline LevelObjectiveRule имеют readonly runtime API со старыми serialized names и enum values. Lookup валидирует весь каталог до первого match: nonempty IDs, saveRevision, supplied scene-path shape, null/duplicate entries и неизвестные rules. Пустой/null catalog поддержан; scenePath может отсутствовать у legacy/transient fixtures, nextLevelId остаётся резервом. Чистый ObjectiveRuleMatcher использует IObjectiveFacts, unknown условие не считается Always. Текущих production LevelDefinitions нет после удаления FirstShift; новые сцены/кампания не создавались. [Контракт и BUG-026](../Reports/LevelConfig28.md).
 
 Контракт и авторинг: [Уровень, цели и сохранение](../Guides/CHECKPOINTS.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).

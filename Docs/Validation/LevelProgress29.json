@@ -1,0 +1,276 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "30eb1d0ad4ddefa6a3c10ccf6ae7c2b5ce82f722",
+  "editMode": {
+    "result": "Passed",
+    "total": "1058",
+    "passed": "1058",
+    "failed": "0",
+    "end-time": "2026-10-22 03:28:23Z",
+    "rawPath": "work/sod-evidence-20261021/level-state-edit.xml",
+    "rawSha256": "29a9e568fc1ff7e984a820b13ccb752ded807d8c261780fe2b0608866392eebf",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.FinishCommitsBeforeSceneStopAndNotifiesOnceAfterwards",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.FinishRejectsWrongActorDeathOrMissingAccess(False,False,False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.FinishRejectsWrongActorDeathOrMissingAccess(False,False,True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.FinishRejectsWrongActorDeathOrMissingAccess(False,True,False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.FinishRejectsWrongActorDeathOrMissingAccess(False,True,True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.FinishRejectsWrongActorDeathOrMissingAccess(True,False,False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.FinishRejectsWrongActorDeathOrMissingAccess(True,False,True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.FinishRejectsWrongActorDeathOrMissingAccess(True,True,False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.InvalidClockThrowsBeforeChangingRestoredTime(double.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.InvalidClockThrowsBeforeChangingRestoredTime(double.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.InvalidClockThrowsBeforeChangingRestoredTime(-1.0d)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.InvalidElapsedRejectsWithoutStateChange(float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.InvalidElapsedRejectsWithoutStateChange(float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.InvalidElapsedRejectsWithoutStateChange(float.NegativeInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.MissingCommandDependenciesRejectRatherThanMutating",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.RestartRejectsReentryAndReleasesGuardAfterEnvironmentFailure",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.RestoreBeforeStartIsNotOverwrittenAndPausedClockDoesNotAdvance",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.ScopedFactoryCreatesIndependentRunsAndReadsClockOnlyForTime",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelRunTests.TimerUsesInjectedScaledClockAndDoesNotResetOnRepeatedStart",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ObjectiveProgressTests.ControllersDoNotShareProgressEvenWhenRulesAreShared",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ObjectiveProgressTests.FirstMatchingRuleWinsInAuthoredOrder",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ObjectiveProgressTests.InvalidCommandsCannotChangeProgressOrNotify",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ObjectiveProgressTests.NoMatchRetainsPreviousStateAndDoesNotNotify",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ObjectiveProgressTests.PhaseMayMoveBackwardsWhenAuthoredFactsChange",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ObjectiveProgressTests.ReconfigurationDoesNotResetProgressOrNotifyBeforeRefresh",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ObjectiveProgressTests.RepeatedMatchingRefreshStillNotifiesAsLegacyContract",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.ObjectiveProgressTests.SnapshotOwnsRulesAndPreservesNullText",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "55",
+    "passed": "55",
+    "failed": "0",
+    "end-time": "2026-10-22 03:27:49Z",
+    "rawPath": "work/sod-evidence-20261021/level-state-play.xml",
+    "rawSha256": "d2bd579320170dd1d13e85a05dcca08866d39a95836a637bbe0a11fb1bcb334e",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearImmediatelyCancelsOlderRequestAndDeletesAllSlotFiles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileDoorMovesPreventsWriteAfterDoorSettles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileGoreIsUnsettledPreventsWriteAfterItSettles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FinishingLevelStillCancelsPendingSaveAndClearsSlot",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FinishStopsOnlyParticipantsOfItsOwnSceneBeforeNotification",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FreshRequestAfterClearCanSavePreviouslyVisitedCheckpoint",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelObjectiveLifecycleTests.DisableReenableAndRepeatedConfigureKeepOneSubscriptionPerSource",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelObjectiveLifecycleTests.InvalidReconfigureDoesNotDetachThePreviousInventory",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelObjectiveLifecycleTests.NewInventoryUpdatesObjectivesAfterLiveReconfigure",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelObjectiveLifecycleTests.OldInventoryIsDetachedDuringLiveReconfigure",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LevelObjectiveLifecycleTests.ReconfiguredWeaponAndDestroyReleaseExactlyTheBoundSources",
+        "result": "Passed"
+      }
+    ]
+  },
+  "redBaseline": {
+    "rawPath": "work/sod-evidence-20261021/level-state-before.xml",
+    "rawSha256": "e0e02c1bfc9f778dc30519782fa749b316b7729123b147e17ea928abc64cc9ce",
+    "failed": 2,
+    "passed": 0,
+    "failures": [
+      "  Expected: 2\n  But was:  1\n",
+      "  Expected: 0\n  But was:  1\n"
+    ],
+    "sourceRevision": "30eb1d0ad4ddefa6a3c10ccf6ae7c2b5ce82f722",
+    "nativeSourceSha256": {
+      "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs": "3d7705cf812104f3abba3ca6a7ec35c9ace5c63f0724ba55217545be83f8be58",
+      "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs": "30d61e5d105b8aac5f90697e7c708167fc333e6f7e2cc0a18e9dc6d774cda650"
+    },
+    "fixtureNote": "Original two native tests ran before migration/Construct API; full final fixture retains both scenarios and adds injection/lifetime regressions."
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-22T03:29:56.664Z",
+    "endedAt": "2026-10-22T03:30:49.449Z",
+    "generator": {
+      "name": "unity-cli",
+      "version": "1.0.0-beta.14"
+    }
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Config/ObjectiveRuleSet.cs": "a07cb5bfe63e91feddd50962af334e0b0e793af7b0c4a173fc330bc194512e86",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ConfigureObjectivesCommand.cs": "f80203e18452c4ad87ac8f4a2a3a0253312c3f766da9559acde8c1c7d3d9a133",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/IObjectiveFacts.cs": "892bac7d67f896f1009599680f549bf3c6f1f97a7e278b6287c68b045ec36255",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/IObjectiveProgressView.cs": "07dc7cf146a4b062cc2f684ee350aa85344cc8e4921f87f1e6a522616d674764",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs": "7cabc2efb98b54f141886c00aa34a621e54bff1895c550b817fdae96b84cc5d0",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressModel.cs": "8a6d726a297b84993cb576835f504130bdf0ca2acf5b75f9bd0a12c2b7a99019",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveRuleMatcher.cs": "5421bce7e518cc206a471e2d59767034071c0ffa4ad6fd10f1b0ee5e25adac5a",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/RefreshObjectivesCommand.cs": "c0eba8b621d0b2d7b5e0659f797770204fe5ddf3b00cf1a00fd6530e2a007bb3",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs": "419d57b1bc07832cc5880d51947d36719afe55543a0376e315a4027d609357e2",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressInstaller.cs": "447a9f7e028c8f0531c74f52ef62d87bd17098fac9fdd56a0e695e4d37ab6903",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/FinishLevelRunCommand.cs": "080365b23c1132dc5a2cfb1a8c0bb10447e64970802486e9bbce63e35904b98b",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/ILevelRunEnvironment.cs": "82abe3164f51faa5b429c922dd62602e5046b177e4c2bf8c42191eb0bf8702f1",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs": "1ceb54ad7cd8bee3d625bde7958246017b93bea5bd498d7846a70871257501e6",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunModel.cs": "a906abc67d21630f1e36fd0007306bfe3da15a65b61cf0223a10a642e52d83ba",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestartLevelRunCommand.cs": "f5ecaafb6e144f6e68daed30bca3a432f7a368d73e82bb6ce0d1788243420d62",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestoreRunElapsedCommand.cs": "f48d8ace241584f2e009afb4c0bec4818ed98fe71d57495c139ad3e21dde1187",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/StartLevelRunCommand.cs": "c574a2316c73d93699ebc3927c4bc5eab31eb3bde001c1fc18616fed2073ec4c",
+    "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs": "da5a9f0eab77093defaeaa6ac6838ff81594f13a5a4eb6cc32b6bf41723b8cce",
+    "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs": "8d2cb8031c87cfa17721ca4d2ce5453ba6710cb53b234da7a11a97ec9fb125d3",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs": "00a0b8e5139b829bd01bfbe2426627b9170f8a9c28c3dca5b26dfb1917194468",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs": "9d4add7d5c84d5117120e013fc3a07e52d05144e07f0a5b20be363eafec2b0e0",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs": "a71c5f5e83ce615263a5cb22e49ed4a919c901f15e4c76c13aad98314500368c",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs": "23b136d117e116411d8be73fa79ff9505132db18eba54fff35669aac492985b9",
+    "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs": "9c7fc2c771487c63c96dc1826f1511eaa873c4c9ba2cfe68298325c692dc0e7f",
+    "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs": "d8cd869ddde3aa6538067fff803dca858eff460e5150d8c8a7135f3ca189658b",
+    "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs": "517228e676c8317d05d86344aaebdd668e992356c0d106175ac5ae0d658f6ee9",
+    "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs": "330f26e281d3ed82aa9addccdb0bc646150c951c5769a44cdd6b5152f4da575a"
+  },
+  "metadataSha256": {
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Config/ObjectiveRuleSet.cs.meta": "273a66e61a9e8ccab321dd7c41173ea1cc328bbbff22e42ebe6a326861386d7e",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ConfigureObjectivesCommand.cs.meta": "a1e22b7b778fbee2e43612a6a99741cea3e5d884aa300de87ec04923caa78921",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/IObjectiveFacts.cs.meta": "b81b5e7f4fc8f0ff07cb23b3d58a30262ea2a727161fe4add7f3e66a7918cfc3",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/IObjectiveProgressView.cs.meta": "9defa7d86eb09367c30ba430f11bb84b355c0ecea69dd7a1766885a6b5fd3e97",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs.meta": "54dd25e358eda19d5e5739f12e8001322f45aef077276bd974008ce5646d177a",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressModel.cs.meta": "251eed71544c0649eba4f8aaa44a11de54f956ba78db2860dd413c50633718d4",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveRuleMatcher.cs.meta": "6a05d8c7e84185ff97608fa429cd2f0fcbf9c68fd09e086d9a241ab742e80e98",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/RefreshObjectivesCommand.cs.meta": "0fe1a4cf1b3cedd290b4512d4dfff1b94e20828a7582a6491e6a3cff2d18117d",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs.meta": "183d9047acd3d8ac56bd509e930a18823983a7f06241857fc59279b3ee89c877",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressInstaller.cs.meta": "ed0d97520fcc6d8f55aa7f662876135c33804cd184e49dce1def81f4ae501fba",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/FinishLevelRunCommand.cs.meta": "6dd72fe15a2be067385012a19db761b4db25ddf3b7c44ca4b06344ca92df950c",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/ILevelRunEnvironment.cs.meta": "6d93cd7fc6a0d0d1adb38366e4302a63079a59c7c8c60dbd3a1aba13b9b1639a",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs.meta": "9a1c5133b930284b2a75eb80fa0719d696b07a9012e91d70b02eae4ece4731de",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunModel.cs.meta": "d7bc5961bf60f020ff63b08e383f35fcf687352e29f9644c1dab0ac9d9fd6de0",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestartLevelRunCommand.cs.meta": "007dbf5959757f55a0e2cf12c42de7ac3d42a80cacb8ae76a64bb687a483a16c",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestoreRunElapsedCommand.cs.meta": "ef66903e57afcf7dd51b89d532b263fce41c7ff4144c481933f5a2d4190dbfce",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/StartLevelRunCommand.cs.meta": "01d43d6c5c4d5e425ad54a9ab608471b412833e8e7fd8bc3f7c04ec3355bf139",
+    "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs.meta": "c097e4f5ff7f3367077a9e7f741c14475082831f774479b12d73d4cb60992472",
+    "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs.meta": "4e65a6cda49d0b5e1572f560417ade2bdf04cd710b6e839845c746f6a1264000",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs.meta": "83a796408082cae780e6b16c039889335e358187bcb291e0a7a90f5731c1a146",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs.meta": "589fb757ba1f415b88ec3db2a8222cd0f16218bb44d0e095b07eeaa50b1403f7",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs.meta": "765dbe45fcae8680d753b3d0608a2dd9fd9748584fc6a8dfddc985eb7c80839d",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs.meta": "0cc4448d6b3db6150fb98e6f1fd9b006c1bfa237aa16919bec488eb737180765",
+    "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs.meta": "0ac60afb02c3d5cbdbe21a4d3b867ac995e1d8cf99ee606fbaae8dc1eefed891",
+    "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs.meta": "956a3aef04e8c715ad0b6775548d328df1c2c492c3c0cd1df68039ca76907d18",
+    "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs.meta": "348fb1fea756e55539c091f5c552765203fda82aba1b24036b5435b24b755506",
+    "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs.meta": "db50c2d12529c55dd21db4799e8b8a464525aeeca7ff178ba2ebacf1fc569edd",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress.meta": "736db920b54989ae2b437f0e70abc3eb84ae8157d2cae62b47a5aa24d44b73a7",
+    "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic.meta": "acf647867a29973574a8e1e382a3a99e719f1a27406172f434aec6c5844b7e10",
+    "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Config.meta": "7d20d9030be580186d4faea83a04ba46de1569f6f75fad641dcf594ac24f461e"
+  },
+  "protectedResources": 1805,
+  "resourceBaselineSha256": "d88bb27eb6157c7e5073c94144f400da0c0ece478a174eb55a1ce33f23c9db4d",
+  "resourceDifferences": [],
+  "diagram": {
+    "fileUploadId": "4018d6dc-06b6-8168-b60c-00b2e5d3928d",
+    "sha256": "fdc795aafac6f64d2d04d91b0748f8466489bcde3c1b33dfd61908df02d997bf"
+  },
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Native fields/scene authoring, stable IDs and checkpoint schema unchanged. No production LevelDefinitions recreated. Run/objective personal state and commands, scaled clock, rebind/disable/destroy and same-scene stop verified. Scene-dependent stop/reload stay explicit environment adapters; general persistence/config/style and author acceptance remain open. Algorithmic cost only, no new Profiler/FPS claim. CLI upgraded beta.13 to beta.14 per skill; final tests/build use beta.14."
+}

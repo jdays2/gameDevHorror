@@ -45,6 +45,7 @@ namespace EmergencyShift.Tests
             JsonUtility.FromJsonOverwrite(JsonUtility.ToJson(new CatalogFixture { levels = new[] { definition } }), catalog);
             GameObject owner = Create("Checkpoint owner");
             run = owner.AddComponent<LevelRunController2D>();
+            run.Construct(null, new Features.LevelProgress.LevelProgressFactory(new Core.Time.UnityGameClock()));
             run.enabled = false;
             run.Configure(player, cards);
             run.SetDefinition(definition, null);
@@ -167,6 +168,42 @@ namespace EmergencyShift.Tests
             Assert.That(controller.IsSaving, Is.False);
             yield return Frames(5);
             AssertEmptySlot();
+        }
+
+        [UnityTest]
+        public IEnumerator FinishStopsOnlyParticipantsOfItsOwnSceneBeforeNotification()
+        {
+            Scene otherScene = SceneManager.CreateScene("Other run " + Guid.NewGuid().ToString("N"));
+            GameObject foreign = new GameObject("Foreign participant");
+            SceneManager.MoveGameObjectToScene(foreign, otherScene);
+            var otherBody = foreign.AddComponent<Rigidbody2D>();
+            var otherParticipant = foreign.AddComponent<LevelParticipant2D>();
+            otherParticipant.Configure(null, otherBody);
+            GameObject local = Create("Local participant");
+            var localBody = local.AddComponent<Rigidbody2D>();
+            local.AddComponent<LevelParticipant2D>().Configure(null, localBody);
+            bool notified = false;
+            run.Finished += CheckStopped;
+            try
+            {
+                cards.Add(definition.ExitCardId);
+                Assert.That(run.TryFinish(player), Is.True);
+                Assert.That(notified, Is.True);
+                Assert.That(run.TryFinish(player), Is.False);
+            }
+            finally
+            {
+                run.Finished -= CheckStopped;
+            }
+
+            yield return SceneManager.UnloadSceneAsync(otherScene);
+
+            void CheckStopped()
+            {
+                Assert.That(localBody.simulated, Is.False);
+                Assert.That(otherBody.simulated, Is.True);
+                notified = true;
+            }
         }
 
         private void AssertEmptySlot()

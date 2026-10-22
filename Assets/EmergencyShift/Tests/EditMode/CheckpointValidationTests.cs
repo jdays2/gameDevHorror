@@ -41,6 +41,7 @@ namespace EmergencyShift.Tests
             EmergencyShift.Editor.LevelPersistenceAuthoring.ReplaceCatalogEntries(catalog, new[] { definition });
             GameObject owner = CreateObject("Checkpoint test controller");
             run = owner.AddComponent<LevelRunController2D>();
+            run.Construct(null, new Features.LevelProgress.LevelProgressFactory(new Core.Time.UnityGameClock()));
             run.RestoreElapsed(12);
             controller = owner.AddComponent<LevelCheckpointController2D>();
             controller.Configure(catalog, definition, run, null);

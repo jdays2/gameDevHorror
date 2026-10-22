@@ -101,6 +101,7 @@ namespace EmergencyShift.Tests
             EmergencyShift.Editor.LevelPersistenceAuthoring.ReplaceCatalogEntries(levels, new[] { definition });
             GameObject owner = Create("Checkpoint owner");
             run = owner.AddComponent<LevelRunController2D>();
+            run.Construct(null, new Features.LevelProgress.LevelProgressFactory(new Core.Time.UnityGameClock()));
             run.RestoreElapsed(12);
             controller = owner.AddComponent<LevelCheckpointController2D>();
             controller.Configure(levels, definition, run, life);

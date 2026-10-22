@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "566 own C# explicitly read; 77 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LevelConfig28.",
+  "limits": "584 own C# explicitly read; 75 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LevelProgress29.",
   "counts": {
-    "partial": 77,
-    "reviewed_boundary": 489
+    "partial": 75,
+    "reviewed_boundary": 509
   },
   "files": [
     {
@@ -2125,6 +2125,16 @@
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ConfigureObjectivesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/RefreshObjectivesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/FinishLevelRunCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestartLevelRunCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestoreRunElapsedCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/StartLevelRunCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/PauseMenuController.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
@@ -2225,6 +2235,12 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ConfigureObjectivesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/RefreshObjectivesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/FinishLevelRunCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestartLevelRunCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestoreRunElapsedCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/StartLevelRunCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/OpenPauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/PauseMenu/Logic/ResumePauseMenuCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs",
@@ -3029,6 +3045,8 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunModel.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepModel.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/PlayerFootstepControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
@@ -3041,6 +3059,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -3164,6 +3183,8 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
@@ -3172,6 +3193,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
       ],
       "entryPointHints": [],
@@ -3916,6 +3938,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Definitions/LevelCatalog.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
@@ -3924,7 +3947,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -3967,8 +3991,11 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Definitions/LevelDefinition.cs",
-        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs"
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Config/ObjectiveRuleSet.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -4181,7 +4208,8 @@
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Definitions/LevelObjectiveRule.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveRuleMatcher.cs",
-        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -6183,6 +6211,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
@@ -6310,6 +6340,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
@@ -6472,6 +6504,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
@@ -6678,6 +6712,8 @@
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudioThreat2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerPresentationSource2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Sandbox/SandboxStationaryStalker2D.cs",
@@ -6923,7 +6959,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -11890,7 +11927,61 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Config/ObjectiveRuleSet.cs",
+      "sourceScope": "unity",
+      "sha256": "a07cb5bfe63e91feddd50962af334e0b0e793af7b0c4a173fc330bc194512e86",
+      "guid": "fa2f745e890f9cf49a80bc1818380b2d",
+      "types": [
+        "ObjectiveRuleSet"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ConfigureObjectivesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a07cb5bfe63e91feddd50962af334e0b0e793af7b0c4a173fc330bc194512e86",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ConfigureObjectivesCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "f80203e18452c4ad87ac8f4a2a3a0253312c3f766da9559acde8c1c7d3d9a133",
+      "guid": "d3be7ae3dc5bdc24ab304eabcf821685",
+      "types": [
+        "ConfigureObjectivesCommand"
+      ],
+      "lines": 31,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f80203e18452c4ad87ac8f4a2a3a0253312c3f766da9559acde8c1c7d3d9a133",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
       "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/IObjectiveFacts.cs",
       "sourceScope": "unity",
       "sha256": "892bac7d67f896f1009599680f549bf3c6f1f97a7e278b6287c68b045ec36255",
@@ -11902,21 +11993,106 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressModel.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveRuleMatcher.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/RefreshObjectivesCommand.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
       "reviewedSha256": "892bac7d67f896f1009599680f549bf3c6f1f97a7e278b6287c68b045ec36255",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained."
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
     },
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/IObjectiveProgressView.cs",
+      "sourceScope": "unity",
+      "sha256": "07dc7cf146a4b062cc2f684ee350aa85344cc8e4921f87f1e6a522616d674764",
+      "guid": "e432b69756fb64a4094707ca9a8f54ec",
+      "types": [
+        "IObjectiveProgressView"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "07dc7cf146a4b062cc2f684ee350aa85344cc8e4921f87f1e6a522616d674764",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs",
+      "sourceScope": "unity",
+      "sha256": "7cabc2efb98b54f141886c00aa34a621e54bff1895c550b817fdae96b84cc5d0",
+      "guid": "5c2617f0e369c054b848ef4b2035fc5f",
+      "types": [
+        "ObjectiveProgressController"
+      ],
+      "lines": 33,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7cabc2efb98b54f141886c00aa34a621e54bff1895c550b817fdae96b84cc5d0",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressModel.cs",
+      "sourceScope": "unity",
+      "sha256": "8a6d726a297b84993cb576835f504130bdf0ca2acf5b75f9bd0a12c2b7a99019",
+      "guid": "772224cc685bbcd4299ce208bb24c29f",
+      "types": [
+        "ObjectiveProgressModel"
+      ],
+      "lines": 38,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ConfigureObjectivesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/RefreshObjectivesCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "8a6d726a297b84993cb576835f504130bdf0ca2acf5b75f9bd0a12c2b7a99019",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
       "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveRuleMatcher.cs",
       "sourceScope": "unity",
       "sha256": "5421bce7e518cc206a471e2d59767034071c0ffa4ad6fd10f1b0ee5e25adac5a",
@@ -11928,15 +12104,279 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressModel.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
       "reviewedSha256": "5421bce7e518cc206a471e2d59767034071c0ffa4ad6fd10f1b0ee5e25adac5a",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained."
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/RefreshObjectivesCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "c0eba8b621d0b2d7b5e0659f797770204fe5ddf3b00cf1a00fd6530e2a007bb3",
+      "guid": "59fdb77a29157fa4a8db4b86924f938e",
+      "types": [
+        "RefreshObjectivesCommand"
+      ],
+      "lines": 25,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c0eba8b621d0b2d7b5e0659f797770204fe5ddf3b00cf1a00fd6530e2a007bb3",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "419d57b1bc07832cc5880d51947d36719afe55543a0376e315a4027d609357e2",
+      "guid": "26211520d9f4aca4fbde449b1a0ec9de",
+      "types": [
+        "LevelProgressFactory"
+      ],
+      "lines": 40,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "419d57b1bc07832cc5880d51947d36719afe55543a0376e315a4027d609357e2",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "447a9f7e028c8f0531c74f52ef62d87bd17098fac9fdd56a0e695e4d37ab6903",
+      "guid": "b97371394617b87428225a506ed71dcf",
+      "types": [
+        "LevelProgressInstaller"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "447a9f7e028c8f0531c74f52ef62d87bd17098fac9fdd56a0e695e4d37ab6903",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/FinishLevelRunCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "080365b23c1132dc5a2cfb1a8c0bb10447e64970802486e9bbce63e35904b98b",
+      "guid": "204893d407b415448a73595b7b09ac72",
+      "types": [
+        "FinishLevelRunCommand"
+      ],
+      "lines": 34,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "080365b23c1132dc5a2cfb1a8c0bb10447e64970802486e9bbce63e35904b98b",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/ILevelRunEnvironment.cs",
+      "sourceScope": "unity",
+      "sha256": "82abe3164f51faa5b429c922dd62602e5046b177e4c2bf8c42191eb0bf8702f1",
+      "guid": "e359b95ba1cb1af4aaf3768a41599f89",
+      "types": [
+        "ILevelRunEnvironment"
+      ],
+      "lines": 8,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestartLevelRunCommand.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "82abe3164f51faa5b429c922dd62602e5046b177e4c2bf8c42191eb0bf8702f1",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs",
+      "sourceScope": "unity",
+      "sha256": "1ceb54ad7cd8bee3d625bde7958246017b93bea5bd498d7846a70871257501e6",
+      "guid": "e3956dd334d64d94d96fe7fcb7a42d4b",
+      "types": [
+        "LevelRunController"
+      ],
+      "lines": 36,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1ceb54ad7cd8bee3d625bde7958246017b93bea5bd498d7846a70871257501e6",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunModel.cs",
+      "sourceScope": "unity",
+      "sha256": "a906abc67d21630f1e36fd0007306bfe3da15a65b61cf0223a10a642e52d83ba",
+      "guid": "fa105486a310fc44b8125c2a3ce56736",
+      "types": [
+        "LevelRunModel"
+      ],
+      "lines": 67,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/FinishLevelRunCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestartLevelRunCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestoreRunElapsedCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/StartLevelRunCommand.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a906abc67d21630f1e36fd0007306bfe3da15a65b61cf0223a10a642e52d83ba",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestartLevelRunCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "f5ecaafb6e144f6e68daed30bca3a432f7a368d73e82bb6ce0d1788243420d62",
+      "guid": "83a02d79bb2001c429665704cb968751",
+      "types": [
+        "RestartLevelRunCommand"
+      ],
+      "lines": 40,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f5ecaafb6e144f6e68daed30bca3a432f7a368d73e82bb6ce0d1788243420d62",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestoreRunElapsedCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "f48d8ace241584f2e009afb4c0bec4818ed98fe71d57495c139ad3e21dde1187",
+      "guid": "2f3f4b982d200e04384d10ac29d30c67",
+      "types": [
+        "RestoreRunElapsedCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f48d8ace241584f2e009afb4c0bec4818ed98fe71d57495c139ad3e21dde1187",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/StartLevelRunCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "c574a2316c73d93699ebc3927c4bc5eab31eb3bde001c1fc18616fed2073ec4c",
+      "guid": "f8322a959073fb54292a6e0eec030cfc",
+      "types": [
+        "StartLevelRunCommand"
+      ],
+      "lines": 22,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c574a2316c73d93699ebc3927c4bc5eab31eb3bde001c1fc18616fed2073ec4c",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
     },
     {
       "baselineSha256": null,
@@ -13449,13 +13889,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
-      "sha256": "8517fa94cc2809c70806de964a6e1d16ebd2d538c7af2449b467e09a7667dde4",
+      "sha256": "da5a9f0eab77093defaeaa6ac6838ff81594f13a5a4eb6cc32b6bf41723b8cce",
       "baselineSha256": "d67c11ecfb388b0b6e908e800168a618147382d5dc4052d3801d4719d48e3ee8",
       "guid": "b108ff3f3f3335c4d988d6496c6dd516",
       "types": [
         "LevelContext2D"
       ],
-      "lines": 221,
+      "lines": 223,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity"
@@ -13501,12 +13941,12 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
-      "reviewedSha256": "8517fa94cc2809c70806de964a6e1d16ebd2d538c7af2449b467e09a7667dde4",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "reviewedSha256": "da5a9f0eab77093defaeaa6ac6838ff81594f13a5a4eb6cc32b6bf41723b8cce",
       "previousReviewStatus": "reviewed_boundary",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "reviewDate": "2026-10-21",
+      "reviewDate": "2026-10-22",
       "responsibility": "Composition root уровня/локального игрока и lifetimes",
       "dependencies": [
         "Zenject world container",
@@ -13515,8 +13955,8 @@
         "ScenePrefabFactory"
       ],
       "usageEvidence": "Gameplay scenes; Awake → Initialize; prefab injection/probes",
-      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
-      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
       "reviewHistory": [
         {
           "reviewDate": "2026-10-21",
@@ -13596,23 +14036,24 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
-      "sha256": "3d7705cf812104f3abba3ca6a7ec35c9ace5c63f0724ba55217545be83f8be58",
+      "sha256": "8d2cb8031c87cfa17721ca4d2ce5453ba6710cb53b234da7a11a97ec9fb125d3",
       "baselineSha256": "5fe624ef6caf87286df18cd5c3fd38f6a685226cc16ae7e3d3850aa56131a36a",
       "guid": "889331533222cf74a9db875b8c2e8373",
       "types": [
         "LevelObjectiveController2D"
       ],
-      "lines": 85,
+      "lines": 129,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
-        "Assets/EmergencyShift/Runtime/UI/LevelCompletionView2D.cs"
+        "Assets/EmergencyShift/Runtime/UI/LevelCompletionView2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "LevelConfig28/BUG-026: config getters/pure matcher проверены; прежние run/objective state, persistence/authoring/style долги сохранены.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13628,10 +14069,10 @@
         "PlayerWeapon2D"
       ],
       "usageEvidence": "Cards.Changed/OwnershipChanged; LevelCompletionView",
-      "reviewedSha256": "3d7705cf812104f3abba3ca6a7ec35c9ace5c63f0724ba55217545be83f8be58",
+      "reviewedSha256": "8d2cb8031c87cfa17721ca4d2ce5453ba6710cb53b234da7a11a97ec9fb125d3",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
       "previousReviewStatus": "partial"
     },
     {
@@ -13655,7 +14096,8 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
-        "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs"
+        "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -13719,13 +14161,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
-      "sha256": "bb49d236e26b1f2116b68f643f9afe8c614be69f78b5251f19a090c0389bb945",
+      "sha256": "00a0b8e5139b829bd01bfbe2426627b9170f8a9c28c3dca5b26dfb1917194468",
       "baselineSha256": "d9b868d442f8e80cd20291559c86d8e08102bda04c33371e91c1e4e2649fdbbf",
       "guid": "5893e27947941234a9b09af659c1d39d",
       "types": [
         "LevelRunController2D"
       ],
-      "lines": 103,
+      "lines": 130,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -13741,9 +14183,9 @@
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "LevelConfig28/BUG-026: config getters/pure matcher проверены; прежние run/objective state, persistence/authoring/style долги сохранены.",
-      "reviewedSha256": "bb49d236e26b1f2116b68f643f9afe8c614be69f78b5251f19a090c0389bb945",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "reviewedSha256": "00a0b8e5139b829bd01bfbe2426627b9170f8a9c28c3dca5b26dfb1917194468",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -13762,8 +14204,8 @@
       ],
       "usageEvidence": "LevelExit; checkpoint; completion view",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
       "previousReviewStatus": "partial"
     },
     {
@@ -15069,6 +15511,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
@@ -15681,6 +16124,7 @@
         "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
         "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -18324,6 +18768,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -18420,6 +18865,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
@@ -18492,6 +18938,8 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
@@ -18584,6 +19032,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -18708,26 +19157,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "51 mandatory-boolean regressions",
-      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "77e97f7adcfa9c218cc08425d26249c7c7a27631325ad0340e9cf90c5736caf9",
+      "reviewedSha256": "9d4add7d5c84d5117120e013fc3a07e52d05144e07f0a5b20be363eafec2b0e0",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
       "sourceScope": "unity",
-      "sha256": "77e97f7adcfa9c218cc08425d26249c7c7a27631325ad0340e9cf90c5736caf9",
+      "sha256": "9d4add7d5c84d5117120e013fc3a07e52d05144e07f0a5b20be363eafec2b0e0",
       "guid": "6ff5dbeb7ad7232408aff07bf6b131e2",
       "types": [
         "CheckpointBooleanTests",
         "ConsumedRead"
       ],
-      "lines": 231,
+      "lines": 232,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -18748,26 +19197,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "f87c27e073fe02405f7726ee5884bf834670a282d9d81d53e4606e8ab36f78dc",
+      "reviewedSha256": "a71c5f5e83ce615263a5cb22e49ed4a919c901f15e4c76c13aad98314500368c",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "f87c27e073fe02405f7726ee5884bf834670a282d9d81d53e4606e8ab36f78dc",
+      "sha256": "a71c5f5e83ce615263a5cb22e49ed4a919c901f15e4c76c13aad98314500368c",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 455,
+      "lines": 456,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -18814,7 +19263,7 @@
         }
       ],
       "responsibility": "37 регрессий сохранности слота и мира",
-      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
       "dependencies": [
         "System",
         "System.IO",
@@ -18825,17 +19274,17 @@
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
-      "reviewedSha256": "8042c3f54461865625931db00075ef9db40befd9b1d267bd4eba6055832ca59b",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
+      "reviewedSha256": "23b136d117e116411d8be73fa79ff9505132db18eba54fff35669aac492985b9",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
       "sourceScope": "unity",
-      "sha256": "8042c3f54461865625931db00075ef9db40befd9b1d267bd4eba6055832ca59b",
+      "sha256": "23b136d117e116411d8be73fa79ff9505132db18eba54fff35669aac492985b9",
       "guid": "e650284e1701499458266e8a41f872ab",
       "types": [
         "CheckpointValidationTests"
       ],
-      "lines": 223,
+      "lines": 224,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -19109,6 +19558,8 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
@@ -19233,6 +19684,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
@@ -19308,6 +19760,7 @@
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -19378,6 +19831,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -19462,6 +19916,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -19917,7 +20372,9 @@
       "lines": 214,
       "serializedUsers": [],
       "dependencyScenes": [],
-      "lexicalSourceUsers": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs"
+      ],
       "entryPointHints": [
         "Test",
         "TestCase"
@@ -19927,6 +20384,66 @@
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/LevelConfig28.md",
       "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+      "sourceScope": "unity",
+      "sha256": "9c7fc2c771487c63c96dc1826f1511eaa873c4c9ba2cfe68298325c692dc0e7f",
+      "guid": "832ef3333d7e68245b25349d081f6543",
+      "types": [
+        "Clock",
+        "Environment",
+        "LevelRunTests"
+      ],
+      "lines": 191,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/OrganizeMaterials.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/FurnitureLightStudyBuilder.cs",
+        "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs",
+        "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
+        "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponShotRequest.cs",
+        "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
+        "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
+        "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
+        "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
+        "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
+        "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
+        "Concepts/Used/Environment/RoomFinish01/create.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "9c7fc2c771487c63c96dc1826f1511eaa873c4c9ba2cfe68298325c692dc0e7f",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
     },
     {
       "baselineSha256": null,
@@ -20067,6 +20584,74 @@
           "reviewReport": "Docs/Reports/CodeAudit07.md"
         }
       ]
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
+      "sourceScope": "unity",
+      "sha256": "d8cd869ddde3aa6538067fff803dca858eff460e5150d8c8a7135f3ca189658b",
+      "guid": "81649f528c14c6c45bb0d9fcf3b962ed",
+      "types": [
+        "Facts",
+        "ObjectiveProgressTests",
+        "View"
+      ],
+      "lines": 122,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/CheckDirectionalDamage.cs",
+        "AgentScripts/InstallDirectionalDamage.cs",
+        "AgentScripts/InstallPauseMenu.cs",
+        "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
+      ],
+      "entryPointHints": [
+        "Test"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d8cd869ddde3aa6538067fff803dca858eff460e5150d8c8a7135f3ca189658b",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
     },
     {
       "baselineSha256": null,
@@ -20238,6 +20823,8 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
@@ -20329,6 +20916,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -20417,6 +21005,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
         "Concepts/Used/Environment/RoomFinish01/create.cs"
@@ -20618,6 +21207,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -20734,6 +21324,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
@@ -21296,27 +21887,27 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "5 real PlayMode pending-save lifetime regressions",
-      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "6f1e604053c5d77ef1e6c2f6650cad72614a76dab6d3223e2f547b661d65bcc3",
+      "reviewedSha256": "517228e676c8317d05d86344aaebdd668e992356c0d106175ac5ae0d658f6ee9",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "6f1e604053c5d77ef1e6c2f6650cad72614a76dab6d3223e2f547b661d65bcc3",
+      "sha256": "517228e676c8317d05d86344aaebdd668e992356c0d106175ac5ae0d658f6ee9",
       "guid": "c44326cf15c577e4b89031b64fcda0ca",
       "types": [
         "CatalogFixture",
         "CheckpointSaveLifetimeTests",
         "TestClock"
       ],
-      "lines": 222,
+      "lines": 259,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -21568,6 +22159,28 @@
       "reviewReport": "Docs/Reports/LightScopes22.md",
       "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
       "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs",
+      "sourceScope": "unity",
+      "sha256": "330f26e281d3ed82aa9addccdb0bc646150c951c5769a44cdd6b5152f4da575a",
+      "guid": "2bc697104e4a34c459bdedf52eaa381a",
+      "types": [
+        "LevelObjectiveLifecycleTests"
+      ],
+      "lines": 167,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "330f26e281d3ed82aa9addccdb0bc646150c951c5769a44cdd6b5152f4da575a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelProgress29.md",
+      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted."
     },
     {
       "baselineSha256": null,
@@ -22222,7 +22835,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 547,
+    "unity": 565,
     "content_source": 8
   },
   "latestReview": {
@@ -22373,11 +22986,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 566,
-    "totalFiles": 566,
+    "reviewedFiles": 584,
+    "totalFiles": 584,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "LevelConfig28 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "LevelProgress29 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

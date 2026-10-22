@@ -1,13 +1,15 @@
 using System;
-using UnityEngine;
+using EmergencyShift.Features.LevelProgress;
+using EmergencyShift.Features.LevelProgress.Logic;
 using EmergencyShift.Features.PlayerInput.Logic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace EmergencyShift
 {
-    /// <summary>Owns completion and run lifetime. Objectives and UI are separate components.</summary>
-    public sealed class LevelRunController2D : MonoBehaviour
+    /// <summary>Unity adapter for run commands, local input and scene lifetime.</summary>
+    public sealed class LevelRunController2D : MonoBehaviour, ILevelRunEnvironment
     {
         [SerializeField]
         private PlayerLife2D player;
@@ -17,24 +19,59 @@ namespace EmergencyShift
         private LevelDefinition definition;
         [SerializeField]
         private LevelObjectiveController2D objectives;
-        public event Action Finished;
-        private float startedAt;
-        private float restoredElapsed;
         private IPlayerInput input;
+        private LevelRunController controller;
 
-        [Inject]
-        private void Construct(IPlayerInput playerInput) => input = playerInput;
-        public bool Completed
-        {
-            get; private set;
-        }
+        public bool Completed => controller?.Completed ?? false;
         public int Phase => objectives != null ? objectives.Phase : 0;
-        public float ElapsedSeconds => restoredElapsed + Time.time - startedAt;
+        public float ElapsedSeconds => RequireController().ElapsedSeconds;
         public PlayerLife2D Player => player;
         public LevelDefinition Definition => definition;
+        public event Action Finished;
+
+        [Inject]
+        public void Construct(IPlayerInput playerInput, LevelProgressFactory factory)
+        {
+            if (controller != null)
+            {
+                throw new InvalidOperationException("The level run is already composed.");
+            }
+
+            if (factory == null)
+            {
+                throw new ArgumentNullException(nameof(factory));
+            }
+
+            input = playerInput;
+            controller = factory.CreateRun(this);
+            controller.Finished += OnFinished;
+        }
+
+        private void Start() => RequireController().Start();
+
+        private void Update()
+        {
+            if (Completed && input != null && input.RestartPressed)
+            {
+                Restart();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (controller != null)
+            {
+                controller.Finished -= OnFinished;
+            }
+        }
 
         public void SetDefinition(LevelDefinition data, LevelObjectiveController2D goals)
         {
+            if (data != null)
+            {
+                data.Validate();
+            }
+
             definition = data;
             objectives = goals;
         }
@@ -45,52 +82,38 @@ namespace EmergencyShift
             cards = inventory;
         }
 
-        private void Start()
-        {
-            startedAt = Time.time;
-        }
-
-        private void Update()
-        {
-            if (Completed && input.RestartPressed)
-            {
-                Restart();
-            }
-        }
-
         public void RestoreElapsed(float seconds)
         {
-            restoredElapsed = Mathf.Max(0, seconds);
-            startedAt = Time.time;
+            var result = RequireController().RestoreElapsed(seconds);
+            if (!result.Success)
+            {
+                throw new ArgumentException(result.Reason, nameof(seconds));
+            }
         }
 
         public bool TryFinish(PlayerLife2D actor)
         {
-            if (Completed || actor != player || player.IsDead || definition == null || !cards.Has(definition.ExitCardId))
-            {
-                return false;
-            }
+            bool ownsActor = player != null && actor == player;
+            bool alive = ownsActor && !player.IsDead;
+            bool hasExitAccess = !Completed && alive && definition != null && cards != null && cards.Has(definition.ExitCardId);
+            return RequireController().TryFinish(ownsActor, alive, hasExitAccess).Success;
+        }
 
-            Completed = true;
-            foreach (var root in gameObject.scene.GetRootGameObjects())
+        public void Restart() => RequireController().Restart();
+
+        void ILevelRunEnvironment.StopParticipants()
+        {
+            foreach (GameObject root in gameObject.scene.GetRootGameObjects())
             {
-                foreach (var participant in root.GetComponentsInChildren<LevelParticipant2D>(true))
+                foreach (LevelParticipant2D participant in root.GetComponentsInChildren<LevelParticipant2D>(true))
                 {
                     participant.StopActivity();
                 }
             }
-
-            Finished?.Invoke();
-            return true;
         }
 
-        public void Restart()
+        void ILevelRunEnvironment.RestartScene()
         {
-            if (!Completed)
-            {
-                return;
-            }
-
             var checkpoint = GetComponent<LevelCheckpointController2D>();
             if (checkpoint != null)
             {
@@ -99,5 +122,9 @@ namespace EmergencyShift
 
             SceneManager.LoadScene(gameObject.scene.buildIndex);
         }
+
+        private void OnFinished() => Finished?.Invoke();
+
+        private LevelRunController RequireController() => controller ?? throw new InvalidOperationException("The run requires its level composition.");
     }
 }
