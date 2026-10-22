@@ -77,7 +77,7 @@ namespace EmergencyShift
             for (int i = 0; i < samples.Length; i++)
             {
                 var sample = samples[i];
-                if (sample.renderer == null || sample.responseIndex < 0 || sample.responseIndex >= profile.surfaces.Length
+                if (sample.renderer == null || sample.responseIndex < 0 || sample.responseIndex >= profile.SurfaceCount
                     || sample.surfaceRect.z <= 0 || sample.surfaceRect.w <= 0)
                 {
                     throw new InvalidOperationException("Invalid furniture sample geometry or response index.");
@@ -153,15 +153,15 @@ namespace EmergencyShift
 
             foreach (var sample in samples)
             {
-                var response = profile.surfaces[sample.responseIndex];
+                var response = profile.SurfaceAt(sample.responseIndex);
                 Vector3 localLight = sample.renderer.transform.InverseTransformPoint(flashlight.Origin);
                 properties.Clear();
                 properties.SetVector(LightPosition, localLight);
                 properties.SetVector(SurfaceRect, sample.surfaceRect);
                 properties.SetMatrix(WorldToSurface, sample.renderer.transform.worldToLocalMatrix);
                 float edgeEnabled = CurrentVariant == Variant.DirectionalEdge ? 1 : 0;
-                properties.SetVector(Response, new Vector4(response.topResponse, response.edgeResponse,
-                    response.edgeWidth, edgeEnabled));
+                properties.SetVector(Response, new Vector4(response.TopResponse, response.EdgeResponse,
+                    response.EdgeWidth, edgeEnabled));
                 sample.renderer.SetPropertyBlock(properties);
             }
         }
@@ -231,7 +231,7 @@ namespace EmergencyShift
             Vector2 direction = Sides[side];
             Bounds bounds = renderer.bounds;
             float extent = Mathf.Abs(direction.x) * bounds.extents.x + Mathf.Abs(direction.y) * bounds.extents.y;
-            Vector2 position = (Vector2)bounds.center + direction * (extent + profile.inspectionClearance);
+            Vector2 position = (Vector2)bounds.center + direction * (extent + profile.InspectionClearance);
             flashlight.transform.position = position;
             playerBody.position = position;
             playerBody.linearVelocity = Vector2.zero;
@@ -250,7 +250,7 @@ namespace EmergencyShift
 
             string ceiling = CeilingEnabled ? "ВКЛ" : "ВЫКЛ";
             string shadows = ShadowsEnabled ? "ВКЛ" : "ВЫКЛ";
-            string label = profile.surfaces[samples[selectedSample].responseIndex].label;
+            string label = profile.SurfaceAt(samples[selectedSample].responseIndex).Label;
             status.text = VariantNames[(int)CurrentVariant] + "\n" + label + " · ракурс " + SideNames[selectedSide]
                 + "     Потолок: " + ceiling + "     Тени: " + shadows;
         }

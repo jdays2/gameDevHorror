@@ -10,32 +10,94 @@ namespace EmergencyShift
         [Serializable]
         public sealed class Speaker
         {
-            public string displayName;
-            public Sprite portrait;
+            [SerializeField]
+            private string displayName;
+            [SerializeField]
+            private Sprite portrait;
+            public string DisplayName => displayName;
+            public Sprite Portrait => portrait;
+
+            public Speaker()
+            {
+            }
+
+            public Speaker(string displayName = null, Sprite portrait = null)
+            {
+                this.displayName = displayName;
+                this.portrait = portrait;
+            }
         }
 
         [Serializable]
         public sealed class Choice
         {
-            public string id;
-            [TextArea(1, 3)] public string text;
-            public string targetId;
+            [SerializeField]
+            private string id;
+            [SerializeField, TextArea(1, 3)]
+            private string text;
+            [SerializeField]
+            private string targetId;
+            public string Id => id;
+            public string Text => text;
+            public string TargetId => targetId;
+
+            public Choice()
+            {
+            }
+
+            public Choice(string id = null, string text = null, string targetId = null)
+            {
+                this.id = id;
+                this.text = text;
+                this.targetId = targetId;
+            }
         }
 
         [Serializable]
         public sealed class Line
         {
-            public string id;
-            [Min(0)] public int speaker;
-            [TextArea(2, 6)] public string text;
-            [Tooltip("Empty ends the conversation. Leave empty when choices are present.")]
-            public string nextId;
-            public Choice[] choices = Array.Empty<Choice>();
+            [SerializeField]
+            private string id;
+            [SerializeField, Min(0)]
+            private int speaker;
+            [SerializeField, TextArea(2, 6)]
+            private string text;
+            [SerializeField, Tooltip("Empty ends the conversation. Leave empty when choices are present.")]
+            private string nextId;
+            [SerializeField]
+            private Choice[] choices = Array.Empty<Choice>();
+            public string Id => id;
+            public int SpeakerIndex => speaker;
+            public string Text => text;
+            public string NextId => nextId;
+            public int ChoiceCount => choices != null ? choices.Length : 0;
+            public Choice ChoiceAt(int index) => choices[index];
+
+            public Line()
+            {
+            }
+
+            public Line(string id = null, int speaker = 0, string text = null, string nextId = null, Choice[] choices = null)
+            {
+                this.id = id;
+                this.speaker = speaker;
+                this.text = text;
+                this.nextId = nextId;
+                this.choices = choices != null ? (Choice[])choices.Clone() : Array.Empty<Choice>();
+            }
         }
 
-        public string entryId;
-        public Speaker[] speakers = Array.Empty<Speaker>();
-        public Line[] lines = Array.Empty<Line>();
+        [SerializeField]
+        private string entryId;
+        [SerializeField]
+        private Speaker[] speakers = Array.Empty<Speaker>();
+        [SerializeField]
+        private Line[] lines = Array.Empty<Line>();
+        public string EntryId => entryId;
+        public int SpeakerCount => speakers != null ? speakers.Length : 0;
+        public Speaker SpeakerAt(int index) => speakers[index];
+        public int LineCount => lines != null ? lines.Length : 0;
+        public Line LineAt(int index) => lines[index];
 
         public void Validate() => ToGraph();
 
@@ -48,7 +110,7 @@ namespace EmergencyShift
 
             foreach (Speaker speaker in speakers)
             {
-                if (speaker == null || string.IsNullOrWhiteSpace(speaker.displayName))
+                if (speaker == null || string.IsNullOrWhiteSpace(speaker.DisplayName))
                 {
                     throw new InvalidOperationException("Dialogue speaker has no name: " + name);
                 }
@@ -63,20 +125,21 @@ namespace EmergencyShift
                 }
 
                 var choices = new List<DialogueOption>();
-                if (line.choices != null)
+                if (line.ChoiceCount > 0)
                 {
-                    foreach (Choice choice in line.choices)
+                    for (int index = 0; index < line.ChoiceCount; index++)
                     {
+                        Choice choice = line.ChoiceAt(index);
                         if (choice == null)
                         {
-                            throw new InvalidOperationException("Dialogue choice is missing: " + line.id);
+                            throw new InvalidOperationException("Dialogue choice is missing: " + line.Id);
                         }
 
-                        choices.Add(new DialogueOption(choice.id, choice.text, choice.targetId));
+                        choices.Add(new DialogueOption(choice.Id, choice.Text, choice.TargetId));
                     }
                 }
 
-                nodes.Add(new DialogueNode(line.id, line.speaker, line.text, line.nextId, choices));
+                nodes.Add(new DialogueNode(line.Id, line.SpeakerIndex, line.Text, line.NextId, choices));
             }
 
             return new DialogueGraph(entryId, speakers.Length, nodes);

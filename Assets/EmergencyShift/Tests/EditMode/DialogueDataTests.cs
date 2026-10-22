@@ -28,10 +28,10 @@ namespace EmergencyShift.Tests
             var sequence = ScriptableObject.CreateInstance<DialogueSequence>();
             try
             {
-                sequence.speakers = new[] { new DialogueSequence.Speaker { displayName = "Врач" } };
-                sequence.lines = new[] { new DialogueSequence.Line { speaker = 5, text = "Реплика" } };
+                SetDefinitionField(sequence, "speakers", new[] { new DialogueSequence.Speaker(displayName: "Врач") });
+                SetDefinitionField(sequence, "lines", new[] { new DialogueSequence.Line(speaker: 5, text: "Реплика") });
                 Assert.Throws<InvalidOperationException>(sequence.Validate);
-                Assert.That(sequence.lines[0].speaker, Is.EqualTo(5));
+                Assert.That(sequence.LineAt(0).SpeakerIndex, Is.EqualTo(5));
             }
             finally
             {
@@ -45,20 +45,20 @@ namespace EmergencyShift.Tests
             var sequence = ScriptableObject.CreateInstance<DialogueSequence>();
             try
             {
-                sequence.speakers = new[]
+                SetDefinitionField(sequence, "speakers", new[]
                 {
-                    new DialogueSequence.Speaker { displayName = "Врач" },
-                    new DialogueSequence.Speaker { displayName = "Вы" }
-                };
-                sequence.lines = new[]
+                    new DialogueSequence.Speaker(displayName: "Врач"),
+                    new DialogueSequence.Speaker(displayName: "Вы")
+                });
+                SetDefinitionField(sequence, "lines", new[]
                 {
-                    new DialogueSequence.Line { id = "stop", speaker = 0, text = "Стойте.", nextId = "why" },
-                    new DialogueSequence.Line { id = "why", speaker = 1, text = "Почему?" }
-                };
-                sequence.entryId = "stop";
+                    new DialogueSequence.Line(id: "stop", speaker: 0, text: "Стойте.", nextId: "why"),
+                    new DialogueSequence.Line(id: "why", speaker: 1, text: "Почему?")
+                });
+                SetDefinitionField(sequence, "entryId", "stop");
                 Assert.DoesNotThrow(sequence.Validate);
-                Assert.That(sequence.speakers[0].portrait, Is.Null);
-                Assert.That(sequence.speakers[1].portrait, Is.Null);
+                Assert.That(sequence.SpeakerAt(0).Portrait, Is.Null);
+                Assert.That(sequence.SpeakerAt(1).Portrait, Is.Null);
             }
             finally
             {
@@ -73,7 +73,14 @@ namespace EmergencyShift.Tests
             var sequence = BranchingSequence();
             try
             {
-                Array.Reverse(sequence.lines);
+                var reordered = new DialogueSequence.Line[sequence.LineCount];
+                for (int index = 0; index < reordered.Length; index++)
+                {
+                    reordered[index] = sequence.LineAt(index);
+                }
+
+                Array.Reverse(reordered);
+                SetDefinitionField(sequence, "lines", reordered);
                 var run = new DialogueRun(sequence.ToGraph());
                 Assert.That(run.Current.Id, Is.EqualTo("fork"));
                 Assert.That(run.Advance(), Is.False);
@@ -135,19 +142,19 @@ namespace EmergencyShift.Tests
                 switch (defect)
                 {
                     case "target":
-                        sequence.lines[0].choices[1].targetId = "missing";
+                        SetDefinitionField(sequence.LineAt(0).ChoiceAt(1), "targetId", "missing");
                         break;
                     case "duplicate-line":
-                        sequence.lines[1].id = "fork";
+                        SetDefinitionField(sequence.LineAt(1), "id", "fork");
                         break;
                     case "duplicate-choice":
-                        sequence.lines[0].choices[1].id = "take-left";
+                        SetDefinitionField(sequence.LineAt(0).ChoiceAt(1), "id", "take-left");
                         break;
                     case "entry":
-                        sequence.entryId = "missing";
+                        SetDefinitionField(sequence, "entryId", "missing");
                         break;
                     case "ambiguous-next":
-                        sequence.lines[0].nextId = "left";
+                        SetDefinitionField(sequence.LineAt(0), "nextId", "left");
                         break;
                 }
 
@@ -221,23 +228,23 @@ namespace EmergencyShift.Tests
         private static DialogueSequence BranchingSequence()
         {
             var sequence = ScriptableObject.CreateInstance<DialogueSequence>();
-            sequence.speakers = new[] { new DialogueSequence.Speaker { displayName = "Врач" } };
-            sequence.entryId = "fork";
-            sequence.lines = new[]
+            SetDefinitionField(sequence, "speakers", new[] { new DialogueSequence.Speaker(displayName: "Врач") });
+            SetDefinitionField(sequence, "entryId", "fork");
+            SetDefinitionField(sequence, "lines", new[]
             {
-                new DialogueSequence.Line
-                {
-                    id = "fork", text = "Куда?", choices = new[]
+                new DialogueSequence.Line(id: "fork", text: "Куда?", choices: new[]
                     {
-                        new DialogueSequence.Choice { id = "take-left", text = "Налево", targetId = "left" },
-                        new DialogueSequence.Choice { id = "take-right", text = "Направо", targetId = "right" }
-                    }
-                },
-                new DialogueSequence.Line { id = "left", text = "Левый путь", nextId = "join" },
-                new DialogueSequence.Line { id = "right", text = "Правый путь", nextId = "join" },
-                new DialogueSequence.Line { id = "join", text = "Пришли" }
-            };
+                        new DialogueSequence.Choice(id: "take-left", text: "Налево", targetId: "left"),
+                        new DialogueSequence.Choice(id: "take-right", text: "Направо", targetId: "right")
+                    }),
+                new DialogueSequence.Line(id: "left", text: "Левый путь", nextId: "join"),
+                new DialogueSequence.Line(id: "right", text: "Правый путь", nextId: "join"),
+                new DialogueSequence.Line(id: "join", text: "Пришли")
+            });
             return sequence;
         }
+
+        private static void SetDefinitionField(object target, string field, object value) =>
+            target.GetType().GetField(field, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(target, value);
     }
 }

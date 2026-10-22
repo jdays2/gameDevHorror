@@ -18,6 +18,7 @@
 
 ## Assets/EmergencyShift/Editor/Authoring
 
+- [DialogueDefinitionAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/DialogueDefinitionAuthoring.cs)
 - [DialoguePrefabAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/DialoguePrefabAuthoring.cs)
 - [DialogueSandboxAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/DialogueSandboxAuthoring.cs)
 - [EnvironmentLibraryReviewBuilder.cs](../Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs)
@@ -823,6 +824,7 @@
 - [ProjectileFlightTests.cs](../Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
 - [SceneRegistryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs)
+- [SharedDefinitionBoundaryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SharedDefinitionBoundaryTests.cs)
 - [ShotVisualBoundaryTests.cs](../Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs)
 - [SingleUsePickupTests.cs](../Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs)
 - [SleeperModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs)

@@ -91,6 +91,7 @@ namespace EmergencyShift
 
         protected virtual void Awake()
         {
+            locomotionProfile?.Validate();
             presentation = GetComponent<EnemyPresentationSource2D>();
             CacheEyePresentation();
             walkClock = (float)new System.Random(System.Guid.NewGuid().GetHashCode()).NextDouble() / Mathf.Max(1, walkFramesPerSecond) * 8;
@@ -354,7 +355,7 @@ namespace EmergencyShift
 
             // Two support phases remain monotonic; the same distance always advances the same cycle.
             float supportPhase = walkPhase * Mathf.PI * 4f;
-            float hold = Mathf.Clamp(locomotionProfile.supportHold, 0, 0.6f);
+            float hold = Mathf.Clamp(locomotionProfile.SupportHold, 0, 0.6f);
             float framePhase = walkPhase - Mathf.Sin(supportPhase) * hold / (Mathf.PI * 4f);
             return Mathf.Clamp(Mathf.FloorToInt(framePhase * walkFrames.Length), 0, walkFrames.Length - 1);
         }
@@ -378,7 +379,7 @@ namespace EmergencyShift
             }
 
             float scale = Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.y));
-            float cycleDistance = Mathf.Max(0.01f, locomotionProfile.distancePerCycle * scale);
+            float cycleDistance = Mathf.Max(0.01f, locomotionProfile.DistancePerCycle * scale);
             float distance = translation.magnitude;
             float acceptedDistance = Mathf.Max(cycleDistance, presentation.MovementSpeed * dt * 3f);
             if (distance > acceptedDistance)
@@ -388,28 +389,28 @@ namespace EmergencyShift
             }
 
             float speed = distance / dt;
-            bool moving = speed >= Mathf.Max(0.001f, locomotionProfile.minimumMovingSpeed);
+            bool moving = speed >= Mathf.Max(0.001f, locomotionProfile.MinimumMovingSpeed);
             if (moving)
             {
                 walkPhase = Mathf.Repeat(walkPhase + distance / cycleDistance, 1f);
                 float targetHeading = Mathf.Atan2(translation.y, translation.x) * Mathf.Rad2Deg - 90;
                 heading = Mathf.SmoothDampAngle(heading, targetHeading, ref turnVelocity,
-                    Mathf.Max(0.01f, locomotionProfile.turnSmoothSeconds), turnSpeed, dt);
+                    Mathf.Max(0.01f, locomotionProfile.TurnSmoothSeconds), turnSpeed, dt);
             }
             else
             {
                 turnVelocity = 0;
             }
 
-            float targetWeight = Mathf.Clamp01(speed / Mathf.Max(0.1f, locomotionProfile.fullWeightSpeed));
+            float targetWeight = Mathf.Clamp01(speed / Mathf.Max(0.1f, locomotionProfile.FullWeightSpeed));
             if (!moving)
             {
                 targetWeight = 0;
             }
 
-            float response = targetWeight > movementWeight ? locomotionProfile.startSeconds : locomotionProfile.settleSeconds;
+            float response = targetWeight > movementWeight ? locomotionProfile.StartSeconds : locomotionProfile.SettleSeconds;
             movementWeight = Mathf.MoveTowards(movementWeight, targetWeight, dt / Mathf.Max(0.01f, response));
-            supportYaw = Mathf.Sin(walkPhase * Mathf.PI * 2f) * Mathf.Clamp(locomotionProfile.supportYawDegrees, 0, 3) * movementWeight;
+            supportYaw = Mathf.Sin(walkPhase * Mathf.PI * 2f) * Mathf.Clamp(locomotionProfile.SupportYawDegrees, 0, 3) * movementWeight;
             visualRoot.rotation = Quaternion.Euler(0, 0, heading + supportYaw);
         }
     }

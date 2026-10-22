@@ -22,6 +22,8 @@ DialogueSandboxAuthoring использует этот prefab при добав�
 
 ## Проверки и связанные документы
 
+DialogueSequence/Speaker/Line/Choice и DialogueStyle предоставляют readonly C# API со старыми serialized names. Коллекции читаются через Count/At; создание данных в Editor выполняет DialogueDefinitionAuthoring через SerializedObject с проверкой графа до записи. ToGraph остаётся отдельным immutable снимком прохождения. Стиль валидируется до захвата modal context и до изменения View; все owned choice listeners удаляются при Destroy. UI/контент и формат assets сохранены. [SharedDefinition36](../Reports/SharedDefinition36.md).
+
 Контракт и авторинг: [Диалоги](../UI/DIALOGUE_DESIGN_SYSTEM.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).
 
 Ввод: [Input Actions/DI](PlayerInput.md). Граница диалогов переведена на MVC/DI; исторические пути и имена Unity-компонентов сохранены ради сериализации. Это не означает завершение переноса остальных игровых систем. Проверки и ограничения — [DialogueMvc01](../Reports/DialogueMvc01.md).

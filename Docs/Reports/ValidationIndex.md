@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Завершение readonly SO API / BUG-032 | [SharedDefinition36](SharedDefinition36.md): baseline0/8 →1173/1173 EditMode,64/64 PlayMode,Windows64 success. Dialogue/nested/style/gait/study API, полный own-SO sweep, asset validation, modal guards и choice listener cleanup. |
 | Checkpoint session/DI/lifetime / BUG-031 | [CheckpointSession35](CheckpointSession35.md): baseline 0/2 PlayMode, затем 1147/1147 EditMode, 62/62 PlayMode, Windows64 success. Личная model/commands, world-owned bounded paths, native scene/IO adapters, disable/rebind/clear и direct preflight. |
 | Raw actor checkpoint guards / BUG-030 | [ActorCheckpoint34](ActorCheckpoint34.md): baseline 0/12, затем 1129/1129 EditMode, 60/60 PlayMode, Windows64 success. Actor times/vectors/melee/patrol/rotation и player aim проверяются до mutation; direct pristine envelope и legacy форматы проверены. |
 | Native actor ports | [ActorPorts33](ActorPorts33.md): 1117/1117 EditMode, 60/60 PlayMode, Windows64 success. Узкие операции карт/фонаря/оружия вместо конкретного PlayerInteraction; partial ammo, command rejection и destroyed actor проверены. |

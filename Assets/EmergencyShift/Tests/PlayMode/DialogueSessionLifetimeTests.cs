@@ -83,6 +83,58 @@ namespace EmergencyShift.Tests
         }
 
         [UnityTest]
+        public IEnumerator InvalidStyleIsRejectedBeforeCapturingModalContext()
+        {
+            var field = typeof(DialogueView).GetField("style", BindingFlags.Instance | BindingFlags.NonPublic);
+            var original = (DialogueStyle)field.GetValue(view);
+            var invalid = UnityEngine.Object.Instantiate(original);
+            try
+            {
+                Set(invalid, "portraitSize", float.NaN);
+                field.SetValue(view, invalid);
+                Assert.Throws<InvalidOperationException>(() => session.TryBegin(sequence));
+                AssertUnchanged();
+            }
+            finally
+            {
+                field.SetValue(view, original);
+                UnityEngine.Object.Destroy(invalid);
+            }
+
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator DestroyedViewRemovesOwnedChoiceListenersFromCapturedClickEvent()
+        {
+            Assert.That(session.TryBegin(sequence), Is.True);
+            int remaining = sequence.LineCount + 1;
+            while (!session.RequiresChoice && remaining-- > 0)
+            {
+                yield return null;
+                session.Advance();
+            }
+
+            Assert.That(session.RequiresChoice, Is.True);
+            UnityEngine.UI.Button.ButtonClickedEvent clicks = view.ChoiceButtons[0].onClick;
+            int callbacks = 0;
+            Action<int> listener = _ => callbacks++;
+            view.ChoiceRequested += listener;
+            try
+            {
+                UnityEngine.Object.Destroy(view.gameObject);
+                yield return null;
+                clicks.Invoke();
+                Assert.That(callbacks, Is.Zero);
+            }
+            finally
+            {
+                view.ChoiceRequested -= listener;
+                session.Cancel();
+            }
+        }
+
+        [UnityTest]
         public IEnumerator DisabledComponentCannotOfferOrStartConversation()
         {
             session.enabled = false;
@@ -121,7 +173,7 @@ namespace EmergencyShift.Tests
                 string entryId = session.LineId;
                 session.Advance();
                 Assert.That(session.LineId, Is.EqualTo(entryId));
-                int beforeFork = sequence.lines.Length;
+                int beforeFork = sequence.LineCount;
                 while (!session.RequiresChoice && session.IsOpen && beforeFork-- > 0)
                 {
                     yield return null;
@@ -132,7 +184,7 @@ namespace EmergencyShift.Tests
                 yield return null;
                 view.ChoiceButtons[choice].onClick.Invoke();
                 Assert.That(session.RequiresChoice, Is.False);
-                int remaining = sequence.lines.Length + 1;
+                int remaining = sequence.LineCount + 1;
                 while (session.IsOpen && remaining-- > 0)
                 {
                     yield return null;

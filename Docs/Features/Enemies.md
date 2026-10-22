@@ -62,6 +62,8 @@ EnemyMotor2D выбирает свободное направление с уч�
 
 GoreProfile/BloodPoolProfile и вложенные варианты имеют readonly runtime API, проверяют числа, составы и уникальные ID до выбора/генерации. Restoration-only ID сохраняются для загрузки. GoreBurst, шаги и гильзы используют отдельные личные cosmetic RNG из именованного level scope, не меняя gameplay seed factory. Serialized поля, текущие assets и формат checkpoint сохранены. [GoreConfig32](../Reports/GoreConfig32.md).
 
+StalkerLocomotionProfile имеет readonly C# свойства и полную числовую validation до Animator.Awake; прежние serialized names/значения сохранены. Кадры/поза/глаз остаются native presentation, не управляют уроном или AI. [SharedDefinition36](../Reports/SharedDefinition36.md).
+
 ## Проверки и связанные документы
 
 Контракт и авторинг: [Враги и останки](../Enemies/STALKER.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).

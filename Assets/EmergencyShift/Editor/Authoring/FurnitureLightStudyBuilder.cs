@@ -102,7 +102,7 @@ namespace EmergencyShift.Editor
             {
                 Vector2 position = new Vector2(positions[i], 0);
                 var obj = Instance(Root + "/Prefabs/Environment/" + paths[i] + ".prefab", room, position);
-                obj.name = profile.surfaces[i].label;
+                obj.name = profile.SurfaceAt(i).Label;
                 var box = obj.GetComponent<BoxCollider2D>();
                 samples[i] = new FurnitureLightStudy2D.Sample
                 {
@@ -201,12 +201,25 @@ namespace EmergencyShift.Editor
             }
 
             profile = ScriptableObject.CreateInstance<FurnitureLightStudyProfile>();
-            profile.surfaces = new[]
+            var responses = new[]
             {
-                new FurnitureLightStudyProfile.Response { label = "ШКАФ", topResponse = .12f, edgeResponse = .95f, edgeWidth = .075f },
-                new FurnitureLightStudyProfile.Response { label = "СТОЛ", topResponse = .42f, edgeResponse = .95f, edgeWidth = .055f },
-                new FurnitureLightStudyProfile.Response { label = "КАТАЛКА", topResponse = .5f, edgeResponse = .9f, edgeWidth = .055f }
+                new FurnitureLightStudyProfile.Response("ШКАФ", .12f, .95f, .075f),
+                new FurnitureLightStudyProfile.Response("СТОЛ", .42f, .95f, .055f),
+                new FurnitureLightStudyProfile.Response("КАТАЛКА", .5f, .9f, .055f)
             };
+            var serialized = new SerializedObject(profile);
+            SerializedProperty surfaces = serialized.FindProperty("surfaces");
+            surfaces.arraySize = responses.Length;
+            for (int index = 0; index < responses.Length; index++)
+            {
+                SerializedProperty item = surfaces.GetArrayElementAtIndex(index);
+                item.FindPropertyRelative("label").stringValue = responses[index].Label;
+                item.FindPropertyRelative("topResponse").floatValue = responses[index].TopResponse;
+                item.FindPropertyRelative("edgeResponse").floatValue = responses[index].EdgeResponse;
+                item.FindPropertyRelative("edgeWidth").floatValue = responses[index].EdgeWidth;
+            }
+
+            serialized.ApplyModifiedPropertiesWithoutUndo();
             profile.Validate();
             AssetDatabase.CreateAsset(profile, ProfilePath);
             return profile;

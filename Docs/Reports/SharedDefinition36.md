@@ -1,0 +1,15 @@
+# Оставшиеся shared definitions · SharedDefinition36
+
+2026-10-22, после 7cfea0c. BUG-032: полный просмотр SO выявил четыре оставшихся изменяемых C# API — StalkerLocomotionProfile, DialogueSequence, DialogueStyle и отдельный Development FurnitureLightStudyProfile. **0/8 EditMode** подтверждают public fields исходных assets и вложенных Speaker/Line/Choice/Response. Ранее выделенный immutable DialogueGraph уже защищал прохождение, но не исходный asset.
+
+Поля стали private SerializeField со старыми именами/значениями/ссылками. Readonly свойства, Count/At и вложенные immutable значения закрывают массивы; конструктор Line копирует choices. Nested type names диалога сохранены. DialogueDefinitionAuthoring пишет только через SerializedObject, проверяет новый граф до mutation и не сохраняет assets/scenes сам. Авторские рецепты/изолированные fixtures переведены на этот контракт; recipes не запускались.
+
+Стиль проверяет конечность цветов/геометрии и диапазоны размеров; профиль походки — конечность/допустимые диапазоны всех восьми параметров. Animator проверяет профиль до начальной настройки. DialogueSession проверяет стиль до modal capture, View — до Present/Reflow. Кнопки хранят собственные делегаты и managed click event: Destroy удаляет их, даже когда Unity child уже уничтожен. ChoiceButtons отдаётся через кешированный readonly wrapper. Принятые тексты, шрифты, компоновка, анимация и геометрия теней не менялись.
+
+**1173/1173 EditMode**: исходные восемь случаев, автоматический API sweep всех собственных Runtime/Development SO, numeric guards, все текущие assets без мутации, защитная копия choices и Editor graph rejection до записи. **64/64 PlayMode**, включая прежние обе ветки/confirmation fence и новые invalid style до захвата контекста/captured click cleanup. Обычная Windows64 success, собственная Player assembly только EmergencyShift.Runtime. [Baseline/XML/source/meta hashes](../Validation/SharedDefinition36.json).
+
+Первый fixture не видел отдельную Development assembly; Type lookup сделан по проверенному assembly-qualified имени, asmdefs не менялись. Первый Play fixture (63/64) пропустил существующий кадровый барьер; добавлено ожидание кадра только в тест, после чего весь прогон прошёл. Production input rule не менялся. Эти промежуточные логи сохранены отдельно от финального результата.
+
+2000 защищённых ресурсов и 60 исходных dirty файлов неизменны; две новые meta импортированы exclusive create. Проверялась отдельная dirty копия с исходной паузой, не clean HEAD; чужие правки исключены из коммита. Нефатальный LicensingClient warning остаётся.
+
+Config guards вызываются на холодном пути; profile getters имеют прежнюю стоимость чтения. Снимок графа копируется при начале диалога, readonly wrapper создаётся один раз; cleanup хранит один небольшой binding на созданную кнопку. Новый Update/менеджер/сетевой слой не добавлен. В соответствии с SOD state/authority, кадры/глаз/gaze/rotation — состояние native View, не новая domain model. Прочие study/tool lifetimes, authored tuning, actor/presentation границы и итоговая приёмка остаются открыты.

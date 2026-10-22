@@ -55,11 +55,11 @@ namespace EmergencyShift.Editor
             }
 
             var sequence = ScriptableObject.CreateInstance<DialogueSequence>();
-            sequence.speakers = new[]
+            DialogueDefinitionAuthoring.SetSpeakers(sequence, new[]
             {
-                new DialogueSequence.Speaker { displayName = "Дежурный врач" },
-                new DialogueSequence.Speaker { displayName = "Вы" }
-            };
+                new DialogueSequence.Speaker(displayName: "Дежурный врач"),
+                new DialogueSequence.Speaker(displayName: "Вы")
+            });
             SetBranchingConversation(sequence);
             AssetDatabase.CreateAsset(sequence, path);
             return sequence;
@@ -67,48 +67,20 @@ namespace EmergencyShift.Editor
 
         private static void SetBranchingConversation(DialogueSequence sequence)
         {
-            sequence.entryId = "warning";
-            sequence.lines = new[]
+            DialogueDefinitionAuthoring.SetGraph(sequence, "warning", new[]
             {
-                new DialogueSequence.Line
-                {
-                    id = "warning", speaker = 0, nextId = "question",
-                    text = "Не открывайте дверь. Что бы вы ни услышали с той стороны — не открывайте."
-                },
-                new DialogueSequence.Line
-                {
-                    id = "question", speaker = 0, text = "Вы ведь тоже слышали этот голос? Что будем делать?",
-                    choices = new[]
+                new DialogueSequence.Line(id: "warning", speaker: 0, nextId: "question", text: "Не открывайте дверь. Что бы вы ни услышали с той стороны — не открывайте."),
+                new DialogueSequence.Line(id: "question", speaker: 0, text: "Вы ведь тоже слышали этот голос? Что будем делать?", choices: new[]
                     {
-                        new DialogueSequence.Choice { id = "help", text = "Там просят о помощи. Я хочу проверить.", targetId = "help-reply" },
-                        new DialogueSequence.Choice { id = "leave", text = "Не будем рисковать. Найдём другой путь.", targetId = "leave-reply" }
-                    }
-                },
-                new DialogueSequence.Line
-                {
-                    id = "help-reply", speaker = 1, nextId = "help-warning",
-                    text = "Я не могу просто уйти, если там ещё кто-то живой."
-                },
-                new DialogueSequence.Line
-                {
-                    id = "help-warning", speaker = 0, nextId = "rejoin",
-                    text = "Я тоже так думал. Пока оно не заговорило моим голосом. Сначала заглянем через служебное окно."
-                },
-                new DialogueSequence.Line
-                {
-                    id = "leave-reply", speaker = 1, nextId = "leave-direction",
-                    text = "Хорошо. Дверь останется закрытой. Где ближайший выход?"
-                },
-                new DialogueSequence.Line
-                {
-                    id = "leave-direction", speaker = 0, nextId = "rejoin",
-                    text = "За постом есть служебный коридор. Если держаться вместе, мы доберёмся до лестницы."
-                },
-                new DialogueSequence.Line
-                {
-                    id = "rejoin", speaker = 1, text = "Тогда пойдём через служебный коридор. Я останусь рядом."
-                }
-            };
+                        new DialogueSequence.Choice(id: "help", text: "Там просят о помощи. Я хочу проверить.", targetId: "help-reply"),
+                        new DialogueSequence.Choice(id: "leave", text: "Не будем рисковать. Найдём другой путь.", targetId: "leave-reply")
+                    }),
+                new DialogueSequence.Line(id: "help-reply", speaker: 1, nextId: "help-warning", text: "Я не могу просто уйти, если там ещё кто-то живой."),
+                new DialogueSequence.Line(id: "help-warning", speaker: 0, nextId: "rejoin", text: "Я тоже так думал. Пока оно не заговорило моим голосом. Сначала заглянем через служебное окно."),
+                new DialogueSequence.Line(id: "leave-reply", speaker: 1, nextId: "leave-direction", text: "Хорошо. Дверь останется закрытой. Где ближайший выход?"),
+                new DialogueSequence.Line(id: "leave-direction", speaker: 0, nextId: "rejoin", text: "За постом есть служебный коридор. Если держаться вместе, мы доберёмся до лестницы."),
+                new DialogueSequence.Line(id: "rejoin", speaker: 1, text: "Тогда пойдём через служебный коридор. Я останусь рядом.")
+            });
             sequence.Validate();
         }
 
@@ -165,7 +137,7 @@ namespace EmergencyShift.Editor
             }
 
             Stretch(fade.rectTransform);
-            fade.color = style.shadowColor;
+            fade.color = style.ShadowColor;
             fade.raycastTarget = false;
 
             var panel = ui.Find("Dialogue content");
@@ -176,8 +148,8 @@ namespace EmergencyShift.Editor
             UnityEngine.UI.Button template;
             if (templateTransform == null)
             {
-                var row = Image("Response template", choices, style.choiceColor);
-                Anchor(row.rectTransform, Vector2.up, Vector2.one, new Vector2(.5f, 1), Vector2.zero, new Vector2(0, style.choiceMinHeight));
+                var row = Image("Response template", choices, style.ChoiceColor);
+                Anchor(row.rectTransform, Vector2.up, Vector2.one, new Vector2(.5f, 1), Vector2.zero, new Vector2(0, style.ChoiceMinHeight));
                 row.raycastTarget = true;
                 template = row.gameObject.AddComponent<UnityEngine.UI.Button>();
                 template.targetGraphic = row;
@@ -185,7 +157,7 @@ namespace EmergencyShift.Editor
                 colors.highlightedColor = new Color(1.5f, 1.4f, 1.25f, 1);
                 colors.selectedColor = colors.highlightedColor;
                 template.colors = colors;
-                var label = Text("Response label", row.transform, style.font, style.choiceSize, style.textColor);
+                var label = Text("Response label", row.transform, style.Font, style.ChoiceSize, style.TextColor);
                 Stretch(label.rectTransform);
                 label.alignment = TextAnchor.MiddleLeft;
             }

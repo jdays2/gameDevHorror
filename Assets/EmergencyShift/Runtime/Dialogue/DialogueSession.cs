@@ -83,6 +83,7 @@ namespace EmergencyShift
                 return false;
             }
 
+            view.ValidateStyle();
             DialogueGraph graph = content.ToGraph();
             sequence = content;
             return controller.TryBegin(graph);
@@ -128,7 +129,7 @@ namespace EmergencyShift
             if (IsOpen)
             {
                 DialogueNode line = controller.Current;
-                view.Present(sequence.speakers[line.Speaker], line, string.IsNullOrEmpty(line.NextId));
+                view.Present(sequence.SpeakerAt(line.Speaker), line, string.IsNullOrEmpty(line.NextId));
             }
             else if (view != null)
             {

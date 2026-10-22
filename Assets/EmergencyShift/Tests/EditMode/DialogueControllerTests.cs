@@ -14,24 +14,21 @@ namespace EmergencyShift.Tests
             var asset = ScriptableObject.CreateInstance<DialogueSequence>();
             try
             {
-                asset.entryId = "fork";
-                asset.speakers = new[] { new DialogueSequence.Speaker { displayName = "Doctor" } };
-                asset.lines = new[]
+                SetDefinitionField(asset, "entryId", "fork");
+                SetDefinitionField(asset, "speakers", new[] { new DialogueSequence.Speaker(displayName: "Doctor") });
+                SetDefinitionField(asset, "lines", new[]
                 {
-                    new DialogueSequence.Line
-                    {
-                        id = "fork", text = "Where?", choices = new[]
+                    new DialogueSequence.Line(id: "fork", text: "Where?", choices: new[]
                         {
-                            new DialogueSequence.Choice { id = "left", text = "Left", targetId = "end" }
-                        }
-                    },
-                    new DialogueSequence.Line { id = "end", text = "Done" }
-                };
+                            new DialogueSequence.Choice(id: "left", text: "Left", targetId: "end")
+                        }),
+                    new DialogueSequence.Line(id: "end", text: "Done")
+                });
                 DialogueGraph graph = asset.ToGraph();
-                asset.entryId = "missing";
-                asset.lines[0].id = "changed";
-                asset.lines[0].choices[0].targetId = "missing";
-                asset.lines[1].text = "Changed";
+                SetDefinitionField(asset, "entryId", "missing");
+                SetDefinitionField(asset.LineAt(0), "id", "changed");
+                SetDefinitionField(asset.LineAt(0).ChoiceAt(0), "targetId", "missing");
+                SetDefinitionField(asset.LineAt(1), "text", "Changed");
                 var run = new DialogueRun(graph);
                 Assert.That(run.Current.Id, Is.EqualTo("fork"));
                 Assert.That(run.Choose(0), Is.True);
@@ -215,5 +212,8 @@ namespace EmergencyShift.Tests
         {
             public float Scale { get; set; }
         }
+
+        private static void SetDefinitionField(object target, string field, object value) =>
+            target.GetType().GetField(field, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(target, value);
     }
 }

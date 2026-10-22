@@ -10,6 +10,8 @@ DialogueSequence содержит говорящих с именем/необя�
 
 Высота мягкой части тени в CinematicDialogueStyle.asset — `shadowExtraHeight = 440`: затемнение поднято немного выше. Параметр прибавляется к высоте содержимого; плавность градиента сохранена.
 
+C# API DialogueSequence/вложенных данных/DialogueStyle доступен только для чтения; Inspector использует прежние serialized поля. Editor-рецепты записывают данные через DialogueDefinitionAuthoring с проверкой графа до изменения asset. Неверный style отклоняется до захвата паузы/ввода и изменения UI. Owned click handlers снимаются при уничтожении View. Токены/компоновка и assets сохранены; [проверки SharedDefinition36](../Reports/SharedDefinition36.md).
+
 ## Подключение prefab в другой сцене
 
 Общий интерфейс сохранён в `Assets/EmergencyShift/Prefabs/UI/DialogueUI.prefab`: DialogueSession на корне, дочерний Canvas с DialogueView, текстом, портретом, градиентом и шаблоном ответов. Внутренние ссылки и общий CinematicDialogueStyle назначены. Ссылки на HUD/прицел сцены в самом asset пусты; тестового маркера, EventSystem и SandboxConversation в prefab нет.
