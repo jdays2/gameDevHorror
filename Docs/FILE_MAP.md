@@ -8,6 +8,7 @@
 - [AssignPlayerInput.cs](../AgentScripts/AssignPlayerInput.cs)
 - [AuditLevelReuse.cs](../AgentScripts/AuditLevelReuse.cs)
 - [AuditProjectReferences.cs](../AgentScripts/AuditProjectReferences.cs)
+- [AuthorEntranceBlood.cs](../AgentScripts/AuthorEntranceBlood.cs)
 - [BakeMorgueDrain.cs](../AgentScripts/BakeMorgueDrain.cs)
 - [CaptureDamageReview.cs](../AgentScripts/CaptureDamageReview.cs)
 - [CheckDirectionalDamage.cs](../AgentScripts/CheckDirectionalDamage.cs)
@@ -28,6 +29,7 @@
 - [ReviewCreatureArtwork.cs](../AgentScripts/ReviewCreatureArtwork.cs)
 - [ReviewDamageAndRemains.cs](../AgentScripts/ReviewDamageAndRemains.cs)
 - [ReviewDamageFeedbackVisuals.cs](../AgentScripts/ReviewDamageFeedbackVisuals.cs)
+- [ReviewEntranceBlood.cs](../AgentScripts/ReviewEntranceBlood.cs)
 
 ## Assets/EmergencyShift/Editor/Authoring
 

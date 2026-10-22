@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Малые следы у опасных входов | [EntranceBlood48](EntranceBlood48.md): 15 prefab-накладок у 9 входов, native preservation/reference/geometry checks и 9 подходов в контролируемом GameView с базовым фонарём; художественная оценка владельцем ожидается. |
 | Отклик урона / читаемость останков | [DamageFeedback47](DamageFeedback47.md): более яркая кровь .28+1.8 с, ограниченный camera kick .08 unit/.22 с; оригинальные PNG подтверждены, оттенки новых фрагментов настраиваются в GoreProfile. 1235 EditMode/74 PlayMode, нативные кадры; художественная оценка владельцем ожидается. |
 | Сцены / prefab и регрессия asset-lifecycle ламп | [LevelOrganization46](LevelOrganization46.md): 11 сцен, 126→0 свободных SpriteRenderer, 20 общих prefab; 0/4 asset cases →1228 EditMode/71 PlayMode/Windows64. Расстановка и исходный pause draft сохранены. |
 | BUG-006/007 · враги и единый слив | [CreatureRestoration45](CreatureRestoration45.md): 38 исходных PNG, 76 native Sprite; общий drain prefab с одним рисунком; 1224 EditMode/71 PlayMode, ручной авторинг сохранён. Художественная оценка врагов владельцем ожидается. |
