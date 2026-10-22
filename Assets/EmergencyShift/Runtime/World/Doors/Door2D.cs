@@ -44,8 +44,8 @@ namespace EmergencyShift
             }
         }
 
-        public bool IsAvailable(PlayerInteraction actor) => isActiveAndEnabled && CanInteract && actor.CanReach(InteractionPosition, InteractionRange, Blocker);
-        public string GetPrompt(PlayerInteraction actor)
+        public bool IsAvailable(IInteractionActor actor) => isActiveAndEnabled && CanInteract && actor != null && actor.CanReach(InteractionPosition, InteractionRange, Blocker);
+        public string GetPrompt(IInteractionActor actor)
         {
             if (IsOpen)
             {
@@ -55,7 +55,7 @@ namespace EmergencyShift
             return access != null ? access.Prompt(actor) : "Нажмите «E», чтобы открыть";
         }
 
-        public bool Interact(PlayerInteraction actor)
+        public bool Interact(IInteractionActor actor)
         {
             if (!IsAvailable(actor))
             {

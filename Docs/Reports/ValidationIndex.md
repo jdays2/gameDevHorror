@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Native actor ports | [ActorPorts33](ActorPorts33.md): 1117/1117 EditMode, 60/60 PlayMode, Windows64 success. Узкие операции карт/фонаря/оружия вместо конкретного PlayerInteraction; partial ammo, command rejection и destroyed actor проверены. |
 | Кровь/останки readonly config / BUG-029 | [GoreConfig32](GoreConfig32.md): baseline 0/2, затем 1111/1111 EditMode, 60/60 PlayMode, Windows64 success. Числа/составы/ID проверяются до генерации; legacy restoration-only сохранены; отдельный cosmetic RNG не сдвигает gameplay factory. |
 | Shot/projectile readonly config / BUG-028 | [VisualConfig31](VisualConfig31.md): baseline 0/2, затем 1091/1091 EditMode, 60/60 PlayMode, Windows64 success. Невалидный профиль отклоняется до ammo/spawn/Light mutation; прежние поля/refs/assets сохранены. |
 | Питание и clock ламп | [LampPower30](LampPower30.md): 1070/1070 EditMode, 58/58 PlayMode, Windows64 success. Личная power model/command, scaled clock, реальные scene/profile/legacy outputs и rebind; 0 managed bytes в warmed model loop. Legacy config/style и audio timing открыты. |

@@ -15,8 +15,8 @@ namespace EmergencyShift
             get;
         }
 
-        bool IsAvailable(PlayerInteraction actor);
-        string GetPrompt(PlayerInteraction actor);
-        bool Interact(PlayerInteraction actor);
+        bool IsAvailable(IInteractionActor actor);
+        string GetPrompt(IInteractionActor actor);
+        bool Interact(IInteractionActor actor);
     }
 }

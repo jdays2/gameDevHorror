@@ -35,14 +35,14 @@ namespace EmergencyShift
             controller = (factory ?? throw new ArgumentNullException(nameof(factory))).CreateSingleUse();
         }
 
-        public bool TryCollect(PlayerInteraction actor)
+        public bool TryCollect(IInteractionActor actor)
         {
-            if (actor == null || !isActiveAndEnabled)
+            if (!(actor is IFlashlightRecipient recipient) || !isActiveAndEnabled)
             {
                 return false;
             }
 
-            return RequireController().TryCollect(new Operation(this, actor)).Success;
+            return RequireController().TryCollect(new Operation(this, recipient)).Success;
         }
 
         private SingleUsePickupController RequireController() => controller ?? throw new InvalidOperationException("Pickup requires level composition.");
@@ -59,16 +59,16 @@ namespace EmergencyShift
         private readonly struct Operation : IPickupOperation
         {
             private readonly FlashlightPickup2D owner;
-            private readonly PlayerInteraction actor;
+            private readonly IFlashlightRecipient actor;
 
-            public Operation(FlashlightPickup2D owner, PlayerInteraction actor)
+            public Operation(FlashlightPickup2D owner, IFlashlightRecipient actor)
             {
                 this.owner = owner;
                 this.actor = actor;
             }
 
-            public bool CanApply => owner.isActiveAndEnabled && actor.Flashlight != null && actor.CanReach(owner.PickupPosition, 1);
-            public bool Apply() => actor.Flashlight.Acquire();
+            public bool CanApply => owner.isActiveAndEnabled && actor.CanCollectFlashlight && actor.CanReach(owner.PickupPosition, 1);
+            public bool Apply() => actor.TryCollectFlashlight();
 
             public void Present()
             {

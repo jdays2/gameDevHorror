@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "597 own C# explicitly read; 71 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest GoreConfig32.",
+  "limits": "603 own C# explicitly read; 66 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest ActorPorts33.",
   "counts": {
-    "partial": 71,
-    "reviewed_boundary": 526
+    "partial": 66,
+    "reviewed_boundary": 537
   },
   "files": [
     {
@@ -2573,34 +2573,55 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IAccessCardRecipient.cs",
+      "sourceScope": "unity",
+      "sha256": "dedb778a33bf735da2b0ff9a373c367b5e240a5e7138b09807969879708f7d1a",
+      "guid": "a845b29ad6d257946b02d0a669282a2e",
+      "types": [
+        "IAccessCardRecipient"
+      ],
+      "lines": 8,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "dedb778a33bf735da2b0ff9a373c367b5e240a5e7138b09807969879708f7d1a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs",
-      "sha256": "a64c277baf1014e3eff020f6eba4aecb7ba33abaed35cb80c26f1f2157cbb3df",
+      "sha256": "4408156624ce7d955191b8a859549e1bf40dd934033cb5c904aee0083595b90c",
       "baselineSha256": "a64c277baf1014e3eff020f6eba4aecb7ba33abaed35cb80c26f1f2157cbb3df",
       "guid": "c94ffc0f2e63ef1489a97ec192af0f46",
       "types": [
-        "IAutoPickup",
-        "PickupKind"
+        "IAutoPickup"
       ],
-      "lines": 24,
+      "lines": 15,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs",
-        "Assets/EmergencyShift/Runtime/Definitions/PlayerAudioSet.cs",
-        "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-        "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
-        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Общая точка вариативности без switch по виду врага; однако Core contract знает concrete actor View/controller. Для доменной команды нужен узкий interface/context без переноса правил в DTO.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -2615,14 +2636,42 @@
         "concrete PlayerInteraction"
       ],
       "usageEvidence": "Три предмета плюс WeaponLootPickup/PlayerInteraction",
-      "reviewedSha256": "a64c277baf1014e3eff020f6eba4aecb7ba33abaed35cb80c26f1f2157cbb3df",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewedSha256": "4408156624ce7d955191b8a859549e1bf40dd934033cb5c904aee0083595b90c",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
+      "previousReviewStatus": "partial"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IFlashlightRecipient.cs",
+      "sourceScope": "unity",
+      "sha256": "bd71bdf62851700b7e9590a6f0b40a56e7a7285ff448d7e72de6c87e334d7869",
+      "guid": "a76f19aeea558264691e70d3beb98791",
+      "types": [
+        "IFlashlightRecipient"
+      ],
+      "lines": 10,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "bd71bdf62851700b7e9590a6f0b40a56e7a7285ff448d7e72de6c87e334d7869",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs",
-      "sha256": "b72bb67cab961afd4ba96f39003a6d691ec5b5ffd3d512bf7e6f95e40b954703",
+      "sha256": "44ae17677fd4ce117c57e5e07790b9e87214f4c01764ed8ff41720388d6f82f2",
       "baselineSha256": "b72bb67cab961afd4ba96f39003a6d691ec5b5ffd3d512bf7e6f95e40b954703",
       "guid": "ab643831e11526a4682d1d7a35c293da",
       "types": [
@@ -2640,8 +2689,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Контракт разделяет доступность/намерение и prompt, но UI prompt и concrete actor зависимость связаны с командным входом. Пока adapter-facing, не чистый доменный API.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -2656,10 +2705,49 @@
         "concrete PlayerInteraction"
       ],
       "usageEvidence": "Door2D, dialogue и sandbox consumers",
-      "reviewedSha256": "b72bb67cab961afd4ba96f39003a6d691ec5b5ffd3d512bf7e6f95e40b954703",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewedSha256": "44ae17677fd4ce117c57e5e07790b9e87214f4c01764ed8ff41720388d6f82f2",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
+      "previousReviewStatus": "partial"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractionActor.cs",
+      "sourceScope": "unity",
+      "sha256": "33a114a94db5812b9f6d32d4a05ecee340c9cf65c95a96caaca4b3e5b990c101",
+      "guid": "7437a47d76e3d4041a605c7dcf8d85b7",
+      "types": [
+        "IInteractionActor"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Contracts/IAccessCardRecipient.cs",
+        "Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs",
+        "Assets/EmergencyShift/Runtime/Core/Contracts/IFlashlightRecipient.cs",
+        "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs",
+        "Assets/EmergencyShift/Runtime/Core/Contracts/IWeaponRecipient.cs",
+        "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs",
+        "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "33a114a94db5812b9f6d32d4a05ecee340c9cf65c95a96caaca4b3e5b990c101",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IThreatLight2D.cs",
@@ -2704,6 +2792,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IWeaponRecipient.cs",
+      "sourceScope": "unity",
+      "sha256": "62634a7e778229993f57fee3d6d3d1c9c45993a26ef50bd4bb24b8412c57c36d",
+      "guid": "102a854d75b38124c82f5741d2ecb832",
+      "types": [
+        "IWeaponRecipient"
+      ],
+      "lines": 13,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "62634a7e778229993f57fee3d6d3d1c9c45993a26ef50bd4bb24b8412c57c36d",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "FlashlightState02: pure personal power/ownership/optics commands and aim model; Unity pivot/obstruction/projection separate. Camera owns events/cache lifecycle, damage View no flashlight dependency. 540 EditMode, 20 real PlayMode, normal Windows64 success; resources/GUID preserved. Boundary certification only: legacy tuning/config pass and broader project debt remain as stated in report/Notion.",
       "path": "Assets/EmergencyShift/Runtime/Core/Contracts/IWorldProjection2D.cs",
       "sourceScope": "unity",
@@ -2731,6 +2846,42 @@
       "reviewedSha256": "46a98e4e1f6d242e514a882408061c32b0f2864507f0e23918695dc5c7d5ff7a",
       "reviewReport": "Docs/Reports/FlashlightState02.md",
       "reviewDate": "2026-10-21"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Core/Contracts/PickupKind.cs",
+      "sourceScope": "unity",
+      "sha256": "bf35a31fe73da145bd6bdff10fd2d1d4a25caf75a65fa81624dbc2f011b442bc",
+      "guid": "17eb57ff4124ee5438f42de63fb97af6",
+      "types": [
+        "PickupKind"
+      ],
+      "lines": 11,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractionActor.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/PlayerAudioSet.cs",
+        "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
+        "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioBankConfigTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "bf35a31fe73da145bd6bdff10fd2d1d4a25caf75a65fa81624dbc2f011b442bc",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/GameplayInputBlock.cs",
@@ -3234,6 +3385,7 @@
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
@@ -4920,13 +5072,16 @@
         "Assets/EmergencyShift/Editor/Authoring/GameplayHudAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Core/Contracts/IWeaponRecipient.cs",
         "Assets/EmergencyShift/Runtime/Definitions/MagazineWeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Definitions/PumpShotgunDefinition.cs",
         "Assets/EmergencyShift/Runtime/Definitions/WeaponCatalog.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs",
         "Assets/EmergencyShift/Runtime/UI/HudWeaponRow.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
@@ -5777,7 +5932,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs",
-      "sha256": "94910233101403c1c72075b1da8a7bb5afc697d039c5624113eb3332aaa27684",
+      "sha256": "e7f276b276399fe94d67c2fbde0ba6aa49f11b226b59a408c324cec891e7fe21",
       "baselineSha256": "6ff1fc3142b62aa0ca1531d1f4b284f9728570d19f64b82b49b6723b59fd5912",
       "guid": "966f8ed9169ee6b42aca89bc87fedacf",
       "types": [
@@ -5797,11 +5952,11 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "DialogueMvc01: immutable pure graph/run, validated commands and frame/lease controller, explicit DI factory; Unity view/input/config adapters retain serialized fields and GUIDs. Source reviewed; 376 isolated EditMode and 9 real PlayMode passed. See report limits.",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "reviewedSha256": "94910233101403c1c72075b1da8a7bb5afc697d039c5624113eb3332aaa27684",
-      "reviewDate": "2026-10-21",
+      "reviewedSha256": "e7f276b276399fe94d67c2fbde0ba6aa49f11b226b59a408c324cec891e7fe21",
+      "reviewDate": "2026-10-22",
       "responsibility": "Адаптер взаимодействия E с точкой разговора",
       "dependencies": [
         "PlayerInteraction/IInteractable",
@@ -5809,9 +5964,9 @@
         "DialogueSession"
       ],
       "usageEvidence": "Conversation point в MechanicsSandbox; PlayerInteraction вызывает IsAvailable/Interact",
-      "reviewReport": "Docs/Reports/DialogueMvc01.md",
-      "reviewScope": "Full touched source and immutable/command/lifetime boundaries, real prefab lifecycle and isolated Unity tests.",
-      "previousReviewStatus": "partial",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
+      "previousReviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
           "reviewDate": "2026-10-21",
@@ -7194,7 +7349,8 @@
         "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -13382,6 +13538,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponLootPayloadTests.cs"
@@ -15799,9 +15956,8 @@
         "Assets/EmergencyShift/Runtime/Levels/LevelObjectiveController2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRunController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
-        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
-        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AccessCardRestoreTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
@@ -16067,13 +16223,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-      "sha256": "91f5ca6af47782000f3f94c4a3b2d91ae4486d44c4ae8f4579ee7cd0bd985f15",
+      "sha256": "38ec5bccadd80fe023ffc7cbf42fdd2ae9b3ade35cf19ca8c9ed69c1dc5349b4",
       "baselineSha256": "61e533ef3c071ac9d4bedb6ed4969c8e45d6695dbfccad01f446ef60ae4fe1c2",
       "guid": "500d12c8cbe97624898244a956ece442",
       "types": [
         "PlayerInteraction"
       ],
-      "lines": 229,
+      "lines": 249,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -16096,39 +16252,29 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
-        "Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs",
-        "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs",
         "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
-        "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
-        "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
         "Assets/EmergencyShift/Runtime/UI/PrototypeHud.cs",
-        "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
-        "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
-        "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
-        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
-        "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
-        "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
-      "reviewedSha256": "91f5ca6af47782000f3f94c4a3b2d91ae4486d44c4ae8f4579ee7cd0bd985f15",
+      "notes": "ActorPorts33: actor capability ports/commands проверены; прежние authored timing/config/lifetime долги сохранены.",
+      "reviewedSha256": "38ec5bccadd80fe023ffc7cbf42fdd2ae9b3ade35cf19ca8c9ed69c1dc5349b4",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16147,9 +16293,9 @@
         "concrete player/light/loot adapters"
       ],
       "usageEvidence": "Update, IAutoPickup/IInteractable и feedback consumers",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -17473,13 +17619,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs",
-      "sha256": "c546d5a37f94aad014174e42ca2cc934df96f806e38c0d2b95df4cce04f129a5",
+      "sha256": "82a03c95d6936bc5258e96088fa22f39534815e6f132d283e23bc14e52a565be",
       "baselineSha256": "e361c630958848dec470927f6af3a93df85c717e7fd1ed1c79c0645deb6e9852",
       "guid": "6d562d41e4fb0864e8479751c6291fe2",
       "types": [
         "SandboxAmmoSupply2D"
       ],
-      "lines": 58,
+      "lines": 59,
       "serializedUsers": [
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
       ],
@@ -17489,7 +17635,7 @@
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "WeaponDefinition20: readonly definitions либо consumer/regression boundary; прежние serialized field names, balance, IDs/refs и payload fields сохранены. Inherited JSON/SerializedObject, immutable runtime settings и authored/native проверки пройдены.",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Повторяемое пополнение активного резерва в тире",
@@ -17499,10 +17645,10 @@
         "BoxCollider2D"
       ],
       "usageEvidence": "Авторенный sandbox crate; normal AddAmmo limits",
-      "reviewedSha256": "c546d5a37f94aad014174e42ca2cc934df96f806e38c0d2b95df4cce04f129a5",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewedSha256": "82a03c95d6936bc5258e96088fa22f39534815e6f132d283e23bc14e52a565be",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -17955,7 +18101,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
-      "sha256": "42f865617cca7b37ba6977d6289cb097c19f9ee48777f5999ee9affe10d7d773",
+      "sha256": "b2b27e70a9849ffe5b565271421d07619089653c794dbeecabc8cb6bc0ab87e3",
       "baselineSha256": "b69a976723eb70a5f8faab2f7a74543173a8342bad711b55ccc6a589a9428bd9",
       "guid": "b9ed2bf47fea2194d81220c054b2769c",
       "types": [
@@ -18000,8 +18146,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Личный motion MVC/controller и native leaf, restore/disable проверены. duration/openOffset и actor interaction остаются compatibility bridge; общий config/interaction pass открыт.",
-      "reviewedSha256": "42f865617cca7b37ba6977d6289cb097c19f9ee48777f5999ee9affe10d7d773",
+      "notes": "ActorPorts33: actor capability ports/commands проверены; прежние authored timing/config/lifetime долги сохранены.",
+      "reviewedSha256": "b2b27e70a9849ffe5b565271421d07619089653c794dbeecabc8cb6bc0ab87e3",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -18019,20 +18165,20 @@
         "Transform/coroutine"
       ],
       "usageEvidence": "PlayerInteraction; checkpoint; DoorAudio",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/DoorMotion08.md",
-      "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
-      "sha256": "011d9ef1f9dfba7ecd4be393b8246b3983e4d372804216729f29bd01e40850f7",
+      "sha256": "22e77b47133ff2309c84b6ecf26320e9a8819840ae5d1389aed77dd951ec3623",
       "baselineSha256": "25d290f54b6ffa43979fb1f1e4d31d130acc392706534ed489872bbcc8fcb0f2",
       "guid": "12af7b2d2f7ed704d9467f3edfdc7abc",
       "types": [
         "DoorAccess2D"
       ],
-      "lines": 102,
+      "lines": 101,
       "serializedUsers": [
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
@@ -18053,13 +18199,14 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AccessControlSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "DoorFeedbackConfig12: readonly shared config API и старые serialized names/аудиоссылки; finite/cross-field guards до use/replacement. Прежние значения attenuation/pan сохранены как defaults; native doors проверены.",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -18080,10 +18227,10 @@
         "DoorAccessFeedbackProfile"
       ],
       "usageEvidence": "Door2D; DoorCheckpoint2D; DoorAccessTests",
-      "reviewedSha256": "011d9ef1f9dfba7ecd4be393b8246b3983e4d372804216729f29bd01e40850f7",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/DoorFeedbackConfig12.md",
-      "reviewScope": "Full source read: readonly config API with stable serialized fields, finite/cross-field guards, authored asset/audio references, atomic profile replacement and native doors; native scene and normal Windows64 verified.",
+      "reviewedSha256": "22e77b47133ff2309c84b6ecf26320e9a8819840ae5d1389aed77dd951ec3623",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -18568,14 +18715,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
-      "sha256": "7b01b950e03ef870c2f78f5cd37fd3a5e2494fd3c18a887059c42d2eed5cc960",
+      "sha256": "eb74d01345b04b8ef50a172dab4d96b0ee05d6f03210c3a4b4bdca54e37443cb",
       "baselineSha256": "3f3e9a6083239954636b5771c8107344224e19f5d39bac1743d4177774f6c105",
       "guid": "7976cc56c7510bf47918da5f14a64752",
       "types": [
         "AccessCardPickup2D",
         "Operation"
       ],
-      "lines": 101,
+      "lines": 100,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Loot/AccessCardPickup.prefab",
         "Assets/EmergencyShift/Prefabs/World/AccessCards01/ResearchCard.prefab",
@@ -18601,6 +18748,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -18610,8 +18758,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "SingleUsePickups18/BUG-024: личная once/busy state и collect/restore команды выделены; native reentry/caps/repeatability и quiet restore проверены. Concrete actor и serialized item definition/tuning bridge остаются долгом.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -18627,15 +18775,15 @@
         "collider"
       ],
       "usageEvidence": "PlayerInteraction.CollectNearbyLoot; CardCheckpoint2D",
-      "reviewedSha256": "7b01b950e03ef870c2f78f5cd37fd3a5e2494fd3c18a887059c42d2eed5cc960",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
-      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
+      "reviewedSha256": "eb74d01345b04b8ef50a172dab4d96b0ee05d6f03210c3a4b4bdca54e37443cb",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
-      "sha256": "ed378f820401a70bf77c776d736c27717981557eff451fa936630f61b05696f9",
+      "sha256": "917f266a221805827550b126d02657612885af395403f9ed9960fdd975374454",
       "baselineSha256": "48e34bf17808c8d2840cb6be5aaecdf42be8866c1a0d75df9fd7d2761935257d",
       "guid": "e0a39b6819e49ac4fbd820adef14da59",
       "types": [
@@ -18657,6 +18805,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -18667,7 +18816,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "SingleUsePickups18/BUG-024: pure once/busy/commands/controller или native adapter/composition/regression boundary проверены. Личный consumed flag не хранится в SO/View; эффекты и feedback по разным этапам, restore тихий. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -18683,15 +18832,15 @@
         "collider"
       ],
       "usageEvidence": "PlayerInteraction.CollectNearbyLoot",
-      "reviewedSha256": "ed378f820401a70bf77c776d736c27717981557eff451fa936630f61b05696f9",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
-      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
+      "reviewedSha256": "917f266a221805827550b126d02657612885af395403f9ed9960fdd975374454",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
-      "sha256": "c77b19353e759c24da0eeb6cfa4be00036555bb04b347da3bad348dbd6964b04",
+      "sha256": "4aac95087ee279eeac945d8f4a44476f82d0eb4356810cba44d4d282228f36bb",
       "baselineSha256": "10b346e827eac520a96b47fd00e563e67fca42099e0026d3b4c821f0eade9f85",
       "guid": "f30341c95ca64144faba1612ebfd3509",
       "types": [
@@ -18719,6 +18868,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -18728,8 +18878,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "SingleUsePickups18/BUG-024: личная once/busy state и collect/restore команды выделены; native reentry/caps/repeatability и quiet restore проверены. Concrete actor и serialized item definition/tuning bridge остаются долгом.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -18744,15 +18894,15 @@
         "Collider2D"
       ],
       "usageEvidence": "PlayerInteraction; UpgradeCheckpoint2D",
-      "reviewedSha256": "c77b19353e759c24da0eeb6cfa4be00036555bb04b347da3bad348dbd6964b04",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/SingleUsePickups18.md",
-      "reviewScope": "Full source read: single-use pickup state/command busy guard, effect/presentation ordering, explicit personal factory and quiet restore; real reentry/repeatable/caps/card/flashlight plus checkpoint and normal Windows64 verified.",
+      "reviewedSha256": "4aac95087ee279eeac945d8f4a44476f82d0eb4356810cba44d4d282228f36bb",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
-      "sha256": "5dfc691cb76de57344263efe53ec31d1ed150661eb75570768c5d314ea8653ea",
+      "sha256": "a9b6906894e139d24e67b158d1d38bb6d75ef1e4a50dceb74efa687eba9873ed",
       "baselineSha256": "49f193040cf1319d4eaa5dc2b99bccac0d5160b2a9d774d12432756c75f119bc",
       "guid": "bb9d051bfe62a344e99d371c7b3f6728",
       "types": [
@@ -18785,6 +18935,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -18795,8 +18946,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Авто-подбор оружия/боезапаса и остаток коробки",
@@ -18806,10 +18957,10 @@
         "CircleCollider2D"
       ],
       "usageEvidence": "Pistol/Shotgun/Ammo pickups; IAutoPickup; WeaponLootCheckpoint2D",
-      "reviewedSha256": "5dfc691cb76de57344263efe53ec31d1ed150661eb75570768c5d314ea8653ea",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewedSha256": "a9b6906894e139d24e67b158d1d38bb6d75ef1e4a50dceb74efa687eba9873ed",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -19755,7 +19906,7 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -19776,9 +19927,9 @@
       ],
       "usageEvidence": "3 Test метода; source read only",
       "reviewedSha256": "6f4533dc22efb53ad44685f0a6f8a3e9006e168b3bd0d3b5548266d745aeaa94",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -20623,6 +20774,34 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit09.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
+      "sourceScope": "unity",
+      "sha256": "d73b004c4908805cedcdd4e35ddd32c801864195eacf30adaba1ba944e6a6729",
+      "guid": "96836922675eb644884153b4337826c8",
+      "types": [
+        "Actor",
+        "InteractionActorPortTests"
+      ],
+      "lines": 140,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/CheckWorldServices.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d73b004c4908805cedcdd4e35ddd32c801864195eacf30adaba1ba944e6a6729",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained."
     },
     {
       "baselineSha256": null,
@@ -21874,6 +22053,7 @@
         "Assets/EmergencyShift/Runtime/Definitions/LocalLampSceneSettings.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [
@@ -22568,10 +22748,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs",
       "sourceScope": "unity",
-      "sha256": "a0665976408ea6acd6175306f0ec3a14ec9b8c3c9f6ff4420a69257338870d64",
+      "sha256": "c61bbbb645af2248e967b8ba95acb7f8193440e7e374a27a92ef5193d1e64192",
       "guid": "57d49eb061ef4dfdb87549173899eb3c",
       "types": [
         "InteractionProbeTarget"
@@ -22584,10 +22764,11 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "a0665976408ea6acd6175306f0ec3a14ec9b8c3c9f6ff4420a69257338870d64",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+      "reviewedSha256": "c61bbbb645af2248e967b8ba95acb7f8193440e7e374a27a92ef5193d1e64192",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/ActorPorts33.md",
+      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -23290,7 +23471,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 578,
+    "unity": 584,
     "content_source": 8
   },
   "latestReview": {
@@ -23441,11 +23622,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 597,
-    "totalFiles": 597,
+    "reviewedFiles": 603,
+    "totalFiles": 603,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "GoreConfig32 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "ActorPorts33 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

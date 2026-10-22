@@ -17,35 +17,36 @@ namespace EmergencyShift
             GetComponent<BoxCollider2D>().isTrigger = true;
         }
 
-        public bool IsAvailable(PlayerInteraction actor)
+        public bool IsAvailable(IInteractionActor actor)
         {
-            return isActiveAndEnabled && actor != null && actor.Weapon != null
+            return isActiveAndEnabled && actor is IWeaponRecipient recipient && recipient.CanCollectWeapon
                 && actor.CanReach(InteractionPosition, interactionRange);
         }
 
-        public string GetPrompt(PlayerInteraction actor)
+        public string GetPrompt(IInteractionActor actor)
         {
-            if (!actor.Weapon.HasWeapon)
+            var recipient = actor as IWeaponRecipient;
+            if (recipient == null || !recipient.HasWeapon)
             {
                 return "ЯЩИК ПАТРОНОВ · Сначала подберите оружие";
             }
 
-            if (actor.Weapon.Ammo >= actor.Weapon.MaximumAmmo)
+            if (recipient.Ammo >= recipient.MaximumAmmo)
             {
                 return "ЯЩИК ПАТРОНОВ · Запас полный";
             }
 
-            return "[E] Пополнить «" + actor.Weapon.Definition.DisplayName + "» · без ограничений";
+            return "[E] Пополнить «" + recipient.WeaponName + "» · без ограничений";
         }
 
-        public bool Interact(PlayerInteraction actor)
+        public bool Interact(IInteractionActor actor)
         {
-            if (!IsAvailable(actor) || !actor.Weapon.HasWeapon)
+            if (!IsAvailable(actor) || !(actor is IWeaponRecipient recipient) || !recipient.HasWeapon)
             {
                 return false;
             }
 
-            int received = actor.Weapon.AddAmmo(actor.Weapon.MaximumAmmo);
+            int received = recipient.CollectAmmo(recipient.MaximumAmmo);
             if (received == 0)
             {
                 return false;

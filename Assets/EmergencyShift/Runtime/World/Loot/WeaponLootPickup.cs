@@ -69,9 +69,9 @@ namespace EmergencyShift
 
         private void Reset() => GetComponent<CircleCollider2D>().isTrigger = true;
         private void Awake() => GetComponent<CircleCollider2D>().isTrigger = true;
-        public bool IsAvailable(PlayerInteraction actor)
+        public bool IsAvailable(IInteractionActor actor)
         {
-            return !Collected && isActiveAndEnabled && actor != null && actor.Weapon != null && actor.CanReach(InteractionPosition, pickupRange);
+            return !Collected && isActiveAndEnabled && actor is IWeaponRecipient recipient && recipient.CanCollectWeapon && actor.CanReach(InteractionPosition, pickupRange);
         }
 
         [Inject]
@@ -86,14 +86,14 @@ namespace EmergencyShift
             controller = (factory ?? throw new ArgumentNullException(nameof(factory))).CreateWeaponLoot(kind == LootKind.Ammo, cartridges);
         }
 
-        public bool TryCollect(PlayerInteraction actor)
+        public bool TryCollect(IInteractionActor actor)
         {
-            if (actor == null || !isActiveAndEnabled)
+            if (!(actor is IWeaponRecipient recipient) || !isActiveAndEnabled)
             {
                 return false;
             }
 
-            return RequireController().TryCollect(new Operation(this, actor)).Success;
+            return RequireController().TryCollect(new Operation(this, recipient)).Success;
         }
 
         private WeaponLootController RequireController() => controller ?? throw new InvalidOperationException("Weapon loot requires level composition.");
@@ -109,9 +109,9 @@ namespace EmergencyShift
         private readonly struct Operation : IWeaponLootOperation
         {
             private readonly WeaponLootPickup owner;
-            private readonly PlayerInteraction actor;
+            private readonly IWeaponRecipient actor;
 
-            public Operation(WeaponLootPickup owner, PlayerInteraction actor)
+            public Operation(WeaponLootPickup owner, IWeaponRecipient actor)
             {
                 this.owner = owner;
                 this.actor = actor;
@@ -119,8 +119,8 @@ namespace EmergencyShift
 
             public bool CanApply => owner.IsAvailable(actor);
             public WeaponLootGrant Apply(bool isAmmo, int amount) => isAmmo
-                ? WeaponLootGrant.Ammo(actor.Weapon.AddAmmo(amount, owner.weaponDefinition))
-                : WeaponLootGrant.Weapon(actor.Weapon.Acquire(amount, owner.weaponDefinition));
+                ? WeaponLootGrant.Ammo(actor.CollectAmmo(amount, owner.weaponDefinition))
+                : WeaponLootGrant.Weapon(actor.CollectWeapon(amount, owner.weaponDefinition));
 
             public void Present(bool isAmmo, int received, bool consumed)
             {
@@ -132,7 +132,7 @@ namespace EmergencyShift
                     }
                     else
                     {
-                        actor.ReportPickup(PickupKind.Weapon, actor.Weapon.Definition != null ? actor.Weapon.Definition.DisplayName : "Пистолет");
+                        actor.ReportPickup(PickupKind.Weapon, actor.WeaponName);
                     }
                 }
                 finally

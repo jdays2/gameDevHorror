@@ -55,14 +55,13 @@ namespace EmergencyShift
             controller?.Configure(Settings());
         }
 
-        private bool HasCard(PlayerInteraction actor)
+        private bool HasCard(IInteractionActor actor)
         {
-            var cards = actor != null ? actor.GetComponent<PlayerAccessCards2D>() : null;
-            return cards != null && cards.Has(requiredCardId);
+            return actor is IAccessCardRecipient cards && cards.HasAccessCard(requiredCardId);
         }
 
-        public string Prompt(PlayerInteraction actor) => IsUnlocked || HasCard(actor) ? "[E]  Открыть дверь" : "ЗАПЕРТО · Нужна «" + cardName + "»  [E]";
-        public bool TryUnlock(PlayerInteraction actor)
+        public string Prompt(IInteractionActor actor) => IsUnlocked || HasCard(actor) ? "[E]  Открыть дверь" : "ЗАПЕРТО · Нужна «" + cardName + "»  [E]";
+        public bool TryUnlock(IInteractionActor actor)
         {
             DoorAccessAttempt result = RequireController().TryUnlock(HasCard(actor), actor != null);
             if (result.HasFeedback)

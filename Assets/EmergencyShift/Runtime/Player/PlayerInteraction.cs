@@ -11,7 +11,7 @@ using Zenject;
 namespace EmergencyShift
 {
     /// <summary>E selects a door; nearby loot collects automatically with queued HUD feedback.</summary>
-    public sealed class PlayerInteraction : MonoBehaviour, IInteractionEnvironment
+    public sealed class PlayerInteraction : MonoBehaviour, IInteractionEnvironment, IAccessCardRecipient, IFlashlightRecipient, IWeaponRecipient
     {
         [SerializeField, Min(0.1f)]
         private float reach = 1.6f;
@@ -35,6 +35,7 @@ namespace EmergencyShift
         private FlashlightUpgrades upgrades;
         private PlayerLife2D life;
         private PlayerWeapon2D weapon;
+        private PlayerAccessCards2D cards;
         private IPlayerInput input;
         private GameplayInputBlock inputBlock;
         private SceneRegistry<Door2D> doorRegistry;
@@ -61,6 +62,7 @@ namespace EmergencyShift
             var settings = new PlayerInteractionSettings(reach, selectionTieDistance, notificationSeconds, maximumPendingNotices);
             selection = factory.Create(settings, this);
             notices = factory.CreateNotices(settings);
+            CacheComponents();
         }
         public event System.Action<PickupKind> ItemCollected;
         public IInteractable CurrentTarget
@@ -75,15 +77,33 @@ namespace EmergencyShift
         public string CurrentPrompt => CurrentTarget != null ? CurrentTarget.GetPrompt(this) : null;
         public string Notification => notices?.Current;
         bool IInteractionEnvironment.CanAct => CanAct;
-        private bool CanAct => inputBlock != null && !inputBlock.IsBlocked && isActiveAndEnabled && (life == null || !life.IsDead);
+        private bool CanAct => this != null && inputBlock != null && !inputBlock.IsBlocked && isActiveAndEnabled && (life == null || !life.IsDead);
+
+        bool IFlashlightRecipient.CanCollectFlashlight => this != null && flashlight != null;
+        bool IFlashlightRecipient.CanUpgradeFlashlight => this != null && upgrades != null;
+        bool IFlashlightRecipient.TryCollectFlashlight() => CanAct && flashlight != null && flashlight.Acquire();
+        bool IFlashlightRecipient.TryCollectUpgrade(string id, string label, float rangeBonus, float angleBonus, bool repeatable) =>
+            CanAct && upgrades != null && upgrades.TryInstall(id, label, rangeBonus, angleBonus, out _, repeatable);
+        bool IAccessCardRecipient.HasAccessCard(string id) => this != null && cards != null && cards.Has(id);
+        bool IAccessCardRecipient.TryCollectCard(string id) => CanAct && cards != null && cards.Add(id);
+        bool IWeaponRecipient.CanCollectWeapon => this != null && weapon != null;
+        bool IWeaponRecipient.HasWeapon => this != null && weapon != null && weapon.HasWeapon;
+        int IWeaponRecipient.Ammo => this != null && weapon != null ? weapon.Ammo : 0;
+        int IWeaponRecipient.MaximumAmmo => this != null && weapon != null ? weapon.MaximumAmmo : 0;
+        string IWeaponRecipient.WeaponName => this != null && weapon != null && weapon.Definition != null ? weapon.Definition.DisplayName : "Пистолет";
+        int IWeaponRecipient.CollectAmmo(int amount, WeaponDefinition definition) => CanAct && weapon != null ? weapon.AddAmmo(amount, definition) : 0;
+        bool IWeaponRecipient.CollectWeapon(int amount, WeaponDefinition definition) => CanAct && weapon != null && weapon.Acquire(amount, definition);
 
         public void Configure(Door2D[] sceneDoors) => doors = sceneDoors;
-        private void Awake()
+        private void Awake() => CacheComponents();
+
+        private void CacheComponents()
         {
             flashlight = GetComponent<Flashlight2D>();
             upgrades = GetComponent<FlashlightUpgrades>();
             life = GetComponent<PlayerLife2D>();
             weapon = GetComponent<PlayerWeapon2D>();
+            cards = GetComponent<PlayerAccessCards2D>();
         }
 
         private void Update()

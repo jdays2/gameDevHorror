@@ -7,10 +7,10 @@ namespace EmergencyShift.Tests
         public int Calls { get; private set; }
         public Vector2 InteractionPosition => transform.position;
         public float InteractionRange => 1.6f;
-        public bool IsAvailable(PlayerInteraction actor) => isActiveAndEnabled && actor.CanReach(InteractionPosition, InteractionRange);
-        public string GetPrompt(PlayerInteraction actor) => "Test target";
+        public bool IsAvailable(IInteractionActor actor) => isActiveAndEnabled && actor.CanReach(InteractionPosition, InteractionRange);
+        public string GetPrompt(IInteractionActor actor) => "Test target";
 
-        public bool Interact(PlayerInteraction actor)
+        public bool Interact(IInteractionActor actor)
         {
             if (!IsAvailable(actor))
             {

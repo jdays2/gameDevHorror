@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "b319fce34b27ea0749edcfe53308c8403b436331",
+  "editMode": {
+    "result": "Passed",
+    "total": "1117",
+    "passed": "1117",
+    "failed": "0",
+    "end-time": "2026-10-22 05:06:21Z",
+    "rawPath": "work/sod-evidence-20261022-final/interaction-port-edit.xml",
+    "rawSha256": "c8f799666596613679ad9849539bafe20b7d5e5c19c51a26ad2e6168138eac44",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.InteractionActorPortTests.CardNeedsReachAndSuccessfulGrantBeforeConsumption",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.InteractionActorPortTests.DestroyedActorThroughInterfaceCannotCollectOrThrowMissingReference",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.InteractionActorPortTests.FlashlightRewardsWorkWithAComponentFreeRecipient(False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.InteractionActorPortTests.FlashlightRewardsWorkWithAComponentFreeRecipient(True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.InteractionActorPortTests.PartialAmmoGrantKeepsRemainderWithoutConcreteWeaponAccess",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.InteractionActorPortTests.ReaderUsesCardCapabilityWithoutFetchingAPlayerComponent",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "60",
+    "passed": "60",
+    "failed": "0",
+    "end-time": "2026-10-22 05:07:36Z",
+    "rawPath": "work/sod-evidence-20261022-final/interaction-port-play.xml",
+    "rawSha256": "26f4f9e4a91d6b66779423f47591bfacea94c49dceca64cabf0484002a3fcc9a",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.NativeAmmoBoxKeepsPartialRemainderAndRestoresWithoutGivingAmmo",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.NativeCappedUpgradeRemainsOnFloor",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.NativeCardChecksActorAndRestoresConsumptionQuietly",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.NativeFlashlightIsAcquiredOnceAndRestoreDoesNotReplayOwnership",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.NativeWeaponPickupAcquiresEmptyWeaponAndDuplicateRemains",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.PickupSceneTests.OpticsEventCannotConsumeTheSameUpgradeTwice",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-22T05:08:08.059Z",
+    "endedAt": "2026-10-22T05:08:35.988Z",
+    "generator": {
+      "name": "unity-cli",
+      "version": "1.0.0-beta.14"
+    }
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractionActor.cs": "33a114a94db5812b9f6d32d4a05ecee340c9cf65c95a96caaca4b3e5b990c101",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IAccessCardRecipient.cs": "dedb778a33bf735da2b0ff9a373c367b5e240a5e7138b09807969879708f7d1a",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IFlashlightRecipient.cs": "bd71bdf62851700b7e9590a6f0b40a56e7a7285ff448d7e72de6c87e334d7869",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IWeaponRecipient.cs": "62634a7e778229993f57fee3d6d3d1c9c45993a26ef50bd4bb24b8412c57c36d",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/PickupKind.cs": "bf35a31fe73da145bd6bdff10fd2d1d4a25caf75a65fa81624dbc2f011b442bc",
+    "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs": "d73b004c4908805cedcdd4e35ddd32c801864195eacf30adaba1ba944e6a6729",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs": "4408156624ce7d955191b8a859549e1bf40dd934033cb5c904aee0083595b90c",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs": "44ae17677fd4ce117c57e5e07790b9e87214f4c01764ed8ff41720388d6f82f2",
+    "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs": "eb74d01345b04b8ef50a172dab4d96b0ee05d6f03210c3a4b4bdca54e37443cb",
+    "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs": "917f266a221805827550b126d02657612885af395403f9ed9960fdd975374454",
+    "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs": "4aac95087ee279eeac945d8f4a44476f82d0eb4356810cba44d4d282228f36bb",
+    "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs": "a9b6906894e139d24e67b158d1d38bb6d75ef1e4a50dceb74efa687eba9873ed",
+    "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs": "b2b27e70a9849ffe5b565271421d07619089653c794dbeecabc8cb6bc0ab87e3",
+    "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs": "22e77b47133ff2309c84b6ecf26320e9a8819840ae5d1389aed77dd951ec3623",
+    "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs": "e7f276b276399fe94d67c2fbde0ba6aa49f11b226b59a408c324cec891e7fe21",
+    "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs": "82a03c95d6936bc5258e96088fa22f39534815e6f132d283e23bc14e52a565be",
+    "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs": "38ec5bccadd80fe023ffc7cbf42fdd2ae9b3ade35cf19ca8c9ed69c1dc5349b4",
+    "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs": "c61bbbb645af2248e967b8ba95acb7f8193440e7e374a27a92ef5193d1e64192",
+    "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs": "6f4533dc22efb53ad44685f0a6f8a3e9006e168b3bd0d3b5548266d745aeaa94"
+  },
+  "metadataSha256": {
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractionActor.cs.meta": "980d7e643445b3a4d691d29619cfc54fefcc6d47d4c6b72c33e9c7c8d8d9c341",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IAccessCardRecipient.cs.meta": "f9d752d4b4a23a037992752754c305d29bca821609762926c6a84bb921ae0d19",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IFlashlightRecipient.cs.meta": "2868d7bdd9ee146ccb2742e1c3bf3f5633e01f4dffc560a63e7a67501141deac",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IWeaponRecipient.cs.meta": "30989d00f9443864797b2162b78f2839bb56fddba7b1bb978440a585ba664106",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/PickupKind.cs.meta": "5823303698b4c84a9e3ee2b715d10ee8ae8c18a22c442bfaa8f49aa9833c8f74",
+    "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs.meta": "315dee33b62346fbdd86ae30e3cdfd0536f9749629f88030e552c0595dd42dab",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs.meta": "0cdd2f83eb865e4c4c58529180e98ac8112e6ec9c75e360858e57b48841dbf76",
+    "Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs.meta": "5e4ab1924b937961890d9d867e5392032d0324d91d7365e9d61fa841de695f2b",
+    "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs.meta": "aedd0114cd095c34ad373d696196324359a69f53f98599caf370a9c72786f845",
+    "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs.meta": "506bd04303c802d3e212aecc7c08983d04e7e699d908e88a7e82290177369690",
+    "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs.meta": "a65e9d0bae2fd332513f46218c6a1396e5d399bdcf887520ab1deaae984f829e",
+    "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs.meta": "eef06f494776cd9224bd6c01ca4a3022f781514a01c2373e345bda51d3eb38cf",
+    "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs.meta": "0f1fdcd7b3681d0cdb7aab5a2d099e4700353c708d0b55147f42025698da31c1",
+    "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs.meta": "09e567f9b940bcdd622cf6ff84ce1cfbb3f1d9dd35502b2e739aaec95067a470",
+    "Assets/EmergencyShift/Runtime/Dialogue/DialogueInteraction2D.cs.meta": "62f5a966710ce9ef8b8512814c6ab6eca5ad9d2a84c0e4f99e37fffc09b75812",
+    "Assets/EmergencyShift/Runtime/Sandbox/SandboxAmmoSupply2D.cs.meta": "0666de69c7d6748c289fcf79908337fa74269328a6d075c64fbd3813d31878b8",
+    "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs.meta": "49d492e68d0e4fc5098746c4b504a5d48c40b9c063961f5c7efc4f6470c8587a",
+    "Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs.meta": "e4696c546849580823631f56d585bb8a2df7ac5d4523de2cc8e1487ee350d7fc",
+    "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs.meta": "e136f126ceb3630efcc80d1cc9532c23b8390cef6983cadb55336cdfb0a94630"
+  },
+  "protectedResources": 1805,
+  "resourceBaselineSha256": "d88bb27eb6157c7e5073c94144f400da0c0ece478a174eb55a1ce33f23c9db4d",
+  "resourceDifferences": [],
+  "originalDirtyFilesPreserved": 60,
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Native interaction capability ports replace concrete actor/component access. Existing commands/selection/loot caps/door authority retained. No new defect or red baseline claimed. Other SOD work and owner acceptance remain open."
+}

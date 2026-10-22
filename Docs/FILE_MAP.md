@@ -94,10 +94,15 @@
 
 - [Damageable2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/Damageable2D.cs)
 - [EnemyPresentationSource2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/EnemyPresentationSource2D.cs)
+- [IAccessCardRecipient.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IAccessCardRecipient.cs)
 - [IAutoPickup.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs)
+- [IFlashlightRecipient.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IFlashlightRecipient.cs)
 - [IInteractable.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs)
+- [IInteractionActor.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IInteractionActor.cs)
 - [IThreatLight2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IThreatLight2D.cs)
+- [IWeaponRecipient.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IWeaponRecipient.cs)
 - [IWorldProjection2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IWorldProjection2D.cs)
+- [PickupKind.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/PickupKind.cs)
 
 ## Assets/EmergencyShift/Runtime/Core/Randomness
 
@@ -779,6 +784,7 @@
 - [GoreConfigBoundaryTests.cs](../Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs)
 - [GroundAudioSurfaceQueryTests.cs](../Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs)
 - [HealthModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs)
+- [InteractionActorPortTests.cs](../Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs)
 - [LampPowerTests.cs](../Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs)
 - [LevelCompositionFailureTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs)
 - [LevelCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs)

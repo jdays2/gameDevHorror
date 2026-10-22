@@ -2,15 +2,6 @@ using UnityEngine;
 
 namespace EmergencyShift
 {
-    public enum PickupKind
-    {
-        Ammo,
-        Weapon,
-        FlashlightUpgrade,
-        AccessCard,
-        Flashlight
-    }
-
     /// <summary>Ground loot is collected by proximity; doors keep IInteractable/E.</summary>
     public interface IAutoPickup
     {
@@ -19,6 +10,6 @@ namespace EmergencyShift
             get;
         }
 
-        bool TryCollect(PlayerInteraction actor);
+        bool TryCollect(IInteractionActor actor);
     }
 }

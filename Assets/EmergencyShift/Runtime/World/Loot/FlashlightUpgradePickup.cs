@@ -49,9 +49,9 @@ namespace EmergencyShift
             }
         }
 
-        public bool IsAvailable(PlayerInteraction actor)
+        public bool IsAvailable(IInteractionActor actor)
         {
-            if (Collected || !isActiveAndEnabled || actor == null || actor.Upgrades == null)
+            if (Collected || !isActiveAndEnabled || !(actor is IFlashlightRecipient recipient) || !recipient.CanUpgradeFlashlight)
             {
                 return false;
             }
@@ -75,14 +75,14 @@ namespace EmergencyShift
             controller = (factory ?? throw new ArgumentNullException(nameof(factory))).CreateSingleUse();
         }
 
-        public bool TryCollect(PlayerInteraction actor)
+        public bool TryCollect(IInteractionActor actor)
         {
-            if (actor == null || !isActiveAndEnabled)
+            if (!(actor is IFlashlightRecipient recipient) || !isActiveAndEnabled)
             {
                 return false;
             }
 
-            return RequireController().TryCollect(new Operation(this, actor)).Success;
+            return RequireController().TryCollect(new Operation(this, recipient)).Success;
         }
 
         private SingleUsePickupController RequireController() => controller ?? throw new InvalidOperationException("Pickup requires level composition.");
@@ -99,17 +99,17 @@ namespace EmergencyShift
         private readonly struct Operation : IPickupOperation
         {
             private readonly FlashlightUpgradePickup owner;
-            private readonly PlayerInteraction actor;
+            private readonly IFlashlightRecipient actor;
 
-            public Operation(FlashlightUpgradePickup owner, PlayerInteraction actor)
+            public Operation(FlashlightUpgradePickup owner, IFlashlightRecipient actor)
             {
                 this.owner = owner;
                 this.actor = actor;
             }
 
             public bool CanApply => owner.IsAvailable(actor);
-            public bool Apply() => actor.Upgrades.TryInstall(owner.moduleId, owner.displayName,
-                owner.rangeBonus, owner.angleBonus, out _, owner.repeatable);
+            public bool Apply() => actor.TryCollectUpgrade(owner.moduleId, owner.displayName,
+                owner.rangeBonus, owner.angleBonus, owner.repeatable);
 
             public void Present()
             {

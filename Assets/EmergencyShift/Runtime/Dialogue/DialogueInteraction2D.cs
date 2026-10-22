@@ -11,18 +11,18 @@ namespace EmergencyShift
         public Vector2 InteractionPosition => transform.position;
         public float InteractionRange => interactionRange;
 
-        public bool IsAvailable(PlayerInteraction actor)
+        public bool IsAvailable(IInteractionActor actor)
         {
             return isActiveAndEnabled && actor != null && sequence != null && session != null
                 && session.CanBegin && actor.CanReach(InteractionPosition, interactionRange);
         }
 
-        public string GetPrompt(PlayerInteraction actor)
+        public string GetPrompt(IInteractionActor actor)
         {
             return "[E] Пробный диалог · можно повторить";
         }
 
-        public bool Interact(PlayerInteraction actor)
+        public bool Interact(IInteractionActor actor)
         {
             return IsAvailable(actor) && session.TryBegin(sequence);
         }
