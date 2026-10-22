@@ -1,6 +1,6 @@
 # Оружие
 
-Состояние на 2026-10-21: модели, команды, управление и прицеливание оружия разделены; DI-фабрики создают личное состояние оружия и пуль. Конфиги и остальные presentation/style границы ещё переносятся.
+Текущие модели, команды, управление и прицеливание оружия разделены; DI-фабрики создают личное состояние оружия и пуль. Общие readonly конфиги и native presentation/lifetime границы проверены; итоговая ревизия и область — [FinalVerification44](../Reports/FinalVerification44.md).
 
 Принятая архитектура — [ADR-001](../Decisions/001-sod-architecture.md). Ниже описаны фактические границы; миграция остальных систем продолжается.
 
@@ -32,7 +32,7 @@ PlayerCheckpoint2D пишет format3 с явными hasInventory/hasFlashlight
 
 ProjectileVisualProfile временно остаётся compatibility-конфигом ballistics/presentation: прежние bulletSpeed и visual fields сохранены, collisionRadius (.035) и maximumFlightSeconds (3) доступны в Inspector. ToFlightSettings копирует скорость/радиус/lifetime вместе с дальностью/уроном конкретного выстрела. Дальность ограничивается снизу .1 как раньше; истечение времени строго age > maximum, конец дальности удаляется следующим шагом. Летящие пули не сохраняются. [Проверки и стоимость](../Reports/ProjectileFlight16.md). Readonly/runtime API и validation обоих visual SO проверены: ShotVisualProfile отклоняет invalid/nested config до изменения эффекта и расхода патрона, authored values/refs сохранены. [BUG-028 и проверки](../Reports/VisualConfig31.md).
 
-Гильза создаётся через ScenePrefabFactory и получает GroundAudioSurfaceQuery2D своего уровня до использования. Активная сторонняя сцена не меняет звук первого контакта. LastSurface показывает фактически выбранное покрытие; профиль выстрелившего оружия по-прежнему сохраняется до приземления. PlayerCasingEjector2D и шаги получают отдельные косметические RNG-потоки из composition; bounded pool гильз, физика, тайминги и библиотека звуков сохранены. Расстояние/cadence шагов выделены в личную модель с IGameClock/controller; PlayerFootsteps2D читает физическое перемещение и воспроизводит контакт. [Проверки и config-bridge](../Reports/PlayerFootsteps11.md). Перенос движения/показа гильзы и общий config-pass ещё открыты.
+Гильза создаётся через ScenePrefabFactory и получает GroundAudioSurfaceQuery2D своего уровня до использования. Активная сторонняя сцена не меняет звук первого контакта. LastSurface показывает фактически выбранное покрытие; профиль выстрелившего оружия по-прежнему сохраняется до приземления. PlayerCasingEjector2D и шаги получают отдельные косметические RNG-потоки из composition; bounded pool гильз, физика, тайминги и библиотека звуков сохранены. Расстояние/cadence шагов выделены в личную модель с IGameClock/controller; PlayerFootsteps2D читает физическое перемещение и воспроизводит контакт. [Проверки и config-bridge](../Reports/PlayerFootsteps11.md). Гильза остаётся явным native FX/physics adapter; её launch tuning хранится в ShotVisualProfile, самостоятельная gameplay-модель для косметического движения не требуется.
 
 Контракт и авторинг: [Оружие](../Weapons/README.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).
 
