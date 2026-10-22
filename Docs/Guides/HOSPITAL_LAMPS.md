@@ -67,3 +67,7 @@
 Корпус использует отдельный **HospitalLampHousing** на стандартном освещаемом Sprite-Lit-Default, без собственного свечения. Чёрная однопиксельная маска материала исключает канал света трубок: Light2D этих ламп использует существующий Blend Style 2 — Multiply with Mask (R). Фонарь и остальные обычные источники на Blend Style 0 освещают корпус. Сами трубки и ореол остаются на TubeGlow; при отключении питания они гаснут. Маска — технические данные, исходные рисунки не изменены. Корпус рисуется order 3, трубка order 4, стены этих сцен order 2: крепления не пропадают за стеной из-за равного порядка. Эти технические настройки на prefab менять не нужно.
 
 [Текущая проверка](../Validation/HospitalLampVisibility04.json): [в темноте](../Validation/HospitalLampVisibility04/ward-dark.png), [под фонарём](../Validation/HospitalLampVisibility04/ward-flashlight.png), [без питания](../Validation/HospitalLampVisibility04/ward-power-off.png). [История конфигов и прежнего размера](../Validation/HospitalLampSceneConfig03.json).
+
+## Безопасность общего prefab
+
+BUG-035, 2026-10-22: LocalLamp2D не меняет native view объекта без валидной сцены. Editor lifecycle/RefreshAppearance общего prefab не выключает его сохранённый Light2D и bulb. У экземпляра в сцене остаются прежние disable/mask cleanup и применение LocalLampConfiguration2D. Это не меняет startsOn, яркость, радиусы и звук; [проверка asset/scene границ](../Reports/LevelOrganization46.md).

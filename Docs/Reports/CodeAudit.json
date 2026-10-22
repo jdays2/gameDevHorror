@@ -3,9 +3,9 @@
   "date": "2026-10-22",
   "complete": true,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "647 current own C# reviewed: 632 committed sources (including 3 explicit art authoring tools) plus 15 preserved pause draft sources. FinalVerification44 validates the runtime baseline; CreatureRestoration45 checks the new asset/editor boundary with 1224 EditMode, 71 PlayMode and native art/reference checks. No new build claimed for this asset task. Owner artistic acceptance remains pending.",
+  "limits": "654 current own C# reviewed: 639 publication sources plus 15 preserved original pause draft sources. LevelOrganization46 verifies explicit authoring boundaries, 11 scenes, 20 new shared prefab assets and BUG-035 asset lifetime: 1228 EditMode, 71 PlayMode, normal Windows64 success, own Player assembly Runtime only. Owner artistic acceptance remains pending.",
   "counts": {
-    "reviewed_boundary": 647
+    "reviewed_boundary": 654
   },
   "files": [
     {
@@ -48,6 +48,28 @@
       "reviewReport": "Docs/Reports/AuthoringSafety39.md",
       "reviewScope": "Offline authoring adapters fully read. Stable Edit state/closed-target guards run before mutations, inspection owns only its opened disk copy, recipe preflight rejects existing outputs before import. Actual AgentScripts compiled in isolated Editor harness; source assets/manual dirty state preserved. No runtime MVC model is needed for a cold authoring command.",
       "previousReviewStatus": "partial"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit read-only native inventory of all saved scenes; previews closed in finally, no scene saves or auto-run.",
+      "path": "AgentScripts/AuditLevelReuse.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "06565586241f8552d2d76ec12d2593abbfe73c37ac51ec6805033f382e4f9331",
+      "guid": null,
+      "types": [
+        "AuditLevelReuse"
+      ],
+      "lines": 103,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "06565586241f8552d2d76ec12d2593abbfe73c37ac51ec6805033f382e4f9331",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelOrganization46.md",
+      "reviewScope": "Current source boundary and native asset lifetime; explicit authoring tools excluded from Player. Verification and limitations in LevelOrganization46."
     },
     {
       "baselineSha256": null,
@@ -324,6 +346,50 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit publication-copy exporter; source cleanliness required, only isolated Pause draft root removed. Source settlement requires fresh canonical memory/disk comparison; unsupported and derived native fields documented.",
+      "path": "AgentScripts/ExportLevelOrganization.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "1aecc41a0de2d32d6aa08cca21d0521c13a92998e119e88a2efd415dde1e0b16",
+      "guid": null,
+      "types": [
+        "ExportLevelOrganization"
+      ],
+      "lines": 114,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1aecc41a0de2d32d6aa08cca21d0521c13a92998e119e88a2efd415dde1e0b16",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelOrganization46.md",
+      "reviewScope": "Current source boundary and native asset lifetime; explicit authoring tools excluded from Player. Verification and limitations in LevelOrganization46."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit one-shot native authoring finalization: preserve full prefab boundary, scene guard/references before save; lamp restoration uses existing config values.",
+      "path": "AgentScripts/FinishLevelOrganization.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "7abb45476c7fa8bcac656db432a33a61d74f74d58e70cd16c939fa847551d73e",
+      "guid": null,
+      "types": [
+        "FinishLevelOrganization"
+      ],
+      "lines": 87,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7abb45476c7fa8bcac656db432a33a61d74f74d58e70cd16c939fa847551d73e",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelOrganization46.md",
+      "reviewScope": "Current source boundary and native asset lifetime; explicit authoring tools excluded from Player. Verification and limitations in LevelOrganization46."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "Final source-boundary reconciliation; precise scope/exemptions and verification in RefactorCompletion42. Clean candidate verification pending.",
       "path": "AgentScripts/InstallDirectionalDamage.cs",
       "sourceScope": "agent_tool",
@@ -449,6 +515,82 @@
       "reviewReport": "Docs/Reports/RefactorCompletion42.md",
       "reviewScope": "Explicit Editor/agent authoring or diagnostic command, not a runtime domain model. Stable/existing-scene guards, private serialized API, owned temporary objects and preservation reviewed. No generator rerun or whole-asset transaction guarantee; original pause installer remains a mutating Install command, not a read-only validator.",
       "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Native before/after guard preserves original component identity, scalar/reference fields, world matrices and active state; canonical disk comparison exceptions documented, not exhaustive gameplay proof.",
+      "path": "AgentScripts/LevelAuthoringState.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "e305c351163bf01503edec7b6ce585cb0fb0f08b75a869bf7adba688764c8979",
+      "guid": null,
+      "types": [
+        "LevelAuthoringState"
+      ],
+      "lines": 177,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/ExportLevelOrganization.cs",
+        "AgentScripts/FinishLevelOrganization.cs",
+        "AgentScripts/OrganizeLevelScenes.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "e305c351163bf01503edec7b6ce585cb0fb0f08b75a869bf7adba688764c8979",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelOrganization46.md",
+      "reviewScope": "Current source boundary and native asset lifetime; explicit authoring tools excluded from Player. Verification and limitations in LevelOrganization46."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit native prefab conversion of static surfaces/complete assemblies and two test examples; existing assets reused, scene session stays instance override. No runtime authority.",
+      "path": "AgentScripts/LevelReuseLibrary.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "97c36e8cff5c4b064684521cf03b97065f0f4cd77c4822b995f3116c36e66383",
+      "guid": null,
+      "types": [
+        "LevelReuseLibrary"
+      ],
+      "lines": 191,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/FinishLevelOrganization.cs",
+        "AgentScripts/OrganizeLevelScenes.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "97c36e8cff5c4b064684521cf03b97065f0f4cd77c4822b995f3116c36e66383",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelOrganization46.md",
+      "reviewScope": "Current source boundary and native asset lifetime; explicit authoring tools excluded from Player. Verification and limitations in LevelOrganization46."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit one-shot native authoring using archived before IDs; resolves identities and refuses dirty scenes, preserves world transforms/references before save. No startup hook or gameplay controller.",
+      "path": "AgentScripts/OrganizeLevelScenes.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "f814cf086b6ff99467f01e3664834867236d09db31055ccdb9b85c7999999154",
+      "guid": null,
+      "types": [
+        "OrganizeLevelScenes"
+      ],
+      "lines": 161,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/ExportLevelOrganization.cs",
+        "AgentScripts/FinishLevelOrganization.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f814cf086b6ff99467f01e3664834867236d09db31055ccdb9b85c7999999154",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelOrganization46.md",
+      "reviewScope": "Current source boundary and native asset lifetime; explicit authoring tools excluded from Player. Verification and limitations in LevelOrganization46."
     },
     {
       "baselineSha256": null,
@@ -6191,12 +6333,13 @@
       ],
       "lines": 30,
       "serializedUsers": [
-        "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
+        "Assets/EmergencyShift/Prefabs/Levels/AuthoringExamples/DialogueInteraction2D.prefab"
       ],
       "dependencyScenes": [
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/LevelReuseLibrary.cs",
         "Assets/EmergencyShift/Editor/Authoring/DialogueSandboxAuthoring.cs",
         "Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs"
@@ -16222,6 +16365,7 @@
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/AuditLevelReuse.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs",
@@ -18729,12 +18873,14 @@
       ],
       "lines": 59,
       "serializedUsers": [
-        "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
+        "Assets/EmergencyShift/Prefabs/Levels/AuthoringExamples/SandboxAmmoSupply2D.prefab"
       ],
       "dependencyScenes": [
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
       ],
-      "lexicalSourceUsers": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/LevelReuseLibrary.cs"
+      ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
       "notes": "ActorPorts33/native actor coupling снят, readonly values/command operations и null/destroyed guards проверены; исходные serialization/refs сохранены.",
@@ -19666,13 +19812,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
-      "sha256": "c0ca457cfd6901840e2ea85b0c84f5f9853adb94a046570912d3c134b63976d4",
+      "sha256": "5be20bc76f8d4de6d020d331422963f0137bf863fdd2d386eaad347003366ecc",
       "baselineSha256": "5609ff3341ae1d0cfcde5048bb68dbbc9593480b10a999832fb15a2872ee0673",
       "guid": "035ebd6dd9cb57943ad66d69e5c6e6fc",
       "types": [
         "LocalLamp2D"
       ],
-      "lines": 290,
+      "lines": 298,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Environment/HospitalLamp01.prefab",
         "Assets/EmergencyShift/Prefabs/Environment/PracticalLights01/emergency-beacon.prefab",
@@ -19689,6 +19835,8 @@
         "Assets/_Recovery/0.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/FinishLevelOrganization.cs",
+        "AgentScripts/LevelAuthoringState.cs",
         "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
@@ -19699,6 +19847,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LocalLampAssetTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
@@ -19706,7 +19855,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Final source-boundary reconciliation; precise scope/exemptions and verification in RefactorCompletion42. Clean candidate verification pending.",
+      "notes": "Existing scene lamp adapter retains registry/controller ownership; invalid-scene persistent prefab view writes suppressed in OnDisable/ApplyPower. Four original failures reproduced; scene disable/mask tests remain green.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -19726,11 +19875,11 @@
         "Light2D"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 6; сцены по графу: 5.",
-      "reviewedSha256": "c0ca457cfd6901840e2ea85b0c84f5f9853adb94a046570912d3c134b63976d4",
+      "reviewedSha256": "5be20bc76f8d4de6d020d331422963f0137bf863fdd2d386eaad347003366ecc",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/RefactorCompletion42.md",
-      "reviewScope": "Current final boundary: pure gameplay authority/commands and immutable tuning; native physics/input/render/audio/IO have explicit owners. Numeric defaults/authored overrides and cancellation checked; no automatic MVC model required for a cosmetic timeline or once-only authoring recipe.",
-      "previousReviewStatus": "partial"
+      "reviewReport": "Docs/Reports/LevelOrganization46.md",
+      "reviewScope": "Current source boundary and native asset lifetime; explicit authoring tools excluded from Player. Verification and limitations in LevelOrganization46.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
@@ -19800,7 +19949,9 @@
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
         "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
-      "lexicalSourceUsers": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/FinishLevelOrganization.cs"
+      ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
       "notes": "ExecuteAlways authoring entry; личные scene settings, валидация и калибровка fixture, не генератор сцены.",
@@ -21350,6 +21501,9 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/BakeMorgueDrain.cs",
+        "AgentScripts/FinishLevelOrganization.cs",
+        "AgentScripts/LevelReuseLibrary.cs",
+        "AgentScripts/OrganizeLevelScenes.cs",
         "AgentScripts/OrganizeMaterials.cs",
         "AgentScripts/RestoreCreatureArtwork.cs",
         "AgentScripts/ReviewCreatureArtwork.cs",
@@ -21378,6 +21532,7 @@
         "Assets/EmergencyShift/Tests/EditMode/FinalTuningTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LocalLampAssetTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
@@ -21583,6 +21738,9 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/BakeMorgueDrain.cs",
+        "AgentScripts/FinishLevelOrganization.cs",
+        "AgentScripts/LevelReuseLibrary.cs",
+        "AgentScripts/OrganizeLevelScenes.cs",
         "AgentScripts/OrganizeMaterials.cs",
         "AgentScripts/RestoreCreatureArtwork.cs",
         "AgentScripts/ReviewCreatureArtwork.cs",
@@ -21627,6 +21785,7 @@
         "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LocalLampAssetTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -22331,6 +22490,9 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/BakeMorgueDrain.cs",
+        "AgentScripts/FinishLevelOrganization.cs",
+        "AgentScripts/LevelReuseLibrary.cs",
+        "AgentScripts/OrganizeLevelScenes.cs",
         "AgentScripts/OrganizeMaterials.cs",
         "AgentScripts/RestoreCreatureArtwork.cs",
         "AgentScripts/ReviewCreatureArtwork.cs",
@@ -22359,6 +22521,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/FinalTuningTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LocalLampAssetTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
@@ -22404,6 +22567,30 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/LightingConfig14.md",
       "reviewScope": "Full source read: readonly camera/light/audio config API and preserved fields/refs/intervals; finite color/clock/derived math, old fixtures and native camera/scene integration; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Four real persistent-prefab lifecycle cases with unique temporary copies and finally cleanup; all four fail on original runtime and pass after guard.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/LocalLampAssetTests.cs",
+      "sourceScope": "unity",
+      "sha256": "d554c5815f2628654b024911c214f2975fb987e90e461525e78e3ef48eae24f5",
+      "guid": "303f9416dc2567045b032b01e69f234d",
+      "types": [
+        "LocalLampAssetTests"
+      ],
+      "lines": 53,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d554c5815f2628654b024911c214f2975fb987e90e461525e78e3ef48eae24f5",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LevelOrganization46.md",
+      "reviewScope": "Current source boundary and native asset lifetime; explicit authoring tools excluded from Player. Verification and limitations in LevelOrganization46."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs",
@@ -22839,6 +23026,9 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/BakeMorgueDrain.cs",
+        "AgentScripts/FinishLevelOrganization.cs",
+        "AgentScripts/LevelReuseLibrary.cs",
+        "AgentScripts/OrganizeLevelScenes.cs",
         "AgentScripts/OrganizeMaterials.cs",
         "AgentScripts/RestoreCreatureArtwork.cs",
         "AgentScripts/ReviewCreatureArtwork.cs",
@@ -22868,6 +23058,7 @@
         "Assets/EmergencyShift/Tests/EditMode/FinalTuningTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LocalLampAssetTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
@@ -23042,6 +23233,9 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/BakeMorgueDrain.cs",
+        "AgentScripts/FinishLevelOrganization.cs",
+        "AgentScripts/LevelReuseLibrary.cs",
+        "AgentScripts/OrganizeLevelScenes.cs",
         "AgentScripts/OrganizeMaterials.cs",
         "AgentScripts/RestoreCreatureArtwork.cs",
         "AgentScripts/ReviewCreatureArtwork.cs",
@@ -23063,6 +23257,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LocalLampAssetTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
         "Concepts/Used/Environment/RoomFinish01/create.cs"
@@ -25007,15 +25202,15 @@
   "unresolvedExternalReferences": [],
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
-    "agent_tool": 14,
-    "unity": 625,
+    "agent_tool": 20,
+    "unity": 626,
     "content_source": 8
   },
   "latestReview": {
-    "date": "2026-10-21",
-    "files": 3,
-    "report": "Docs/Reports/MotorGeometry06.md",
-    "validation": "BUG-022: 2 red scaled native queries / 1 control -> 641/641 EditMode, 26/26 PlayMode, normal Windows64 success. Real scaled motors move on free axes; masks, prefabs and resources preserved. Config/full-route/profiler/owner acceptance remain."
+    "date": "2026-10-22",
+    "report": "Docs/Reports/LevelOrganization46.md",
+    "files": 8,
+    "validation": "Four persistent-prefab baseline failures; final 1228/1228 EditMode, 71/71 PlayMode, Windows64 success. Native scene preservation limits documented."
   },
   "reviewPasses": [
     {
@@ -25155,16 +25350,22 @@
       "files": 3,
       "report": "Docs/Reports/MotorGeometry06.md",
       "validation": "BUG-022: 2 red scaled native queries / 1 control -> 641/641 EditMode, 26/26 PlayMode, normal Windows64 success. Real scaled motors move on free axes; masks, prefabs and resources preserved. Config/full-route/profiler/owner acceptance remain."
+    },
+    {
+      "date": "2026-10-22",
+      "report": "Docs/Reports/LevelOrganization46.md",
+      "files": 8,
+      "validation": "Four persistent-prefab baseline failures; final 1228/1228 EditMode, 71/71 PlayMode, Windows64 success. Native scene preservation limits documented."
     }
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 647,
-    "totalFiles": 647,
+    "reviewedFiles": 654,
+    "totalFiles": 654,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "FinalVerification44 production runtime baseline; CreatureRestoration45 reviews 3 new one-shot editor tools and 38 restored textures/76 Sprite. All review hashes current; 15 original pause draft files remain excluded from publication."
+    "validation": "654 current own C# reviewed: 639 publication sources plus 15 preserved original pause draft sources. LevelOrganization46 verifies explicit authoring boundaries, 11 scenes, 20 new shared prefab assets and BUG-035 asset lifetime: 1228 EditMode, 71 PlayMode, normal Windows64 success, own Player assembly Runtime only. Owner artistic acceptance remains pending."
   },
   "technicalSourceReviewComplete": true,
   "technicalMigrationComplete": true,

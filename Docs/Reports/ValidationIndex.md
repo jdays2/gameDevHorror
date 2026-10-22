@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Сцены / prefab и регрессия asset-lifecycle ламп | [LevelOrganization46](LevelOrganization46.md): 11 сцен, 126→0 свободных SpriteRenderer, 20 общих prefab; 0/4 asset cases →1228 EditMode/71 PlayMode/Windows64. Расстановка и исходный pause draft сохранены. |
 | BUG-006/007 · враги и единый слив | [CreatureRestoration45](CreatureRestoration45.md): 38 исходных PNG, 76 native Sprite; общий drain prefab с одним рисунком; 1224 EditMode/71 PlayMode, ручной авторинг сохранён. Художественная оценка врагов владельцем ожидается. |
 | Итоговый состав коммита / завершение технической миграции | [FinalVerification44](FinalVerification44.md):код/ассеты13c7653,1224 EditMode/71 PlayMode/обычная Windows64; Editor/Development/Tests исключены.4163/4164 tracked files точны после проверки, единственный UnityConnect auto-upgrade разобран отдельно; авторская приёмка не выполнена агентом. |
 | Итоговые source/tuning/lifetime границы / BUG-038–041 | [RefactorCompletion42](RefactorCompletion42.md):1248 EditMode(1244+4 scratch),71 PlayMode;11 native scenes/150 prefab без ошибок ссылок. Общие door/flicker/audio/casing параметры, scoped probe cleanup, authoring preflight и полный active style-pass. Чистый candidate/build фиксируется отдельно. |

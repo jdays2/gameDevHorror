@@ -131,6 +131,10 @@ namespace EmergencyShift
         private void OnDisable()
         {
             registry?.Remove(this);
+            if (!gameObject.scene.IsValid())
+            {
+                return;
+            }
             if (source != null)
             {
                 source.enabled = false;
@@ -161,6 +165,10 @@ namespace EmergencyShift
 
         void ILampPowerView.ApplyPower(bool powered)
         {
+            if (!gameObject.scene.IsValid())
+            {
+                return;
+            }
             if (source == null)
             {
                 source = GetComponent<Light2D>();

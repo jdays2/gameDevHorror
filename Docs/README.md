@@ -34,7 +34,7 @@
 | Враги | [Сталкер](Enemies/STALKER.md), [Спящий](Enemies/SLEEPER.md), [разрыв](Enemies/RUPTURE_CONCEPT.md) | AI, световая реакция, смерть/останки |
 | Оружие | [Индекс](Weapons/README.md), [пистолет](Weapons/PISTOL.md), [дробовик](Weapons/SHOTGUN.md) | Правила оружия/баланс, не общий roadmap |
 | UI | [План UI](https://app.notion.com/p/3ff8d6dc06b681b3a635cf10e8836b1c?pvs=204), [HUD](UI/HUD_DESIGN_SYSTEM.md), [диалог](UI/DIALOGUE_DESIGN_SYSTEM.md) | Текущий внешний контракт и будущие экраны |
-| Авторинг/сохранение | [LEVEL_AUTHORING](Guides/LEVEL_AUTHORING.md), [CHECKPOINTS](Guides/CHECKPOINTS.md), [C# для владельца](Guides/CSHARP.md) | Редактирование, ID/restore, понимание системы |
+| Авторинг/сохранение | [LEVEL_AUTHORING](Guides/LEVEL_AUTHORING.md), [группы сцен](Guides/SCENE_ORGANIZATION.md), [CHECKPOINTS](Guides/CHECKPOINTS.md), [C# для владельца](Guides/CSHARP.md) | Редактирование, ID/restore, понимание системы |
 | Арт/окружение | [ART_DIRECTION](ART_DIRECTION.md), [библиотека](Guides/ENVIRONMENT_LIBRARY.md), [идеи объектов](https://app.notion.com/p/3ff8d6dc06b68199ba14def0a798251e?pvs=204), [фотореференсы](Environment/VISUAL_REFERENCES.md) | Новые/заменяемые материалы и оценка |
 | Materials | [Карта материалов](Guides/MATERIALS_LIBRARY.md) | Тематические папки, общие материалы/шейдеры/маски, безопасный перенос |
 | Свет/тени | [Лампы](Guides/HOSPITAL_LAMPS.md), [стены](Guides/INTERIOR_WALL_FINISHES.md), [форма теней](Environment/FURNITURE_SHADOW_SHAPES.md), [проба мебели](Environment/FURNITURE_LIGHT_STUDY.md), [пустая комната](Guides/LIGHTING_PLAYGROUND.md) | Соответствующий источник/авторинг/регрессия |
