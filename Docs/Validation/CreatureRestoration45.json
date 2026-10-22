@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-22",
+  "bugs": [
+    "BUG-006",
+    "BUG-007"
+  ],
+  "baseRevision": "38a059cd36400617ac24a543cb7958eb61cddd2e",
+  "status": "technical-verified-owner-art-review-pending",
+  "restoredPngs": 38,
+  "pngsMatchHistoricalSha256": true,
+  "nativeSprites": 76,
+  "native": {
+    "nativeSprites": 76,
+    "cropsAndPivotsValid": true,
+    "creatureInstances": 8,
+    "drainInstances": 2,
+    "drainRenderersPerInstance": 1,
+    "previewScenesClosed": true,
+    "scenesSaved": 0
+  },
+  "loadedReferences": {
+    "components": 2523,
+    "references": 18779,
+    "missingScripts": 0,
+    "unresolvedReferences": 0
+  },
+  "drain": {
+    "prefab": "Assets/EmergencyShift/Prefabs/Environment/RoomFinish01/MorgueFloorDrain.prefab",
+    "guid": "b3757a07806b34a42a523d823763b478",
+    "texture": "Assets/EmergencyShift/Art/Environment/RoomFinish01/MorgueFloorDrain.png",
+    "widthUnits": 0.64,
+    "opaqueWidthUnits": 0.58,
+    "resolution": 256,
+    "beforeRenderers": 13,
+    "afterRenderers": 1,
+    "scenesSaved": 0
+  },
+  "preservation": {
+    "originalDirtyFiles": 60,
+    "originalDirtyHashesUnchanged": true,
+    "existingWorldTransformsUnchanged": true,
+    "enemyPrefabSerializedComponentsUnchanged": true,
+    "removedOnlyDrainVisualChildren": [
+      "Recessed mortar collar",
+      "Square metal frame",
+      "Dark drain opening",
+      "Grate bar 1",
+      "Grate bar 2",
+      "Grate bar 3",
+      "Grate bar 4",
+      "Grate bar 5",
+      "Grate bar 6",
+      "Grate bar 7",
+      "Under-grate support",
+      "Small retaining screw",
+      "Small retaining screw"
+    ],
+    "newSceneObjects": 0,
+    "sceneSaved": false,
+    "loadedSceneDirty": false
+  },
+  "tests": {
+    "edit": {
+      "total": 1224,
+      "passed": 1224,
+      "failed": 0,
+      "resultHash": "7b545e14bcf72f2efd7b0ee8b530489f9f955597457753214b25157f03842b73",
+      "rawEvidence": "work/creature-restore-20261022/edit-results.xml"
+    },
+    "play": {
+      "total": 71,
+      "passed": 71,
+      "failed": 0,
+      "resultHash": "b44b4351870f4ef432184b585163528124f6060e3a4e6d16195d90b0f1a3ce99",
+      "rawEvidence": "work/creature-restore-20261022/play-results.xml"
+    }
+  },
+  "testScope": "Isolated copy of clean committed code/scenes plus 110 asset changes, original pause-menu draft excluded. Main scene/native authoring separately checked through live Unity. Runtime assemblies unchanged; no new build claimed.",
+  "limits": [
+    "Native pose sheet uses assigned poses and even preview light, not natural gameplay AI timing.",
+    "Scale preview uses 5.4-unit orthographic half-height at 1600x900; actual camera zoom can differ.",
+    "Drain beam capture uses a temporary verification light in the authored scene, removed without saving.",
+    "Owner judges restored creature appearance; no FPS or campaign claim."
+  ],
+  "previews": {
+    "before-original.png": "739137eb23a157a75d2021fbd631e7dfa251e3955f07d9133157338701bb0604",
+    "creatures-native.png": "4f1a9c518c55d4d31bfacc19897d7eba15ee534adcf7442bd02de5751371466e",
+    "creatures-scale.png": "3953e893971a36185dc037f20d5668b041af9919fd6f50ace78e8a18c6ec5447",
+    "drain-reuse-native.png": "7e6ac9ec08353103843f6ad918807ced8a5d8be1b683e5c1bd97979f947a6a74",
+    "drain-room-beam.png": "ffef160477bd2eeadce8ae51b602cbe8af6e3c0a20fa5a37e7ec68531bf03df1",
+    "drain-room-lamp.png": "b9fba1c9642ab3386e3d433bacb12cb3412b7c86d3d796054c3a39dcc77a4027"
+  }
+}

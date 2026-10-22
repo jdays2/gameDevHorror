@@ -3,9 +3,9 @@
   "date": "2026-10-22",
   "complete": true,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "Technical migration/source review complete for stated629 committed own C# plus15 preserved draft sources. All644 working-tree review hashes current, no queued/partial. Clean13c7653:1224 EditMode/71 PlayMode/normal Windows64, Player own assembly only Runtime. Original uncommitted pause feature excluded;3 authoring chains only split.3 inactive historical Concepts style snapshots retained. Complete does not mean artistic/owner acceptance, future-feature implementation or absence of future bugs.",
+  "limits": "647 current own C# reviewed: 632 committed sources (including 3 explicit art authoring tools) plus 15 preserved pause draft sources. FinalVerification44 validates the runtime baseline; CreatureRestoration45 checks the new asset/editor boundary with 1224 EditMode, 71 PlayMode and native art/reference checks. No new build claimed for this asset task. Owner artistic acceptance remains pending.",
   "counts": {
-    "reviewed_boundary": 644
+    "reviewed_boundary": 647
   },
   "files": [
     {
@@ -86,6 +86,27 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit09.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Явное одноразовое запекание статичного prefab: 13 renderer в один PNG/renderer; не сохраняет сцены, проверяет visual overrides до изменения. Проверено живым Unity 6000.6.5f1, отчёт CreatureRestoration45.",
+      "path": "AgentScripts/BakeMorgueDrain.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "4e3d977c07bead710df7886e2e231a7582d2397bd1ad53353e6a279d3b953d11",
+      "guid": null,
+      "types": [
+        "BakeMorgueDrain"
+      ],
+      "lines": 153,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "4e3d977c07bead710df7886e2e231a7582d2397bd1ad53353e6a279d3b953d11",
+      "responsibility": "Явное одноразовое запекание статичного prefab: 13 renderer в один PNG/renderer; не сохраняет сцены, проверяет visual overrides до изменения.",
+      "reviewReport": "Docs/Reports/CreatureRestoration45.md"
     },
     {
       "baselineSha256": null,
@@ -469,6 +490,48 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/CodeAudit09.md",
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Явное восстановление ограниченного перечня изображений/нативных Sprite через AssetDatabase; native before/after и reference audit. Без runtime регистрации и сохранения сцен. Проверено живым Unity 6000.6.5f1, отчёт CreatureRestoration45.",
+      "path": "AgentScripts/RestoreCreatureArtwork.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "8d67cbe6e46131b0edbaae59e7a5c4dff70cf886daed0da83a75ed3283e7859c",
+      "guid": null,
+      "types": [
+        "RestoreCreatureArtwork"
+      ],
+      "lines": 176,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "8d67cbe6e46131b0edbaae59e7a5c4dff70cf886daed0da83a75ed3283e7859c",
+      "responsibility": "Явное восстановление ограниченного перечня изображений/нативных Sprite через AssetDatabase; native before/after и reference audit. Без runtime регистрации и сохранения сцен.",
+      "reviewReport": "Docs/Reports/CreatureRestoration45.md"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Нативная проверка идентичности/geometry и временные preview/camera/light; cleanup в finally, authored scene не сохраняется и dirty state проверяется. Проверено живым Unity 6000.6.5f1, отчёт CreatureRestoration45.",
+      "path": "AgentScripts/ReviewCreatureArtwork.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "c40fb94d8252f696e1b23719d5c128a2b7ffbe1e75e69b9246b690578e7d430d",
+      "guid": null,
+      "types": [
+        "ReviewCreatureArtwork"
+      ],
+      "lines": 241,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c40fb94d8252f696e1b23719d5c128a2b7ffbe1e75e69b9246b690578e7d430d",
+      "responsibility": "Нативная проверка идентичности/geometry и временные preview/camera/light; cleanup в finally, authored scene не сохраняется и dirty state проверяется.",
+      "reviewReport": "Docs/Reports/CreatureRestoration45.md"
     },
     {
       "baselineSha256": null,
@@ -18007,6 +18070,7 @@
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/ReviewCreatureArtwork.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs",
@@ -21285,7 +21349,10 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/BakeMorgueDrain.cs",
         "AgentScripts/OrganizeMaterials.cs",
+        "AgentScripts/RestoreCreatureArtwork.cs",
+        "AgentScripts/ReviewCreatureArtwork.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
@@ -21515,7 +21582,10 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/BakeMorgueDrain.cs",
         "AgentScripts/OrganizeMaterials.cs",
+        "AgentScripts/RestoreCreatureArtwork.cs",
+        "AgentScripts/ReviewCreatureArtwork.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
@@ -22260,7 +22330,10 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/BakeMorgueDrain.cs",
         "AgentScripts/OrganizeMaterials.cs",
+        "AgentScripts/RestoreCreatureArtwork.cs",
+        "AgentScripts/ReviewCreatureArtwork.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
@@ -22765,7 +22838,10 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/BakeMorgueDrain.cs",
         "AgentScripts/OrganizeMaterials.cs",
+        "AgentScripts/RestoreCreatureArtwork.cs",
+        "AgentScripts/ReviewCreatureArtwork.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
@@ -22965,7 +23041,10 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/BakeMorgueDrain.cs",
         "AgentScripts/OrganizeMaterials.cs",
+        "AgentScripts/RestoreCreatureArtwork.cs",
+        "AgentScripts/ReviewCreatureArtwork.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentLibraryReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/EnvironmentReviewBuilder.cs",
         "Assets/EmergencyShift/Editor/Authoring/FloorMarkingsAuthoring.cs",
@@ -24928,7 +25007,7 @@
   "unresolvedExternalReferences": [],
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
-    "agent_tool": 11,
+    "agent_tool": 14,
     "unity": 625,
     "content_source": 8
   },
@@ -25080,12 +25159,12 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 644,
-    "totalFiles": 644,
+    "reviewedFiles": 647,
+    "totalFiles": 647,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "FinalVerification44: exact clean Git candidate plus RefactorCompletion42 current dirty/source/native checks. Explicit draft/history scope."
+    "validation": "FinalVerification44 production runtime baseline; CreatureRestoration45 reviews 3 new one-shot editor tools and 38 restored textures/76 Sprite. All review hashes current; 15 original pause draft files remain excluded from publication."
   },
   "technicalSourceReviewComplete": true,
   "technicalMigrationComplete": true,

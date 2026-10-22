@@ -6,6 +6,7 @@
 
 - [AssignPlayerInput.cs](../AgentScripts/AssignPlayerInput.cs)
 - [AuditProjectReferences.cs](../AgentScripts/AuditProjectReferences.cs)
+- [BakeMorgueDrain.cs](../AgentScripts/BakeMorgueDrain.cs)
 - [CheckDirectionalDamage.cs](../AgentScripts/CheckDirectionalDamage.cs)
 - [CheckGroundAudioScope.cs](../AgentScripts/CheckGroundAudioScope.cs)
 - [CheckInjectedActorCreation.cs](../AgentScripts/CheckInjectedActorCreation.cs)
@@ -15,6 +16,8 @@
 - [InstallPauseMenu.cs](../AgentScripts/InstallPauseMenu.cs)
 - [InstallWorldComposition.cs](../AgentScripts/InstallWorldComposition.cs)
 - [OrganizeMaterials.cs](../AgentScripts/OrganizeMaterials.cs)
+- [RestoreCreatureArtwork.cs](../AgentScripts/RestoreCreatureArtwork.cs)
+- [ReviewCreatureArtwork.cs](../AgentScripts/ReviewCreatureArtwork.cs)
 
 ## Assets/EmergencyShift/Editor/Authoring
 

@@ -5,11 +5,12 @@
   "styleReference": "Concepts/Used/Items/AccessCards02",
   "scope": {
     "productionRasters": 143,
-    "restyled": 80,
+    "restyled": 42,
     "alreadyFlatRetained": 25,
     "excludedFloors": 13,
     "flatNativeTextureHelpers": 8,
-    "bloodRestoredToPrevious": 25
+    "bloodRestoredToPrevious": 25,
+    "creaturesRestoredToPrevious": 38
   },
   "constraints": [
     "Original asset paths/GUIDs and native Sprite local fileIDs retained",
@@ -17,7 +18,8 @@
     "Old original pixels stored in Historical",
     "Atlas frame layouts and poses retained; import scale and crop metadata adjusted through Unity APIs",
     "Small Gib05 Sleeper contour changed modestly; fitted inside previous footprint",
-    "Blood decal footprint measured at alpha16; solid props and remains at alpha128"
+    "Blood decal footprint measured at alpha16; solid props and remains at alpha128",
+    "BUG-006 2026-10-22: both creature families and related remains restored from Historical; excluded from active simplification recipes. 42 restyled images remain active."
   ],
   "images": [
     {
@@ -733,7 +735,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "ae947b1f208725a7ebd83d7f6ee613932652db3dc04dc531dda31efcf7885a8d",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "df21117682b1b81478f4dc1c8dcf7db5",
       "source": "Sources/Art/Effects/CreatureFlesh04/Sleeper/DenseClot.png",
       "historical": "Historical/Art/Effects/CreatureFlesh04/Sleeper/DenseClot.png",
@@ -741,7 +743,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-c1a4efaa-c190-4067-a767-d133e049f690.png",
-      "originalSha256": "1e74c52a3a89672aec47e99c4ccfbbdba79fd86d53aa745c6a8d28ad361ee3f7"
+      "originalSha256": "1e74c52a3a89672aec47e99c4ccfbbdba79fd86d53aa745c6a8d28ad361ee3f7",
+      "activeSource": "Historical/Art/Effects/CreatureFlesh04/Sleeper/DenseClot.png",
+      "activeProductionSha256": "1e74c52a3a89672aec47e99c4ccfbbdba79fd86d53aa745c6a8d28ad361ee3f7"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/Sleeper/MuscleWad.png",
@@ -780,7 +784,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "a85ce0038ddab5aad0a1fdf1f696d896f421ff4df3373791c0b9377a8b72f7f4",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "5da8563f155dc4e4fa333b484c6fa6ea",
       "source": "Sources/Art/Effects/CreatureFlesh04/Sleeper/MuscleWad.png",
       "historical": "Historical/Art/Effects/CreatureFlesh04/Sleeper/MuscleWad.png",
@@ -788,7 +792,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-72894539-2bdc-40f6-9872-1a351a6609c5.png",
-      "originalSha256": "8769d85298f68b93b1e374215edc430369bacba1eb8a8aaeaa66a865ddf0508b"
+      "originalSha256": "8769d85298f68b93b1e374215edc430369bacba1eb8a8aaeaa66a865ddf0508b",
+      "activeSource": "Historical/Art/Effects/CreatureFlesh04/Sleeper/MuscleWad.png",
+      "activeProductionSha256": "8769d85298f68b93b1e374215edc430369bacba1eb8a8aaeaa66a865ddf0508b"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/Sleeper/TissueStrip.png",
@@ -827,7 +833,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "586c9575ac2b45ea08c43def5e035f56020b9053e6e6e90975ed1420a839e702",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "9dba3656428238842829afd01f29d41e",
       "source": "Sources/Art/Effects/CreatureFlesh04/Sleeper/TissueStrip.png",
       "historical": "Historical/Art/Effects/CreatureFlesh04/Sleeper/TissueStrip.png",
@@ -835,7 +841,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-b885e0e2-7e93-44b5-90ee-7b943e3fe620.png",
-      "originalSha256": "7e4f21e6264c1e9a5b71551887fce48e50513730c55d9fe4eac9f9da47fa4687"
+      "originalSha256": "7e4f21e6264c1e9a5b71551887fce48e50513730c55d9fe4eac9f9da47fa4687",
+      "activeSource": "Historical/Art/Effects/CreatureFlesh04/Sleeper/TissueStrip.png",
+      "activeProductionSha256": "7e4f21e6264c1e9a5b71551887fce48e50513730c55d9fe4eac9f9da47fa4687"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/Sleeper/TornFlap.png",
@@ -874,7 +882,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "6c9ccbaf8683ee75e3bce99b9fa79ddb55288cecb5f83058b593c0155ffb5dba",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "1735fddbe9cb8644ab23c742edb14608",
       "source": "Sources/Art/Effects/CreatureFlesh04/Sleeper/TornFlap.png",
       "historical": "Historical/Art/Effects/CreatureFlesh04/Sleeper/TornFlap.png",
@@ -882,7 +890,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-95c0bde2-d8f1-49f2-b6b2-6f372416077f.png",
-      "originalSha256": "cb6a14489a3793060ace62765e2cd285dff2ab8f3756228bafcd5a5e88093c29"
+      "originalSha256": "cb6a14489a3793060ace62765e2cd285dff2ab8f3756228bafcd5a5e88093c29",
+      "activeSource": "Historical/Art/Effects/CreatureFlesh04/Sleeper/TornFlap.png",
+      "activeProductionSha256": "cb6a14489a3793060ace62765e2cd285dff2ab8f3756228bafcd5a5e88093c29"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/DenseClot.png",
@@ -921,7 +931,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "873402adeacc67979cc81cdef37470dc421ff3f9100eb524757f0f500bf10e04",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "653d6c96893342c4cb9b0ee96efa0136",
       "source": "Sources/Art/Effects/CreatureFlesh04/DenseClot.png",
       "historical": "Historical/Art/Effects/CreatureFlesh04/DenseClot.png",
@@ -929,7 +939,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-59a745f3-5074-457a-8eef-39dd65fbcd2e.png",
-      "originalSha256": "477b7d6bd6b8ac15a5d73b8690d81faab20c6cb4e26705d81ac6ee85e40cfaa0"
+      "originalSha256": "477b7d6bd6b8ac15a5d73b8690d81faab20c6cb4e26705d81ac6ee85e40cfaa0",
+      "activeSource": "Historical/Art/Effects/CreatureFlesh04/DenseClot.png",
+      "activeProductionSha256": "477b7d6bd6b8ac15a5d73b8690d81faab20c6cb4e26705d81ac6ee85e40cfaa0"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/MuscleWad.png",
@@ -968,7 +980,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "b4a9559a28ecb0ff1bd40496902207ba0b81a7617108dee09455a095b3b0402e",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "24534f31c1bc62e4b80e811382b95b7f",
       "source": "Sources/Art/Effects/CreatureFlesh04/MuscleWad.png",
       "historical": "Historical/Art/Effects/CreatureFlesh04/MuscleWad.png",
@@ -976,7 +988,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-bdfe0e7d-d2d5-4b38-b479-f980c4bc4d44.png",
-      "originalSha256": "d604393533dc6d2deb60e936e0cbd6624e32a1a09f1b82d4e07c911a08355f66"
+      "originalSha256": "d604393533dc6d2deb60e936e0cbd6624e32a1a09f1b82d4e07c911a08355f66",
+      "activeSource": "Historical/Art/Effects/CreatureFlesh04/MuscleWad.png",
+      "activeProductionSha256": "d604393533dc6d2deb60e936e0cbd6624e32a1a09f1b82d4e07c911a08355f66"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/TissueStrip.png",
@@ -1015,7 +1029,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "715520127c362856c5fc8e2099aa62368738ef4852dea295902b8720bd1fe4ee",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "0d535665f22e6a64eb1f9933e6d78987",
       "source": "Sources/Art/Effects/CreatureFlesh04/TissueStrip.png",
       "historical": "Historical/Art/Effects/CreatureFlesh04/TissueStrip.png",
@@ -1023,7 +1037,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-3c4720ab-a9b5-49b6-9295-8324bed0bb0b.png",
-      "originalSha256": "d602b8d74b250c341c6990fb92acf63bd5d637bfb4f8e44ddf61f35c29f2e4e0"
+      "originalSha256": "d602b8d74b250c341c6990fb92acf63bd5d637bfb4f8e44ddf61f35c29f2e4e0",
+      "activeSource": "Historical/Art/Effects/CreatureFlesh04/TissueStrip.png",
+      "activeProductionSha256": "d602b8d74b250c341c6990fb92acf63bd5d637bfb4f8e44ddf61f35c29f2e4e0"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/CreatureFlesh04/TornFlap.png",
@@ -1062,7 +1078,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "94c3d9a2c2ed1ed0bfa9fcc019de46c8d2e05693612ccc90ec6b18bf114692f0",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "2231e7a8e8faf544fbdb10d86c9c9cb6",
       "source": "Sources/Art/Effects/CreatureFlesh04/TornFlap.png",
       "historical": "Historical/Art/Effects/CreatureFlesh04/TornFlap.png",
@@ -1070,7 +1086,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-6cd7118b-dad4-4284-9240-66a34e13062b.png",
-      "originalSha256": "09952c3ed4e91397203ba592e255ac2226357a02d08f2aa0d79a6efb735cf9ab"
+      "originalSha256": "09952c3ed4e91397203ba592e255ac2226357a02d08f2aa0d79a6efb735cf9ab",
+      "activeSource": "Historical/Art/Effects/CreatureFlesh04/TornFlap.png",
+      "activeProductionSha256": "09952c3ed4e91397203ba592e255ac2226357a02d08f2aa0d79a6efb735cf9ab"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Sleeper/Gib00.png",
@@ -1109,7 +1127,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "0578144a212f1fc151b9dfca2d8ef04b778dcc8001c62e7595164571a986aaff",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "a416a6d3b00f03943938609e253993d1",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Sleeper/Gib00.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib00.png",
@@ -1117,7 +1135,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-7312e323-d55f-4cfc-a5f0-c4a49b2ac654.png",
-      "originalSha256": "76065f54012940e340b3a925834f62af77c283d1239b82fdc647ebf6213c2008"
+      "originalSha256": "76065f54012940e340b3a925834f62af77c283d1239b82fdc647ebf6213c2008",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib00.png",
+      "activeProductionSha256": "76065f54012940e340b3a925834f62af77c283d1239b82fdc647ebf6213c2008"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Sleeper/Gib01.png",
@@ -1156,7 +1176,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "52a5f07bff46c35ccfa3ac940063ab83e3a615bc006af207dcf9eb7f75072082",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "6eaebca60e3d5fc4399fc5266f4a4512",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Sleeper/Gib01.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib01.png",
@@ -1164,7 +1184,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-6244c723-87c1-4cde-87cb-30d9657975a5.png",
-      "originalSha256": "5fb7fc0f74284784dcfcfbd0d9d9c997b541564828121bfcda3867baaba2f03a"
+      "originalSha256": "5fb7fc0f74284784dcfcfbd0d9d9c997b541564828121bfcda3867baaba2f03a",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib01.png",
+      "activeProductionSha256": "5fb7fc0f74284784dcfcfbd0d9d9c997b541564828121bfcda3867baaba2f03a"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Sleeper/Gib02.png",
@@ -1203,7 +1225,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "ab73c21005084b4d633b0952a6af80c952a2629f48c550d8215ce191fdfdc676",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "13e15cff73a55f94bb24f80588586997",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Sleeper/Gib02.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib02.png",
@@ -1211,7 +1233,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-fb252d0f-5871-4ddd-a9c0-3580096e585b.png",
-      "originalSha256": "20e59bbdef34a083bfd8bf4ad5feef74945cd6e09a5177d0e9c00acb4da8d2b7"
+      "originalSha256": "20e59bbdef34a083bfd8bf4ad5feef74945cd6e09a5177d0e9c00acb4da8d2b7",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib02.png",
+      "activeProductionSha256": "20e59bbdef34a083bfd8bf4ad5feef74945cd6e09a5177d0e9c00acb4da8d2b7"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Sleeper/Gib03.png",
@@ -1250,7 +1274,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "8c7a64d42d748655fb23046f1c55c254dc9e99f60e13a1afcd8405ee25b451c7",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "af7a1f0dbc217674c9e8ef591b4f2b3d",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Sleeper/Gib03.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib03.png",
@@ -1258,7 +1282,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-40c789a7-6eb0-4153-a769-28a824bf4a9c.png",
-      "originalSha256": "24b7cf06bbb693aa3db5ecb48c1f6610d644315ecc7312b6c3bfd9d2a568ec19"
+      "originalSha256": "24b7cf06bbb693aa3db5ecb48c1f6610d644315ecc7312b6c3bfd9d2a568ec19",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib03.png",
+      "activeProductionSha256": "24b7cf06bbb693aa3db5ecb48c1f6610d644315ecc7312b6c3bfd9d2a568ec19"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Sleeper/Gib04.png",
@@ -1297,7 +1323,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "25604f6f5b9a4288d05204ac9e42e1632b6c7b3b3ba3104663a22caa03703885",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "8835155abc1ebd641ba65573001dfc65",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Sleeper/Gib04.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib04.png",
@@ -1305,7 +1331,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-09369488-acc8-40b7-b81e-508861cb9489.png",
-      "originalSha256": "f85b3cd1ef5d9ef25b419f447391ffe65530513e1aa03dc6ffb371930cbb90ed"
+      "originalSha256": "f85b3cd1ef5d9ef25b419f447391ffe65530513e1aa03dc6ffb371930cbb90ed",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib04.png",
+      "activeProductionSha256": "f85b3cd1ef5d9ef25b419f447391ffe65530513e1aa03dc6ffb371930cbb90ed"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Sleeper/Gib05.png",
@@ -1344,7 +1372,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "b89e521655ee4a459951bbdc210dc30d1472b45a8b85e5e60a4ec5db1287c8ff",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "ce711feaf2a8625479618351246a8ba8",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Sleeper/Gib05.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib05.png",
@@ -1352,7 +1380,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-ef4f5fef-4c09-42da-8873-d44795619ff5.png",
-      "originalSha256": "3dc6af4c58fe6aebddec9acb09bcd0c6c9358dcd5ff401301c7040873c536288"
+      "originalSha256": "3dc6af4c58fe6aebddec9acb09bcd0c6c9358dcd5ff401301c7040873c536288",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Sleeper/Gib05.png",
+      "activeProductionSha256": "3dc6af4c58fe6aebddec9acb09bcd0c6c9358dcd5ff401301c7040873c536288"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Stalker/Gib00.png",
@@ -1391,7 +1421,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "e4717c1022e480bb2d870201cbd6682818cde222dac7f0b80a2548b3c69e9a73",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "d21be369e3ec3114ca8697d570babd75",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Stalker/Gib00.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib00.png",
@@ -1399,7 +1429,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-2b6fcf04-3d77-4fb4-bc4c-ec05bb13c69c.png",
-      "originalSha256": "f00ade9d90d105665503ba315f1fa5e12646d7b9190b60595f305ce5bfab3ccd"
+      "originalSha256": "f00ade9d90d105665503ba315f1fa5e12646d7b9190b60595f305ce5bfab3ccd",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib00.png",
+      "activeProductionSha256": "f00ade9d90d105665503ba315f1fa5e12646d7b9190b60595f305ce5bfab3ccd"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Stalker/Gib01.png",
@@ -1438,7 +1470,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "62810ae5bf01e5814518813105fb9546f7a17cbfebdc8d7b4e9370d7ad5ad2e5",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "411dec3bab5d95b48ba2bad69c670f0a",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Stalker/Gib01.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib01.png",
@@ -1446,7 +1478,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-5c287f89-37a5-4ce3-b226-a0d540c282c6.png",
-      "originalSha256": "fdde4a3068dfe1532709650b31d6b38e277e226bc7ede9658f5cca84fe4dfc59"
+      "originalSha256": "fdde4a3068dfe1532709650b31d6b38e277e226bc7ede9658f5cca84fe4dfc59",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib01.png",
+      "activeProductionSha256": "fdde4a3068dfe1532709650b31d6b38e277e226bc7ede9658f5cca84fe4dfc59"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Stalker/Gib02.png",
@@ -1485,7 +1519,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "794cc512af0ba6eb593f8317b464a8406812344cfba90c69cd1c316c34a7e8fc",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "fc73d5bb62952dc4a8bd4cb9c68e8f5c",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Stalker/Gib02.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib02.png",
@@ -1493,7 +1527,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-fd6e1e4c-d957-42d1-ae61-401f3ebb166f.png",
-      "originalSha256": "bfd5a10334b0fde63daf1a778750209c178c5edb9656e8f536f722b5c2724ed4"
+      "originalSha256": "bfd5a10334b0fde63daf1a778750209c178c5edb9656e8f536f722b5c2724ed4",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib02.png",
+      "activeProductionSha256": "bfd5a10334b0fde63daf1a778750209c178c5edb9656e8f536f722b5c2724ed4"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Stalker/Gib03.png",
@@ -1532,7 +1568,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "e82594b8f8f404eb8790086ed57b026131ab8e2d90a4a1eced07d05001693834",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "2c0d86f75de16f147b27a2b6b9db3032",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Stalker/Gib03.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib03.png",
@@ -1540,7 +1576,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-ec5bb567-00cf-4441-9336-dff1af77ff24.png",
-      "originalSha256": "51671d157f57fdd4b4c6f2a15decc71923420b39579178c94afaca793a0a86e7"
+      "originalSha256": "51671d157f57fdd4b4c6f2a15decc71923420b39579178c94afaca793a0a86e7",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib03.png",
+      "activeProductionSha256": "51671d157f57fdd4b4c6f2a15decc71923420b39579178c94afaca793a0a86e7"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Stalker/Gib04.png",
@@ -1579,7 +1617,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "c97097fccf84d6e5ddafb79cf822d2add9049f82ff3092b09fae1f0c71e39880",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "204622adaf1db0c48b3a8976f7ab4a5c",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Stalker/Gib04.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib04.png",
@@ -1587,7 +1625,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-8f57756c-b26a-4f72-b581-60a9a8a5dd18.png",
-      "originalSha256": "cf1afdabe2932096751b7c6a54607968c7b077e7b692202faebfcc6a84b02549"
+      "originalSha256": "cf1afdabe2932096751b7c6a54607968c7b077e7b692202faebfcc6a84b02549",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib04.png",
+      "activeProductionSha256": "cf1afdabe2932096751b7c6a54607968c7b077e7b692202faebfcc6a84b02549"
     },
     {
       "path": "Assets/EmergencyShift/Art/Effects/AnatomicalGibs01/Stalker/Gib05.png",
@@ -1626,7 +1666,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "1bf016103ba97244978cb31bbff13e2f702767f78d58078e28b1b6b53656e2b4",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "0c465a40e02d1af41b862d980a01a935",
       "source": "Sources/Art/Effects/AnatomicalGibs01/Stalker/Gib05.png",
       "historical": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib05.png",
@@ -1634,7 +1674,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-c8aaa90d-4fda-4bab-ab9a-a7b061d48c69.png",
-      "originalSha256": "6e1676003366bbb1192cbf5db428144a8f9e3b6ef706312e7569f5fd81f061e1"
+      "originalSha256": "6e1676003366bbb1192cbf5db428144a8f9e3b6ef706312e7569f5fd81f061e1",
+      "activeSource": "Historical/Art/Effects/AnatomicalGibs01/Stalker/Gib05.png",
+      "activeProductionSha256": "6e1676003366bbb1192cbf5db428144a8f9e3b6ef706312e7569f5fd81f061e1"
     },
     {
       "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/island-storage-cabinet.png",
@@ -2754,7 +2796,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9810203823457185,
       "sha256": "33fe41f608ae08ad6ffc58ecb777ea5ddef459f390d5ec3b104089413921cba3",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "7dcc82d78b5c4f3eb1a679f599a4845b",
       "source": "Sources/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/attack-sheet.png",
       "historical": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/attack-sheet.png",
@@ -2762,7 +2804,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-6f86e4d3-99e9-4fdc-b715-a75ed0862a26.png",
-      "originalSha256": "d7c37763aaaa302d25c9c0419bfb017a74d6281c28595ee744697b3d76862753"
+      "originalSha256": "d7c37763aaaa302d25c9c0419bfb017a74d6281c28595ee744697b3d76862753",
+      "activeSource": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/attack-sheet.png",
+      "activeProductionSha256": "d7c37763aaaa302d25c9c0419bfb017a74d6281c28595ee744697b3d76862753"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/death-sheet.png",
@@ -2801,7 +2845,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9673737010211886,
       "sha256": "0f5ace40b1c0ea265eb7fb4089e1afbcd4ef8442f1f1eaf2396a5edbe775607c",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "a9b206d4bbd744f88b25e326799bcd04",
       "source": "Sources/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/death-sheet.png",
       "historical": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/death-sheet.png",
@@ -2809,7 +2853,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-79b050e0-c922-4060-abe6-c18bd11d2ad6.png",
-      "originalSha256": "6e0ad13424c77a18c987d2d7df415de950202082aa90eb6163866196f7e21429"
+      "originalSha256": "6e0ad13424c77a18c987d2d7df415de950202082aa90eb6163866196f7e21429",
+      "activeSource": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/death-sheet.png",
+      "activeProductionSha256": "6e0ad13424c77a18c987d2d7df415de950202082aa90eb6163866196f7e21429"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Sleeper/BloodMarks02/DetachedEye.png",
@@ -2848,7 +2894,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "6100196aa810d06dacafaebb8268d118b3895a07e5fbf05b4015154ea3d36c3f",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "00c76514ae11ffb4f95e55e5a799f3eb",
       "source": "Sources/Art/Enemies/Sleeper/BloodMarks02/DetachedEye.png",
       "historical": "Historical/Art/Enemies/Sleeper/BloodMarks02/DetachedEye.png",
@@ -2856,7 +2902,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-23f1bc68-98e6-4a48-9e95-a46a9ebf08a5.png",
-      "originalSha256": "9588613211a940d57cac7a8425b67636cae7c978d9a4ff539444a0c57c8f300d"
+      "originalSha256": "9588613211a940d57cac7a8425b67636cae7c978d9a4ff539444a0c57c8f300d",
+      "activeSource": "Historical/Art/Enemies/Sleeper/BloodMarks02/DetachedEye.png",
+      "activeProductionSha256": "9588613211a940d57cac7a8425b67636cae7c978d9a4ff539444a0c57c8f300d"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Sleeper/StalkerPlaceholder01/LargeEye01/eye-atlas.png",
@@ -2895,7 +2943,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9918889783710775,
       "sha256": "2095b73dc4ad3905eb86afc9a2d94be7ad27f90b2e26ee1a5195c37e9e2a5b75",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "9db2959bd8c84b2580b81b13de8c8788",
       "source": "Sources/Art/Enemies/Sleeper/StalkerPlaceholder01/LargeEye01/eye-atlas.png",
       "historical": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/LargeEye01/eye-atlas.png",
@@ -2903,7 +2951,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-ef3bba28-93e8-463f-a80f-f2f90b49bef6.png",
-      "originalSha256": "1fde5e1943d973c691b82873033c96b4889491c98ca783cc941618331ecd8f51"
+      "originalSha256": "1fde5e1943d973c691b82873033c96b4889491c98ca783cc941618331ecd8f51",
+      "activeSource": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/LargeEye01/eye-atlas.png",
+      "activeProductionSha256": "1fde5e1943d973c691b82873033c96b4889491c98ca783cc941618331ecd8f51"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Sleeper/BloodMarks02/HollowCore.png",
@@ -2942,7 +2992,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "da0372c23bc5cd8c26620274353fa3c835955fecdbd4dd060e57f9f9b26a9291",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "0f776f07858e9e841aeddf37b4bec940",
       "source": "Sources/Art/Enemies/Sleeper/BloodMarks02/HollowCore.png",
       "historical": "Historical/Art/Enemies/Sleeper/BloodMarks02/HollowCore.png",
@@ -2950,7 +3000,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-0099deba-c772-4df2-a9ab-2ce82581fc9f.png",
-      "originalSha256": "faf9b98311d7c2db29ee9ef6eead8c95a1d1b0ee9bf429779dab3ff61c6f3418"
+      "originalSha256": "faf9b98311d7c2db29ee9ef6eead8c95a1d1b0ee9bf429779dab3ff61c6f3418",
+      "activeSource": "Historical/Art/Enemies/Sleeper/BloodMarks02/HollowCore.png",
+      "activeProductionSha256": "faf9b98311d7c2db29ee9ef6eead8c95a1d1b0ee9bf429779dab3ff61c6f3418"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/recoil-sheet.png",
@@ -2989,7 +3041,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9990514731807162,
       "sha256": "2c866bd1b274f64822b7bacf683857ce94efcf1963e7d15a5bc34d9c721f16e0",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "fd1f096fd4e749fca7c21a0412b138dc",
       "source": "Sources/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/recoil-sheet.png",
       "historical": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/recoil-sheet.png",
@@ -2997,7 +3049,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-2f3d4618-1dd0-410d-9072-8b120e1b10a3.png",
-      "originalSha256": "69313557acbee84aa4277aebec1e3021837b89978a01393318bd890d54991568"
+      "originalSha256": "69313557acbee84aa4277aebec1e3021837b89978a01393318bd890d54991568",
+      "activeSource": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/recoil-sheet.png",
+      "activeProductionSha256": "69313557acbee84aa4277aebec1e3021837b89978a01393318bd890d54991568"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Sleeper/BloodMarks02/RetainedEyeCore.png",
@@ -3036,7 +3090,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "c12a927bc4765bfdcb74e971f8a5cab3c9d04e6071706546a493ce3463cf28af",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "cf97fb51ff2c9614b8982a270d03ca4c",
       "source": "Sources/Art/Enemies/Sleeper/BloodMarks02/RetainedEyeCore.png",
       "historical": "Historical/Art/Enemies/Sleeper/BloodMarks02/RetainedEyeCore.png",
@@ -3044,7 +3098,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-ae21c231-0fe6-4980-956f-f7a1c22ab1c4.png",
-      "originalSha256": "a46505619d2ddc4e26d495aeb33c549d62dda8d56f6a16033d9a705dce1f27f2"
+      "originalSha256": "a46505619d2ddc4e26d495aeb33c549d62dda8d56f6a16033d9a705dce1f27f2",
+      "activeSource": "Historical/Art/Enemies/Sleeper/BloodMarks02/RetainedEyeCore.png",
+      "activeProductionSha256": "a46505619d2ddc4e26d495aeb33c549d62dda8d56f6a16033d9a705dce1f27f2"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Sleeper/BloodMarks02/SplitCore.png",
@@ -3083,7 +3139,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "9dbef60b8ac7d8db323a81dc8b19d80b1a3ab98c5fc049ee0909eed0e5c1dc25",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "da45f4dd16af87e4ea07ddaea1c5fa45",
       "source": "Sources/Art/Enemies/Sleeper/BloodMarks02/SplitCore.png",
       "historical": "Historical/Art/Enemies/Sleeper/BloodMarks02/SplitCore.png",
@@ -3091,7 +3147,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-9bc7e9df-4697-4d07-8417-574a1862b33e.png",
-      "originalSha256": "6925c959254a283af4cbd24ae6fd9c76080d1d2630702c5f9e1ba9bae1ad3404"
+      "originalSha256": "6925c959254a283af4cbd24ae6fd9c76080d1d2630702c5f9e1ba9bae1ad3404",
+      "activeSource": "Historical/Art/Enemies/Sleeper/BloodMarks02/SplitCore.png",
+      "activeProductionSha256": "6925c959254a283af4cbd24ae6fd9c76080d1d2630702c5f9e1ba9bae1ad3404"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/walk-sheet.png",
@@ -3130,7 +3188,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9720752214223536,
       "sha256": "1a804c0c69c4b1e8fa57bca8d43a9e285485deafe5ec53858b8b298c5fa8e771",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "6b5960cf175748a5a828b2680aa988ef",
       "source": "Sources/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/walk-sheet.png",
       "historical": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/walk-sheet.png",
@@ -3138,7 +3196,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-be765aa7-5848-4071-bccc-cf4026008598.png",
-      "originalSha256": "bfe7c1d45e6830e87a92acb9a1df4bfd53d02d4f4a5b94911ede537d9eb94735"
+      "originalSha256": "bfe7c1d45e6830e87a92acb9a1df4bfd53d02d4f4a5b94911ede537d9eb94735",
+      "activeSource": "Historical/Art/Enemies/Sleeper/StalkerPlaceholder01/PaleFlesh/walk-sheet.png",
+      "activeProductionSha256": "bfe7c1d45e6830e87a92acb9a1df4bfd53d02d4f4a5b94911ede537d9eb94735"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Stalker/PaleFlesh/attack-sheet.png",
@@ -3177,7 +3237,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9922459276236968,
       "sha256": "a0fb2f11c0bf7f2896bddfa61c03594e7d2e0cc63d9edf0f177043a01ad26c7c",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "50995d0b627d1c744813609b154ed2f9",
       "source": "Sources/Art/Enemies/Stalker/PaleFlesh/attack-sheet.png",
       "historical": "Historical/Art/Enemies/Stalker/PaleFlesh/attack-sheet.png",
@@ -3185,7 +3245,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-109760ec-763b-412a-85eb-b00eb88060b6.png",
-      "originalSha256": "e9d6e8c795331e38944d8a5b420dc036dedf99382ad39c07a61f75fe86aa3248"
+      "originalSha256": "e9d6e8c795331e38944d8a5b420dc036dedf99382ad39c07a61f75fe86aa3248",
+      "activeSource": "Historical/Art/Enemies/Stalker/PaleFlesh/attack-sheet.png",
+      "activeProductionSha256": "e9d6e8c795331e38944d8a5b420dc036dedf99382ad39c07a61f75fe86aa3248"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Stalker/PaleFlesh/death-sheet.png",
@@ -3224,7 +3286,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9917112780601917,
       "sha256": "1ff29c37817da1996ccf29a50cc3b459cecf9ebde26c3cafd69ab5a5a24d0e99",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "8c45cb722b1aeeb45a4f7c2b73a6b58f",
       "source": "Sources/Art/Enemies/Stalker/PaleFlesh/death-sheet.png",
       "historical": "Historical/Art/Enemies/Stalker/PaleFlesh/death-sheet.png",
@@ -3232,7 +3294,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-2005fb5f-d1f6-4880-aa60-f35c7329ffd5.png",
-      "originalSha256": "e96c985cea4a470a1b763e18e7190f6f6506c5aafff481700e6cbb8311b53ba5"
+      "originalSha256": "e96c985cea4a470a1b763e18e7190f6f6506c5aafff481700e6cbb8311b53ba5",
+      "activeSource": "Historical/Art/Enemies/Stalker/PaleFlesh/death-sheet.png",
+      "activeProductionSha256": "e96c985cea4a470a1b763e18e7190f6f6506c5aafff481700e6cbb8311b53ba5"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Stalker/Remains04/DetachedEye.png",
@@ -3271,7 +3335,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "b7c356ede93463f87d7cba23846b00dc18be675bbb9dd43d8e8bec171d46207f",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "a6b80d64de1a58147ad64fb10b713951",
       "source": "Sources/Art/Enemies/Stalker/Remains04/DetachedEye.png",
       "historical": "Historical/Art/Enemies/Stalker/Remains04/DetachedEye.png",
@@ -3279,7 +3343,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-7448466b-8fb2-4d66-a09f-6ee9e4247599.png",
-      "originalSha256": "1aae9e2adac4f97694e22d7d6e0c0f9326548816ad375cd2fe1bfa4faba0d6ca"
+      "originalSha256": "1aae9e2adac4f97694e22d7d6e0c0f9326548816ad375cd2fe1bfa4faba0d6ca",
+      "activeSource": "Historical/Art/Enemies/Stalker/Remains04/DetachedEye.png",
+      "activeProductionSha256": "1aae9e2adac4f97694e22d7d6e0c0f9326548816ad375cd2fe1bfa4faba0d6ca"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Stalker/LargeEye01/eye-atlas.png",
@@ -3318,7 +3384,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9976289562488317,
       "sha256": "fb78c2ace6ca26947856a8d7ef4f6c35708da4b8394e6b2cb10b225be9399ec9",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "ba55e56281170004ebe7395938b89796",
       "source": "Sources/Art/Enemies/Stalker/LargeEye01/eye-atlas.png",
       "historical": "Historical/Art/Enemies/Stalker/LargeEye01/eye-atlas.png",
@@ -3326,7 +3392,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-9f106160-3b64-4f17-a954-9d81bf635671.png",
-      "originalSha256": "ce71cb9553f6e39e9475490bfbf86d4656e5e295239a50e4cf90e5c7a000f4e5"
+      "originalSha256": "ce71cb9553f6e39e9475490bfbf86d4656e5e295239a50e4cf90e5c7a000f4e5",
+      "activeSource": "Historical/Art/Enemies/Stalker/LargeEye01/eye-atlas.png",
+      "activeProductionSha256": "ce71cb9553f6e39e9475490bfbf86d4656e5e295239a50e4cf90e5c7a000f4e5"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Stalker/Remains04/HollowCore.png",
@@ -3365,7 +3433,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "e4d61acd08896f3461548e4442276068c839d1b182bec75f7b027877cb59ad3f",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "4bf88d5f56aaac743875d00c63384429",
       "source": "Sources/Art/Enemies/Stalker/Remains04/HollowCore.png",
       "historical": "Historical/Art/Enemies/Stalker/Remains04/HollowCore.png",
@@ -3373,7 +3441,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-4d494a02-be84-46d2-a3a4-65c7231408d7.png",
-      "originalSha256": "bdd4f25f3a8f0eaa1b796c880833d5ef620a6152d295b82f257d503500e3475c"
+      "originalSha256": "bdd4f25f3a8f0eaa1b796c880833d5ef620a6152d295b82f257d503500e3475c",
+      "activeSource": "Historical/Art/Enemies/Stalker/Remains04/HollowCore.png",
+      "activeProductionSha256": "bdd4f25f3a8f0eaa1b796c880833d5ef620a6152d295b82f257d503500e3475c"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Stalker/PaleFlesh/recoil-sheet.png",
@@ -3412,7 +3482,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9957721913153633,
       "sha256": "3b7bc3ed47973731996fd441ee56a0aac9d4f4c73313c47faf18a0fad38a0fad",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "ea8eb1afc1f16614293e1d5cfe120672",
       "source": "Sources/Art/Enemies/Stalker/PaleFlesh/recoil-sheet.png",
       "historical": "Historical/Art/Enemies/Stalker/PaleFlesh/recoil-sheet.png",
@@ -3420,7 +3490,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-3dfd81a1-8b39-46fd-b7a9-dfe25cb5a946.png",
-      "originalSha256": "0d59c57d2a7e81e7bff799d6e076b3d84985ede7c8e9bd97c341844f8d87d96c"
+      "originalSha256": "0d59c57d2a7e81e7bff799d6e076b3d84985ede7c8e9bd97c341844f8d87d96c",
+      "activeSource": "Historical/Art/Enemies/Stalker/PaleFlesh/recoil-sheet.png",
+      "activeProductionSha256": "0d59c57d2a7e81e7bff799d6e076b3d84985ede7c8e9bd97c341844f8d87d96c"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Stalker/Remains04/RetainedEyeCore.png",
@@ -3459,7 +3531,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "6c7433d75bbc6a466c6da5ed479a39a9a5cef4e2567280c11a4cdfebb163d252",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "0e0ecd2a98a04774aa11c365eafc5c9f",
       "source": "Sources/Art/Enemies/Stalker/Remains04/RetainedEyeCore.png",
       "historical": "Historical/Art/Enemies/Stalker/Remains04/RetainedEyeCore.png",
@@ -3467,7 +3539,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-43569cd2-3313-4e57-8def-2268adc6d838.png",
-      "originalSha256": "67ec949e136ef5f3f47771fb980f0bfda1310ba5d82f04e33fca47867772dcc2"
+      "originalSha256": "67ec949e136ef5f3f47771fb980f0bfda1310ba5d82f04e33fca47867772dcc2",
+      "activeSource": "Historical/Art/Enemies/Stalker/Remains04/RetainedEyeCore.png",
+      "activeProductionSha256": "67ec949e136ef5f3f47771fb980f0bfda1310ba5d82f04e33fca47867772dcc2"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Stalker/Remains04/SplitCore.png",
@@ -3506,7 +3580,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": null,
       "sha256": "f5224faa59addb961c99312a0ec65fb81d58cee282ca4219d48e11807825be45",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "ec8959bb162a6e54cbd416eee453fb35",
       "source": "Sources/Art/Enemies/Stalker/Remains04/SplitCore.png",
       "historical": "Historical/Art/Enemies/Stalker/Remains04/SplitCore.png",
@@ -3514,7 +3588,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-78b67389-bea7-41bd-92d5-1887d74d38d7.png",
-      "originalSha256": "ee13d67b5a2000af39f5e7bcca899368c61bf1c2d6236e6772517886a29b54cb"
+      "originalSha256": "ee13d67b5a2000af39f5e7bcca899368c61bf1c2d6236e6772517886a29b54cb",
+      "activeSource": "Historical/Art/Enemies/Stalker/Remains04/SplitCore.png",
+      "activeProductionSha256": "ee13d67b5a2000af39f5e7bcca899368c61bf1c2d6236e6772517886a29b54cb"
     },
     {
       "path": "Assets/EmergencyShift/Art/Enemies/Stalker/PaleFlesh/walk-sheet.png",
@@ -3553,7 +3629,7 @@
       ],
       "opaqueRetentionAtOldCoordinates": 0.9948875962030039,
       "sha256": "c52fed0326b644943423aca1fb8cf40bb876e492e4cae377058191aa1315c5a4",
-      "status": "implemented-awaiting-owner-art-review",
+      "status": "restored-original-BUG-006-2026-10-22",
       "productionGuid": "eca7003c2dc03e34383118f12177881a",
       "source": "Sources/Art/Enemies/Stalker/PaleFlesh/walk-sheet.png",
       "historical": "Historical/Art/Enemies/Stalker/PaleFlesh/walk-sheet.png",
@@ -3561,7 +3637,9 @@
       "generator": "OpenAI built-in image_gen",
       "processing": "Exact generated RGBA PNG copied, no pixel filtering/recolor. Unity importer and native Sprite authoring compensate canvas/visible footprint.",
       "selectedOutput": "exec-5bc943f2-dbd6-409f-a8e3-99ff629ea04c.png",
-      "originalSha256": "6733cb493c8ef1cf128ee05f730b5c7fa1c75e4dd89787e46ac8451a8d9bd807"
+      "originalSha256": "6733cb493c8ef1cf128ee05f730b5c7fa1c75e4dd89787e46ac8451a8d9bd807",
+      "activeSource": "Historical/Art/Enemies/Stalker/PaleFlesh/walk-sheet.png",
+      "activeProductionSha256": "6733cb493c8ef1cf128ee05f730b5c7fa1c75e4dd89787e46ac8451a8d9bd807"
     },
     {
       "path": "Assets/EmergencyShift/Art/Environment/StorageUtilities01/technical-floor-cabinet.png",
