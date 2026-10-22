@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "5f8a19104e61900c819b46e9939308ab5bf682aa",
+  "redBaseline": {
+    "result": "Failed(Child)",
+    "total": "2",
+    "passed": "0",
+    "failed": "2",
+    "end-time": "2026-10-22 12:46:13Z",
+    "rawPath": "work/sod-evidence-20261022-final/authoring-before.xml",
+    "rawSha256": "f11a3bc6eb89ca6888a0e299538193921dbbe0ccf959bfd1c766bb34c80f89a9",
+    "cases": [
+      {
+        "name": "EmergencyShift.ValidationOnly.AuthoringGuardHarness.InputPreflightRejectsBeforeTouchingTheRig",
+        "result": "Failed",
+        "failure": "  A rejected command must not repair/save the rig first.\n  Expected is <System.Byte[45449]>, actual is <System.Byte[45516]>\n  Values differ at index [19912]\n  Expected: 48\n  But was:  45\n"
+      },
+      {
+        "name": "EmergencyShift.ValidationOnly.AuthoringGuardHarness.InspectionRejectsWithoutClosingTheOwnersDirtyScene",
+        "result": "Failed",
+        "failure": "  Loaded-scene inspection is an expected rejection.\n  Expected: True\n  But was:  False\n"
+      }
+    ]
+  },
+  "nativeGuardHarness": {
+    "result": "Passed",
+    "total": "3",
+    "passed": "3",
+    "failed": "0",
+    "end-time": "2026-10-22 12:49:21Z",
+    "rawPath": "work/sod-evidence-20261022-final/authoring-guards.xml",
+    "rawSha256": "3f5778515ac88544185dcf634a6d8a3f4528da254c8091d4d677c8fcb8307cd0",
+    "cases": [
+      {
+        "name": "EmergencyShift.ValidationOnly.AuthoringGuardHarness.ExistingHospitalPrefabsRejectBeforeAnyImportOrSave",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.ValidationOnly.AuthoringGuardHarness.InputPreflightRejectsBeforeTouchingTheRig",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.ValidationOnly.AuthoringGuardHarness.InspectionRejectsWithoutClosingTheOwnersDirtyScene",
+        "result": "Passed",
+        "failure": null
+      }
+    ]
+  },
+  "fullEditMode": {
+    "result": "Passed",
+    "total": "1182",
+    "passed": "1182",
+    "failed": "0",
+    "end-time": "2026-10-22 12:50:30Z",
+    "rawPath": "work/sod-evidence-20261022-final/authoring-edit.xml",
+    "rawSha256": "0f31e8062da1835377cc33f7f1a1e244e881b7a6935ef0eaa08540354908a89a",
+    "cases": [
+      {
+        "name": "EmergencyShift.ValidationOnly.AuthoringGuardHarness.ExistingHospitalPrefabsRejectBeforeAnyImportOrSave",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.ValidationOnly.AuthoringGuardHarness.InputPreflightRejectsBeforeTouchingTheRig",
+        "result": "Passed",
+        "failure": null
+      },
+      {
+        "name": "EmergencyShift.ValidationOnly.AuthoringGuardHarness.InspectionRejectsWithoutClosingTheOwnersDirtyScene",
+        "result": "Passed",
+        "failure": null
+      }
+    ]
+  },
+  "productionEditModeCases": 1179,
+  "validationOnlyCases": 3,
+  "sourceSha256": {
+    "AgentScripts/AssignPlayerInput.cs": "e5c92ad7b400ff365c096abb36f7d6d965ea377e6defe328ec9ef221e37fd3cf",
+    "AgentScripts/CleanUnusedShadowOverrides.cs": "43512fbeeb370cf6ed3697838bb580bb39419c84a35536ea9f55357cd9cb87db",
+    "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs": "a850ea568b199ee917cff53255c3df9b1506690feaa3624fabac4759a8e0980f"
+  },
+  "editorMetadataSha256": {
+    "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs.meta": "f0bdc7708968adaf8f51efea5cf88299dff3822e279d1e4a259e37b13054bbf4"
+  },
+  "protectedResources": 2011,
+  "resourceBaselineSha256": "07b0295cf8b96f2be9aab3ff90da024b8a85231af32b52ebdf1926fbb67cc510",
+  "resourceDifferences": [],
+  "originalDirtyFilesPreserved": 60,
+  "unchangedRuntimeFiles": 480,
+  "harness": {
+    "rawPath": "work/sod-evidence-20261022-final/AuthoringGuardHarness.cs",
+    "sha256": "4b66ca85186852fc60204056be1262f488e4d627519d4dbd8659d722badd83b1",
+    "testedSha256": "4b66ca85186852fc60204056be1262f488e4d627519d4dbd8659d722badd83b1",
+    "recipeSha256": "d907b64f672605a6fdf99746a1b67954ee955699ca57f50b4670a0b3ebdb8b51"
+  },
+  "lastRuntimeValidation": "Docs/Validation/NativeLight38.json",
+  "limits": "Editor/AgentScripts changes only. Temporary guard harness and exact AgentScripts copies compiled only in disposable Editor/test assemblies; not production source. Harness refuses outside that copy, uses unsaved sentinels, restores rig bytes in finally and checks existing prefab/art metadata. No owner scene saved or generator run on source project.1182=1179 production EditMode plus3 temporary guard cases. Runtime hash-identical to NativeLight38; its69 PlayMode/normal Windows64 are prior evidence, not a fresh build of this Editor-only phase. Dirty original pause work preserved/excluded. No broad authoring transaction promised; creation of new assets can still partially complete on an unrelated IO failure."
+}

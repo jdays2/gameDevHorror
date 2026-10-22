@@ -15,6 +15,22 @@ public static class AssignPlayerInput
 
     public static object Apply()
     {
+        if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling)
+        {
+            throw new InvalidOperationException("Input authoring requires stopped, compiled Edit mode.");
+        }
+
+        Scene loadedBasement = SceneManager.GetSceneByPath(BasementPath);
+        if (loadedBasement.IsValid() && loadedBasement.isLoaded)
+        {
+            throw new InvalidOperationException("Close Basement before this disk authoring command; its live state was left intact.");
+        }
+
+        if (AssetDatabase.LoadAssetAtPath<SceneAsset>(BasementPath) == null)
+        {
+            throw new InvalidOperationException("The target Basement scene must exist before changing its rig.");
+        }
+
         InputActionAsset controls = AssetDatabase.LoadAssetAtPath<InputActionAsset>(ControlsPath);
         if (controls == null)
         {

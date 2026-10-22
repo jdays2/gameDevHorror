@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEditor;
@@ -29,7 +30,7 @@ namespace EmergencyShift.Editor
         [MenuItem("Emergency Shift/Art/Build Hospital Service Prefabs")]
         public static void BuildPrefabs()
         {
-            if (Application.isPlaying)
+            if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling)
             {
                 throw new InvalidOperationException("Stop Play before importing hospital props.");
             }
@@ -41,6 +42,7 @@ namespace EmergencyShift.Editor
                 throw new InvalidOperationException("Missing hospital prop recipes or FlatLit material.");
             }
 
+            ValidateNewRecipes(recipes);
             Directory.CreateDirectory(PrefabRoot);
             AssetDatabase.Refresh();
             var preview = UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();
@@ -57,6 +59,38 @@ namespace EmergencyShift.Editor
             finally
             {
                 UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(preview);
+            }
+        }
+
+        private static void ValidateNewRecipes(Recipe[] recipes)
+        {
+            if (recipes.Length == 0)
+            {
+                throw new InvalidOperationException("Hospital prop recipes are empty.");
+            }
+
+            var ids = new HashSet<string>(StringComparer.Ordinal);
+            foreach (Recipe recipe in recipes)
+            {
+                if (recipe == null || string.IsNullOrWhiteSpace(recipe.id) ||
+                    recipe.id != Path.GetFileName(recipe.id) || recipe.id.Contains("..") ||
+                    !ids.Add(recipe.id) || !float.IsFinite(recipe.pixelsPerUnit) || recipe.pixelsPerUnit <= 0 ||
+                    recipe.canvas == null || recipe.canvas.Length != 2 || recipe.canvas[0] <= 0 || recipe.canvas[1] <= 0 ||
+                    recipe.opaqueBounds == null || recipe.opaqueBounds.Length != 4 ||
+                    recipe.opaqueBounds[0] < 0 || recipe.opaqueBounds[1] < 0 ||
+                    recipe.opaqueBounds[2] <= recipe.opaqueBounds[0] || recipe.opaqueBounds[3] <= recipe.opaqueBounds[1] ||
+                    recipe.opaqueBounds[2] > recipe.canvas[0] || recipe.opaqueBounds[3] > recipe.canvas[1] ||
+                    (recipe.collider != "outline" && recipe.collider != "circle" && recipe.collider != "box"))
+                {
+                    throw new InvalidOperationException("Invalid or duplicate hospital prop recipe.");
+                }
+
+                string artPath = ArtRoot + "/" + recipe.id + ".png";
+                string prefabPath = PrefabRoot + "/" + recipe.id + ".prefab";
+                if (!File.Exists(artPath) || File.Exists(prefabPath) || File.Exists(prefabPath + ".meta"))
+                {
+                    throw new InvalidOperationException("Missing source art or existing prefab; edit this family explicitly: " + recipe.id);
+                }
             }
         }
 

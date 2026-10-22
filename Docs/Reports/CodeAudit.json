@@ -3,24 +3,24 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "624 own C# explicitly read;45 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest NativeLight38.",
+  "limits": "624 own C# explicitly read;42 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AuthoringSafety39.",
   "counts": {
-    "partial": 45,
-    "reviewed_boundary": 579
+    "reviewed_boundary": 582,
+    "partial": 42
   },
   "files": [
     {
       "baselineSha256": null,
-      "reviewStatus": "partial",
-      "notes": "Одноразовый authoring: prefab меняется раньше проверки dirty basement; loaded-scene/active restoration и stable GUID сохранены, общей транзакции нет. Не запускался.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AuthoringSafety39/BUG-036: ранние отказы и native dirty-scene/prefab safety проверены; новый IO-batch не обещан транзакцией.",
       "path": "AgentScripts/AssignPlayerInput.cs",
       "sourceScope": "agent_tool",
-      "sha256": "c5dd5ea90d2639171bf5404f31899025ffa54189ed96962e583a09039c5f6884",
+      "sha256": "e5c92ad7b400ff365c096abb36f7d6d965ea377e6defe328ec9ef221e37fd3cf",
       "guid": null,
       "types": [
         "AssignPlayerInput"
       ],
-      "lines": 102,
+      "lines": 118,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -44,10 +44,11 @@
         "UnityEngine.SceneManagement"
       ],
       "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
-      "reviewedSha256": "c5dd5ea90d2639171bf5404f31899025ffa54189ed96962e583a09039c5f6884",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "e5c92ad7b400ff365c096abb36f7d6d965ea377e6defe328ec9ef221e37fd3cf",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AuthoringSafety39.md",
+      "reviewScope": "Offline authoring adapters fully read. Stable Edit state/closed-target guards run before mutations, inspection owns only its opened disk copy, recipe preflight rejects existing outputs before import. Actual AgentScripts compiled in isolated Editor harness; source assets/manual dirty state preserved. No runtime MVC model is needed for a cold authoring command.",
+      "previousReviewStatus": "partial"
     },
     {
       "baselineSha256": null,
@@ -257,16 +258,16 @@
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "partial",
-      "notes": "Apply отклоняет loaded targets, создаёт backup и сверяет effective state. InspectChangesAt не имеет аналогичного loaded/dirty guard и всегда CloseScene: риск для уже открытой сцены требует отдельной безопасной Editor-проверки.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AuthoringSafety39/BUG-036: ранние отказы и native dirty-scene/prefab safety проверены; новый IO-batch не обещан транзакцией.",
       "path": "AgentScripts/CleanUnusedShadowOverrides.cs",
       "sourceScope": "agent_tool",
-      "sha256": "080382de55df1f385081e2cfa8c7f137c03d62bdc04ac5d38efb955f9f84e132",
+      "sha256": "43512fbeeb370cf6ed3697838bb580bb39419c84a35536ea9f55357cd9cb87db",
       "guid": null,
       "types": [
         "CleanUnusedShadowOverrides"
       ],
-      "lines": 294,
+      "lines": 303,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -294,10 +295,11 @@
         "UnityEngine.SceneManagement"
       ],
       "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
-      "reviewedSha256": "080382de55df1f385081e2cfa8c7f137c03d62bdc04ac5d38efb955f9f84e132",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "43512fbeeb370cf6ed3697838bb580bb39419c84a35536ea9f55357cd9cb87db",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AuthoringSafety39.md",
+      "reviewScope": "Offline authoring adapters fully read. Stable Edit state/closed-target guards run before mutations, inspection owns only its opened disk copy, recipe preflight rejects existing outputs before import. Actual AgentScripts compiled in isolated Editor harness; source assets/manual dirty state preserved. No runtime MVC model is needed for a cold authoring command.",
+      "previousReviewStatus": "partial"
     },
     {
       "baselineSha256": null,
@@ -822,22 +824,22 @@
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs",
-      "sha256": "2284a3e340d3a92457a4cf6b72be0ab2d8aefeb3c4ab9ad72fe37303b744addf",
+      "sha256": "a850ea568b199ee917cff53255c3df9b1506690feaa3624fabac4759a8e0980f",
       "baselineSha256": "eac8fe746abb5eb3478a1df0a06d97e947f741199f279423ccfd0f3b0df3993e",
       "guid": "281bfe8998177d843b339dca429fafcd",
       "types": [
         "HospitalServicePrefabAuthoring",
         "Recipe"
       ],
-      "lines": 143,
+      "lines": 177,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [
         "MenuItem"
       ],
-      "reviewStatus": "partial",
-      "notes": "Explicit Edit guard и preview finally; fixed recipe array без полной validation, SaveAsPrefabAsset может переписать существующий family prefab. Не запускался.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "AuthoringSafety39/BUG-036: ранние отказы и native dirty-scene/prefab safety проверены; новый IO-batch не обещан транзакцией.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -856,10 +858,11 @@
         "UnityEngine.Rendering.Universal"
       ],
       "usageEvidence": "Editor-only authoring/Inspector entry point; не вызывался и существующие сцены не пересоздавались.",
-      "reviewedSha256": "2284a3e340d3a92457a4cf6b72be0ab2d8aefeb3c4ab9ad72fe37303b744addf",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "a850ea568b199ee917cff53255c3df9b1506690feaa3624fabac4759a8e0980f",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/AuthoringSafety39.md",
+      "reviewScope": "Offline authoring adapters fully read. Stable Edit state/closed-target guards run before mutations, inspection owns only its opened disk copy, recipe preflight rejects existing outputs before import. Actual AgentScripts compiled in isolated Editor harness; source assets/manual dirty state preserved. No runtime MVC model is needed for a cold authoring command.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs",
@@ -24307,6 +24310,6 @@
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "NativeLight38 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "AuthoringSafety39 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

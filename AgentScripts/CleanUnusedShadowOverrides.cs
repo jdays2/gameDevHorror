@@ -33,9 +33,15 @@ public static class CleanUnusedShadowOverrides
 
     private static async Task<object> InspectChangesAt(string path)
     {
-        if (EditorApplication.isPlaying)
+        if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling)
         {
             throw new InvalidOperationException("Inspection requires stopped Play.");
+        }
+
+        Scene loaded = SceneManager.GetSceneByPath(path);
+        if (loaded.IsValid() && loaded.isLoaded)
+        {
+            throw new InvalidOperationException("Close the target scene before inspecting its disk copy; live edits were left intact: " + path);
         }
 
         Scene active = SceneManager.GetActiveScene();
@@ -66,7 +72,10 @@ public static class CleanUnusedShadowOverrides
         finally
         {
             EditorSceneManager.CloseScene(scene, true);
-            SceneManager.SetActiveScene(active);
+            if (active.IsValid() && active.isLoaded)
+            {
+                SceneManager.SetActiveScene(active);
+            }
         }
     }
 
