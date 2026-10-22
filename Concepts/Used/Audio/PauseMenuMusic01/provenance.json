@@ -1,0 +1,122 @@
+{
+  "source": "Concepts/Unused/Audio/MenuThemes02/Originals/below_the_ward_02.mp3",
+  "source_sha256": "14e3a3dc6feb3c28b57c5ad8ea5bb3e28a7da2f5d2bb6670d9c04a11861d3177",
+  "source_generation_provenance": "Concepts/Unused/Audio/MenuThemes02/provenance.json",
+  "source_generation_requests": "Concepts/Unused/Audio/MenuThemes02/requests.json",
+  "source_owner_acceptance": "Concepts/Unused/Audio/MenuThemes02/acceptance.json",
+  "created_date": "2026-10-19",
+  "purpose": "Pause menu derived from owner-approved Below the Ward 02",
+  "rights": "Generated in connected Runway account. No CC0 license asserted. Only this generated original is used; no reference audio is mixed into these exports.",
+  "selection": {
+    "sample_rate": 48000,
+    "source_loop_start_sample": 2049600,
+    "source_loop_end_sample_exclusive": 3073600,
+    "source_loop_range_seconds": [
+      42.7,
+      64.03333333333333
+    ],
+    "loop_samples_per_channel": 1024000,
+    "loop_duration_seconds": 21.333333333333332,
+    "measured_tempo_bpm": 90.0,
+    "assumed_meter": "4/4",
+    "loop_beats": 32,
+    "loop_bars_at_assumed_meter": 8,
+    "rationale": "Same phase on the measured 90 BPM pulse grid; 8-bar window inside the first, less dense rhythmic passage. Avoids intro transition at ~32s, denser passage from ~75s, breakdown at ~117s and outro. Chroma/spectral recurrence supports compatible surrounding material; musical phrase/meter remain signal-based hypotheses."
+  },
+  "processing": {
+    "decode": "FFmpeg stereo float32 48 kHz",
+    "output_format": "48 kHz stereo PCM24 WAV",
+    "resynthesis_or_time_stretch": false,
+    "eq_compression_limiting": false,
+    "crossfade": {
+      "location": "Final 250 ms of loop",
+      "duration_seconds": 0.25,
+      "samples": 12000,
+      "type": "equal-power cosine/sine, endpoints inclusive",
+      "tail_source_seconds": [
+        63.78333333333333,
+        64.03333333333333
+      ],
+      "incoming_preroll_source_seconds": [
+        42.45,
+        42.7
+      ],
+      "period_preserved": true,
+      "rationale": "Blend the end into the real source pre-roll immediately before the loop start. The wrap retains the original adjacent sample pair and the exact 32-beat duration; no duplicated/missing beat."
+    },
+    "constant_gain_linear": 0.7871159675956622,
+    "constant_gain_db": -2.079226,
+    "full_source_decoded_sample_peak_dbfs": 0.073698,
+    "full_source_4x_true_peak_estimate_dbtp": 0.079226,
+    "target_4x_true_peak_ceiling_dbtp": -2.0,
+    "intro": {
+      "source_range_seconds": [
+        0,
+        42.95
+      ],
+      "samples_per_channel": 2061600,
+      "runtime_overlap_seconds": 0.25,
+      "runtime_overlap_samples": 12000,
+      "runtime_loop_start_at_intro_sample": 2049600,
+      "runtime_loop_start_at_intro_seconds": 42.7,
+      "timeline": "Intro source 42.700..42.950 and loop source 42.700..42.950 are sample-identical at the same gain. Start loop at intro sample 2,049,600, or seek its timeSamples to intro.timeSamples-2,049,600 if runtime starts late. End intro at 2,061,600 samples.",
+      "runtime_gain_rule": "Use complementary gains summing to one during this identical-signal overlap; equal-power mixing can add up to 3 dB. No runtime fade is baked into either WAV."
+    }
+  },
+  "validation": {
+    "loop": {
+      "samples_per_channel": 1024000,
+      "duration_seconds": 21.333333333333332,
+      "sample_rate": 48000,
+      "channels": 2,
+      "finite": true,
+      "sample_peak_dbfs": -2.154,
+      "true_peak_4x_estimate_dbtp": -2.135,
+      "rms_dbfs": -15.8071,
+      "over_full_scale_samples": 0
+    },
+    "intro": {
+      "samples_per_channel": 2061600,
+      "duration_seconds": 42.95,
+      "sample_rate": 48000,
+      "channels": 2,
+      "finite": true,
+      "sample_peak_dbfs": -2.2352,
+      "true_peak_4x_estimate_dbtp": -2.2297,
+      "rms_dbfs": -19.9279,
+      "over_full_scale_samples": 0
+    },
+    "wrap_max_channel_sample_delta": 0.0010602474212646484,
+    "wrap_max_channel_sample_delta_dbfs": -59.4919,
+    "wrap_delta_error_vs_original_adjacent_sample_pair_max": 5.162771395599919e-08,
+    "first_100ms_adjacent_difference_absolute_95th_percentile": 0.022625350952148415,
+    "intro_tail_to_loop_head_overlap_max_sample_difference": 0.0,
+    "crossfade_original_tail_preroll_correlation": 0.17533837726811488,
+    "crossfade_middle_third_rms_change_vs_mean_source_power_db": 0.5005,
+    "signal_seam_verified": true,
+    "perceptual_listening_verified": false,
+    "limitations": "No direct auditory assessment. Signal continuity and matching phase reduce technical splice artifacts; human listening remains the authority for musical acceptability. Unity import, playback and fade behavior are outside this offline validation and have not been verified by this audio-preparation task."
+  },
+  "outputs": [
+    {
+      "path": "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseLoop.wav",
+      "bytes": 6144044,
+      "sha256": "afae05b10fc5523c78a5e19851aa61d3edc1e95e31fd7d56a4450a3ec99ddd56"
+    },
+    {
+      "path": "Assets/EmergencyShift/Audio/MenuMusic/BelowTheWardPauseIntro.wav",
+      "bytes": 12369644,
+      "sha256": "718cb36e42fc57050474906cbb93ded20134b1bde28125f4e070dddaadd46405"
+    },
+    {
+      "path": "Concepts/Used/Audio/PauseMenuMusic01/Previews/BelowTheWardPauseLoop_TwoRepeats.wav",
+      "bytes": 12288044,
+      "sha256": "595ee8e93c6e112c74b956d9bcaa7cfb649a952c1fe089938140647e419fb54c"
+    },
+    {
+      "path": "Concepts/Used/Audio/PauseMenuMusic01/Previews/BelowTheWardPauseLoop_Seam.wav",
+      "bytes": 1152044,
+      "sha256": "09149dc6806e0be806a72c47de33aab6709aa6b44c991a26835b23683e7beaa6"
+    }
+  ]
+}

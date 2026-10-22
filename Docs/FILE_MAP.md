@@ -19,6 +19,7 @@
 - [ExportLevelOrganization.cs](../AgentScripts/ExportLevelOrganization.cs)
 - [FinishLevelOrganization.cs](../AgentScripts/FinishLevelOrganization.cs)
 - [InstallDirectionalDamage.cs](../AgentScripts/InstallDirectionalDamage.cs)
+- [InstallMainMenu.cs](../AgentScripts/InstallMainMenu.cs)
 - [InstallPauseMenu.cs](../AgentScripts/InstallPauseMenu.cs)
 - [InstallWorldComposition.cs](../AgentScripts/InstallWorldComposition.cs)
 - [LevelAuthoringState.cs](../AgentScripts/LevelAuthoringState.cs)
@@ -30,6 +31,7 @@
 - [ReviewDamageAndRemains.cs](../AgentScripts/ReviewDamageAndRemains.cs)
 - [ReviewDamageFeedbackVisuals.cs](../AgentScripts/ReviewDamageFeedbackVisuals.cs)
 - [ReviewEntranceBlood.cs](../AgentScripts/ReviewEntranceBlood.cs)
+- [VerifyMainMenu.cs](../AgentScripts/VerifyMainMenu.cs)
 
 ## Assets/EmergencyShift/Editor/Authoring
 
@@ -45,6 +47,8 @@
 - [HospitalServicePrefabAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/HospitalServicePrefabAuthoring.cs)
 - [LevelAuthoringSetup.cs](../Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs)
 - [LevelPersistenceAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs)
+- [MainMenuAudioAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/MainMenuAudioAuthoring.cs)
+- [MainMenuAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/MainMenuAuthoring.cs)
 - [NarrativeEnvironmentBuilder.cs](../Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs)
 - [PauseMenuAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs)
 - [PlayerRulesAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/PlayerRulesAuthoring.cs)
@@ -573,6 +577,42 @@
 - [RestoreRunElapsedCommand.cs](../Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/RestoreRunElapsedCommand.cs)
 - [StartLevelRunCommand.cs](../Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/StartLevelRunCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/MainMenu
+
+- [MainMenuContext.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/MainMenuContext.cs)
+- [MainMenuWorldInstaller.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/MainMenuWorldInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/MainMenu/Config
+
+- [MainMenuCatalog.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Config/MainMenuCatalog.cs)
+- [MainMenuStyle.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Config/MainMenuStyle.cs)
+
+## Assets/EmergencyShift/Runtime/Features/MainMenu/Logic
+
+- [ApplyMenuPreferencesCommand.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/ApplyMenuPreferencesCommand.cs)
+- [IMenuNavigation.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/IMenuNavigation.cs)
+- [IMenuPreferencesPlatform.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/IMenuPreferencesPlatform.cs)
+- [LaunchMenuSceneCommand.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/LaunchMenuSceneCommand.cs)
+- [MainMenuController.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/MainMenuController.cs)
+- [MainMenuModel.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/MainMenuModel.cs)
+- [MenuPage.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/MenuPage.cs)
+- [MenuPreferences.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/MenuPreferences.cs)
+- [MenuPreferencesController.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/MenuPreferencesController.cs)
+- [MenuScene.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/MenuScene.cs)
+- [MenuSceneCatalog.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/MenuSceneCatalog.cs)
+- [OpenMenuPageCommand.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/OpenMenuPageCommand.cs)
+- [QuitMenuCommand.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/Logic/QuitMenuCommand.cs)
+
+## Assets/EmergencyShift/Runtime/Features/MainMenu/View
+
+- [MainMenuPresenter.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/View/MainMenuPresenter.cs)
+- [MainMenuView.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/View/MainMenuView.cs)
+- [MenuHighlightTarget.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/View/MenuHighlightTarget.cs)
+- [MenuNavigationAdapter.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/View/MenuNavigationAdapter.cs)
+- [MenuPageButton.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/View/MenuPageButton.cs)
+- [MenuSceneRowView.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/View/MenuSceneRowView.cs)
+- [UnityMenuPreferences.cs](../Assets/EmergencyShift/Runtime/Features/MainMenu/View/UnityMenuPreferences.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/PauseMenu
 
 - [PauseMenuInstaller.cs](../Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs)
@@ -868,6 +908,7 @@
 - [LocalLampAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs)
 - [LocalLampSceneSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampSceneSettingsTests.cs)
 - [MagazineWeaponTests.cs](../Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs)
+- [MainMenuTests.cs](../Assets/EmergencyShift/Tests/EditMode/MainMenuTests.cs)
 - [ObjectiveProgressTests.cs](../Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs)
 - [PauseMenuEnvironmentTests.cs](../Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs)
 - [PauseMenuTests.cs](../Assets/EmergencyShift/Tests/EditMode/PauseMenuTests.cs)
@@ -972,5 +1013,6 @@
 - [LightingPlayground.unity](../Assets/EmergencyShift/Scenes/ArtReview/LightingPlayground.unity)
 - [BasementPrototype.unity](../Assets/EmergencyShift/Scenes/BasementPrototype.unity)
 - [LevelTemplate.unity](../Assets/EmergencyShift/Scenes/LevelTemplate.unity)
+- [MainMenu.unity](../Assets/EmergencyShift/Scenes/MainMenu.unity)
 - [MechanicsSandbox.unity](../Assets/EmergencyShift/Scenes/MechanicsSandbox.unity)
 - [MorgueRouteTest.unity](../Assets/EmergencyShift/Scenes/MorgueRouteTest.unity)
