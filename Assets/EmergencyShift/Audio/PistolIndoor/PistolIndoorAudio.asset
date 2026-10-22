@@ -12,6 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95816b202bb3bb40bb256780bc80f4c, type: 3}
   m_Name: PistolIndoorAudio
   m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.PlayerAudioSet
+  pickupVolume: 0.65
+  shotVolume: 0.75
+  impactVolume: 0.65
+  casingVolume: 0.3
+  shotPitchVariation: 0.008
+  shotGainVariationDb: 0.4
+  pickupBurstSeconds: 0.07
+  impactHearingDistance: 16
+  casingHearingDistance: 12
+  panDistance: 6
+  maximumPan: 0.75
+  impactPitch: {x: 0.97, y: 1.03}
   ammoPickup:
   - {fileID: 8300000, guid: 0071432b49e080b4cbb023e9b10a5001, type: 3}
   - {fileID: 8300000, guid: a4e4d66fc8c257a4db3b21aea2e0b5db, type: 3}
@@ -36,15 +48,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f733900ae94b8f545b4c7bd8646a9c14, type: 3}
   - {fileID: 8300000, guid: 1b834a000fff3a74086186c3eacf857f, type: 3}
   concreteImpact:
-  - {fileID: 8300000, guid: a589be7abf8e8f342824baf0fea43fdd, type: 3}
-  - {fileID: 8300000, guid: 266c899ec37a9a14fa5c163c5ff632c1, type: 3}
+  - {fileID: 8300000, guid: f20c172f23c158e4abf08e2b74ec66b6, type: 3}
+  - {fileID: 8300000, guid: ec8cd6b82bba32d4ab645896d03bd55a, type: 3}
   woodImpact:
-  - {fileID: 8300000, guid: c39843f68bc6c7442b41b7b16762543b, type: 3}
+  - {fileID: 8300000, guid: 036fe3d8d2e754f4e80e19a55f0e6f75, type: 3}
   fleshImpact:
-  - {fileID: 8300000, guid: 1f9456c19c9fbab4d9587279140062a5, type: 3}
-  - {fileID: 8300000, guid: 7883109ceb1780a4da2e585abc39807d, type: 3}
-  - {fileID: 8300000, guid: a0f28b7af94f3ee448ec39c66352d066, type: 3}
-  - {fileID: 8300000, guid: 5c6498ca9ea2ae14688f3340661cb3b0, type: 3}
+  - {fileID: 8300000, guid: cea092bd18af72842af0f6c53985a6f5, type: 3}
+  - {fileID: 8300000, guid: 6c11374a749875c4eac278c91a0dcba6, type: 3}
+  - {fileID: 8300000, guid: ca30963b703fde34ca6643df5f1da79d, type: 3}
+  - {fileID: 8300000, guid: 4f2c38e87b7d13444aa369ecb05ca980, type: 3}
   concreteCasings:
   - {fileID: 8300000, guid: 57c16cb884152854c8388091c51b2605, type: 3}
   - {fileID: 8300000, guid: 87c200c8c006ae64e951150825957153, type: 3}

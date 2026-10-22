@@ -70,6 +70,41 @@ namespace EmergencyShift.Tests
         public IEnumerator FlyingBulletImpactUnloadsWithSourceWhileFrozen() => Verify(true);
 
         [UnityTest]
+        public IEnumerator PistolStopsVisibleFlightBeforeNonlethalContact() => VerifyContact(false, false);
+
+        [UnityTest]
+        public IEnumerator PistolStopsVisibleFlightBeforeLethalContact() => VerifyContact(false, true);
+
+        [UnityTest]
+        public IEnumerator ShotgunPelletStopsVisibleFlightBeforeNonlethalContact() => VerifyContact(true, false);
+
+        [UnityTest]
+        public IEnumerator ShotgunPelletStopsVisibleFlightBeforeLethalContact() => VerifyContact(true, true);
+
+        private IEnumerator VerifyContact(bool shotgun, bool lethal)
+        {
+            ProjectileProbeTarget owner = Target("Contact shooter", 0);
+            ProjectileProbeTarget front = Target("Front contact", .45f);
+            ProjectileProbeTarget rear = Target("Rear protected target", .7f);
+            front.DieOnHit = lethal;
+            string asset = shotgun ? "PumpShotgun" : "PistolDefinition";
+            var definition = AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/EmergencyShift/Data/Weapons/" + asset + ".asset");
+            BulletProjectile2D bullet = Spawn(owner.transform);
+            front.ObservedProjectile = bullet;
+            bullet.Launch(owner.transform, Vector2.right, definition.Visuals, null, 1 << 9, 1, 8, 42);
+            Physics2D.SyncTransforms();
+            float deadline = Time.realtimeSinceStartup + 2;
+            while (bullet != null && Time.realtimeSinceStartup < deadline)
+            {
+                yield return new WaitForFixedUpdate();
+            }
+            Assert.That(front.Hits, Is.EqualTo(1));
+            Assert.That(rear.Hits, Is.Zero, "The same pellet must not damage a second target after death disables the first collider.");
+            Assert.That(front.VisibleFlightAtContact, Is.False, "Flight must be hidden before damage/death callbacks, including the deferred Destroy frame.");
+            Assert.That(bullet == null, Is.True);
+        }
+
+        [UnityTest]
         public IEnumerator InvisibleNativeBulletSkipsOwnerAndTriggerAndHitsNearestTargetOnce()
         {
             ProjectileProbeTarget owner = Target("Owner", 0);

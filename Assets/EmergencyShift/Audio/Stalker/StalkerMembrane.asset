@@ -12,6 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e95ae7e4a77be4c81c15d4d7c3a43b, type: 3}
   m_Name: StalkerMembrane
   m_EditorClassIdentifier: Assembly-CSharp::EmergencyShift.StalkerAudioSet
+  masterVolume: 1
+  movementVolume: 0.9
+  creatureVolume: 1
+  distancePerContact: 0.22
+  minimumContactInterval: 0.075
+  frictionChance: 0.16
+  contactPitch: 1
+  idlePause: {x: 3, y: 7}
+  cowerPause: {x: 1.3, y: 2.8}
+  retreatPainPause: {x: 0.32, y: 0.55}
+  fullVolumeDistance: 2.5
+  hearingDistance: 11
+  panDistance: 6
+  maximumPan: 0.75
+  blockedVolume: 0.45
+  blockedCutoff: 1300
+  obstructionInterval: 0.15
+  minimumHitCueInterval: 0.05
   step:
   - {fileID: 8300000, guid: ffe8e85f31795d84c988092aacf7362c, type: 3}
   - {fileID: 8300000, guid: cda282b2b819c234493f1989dadee48b, type: 3}
@@ -58,10 +76,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0c3131aa66279284d82ce48b73870121, type: 3}
   - {fileID: 8300000, guid: 8c57d71247434694093a6cd39f1e90d8, type: 3}
   hit:
-  - {fileID: 8300000, guid: 1f9456c19c9fbab4d9587279140062a5, type: 3}
-  - {fileID: 8300000, guid: 7883109ceb1780a4da2e585abc39807d, type: 3}
-  - {fileID: 8300000, guid: a0f28b7af94f3ee448ec39c66352d066, type: 3}
-  - {fileID: 8300000, guid: 5c6498ca9ea2ae14688f3340661cb3b0, type: 3}
+  - {fileID: 8300000, guid: cea092bd18af72842af0f6c53985a6f5, type: 3}
+  - {fileID: 8300000, guid: 6c11374a749875c4eac278c91a0dcba6, type: 3}
+  - {fileID: 8300000, guid: ca30963b703fde34ca6643df5f1da79d, type: 3}
+  - {fileID: 8300000, guid: 4f2c38e87b7d13444aa369ecb05ca980, type: 3}
   death: []
   deathSounds: {fileID: 11400000, guid: 3319a1a016bcd214fb8ef9055174f528, type: 2}
   debris:
@@ -77,3 +95,16 @@ MonoBehaviour:
   movementVoices: 8
   idleVoices: 2
   deathVoices: 3
+  scrapeGain: 0.25
+  retreatPainGain: 0.85
+  cowerGain: 0.9
+  lungeGain: 0.9
+  debrisGain: 0.6
+  retreatInitialPause: 0.12
+  cowerInitialPause: 0.3
+  debrisInterval: 0.09
+  obstructionResponse: 12
+  signalHeartbeat: 0.15
+  minimumSignalGain: 0.02
+  minimumSignalSeconds: 0.25
+  maximumSignalSeconds: 0.5

@@ -26,6 +26,11 @@ namespace EmergencyShift.Tests
         [TestCase("plumeLength", 0)]
         [TestCase("impactSeconds", float.NaN)]
         [TestCase("impactSeconds", 0)]
+        [TestCase("smokeOpacity", float.NaN)]
+        [TestCase("smokeOpacity", .36f)]
+        [TestCase("smokeSeconds", 0)]
+        [TestCase("smokeSeconds", float.PositiveInfinity)]
+        [TestCase("smokeDispersion", -1)]
         public void InvalidShotScalarRejectsAtConfigurationBoundary(string field, float value)
         {
             var style = Object.Instantiate(PistolStyle());

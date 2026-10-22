@@ -128,6 +128,9 @@ namespace EmergencyShift
 
         void IProjectileFlightEnvironment.Impact(int damage, Vector2 direction)
         {
+            // Destroy is deferred until the end of the frame. Retire visible flight before any hit/death callback.
+            HideFlight();
+            ImpactMaterial material = ImpactSurface2D.Resolve(collision.collider);
             if (weapon != null)
             {
                 weapon.ReportImpact(collision.collider, collision.point, volleyId);
@@ -140,7 +143,7 @@ namespace EmergencyShift
             }
 
             Vector2 point = collision.centroid - direction * .01f;
-            if (ImpactSurface2D.Resolve(collision.collider) != ImpactMaterial.Flesh)
+            if (material != ImpactMaterial.Flesh)
             {
                 var effect = prefabs.Instantiate(effectPrefab.gameObject,
                     new Vector3(point.x, point.y, -.1f), Quaternion.identity).GetComponent<ShotEffect2D>();
@@ -154,7 +157,18 @@ namespace EmergencyShift
             UpdateTrail();
         }
 
-        void IProjectileFlightEnvironment.Release() => Destroy(gameObject);
+        void IProjectileFlightEnvironment.Release()
+        {
+            HideFlight();
+            Destroy(gameObject);
+        }
+
+        private void HideFlight()
+        {
+            trail.enabled = false;
+            tip.enabled = false;
+            glow.enabled = false;
+        }
 
         private void UpdateTrail()
         {

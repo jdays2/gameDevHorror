@@ -39,6 +39,13 @@ namespace EmergencyShift
         [Min(0.02f)]
         [SerializeField]
         private float impactSeconds = 0.12f;
+        [Header("Muzzle smoke — cosmetic, no light or collision")]
+        [SerializeField, Range(0, .35f)] private float smokeOpacity = .13f;
+        [SerializeField] private Color smokeColor = new Color(.55f, .57f, .6f, 1);
+        [SerializeField] private Vector2 smokeSize = new Vector2(.55f, .7f);
+        [SerializeField, Min(.02f)] private float smokeSeconds = .45f;
+        [SerializeField, Min(0)] private float smokeDispersion = .65f;
+        [SerializeField, Range(1, 8)] private int maximumSmokeClouds = 4;
         [Header("Casing ejection — world units and degrees/second")]
         [SerializeField] private Vector2 casingPort = new Vector2(.16f, .16f);
         [SerializeField] private float casingWallClearance = .03f;
@@ -65,6 +72,12 @@ namespace EmergencyShift
         public float PlumeWidth => plumeWidth;
         public float PlumeLength => plumeLength;
         public float ImpactSeconds => impactSeconds;
+        public float SmokeOpacity => smokeOpacity;
+        public Color SmokeColor => smokeColor;
+        public Vector2 SmokeSize => smokeSize;
+        public float SmokeSeconds => smokeSeconds;
+        public float SmokeDispersion => smokeDispersion;
+        public int MaximumSmokeClouds => maximumSmokeClouds;
 
 
         public void Validate()
@@ -88,6 +101,15 @@ namespace EmergencyShift
             }
 
             projectile.Validate();
+            if (!float.IsFinite(smokeOpacity) || smokeOpacity < 0 || smokeOpacity > .35f ||
+                !float.IsFinite(smokeColor.r) || !float.IsFinite(smokeColor.g) || !float.IsFinite(smokeColor.b) ||
+                !float.IsFinite(smokeColor.a) || smokeColor.a < 0 || smokeColor.a > 1 ||
+                !float.IsFinite(smokeSize.x) || smokeSize.x <= 0 ||
+                !float.IsFinite(smokeSize.y) || smokeSize.y <= 0 || !float.IsFinite(smokeSeconds) || smokeSeconds < .02f ||
+                !float.IsFinite(smokeDispersion) || smokeDispersion < 0 || maximumSmokeClouds < 1 || maximumSmokeClouds > 8)
+            {
+                throw new InvalidOperationException("Invalid muzzle smoke: " + name);
+            }
         }
         private static bool Ordered(Vector2 value) =>
             float.IsFinite(value.x) && float.IsFinite(value.y) && value.y >= value.x;

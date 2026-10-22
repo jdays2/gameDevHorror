@@ -34,6 +34,12 @@ namespace EmergencyShift
         private void StopPresentation()
         {
             configured = false;
+            smoke?.Stop();
+            StopFlash();
+        }
+
+        private void StopFlash()
+        {
             if (flash != null)
             {
                 flash.intensity = 0;
@@ -87,6 +93,8 @@ namespace EmergencyShift
         private SpriteRenderer[] flames;
         [SerializeField]
         private SpriteRenderer plume;
+        [SerializeField] private MuzzleSmoke2D smokePrefab;
+        private MuzzleSmoke2D smoke;
         private MaterialPropertyBlock plumeProperties;
         private static readonly int AgeId = Shader.PropertyToID("_Age");
         private static readonly int SeedId = Shader.PropertyToID("_Seed");
@@ -100,6 +108,8 @@ namespace EmergencyShift
         private bool configured;
         private bool isImpact;
         public Light2D LightSource => flash;
+        public bool HasSmoke => smoke != null && smoke.IsVisible;
+        public void ConfigureSmokePrefab(MuzzleSmoke2D template) => smokePrefab = template;
 
         public void Configure(Light2D light, SpriteRenderer[] shapes)
         {
@@ -134,6 +144,16 @@ namespace EmergencyShift
             }
 
             configured = true;
+            smoke?.Stop();
+            if (!impact && smokePrefab != null && profile.SmokeOpacity > 0)
+            {
+                LimitSmoke(profile.MaximumSmokeClouds);
+                if (smoke == null)
+                {
+                    smoke = Instantiate(smokePrefab, transform, false);
+                }
+                smoke.Begin(profile);
+            }
             elapsed = 0;
             isImpact = impact;
             duration = impact ? profile.ImpactSeconds : profile.FlashSeconds;
@@ -203,10 +223,15 @@ namespace EmergencyShift
             }
 
             elapsed += Time.deltaTime;
+            bool smokeAlive = smoke != null && smoke.Tick(Time.deltaTime);
             if (elapsed >= duration)
             {
-                StopPresentation();
-                Destroy(gameObject);
+                StopFlash();
+                if (!smokeAlive)
+                {
+                    configured = false;
+                    Destroy(gameObject);
+                }
                 return;
             }
 
@@ -252,6 +277,36 @@ namespace EmergencyShift
                     Color flameColor = Color.Lerp(tint, Color.white, i == 0 ? 0.1f : 0.5f);
                     flameColor.a = fade;
                     flames[i].color = flameColor;
+                }
+            }
+        }
+
+        private void LimitSmoke(int maximum)
+        {
+            if (registry == null)
+            {
+                return;
+            }
+            int count = 0;
+            for (int index = 0; index < registry.Members.Count; index++)
+            {
+                ShotEffect2D effect = registry.Members[index];
+                if (effect != null && effect.HasSmoke)
+                {
+                    count++;
+                }
+            }
+            for (int index = 0; index < registry.Members.Count; index++)
+            {
+                if (count < maximum)
+                {
+                    break;
+                }
+                ShotEffect2D effect = registry.Members[index];
+                if (effect != null && effect.HasSmoke)
+                {
+                    effect.smoke.Stop();
+                    count--;
                 }
             }
         }
