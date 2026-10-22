@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "52779f48b09551293a38c28f0d805c98cfbbfddc",
+  "editMode": {
+    "result": "Passed",
+    "total": "1111",
+    "passed": "1111",
+    "failed": "0",
+    "end-time": "2026-10-22 04:57:42Z",
+    "rawPath": "work/sod-evidence-20261022-final/gore-config-edit.xml",
+    "rawSha256": "49d26e133a0ac51a9003f8e7425bbf06d12176a601b1df5de0af1fb590d5404d",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.ChoosingGoreDoesNotConsumeGlobalUnityRandomState",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.ConfigApiDoesNotExposeWritableFieldsPropertiesOrArrays(EmergencyShift.GoreProfile)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.ConfigApiDoesNotExposeWritableFieldsPropertiesOrArrays(EmergencyShift.BloodPoolProfile)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.ConfigApiDoesNotExposeWritableFieldsPropertiesOrArrays(EmergencyShift.GoreVariant)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.ConfigApiDoesNotExposeWritableFieldsPropertiesOrArrays(EmergencyShift.GorePiece)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.ConfigApiDoesNotExposeWritableFieldsPropertiesOrArrays(EmergencyShift.BloodPoolVariant)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.EveryAuthoredProfileValidatesWithoutMutation(EmergencyShift.GoreProfile)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.EveryAuthoredProfileValidatesWithoutMutation(EmergencyShift.BloodPoolProfile)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidGoreConfigCannotSelectADeathComposition(False)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidGoreConfigCannotSelectADeathComposition(True)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidGoreScalarsRejectBeforeRandomConsumption(\"poolSize\",float.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidGoreScalarsRejectBeforeRandomConsumption(\"poolSize\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidGoreScalarsRejectBeforeRandomConsumption(\"releaseDelay\",float.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidGoreScalarsRejectBeforeRandomConsumption(\"releaseDelay\",-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidGoreScalarsRejectBeforeRandomConsumption(\"gravity\",float.NegativeInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidGoreScalarsRejectBeforeRandomConsumption(\"gravity\",0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidRandomIndexIsRejected(-1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.InvalidRandomIndexIsRejected(1)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.LevelCosmeticFactoriesAreSeparateFromGameplayAndOtherLevels",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.GoreConfigBoundaryTests.RestoredOnlyVariantsRemainAddressableAndDoNotParticipateInNewChoice",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "60",
+    "passed": "60",
+    "failed": "0",
+    "end-time": "2026-10-22 04:52:56Z",
+    "rawPath": "work/sod-evidence-20261022-final/gore-config-play.xml",
+    "rawSha256": "8819251ee8b2ba918245691237932d8ec65e503c2fddefd70082a75d99260ac1",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.TransientBloodSceneTests.HitSprayIsRemovedWithOwnerWhileItsTimerIsFrozen",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.TransientBloodSceneTests.HitSprayUsesSourceScene",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.TransientBloodSceneTests.RuptureIsRemovedWithOwnerWhileItsTimerIsFrozen",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.TransientBloodSceneTests.RuptureUsesSourceScene",
+        "result": "Passed"
+      }
+    ]
+  },
+  "redBaseline": {
+    "rawPath": "work/sod-evidence-20261022-final/gore-config-before.xml",
+    "rawSha256": "f5110d9a03e447002a1bf52c9bdf239b66e9fe8adf7f12a577a2cda5e25de54c",
+    "failed": 2,
+    "passed": 0,
+    "failures": [
+      "  Expected: <System.InvalidOperationException>\n  But was:  null\n",
+      "  Expected: <System.InvalidOperationException>\n  But was:  null\n"
+    ],
+    "sourceRevision": "52779f48b09551293a38c28f0d805c98cfbbfddc",
+    "nativeSourceSha256": {
+      "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs": "e9f90ae6518844c37b8329386f517bfdf1f46c3fc7123d5fd7a2451ceac9ffbb",
+      "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs": "b36519bd6841c8ebc15cb6e208afed6b2873b3ec86d07c5c35a11e47932103e1",
+      "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs": "52ed401302223dfa8e77a3abcd6e1f17f88ece1d801aa6cd56e0393cb5bf8093"
+    },
+    "fixtureNote": "Original two ChooseVariant cases ran before validation; both retained in final fixture. Full guards/ID/readonly/authored config/legacy choice/cosmetic RNG stream isolation checked."
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-22T04:58:18.331Z",
+    "endedAt": "2026-10-22T04:59:53.015Z",
+    "generator": {
+      "name": "unity-cli",
+      "version": "1.0.0-beta.14"
+    }
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs": "08feb0afa374542dd1bd245bdad875fa2ff44eca5509124ea4e77511523a0d85",
+    "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs": "977f43c59cee83dabd73d5e9cd7b050fe60534cdc124b165cc0bad663a5f04c2",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs": "b8961f466b56e1a50d740ee6c95e4a39cc226bc0cc4b2e208cc1df4b8dc0e4f1",
+    "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs": "c48725cc5cbf8934fe1b01cf5910c86fa961ddbf2b9a6ee7f4039232240f99f5",
+    "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs": "ec06b56dc61e01fe700f0ce3bb0e75753cef80b0a54168b64c6d4845b1bee8b0",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs": "e4e4c538b57571d63ba4765ab694d2c52f71475b9115a13c3b4d4d491057bc13",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs": "47be08c05e6e0dba41ce8b39929d221aad3dd94ab3378b85ae1dc9b43398d376",
+    "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs": "8c40a85a52a6ce1ba5cd75fbafe8d864064205958260e061c69cd74190b8a6fc",
+    "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs": "9e876c24f954652ef92aa91c8c9a9c0c57b775f487247a5b07d185bcac4a3c72",
+    "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs": "ecc814e6731c51069500477c95ffbad3c455106a2ac82412928ce6a7334b83ba",
+    "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs": "5df819c4e34b8ee9091617f47b67e5ba89e7154ad7b0aa0265ef2658adc9284e",
+    "Assets/EmergencyShift/Runtime/Definitions/GorePiece.cs": "8af3565cf117afa440e43839b06411accf1a8c45c82591b70bc4288686b52edf",
+    "Assets/EmergencyShift/Runtime/Definitions/GoreVariant.cs": "cb3323bc1189cfe03dacfe2c3ddf779f7e8ade11ecbc58c52a186d37438969ff",
+    "Assets/EmergencyShift/Runtime/Definitions/BloodPoolVariant.cs": "ea96bd7c4b29e96c2d418f9c8c17f623895d84e9093ad4d59da7fe0ea89f9a48",
+    "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceIds.cs": "1845df0864f8d4166f76fd7997c0f04daa4bebd68675d17efed9be21622a1879",
+    "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs": "62c0a5bc5c158ca1a5e970a473ca096e6e789ced5ffcb1ddd413889344c5c65a"
+  },
+  "metadataSha256": {
+    "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs.meta": "01136acfbc036745cb57b33271eef71d045e1af84d14dddbc3073eacf684983c",
+    "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs.meta": "548999416494d966803e3ffe37e3f23d0b2510c27c149184527b911854d0612d",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs.meta": "ddea417744cf3550a4855ada8f3c37f980a950309ce1cd5e8d778b355f9c85d5",
+    "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs.meta": "bf279a40a0768e76e6ce3e2048a3b6348ab2972373938436f1636258dcd8417a",
+    "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs.meta": "f4f9994a25030ac7cd82cd2208749bfbc1c0d644d0d5f16afebe71eba853bfcb",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs.meta": "d2d369b7bbc8a63267ce041346e27704d499c29422fae49fb324dc489b7b6c3a",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs.meta": "2dee7749ba03dd73cdd33edb459c10c32a68115750a85b34bb8aa5e172d8fdbc",
+    "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs.meta": "43ced64cdefc8333c243125dc58e9f125d79faef716e5b2bada898b6aa4a5df4",
+    "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs.meta": "0019f8b09f70a76b0227fdd8b780a56f51a9a534b3da0bc5e591e6e46b7244ed",
+    "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs.meta": "6fcf99464cc8ef2ae6e48c31e1807f7614eadad1c03ebb719515c42e99939c36",
+    "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs.meta": "d6312730d22fd3d16e28e02694b64cb3dd5d7ec638ca8c595322b50d5ab2d256",
+    "Assets/EmergencyShift/Runtime/Definitions/GorePiece.cs.meta": "4e8f84b2cab71147d19793853b0468d5a10c6ab6c52c272b02ab539c7772f54b",
+    "Assets/EmergencyShift/Runtime/Definitions/GoreVariant.cs.meta": "52dd34642b038111182ab2ee8e21b33c551a1234dbbdfc446fc9612afa5a9f6f",
+    "Assets/EmergencyShift/Runtime/Definitions/BloodPoolVariant.cs.meta": "3d94993f7a94c20a2beeb9a408192e792afc29efc7bf28c99a68ea33583e0863",
+    "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceIds.cs.meta": "12d734ad50663a2eee16c8ec8b1b8ed4eff56ce710c8891597fba23eacbf5869",
+    "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs.meta": "1d7fac075bd6282ee8585524bdfe4c988d1478a8ce35d053f7712b4084e17762"
+  },
+  "protectedResources": 1805,
+  "resourceBaselineSha256": "d88bb27eb6157c7e5073c94144f400da0c0ece478a174eb55a1ce33f23c9db4d",
+  "resourceDifferences": [],
+  "originalDirtyFilesPreserved": 60,
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Readonly gore/blood configs preserve serialized names/refs/values and all assets. Red baseline 0/2. Legacy restoration-only recipes remain loadable. Per-level named cosmetic RNG cannot shift gameplay factory seeds. Other SOD work and owner acceptance remain open."
+}

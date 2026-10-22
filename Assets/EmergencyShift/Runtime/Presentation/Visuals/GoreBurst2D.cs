@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using EmergencyShift.Core.Randomness;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +10,7 @@ namespace EmergencyShift
     public sealed class GoreBurst2D : MonoBehaviour
     {
         private GoreSpawnBudget2D spawnBudget;
+        private IRandomSource random;
 
         [SerializeField]
         private BloodPool2D bloodPoolPrefab;
@@ -35,7 +38,11 @@ namespace EmergencyShift
         public event System.Action<GibMotion2D> FragmentLaunched;
 
         [Inject]
-        private void Construct(GoreSpawnBudget2D budget) => spawnBudget = budget;
+        private void Construct(GoreSpawnBudget2D budget, [Inject(Id = RandomSourceIds.Cosmetic)] RandomSourceFactory randomSources)
+        {
+            spawnBudget = budget;
+            random = randomSources.Create();
+        }
 
         public void Configure(BloodPool2D pool, Sprite[] pieces, Material material)
         {
@@ -58,25 +65,24 @@ namespace EmergencyShift
                 return;
             }
 
-            if (profile == null || profile.variants == null || profile.variants.Length == 0)
+            if (profile == null || profile.VariantCount == 0)
             {
                 Debug.LogError("Missing gore profile: " + name, this);
                 return;
             }
 
-            emitted = true;
-            variant = profile.ChooseVariant();
-            if (variant.pieces != null)
+            variant = profile.ChooseVariant(random);
+            for (int partIndex = 0; partIndex < variant.PieceCount; partIndex++)
             {
-                foreach (GorePiece part in variant.pieces)
+                GorePiece part = variant.PieceAt(partIndex);
+                if (part == null || fragments == null || part.SpriteIndex < 0 || part.SpriteIndex >= fragments.Length || fragments[part.SpriteIndex] == null)
                 {
-                    if (part == null || fragments == null || part.spriteIndex < 0 || part.spriteIndex >= fragments.Length || fragments[part.spriteIndex] == null)
-                    {
-                        Debug.LogError("Invalid anatomical gore composition: " + name, this);
-                        return;
-                    }
+                    Debug.LogError("Invalid anatomical gore composition: " + name, this);
+                    return;
                 }
             }
+
+            emitted = true;
             CreateRemainsRoot(transform.position);
             spawning = true;
             // Кровь появляется сразу при переходе в Dead; разлёт частей следует за разрывом.
@@ -86,7 +92,7 @@ namespace EmergencyShift
                 pool.name = "Blood pool";
                 pool.transform.SetParent(remainsRoot, true);
                 record.RegisterPool(pool);
-                pool.Initialize(profile.poolSize * Random.Range(0.85f, 1.18f), Random.Range(1, int.MaxValue), obstacles);
+                pool.Initialize(profile.PoolSize * Range(0.85f, 1.18f), Range(1, int.MaxValue), obstacles);
                 pool.BeginRupture();
                 if (bloodSpraySprite != null)
                 {
@@ -103,16 +109,16 @@ namespace EmergencyShift
         private IEnumerator Burst(LayerMask obstacles)
         {
             // Первые кадры показывают разрыв, затем отсоединённые части получают своё движение.
-            yield return new WaitForSeconds(profile.releaseDelay);
+            yield return new WaitForSeconds(profile.ReleaseDelay);
             if (fragments == null || fragments.Length == 0)
             {
                 spawning = false;
                 yield break;
             }
 
-            bool explicitComposition = variant.pieces != null && variant.pieces.Length > 0;
-            int count = explicitComposition ? variant.pieces.Length : variant.fragmentCount;
-            if (variant.replaceOriginalBody && replacedBody != null)
+            bool explicitComposition = variant.PieceCount > 0;
+            int count = explicitComposition ? variant.PieceCount : variant.FragmentCount;
+            if (variant.ReplaceOriginalBody && replacedBody != null)
             {
                 replacedBody.enabled = false;
             }
@@ -124,26 +130,26 @@ namespace EmergencyShift
                     yield return null;
                 }
 
-                GorePiece specification = explicitComposition ? variant.pieces[i] : null;
-                int spriteIndex = specification != null ? specification.spriteIndex : (i + variant.spriteOffset) % fragments.Length;
-                Vector2 scaleRange = specification != null ? specification.scale : variant.scale;
+                GorePiece specification = explicitComposition ? variant.PieceAt(i) : null;
+                int spriteIndex = specification != null ? specification.SpriteIndex : (i + variant.SpriteOffset) % fragments.Length;
+                Vector2 scaleRange = specification != null ? specification.Scale : variant.Scale;
                 var piece = new GameObject("Creature fragment", typeof(GibMotion2D));
                 piece.transform.position = new Vector3(transform.position.x, transform.position.y, RemainsVisualStyle.SurfaceZ);
                 if (specification != null)
                 {
-                    piece.transform.position += transform.TransformVector(specification.offset);
+                    piece.transform.position += transform.TransformVector(specification.Offset);
                 }
                 piece.transform.SetParent(remainsRoot, true);
                 var body = new GameObject("Fragment visual", typeof(SpriteRenderer));
                 body.transform.SetParent(piece.transform, false);
-                body.transform.localScale = Vector3.one * Random.Range(scaleRange.x, scaleRange.y);
+                body.transform.localScale = Vector3.one * Range(scaleRange.x, scaleRange.y);
                 var renderer = body.GetComponent<SpriteRenderer>();
                 renderer.sprite = fragments[spriteIndex];
                 renderer.sharedMaterial = litMaterial;
                 renderer.sortingOrder = RemainsVisualStyle.DeadOrder;
                 renderer.color = RemainsVisualStyle.Tint;
-                float angle = i * Mathf.PI * 2 / count + variant.rotationOffset * Mathf.Deg2Rad + Random.Range(-.33f, .33f);
-                body.transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+                float angle = i * Mathf.PI * 2 / count + variant.RotationOffset * Mathf.Deg2Rad + Range(-.33f, .33f);
+                body.transform.rotation = Quaternion.Euler(0, 0, Range(0f, 360f));
                 SpriteRenderer shadow = null;
                 if (contactShadowSprite != null && shadowMaterial != null)
                 {
@@ -159,15 +165,15 @@ namespace EmergencyShift
                 var motion = piece.GetComponent<GibMotion2D>();
                 motion.ConfigureVisual(renderer, shadow);
                 // Чередуем тяжёлые близкие куски и быстрые дальние, а не восемь одинаковых импульсов.
-                float power = Random.Range(profile.impulseRange.x, profile.impulseRange.y) * variant.impulseMultiplier * (i % 3 == 0 ? .65f : 1);
-                float lift = Random.Range(profile.liftRange.x, profile.liftRange.y);
+                float power = Range(profile.ImpulseRange.x, profile.ImpulseRange.y) * variant.ImpulseMultiplier * (i % 3 == 0 ? .65f : 1);
+                float lift = Range(profile.LiftRange.x, profile.LiftRange.y);
                 if (specification != null)
                 {
-                    power *= specification.impulseMultiplier;
-                    lift *= specification.liftMultiplier;
+                    power *= specification.ImpulseMultiplier;
+                    lift *= specification.LiftMultiplier;
                 }
 
-                motion.Launch(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * power, Random.Range(-650f, 650f), obstacles.value | (1 << 9), lift, profile.gravity);
+                motion.Launch(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * power, Range(-650f, 650f), obstacles.value | (1 << 9), lift, profile.Gravity);
                 piece.AddComponent<RemainsPartIdentity2D>().Configure(spriteIndex, renderer, shadow);
                 record.RegisterPart(motion);
                 FragmentLaunched?.Invoke(motion);
@@ -182,13 +188,12 @@ namespace EmergencyShift
             remainsRoot.position = position;
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(remainsRoot.gameObject, gameObject.scene);
             record = remainsRoot.gameObject.AddComponent<RemainsRecord2D>();
-            record.Configure(bloodPoolPrefab, fragments, litMaterial, contactShadowSprite, shadowMaterial, variant != null ? variant.id : "restored");
+            record.Configure(bloodPoolPrefab, fragments, litMaterial, contactShadowSprite, shadowMaterial, variant != null ? variant.Id : "restored");
         }
 
         public void ValidateRemains(RemainsSnapshot saved)
         {
-            if (saved == null || profile == null || profile.variants == null ||
-                System.Array.Find(profile.variants, item => item != null && item.id == saved.variantId) == null)
+            if (saved == null || profile == null || profile.FindVariant(saved.variantId) == null)
             {
                 throw new System.InvalidOperationException("Missing saved gore variant");
             }
@@ -235,11 +240,14 @@ namespace EmergencyShift
 
             CreateRemainsRoot(saved.position);
             record.Restore(saved);
-            GoreVariant restoredVariant = System.Array.Find(profile.variants, item => item != null && item.id == saved.variantId);
-            if (restoredVariant != null && restoredVariant.replaceOriginalBody && replacedBody != null)
+            GoreVariant restoredVariant = profile.FindVariant(saved.variantId);
+            if (restoredVariant != null && restoredVariant.ReplaceOriginalBody && replacedBody != null)
             {
                 replacedBody.enabled = false;
             }
         }
+
+        private float Range(float minimum, float maximum) => Mathf.Lerp(minimum, maximum, (float)random.NextUnit());
+        private int Range(int minimum, int maximum) => random.NextInt(minimum, maximum);
     }
 }

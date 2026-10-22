@@ -46,7 +46,7 @@ namespace EmergencyShift
         }
 
         [Inject]
-        private void Construct(GroundAudioSurfaceQuery2D groundSurfaces, RandomSourceFactory randomSources,
+        private void Construct(GroundAudioSurfaceQuery2D groundSurfaces, [Inject(Id = RandomSourceIds.Cosmetic)] RandomSourceFactory randomSources,
             PlayerFootstepControllerFactory footstepControllers)
         {
             surfaces = groundSurfaces;

@@ -20,8 +20,8 @@ namespace EmergencyShift.Tests
             texture = new Texture2D(2, 2);
             sprite = Sprite.Create(texture, new Rect(0, 0, 2, 2), Vector2.one * .5f);
             profile = ScriptableObject.CreateInstance<BloodPoolProfile>();
-            profile.variants = new[] { new BloodPoolVariant { id = "fixture", sprite = sprite } };
-            profile.dropletSprites = new[] { sprite };
+            Set(profile, "variants", new[] { new BloodPoolVariant("fixture", sprite) });
+            Set(profile, "dropletSprites", new[] { sprite });
             Assert.That(profile.IsValid(), Is.True);
         }
 
@@ -59,16 +59,16 @@ namespace EmergencyShift.Tests
         {
             if (field == "canvasSize")
             {
-                profile.variants[0].canvasSize = value;
+                Set(profile.VariantAt(0), "canvasSize", value);
             }
             else if (!field.Contains('.'))
             {
-                typeof(BloodPoolProfile).GetField(field).SetValue(profile, value);
+                typeof(BloodPoolProfile).GetField(field, BindingFlags.Instance | BindingFlags.NonPublic).SetValue(profile, value);
             }
             else
             {
                 string[] parts = field.Split('.');
-                FieldInfo member = typeof(BloodPoolProfile).GetField(parts[0]);
+                FieldInfo member = typeof(BloodPoolProfile).GetField(parts[0], BindingFlags.Instance | BindingFlags.NonPublic);
                 object vector = member.GetValue(profile);
                 vector.GetType().GetField(parts[1]).SetValue(vector, value);
                 member.SetValue(profile, vector);
@@ -81,9 +81,9 @@ namespace EmergencyShift.Tests
         public void FiniteHdrTintIsKeptWithoutClampingTheAuthoredColor()
         {
             var tint = new Color(2, .2f, .3f, .7f);
-            profile.poolTint = tint;
+            Set(profile, "poolTint", tint);
             Assert.That(profile.IsValid(), Is.True);
-            Assert.That(profile.poolTint, Is.EqualTo(tint));
+            Assert.That(profile.PoolTint, Is.EqualTo(tint));
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace EmergencyShift.Tests
                 Set(pool, "profile", profile);
                 Set(pool, "patches", new[] { image });
                 Set(pool, "droplets", Array.Empty<SpriteRenderer>());
-                profile.growSeconds = float.PositiveInfinity;
+                Set(profile, "growSeconds", float.PositiveInfinity);
                 Assert.Throws<InvalidOperationException>(() => pool.Initialize(1, 45, 0));
                 Assert.That(image.color, Is.EqualTo(Color.magenta));
                 Assert.That(image.transform.localScale, Is.EqualTo(new Vector3(1, 2, 1)));

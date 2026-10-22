@@ -39,7 +39,7 @@ namespace EmergencyShift
         public event System.Action<ShellCasing2D> CasingEmitted;
 
         [Inject]
-        private void Construct(ScenePrefabFactory scenePrefabs, RandomSourceFactory randomSources)
+        private void Construct(ScenePrefabFactory scenePrefabs, [Inject(Id = RandomSourceIds.Cosmetic)] RandomSourceFactory randomSources)
         {
             prefabs = scenePrefabs;
             random = randomSources.Create();

@@ -15,20 +15,21 @@ namespace EmergencyShift.Tests
             string before = EditorJsonUtility.ToJson(profile);
             for (int i = 0; i < 96; i++)
             {
-                GoreVariant variant = profile.ChooseVariant();
-                Assert.That(variant.restorationOnly, Is.False);
-                Assert.That(variant.replaceOriginalBody, Is.True);
+                GoreVariant variant = profile.ChooseVariant(new Core.Randomness.SystemRandomSource(new System.Random(i + 15)));
+                Assert.That(variant.RestorationOnly, Is.False);
+                Assert.That(variant.ReplaceOriginalBody, Is.True);
                 int legs = 0;
                 int flesh = 0;
                 var usedLegs = new System.Collections.Generic.HashSet<int>();
-                foreach (GorePiece piece in variant.pieces)
+                for (int pieceIndex = 0; pieceIndex < variant.PieceCount; pieceIndex++)
                 {
-                    if (piece.spriteIndex < 5)
+                    GorePiece piece = variant.PieceAt(pieceIndex);
+                    if (piece.SpriteIndex < 5)
                     {
                         legs++;
-                        Assert.That(usedLegs.Add(piece.spriteIndex), Is.True, "Repeated anatomical leg");
+                        Assert.That(usedLegs.Add(piece.SpriteIndex), Is.True, "Repeated anatomical leg");
                     }
-                    if (piece.spriteIndex >= 10)
+                    if (piece.SpriteIndex >= 10)
                     {
                         flesh++;
                     }
@@ -39,7 +40,7 @@ namespace EmergencyShift.Tests
             Assert.That(EditorJsonUtility.ToJson(profile), Is.EqualTo(before));
             if (species == "Stalker")
             {
-                Assert.That(Array.Find(profile.variants, variant => variant.id == "radial").restorationOnly, Is.True);
+                Assert.That(profile.FindVariant("radial").RestorationOnly, Is.True);
             }
         }
 
@@ -49,8 +50,8 @@ namespace EmergencyShift.Tests
             var profile = ScriptableObject.CreateInstance<GoreProfile>();
             try
             {
-                profile.variants = new[] { new GoreVariant { id = "old", restorationOnly = true } };
-                Assert.Throws<InvalidOperationException>(() => profile.ChooseVariant());
+                typeof(GoreProfile).GetField("variants", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(profile, new[] { new GoreVariant("old", true) });
+                Assert.Throws<InvalidOperationException>(() => profile.ChooseVariant(new Core.Randomness.SystemRandomSource(new System.Random(15))));
             }
             finally
             {

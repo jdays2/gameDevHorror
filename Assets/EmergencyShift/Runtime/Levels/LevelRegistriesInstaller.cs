@@ -1,4 +1,5 @@
 using EmergencyShift.Core.Composition;
+using EmergencyShift.Core.Randomness;
 using EmergencyShift.Features.AudioMood;
 using EmergencyShift.Features.LampPower;
 using Zenject;
@@ -9,6 +10,7 @@ namespace EmergencyShift
     {
         public override void InstallBindings()
         {
+            Container.Bind<RandomSourceFactory>().WithId(RandomSourceIds.Cosmetic).AsSingle().WithArguments(new System.Random());
             Container.BindInterfacesAndSelfTo<SceneRegistry<Door2D>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<CrowdAgent2D>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<StalkerAudio2D>>().AsSingle();

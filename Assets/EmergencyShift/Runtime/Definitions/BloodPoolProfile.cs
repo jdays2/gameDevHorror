@@ -3,36 +3,61 @@ using UnityEngine;
 
 namespace EmergencyShift
 {
-    [Serializable]
-    public sealed class BloodPoolVariant
-    {
-        public string id;
-        public Sprite sprite;
-        [Min(.1f)]
-        public float canvasSize = 4.5f;
-    }
-
     /// <summary>Shared baked shapes and presentation tuning; each death owns its choice and transforms.</summary>
     [CreateAssetMenu(menuName = "Emergency Shift/Blood pool profile")]
     public sealed class BloodPoolProfile : ScriptableObject
     {
-        public BloodPoolVariant[] variants;
-        public Sprite[] dropletSprites;
-        public Color poolTint = Color.white;
-        public Color dropletTint = Color.white;
-        public Vector2 scaleRange = new Vector2(.92f, 1.08f);
-        public Vector2 dropletDistance = new Vector2(.7f, 1.8f);
-        public Vector2 dropletSize = new Vector2(.06f, .18f);
-        public Vector2 dropletAspect = new Vector2(.6f, 1.5f);
-        public Vector2 arrivalSeconds = new Vector2(.18f, .34f);
+        [SerializeField]
+        private BloodPoolVariant[] variants;
+        [SerializeField]
+        private Sprite[] dropletSprites;
+        [SerializeField]
+        private Color poolTint = Color.white;
+        [SerializeField]
+        private Color dropletTint = Color.white;
+        [SerializeField]
+        private Vector2 scaleRange = new Vector2(.92f, 1.08f);
+        [SerializeField]
+        private Vector2 dropletDistance = new Vector2(.7f, 1.8f);
+        [SerializeField]
+        private Vector2 dropletSize = new Vector2(.06f, .18f);
+        [SerializeField]
+        private Vector2 dropletAspect = new Vector2(.6f, 1.5f);
+        [SerializeField]
+        private Vector2 arrivalSeconds = new Vector2(.18f, .34f);
         [Min(.01f)]
-        public float growSeconds = .22f;
+        [SerializeField]
+        private float growSeconds = .22f;
         [Range(.01f, 1)]
-        public float initialScale = .3f;
+        [SerializeField]
+        private float initialScale = .3f;
+
+        public Color PoolTint => poolTint;
+        public Color DropletTint => dropletTint;
+        public Vector2 ScaleRange => scaleRange;
+        public Vector2 DropletDistance => dropletDistance;
+        public Vector2 DropletSize => dropletSize;
+        public Vector2 DropletAspect => dropletAspect;
+        public Vector2 ArrivalSeconds => arrivalSeconds;
+        public float GrowSeconds => growSeconds;
+        public float InitialScale => initialScale;
+        public int VariantCount => variants != null ? variants.Length : 0;
+        public BloodPoolVariant VariantAt(int index) => variants[index];
+        public int DropletSpriteCount => dropletSprites != null ? dropletSprites.Length : 0;
+        public Sprite DropletSpriteAt(int index) => dropletSprites[index];
 
         public int FindVariant(string id)
         {
-            return Array.FindIndex(variants, variant => variant != null && variant.id == id);
+            Validate();
+            for (int index = 0; index < VariantCount; index++)
+            {
+                if (string.Equals(variants[index].Id, id, StringComparison.Ordinal))
+                {
+                    return index;
+                }
+            }
+
+            return -1;
         }
 
         public bool IsValid()
@@ -48,15 +73,17 @@ namespace EmergencyShift
             for (int i = 0; i < variants.Length; i++)
             {
                 BloodPoolVariant variant = variants[i];
-                if (variant == null || string.IsNullOrEmpty(variant.id) || variant.sprite == null
-                    || !float.IsFinite(variant.canvasSize) || variant.canvasSize <= 0)
+                if (variant == null || !variant.IsValid())
                 {
                     return false;
                 }
 
-                if (Array.FindIndex(variants, item => item != null && item.id == variant.id) != i)
+                for (int prior = 0; prior < i; prior++)
                 {
-                    return false;
+                    if (string.Equals(variants[prior].Id, variant.Id, StringComparison.Ordinal))
+                    {
+                        return false;
+                    }
                 }
             }
 
@@ -67,6 +94,14 @@ namespace EmergencyShift
                 && dropletAspect.x > 0 && dropletAspect.y >= dropletAspect.x
                 && arrivalSeconds.x > 0 && arrivalSeconds.y >= arrivalSeconds.x
                 && growSeconds > 0 && initialScale > 0 && initialScale <= 1;
+        }
+
+        public void Validate()
+        {
+            if (!IsValid())
+            {
+                throw new InvalidOperationException("Invalid blood pool profile: " + name);
+            }
         }
 
         private static bool Finite(Vector2 value) => float.IsFinite(value.x) && float.IsFinite(value.y);

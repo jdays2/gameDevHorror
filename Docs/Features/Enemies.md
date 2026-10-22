@@ -60,6 +60,8 @@ EnemyMotor2D выбирает свободное направление с уч�
 
 Временные hit spray и rupture назначаются сцене источника до добавления/инициализации компонента эффекта; другая активная сцена не меняет их владельца. Они удаляются вместе с исходным уровнем, оставаясь независимыми от отключения actor. BloodPoolProfile отвергает неконечные компоненты размеров/диапазонов/длительностей/цветов до renderer; допустимые настройки и HDR не зажимаются. [Проверки BUG-015/017](../Reports/BloodSafety01.md).
 
+GoreProfile/BloodPoolProfile и вложенные варианты имеют readonly runtime API, проверяют числа, составы и уникальные ID до выбора/генерации. Restoration-only ID сохраняются для загрузки. GoreBurst, шаги и гильзы используют отдельные личные cosmetic RNG из именованного level scope, не меняя gameplay seed factory. Serialized поля, текущие assets и формат checkpoint сохранены. [GoreConfig32](../Reports/GoreConfig32.md).
+
 ## Проверки и связанные документы
 
 Контракт и авторинг: [Враги и останки](../Enemies/STALKER.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).

@@ -1,64 +1,51 @@
 using System;
 using UnityEngine;
+using EmergencyShift.Core.Randomness;
 
 namespace EmergencyShift
 {
-    [Serializable]
-    public sealed class GorePiece
-    {
-        [Min(0)]
-        public int spriteIndex;
-        public Vector2 offset;
-        public Vector2 scale = Vector2.one;
-        [Min(.01f)]
-        public float impulseMultiplier = 1;
-        [Min(.01f)]
-        public float liftMultiplier = 1;
-    }
-
-    [Serializable]
-    public sealed class GoreVariant
-    {
-        public string id;
-        [Min(1)]
-        public int fragmentCount = 8;
-        public int spriteOffset;
-        public float rotationOffset;
-        public Vector2 scale = new Vector2(.65f, .95f);
-        [Min(.1f)]
-        public float impulseMultiplier = 1;
-        [Tooltip("Optional explicit anatomical composition. Empty preserves the original radial fragment layout.")]
-        public GorePiece[] pieces;
-        public bool replaceOriginalBody;
-        [Tooltip("Keep the ID available for old snapshots, but do not select this composition for a new death.")]
-        public bool restorationOnly;
-    }
-
     [CreateAssetMenu(menuName = "Emergency Shift/Gore profile")]
     public sealed class GoreProfile : ScriptableObject
     {
         [Min(.1f)]
-        public float poolSize = 1.35f;
+        [SerializeField]
+        private float poolSize = 1.35f;
         [Min(0)]
-        public float releaseDelay = .12f;
-        public Vector2 impulseRange = new Vector2(3.2f, 9.5f);
-        public Vector2 liftRange = new Vector2(3, 5.5f);
+        [SerializeField]
+        private float releaseDelay = .12f;
+        [SerializeField]
+        private Vector2 impulseRange = new Vector2(3.2f, 9.5f);
+        [SerializeField]
+        private Vector2 liftRange = new Vector2(3, 5.5f);
         [Min(1)]
-        public float gravity = 26;
-        public GoreVariant[] variants =
+        [SerializeField]
+        private float gravity = 26;
+        [SerializeField]
+        private GoreVariant[] variants =
         {
-            new GoreVariant
-            {
-                id = "radial"
-            }
+            new GoreVariant("radial")
         };
 
-        public GoreVariant ChooseVariant()
+        public float PoolSize => poolSize;
+        public float ReleaseDelay => releaseDelay;
+        public Vector2 ImpulseRange => impulseRange;
+        public Vector2 LiftRange => liftRange;
+        public float Gravity => gravity;
+        public int VariantCount => variants != null ? variants.Length : 0;
+        public GoreVariant VariantAt(int index) => variants[index];
+
+        public GoreVariant ChooseVariant(IRandomSource random)
         {
+            Validate();
+            if (random == null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
             int count = 0;
             foreach (GoreVariant variant in variants)
             {
-                if (variant != null && !variant.restorationOnly)
+                if (variant != null && !variant.RestorationOnly)
                 {
                     count++;
                 }
@@ -69,10 +56,15 @@ namespace EmergencyShift
                 throw new System.InvalidOperationException("Gore profile has no composition for new deaths: " + name);
             }
 
-            int selected = UnityEngine.Random.Range(0, count);
+            int selected = random.NextInt(0, count);
+            if (selected < 0 || selected >= count)
+            {
+                throw new InvalidOperationException("Invalid gore variant random index.");
+            }
+
             foreach (GoreVariant variant in variants)
             {
-                if (variant == null || variant.restorationOnly)
+                if (variant == null || variant.RestorationOnly)
                 {
                     continue;
                 }
@@ -86,5 +78,48 @@ namespace EmergencyShift
 
             throw new System.InvalidOperationException("Gore composition selection failed");
         }
+
+        public GoreVariant FindVariant(string id)
+        {
+            Validate();
+            for (int index = 0; index < VariantCount; index++)
+            {
+                if (string.Equals(variants[index].Id, id, StringComparison.Ordinal))
+                {
+                    return variants[index];
+                }
+            }
+
+            return null;
+        }
+
+        public void Validate()
+        {
+            if (!float.IsFinite(poolSize) || poolSize < .1f || !float.IsFinite(releaseDelay) || releaseDelay < 0 ||
+                !float.IsFinite(gravity) || gravity < 1 || VariantCount == 0 ||
+                !ValidRange(impulseRange) || !ValidRange(liftRange))
+            {
+                throw new InvalidOperationException("Invalid gore profile: " + name);
+            }
+
+            for (int index = 0; index < VariantCount; index++)
+            {
+                if (variants[index] == null)
+                {
+                    throw new InvalidOperationException("Missing gore variant.");
+                }
+
+                variants[index].Validate();
+                for (int prior = 0; prior < index; prior++)
+                {
+                    if (string.Equals(variants[prior].Id, variants[index].Id, StringComparison.Ordinal))
+                    {
+                        throw new InvalidOperationException("Duplicate gore variant ID.");
+                    }
+                }
+            }
+        }
+
+        private static bool ValidRange(Vector2 value) => float.IsFinite(value.x) && float.IsFinite(value.y) && value.x >= 0 && value.y >= value.x;
     }
 }

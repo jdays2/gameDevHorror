@@ -103,6 +103,7 @@
 
 - [IRandomSource.cs](../Assets/EmergencyShift/Runtime/Core/Randomness/IRandomSource.cs)
 - [RandomSourceFactory.cs](../Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs)
+- [RandomSourceIds.cs](../Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceIds.cs)
 - [SystemRandomSource.cs](../Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs)
 
 ## Assets/EmergencyShift/Runtime/Core/Scheduling
@@ -124,6 +125,7 @@
 - [AudioMoodProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/AudioMoodProfile.cs)
 - [AudioProfileValidation.cs](../Assets/EmergencyShift/Runtime/Definitions/AudioProfileValidation.cs)
 - [BloodPoolProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs)
+- [BloodPoolVariant.cs](../Assets/EmergencyShift/Runtime/Definitions/BloodPoolVariant.cs)
 - [CameraFramingProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/CameraFramingProfile.cs)
 - [DoorAccessFeedbackProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/DoorAccessFeedbackProfile.cs)
 - [DoorAudioSet.cs](../Assets/EmergencyShift/Runtime/Definitions/DoorAudioSet.cs)
@@ -131,7 +133,9 @@
 - [EnemyDefinition.cs](../Assets/EmergencyShift/Runtime/Definitions/EnemyDefinition.cs)
 - [EnemyPatrolProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/EnemyPatrolProfile.cs)
 - [GameplayHudStyle.cs](../Assets/EmergencyShift/Runtime/Definitions/GameplayHudStyle.cs)
+- [GorePiece.cs](../Assets/EmergencyShift/Runtime/Definitions/GorePiece.cs)
 - [GoreProfile.cs](../Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs)
+- [GoreVariant.cs](../Assets/EmergencyShift/Runtime/Definitions/GoreVariant.cs)
 - [LevelCatalog.cs](../Assets/EmergencyShift/Runtime/Definitions/LevelCatalog.cs)
 - [LevelDefinition.cs](../Assets/EmergencyShift/Runtime/Definitions/LevelDefinition.cs)
 - [LevelObjectiveRule.cs](../Assets/EmergencyShift/Runtime/Definitions/LevelObjectiveRule.cs)
@@ -772,6 +776,7 @@
 - [FlashlightUpgradeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs)
 - [GameplayHudStyleTests.cs](../Assets/EmergencyShift/Tests/EditMode/GameplayHudStyleTests.cs)
 - [GoreCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs)
+- [GoreConfigBoundaryTests.cs](../Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs)
 - [GroundAudioSurfaceQueryTests.cs](../Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs)
 - [HealthModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs)
 - [LampPowerTests.cs](../Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs)

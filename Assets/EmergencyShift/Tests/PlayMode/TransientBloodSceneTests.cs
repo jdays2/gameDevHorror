@@ -39,7 +39,7 @@ namespace EmergencyShift.Tests
             Assert.That(material, Is.Not.Null);
             Assert.That(poolPrefab, Is.Not.Null);
             profile = ScriptableObject.CreateInstance<GoreProfile>();
-            profile.releaseDelay = 0;
+            Set(profile, "releaseDelay", 0f);
             yield return null;
         }
 
@@ -107,6 +107,7 @@ namespace EmergencyShift.Tests
                 gore.Configure(poolPrefab, Array.Empty<Sprite>(), material);
                 gore.ConfigureRupture(sprite, null, null);
                 Set(gore, "profile", profile);
+                Set(gore, "random", new Core.Randomness.SystemRandomSource(new System.Random(15)));
                 gore.Play(0);
                 var effects = UnityEngine.Object.FindObjectsByType<BloodRuptureBurst2D>(FindObjectsSortMode.None);
                 Assert.That(effects.Length, Is.EqualTo(1));

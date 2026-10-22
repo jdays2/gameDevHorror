@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "592 own C# explicitly read; 73 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest VisualConfig31.",
+  "limits": "597 own C# explicitly read; 71 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest GoreConfig32.",
   "counts": {
-    "partial": 73,
-    "reviewed_boundary": 519
+    "partial": 71,
+    "reviewed_boundary": 526
   },
   "files": [
     {
@@ -2806,13 +2806,16 @@
         "Assets/EmergencyShift/Runtime/Combat/Weapons/WeaponSettings.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
+        "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPathSchedule.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyPatrolModel.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
@@ -2855,12 +2858,15 @@
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyPatrolControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
@@ -2889,6 +2895,34 @@
       "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceIds.cs",
+      "sourceScope": "unity",
+      "sha256": "1845df0864f8d4166f76fd7997c0f04daa4bebd68675d17efed9be21622a1879",
+      "guid": "6f41a26ba039356418baf9a98d43bead",
+      "types": [
+        "RandomSourceIds"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1845df0864f8d4166f76fd7997c0f04daa4bebd68675d17efed9be21622a1879",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
       "sha256": "3fa288036eeae8da0eb8fdbdce521887f9db06d09770a8381a6f89ea18f0f747",
       "baselineSha256": null,
@@ -2904,8 +2938,11 @@
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponCycleTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -3449,14 +3486,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs",
-      "sha256": "e9f90ae6518844c37b8329386f517bfdf1f46c3fc7123d5fd7a2451ceac9ffbb",
+      "sha256": "08feb0afa374542dd1bd245bdad875fa2ff44eca5509124ea4e77511523a0d85",
       "baselineSha256": "e7455456a719d8c71efe9867e8c10f7b22511914728f3900b4540b45651b47eb",
       "guid": "207cba265a2d2b34fbabe2a317f2c92a",
       "types": [
-        "BloodPoolProfile",
-        "BloodPoolVariant"
+        "BloodPoolProfile"
       ],
-      "lines": 77,
+      "lines": 112,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Blood/ProceduralPools01.asset"
       ],
@@ -3468,11 +3504,12 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "BUG-017 fixed: all scalar/vector/color components finite-checked before renderer; HDR/ranges retained; 65/65 profile tests and full regressions passed. Legacy public SO authoring API remains for the final configuration/style pass.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3494,11 +3531,38 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
-      "reviewedSha256": "e9f90ae6518844c37b8329386f517bfdf1f46c3fc7123d5fd7a2451ceac9ffbb",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/BloodSafety01.md",
-      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration.",
+      "reviewedSha256": "08feb0afa374542dd1bd245bdad875fa2ff44eca5509124ea4e77511523a0d85",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
       "previousReviewStatus": "partial"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Definitions/BloodPoolVariant.cs",
+      "sourceScope": "unity",
+      "sha256": "ea96bd7c4b29e96c2d418f9c8c17f623895d84e9093ad4d59da7fe0ea89f9a48",
+      "guid": "191b040b080363e468aa1a4467efa924",
+      "types": [
+        "BloodPoolVariant"
+      ],
+      "lines": 28,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/BloodPoolProfile.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "ea96bd7c4b29e96c2d418f9c8c17f623895d84e9093ad4d59da7fe0ea89f9a48",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/CameraFramingProfile.cs",
@@ -3840,16 +3904,41 @@
       "previousReviewStatus": "partial"
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Definitions/GorePiece.cs",
+      "sourceScope": "unity",
+      "sha256": "8af3565cf117afa440e43839b06411accf1a8c45c82591b70bc4288686b52edf",
+      "guid": "78f564a4040917949bdbaa213b644ecf",
+      "types": [
+        "GorePiece"
+      ],
+      "lines": 32,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/GoreVariant.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "8af3565cf117afa440e43839b06411accf1a8c45c82591b70bc4288686b52edf",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
-      "sha256": "b36519bd6841c8ebc15cb6e208afed6b2873b3ec86d07c5c35a11e47932103e1",
+      "sha256": "977f43c59cee83dabd73d5e9cd7b050fe60534cdc124b165cc0bad663a5f04c2",
       "baselineSha256": "b36519bd6841c8ebc15cb6e208afed6b2873b3ec86d07c5c35a11e47932103e1",
       "guid": "b8544dff4f629174f9b50e627318713a",
       "types": [
-        "GorePiece",
-        "GoreProfile",
-        "GoreVariant"
+        "GoreProfile"
       ],
-      "lines": 90,
+      "lines": 125,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Gore/SleeperRupture.asset",
         "Assets/EmergencyShift/Data/Gore/StalkerRupture.asset"
@@ -3862,12 +3951,13 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Данные вариантов и restorationOnly отделены от экземпляра; нет полной Validate чисел/ID/составов; ChooseVariant потребляет общий Unity RNG (связан с BUG-010).",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -3882,10 +3972,38 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
-      "reviewedSha256": "b36519bd6841c8ebc15cb6e208afed6b2873b3ec86d07c5c35a11e47932103e1",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "977f43c59cee83dabd73d5e9cd7b050fe60534cdc124b165cc0bad663a5f04c2",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "previousReviewStatus": "partial"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Definitions/GoreVariant.cs",
+      "sourceScope": "unity",
+      "sha256": "cb3323bc1189cfe03dacfe2c3ddf779f7e8ade11ecbc58c52a186d37438969ff",
+      "guid": "1eeb6a0f94c87784cacde614822ba5a6",
+      "types": [
+        "GoreVariant"
+      ],
+      "lines": 62,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "cb3323bc1189cfe03dacfe2c3ddf779f7e8ade11ecbc58c52a186d37438969ff",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/LevelCatalog.cs",
@@ -14297,22 +14415,23 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
-      "sha256": "adbe4938ba5111f36a04253227801597a25cbdbdf77525d0d455de0eca9270cf",
+      "sha256": "b8961f466b56e1a50d740ee6c95e4a39cc226bc0cc4b2e208cc1df4b8dc0e4f1",
       "baselineSha256": null,
       "guid": "0a79308db69301e4d968479a95aeff27",
       "types": [
         "LevelRegistriesInstaller"
       ],
-      "lines": 26,
+      "lines": 28,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
-      "reviewedSha256": "adbe4938ba5111f36a04253227801597a25cbdbdf77525d0d455de0eca9270cf",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
+      "reviewedSha256": "b8961f466b56e1a50d740ee6c95e4a39cc226bc0cc4b2e208cc1df4b8dc0e4f1",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14329,8 +14448,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LampPower30.md",
-      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained.",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -14966,6 +15085,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
@@ -15122,6 +15242,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
@@ -15199,6 +15320,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/WeaponLootCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
@@ -15349,6 +15471,7 @@
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
@@ -15832,7 +15955,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
-      "sha256": "39a02cf94d13a3795ea1bc5e0923b91d2f92ba53b5bae2d265f8d0ffcc34392d",
+      "sha256": "c48725cc5cbf8934fe1b01cf5910c86fa961ddbf2b9a6ee7f4039232240f99f5",
       "baselineSha256": "3adfec19d4ea5686c7f53aba5d9226e2a73fb239a928e68026ed5d926ad9362d",
       "guid": "a6fe12f26af5a224294699ccfde10b37",
       "types": [
@@ -15860,8 +15983,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "WeaponDefinition20: readonly definition consumer/authoring getters проверены; прежние config/catalog array, presentation/model, Development probe или authoring transaction/style замечания остаются. Генераторы/отдельный standalone probe не запускались.",
-      "reviewedSha256": "39a02cf94d13a3795ea1bc5e0923b91d2f92ba53b5bae2d265f8d0ffcc34392d",
+      "notes": "GoreConfig32: readonly gore/blood config, stable IDs и separate cosmetic RNG проверены; прежние native lifetime/style долги сохранены.",
+      "reviewedSha256": "c48725cc5cbf8934fe1b01cf5910c86fa961ddbf2b9a6ee7f4039232240f99f5",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15879,14 +16002,14 @@
         "Physics2D"
       ],
       "usageEvidence": "Player prefab, CasingEjected; Magazine ejects on shot/Pump ejects on operation",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/WeaponDefinition20.md",
-      "reviewScope": "Full source read: readonly WeaponDefinition/Magazine/Pump APIs, unchanged serialized base/subtype fields, scalar validation and references; deliberate authoring/transient fixture writes, consumer getters, native shots/pickups/save and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
-      "sha256": "8234e91609f75c793c506d41854ebe6b75fde05afe1c503c8befcbf3107a70e1",
+      "sha256": "ec06b56dc61e01fe700f0ce3bb0e75753cef80b0a54168b64c6d4845b1bee8b0",
       "baselineSha256": "2b235def8b1c88b3049d7a27805397ce0c7bcf7a696fd23133351f0d93123613",
       "guid": "16cf2393ae1752a49abf3bc0dc96883c",
       "types": [
@@ -15915,8 +16038,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "AudioConfig27: readonly audio bank/getter consumption проверен; прежние personal timing/model/config/style либо authoring долги сохранены.",
-      "reviewedSha256": "8234e91609f75c793c506d41854ebe6b75fde05afe1c503c8befcbf3107a70e1",
+      "notes": "GoreConfig32: readonly gore/blood config, stable IDs и separate cosmetic RNG проверены; прежние native lifetime/style долги сохранены.",
+      "reviewedSha256": "ec06b56dc61e01fe700f0ce3bb0e75753cef80b0a54168b64c6d4845b1bee8b0",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15938,8 +16061,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 11.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioConfig27.md",
-      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -16558,7 +16681,7 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
-      "sha256": "9f12582b957b8429a85d3af2ac2031f7f83a6512b2832763e47ff3825ee5faff",
+      "sha256": "e4e4c538b57571d63ba4765ab694d2c52f71475b9115a13c3b4d4d491057bc13",
       "baselineSha256": "9f12582b957b8429a85d3af2ac2031f7f83a6512b2832763e47ff3825ee5faff",
       "guid": "e25c58fc1c2af38439e962045bd3f6e6",
       "types": [
@@ -16587,7 +16710,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Личная генерация форм seeded System.Random, постоянная лужа/animation до отключения. BeginRupture использует Unity RNG и массивы; legacy tuning в коде. RestoreVariant(null) сохраняет prefab sprites; legacy-тест сверяет их, а не пересоздаёт новые формы.",
+      "notes": "GoreConfig32: readonly gore/blood config, stable IDs и separate cosmetic RNG проверены; прежние native lifetime/style долги сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16605,10 +16728,11 @@
         "SpriteRenderer"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
-      "reviewedSha256": "9f12582b957b8429a85d3af2ac2031f7f83a6512b2832763e47ff3825ee5faff",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "e4e4c538b57571d63ba4765ab694d2c52f71475b9115a13c3b4d4d491057bc13",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodRuptureBurst2D.cs",
@@ -16878,13 +17002,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-      "sha256": "52ed401302223dfa8e77a3abcd6e1f17f88ece1d801aa6cd56e0393cb5bf8093",
+      "sha256": "47be08c05e6e0dba41ce8b39929d221aad3dd94ab3378b85ae1dc9b43398d376",
       "baselineSha256": "06b7c592281f925895c42dc2f371a448be2bff330b385121ef616a73c0033fac",
       "guid": "a44dfee537c76c74ca26aa0a3b1c491e",
       "types": [
         "GoreBurst2D"
       ],
-      "lines": 245,
+      "lines": 253,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -16910,8 +17034,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "BUG-014 preflight retained; BUG-015 transient scene ownership fixed and verified in real additive scenes/unload. Still partial: emit/spawn state, shared tuning/RNG and general gore model/controller boundary.",
-      "reviewedSha256": "52ed401302223dfa8e77a3abcd6e1f17f88ece1d801aa6cd56e0393cb5bf8093",
+      "notes": "GoreConfig32: readonly gore/blood config, stable IDs и separate cosmetic RNG проверены; прежние native lifetime/style долги сохранены.",
+      "reviewedSha256": "47be08c05e6e0dba41ce8b39929d221aad3dd94ab3378b85ae1dc9b43398d376",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16955,9 +17079,9 @@
         "Zenject"
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/BloodSafety01.md",
-      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -19231,10 +19355,10 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "BloodSafety01: 65 profile cases (33 original failures), source-scene/frozen-timer unload for both blood VFX (4 original failures). 481 own EditMode, 16 real PlayMode and normal Windows64 passed. Temporary objects and original resource guards; see limits.",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/BloodPoolProfileValidationTests.cs",
       "sourceScope": "unity",
-      "sha256": "95a6a634df022d9d7514ca9b0b84a8fca7a82067e449067284ff311db365aa0f",
+      "sha256": "8c40a85a52a6ce1ba5cd75fbafe8d864064205958260e061c69cd74190b8a6fc",
       "guid": "b83baffe982b64a4aa47778ae27a615c",
       "types": [
         "BloodPoolProfileValidationTests"
@@ -19247,10 +19371,11 @@
         "Test"
       ],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "95a6a634df022d9d7514ca9b0b84a8fca7a82067e449067284ff311db365aa0f",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/BloodSafety01.md",
-      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration."
+      "reviewedSha256": "8c40a85a52a6ce1ba5cd75fbafe8d864064205958260e061c69cd74190b8a6fc",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
@@ -19987,18 +20112,17 @@
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
-        "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodHitSpray2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
         "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
@@ -20013,6 +20137,8 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
@@ -20025,6 +20151,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs"
       ],
@@ -20073,7 +20200,6 @@
         "Assets/EmergencyShift/Runtime/Core/Randomness/RandomSourceFactory.cs",
         "Assets/EmergencyShift/Runtime/Core/Randomness/SystemRandomSource.cs",
         "Assets/EmergencyShift/Runtime/Core/Time/UnityGameClock.cs",
-        "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
@@ -20082,13 +20208,13 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerAudio2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodHitSpray2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
         "Assets/EmergencyShift/Runtime/UI/GameplayHudView.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
@@ -20099,6 +20225,8 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
@@ -20108,6 +20236,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs",
         "Concepts/Used/Environment/CardDoorIndicators01/create.cs",
         "Concepts/Used/Environment/RoomFinish01/create.cs"
@@ -20348,13 +20477,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
-      "sha256": "116005420a10ead6ccc2dae0598b09559dd9bca360ee74f3950acb73425270f3",
+      "sha256": "9e876c24f954652ef92aa91c8c9a9c0c57b775f487247a5b07d185bcac4a3c72",
       "baselineSha256": "116005420a10ead6ccc2dae0598b09559dd9bca360ee74f3950acb73425270f3",
       "guid": "ddb2a81e8e185f942b0960541f0d0d1a",
       "types": [
         "GoreCompositionTests"
       ],
-      "lines": 61,
+      "lines": 62,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -20363,7 +20492,7 @@
         "TestCase"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Два species cases и отказ profile без новых вариантов; проверяют данные и immutability, не malformed-remains или Play-смерть.",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -20380,10 +20509,37 @@
         "UnityEngine"
       ],
       "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
-      "reviewedSha256": "116005420a10ead6ccc2dae0598b09559dd9bca360ee74f3950acb73425270f3",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "9e876c24f954652ef92aa91c8c9a9c0c57b775f487247a5b07d185bcac4a3c72",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
+      "sourceScope": "unity",
+      "sha256": "62c0a5bc5c158ca1a5e970a473ca096e6e789ced5ffcb1ddd413889344c5c65a",
+      "guid": "2d5c02b376e98ac48a9cf29e6377b31e",
+      "types": [
+        "FixedRandom",
+        "GoreConfigBoundaryTests"
+      ],
+      "lines": 186,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "62c0a5bc5c158ca1a5e970a473ca096e6e789ced5ffcb1ddd413889344c5c65a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs",
@@ -21294,7 +21450,7 @@
         }
       ],
       "responsibility": "46 регрессий nested validation и silent remains restore",
-      "notes": "LevelConfig28/BUG-026: readonly level configuration/pure matcher/validation boundary проверен; serialized fields, IDs и enum values сохранены.",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
       "dependencies": [
         "System",
         "NUnit.Framework",
@@ -21305,12 +21461,12 @@
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
-      "reviewedSha256": "26970574a07eb654bd466f2bb0809f51155ddf628aa49c3399958cad393ba288",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "reviewedSha256": "ecc814e6731c51069500477c95ffbad3c455106a2ac82412928ce6a7334b83ba",
       "path": "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
       "sourceScope": "unity",
-      "sha256": "26970574a07eb654bd466f2bb0809f51155ddf628aa49c3399958cad393ba288",
+      "sha256": "ecc814e6731c51069500477c95ffbad3c455106a2ac82412928ce6a7334b83ba",
       "guid": "f37122df06fa58d4f8c5aa01ea24c4fe",
       "types": [
         "RemainsValidationTests"
@@ -21438,6 +21594,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
@@ -21846,6 +22003,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
@@ -22662,24 +22820,25 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "BloodSafety01: 65 profile cases (33 original failures), source-scene/frozen-timer unload for both blood VFX (4 original failures). 481 own EditMode, 16 real PlayMode and normal Windows64 passed. Temporary objects and original resource guards; see limits.",
+      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs",
       "sourceScope": "unity",
-      "sha256": "44e699c31f29c5aae44938a3d172f8d11baaa725fba8dd53dc032534ab490c91",
+      "sha256": "5df819c4e34b8ee9091617f47b67e5ba89e7154ad7b0aa0265ef2658adc9284e",
       "guid": "20d86fa1a630c0140b8c7229b5ec70b0",
       "types": [
         "TransientBloodSceneTests"
       ],
-      "lines": 135,
+      "lines": 136,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "44e699c31f29c5aae44938a3d172f8d11baaa725fba8dd53dc032534ab490c91",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/BloodSafety01.md",
-      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration."
+      "reviewedSha256": "5df819c4e34b8ee9091617f47b67e5ba89e7154ad7b0aa0265ef2658adc9284e",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/GoreConfig32.md",
+      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -23131,7 +23290,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 573,
+    "unity": 578,
     "content_source": 8
   },
   "latestReview": {
@@ -23282,11 +23441,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 592,
-    "totalFiles": 592,
+    "reviewedFiles": 597,
+    "totalFiles": 597,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "VisualConfig31 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "GoreConfig32 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

@@ -182,7 +182,7 @@ namespace EmergencyShift.Tests
             }
 
             var profile = (GoreProfile)serialized.FindProperty("profile").objectReferenceValue;
-            variantId = profile.variants[0].id;
+            variantId = profile.VariantAt(0).Id;
             var result = CreateObject("Test " + prefab + " gore").AddComponent<GoreBurst2D>();
             result.Configure(pool, fragments, null);
             var target = new SerializedObject(result);
