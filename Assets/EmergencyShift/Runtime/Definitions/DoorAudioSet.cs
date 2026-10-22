@@ -9,22 +9,16 @@ namespace EmergencyShift
         [Header("Shared playback tuning")]
         [SerializeField]
         private float volume = .85f;
-        public float Volume => volume;
         [SerializeField]
         private float movementVolume = .4f;
-        public float MovementVolume => movementVolume;
         [SerializeField]
         private float hearingDistance = 12;
-        public float HearingDistance => hearingDistance;
         [SerializeField]
         private float fullVolumeDistance = 2;
-        public float FullVolumeDistance => fullVolumeDistance;
         [SerializeField]
         private float panDistance = 6;
-        public float PanDistance => panDistance;
         [SerializeField]
         private float maximumPan = .75f;
-        public float MaximumPan => maximumPan;
         [SerializeField]
         private AudioClip[] openStart;
         [SerializeField]
@@ -33,10 +27,18 @@ namespace EmergencyShift
         private AudioClip[] stop;
         [SerializeField]
         private AudioClip slideLoop;
+
+        public float Volume => volume;
+        public float MovementVolume => movementVolume;
+        public float HearingDistance => hearingDistance;
+        public float FullVolumeDistance => fullVolumeDistance;
+        public float PanDistance => panDistance;
+        public float MaximumPan => maximumPan;
         public AudioClipBank OpenStart => openStart;
         public AudioClipBank CloseStart => closeStart;
         public AudioClipBank Stop => stop;
         public AudioClip SlideLoop => slideLoop;
+
 
         public void Validate()
         {

@@ -10,13 +10,10 @@ namespace EmergencyShift
         [Header("Shared playback tuning")]
         [SerializeField]
         private float distancePerStep = 1.05f;
-        public float DistancePerStep => distancePerStep;
         [SerializeField]
         private float minimumInterval = .22f;
-        public float MinimumInterval => minimumInterval;
         [SerializeField]
         private float pitchVariation = .025f;
-        public float PitchVariation => pitchVariation;
         [SerializeField]
         private AudioClip[] concreteSteps;
         [SerializeField]
@@ -36,6 +33,10 @@ namespace EmergencyShift
         [Range(0, 1)]
         [SerializeField]
         private float emptyVolume = .45f;
+
+        public float DistancePerStep => distancePerStep;
+        public float MinimumInterval => minimumInterval;
+        public float PitchVariation => pitchVariation;
         public AudioClipBank ConcreteSteps => concreteSteps;
         public AudioClipBank WoodSteps => woodSteps;
         public AudioClipBank TileSteps => tileSteps;
@@ -44,6 +45,7 @@ namespace EmergencyShift
         public float StepVolume => stepVolume;
         public float SwitchVolume => switchVolume;
         public float EmptyVolume => emptyVolume;
+
 
         public AudioClipBank Steps(GroundSoundSurface material)
         {

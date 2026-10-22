@@ -3952,13 +3952,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/DoorAudioSet.cs",
-      "sha256": "d43b67eb6fc9f0e2760b3e83b2de2773a7c69ad745e1f8c3aac73a1280ff187f",
+      "sha256": "d54b745020215207661a406d3cc4f14771e811350b272649c1518624c4aa91bb",
       "baselineSha256": "807f9950a5ac22853ea3c5983f2c6dd6c4c9e9a68e0ede6608472b264fc4c455",
       "guid": "eddbca74c383090448cdd8cdd2eed56b",
       "types": [
         "DoorAudioSet"
       ],
-      "lines": 54,
+      "lines": 56,
       "serializedUsers": [
         "Assets/EmergencyShift/Audio/WorldFoley/DoorFoley.asset"
       ],
@@ -3989,7 +3989,7 @@
         "AudioClip arrays"
       ],
       "usageEvidence": "DoorAudio2D",
-      "reviewedSha256": "d43b67eb6fc9f0e2760b3e83b2de2773a7c69ad745e1f8c3aac73a1280ff187f",
+      "reviewedSha256": "d54b745020215207661a406d3cc4f14771e811350b272649c1518624c4aa91bb",
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/RefactorCompletion42.md",
       "reviewScope": "Current final boundary: pure gameplay authority/commands and immutable tuning; native physics/input/render/audio/IO have explicit owners. Numeric defaults/authored overrides and cancellation checked; no automatic MVC model required for a cosmetic timeline or once-only authoring recipe.",
@@ -4640,13 +4640,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PlayerAudioSet.cs",
-      "sha256": "a90bf662043a4a5180a687a80a9fb2c9ea3eeefacb2ac8b31a4b743a83ac7b88",
+      "sha256": "08fc8d6ebb8ae5acaae4d902c63be50bbff79e965b40f4c2e28e5b7b8b1baa26",
       "baselineSha256": "b22c01f0dfe9b16db608809e4038c9b926bcca84f3ad35e1d40bb3b59b3475b9",
       "guid": "c95816b202bb3bb40bb256780bc80f4c",
       "types": [
         "PlayerAudioSet"
       ],
-      "lines": 133,
+      "lines": 135,
       "serializedUsers": [
         "Assets/EmergencyShift/Audio/PistolIndoor/PistolIndoorAudio.asset"
       ],
@@ -4679,7 +4679,7 @@
         "PickupKind/ImpactMaterial/GroundSoundSurface"
       ],
       "usageEvidence": "PlayerAudio2D; fallback при отсутствии weapon profile",
-      "reviewedSha256": "a90bf662043a4a5180a687a80a9fb2c9ea3eeefacb2ac8b31a4b743a83ac7b88",
+      "reviewedSha256": "08fc8d6ebb8ae5acaae4d902c63be50bbff79e965b40f4c2e28e5b7b8b1baa26",
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/RefactorCompletion42.md",
       "reviewScope": "Current final boundary: pure gameplay authority/commands and immutable tuning; native physics/input/render/audio/IO have explicit owners. Numeric defaults/authored overrides and cancellation checked; no automatic MVC model required for a cosmetic timeline or once-only authoring recipe.",
@@ -4687,13 +4687,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/PlayerWorldAudioSet.cs",
-      "sha256": "93ee3ecb65baf55ce22c3706a3ebb9f3a1a486f21cbf33338197d35b2b6f2240",
+      "sha256": "84c450b1c8a8ec9e9062b684f2d3196487d145791d7364f963d261e6be431c04",
       "baselineSha256": "2c429cb13e2199437ed5c2f4528f8a72a4272c7c39649ec834c5094a5ac694d7",
       "guid": "9a9fd117284bd0c4689920ff92626219",
       "types": [
         "PlayerWorldAudioSet"
       ],
-      "lines": 84,
+      "lines": 86,
       "serializedUsers": [
         "Assets/EmergencyShift/Audio/PlayerWorld/PlayerWorldAudio.asset"
       ],
@@ -4727,7 +4727,7 @@
         "GroundSoundSurface"
       ],
       "usageEvidence": "PlayerUtilityAudio2D; PlayerFootsteps2D (вне полной выборки)",
-      "reviewedSha256": "93ee3ecb65baf55ce22c3706a3ebb9f3a1a486f21cbf33338197d35b2b6f2240",
+      "reviewedSha256": "84c450b1c8a8ec9e9062b684f2d3196487d145791d7364f963d261e6be431c04",
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/RefactorCompletion42.md",
       "reviewScope": "Current final boundary: pure gameplay authority/commands and immutable tuning; native physics/input/render/audio/IO have explicit owners. Numeric defaults/authored overrides and cancellation checked; no automatic MVC model required for a cosmetic timeline or once-only authoring recipe.",
@@ -4838,13 +4838,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/ShotVisualProfile.cs",
-      "sha256": "560e7899b66305e00b04b490c6743e43689760609cbdf7c402d98a7bd2364159",
+      "sha256": "8ddeac38844171d2913f9aec437a0bb1537e0f6b408a5924233a448befb685d4",
       "baselineSha256": "5d4dd2ad36d1c451e722aeef46de00da37ed6ec7d4088ecb2f6459f27f65d698",
       "guid": "8b4cd31d12c29fd4995071f87ce56c08",
       "types": [
         "ShotVisualProfile"
       ],
-      "lines": 93,
+      "lines": 95,
       "serializedUsers": [
         "Assets/EmergencyShift/Data/Weapons/ShotgunVisual.asset",
         "Assets/EmergencyShift/Settings/WeaponProfiles/WarmFlash.asset"
@@ -4883,7 +4883,7 @@
         "ProjectileVisualProfile"
       ],
       "usageEvidence": "WeaponDefinition; PlayerWeapon2D; ShotEffect2D; BulletProjectile2D",
-      "reviewedSha256": "560e7899b66305e00b04b490c6743e43689760609cbdf7c402d98a7bd2364159",
+      "reviewedSha256": "8ddeac38844171d2913f9aec437a0bb1537e0f6b408a5924233a448befb685d4",
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/RefactorCompletion42.md",
       "reviewScope": "Current final boundary: pure gameplay authority/commands and immutable tuning; native physics/input/render/audio/IO have explicit owners. Numeric defaults/authored overrides and cancellation checked; no automatic MVC model required for a cosmetic timeline or once-only authoring recipe.",
@@ -4973,14 +4973,14 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Definitions/StalkerAudioSet.cs",
-      "sha256": "a78c137a98dd3a59ce9cceaed20a3d3a2d62080c5a5099fc018e79b2a664826a",
+      "sha256": "639b0af10ec84fdc50af9f7ef63cc244c00d9cf469f473ab414ae7a7273f40a7",
       "baselineSha256": "4f496b99540010bb121589ddc2c5d019a02cab4953e1485964178fed1be0a90f",
       "guid": "a0e95ae7e4a77be4c81c15d4d7c3a43b",
       "types": [
         "Cue",
         "StalkerAudioSet"
       ],
-      "lines": 255,
+      "lines": 257,
       "serializedUsers": [
         "Assets/EmergencyShift/Audio/Stalker/StalkerMembrane.asset"
       ],
@@ -5008,7 +5008,7 @@
         "EnemyDeathAudioSet"
       ],
       "usageEvidence": "StalkerAudio2D; Sleeper contact foley; death variants",
-      "reviewedSha256": "a78c137a98dd3a59ce9cceaed20a3d3a2d62080c5a5099fc018e79b2a664826a",
+      "reviewedSha256": "639b0af10ec84fdc50af9f7ef63cc244c00d9cf469f473ab414ae7a7273f40a7",
       "reviewDate": "2026-10-22",
       "reviewReport": "Docs/Reports/RefactorCompletion42.md",
       "reviewScope": "Current final boundary: pure gameplay authority/commands and immutable tuning; native physics/input/render/audio/IO have explicit owners. Numeric defaults/authored overrides and cancellation checked; no automatic MVC model required for a cosmetic timeline or once-only authoring recipe.",

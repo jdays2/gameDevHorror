@@ -10,40 +10,28 @@ namespace EmergencyShift
         [Header("Shared playback tuning")]
         [SerializeField]
         private float pickupVolume = .65f;
-        public float PickupVolume => pickupVolume;
         [SerializeField]
         private float shotVolume = .75f;
-        public float ShotVolume => shotVolume;
         [SerializeField]
         private float impactVolume = .65f;
-        public float ImpactVolume => impactVolume;
         [SerializeField]
         private float casingVolume = .3f;
-        public float CasingVolume => casingVolume;
         [SerializeField]
         private float shotPitchVariation = .008f;
-        public float ShotPitchVariation => shotPitchVariation;
         [SerializeField]
         private float shotGainVariationDb = .4f;
-        public float ShotGainVariationDb => shotGainVariationDb;
         [SerializeField]
         private float pickupBurstSeconds = .07f;
-        public float PickupBurstSeconds => pickupBurstSeconds;
         [SerializeField]
         private float impactHearingDistance = 16;
-        public float ImpactHearingDistance => impactHearingDistance;
         [SerializeField]
         private float casingHearingDistance = 12;
-        public float CasingHearingDistance => casingHearingDistance;
         [SerializeField]
         private float panDistance = 6;
-        public float PanDistance => panDistance;
         [SerializeField]
         private float maximumPan = .75f;
-        public float MaximumPan => maximumPan;
         [SerializeField]
         private Vector2 impactPitch = new Vector2(.97f, 1.03f);
-        public Vector2 ImpactPitch => impactPitch;
         [SerializeField]
         private AudioClip[] ammoPickup;
         [SerializeField]
@@ -66,6 +54,21 @@ namespace EmergencyShift
         private AudioClip[] woodCasings;
         [SerializeField]
         private AudioClip[] tileCasings;
+        public float PickupVolume => pickupVolume;
+        public float ShotVolume => shotVolume;
+        public float ImpactVolume => impactVolume;
+        public float CasingVolume => casingVolume;
+        public float ShotPitchVariation => shotPitchVariation;
+        public float ShotGainVariationDb => shotGainVariationDb;
+        public float PickupBurstSeconds => pickupBurstSeconds;
+        public float ImpactHearingDistance => impactHearingDistance;
+        public float CasingHearingDistance => casingHearingDistance;
+        public float PanDistance => panDistance;
+        public float MaximumPan => maximumPan;
+        public Vector2 ImpactPitch => impactPitch;
+        public AudioClipBank Shots(bool indoor) => indoor ? roomShots : dryShots;
+
+
         public AudioClipBank Pickup(PickupKind kind)
         {
             switch (kind)
@@ -79,7 +82,6 @@ namespace EmergencyShift
             }
         }
 
-        public AudioClipBank Shots(bool indoor) => indoor ? roomShots : dryShots;
         public AudioClipBank Impact(ImpactMaterial material)
         {
             switch (material)

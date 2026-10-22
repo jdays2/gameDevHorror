@@ -41,18 +41,19 @@ namespace EmergencyShift
         private float impactSeconds = 0.12f;
         [Header("Casing ejection — world units and degrees/second")]
         [SerializeField] private Vector2 casingPort = new Vector2(.16f, .16f);
-        public Vector2 CasingPort => casingPort;
         [SerializeField] private float casingWallClearance = .03f;
-        public float CasingWallClearance => casingWallClearance;
         [SerializeField] private Vector2 casingSideSpeed = new Vector2(1.2f, 1.8f);
-        public Vector2 CasingSideSpeed => casingSideSpeed;
         [SerializeField] private Vector2 casingForwardSpeed = new Vector2(-.25f, .4f);
-        public Vector2 CasingForwardSpeed => casingForwardSpeed;
         [SerializeField] private Vector2 casingRiseSpeed = new Vector2(1.35f, 1.85f);
-        public Vector2 CasingRiseSpeed => casingRiseSpeed;
         [SerializeField] private Vector2 casingSpin = new Vector2(-650, 650);
-        public Vector2 CasingSpin => casingSpin;
 
+
+        public Vector2 CasingPort => casingPort;
+        public float CasingWallClearance => casingWallClearance;
+        public Vector2 CasingSideSpeed => casingSideSpeed;
+        public Vector2 CasingForwardSpeed => casingForwardSpeed;
+        public Vector2 CasingRiseSpeed => casingRiseSpeed;
+        public Vector2 CasingSpin => casingSpin;
         public string DisplayName => displayName;
         public Color FlashColor => flashColor;
         public ProjectileVisualProfile Projectile => projectile;
@@ -64,6 +65,7 @@ namespace EmergencyShift
         public float PlumeWidth => plumeWidth;
         public float PlumeLength => plumeLength;
         public float ImpactSeconds => impactSeconds;
+
 
         public void Validate()
         {
