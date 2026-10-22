@@ -21,19 +21,19 @@ namespace EmergencyShift
         {
             origin = transform.position;
             age = 0;
-            var targets = pool.DropletRenderers;
-            drops = new Drop[targets.Length];
+            drops = new Drop[pool.DropletCount];
             for (int i = 0; i < drops.Length; i++)
             {
+                SpriteRenderer target = pool.DropletAt(i);
                 var renderer = Create("Blood spray", sprite, material);
-                Vector2 offset = (Vector2)targets[i].transform.position - origin;
+                Vector2 offset = (Vector2)target.transform.position - origin;
                 renderer.transform.localRotation = Quaternion.Euler(0, 0, Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg - 90);
-                renderer.transform.localScale = new Vector3(targets[i].transform.localScale.x * .7f, targets[i].transform.localScale.y * 2.5f, 1);
+                renderer.transform.localScale = new Vector3(target.transform.localScale.x * .7f, target.transform.localScale.y * 2.5f, 1);
                 drops[i] = new Drop
                 {
                     image = renderer,
                     target = offset,
-                    size = targets[i].transform.localScale,
+                    size = target.transform.localScale,
                     duration = pool.DropArrivalTime(i)
                 };
             }

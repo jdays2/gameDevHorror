@@ -106,7 +106,13 @@ namespace EmergencyShift
         {
             if (visual != null)
             {
-                visual.localPosition = restingPosition;
+                Vector3 position = restingPosition;
+                if (dead)
+                {
+                    position.z = RemainsVisualStyle.SurfaceZ;
+                }
+
+                visual.localPosition = position;
                 visual.localScale = restingScale;
             }
 

@@ -55,7 +55,8 @@ namespace EmergencyShift
             Away = (center - (Vector2)source.transform.position).normalized;
             projection.sprite = body.sprite;
             projection.transform.rotation = body.transform.rotation;
-            Vector3 parent = projection.transform.parent.lossyScale, scale = body.transform.lossyScale;
+            Vector3 parent = projection.transform.parent.lossyScale;
+            Vector3 scale = body.transform.lossyScale;
             projection.transform.localScale = new Vector3(scale.x / parent.x, scale.y / parent.y, 1);
             projection.transform.position = new Vector3(center.x, center.y, -.065f);
             projection.color = new Color(0, 0, 0, opacity * Mathf.Clamp01(source.intensity / peak));

@@ -24,6 +24,14 @@ namespace EmergencyShift
                     }
                 }
 
+                foreach (RemainsRecord2D remains in root.GetComponentsInChildren<RemainsRecord2D>(true))
+                {
+                    if (!remains.IsSettled)
+                    {
+                        return false;
+                    }
+                }
+
                 foreach (Door2D door in root.GetComponentsInChildren<Door2D>(true))
                 {
                     if (door.IsMoving)

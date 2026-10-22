@@ -77,6 +77,71 @@ namespace EmergencyShift.Tests
         [UnityTest]
         public IEnumerator RuptureIsRemovedWithOwnerWhileItsTimerIsFrozen() => Verify(true, true);
 
+        [UnityTest]
+        public IEnumerator RemainsEmissionSurvivesDisabledActor() => VerifyRemainsEmission(false);
+
+        [UnityTest]
+        public IEnumerator RemainsEmissionSurvivesDestroyedActor() => VerifyRemainsEmission(true);
+
+        private IEnumerator VerifyRemainsEmission(bool destroy)
+        {
+            Set(profile, "releaseDelay", .05f);
+            var actor = new GameObject("Removed emission source");
+            SceneManager.MoveGameObjectToScene(actor, ownerScene);
+            actor.transform.position = new Vector3(2, 3, 0);
+            var gore = actor.AddComponent<GoreBurst2D>();
+            gore.Configure(null, new[] { sprite }, material);
+            Set(gore, "profile", profile);
+            Set(gore, "random", new Core.Randomness.SystemRandomSource(new System.Random(15)));
+            Set(gore, "spawnBudget", new GoreSpawnBudget2D(new Core.Time.UnityFrameClock()));
+            gore.Play(0);
+            Transform remains = Get<Transform>(gore, "remainsRoot");
+            Assert.That(remains.GetComponentsInChildren<RemainsPartIdentity2D>().Length, Is.Zero);
+            if (destroy)
+            {
+                UnityEngine.Object.Destroy(actor);
+            }
+            else
+            {
+                actor.SetActive(false);
+            }
+
+            yield return null;
+            Time.timeScale = 1;
+            float deadline = Time.realtimeSinceStartup + 2;
+            while (remains.GetComponentsInChildren<RemainsPartIdentity2D>().Length < 8 && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+
+            Assert.That(remains.gameObject.scene, Is.EqualTo(ownerScene));
+            Assert.That(remains.GetComponentsInChildren<RemainsPartIdentity2D>().Length, Is.EqualTo(8));
+        }
+
+        [UnityTest]
+        public IEnumerator DeadHitResponsePreservesRemainsDepth()
+        {
+            var actor = new GameObject("Dead pose fixture");
+            actor.SetActive(false);
+            SceneManager.MoveGameObjectToScene(actor, ownerScene);
+            var visual = new GameObject("Visual", typeof(SpriteRenderer));
+            visual.transform.SetParent(actor.transform, false);
+            visual.transform.localPosition = new Vector3(.2f, .3f, .1f);
+            var health = actor.AddComponent<EnemyHealth2D>();
+            health.Construct(new Features.Health.Logic.HealthModelFactory(new Core.Time.UnityGameClock()));
+            health.Initialize(1);
+            var response = actor.AddComponent<EnemyHitResponse2D>();
+            response.Configure(visual.transform, visual.GetComponent<SpriteRenderer>(), null, null);
+            actor.SetActive(true);
+            health.Kill();
+            RemainsVisualStyle.Apply(visual.transform);
+            response.Play(Vector2.zero, Vector2.up, true);
+            Assert.That(visual.transform.localPosition.z, Is.EqualTo(RemainsVisualStyle.SurfaceZ).Within(.00001f));
+            response.enabled = false;
+            Assert.That(visual.transform.localPosition.z, Is.EqualTo(RemainsVisualStyle.SurfaceZ).Within(.00001f));
+            yield return null;
+        }
+
         private IEnumerator Verify(bool rupture, bool unload)
         {
             Component effect = CreateEffect(rupture);

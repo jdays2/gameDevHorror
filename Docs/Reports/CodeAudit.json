@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "617 own C# explicitly read; 59 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest SharedDefinition36.",
+  "limits": "617 own C# explicitly read; 49 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest NativeRemains37.",
   "counts": {
-    "partial": 59,
-    "reviewed_boundary": 558
+    "partial": 49,
+    "reviewed_boundary": 568
   },
   "files": [
     {
@@ -3002,6 +3002,7 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerFootsteps2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Audio/EnemyDeathAudioVariants.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
@@ -3379,7 +3380,8 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
-        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs"
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -3430,7 +3432,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -4110,6 +4113,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Definitions/GoreVariant.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs"
       ],
@@ -4140,6 +4144,7 @@
       ],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
@@ -4185,6 +4190,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Definitions/GoreProfile.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/GoreConfigBoundaryTests.cs"
       ],
@@ -6501,7 +6507,8 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyHitResponse2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -12187,7 +12194,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -15144,15 +15152,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs",
       "sourceScope": "unity",
-      "sha256": "a27fa14f3feb62e3456438287b2bd5a2ace6eeec32243f7bfabee51f2de1b169",
+      "sha256": "b094c79a5f27f7541e0b99c0e21cccee29813bee5f1e58c71a572a86ec92485f",
       "guid": "8a3f8cf0486ad8743be5d914ca2fe9ce",
       "types": [
         "CheckpointSceneAdapter2D"
       ],
-      "lines": 107,
+      "lines": 115,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -15160,10 +15168,11 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "a27fa14f3feb62e3456438287b2bd5a2ace6eeec32243f7bfabee51f2de1b169",
+      "reviewedSha256": "b094c79a5f27f7541e0b99c0e21cccee29813bee5f1e58c71a572a86ec92485f",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/CheckpointSession35.md",
-      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs",
@@ -17168,8 +17177,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Ограниченный cosmetic VFX .24s, без постоянного loot/damage; root создаётся вызывающим кодом в active scene, tuning/Random захардкожены.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17184,19 +17193,19 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
       "reviewedSha256": "2c4bc4ca86d70bdc0414d4c53d408859e09bcff15f37fc4aa6154e5659852b90",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs",
-      "sha256": "e4e4c538b57571d63ba4765ab694d2c52f71475b9115a13c3b4d4d491057bc13",
+      "sha256": "38635168909fb034c48d51f79011f71e1b265f5f8b4f5d27fedda88f047a5a42",
       "baselineSha256": "9f12582b957b8429a85d3af2ac2031f7f83a6512b2832763e47ff3825ee5faff",
       "guid": "e25c58fc1c2af38439e962045bd3f6e6",
       "types": [
         "BloodPool2D"
       ],
-      "lines": 203,
+      "lines": 204,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/BloodPool.prefab"
       ],
@@ -17218,8 +17227,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "GoreConfig32: readonly gore/blood config, stable IDs и separate cosmetic RNG проверены; прежние native lifetime/style долги сохранены.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17237,15 +17246,15 @@
         "SpriteRenderer"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 3.",
-      "reviewedSha256": "e4e4c538b57571d63ba4765ab694d2c52f71475b9115a13c3b4d4d491057bc13",
+      "reviewedSha256": "38635168909fb034c48d51f79011f71e1b265f5f8b4f5d27fedda88f047a5a42",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/GoreConfig32.md",
-      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodRuptureBurst2D.cs",
-      "sha256": "1bf7369a2acb1b966532ecab9d5e74d44b9ccf99df7fb5cf29cc6fbbde973f01",
+      "sha256": "f3d88ec3cb8153104687b09d50607a754b571d7b28bf278b70edc4817e2c2976",
       "baselineSha256": "1bf7369a2acb1b966532ecab9d5e74d44b9ccf99df7fb5cf29cc6fbbde973f01",
       "guid": "dca1c2bec14935c4d8272d47bc8b49e8",
       "types": [
@@ -17261,8 +17270,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Согласован с arrival постоянных капель, уничтожается через .36s. Root active-scene ownership не закреплён; timing/цвет/число в коде.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17276,10 +17285,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
-      "reviewedSha256": "1bf7369a2acb1b966532ecab9d5e74d44b9ccf99df7fb5cf29cc6fbbde973f01",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "f3d88ec3cb8153104687b09d50607a754b571d7b28bf278b70edc4817e2c2976",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureGroundShadow2D.cs",
@@ -17301,8 +17311,8 @@
       ],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "MaterialPropertyBlock/IDs кэшируются, presentation source без видового dispatch, settled прекращает пересчёт. Physics/LOS и tuning в MB; не возвращает отклонённую модель высоты мебели.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17317,9 +17327,9 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
       "reviewedSha256": "51ad1310854874657b43535c92c429a5de0511b61d19a9682d43a9b1ce386893",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
@@ -17414,13 +17424,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyHitResponse2D.cs",
-      "sha256": "90c45c55e8fde7a780b4d88583c68099c26fa2c69982bef9d6fe580a564da817",
+      "sha256": "57f4ee2d3e5582cd7fddd8b5ef3c128398f11fe8a22a69f52b892c2b7f31899e",
       "baselineSha256": "81ebc21e2908506c26f9e6818f65223456b68d5228226e08cec1b89914eb5b06",
       "guid": "338c7d1a9e8f670409c139ba9c20a7c2",
       "types": [
         "EnemyHitResponse2D"
       ],
-      "lines": 129,
+      "lines": 135,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -17436,8 +17446,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "BUG-015 fixed: transient root is assigned to source scene before effect component creation; frozen-time unload verified. Still partial: potential shared pose writer with animator needs ownership review/real animation scenario.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17461,10 +17471,10 @@
         "Transform / SpriteRenderer"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 3.",
-      "reviewedSha256": "90c45c55e8fde7a780b4d88583c68099c26fa2c69982bef9d6fe580a564da817",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/BloodSafety01.md",
-      "reviewScope": "Touched source and failure/green tests; VFX ownership and numerical profile guards only, not full gore migration.",
+      "reviewedSha256": "57f4ee2d3e5582cd7fddd8b5ef3c128398f11fe8a22a69f52b892c2b7f31899e",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -17487,8 +17497,8 @@
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Личная transient motion, первое приземление one-shot event и отключение при settled. Physics/virtual height/presentation вместе, constants tuning в коде; модель не выделена.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17506,19 +17516,19 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
       "reviewedSha256": "5b8faccdeb9ed9b179c8442bd413386d07ab2af59fe016e250792ad9b999a8cb",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained."
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-      "sha256": "47be08c05e6e0dba41ce8b39929d221aad3dd94ab3378b85ae1dc9b43398d376",
+      "sha256": "27b9396da5423b109f65c5829791fedac0b82161156abc9ab89d3763f926816c",
       "baselineSha256": "06b7c592281f925895c42dc2f371a448be2bff330b385121ef616a73c0033fac",
       "guid": "a44dfee537c76c74ca26aa0a3b1c491e",
       "types": [
         "GoreBurst2D"
       ],
-      "lines": 253,
+      "lines": 208,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
@@ -17539,13 +17549,12 @@
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
-        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "GoreConfig32: readonly gore/blood config, stable IDs и separate cosmetic RNG проверены; прежние native lifetime/style долги сохранены.",
-      "reviewedSha256": "47be08c05e6e0dba41ce8b39929d221aad3dd94ab3378b85ae1dc9b43398d376",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
+      "reviewedSha256": "27b9396da5423b109f65c5829791fedac0b82161156abc9ab89d3763f926816c",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17590,8 +17599,8 @@
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/GoreConfig32.md",
-      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -17610,7 +17619,9 @@
         "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
         "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -17637,13 +17648,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/PlayerShotShadow2D.cs",
-      "sha256": "bd3b1ad8c9dba7de063043da3b28747b2158787e480d710e9dddfba0d253fb99",
+      "sha256": "ce9c0bb0ac25c450f11f373f04d05d2cd388d89577430b63e69b1a192631fd10",
       "baselineSha256": "bd3b1ad8c9dba7de063043da3b28747b2158787e480d710e9dddfba0d253fb99",
       "guid": "e4e0d659e6d51204d9f77c52de17b302",
       "types": [
         "PlayerShotShadow2D"
       ],
-      "lines": 99,
+      "lines": 100,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab"
       ],
@@ -17664,8 +17675,8 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerWeapon2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Только визуал, не visibility authority/урон. MPB переиспользуется, OnDisable гасит проекцию. Объединённые parent/scale declarations нарушают one action per line, tuning в компоненте. Новые тени не добавлялись, прежний откат теней этим чтением не менялся.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Косметическая проекция игрока от света дула",
@@ -17676,10 +17687,11 @@
         "Physics2D"
       ],
       "usageEvidence": "PlayerWeapon2D.Follow(flash.LightSource), Player prefab",
-      "reviewedSha256": "bd3b1ad8c9dba7de063043da3b28747b2158787e480d710e9dddfba0d253fb99",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit07.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage/lifecycle/SOD boundaries. Static evidence only; no new Unity execution."
+      "reviewedSha256": "ce9c0bb0ac25c450f11f373f04d05d2cd388d89577430b63e69b1a192631fd10",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsPartIdentity2D.cs",
@@ -17694,8 +17706,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -17720,26 +17732,28 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
-      "sha256": "c3412a695f022c46224359a74032977ac2204e9256e42e5703d80526b3958a53",
+      "sha256": "b67da2c2443f45a6c313a308ea667f86a09f2226187d0db680c38b8d5f68df60",
       "baselineSha256": "2d0a8e8bfe88c8657f30c4606355cd365b9383700c099ddd8a4be22793bcb34e",
       "guid": "d37e7a79e4361944093c3243afe9739b",
       "types": [
         "RemainsRecord2D"
       ],
-      "lines": 164,
+      "lines": 296,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/CheckWorldServices.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/BloodPoolTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "BUG-014 исправлен: общий value-only validator применяется до изменения Transform/создания pool/частей. Snapshot Capture/Apply и Unity representation ещё не разделены в принятую полную Model/adapter границу.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17772,10 +17786,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
-      "reviewedSha256": "c3412a695f022c46224359a74032977ac2204e9256e42e5703d80526b3958a53",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
-      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success."
+      "reviewedSha256": "b67da2c2443f45a6c313a308ea667f86a09f2226187d0db680c38b8d5f68df60",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsSnapshot.cs",
@@ -17841,8 +17856,8 @@
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyHitResponse2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/GibMotion2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs",
-        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs"
+        "Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -17896,8 +17911,8 @@
         "Assets/EmergencyShift/Runtime/Player/PlayerCasingEjector2D.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "AudioConfig27: readonly audio bank/getter consumption проверен; прежние personal timing/model/config/style либо authoring долги сохранены.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "reviewedSha256": "53a7b5daa68aea16b5f1968676dd39d10e44125b54d013edb4e915588494829a",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
@@ -17917,8 +17932,8 @@
       ],
       "usageEvidence": "PlayerCasingEjector bounded pool, scene DI before use",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioConfig27.md",
-      "reviewScope": "Seven audio configs fully read: readonly field/bank APIs, numeric validation and serialization. Touched consumer selection/gain functions and Editor recipe reviewed for equivalent identity/order/fallback/RNG. Full native audio/weapon probes and normal Windows64 verified; consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -22937,20 +22952,20 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "5 real PlayMode pending-save lifetime regressions",
-      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "a79349aabf8327897dfccc8073e1d2e3a9aa0ce3ab838b35cfeb6a39999976e5",
+      "reviewedSha256": "dd0437d2f7f8e863016d46168620d39a16c2711448425fce442fd70f9cddc7cb",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/CheckpointSession35.md",
-      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "a79349aabf8327897dfccc8073e1d2e3a9aa0ce3ab838b35cfeb6a39999976e5",
+      "sha256": "dd0437d2f7f8e863016d46168620d39a16c2711448425fce442fd70f9cddc7cb",
       "guid": "c44326cf15c577e4b89031b64fcda0ca",
       "types": [
         "CatalogFixture",
@@ -23419,24 +23434,24 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
+      "notes": "NativeRemains37/BUG-033/034: native FX/physics/DTO views и явный scene-owned lifetime/pose проверены; gameplay state вне presentation, geometry/assets/format сохранены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs",
       "sourceScope": "unity",
-      "sha256": "5df819c4e34b8ee9091617f47b67e5ba89e7154ad7b0aa0265ef2658adc9284e",
+      "sha256": "0cdefc5f506e4e72746c37f66710908f6db76de3d605c92ed2cd1824a2219aea",
       "guid": "20d86fa1a630c0140b8c7229b5ec70b0",
       "types": [
         "TransientBloodSceneTests"
       ],
-      "lines": 136,
+      "lines": 201,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "5df819c4e34b8ee9091617f47b67e5ba89e7154ad7b0aa0265ef2658adc9284e",
+      "reviewedSha256": "0cdefc5f506e4e72746c37f66710908f6db76de3d605c92ed2cd1824a2219aea",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/GoreConfig32.md",
-      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "reviewReport": "Docs/Reports/NativeRemains37.md",
+      "reviewScope": "Native FX/visual physics/renderer/DTO adapters fully read. Animation/FX state remains presentation per adopted state-authority rule; gameplay health/damage/death outside. Scene-owned emission/settling, captured death pose, actor relay lifetime, dead render depth and cold preflight verified. Prior ShotEffect/audio/lamp/actor/tool scopes retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -24045,6 +24060,6 @@
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "SharedDefinition36 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "NativeRemains37 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

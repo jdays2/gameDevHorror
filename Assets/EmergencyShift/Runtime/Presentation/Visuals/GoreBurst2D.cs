@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using EmergencyShift.Core.Randomness;
 using UnityEngine;
 using Zenject;
@@ -31,10 +30,10 @@ namespace EmergencyShift
         private GoreVariant variant;
         private Transform remainsRoot;
         private RemainsRecord2D record;
-        private bool spawning;
+        private RemainsRecord2D subscribedRecord;
         private bool emitted;
 
-        public bool IsSettled => !spawning && (record == null || record.IsSettled);
+        public bool IsSettled => record == null || record.IsSettled;
         public event System.Action<GibMotion2D> FragmentLaunched;
 
         [Inject]
@@ -82,9 +81,13 @@ namespace EmergencyShift
                 }
             }
 
+            if (fragments != null && fragments.Length > 0 && spawnBudget == null)
+            {
+                throw new InvalidOperationException("Gore emission requires its world spawn budget.");
+            }
+
             emitted = true;
             CreateRemainsRoot(transform.position);
-            spawning = true;
             // Кровь появляется сразу при переходе в Dead; разлёт частей следует за разрывом.
             if (bloodPoolPrefab != null)
             {
@@ -103,83 +106,7 @@ namespace EmergencyShift
                 }
             }
 
-            StartCoroutine(Burst(obstacles));
-        }
-
-        private IEnumerator Burst(LayerMask obstacles)
-        {
-            // Первые кадры показывают разрыв, затем отсоединённые части получают своё движение.
-            yield return new WaitForSeconds(profile.ReleaseDelay);
-            if (fragments == null || fragments.Length == 0)
-            {
-                spawning = false;
-                yield break;
-            }
-
-            bool explicitComposition = variant.PieceCount > 0;
-            int count = explicitComposition ? variant.PieceCount : variant.FragmentCount;
-            if (variant.ReplaceOriginalBody && replacedBody != null)
-            {
-                replacedBody.enabled = false;
-            }
-
-            for (int i = 0; i < count; i++)
-            {
-                while (!spawnBudget.TryReserve())
-                {
-                    yield return null;
-                }
-
-                GorePiece specification = explicitComposition ? variant.PieceAt(i) : null;
-                int spriteIndex = specification != null ? specification.SpriteIndex : (i + variant.SpriteOffset) % fragments.Length;
-                Vector2 scaleRange = specification != null ? specification.Scale : variant.Scale;
-                var piece = new GameObject("Creature fragment", typeof(GibMotion2D));
-                piece.transform.position = new Vector3(transform.position.x, transform.position.y, RemainsVisualStyle.SurfaceZ);
-                if (specification != null)
-                {
-                    piece.transform.position += transform.TransformVector(specification.Offset);
-                }
-                piece.transform.SetParent(remainsRoot, true);
-                var body = new GameObject("Fragment visual", typeof(SpriteRenderer));
-                body.transform.SetParent(piece.transform, false);
-                body.transform.localScale = Vector3.one * Range(scaleRange.x, scaleRange.y);
-                var renderer = body.GetComponent<SpriteRenderer>();
-                renderer.sprite = fragments[spriteIndex];
-                renderer.sharedMaterial = litMaterial;
-                renderer.sortingOrder = RemainsVisualStyle.DeadOrder;
-                renderer.color = RemainsVisualStyle.Tint;
-                float angle = i * Mathf.PI * 2 / count + variant.RotationOffset * Mathf.Deg2Rad + Range(-.33f, .33f);
-                body.transform.rotation = Quaternion.Euler(0, 0, Range(0f, 360f));
-                SpriteRenderer shadow = null;
-                if (contactShadowSprite != null && shadowMaterial != null)
-                {
-                    var obj = new GameObject("Fragment contact shadow", typeof(SpriteRenderer));
-                    obj.transform.SetParent(piece.transform, false);
-                    obj.transform.localPosition = new Vector3(0, 0, .006f);
-                    shadow = obj.GetComponent<SpriteRenderer>();
-                    shadow.sprite = contactShadowSprite;
-                    shadow.sharedMaterial = shadowMaterial;
-                    shadow.sortingOrder = RemainsVisualStyle.DeadOrder;
-                }
-
-                var motion = piece.GetComponent<GibMotion2D>();
-                motion.ConfigureVisual(renderer, shadow);
-                // Чередуем тяжёлые близкие куски и быстрые дальние, а не восемь одинаковых импульсов.
-                float power = Range(profile.ImpulseRange.x, profile.ImpulseRange.y) * variant.ImpulseMultiplier * (i % 3 == 0 ? .65f : 1);
-                float lift = Range(profile.LiftRange.x, profile.LiftRange.y);
-                if (specification != null)
-                {
-                    power *= specification.ImpulseMultiplier;
-                    lift *= specification.LiftMultiplier;
-                }
-
-                motion.Launch(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * power, Range(-650f, 650f), obstacles.value | (1 << 9), lift, profile.Gravity);
-                piece.AddComponent<RemainsPartIdentity2D>().Configure(spriteIndex, renderer, shadow);
-                record.RegisterPart(motion);
-                FragmentLaunched?.Invoke(motion);
-            }
-
-            spawning = false;
+            record.BeginEmission(profile, variant, spawnBudget, random, obstacles, transform.localToWorldMatrix, replacedBody);
         }
 
         private void CreateRemainsRoot(Vector3 position)
@@ -189,6 +116,7 @@ namespace EmergencyShift
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(remainsRoot.gameObject, gameObject.scene);
             record = remainsRoot.gameObject.AddComponent<RemainsRecord2D>();
             record.Configure(bloodPoolPrefab, fragments, litMaterial, contactShadowSprite, shadowMaterial, variant != null ? variant.Id : "restored");
+            BindRecord();
         }
 
         public void ValidateRemains(RemainsSnapshot saved)
@@ -225,11 +153,11 @@ namespace EmergencyShift
                 ValidateRemains(saved);
             }
 
-            StopAllCoroutines();
-            spawning = false;
+            DetachRecord();
             emitted = true;
             if (remainsRoot != null)
             {
+                remainsRoot.gameObject.SetActive(false);
                 Destroy(remainsRoot.gameObject);
             }
 
@@ -246,6 +174,33 @@ namespace EmergencyShift
                 replacedBody.enabled = false;
             }
         }
+
+        private void OnEnable() => BindRecord();
+        private void OnDisable() => DetachRecord();
+        private void OnDestroy() => DetachRecord();
+
+        private void BindRecord()
+        {
+            if (subscribedRecord != null || record == null || !isActiveAndEnabled)
+            {
+                return;
+            }
+
+            subscribedRecord = record;
+            subscribedRecord.FragmentLaunched += OnFragment;
+        }
+
+        private void DetachRecord()
+        {
+            if (!ReferenceEquals(subscribedRecord, null))
+            {
+                subscribedRecord.FragmentLaunched -= OnFragment;
+            }
+
+            subscribedRecord = null;
+        }
+
+        private void OnFragment(GibMotion2D part) => FragmentLaunched?.Invoke(part);
 
         private float Range(float minimum, float maximum) => Mathf.Lerp(minimum, maximum, (float)random.NextUnit());
         private int Range(int minimum, int maximum) => random.NextInt(minimum, maximum);

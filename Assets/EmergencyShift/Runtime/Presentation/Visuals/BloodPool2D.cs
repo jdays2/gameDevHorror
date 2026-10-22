@@ -17,7 +17,8 @@ namespace EmergencyShift
         private bool rupturing;
         private string variantId;
         public string VariantId => variantId;
-        public SpriteRenderer[] DropletRenderers => droplets;
+        public int DropletCount => droplets != null ? droplets.Length : 0;
+        public SpriteRenderer DropletAt(int index) => droplets[index];
 
         public float DropArrivalTime(int index) => dropArrival[index];
         public void BeginRupture()

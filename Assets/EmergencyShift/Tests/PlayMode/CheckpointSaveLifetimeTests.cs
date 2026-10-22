@@ -115,8 +115,8 @@ namespace EmergencyShift.Tests
         [UnityTest]
         public IEnumerator ClearWhileGoreIsUnsettledPreventsWriteAfterItSettles()
         {
-            GoreBurst2D gore = Create("Controlled unsettled remains").AddComponent<GoreBurst2D>();
-            Set(gore, "spawning", true);
+            RemainsRecord2D remains = Create("Controlled unsettled remains").AddComponent<RemainsRecord2D>();
+            Set(remains, "emitting", true);
             Assert.That(controller.RequestSave("unsettled"), Is.True);
             yield return Frames(2);
             Assert.That(controller.IsSaving, Is.True);
@@ -125,8 +125,8 @@ namespace EmergencyShift.Tests
             controller.Clear();
 
             Assert.That(controller.IsSaving, Is.False);
-            Set(gore, "spawning", false);
-            Assert.That(gore.IsSettled, Is.True);
+            Set(remains, "emitting", false);
+            Assert.That(remains.IsSettled, Is.True);
             yield return Frames(5);
             AssertEmptySlot();
         }
