@@ -11,6 +11,8 @@ namespace EmergencyShift
     {
         [SerializeField, Min(0.1f)]
         private float moveSpeed = 3.5f;
+        [SerializeField, Tooltip("Keep all authored values, even old defaults. Non-default legacy values are always retained.")]
+        private bool useAuthoredRules;
         private Rigidbody2D body;
         private PlayerMovementController controller;
 
@@ -22,7 +24,7 @@ namespace EmergencyShift
                 throw new System.ArgumentNullException(nameof(controllers));
             }
 
-            controller = controllers.Create(moveSpeed);
+            controller = controllers.Create(moveSpeed, useAuthoredRules);
         }
         private void Awake() => body = GetComponent<Rigidbody2D>();
         private void Update() => controller.SampleInput();

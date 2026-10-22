@@ -32,6 +32,7 @@
 - [LevelPersistenceAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs)
 - [NarrativeEnvironmentBuilder.cs](../Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs)
 - [PauseMenuAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs)
+- [PlayerRulesAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/PlayerRulesAuthoring.cs)
 - [SandboxSceneBuilder.cs](../Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs)
 - [ShotgunIntegrationAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs)
 - [ThreatSignalAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs)
@@ -624,6 +625,11 @@
 - [PlayerMovementModel.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementModel.cs)
 - [SetMovementIntentCommand.cs](../Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/SetMovementIntentCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/PlayerRules/Config
+
+- [PlayerRulesProfile.cs](../Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesProfile.cs)
+- [PlayerRulesSettings.cs](../Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesSettings.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/Projectiles
 
 - [ProjectileFlightControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Projectiles/ProjectileFlightControllerFactory.cs)
@@ -834,6 +840,7 @@
 - [PlayerInputTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs)
 - [PlayerInteractionModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs)
 - [PlayerMovementTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs)
+- [PlayerRulesTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs)
 - [ProjectileFlightTests.cs](../Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
 - [SceneRegistryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs)

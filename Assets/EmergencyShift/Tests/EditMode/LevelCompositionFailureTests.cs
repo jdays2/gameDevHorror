@@ -31,6 +31,7 @@ namespace EmergencyShift.Tests
             worldOwner = new GameObject("Isolated composition world");
             var installer = worldOwner.AddComponent<WorldInstaller>();
             EmergencyShift.Editor.ThreatSignalAuthoring.ConfigureInstaller(installer);
+            EmergencyShift.Editor.PlayerRulesAuthoring.ConfigureInstaller(installer);
             world.Inject(installer);
             installer.InstallBindings();
             rig = PrefabUtility.LoadPrefabContents(RigPath);

@@ -27,6 +27,8 @@ namespace EmergencyShift
         private float selectionTieDistance = .05f;
         [SerializeField, Range(1, 64)]
         private int maximumPendingNotices = 8;
+        [SerializeField, Tooltip("Keep all authored values, even old defaults. Non-default legacy values are always retained.")]
+        private bool useAuthoredRules;
         private readonly List<IInteractable> candidates = new List<IInteractable>(32);
         private InteractionSelectionController selection;
         private PickupNoticeModel notices;
@@ -59,9 +61,9 @@ namespace EmergencyShift
             inputBlock = block ?? throw new ArgumentNullException(nameof(block));
             doorRegistry = sceneDoors ?? throw new ArgumentNullException(nameof(sceneDoors));
             lights = illumination ?? throw new ArgumentNullException(nameof(illumination));
-            var settings = new PlayerInteractionSettings(reach, selectionTieDistance, notificationSeconds, maximumPendingNotices);
-            selection = factory.Create(settings, this);
-            notices = factory.CreateNotices(settings);
+            var settings = new PlayerInteractionSettings(reach, selectionTieDistance, notificationSeconds, maximumPendingNotices, autoPickupRadius);
+            selection = factory.Create(settings, this, useAuthoredRules);
+            notices = factory.CreateNotices(settings, useAuthoredRules);
             CacheComponents();
         }
         public event System.Action<PickupKind> ItemCollected;
@@ -137,11 +139,12 @@ namespace EmergencyShift
                 return;
             }
 
-            Physics2D.OverlapCircle(transform.position, autoPickupRadius, new ContactFilter2D { useTriggers = true }, nearby);
+            float pickupRadius = RequireSelection().Model.PickupRadius;
+            Physics2D.OverlapCircle(transform.position, pickupRadius, new ContactFilter2D { useTriggers = true }, nearby);
             foreach (var collider in nearby)
             {
                 var pickup = collider.GetComponentInParent<IAutoPickup>();
-                if (pickup != null && (pickup.PickupPosition - (Vector2)transform.position).sqrMagnitude <= autoPickupRadius * autoPickupRadius)
+                if (pickup != null && (pickup.PickupPosition - (Vector2)transform.position).sqrMagnitude <= pickupRadius * pickupRadius)
                 {
                     pickup.TryCollect(this);
                 }

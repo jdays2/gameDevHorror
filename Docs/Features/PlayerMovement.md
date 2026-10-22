@@ -6,6 +6,6 @@
 
 `PlayerMotor2D` остаётся Unity environment: кеширует Rigidbody2D, запрашивает ввод в Update и записывает скорость в FixedUpdate. Disable очищает направление и немедленно обнуляет скорость тела. Подписки и дополнительный общий Update-менеджер не нужны.
 
-Пока `moveSpeed` читается из прежнего сериализованного поля экземпляра при composition. Это явный совместимый мост: значения сцен/prefab и GUID сохранены, shared SO не меняется. Общий SO/config-pass остаётся открытым; изменение поля в Inspector после построения controller не меняет уже созданные settings.
+`PlayerRules.asset` задаёт общую скорость; старое `moveSpeed` сохраняет authored override по явной [политике совместимости](PlayerRules.md). Фабрика проецирует неизменяемые settings при composition, пользовательские значения и GUID сохранены. Изменение поля в Inspector после построения controller не меняет уже созданные settings.
 
 Проверки и ограничения — [PlayerMovement07](../Reports/PlayerMovement07.md). Ввод и сроки жизни — [PlayerInput](PlayerInput.md).

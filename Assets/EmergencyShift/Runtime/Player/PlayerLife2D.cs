@@ -1,6 +1,6 @@
 using System.Collections;
-using EmergencyShift.Features.Health.Config;
 using EmergencyShift.Features.Health.Logic;
+using EmergencyShift.Features.PlayerRules.Config;
 using UnityEngine;
 using EmergencyShift.Features.PlayerInput.Logic;
 using UnityEngine.SceneManagement;
@@ -15,6 +15,9 @@ namespace EmergencyShift
         private int maximumHealth = 2;
         [SerializeField, Min(0)]
         private float hitProtectionSeconds = 0.7f;
+        [SerializeField, Tooltip("Keep all authored values, even old defaults. Non-default legacy values are always retained.")]
+        private bool useAuthoredRules;
+        private PlayerRulesSettings rules = PlayerRulesSettings.LegacyDefaults;
         private Rigidbody2D body;
         private PlayerMotor2D motor;
         private Flashlight2D flashlight;
@@ -26,7 +29,7 @@ namespace EmergencyShift
         private HealthModelFactory models;
         private IPlayerInput input;
         public int Health => model?.Current ?? 0;
-        public int MaximumHealth => maximumHealth;
+        public int MaximumHealth => model?.Maximum ?? maximumHealth;
         public bool IsDead => Health <= 0;
 
         public event System.Action<int> HealthChanged;
@@ -34,10 +37,11 @@ namespace EmergencyShift
         public override bool IsAlive => !IsDead;
 
         [Inject]
-        public void Construct(HealthModelFactory modelFactory, IPlayerInput playerInput)
+        public void Construct(HealthModelFactory modelFactory, IPlayerInput playerInput, PlayerRulesSettings playerRules = null)
         {
             models = modelFactory ?? throw new System.ArgumentNullException(nameof(modelFactory));
             input = playerInput ?? throw new System.ArgumentNullException(nameof(playerInput));
+            rules = playerRules ?? PlayerRulesSettings.LegacyDefaults;
         }
 
         public override bool TryTakeDamage(int amount, Vector2 point, Vector2 direction) => ApplyDamage(amount, direction);
@@ -60,13 +64,13 @@ namespace EmergencyShift
                 throw new System.InvalidOperationException("Player health requires level composition before Awake.");
             }
 
-            model = models.Create(new HealthSettings(Mathf.Max(1, maximumHealth), hitProtectionSeconds));
+            model = models.Create(rules.ProjectHealth(maximumHealth, hitProtectionSeconds, useAuthoredRules));
         }
 
         public void RestoreHealth(int health)
         {
             StopAllCoroutines();
-            model.Restore(Mathf.Clamp(health, 1, maximumHealth));
+            model.Restore(Mathf.Clamp(health, 1, MaximumHealth));
             motor.enabled = true;
             interaction.enabled = true;
             flashlight.enabled = true;
@@ -90,7 +94,6 @@ namespace EmergencyShift
             }
 
             new SetHealthCapacityCommand(model, capacity, currentHealth).Execute();
-            maximumHealth = model.Maximum;
             HealthChanged?.Invoke(Health);
         }
 

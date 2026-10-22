@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "624 own C# explicitly read;42 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest AuthoringSafety39.",
+  "limits": "628 own C# explicitly read;40 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest PlayerRules40.",
   "counts": {
-    "reviewed_boundary": 582,
-    "partial": 42
+    "reviewed_boundary": 588,
+    "partial": 40
   },
   "files": [
     {
@@ -393,15 +393,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
       "path": "AgentScripts/InstallWorldComposition.cs",
       "sourceScope": "agent_tool",
-      "sha256": "64075046f444381b90d474f8313da4153e609611b829703bc5b1e68b4f77bc81",
+      "sha256": "446306b12972b8cabb33e19773171858ddf7fa7f563e697f24d6664c70963b16",
       "guid": null,
       "types": [
         "InstallWorldComposition"
       ],
-      "lines": 57,
+      "lines": 58,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -424,10 +424,10 @@
         "Zenject"
       ],
       "usageEvidence": "Явный AgentScripts entry point, вне автоматической компиляции Assets; в этом проходе не вызывался.",
-      "reviewedSha256": "64075046f444381b90d474f8313da4153e609611b829703bc5b1e68b4f77bc81",
+      "reviewedSha256": "446306b12972b8cabb33e19773171858ddf7fa7f563e697f24d6664c70963b16",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
-      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified.",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -1046,6 +1046,34 @@
       "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "path": "Assets/EmergencyShift/Editor/Authoring/PlayerRulesAuthoring.cs",
+      "sourceScope": "unity",
+      "sha256": "83a5c5174f1571d9506b0636365d2e105b9360d4415694a094338a38e045f261",
+      "guid": "2cbb1f4560504804e857b9037fd9da38",
+      "types": [
+        "PlayerRulesAuthoring"
+      ],
+      "lines": 37,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/InstallWorldComposition.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "83a5c5174f1571d9506b0636365d2e105b9360d4415694a094338a38e045f261",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained."
+    },
+    {
       "path": "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs",
       "sha256": "b8162665a37993b0d7eeaba9e29136fcb8b1ff05bc2ed1261a5bb773294cc14f",
       "baselineSha256": "7ac251d6c64521f08f2fee3baea6db22f9eb788adaa30c73a887999029f2ffd3",
@@ -1147,7 +1175,8 @@
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
       "entryPointHints": [
         "MenuItem"
@@ -2499,29 +2528,31 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
-      "sha256": "26ab790b30aaf9cd38201ba26ac327679ffb95474ad92ed92171260755c447b4",
+      "sha256": "8dcf4866c3e717c9877414d08edfd94c1ad74fdeb072cba7b79aa30fb9641f25",
       "baselineSha256": null,
       "guid": "db025a46dc7ec8748a1847f868571510",
       "types": [
         "WorldInstaller"
       ],
-      "lines": 37,
+      "lines": 47,
       "serializedUsers": [
         "Assets/EmergencyShift/Resources/ProjectContext.prefab"
       ],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/InstallWorldComposition.cs",
+        "Assets/EmergencyShift/Editor/Authoring/PlayerRulesAuthoring.cs",
         "Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
-      "reviewedSha256": "26ab790b30aaf9cd38201ba26ac327679ffb95474ad92ed92171260755c447b4",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "reviewedSha256": "8dcf4866c3e717c9877414d08edfd94c1ad74fdeb072cba7b79aa30fb9641f25",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -2539,8 +2570,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 0.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/CheckpointSession35.md",
-      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -2967,6 +2998,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
@@ -3307,6 +3339,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -3594,6 +3627,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodSettingsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs"
       ],
@@ -7960,6 +7994,7 @@
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Config/AudioThreatSignalProfile.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/AudioThreatSignalModel.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/AudioThreatScopeTests.cs"
       ],
       "entryPointHints": [],
@@ -12198,7 +12233,7 @@
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyHealth2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
-        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesSettings.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
@@ -12275,7 +12310,8 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyHealth2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -12317,7 +12353,8 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -12362,6 +12399,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
       ],
@@ -12402,7 +12440,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -12430,30 +12469,33 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
       "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Config/PlayerInteractionSettings.cs",
       "sourceScope": "unity",
-      "sha256": "518daaf256801be54de45e0462f9ced18f6f730f624d8d5e08c2b23f8dd49d3c",
+      "sha256": "fb57ac88f298ad9ced5285144038808c8f32b73b854d41eeacbfe3139762b1ec",
       "guid": "089c36a2207e4fea972a98ad083b524d",
       "types": [
         "PlayerInteractionSettings"
       ],
-      "lines": 26,
+      "lines": 29,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesSettings.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "518daaf256801be54de45e0462f9ced18f6f730f624d8d5e08c2b23f8dd49d3c",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+      "reviewedSha256": "fb57ac88f298ad9ced5285144038808c8f32b73b854d41eeacbfe3139762b1ec",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -12539,15 +12581,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
       "path": "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionModel.cs",
       "sourceScope": "unity",
-      "sha256": "db4890beac990e339687f482d4a99acd0f8b6259300003a3648878ce613bc289",
+      "sha256": "912d3178758f2902689d90a512bc0040fab44dd1fc1bdb7edac64906a5d3962e",
       "guid": "2eac957e76ce4790a9954ee922e02ef8",
       "types": [
         "InteractionSelectionModel"
       ],
-      "lines": 63,
+      "lines": 64,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -12558,10 +12600,11 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "db4890beac990e339687f482d4a99acd0f8b6259300003a3648878ce613bc289",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+      "reviewedSha256": "912d3178758f2902689d90a512bc0040fab44dd1fc1bdb7edac64906a5d3962e",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -12631,7 +12674,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
@@ -12643,15 +12687,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerInteraction17: pure selection/notice/commands или level composition/regression boundary проверены. Clock и bounded queue принадлежат игроку, старые E/range/tie/notice правила сохранены; lifecycle/quiet checkpoint regressions пройдены. Исходные Pause строки LevelContext не включены в коммит.",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
       "path": "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
       "sourceScope": "unity",
-      "sha256": "ae757e7c9aa646a45cf7e65e591bbda416e5bac6ee85a297521c0a94448d23d4",
+      "sha256": "1059f20cb0f5c0cf542224fc3241e6574e407eb73c854a9390c1e413be1daed1",
       "guid": "80523f6e72ca4ae3bfbc8875fd27bbbc",
       "types": [
         "PlayerInteractionControllerFactory"
       ],
-      "lines": 16,
+      "lines": 25,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -12661,6 +12705,7 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
@@ -12668,10 +12713,11 @@
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "ae757e7c9aa646a45cf7e65e591bbda416e5bac6ee85a297521c0a94448d23d4",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerInteraction17.md",
-      "reviewScope": "Full source read: personal selection and bounded notice models, command rechecks, explicit clock and level DI composition; native wall/modal/disable/notice lifecycle plus old dialogue/checkpoint regression and normal Windows64 verified."
+      "reviewedSha256": "1059f20cb0f5c0cf542224fc3241e6574e407eb73c854a9390c1e413be1daed1",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -14268,6 +14314,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
@@ -14371,6 +14418,7 @@
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/Logic/PlayerMovementModel.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesSettings.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs"
       ],
       "entryPointHints": [],
@@ -14460,29 +14508,31 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
       "path": "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs",
       "sourceScope": "unity",
-      "sha256": "2377d80d72e777f5a259a773971f89c83e451d2c0de53d17734190d79860b557",
+      "sha256": "7b51551d4f5b9206fb9058959e0f8ad30fc2bb9f8066d9a490a29785c3e5f321",
       "guid": "0b318d699a394bc7b241b0f9a2510f3b",
       "types": [
         "PlayerMovementControllerFactory"
       ],
-      "lines": 21,
+      "lines": 24,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementInstaller.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerMotor2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "2377d80d72e777f5a259a773971f89c83e451d2c0de53d17734190d79860b557",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerMovement07.md",
-      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+      "reviewedSha256": "7b51551d4f5b9206fb9058959e0f8ad30fc2bb9f8066d9a490a29785c3e5f321",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -14507,6 +14557,64 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/PlayerMovement07.md",
       "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesProfile.cs",
+      "sourceScope": "unity",
+      "sha256": "433b9cb1b69fdaabce9c2ccc7ecb11674861fe36054afa3ff609e99c3770d8ed",
+      "guid": "a0e3d3edf4f52d84283003fec3d63571",
+      "types": [
+        "PlayerRulesProfile"
+      ],
+      "lines": 30,
+      "serializedUsers": [
+        "Assets/EmergencyShift/Data/Player/PlayerRules.asset"
+      ],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Editor/Authoring/PlayerRulesAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "433b9cb1b69fdaabce9c2ccc7ecb11674861fe36054afa3ff609e99c3770d8ed",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "17312edccf849686f4f9518a081526515e425d96decafdf7d99e77bcc786f6e8",
+      "guid": "8c7588a1e83e7c04ab9ade2fecdbe4a0",
+      "types": [
+        "PlayerRulesSettings"
+      ],
+      "lines": 80,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerMovement/PlayerMovementControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerRules/Config/PlayerRulesProfile.cs",
+        "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "17312edccf849686f4f9518a081526515e425d96decafdf7d99e77bcc786f6e8",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained."
     },
     {
       "baselineSha256": null,
@@ -16764,13 +16872,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
-      "sha256": "38ec5bccadd80fe023ffc7cbf42fdd2ae9b3ade35cf19ca8c9ed69c1dc5349b4",
+      "sha256": "5c7a0af7d30c90630c432d2af61148b46753fba398f7ca40d2763de96a8cc4bf",
       "baselineSha256": "61e533ef3c071ac9d4bedb6ed4969c8e45d6695dbfccad01f446ef60ae4fe1c2",
       "guid": "500d12c8cbe97624898244a956ece442",
       "types": [
         "PlayerInteraction"
       ],
-      "lines": 249,
+      "lines": 252,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -16813,9 +16921,9 @@
         "Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "ActorPorts33: actor capability ports/commands проверены; прежние authored timing/config/lifetime долги сохранены.",
-      "reviewedSha256": "38ec5bccadd80fe023ffc7cbf42fdd2ae9b3ade35cf19ca8c9ed69c1dc5349b4",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "reviewedSha256": "5c7a0af7d30c90630c432d2af61148b46753fba398f7ca40d2763de96a8cc4bf",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -16835,19 +16943,19 @@
       ],
       "usageEvidence": "Update, IAutoPickup/IInteractable и feedback consumers",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/ActorPorts33.md",
-      "reviewScope": "Native interaction ports and consumers fully read: narrow action capabilities, no exposed components/service bag, pure existing selection/pickup/access commands retained, destroyed actor rejection, cached refs at composition/Awake. Prior timing config/presentation/style scopes retained.",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
       "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerLife2D.cs",
-      "sha256": "df1a657318268cd8508a0c0bf56045bc47a734fcfae2cc11f21033eece1b2d61",
+      "sha256": "d7ac4008e05bd6d79fb83d18e6e95e0a787ed7124eb6527dfe453c3a45f95c28",
       "baselineSha256": "e79fb73a68b189d23e7c13612c120698888667b23fa8effd3ecf183e6136de28",
       "guid": "7d88942bc97261748be6ab11968ac481",
       "types": [
         "PlayerLife2D"
       ],
-      "lines": 176,
+      "lines": 179,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/LevelRig.prefab",
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
@@ -16921,11 +17029,11 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "Сохранённые health boundaries не делают весь класс чистым: он решает restart, управляет actor components и presentation coroutine. Порядок Damaged → HealthChanged подтверждает damagePending в HUD. RestoreHealth/SetHealthCapacity/миграция конфигурации требуют отдельной полной архитектурной работы.",
-      "reviewedSha256": "df1a657318268cd8508a0c0bf56045bc47a734fcfae2cc11f21033eece1b2d61",
+      "notes": "PlayerRules40: shared tuning и model-owned capacity проверены; native health/controller/view scope ещё открыт.",
+      "reviewedSha256": "d7ac4008e05bd6d79fb83d18e6e95e0a787ed7124eb6527dfe453c3a45f95c28",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
-      "reviewDate": "2026-10-21",
+      "reviewDate": "2026-10-22",
       "responsibility": "Health Unity-adapter, смерть, hit flash и restart",
       "dependencies": [
         "HealthModelFactory",
@@ -16934,18 +17042,19 @@
         "checkpoint/SceneManager"
       ],
       "usageEvidence": "Player prefab/LevelContext; damage receivers; PauseMenuEnvironment и damage feedback",
-      "reviewReport": "Docs/Reports/CodeAudit05.md",
-      "reviewScope": "Full source read; semantic boundary/lifetime/usage review. No new Unity execution."
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Player/PlayerMotor2D.cs",
-      "sha256": "7c2f07e174ef9edcc31a8eac02554217193c637d1a9bd05b1e968d52661a65d5",
+      "sha256": "212a7356003fe840dc1ed311baf6538d20c087cfbd7eba76d8250cd786dcba8b",
       "baselineSha256": "2be0ffd57f70ec16715c032d53a3a40d7f305e6c6227c7baf5c30c3dc1d00294",
       "guid": "b96f5d332188ae1418b13a363dbe5ea2",
       "types": [
         "PlayerMotor2D"
       ],
-      "lines": 43,
+      "lines": 45,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Player/Player.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
@@ -16982,9 +17091,9 @@
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Личный MVC/controller, Rigidbody environment и OnDisable проверены. moveSpeed остаётся сериализованным compatibility bridge; общий SO config-pass открыт.",
-      "reviewedSha256": "7c2f07e174ef9edcc31a8eac02554217193c637d1a9bd05b1e968d52661a65d5",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "reviewedSha256": "212a7356003fe840dc1ed311baf6538d20c087cfbd7eba76d8250cd786dcba8b",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -17001,9 +17110,9 @@
         "Zenject"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 3; сцены по графу: 11.",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerMovement07.md",
-      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified.",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -19774,6 +19883,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -19951,6 +20061,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -20043,6 +20154,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -20269,15 +20381,15 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs",
       "sourceScope": "unity",
-      "sha256": "4626bb3aa84375f6ab63149bb52067aa375de2873e3d4f4b6d9c3aaee8dff9f9",
+      "sha256": "343d9f9f4ec7bc04d50195f0257dafe3f804405dd1ac656b41ba54996cb1cabd",
       "guid": "077c265da64ccb7439a948a2188b264a",
       "types": [
         "CheckpointSessionTests"
       ],
-      "lines": 170,
+      "lines": 171,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -20286,10 +20398,11 @@
         "TestCase"
       ],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "4626bb3aa84375f6ab63149bb52067aa375de2873e3d4f4b6d9c3aaee8dff9f9",
+      "reviewedSha256": "343d9f9f4ec7bc04d50195f0257dafe3f804405dd1ac656b41ba54996cb1cabd",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/CheckpointSession35.md",
-      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "reviewStatus": "reviewed_boundary",
@@ -20604,6 +20717,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -20797,6 +20911,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -20874,6 +20989,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
@@ -20947,6 +21063,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -21520,6 +21637,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -21538,17 +21656,17 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
       "sourceScope": "unity",
-      "sha256": "00d67f4b8544801ce4fbe337e3c16040f6ee46fb7c737497c4d2d3ca27a04533",
+      "sha256": "1fa41711ac7c90f17edd538100b820d1e49b9f81e0e6f64482e486e46a1cced1",
       "guid": "5e837244c731456abb184e859dbccfc9",
       "types": [
         "LateCleanup",
         "LevelCompositionFailureTests",
         "ThrowingCleanup"
       ],
-      "lines": 169,
+      "lines": 170,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -21562,21 +21680,21 @@
           "notes": "New inventory entry; no semantic review yet."
         }
       ],
-      "reviewedSha256": "00d67f4b8544801ce4fbe337e3c16040f6ee46fb7c737497c4d2d3ca27a04533",
-      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
+      "reviewedSha256": "1fa41711ac7c90f17edd538100b820d1e49b9f81e0e6f64482e486e46a1cced1",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
       "reviewDate": "2026-10-22",
       "previousReviewStatus": "reviewed_boundary",
-      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified."
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained."
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs",
-      "sha256": "b8c482867e96b2d4e240d7dae6bbeb34e2380fe50cb484f6288d7a56e214d75f",
+      "sha256": "7563c6896c7f7a16fc085f855ac09bc38abdbe2dfccc58124309a176df057959",
       "baselineSha256": null,
       "guid": "120ffa7cd993cb543a3c2e081d0720ae",
       "types": [
         "LevelCompositionTests"
       ],
-      "lines": 70,
+      "lines": 71,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -21584,8 +21702,8 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
-      "reviewedSha256": "b8c482867e96b2d4e240d7dae6bbeb34e2380fe50cb484f6288d7a56e214d75f",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "reviewedSha256": "7563c6896c7f7a16fc085f855ac09bc38abdbe2dfccc58124309a176df057959",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -21603,8 +21721,8 @@
       ],
       "usageEvidence": "1 Test метод; source read only",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
-      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified.",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -21679,6 +21797,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -22083,6 +22202,7 @@
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
@@ -22174,6 +22294,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
@@ -22212,6 +22333,7 @@
         "Assets/EmergencyShift/Runtime/Features/PlayerInput/Logic/IPlayerInput.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
@@ -22226,6 +22348,58 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/PlayerMovement07.md",
       "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
+      "sourceScope": "unity",
+      "sha256": "7d1a10fb14b521e9ad38a738a13d2a5d430de5dfe865c349116b3c6db0697c5e",
+      "guid": "0c569cc4719b2274a86bdaefa0ff745f",
+      "types": [
+        "Clock",
+        "Input",
+        "PlayerRulesTests"
+      ],
+      "lines": 198,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/AssignPlayerInput.cs",
+        "Assets/EmergencyShift/Editor/Authoring/LevelAuthoringSetup.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/Logic/IPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
+        "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7d1a10fb14b521e9ad38a738a13d2a5d430de5dfe865c349116b3c6db0697c5e",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained."
     },
     {
       "baselineSha256": null,
@@ -22519,6 +22693,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
@@ -22637,6 +22812,7 @@
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs"
       ],
@@ -23546,16 +23722,16 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "PlayerMovement07: личная модель/команда/factory/installer или regression boundary; ввод и Unity physics разделены, проверки пройдены.",
+      "notes": "PlayerRules40: readonly shared profile/projections, explicit authored overrides и native MVC/adapters проверены; metadata/scene data сохранены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
       "sourceScope": "unity",
-      "sha256": "a9b7f70631d17358e4d14599eb63de861b103f30e5cc24483fb051c6be01b151",
+      "sha256": "2a5057d7b66051a0c3e1cf4ba4ce9df6e7742cd467f8734d4b166b45deab508d",
       "guid": "7f70cb037daf4c6789e94259db7f01b6",
       "types": [
         "Input",
         "PlayerMovementSceneTests"
       ],
-      "lines": 114,
+      "lines": 130,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -23565,16 +23741,18 @@
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerMovementTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerRulesTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "a9b7f70631d17358e4d14599eb63de861b103f30e5cc24483fb051c6be01b151",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/PlayerMovement07.md",
-      "reviewScope": "Full source read: personal rules/input command/physics adapter, modal boundary, lifecycle and zero-allocation command path; native scene and normal Windows64 verified."
+      "reviewedSha256": "2a5057d7b66051a0c3e1cf4ba4ce9df6e7742cd467f8734d4b166b45deab508d",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/PlayerRules40.md",
+      "reviewScope": "Shared immutable player tuning, pre-binding validation, explicit legacy/authored override projection and personal health capacity ownership. Native motion/interaction remain adapters around pure command/model/controller boundaries. Profile/manual values/GUID/resource delta and native modal/room/persistence regressions verified; other prior partial roles retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -24154,7 +24332,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 605,
+    "unity": 609,
     "content_source": 8
   },
   "latestReview": {
@@ -24305,11 +24483,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 624,
-    "totalFiles": 624,
+    "reviewedFiles": 628,
+    "totalFiles": 628,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "AuthoringSafety39 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "PlayerRules40 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Shared player tuning/overrides | [PlayerRules40](PlayerRules40.md):1200 EditMode(1197+3 scratch),69 PlayMode,Windows64 success. Immutable profile/early world guards, authored override policy, model-only capacity, native3.5→5/modal; ProjectContext добавил одну ссылку, сцены/значения прежние. |
 | Authoring preflight / BUG-036 | [AuthoringSafety39](AuthoringSafety39.md): baseline0/2 →3 guard cases и1182 EditMode (1179 production+3 scratch). Dirty scene/sentinel и prefab/art bytes сохранены; Runtime неизменен, новая Player-сборка этого Editor-only этапа не выполнялась. |
 | Native light/encounter / BUG-035 | [NativeLight38](NativeLight38.md): baseline0/2 PlayMode →1179/1179 EditMode,69/69 PlayMode,Windows64 success. Output cleanup, scoped blockers, standalone preview и one-shot model/commands; геометрия/сцены/DTO прежние. |
 | Native remains owner/dead pose / BUG-033/034 | [NativeRemains37](NativeRemains37.md): baseline0/3 PlayMode →1173/1173 EditMode,67/67 PlayMode,Windows64 success. Разлёт живёт на record, actor relay снимается, readiness видит records, hit reset сохраняет SurfaceZ. Старые art/геометрия/budget/DTO сохранены. |

@@ -13,6 +13,7 @@ namespace EmergencyShift.Features.Interaction.Logic
         public InteractionSelectionModel(PlayerInteractionSettings settings) => this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
         public int CurrentIndex { get; private set; } = -1;
         public float Reach => settings.Reach;
+        public float PickupRadius => settings.PickupRadius;
 
         public bool WithinReach(Vector2 offset, float targetRange)
         {

@@ -3,6 +3,7 @@ using EmergencyShift.Core.Randomness;
 using EmergencyShift.Features.CheckpointSession.Logic;
 using EmergencyShift.Core.Time;
 using EmergencyShift.Features.AudioMood.Config;
+using EmergencyShift.Features.PlayerRules.Config;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +14,8 @@ namespace EmergencyShift.Core.Composition
     {
         [SerializeField]
         private AudioThreatSignalProfile threatSignals;
+        [SerializeField]
+        private PlayerRulesProfile playerRules;
 
         public override void InstallBindings()
         {
@@ -22,7 +25,14 @@ namespace EmergencyShift.Core.Composition
             }
 
             AudioThreatSignalSettings signalSettings = threatSignals.ToSettings();
+            if (playerRules == null)
+            {
+                throw new InvalidOperationException("World composition requires its shared player rules profile.");
+            }
+
+            PlayerRulesSettings playerSettings = playerRules.ToSettings();
             Container.Bind<AudioThreatSignalSettings>().FromInstance(signalSettings);
+            Container.Bind<PlayerRulesSettings>().FromInstance(playerSettings);
             Container.Bind<IWorldTimeScale>().To<UnityWorldTimeScale>().AsSingle();
             Container.Bind<IFrameClock>().To<UnityFrameClock>().AsSingle();
             Container.Bind<NavigationWorkBudget2D>().AsSingle();

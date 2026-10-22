@@ -162,6 +162,7 @@ namespace EmergencyShift.Tests
             ZenjectManagersInstaller.Install(scope);
             var installer = owner.AddComponent<WorldInstaller>();
             EmergencyShift.Editor.ThreatSignalAuthoring.ConfigureInstaller(installer);
+            EmergencyShift.Editor.PlayerRulesAuthoring.ConfigureInstaller(installer);
             scope.Inject(installer);
             installer.InstallBindings();
             return scope;
