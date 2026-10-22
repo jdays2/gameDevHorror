@@ -10,7 +10,9 @@ namespace EmergencyShift.Features.Flashlight
         {
             container.Bind<FlashlightControllerFactory>().AsSingle();
             container.Bind<IFlashlightOpticsSource>().FromInstance(sceneLight);
-            container.Bind<IWorldProjection2D>().FromInstance(new CameraWorldProjection2D(sceneLight != null ? sceneLight.WorldCamera : null));
+            var camera = new CameraWorldProjection2D(sceneLight != null ? sceneLight.WorldCamera : null);
+            container.Bind<IWorldProjection2D>().FromInstance(camera);
+            container.Bind<ICameraImpactView>().FromInstance(camera);
         }
     }
 }

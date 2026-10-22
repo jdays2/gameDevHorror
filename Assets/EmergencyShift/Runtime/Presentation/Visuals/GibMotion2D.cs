@@ -16,6 +16,8 @@ namespace EmergencyShift
         private SpriteRenderer visual;
         private SpriteRenderer shadow;
         private Vector3 baseScale;
+        private Color settledTint = RemainsVisualStyle.Tint;
+        private Color airborneTint = new Color(.74f, .68f, .72f);
         public float Height => height;
         public Vector2 Velocity => velocity;
         public bool Settled
@@ -28,6 +30,12 @@ namespace EmergencyShift
         {
             visual = body;
             shadow = contact;
+        }
+
+        public void ConfigureTint(Color settled, Color airborne)
+        {
+            settledTint = settled;
+            airborneTint = airborne;
         }
 
         public void Launch(Vector2 initialVelocity, float angularSpeed, LayerMask obstacles, float lift = 4f, float fallGravity = 26f)
@@ -100,7 +108,7 @@ namespace EmergencyShift
             // Камера остаётся строго сверху: подлёт читается масштабом и контактной тенью, без наклона вида.
             visual.transform.localScale = baseScale * (1 + height * 0.5f);
             visual.transform.Rotate(0, 0, spin * dt);
-            visual.color = Color.Lerp(RemainsVisualStyle.Tint, new Color(.74f, .68f, .72f), Mathf.Clamp01(height * 1.5f));
+            visual.color = Color.Lerp(settledTint, airborneTint, Mathf.Clamp01(height * 1.5f));
             if (shadow != null)
             {
                 shadow.transform.localScale = new Vector3(.22f, .10f, 1) / (1 + height * .7f);
@@ -116,7 +124,7 @@ namespace EmergencyShift
             height = 0;
             transform.position = new Vector3(floorPosition.x, floorPosition.y, RemainsVisualStyle.SurfaceZ);
             visual.transform.localScale = baseScale;
-            visual.color = RemainsVisualStyle.Tint;
+            visual.color = settledTint;
             if (shadow != null)
             {
                 shadow.transform.localScale = new Vector3(.22f, .10f, 1);

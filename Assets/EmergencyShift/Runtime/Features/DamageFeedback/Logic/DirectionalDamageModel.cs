@@ -14,14 +14,19 @@ namespace EmergencyShift.Features.DamageFeedback.Logic
         private readonly float[] ages = new float[Capacity];
         private int nextSlot;
         private int sequence;
+        private Vector2 impactDirection;
+        private float impactAge;
 
         public IReadOnlyList<DamagePulse> Pulses { get; }
         public int ActiveCount { get; private set; }
+        public Vector2 ImpactOffset { get; private set; }
+        public bool ImpactActive { get; private set; }
 
         public DirectionalDamageModel(DamageFeedbackSettings settings)
         {
             // Reject the default(struct) value as well as malformed authored data.
-            this.settings = new DamageFeedbackSettings(settings.HoldSeconds, settings.FadeSeconds, settings.Opacity);
+            this.settings = new DamageFeedbackSettings(settings.HoldSeconds, settings.FadeSeconds, settings.Opacity,
+                settings.CameraDistance, settings.CameraSeconds);
             Pulses = Array.AsReadOnly(pulses);
         }
 
@@ -55,6 +60,11 @@ namespace EmergencyShift.Features.DamageFeedback.Logic
             pulses[nextSlot] = new DamagePulse(edge, settings.Opacity, seed);
             ages[nextSlot] = 0;
             nextSlot = (nextSlot + 1) % Capacity;
+            // Replace, rather than accumulate, camera displacement on consecutive hits.
+            impactDirection = -(towardSource / largest).normalized;
+            impactAge = 0;
+            ImpactOffset = Vector2.zero;
+            ImpactActive = settings.CameraDistance > 0;
         }
 
         public void Advance(float seconds)
@@ -62,6 +72,22 @@ namespace EmergencyShift.Features.DamageFeedback.Logic
             if (float.IsNaN(seconds) || float.IsInfinity(seconds) || seconds < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(seconds));
+            }
+
+            if (ImpactActive)
+            {
+                impactAge += seconds;
+                float progress = Mathf.Clamp01(impactAge / settings.CameraSeconds);
+                const float PeakTime = .12f;
+                float envelope = progress / PeakTime;
+                if (progress >= PeakTime)
+                {
+                    float remaining = (1 - progress) / (1 - PeakTime);
+                    envelope = remaining * remaining;
+                }
+
+                ImpactOffset = impactDirection * (settings.CameraDistance * envelope);
+                ImpactActive = progress < 1;
             }
 
             for (int i = 0; i < Capacity; i++)
@@ -89,6 +115,8 @@ namespace EmergencyShift.Features.DamageFeedback.Logic
             Array.Clear(ages, 0, Capacity);
             ActiveCount = 0;
             nextSlot = 0;
+            ImpactOffset = Vector2.zero;
+            ImpactActive = false;
         }
     }
 }

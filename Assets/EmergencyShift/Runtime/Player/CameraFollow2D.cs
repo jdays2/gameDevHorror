@@ -22,6 +22,8 @@ namespace EmergencyShift
         private float previousAspect;
         private bool framingDirty = true;
         private bool subscribed;
+        private Vector2 impactOffset;
+        private Vector3 appliedImpact;
 
         [Inject]
         private void Construct(PlayerLife2D scenePlayer)
@@ -40,7 +42,11 @@ namespace EmergencyShift
 
         private void OnEnable() => Bind();
         private void Start() => SnapToTarget();
-        private void OnDisable() => Unbind();
+        private void OnDisable()
+        {
+            Unbind();
+            ClearImpact();
+        }
         private void OnDestroy() => Unbind();
 
         private void OnValidate()
@@ -54,6 +60,9 @@ namespace EmergencyShift
 
         private void LateUpdate()
         {
+            // Smooth only the follow position. Feeding the previous kick into SmoothDamp causes drift.
+            transform.position -= appliedImpact;
+            appliedImpact = Vector3.zero;
             if (target == null || Time.deltaTime <= 0)
             {
                 return;
@@ -61,12 +70,20 @@ namespace EmergencyShift
 
             Vector3 destination = new Vector3(target.position.x, target.position.y, -10);
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, smoothing);
+            appliedImpact = transform.TransformDirection(new Vector3(impactOffset.x, impactOffset.y, 0));
+            transform.position += appliedImpact;
             UpdateFraming(false);
+        }
+
+        public void SetImpactOffset(Vector2 screenOffset)
+        {
+            impactOffset = screenOffset;
         }
 
         public void Configure(Transform player)
         {
             Unbind();
+            ClearImpact();
             target = player;
             optics = target != null ? target.GetComponent<IFlashlightOpticsSource>() : null;
             framingDirty = true;
@@ -82,6 +99,7 @@ namespace EmergencyShift
 
         public void SnapToTarget()
         {
+            ClearImpact();
             if (target == null)
             {
                 return;
@@ -95,6 +113,13 @@ namespace EmergencyShift
             velocity = Vector3.zero;
             transform.position = new Vector3(target.position.x, target.position.y, -10);
             UpdateFraming(true);
+        }
+
+        private void ClearImpact()
+        {
+            transform.position -= appliedImpact;
+            appliedImpact = Vector3.zero;
+            impactOffset = Vector2.zero;
         }
 
         private void Bind()

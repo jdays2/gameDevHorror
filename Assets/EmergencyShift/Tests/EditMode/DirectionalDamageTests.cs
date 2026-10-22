@@ -9,10 +9,13 @@ namespace EmergencyShift.Features.DamageFeedback.Tests
 {
     public sealed class DirectionalDamageTests
     {
-        private sealed class RecordingView : IDirectionalDamageView
+        private sealed class RecordingView : IDirectionalDamageView, ICameraImpactView
         {
             public int Renders { get; private set; }
             public bool Visible { get; private set; }
+            public Vector2 Impact { get; private set; }
+
+            public void SetImpactOffset(Vector2 screenOffset) => Impact = screenOffset;
 
             public void Render(IReadOnlyList<DamagePulse> pulses)
             {
@@ -125,7 +128,7 @@ namespace EmergencyShift.Features.DamageFeedback.Tests
         public void ControllerClearsTheLastFrameAndStopsRenderingWhenIdle()
         {
             var view = new RecordingView();
-            var controller = new DirectionalDamageController(CreateModel(), view);
+            var controller = new DirectionalDamageController(CreateModel(), view, view);
             controller.Show(1, Vector2.left);
             Assert.That(view.Visible, Is.True);
             controller.Tick(2);
@@ -146,6 +149,56 @@ namespace EmergencyShift.Features.DamageFeedback.Tests
             Assert.Throws<ArgumentOutOfRangeException>(() => new DamageFeedbackSettings(0, 1, float.NaN));
             Assert.Throws<ArgumentOutOfRangeException>(() => new DirectionalDamageModel(default));
             Assert.Throws<ArgumentOutOfRangeException>(() => CreateModel().Advance(float.PositiveInfinity));
+        }
+
+        [Test]
+        public void CameraKickIsBoundedDirectionalAndReturnsWithoutMovingBloodTimers()
+        {
+            var model = new DirectionalDamageModel(new DamageFeedbackSettings(.28f, 1.8f, .9f, .08f, .22f));
+            new ShowDamagePulseCommand(model, 1, Vector2.left).Execute();
+            model.Advance(.0264f);
+            Assert.That(model.ImpactOffset.x, Is.EqualTo(.08f).Within(.0001f));
+            Assert.That(model.ImpactOffset.y, Is.Zero);
+            Assert.That(model.Pulses[0].Opacity, Is.EqualTo(.9f));
+            new ShowDamagePulseCommand(model, 1, Vector2.up).Execute();
+            model.Advance(.0264f);
+            Assert.That(model.ImpactOffset.magnitude, Is.LessThanOrEqualTo(.08001f));
+            Assert.That(model.ImpactOffset.y, Is.LessThan(0));
+            model.Advance(.3f);
+            Assert.That(model.ImpactOffset, Is.EqualTo(Vector2.zero));
+            Assert.That(model.ImpactActive, Is.False);
+            Assert.That(model.ActiveCount, Is.EqualTo(2));
+            model.Advance(.7f);
+            Assert.That(model.Pulses[0].Opacity, Is.GreaterThan(.45f), "One-second feedback must remain readable.");
+        }
+
+        [Test]
+        public void CameraKickCanBeDisabledAndResetWithoutAResidualOffset()
+        {
+            var view = new RecordingView();
+            var model = new DirectionalDamageModel(new DamageFeedbackSettings(0, .01f, .9f, .08f, .22f));
+            var controller = new DirectionalDamageController(model, view, view);
+            controller.Show(1, Vector2.right);
+            controller.Tick(.03f);
+            Assert.That(view.Visible, Is.False);
+            Assert.That(view.Impact.x, Is.LessThan(0), "Impact lifetime is independent of short custom blood fades.");
+            controller.Reset();
+            Assert.That(view.Impact, Is.EqualTo(Vector2.zero));
+            Assert.That(model.ImpactActive, Is.False);
+            var disabled = new DirectionalDamageModel(new DamageFeedbackSettings(.2f, 1, .9f, 0));
+            new ShowDamagePulseCommand(disabled, 1, Vector2.left).Execute();
+            disabled.Advance(.03f);
+            Assert.That(disabled.ImpactOffset, Is.EqualTo(Vector2.zero));
+        }
+
+        [TestCase(float.NaN, .22f)]
+        [TestCase(-.1f, .22f)]
+        [TestCase(.3f, .22f)]
+        [TestCase(.08f, 0)]
+        [TestCase(.08f, float.PositiveInfinity)]
+        public void InvalidCameraSettingsAreRejected(float distance, float seconds)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new DamageFeedbackSettings(.2f, 1, .9f, distance, seconds));
         }
     }
 }

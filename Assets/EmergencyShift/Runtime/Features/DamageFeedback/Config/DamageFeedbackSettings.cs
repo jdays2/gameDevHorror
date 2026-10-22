@@ -7,8 +7,11 @@ namespace EmergencyShift.Features.DamageFeedback.Config
         public float HoldSeconds { get; }
         public float FadeSeconds { get; }
         public float Opacity { get; }
+        public float CameraDistance { get; }
+        public float CameraSeconds { get; }
 
-        public DamageFeedbackSettings(float holdSeconds, float fadeSeconds, float opacity)
+        public DamageFeedbackSettings(float holdSeconds, float fadeSeconds, float opacity,
+            float cameraDistance = 0, float cameraSeconds = .22f)
         {
             if (float.IsNaN(holdSeconds) || float.IsInfinity(holdSeconds) || holdSeconds < 0)
             {
@@ -25,9 +28,21 @@ namespace EmergencyShift.Features.DamageFeedback.Config
                 throw new ArgumentOutOfRangeException(nameof(opacity));
             }
 
+            if (!float.IsFinite(cameraDistance) || cameraDistance < 0 || cameraDistance > .25f)
+            {
+                throw new ArgumentOutOfRangeException(nameof(cameraDistance));
+            }
+
+            if (!float.IsFinite(cameraSeconds) || cameraSeconds <= 0 || cameraSeconds > 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(cameraSeconds));
+            }
+
             HoldSeconds = holdSeconds;
             FadeSeconds = fadeSeconds;
             Opacity = opacity;
+            CameraDistance = cameraDistance;
+            CameraSeconds = cameraSeconds;
         }
     }
 }

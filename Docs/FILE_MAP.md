@@ -4,10 +4,12 @@
 
 ## AgentScripts
 
+- [ApplyDamageFeedbackReview.cs](../AgentScripts/ApplyDamageFeedbackReview.cs)
 - [AssignPlayerInput.cs](../AgentScripts/AssignPlayerInput.cs)
 - [AuditLevelReuse.cs](../AgentScripts/AuditLevelReuse.cs)
 - [AuditProjectReferences.cs](../AgentScripts/AuditProjectReferences.cs)
 - [BakeMorgueDrain.cs](../AgentScripts/BakeMorgueDrain.cs)
+- [CaptureDamageReview.cs](../AgentScripts/CaptureDamageReview.cs)
 - [CheckDirectionalDamage.cs](../AgentScripts/CheckDirectionalDamage.cs)
 - [CheckGroundAudioScope.cs](../AgentScripts/CheckGroundAudioScope.cs)
 - [CheckInjectedActorCreation.cs](../AgentScripts/CheckInjectedActorCreation.cs)
@@ -24,6 +26,8 @@
 - [OrganizeMaterials.cs](../AgentScripts/OrganizeMaterials.cs)
 - [RestoreCreatureArtwork.cs](../AgentScripts/RestoreCreatureArtwork.cs)
 - [ReviewCreatureArtwork.cs](../AgentScripts/ReviewCreatureArtwork.cs)
+- [ReviewDamageAndRemains.cs](../AgentScripts/ReviewDamageAndRemains.cs)
+- [ReviewDamageFeedbackVisuals.cs](../AgentScripts/ReviewDamageFeedbackVisuals.cs)
 
 ## Assets/EmergencyShift/Editor/Authoring
 
@@ -108,6 +112,7 @@
 - [EnemyPresentationSource2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/EnemyPresentationSource2D.cs)
 - [IAccessCardRecipient.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IAccessCardRecipient.cs)
 - [IAutoPickup.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs)
+- [ICameraImpactView.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/ICameraImpactView.cs)
 - [IFlashlightRecipient.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IFlashlightRecipient.cs)
 - [IInteractable.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs)
 - [IInteractionActor.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IInteractionActor.cs)
@@ -902,6 +907,7 @@
 - [CameraOpticsLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs)
 - [CameraOpticsTestSource.cs](../Assets/EmergencyShift/Tests/PlayMode/CameraOpticsTestSource.cs)
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
+- [DamageFeedbackLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DamageFeedbackLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
 - [DoorMotionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs)
 - [EnemyMeleeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs)
@@ -919,6 +925,7 @@
 - [ProbeCancellationTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProbeCancellationTests.cs)
 - [ProjectileProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs)
 - [ProjectileSceneOwnershipTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs)
+- [RemainsPaletteLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/RemainsPaletteLifetimeTests.cs)
 - [SleeperBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs)
 - [StalkerBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)

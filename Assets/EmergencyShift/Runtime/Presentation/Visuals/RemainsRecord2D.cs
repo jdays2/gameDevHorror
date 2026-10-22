@@ -108,7 +108,7 @@ namespace EmergencyShift
                     renderer.sprite = fragments[spriteIndex];
                     renderer.sharedMaterial = litMaterial;
                     renderer.sortingOrder = RemainsVisualStyle.DeadOrder;
-                    renderer.color = RemainsVisualStyle.Tint;
+                    renderer.color = profile.SettledTint;
                     float angle = i * Mathf.PI * 2 / count + variant.RotationOffset * Mathf.Deg2Rad + Range(-.33f, .33f);
                     body.transform.rotation = Quaternion.Euler(0, 0, Range(0f, 360f));
                     SpriteRenderer shadow = null;
@@ -125,6 +125,7 @@ namespace EmergencyShift
 
                     var motion = piece.GetComponent<GibMotion2D>();
                     motion.ConfigureVisual(renderer, shadow);
+                    motion.ConfigureTint(profile.SettledTint, profile.AirborneTint);
                     // Чередуем тяжёлые близкие куски и быстрые дальние, а не восемь одинаковых импульсов.
                     float power = Range(profile.ImpulseRange.x, profile.ImpulseRange.y) * variant.ImpulseMultiplier * (i % 3 == 0 ? .65f : 1);
                     float lift = Range(profile.LiftRange.x, profile.LiftRange.y);

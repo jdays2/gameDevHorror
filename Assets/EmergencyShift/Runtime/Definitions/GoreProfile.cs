@@ -20,6 +20,10 @@ namespace EmergencyShift
         [Min(1)]
         [SerializeField]
         private float gravity = 26;
+        [SerializeField, Tooltip("Tint of new settled fragments; keep RGB below one so remains stay darker than living actors.")]
+        private Color settledTint = new Color(.78f, .73f, .76f, 1);
+        [SerializeField]
+        private Color airborneTint = new Color(.88f, .82f, .86f, 1);
         [SerializeField]
         private GoreVariant[] variants =
         {
@@ -31,6 +35,8 @@ namespace EmergencyShift
         public Vector2 ImpulseRange => impulseRange;
         public Vector2 LiftRange => liftRange;
         public float Gravity => gravity;
+        public Color SettledTint => settledTint;
+        public Color AirborneTint => airborneTint;
         public int VariantCount => variants != null ? variants.Length : 0;
         public GoreVariant VariantAt(int index) => variants[index];
 
@@ -97,7 +103,7 @@ namespace EmergencyShift
         {
             if (!float.IsFinite(poolSize) || poolSize < .1f || !float.IsFinite(releaseDelay) || releaseDelay < 0 ||
                 !float.IsFinite(gravity) || gravity < 1 || VariantCount == 0 ||
-                !ValidRange(impulseRange) || !ValidRange(liftRange))
+                !ValidRange(impulseRange) || !ValidRange(liftRange) || !ValidTint(settledTint) || !ValidTint(airborneTint))
             {
                 throw new InvalidOperationException("Invalid gore profile: " + name);
             }
@@ -121,5 +127,8 @@ namespace EmergencyShift
         }
 
         private static bool ValidRange(Vector2 value) => float.IsFinite(value.x) && float.IsFinite(value.y) && value.x >= 0 && value.y >= value.x;
+
+        private static bool ValidTint(Color value) => float.IsFinite(value.r) && float.IsFinite(value.g) && float.IsFinite(value.b)
+            && value.r > 0 && value.r <= 1 && value.g > 0 && value.g <= 1 && value.b > 0 && value.b <= 1 && value.a == 1;
     }
 }
