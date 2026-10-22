@@ -17,12 +17,14 @@ namespace EmergencyShift
             Container.BindInterfacesAndSelfTo<SceneRegistry<StalkerAudio2D>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<IGroundAudioRegion>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<LocalLamp2D>>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SceneRegistry<FullHeightLightBlocker2D>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<ShotEffect2D>>().AsSingle();
             Container.BindInterfacesAndSelfTo<SceneRegistry<AudioThreatEmitter2D>>().AsSingle();
             Container.Bind<LocalIlluminationQuery2D>().AsSingle();
             Container.Bind<GroundAudioSurfaceQuery2D>().AsSingle();
             Container.Bind<EnemyChasePathFactory>().AsSingle();
             Container.Bind<CheckpointSessionFactory>().AsSingle();
+            Container.Bind<EmergencyShift.Features.Encounter.EncounterControllerFactory>().AsSingle();
             AudioMoodInstaller.Install(Container);
             LampPowerInstaller.Install(Container);
         }

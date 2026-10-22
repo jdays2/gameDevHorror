@@ -1,21 +1,34 @@
+using System;
+using EmergencyShift.Features.Encounter;
+using EmergencyShift.Features.Encounter.Logic;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
     /// <summary>One-shot authorable activation of already placed enemies. It never resets an active fight.</summary>
     [RequireComponent(typeof(BoxCollider2D)), DisallowMultipleComponent]
-    public sealed class EncounterActivation2D : MonoBehaviour
+    public sealed class EncounterActivation2D : MonoBehaviour, IEncounterView
     {
         [SerializeField]
         private GameObject[] actors;
-        public bool Activated
+        private EncounterController controller;
+        public bool Activated => controller != null && controller.Activated;
+
+        [Inject]
+        public void Construct(EncounterControllerFactory factory)
         {
-            get; private set;
+            if (factory == null)
+            {
+                throw new ArgumentNullException(nameof(factory));
+            }
+
+            controller = factory.Create(this, Activated);
         }
 
         public void RestoreState(bool triggered)
         {
-            Activated = triggered;
+            RequireController().Restore(triggered);
         }
 
         public void Configure(GameObject[] targets)
@@ -34,14 +47,10 @@ namespace EmergencyShift
             // Actors are authored inactive. Awake does not turn off enemies that already exist in the room.
         }
 
-        public bool Activate()
-        {
-            if (Activated)
-            {
-                return false;
-            }
+        public bool Activate() => RequireController().Activate().Success;
 
-            Activated = true;
+        void IEncounterView.ActivateActors()
+        {
             if (actors != null)
             {
                 foreach (var actor in actors)
@@ -53,8 +62,10 @@ namespace EmergencyShift
                 }
             }
 
-            return true;
         }
+
+        private EncounterController RequireController() => controller ??
+            throw new InvalidOperationException("Encounter activation requires level composition.");
 
         private void OnTriggerEnter2D(Collider2D other)
         {

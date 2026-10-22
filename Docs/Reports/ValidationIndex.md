@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Native light/encounter / BUG-035 | [NativeLight38](NativeLight38.md): baseline0/2 PlayMode →1179/1179 EditMode,69/69 PlayMode,Windows64 success. Output cleanup, scoped blockers, standalone preview и one-shot model/commands; геометрия/сцены/DTO прежние. |
 | Native remains owner/dead pose / BUG-033/034 | [NativeRemains37](NativeRemains37.md): baseline0/3 PlayMode →1173/1173 EditMode,67/67 PlayMode,Windows64 success. Разлёт живёт на record, actor relay снимается, readiness видит records, hit reset сохраняет SurfaceZ. Старые art/геометрия/budget/DTO сохранены. |
 | Завершение readonly SO API / BUG-032 | [SharedDefinition36](SharedDefinition36.md): baseline0/8 →1173/1173 EditMode,64/64 PlayMode,Windows64 success. Dialogue/nested/style/gait/study API, полный own-SO sweep, asset validation, modal guards и choice listener cleanup. |
 | Checkpoint session/DI/lifetime / BUG-031 | [CheckpointSession35](CheckpointSession35.md): baseline 0/2 PlayMode, затем 1147/1147 EditMode, 62/62 PlayMode, Windows64 success. Личная model/commands, world-owned bounded paths, native scene/IO adapters, disable/rebind/clear и direct preflight. |

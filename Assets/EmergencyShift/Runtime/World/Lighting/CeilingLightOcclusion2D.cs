@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using EmergencyShift.Core.Composition;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -18,6 +20,9 @@ namespace EmergencyShift
         [SerializeField, Tooltip("Additional full-height rectangles, or the complete list when automatic discovery is off. Exclude low furniture.")]
         private BoxCollider2D[] fullHeightBlockers = new BoxCollider2D[0];
         private readonly List<BoxCollider2D> blockers = new List<BoxCollider2D>();
+        private readonly List<GameObject> previewRoots = new List<GameObject>();
+        private readonly List<FullHeightLightBlocker2D> previewMarkers = new List<FullHeightLightBlocker2D>();
+        private SceneRegistry<FullHeightLightBlocker2D> registry;
         private LocalLamp2D lamp;
         private Light2D source;
         private Texture2D texture;
@@ -26,12 +31,18 @@ namespace EmergencyShift
         private readonly float[] distances = new float[RayCount];
         private readonly Color32[] pixels = new Color32[Resolution * Resolution];
         private int previousGeometry;
-        private int registryVersion = -1;
         private bool initialized;
         private bool maskApplied;
 
         public bool CeilingLighting => ceilingLighting;
         public int BlockerCount => blockers.Count;
+
+        [Inject]
+        public void Construct(SceneRegistry<FullHeightLightBlocker2D> sceneBlockers)
+        {
+            registry = sceneBlockers ?? throw new System.ArgumentNullException(nameof(sceneBlockers));
+            initialized = false;
+        }
 
         public void SetCeilingLighting(bool value)
         {
@@ -43,7 +54,6 @@ namespace EmergencyShift
         {
             fullHeightBlockers = blockers;
             initialized = false;
-            registryVersion = -1;
             Refresh();
         }
 
@@ -53,7 +63,6 @@ namespace EmergencyShift
             source = GetComponent<Light2D>();
             originalCookie = source.lightCookieSprite;
             initialized = false;
-            registryVersion = -1;
             Refresh();
         }
 
@@ -86,10 +95,7 @@ namespace EmergencyShift
                 return;
             }
 
-            if (!initialized || registryVersion != FullHeightLightBlocker2D.RegistryVersion)
-            {
-                ResolveBlockers();
-            }
+            ResolveBlockers();
 
             int geometry = GeometryHash();
             if (!initialized || previousGeometry != geometry)
@@ -110,35 +116,60 @@ namespace EmergencyShift
             blockers.Clear();
             if (automaticallyFindBlockers)
             {
-                FullHeightLightBlocker2D.CollectFor(this, blockers);
+                if (registry != null)
+                {
+                    foreach (var marker in registry.Members)
+                    {
+                        AddMarker(marker);
+                    }
+                }
+                else if (gameObject.scene.IsValid() && gameObject.scene.isLoaded)
+                {
+                    // Standalone authoring/Prefab Mode has no DI scope. Search only this scene,
+                    // reusing native buffers; never publish preview membership globally.
+                    gameObject.scene.GetRootGameObjects(previewRoots);
+                    foreach (var root in previewRoots)
+                    {
+                        root.GetComponentsInChildren(false, previewMarkers);
+                        foreach (var marker in previewMarkers)
+                        {
+                            AddMarker(marker);
+                        }
+                    }
+                }
             }
 
             if (fullHeightBlockers != null)
             {
                 foreach (var blocker in fullHeightBlockers)
                 {
-                    if (blocker != null && !blockers.Contains(blocker))
+                    if (blocker != null && blocker.gameObject.scene == gameObject.scene && !blockers.Contains(blocker))
                     {
                         blockers.Add(blocker);
                     }
                 }
             }
 
-            registryVersion = FullHeightLightBlocker2D.RegistryVersion;
-            initialized = false;
+        }
+
+        private void AddMarker(FullHeightLightBlocker2D marker)
+        {
+            if (marker != null && marker.isActiveAndEnabled && marker.gameObject.scene == gameObject.scene && marker.Shape != null)
+            {
+                blockers.Add(marker.Shape);
+            }
         }
 
         private void OnValidate()
         {
             initialized = false;
-            registryVersion = -1;
         }
 
         private int GeometryHash()
         {
             unchecked
             {
-                int hash = transform.localToWorldMatrix.GetHashCode() * 31 + lamp.Radius.GetHashCode();
+                int hash = (transform.localToWorldMatrix.GetHashCode() * 31 + lamp.Radius.GetHashCode()) * 31 + blockers.Count;
                 foreach (var blocker in blockers)
                 {
                     if (blocker == null)
@@ -146,6 +177,7 @@ namespace EmergencyShift
                         continue;
                     }
 
+                    hash = hash * 31 + blocker.GetEntityId().GetHashCode();
                     hash = hash * 31 + blocker.transform.localToWorldMatrix.GetHashCode();
                     hash = hash * 31 + blocker.size.GetHashCode();
                     hash = hash * 31 + blocker.offset.GetHashCode();

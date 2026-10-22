@@ -46,6 +46,7 @@ namespace EmergencyShift.Tests
             upgrade.Construct(new Features.Pickups.PickupControllerFactory());
             participants.Add("upgrade", upgrade.gameObject.AddComponent<UpgradeCheckpoint2D>());
             encounter = Entity("encounter").gameObject.AddComponent<EncounterActivation2D>();
+            encounter.Construct(new Features.Encounter.EncounterControllerFactory());
             participants.Add("encounter", encounter.gameObject.AddComponent<EncounterCheckpoint2D>());
             SetFlags(true);
             definition = ScriptableObject.CreateInstance<LevelDefinition>();
@@ -81,6 +82,22 @@ namespace EmergencyShift.Tests
         public void MissingBooleansAreRejectedByValidation(string kind, string json)
         {
             Assert.Throws<InvalidOperationException>(() => participants[kind].ValidateCheckpoint(json));
+        }
+
+        [Test]
+        public void NativeEncounterActivatesOnceAndRebindPreservesStateWithoutReplay()
+        {
+            encounter.Configure(new[] { first.gameObject });
+            encounter.RestoreState(false);
+            Assert.That(first.gameObject.activeSelf, Is.False);
+            Assert.That(encounter.Activate(), Is.True);
+            Assert.That(first.gameObject.activeSelf, Is.True);
+            first.gameObject.SetActive(false);
+            encounter.Construct(new Features.Encounter.EncounterControllerFactory());
+            Assert.That(encounter.Activate(), Is.False);
+            Assert.That(first.gameObject.activeSelf, Is.False);
+            encounter.RestoreState(false);
+            Assert.That(first.gameObject.activeSelf, Is.False);
         }
 
         [TestCaseSource(nameof(IncompletePayloads))]

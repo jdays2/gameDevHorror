@@ -205,6 +205,43 @@ namespace EmergencyShift.Tests
             Assert.That(lamp.CurrentIntensity, Is.Zero);
         }
 
+        [UnityTest]
+        public IEnumerator DisablingFlashStopsNativeOutputAndReenableDoesNotReplayIt()
+        {
+            ShotEffect2D effect = Effect(first, effectsA);
+            Assert.That(effect.LightSource.enabled, Is.True);
+            effect.enabled = false;
+            Assert.That(effectsA.Members, Is.Empty);
+            Assert.That(effect.LightSource.enabled, Is.False, "A disabled flash must not leave a frozen native light.");
+            foreach (var renderer in effect.GetComponentsInChildren<SpriteRenderer>(true))
+            {
+                Assert.That(renderer.enabled, Is.False);
+            }
+
+            effect.enabled = true;
+            Assert.That(effect.LightSource.enabled, Is.False, "Reenable does not authorize replay.");
+            yield return null;
+            Assert.That(effect != null, Is.True);
+            var definition = AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset");
+            effect.Play(definition.Visuals, false, Vector2.up);
+            Assert.That(effect.LightSource.enabled, Is.True);
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator RemovingCeilingMaskDoesNotReactivateADisabledLamp()
+        {
+            LocalLamp2D lamp = BareLamp(new LampClock(), out var bulb);
+            lamp.SetPower(true);
+            var mask = lamp.gameObject.AddComponent<CeilingLightOcclusion2D>();
+            lamp.enabled = false;
+            mask.enabled = false;
+            var source = lamp.GetComponent<UnityEngine.Rendering.Universal.Light2D>();
+            Assert.That(source.enabled, Is.False, "Mask cleanup must respect the lamp output owner.");
+            Assert.That(bulb.enabled, Is.False);
+            yield return null;
+        }
+
         private LocalLamp2D BareLamp(IGameClock clock, out SpriteRenderer bulb)
         {
             var owner = new GameObject("Deterministic native lamp");

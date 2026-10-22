@@ -11,6 +11,7 @@
 | [PauseMenu](PauseMenu.md) | Esc, пауза мира/аудио, возврат без сквозного игрового ввода, Below the Ward | [План UI](https://app.notion.com/p/3ff8d6dc06b681b3a635cf10e8836b1c?pvs=204), [музыка](../Audio/AUDIO_GUIDE.md#музыка-меню-паузы) |
 | [Hud](Hud.md) | Данные HUD и представление | [HUD](../UI/HUD_DESIGN_SYSTEM.md) |
 | [Persistence](Persistence.md) | Цели, ID, snapshot/restore и дисковая запись | [Чекпоинты](../Guides/CHECKPOINTS.md) |
+| [Encounters](Encounters.md) | Личный one-shot флаг, команды и trigger adapter размещённой группы | [Чекпоинты](../Guides/CHECKPOINTS.md) |
 | [Sandbox](Sandbox.md) | Временные условия независимых проверок | [Песочница](../SANDBOX.md), [маршрут](../Guides/MORGUE_ROUTE_TEST.md) |
 | [Lighting](Lighting.md) | Контуры/URP-тени и Editor-границы | [Форма теней](../Environment/FURNITURE_SHADOW_SHAPES.md) |
 

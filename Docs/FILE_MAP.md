@@ -338,6 +338,18 @@
 - [StopDoorMotionCommand.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs)
 - [ToggleDoorCommand.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Encounter
+
+- [EncounterControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Encounter/EncounterControllerFactory.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Encounter/Logic
+
+- [ActivateEncounterCommand.cs](../Assets/EmergencyShift/Runtime/Features/Encounter/Logic/ActivateEncounterCommand.cs)
+- [EncounterController.cs](../Assets/EmergencyShift/Runtime/Features/Encounter/Logic/EncounterController.cs)
+- [EncounterModel.cs](../Assets/EmergencyShift/Runtime/Features/Encounter/Logic/EncounterModel.cs)
+- [IEncounterView.cs](../Assets/EmergencyShift/Runtime/Features/Encounter/Logic/IEncounterView.cs)
+- [RestoreEncounterCommand.cs](../Assets/EmergencyShift/Runtime/Features/Encounter/Logic/RestoreEncounterCommand.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/Enemies
 
 - [EnemyInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs)
@@ -786,6 +798,7 @@
 - [DoorAccessTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs)
 - [DoorFeedbackProfileTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs)
 - [DoorMotionTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs)
+- [EncounterControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs)
 - [EnemyConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyConfigTests.cs)
 - [EnemyDeathAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyDeathAudioTests.cs)
 - [EnemyMeleeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs)

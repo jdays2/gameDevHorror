@@ -10,6 +10,14 @@
 
 Длину и направление считает URP для каждого Light2D. Временные PropGroundShadow2D, PropShadowProfile и LowPropShadows удалены. Коллайдеры движения/лучей остаются простыми и независимыми от визуального контура. Камера, защитные свойства света, AI, тени Сталкера/игрока и их общий материал не меняются. Это стандартные 2D-тени, без физической модели высоты предмета.
 
+## Владельцы потолочного света и вспышек
+
+`LocalLamp2D` отображает личную LampPower model/controller; profile и явные scene overrides задают внешний вид. Выключенный компонент не включает Light2D/маркер при RefreshAppearance, в том числе при снятии потолочной маски. Флаг питания при этом сохраняется для повторного enable.
+
+`FullHeightLightBlocker2D` регистрируется в `SceneRegistry<FullHeightLightBlocker2D>` своего уровня; список не статический. `CeilingLightOcclusion2D` получает этот реестр через DI, проверяет сцену и у автоматических, и у явных blocker-ссылок. Standalone editor/Prefab Mode без контейнера собирает маркеры только из собственной загруженной сцены в повторно используемые buffers. Это native authoring/geometry query, не игровая Model. Перемещение/enable стен и дверей меняет geometry hash; прежние 512 направлений, 128² cookie и алгоритм пересечения прямоугольников сохранены. Перестройка и upload выполняются при изменении геометрии. Дополнительный сбор текущих участников O(B) на лампу не является замером FPS.
+
+`ShotEffect2D` владеет светом и renderer-каналами одной вспышки. Disable выключает их и отменяет playback marker; повторный enable не повторяет выстрел. Явный Play по-прежнему может подготовить inactive native fixture. Profile, длительности и seed/order косметических выборов прежние; transient объект удаляется после обычного завершения. Runtime registry membership и native output закрываются одним владельцем.
+
 ## Проверки и связанные документы
 
 Контракт и авторинг: [Тени окружения](../Environment/FURNITURE_SHADOW_SHAPES.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).

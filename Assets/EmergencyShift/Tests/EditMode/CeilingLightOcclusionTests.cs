@@ -16,20 +16,27 @@ namespace EmergencyShift.Tests
                 UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(owner, first);
                 var ownWall = new GameObject("Own full-height wall");
                 UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(ownWall, first);
-                ownWall.AddComponent<FullHeightLightBlocker2D>();
+                var ownMarker = ownWall.AddComponent<FullHeightLightBlocker2D>();
                 var otherWall = new GameObject("Other scene wall");
                 UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(otherWall, second);
-                otherWall.AddComponent<FullHeightLightBlocker2D>();
-                var found = new System.Collections.Generic.List<BoxCollider2D>();
-                FullHeightLightBlocker2D.CollectFor(owner.transform, found);
-                Assert.That(found, Has.Count.EqualTo(1));
-                Assert.That(found[0].gameObject, Is.EqualTo(ownWall));
-                int version = FullHeightLightBlocker2D.RegistryVersion;
+                var otherMarker = otherWall.AddComponent<FullHeightLightBlocker2D>();
+                using var registry = new Core.Composition.SceneRegistry<FullHeightLightBlocker2D>();
+                ownMarker.Construct(registry);
+                otherMarker.Construct(registry);
+                var mask = owner.AddComponent<CeilingLightOcclusion2D>();
+                mask.Construct(registry);
+                mask.SetCeilingLighting(true);
+                Assert.That(mask.BlockerCount, Is.EqualTo(1));
                 ownWall.SetActive(false);
-                found.Clear();
-                FullHeightLightBlocker2D.CollectFor(owner.transform, found);
-                Assert.That(found, Is.Empty);
-                Assert.That(FullHeightLightBlocker2D.RegistryVersion, Is.GreaterThan(version));
+                mask.SetCeilingLighting(true);
+                Assert.That(mask.BlockerCount, Is.Zero);
+                Assert.That(registry.Members, Has.Count.EqualTo(1));
+                ownWall.SetActive(true);
+                mask.SetCeilingLighting(true);
+                Assert.That(mask.BlockerCount, Is.EqualTo(1));
+                ownWall.GetComponent<BoxCollider2D>().enabled = false;
+                Assert.That(CeilingLightOcclusion2D.VisibleDistance(Vector2.zero, Vector2.right, 5,
+                    new[] { ownMarker.Shape }), Is.EqualTo(5));
             }
             finally
             {
@@ -61,6 +68,32 @@ namespace EmergencyShift.Tests
             {
                 Object.DestroyImmediate(wall);
                 Object.DestroyImmediate(desk);
+            }
+        }
+
+        [Test]
+        public void PreviewWithoutCompositionFindsNewMarkersAndReleasesDisabledOnes()
+        {
+            var scene = UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var owner = new GameObject("Standalone preview lamp");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(owner, scene);
+                var mask = owner.AddComponent<CeilingLightOcclusion2D>();
+                mask.SetCeilingLighting(true);
+                Assert.That(mask.BlockerCount, Is.Zero);
+                var wall = new GameObject("New preview wall");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(wall, scene);
+                var marker = wall.AddComponent<FullHeightLightBlocker2D>();
+                mask.SetCeilingLighting(true);
+                Assert.That(mask.BlockerCount, Is.EqualTo(1));
+                marker.enabled = false;
+                mask.SetCeilingLighting(true);
+                Assert.That(mask.BlockerCount, Is.Zero);
+            }
+            finally
+            {
+                UnityEditor.SceneManagement.EditorSceneManager.ClosePreviewScene(scene);
             }
         }
 

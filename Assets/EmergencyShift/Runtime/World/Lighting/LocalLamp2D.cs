@@ -181,8 +181,9 @@ namespace EmergencyShift
                 strength = sceneSettings.intensity;
             }
 
-            source.intensity = powered ? strength : 0;
-            source.enabled = powered;
+            bool visible = powered && isActiveAndEnabled;
+            source.intensity = visible ? strength : 0;
+            source.enabled = visible;
             if (sceneSettings != null)
             {
                 source.shadowsEnabled = sceneSettings.castsShadows;
@@ -204,7 +205,7 @@ namespace EmergencyShift
                 }
 
                 bulb.color = tint;
-                bulb.enabled = powered && strength > .001f;
+                bulb.enabled = visible && strength > .001f;
             }
         }
 

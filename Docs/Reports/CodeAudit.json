@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "617 own C# explicitly read; 49 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest NativeRemains37.",
+  "limits": "624 own C# explicitly read;45 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest NativeLight38.",
   "counts": {
-    "partial": 49,
-    "reviewed_boundary": 568
+    "partial": 45,
+    "reviewed_boundary": 579
   },
   "files": [
     {
@@ -2115,6 +2115,9 @@
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/ActivateEncounterCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/EncounterController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/RestoreEncounterCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ActivateStalkerAggroCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
@@ -2245,6 +2248,8 @@
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/ActivateEncounterCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/RestoreEncounterCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/ActivateStalkerAggroCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginEnemyMeleeCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/BeginSleeperAttackCommand.cs",
@@ -2442,10 +2447,13 @@
         "Assets/EmergencyShift/Runtime/Presentation/Audio/AudioThreatEmitter2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/Door2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/CeilingLightOcclusion2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/FullHeightLightBlocker2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalIlluminationQuery2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurface2D.cs",
         "Assets/EmergencyShift/Runtime/World/Surfaces/GroundAudioSurfaceQuery2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs",
@@ -9196,6 +9204,163 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Encounter/EncounterControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "7954383a309069923102c2965e5815f9ec9655e83d915fdcce55d00a9cc70af4",
+      "guid": "bec7fbe31a65e004990c8b87c6faa611",
+      "types": [
+        "EncounterControllerFactory"
+      ],
+      "lines": 10,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7954383a309069923102c2965e5815f9ec9655e83d915fdcce55d00a9cc70af4",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/ActivateEncounterCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "c50a525b17dcb64619d91ee5cd9193ca549bf69708d862335cdf5c431b8a4932",
+      "guid": "95291909cd5e6ac47ba529d72dc06649",
+      "types": [
+        "ActivateEncounterCommand"
+      ],
+      "lines": 23,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/EncounterController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "c50a525b17dcb64619d91ee5cd9193ca549bf69708d862335cdf5c431b8a4932",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/EncounterController.cs",
+      "sourceScope": "unity",
+      "sha256": "6aa91838e519d51bad1a68944546b8fa1f8aebb93c857c47f0ed2baf49eceebe",
+      "guid": "07cb1bc3a903c86419d6cbc1357fd6d8",
+      "types": [
+        "EncounterController"
+      ],
+      "lines": 31,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Encounter/EncounterControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "6aa91838e519d51bad1a68944546b8fa1f8aebb93c857c47f0ed2baf49eceebe",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/EncounterModel.cs",
+      "sourceScope": "unity",
+      "sha256": "5ddd5989f667a81e61480d603f9a68ba038256691a370ff5414cb99b4de34f02",
+      "guid": "1afed249afacf0b43b3455424e570790",
+      "types": [
+        "EncounterModel"
+      ],
+      "lines": 12,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Encounter/EncounterControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/ActivateEncounterCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/EncounterController.cs",
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/RestoreEncounterCommand.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "5ddd5989f667a81e61480d603f9a68ba038256691a370ff5414cb99b4de34f02",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/IEncounterView.cs",
+      "sourceScope": "unity",
+      "sha256": "20298a8181e161ac1dd419d0e9e295b2c74d26b4e4fa24d520315fe21149eded",
+      "guid": "5f0d33d84703780468d7a9255c4f0159",
+      "types": [
+        "IEncounterView"
+      ],
+      "lines": 7,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Encounter/EncounterControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/EncounterController.cs",
+        "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "20298a8181e161ac1dd419d0e9e295b2c74d26b4e4fa24d520315fe21149eded",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/RestoreEncounterCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "d6a8ad9ece976feac15993ed374097ad1eabace3f7fb6706e667e146c955584a",
+      "guid": "d7bb51f0ca6a4c24a9060a3050be086a",
+      "types": [
+        "RestoreEncounterCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Encounter/Logic/EncounterController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d6a8ad9ece976feac15993ed374097ad1eabace3f7fb6706e667e146c955584a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "EnemyMelee01: personal pure strike/lunge/cooldown model, clock, lifecycle/restore commands, controller and separate Unity perception/motor/damage environment; scoped factory and compatibility events/DTO. 572 EditMode, 21 PlayMode (actual two prefab hits/wall), normal Windows64. GUID/tuning/resources preserved; see FSM/config/fixture limits.",
       "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyMeleeSettings.cs",
       "sourceScope": "unity",
@@ -14610,13 +14775,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
-      "sha256": "611bf1757c21b2f17cb3185764e82feaa86b8ebde4fce5148329a05c6916caef",
+      "sha256": "e00e609e800b036e04a57540f3bf6dac920babf0dd8aea3423497e40c9892f25",
       "baselineSha256": "611bf1757c21b2f17cb3185764e82feaa86b8ebde4fce5148329a05c6916caef",
       "guid": "813322b1c485f1147a3224ae5188e986",
       "types": [
         "EncounterActivation2D"
       ],
-      "lines": 75,
+      "lines": 86,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Levels/EncounterZone.prefab"
       ],
@@ -14629,8 +14794,8 @@
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Awake не выключает уже живых врагов, повторная Activate отвергается. Личное Activated отделено от общих SO. Но правило однократности/изменение состояния и Unity activation объединены в MB; нет чистой Model/command-границы.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14646,10 +14811,11 @@
         "PlayerLife2D"
       ],
       "usageEvidence": "Trigger и EncounterCheckpoint2D",
-      "reviewedSha256": "611bf1757c21b2f17cb3185764e82feaa86b8ebde4fce5148329a05c6916caef",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit08.md",
-      "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
+      "reviewedSha256": "e00e609e800b036e04a57540f3bf6dac920babf0dd8aea3423497e40c9892f25",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
@@ -14887,13 +15053,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
-      "sha256": "2d9f8384a40d7154f47268bd0ce3ccccb326a9fad2b10fcadd7e5bb78fb67f0c",
+      "sha256": "7cbcf3dbc226550d672b2ad72a2e1eaebc4749953220cadd1ae6faa11a97a8d1",
       "baselineSha256": null,
       "guid": "0a79308db69301e4d968479a95aeff27",
       "types": [
         "LevelRegistriesInstaller"
       ],
-      "lines": 30,
+      "lines": 32,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -14902,8 +15068,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
-      "reviewedSha256": "2d9f8384a40d7154f47268bd0ce3ccccb326a9fad2b10fcadd7e5bb78fb67f0c",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
+      "reviewedSha256": "7cbcf3dbc226550d672b2ad72a2e1eaebc4749953220cadd1ae6faa11a97a8d1",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14920,8 +15086,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/CheckpointSession35.md",
-      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -17938,13 +18104,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/ShotEffect2D.cs",
-      "sha256": "7badfd318c91545878d4a16ab76fafa116c785c9b1bfe358afd3daf7c9669fbb",
+      "sha256": "ca19ec8e7a446810ab1f8474082d43333aa270ec4b334f90fd4e756282c17caf",
       "baselineSha256": "0bf75bd967f5b66f88ac487851335d6b1afbca0632d3818a9dbaf13a372a6252",
       "guid": "52f3d9d541841ba4783acf4f960c88f6",
       "types": [
         "ShotEffect2D"
       ],
-      "lines": 225,
+      "lines": 259,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Combat/PistolShotEffect.prefab"
       ],
@@ -17978,8 +18144,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "VisualConfig31: readonly visual config consumption/guards проверены; прежние actor, presentation lifetime и probe долги сохранены.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Вспышка/плюм/impact, локальный свет и запрос видимости",
@@ -17990,10 +18156,10 @@
         "Unity Random/Time"
       ],
       "usageEvidence": "PlayerWeapon/Bullet Instantiate→Play; PlayerInteraction.IlluminatesPoint для подбора",
-      "reviewedSha256": "7badfd318c91545878d4a16ab76fafa116c785c9b1bfe358afd3daf7c9669fbb",
+      "reviewedSha256": "ca19ec8e7a446810ab1f8474082d43333aa270ec4b334f90fd4e756282c17caf",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/VisualConfig31.md",
-      "reviewScope": "Shot/projectile profiles fully read: readonly serialized fields, full nested validation and validation-before-mutation; touched native/recipe/fixture consumers reviewed. Prior partial actor/presentation/probe scopes retained; no recipe execution.",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -18699,13 +18865,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/CeilingLightOcclusion2D.cs",
-      "sha256": "afbe93a402bfb673c8bf30f52dd960966297d3def8a0bb9f6190f316e8c3a447",
+      "sha256": "2c017c798a9fe055bcb742b607ec8dbdf3aa3c5e34015c8ee7620a1a1322a76f",
       "baselineSha256": "afbe93a402bfb673c8bf30f52dd960966297d3def8a0bb9f6190f316e8c3a447",
       "guid": "2b4653f674ec13b4bb753360e080155d",
       "types": [
         "CeilingLightOcclusion2D"
       ],
-      "lines": 266,
+      "lines": 298,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Environment/HospitalLamp01.prefab",
         "Assets/EmergencyShift/Prefabs/World/EmergencyLamp.prefab",
@@ -18719,11 +18885,12 @@
       ],
       "lexicalSourceUsers": [
         "AgentScripts/CleanUnusedShadowOverrides.cs",
-        "Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "Cookie/Texture lifetime закрыт OnDisable; geometry hash кеширует перестройку. Все blockers пересчитываются на лампу; explicit blockers не ограничены своей сценой. 512 rays×blockers и 128² upload при изменении, без Profiler нет FPS-вывода.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -18742,10 +18909,11 @@
         "Texture2D / Sprite lifetime"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 4; сцены по графу: 3.",
-      "reviewedSha256": "afbe93a402bfb673c8bf30f52dd960966297d3def8a0bb9f6190f316e8c3a447",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "2c017c798a9fe055bcb742b607ec8dbdf3aa3c5e34015c8ee7620a1a1322a76f",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
@@ -18848,13 +19016,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/FullHeightLightBlocker2D.cs",
-      "sha256": "b3ea3422c52443bec62eb6cb1343aea901c33ec0af9650cbd4860fe8389a7ee0",
+      "sha256": "99e998ce151ebeed9cf40583b29f0f92be11607cffbad90d67fa61b46b819f9d",
       "baselineSha256": "b3ea3422c52443bec62eb6cb1343aea901c33ec0af9650cbd4860fe8389a7ee0",
       "guid": "f6dbc000425d4a84e953a5369c2f1be5",
       "types": [
         "FullHeightLightBlocker2D"
       ],
-      "lines": 52,
+      "lines": 42,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/World/Door.prefab",
         "Assets/EmergencyShift/Prefabs/World/Wall.prefab"
@@ -18873,14 +19041,13 @@
         "Assets/_Recovery/0.unity"
       ],
       "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/CeilingLightOcclusion2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs"
       ],
-      "entryPointHints": [
-        "RuntimeInitializeOnLoadMethod"
-      ],
-      "reviewStatus": "partial",
-      "notes": "CollectFor ограничен owner.scene, версия обновляется парной регистрацией; static mutable registry вместо scope. SubsystemRegistration очищает список.",
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -18897,10 +19064,11 @@
         "static registration version"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 2; сцены по графу: 11.",
-      "reviewedSha256": "b3ea3422c52443bec62eb6cb1343aea901c33ec0af9650cbd4860fe8389a7ee0",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "99e998ce151ebeed9cf40583b29f0f92be11607cffbad90d67fa61b46b819f9d",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained.",
+      "previousReviewStatus": "partial"
     },
     {
       "baselineSha256": null,
@@ -18937,13 +19105,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
-      "sha256": "895c6b3e41617c0058df8c0955e38f3309f1a85322ca23374ba5bb4b1e08d50d",
+      "sha256": "465179a60395f828c4287d53c936f4f275e931d833173f4269de3670f88dea40",
       "baselineSha256": "5609ff3341ae1d0cfcde5048bb68dbbc9593480b10a999832fb15a2872ee0673",
       "guid": "035ebd6dd9cb57943ad66d69e5c6e6fc",
       "types": [
         "LocalLamp2D"
       ],
-      "lines": 287,
+      "lines": 288,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Environment/HospitalLamp01.prefab",
         "Assets/EmergencyShift/Prefabs/Environment/PracticalLights01/emergency-beacon.prefab",
@@ -18977,7 +19145,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "LampPower30: личные power/clock/commands и прежние outputs проверены; legacy config/style и audio timing остаются открыты.",
+      "notes": "NativeLight38: native output guard проверен; прежний legacy tuning/style scope сохранён.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -18997,10 +19165,10 @@
         "Light2D"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 6; сцены по графу: 5.",
-      "reviewedSha256": "895c6b3e41617c0058df8c0955e38f3309f1a85322ca23374ba5bb4b1e08d50d",
+      "reviewedSha256": "465179a60395f828c4287d53c936f4f275e931d833173f4269de3670f88dea40",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LampPower30.md",
-      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained.",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -19696,6 +19864,7 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
@@ -19767,6 +19936,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -19955,13 +20125,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs",
-      "sha256": "a4a5cdae037285525eebddeb967604e2b3f87294247fa0c5e1251ec7d809a39e",
+      "sha256": "bc0ba4580dd184093097693cc1dc6634e867e4f3a064b8591d66a7e3dcef59cf",
       "baselineSha256": "a4a5cdae037285525eebddeb967604e2b3f87294247fa0c5e1251ec7d809a39e",
       "guid": "71d3a2f26e9b5694b8df0aaf6df4563b",
       "types": [
         "CeilingLightOcclusionTests"
       ],
-      "lines": 87,
+      "lines": 120,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -19969,7 +20139,7 @@
         "Test"
       ],
       "reviewStatus": "reviewed_boundary",
-      "notes": "Automatic own-scene/unregister, low-desk/wall и scaled/rotated rectangle tests; не полная cookie/render проверка.",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -19984,39 +20154,41 @@
         "UnityEngine"
       ],
       "usageEvidence": "EditMode test fixture; исходники прочитаны, нового запуска нет.",
-      "reviewedSha256": "a4a5cdae037285525eebddeb967604e2b3f87294247fa0c5e1251ec7d809a39e",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CodeAudit09.md",
-      "reviewScope": "Full source read: responsibility/dependencies/usage, state/config authority, lifetime and hot-path review. Static evidence only; no new Unity execution."
+      "reviewedSha256": "bc0ba4580dd184093097693cc1dc6634e867e4f3a064b8591d66a7e3dcef59cf",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "51 mandatory-boolean regressions",
-      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "ce12d8a0f1341ceec699a2a176ca37e1f327f96222cb32d84fe40f4b61c54f25",
+      "reviewedSha256": "b9bce4272577d61b602b363e0c1009c10bbfe5bee2d75c8c44355e573a0cbb6c",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/CheckpointSession35.md",
-      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
       "sourceScope": "unity",
-      "sha256": "ce12d8a0f1341ceec699a2a176ca37e1f327f96222cb32d84fe40f4b61c54f25",
+      "sha256": "b9bce4272577d61b602b363e0c1009c10bbfe5bee2d75c8c44355e573a0cbb6c",
       "guid": "6ff5dbeb7ad7232408aff07bf6b131e2",
       "types": [
         "CheckpointBooleanTests",
         "ConsumedRead"
       ],
-      "lines": 233,
+      "lines": 250,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [
+        "Test",
         "TestCase"
       ],
       "sourceChangedSinceReview": false,
@@ -20417,6 +20589,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -20442,6 +20615,75 @@
       "reviewDate": "2026-10-21",
       "reviewReport": "Docs/Reports/DoorMotion08.md",
       "reviewScope": "Full source read: personal motion/confirmation timeline, commands, scaled clock, lifecycle and silent restore; native scene and normal Windows64 verified."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs",
+      "sourceScope": "unity",
+      "sha256": "5b1443f5c249449b39d3d5b0b1ceaf96d51240a168de5c1ce79130b942a1100c",
+      "guid": "5b070a33b00390447b48082c1b3e0e3c",
+      "types": [
+        "EncounterControllerTests",
+        "View"
+      ],
+      "lines": 51,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/CheckDirectionalDamage.cs",
+        "AgentScripts/InstallDirectionalDamage.cs",
+        "AgentScripts/InstallPauseMenu.cs",
+        "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "5b1443f5c249449b39d3d5b0b1ceaf96d51240a168de5c1ce79130b942a1100c",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained."
     },
     {
       "baselineSha256": null,
@@ -21264,6 +21506,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -21641,6 +21884,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
@@ -21825,6 +22069,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
@@ -23251,25 +23496,25 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
+      "notes": "NativeLight38/BUG-035: output/registry lifetime, native authoring preview и pure encounter/commands проверены; сцены/геометрия/assets/format сохранены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
       "sourceScope": "unity",
-      "sha256": "8e6948b288acfc1b3b62d4d78135b4e81eead95af340e53e1004adcc125b18f1",
+      "sha256": "cb44de14d2c63c0ee8aa0bcf20f9aee0f04c53508b3f01f9ccd306a2191a2d50",
       "guid": "8e8fc5925f014ad9a6b8db5f501aaa28",
       "types": [
         "LampClock",
         "LightScopeSceneTests"
       ],
-      "lines": 271,
+      "lines": 308,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "8e6948b288acfc1b3b62d4d78135b4e81eead95af340e53e1004adcc125b18f1",
+      "reviewedSha256": "cb44de14d2c63c0ee8aa0bcf20f9aee0f04c53508b3f01f9ccd306a2191a2d50",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LampPower30.md",
-      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained.",
+      "reviewReport": "Docs/Reports/NativeLight38.md",
+      "reviewScope": "Native light output ownership/disable, scoped marker membership, same-scene explicit references and editor/Prefab preview without global state; one-shot encounter pure model/commands/controller and native activation/silent persistence verified. Existing geometry/profile/serialized names retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -23630,6 +23875,7 @@
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
@@ -23750,6 +23996,7 @@
         "Assets/EmergencyShift/Runtime/Levels/EncounterActivation2D.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelParticipant2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperJawBakeSource.cs",
         "Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts/SleeperSpriteBaker.cs",
@@ -23904,7 +24151,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 598,
+    "unity": 605,
     "content_source": 8
   },
   "latestReview": {
@@ -24055,11 +24302,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 617,
-    "totalFiles": 617,
+    "reviewedFiles": 624,
+    "totalFiles": 624,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "NativeRemains37 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "NativeLight38 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

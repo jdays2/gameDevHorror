@@ -28,6 +28,46 @@ namespace EmergencyShift
         private void OnDisable()
         {
             registry?.Remove(this);
+            StopPresentation();
+        }
+
+        private void StopPresentation()
+        {
+            configured = false;
+            if (flash != null)
+            {
+                flash.intensity = 0;
+                flash.enabled = false;
+            }
+
+            if (plume != null)
+            {
+                plume.enabled = false;
+            }
+
+            if (whiteCore != null)
+            {
+                whiteCore.enabled = false;
+            }
+
+            Hide(strokes);
+            Hide(flames);
+        }
+
+        private static void Hide(SpriteRenderer[] renderers)
+        {
+            if (renderers == null)
+            {
+                return;
+            }
+
+            foreach (var renderer in renderers)
+            {
+                if (renderer != null)
+                {
+                    renderer.enabled = false;
+                }
+            }
         }
 
         public bool Illuminates(Vector2 point, LayerMask opaque)
@@ -165,13 +205,7 @@ namespace EmergencyShift
             elapsed += Time.deltaTime;
             if (elapsed >= duration)
             {
-                flash.intensity = 0;
-                flash.enabled = false;
-                if (plume != null)
-                {
-                    plume.enabled = false;
-                }
-
+                StopPresentation();
                 Destroy(gameObject);
                 return;
             }
