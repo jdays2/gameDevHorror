@@ -15,7 +15,7 @@ public static class ReviewEntranceBlood
 {
     private const string Output = "work/entrance-traces-20261022/";
 
-    public static async Task<object> PlayCapture()
+    public static async Task<object> PlayCapture(bool openDoors = false)
     {
         if (!Application.isPlaying)
         {
@@ -23,6 +23,11 @@ public static class ReviewEntranceBlood
         }
         var roots = SceneManager.GetActiveScene().GetRootGameObjects();
         var context = roots.SelectMany(root => root.GetComponentsInChildren<LevelContext2D>(true)).Single();
+        var doors = roots.SelectMany(root => root.GetComponentsInChildren<Door2D>(true)).ToArray();
+        foreach (var door in doors)
+        {
+            door.RestoreState(openDoors);
+        }
         var enemies = roots.SelectMany(root => root.GetComponentsInChildren<EnemyHealth2D>(true)).ToArray();
         foreach (var enemy in enemies)
         {
@@ -30,6 +35,10 @@ public static class ReviewEntranceBlood
         }
         var player = context.Player;
         player.GetComponent<PlayerMotor2D>().enabled = false;
+        foreach (var aim in roots.SelectMany(root => root.GetComponentsInChildren<PlayerAim2D>(true)))
+        {
+            aim.enabled = false;
+        }
         var body = player.GetComponent<Rigidbody2D>();
         body.constraints = RigidbodyConstraints2D.FreezeAll;
         context.Flashlight.Acquire();
@@ -60,7 +69,7 @@ public static class ReviewEntranceBlood
                 {
                     throw new InvalidOperationException("Game view unavailable.");
                 }
-                File.WriteAllBytes(Output + "game-" + names[index] + ".png", image.EncodeToPNG());
+                File.WriteAllBytes(Output + (openDoors ? "game-open-" : "game-closed-") + names[index] + ".png", image.EncodeToPNG());
             }
             finally
             {
@@ -69,8 +78,8 @@ public static class ReviewEntranceBlood
         }
         var result = new { captures = names, flashlightRange = context.Flashlight.Range, flashlightAngle = context.Flashlight.BeamAngle,
             cameraSize = camera.orthographicSize, controlledReview = "Enemies disabled and player teleported only in disposable Play session",
-            enemies = enemies.Length, sceneSaved = false };
-        File.WriteAllText(Output + "play-review.json", JsonConvert.SerializeObject(result, Formatting.Indented));
+            enemies = enemies.Length, openDoors, doorCount = doors.Length, sceneSaved = false };
+        File.WriteAllText(Output + (openDoors ? "play-open-review.json" : "play-closed-review.json"), JsonConvert.SerializeObject(result, Formatting.Indented));
         return result;
     }
 

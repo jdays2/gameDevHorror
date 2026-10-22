@@ -29,6 +29,16 @@ public static class AuthorEntranceBlood
     private static float[] V(Vector3 value) => new[] { value.x, value.y, value.z };
     private static float[] C(Color value) => new[] { value.r, value.g, value.b, value.a };
 
+    private static string PrefabPath(Placement placement)
+    {
+        if (placement.prefab.StartsWith("Assets/EmergencyShift/Prefabs/Environment/", StringComparison.Ordinal)
+            && placement.prefab.EndsWith(".prefab", StringComparison.Ordinal) && !placement.prefab.Contains(".."))
+        {
+            return placement.prefab;
+        }
+        return Prefabs + placement.prefab + ".prefab";
+    }
+
     public static string PathOf(Transform transform)
     {
         return transform.parent == null ? transform.name : PathOf(transform.parent) + "/" + transform.name;
@@ -80,7 +90,7 @@ public static class AuthorEntranceBlood
             {
                 throw new InvalidOperationException("Invalid or already applied placement: " + placement.name);
             }
-            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(Prefabs + placement.prefab + ".prefab");
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath(placement));
             if (prefab == null || prefab.GetComponentsInChildren<SpriteRenderer>(true).Length != 1
                 || prefab.GetComponent<SpriteRenderer>() == null || prefab.GetComponent<SpriteRenderer>().sprite == null
                 || prefab.GetComponentsInChildren<Component>(true).Any(component => !(component is Transform) && !(component is SpriteRenderer)))
@@ -88,7 +98,9 @@ public static class AuthorEntranceBlood
                 throw new InvalidOperationException("Decoration must be an existing single-renderer prefab: " + placement.prefab);
             }
         }
-        File.Copy(scene.path, Output + "MorgueRouteTest-before.unity", false);
+        string evidence = Output + Path.GetFileNameWithoutExtension(manifest) + "/";
+        Directory.CreateDirectory(evidence);
+        File.Copy(scene.path, evidence + "MorgueRouteTest-before.unity", false);
         var guard = new LevelAuthoringState(scene);
         Undo.IncrementCurrentGroup();
         int undo = Undo.GetCurrentGroup();
@@ -97,7 +109,7 @@ public static class AuthorEntranceBlood
         {
             foreach (var placement in placements)
             {
-                var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(Prefabs + placement.prefab + ".prefab");
+                var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath(placement));
                 var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab, scene);
                 Undo.RegisterCreatedObjectUndo(instance, "Add entrance blood overlay");
                 instance.name = placement.name;
@@ -120,7 +132,7 @@ public static class AuthorEntranceBlood
                 throw new IOException("Unable to save entrance decoration.");
             }
             var result = new { scene = scene.path, overlays = placements.Length, preserved, references, scene.isDirty };
-            File.WriteAllText(Output + "authoring.json", JsonConvert.SerializeObject(result, Formatting.Indented));
+            File.WriteAllText(evidence + "authoring.json", JsonConvert.SerializeObject(result, Formatting.Indented));
             Undo.CollapseUndoOperations(undo);
             return result;
         }
@@ -173,7 +185,7 @@ public static class AuthorEntranceBlood
         {
             var transform = transforms.Single(value => PathOf(value) == placement.parent + "/" + placement.name);
             var renderer = transform.GetComponent<SpriteRenderer>();
-            if (PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(transform.gameObject) != Prefabs + placement.prefab + ".prefab"
+            if (PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(transform.gameObject) != PrefabPath(placement)
                 || renderer.sprite == null || renderer.sharedMaterial == null || renderer.sortingOrder != -3
                 || transform.GetComponentsInChildren<Component>(true).Any(component => !(component is Transform) && !(component is SpriteRenderer)))
             {
@@ -191,5 +203,179 @@ public static class AuthorEntranceBlood
             colliders = 0, scripts = 0, shadows = 0, references = VerifyReferences(scene), scene.isDirty };
         File.WriteAllText(Output + "verification.json", JsonConvert.SerializeObject(result, Formatting.Indented));
         return result;
+    }
+
+    // Follow-up to the owner's annotated screenshot: dense blood centred under the whole leaf.
+    public static object RefinePools(string manifest)
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        if (Application.isPlaying || scene.isDirty || !scene.path.EndsWith("/MorgueRouteTest.unity"))
+        {
+            throw new InvalidOperationException("Clean authored scene in EditMode required.");
+        }
+        var placements = JsonConvert.DeserializeObject<Placement[]>(File.ReadAllText(manifest));
+        var transforms = scene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<Transform>(true)).ToArray();
+        var instances = placements.Select(placement => transforms.Single(transform => PathOf(transform) == placement.parent + "/" + placement.name)).ToArray();
+        var ownedOwners = instances.SelectMany(transform => new UnityEngine.Object[] { transform.gameObject, transform, transform.GetComponent<SpriteRenderer>() }).ToArray();
+        var originalIds = ownedOwners.Select(owner => GlobalObjectId.GetGlobalObjectIdSlow(owner).ToString()).ToArray();
+        var ownedIds = originalIds.Select(id => id + "|").ToArray();
+        var before = LevelAuthoringState.SavedFields(scene).Where(pair => !ownedIds.Any(id => pair.Key.StartsWith(id, StringComparison.Ordinal)))
+            .ToDictionary(pair => pair.Key, pair => pair.Value);
+        Scene preview = EditorSceneManager.NewPreviewScene();
+        try
+        {
+            foreach (string form in new[] { "Fresh", "Clotted" })
+            {
+                string spritePath = "Assets/EmergencyShift/Art/Effects/BloodPools01/" + form + "StaticCore.asset";
+                string prefabPath = "Assets/EmergencyShift/Prefabs/Environment/LevelSurfaces/BloodDecal-" + form + "-Dense.prefab";
+                if (AssetDatabase.LoadMainAssetAtPath(spritePath) != null || AssetDatabase.LoadMainAssetAtPath(prefabPath) != null)
+                {
+                    throw new InvalidOperationException("This explicit authoring revision was already applied.");
+                }
+                var texture = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/EmergencyShift/Art/Effects/BloodPools01/" + form + ".png");
+                // Read-only alpha analysis identified the connected main mass; retain a transparent border.
+                Rect rect = form == "Fresh" ? new Rect(191, 160, 246, 297) : new Rect(197, 125, 274, 346);
+                var sprite = Sprite.Create(texture, rect, new Vector2(.5f, .5f), rect.width, 0, SpriteMeshType.FullRect);
+                sprite.name = form + "StaticCore";
+                AssetDatabase.CreateAsset(sprite, spritePath);
+                var original = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Environment/LevelSurfaces/BloodDecal-" + form + "-Simple.prefab");
+                var instance = (GameObject)PrefabUtility.InstantiatePrefab(original, preview);
+                instance.GetComponent<SpriteRenderer>().sprite = sprite;
+                PrefabUtility.RecordPrefabInstancePropertyModifications(instance.GetComponent<SpriteRenderer>());
+                PrefabUtility.SaveAsPrefabAsset(instance, prefabPath);
+            }
+            for (int index = 0; index < placements.Length; index++)
+            {
+                var placement = placements[index];
+                var instance = instances[index].gameObject;
+                var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath(placement));
+                PrefabUtility.ReplacePrefabAssetOfPrefabInstance(instance, prefab, InteractionMode.AutomatedAction);
+                instance.name = placement.name;
+                instance.transform.position = new Vector3(placement.x, placement.y, 0);
+                instance.transform.rotation = Quaternion.Euler(0, 0, placement.angle);
+                instance.transform.localScale = Vector3.one * placement.width;
+                var renderer = instance.GetComponent<SpriteRenderer>();
+                renderer.color = new Color(placement.tint[0], placement.tint[1], placement.tint[2], placement.tint[3]);
+                PrefabUtility.RecordPrefabInstancePropertyModifications(instance);
+                PrefabUtility.RecordPrefabInstancePropertyModifications(instance.transform);
+                PrefabUtility.RecordPrefabInstancePropertyModifications(renderer);
+            }
+            var after = LevelAuthoringState.SavedFields(scene);
+            var aliases = originalIds.Select((id, index) => new { id, current = GlobalObjectId.GetGlobalObjectIdSlow(ownedOwners[index]).ToString() })
+                .ToDictionary(pair => pair.id, pair => pair.current);
+            if (before.Any(pair => !after.TryGetValue(pair.Key, out string value)
+                || value != pair.Value && (!aliases.TryGetValue(pair.Value, out string alias) || value != alias)))
+            {
+                throw new InvalidOperationException("An object outside the 18 owned pool layers changed; do not save.");
+            }
+            object references = VerifyReferences(scene);
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            return new { ownedPoolLayers = instances.Length, preservedOtherFields = before.Count, unchanged = true, references };
+        }
+        finally
+        {
+            EditorSceneManager.ClosePreviewScene(preview);
+        }
+    }
+
+    public static object SaveVerifiedRefinement(string manifest)
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        if (Application.isPlaying)
+        {
+            throw new InvalidOperationException("EditMode required.");
+        }
+        var names = JsonConvert.DeserializeObject<Placement[]>(File.ReadAllText(manifest)).Select(placement => placement.parent + "/" + placement.name).ToArray();
+        Scene saved = EditorSceneManager.OpenPreviewScene(scene.path);
+        try
+        {
+            var memoryTransforms = scene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<Transform>(true)).ToArray();
+            var savedTransforms = saved.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<Transform>(true)).ToArray();
+            var aliases = new System.Collections.Generic.Dictionary<string, string>();
+            foreach (string name in names)
+            {
+                var oldTransform = savedTransforms.Single(transform => PathOf(transform) == name);
+                var newTransform = memoryTransforms.Single(transform => PathOf(transform) == name);
+                var oldOwners = new UnityEngine.Object[] { oldTransform.gameObject, oldTransform, oldTransform.GetComponent<SpriteRenderer>() };
+                var newOwners = new UnityEngine.Object[] { newTransform.gameObject, newTransform, newTransform.GetComponent<SpriteRenderer>() };
+                for (int index = 0; index < oldOwners.Length; index++)
+                {
+                    aliases[GlobalObjectId.GetGlobalObjectIdSlow(oldOwners[index]).ToString()] = GlobalObjectId.GetGlobalObjectIdSlow(newOwners[index]).ToString();
+                }
+            }
+            var before = LevelAuthoringState.SavedFields(saved);
+            var after = LevelAuthoringState.SavedFields(scene);
+            int preserved = 0;
+            foreach (var pair in before)
+            {
+                if (aliases.Keys.Any(id => pair.Key.StartsWith(id + "|", StringComparison.Ordinal)))
+                {
+                    continue;
+                }
+                if (!after.TryGetValue(pair.Key, out string value) || value != pair.Value
+                    && (!aliases.TryGetValue(pair.Value, out string alias) || value != alias))
+                {
+                    throw new InvalidOperationException("Unexpected non-pool change: " + pair.Key);
+                }
+                preserved++;
+            }
+            object verified = Verify(manifest);
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene);
+            var result = new { ownedPoolLayers = names.Length, unchangedOutsidePools = true, preservedFields = preserved, verified };
+            File.WriteAllText("work/entrance-pools-20261022/refinement.json", JsonConvert.SerializeObject(result, Formatting.Indented));
+            return result;
+        }
+        finally
+        {
+            EditorSceneManager.ClosePreviewScene(saved);
+        }
+    }
+
+    public static object PublishWithoutSourceSave()
+    {
+        Scene source = SceneManager.GetActiveScene();
+        if (Application.isPlaying || source.isDirty || !source.path.EndsWith("/MorgueRouteTest.unity"))
+        {
+            throw new InvalidOperationException("Publication requires a clean saved Morgue scene.");
+        }
+        var sourceBytes = File.ReadAllBytes(source.path);
+        var before = LevelAuthoringState.SavedFields(source);
+        const string copyPath = "Assets/_Recovery/LevelReuse/MorgueRouteTest-pools49-publication.unity";
+        if (File.Exists(copyPath) || !AssetDatabase.CopyAsset(source.path, copyPath))
+        {
+            throw new InvalidOperationException("Cannot create an owned separate asset copy.");
+        }
+        Scene copy = default;
+        try
+        {
+            copy = EditorSceneManager.OpenScene(copyPath, OpenSceneMode.Additive);
+            foreach (var root in copy.GetRootGameObjects().Where(root => root.name == "Pause Menu"))
+            {
+                UnityEngine.Object.DestroyImmediate(root);
+            }
+            object references = VerifyReferences(copy);
+            EditorSceneManager.MarkSceneDirty(copy);
+            EditorSceneManager.SaveScene(copy);
+            File.Copy(copyPath, "work/entrance-pools-20261022/MorgueRouteTest-publication.unity", true);
+            var after = LevelAuthoringState.SavedFields(source);
+            if (!File.ReadAllBytes(source.path).SequenceEqual(sourceBytes) || before.Count != after.Count
+                || before.Any(pair => !after.TryGetValue(pair.Key, out string value) || pair.Value != value))
+            {
+                throw new InvalidOperationException("Source changed while exporting; do not publish.");
+            }
+            var result = new { sourceUnchanged = true, sourceFields = before.Count, sourceDirty = source.isDirty, sourceSaved = false, references };
+            File.WriteAllText("work/entrance-pools-20261022/publication.json", JsonConvert.SerializeObject(result, Formatting.Indented));
+            return result;
+        }
+        finally
+        {
+            if (copy.IsValid() && copy.isLoaded && !copy.isDirty)
+            {
+                EditorSceneManager.CloseScene(copy, true);
+                AssetDatabase.DeleteAsset(copyPath);
+            }
+        }
     }
 }
