@@ -1,4 +1,5 @@
 using System;
+using EmergencyShift.Features.LampPower.Config;
 using UnityEngine;
 
 namespace EmergencyShift
@@ -29,7 +30,7 @@ namespace EmergencyShift
         [Min(.1f), Tooltip("Visible length along the wall, in world units. Keeps the back rail attached.")]
         public float fixtureLength = .75f;
 
-        public float SoundGain(float distance)
+        public float SoundGain(float distance, LampFlickerSettings curve = null)
         {
             if (!float.IsFinite(distance) || distance < 0)
             {
@@ -41,26 +42,13 @@ namespace EmergencyShift
                 return 0;
             }
 
-            const float fullVolumeFraction = .175f;
+            float fullVolumeFraction = (curve ?? LampFlickerSettings.LegacyDefaults).FullVolumeFraction;
             float progress = Mathf.InverseLerp(soundRadius * fullVolumeFraction, soundRadius, distance);
             return 1 - Mathf.SmoothStep(0, 1, progress);
         }
 
-        public float Brightness(float clock)
-        {
-            if (!flickers)
-            {
-                return 1;
-            }
-
-            float position = Mathf.Repeat(clock, 6.4f);
-            if ((position > 4.9f && position < 5.02f) || (position > 5.16f && position < 5.25f))
-            {
-                return 0;
-            }
-
-            return Mathf.Lerp(.82f, 1, Mathf.PerlinNoise(clock * 1.4f, 3.1f));
-        }
+        public float Brightness(float clock, LampFlickerSettings curve = null) =>
+            flickers ? (curve ?? LampFlickerSettings.LegacyDefaults).Evaluate(clock) : 1;
 
         public void Validate()
         {

@@ -8,8 +8,16 @@ namespace EmergencyShift.Features.Doors
     public sealed class DoorMotionControllerFactory
     {
         private readonly IGameClock clock;
-        public DoorMotionControllerFactory(IGameClock clock) => this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
-        public DoorMotionController Create(float duration, IDoorMotionView view) =>
-            new DoorMotionController(new DoorMotionModel(new DoorMotionSettings(duration), clock), view);
+        private readonly DoorRulesSettings rules;
+        public float InteractionRange => rules.InteractionRange;
+
+        public DoorMotionControllerFactory(IGameClock clock, DoorRulesSettings rules = null)
+        {
+            this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
+            this.rules = rules ?? DoorRulesSettings.LegacyDefaults;
+        }
+
+        public DoorMotionController Create(float duration, IDoorMotionView view, bool forceAuthored = false) =>
+            new DoorMotionController(new DoorMotionModel(new DoorMotionSettings(rules.ProjectDuration(duration, forceAuthored)), clock), view);
     }
 }

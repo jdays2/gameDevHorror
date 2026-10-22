@@ -12,11 +12,13 @@ namespace EmergencyShift.Tests
         {
             var inputBlock = new GameplayInputBlock();
             using (var first = inputBlock.Acquire())
-            using (var second = inputBlock.Acquire())
             {
-                first.Dispose();
-                first.Dispose();
-                Assert.That(inputBlock.IsBlocked, Is.True);
+                using (var second = inputBlock.Acquire())
+                {
+                    first.Dispose();
+                    first.Dispose();
+                    Assert.That(inputBlock.IsBlocked, Is.True);
+                }
             }
 
             Assert.That(inputBlock.IsBlocked, Is.False);
@@ -45,16 +47,8 @@ namespace EmergencyShift.Tests
             var sequence = ScriptableObject.CreateInstance<DialogueSequence>();
             try
             {
-                SetDefinitionField(sequence, "speakers", new[]
-                {
-                    new DialogueSequence.Speaker(displayName: "Врач"),
-                    new DialogueSequence.Speaker(displayName: "Вы")
-                });
-                SetDefinitionField(sequence, "lines", new[]
-                {
-                    new DialogueSequence.Line(id: "stop", speaker: 0, text: "Стойте.", nextId: "why"),
-                    new DialogueSequence.Line(id: "why", speaker: 1, text: "Почему?")
-                });
+                SetDefinitionField(sequence, "speakers", new[] { new DialogueSequence.Speaker(displayName: "Врач"), new DialogueSequence.Speaker(displayName: "Вы") });
+                SetDefinitionField(sequence, "lines", new[] { new DialogueSequence.Line(id: "stop", speaker: 0, text: "Стойте.", nextId: "why"), new DialogueSequence.Line(id: "why", speaker: 1, text: "Почему?") });
                 SetDefinitionField(sequence, "entryId", "stop");
                 Assert.DoesNotThrow(sequence.Validate);
                 Assert.That(sequence.SpeakerAt(0).Portrait, Is.Null);
@@ -169,16 +163,21 @@ namespace EmergencyShift.Tests
         [Test]
         public void NestedMotionPauseRestoresScaleOnlyAfterLastOwnerAndPreservesExistingPause()
         {
-            var scale = new TestTimeScale { Scale = .35f };
+            var scale = new TestTimeScale
+            {
+                Scale = .35f
+            };
             using (var pause = new WorldMotionPause(scale))
             {
                 using (var first = pause.Acquire())
-                using (var second = pause.Acquire())
                 {
-                    first.Dispose();
-                    first.Dispose();
-                    Assert.That(scale.Scale, Is.Zero);
-                    Assert.That(pause.PreservesAudioPlayback, Is.True);
+                    using (var second = pause.Acquire())
+                    {
+                        first.Dispose();
+                        first.Dispose();
+                        Assert.That(scale.Scale, Is.Zero);
+                        Assert.That(pause.PreservesAudioPlayback, Is.True);
+                    }
                 }
 
                 Assert.That(scale.Scale, Is.EqualTo(.35f));
@@ -208,7 +207,10 @@ namespace EmergencyShift.Tests
         [Test]
         public void DisposingWorldRestoresScaleAndLateLeasesCannotChangeItAgain()
         {
-            var scale = new TestTimeScale { Scale = .5f };
+            var scale = new TestTimeScale
+            {
+                Scale = .5f
+            };
             var pause = new WorldMotionPause(scale);
             IDisposable lease = pause.Acquire();
             pause.Dispose();
@@ -230,21 +232,10 @@ namespace EmergencyShift.Tests
             var sequence = ScriptableObject.CreateInstance<DialogueSequence>();
             SetDefinitionField(sequence, "speakers", new[] { new DialogueSequence.Speaker(displayName: "Врач") });
             SetDefinitionField(sequence, "entryId", "fork");
-            SetDefinitionField(sequence, "lines", new[]
-            {
-                new DialogueSequence.Line(id: "fork", text: "Куда?", choices: new[]
-                    {
-                        new DialogueSequence.Choice(id: "take-left", text: "Налево", targetId: "left"),
-                        new DialogueSequence.Choice(id: "take-right", text: "Направо", targetId: "right")
-                    }),
-                new DialogueSequence.Line(id: "left", text: "Левый путь", nextId: "join"),
-                new DialogueSequence.Line(id: "right", text: "Правый путь", nextId: "join"),
-                new DialogueSequence.Line(id: "join", text: "Пришли")
-            });
+            SetDefinitionField(sequence, "lines", new[] { new DialogueSequence.Line(id: "fork", text: "Куда?", choices: new[] { new DialogueSequence.Choice(id: "take-left", text: "Налево", targetId: "left"), new DialogueSequence.Choice(id: "take-right", text: "Направо", targetId: "right") }), new DialogueSequence.Line(id: "left", text: "Левый путь", nextId: "join"), new DialogueSequence.Line(id: "right", text: "Правый путь", nextId: "join"), new DialogueSequence.Line(id: "join", text: "Пришли") });
             return sequence;
         }
 
-        private static void SetDefinitionField(object target, string field, object value) =>
-            target.GetType().GetField(field, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(target, value);
+        private static void SetDefinitionField(object target, string field, object value) => target.GetType().GetField(field, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(target, value);
     }
 }

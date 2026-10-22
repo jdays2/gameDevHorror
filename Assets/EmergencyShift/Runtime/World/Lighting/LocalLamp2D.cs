@@ -3,6 +3,7 @@ using EmergencyShift.Core.Composition;
 using EmergencyShift.Core.Time;
 using EmergencyShift.Features.LampPower;
 using EmergencyShift.Features.LampPower.Logic;
+using EmergencyShift.Features.LampPower.Config;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Zenject;
@@ -15,6 +16,7 @@ namespace EmergencyShift
     {
         private SceneRegistry<LocalLamp2D> registry;
         private LampPowerController controller;
+        private LampFlickerSettings flicker = LampFlickerSettings.LegacyDefaults;
 
         [Inject]
         public void Construct(SceneRegistry<LocalLamp2D> lamps, LampPowerControllerFactory factory)
@@ -28,6 +30,7 @@ namespace EmergencyShift
             registry?.Remove(this);
             registry = lamps;
             controller = replacement;
+            flicker = factory.Flicker;
             if (isActiveAndEnabled)
             {
                 registry.Register(this);
@@ -229,7 +232,7 @@ namespace EmergencyShift
         {
             if (sceneSettings != null)
             {
-                float brightness = sceneSettings.Brightness(clock);
+                float brightness = sceneSettings.Brightness(clock, flicker);
                 source.intensity = sceneSettings.intensity * brightness;
                 if (bulb != null)
                 {
@@ -262,8 +265,7 @@ namespace EmergencyShift
                 return;
             }
 
-            float t = Mathf.Repeat(clock, 6.4f);
-            float factor = (t > 4.9f && t < 5.02f) || (t > 5.16f && t < 5.25f) ? 0 : Mathf.Lerp(.82f, 1, Mathf.PerlinNoise(clock * 1.4f, 3.1f));
+            float factor = flicker.Evaluate(clock);
             source.intensity = intensity * factor;
             if (bulb != null)
             {

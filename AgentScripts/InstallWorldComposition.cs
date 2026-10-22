@@ -39,6 +39,7 @@ public static class InstallWorldComposition
             WorldInstaller installer = root.AddComponent<WorldInstaller>();
             EmergencyShift.Editor.ThreatSignalAuthoring.ConfigureInstaller(installer);
             EmergencyShift.Editor.PlayerRulesAuthoring.ConfigureInstaller(installer);
+            EmergencyShift.Editor.WorldVisualRulesAuthoring.ConfigureInstaller(installer);
             context.Installers = new MonoInstaller[] { installer };
             root.SetActive(true);
             PrefabUtility.SaveAsPrefabAsset(root, Path);

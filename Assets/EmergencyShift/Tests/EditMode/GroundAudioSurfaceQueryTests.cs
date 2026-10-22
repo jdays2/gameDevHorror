@@ -57,12 +57,14 @@ namespace EmergencyShift.Tests
         public void IndependentScopesResolveTheirOwnSurfaceAtTheSamePoint()
         {
             using (var first = new SceneRegistry<IGroundAudioRegion>())
-            using (var second = new SceneRegistry<IGroundAudioRegion>())
             {
-                first.Register(new Region(GroundSoundSurface.Wood, 0));
-                second.Register(new Region(GroundSoundSurface.Tile, 100));
-                Assert.That(new GroundAudioSurfaceQuery2D(first).At(Vector2.zero), Is.EqualTo(GroundSoundSurface.Wood));
-                Assert.That(new GroundAudioSurfaceQuery2D(second).At(Vector2.zero), Is.EqualTo(GroundSoundSurface.Tile));
+                using (var second = new SceneRegistry<IGroundAudioRegion>())
+                {
+                    first.Register(new Region(GroundSoundSurface.Wood, 0));
+                    second.Register(new Region(GroundSoundSurface.Tile, 100));
+                    Assert.That(new GroundAudioSurfaceQuery2D(first).At(Vector2.zero), Is.EqualTo(GroundSoundSurface.Wood));
+                    Assert.That(new GroundAudioSurfaceQuery2D(second).At(Vector2.zero), Is.EqualTo(GroundSoundSurface.Tile));
+                }
             }
         }
 

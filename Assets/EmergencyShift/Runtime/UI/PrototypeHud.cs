@@ -26,10 +26,16 @@ namespace EmergencyShift
         private PlayerWeapon2D weapon;
         [SerializeField]
         private Text ammoStatus;
+        private int displayedHealth = -1;
+        private int displayedMaximum = -1;
+        private bool hasAmmoSnapshot;
+        private (WeaponDefinition definition, int capacity, int loaded, int reserve, int ammo, WeaponPhase phase) lastAmmo;
+
         public void ConfigureWeapon(PlayerWeapon2D gun, Text counter)
         {
             weapon = gun;
             ammoStatus = counter;
+            hasAmmoSnapshot = false;
         }
 
         public void ConfigurePickupNotification(Text label) => pickupNotification = label;
@@ -45,6 +51,8 @@ namespace EmergencyShift
         {
             life = playerLife;
             healthStatus = health;
+            displayedHealth = -1;
+            displayedMaximum = -1;
             defeatPrompt = defeat;
         }
 
@@ -54,7 +62,12 @@ namespace EmergencyShift
             flashlightStatus.text = FlashlightLabel(dead);
             if (healthStatus != null && life != null)
             {
-                healthStatus.text = "ЗДОРОВЬЕ  " + life.Health + " / " + life.MaximumHealth;
+                if (displayedHealth != life.Health || displayedMaximum != life.MaximumHealth)
+                {
+                    displayedHealth = life.Health;
+                    displayedMaximum = life.MaximumHealth;
+                    healthStatus.text = "ЗДОРОВЬЕ  " + displayedHealth + " / " + displayedMaximum;
+                }
             }
 
             if (defeatPrompt != null)
@@ -67,18 +80,7 @@ namespace EmergencyShift
                 ammoStatus.gameObject.SetActive(weapon != null && weapon.HasWeapon && !dead);
                 if (weapon != null)
                 {
-                    string ammunition = weapon.MagazineCapacity > 0 ? weapon.LoadedAmmo + " / " + weapon.ReserveAmmo : weapon.Ammo.ToString();
-                    string operation = "";
-                    if (weapon.Phase == WeaponPhase.Pumping)
-                    {
-                        operation = " · ПОМПА";
-                    }
-                    else if (weapon.Phase == WeaponPhase.Loading)
-                    {
-                        operation = " · ЗАРЯДКА";
-                    }
-
-                    ammoStatus.text = weapon.Definition.DisplayName.ToUpperInvariant() + "  " + ammunition + operation + "   [ЛКМ]";
+                    RefreshAmmo();
                 }
             }
 
@@ -99,6 +101,31 @@ namespace EmergencyShift
                     pickupNotification.text = message;
                 }
             }
+        }
+
+        private void RefreshAmmo()
+        {
+            var snapshot = (weapon.Definition, weapon.MagazineCapacity, weapon.LoadedAmmo,
+                weapon.ReserveAmmo, weapon.Ammo, weapon.Phase);
+            if (hasAmmoSnapshot && snapshot == lastAmmo)
+            {
+                return;
+            }
+
+            hasAmmoSnapshot = true;
+            lastAmmo = snapshot;
+            string ammunition = weapon.MagazineCapacity > 0 ? weapon.LoadedAmmo + " / " + weapon.ReserveAmmo : weapon.Ammo.ToString();
+            string operation = "";
+            if (weapon.Phase == WeaponPhase.Pumping)
+            {
+                operation = " · ПОМПА";
+            }
+            else if (weapon.Phase == WeaponPhase.Loading)
+            {
+                operation = " · ЗАРЯДКА";
+            }
+
+            ammoStatus.text = weapon.Definition.DisplayName.ToUpperInvariant() + "  " + ammunition + operation + "   [ЛКМ]";
         }
 
         private string FlashlightLabel(bool dead)

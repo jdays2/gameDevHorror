@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Итоговые source/tuning/lifetime границы / BUG-038–041 | [RefactorCompletion42](RefactorCompletion42.md):1248 EditMode(1244+4 scratch),71 PlayMode;11 native scenes/150 prefab без ошибок ссылок. Общие door/flicker/audio/casing параметры, scoped probe cleanup, authoring preflight и полный active style-pass. Чистый candidate/build фиксируется отдельно. |
 | Player life MVC/lifetime / BUG-037 | [PlayerLife41](PlayerLife41.md):baseline0/1 →1218 EditMode(1215+3 scratch),69 PlayMode,Windows64 success. Pure commands/controller, отдельный physical/reload adapter и scoped native flash; player asset добавил3 прежних style values, старые rules/ID/формат сохранены. |
 | Shared player tuning/overrides | [PlayerRules40](PlayerRules40.md):1200 EditMode(1197+3 scratch),69 PlayMode,Windows64 success. Immutable profile/early world guards, authored override policy, model-only capacity, native3.5→5/modal; ProjectContext добавил одну ссылку, сцены/значения прежние. |
 | Authoring preflight / BUG-036 | [AuthoringSafety39](AuthoringSafety39.md): baseline0/2 →3 guard cases и1182 EditMode (1179 production+3 scratch). Dirty scene/sentinel и prefab/art bytes сохранены; Runtime неизменен, новая Player-сборка этого Editor-only этапа не выполнялась. |

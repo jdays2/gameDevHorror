@@ -29,6 +29,10 @@ namespace EmergencyShift
         [SerializeField] private Sample[] samples;
         [SerializeField] private UnityEngine.UI.Text status;
         private Material[] originalMaterials;
+        private MaterialPropertyBlock[] originalProperties;
+        private bool[] originalCeilingEnabled;
+        private bool[] originalFlashlightShadows;
+        private bool ownsOverrides;
         private MaterialPropertyBlock properties;
         private PlayerAim2D aim;
         private Rigidbody2D playerBody;
@@ -50,9 +54,42 @@ namespace EmergencyShift
         public int SampleCount => samples.Length;
         public Sample[] Samples => samples;
 
+        public void ReplaceRuntimeSamples(Sample[] replacement)
+        {
+            if (!initialized || replacement == null || replacement.Length == 0)
+            {
+                throw new InvalidOperationException("Runtime sample replacement requires an initialized study and samples.");
+            }
+
+            foreach (Sample sample in replacement)
+            {
+                if (sample == null || sample.renderer == null || sample.responseIndex < 0 ||
+                    sample.responseIndex >= profile.SurfaceCount || sample.surfaceRect.z <= 0 || sample.surfaceRect.w <= 0)
+                {
+                    throw new InvalidOperationException("Invalid replacement study sample.");
+                }
+            }
+
+            RestoreOverrides();
+            samples = (Sample[])replacement.Clone();
+            selectedSample = Mathf.Min(selectedSample, samples.Length - 1);
+            if (isActiveAndEnabled)
+            {
+                CaptureOverrides();
+                SetVariant((int)CurrentVariant);
+                SetCeiling(CeilingEnabled);
+                SetShadows(ShadowsEnabled);
+            }
+        }
+
         public void Configure(FurnitureLightStudyProfile settings, Material material, Flashlight2D playerLight,
             CameraFollow2D follow, Light2D[] ceiling, Light2D[] handheld, Sample[] furniture, UnityEngine.UI.Text label)
         {
+            if (initialized)
+            {
+                throw new InvalidOperationException("Configure furniture study before its runtime lifetime starts.");
+            }
+
             profile = settings;
             studyMaterial = material;
             flashlight = playerLight;
@@ -68,12 +105,11 @@ namespace EmergencyShift
             properties = new MaterialPropertyBlock();
             profile.Validate();
             if (studyMaterial == null || flashlight == null || cameraFollow == null || status == null
-                || samples == null || samples.Length == 0)
+                || samples == null || samples.Length == 0 || ceilingLights == null || flashlightLights == null)
             {
                 throw new InvalidOperationException("Furniture study is missing its scene dependencies.");
             }
 
-            originalMaterials = new Material[samples.Length];
             for (int i = 0; i < samples.Length; i++)
             {
                 var sample = samples[i];
@@ -83,12 +119,28 @@ namespace EmergencyShift
                     throw new InvalidOperationException("Invalid furniture sample geometry or response index.");
                 }
 
-                originalMaterials[i] = sample.renderer.sharedMaterial;
+            }
+
+            foreach (Light2D light in ceilingLights)
+            {
+                if (light == null)
+                {
+                    throw new InvalidOperationException("Missing ceiling light in study.");
+                }
+            }
+
+            foreach (Light2D light in flashlightLights)
+            {
+                if (light == null)
+                {
+                    throw new InvalidOperationException("Missing flashlight light in study.");
+                }
             }
 
             aim = flashlight.GetComponent<PlayerAim2D>();
             playerBody = flashlight.GetComponent<Rigidbody2D>();
             initialized = true;
+            CaptureOverrides();
             SetVariant((int)Variant.DirectionalEdge);
             SetCeiling(false);
             SetShadows(true);
@@ -155,7 +207,7 @@ namespace EmergencyShift
             {
                 var response = profile.SurfaceAt(sample.responseIndex);
                 Vector3 localLight = sample.renderer.transform.InverseTransformPoint(flashlight.Origin);
-                properties.Clear();
+                sample.renderer.GetPropertyBlock(properties);
                 properties.SetVector(LightPosition, localLight);
                 properties.SetVector(SurfaceRect, sample.surfaceRect);
                 properties.SetMatrix(WorldToSurface, sample.renderer.transform.worldToLocalMatrix);
@@ -168,7 +220,7 @@ namespace EmergencyShift
 
         public void SetVariant(int variant)
         {
-            if (!initialized || variant < 0 || variant > 2)
+            if (!initialized || !ownsOverrides || variant < 0 || variant > 2)
             {
                 return;
             }
@@ -176,7 +228,7 @@ namespace EmergencyShift
             CurrentVariant = (Variant)variant;
             for (int i = 0; i < samples.Length; i++)
             {
-                samples[i].renderer.SetPropertyBlock(null);
+                samples[i].renderer.SetPropertyBlock(originalProperties[i]);
                 samples[i].renderer.sharedMaterial = variant == 0 ? originalMaterials[i] : studyMaterial;
             }
 
@@ -190,6 +242,11 @@ namespace EmergencyShift
 
         public void SetCeiling(bool on)
         {
+            if (!ownsOverrides)
+            {
+                return;
+            }
+
             CeilingEnabled = on;
             foreach (var light in ceilingLights)
             {
@@ -206,6 +263,11 @@ namespace EmergencyShift
 
         public void SetShadows(bool enabled)
         {
+            if (!ownsOverrides)
+            {
+                return;
+            }
+
             ShadowsEnabled = enabled;
             foreach (var light in flashlightLights)
             {
@@ -255,19 +317,76 @@ namespace EmergencyShift
                 + "     Потолок: " + ceiling + "     Тени: " + shadows;
         }
 
-        private void OnDestroy()
+        private void OnEnable()
         {
-            if (!initialized)
+            if (initialized)
+            {
+                CaptureOverrides();
+                SetVariant((int)CurrentVariant);
+                SetCeiling(CeilingEnabled);
+                SetShadows(ShadowsEnabled);
+            }
+        }
+
+        private void CaptureOverrides()
+        {
+            originalMaterials = new Material[samples.Length];
+            originalProperties = new MaterialPropertyBlock[samples.Length];
+            for (int i = 0; i < samples.Length; i++)
+            {
+                originalMaterials[i] = samples[i].renderer.sharedMaterial;
+                originalProperties[i] = new MaterialPropertyBlock();
+                samples[i].renderer.GetPropertyBlock(originalProperties[i]);
+            }
+
+            originalCeilingEnabled = new bool[ceilingLights.Length];
+            for (int i = 0; i < ceilingLights.Length; i++)
+            {
+                originalCeilingEnabled[i] = ceilingLights[i].enabled;
+            }
+
+            originalFlashlightShadows = new bool[flashlightLights.Length];
+            for (int i = 0; i < flashlightLights.Length; i++)
+            {
+                originalFlashlightShadows[i] = flashlightLights[i].shadowsEnabled;
+            }
+
+            ownsOverrides = true;
+        }
+
+        private void OnDisable() => RestoreOverrides();
+        private void OnDestroy() => RestoreOverrides();
+
+        private void RestoreOverrides()
+        {
+            if (!ownsOverrides)
             {
                 return;
             }
 
+            ownsOverrides = false;
             for (int i = 0; i < samples.Length; i++)
             {
                 if (samples[i].renderer != null)
                 {
-                    samples[i].renderer.SetPropertyBlock(null);
+                    samples[i].renderer.SetPropertyBlock(originalProperties[i]);
                     samples[i].renderer.sharedMaterial = originalMaterials[i];
+                }
+            }
+
+            for (int i = 0; i < ceilingLights.Length; i++)
+            {
+                if (ceilingLights[i] != null)
+                {
+                    ceilingLights[i].enabled = originalCeilingEnabled[i];
+                }
+            }
+
+            for (int i = 0; i < flashlightLights.Length; i++)
+            {
+                if (flashlightLights[i] != null)
+                {
+                    flashlightLights[i].shadowsEnabled = originalFlashlightShadows[i];
                 }
             }
         }

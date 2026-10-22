@@ -86,19 +86,21 @@ namespace EmergencyShift
             }
             else
             {
-                casing = pool[cursor++ % pool.Count];
+                casing = pool[cursor];
+                cursor = (cursor + 1) % pool.Count;
             }
 
+            ShotVisualProfile visuals = weapon.Definition.Visuals;
             Vector2 direction = weapon.LastShotDirection;
             Vector2 side = new Vector2(direction.y, -direction.x);
-            Vector2 port = (Vector2)transform.position + direction * .16f + side * .16f;
+            Vector2 port = (Vector2)transform.position + direction * visuals.CasingPort.x + side * visuals.CasingPort.y;
             var blocked = Physics2D.Linecast(transform.position, port, obstacles);
             if (blocked.collider != null)
             {
-                port = blocked.point - (port - (Vector2)transform.position).normalized * .03f;
+                port = blocked.point - (port - (Vector2)transform.position).normalized * visuals.CasingWallClearance;
             }
 
-            casing.Launch(port, side * Between(1.2f, 1.8f) + direction * Between(-.25f, .4f), Between(1.35f, 1.85f), Between(-650, 650), audioOwner, obstacles, weapon.Definition.AudioProfile);
+            casing.Launch(port, side * Between(visuals.CasingSideSpeed.x, visuals.CasingSideSpeed.y) + direction * Between(visuals.CasingForwardSpeed.x, visuals.CasingForwardSpeed.y), Between(visuals.CasingRiseSpeed.x, visuals.CasingRiseSpeed.y), Between(visuals.CasingSpin.x, visuals.CasingSpin.y), audioOwner, obstacles, weapon.Definition.AudioProfile);
             EmittedCount++;
             CasingEmitted?.Invoke(casing);
         }

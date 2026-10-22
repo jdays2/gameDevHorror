@@ -47,6 +47,8 @@ namespace EmergencyShift
         private PlayerFootsteps2D feet;
         private Rigidbody2D playerBody;
         private ShadowStalker2D actor;
+        private float previousTimeScale;
+        private bool ownsTimeScale;
         private AudioMoodProfile originalProfile;
         private AudioMoodProfile testProfile;
         private BinaryWriter writer;
@@ -88,6 +90,12 @@ namespace EmergencyShift
 
         private void Prepare()
         {
+            if (!ownsTimeScale)
+            {
+                previousTimeScale = Time.timeScale;
+                ownsTimeScale = true;
+            }
+
             context = GetComponentInScene<LevelContext2D>();
             foreach (var enemy in FindObjectsByType<ShadowStalker2D>())
             {
@@ -323,14 +331,14 @@ namespace EmergencyShift
             Prepare();
             previousCapture = Time.captureFramerate;
             previousBackground = Application.runInBackground;
-            Time.captureFramerate = 30;
-            Application.runInBackground = true;
             if (!AudioRenderer.Start())
             {
                 throw new InvalidOperationException("Audio capture already active.");
             }
 
             capturing = true;
+            Time.captureFramerate = 30;
+            Application.runInBackground = true;
             writer = new BinaryWriter(File.Open(Path.Combine(folder, "unity-mix.f32"), FileMode.Create));
             director.enabled = false;
             director.enabled = true;
@@ -452,12 +460,21 @@ namespace EmergencyShift
 
         private void OnDisable()
         {
+            StopAllCoroutines();
             RestoreCapture();
-            Time.timeScale = 1;
+            RestoreTesting();
         }
 
-        private void OnDestroy()
+        private void OnDestroy() => RestoreTesting();
+
+        private void RestoreTesting()
         {
+            if (ownsTimeScale)
+            {
+                Time.timeScale = previousTimeScale;
+                ownsTimeScale = false;
+            }
+
             if (testProfile != null)
             {
                 if (director != null)
@@ -466,6 +483,7 @@ namespace EmergencyShift
                 }
 
                 Destroy(testProfile);
+                testProfile = null;
             }
         }
     }

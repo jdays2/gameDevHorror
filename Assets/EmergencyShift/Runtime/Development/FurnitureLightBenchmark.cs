@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using Unity.Profiling;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -72,6 +71,12 @@ namespace EmergencyShift
         }
 
         private string destination;
+        private NativeBenchmarkSettingsLease measurementSettings;
+        private InputDevice keyboard;
+        private InputDevice mouse;
+        private bool keyboardWasEnabled;
+        private bool mouseWasEnabled;
+        private FurnitureLightStudy2D.Sample[] originalSamples;
         private Report report;
         private ProfilerRecorder main;
         private ProfilerRecorder render;
@@ -118,6 +123,7 @@ namespace EmergencyShift
                 yield break;
             }
 
+            measurementSettings = new NativeBenchmarkSettingsLease();
             Application.runInBackground = true;
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = -1;
@@ -131,13 +137,17 @@ namespace EmergencyShift
             flashlight = FindAnyObjectByType<Flashlight2D>();
             flashlight.GetComponent<PlayerMotor2D>().enabled = false;
             flashlight.enabled = false;
-            if (Keyboard.current != null)
+            keyboard = Keyboard.current;
+            mouse = Mouse.current;
+            keyboardWasEnabled = keyboard != null && keyboard.enabled;
+            mouseWasEnabled = mouse != null && mouse.enabled;
+            if (keyboardWasEnabled)
             {
-                InputSystem.DisableDevice(Keyboard.current);
+                InputSystem.DisableDevice(keyboard);
             }
-            if (Mouse.current != null)
+            if (mouseWasEnabled)
             {
-                InputSystem.DisableDevice(Mouse.current);
+                InputSystem.DisableDevice(mouse);
             }
 
             main = ProfilerRecorder.StartNew(ProfilerCategory.Internal, "Main Thread");
@@ -242,12 +252,8 @@ namespace EmergencyShift
         {
             study.SetVariant(0);
             var authored = study.Samples;
+            originalSamples = authored;
             var allSamples = new List<FurnitureLightStudy2D.Sample>(authored);
-            var materials = new List<Material>();
-            foreach (var sample in authored)
-            {
-                materials.Add(sample.renderer.sharedMaterial);
-            }
 
             for (int i = 0; i < 60; i++)
             {
@@ -268,7 +274,6 @@ namespace EmergencyShift
                     responseIndex = source.responseIndex,
                     surfaceRect = source.surfaceRect
                 });
-                materials.Add(sprite.sharedMaterial);
                 copies.Add(obj);
             }
 
@@ -278,9 +283,7 @@ namespace EmergencyShift
             }
 
             // Probe-only replacement: exercise the same controller loop with a larger runtime sample set.
-            var flags = BindingFlags.Instance | BindingFlags.NonPublic;
-            typeof(FurnitureLightStudy2D).GetField("samples", flags).SetValue(study, allSamples.ToArray());
-            typeof(FurnitureLightStudy2D).GetField("originalMaterials", flags).SetValue(study, materials.ToArray());
+            study.ReplaceRuntimeSamples(allSamples.ToArray());
             var camera = Camera.main;
             camera.GetComponent<CameraFollow2D>().enabled = false;
             camera.transform.position = new Vector3(0, 0, -10);
@@ -308,8 +311,48 @@ namespace EmergencyShift
             Application.Quit(string.IsNullOrEmpty(report.failure) ? 0 : 2);
         }
 
-        private void OnDestroy()
+        private void OnDisable() => ReleaseMeasurement();
+        private void OnDestroy() => ReleaseMeasurement();
+
+        private void ReleaseMeasurement()
         {
+            StopAllCoroutines();
+            measurementSettings?.Dispose();
+            measurementSettings = null;
+            if (keyboardWasEnabled && keyboard != null && keyboard.added)
+            {
+                InputSystem.EnableDevice(keyboard);
+            }
+
+            if (mouseWasEnabled && mouse != null && mouse.added)
+            {
+                InputSystem.EnableDevice(mouse);
+            }
+
+            keyboardWasEnabled = false;
+            mouseWasEnabled = false;
+            if (study != null && originalSamples != null)
+            {
+                study.ReplaceRuntimeSamples(originalSamples);
+                foreach (var sample in originalSamples)
+                {
+                    if (sample.renderer != null)
+                    {
+                        sample.renderer.gameObject.SetActive(true);
+                    }
+                }
+            }
+
+            originalSamples = null;
+            foreach (GameObject copy in copies)
+            {
+                if (copy != null)
+                {
+                    Destroy(copy);
+                }
+            }
+
+            copies.Clear();
             Application.logMessageReceived -= OnLog;
             main.Dispose();
             render.Dispose();

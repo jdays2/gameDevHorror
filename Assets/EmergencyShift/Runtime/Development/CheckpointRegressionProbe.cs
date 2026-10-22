@@ -41,10 +41,7 @@ namespace EmergencyShift
 
             var probe = new GameObject("Temporary checkpoint regression").AddComponent<CheckpointRegressionProbe>();
             DontDestroyOnLoad(probe.gameObject);
-            probe.output = args[index + 1];
-            var controller = FindAnyObjectByType<LevelCheckpointController2D>();
-            controller.UseStore(Path.Combine(Path.GetDirectoryName(probe.output), "checkpoint-test-slot.json"));
-            controller.Clear();
+            probe.output = Path.GetFullPath(args[index + 1]);
             probe.StartCoroutine(probe.Guard(probe.Run()));
         }
 
@@ -99,37 +96,78 @@ namespace EmergencyShift
 
         private static bool SameRotation(Quaternion a, Quaternion b)
         {
-            var first = new Vector4(a.x, a.y, a.z, a.w); var second = new Vector4(b.x, b.y, b.z, b.w);
+            var first = new Vector4(a.x, a.y, a.z, a.w);
+            var second = new Vector4(b.x, b.y, b.z, b.w);
             return Mathf.Min((first - second).magnitude, (first + second).magnitude) < .00001f;
         }
+
         private static bool SameSprite(RemainsSpriteState a, RemainsSpriteState b)
         {
-            return a.visible == b.visible && Vector3.Distance(a.position, b.position) < .00001f
-                && Vector3.Distance(a.scale, b.scale) < .00001f && SameRotation(a.rotation, b.rotation)
-                && ((Vector4)a.color - (Vector4)b.color).magnitude < .00001f;
+            return a.visible == b.visible && Vector3.Distance(a.position, b.position) < .00001f && Vector3.Distance(a.scale, b.scale) < .00001f && SameRotation(a.rotation, b.rotation) && ((Vector4)a.color - (Vector4)b.color).magnitude < .00001f;
         }
+
         private static bool SameRemains(RemainsSnapshot a, RemainsSnapshot b)
         {
-            if (a.variantId != b.variantId || a.hasPool != b.hasPool || a.parts.Length != b.parts.Length || Vector3.Distance(a.position, b.position) > .00001f) return false;
+            if (a.variantId != b.variantId || a.hasPool != b.hasPool || a.parts.Length != b.parts.Length || Vector3.Distance(a.position, b.position) > .00001f)
+            {
+                return false;
+            }
+
             if (a.hasPool)
             {
-                if (a.pool.Length != b.pool.Length) return false;
-                for (int i = 0; i < a.pool.Length; i++) if (!SameSprite(a.pool[i], b.pool[i])) return false;
+                if (a.pool.Length != b.pool.Length)
+                {
+                    return false;
+                }
+
+                for (int i = 0; i < a.pool.Length; i++)
+                {
+                    if (!SameSprite(a.pool[i], b.pool[i]))
+                    {
+                        return false;
+                    }
+                }
             }
+
             for (int i = 0; i < a.parts.Length; i++)
             {
-                var first = a.parts[i]; var second = b.parts[i];
-                if (first.spriteIndex != second.spriteIndex || first.hasShadow != second.hasShadow || Vector3.Distance(first.position, second.position) > .00001f || !SameSprite(first.body, second.body)) return false;
-                if (first.hasShadow && !SameSprite(first.shadow, second.shadow)) return false;
+                var first = a.parts[i];
+                var second = b.parts[i];
+                if (first.spriteIndex != second.spriteIndex || first.hasShadow != second.hasShadow || Vector3.Distance(first.position, second.position) > .00001f || !SameSprite(first.body, second.body))
+                {
+                    return false;
+                }
+
+                if (first.hasShadow && !SameSprite(first.shadow, second.shadow))
+                {
+                    return false;
+                }
             }
+
             return true;
+        }
+
+        public static void ValidateFixture(string sceneName)
+        {
+            if (sceneName != "FirstShift")
+            {
+                throw new InvalidOperationException("This historical probe requires the retired FirstShift fixture (8 volumes/44 IDs). Use current persistence EditMode/PlayMode tests; no checkpoint slot was changed.");
+            }
         }
 
         private IEnumerator Run()
         {
             yield return null;
+            ValidateFixture(SceneManager.GetActiveScene().name);
             var player = FindAnyObjectByType<PlayerLife2D>();
-            var controller = LevelCheckpointController2D.For(player);
+            var controller = player != null ? LevelCheckpointController2D.For(player) : null;
+            if (controller == null || player.GetComponent<PlayerMotor2D>() == null || player.GetComponent<Flashlight2D>() == null || player.GetComponent<PlayerWeapon2D>() == null)
+            {
+                throw new InvalidOperationException("Checkpoint regression fixture is missing its authored player/controller dependencies.");
+            }
+
+            controller.UseStore(Path.Combine(Path.GetDirectoryName(output), "checkpoint-test-slot.json"));
+            controller.Clear();
             var motor = player.GetComponent<PlayerMotor2D>();
             motor.enabled = false;
             player.GetComponent<Flashlight2D>().SetPower(false);

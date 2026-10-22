@@ -7,6 +7,11 @@ namespace EmergencyShift
     [RequireComponent(typeof(Door2D)), DisallowMultipleComponent]
     public sealed class DoorAudio2D : MonoBehaviour
     {
+        [SerializeField, Tooltip("Use all local values, including values equal to former defaults.")]
+        private bool useAuthoredAudioTuning;
+        private float Volume => AudioProfileValidation.Resolve(volume, .85f, sounds != null ? sounds.Volume : .85f, useAuthoredAudioTuning);
+        private float MovementVolume => AudioProfileValidation.Resolve(movementVolume, .4f, sounds != null ? sounds.MovementVolume : .4f, useAuthoredAudioTuning);
+        private float HearingDistance => AudioProfileValidation.Resolve(hearingDistance, 12, sounds != null ? sounds.HearingDistance : 12, useAuthoredAudioTuning);
         [SerializeField]
         private DoorAudioSet sounds;
         [SerializeField]
@@ -56,8 +61,20 @@ namespace EmergencyShift
             }
         }
 
+        private void ValidateResolvedTuning()
+        {
+            if (!AudioProfileValidation.Unit(Volume) ||
+                !AudioProfileValidation.Unit(MovementVolume) ||
+                !AudioProfileValidation.Positive(HearingDistance))
+            {
+                throw new System.InvalidOperationException("Invalid resolved audio tuning: " + name);
+            }
+        }
+
         private void Awake()
         {
+            sounds?.Validate();
+            ValidateResolvedTuning();
             door = GetComponent<Door2D>();
             random = new System.Random(System.Guid.NewGuid().GetHashCode());
 
@@ -142,17 +159,17 @@ namespace EmergencyShift
             }
 
             Vector2 delta = (Vector2)transform.position - (Vector2)listener.position;
-            float gain = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(2, hearingDistance, delta.magnitude));
-            float pan = Mathf.Clamp(delta.x / 6, -.75f, .75f);
+            float gain = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(sounds.FullVolumeDistance, HearingDistance, delta.magnitude));
+            float pan = Mathf.Clamp(delta.x / sounds.PanDistance, -sounds.MaximumPan, sounds.MaximumPan);
             if (motion != null)
             {
-                motion.volume = volume * movementVolume * gain;
+                motion.volume = Volume * MovementVolume * gain;
                 motion.panStereo = pan;
             }
 
             if (transient != null)
             {
-                transient.volume = volume * gain;
+                transient.volume = Volume * gain;
                 transient.panStereo = pan;
             }
         }

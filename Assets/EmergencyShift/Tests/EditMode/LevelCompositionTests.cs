@@ -20,6 +20,7 @@ namespace EmergencyShift.Tests
             WorldInstaller installer = installerObject.AddComponent<WorldInstaller>();
             EmergencyShift.Editor.ThreatSignalAuthoring.ConfigureInstaller(installer);
             EmergencyShift.Editor.PlayerRulesAuthoring.ConfigureInstaller(installer);
+            EmergencyShift.Editor.WorldVisualRulesAuthoring.ConfigureInstaller(installer);
             world.Inject(installer);
             installer.InstallBindings();
             GameObject firstRig = PrefabUtility.LoadPrefabContents(RigPath);

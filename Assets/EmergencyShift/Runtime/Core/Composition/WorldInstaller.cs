@@ -2,6 +2,8 @@ using System;
 using EmergencyShift.Core.Randomness;
 using EmergencyShift.Features.CheckpointSession.Logic;
 using EmergencyShift.Core.Time;
+using EmergencyShift.Features.Doors.Config;
+using EmergencyShift.Features.LampPower.Config;
 using EmergencyShift.Features.AudioMood.Config;
 using EmergencyShift.Features.PlayerRules.Config;
 using UnityEngine;
@@ -17,6 +19,9 @@ namespace EmergencyShift.Core.Composition
         [SerializeField]
         private PlayerRulesProfile playerRules;
 
+        [SerializeField] private DoorRulesProfile doorRules;
+        [SerializeField] private LampFlickerProfile fixtureFlicker;
+
         public override void InstallBindings()
         {
             if (threatSignals == null)
@@ -31,6 +36,15 @@ namespace EmergencyShift.Core.Composition
             }
 
             PlayerRulesSettings playerSettings = playerRules.ToSettings();
+            if (doorRules == null || fixtureFlicker == null)
+            {
+                throw new InvalidOperationException("World composition requires door rules and fixture flicker profiles.");
+            }
+
+            DoorRulesSettings doorSettings = doorRules.ToSettings();
+            LampFlickerSettings flickerSettings = fixtureFlicker.ToSettings();
+            Container.Bind<DoorRulesSettings>().FromInstance(doorSettings);
+            Container.Bind<LampFlickerSettings>().FromInstance(flickerSettings);
             Container.Bind<AudioThreatSignalSettings>().FromInstance(signalSettings);
             Container.Bind<PlayerRulesSettings>().FromInstance(playerSettings);
             Container.Bind<IWorldTimeScale>().To<UnityWorldTimeScale>().AsSingle();

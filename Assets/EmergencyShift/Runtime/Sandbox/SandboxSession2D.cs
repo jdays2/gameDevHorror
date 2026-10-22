@@ -10,6 +10,7 @@ namespace EmergencyShift
     {
         [SerializeField]
         private PlayerLife2D player;
+        private PlayerWeapon2D weapon;
         private IPlayerInput input;
         private GameplayInputBlock inputBlock;
 
@@ -23,7 +24,12 @@ namespace EmergencyShift
         public void Configure(PlayerLife2D life)
         {
             player = life;
+            CacheWeapon();
         }
+
+        private void Awake() => CacheWeapon();
+
+        private void CacheWeapon() => weapon = player != null ? player.GetComponent<PlayerWeapon2D>() : null;
 
         private void Update()
         {
@@ -41,7 +47,6 @@ namespace EmergencyShift
 
             if (input.RefillAmmoPressed)
             {
-                var weapon = player.GetComponent<PlayerWeapon2D>();
                 if (weapon != null && weapon.HasWeapon)
                 {
                     weapon.TryAddAmmo(weapon.MaximumAmmo);

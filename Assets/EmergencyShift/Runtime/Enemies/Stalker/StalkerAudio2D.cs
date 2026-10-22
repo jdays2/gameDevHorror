@@ -10,6 +10,26 @@ namespace EmergencyShift
     [DisallowMultipleComponent, RequireComponent(typeof(ShadowStalker2D))]
     public sealed class StalkerAudio2D : MonoBehaviour
     {
+        [SerializeField, Tooltip("Use all local values, including values equal to former defaults.")]
+        private bool useAuthoredAudioTuning;
+        private float MasterVolume => AudioProfileValidation.Resolve(masterVolume, 1, sounds != null ? sounds.MasterVolume : 1, useAuthoredAudioTuning);
+        private float MovementVolume => AudioProfileValidation.Resolve(movementVolume, .9f, sounds != null ? sounds.MovementVolume : .9f, useAuthoredAudioTuning);
+        private float CreatureVolume => AudioProfileValidation.Resolve(creatureVolume, 1, sounds != null ? sounds.CreatureVolume : 1, useAuthoredAudioTuning);
+        private float DistancePerContact => AudioProfileValidation.Resolve(distancePerContact, .22f, sounds != null ? sounds.DistancePerContact : .22f, useAuthoredAudioTuning);
+        private float MinimumContactInterval => AudioProfileValidation.Resolve(minimumContactInterval, .075f, sounds != null ? sounds.MinimumContactInterval : .075f, useAuthoredAudioTuning);
+        private float FrictionChance => AudioProfileValidation.Resolve(frictionChance, .16f, sounds != null ? sounds.FrictionChance : .16f, useAuthoredAudioTuning);
+        private float ContactPitch => AudioProfileValidation.Resolve(contactPitch, 1, sounds != null ? sounds.ContactPitch : 1, useAuthoredAudioTuning);
+        private Vector2 IdlePause => AudioProfileValidation.Resolve(idlePause, new Vector2(3, 7), sounds != null ? sounds.IdlePause : new Vector2(3, 7), useAuthoredAudioTuning);
+        private Vector2 CowerPause => AudioProfileValidation.Resolve(cowerPause, new Vector2(1.3f, 2.8f), sounds != null ? sounds.CowerPause : new Vector2(1.3f, 2.8f), useAuthoredAudioTuning);
+        private Vector2 RetreatPainPause => AudioProfileValidation.Resolve(retreatPainPause, new Vector2(.32f, .55f), sounds != null ? sounds.RetreatPainPause : new Vector2(.32f, .55f), useAuthoredAudioTuning);
+        private float FullVolumeDistance => AudioProfileValidation.Resolve(fullVolumeDistance, 2.5f, sounds != null ? sounds.FullVolumeDistance : 2.5f, useAuthoredAudioTuning);
+        private float HearingDistance => AudioProfileValidation.Resolve(hearingDistance, 11, sounds != null ? sounds.HearingDistance : 11, useAuthoredAudioTuning);
+        private float PanDistance => AudioProfileValidation.Resolve(panDistance, 6, sounds != null ? sounds.PanDistance : 6, useAuthoredAudioTuning);
+        private float MaximumPan => AudioProfileValidation.Resolve(maximumPan, .75f, sounds != null ? sounds.MaximumPan : .75f, useAuthoredAudioTuning);
+        private float BlockedVolume => AudioProfileValidation.Resolve(blockedVolume, .45f, sounds != null ? sounds.BlockedVolume : .45f, useAuthoredAudioTuning);
+        private float BlockedCutoff => AudioProfileValidation.Resolve(blockedCutoff, 1300, sounds != null ? sounds.BlockedCutoff : 1300, useAuthoredAudioTuning);
+        private float ObstructionInterval => AudioProfileValidation.Resolve(obstructionInterval, .15f, sounds != null ? sounds.ObstructionInterval : .15f, useAuthoredAudioTuning);
+        private float MinimumHitCueInterval => AudioProfileValidation.Resolve(minimumHitCueInterval, .05f, sounds != null ? sounds.MinimumHitCueInterval : .05f, useAuthoredAudioTuning);
         [Header("Saved references — assigned in prefab")]
         [SerializeField]
         private StalkerAudioSet sounds;
@@ -110,9 +130,36 @@ namespace EmergencyShift
             }
         }
 
+        private void ValidateResolvedTuning()
+        {
+            if (!AudioProfileValidation.Unit(MasterVolume) ||
+                !AudioProfileValidation.Unit(MovementVolume) ||
+                !AudioProfileValidation.Unit(CreatureVolume) ||
+                !AudioProfileValidation.Positive(DistancePerContact) ||
+                !AudioProfileValidation.Positive(MinimumContactInterval) ||
+                !AudioProfileValidation.Unit(FrictionChance) ||
+                !AudioProfileValidation.Positive(ContactPitch) ||
+                !AudioProfileValidation.Interval(IdlePause) ||
+                !AudioProfileValidation.Interval(CowerPause) ||
+                !AudioProfileValidation.Interval(RetreatPainPause) ||
+                !AudioProfileValidation.AtLeast(FullVolumeDistance, 0) ||
+                !AudioProfileValidation.Positive(HearingDistance) ||
+                !AudioProfileValidation.Positive(PanDistance) ||
+                !AudioProfileValidation.Unit(MaximumPan) ||
+                !AudioProfileValidation.Unit(BlockedVolume) ||
+                (!AudioProfileValidation.AtLeast(BlockedCutoff, 200) || BlockedCutoff > 22000) ||
+                !AudioProfileValidation.Positive(ObstructionInterval) ||
+                !AudioProfileValidation.AtLeast(MinimumHitCueInterval, 0) ||
+                FullVolumeDistance >= HearingDistance)
+            {
+                throw new System.InvalidOperationException("Invalid resolved audio tuning: " + name);
+            }
+        }
+
         private void Awake()
         {
             sounds?.Validate();
+            ValidateResolvedTuning();
             stalker = GetComponent<ShadowStalker2D>();
             body = GetComponent<Rigidbody2D>();
             gore = GetComponent<GoreBurst2D>();
@@ -148,8 +195,8 @@ namespace EmergencyShift
             previousPosition = body.position;
             movementPosition = body.position;
             travelled = 0;
-            nextIdle = Time.time + Pause(idlePause);
-            nextCower = Time.time + Pause(cowerPause);
+            nextIdle = Time.time + Pause(IdlePause);
+            nextCower = Time.time + Pause(CowerPause);
             nextObstruction = 0;
             stalker.StateChanged += OnState;
             stalker.Damaged += OnHit;
@@ -205,7 +252,7 @@ namespace EmergencyShift
             return Mathf.Lerp(minimum, Mathf.Max(minimum, range.y), (float)random.NextDouble());
         }
 
-        private bool Audible => stalker.Player != null && DistanceSquared < hearingDistance * hearingDistance;
+        private bool Audible => stalker.Player != null && DistanceSquared < HearingDistance * HearingDistance;
         private float DistanceSquared => stalker.Player == null ? float.PositiveInfinity : ((Vector2)stalker.Player.position - (Vector2)transform.position).sqrMagnitude;
 
         private void Update()
@@ -243,34 +290,34 @@ namespace EmergencyShift
             else if (distance > .0001f)
             {
                 travelled += distance;
-                if (travelled >= distancePerContact && Time.time >= nextContact)
+                if (travelled >= DistancePerContact && Time.time >= nextContact)
                 {
-                    travelled %= distancePerContact;
-                    nextContact = Time.time + minimumContactInterval;
+                    travelled %= DistancePerContact;
+                    nextContact = Time.time + MinimumContactInterval;
                     if (MovementBudgetAvailable())
                     {
-                        Cue cue = random.NextDouble() < frictionChance ? Cue.Scrape : Cue.Step;
-                        PlayMovement(cue, cue == Cue.Scrape ? .25f : 1, position);
+                        Cue cue = random.NextDouble() < FrictionChance ? Cue.Scrape : Cue.Step;
+                        PlayMovement(cue, 1, position);
                     }
                 }
             }
 
             if (state == ShadowStalker2D.BehaviourState.Retreating && Time.time >= nextPain)
             {
-                nextPain = Time.time + Pause(retreatPainPause);
-                PlayVoice(Cue.RetreatPain, .85f, false);
+                nextPain = Time.time + Pause(RetreatPainPause);
+                PlayVoice(Cue.RetreatPain, 1, false);
             }
             else if (state == ShadowStalker2D.BehaviourState.Waiting && Time.time >= nextCower)
             {
-                nextCower = Time.time + Pause(cowerPause);
+                nextCower = Time.time + Pause(CowerPause);
                 if (QuietBudgetAvailable())
                 {
-                    PlayVoice(Cue.Cower, .9f, false);
+                    PlayVoice(Cue.Cower, 1, false);
                 }
             }
             else if ((state == ShadowStalker2D.BehaviourState.Dormant || state == ShadowStalker2D.BehaviourState.Patrolling || state == ShadowStalker2D.BehaviourState.Sneaking) && Time.time >= nextIdle)
             {
-                nextIdle = Time.time + Pause(idlePause);
+                nextIdle = Time.time + Pause(IdlePause);
                 if (!stalker.IsStaggered && QuietBudgetAvailable())
                 {
                     PlayVoice(Cue.Idle, 1, false);
@@ -304,10 +351,10 @@ namespace EmergencyShift
                     PlayVoice(Cue.LightFear, 1, true);
                     break;
                 case ShadowStalker2D.BehaviourState.Retreating:
-                    nextPain = Time.time + .12f;
+                    nextPain = Time.time + (sounds != null ? sounds.RetreatInitialPause : 0);
                     break;
                 case ShadowStalker2D.BehaviourState.Waiting:
-                    nextCower = Time.time + .3f;
+                    nextCower = Time.time + (sounds != null ? sounds.CowerInitialPause : 0);
                     break;
                 case ShadowStalker2D.BehaviourState.Dead:
                     movementSource?.Stop();
@@ -338,7 +385,7 @@ namespace EmergencyShift
                 return;
             }
 
-            nextHitCue = Time.time + minimumHitCueInterval;
+            nextHitCue = Time.time + MinimumHitCueInterval;
             PlayVoice(Cue.Hit, 1, true);
         }
 
@@ -358,7 +405,7 @@ namespace EmergencyShift
 
         private void OnLunge()
         {
-            PlayMovement(Cue.Lunge, .9f, transform.position);
+            PlayMovement(Cue.Lunge, 1, transform.position);
         }
 
         private void OnStrike(bool landed)
@@ -406,7 +453,7 @@ namespace EmergencyShift
             }
 
             voiceCue = cue;
-            voiceGain = gain;
+            voiceGain = gain * sounds.CueGain(cue);
             if (cue == Cue.Death && sounds.DeathSounds != null)
             {
                 voiceGain *= sounds.DeathSounds.Volume;
@@ -435,10 +482,10 @@ namespace EmergencyShift
             }
 
             movementCue = cue;
-            movementGain = gain;
+            movementGain = gain * sounds.CueGain(cue);
             movementPosition = position;
             movementSource.clip = clip;
-            movementSource.pitch = cue == Cue.Step || cue == Cue.Scrape ? contactPitch : 1;
+            movementSource.pitch = cue == Cue.Step || cue == Cue.Scrape ? ContactPitch : 1;
             movementSource.priority = cue == Cue.Lunge || cue == Cue.EyeBurn ? 80 : 140;
             UpdateMix();
             movementSource.Play();
@@ -544,8 +591,8 @@ namespace EmergencyShift
             }
 
             debrisCount++;
-            nextDebris = Time.time + .09f;
-            PlayMovement(Cue.Debris, .6f, part.transform.position);
+            nextDebris = Time.time + sounds.DebrisInterval;
+            PlayMovement(Cue.Debris, 1, part.transform.position);
         }
 
         private void UpdateMix()
@@ -557,24 +604,25 @@ namespace EmergencyShift
 
             if (stalker.Player == null)
             {
-                movementSource.volume = voiceSource.volume = 0;
+                movementSource.volume = 0;
+                voiceSource.volume = 0;
                 return;
             }
 
             if (Time.time >= nextObstruction)
             {
-                nextObstruction = Time.time + obstructionInterval;
+                nextObstruction = Time.time + ObstructionInterval;
                 bool blocked = Physics2D.Linecast(transform.position, stalker.Player.position, stalker.BlockingGeometry).collider != null;
-                targetObstruction = blocked ? blockedVolume : 1;
-                targetCutoff = blocked ? blockedCutoff : 22000;
+                targetObstruction = blocked ? BlockedVolume : 1;
+                targetCutoff = blocked ? BlockedCutoff : 22000;
             }
 
-            float smoothing = 1 - Mathf.Exp(-12 * Time.deltaTime);
+            float smoothing = 1 - Mathf.Exp(-sounds.ObstructionResponse * Time.deltaTime);
             obstruction = Mathf.Lerp(obstruction, targetObstruction, smoothing);
             cutoff = Mathf.Lerp(cutoff, targetCutoff, smoothing);
             Vector2 listener = stalker.Player.position;
-            MixSource(voiceSource, transform.position, listener, creatureVolume * voiceGain);
-            MixSource(movementSource, movementPosition, listener, movementVolume * movementGain);
+            MixSource(voiceSource, transform.position, listener, CreatureVolume * voiceGain);
+            MixSource(movementSource, movementPosition, listener, MovementVolume * movementGain);
             if (voiceFilter != null)
             {
                 voiceFilter.cutoffFrequency = cutoff;
@@ -587,7 +635,7 @@ namespace EmergencyShift
 
             if (Time.time >= nextPerceptionSignal)
             {
-                nextPerceptionSignal = Time.time + .15f;
+                nextPerceptionSignal = Time.time + sounds.SignalHeartbeat;
                 SignalPerception(voiceSource, voiceCue);
                 SignalPerception(movementSource, movementCue);
             }
@@ -595,14 +643,14 @@ namespace EmergencyShift
 
         private void SignalPerception(AudioSource source, Cue cue)
         {
-            if (source == null || !source.isPlaying || source.isVirtual || source.mute || source.clip == null || source.volume < .02f || AudioListener.pause || AudioListener.volume <= .001f)
+            if (source == null || !source.isPlaying || source.isVirtual || source.mute || source.clip == null || source.volume < sounds.MinimumSignalGain || AudioListener.pause || AudioListener.volume <= .001f)
             {
                 return;
             }
 
-            float remaining = Mathf.Max(.25f, source.clip.length - source.time);
+            float remaining = Mathf.Max(sounds.MinimumSignalSeconds, source.clip.length - source.time);
             bool urgent = cue == Cue.Windup || cue == Cue.LightFear || cue == Cue.Bite || cue == Cue.Hit;
-            PerceptibleCue?.Invoke(Mathf.Min(remaining, .5f), source.volume, urgent);
+            PerceptibleCue?.Invoke(Mathf.Min(remaining, sounds.MaximumSignalSeconds), source.volume, urgent);
         }
 
         private float targetObstruction = 1;
@@ -610,9 +658,9 @@ namespace EmergencyShift
         private void MixSource(AudioSource source, Vector2 position, Vector2 listener, float gain)
         {
             float distance = Vector2.Distance(position, listener);
-            float falloff = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(fullVolumeDistance, Mathf.Max(fullVolumeDistance + .1f, hearingDistance), distance));
-            source.volume = Mathf.Clamp01(masterVolume * gain * falloff * obstruction);
-            source.panStereo = Mathf.Clamp((position.x - listener.x) / panDistance, -maximumPan, maximumPan);
+            float falloff = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(FullVolumeDistance, Mathf.Max(FullVolumeDistance + .1f, HearingDistance), distance));
+            source.volume = Mathf.Clamp01(MasterVolume * gain * falloff * obstruction);
+            source.panStereo = Mathf.Clamp((position.x - listener.x) / PanDistance, -MaximumPan, MaximumPan);
         }
 
         private static int VoicePriority(Cue cue)

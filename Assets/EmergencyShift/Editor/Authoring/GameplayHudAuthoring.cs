@@ -165,7 +165,8 @@ namespace EmergencyShift.Editor
 
                 var rows = new HudWeaponRow[2];
                 var rack = Rect("Weapon positions - edit anchors", root, new Vector2(-296, 28), new Vector2(260, 110));
-                rack.anchorMin = rack.anchorMax = Vector2.right;
+                rack.anchorMax = Vector2.right;
+            rack.anchorMin = Vector2.right;
                 var active = Rect("Active weapon position", rack, Vector2.zero, new Vector2(260, 60));
                 var spare = Rect("Spare weapon position", rack, new Vector2(0, 57), new Vector2(260, 60));
                 Assign(view, "activeWeaponSlot", active);
@@ -244,7 +245,9 @@ namespace EmergencyShift.Editor
         {
             var result = new GameObject(name, typeof(RectTransform)).GetComponent<RectTransform>();
             result.SetParent(parent, false);
-            result.anchorMin = result.anchorMax = result.pivot = Vector2.zero;
+            result.pivot = Vector2.zero;
+            result.anchorMax = Vector2.zero;
+            result.anchorMin = Vector2.zero;
             result.anchoredPosition = position;
             result.sizeDelta = size;
             return result;
@@ -254,7 +257,8 @@ namespace EmergencyShift.Editor
         {
             rect.anchorMin = Vector2.zero;
             rect.anchorMax = Vector2.one;
-            rect.offsetMin = rect.offsetMax = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+            rect.offsetMin = Vector2.zero;
         }
 
         private static UnityEngine.UI.Image Image(string name, Transform parent, Vector2 position, Vector2 size, Color tint)

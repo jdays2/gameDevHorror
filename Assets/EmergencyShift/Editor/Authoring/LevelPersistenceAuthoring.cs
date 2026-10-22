@@ -15,6 +15,7 @@ namespace EmergencyShift.Editor
         public static T LoadOrCreate<T>(string path)
             where T : ScriptableObject
         {
+            RequireStableEditMode();
             var asset = AssetDatabase.LoadAssetAtPath<T>(path);
             if (asset != null)
             {
@@ -28,6 +29,14 @@ namespace EmergencyShift.Editor
 
         public static LevelDefinition Definition(string sceneName)
         {
+            RequireStableEditMode();
+            string scenePath = "Assets/EmergencyShift/Scenes/" + sceneName + ".unity";
+            if (string.IsNullOrWhiteSpace(sceneName) || sceneName == "MechanicsSandbox" ||
+                sceneName.IndexOfAny(new[] { '/', '\\' }) >= 0 || AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath) == null)
+            {
+                throw new InvalidOperationException("Persistence requires an existing authored level scene; sandbox and retired scenes are excluded.");
+            }
+
             System.IO.Directory.CreateDirectory(Data);
             AssetDatabase.Refresh();
             var existing = AssetDatabase.LoadAssetAtPath<LevelDefinition>(Data + "/" + sceneName + ".asset");
@@ -37,32 +46,7 @@ namespace EmergencyShift.Editor
             }
 
             var data = LoadOrCreate<LevelDefinition>(Data + "/" + sceneName + ".asset");
-            ConfigureIdentity(data, sceneName == "FirstShift" ? "first-shift" : sceneName.ToLowerInvariant(),
-                "Assets/EmergencyShift/Scenes/" + sceneName + ".unity");
-            if (sceneName == "FirstShift")
-            {
-                LevelObjectiveRule[] rules =
-                {
-                    new LevelObjectiveRule(ObjectiveCondition.HasCard, "evacuation", 3, "ЦЕЛЬ: восточный шлюз → зелёный выход"),
-                    new LevelObjectiveRule(ObjectiveCondition.MissingCard, "service", 0, "ЦЕЛЬ: найти служебную карту · северная комната ↑"),
-                    new LevelObjectiveRule(ObjectiveCondition.WeaponMissing, null, 1, "ЦЕЛЬ: найти пистолет · распределитель →"),
-                    new LevelObjectiveRule(ObjectiveCondition.Always, null, 2, "ЦЕЛЬ: найти эвакуационную карту · узел управления ↑")
-                };
-                var serialized = new SerializedObject(data);
-                SerializedProperty entries = serialized.FindProperty("objectives");
-                entries.arraySize = rules.Length;
-                for (int index = 0; index < rules.Length; index++)
-                {
-                    SerializedProperty entry = entries.GetArrayElementAtIndex(index);
-                    entry.FindPropertyRelative("condition").intValue = (int)rules[index].Condition;
-                    entry.FindPropertyRelative("cardId").stringValue = rules[index].CardId;
-                    entry.FindPropertyRelative("phase").intValue = rules[index].Phase;
-                    entry.FindPropertyRelative("text").stringValue = rules[index].Text;
-                }
-
-                serialized.ApplyModifiedPropertiesWithoutUndo();
-            }
-
+            ConfigureIdentity(data, sceneName.ToLowerInvariant(), scenePath);
             EditorUtility.SetDirty(data);
             return data;
         }
@@ -111,6 +95,7 @@ namespace EmergencyShift.Editor
             {
                 throw new ArgumentException("A catalog and its entries are required.");
             }
+
             var ids = new HashSet<string>(StringComparer.Ordinal);
             foreach (LevelDefinition level in levels)
             {
@@ -165,6 +150,32 @@ namespace EmergencyShift.Editor
 
         public static void Prepare(Scene scene)
         {
+            RequireStableEditMode();
+            if (!scene.IsValid() || !scene.isLoaded || string.IsNullOrEmpty(scene.path) || scene.name == "MechanicsSandbox")
+            {
+                throw new InvalidOperationException("Select a loaded authored level. MechanicsSandbox has no checkpoint flow.");
+            }
+
+            bool hasRun = false;
+            foreach (GameObject root in scene.GetRootGameObjects())
+            {
+                foreach (LevelRunController2D flow in root.GetComponentsInChildren<LevelRunController2D>(true))
+                {
+                    if (flow.Player == null || flow.Definition == null)
+                    {
+                        throw new InvalidOperationException("Configure the authored level player and definition before preparing persistence.");
+                    }
+
+                    flow.Definition.Validate();
+                    hasRun = true;
+                }
+            }
+
+            if (!hasRun)
+            {
+                throw new InvalidOperationException("Persistence preparation requires an authored level run root.");
+            }
+
             var ids = new HashSet<string>();
             System.IO.Directory.CreateDirectory(Data);
             AssetDatabase.Refresh();
@@ -179,7 +190,6 @@ namespace EmergencyShift.Editor
             }
 
             weaponCatalog.Validate();
-
             EditorUtility.SetDirty(weaponCatalog);
             foreach (var root in scene.GetRootGameObjects())
             {
@@ -187,7 +197,10 @@ namespace EmergencyShift.Editor
                 {
                     AddIdentity(player.gameObject, ids);
                     if (player.GetComponent<PlayerCheckpoint2D>() == null)
+                    {
                         player.gameObject.AddComponent<PlayerCheckpoint2D>().Configure(weaponCatalog);
+                    }
+
                     Ensure<LevelParticipant2D>(player.gameObject).Configure(new Behaviour[] { player.GetComponent<PlayerMotor2D>(), player.GetComponent<PlayerInteraction>(), player.GetComponent<PlayerWeapon2D>() }, player.GetComponent<Rigidbody2D>());
                 }
 
@@ -265,10 +278,16 @@ namespace EmergencyShift.Editor
 
                     var checkpoints = Ensure<LevelCheckpointController2D>(flow.gameObject);
                     checkpoints.Configure(catalog, definition, flow, flow.Player);
-
                 }
             }
         }
 
+        private static void RequireStableEditMode()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling)
+            {
+                throw new InvalidOperationException("Persistence authoring requires stable Edit mode.");
+            }
+        }
     }
 }

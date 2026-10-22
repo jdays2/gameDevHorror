@@ -36,6 +36,7 @@
 - [SandboxSceneBuilder.cs](../Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs)
 - [ShotgunIntegrationAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs)
 - [ThreatSignalAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs)
+- [WorldVisualRulesAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/WorldVisualRulesAuthoring.cs)
 
 ## Assets/EmergencyShift/Editor/Build
 
@@ -178,6 +179,7 @@
 - [FurnitureLightBenchmark.cs](../Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs)
 - [FurnitureLightStudy2D.cs](../Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs)
 - [FurnitureLightStudyProfile.cs](../Assets/EmergencyShift/Runtime/Development/FurnitureLightStudyProfile.cs)
+- [NativeBenchmarkSettingsLease.cs](../Assets/EmergencyShift/Runtime/Development/NativeBenchmarkSettingsLease.cs)
 - [SandboxRegressionProbe.cs](../Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs)
 - [SleeperRegressionProbe.cs](../Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs)
 
@@ -329,6 +331,8 @@
 ## Assets/EmergencyShift/Runtime/Features/Doors/Config
 
 - [DoorMotionSettings.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Config/DoorMotionSettings.cs)
+- [DoorRulesProfile.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Config/DoorRulesProfile.cs)
+- [DoorRulesSettings.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Config/DoorRulesSettings.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Doors/Logic
 
@@ -511,6 +515,11 @@
 
 - [LampPowerControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerControllerFactory.cs)
 - [LampPowerInstaller.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/LampPower/Config
+
+- [LampFlickerProfile.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/Config/LampFlickerProfile.cs)
+- [LampFlickerSettings.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/Config/LampFlickerSettings.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/LampPower/Logic
 
@@ -823,6 +832,7 @@
 - [EnemyPatrolModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs)
 - [EnemySystemsTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs)
 - [EnvironmentPresentationTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs)
+- [FinalTuningTests.cs](../Assets/EmergencyShift/Tests/EditMode/FinalTuningTests.cs)
 - [FlashlightOwnershipTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs)
 - [FlashlightStateTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs)
 - [FlashlightUpgradeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs)
@@ -889,12 +899,14 @@
 - [EnemyNavigationSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs)
 - [EnemyPatrolSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
+- [FurnitureStudyLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FurnitureStudyLifetimeTests.cs)
 - [InteractionProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs)
 - [InteractionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs)
 - [LevelObjectiveLifecycleTests.cs](../Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs)
 - [LightScopeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs)
 - [PickupSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs)
 - [PlayerMovementSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs)
+- [ProbeCancellationTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProbeCancellationTests.cs)
 - [ProjectileProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs)
 - [ProjectileSceneOwnershipTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs)
 - [SleeperBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs)

@@ -21,3 +21,7 @@
 ## Проверки и связанные документы
 
 Контракт и авторинг: [Тени окружения](../Environment/FURNITURE_SHADOW_SHAPES.md). Проверки выбирать по [VALIDATION](../VALIDATION.md); прежние результаты — [Reports/ValidationIndex](../Reports/ValidationIndex.md). Полная архитектурная сверка — текущий этап [Roadmap](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c?pvs=204).
+
+## Профиль мерцания размещённых светильников
+
+WorldInstaller требует FixtureFlicker.asset и передаёт неизменяемый LampFlickerSettings. LocalLampSceneSettings и legacy лампы используют одну кривую с прежними6.4s/.82/1.4 и двумя строгими dark intervals(границы сами остаются светлыми). FullVolumeFraction=.175 сохраняет прежнюю форму слышимости scene override. Отдельный назначенный LocalLightProfile сохраняет собственную кривую; его параметры не заменяются fixture-профилем. Питание и phase остаются личными, native renderer/audio читают результат. Standalone editor preview использует явно названные LegacyDefaults. Геометрия масок/теней и авторенные высоты/позиции не менялись. [Проверка](../Reports/RefactorCompletion42.md).

@@ -64,7 +64,7 @@ namespace EmergencyShift
         private BoxCollider2D barrier;
         private Result result;
         private int initialBuilds;
-        private bool previousBackground;
+        private NativeBenchmarkSettingsLease measurementSettings;
         public bool Finished { get; private set; }
         public string Failure { get; private set; }
         public int Frames => samples.Count;
@@ -85,7 +85,7 @@ namespace EmergencyShift
             folder = output;
             Directory.CreateDirectory(folder);
             result = new Result();
-            previousBackground = Application.runInBackground;
+            measurementSettings = new NativeBenchmarkSettingsLease();
             Application.runInBackground = true;
             foreach (var e in FindObjectsByType<ShadowStalker2D>())
             {
@@ -270,7 +270,7 @@ namespace EmergencyShift
             result.note = "Editor Play, 20 real Stalker prefabs with default animations/audio/shadows. Bullet provocation, temporary wall detour, attacks disabled. Movement warmup2s, measured10s. Diagnostic global reveal only after timing, not production lighting or GPU benchmark. Whole-editor GC includes tools/editor overhead. All temporary, no scene save.";
             File.WriteAllText(Path.Combine(folder, "report.json"), JsonUtility.ToJson(result, true));
             Finished = true;
-            Application.runInBackground = previousBackground;
+            measurementSettings?.Dispose();
         }
 
         private void SaveImage(string name)
@@ -280,13 +280,18 @@ namespace EmergencyShift
             Destroy(image);
         }
 
-        private void OnDestroy()
+        private void OnDisable() => ReleaseMeasurement();
+        private void OnDestroy() => ReleaseMeasurement();
+
+        private void ReleaseMeasurement()
         {
+            StopAllCoroutines();
             ticks.Dispose();
             paths.Dispose();
             separation.Dispose();
             gc.Dispose();
-            Application.runInBackground = previousBackground;
+            measurementSettings?.Dispose();
+            measurementSettings = null;
         }
     }
 }

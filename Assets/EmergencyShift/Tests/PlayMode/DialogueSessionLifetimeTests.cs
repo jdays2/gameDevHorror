@@ -27,7 +27,6 @@ namespace EmergencyShift.Tests
         private TestInput input;
         private float originalScale;
         private bool originalCursor;
-
         [UnitySetUp]
         public IEnumerator SetUp()
         {
@@ -52,9 +51,18 @@ namespace EmergencyShift.Tests
             input = new TestInput();
             MethodInfo construct = typeof(DialogueSession).GetMethod("Construct", BindingFlags.NonPublic | BindingFlags.Instance);
             // The old signature also permits running this regression against the pre-fix source.
-            object[] dependencies = construct.GetParameters().Length == 3
-                ? new object[] { input, block, pause }
-                : new object[] { new DialogueControllerFactory(block, pause, new RealFrame()), input };
+            object[] dependencies = construct.GetParameters().Length == 3 ? new object[]
+            {
+                input,
+                block,
+                pause
+            }
+
+            : new object[]
+            {
+                new DialogueControllerFactory(block, pause, new RealFrame()),
+                input
+            };
             construct.Invoke(session, dependencies);
             sequence = AssetDatabase.LoadAssetAtPath<DialogueSequence>("Assets/EmergencyShift/Data/Dialogue/SandboxConversation.asset");
             sequence.Validate();
@@ -62,9 +70,7 @@ namespace EmergencyShift.Tests
             Set(interaction, "sequence", sequence);
             Set(interaction, "session", session);
             actor = Create("Interaction fixture").AddComponent<PlayerInteraction>();
-            actor.Construct(input, block, new EmergencyShift.Core.Composition.SceneRegistry<Door2D>(),
-                new EmergencyShift.Features.Interaction.PlayerInteractionControllerFactory(new EmergencyShift.Core.Time.UnityGameClock()),
-                new LocalIlluminationQuery2D(new EmergencyShift.Core.Composition.SceneRegistry<LocalLamp2D>(), new EmergencyShift.Core.Composition.SceneRegistry<ShotEffect2D>()));
+            actor.Construct(input, block, new EmergencyShift.Core.Composition.SceneRegistry<Door2D>(), new EmergencyShift.Features.Interaction.PlayerInteractionControllerFactory(new EmergencyShift.Core.Time.UnityGameClock()), new LocalIlluminationQuery2D(new EmergencyShift.Core.Composition.SceneRegistry<LocalLamp2D>(), new EmergencyShift.Core.Composition.SceneRegistry<ShotEffect2D>()));
             actor.gameObject.SetActive(false);
             yield return null;
         }
@@ -210,19 +216,21 @@ namespace EmergencyShift.Tests
         {
             Assert.That(session.TryBegin(sequence), Is.True);
             using (pause.Acquire())
-            using (block.Acquire())
             {
-                session.enabled = false;
-                Assert.That(session.IsOpen, Is.False);
-                Assert.That(block.IsBlocked, Is.True);
-                Assert.That(Time.timeScale, Is.Zero);
-                Assert.That(hud.enabled, Is.True);
-                Assert.That(reticle.enabled, Is.True);
-                Assert.That(Cursor.visible, Is.False);
-                Assert.That(view.IsVisible, Is.False);
-                session.Cancel();
-                yield return null;
-                Assert.That(block.IsBlocked, Is.True);
+                using (block.Acquire())
+                {
+                    session.enabled = false;
+                    Assert.That(session.IsOpen, Is.False);
+                    Assert.That(block.IsBlocked, Is.True);
+                    Assert.That(Time.timeScale, Is.Zero);
+                    Assert.That(hud.enabled, Is.True);
+                    Assert.That(reticle.enabled, Is.True);
+                    Assert.That(Cursor.visible, Is.False);
+                    Assert.That(view.IsVisible, Is.False);
+                    session.Cancel();
+                    yield return null;
+                    Assert.That(block.IsBlocked, Is.True);
+                }
             }
 
             AssertUnchanged();

@@ -48,6 +48,7 @@ namespace EmergencyShift
         private ProfilerRecorder separation;
         private ProfilerRecorder allocations;
         private string destination;
+        private NativeBenchmarkSettingsLease measurementSettings;
         private Report report;
         private BoxCollider2D barrier;
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -79,6 +80,7 @@ namespace EmergencyShift
         private IEnumerator Run()
         {
             Application.logMessageReceived += OnLog;
+            measurementSettings = new NativeBenchmarkSettingsLease();
             Application.runInBackground = true;
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 120;
@@ -219,8 +221,14 @@ namespace EmergencyShift
             Application.Quit(string.IsNullOrEmpty(report.failure) ? 0 : 2);
         }
 
-        private void OnDestroy()
+        private void OnDisable() => ReleaseMeasurement();
+        private void OnDestroy() => ReleaseMeasurement();
+
+        private void ReleaseMeasurement()
         {
+            StopAllCoroutines();
+            measurementSettings?.Dispose();
+            measurementSettings = null;
             Application.logMessageReceived -= OnLog;
             ai.Dispose();
             separation.Dispose();

@@ -121,19 +121,35 @@ namespace EmergencyShift
 
             report.finished = true;
             File.WriteAllText(output, JsonUtility.ToJson(report, true));
-            if (testKeyboard != null)
-            {
-                InputSystem.RemoveDevice(testKeyboard);
-            }
-
-            if (testMouse != null)
-            {
-                InputSystem.RemoveDevice(testMouse);
-            }
+            ReleaseInput();
             if (!Application.isEditor)
             {
                 Application.Quit(string.IsNullOrEmpty(report.failure) ? 0 : 1);
             }
+        }
+
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+            ReleaseInput();
+        }
+
+        private void OnDestroy() => ReleaseInput();
+
+        private void ReleaseInput()
+        {
+            if (testKeyboard != null && testKeyboard.added)
+            {
+                InputSystem.RemoveDevice(testKeyboard);
+            }
+
+            if (testMouse != null && testMouse.added)
+            {
+                InputSystem.RemoveDevice(testMouse);
+            }
+
+            testKeyboard = null;
+            testMouse = null;
         }
 
         private static bool ContainsClipName(AudioClipBank clips, string name)

@@ -154,8 +154,10 @@ namespace EmergencyShift
         {
             for (int i = 0; i < 32; i++)
             {
-                float a = i * Mathf.PI / 16, b = (i + 1) * Mathf.PI / 16;
-                Vector2 p = new Vector2(Mathf.Cos(a), Mathf.Sin(a)), q = new Vector2(Mathf.Cos(b), Mathf.Sin(b));
+                float a = i * Mathf.PI / 16;
+                float b = (i + 1) * Mathf.PI / 16;
+                Vector2 p = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
+                Vector2 q = new Vector2(Mathf.Cos(b), Mathf.Sin(b));
                 Quad(mesh, p * (radius - width / 2), q * (radius - width / 2), q * (radius + width / 2), p * (radius + width / 2), tint);
             }
         }

@@ -66,6 +66,7 @@ namespace EmergencyShift
         }
 
         private string destination;
+        private NativeBenchmarkSettingsLease measurementSettings;
         private Report report;
         private ProfilerRecorder mainThread;
         private ProfilerRecorder renderThread;
@@ -106,6 +107,7 @@ namespace EmergencyShift
                 yield break;
             }
 
+            measurementSettings = new NativeBenchmarkSettingsLease();
             Application.runInBackground = true;
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = -1;
@@ -312,8 +314,14 @@ namespace EmergencyShift
             Application.Quit(string.IsNullOrEmpty(report.failure) ? 0 : 2);
         }
 
-        private void OnDestroy()
+        private void OnDisable() => ReleaseMeasurement();
+        private void OnDestroy() => ReleaseMeasurement();
+
+        private void ReleaseMeasurement()
         {
+            StopAllCoroutines();
+            measurementSettings?.Dispose();
+            measurementSettings = null;
             Application.logMessageReceived -= OnLog;
             mainThread.Dispose();
             renderThread.Dispose();

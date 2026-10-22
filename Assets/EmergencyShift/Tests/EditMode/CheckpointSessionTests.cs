@@ -163,6 +163,7 @@ namespace EmergencyShift.Tests
             var installer = owner.AddComponent<WorldInstaller>();
             EmergencyShift.Editor.ThreatSignalAuthoring.ConfigureInstaller(installer);
             EmergencyShift.Editor.PlayerRulesAuthoring.ConfigureInstaller(installer);
+            EmergencyShift.Editor.WorldVisualRulesAuthoring.ConfigureInstaller(installer);
             scope.Inject(installer);
             installer.InstallBindings();
             return scope;

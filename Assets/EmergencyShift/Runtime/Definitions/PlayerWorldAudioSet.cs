@@ -6,6 +6,17 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Player world audio set")]
     public sealed class PlayerWorldAudioSet : ScriptableObject
     {
+
+        [Header("Shared playback tuning")]
+        [SerializeField]
+        private float distancePerStep = 1.05f;
+        public float DistancePerStep => distancePerStep;
+        [SerializeField]
+        private float minimumInterval = .22f;
+        public float MinimumInterval => minimumInterval;
+        [SerializeField]
+        private float pitchVariation = .025f;
+        public float PitchVariation => pitchVariation;
         [SerializeField]
         private AudioClip[] concreteSteps;
         [SerializeField]
@@ -56,6 +67,13 @@ namespace EmergencyShift
 
         public void Validate()
         {
+            if (!AudioProfileValidation.Positive(distancePerStep) ||
+                !AudioProfileValidation.Positive(minimumInterval) ||
+                !AudioProfileValidation.Unit(pitchVariation))
+            {
+                throw new System.InvalidOperationException("Invalid playback tuning: " + name);
+            }
+
             if (!AudioProfileValidation.Unit(stepVolume) || !AudioProfileValidation.Unit(switchVolume) ||
                 !AudioProfileValidation.Unit(emptyVolume))
             {

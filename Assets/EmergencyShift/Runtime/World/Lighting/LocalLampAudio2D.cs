@@ -1,4 +1,5 @@
 using UnityEngine;
+using EmergencyShift.Features.LampPower.Config;
 using Zenject;
 using UnityEngine.Rendering.Universal;
 
@@ -27,6 +28,10 @@ namespace EmergencyShift
         private int lastContact = -1;
         private float lastContactTime = float.NegativeInfinity;
         private LocalLampSceneSettings sceneSettings;
+        private LampFlickerSettings flicker = LampFlickerSettings.LegacyDefaults;
+
+        [Inject]
+        private void ConstructCurve(LampFlickerSettings settings) => flicker = settings;
         public int ContactsPlayed { get; private set; }
         private float HearingDistance => sceneSettings != null ? sceneSettings.soundRadius : sounds.HearingDistance;
         private float HumVolume => sceneSettings != null ? sceneSettings.humVolume : sounds.HumVolume;
@@ -120,7 +125,7 @@ namespace EmergencyShift
             float intensity = sourceLight.isActiveAndEnabled ? sourceLight.intensity : 0;
             bool lit = intensity > sounds.DarkThreshold;
             Vector2 delta = (Vector2)transform.position - (Vector2)listener.position;
-            float gain = sceneSettings != null ? sceneSettings.SoundGain(delta.magnitude) : sounds.DistanceGain(delta.magnitude);
+            float gain = sceneSettings != null ? sceneSettings.SoundGain(delta.magnitude, flicker) : sounds.DistanceGain(delta.magnitude);
             if (gain > 0 && Physics2D.Linecast(transform.position, listener.position, soundBlockingLayers).collider != null)
             {
                 gain = 0;

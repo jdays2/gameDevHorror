@@ -21,17 +21,27 @@ namespace EmergencyShift.Features.Enemies.Logic
             this.random = random ?? throw new ArgumentNullException(nameof(random));
         }
 
-        public bool TryBeginBuild() => double.IsFinite(clock.Time) && clock.Time >= 0 && clock.Time >= nextRepath && budget.TryReserve();
+        public bool TryBeginBuild()
+        {
+            double now = clock.Time;
+            return double.IsFinite(now) && now >= 0 && now >= nextRepath && budget.TryReserve();
+        }
 
         public void CompleteBuild()
         {
+            double now = clock.Time;
+            if (!double.IsFinite(now) || now < 0)
+            {
+                throw new InvalidOperationException("Navigation scheduling requires a finite nonnegative clock.");
+            }
+
             double unit = random.NextUnit();
             if (!double.IsFinite(unit) || unit < 0 || unit > 1)
             {
                 throw new InvalidOperationException("Navigation jitter requires a finite unit random value.");
             }
 
-            nextRepath = clock.Time + RepathSeconds + unit * JitterSeconds;
+            nextRepath = now + RepathSeconds + unit * JitterSeconds;
         }
 
         public void Invalidate() => nextRepath = 0;

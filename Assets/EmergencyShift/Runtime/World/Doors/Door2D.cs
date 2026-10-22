@@ -17,6 +17,8 @@ namespace EmergencyShift
         private Vector3 openOffset = new Vector3(0, 3.1f, 0);
         [SerializeField, Min(0.05f)]
         private float duration = 0.3f;
+        [SerializeField, Tooltip("Keep the local duration even when equal to the former default.")]
+        private bool useAuthoredDuration;
         private Vector3 closedPosition;
         private DoorAccess2D access;
         private SceneRegistry<Door2D> registry;
@@ -30,7 +32,7 @@ namespace EmergencyShift
         public bool CanInteract => controller == null || controller.CanInteract;
         public Collider2D Blocker => leaf.GetComponent<Collider2D>();
         public Vector2 InteractionPosition => transform.position;
-        public float InteractionRange => 1.6f;
+        public float InteractionRange => factory != null ? factory.InteractionRange : EmergencyShift.Features.Doors.Config.DoorRulesSettings.LegacyRange;
 
         [Inject]
         public void Construct(SceneRegistry<Door2D> sceneRegistry, DoorMotionControllerFactory controllers)
@@ -136,7 +138,7 @@ namespace EmergencyShift
                 throw new InvalidOperationException("Door motion requires level composition.");
             }
 
-            return controller ??= factory.Create(duration, this);
+            return controller ??= factory.Create(duration, this, useAuthoredDuration);
         }
     }
 }

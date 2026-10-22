@@ -230,7 +230,12 @@ namespace EmergencyShift
 
         public int AddAmmo(int cartridges, WeaponDefinition target = null)
         {
-            return CanUse ? controller.AddAmmo(cartridges, target != null ? target.ToSettings() : null) : 0;
+            if (!CanUse)
+            {
+                return 0;
+            }
+
+            return controller.AddAmmo(cartridges, target != null ? target.ToSettings() : null);
         }
 
         public bool TryEquip(int slot) => controller != null && controller.Equip(slot);

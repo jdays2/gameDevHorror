@@ -11,6 +11,11 @@ namespace EmergencyShift
     [DisallowMultipleComponent, RequireComponent(typeof(Rigidbody2D), typeof(PlayerLife2D))]
     public sealed class PlayerFootsteps2D : MonoBehaviour, IPlayerFootstepView
     {
+        [SerializeField, Tooltip("Use all local values, including values equal to former defaults.")]
+        private bool useAuthoredAudioTuning;
+        private float DistancePerStep => AudioProfileValidation.Resolve(distancePerStep, 1.05f, sounds != null ? sounds.DistancePerStep : 1.05f, useAuthoredAudioTuning);
+        private float MinimumInterval => AudioProfileValidation.Resolve(minimumInterval, .22f, sounds != null ? sounds.MinimumInterval : .22f, useAuthoredAudioTuning);
+        private float PitchVariation => AudioProfileValidation.Resolve(pitchVariation, .025f, sounds != null ? sounds.PitchVariation : .025f, useAuthoredAudioTuning);
         [SerializeField]
         private PlayerWorldAudioSet sounds;
         [SerializeField]
@@ -54,14 +59,25 @@ namespace EmergencyShift
             controllers = footstepControllers;
         }
 
+        private void ValidateResolvedTuning()
+        {
+            if (!AudioProfileValidation.Positive(DistancePerStep) ||
+                !AudioProfileValidation.Positive(MinimumInterval) ||
+                !AudioProfileValidation.Unit(PitchVariation))
+            {
+                throw new System.InvalidOperationException("Invalid resolved audio tuning: " + name);
+            }
+        }
+
         private void Awake()
         {
             sounds?.Validate();
+            ValidateResolvedTuning();
             body = GetComponent<Rigidbody2D>();
             life = GetComponent<PlayerLife2D>();
             Prepare(leftSource);
             Prepare(rightSource);
-            controller = controllers.Create(new PlayerFootstepSettings(distancePerStep, minimumInterval), this);
+            controller = controllers.Create(new PlayerFootstepSettings(DistancePerStep, MinimumInterval), this);
         }
 
         private static void Prepare(AudioSource source)
@@ -124,7 +140,7 @@ namespace EmergencyShift
 
             source.clip = clips[id];
             source.volume = sounds.StepVolume;
-            source.pitch = 1 + ((float)random.NextUnit() * 2 - 1) * pitchVariation;
+            source.pitch = 1 + ((float)random.NextUnit() * 2 - 1) * PitchVariation;
             source.Play();
             StepsPlayed++;
         }

@@ -1,0 +1,29 @@
+--- Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs
++++ Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs
+@@ -159,7 +159,8 @@
+                 shade.color = new Color(0.015f, 0.022f, 0.025f, 0.88f);
+ 
+                 RectTransform content = Rect("Menu Content", ui);
+-                content.anchorMin = content.anchorMax = new Vector2(0.15f, 0.5f);
++                content.anchorMax = new Vector2(0.15f, 0.5f);
++            content.anchorMin = new Vector2(0.15f, 0.5f);
+                 content.pivot = new Vector2(0, 0.5f);
+                 content.sizeDelta = new Vector2(560, 500);
+                 var group = content.gameObject.AddComponent<CanvasGroup>();
+@@ -248,12 +249,14 @@
+         {
+             rect.anchorMin = Vector2.zero;
+             rect.anchorMax = Vector2.one;
+-            rect.offsetMin = rect.offsetMax = Vector2.zero;
++            rect.offsetMax = Vector2.zero;
++            rect.offsetMin = Vector2.zero;
+         }
+ 
+         private static void Place(RectTransform rect, Vector2 position, Vector2 size)
+         {
+-            rect.anchorMin = rect.anchorMax = new Vector2(0, 0.5f);
++            rect.anchorMax = new Vector2(0, 0.5f);
++            rect.anchorMin = new Vector2(0, 0.5f);
+             rect.pivot = new Vector2(0, 0.5f);
+             rect.anchoredPosition = position;
+             rect.sizeDelta = size;

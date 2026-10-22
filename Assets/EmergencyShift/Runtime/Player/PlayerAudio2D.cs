@@ -7,6 +7,14 @@ namespace EmergencyShift
     [DisallowMultipleComponent, RequireComponent(typeof(PlayerInteraction), typeof(PlayerWeapon2D))]
     public sealed class PlayerAudio2D : MonoBehaviour
     {
+        [SerializeField, Tooltip("Use all local values, including values equal to former defaults.")]
+        private bool useAuthoredAudioTuning;
+        private float PickupVolume => AudioProfileValidation.Resolve(pickupVolume, .65f, sounds != null ? sounds.PickupVolume : .65f, useAuthoredAudioTuning);
+        private float ShotVolume => AudioProfileValidation.Resolve(shotVolume, .75f, sounds != null ? sounds.ShotVolume : .75f, useAuthoredAudioTuning);
+        private float ImpactVolume => AudioProfileValidation.Resolve(impactVolume, .65f, sounds != null ? sounds.ImpactVolume : .65f, useAuthoredAudioTuning);
+        private float CasingVolume => AudioProfileValidation.Resolve(casingVolume, .3f, sounds != null ? sounds.CasingVolume : .3f, useAuthoredAudioTuning);
+        private float ShotPitchVariation => AudioProfileValidation.Resolve(shotPitchVariation, .008f, sounds != null ? sounds.ShotPitchVariation : .008f, useAuthoredAudioTuning);
+        private float ShotGainVariationDb => AudioProfileValidation.Resolve(shotGainVariationDb, .4f, sounds != null ? sounds.ShotGainVariationDb : .4f, useAuthoredAudioTuning);
         [SerializeField]
         private PlayerAudioSet sounds;
         [SerializeField]
@@ -97,8 +105,23 @@ namespace EmergencyShift
             get => impactAudioEnabled; set => impactAudioEnabled = value;
         }
 
+        private void ValidateResolvedTuning()
+        {
+            if (!AudioProfileValidation.Unit(PickupVolume) ||
+                !AudioProfileValidation.Unit(ShotVolume) ||
+                !AudioProfileValidation.Unit(ImpactVolume) ||
+                !AudioProfileValidation.Unit(CasingVolume) ||
+                !AudioProfileValidation.Unit(ShotPitchVariation) ||
+                !AudioProfileValidation.AtLeast(ShotGainVariationDb, 0))
+            {
+                throw new System.InvalidOperationException("Invalid resolved audio tuning: " + name);
+            }
+        }
+
         private void Awake()
         {
+            sounds?.Validate();
+            ValidateResolvedTuning();
             interaction = GetComponent<PlayerInteraction>();
             weapon = GetComponent<PlayerWeapon2D>();
             random = new System.Random(System.Guid.NewGuid().GetHashCode());
@@ -165,7 +188,8 @@ namespace EmergencyShift
             }
 
             generator = generator ?? random;
-            int index = generator.Next(clips.Count), previous;
+            int index = generator.Next(clips.Count);
+            int previous;
             if (clips.Count > 1 && last.TryGetValue(clips, out previous) && index == previous)
             {
                 index = (index + generator.Next(1, clips.Count)) % clips.Count;
@@ -210,9 +234,9 @@ namespace EmergencyShift
             }
 
             pickupPriority = priority;
-            pickupBurstUntil = Time.time + .07f;
+            pickupBurstUntil = Time.time + sounds.PickupBurstSeconds;
             pickupSource.clip = clip;
-            pickupSource.volume = pickupVolume;
+            pickupSource.volume = PickupVolume;
             pickupSource.panStereo = 0;
             pickupSource.Play();
             pickupCounts[(int)kind]++;
@@ -246,7 +270,8 @@ namespace EmergencyShift
             // Preserve overlapping shot tails; a bounded fallback supports shorter Inspector intervals.
             if (selected == null)
             {
-                selected = shotSources[shotCursor++ % shotSources.Length];
+                selected = shotSources[shotCursor];
+                shotCursor = (shotCursor + 1) % shotSources.Length;
             }
 
             if (selected == null)
@@ -255,9 +280,9 @@ namespace EmergencyShift
             }
 
             LastShotClip = clip.name;
-            LastShotPitch = 1 + ((float)random.NextDouble() * 2 - 1) * shotPitchVariation;
-            float gain = profile != null ? profile.ShotGain : shotVolume;
-            LastShotGain = gain * Mathf.Pow(10, (((float)random.NextDouble() * 2 - 1) * shotGainVariationDb) / 20);
+            LastShotPitch = 1 + ((float)random.NextDouble() * 2 - 1) * ShotPitchVariation;
+            float gain = profile != null ? profile.ShotGain : ShotVolume;
+            LastShotGain = gain * Mathf.Pow(10, (((float)random.NextDouble() * 2 - 1) * ShotGainVariationDb) / 20);
             selected.clip = clip;
             selected.pitch = LastShotPitch;
             selected.volume = LastShotGain;
@@ -376,9 +401,9 @@ namespace EmergencyShift
 
             float distance = Vector2.Distance(transform.position, point);
             selected.clip = clip;
-            selected.volume = impactVolume * Mathf.Clamp01(1 - distance / 16);
-            selected.pitch = Mathf.Lerp(.97f, 1.03f, (float)random.NextDouble());
-            selected.panStereo = Mathf.Clamp((point.x - transform.position.x) / 6, -.75f, .75f);
+            selected.volume = ImpactVolume * Mathf.Clamp01(1 - distance / sounds.ImpactHearingDistance);
+            selected.pitch = Mathf.Lerp(sounds.ImpactPitch.x, sounds.ImpactPitch.y, (float)random.NextDouble());
+            selected.panStereo = Mathf.Clamp((point.x - transform.position.x) / sounds.PanDistance, -sounds.MaximumPan, sounds.MaximumPan);
             selected.Play();
             ImpactAudioCount++;
             if (volley > 0)
@@ -427,16 +452,16 @@ namespace EmergencyShift
             }
 
             float distance = Vector2.Distance(transform.position, point);
-            if (distance >= 12)
+            if (distance >= sounds.CasingHearingDistance)
             {
                 return;
             }
 
             voice.clip = clip;
             voice.pitch = 1;
-            float gain = profile != null ? profile.CasingGain : casingVolume;
-            voice.volume = gain * Mathf.Clamp01(1 - distance / 12);
-            voice.panStereo = Mathf.Clamp((point.x - transform.position.x) / 6, -.75f, .75f);
+            float gain = profile != null ? profile.CasingGain : CasingVolume;
+            voice.volume = gain * Mathf.Clamp01(1 - distance / sounds.CasingHearingDistance);
+            voice.panStereo = Mathf.Clamp((point.x - transform.position.x) / sounds.PanDistance, -sounds.MaximumPan, sounds.MaximumPan);
             voice.Play();
             LastCasingClip = clip.name;
             CasingAudioCount++;

@@ -29,4 +29,4 @@ Start with the project's AGENTS, Docs/SPEC, Docs/ART_DIRECTION and the affected 
 
 For new levels use the hierarchy pattern in the reference and the project's actual LevelRig/template. For an existing level first map dependencies and preserve its authored state; improve the requested area incrementally. The pattern is a target, not permission to rename every object or change every prefab instance during an unrelated task. A technical restructuring must preserve the played space and gameplay.
 
-The owner's active full code/structure pass is tracked in Docs/Roadmap/00-ArchitectureMigration.md. Record real deviations and actual fixes; installing this skill alone does not mean the scenes have already been reorganized.
+The owner's full code/structure pass is tracked in [Notion PLAN-00](https://app.notion.com/p/3ff8d6dc06b681b6950bd8115222669c); per-file evidence is in Docs/Reports/CodeAudit.json. Record real deviations and actual fixes; installing this skill alone does not mean the scenes have already been reorganized.

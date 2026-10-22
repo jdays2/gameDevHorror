@@ -39,6 +39,20 @@ namespace EmergencyShift
         [Min(0.02f)]
         [SerializeField]
         private float impactSeconds = 0.12f;
+        [Header("Casing ejection — world units and degrees/second")]
+        [SerializeField] private Vector2 casingPort = new Vector2(.16f, .16f);
+        public Vector2 CasingPort => casingPort;
+        [SerializeField] private float casingWallClearance = .03f;
+        public float CasingWallClearance => casingWallClearance;
+        [SerializeField] private Vector2 casingSideSpeed = new Vector2(1.2f, 1.8f);
+        public Vector2 CasingSideSpeed => casingSideSpeed;
+        [SerializeField] private Vector2 casingForwardSpeed = new Vector2(-.25f, .4f);
+        public Vector2 CasingForwardSpeed => casingForwardSpeed;
+        [SerializeField] private Vector2 casingRiseSpeed = new Vector2(1.35f, 1.85f);
+        public Vector2 CasingRiseSpeed => casingRiseSpeed;
+        [SerializeField] private Vector2 casingSpin = new Vector2(-650, 650);
+        public Vector2 CasingSpin => casingSpin;
+
         public string DisplayName => displayName;
         public Color FlashColor => flashColor;
         public ProjectileVisualProfile Projectile => projectile;
@@ -63,7 +77,17 @@ namespace EmergencyShift
                 throw new InvalidOperationException("Invalid shot presentation: " + name);
             }
 
+            if (!float.IsFinite(casingPort.x) || !float.IsFinite(casingPort.y) ||
+                !float.IsFinite(casingWallClearance) || casingWallClearance < 0 ||
+                !Ordered(casingSideSpeed) || !Ordered(casingForwardSpeed) || !Ordered(casingRiseSpeed) ||
+                !Ordered(casingSpin) || casingSideSpeed.x < 0 || casingRiseSpeed.x < 0)
+            {
+                throw new InvalidOperationException("Invalid casing ejection: " + name);
+            }
+
             projectile.Validate();
         }
+        private static bool Ordered(Vector2 value) =>
+            float.IsFinite(value.x) && float.IsFinite(value.y) && value.y >= value.x;
     }
 }

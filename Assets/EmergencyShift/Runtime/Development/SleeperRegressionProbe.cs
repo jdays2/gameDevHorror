@@ -65,6 +65,23 @@ namespace EmergencyShift
             }
         }
 
+        private void OnDisable()
+        {
+            StopAllCoroutines();
+            ReleaseFixture();
+        }
+
+        private void OnDestroy() => ReleaseFixture();
+
+        private void ReleaseFixture()
+        {
+            if (fixture != null)
+            {
+                Destroy(fixture);
+                fixture = null;
+            }
+        }
+
         private void Check(string name, bool condition)
         {
             if (!condition)
