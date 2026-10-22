@@ -80,7 +80,13 @@ namespace EmergencyShift.Features.MainMenu.View
             view.Present(controller.Model, preferences.Applied);
             music.SetMenuOpen(controller.Model.Page != MenuPage.Loading);
         }
-        private void Open(MenuPage page) => Report(controller.Open(page));
+        private void Open(MenuPage page)
+        {
+            if (!quitting)
+            {
+                Report(controller.Open(page));
+            }
+        }
         private void Launch(string id) => Report(controller.Launch(id));
         private void OpenOwnerMenu() => Open(MenuPage.Scenes);
 

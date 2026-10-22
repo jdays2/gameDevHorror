@@ -191,7 +191,21 @@ public static class VerifyMainMenu
             {
                 throw new InvalidOperationException("Paused scene leaked its clock/audio lease or music into home.");
             }
-            return new { pausedReturn = true, timeScale = Time.timeScale, listenerPaused = AudioListener.pause, musicInstances = 1 };
+            var menu = UnityEngine.Object.FindAnyObjectByType<MainMenuView>();
+            menu.Request(MenuPage.Quit);
+            menu.transform.Find("Quit/Content/Confirm exit").GetComponent<Button>().onClick.Invoke();
+            InputSystem.QueueStateEvent(Keyboard.current, new KeyboardState(Key.F8));
+            await Task.Delay(100);
+            InputSystem.QueueStateEvent(Keyboard.current, new KeyboardState());
+            await Task.Delay(1000);
+            if (!menu.GetComponent<CanvasGroup>().interactable
+                || menu.transform.Find("Scenes").gameObject.activeSelf
+                || menu.transform.Find("Quit").gameObject.activeSelf)
+            {
+                throw new InvalidOperationException("F8 interrupted the pending exit fade.");
+            }
+            return new { pausedReturn = true, timeScale = Time.timeScale, listenerPaused = AudioListener.pause,
+                musicInstances = 1, quitIgnoresF8 = true };
         }
         finally
         {
