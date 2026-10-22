@@ -1,0 +1,215 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "ea6213ff7b45eeecb73ea08944dbe0edd6a9a1a5",
+  "editMode": {
+    "result": "Passed",
+    "total": "1147",
+    "passed": "1147",
+    "failed": "0",
+    "end-time": "2026-10-22 05:33:33Z",
+    "rawPath": "work/sod-evidence-20261022-final/checkpoint-session-edit.xml",
+    "rawSha256": "971b3929fed5ec2607e083edb278349d75ae915cb494a3e1d95a3b301da6262e",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.ActualWorldInstallerOwnsOverridesAcrossChildrenAndClosesThemWithItsLifetime",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.DuplicateVisitIdsAreRejectedAndOrdinalCaseIsPreserved",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.InvalidCommandsKeepTheExistingRequestAndHistory",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.InvalidVisitIdsAreRejectedBeforeSessionMutation(null)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.InvalidVisitIdsAreRejectedBeforeSessionMutation(\"\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.InvalidVisitIdsAreRejectedBeforeSessionMutation(\" \")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.LegacyNullVisitsRestoreCurrentCheckpointAndSeparateSessionsStayIndependent",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.PathOverridesAreBoundedAndNormalizeWithoutTouchingDisk",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.PathRegistryRejectsInvalidLevelTokens(\"\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.PathRegistryRejectsInvalidLevelTokens(\"../other\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.PathRegistryRejectsInvalidLevelTokens(\"folder/level\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.RequestCancelSaveAndClearHaveIndependentExplicitTransitions",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSessionTests.SnapshotAndCaptureArraysDoNotExposePersonalHistory",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectPrepareRejectsOtherInstanceIdBeforePoseOrActivation",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointValidationTests.DirectRestoreRejectsMissingParticipantBeforeActivation",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointValidationTests.InvalidVisitHistoryCannotReplaceLastGoodSlot(\"\")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointValidationTests.InvalidVisitHistoryCannotReplaceLastGoodSlot(\" \")",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointValidationTests.InvalidVisitHistoryCannotReplaceLastGoodSlot(null)",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "62",
+    "passed": "62",
+    "failed": "0",
+    "end-time": "2026-10-22 05:34:57Z",
+    "rawPath": "work/sod-evidence-20261022-final/checkpoint-session-play.xml",
+    "rawSha256": "34548fc6f7d7bd4df49278a20d002a9eea54a7e489b45c5b3535d8ff4078536d",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearImmediatelyCancelsOlderRequestAndDeletesAllSlotFiles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileDoorMovesPreventsWriteAfterDoorSettles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ClearWhileGoreIsUnsettledPreventsWriteAfterItSettles",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.DisableCancelsPendingCheckpointWithoutWritingLater",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FinishingLevelStillCancelsPendingSaveAndClearsSlot",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FinishStopsOnlyParticipantsOfItsOwnSceneBeforeNotification",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.FreshRequestAfterClearCanSavePreviouslyVisitedCheckpoint",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.CheckpointSaveLifetimeTests.ReconfigureDetachesOldRunBeforeItsFinishNotification",
+        "result": "Passed"
+      }
+    ]
+  },
+  "redBaseline": {
+    "rawPath": "work/sod-evidence-20261022-final/checkpoint-session-before.xml",
+    "rawSha256": "9e89885536316253b4eaf2a59366662d844dfa26fd98fd591ad364c575b5becc",
+    "failed": 2,
+    "passed": 0,
+    "failures": [
+      "  Expected: False\n  But was:  True\n",
+      "  Expected: True\n  But was:  False\n"
+    ],
+    "sourceRevision": "ea6213ff7b45eeecb73ea08944dbe0edd6a9a1a5",
+    "nativeSourceSha256": {
+      "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs": "60bfa1302ce3670dd8f50010b7f86881a95d4117b1bb907c0be456e89c70cf28"
+    },
+    "fixtureNote": "Original two native PlayMode lifecycle cases ran before migration; both retained. Session pure commands, visit snapshots, actual WorldInstaller registry lifetime, direct entity guards and legacy IO/checkpoints checked."
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-22T05:35:55.885Z",
+    "endedAt": "2026-10-22T05:36:21.932Z",
+    "generator": {
+      "name": "unity-cli",
+      "version": "1.0.0-beta.14"
+    }
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs": "26ab790b30aaf9cd38201ba26ac327679ffb95474ad92ed92171260755c447b4",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/CheckpointSessionFactory.cs": "ff9e80e35a4157ae56a6ca0a347d613b48e2612387af554e6ba3ebbd885e26fe",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointPathRegistry.cs": "7557d2b877bbd8335cfdf3660061341a92659cb0764c421ffea9c05eac9051eb",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs": "d568e39e8dbcf24378619134ca2f9b054d7527504dcf44ad6f48db242a55a835",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionModel.cs": "6e3e5755f9723afb4a3fab47f773a0fe047662cf213e193a5d2a589c9900e1f1",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointVisitSnapshot.cs": "1bab1077285fcb57340c84e06b585d0efde7b2adc4d2fee2d02497e2e15864d1",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RecordCheckpointSaveCommand.cs": "ce7e18ffd7b9d6c2aa729f7e9b259ab8f449cb9d92a11c61b7050854bee60b8e",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RequestCheckpointSaveCommand.cs": "adddba400ae50557cccd72173113d344bcdb2aea1eb329ac897bed8148d9d233",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/ResetCheckpointSessionCommand.cs": "ad22b763efd6f6e5eca11d7230c38a576e8b71b20b4c7a8c8200cd7deecbc727",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RestoreCheckpointSessionCommand.cs": "84a98a8d2a2c3e15745c64b9fd7c8ee785f329a5cd5d2935802f36f1c6073f37",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs": "2d9f8384a40d7154f47268bd0ce3ccccb326a9fad2b10fcadd7e5bb78fb67f0c",
+    "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs": "a27fa14f3feb62e3456438287b2bd5a2ace6eeec32243f7bfabee51f2de1b169",
+    "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs": "802e4e62de39b744e5fda9058531038160788bb11e5fd91c6c3efdfaf8c79b12",
+    "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs": "d735f1c2e5b681b3d65dfa61721345341252f73977777f0cdf52435c97a3900e",
+    "Assets/EmergencyShift/Runtime/Persistence/PersistentEntity2D.cs": "80d133d8828723919d55c60731a6254e2f4cab096a728bf4ea2922c6edb6fd5b",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs": "ce12d8a0f1341ceec699a2a176ca37e1f327f96222cb32d84fe40f4b61c54f25",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs": "efcb9f98e0d6a6856b64c73c81965f0d7cb86db09e5d32972a3d25c6880327fb",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs": "4626bb3aa84375f6ab63149bb52067aa375de2873e3d4f4b6d9c3aaee8dff9f9",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs": "82b4d2dde9672dfb34ef18121009ccc2cb98120d4a3819d5ca788b6126729e2c",
+    "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs": "544011530819a8ade71a60afac3a00ab9d0df0b380f1dc75a303649c15443d5a",
+    "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs": "a79349aabf8327897dfccc8073e1d2e3a9aa0ce3ab838b35cfeb6a39999976e5"
+  },
+  "metadataSha256": {
+    "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs.meta": "5edc4674f6a602f9b63b3e402bc83cb21c339da9e167013e3f497bcce04e9341",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/CheckpointSessionFactory.cs.meta": "b4715d12d6207f8112902b8c140c1826d105e29121189b37a69db044d5159a55",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointPathRegistry.cs.meta": "969aa85cb8247a85e4e17930d1d4d3a1fe5e77e8aea38f60f633e8cc6010890f",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs.meta": "14e00589399cbb8f7711416b21d27e1a01028b5840f89c0cf8da05fb50165623",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionModel.cs.meta": "65a759a00847c9fc81da004288df370afd3bd9ebb022ab1570ce23d202db6242",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointVisitSnapshot.cs.meta": "6c7c17e148be3b2e2ca5ef94fccbe1ed2cfeed1acc7c7df1ce29e704d8c06fce",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RecordCheckpointSaveCommand.cs.meta": "6a21a2acca49f5b19f90000faffada34eedaf1afe5a15b94af4b7d67b0af4d56",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RequestCheckpointSaveCommand.cs.meta": "4ad12ea2d540187d7d3aa208fdacf554cf2a0fa12ffba0481d8c24e5252849f2",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/ResetCheckpointSessionCommand.cs.meta": "de4939ad065ca2c6e3c50919bb76407e987e0e059e449b4dd366e4e157045754",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RestoreCheckpointSessionCommand.cs.meta": "f7ff0d69bda935e2e3cc1d2615e07dcc44b1602ab241497793c99929f61a1eb0",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs.meta": "ddea417744cf3550a4855ada8f3c37f980a950309ce1cd5e8d778b355f9c85d5",
+    "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs.meta": "186f071ef8a6adad10818ad009416ea704453686028a07f357c3fbad7f342ec3",
+    "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs.meta": "f53abad7b6c0ac491626c0d28fba12ad9b183ee5f0dd211491a47fc23923f1b7",
+    "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs.meta": "2a1d5789055091fc33e9f5f3e0bcd02161f2770595ef760b3bb04ed61466a8e5",
+    "Assets/EmergencyShift/Runtime/Persistence/PersistentEntity2D.cs.meta": "ab60a1b0fc28d22c0229cbbf368536843a337c2ab7c1d87f991909a9da1d2380",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs.meta": "589fb757ba1f415b88ec3db2a8222cd0f16218bb44d0e095b07eeaa50b1403f7",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs.meta": "765dbe45fcae8680d753b3d0608a2dd9fd9748584fc6a8dfddc985eb7c80839d",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs.meta": "9f702d9d86d6f890c1e127dcdcf06c2d34f63eef80d0ea5c6668fd2e3ff699fb",
+    "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs.meta": "0cc4448d6b3db6150fb98e6f1fd9b006c1bfa237aa16919bec488eb737180765",
+    "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs.meta": "6fcf99464cc8ef2ae6e48c31e1807f7614eadad1c03ebb719515c42e99939c36",
+    "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs.meta": "348fb1fea756e55539c091f5c552765203fda82aba1b24036b5435b24b755506",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession.meta": "4a9281b0e05af0d3008a56e4bea35d2229a4b983561e5a2aeb19c52c534b9468",
+    "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic.meta": "d79f94406e26e70c620a6f2320573426495c679e1c42ea821b8f9347e30079d3"
+  },
+  "protectedResources": 1805,
+  "resourceBaselineSha256": "d88bb27eb6157c7e5073c94144f400da0c0ece478a174eb55a1ce33f23c9db4d",
+  "resourceDifferences": [],
+  "originalDirtyFilesPreserved": 60,
+  "diagram": {
+    "fileUploadId": "4018d6dc-06b6-8127-9791-00b2c312ecb9",
+    "sha256": "786613fa2fab12d01ba066ad58d8f1f99267a8ce811e8ff7c0467e2e9d335dce"
+  },
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Personal save/visit session model and commands; native scene/IO adapters separate. Static path map replaced by bounded disposable world DI registry. Red Play baseline0/2, disable/rebind/cancel verified. Existing DTO version/IDs/resources unchanged; no campaign or sandbox checkpoint added. Other SOD work and owner acceptance remain open."
+}

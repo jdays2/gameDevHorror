@@ -61,6 +61,7 @@ namespace EmergencyShift.Tests
                 new Core.Composition.SceneRegistry<Door2D>(), new Features.Interaction.PlayerInteractionControllerFactory(new Core.Time.UnityGameClock()),
                 new LocalIlluminationQuery2D(new Core.Composition.SceneRegistry<LocalLamp2D>(), new Core.Composition.SceneRegistry<ShotEffect2D>()));
             controller = owner.AddComponent<LevelCheckpointController2D>();
+            controller.Construct(new Features.CheckpointSession.CheckpointSessionFactory(), new Features.CheckpointSession.Logic.CheckpointPathRegistry());
             controller.Configure(catalog, definition, run, player);
         }
 

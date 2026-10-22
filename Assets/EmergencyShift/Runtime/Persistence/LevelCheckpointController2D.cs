@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
+using EmergencyShift.Features.CheckpointSession;
+using EmergencyShift.Features.CheckpointSession.Logic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -20,29 +21,37 @@ namespace EmergencyShift
         private PlayerLife2D player;
         [SerializeField, Tooltip("Normal play resumes the local slot. Development probes use isolated paths.")]
         private bool resumeOnStart = true;
-        private static readonly Dictionary<string, string> sessionPaths = new Dictionary<string, string>();
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetSessionPaths()
-        {
-            sessionPaths.Clear();
-        }
-
-        private string StorePath => sessionPaths.TryGetValue(definition.LevelId, out var path) ? path : Path.Combine(StorageDirectory(), definition.LevelId + ".json");
-
+        private CheckpointPathRegistry paths;
+        private CheckpointSessionController session;
+        private CheckpointSceneAdapter2D world;
+        private LevelRunController2D subscribedRun;
         private CheckpointStore store;
         private Coroutine pending;
-        private readonly HashSet<string> visited = new HashSet<string>();
-        public string LastCheckpointId
-        {
-            get; private set;
-        }
-        public string LastError
-        {
-            get; private set;
-        }
-        public bool IsSaving => pending != null;
+        public string LastCheckpointId => session?.LastCheckpointId;
+        public string LastError { get; private set; }
+        public bool IsSaving => session != null && session.IsSaving;
         public bool HasCheckpoint => Store.Exists;
-        private CheckpointStore Store => store ?? (store = new CheckpointStore(StorePath));
+        private string StorePath => RequirePaths().Resolve(definition.LevelId, StorageDirectory());
+        private CheckpointStore Store => store ??= new CheckpointStore(StorePath);
+        private bool CanSave => isActiveAndEnabled && player != null && !player.IsDead && run != null && !run.Completed;
+
+        [Inject]
+        public void Construct(CheckpointSessionFactory factory, CheckpointPathRegistry registry)
+        {
+            if (session != null)
+            {
+                throw new InvalidOperationException("Checkpoint session is already composed.");
+            }
+
+            if (factory == null)
+            {
+                throw new ArgumentNullException(nameof(factory));
+            }
+
+            paths = registry ?? throw new ArgumentNullException(nameof(registry));
+            session = factory.Create();
+            world = new CheckpointSceneAdapter2D(gameObject.scene);
+        }
 
         private static string StorageDirectory()
         {
@@ -58,34 +67,73 @@ namespace EmergencyShift
 
         public void Configure(LevelCatalog levels, LevelDefinition data, LevelRunController2D owner, PlayerLife2D hero)
         {
+            CancelPendingSave();
+            DetachRun();
+            if (definition != data)
+            {
+                store = null;
+                session?.Clear();
+            }
+
             catalog = levels;
             definition = data;
             run = owner;
             player = hero;
+            BindRun();
         }
 
         public void UseStore(string path, bool autoResume = false)
         {
-            sessionPaths[definition.LevelId] = Path.GetFullPath(path);
-            store = new CheckpointStore(path);
+            string canonical = Path.GetFullPath(path);
+            var selected = new CheckpointStore(canonical);
+            RequirePaths().Override(definition.LevelId, canonical);
+            store = selected;
             resumeOnStart = autoResume;
         }
 
+        private void OnEnable() => BindRun();
+
         private void Start()
         {
-            run.Finished += OnFinished;
+            RequireSession();
+            BindRun();
             if (resumeOnStart && Store.Exists)
             {
                 TryRestore();
             }
         }
 
+        private void OnDisable()
+        {
+            CancelPendingSave();
+            DetachRun();
+        }
+
         private void OnDestroy()
         {
-            if (run != null)
+            CancelPendingSave();
+            DetachRun();
+        }
+
+        private void BindRun()
+        {
+            if (subscribedRun != null || !isActiveAndEnabled || run == null)
             {
-                run.Finished -= OnFinished;
+                return;
             }
+
+            subscribedRun = run;
+            subscribedRun.Finished += OnFinished;
+        }
+
+        private void DetachRun()
+        {
+            if (subscribedRun != null)
+            {
+                subscribedRun.Finished -= OnFinished;
+            }
+
+            subscribedRun = null;
         }
 
         private void OnFinished()
@@ -96,79 +144,74 @@ namespace EmergencyShift
         [ContextMenu("Clear local checkpoint slot")]
         public void Clear()
         {
-            if (pending != null)
-            {
-                StopCoroutine(pending);
-            }
-
-            pending = null;
+            CancelPendingSave();
             Store.Delete();
-            visited.Clear();
-            LastCheckpointId = null;
+            RequireSession().Clear();
         }
 
         public bool RequestSave(string checkpointId)
         {
-            if (!isActiveAndEnabled || player.IsDead || run.Completed || string.IsNullOrWhiteSpace(checkpointId) || visited.Contains(checkpointId))
+            if (!RequireSession().CanRequest(checkpointId, CanSave).Success)
             {
                 return false;
             }
 
-            if (pending != null)
+            CancelPendingSave();
+            if (!session.Request(checkpointId, CanSave).Success)
             {
-                StopCoroutine(pending);
+                return false;
             }
 
             pending = StartCoroutine(SaveWhenSettled(checkpointId));
             return true;
         }
 
+        private void CancelPendingSave()
+        {
+            Coroutine current = pending;
+            pending = null;
+            try
+            {
+                if (current != null)
+                {
+                    StopCoroutine(current);
+                }
+            }
+            finally
+            {
+                session?.Cancel();
+            }
+        }
+
         private IEnumerator SaveWhenSettled(string id)
         {
-            // Never capture flying fragments or a half-open leaf. Keep the existing slot until the new state is complete.
-            yield return null;
-            while (!WorldSettled())
+            // No snapshot of flying fragments/half-open leaves; cancel with this adapter's lifetime.
+            try
             {
-                if (player.IsDead || run.Completed)
-                {
-                    pending = null;
-                    yield break;
-                }
-
                 yield return null;
-            }
-
-            if (!player.IsDead && !run.Completed)
-            {
-                TrySaveNow(id);
-            }
-
-            pending = null;
-        }
-
-        private bool WorldSettled()
-        {
-            foreach (var root in gameObject.scene.GetRootGameObjects())
-            {
-                foreach (var gore in root.GetComponentsInChildren<GoreBurst2D>(true))
+                while (!WorldSettled())
                 {
-                    if (!gore.IsSettled)
+                    if (!CanSave)
                     {
-                        return false;
+                        yield break;
                     }
+
+                    yield return null;
                 }
 
-                foreach (var door in root.GetComponentsInChildren<Door2D>(true))
+                if (CanSave)
                 {
-                    if (door.IsMoving)
-                    {
-                        return false;
-                    }
+                    TrySaveNow(id);
                 }
             }
-
-            return true;
+            finally
+            {
+                pending = null;
+                session?.Cancel();
+            }
         }
+
+        private bool WorldSettled() => world.IsSettled();
 
         public CheckpointData Capture(string id)
         {
@@ -177,25 +220,15 @@ namespace EmergencyShift
                 throw new InvalidOperationException("Checkpoint requires a living player and settled world");
             }
 
-            var entities = PersistentEntity2D.Collect(gameObject.scene);
             var saved = new CheckpointData
             {
                 levelId = definition.LevelId,
                 levelRevision = definition.SaveRevision,
                 checkpointId = id,
                 elapsedSeconds = run.ElapsedSeconds,
-                entities = new CheckpointEntityState[entities.Count]
+                entities = world.Capture()
             };
-            var visits = new HashSet<string>(visited);
-            visits.Add(id);
-            saved.visitedCheckpoints = new string[visits.Count];
-            visits.CopyTo(saved.visitedCheckpoints);
-            int index = 0;
-            foreach (var entity in entities.Values)
-            {
-                saved.entities[index++] = entity.Capture();
-            }
-
+            saved.visitedCheckpoints = RequireSession().CaptureVisits(id);
             return saved;
         }
 
@@ -204,8 +237,7 @@ namespace EmergencyShift
             try
             {
                 Store.Write(Capture(id));
-                visited.Add(id);
-                LastCheckpointId = id;
+                RequireSession().RecordSaved(id);
                 LastError = null;
                 player.GetComponent<PlayerInteraction>().ShowNotification("Контрольная точка сохранена");
                 return true;
@@ -235,65 +267,24 @@ namespace EmergencyShift
         public void Apply(CheckpointData saved)
         {
             CheckpointStore.Validate(saved);
+            var visits = new CheckpointVisitSnapshot(saved.checkpointId, saved.visitedCheckpoints);
             if (catalog.Find(saved.levelId) != definition || saved.levelId != definition.LevelId || saved.levelRevision != definition.SaveRevision)
             {
                 throw new InvalidOperationException("Checkpoint belongs to another level");
             }
 
-            var entities = PersistentEntity2D.Collect(gameObject.scene);
-            if (entities.Count != saved.entities.Length)
-            {
-                throw new InvalidOperationException("Authored level differs from checkpoint; start a fresh run");
-            }
-
-            // Validate the entire snapshot before touching any live entity.
-            foreach (var state in saved.entities)
-            {
-                if (!entities.TryGetValue(state.id, out var entity))
-                {
-                    throw new InvalidOperationException("Saved entity missing: " + state.id);
-                }
-
-                entity.Validate(state);
-            }
-
-            foreach (var state in saved.entities)
-            {
-                entities[state.id].PrepareRestore(state);
-            }
-
-            foreach (var state in saved.entities)
-            {
-                entities[state.id].Restore(state);
-            }
-
-            Physics2D.SyncTransforms();
-            foreach (var root in gameObject.scene.GetRootGameObjects())
-            {
-                foreach (var camera in root.GetComponentsInChildren<CameraFollow2D>())
-                {
-                    camera.SnapToTarget();
-                }
-            }
-
+            world.Apply(saved.entities);
             run.RestoreElapsed(saved.elapsedSeconds);
-            LastCheckpointId = saved.checkpointId;
-            visited.Clear();
-            if (saved.visitedCheckpoints != null)
-            {
-                foreach (var id in saved.visitedCheckpoints)
-                {
-                    visited.Add(id);
-                }
-            }
-
-            visited.Add(saved.checkpointId);
+            RequireSession().Restore(visits);
             player.GetComponent<PlayerInteraction>().ShowNotification("Контрольная точка загружена");
         }
 
+        private CheckpointSessionController RequireSession() => session ?? throw new InvalidOperationException("Checkpoint requires level composition.");
+        private CheckpointPathRegistry RequirePaths() => paths ?? throw new InvalidOperationException("Checkpoint paths require world composition.");
+
         public void Reload()
         {
-            SceneManager.LoadScene(gameObject.scene.buildIndex);
+            world.Reload();
         }
 
         private void Report(Exception error)

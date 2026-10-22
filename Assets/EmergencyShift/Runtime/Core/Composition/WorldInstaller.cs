@@ -1,5 +1,6 @@
 using System;
 using EmergencyShift.Core.Randomness;
+using EmergencyShift.Features.CheckpointSession.Logic;
 using EmergencyShift.Core.Time;
 using EmergencyShift.Features.AudioMood.Config;
 using UnityEngine;
@@ -26,6 +27,7 @@ namespace EmergencyShift.Core.Composition
             Container.Bind<IFrameClock>().To<UnityFrameClock>().AsSingle();
             Container.Bind<NavigationWorkBudget2D>().AsSingle();
             Container.Bind<GoreSpawnBudget2D>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CheckpointPathRegistry>().AsSingle();
             Container.Bind<RandomSourceFactory>().AsSingle().WithArguments(new System.Random());
             Container.BindInterfacesAndSelfTo<WorldMotionPause>().AsSingle();
             Container.BindInterfacesAndSelfTo<EnemyDeathAudioVariants>().AsSingle()

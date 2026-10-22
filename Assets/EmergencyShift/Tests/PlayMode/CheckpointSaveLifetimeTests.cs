@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using EmergencyShift.Core.Time;
@@ -50,6 +49,7 @@ namespace EmergencyShift.Tests
             run.Configure(player, cards);
             run.SetDefinition(definition, null);
             controller = owner.AddComponent<LevelCheckpointController2D>();
+            controller.Construct(new Features.CheckpointSession.CheckpointSessionFactory(), new Features.CheckpointSession.Logic.CheckpointPathRegistry());
             controller.Configure(catalog, definition, run, player);
             controller.UseStore(path);
             yield return null;
@@ -61,12 +61,6 @@ namespace EmergencyShift.Tests
             if (scene.IsValid())
             {
                 yield return SceneManager.UnloadSceneAsync(scene);
-            }
-            if (definition != null)
-            {
-                var paths = (Dictionary<string, string>)typeof(LevelCheckpointController2D)
-                    .GetField("sessionPaths", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-                paths.Remove(definition.LevelId);
             }
             UnityEngine.Object.Destroy(catalog);
             UnityEngine.Object.Destroy(definition);
@@ -204,6 +198,33 @@ namespace EmergencyShift.Tests
                 Assert.That(otherBody.simulated, Is.True);
                 notified = true;
             }
+        }
+
+        [UnityTest]
+        public IEnumerator DisableCancelsPendingCheckpointWithoutWritingLater()
+        {
+            Assert.That(controller.RequestSave("disabled"), Is.True);
+            controller.enabled = false;
+            Assert.That(controller.IsSaving, Is.False);
+            yield return Frames(5);
+            AssertEmptySlot();
+        }
+
+        [UnityTest]
+        public IEnumerator ReconfigureDetachesOldRunBeforeItsFinishNotification()
+        {
+            Assert.That(controller.TrySaveNow("keep-new-binding"), Is.True);
+            var nextRun = Create("Replacement run").AddComponent<LevelRunController2D>();
+            nextRun.Construct(null, new Features.LevelProgress.LevelProgressFactory(new UnityGameClock()));
+            nextRun.enabled = false;
+            nextRun.Configure(player, cards);
+            nextRun.SetDefinition(definition, null);
+            controller.Configure(catalog, definition, nextRun, player);
+            cards.Add(definition.ExitCardId);
+            Assert.That(run.TryFinish(player), Is.True);
+            Assert.That(controller.HasCheckpoint, Is.True);
+            Assert.That(controller.LastCheckpointId, Is.EqualTo("keep-new-binding"));
+            yield return null;
         }
 
         private void AssertEmptySlot()

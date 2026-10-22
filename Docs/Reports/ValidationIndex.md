@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Checkpoint session/DI/lifetime / BUG-031 | [CheckpointSession35](CheckpointSession35.md): baseline 0/2 PlayMode, затем 1147/1147 EditMode, 62/62 PlayMode, Windows64 success. Личная model/commands, world-owned bounded paths, native scene/IO adapters, disable/rebind/clear и direct preflight. |
 | Raw actor checkpoint guards / BUG-030 | [ActorCheckpoint34](ActorCheckpoint34.md): baseline 0/12, затем 1129/1129 EditMode, 60/60 PlayMode, Windows64 success. Actor times/vectors/melee/patrol/rotation и player aim проверяются до mutation; direct pristine envelope и legacy форматы проверены. |
 | Native actor ports | [ActorPorts33](ActorPorts33.md): 1117/1117 EditMode, 60/60 PlayMode, Windows64 success. Узкие операции карт/фонаря/оружия вместо конкретного PlayerInteraction; partial ammo, command rejection и destroyed actor проверены. |
 | Кровь/останки readonly config / BUG-029 | [GoreConfig32](GoreConfig32.md): baseline 0/2, затем 1111/1111 EditMode, 60/60 PlayMode, Windows64 success. Числа/составы/ID проверяются до генерации; legacy restoration-only сохранены; отдельный cosmetic RNG не сдвигает gameplay factory. |

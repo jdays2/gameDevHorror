@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "604 own C# explicitly read; 63 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest ActorCheckpoint34.",
+  "limits": "615 own C# explicitly read; 60 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest CheckpointSession35.",
   "counts": {
-    "partial": 63,
-    "reviewed_boundary": 541
+    "partial": 60,
+    "reviewed_boundary": 555
   },
   "files": [
     {
@@ -1115,6 +1115,7 @@
       "lexicalSourceUsers": [
         "AgentScripts/InstallWorldComposition.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
       ],
@@ -2075,6 +2076,11 @@
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetThreatSignalCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RecordCheckpointSaveCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RequestCheckpointSaveCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/ResetCheckpointSessionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RestoreCheckpointSessionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageController.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/DirectionalDamageModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
@@ -2204,6 +2210,10 @@
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioLayerMixCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetAudioMoodCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/AudioMood/Logic/ResetThreatSignalCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RecordCheckpointSaveCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RequestCheckpointSaveCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/ResetCheckpointSessionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RestoreCheckpointSessionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Logic/ShowDamagePulseCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs",
@@ -2451,13 +2461,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
-      "sha256": "aa246d9c3dde0d4ca268b9270ffede72629d36fc2bc32d2ad795bba379a51d66",
+      "sha256": "26ab790b30aaf9cd38201ba26ac327679ffb95474ad92ed92171260755c447b4",
       "baselineSha256": null,
       "guid": "db025a46dc7ec8748a1847f868571510",
       "types": [
         "WorldInstaller"
       ],
-      "lines": 35,
+      "lines": 37,
       "serializedUsers": [
         "Assets/EmergencyShift/Resources/ProjectContext.prefab"
       ],
@@ -2466,13 +2476,14 @@
         "AgentScripts/InstallWorldComposition.cs",
         "Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
-      "reviewedSha256": "aa246d9c3dde0d4ca268b9270ffede72629d36fc2bc32d2ad795bba379a51d66",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "reviewedSha256": "26ab790b30aaf9cd38201ba26ac327679ffb95474ad92ed92171260755c447b4",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -2490,8 +2501,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 1; сцены по графу: 0.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioThreatSignals26.md",
-      "reviewScope": "Full source read: immutable signal profile/snapshot, personal deadlines, command/reset/controller/clock, inherited scoped source lifecycle, mandatory world composition and targeted Editor authoring. Exact prefab reference-only change and native audio/cleanup/build verified.",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -8321,6 +8332,247 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/CheckpointSessionFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "ff9e80e35a4157ae56a6ca0a347d613b48e2612387af554e6ba3ebbd885e26fe",
+      "guid": "a75c54dbacfd35b40a42361dbd1b8964",
+      "types": [
+        "CheckpointSessionFactory"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "ff9e80e35a4157ae56a6ca0a347d613b48e2612387af554e6ba3ebbd885e26fe",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointPathRegistry.cs",
+      "sourceScope": "unity",
+      "sha256": "7557d2b877bbd8335cfdf3660061341a92659cb0764c421ffea9c05eac9051eb",
+      "guid": "28ea9b78616bada45af2859f0773807b",
+      "types": [
+        "CheckpointPathRegistry"
+      ],
+      "lines": 61,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Core/Composition/WorldInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "7557d2b877bbd8335cfdf3660061341a92659cb0764c421ffea9c05eac9051eb",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs",
+      "sourceScope": "unity",
+      "sha256": "d568e39e8dbcf24378619134ca2f9b054d7527504dcf44ad6f48db242a55a835",
+      "guid": "0d8d1a05a93c1a74c912fa849a2bb1f0",
+      "types": [
+        "CheckpointSessionController"
+      ],
+      "lines": 23,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/CheckpointSessionFactory.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "d568e39e8dbcf24378619134ca2f9b054d7527504dcf44ad6f48db242a55a835",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionModel.cs",
+      "sourceScope": "unity",
+      "sha256": "6e3e5755f9723afb4a3fab47f773a0fe047662cf213e193a5d2a589c9900e1f1",
+      "guid": "84fbe7126302fa543a456e9d4be772af",
+      "types": [
+        "CheckpointSessionModel"
+      ],
+      "lines": 68,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/CheckpointSessionFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RecordCheckpointSaveCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RequestCheckpointSaveCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/ResetCheckpointSessionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RestoreCheckpointSessionCommand.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "6e3e5755f9723afb4a3fab47f773a0fe047662cf213e193a5d2a589c9900e1f1",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointVisitSnapshot.cs",
+      "sourceScope": "unity",
+      "sha256": "1bab1077285fcb57340c84e06b585d0efde7b2adc4d2fee2d02497e2e15864d1",
+      "guid": "5d6ceb3341b10a64d85355830bb6033f",
+      "types": [
+        "CheckpointVisitSnapshot"
+      ],
+      "lines": 36,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RestoreCheckpointSessionCommand.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "1bab1077285fcb57340c84e06b585d0efde7b2adc4d2fee2d02497e2e15864d1",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RecordCheckpointSaveCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "ce7e18ffd7b9d6c2aa729f7e9b259ab8f449cb9d92a11c61b7050854bee60b8e",
+      "guid": "f4f8c2023c0751a43a9728dba382abf0",
+      "types": [
+        "RecordCheckpointSaveCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "ce7e18ffd7b9d6c2aa729f7e9b259ab8f449cb9d92a11c61b7050854bee60b8e",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RequestCheckpointSaveCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "adddba400ae50557cccd72173113d344bcdb2aea1eb329ac897bed8148d9d233",
+      "guid": "fe1506f069e6d8e4699544a2585fc33b",
+      "types": [
+        "RequestCheckpointSaveCommand"
+      ],
+      "lines": 32,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "adddba400ae50557cccd72173113d344bcdb2aea1eb329ac897bed8148d9d233",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/ResetCheckpointSessionCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "ad22b763efd6f6e5eca11d7230c38a576e8b71b20b4c7a8c8200cd7deecbc727",
+      "guid": "f7d73402de3618e41b63c45e3a0e31ce",
+      "types": [
+        "ResetCheckpointSessionCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "ad22b763efd6f6e5eca11d7230c38a576e8b71b20b4c7a8c8200cd7deecbc727",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RestoreCheckpointSessionCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "84a98a8d2a2c3e15745c64b9fd7c8ee785f329a5cd5d2935802f36f1c6073f37",
+      "guid": "5cc5cee91a7ee314c91238528ad3a59e",
+      "types": [
+        "RestoreCheckpointSessionCommand"
+      ],
+      "lines": 30,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "84a98a8d2a2c3e15745c64b9fd7c8ee785f329a5cd5d2935802f36f1c6073f37",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "Чистый readonly value config; malformed/default(struct) повторно проверяется в Model.",
       "path": "Assets/EmergencyShift/Runtime/Features/DamageFeedback/Config/DamageFeedbackSettings.cs",
       "sha256": "b3881e8e6a538f20711b94fe26db7c45e3059482dfa0c7ebf6c58306ebffa8ae",
@@ -13552,6 +13804,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/WeaponLootModelTests.cs",
@@ -14586,13 +14839,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
-      "sha256": "b8961f466b56e1a50d740ee6c95e4a39cc226bc0cc4b2e208cc1df4b8dc0e4f1",
+      "sha256": "2d9f8384a40d7154f47268bd0ce3ccccb326a9fad2b10fcadd7e5bb78fb67f0c",
       "baselineSha256": null,
       "guid": "0a79308db69301e4d968479a95aeff27",
       "types": [
         "LevelRegistriesInstaller"
       ],
-      "lines": 28,
+      "lines": 30,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -14601,8 +14854,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
-      "reviewedSha256": "b8961f466b56e1a50d740ee6c95e4a39cc226bc0cc4b2e208cc1df4b8dc0e4f1",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "reviewedSha256": "2d9f8384a40d7154f47268bd0ce3ccccb326a9fad2b10fcadd7e5bb78fb67f0c",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14619,8 +14872,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/GoreConfig32.md",
-      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -14713,7 +14966,8 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
-        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -14808,6 +15062,7 @@
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs",
         "Assets/EmergencyShift/Runtime/Persistence/DoorCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/EncounterCheckpoint2D.cs",
@@ -14847,14 +15102,38 @@
       "reviewScope": "Full source read: SOD responsibility/dependencies/usage/lifecycle and checkpoint counterexamples. Static evidence only; no new Unity execution."
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs",
+      "sourceScope": "unity",
+      "sha256": "a27fa14f3feb62e3456438287b2bd5a2ace6eeec32243f7bfabee51f2de1b169",
+      "guid": "8a3f8cf0486ad8743be5d914ca2fe9ce",
+      "types": [
+        "CheckpointSceneAdapter2D"
+      ],
+      "lines": 107,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a27fa14f3feb62e3456438287b2bd5a2ace6eeec32243f7bfabee51f2de1b169",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
       "path": "Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs",
-      "sha256": "d8be73dacb1dd5bb28bffd3197201832ae8e78e01d225123779891b8bcd119da",
+      "sha256": "802e4e62de39b744e5fda9058531038160788bb11e5fd91c6c3efdfaf8c79b12",
       "baselineSha256": "2cf8ec0e1a3aeabbaa8c54bedbdcb2258ea7fb317a3ba669d633bcfe119254a8",
       "guid": "3fe27d11d44a5754b9251323b88bea18",
       "types": [
         "CheckpointStore"
       ],
-      "lines": 98,
+      "lines": 110,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -14866,8 +15145,8 @@
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "BUG-011 исправлен: XYZ, unit quaternion и elapsed проверяются до записи temp/backup и применения. Store всё ещё объединяет JSON/IO и envelope orchestration; вложенные payload проверяют adapters.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14899,10 +15178,11 @@
         "UnityEngine"
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
-      "reviewedSha256": "d8be73dacb1dd5bb28bffd3197201832ae8e78e01d225123779891b8bcd119da",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
-      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success."
+      "reviewedSha256": "802e4e62de39b744e5fda9058531038160788bb11e5fd91c6c3efdfaf8c79b12",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
+      "previousReviewStatus": "partial"
     },
     {
       "reviewStatus": "reviewed_boundary",
@@ -15091,13 +15371,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
-      "sha256": "0be0ac0697b2939c4b00a25dc35cd8d88dd4157311dd71aecfe0bae1b569f754",
+      "sha256": "d735f1c2e5b681b3d65dfa61721345341252f73977777f0cdf52435c97a3900e",
       "baselineSha256": "6b80611a9f8adc089d1627cd240c6a36e2200e5e5e8a960dadc26c50c0eab2d9",
       "guid": "292c3ef7fa47a79418ae4043271ae7a2",
       "types": [
         "LevelCheckpointController2D"
       ],
-      "lines": 320,
+      "lines": 311,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -15113,11 +15393,9 @@
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs"
       ],
-      "entryPointHints": [
-        "RuntimeInitializeOnLoadMethod"
-      ],
-      "reviewStatus": "partial",
-      "notes": "LevelConfig28/BUG-026: config getters/pure matcher проверены; прежние run/objective state, persistence/authoring/style долги сохранены.",
+      "entryPointHints": [],
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -15150,21 +15428,21 @@
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "0be0ac0697b2939c4b00a25dc35cd8d88dd4157311dd71aecfe0bae1b569f754",
+      "reviewedSha256": "d735f1c2e5b681b3d65dfa61721345341252f73977777f0cdf52435c97a3900e",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelConfig28.md",
-      "reviewScope": "Level config/rule/catalog fully read: readonly IDs/revision/arrays, full validation and pure condition matcher. Native facts adapter, unchanged lookup consumers and Editor/fixture authoring reviewed; checkpoint/native/build verified. Consumer prior partial scopes retained.",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
       "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PersistentEntity2D.cs",
-      "sha256": "de3b58d4dd367b873da25ff52fde87f934f8328c122e05977cb43f82989c0503",
+      "sha256": "80d133d8828723919d55c60731a6254e2f4cab096a728bf4ea2922c6edb6fd5b",
       "baselineSha256": "a7818319185631a4a9f364945869fb07729e76175dab728b1fe573ce8ece7364",
       "guid": "5b9ffea566130444b9decdfd3faa2e70",
       "types": [
         "PersistentEntity2D"
       ],
-      "lines": 128,
+      "lines": 140,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab",
         "Assets/EmergencyShift/Scenes/BasementPrototype.unity",
@@ -15179,9 +15457,9 @@
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/DoorCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/EncounterCheckpoint2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
@@ -15194,8 +15472,8 @@
         "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs"
       ],
       "entryPointHints": [],
-      "reviewStatus": "partial",
-      "notes": "BUG-011 исправлен: прямой Validate тоже отвергает некорректную позу до participants/PrepareRestore. Сценовый traversal/компоненты/активация остаются Unity-адаптером, полная SOD-миграция не выполнена.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "responsibility": "Сценический ID, участники и применение позы",
@@ -15205,10 +15483,10 @@
         "UnityEngine"
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
-      "reviewedSha256": "de3b58d4dd367b873da25ff52fde87f934f8328c122e05977cb43f82989c0503",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/CheckpointValidation01.md",
-      "reviewScope": "Full touched source review: numeric/presence boundary and no-partial-mutation regressions; all own EditMode 192/192, Windows64 build success.",
+      "reviewedSha256": "80d133d8828723919d55c60731a6254e2f4cab096a728bf4ea2922c6edb6fd5b",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
       "reviewHistory": [
         {
           "reviewStatus": "reviewed_boundary",
@@ -15240,7 +15518,8 @@
           ],
           "usageEvidence": "LevelCheckpointController2D; authoring и PersistenceTests"
         }
-      ]
+      ],
+      "previousReviewStatus": "partial"
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Persistence/PlayerCheckpoint2D.cs",
@@ -15781,7 +16060,7 @@
         "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightBenchmark.cs",
         "Assets/EmergencyShift/Runtime/Development/FurnitureLightStudy2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CameraOpticsLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs"
       ],
@@ -17214,7 +17493,7 @@
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerAudio2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/SleeperCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/StalkerCheckpoint2D.cs",
         "Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs",
@@ -18171,8 +18450,8 @@
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs",
         "Assets/EmergencyShift/Runtime/Persistence/DoorCheckpoint2D.cs",
-        "Assets/EmergencyShift/Runtime/Persistence/LevelCheckpointController2D.cs",
         "Assets/EmergencyShift/Runtime/Player/PlayerInteraction.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAccess2D.cs",
         "Assets/EmergencyShift/Runtime/World/Doors/DoorAudio2D.cs",
@@ -18792,6 +19071,7 @@
         "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs",
         "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/InteractionActorPortTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs",
@@ -19656,26 +19936,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "51 mandatory-boolean regressions",
-      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "9d4add7d5c84d5117120e013fc3a07e52d05144e07f0a5b20be363eafec2b0e0",
+      "reviewedSha256": "ce12d8a0f1341ceec699a2a176ca37e1f327f96222cb32d84fe40f4b61c54f25",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelProgress29.md",
-      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
       "sourceScope": "unity",
-      "sha256": "9d4add7d5c84d5117120e013fc3a07e52d05144e07f0a5b20be363eafec2b0e0",
+      "sha256": "ce12d8a0f1341ceec699a2a176ca37e1f327f96222cb32d84fe40f4b61c54f25",
       "guid": "6ff5dbeb7ad7232408aff07bf6b131e2",
       "types": [
         "CheckpointBooleanTests",
         "ConsumedRead"
       ],
-      "lines": 232,
+      "lines": 233,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -19696,26 +19976,26 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "73 checkpoint payload regression cases",
-      "notes": "ActorCheckpoint34/BUG-030: raw actor payload guards до mutation и legacy форматы проверены; native serialization adapter не владеет правилами игры.",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
       "dependencies": [
         "Existing checkpoint/module DTOs",
         "System/collections",
         "Unity math/JSON adapters; Editor/NUnit only in tests"
       ],
       "usageEvidence": "Explicit adapter calls / actual Unity tests / normal Windows64 build; CheckpointPayload02.",
-      "reviewedSha256": "55bfa4d7888486996513309c55a25a51c7a36b229d7f086f7a83b6d0419391a3",
+      "reviewedSha256": "efcb9f98e0d6a6856b64c73c81965f0d7cb86db09e5d32972a3d25c6880327fb",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/ActorCheckpoint34.md",
-      "reviewScope": "Actor checkpoint adapters fully read: only DTO/native serialization adapters, pure model validators shared before all mutations; raw timers/vectors/melee/patrol/health/visual rotation and finite player aim. Existing legacy formats retained. Native actor restore reuses raw guard. No session-state/IO completion claim.",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
       "sourceScope": "unity",
-      "sha256": "55bfa4d7888486996513309c55a25a51c7a36b229d7f086f7a83b6d0419391a3",
+      "sha256": "efcb9f98e0d6a6856b64c73c81965f0d7cb86db09e5d32972a3d25c6880327fb",
       "guid": "1bf28e11cf73f3845aea92fa6690fe1c",
       "types": [
         "CheckpointPayloadTests",
         "TestClock"
       ],
-      "lines": 530,
+      "lines": 531,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -19755,6 +20035,31 @@
       ]
     },
     {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs",
+      "sourceScope": "unity",
+      "sha256": "4626bb3aa84375f6ab63149bb52067aa375de2873e3d4f4b6d9c3aaee8dff9f9",
+      "guid": "077c265da64ccb7439a948a2188b264a",
+      "types": [
+        "CheckpointSessionTests"
+      ],
+      "lines": 170,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "4626bb3aa84375f6ab63149bb52067aa375de2873e3d4f4b6d9c3aaee8dff9f9",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open."
+    },
+    {
       "reviewStatus": "reviewed_boundary",
       "reviewHistory": [
         {
@@ -19762,7 +20067,7 @@
         }
       ],
       "responsibility": "37 регрессий сохранности слота и мира",
-      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
       "dependencies": [
         "System",
         "System.IO",
@@ -19773,21 +20078,22 @@
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelProgress29.md",
-      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
-      "reviewedSha256": "23b136d117e116411d8be73fa79ff9505132db18eba54fff35669aac492985b9",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
+      "reviewedSha256": "82b4d2dde9672dfb34ef18121009ccc2cb98120d4a3819d5ca788b6126729e2c",
       "path": "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
       "sourceScope": "unity",
-      "sha256": "23b136d117e116411d8be73fa79ff9505132db18eba54fff35669aac492985b9",
+      "sha256": "82b4d2dde9672dfb34ef18121009ccc2cb98120d4a3819d5ca788b6126729e2c",
       "guid": "e650284e1701499458266e8a41f872ab",
       "types": [
         "CheckpointValidationTests"
       ],
-      "lines": 224,
+      "lines": 262,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [
+        "Test",
         "TestCase"
       ],
       "sourceChangedSinceReview": false,
@@ -21673,7 +21979,7 @@
         }
       ],
       "responsibility": "46 регрессий nested validation и silent remains restore",
-      "notes": "GoreConfig32/BUG-029: readonly gore/blood config и original invalid recipe rejection проверены; serialization и refs сохранены.",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
       "dependencies": [
         "System",
         "NUnit.Framework",
@@ -21684,17 +21990,17 @@
       ],
       "usageEvidence": "Explicit callers/tests and actual isolated Unity compilation/test/player build; see CheckpointValidation01. YAML/lexical graph remains usage hints.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/GoreConfig32.md",
-      "reviewScope": "Gore/blood profiles and inline data fully reviewed: readonly API, finite/range/ID validation, choice before emission, legacy restoration-only lookup, separate level cosmetic RNG; touched native/fixture consumers reviewed. Prior actor/presentation lifetime/style scopes retained.",
-      "reviewedSha256": "ecc814e6731c51069500477c95ffbad3c455106a2ac82412928ce6a7334b83ba",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
+      "reviewedSha256": "544011530819a8ade71a60afac3a00ab9d0df0b380f1dc75a303649c15443d5a",
       "path": "Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs",
       "sourceScope": "unity",
-      "sha256": "ecc814e6731c51069500477c95ffbad3c455106a2ac82412928ce6a7334b83ba",
+      "sha256": "544011530819a8ade71a60afac3a00ab9d0df0b380f1dc75a303649c15443d5a",
       "guid": "f37122df06fa58d4f8c5aa01ea24c4fe",
       "types": [
         "RemainsValidationTests"
       ],
-      "lines": 322,
+      "lines": 323,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -22563,27 +22869,27 @@
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
       "responsibility": "5 real PlayMode pending-save lifetime regressions",
-      "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
+      "notes": "CheckpointSession35/BUG-031: личная session/commands, scoped paths и native scene/IO boundary проверены, coroutine/subscription lifetime закрыт; прежние schema/resources сохранены.",
       "dependencies": [
         "Existing checkpoint contracts / instance adapters",
         "Unity JSON; no scene dependencies in JSON helper",
         "NUnit/TestTools/Editor only in tests"
       ],
       "usageEvidence": "Explicit participant/Apply/Clear calls; live Editor EditMode and isolated real PlayMode + normal Windows64 build.",
-      "reviewedSha256": "517228e676c8317d05d86344aaebdd668e992356c0d106175ac5ae0d658f6ee9",
+      "reviewedSha256": "a79349aabf8327897dfccc8073e1d2e3a9aa0ce3ab838b35cfeb6a39999976e5",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/LevelProgress29.md",
-      "reviewScope": "Run/objective state/commands/controllers and immutable rules fully read; personal clock/fact/view/environment boundaries, source subscriptions, DI and checkpoint fixture consumers reviewed. Native regressions and normal Windows64 verified; original pause work remains uncommitted.",
+      "reviewReport": "Docs/Reports/CheckpointSession35.md",
+      "reviewScope": "Personal checkpoint session/commands and native scene/IO adapters fully read. Bounded world registry preserves reload override intent and disposes without global mutable state. Disable/destroy/rebind close coroutine and old run subscription. Direct entity/visit guards preserve serialization. Other presentation/config/style tasks remain open.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
       "sourceScope": "unity",
-      "sha256": "517228e676c8317d05d86344aaebdd668e992356c0d106175ac5ae0d658f6ee9",
+      "sha256": "a79349aabf8327897dfccc8073e1d2e3a9aa0ce3ab838b35cfeb6a39999976e5",
       "guid": "c44326cf15c577e4b89031b64fcda0ca",
       "types": [
         "CatalogFixture",
         "CheckpointSaveLifetimeTests",
         "TestClock"
       ],
-      "lines": 259,
+      "lines": 280,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -23515,7 +23821,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 585,
+    "unity": 596,
     "content_source": 8
   },
   "latestReview": {
@@ -23666,11 +23972,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 604,
-    "totalFiles": 604,
+    "reviewedFiles": 615,
+    "totalFiles": 615,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "ActorCheckpoint34 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "CheckpointSession35 and earlier boundary reviews; other SOD tasks remain open."
   }
 }

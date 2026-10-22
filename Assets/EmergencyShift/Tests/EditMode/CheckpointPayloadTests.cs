@@ -104,6 +104,7 @@ namespace EmergencyShift.Tests
             run.Construct(null, new Features.LevelProgress.LevelProgressFactory(new Core.Time.UnityGameClock()));
             run.RestoreElapsed(12);
             controller = owner.AddComponent<LevelCheckpointController2D>();
+            controller.Construct(new Features.CheckpointSession.CheckpointSessionFactory(), new Features.CheckpointSession.Logic.CheckpointPathRegistry());
             controller.Configure(levels, definition, run, life);
         }
 

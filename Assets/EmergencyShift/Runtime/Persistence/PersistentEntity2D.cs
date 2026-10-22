@@ -13,6 +13,11 @@ namespace EmergencyShift
 
         public void AssignId(string value)
         {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                throw new ArgumentException("Persistent instance ID is required.", nameof(value));
+            }
+
             persistentId = value;
         }
 
@@ -23,6 +28,11 @@ namespace EmergencyShift
             {
                 if (behaviour is ICheckpointParticipant participant)
                 {
+                    if (string.IsNullOrWhiteSpace(participant.SaveKey) || result.ContainsKey(participant.SaveKey))
+                    {
+                        throw new InvalidOperationException("Missing or duplicate checkpoint participant key: " + name);
+                    }
+
                     result.Add(participant.SaveKey, participant);
                 }
             }
@@ -56,9 +66,9 @@ namespace EmergencyShift
 
         public void Validate(CheckpointEntityState saved)
         {
-            if (saved == null)
+            if (saved == null || string.IsNullOrWhiteSpace(Id) || !string.Equals(saved.id, Id, StringComparison.Ordinal))
             {
-                throw new System.IO.InvalidDataException("Missing checkpoint entity");
+                throw new System.IO.InvalidDataException("Missing/mismatched checkpoint entity ID.");
             }
 
             CheckpointValueValidation.ValidatePose(saved.position, saved.rotation);
@@ -71,9 +81,9 @@ namespace EmergencyShift
             var keys = new HashSet<string>();
             foreach (var part in saved.parts)
             {
-                if (!keys.Add(part.key) || !participants.TryGetValue(part.key, out var participant))
+                if (part == null || string.IsNullOrWhiteSpace(part.key) || !keys.Add(part.key) || !participants.TryGetValue(part.key, out var participant))
                 {
-                    throw new InvalidOperationException("Unknown or duplicate save component: " + part.key);
+                    throw new InvalidOperationException("Missing, unknown or duplicate save component.");
                 }
 
                 participant.ValidateCheckpoint(part.json);
@@ -82,6 +92,7 @@ namespace EmergencyShift
 
         public void PrepareRestore(CheckpointEntityState saved)
         {
+            Validate(saved);
             // Inactive encounter actors need Awake before their runtime modules can be restored.
             transform.SetPositionAndRotation(saved.position, saved.rotation);
             if (!gameObject.activeSelf)
@@ -92,6 +103,7 @@ namespace EmergencyShift
 
         public void Restore(CheckpointEntityState saved)
         {
+            Validate(saved);
             var participants = Participants();
             foreach (var part in saved.parts)
             {

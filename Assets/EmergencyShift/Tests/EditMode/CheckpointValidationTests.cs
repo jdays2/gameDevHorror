@@ -44,6 +44,7 @@ namespace EmergencyShift.Tests
             run.Construct(null, new Features.LevelProgress.LevelProgressFactory(new Core.Time.UnityGameClock()));
             run.RestoreElapsed(12);
             controller = owner.AddComponent<LevelCheckpointController2D>();
+            controller.Construct(new Features.CheckpointSession.CheckpointSessionFactory(), new Features.CheckpointSession.Logic.CheckpointPathRegistry());
             controller.Configure(catalog, definition, run, null);
             first = CreateEntity("first", new Vector3(1, 2, 3));
             second = CreateEntity("second", new Vector3(4, 5, 6));
@@ -97,6 +98,43 @@ namespace EmergencyShift.Tests
             Assert.That(second.transform.rotation, Is.EqualTo(Quaternion.identity));
             Assert.That(run.ElapsedSeconds, Is.EqualTo(elapsedBefore));
             Assert.That(controller.LastCheckpointId, Is.Null);
+        }
+
+        [Test]
+        public void DirectPrepareRejectsOtherInstanceIdBeforePoseOrActivation()
+        {
+            CheckpointEntityState saved = Snapshot().entities[1];
+            saved.id = "another-instance";
+            saved.position = Vector3.one * 90;
+            Assert.Throws<InvalidDataException>(() => second.PrepareRestore(saved));
+            Assert.That(second.transform.position, Is.EqualTo(new Vector3(4, 5, 6)));
+        }
+
+        [Test]
+        public void DirectRestoreRejectsMissingParticipantBeforeActivation()
+        {
+            var pickup = second.gameObject.AddComponent<AccessCardPickup2D>();
+            pickup.Construct(new Features.Pickups.PickupControllerFactory());
+            second.gameObject.AddComponent<CardCheckpoint2D>();
+            CheckpointEntityState saved = second.Capture();
+            saved.parts[0] = null;
+            saved.active = false;
+            Assert.Throws<InvalidOperationException>(() => second.Restore(saved));
+            Assert.That(second.gameObject.activeSelf, Is.True);
+        }
+
+        [TestCase("")]
+        [TestCase(" ")]
+        [TestCase(null)]
+        public void InvalidVisitHistoryCannotReplaceLastGoodSlot(string id)
+        {
+            store.Write(Snapshot());
+            byte[] before = File.ReadAllBytes(path);
+            var invalid = Snapshot();
+            invalid.visitedCheckpoints = new[] { id };
+            Assert.Throws<InvalidDataException>(() => store.Write(invalid));
+            Assert.That(File.ReadAllBytes(path), Is.EqualTo(before));
+            Assert.That(File.Exists(path + ".tmp"), Is.False);
         }
 
         [TestCase("position.z")]

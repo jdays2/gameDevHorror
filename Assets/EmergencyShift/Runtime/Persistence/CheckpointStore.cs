@@ -1,6 +1,7 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using EmergencyShift.Features.CheckpointSession.Logic;
 using UnityEngine;
 
 namespace EmergencyShift
@@ -11,7 +12,12 @@ namespace EmergencyShift
         private readonly string path;
         public CheckpointStore(string filePath)
         {
-            path = filePath;
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                throw new ArgumentException("Checkpoint file path is required.", nameof(filePath));
+            }
+
+            path = Path.GetFullPath(filePath);
         }
 
         public bool Exists => File.Exists(path);
@@ -50,19 +56,16 @@ namespace EmergencyShift
 
         public void Delete()
         {
-            foreach (var file in new[]
-            {
-                path,
-                path + ".bak",
-                path + ".tmp"
-            }
+            DeleteIfExists(path);
+            DeleteIfExists(path + ".bak");
+            DeleteIfExists(path + ".tmp");
+        }
 
-            )
+        private static void DeleteIfExists(string file)
+        {
+            if (File.Exists(file))
             {
-                if (File.Exists(file))
-                {
-                    File.Delete(file);
-                }
+                File.Delete(file);
             }
         }
 
@@ -76,6 +79,15 @@ namespace EmergencyShift
             if (string.IsNullOrWhiteSpace(data.levelId) || string.IsNullOrWhiteSpace(data.checkpointId) || data.entities == null)
             {
                 throw new InvalidDataException("Incomplete checkpoint");
+            }
+
+            try
+            {
+                new CheckpointVisitSnapshot(data.checkpointId, data.visitedCheckpoints);
+            }
+            catch (ArgumentException error)
+            {
+                throw new InvalidDataException("Invalid checkpoint visit history.", error);
             }
 
             if (!float.IsFinite(data.elapsedSeconds) || data.elapsedSeconds < 0)

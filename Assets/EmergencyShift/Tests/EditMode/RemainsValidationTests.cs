@@ -90,6 +90,7 @@ namespace EmergencyShift.Tests
                 EmergencyShift.Editor.LevelPersistenceAuthoring.ReplaceCatalogEntries(catalog, new[] { definition });
                 GameObject owner = CreateObject("Test checkpoint controller");
                 var controller = owner.AddComponent<LevelCheckpointController2D>();
+                controller.Construct(new Features.CheckpointSession.CheckpointSessionFactory(), new Features.CheckpointSession.Logic.CheckpointPathRegistry());
                 controller.Configure(catalog, definition, null, null);
                 var first = CreateObject("Pristine inactive entity").AddComponent<PersistentEntity2D>();
                 first.AssignId("first");

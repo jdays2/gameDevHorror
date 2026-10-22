@@ -282,6 +282,21 @@
 - [AudioLayerPlayback.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs)
 - [AudioThreatQuery2D.cs](../Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs)
 
+## Assets/EmergencyShift/Runtime/Features/CheckpointSession
+
+- [CheckpointSessionFactory.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/CheckpointSessionFactory.cs)
+
+## Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic
+
+- [CheckpointPathRegistry.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointPathRegistry.cs)
+- [CheckpointSessionController.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionController.cs)
+- [CheckpointSessionModel.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointSessionModel.cs)
+- [CheckpointVisitSnapshot.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/CheckpointVisitSnapshot.cs)
+- [RecordCheckpointSaveCommand.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RecordCheckpointSaveCommand.cs)
+- [RequestCheckpointSaveCommand.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RequestCheckpointSaveCommand.cs)
+- [ResetCheckpointSessionCommand.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/ResetCheckpointSessionCommand.cs)
+- [RestoreCheckpointSessionCommand.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RestoreCheckpointSessionCommand.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/DamageFeedback
 
 - [DamageFeedbackInstaller.cs](../Assets/EmergencyShift/Runtime/Features/DamageFeedback/DamageFeedbackInstaller.cs)
@@ -637,6 +652,7 @@
 - [CardCheckpoint2D.cs](../Assets/EmergencyShift/Runtime/Persistence/CardCheckpoint2D.cs)
 - [CheckpointBooleanPayload.cs](../Assets/EmergencyShift/Runtime/Persistence/CheckpointBooleanPayload.cs)
 - [CheckpointData.cs](../Assets/EmergencyShift/Runtime/Persistence/CheckpointData.cs)
+- [CheckpointSceneAdapter2D.cs](../Assets/EmergencyShift/Runtime/Persistence/CheckpointSceneAdapter2D.cs)
 - [CheckpointStore.cs](../Assets/EmergencyShift/Runtime/Persistence/CheckpointStore.cs)
 - [CheckpointValueValidation.cs](../Assets/EmergencyShift/Runtime/Persistence/CheckpointValueValidation.cs)
 - [CheckpointVolume2D.cs](../Assets/EmergencyShift/Runtime/Persistence/CheckpointVolume2D.cs)
@@ -760,6 +776,7 @@
 - [CeilingLightOcclusionTests.cs](../Assets/EmergencyShift/Tests/EditMode/CeilingLightOcclusionTests.cs)
 - [CheckpointBooleanTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs)
 - [CheckpointPayloadTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs)
+- [CheckpointSessionTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs)
 - [CheckpointValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs)
 - [DialogueControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs)
 - [DialogueDataTests.cs](../Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs)
