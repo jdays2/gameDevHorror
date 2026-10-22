@@ -1,5 +1,8 @@
 using System;
 using EmergencyShift.Core.Composition;
+using EmergencyShift.Core.Time;
+using EmergencyShift.Features.LampPower;
+using EmergencyShift.Features.LampPower.Logic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Zenject;
@@ -8,15 +11,23 @@ namespace EmergencyShift
 {
     /// <summary>Слабый локальный свет. Помогает видеть/подбирать, но не заменяет защитный луч фонаря.</summary>
     [RequireComponent(typeof(Light2D)), DisallowMultipleComponent]
-    public sealed class LocalLamp2D : MonoBehaviour
+    public sealed class LocalLamp2D : MonoBehaviour, ILampPowerView
     {
         private SceneRegistry<LocalLamp2D> registry;
+        private LampPowerController controller;
 
         [Inject]
-        public void Construct(SceneRegistry<LocalLamp2D> lamps)
+        public void Construct(SceneRegistry<LocalLamp2D> lamps, LampPowerControllerFactory factory)
         {
+            if (lamps == null || factory == null)
+            {
+                throw new ArgumentNullException(lamps == null ? nameof(lamps) : nameof(factory));
+            }
+
+            LampPowerController replacement = factory.Create(this, controller?.Powered ?? false);
             registry?.Remove(this);
-            registry = lamps ?? throw new ArgumentNullException(nameof(lamps));
+            registry = lamps;
+            controller = replacement;
             if (isActiveAndEnabled)
             {
                 registry.Register(this);
@@ -43,7 +54,6 @@ namespace EmergencyShift
         private bool flickers;
         [SerializeField]
         private float phase;
-        private bool powered;
         private LocalLampSceneSettings sceneSettings;
         public Vector2 Origin => transform.position;
         public float Radius
@@ -66,7 +76,7 @@ namespace EmergencyShift
             sceneSettings = settings;
             if (!Application.isPlaying)
             {
-                powered = settings.startsOn;
+                SetPower(settings.startsOn);
             }
 
             Apply();
@@ -100,8 +110,7 @@ namespace EmergencyShift
                 profile.Validate();
             }
 
-            powered = sceneSettings != null ? sceneSettings.startsOn : startsOn;
-            Apply();
+            SetPower(sceneSettings != null ? sceneSettings.startsOn : startsOn);
         }
 
         private void OnEnable()
@@ -110,7 +119,7 @@ namespace EmergencyShift
 
             if (!Application.isPlaying)
             {
-                powered = sceneSettings != null ? sceneSettings.startsOn : startsOn;
+                SetPower(sceneSettings != null ? sceneSettings.startsOn : startsOn);
             }
 
             Apply();
@@ -136,13 +145,18 @@ namespace EmergencyShift
             intensity = Mathf.Max(0, intensity);
             if (!Application.isPlaying)
             {
-                powered = sceneSettings != null ? sceneSettings.startsOn : startsOn;
+                SetPower(sceneSettings != null ? sceneSettings.startsOn : startsOn);
             }
 
             Apply();
         }
 
         private void Apply()
+        {
+            RequireController().Refresh();
+        }
+
+        void ILampPowerView.ApplyPower(bool powered)
         {
             if (source == null)
             {
@@ -196,19 +210,22 @@ namespace EmergencyShift
 
         public void SetPower(bool on)
         {
-            powered = on;
-            Apply();
+            RequireController().SetPower(on);
         }
 
         private void Update()
         {
-            if (source == null || !powered)
+            if (source == null)
             {
                 return;
             }
 
             float offset = sceneSettings != null ? sceneSettings.phase : phase;
-            float clock = Time.time + offset + transform.position.x * .37f + transform.position.y * .19f;
+            RequireController().Tick(offset, transform.position);
+        }
+
+        void ILampPowerView.ApplyFlicker(float clock)
+        {
             if (sceneSettings != null)
             {
                 float brightness = sceneSettings.Brightness(clock);
@@ -256,8 +273,15 @@ namespace EmergencyShift
         public bool Illuminates(Vector2 point, LayerMask opaque)
         {
             float distance = Vector2.Distance(Origin, point);
-            return isActiveAndEnabled && CurrentIntensity * (1 - distance / Radius) > .10f && distance < Radius * .9f && Physics2D.Linecast(Origin, point, opaque).collider == null;
+            return isActiveAndEnabled && CurrentIntensity * (1 - distance / Radius) > .10f &&
+                distance < Radius * .9f && Physics2D.Linecast(Origin, point, opaque).collider == null;
         }
 
+        private LampPowerController RequireController()
+        {
+            // Standalone preview/development lights retain presentation before scoped injection.
+            // They cannot enter gameplay illumination queries without a level registry.
+            return controller ??= new LampPowerControllerFactory(new UnityGameClock()).Create(this, false);
+        }
     }
 }

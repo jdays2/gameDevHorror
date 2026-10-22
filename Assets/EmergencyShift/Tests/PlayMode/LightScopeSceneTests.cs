@@ -92,7 +92,7 @@ namespace EmergencyShift.Tests
         public IEnumerator OwnLampRegistersOnceAndDisableRemovesIt()
         {
             LocalLamp2D lamp = Lamp(first, lampsA);
-            lamp.Construct(lampsA);
+            lamp.Construct(lampsA, new Features.LampPower.LampPowerControllerFactory(new UnityGameClock()));
             Assert.That(lampsA.Members.Count, Is.EqualTo(1));
             Assert.That(actor.IsCurrentlyLit(point + Vector2.right * .1f), Is.True);
             lamp.enabled = false;
@@ -118,6 +118,121 @@ namespace EmergencyShift.Tests
             Assert.That(lampsA.Members.Count, Is.EqualTo(1));
         }
 
+        [UnityTest]
+        public IEnumerator SceneOverrideKeepsIntensityColorAndBulbAlphaDuringInjectedDarkCycle()
+        {
+            var clock = new LampClock { Now = 4.95 };
+            LocalLamp2D lamp = BareLamp(clock, out var bulb);
+            var profile = ScriptableObject.CreateInstance<LocalLightProfile>();
+            try
+            {
+                lamp.SetProfile(profile);
+                var settings = new LocalLampSceneSettings { intensity = 1.7f, lightRadius = 4, color = Color.cyan };
+                lamp.ConfigureScene(settings);
+                lamp.SetPower(true);
+                var source = lamp.GetComponent<UnityEngine.Rendering.Universal.Light2D>();
+                Assert.That(source.intensity, Is.EqualTo(1.7f));
+                Assert.That(source.pointLightOuterRadius, Is.EqualTo(4));
+                Assert.That(source.color, Is.EqualTo(Color.cyan));
+                yield return null;
+                Assert.That(source.enabled, Is.True);
+                Assert.That(source.intensity, Is.Zero);
+                Assert.That(bulb.color.a, Is.Zero);
+                Assert.That(bulb.enabled, Is.False);
+                clock.Now = 0;
+                yield return null;
+                Assert.That(source.intensity, Is.EqualTo(settings.intensity * settings.Brightness(0)));
+                Assert.That(bulb.color.a, Is.EqualTo(settings.Brightness(0) * Mathf.Clamp01(settings.intensity / .28f)));
+            }
+            finally
+            {
+                Object.Destroy(profile);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator ProfileCyclePreservesDropoutAndPowerAcrossDisableReenable()
+        {
+            var clock = new LampClock { Now = 2.5 };
+            LocalLamp2D lamp = BareLamp(clock, out var bulb);
+            var profile = ScriptableObject.CreateInstance<LocalLightProfile>();
+            JsonUtility.FromJsonOverwrite("{\"cycleSeconds\":10,\"minimumFactor\":1,\"noiseFrequency\":0,\"darkIntervals\":[{\"x\":0.2,\"y\":0.3}]}", profile);
+            try
+            {
+                lamp.SetProfile(profile);
+                yield return null;
+                Assert.That(lamp.CurrentIntensity, Is.Zero);
+                Assert.That(bulb.enabled, Is.False);
+                clock.Now = 1;
+                yield return null;
+                Assert.That(lamp.CurrentIntensity, Is.EqualTo(profile.Intensity));
+                Assert.That(bulb.color.a, Is.EqualTo(1));
+                lamp.SetPower(false);
+                lamp.enabled = false;
+                lamp.enabled = true;
+                yield return null;
+                Assert.That(lamp.CurrentIntensity, Is.Zero);
+                Assert.That(bulb.enabled, Is.False);
+                lamp.SetPower(true);
+                Assert.That(lamp.CurrentIntensity, Is.EqualTo(profile.Intensity));
+            }
+            finally
+            {
+                Object.Destroy(profile);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator LegacyCycleAndClockRebindPreservePowerAndRegistry()
+        {
+            var oldClock = new LampClock { Now = 4.95 };
+            LocalLamp2D lamp = BareLamp(oldClock, out var bulb);
+            yield return null;
+            Assert.That(lamp.CurrentIntensity, Is.Zero);
+            Assert.That(bulb.enabled, Is.False);
+            var nextClock = new LampClock();
+            lamp.Construct(lampsA, new Features.LampPower.LampPowerControllerFactory(nextClock));
+            int readsBeforeRebind = oldClock.Reads;
+            yield return null;
+            Assert.That(lamp.CurrentIntensity, Is.GreaterThan(0));
+            Assert.That(oldClock.Reads, Is.EqualTo(readsBeforeRebind));
+            Assert.That(nextClock.Reads, Is.GreaterThan(0));
+            lamp.SetPower(false);
+            lamp.Construct(lampsA, new Features.LampPower.LampPowerControllerFactory(nextClock));
+            Assert.Throws<ArgumentNullException>(() => lamp.Construct(lampsA, null));
+            Assert.That(lampsA.Members.Count, Is.EqualTo(1));
+            yield return null;
+            Assert.That(lamp.CurrentIntensity, Is.Zero);
+        }
+
+        private LocalLamp2D BareLamp(IGameClock clock, out SpriteRenderer bulb)
+        {
+            var owner = new GameObject("Deterministic native lamp");
+            owner.SetActive(false);
+            SceneManager.MoveGameObjectToScene(owner, first);
+            var source = owner.AddComponent<UnityEngine.Rendering.Universal.Light2D>();
+            bulb = owner.AddComponent<SpriteRenderer>();
+            var lamp = owner.AddComponent<LocalLamp2D>();
+            lamp.Configure(source, bulb, Color.white, true);
+            lamp.Construct(lampsA, new Features.LampPower.LampPowerControllerFactory(clock));
+            owner.SetActive(true);
+            return lamp;
+        }
+
+        private sealed class LampClock : IGameClock
+        {
+            public double Now;
+            public int Reads;
+            public double Time
+            {
+                get
+                {
+                    Reads++;
+                    return Now;
+                }
+            }
+        }
+
         private LocalLamp2D Lamp(Scene scene, SceneRegistry<LocalLamp2D> registry)
         {
             var root = new GameObject("Scoped light fixture");
@@ -134,7 +249,7 @@ namespace EmergencyShift.Tests
                 }
             }
 
-            lamp.Construct(registry);
+            lamp.Construct(registry, new Features.LampPower.LampPowerControllerFactory(new UnityGameClock()));
             root.SetActive(true);
             lamp.SetPower(true);
             return lamp;

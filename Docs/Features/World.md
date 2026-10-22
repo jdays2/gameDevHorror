@@ -44,6 +44,10 @@ WeaponLootModel/controller хранит remaining/consumed/busy и выполн�
 
 LocalLamp2D и ShotEffect2D участвуют в SceneRegistry своего LevelContext, без global Active. LocalIlluminationQuery2D проверяет также owner Scene; PlayerInteraction использует lamp+flash, AudioDirector — только lamp, как прежде. Источники регистрируются/удаляются на enable/disable, scope освобождает collections. Standalone preview светит без регистрации, gameplay queries требуют composition. Сцена A не видит свет B; источники не становятся defensive AI lights. Lamp power/clock и audio/VFX model/config перенос остаются открыты. [BUG-025 и native lifecycle](../Reports/LightScopes22.md).
 
+## Питание ламп
+
+Питание лампы принадлежит личной LampPowerModel; SetPower выполняет команду, clock приходит через LevelContext/LampPowerInstaller. LocalLamp2D применяет внешний phase/position clock к прежним scene/profile/legacy формулам представления; scene tuning и bulb alpha/пороги сохраняются. Standalone preview остаётся явным bootstrap до injection и не добавляет себя в gameplay query. Rebind сохраняет питание, disable/re-enable — прежний режим. [Проверки и точная стоимость](../Reports/LampPower30.md). Legacy SceneSettings/config/style и lamp audio timing ещё требуют общего прохода.
+
 ## Поверхности звука
 
 WeaponAudioProfile, PlayerWorldAudioSet, SleeperAudioProfile, DoorAudioSet, PlayerAudioSet, StalkerAudioSet и EnemyDeathAudioSet дают runtime только readonly доступ к полям/клипам. AudioClipBank поддерживает Count/indexer/typed foreach и identity для истории выбора, не выдаёт исходный mutable массив. Serialized names/defaults/refs и surface fallback сохранены; Editor настраивает прежние поля через SerializedObject. Numeric configs валидируются до consumption, optional пустые банки остаются тихими. [Контракт и проверки](../Reports/AudioConfig27.md).

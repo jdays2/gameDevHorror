@@ -460,6 +460,18 @@
 - [PickupNoticeModel.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs)
 - [ShowPickupNoticeCommand.cs](../Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/LampPower
+
+- [LampPowerControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerControllerFactory.cs)
+- [LampPowerInstaller.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/LampPower/Logic
+
+- [ILampPowerView.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/Logic/ILampPowerView.cs)
+- [LampPowerController.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerController.cs)
+- [LampPowerModel.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerModel.cs)
+- [SetLampPowerCommand.cs](../Assets/EmergencyShift/Runtime/Features/LampPower/Logic/SetLampPowerCommand.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/LevelObjectives/Config
 
 - [ObjectiveRuleSet.cs](../Assets/EmergencyShift/Runtime/Features/LevelObjectives/Config/ObjectiveRuleSet.cs)
@@ -762,6 +774,7 @@
 - [GoreCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/GoreCompositionTests.cs)
 - [GroundAudioSurfaceQueryTests.cs](../Assets/EmergencyShift/Tests/EditMode/GroundAudioSurfaceQueryTests.cs)
 - [HealthModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs)
+- [LampPowerTests.cs](../Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs)
 - [LevelCompositionFailureTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs)
 - [LevelCompositionTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelCompositionTests.cs)
 - [LevelConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs)

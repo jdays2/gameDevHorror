@@ -1,0 +1,148 @@
+{
+  "date": "2026-10-22",
+  "baseRevision": "bbe4f24542cbabb4047c49bca210f2c3dca1c09b",
+  "editMode": {
+    "result": "Passed",
+    "total": "1070",
+    "passed": "1070",
+    "failed": "0",
+    "end-time": "2026-10-22 03:47:01Z",
+    "rawPath": "work/sod-evidence-20261021/lamp-power-edit.xml",
+    "rawSha256": "2d848b48a29d7e0afa0b16886c07e93b02b384762962875d3deac11c7a0b93b8",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.ClockUsesLegacyFloatOrderAndAuthoredPositionPhase",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.FiniteInputsCannotOverflowCombinedClock",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.InvalidAuthoredPhaseRejectsBeforeReadingClock(float.NaN,0,0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.InvalidAuthoredPhaseRejectsBeforeReadingClock(0,float.PositiveInfinity,0)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.InvalidAuthoredPhaseRejectsBeforeReadingClock(0,0,float.NegativeInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.InvalidClockDoesNotReachView(double.NaN)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.InvalidClockDoesNotReachView(double.PositiveInfinity)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.InvalidClockDoesNotReachView(double.MaxValue)",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.OffLampDoesNotReadClockOrApplyFlicker",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.PowerCommandCommitsBeforeApplyingViewAndRepeatedPowerRefreshes",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.ScopedFactoryCreatesIndependentPowerAndRefreshDoesNotAdvanceClock",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LampPowerTests.WarmedClockAndPowerLoopDoesNotAllocateManagedObjects",
+        "result": "Passed"
+      }
+    ]
+  },
+  "playMode": {
+    "result": "Passed",
+    "total": "58",
+    "passed": "58",
+    "failed": "0",
+    "end-time": "2026-10-22 03:45:47Z",
+    "rawPath": "work/sod-evidence-20261021/lamp-power-play.xml",
+    "rawSha256": "c4b79277603a8f065f45e90739239b11a71c3fdfafdc3e437d07e720a4d8e6d5",
+    "cases": [
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.ForeignAdditiveLampCannotLightAnActorsPickupQuery",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.ForeignAdditiveShotCannotLightAnActorsPickupQuery",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.FrozenEffectUnloadsWithItsSceneAndSiblingLampRemains",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.LegacyCycleAndClockRebindPreservePowerAndRegistry",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.OwnLampRegistersOnceAndDisableRemovesIt",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.ProfileCyclePreservesDropoutAndPowerAcrossDisableReenable",
+        "result": "Passed"
+      },
+      {
+        "name": "EmergencyShift.Tests.LightScopeSceneTests.SceneOverrideKeepsIntensityColorAndBulbAlphaDuringInjectedDarkCycle",
+        "result": "Passed"
+      }
+    ]
+  },
+  "normalWindows64": {
+    "outcome": "success",
+    "exitCode": 0,
+    "startedAt": "2026-10-22T03:48:40.916Z",
+    "endedAt": "2026-10-22T03:49:07.966Z",
+    "generator": {
+      "name": "unity-cli",
+      "version": "1.0.0-beta.14"
+    }
+  },
+  "ownPlayerAssemblies": [
+    "EmergencyShift.Runtime.dll"
+  ],
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerControllerFactory.cs": "a446c5b8b9a5f3e9ed7a03f31df58616d034fd0f7ceb2de59c575a15903d6ff1",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerInstaller.cs": "f32e78a51009d9db3280f851408df500d086980271d12ffa0e1be982fdece8a4",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerModel.cs": "26fc8fc30e1b7ac4e45b5889470aab1173a913ecf0874c26f86ad358eaae2b45",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerController.cs": "ac44ac91aaf49f4f3e7be7accec0ed1ae171c608675962bc44ce099617a9f190",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/ILampPowerView.cs": "520699da51fa87b78fed0663f5bd5bb53bb4ed9988f169ff4d7c49745aac407f",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/SetLampPowerCommand.cs": "17e8fdad3b571188aab6d751076b39e57bf13627de904ca0bd8343dd7ba9c276",
+    "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs": "895c6b3e41617c0058df8c0955e38f3309f1a85322ca23374ba5bb4b1e08d50d",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs": "adbe4938ba5111f36a04253227801597a25cbdbdf77525d0d455de0eca9270cf",
+    "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs": "2d7cede000220289224677249dd11bb2af09ce1824d78ce2ba72885b4842145a",
+    "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs": "8e6948b288acfc1b3b62d4d78135b4e81eead95af340e53e1004adcc125b18f1",
+    "Assets/EmergencyShift/Tests/PlayMode/EmergencyShift.PlayModeTests.asmdef": "52020db9095824eaa9a25e966fe7449a89067881f42fd79c28b5ea24c644e73b"
+  },
+  "metadataSha256": {
+    "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerControllerFactory.cs.meta": "a574c6933545c51c196225c9bb8b3a11f25a031f54e7945a9f61f09a5d3c8a62",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerInstaller.cs.meta": "ae9571f50ab8babd8f5648f6f38819031b6c5510a3de179f939f75def98c9bae",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerModel.cs.meta": "f54af22178f5b2ff5e239817e3c796c5ebba9e91d9d07c93df1728e528bc738b",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerController.cs.meta": "ed002895f75e172d581def6bce07724f76d758c7136cd2b179ad0a5985e3035e",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/ILampPowerView.cs.meta": "e59b37fb8022b502d464974af6ff82687853f9c4aef2d3905f29e01acfbb86b7",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/SetLampPowerCommand.cs.meta": "46cf1c4ff1320a05afe7f982f72d547714832b100e3bb61f786e11dab0d1e4e9",
+    "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs.meta": "421d3aa997d1eb64c62be19b4c35d37b33a7c07aa9fd27414f9e450087255263",
+    "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs.meta": "ddea417744cf3550a4855ada8f3c37f980a950309ce1cd5e8d778b355f9c85d5",
+    "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs.meta": "804fcfaa3edf975ea7f7a9a006adfa698fe8d3da71e3b95bcfda2887fc0655bb",
+    "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs.meta": "c49bd15483a85578a72f1be255bac1b9a64ef95598dbe0eac9962bb9c141242c",
+    "Assets/EmergencyShift/Tests/PlayMode/EmergencyShift.PlayModeTests.asmdef.meta": "e033efe4b4fcd0da24f52495176880be846b5f23b35e3a32caccee981bd6b0ec",
+    "Assets/EmergencyShift/Runtime/Features/LampPower.meta": "99037b0ac6ffebbc439d5c038108ddb26191256ec86920d8416ae3b80e01bff4",
+    "Assets/EmergencyShift/Runtime/Features/LampPower/Logic.meta": "e9e6ddb4a8e7fab43fe60d47dfef657699950ed34122c34f8867c1c5fe89981a"
+  },
+  "previousPhaseSourcesUnchanged": 27,
+  "protectedResources": 1805,
+  "resourceBaselineSha256": "d88bb27eb6157c7e5073c94144f400da0c0ece478a174eb55a1ce33f23c9db4d",
+  "resourceDifferences": [],
+  "limits": "Dirty disposable copy includes original pause work, not clean HEAD. Personal lamp power/clock/commands tested; presentation preserves scene/profile/legacy precedence, exact phase arithmetic and bulb thresholds. Explicit standalone preview bootstrap retained before injection, gameplay query membership stays scoped. Test asmdef adds URP 2D reference only; normal Player excludes test assemblies. No scene/config/audio/shadow geometry change. Legacy tuning/style and audio timing remain partial. Warmed 1000 model Tick+SetPower loop allocated 0 managed bytes; no whole-frame/FPS claim."
+}

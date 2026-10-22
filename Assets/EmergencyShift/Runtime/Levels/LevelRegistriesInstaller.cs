@@ -1,5 +1,6 @@
 using EmergencyShift.Core.Composition;
 using EmergencyShift.Features.AudioMood;
+using EmergencyShift.Features.LampPower;
 using Zenject;
 
 namespace EmergencyShift
@@ -19,6 +20,7 @@ namespace EmergencyShift
             Container.Bind<GroundAudioSurfaceQuery2D>().AsSingle();
             Container.Bind<EnemyChasePathFactory>().AsSingle();
             AudioMoodInstaller.Install(Container);
+            LampPowerInstaller.Install(Container);
         }
     }
 }

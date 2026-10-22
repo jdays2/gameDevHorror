@@ -3,10 +3,10 @@
   "date": "2026-10-22",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "584 own C# explicitly read; 75 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LevelProgress29.",
+  "limits": "591 own C# explicitly read; 75 partial. Boundary reviews certify stated scope, not all config/style tasks. complete=false. Latest LampPower30.",
   "counts": {
     "partial": 75,
-    "reviewed_boundary": 509
+    "reviewed_boundary": 516
   },
   "files": [
     {
@@ -2125,6 +2125,8 @@
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractionSelectionController.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/SetLampPowerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ConfigureObjectivesCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressController.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ObjectiveProgressModel.cs",
@@ -2235,6 +2237,7 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/SetHealthCapacityCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/InteractSelectionCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/ShowPickupNoticeCommand.cs",
+        "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/SetLampPowerCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/ConfigureObjectivesCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Logic/RefreshObjectivesCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/FinishLevelRunCommand.cs",
@@ -3045,6 +3048,8 @@
         "Assets/EmergencyShift/Runtime/Features/Health/Logic/HealthModelFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/Logic/PickupNoticeModel.cs",
         "Assets/EmergencyShift/Runtime/Features/Interaction/PlayerInteractionControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerModel.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelProgress/LevelProgressFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/LevelProgress/Logic/LevelRunModel.cs",
         "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepModel.cs",
@@ -3059,6 +3064,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/HealthModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
@@ -3067,6 +3073,7 @@
         "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs"
       ],
       "entryPointHints": [],
@@ -3182,6 +3189,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointBooleanTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs",
@@ -4064,7 +4072,8 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampAudio2D.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLampConfiguration2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/LocalLampSceneSettingsTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/LocalLampSceneSettingsTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
@@ -4110,7 +4119,8 @@
         "Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs",
         "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs",
-        "Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/LightingConfigTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
@@ -11927,6 +11937,162 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerControllerFactory.cs",
+      "sourceScope": "unity",
+      "sha256": "a446c5b8b9a5f3e9ed7a03f31df58616d034fd0f7ceb2de59c575a15903d6ff1",
+      "guid": "a9fa3802cd7a8cf4fa088c96aa707613",
+      "types": [
+        "LampPowerControllerFactory"
+      ],
+      "lines": 18,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerInstaller.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "a446c5b8b9a5f3e9ed7a03f31df58616d034fd0f7ceb2de59c575a15903d6ff1",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerInstaller.cs",
+      "sourceScope": "unity",
+      "sha256": "f32e78a51009d9db3280f851408df500d086980271d12ffa0e1be982fdece8a4",
+      "guid": "39b61edcad654ed44bd06ae58a65933c",
+      "types": [
+        "LampPowerInstaller"
+      ],
+      "lines": 9,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "f32e78a51009d9db3280f851408df500d086980271d12ffa0e1be982fdece8a4",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/ILampPowerView.cs",
+      "sourceScope": "unity",
+      "sha256": "520699da51fa87b78fed0663f5bd5bb53bb4ed9988f169ff4d7c49745aac407f",
+      "guid": "01d8f8b167fedd94a9697414e5b9ccd7",
+      "types": [
+        "ILampPowerView"
+      ],
+      "lines": 8,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerController.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "520699da51fa87b78fed0663f5bd5bb53bb4ed9988f169ff4d7c49745aac407f",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerController.cs",
+      "sourceScope": "unity",
+      "sha256": "ac44ac91aaf49f4f3e7be7accec0ed1ae171c608675962bc44ce099617a9f190",
+      "guid": "9f2ff312983ebe044845e9c380a9b24c",
+      "types": [
+        "LampPowerController"
+      ],
+      "lines": 40,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "ac44ac91aaf49f4f3e7be7accec0ed1ae171c608675962bc44ce099617a9f190",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerModel.cs",
+      "sourceScope": "unity",
+      "sha256": "26fc8fc30e1b7ac4e45b5889470aab1173a913ecf0874c26f86ad358eaae2b45",
+      "guid": "1ccedabac8060a440885f68fed585ca7",
+      "types": [
+        "LampPowerModel"
+      ],
+      "lines": 39,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LampPower/LampPowerControllerFactory.cs",
+        "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerController.cs",
+        "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/SetLampPowerCommand.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "26fc8fc30e1b7ac4e45b5889470aab1173a913ecf0874c26f86ad358eaae2b45",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
+      "path": "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/SetLampPowerCommand.cs",
+      "sourceScope": "unity",
+      "sha256": "17e8fdad3b571188aab6d751076b39e57bf13627de904ca0bd8343dd7ba9c276",
+      "guid": "d969ac2231b76e1449195b79ff14526a",
+      "types": [
+        "SetLampPowerCommand"
+      ],
+      "lines": 29,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/LampPower/Logic/LampPowerController.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "17e8fdad3b571188aab6d751076b39e57bf13627de904ca0bd8343dd7ba9c276",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "LevelProgress29/BUG-027: личные state/commands/rules и DI; rebind/disable/destroy, original failure и same-scene finish проверены.",
       "path": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/Config/ObjectiveRuleSet.cs",
       "sourceScope": "unity",
@@ -14123,13 +14289,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/Levels/LevelRegistriesInstaller.cs",
-      "sha256": "705d900dd75db2fde6685274a6db5b5975c24560e1e0e0f92901a29c5e70e32d",
+      "sha256": "adbe4938ba5111f36a04253227801597a25cbdbdf77525d0d455de0eca9270cf",
       "baselineSha256": null,
       "guid": "0a79308db69301e4d968479a95aeff27",
       "types": [
         "LevelRegistriesInstaller"
       ],
-      "lines": 24,
+      "lines": 26,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -14137,8 +14303,8 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "reviewed_boundary",
-      "notes": "AudioMood24: pure mood settings/model/commands/controller и native query/regressions проверены.",
-      "reviewedSha256": "705d900dd75db2fde6685274a6db5b5975c24560e1e0e0f92901a29c5e70e32d",
+      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
+      "reviewedSha256": "adbe4938ba5111f36a04253227801597a25cbdbdf77525d0d455de0eca9270cf",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -14155,8 +14321,8 @@
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status.",
       "reviewDate": "2026-10-22",
-      "reviewReport": "Docs/Reports/AudioMood24.md",
-      "reviewScope": "Full source read: personal mood model, pure snapshots, commands/controller/clock, transient identities and scoped native perception; observation memory/death/restart/scene and native audio regression verified.",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained.",
       "previousReviewStatus": "reviewed_boundary"
     },
     {
@@ -18111,13 +18277,13 @@
     },
     {
       "path": "Assets/EmergencyShift/Runtime/World/Lighting/LocalLamp2D.cs",
-      "sha256": "e2dbe4b526b91ae2b560684b0c64f71edf9fdd9644cbce96fdea1c5373fd5392",
+      "sha256": "895c6b3e41617c0058df8c0955e38f3309f1a85322ca23374ba5bb4b1e08d50d",
       "baselineSha256": "5609ff3341ae1d0cfcde5048bb68dbbc9593480b10a999832fb15a2872ee0673",
       "guid": "035ebd6dd9cb57943ad66d69e5c6e6fc",
       "types": [
         "LocalLamp2D"
       ],
-      "lines": 263,
+      "lines": 287,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Environment/HospitalLamp01.prefab",
         "Assets/EmergencyShift/Prefabs/Environment/PracticalLights01/emergency-beacon.prefab",
@@ -18151,7 +18317,7 @@
       ],
       "entryPointHints": [],
       "reviewStatus": "partial",
-      "notes": "LightScopes22/BUG-025: scoped membership/query/spawn проверены. Прежние lamp power/clock/config, ShotEffect cosmetic/lifetime tuning/RNG, audio model/static emitters либо concrete actor/style долги остаются; геометрия теней не менялась.",
+      "notes": "LampPower30: личные power/clock/commands и прежние outputs проверены; legacy config/style и audio timing остаются открыты.",
       "sourceChangedSinceReview": false,
       "sourceScope": "unity",
       "reviewHistory": [
@@ -18171,10 +18337,10 @@
         "Light2D"
       ],
       "usageEvidence": "Runtime boundary: вывод по коду и известным callers. Сохранённый YAML/lexical graph указан отдельно и не доказывает исполнение/unused status. Прямых сохранённых YAML users: 6; сцены по графу: 5.",
-      "reviewedSha256": "e2dbe4b526b91ae2b560684b0c64f71edf9fdd9644cbce96fdea1c5373fd5392",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified.",
+      "reviewedSha256": "895c6b3e41617c0058df8c0955e38f3309f1a85322ca23374ba5bb4b1e08d50d",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained.",
       "previousReviewStatus": "partial"
     },
     {
@@ -18768,6 +18934,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
@@ -18864,6 +19031,7 @@
         "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
@@ -18937,6 +19105,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
@@ -19032,6 +19201,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
@@ -19557,6 +19727,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
@@ -19684,6 +19855,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
@@ -19760,6 +19932,7 @@
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
@@ -19831,6 +20004,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
@@ -20288,6 +20462,84 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
+      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
+      "path": "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
+      "sourceScope": "unity",
+      "sha256": "2d7cede000220289224677249dd11bb2af09ce1824d78ce2ba72885b4842145a",
+      "guid": "045a8adbb9bc89442b242c613b901a7f",
+      "types": [
+        "Clock",
+        "LampPowerTests",
+        "View"
+      ],
+      "lines": 158,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/CheckDirectionalDamage.cs",
+        "AgentScripts/InstallDirectionalDamage.cs",
+        "AgentScripts/InstallPauseMenu.cs",
+        "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Common/EnemyPatrol2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Sleeper/Sleeper2D.cs",
+        "Assets/EmergencyShift/Runtime/Enemies/Stalker/ShadowStalker2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/AudioMoodInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioLayerPlayback.cs",
+        "Assets/EmergencyShift/Runtime/Features/AudioMood/View/AudioThreatQuery2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMelee2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyBrainMotor2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyMeleeEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPathGeometry2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/EnemyPatrolEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/ProfiledEnemyPathSchedule2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLocomotion2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightAimEnvironment2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/Flashlight/View/FlashlightObstruction2D.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/PauseMenuInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuEnvironment.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuMusic.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuPresenter.cs",
+        "Assets/EmergencyShift/Runtime/Features/PauseMenu/View/PauseMenuView.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/PlayerInputInstaller.cs",
+        "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+        "Assets/EmergencyShift/Runtime/Presentation/Audio/LevelAudioDirector2D.cs",
+        "Assets/EmergencyShift/Runtime/World/Lighting/Flashlight2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AccessControlModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/AudioThreatSignalTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/AudioLayerPlaybackTests.cs"
+      ],
+      "entryPointHints": [
+        "Test",
+        "TestCase"
+      ],
+      "sourceChangedSinceReview": false,
+      "reviewedSha256": "2d7cede000220289224677249dd11bb2af09ce1824d78ce2ba72885b4842145a",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained."
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
       "notes": "AudioThreatSignals26: signal model/commands/clock/readonly config и scoped native sensor/composition/authoring границы проверены.",
       "path": "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
       "sourceScope": "unity",
@@ -20426,6 +20678,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
@@ -20636,6 +20889,7 @@
         "Assets/EmergencyShift/Tests/EditMode/AudioLayerMixTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/AudioMoodModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs",
@@ -20822,6 +21076,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelCompositionFailureTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs",
@@ -20916,6 +21171,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPatrolModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs",
@@ -21207,6 +21463,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
@@ -21324,6 +21581,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyNavigationSafetyTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyPathModelTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/LampPowerTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/LevelRunTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs",
@@ -22185,24 +22443,26 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "LightScopes22/BUG-025: native scoped query/membership/composition/regression boundary проверены; source scene изоляция и lifecycle сохраняются при disable/re-enable/unload/TimeScale0. Яркость, радиусы, циклы, VFX/damage/shot directions и authoring не менялись.",
+      "notes": "LampPower30: личные power/clock/commands/DI проверены; scoped/preview, native outputs и allocation boundary проверены.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs",
       "sourceScope": "unity",
-      "sha256": "0c07e892031d80cf0ca4ff1f25d28aa66affe740603968f9bfbfed8625ca411a",
+      "sha256": "8e6948b288acfc1b3b62d4d78135b4e81eead95af340e53e1004adcc125b18f1",
       "guid": "8e8fc5925f014ad9a6b8db5f501aaa28",
       "types": [
+        "LampClock",
         "LightScopeSceneTests"
       ],
-      "lines": 156,
+      "lines": 271,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
       "entryPointHints": [],
       "sourceChangedSinceReview": false,
-      "reviewedSha256": "0c07e892031d80cf0ca4ff1f25d28aa66affe740603968f9bfbfed8625ca411a",
-      "reviewDate": "2026-10-21",
-      "reviewReport": "Docs/Reports/LightScopes22.md",
-      "reviewScope": "Full source read: level-owned lamp/effect registries and query, paired membership, explicit scene filter, DI scene prefab effects, native actor/audio consumers and fixture composition; sibling/disable/frozen unload/shot ownership and normal Windows64 verified."
+      "reviewedSha256": "8e6948b288acfc1b3b62d4d78135b4e81eead95af340e53e1004adcc125b18f1",
+      "reviewDate": "2026-10-22",
+      "reviewReport": "Docs/Reports/LampPower30.md",
+      "reviewScope": "Lamp personal power/clock/model/command/controller fully read; exact native scene/profile/legacy presentation and scoped/preview composition reviewed. Native light outputs and normal Windows64 verified; prior config/style partial scopes retained.",
+      "previousReviewStatus": "reviewed_boundary"
     },
     {
       "baselineSha256": null,
@@ -22835,7 +23095,7 @@
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
     "agent_tool": 11,
-    "unity": 565,
+    "unity": 572,
     "content_source": 8
   },
   "latestReview": {
@@ -22986,11 +23246,11 @@
   ],
   "sourceCoverageComplete": true,
   "sourceCoverage": {
-    "reviewedFiles": 584,
-    "totalFiles": 584,
+    "reviewedFiles": 591,
+    "totalFiles": 591,
     "queuedFiles": 0,
     "hashesCurrent": true,
     "scope": "All own C# in Assets/EmergencyShift, AgentScripts and Concepts. Third-party packages/generated Library excluded.",
-    "validation": "LevelProgress29 and earlier boundary reviews; other SOD tasks remain open."
+    "validation": "LampPower30 and earlier boundary reviews; other SOD tasks remain open."
   }
 }
