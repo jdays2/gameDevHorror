@@ -1,5 +1,6 @@
-using System.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using EmergencyShift;
 using UnityEditor;
 using UnityEngine;
@@ -34,15 +35,16 @@ public static class InspectWeaponFeedback
     {
         var profile = AssetDatabase.LoadAssetAtPath<PlayerAudioSet>("Assets/EmergencyShift/Audio/PistolIndoor/PistolIndoorAudio.asset");
         profile.Validate();
-        if (EditorUtility.IsDirty(profile) || profile.Impact(ImpactMaterial.Flesh).Count != 1 || Math.Abs(profile.FleshImpactVolume - .28f) > .001f)
+        if (EditorUtility.IsDirty(profile) || profile.Impact(ImpactMaterial.Flesh).Count != 6 || Math.Abs(profile.FleshImpactVolume - .28f) > .001f)
         {
             throw new InvalidOperationException("Shared contact bank is dirty or incomplete.");
         }
+        var names = new HashSet<string>();
         foreach (AudioClip clip in profile.Impact(ImpactMaterial.Flesh))
         {
-            if (clip == null || !AssetDatabase.GetAssetPath(clip).EndsWith("/FleshContacts04/flesh-contact-B.wav") || Math.Abs(clip.length - .34f) > .001f)
+            if (clip == null || !AssetDatabase.GetAssetPath(clip).Contains("/FleshContacts04/flesh-contact-B") || clip.length < .28f || clip.length > .351f || !names.Add(clip.name))
             {
-                throw new InvalidOperationException("Expected the selected B audition as the trial contact.");
+                throw new InvalidOperationException("Expected six unique, short B contact variants.");
             }
             var importer = (AudioImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(clip));
             AudioImporterSampleSettings settings = importer.defaultSampleSettings;
@@ -51,7 +53,11 @@ public static class InspectWeaponFeedback
                 throw new InvalidOperationException("Trial contact must preload PCM at its original 48 kHz.");
             }
         }
-        return new { passed = true, profile.FleshImpactVolume, clips = 1, sharedProfileClean = true };
+        if (!names.SetEquals(new[] { "flesh-contact-B", "flesh-contact-B-02", "flesh-contact-B-03", "flesh-contact-B-04", "flesh-contact-B-05", "flesh-contact-B-06" }))
+        {
+            throw new InvalidOperationException("Unexpected B variation bank members.");
+        }
+        return new { passed = true, profile.FleshImpactVolume, clips = names.ToArray(), sharedProfileClean = true };
     }
     public static object Begin(string output)
     {

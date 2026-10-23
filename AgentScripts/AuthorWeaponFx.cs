@@ -102,19 +102,23 @@ public static class AuthorWeaponFx
         {
             throw new InvalidOperationException("Stop Play before replacing the contact bank.");
         }
-        const string path = "Assets/EmergencyShift/Audio/FleshContacts04/flesh-contact-B.wav";
-        AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
-        var importer = (AudioImporter)AssetImporter.GetAtPath(path);
-        AudioImporterSampleSettings settings = importer.defaultSampleSettings;
-        settings.loadType = AudioClipLoadType.DecompressOnLoad;
-        settings.compressionFormat = AudioCompressionFormat.PCM;
-        settings.sampleRateSetting = AudioSampleRateSetting.PreserveSampleRate;
-        settings.preloadAudioData = true;
-        importer.defaultSampleSettings = settings;
-        importer.forceToMono = false;
-        importer.SaveAndReimport();
+        string[] names = { "flesh-contact-B", "flesh-contact-B-02", "flesh-contact-B-03", "flesh-contact-B-04", "flesh-contact-B-05", "flesh-contact-B-06" };
+        foreach (string name in names)
+        {
+            string path = "Assets/EmergencyShift/Audio/FleshContacts04/" + name + ".wav";
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
+            var importer = (AudioImporter)AssetImporter.GetAtPath(path);
+            AudioImporterSampleSettings settings = importer.defaultSampleSettings;
+            settings.loadType = AudioClipLoadType.DecompressOnLoad;
+            settings.compressionFormat = AudioCompressionFormat.PCM;
+            settings.sampleRateSetting = AudioSampleRateSetting.PreserveSampleRate;
+            settings.preloadAudioData = true;
+            importer.defaultSampleSettings = settings;
+            importer.forceToMono = false;
+            importer.SaveAndReimport();
+        }
         var profile = AssetDatabase.LoadAssetAtPath<PlayerAudioSet>("Assets/EmergencyShift/Audio/PistolIndoor/PistolIndoorAudio.asset");
-        ReplaceBankFromFolder(profile, "fleshImpact", "FleshContacts04", "flesh-contact-B");
+        ReplaceBankFromFolder(profile, "fleshImpact", "FleshContacts04", names);
         using (var data = new SerializedObject(profile))
         {
             data.FindProperty("fleshImpactVolume").floatValue = .28f;
@@ -122,8 +126,7 @@ public static class AuthorWeaponFx
         }
         profile.Validate();
         AssetDatabase.SaveAssetIfDirty(profile);
-        var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
-        return new { clip = clip.name, clip.length, clip.frequency, clip.channels, profile.FleshImpactVolume, scenesModified = false };
+        return new { clips = names, maximumSeconds = .35f, profile.FleshImpactVolume, scenesModified = false };
     }
 
     private static void ReplaceBank(UnityEngine.Object asset, string field, params string[] names)
