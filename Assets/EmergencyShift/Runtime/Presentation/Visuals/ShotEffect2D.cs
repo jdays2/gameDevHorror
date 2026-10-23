@@ -145,7 +145,7 @@ namespace EmergencyShift
 
             configured = true;
             smoke?.Stop();
-            if (!impact && smokePrefab != null && profile.SmokeOpacity > 0)
+            if (!impact && smokePrefab != null && (profile.SmokeOpacity > 0 || profile.SideSmokeOpacity > 0))
             {
                 LimitSmoke(profile.MaximumSmokeClouds);
                 if (smoke == null)

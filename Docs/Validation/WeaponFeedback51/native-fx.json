@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "command": "command run_script",
+  "data": {
+    "command": "run_script",
+    "parameters": {
+      "file": "AgentScripts/VerifyWeaponFx.cs",
+      "entry": "VerifyWeaponFx.Check"
+    },
+    "result": {
+      "diagnostics": [],
+      "compileMs": 55,
+      "executeMs": 6,
+      "assemblyName": "PipelineRunScript_VerifyWeaponFx_eebdf20df6ad473dac9343a644baf37d",
+      "success": true,
+      "result": {
+        "passed": true,
+        "checks": [
+          "PistolDefinition: configuration valid and shared profile clean",
+          "PumpShotgun: configuration valid and shared profile clean",
+          "Smoke prefab reference is valid; impacts have no unused cloud components",
+          "Forward cloud and lateral gas have separate sibling renderers under one scene-owned lifetime",
+          "PistolShotEffect: no missing native components or references",
+          "MuzzleSmoke: no missing native components or references",
+          "Muzzle Smoke shader has no native compilation errors"
+        ]
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

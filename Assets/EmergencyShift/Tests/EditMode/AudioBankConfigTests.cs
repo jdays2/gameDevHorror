@@ -10,6 +10,28 @@ namespace EmergencyShift.Tests
 {
     public sealed class AudioBankConfigTests
     {
+        [TestCase(-.01f)]
+        [TestCase(1.01f)]
+        [TestCase(float.NaN)]
+        [TestCase(float.PositiveInfinity)]
+        public void FleshContactGainRejectsInvalidValues(float value)
+        {
+            var profile = ScriptableObject.CreateInstance<PlayerAudioSet>();
+            try
+            {
+                using (var data = new SerializedObject(profile))
+                {
+                    data.FindProperty("fleshImpactVolume").floatValue = value;
+                    data.ApplyModifiedPropertiesWithoutUndo();
+                }
+                Assert.Throws<InvalidOperationException>(profile.Validate);
+            }
+            finally
+            {
+                Object.DestroyImmediate(profile);
+            }
+        }
+
         [Test]
         public void BankCannotBeCastBackToMutableArrayOrList()
         {

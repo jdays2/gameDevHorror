@@ -34,6 +34,19 @@ public static class VerifyWeaponFx
             throw new InvalidOperationException("Missing muzzle smoke template.");
         }
         checks.Add("Smoke prefab reference is valid; impacts have no unused cloud components");
+        var smokeTemplate = AssetDatabase.LoadAssetAtPath<GameObject>(root + "Prefabs/Combat/MuzzleSmoke.prefab");
+        using (var smokeData = new SerializedObject(smokeTemplate.GetComponent<MuzzleSmoke2D>()))
+        {
+            var forward = (SpriteRenderer)smokeData.FindProperty("cloud").objectReferenceValue;
+            var lateral = (SpriteRenderer)smokeData.FindProperty("sideBurst").objectReferenceValue;
+            if (forward == null || lateral == null || forward == lateral ||
+                forward.transform.parent != smokeTemplate.transform || lateral.transform.parent != smokeTemplate.transform ||
+                smokeTemplate.GetComponentsInChildren<SpriteRenderer>(true).Length != 2)
+            {
+                throw new InvalidOperationException("Smoke requires two sibling renderers with independent presentation transforms.");
+            }
+        }
+        checks.Add("Forward cloud and lateral gas have separate sibling renderers under one scene-owned lifetime");
         foreach (string name in new[] { "PistolShotEffect", "MuzzleSmoke" })
         {
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(root + "Prefabs/Combat/" + name + ".prefab");
@@ -63,8 +76,8 @@ public static class VerifyWeaponFx
         }
         checks.Add("Muzzle Smoke shader has no native compilation errors");
         var result = new { passed = true, checks };
-        Directory.CreateDirectory("work/weapon-fx50");
-        File.WriteAllText("work/weapon-fx50/native-final.json", JsonConvert.SerializeObject(result, Formatting.Indented));
+        Directory.CreateDirectory("work/weapon-feedback51");
+        File.WriteAllText("work/weapon-feedback51/native-final.json", JsonConvert.SerializeObject(result, Formatting.Indented));
         return result;
     }
 }

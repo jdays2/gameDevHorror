@@ -42,7 +42,6 @@ namespace EmergencyShift
         public SleeperBehaviourProfile BehaviourProfile => behaviourProfile;
         public int Health => health != null ? health.Current : 0;
         public override bool IsAlive => State != BehaviourState.Dead;
-        public override bool OwnsHitAudio => feedback != null && feedback.isActiveAndEnabled;
         public bool HasAggro => controller != null && controller.Model.HasAggro;
         public bool IsStaggered => controller != null && controller.Model.IsStaggered;
         public float ExposureProgress => controller?.Model.ExposureProgress ?? 0;

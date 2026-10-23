@@ -66,7 +66,6 @@ namespace EmergencyShift
         public StalkerBehaviourProfile BehaviourProfile => behaviourProfile;
         public BehaviourState State => controller != null ? (BehaviourState)controller.Model.State : BehaviourState.Sneaking;
         public override bool IsAlive => State != BehaviourState.Dead;
-        public override bool OwnsHitAudio => audioFeedback != null && audioFeedback.isActiveAndEnabled;
         public bool HasAggro => controller != null && controller.Model.HasAggro;
         public float EyeDamageProgress => controller?.Model.EyeDamageProgress ?? 0;
         public bool EyeBurned => EyeDamageProgress > 0;

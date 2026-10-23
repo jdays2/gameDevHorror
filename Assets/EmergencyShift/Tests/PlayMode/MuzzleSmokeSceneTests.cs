@@ -15,6 +15,45 @@ namespace EmergencyShift.Tests
     public sealed class MuzzleSmokeSceneTests
     {
         [UnityTest]
+        public IEnumerator LateralGasEndsBeforeForwardCloudForBothWeapons()
+        {
+            var scope = new DiContainer();
+            scope.Bind<SceneRegistry<ShotEffect2D>>().AsSingle();
+            var owner = new GameObject("Lateral smoke lifetime");
+            var prefabs = new ScenePrefabFactory(scope, owner.transform);
+            var template = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Combat/PistolShotEffect.prefab");
+            float oldScale = Time.timeScale;
+            Time.timeScale = 1;
+            try
+            {
+                foreach (string name in new[] { "PistolDefinition", "PumpShotgun" })
+                {
+                    var weapon = AssetDatabase.LoadAssetAtPath<WeaponDefinition>("Assets/EmergencyShift/Data/Weapons/" + name + ".asset");
+                    var effect = prefabs.Instantiate(template, Vector3.zero, Quaternion.identity).GetComponent<ShotEffect2D>();
+                    effect.Play(weapon.Visuals, false, Vector2.right);
+                    var smoke = effect.GetComponentInChildren<MuzzleSmoke2D>();
+                    Assert.That(smoke.HasSideBurst, Is.True);
+                    Time.timeScale = 0;
+                    yield return null;
+                    Assert.That(smoke.HasSideBurst, Is.True);
+                    Time.timeScale = 1;
+                    yield return new WaitForSeconds(weapon.Visuals.SideSmokeSeconds + .04f);
+                    Assert.That(smoke.HasSideBurst, Is.False, name);
+                    Assert.That(effect.HasSmoke, Is.True, "Forward cloud outlives the sharp lateral burst.");
+                    Assert.That(effect.LightSource.enabled, Is.False);
+                    effect.enabled = false;
+                    Assert.That(smoke.IsVisible, Is.False);
+                    Object.Destroy(effect.gameObject);
+                }
+            }
+            finally
+            {
+                Time.timeScale = oldScale;
+                Object.Destroy(owner);
+            }
+        }
+
+        [UnityTest]
         public IEnumerator CloudBudgetDoesNotExtendLightAndSourceUnloadCleansPausedSmoke()
         {
             Scene previous = SceneManager.GetActiveScene();

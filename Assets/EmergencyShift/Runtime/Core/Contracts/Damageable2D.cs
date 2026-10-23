@@ -9,7 +9,6 @@ namespace EmergencyShift
         {
             get;
         }
-        public virtual bool OwnsHitAudio => false;
 
         public abstract void ReceiveBulletHit(int damage, Vector2 point, Vector2 direction);
         public virtual bool TryTakeDamage(int amount, Vector2 point, Vector2 direction)

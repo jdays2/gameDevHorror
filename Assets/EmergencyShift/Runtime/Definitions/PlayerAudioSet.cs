@@ -14,6 +14,8 @@ namespace EmergencyShift
         private float shotVolume = .75f;
         [SerializeField]
         private float impactVolume = .65f;
+        [SerializeField, Range(0, 1), Tooltip("Short physical contact, independent of creature voices and legacy wall impact tuning.")]
+        private float fleshImpactVolume = .4f;
         [SerializeField]
         private float casingVolume = .3f;
         [SerializeField]
@@ -57,6 +59,7 @@ namespace EmergencyShift
         public float PickupVolume => pickupVolume;
         public float ShotVolume => shotVolume;
         public float ImpactVolume => impactVolume;
+        public float FleshImpactVolume => fleshImpactVolume;
         public float CasingVolume => casingVolume;
         public float ShotPitchVariation => shotPitchVariation;
         public float ShotGainVariationDb => shotGainVariationDb;
@@ -118,6 +121,7 @@ namespace EmergencyShift
             if (!AudioProfileValidation.Unit(pickupVolume) ||
                 !AudioProfileValidation.Unit(shotVolume) ||
                 !AudioProfileValidation.Unit(impactVolume) ||
+                !AudioProfileValidation.Unit(fleshImpactVolume) ||
                 !AudioProfileValidation.Unit(casingVolume) ||
                 !AudioProfileValidation.Unit(shotPitchVariation) ||
                 !AudioProfileValidation.AtLeast(shotGainVariationDb, 0) ||

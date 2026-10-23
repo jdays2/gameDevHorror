@@ -46,6 +46,10 @@ namespace EmergencyShift
         [SerializeField, Min(.02f)] private float smokeSeconds = .45f;
         [SerializeField, Min(0)] private float smokeDispersion = .65f;
         [SerializeField, Range(1, 8)] private int maximumSmokeClouds = 4;
+        [Header("Short lateral muzzle gas — full width across both sides")]
+        [SerializeField, Range(0, .35f)] private float sideSmokeOpacity;
+        [SerializeField] private Vector2 sideSmokeSize = new Vector2(.95f, .32f);
+        [SerializeField, Min(.02f)] private float sideSmokeSeconds = .16f;
         [Header("Casing ejection — world units and degrees/second")]
         [SerializeField] private Vector2 casingPort = new Vector2(.16f, .16f);
         [SerializeField] private float casingWallClearance = .03f;
@@ -78,6 +82,9 @@ namespace EmergencyShift
         public float SmokeSeconds => smokeSeconds;
         public float SmokeDispersion => smokeDispersion;
         public int MaximumSmokeClouds => maximumSmokeClouds;
+        public float SideSmokeOpacity => sideSmokeOpacity;
+        public Vector2 SideSmokeSize => sideSmokeSize;
+        public float SideSmokeSeconds => sideSmokeSeconds;
 
 
         public void Validate()
@@ -109,6 +116,14 @@ namespace EmergencyShift
                 !float.IsFinite(smokeDispersion) || smokeDispersion < 0 || maximumSmokeClouds < 1 || maximumSmokeClouds > 8)
             {
                 throw new InvalidOperationException("Invalid muzzle smoke: " + name);
+            }
+            if (!float.IsFinite(sideSmokeOpacity) || sideSmokeOpacity < 0 || sideSmokeOpacity > .35f ||
+                !float.IsFinite(sideSmokeSize.x) || sideSmokeSize.x <= 0 ||
+                !float.IsFinite(sideSmokeSize.y) || sideSmokeSize.y <= 0 ||
+                !float.IsFinite(sideSmokeSeconds) || sideSmokeSeconds < .02f ||
+                (sideSmokeOpacity > 0 && sideSmokeSeconds > smokeSeconds))
+            {
+                throw new InvalidOperationException("Invalid lateral muzzle smoke: " + name);
             }
         }
         private static bool Ordered(Vector2 value) =>

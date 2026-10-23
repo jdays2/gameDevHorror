@@ -363,14 +363,7 @@ namespace EmergencyShift
                 return;
             }
 
-            // Stalker already plays its approved flesh hit/death through its own damage events.
-            // Do not double that layer; generic fleshy objects can use the same data directly.
-            var receiver = target != null ? target.GetComponentInParent<Damageable2D>() : null;
-            if (LastImpactMaterial == ImpactMaterial.Flesh && receiver != null && receiver.OwnsHitAudio)
-            {
-                return;
-            }
-
+            // A physical contact is independent of the creature's optional hurt/death voice.
             int volley = weapon.LastImpactVolleyId;
             int materialBit = 1 << (int)LastImpactMaterial;
             if (volley > 0 && audibleImpacts.TryGetValue(volley, out int played) && (played & materialBit) != 0)
@@ -401,7 +394,8 @@ namespace EmergencyShift
 
             float distance = Vector2.Distance(transform.position, point);
             selected.clip = clip;
-            selected.volume = ImpactVolume * Mathf.Clamp01(1 - distance / sounds.ImpactHearingDistance);
+            float gain = LastImpactMaterial == ImpactMaterial.Flesh ? sounds.FleshImpactVolume : ImpactVolume;
+            selected.volume = gain * Mathf.Clamp01(1 - distance / sounds.ImpactHearingDistance);
             selected.pitch = Mathf.Lerp(sounds.ImpactPitch.x, sounds.ImpactPitch.y, (float)random.NextDouble());
             selected.panStereo = Mathf.Clamp((point.x - transform.position.x) / sounds.PanDistance, -sounds.MaximumPan, sounds.MaximumPan);
             selected.Play();
