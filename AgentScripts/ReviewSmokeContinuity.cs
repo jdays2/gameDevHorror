@@ -20,8 +20,14 @@ public static class ReviewSmokeContinuity
         return CaptureCore(folder, sourcePath);
     }
 
-    private static object CaptureCore(string folder, string sourcePath)
+    public static object Variants(string folder)
     {
+        return CaptureCore(folder, null, new[] { 0, 7, 42, 19, 63, 91 });
+    }
+
+    private static object CaptureCore(string folder, string sourcePath, int[] seeds = null)
+    {
+        seeds = seeds ?? new[] { 0, 7, 42 };
         Directory.CreateDirectory(folder);
         const string shaderPath = "Assets/EmergencyShift/Materials/Effects/MuzzleSmoke.shader";
         AssetDatabase.ImportAsset(shaderPath, ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
@@ -79,7 +85,7 @@ public static class ReviewSmokeContinuity
             }
             renderer.color = new Color(.64f, .66f, .68f, .30f);
             var properties = new MaterialPropertyBlock();
-            foreach (int seed in new[] { 0, 7, 42 })
+            foreach (int seed in seeds)
             {
                 foreach (int age in new[] { 15, 40, 65 })
                 {
@@ -95,7 +101,7 @@ public static class ReviewSmokeContinuity
                 renderer.SetPropertyBlock(properties);
                 Save(camera, target, pixels, Path.Combine(folder, "side-" + seed + ".png"));
             }
-            var result = new { passed = true, shaderErrors = false, forwardSamples = 9, sideSamples = 3, gameScene = previous.path, gameScenePreserved = SceneManager.GetActiveScene() == previous };
+            var result = new { passed = true, shaderErrors = false, forwardSamples = seeds.Length * 3, sideSamples = seeds.Length, gameScene = previous.path, gameScenePreserved = SceneManager.GetActiveScene() == previous };
             File.WriteAllText(Path.Combine(folder, "capture.json"), JsonConvert.SerializeObject(result, Formatting.Indented));
             return result;
         }

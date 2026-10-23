@@ -28,6 +28,11 @@ Shader "EmergencyShift/Muzzle Smoke"
                 half4 _Color;
                 float _Age, _Seed, _SideBurst;
             CBUFFER_END
+            float SmoothCloudUnion(float a, float b)
+            {
+                float blend = saturate(.5 + .5 * (b - a) / .24);
+                return lerp(b, a, blend) - .24 * blend * (1 - blend);
+            }
             Varyings SmokeVertex(Attributes input)
             {
                 UNITY_SETUP_INSTANCE_ID(input);
@@ -57,11 +62,18 @@ Shader "EmergencyShift/Muzzle Smoke"
                     float fade = smoothstep(0, .06, age) * (1 - smoothstep(.12, 1, age));
                     return half4(input.color.rgb, density * fade * input.color.a);
                 }
-                float bend = sin(_Seed + p.y * 1.6 + age * 1.2) * .045;
-                p.x += bend;
-                float main = length(p / float2(.72, .8));
-                float side = length((p - float2(.26, .15)) / float2(.48, .52));
-                float d = min(main, side);
+                // One stable cosmetic seed per shot. Vary the silhouette, never stripe its density.
+                float4 shape = frac(sin((_Seed + 1.37) * float4(12.9898, 78.233, 39.425, 93.117)) * 43758.5453);
+                float handedness = shape.z < .5 ? -1 : 1;
+                float lean = lerp(-.18, .18, shape.w);
+                p.x += p.y * lean + sin(_Seed + p.y * 1.6 + age * 1.2) * .045;
+                float2 radius = float2(lerp(.54, .76, shape.x), lerp(.68, .84, shape.y));
+                float main = length(p / radius);
+                float2 shoulder = float2(handedness * lerp(.20, .32, shape.y), lerp(.02, .27, shape.w));
+                float side = length((p - shoulder) / float2(lerp(.38, .51, shape.z), lerp(.40, .57, shape.x)));
+                float2 lower = float2(-handedness * .22, lerp(-.28, -.08, shape.x));
+                float wisp = length((p - lower) / float2(lerp(.32, .46, shape.w), lerp(.30, .46, shape.y)));
+                float d = SmoothCloudUnion(SmoothCloudUnion(main, side), wisp);
                 float density = .90 * (1 - smoothstep(.15, 1, d));
                 float fade = smoothstep(0, .08, age) * (1 - smoothstep(.30, 1, age));
                 return half4(input.color.rgb, density * fade * input.color.a);

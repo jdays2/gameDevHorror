@@ -34,18 +34,24 @@ public static class InspectWeaponFeedback
     {
         var profile = AssetDatabase.LoadAssetAtPath<PlayerAudioSet>("Assets/EmergencyShift/Audio/PistolIndoor/PistolIndoorAudio.asset");
         profile.Validate();
-        if (EditorUtility.IsDirty(profile) || profile.Impact(ImpactMaterial.Flesh).Count != 4)
+        if (EditorUtility.IsDirty(profile) || profile.Impact(ImpactMaterial.Flesh).Count != 1 || Math.Abs(profile.FleshImpactVolume - .28f) > .001f)
         {
             throw new InvalidOperationException("Shared contact bank is dirty or incomplete.");
         }
         foreach (AudioClip clip in profile.Impact(ImpactMaterial.Flesh))
         {
-            if (clip == null || !AssetDatabase.GetAssetPath(clip).Contains("/FleshContacts03/") || clip.length > .18f)
+            if (clip == null || !AssetDatabase.GetAssetPath(clip).EndsWith("/FleshContacts04/flesh-contact-B.wav") || Math.Abs(clip.length - .34f) > .001f)
             {
-                throw new InvalidOperationException("Expected a short dedicated physical contact.");
+                throw new InvalidOperationException("Expected the selected B audition as the trial contact.");
+            }
+            var importer = (AudioImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(clip));
+            AudioImporterSampleSettings settings = importer.defaultSampleSettings;
+            if (settings.compressionFormat != AudioCompressionFormat.PCM || !settings.preloadAudioData || clip.frequency != 48000)
+            {
+                throw new InvalidOperationException("Trial contact must preload PCM at its original 48 kHz.");
             }
         }
-        return new { passed = true, profile.FleshImpactVolume, clips = 4, sharedProfileClean = true };
+        return new { passed = true, profile.FleshImpactVolume, clips = 1, sharedProfileClean = true };
     }
     public static object Begin(string output)
     {
