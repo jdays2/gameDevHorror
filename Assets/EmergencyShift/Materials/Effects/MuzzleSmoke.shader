@@ -57,13 +57,12 @@ Shader "EmergencyShift/Muzzle Smoke"
                     float fade = smoothstep(0, .06, age) * (1 - smoothstep(.12, 1, age));
                     return half4(input.color.rgb, density * fade * input.color.a);
                 }
-                float bend = sin(_Seed + p.y * 5 + age * 3) * .13;
+                float bend = sin(_Seed + p.y * 1.6 + age * 1.2) * .045;
                 p.x += bend;
                 float main = length(p / float2(.72, .8));
                 float side = length((p - float2(.26, .15)) / float2(.48, .52));
                 float d = min(main, side);
-                float curl = .86 + .14 * sin(p.x * 11 + p.y * 8 + _Seed + age * 5);
-                float density = (1 - smoothstep(.15, 1, d)) * curl;
+                float density = .90 * (1 - smoothstep(.15, 1, d));
                 float fade = smoothstep(0, .08, age) * (1 - smoothstep(.30, 1, age));
                 return half4(input.color.rgb, density * fade * input.color.a);
             }
