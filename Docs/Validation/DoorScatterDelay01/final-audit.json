@@ -1,0 +1,37 @@
+{
+  "task": "TASK-004",
+  "bug": "BUG-052",
+  "runtime_revision": "c5957f02c14e1eaa1269a4f7a38cd968d7c21070",
+  "repeat_verification": "passed_twice",
+  "historical_evidence_unchanged": true,
+  "historical_sha256": {
+    "Docs/Validation/DoorScatterDelay01/after.json": "2ea082c76e03caf0017190d50adb57a0ad967cf810d24692b42a2499ebe1ae06",
+    "Docs/Validation/DoorScatterDelay01/before.json": "3b7b7891abbeec496182bf78c7954b02bc5ad3989427fe647d2c6cea79ac30a1",
+    "Docs/Validation/DoorScatterDelay01/build-summary.json": "797278b714a43aff493dd349c7058422fa5abfbc93ca44858d8c101b0b17818d",
+    "Docs/Validation/DoorScatterDelay01/flashlight-route.json": "884d6de7de786f14208fda134f1ac599e8bb4974f47b8f3c47ee792e9da8e20a",
+    "Docs/Validation/DoorScatterDelay01/group-route.json": "8af7bcb574ace65861b971ea6b40716fb6d2caed1cc1da589682433e74433b05",
+    "Docs/Validation/DoorScatterDelay01/model-tests.json": "735adb2a912f7414e7d099c513ae42e20206ef7ce2de6228541979889e65e5cb",
+    "Docs/Validation/DoorScatterDelay01/play-tests-first.json": "21578fa56bfe06d9c3f4502c524860200f87d65d4c2591f976b5b59102556326",
+    "Docs/Validation/DoorScatterDelay01/play-tests.json": "5be8c173784060176f2641a6c88b4f9562639d9ec11216c09f1eb04fad1ece2a",
+    "Docs/Validation/DoorScatterDelay01/preservation.json": "ed22e40c8bda9085ea1b1f413beb826f1e44db9bfe91d5964c5f29208966889d",
+    "Docs/Validation/DoorScatterDelay01/scene-delay-only.patch": "803f56d9bd376036b8eb4460ba269387938018868b7fbd279cea3adfa6f833bd"
+  },
+  "explicit_patch_matches_original": true,
+  "existing_output_rejected_without_overwrite": true,
+  "post_change_base_rejected_without_output": true,
+  "missing_argument_pair_rejected": true,
+  "outside_project_output_rejected": true,
+  "csharp_probe_dry_run": {
+    "success": true,
+    "diagnostics": [],
+    "execute_ms": 0
+  },
+  "gameplay_tests": {
+    "editmode": "15/15 on runtime revision",
+    "playmode": "5/5 on runtime revision"
+  },
+  "build": "Windows64 12 scenes Succeeded on runtime revision; only Runtime assembly",
+  "editor_used_for": "compile-only authoring probe, agreed with BUG-047; no scene mutations",
+  "authoring_gate": "not_applicable_no_additions_moves_or_scene_edits",
+  "gameplay_runtime_changed_by_audit": false
+}
