@@ -22,8 +22,10 @@ Shader "EmergencyShift/Muzzle Smoke"
             #pragma fragment SmokeFragment
             #pragma multi_compile_instancing
             #include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/Core2D.hlsl"
+            #include_with_pragmas "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/ShapeLightShared.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/2D/Include/CombinedShapeLightShared.hlsl"
             struct Attributes { COMMON_2D_INPUTS half4 color:COLOR; };
-            struct Varyings { COMMON_2D_OUTPUTS_SHARED half4 color:COLOR; };
+            struct Varyings { COMMON_2D_LIT_OUTPUTS half4 color:COLOR; };
             CBUFFER_START(UnityPerMaterial)
                 half4 _Color;
                 float _Age, _Seed, _SideBurst;
@@ -42,8 +44,22 @@ Shader "EmergencyShift/Muzzle Smoke"
                 UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(output);
                 output.positionCS = TransformObjectToHClip(input.positionOS);
                 output.uv = input.uv;
+                output.lightingUV = half2(ComputeScreenPos(output.positionCS / output.positionCS.w).xy);
                 output.color = input.color * _Color * unity_SpriteColor;
                 return output;
+            }
+            half4 SmokeLighting(Varyings input, half alpha)
+            {
+                // Unlike the standard sprite fallback, gas is invisible when no light is present.
+                #if !USE_SHAPE_LIGHT_TYPE_0 && !USE_SHAPE_LIGHT_TYPE_1 && !USE_SHAPE_LIGHT_TYPE_2 && !USE_SHAPE_LIGHT_TYPE_3
+                    return half4(0, 0, 0, 0);
+                #else
+                    SurfaceData2D surfaceData;
+                    InputData2D inputData;
+                    InitializeSurfaceData(input.color.rgb, alpha, half4(1, 1, 1, 1), half3(0, 0, 1), surfaceData);
+                    InitializeInputData(input.uv, input.lightingUV, inputData);
+                    return CombinedShapeLightShared(surfaceData, inputData);
+                #endif
             }
             half4 SmokeFragment(Varyings input) : SV_Target
             {
@@ -60,7 +76,7 @@ Shader "EmergencyShift/Muzzle Smoke"
                     float curl = sin(q.x * 21 + phase + age * 4) * sin(q.y * 7 - phase) * .12;
                     float density = 1 - smoothstep(.05, 1, min(body, wisp) + curl);
                     float fade = smoothstep(0, .06, age) * (1 - smoothstep(.12, 1, age));
-                    return half4(input.color.rgb, density * fade * input.color.a);
+                    return SmokeLighting(input, density * fade * input.color.a);
                 }
                 // One stable cosmetic seed per shot. Vary the silhouette, never stripe its density.
                 float4 shape = frac(sin((_Seed + 1.37) * float4(12.9898, 78.233, 39.425, 93.117)) * 43758.5453);
@@ -76,7 +92,7 @@ Shader "EmergencyShift/Muzzle Smoke"
                 float d = SmoothCloudUnion(SmoothCloudUnion(main, side), wisp);
                 float density = .90 * (1 - smoothstep(.15, 1, d));
                 float fade = smoothstep(0, .08, age) * (1 - smoothstep(.30, 1, age));
-                return half4(input.color.rgb, density * fade * input.color.a);
+                return SmokeLighting(input, density * fade * input.color.a);
             }
             ENDHLSL
         }

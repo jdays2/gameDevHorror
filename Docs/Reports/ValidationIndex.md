@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Дым не светится в темноте, BUG-045 | [SmokeLighting56](SmokeLighting56.md): native до/после 2 режима × 6 условий света/тени; dark/shadow/no lights после дают нулевую разницу, lit/local PNG прежние. Реальная MorgueRouteTest с фонарём/ambient/blackout; 3/3 smoke PlayMode, native refs/shader/console чисты. Shader-only, карты/звук сохранены, новая full build/GPU приёмка не заявляется. |
 | Шесть вариантов B, приняты владельцем | [FleshVariants55](FleshVariants55.md): original B + пять производных, native шесть ссылок/PCM/preload, серия 24→24 без соседних повторов. Приёмка «я проверил, все норм» относится к аудиобанку; production C#/сцены прежние, новые полные test/build/GPU результаты не заявляются. |
 | Вариативный дым и выбранный контакт B, BUG-044 | [WeaponFeedback54](WeaponFeedback54.md): 18 native forward кадров/6 seed, боковой слой сохранён, 4/4 targeted PlayMode и серия 8→8 контактов. B .34 с/gain .28, реальные миксы морга/песочницы без clipping. Shader/asset правка без production C# и сохранения карт; новые полные test/build/GPU результаты не заявляются, художественная оценка открыта. |
 | Дымка/контакты оружия, BUG-042 | [WeaponFx50](WeaponFx50.md): 1240 EditMode/81 PlayMode на изолированном FX-срезе, Windows64, реальный before/after main mix без clipping, CPU/GC/draw сравнение. GPU timing недоступен; исходный сквозной урон не воспроизведён, авторская повторная оценка и художественная приёмка открыты. |

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
 
@@ -47,6 +48,13 @@ public static class ReviewSmokeContinuity
         {
             var owner = new GameObject("Temporary smoke shader preview");
             SceneManager.MoveGameObjectToScene(owner, preview);
+            var lightObject = new GameObject("Unit preview illumination", typeof(Light2D));
+            lightObject.transform.SetParent(owner.transform, false);
+            lightObject.layer = 31;
+            var light = lightObject.GetComponent<Light2D>();
+            light.lightType = Light2D.LightType.Global;
+            light.color = Color.white;
+            light.intensity = 1;
             var cameraObject = new GameObject("Preview camera", typeof(Camera));
             cameraObject.transform.SetParent(owner.transform, false);
             var camera = cameraObject.GetComponent<Camera>();
