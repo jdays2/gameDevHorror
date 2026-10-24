@@ -67,6 +67,9 @@ namespace EmergencyShift.Features.Enemies.Logic
             }
 
             age += frame.DeltaTime;
+            Exposed = IsAlive && frame.TargetReady && frame.TargetAlive && frame.Exposed;
+            bool closeLight = Exposed && Vector2.Distance(frame.Position, frame.LightOrigin) <= settings.FearDistance;
+            UpdateEyeBurn(closeLight, frame.DeltaTime);
             if (IsScripted && IsAlive)
             {
                 return IsStaggered ? StalkerIntent.Stagger : StalkerIntent.DirectStop;
@@ -80,9 +83,7 @@ namespace EmergencyShift.Features.Enemies.Logic
             if (!frame.TargetAlive)
             {
                 PatrolResetRequested?.Invoke();
-                Exposed = false;
                 exposure = 0;
-                UpdateEyeBurn(false, frame.DeltaTime);
                 Enter(StalkerState.TargetDead);
                 return StalkerIntent.DirectStop;
             }
@@ -92,9 +93,6 @@ namespace EmergencyShift.Features.Enemies.Logic
                 ActivateAggro();
             }
 
-            Exposed = frame.Exposed;
-            bool closeLight = Exposed && Vector2.Distance(frame.Position, frame.LightOrigin) <= settings.FearDistance;
-            UpdateEyeBurn(closeLight, frame.DeltaTime);
             if (IsStaggered)
             {
                 return StalkerIntent.Stagger;
@@ -254,9 +252,7 @@ namespace EmergencyShift.Features.Enemies.Logic
         {
             IsScripted = active;
             exposure = 0;
-            Exposed = false;
             Closure = 0;
-            UpdateEyeBurn(false, 0);
             PatrolResetRequested?.Invoke();
             Enter(StalkerState.Dormant);
         }

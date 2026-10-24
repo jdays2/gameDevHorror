@@ -82,6 +82,89 @@ namespace EmergencyShift.Tests
             Assert.That(model.ReactionProgress, Is.Zero);
         }
 
+        [TestCase(StalkerState.Recoiling, 0)]
+        [TestCase(StalkerState.Retreating, 0)]
+        [TestCase(StalkerState.Waiting, 0)]
+        [TestCase(StalkerState.Recoiling, .3f)]
+        [TestCase(StalkerState.Retreating, .3f)]
+        [TestCase(StalkerState.Waiting, .3f)]
+        public void FearStateWithoutActualLightCannotAddDamageOrBurnCue(StalkerState state, float damage)
+        {
+            var model = Model();
+            var saved = new StalkerStateSnapshot(state, true, damage, 0, 0, 0, 1,
+                Vector2.right, Vector2.up, 0, Vector2.zero);
+            int cues = 0;
+            model.EyeBurnStarted += () => cues++;
+            Assert.That(new RestoreStalkerCommand(model, saved).Execute().Success, Is.True);
+            for (int index = 0; index < 300; index++)
+            {
+                model.Step(Frame(exposed: false));
+            }
+
+            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage));
+            Assert.That(cues, Is.Zero);
+            Assert.That(model.HasAggro, Is.True);
+        }
+
+        [Test]
+        public void ScriptedControlKeepsActualLightDamageIndependentOfDecisionOwnership()
+        {
+            var model = Model();
+            int cues = 0;
+            model.EyeBurnStarted += () => cues++;
+            Assert.That(new SetStalkerScriptedControlCommand(model, true).Execute().Success, Is.True);
+            model.Step(Frame(.1f, exposed: true));
+            Assert.That(cues, Is.EqualTo(1));
+            Assert.That(model.EyeDamageProgress, Is.Zero);
+            model.Step(Frame(.1f, exposed: true));
+            float damage = model.EyeDamageProgress;
+            Assert.That(damage, Is.EqualTo(.06f / 1.25f).Within(.00001));
+            model.Step(Frame(1, exposed: false));
+            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage));
+            Assert.That(model.Capture().BurnContact, Is.Zero);
+            Assert.That(model.HasAggro, Is.False);
+            Assert.That(model.State, Is.EqualTo(StalkerState.Dormant));
+        }
+
+        [TestCase(0)]
+        [TestCase(.3f)]
+        public void RepeatedScriptedOwnershipWithoutLightKeepsTheEyeAndBurnAudioUnchanged(float damage)
+        {
+            var model = Model();
+            var saved = new StalkerStateSnapshot(StalkerState.Dormant, false, damage, 0, 0, 0, 0,
+                Vector2.zero, Vector2.zero, 0, Vector2.zero);
+            new RestoreStalkerCommand(model, saved).Execute();
+            int cues = 0;
+            model.EyeBurnStarted += () => cues++;
+            for (int index = 0; index < 3; index++)
+            {
+                Assert.That(new SetStalkerScriptedControlCommand(model, true).Execute().Success, Is.True);
+                model.Step(Frame(1, exposed: false));
+                Assert.That(new SetStalkerScriptedControlCommand(model, false).Execute().Success, Is.True);
+            }
+
+            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage));
+            Assert.That(cues, Is.Zero);
+            Assert.That(model.HasAggro, Is.False);
+        }
+
+        [Test]
+        public void ScriptedOwnershipReleaseDoesNotRestartContinuousBurnContact()
+        {
+            var clock = new Clock();
+            var model = Model(clock);
+            int cues = 0;
+            model.EyeBurnStarted += () => cues++;
+            new SetStalkerScriptedControlCommand(model, true).Execute();
+            model.Step(Frame(.2f, exposed: true));
+            float damage = model.EyeDamageProgress;
+            clock.Time = 2;
+            Assert.That(new SetStalkerScriptedControlCommand(model, false).Execute().Success, Is.True);
+            model.Step(Frame(.1f, exposed: true));
+            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage + .1f / 1.25f).Within(.00001));
+            Assert.That(cues, Is.EqualTo(1));
+        }
+
         [Test]
         public void EyeBurnHasLeadInKeepsDamageAcrossContactsAndThrottlesCues()
         {
