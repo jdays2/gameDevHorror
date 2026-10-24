@@ -73,7 +73,7 @@ namespace EmergencyShift.Tests
                 Assert.That(burst.IsSettled, Is.True, name);
                 RemainsSnapshot snapshot = burst.CaptureRemains();
                 Assert.That(snapshot, Is.Not.Null, name);
-                Assert.That(snapshot.parts.Length, Is.InRange(13, 16));
+                Assert.That(snapshot.parts.Length, Is.InRange(13, 19));
                 foreach (RemainsPartState part in snapshot.parts)
                 {
                     Assert.That(sprites[part.spriteIndex], Is.Not.Null);

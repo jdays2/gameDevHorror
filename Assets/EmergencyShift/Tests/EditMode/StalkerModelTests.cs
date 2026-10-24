@@ -101,7 +101,7 @@ namespace EmergencyShift.Tests
                 model.Step(Frame(exposed: false));
             }
 
-            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage));
+            Assert.That(model.EyeDamageProgress, Is.Zero.Within(.00001), "The living eye recovers outside the beam.");
             Assert.That(cues, Is.Zero);
             Assert.That(model.HasAggro, Is.True);
         }
@@ -113,14 +113,15 @@ namespace EmergencyShift.Tests
             int cues = 0;
             model.EyeBurnStarted += () => cues++;
             Assert.That(new SetStalkerScriptedControlCommand(model, true).Execute().Success, Is.True);
-            model.Step(Frame(.1f, exposed: true));
-            Assert.That(cues, Is.EqualTo(1));
+            model.Step(Frame(.2f, exposed: true));
+            Assert.That(cues, Is.Zero, "Approach warning is silent.");
             Assert.That(model.EyeDamageProgress, Is.Zero);
-            model.Step(Frame(.1f, exposed: true));
+            model.Step(Frame(.3f, exposed: true));
             float damage = model.EyeDamageProgress;
-            Assert.That(damage, Is.EqualTo(.06f / 1.25f).Within(.00001));
+            Assert.That(damage, Is.InRange(.1f, .3f));
+            Assert.That(cues, Is.EqualTo(1));
             model.Step(Frame(1, exposed: false));
-            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage));
+            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage - .1f).Within(.00001));
             Assert.That(model.Capture().BurnContact, Is.Zero);
             Assert.That(model.HasAggro, Is.False);
             Assert.That(model.State, Is.EqualTo(StalkerState.Dormant));
@@ -143,7 +144,7 @@ namespace EmergencyShift.Tests
                 Assert.That(new SetStalkerScriptedControlCommand(model, false).Execute().Success, Is.True);
             }
 
-            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage));
+            Assert.That(model.EyeDamageProgress, Is.Zero.Within(.00001));
             Assert.That(cues, Is.Zero);
             Assert.That(model.HasAggro, Is.False);
         }
@@ -156,45 +157,45 @@ namespace EmergencyShift.Tests
             int cues = 0;
             model.EyeBurnStarted += () => cues++;
             new SetStalkerScriptedControlCommand(model, true).Execute();
-            model.Step(Frame(.2f, exposed: true));
+            model.Step(Frame(.5f, exposed: true));
             float damage = model.EyeDamageProgress;
             clock.Time = 2;
             Assert.That(new SetStalkerScriptedControlCommand(model, false).Execute().Success, Is.True);
             model.Step(Frame(.1f, exposed: true));
-            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage + .1f / 1.25f).Within(.00001));
+            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage + .1f / .3f).Within(.00001));
             Assert.That(cues, Is.EqualTo(1));
         }
 
         [Test]
-        public void EyeBurnHasLeadInKeepsDamageAcrossContactsAndThrottlesCues()
+        public void WarningIsSilentAndCloseBurnCanRepeatAfterRecovery()
         {
-            var clock = new Clock();
-            var model = Model(clock);
+            var model = Model();
             int cues = 0;
             model.EyeBurnStarted += () => cues++;
-            model.Step(Frame(.1f, exposed: true));
-            Assert.That(cues, Is.EqualTo(1));
+            model.Step(Frame(.6f, exposed: true, light: Vector2.right * 2.8f));
+            Assert.That(model.EyeWarning, Is.GreaterThan(0));
             Assert.That(model.EyeDamageProgress, Is.Zero);
-            model.Step(Frame(.1f, exposed: true));
-            float damage = model.EyeDamageProgress;
-            Assert.That(damage, Is.EqualTo(.06f / 1.25f).Within(.00001));
-            model.Step(Frame(.02f, exposed: false));
-            clock.Time = .2;
-            model.Step(Frame(.1f, exposed: true));
-            Assert.That(cues, Is.EqualTo(1));
-            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage));
-            model.Step(Frame(.4f, exposed: true));
-            Assert.That(model.State, Is.EqualTo(StalkerState.Recoiling));
-            Assert.That(cues, Is.EqualTo(2), "A real reaction must override the short-contact cue throttle.");
-            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage), "A throttled contact cannot whiten before its sound.");
-            model.Step(Frame(.1f, exposed: true));
-            Assert.That(model.EyeDamageProgress, Is.EqualTo(damage), "The audible reaction starts its own lead-in.");
-            model.Step(Frame(2, exposed: true));
-            Assert.That(model.EyeDamageProgress, Is.EqualTo(1));
-            model.Step(Frame(.1f, exposed: false));
-            clock.Time = 10;
+            Assert.That(cues, Is.Zero);
             model.Step(Frame(.2f, exposed: true));
-            Assert.That(cues, Is.EqualTo(3), "A fully damaged eye still needs the next light-contact cue.");
+            Assert.That(cues, Is.Zero);
+            model.Step(Frame(.2f, exposed: false));
+            Assert.That(model.EyeDamageProgress, Is.Zero);
+            Assert.That(cues, Is.Zero);
+            model.Step(Frame(.46f, exposed: true));
+            Assert.That(cues, Is.EqualTo(1));
+            Assert.That(model.State, Is.EqualTo(StalkerState.Recoiling));
+            float early = model.EyeDamageProgress;
+            Assert.That(early, Is.InRange(.01f, .1f));
+            model.Step(Frame(.22f, exposed: true));
+            Assert.That(model.State, Is.EqualTo(StalkerState.Retreating));
+            Assert.That(model.EyeDamageProgress, Is.GreaterThan(early));
+            model.Step(Frame(1.1f, exposed: false));
+            model.Step(Frame(10, exposed: false));
+            Assert.That(model.State, Is.EqualTo(StalkerState.Sneaking));
+            Assert.That(model.EyeDamageProgress, Is.Zero);
+            model.Step(Frame(.46f, exposed: true));
+            Assert.That(cues, Is.EqualTo(2));
+            Assert.That(model.State, Is.EqualTo(StalkerState.Recoiling));
         }
 
         [TestCase(0)]
@@ -202,8 +203,8 @@ namespace EmergencyShift.Tests
         public void EachLightCycleSoundsStopsWithVisibleGradualBurnThenRetreats(float initialDamage)
         {
             var clock = new Clock();
-            var settings = new StalkerSettings(1.5f, 3.8f, 1.05f, 1.4f, 1.05f, 3, 3.2f, .45f,
-                .8f, .09f, 1.6f, .14f, 4, 1.2f, .35f);
+            var settings = new StalkerSettings(1.5f, 3.8f, 1.05f, .2f, 1.05f, 3, 3.2f, .45f,
+                .8f, .09f, 1.6f, 1.9f, .3f, 10, .35f);
             var model = new StalkerModel(settings, clock, Vector2.zero);
             new RestoreStalkerCommand(model, Snapshot(damage: initialDamage)).Execute();
             int cues = 0;
@@ -224,7 +225,7 @@ namespace EmergencyShift.Tests
                         Assert.That(cues, Is.EqualTo(cycle));
                         Assert.That(intent, Is.EqualTo(StalkerIntent.Stop));
                         stopped += .02f;
-                        if (stopped < .95f)
+                        if (stopped < .12f)
                         {
                             Assert.That(model.Closure, Is.Zero, "The pupil must remain visible during the burn ramp.");
                         }
@@ -232,12 +233,11 @@ namespace EmergencyShift.Tests
                 }
 
                 Assert.That(model.State, Is.EqualTo(StalkerState.Retreating));
-                Assert.That(stopped, Is.GreaterThanOrEqualTo(1.38f));
+                Assert.That(stopped, Is.GreaterThanOrEqualTo(.18f));
                 Assert.That(cues, Is.EqualTo(cycle));
                 if (initialDamage == 0)
                 {
                     Assert.That(model.EyeDamageProgress, Is.GreaterThan(startDamage));
-                    Assert.That(model.EyeDamageProgress - startDamage, Is.LessThan(.5f));
                 }
 
                 model.Step(Frame(1.1f, exposed: false));
@@ -414,7 +414,7 @@ namespace EmergencyShift.Tests
         }
 
         private static StalkerSettings Settings(float retreat = 3.8f, float reaction = .45f) => new StalkerSettings(
-            1.5f, retreat, 1.05f, .35f, 1.05f, 3, 3.2f, reaction, .8f, .09f, 1.6f, .14f, 1.25f, 1.2f, .35f);
+            1.5f, retreat, 1.05f, .2f, 1.05f, 3, 3.2f, reaction, .8f, .09f, 1.6f, 1.9f, .3f, 10, .35f);
         private static StalkerModel Model(Clock clock = null) => new StalkerModel(Settings(), clock ?? new Clock(), Vector2.zero);
         private static StalkerStateSnapshot Snapshot(float stagger = 0, float damage = 0, float burn = 0) =>
             new StalkerStateSnapshot(StalkerState.Sneaking, true, damage, burn, .1f, 0, 0, Vector2.right, Vector2.up, stagger, Vector2.left);

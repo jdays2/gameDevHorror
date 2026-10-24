@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using EmergencyShift.Features.ScriptedEncounters.View;
 using NUnit.Framework;
 using UnityEditor;
@@ -90,9 +91,10 @@ namespace EmergencyShift.Tests
                 saved.closure = 1;
                 actor.RestoreState(saved);
                 yield return new WaitForSeconds(.1f);
-                Assert.That(actor.EyeDamageProgress, Is.EqualTo(damage));
+                yield return new WaitForEndOfFrame();
+                Assert.That(actor.EyeDamageProgress, Is.LessThanOrEqualTo(damage));
                 Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.EqualTo(cues));
-                CheckSurface(actor, damage);
+                CheckSurface(actor, actor.EyeDamageProgress);
             }
         }
 
@@ -106,78 +108,175 @@ namespace EmergencyShift.Tests
         }
 
         [UnityTest]
-        public IEnumerator SecondLightReactionAfterWaitingPlaysBurnAgainEvenWithACompletelyBurnedEye()
+        public IEnumerator ApproachWarnsBeforeCloseBurnThenTwitchesRetreatsRecoversAndReactsAgain()
         {
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab");
             ShadowStalker2D actor = context.CreateInstance(prefab, new Vector3(100, 100, 0), Quaternion.identity).GetComponent<ShadowStalker2D>();
             Prepare(actor);
-            MovePlayer(new Vector2(101.5f, 100));
+            MovePlayer(new Vector2(102.8f, 100));
             var body = actor.GetComponent<Rigidbody2D>();
             body.constraints = RigidbodyConstraints2D.FreezeRotation;
             var audio = actor.GetComponent<StalkerAudio2D>();
             SpriteRenderer pupil = System.Array.Find(actor.GetComponentsInChildren<SpriteRenderer>(true), value => value.name == "Eye pupil");
-            Assert.That(pupil, Is.Not.Null);
+            float restingPupil = pupil.transform.localScale.x;
             var samples = new List<TimelineSample>();
             context.Flashlight.AimAt(actor.transform.position);
             context.Flashlight.SetPower(true);
-            yield return new WaitForSeconds(.08f);
-            Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.EqualTo(1));
-            Assert.That(audio.MovementSource.isPlaying, Is.True);
-            Assert.That(audio.MovementSource.clip.name, Does.Contain("eye_burn"));
-            Assert.That(audio.MovementSource.volume, Is.GreaterThan(0));
+            Vector2 start = body.position;
+            yield return new WaitForSeconds(.2f);
+            Assert.That(body.position.x, Is.GreaterThan(start.x), "The creature keeps approaching during warning.");
+            Assert.That(pupil.transform.localScale.x, Is.GreaterThan(restingPupil));
             Assert.That(actor.EyeDamageProgress, Is.Zero);
-            float deadline = Time.time + 2;
-            while (actor.State != ShadowStalker2D.BehaviourState.Recoiling && Time.time < deadline)
+            Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.Zero);
+            float deadline = Time.time + 3;
+            while (audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn) == 0 && Time.time < deadline)
             {
                 yield return new WaitForFixedUpdate();
             }
 
+            Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.EqualTo(1));
+            Assert.That(audio.MovementSource.isPlaying, Is.True);
+            Assert.That(audio.MovementSource.clip.name, Does.Contain("eye_burn"));
+            Assert.That(audio.MovementSource.volume, Is.GreaterThan(0));
             Assert.That(actor.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Recoiling));
             float stoppedAt = Time.time;
             Vector2 stoppedPosition = body.position;
-            float earlyDamage = actor.EyeDamageProgress;
-            while (Time.time - stoppedAt < .85f)
+            while (Time.time - stoppedAt < .09f)
             {
                 yield return new WaitForFixedUpdate();
                 yield return new WaitForEndOfFrame();
-                Assert.That(actor.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Recoiling));
                 Assert.That(body.linearVelocity.magnitude, Is.LessThan(.001f));
                 Assert.That(Vector2.Distance(body.position, stoppedPosition), Is.LessThan(.01f));
-                Assert.That(pupil.enabled, Is.True, "Whitening must remain visible through the stopped burn ramp.");
+                Assert.That(pupil.enabled, Is.True);
                 CheckSurface(actor, actor.EyeDamageProgress);
                 samples.Add(new TimelineSample { time = Time.time - stoppedAt, state = actor.State.ToString(),
                     damage = actor.EyeDamageProgress, pupil = pupil.enabled, speed = body.linearVelocity.magnitude });
             }
 
-            Assert.That(actor.EyeDamageProgress, Is.GreaterThan(earlyDamage + .15f));
-            Assert.That(actor.EyeDamageProgress, Is.LessThan(.5f));
-            deadline = stoppedAt + 2;
+            Assert.That(actor.EyeDamageProgress, Is.GreaterThan(.2f));
+            deadline = stoppedAt + .7f;
             while (actor.MovementSpeed < .05f && Time.time < deadline)
             {
                 yield return new WaitForFixedUpdate();
             }
 
             Assert.That(actor.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Retreating));
-            Assert.That(Time.time - stoppedAt, Is.GreaterThanOrEqualTo(1.38f));
+            Assert.That(Time.time - stoppedAt, Is.InRange(.17f, .4f));
             body.constraints = RigidbodyConstraints2D.FreezeAll;
-            context.Flashlight.AimAt(actor.transform.position);
-            yield return new WaitForSeconds(4.2f);
-            Assert.That(actor.EyeDamageProgress, Is.EqualTo(1));
-            Assert.That(actor.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Waiting));
             context.Flashlight.SetPower(false);
-            yield return new WaitForSeconds(actor.BehaviourProfile.CooldownSeconds + .1f);
+            float injured = actor.EyeDamageProgress;
+            yield return new WaitForSeconds(2);
+            Assert.That(actor.EyeDamageProgress, Is.LessThan(injured));
+            Assert.That(actor.EyeDamageProgress, Is.GreaterThan(0));
+            yield return new WaitForSeconds(9);
+            Assert.That(actor.EyeDamageProgress, Is.Zero);
             Assert.That(actor.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Sneaking));
+            MovePlayer(body.position + Vector2.right * 1.5f);
             context.Flashlight.AimAt(actor.transform.position);
             context.Flashlight.SetPower(true);
-            yield return new WaitForSeconds(.08f);
-            Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.EqualTo(2), "Owner reproduction: return after waiting must sound again.");
+            yield return new WaitForSeconds(actor.ReactionDelay + .08f);
+            Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.EqualTo(2));
             Assert.That(audio.MovementSource.isPlaying, Is.True);
-            Assert.That(audio.MovementSource.clip.name, Does.Contain("eye_burn"));
-            yield return new WaitForSeconds(actor.ReactionDelay + .1f);
-            Assert.That(actor.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Recoiling));
-            System.IO.Directory.CreateDirectory("Docs/Validation/StalkerBurnSequence02");
-            System.IO.File.WriteAllText("Docs/Validation/StalkerBurnSequence02/native-timeline.json",
+            Assert.That(actor.EyeDamageProgress, Is.GreaterThan(0));
+            System.IO.Directory.CreateDirectory("Docs/Validation/MonsterEyes03");
+            System.IO.File.WriteAllText("Docs/Validation/MonsterEyes03/native-light-timeline.json",
                 JsonUtility.ToJson(new TimelineReport { secondCycleBurnCues = audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), samples = samples.ToArray() }, true));
+        }
+
+        [UnityTest]
+        public IEnumerator BothSpeciesKeepSoftFleshAlternativesAndFrozenEyeSurfaceThroughRestore()
+        {
+            int index = 0;
+            foreach (string species in new[] { "ShadowStalker", "Sleeper" })
+            {
+                foreach (bool withEye in new[] { true, false })
+                {
+                    var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Enemies/" + species + ".prefab");
+                    GameObject actor = context.CreateInstance(prefab, new Vector3(500 + index * 15, 500, 0), Quaternion.identity);
+                    actor.name = "Eye03-" + species + "-" + withEye;
+                    var burst = actor.GetComponent<GoreBurst2D>();
+                    var fields = new SerializedObject(burst);
+                    var original = (GoreProfile)fields.FindProperty("profile").objectReferenceValue;
+                    var profile = Object.Instantiate(original);
+                    string suffix = withEye ? "-eye03" : "-flesh03";
+                    GoreVariant selected = Enumerable.Range(0, original.VariantCount).Select(original.VariantAt)
+                        .First(value => !value.RestorationOnly && value.Id.EndsWith(suffix, System.StringComparison.Ordinal));
+                    JsonUtility.FromJsonOverwrite("{\"variants\":[" + JsonUtility.ToJson(selected) + "]}", profile);
+                    fields.FindProperty("profile").objectReferenceValue = profile;
+                    fields.ApplyModifiedPropertiesWithoutUndo();
+                    float expectedDamage = 0;
+                    var stalker = actor.GetComponent<ShadowStalker2D>();
+                    if (stalker != null)
+                    {
+                        ShadowStalker2D.Snapshot state = stalker.CaptureState();
+                        state.hasEyeDamageProgress = true;
+                        state.eyeDamage = .65f;
+                        stalker.RestoreState(state);
+                        stalker.enabled = false;
+                        expectedDamage = .65f;
+                    }
+
+                    actor.GetComponent<EnemyHealth2D>().Kill();
+                    yield return null;
+                    float deadline = Time.realtimeSinceStartup + 8;
+                    while (!burst.IsSettled && Time.realtimeSinceStartup < deadline)
+                    {
+                        yield return null;
+                    }
+
+                    Assert.That(burst.IsSettled, Is.True);
+                    RemainsSnapshot saved = burst.CaptureRemains();
+                    Assert.That(saved.version, Is.EqualTo(RemainsSnapshot.CurrentVersion));
+                    Assert.That(saved.parts.Count(part => part.hasEyeSurface), Is.EqualTo(withEye ? 1 : 0));
+                    foreach (RemainsPartState part in saved.parts)
+                    {
+                        Assert.That(part.body.color, Is.EqualTo(profile.SettledTint));
+                        Assert.That(Mathf.Max(part.body.color.r, part.body.color.g, part.body.color.b), Is.LessThan(1));
+                        if (part.hasEyeSurface)
+                        {
+                            Assert.That(part.eyeDamage, Is.EqualTo(expectedDamage));
+                        }
+                    }
+
+                    if (!withEye)
+                    {
+                        Assert.That(saved.parts.Any(part => part.spriteIndex == 7 || part.spriteIndex == 9), Is.False);
+                        Assert.That(saved.parts.Count(part => part.spriteIndex >= 10), Is.EqualTo(10));
+                    }
+
+                    GameObject restoredActor = context.CreateInstance(prefab, actor.transform.position, Quaternion.identity);
+                    restoredActor.name = "Restored-" + actor.name;
+                    var restored = restoredActor.GetComponent<GoreBurst2D>();
+                    restored.RestoreRemains(saved);
+                    RemainsSnapshot roundTrip = restored.CaptureRemains();
+                    Assert.That(roundTrip.parts.Length, Is.EqualTo(saved.parts.Length));
+                    for (int part = 0; part < saved.parts.Length; part++)
+                    {
+                        Assert.That(roundTrip.parts[part].spriteIndex, Is.EqualTo(saved.parts[part].spriteIndex));
+                        Assert.That(roundTrip.parts[part].hasEyeSurface, Is.EqualTo(saved.parts[part].hasEyeSurface));
+                        Assert.That(roundTrip.parts[part].eyeDamage, Is.EqualTo(saved.parts[part].eyeDamage));
+                        Assert.That(roundTrip.parts[part].body.color, Is.EqualTo(saved.parts[part].body.color));
+                    }
+
+                    GameObject record = scene.GetRootGameObjects().Single(root => root.name == "Persistent remains — " + restoredActor.name);
+                    foreach (RemainsPartIdentity2D identity in record.GetComponentsInChildren<RemainsPartIdentity2D>())
+                    {
+                        if (!identity.Capture().hasEyeSurface)
+                        {
+                            continue;
+                        }
+
+                        var properties = new MaterialPropertyBlock();
+                        SpriteRenderer renderer = identity.GetComponentInChildren<SpriteRenderer>();
+                        renderer.GetPropertyBlock(properties);
+                        Assert.That(properties.GetFloat("_BurnAmount"), Is.EqualTo(expectedDamage));
+                        Assert.That(renderer.sharedMaterial, Is.SameAs(profile.EyeSurfaceMaterial));
+                    }
+
+                    Object.Destroy(profile);
+                    index++;
+                }
+            }
         }
 
         [UnityTest]
@@ -246,20 +345,22 @@ namespace EmergencyShift.Tests
             Physics2D.SyncTransforms();
             yield return new WaitForSeconds(.08f);
             Assert.That(actor.EyeDamageProgress, Is.Zero, "The contact sound precedes visible injury.");
+            Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.Zero, "Warning before the close threshold is silent.");
+            yield return new WaitForSeconds(actor.ReactionDelay + .06f);
             Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.EqualTo(1));
-            yield return new WaitForSeconds(.2f);
             float damage = actor.EyeDamageProgress;
-            Assert.That(damage, Is.InRange(.02f, .3f), "Injury is gradual, not a fear-state boolean.");
+            Assert.That(damage, Is.InRange(.05f, .9f), "Injury is gradual, not a fear-state boolean.");
             wall.SetActive(true);
             Physics2D.SyncTransforms();
             yield return new WaitForSeconds(.2f);
-            Assert.That(actor.EyeDamageProgress, Is.EqualTo(damage));
-            CheckSurface(actor, damage);
+            Assert.That(actor.EyeDamageProgress, Is.LessThan(damage), "Outside the beam the eye recovers.");
+            yield return new WaitForEndOfFrame();
+            CheckSurface(actor, actor.EyeDamageProgress);
             context.Flashlight.SetPower(false);
             wall.SetActive(false);
             Physics2D.SyncTransforms();
             yield return new WaitForSeconds(.1f);
-            Assert.That(actor.EyeDamageProgress, Is.EqualTo(damage));
+            Assert.That(actor.EyeDamageProgress, Is.LessThan(damage));
             Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.EqualTo(1));
         }
 

@@ -8,32 +8,54 @@
 - [AssignPlayerInput.cs](../AgentScripts/AssignPlayerInput.cs)
 - [AuditLevelReuse.cs](../AgentScripts/AuditLevelReuse.cs)
 - [AuditProjectReferences.cs](../AgentScripts/AuditProjectReferences.cs)
+- [AuditSceneGrouping.cs](../AgentScripts/AuditSceneGrouping.cs)
 - [AuthorEntranceBlood.cs](../AgentScripts/AuthorEntranceBlood.cs)
+- [AuthorWeaponFx.cs](../AgentScripts/AuthorWeaponFx.cs)
 - [BakeMorgueDrain.cs](../AgentScripts/BakeMorgueDrain.cs)
+- [BuildWeaponFxBenchmark.cs](../AgentScripts/BuildWeaponFxBenchmark.cs)
 - [CaptureDamageReview.cs](../AgentScripts/CaptureDamageReview.cs)
 - [CheckDirectionalDamage.cs](../AgentScripts/CheckDirectionalDamage.cs)
 - [CheckGroundAudioScope.cs](../AgentScripts/CheckGroundAudioScope.cs)
 - [CheckInjectedActorCreation.cs](../AgentScripts/CheckInjectedActorCreation.cs)
 - [CheckWorldServices.cs](../AgentScripts/CheckWorldServices.cs)
 - [CleanUnusedShadowOverrides.cs](../AgentScripts/CleanUnusedShadowOverrides.cs)
+- [DoorScatterAuthoring.cs](../AgentScripts/DoorScatterAuthoring.cs)
 - [ExportLevelOrganization.cs](../AgentScripts/ExportLevelOrganization.cs)
 - [FinishLevelOrganization.cs](../AgentScripts/FinishLevelOrganization.cs)
+- [InspectStalkerBurn.cs](../AgentScripts/InspectStalkerBurn.cs)
+- [InspectTask001.cs](../AgentScripts/InspectTask001.cs)
+- [InspectWeaponFeedback.cs](../AgentScripts/InspectWeaponFeedback.cs)
 - [InstallDirectionalDamage.cs](../AgentScripts/InstallDirectionalDamage.cs)
 - [InstallMainMenu.cs](../AgentScripts/InstallMainMenu.cs)
+- [InstallMonsterEyes03.cs](../AgentScripts/InstallMonsterEyes03.cs)
 - [InstallPauseMenu.cs](../AgentScripts/InstallPauseMenu.cs)
 - [InstallWorldComposition.cs](../AgentScripts/InstallWorldComposition.cs)
+- [IntroEncounterAuthoring.cs](../AgentScripts/IntroEncounterAuthoring.cs)
 - [LevelAuthoringState.cs](../AgentScripts/LevelAuthoringState.cs)
 - [LevelReuseLibrary.cs](../AgentScripts/LevelReuseLibrary.cs)
 - [OrganizeLevelScenes.cs](../AgentScripts/OrganizeLevelScenes.cs)
 - [OrganizeMaterials.cs](../AgentScripts/OrganizeMaterials.cs)
+- [PickupGlintReview.cs](../AgentScripts/PickupGlintReview.cs)
+- [PickupGlintTiming.cs](../AgentScripts/PickupGlintTiming.cs)
+- [PickupGlintVerification.cs](../AgentScripts/PickupGlintVerification.cs)
+- [PreviewMonsterEyes03.cs](../AgentScripts/PreviewMonsterEyes03.cs)
 - [RestoreCreatureArtwork.cs](../AgentScripts/RestoreCreatureArtwork.cs)
 - [ReviewCreatureArtwork.cs](../AgentScripts/ReviewCreatureArtwork.cs)
 - [ReviewDamageAndRemains.cs](../AgentScripts/ReviewDamageAndRemains.cs)
 - [ReviewDamageFeedbackVisuals.cs](../AgentScripts/ReviewDamageFeedbackVisuals.cs)
 - [ReviewEntranceBlood.cs](../AgentScripts/ReviewEntranceBlood.cs)
+- [ReviewFleshTrial.cs](../AgentScripts/ReviewFleshTrial.cs)
+- [ReviewSmokeContinuity.cs](../AgentScripts/ReviewSmokeContinuity.cs)
+- [ReviewSmokeLighting.cs](../AgentScripts/ReviewSmokeLighting.cs)
+- [ReviewSmokeLightingScene.cs](../AgentScripts/ReviewSmokeLightingScene.cs)
+- [ReviewWeaponFx.cs](../AgentScripts/ReviewWeaponFx.cs)
+- [StaggerDoorScatter.cs](../AgentScripts/StaggerDoorScatter.cs)
 - [StalkerLightSequence.cs](../AgentScripts/StalkerLightSequence.cs)
 - [VerifyMainMenu.cs](../AgentScripts/VerifyMainMenu.cs)
 - [VerifyMenuIsolation49.cs](../AgentScripts/VerifyMenuIsolation49.cs)
+- [VerifyMonsterEyes03.cs](../AgentScripts/VerifyMonsterEyes03.cs)
+- [VerifySceneGroupingCommit.cs](../AgentScripts/VerifySceneGroupingCommit.cs)
+- [VerifyWeaponFx.cs](../AgentScripts/VerifyWeaponFx.cs)
 
 ## Assets/EmergencyShift/Editor/Authoring
 
@@ -57,6 +79,7 @@
 - [PauseMenuAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs)
 - [PlayerRulesAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/PlayerRulesAuthoring.cs)
 - [SandboxSceneBuilder.cs](../Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs)
+- [ScriptedStalkerRouteEditor.cs](../Assets/EmergencyShift/Editor/Authoring/ScriptedStalkerRouteEditor.cs)
 - [ShotgunIntegrationAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs)
 - [ThreatSignalAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs)
 - [WorldVisualRulesAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/WorldVisualRulesAuthoring.cs)
@@ -126,6 +149,7 @@
 - [IFlashlightRecipient.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IFlashlightRecipient.cs)
 - [IInteractable.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IInteractable.cs)
 - [IInteractionActor.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IInteractionActor.cs)
+- [IPickupPreviewActor.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IPickupPreviewActor.cs)
 - [IThreatLight2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IThreatLight2D.cs)
 - [IWeaponRecipient.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IWeaponRecipient.cs)
 - [IWorldProjection2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IWorldProjection2D.cs)
@@ -206,6 +230,9 @@
 - [NativeBenchmarkSettingsLease.cs](../Assets/EmergencyShift/Runtime/Development/NativeBenchmarkSettingsLease.cs)
 - [SandboxRegressionProbe.cs](../Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs)
 - [SleeperRegressionProbe.cs](../Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs)
+- [WeaponFeedbackSceneProbe.cs](../Assets/EmergencyShift/Runtime/Development/WeaponFeedbackSceneProbe.cs)
+- [WeaponFxBenchmarkProbe.cs](../Assets/EmergencyShift/Runtime/Development/WeaponFxBenchmarkProbe.cs)
+- [WeaponFxReviewProbe.cs](../Assets/EmergencyShift/Runtime/Development/WeaponFxReviewProbe.cs)
 
 ## Assets/EmergencyShift/Runtime/Dialogue
 
@@ -431,6 +458,7 @@
 - [RestoreEnemyPatrolCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreEnemyPatrolCommand.cs)
 - [RestoreSleeperCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreSleeperCommand.cs)
 - [RestoreStalkerCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/RestoreStalkerCommand.cs)
+- [SetStalkerScriptedControlCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SetStalkerScriptedControlCommand.cs)
 - [SleeperController.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperController.cs)
 - [SleeperIntent.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperIntent.cs)
 - [SleeperModel.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/SleeperModel.cs)
@@ -439,6 +467,7 @@
 - [StaggerSleeperCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerSleeperCommand.cs)
 - [StaggerStalkerCommand.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StaggerStalkerCommand.cs)
 - [StalkerController.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerController.cs)
+- [StalkerEyeModel.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerEyeModel.cs)
 - [StalkerIntent.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerIntent.cs)
 - [StalkerModel.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerModel.cs)
 - [StalkerObservation.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerObservation.cs)
@@ -645,6 +674,10 @@
 - [PickupControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs)
 - [PickupInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/PickupInstaller.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Pickups/Config
+
+- [PickupGlintProfile.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Config/PickupGlintProfile.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/Pickups/Logic
 
 - [CollectPickupCommand.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/CollectPickupCommand.cs)
@@ -659,6 +692,13 @@
 - [WeaponLootController.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootController.cs)
 - [WeaponLootGrant.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootGrant.cs)
 - [WeaponLootModel.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/Logic/WeaponLootModel.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Pickups/View
+
+- [IPickupGlintTarget.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/View/IPickupGlintTarget.cs)
+- [PickupGlint2D.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/View/PickupGlint2D.cs)
+- [PickupGlintFactory.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/View/PickupGlintFactory.cs)
+- [PickupGlintPulse.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/View/PickupGlintPulse.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/PlayerFootsteps
 
@@ -731,7 +771,31 @@
 
 ## Assets/EmergencyShift/Runtime/Features/Remains/View
 
+- [RemainsEyeSurface.cs](../Assets/EmergencyShift/Runtime/Features/Remains/View/RemainsEyeSurface.cs)
 - [RemainsSpriteAdapter.cs](../Assets/EmergencyShift/Runtime/Features/Remains/View/RemainsSpriteAdapter.cs)
+
+## Assets/EmergencyShift/Runtime/Features/ScriptedEncounters
+
+- [ScriptedEncounterInstaller.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/ScriptedEncounterInstaller.cs)
+- [ScriptedRouteControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/ScriptedRouteControllerFactory.cs)
+
+## Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/Config
+
+- [ScriptedRouteProfile.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/Config/ScriptedRouteProfile.cs)
+- [ScriptedRouteSettings.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/Config/ScriptedRouteSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/Logic
+
+- [AbortScriptedRouteCommand.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/Logic/AbortScriptedRouteCommand.cs)
+- [ScriptedRouteController.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/Logic/ScriptedRouteController.cs)
+- [ScriptedRouteModel.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/Logic/ScriptedRouteModel.cs)
+- [ScriptedRouteState.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/Logic/ScriptedRouteState.cs)
+- [StartScriptedRouteCommand.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/Logic/StartScriptedRouteCommand.cs)
+
+## Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/View
+
+- [ScriptedRouteStartCondition.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/View/ScriptedRouteStartCondition.cs)
+- [ScriptedStalkerRoute2D.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/View/ScriptedStalkerRoute2D.cs)
 
 ## Assets/EmergencyShift/Runtime/Levels
 
@@ -801,6 +865,7 @@
 - [GibMotion2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/GibMotion2D.cs)
 - [GoreBurst2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreBurst2D.cs)
 - [GoreSpawnBudget2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/GoreSpawnBudget2D.cs)
+- [MuzzleSmoke2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/MuzzleSmoke2D.cs)
 - [PlayerShotShadow2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/PlayerShotShadow2D.cs)
 - [RemainsPartIdentity2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsPartIdentity2D.cs)
 - [RemainsRecord2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/RemainsRecord2D.cs)
@@ -913,10 +978,12 @@
 - [LocalLampSceneSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampSceneSettingsTests.cs)
 - [MagazineWeaponTests.cs](../Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs)
 - [MainMenuTests.cs](../Assets/EmergencyShift/Tests/EditMode/MainMenuTests.cs)
+- [MonsterEyeContractTests.cs](../Assets/EmergencyShift/Tests/EditMode/MonsterEyeContractTests.cs)
 - [ObjectiveProgressTests.cs](../Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs)
 - [PauseMenuEnvironmentTests.cs](../Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs)
 - [PauseMenuTests.cs](../Assets/EmergencyShift/Tests/EditMode/PauseMenuTests.cs)
 - [PersistenceTests.cs](../Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs)
+- [PickupGlintTests.cs](../Assets/EmergencyShift/Tests/EditMode/PickupGlintTests.cs)
 - [PlayerFootstepTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs)
 - [PlayerInputTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs)
 - [PlayerInteractionModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs)
@@ -926,6 +993,7 @@
 - [ProjectileFlightTests.cs](../Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
 - [SceneRegistryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs)
+- [ScriptedRouteTests.cs](../Assets/EmergencyShift/Tests/EditMode/ScriptedRouteTests.cs)
 - [SharedDefinitionBoundaryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SharedDefinitionBoundaryTests.cs)
 - [ShotVisualBoundaryTests.cs](../Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs)
 - [SingleUsePickupTests.cs](../Assets/EmergencyShift/Tests/EditMode/SingleUsePickupTests.cs)
@@ -962,19 +1030,25 @@
 - [EnemyNavigationSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs)
 - [EnemyPatrolSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
+- [FleshContactAudioTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FleshContactAudioTests.cs)
 - [FurnitureStudyLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FurnitureStudyLifetimeTests.cs)
 - [InteractionProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/InteractionProbeTarget.cs)
 - [InteractionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs)
 - [LevelObjectiveLifecycleTests.cs](../Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs)
 - [LightScopeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs)
+- [MuzzleSmokeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/MuzzleSmokeSceneTests.cs)
+- [PickupGlintSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs)
 - [PickupSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs)
 - [PlayerMovementSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs)
 - [ProbeCancellationTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProbeCancellationTests.cs)
 - [ProjectileProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs)
 - [ProjectileSceneOwnershipTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs)
+- [ProjectileSpeciesContactTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSpeciesContactTests.cs)
 - [RemainsPaletteLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/RemainsPaletteLifetimeTests.cs)
+- [ScriptedIntroSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs)
 - [SleeperBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs)
 - [StalkerBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs)
+- [StalkerBurnSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)
 - [WeaponSpreadLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs)
 

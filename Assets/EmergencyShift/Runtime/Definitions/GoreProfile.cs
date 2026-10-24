@@ -25,6 +25,8 @@ namespace EmergencyShift
         [SerializeField]
         private Color airborneTint = new Color(.88f, .82f, .86f, 1);
         [SerializeField]
+        private Material eyeSurfaceMaterial;
+        [SerializeField]
         private GoreVariant[] variants =
         {
             new GoreVariant("radial")
@@ -37,6 +39,7 @@ namespace EmergencyShift
         public float Gravity => gravity;
         public Color SettledTint => settledTint;
         public Color AirborneTint => airborneTint;
+        public Material EyeSurfaceMaterial => eyeSurfaceMaterial;
         public int VariantCount => variants != null ? variants.Length : 0;
         public GoreVariant VariantAt(int index) => variants[index];
 
@@ -53,7 +56,7 @@ namespace EmergencyShift
             {
                 if (variant != null && !variant.RestorationOnly)
                 {
-                    count++;
+                    count = checked(count + variant.SelectionWeight);
                 }
             }
 
@@ -75,11 +78,11 @@ namespace EmergencyShift
                     continue;
                 }
 
-                if (selected == 0)
+                if (selected < variant.SelectionWeight)
                 {
                     return variant;
                 }
-                selected--;
+                selected -= variant.SelectionWeight;
             }
 
             throw new System.InvalidOperationException("Gore composition selection failed");
@@ -116,6 +119,13 @@ namespace EmergencyShift
                 }
 
                 variants[index].Validate();
+                for (int pieceIndex = 0; pieceIndex < variants[index].PieceCount; pieceIndex++)
+                {
+                    if (variants[index].PieceAt(pieceIndex).EyeSurface && eyeSurfaceMaterial == null)
+                    {
+                        throw new InvalidOperationException("Gore eye surface is missing its material: " + name);
+                    }
+                }
                 for (int prior = 0; prior < index; prior++)
                 {
                     if (string.Equals(variants[prior].Id, variants[index].Id, StringComparison.Ordinal))

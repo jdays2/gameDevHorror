@@ -7,7 +7,7 @@
 | `Shared` | FlatLit и FlatUnlit — общие базовые материалы |
 | `Environment/Floors` | Пять материалов пола и FloorWorldLit.shader |
 | `Environment/Lighting` | Корпус/маска больничной лампы, трубка/TubeGlow, PropEmission и три материала практических источников света |
-| `Characters` | Тень силуэта существа и поверхность глаза Сталкера со своими шейдерами |
+| `Characters` | Тень силуэта существа, живая поверхность глаза Сталкера и общий remains-eye-cloud для замороженной мутности отдельного глаза; собственные шейдеры рядом |
 | `Effects` | MuzzlePlume и TransientGlow со своими шейдерами |
 | `Effects/Pickups` | Общий PickupGlint: короткая альфа-маскированная полоса; индивидуальные параметры передаются через MaterialPropertyBlock |
 | `UI/DamageFeedback` | DirectionalBlood: общий шаблон материала и процедурный шейдер крови по краям HUD; экземпляр материала принадлежит HUD |

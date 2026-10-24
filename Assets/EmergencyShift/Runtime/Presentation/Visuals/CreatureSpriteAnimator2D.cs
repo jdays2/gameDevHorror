@@ -39,6 +39,8 @@ namespace EmergencyShift
         private float walkFramesPerSecond = 7f;
         [SerializeField, Min(0.001f)]
         private float pupilTravel = 0.028f;
+        [SerializeField, Range(0, 1)]
+        private float pupilWarningExpansion = .25f;
         [SerializeField, Min(1)]
         private float turnSpeed = 160f;
         private float walkClock;
@@ -56,11 +58,13 @@ namespace EmergencyShift
         private Material restingPupilMaterial;
         private MaterialPropertyBlock eyeProperties;
         private static readonly int burnAmountId = Shader.PropertyToID("_BurnAmount");
+        private static readonly int warningAmountId = Shader.PropertyToID("_WarningAmount");
         private static readonly int gazeOffsetId = Shader.PropertyToID("_GazeOffset");
         private static readonly int atlasUVPerUnitId = Shader.PropertyToID("_AtlasUVPerUnit");
         private static readonly int eyeFrameId = Shader.PropertyToID("_EyeFrame");
         private static readonly int pupilLayerId = Shader.PropertyToID("_PupilLayer");
         private Vector3 pupilRestPosition;
+        private Vector3 pupilRestScale;
         private Vector3 irisRestPosition;
         private Vector3 underlayRestPosition;
         private Vector3 currentEyeOffset;
@@ -105,6 +109,7 @@ namespace EmergencyShift
             if (pupil != null)
             {
                 pupilRestPosition = pupil.transform.localPosition;
+                pupilRestScale = pupil.transform.localScale;
                 restingPupilMaterial = pupil.sharedMaterial;
             }
             if (iris != null)
@@ -256,6 +261,7 @@ namespace EmergencyShift
             if (pupil != null)
             {
                 pupil.enabled = open;
+                pupil.transform.localScale = pupilRestScale * (1 + pupilWarningExpansion * presentation.EyeWarning);
                 if (open && presentation.Target != null)
                 {
                     Vector2 localTarget = pupil.transform.parent.InverseTransformPoint(presentation.Target.position) - pupilRestPosition - currentEyeOffset;
@@ -339,6 +345,7 @@ namespace EmergencyShift
             Vector4 uvPerUnit = new Vector4(sprite.pixelsPerUnit / sprite.texture.width, sprite.pixelsPerUnit / sprite.texture.height, 0, 0);
             renderer.GetPropertyBlock(eyeProperties);
             eyeProperties.SetFloat(burnAmountId, damage);
+            eyeProperties.SetFloat(warningAmountId, Mathf.Clamp01(presentation.EyeWarning));
             eyeProperties.SetFloat(eyeFrameId, frame);
             eyeProperties.SetFloat(pupilLayerId, isPupil ? 1 : 0);
             eyeProperties.SetVector(gazeOffsetId, gaze);

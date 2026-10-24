@@ -12,5 +12,7 @@ namespace EmergencyShift
         public RemainsSpriteState body;
         public bool hasShadow;
         public RemainsSpriteState shadow;
+        public bool hasEyeSurface;
+        public float eyeDamage;
     }
 }

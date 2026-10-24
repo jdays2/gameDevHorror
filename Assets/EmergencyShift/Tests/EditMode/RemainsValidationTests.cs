@@ -165,7 +165,11 @@ namespace EmergencyShift.Tests
 
             Assert.That(launches, Is.Zero);
             Assert.That(gore.IsSettled, Is.True);
-            Assert.That(JsonUtility.ToJson(gore.CaptureRemains()), Is.EqualTo(JsonUtility.ToJson(saved)));
+            RemainsSnapshot captured = gore.CaptureRemains();
+            Assert.That(saved.version, Is.Zero, "The fixture is an existing unversioned snapshot.");
+            Assert.That(captured.version, Is.EqualTo(RemainsSnapshot.CurrentVersion));
+            saved.version = RemainsSnapshot.CurrentVersion;
+            Assert.That(JsonUtility.ToJson(captured), Is.EqualTo(JsonUtility.ToJson(saved)), "Migration preserves every settled value.");
             Assert.That(EditorJsonUtility.ToJson(asset), Is.EqualTo(profileBefore));
             Assert.That(FindRecord().GetComponentsInChildren<GibMotion2D>(true), Is.Empty);
         }

@@ -6,8 +6,9 @@ Shader "EmergencyShift/Localized Eye Burn"
         _MaskTex ("Light mask", 2D) = "white" {}
         _NormalMap ("Normal map", 2D) = "bump" {}
         [PerRendererData] _BurnAmount ("Accumulated burn", Range(0, 1)) = 0
+        [PerRendererData] _WarningAmount ("Light irritation before burn", Range(0, 1)) = 0
         _Redness ("Local ocular redness", Range(0, 1)) = .42
-        _CloudColor ("Clouded pupil", Color) = (.76, .73, .65, 1)
+        _CloudColor ("Corneal milk veil", Color) = (.76, .84, .86, 1)
         _IrisRadius ("Exposed iris radii in sprite units", Vector) = (.133, .126, 0, 0)
         _HalfOpening ("Half lid aperture ratio", Range(0, 1)) = .3
         _SlitOpening ("Slit aperture ratio", Range(0, 1)) = .025
@@ -36,6 +37,7 @@ Shader "EmergencyShift/Localized Eye Burn"
             float _HalfOpening;
             float _SlitOpening;
             float _BurnAmount;
+            float _WarningAmount;
             float _EyeFrame;
             float _PupilLayer;
         CBUFFER_END
@@ -79,9 +81,9 @@ Shader "EmergencyShift/Localized Eye Burn"
             float2 p = position * 2;
             float grain = .6 * CloudNoise(p * 3 + 4.7) + .4 * CloudNoise(p * 9 - 3.1);
             float edge = length(p) + .035 * (grain - .5);
-            float cloud = 1 - smoothstep(.67, .97, edge);
-            half3 tissue = _CloudColor.rgb * (.70 + .30 * grain);
-            return lerp(original, tissue, saturate(_BurnAmount) * cloud);
+            float cloud = 1 - smoothstep(.72, 1.02, edge);
+            half3 tissue = _CloudColor.rgb * (.86 + .14 * grain);
+            return lerp(original, tissue, saturate(_BurnAmount) * cloud * .94);
         }
         ENDHLSL
 
@@ -137,8 +139,16 @@ Shader "EmergencyShift/Localized Eye Burn"
 
                     float2 p = (input.eyePosition - _GazeOffset.xy) / max(_IrisRadius.xy, .001);
                     float patch = 1 - smoothstep(.15, .75, length((p - float2(-.48, .22)) * float2(1.1, 1.5)));
-                    float redness = _BurnAmount * _Redness * patch * aperture;
+                    float rim = smoothstep(.52, .78, length(p));
+                    float irritation = saturate(_WarningAmount * .65 + _BurnAmount);
+                    float redness = irritation * _Redness * max(patch, rim * .7) * aperture;
                     main.rgb *= lerp(half3(1, 1, 1), half3(1, .48, .43), redness);
+
+                    // The same cloudy membrane crosses iris and pupil; anatomy remains beneath it.
+                    float grain = .6 * CloudNoise(p * 3 + 4.7) + .4 * CloudNoise(p * 9 - 3.1);
+                    float cloud = (1 - smoothstep(.78, 1.02, length(p))) * aperture;
+                    float opacity = saturate(_BurnAmount) * cloud * (.72 + .22 * grain);
+                    main.rgb = lerp(main.rgb, _CloudColor.rgb * (.9 + .1 * grain), opacity);
                 }
 
                 // Change the surface before URP lighting, so neither lids nor cloudy pupils emit light.

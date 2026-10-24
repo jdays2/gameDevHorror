@@ -10,11 +10,8 @@ namespace EmergencyShift.Features.Enemies.Logic
     {
         private readonly StalkerSettings settings;
         private readonly IGameClock clock;
+        private readonly StalkerEyeModel eye;
         private float age;
-        private float exposure;
-        private float burnContact;
-        private double nextBurnCue;
-        private bool burnActive;
         private Vector2 approach;
         private Vector2 escape;
         private double staggerUntil;
@@ -24,6 +21,7 @@ namespace EmergencyShift.Features.Enemies.Logic
         {
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
             this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
+            eye = new StalkerEyeModel(settings);
             if (!Finite(home))
             {
                 throw new ArgumentException("Stalker needs a finite spawn origin.", nameof(home));
@@ -33,7 +31,11 @@ namespace EmergencyShift.Features.Enemies.Logic
         }
 
         public event Action<StalkerState> StateChanged;
-        public event Action EyeBurnStarted;
+        public event Action EyeBurnStarted
+        {
+            add => eye.BurnStarted += value;
+            remove => eye.BurnStarted -= value;
+        }
         public event Action PatrolResetRequested;
         public StalkerState State { get; private set; } = StalkerState.Dormant;
         public bool HasAggro { get; private set; }
@@ -42,7 +44,8 @@ namespace EmergencyShift.Features.Enemies.Logic
         public bool IsStaggered => IsAlive && clock.Time < staggerUntil;
         public bool CanStopTicking => !IsAlive && age >= 3;
         public bool Exposed { get; private set; }
-        public float EyeDamageProgress { get; private set; }
+        public float EyeDamageProgress => eye.Damage;
+        public float EyeWarning => eye.Warning;
         public float Closure { get; private set; }
         public Vector2 Home { get; }
         public float PursuitSpeed => settings.PursuitSpeed;
@@ -50,7 +53,7 @@ namespace EmergencyShift.Features.Enemies.Logic
         public float FearDistance => settings.FearDistance;
         public float ReactionDelay => settings.ReactionDelay;
         public float RecoilSeconds => settings.RecoilSeconds;
-        public float ReactionProgress => Mathf.Clamp01(exposure / settings.ReactionDelay);
+        public float ReactionProgress => Mathf.Clamp01(eye.Exposure / settings.ReactionDelay);
         public float AttackProgress => State == StalkerState.Attacking ? Mathf.Clamp01(age / settings.AttackDuration) : 0;
         public float DeathTime => !IsAlive ? age : 0;
         public Vector2 Escape => escape;
@@ -69,16 +72,22 @@ namespace EmergencyShift.Features.Enemies.Logic
 
             age += frame.DeltaTime;
             Exposed = IsAlive && frame.TargetReady && frame.TargetAlive && frame.Exposed;
-            bool closeLight = Exposed && Vector2.Distance(frame.Position, frame.LightOrigin) <= settings.FearDistance;
-            UpdateEyeBurn(closeLight, frame.DeltaTime);
-            if (IsScripted && IsAlive)
+            float lightDistance = Vector2.Distance(frame.Position, frame.LightOrigin);
+            bool closeLight = Exposed && lightDistance <= settings.FearDistance;
+            bool idle = State == StalkerState.Dormant || State == StalkerState.Patrolling;
+            bool canReact = IsScripted || idle || State == StalkerState.Sneaking || State == StalkerState.Attacking;
+            if (IsAlive)
             {
-                exposure = closeLight ? Mathf.Min(settings.ReactionDelay, exposure + frame.DeltaTime) : 0;
-                if (exposure >= settings.ReactionDelay)
+                if (closeLight && eye.Exposure == 0)
                 {
-                    EnsureBurnCue();
+                    approach = frame.Velocity.sqrMagnitude > .01f ? frame.Velocity.normalized : (frame.TargetPosition - frame.Position).normalized;
                 }
 
+                eye.Step(Exposed, lightDistance, canReact && !IsStaggered, frame.DeltaTime);
+            }
+
+            if (IsScripted && IsAlive)
+            {
                 return IsStaggered ? StalkerIntent.Stagger : StalkerIntent.DirectStop;
             }
 
@@ -90,7 +99,7 @@ namespace EmergencyShift.Features.Enemies.Logic
             if (!frame.TargetAlive)
             {
                 PatrolResetRequested?.Invoke();
-                exposure = 0;
+                eye.ResetReaction();
                 Enter(StalkerState.TargetDead);
                 return StalkerIntent.DirectStop;
             }
@@ -105,30 +114,15 @@ namespace EmergencyShift.Features.Enemies.Logic
                 return StalkerIntent.Stagger;
             }
 
-            bool idle = State == StalkerState.Dormant || State == StalkerState.Patrolling;
-            if ((idle || State == StalkerState.Sneaking || State == StalkerState.Attacking) && closeLight)
+            if (canReact && eye.Ready)
             {
-                if (exposure == 0)
+                escape = (frame.Position - frame.LightOrigin).normalized;
+                if (escape.sqrMagnitude < .001f)
                 {
-                    approach = frame.Velocity.sqrMagnitude > .01f ? frame.Velocity.normalized : (frame.TargetPosition - frame.Position).normalized;
+                    escape = -frame.LightDirection;
                 }
 
-                exposure += frame.DeltaTime;
-                if (exposure >= settings.ReactionDelay)
-                {
-                    EnsureBurnCue();
-                    escape = (frame.Position - frame.LightOrigin).normalized;
-                    if (escape.sqrMagnitude < .001f)
-                    {
-                        escape = -frame.LightDirection;
-                    }
-
-                    Enter(StalkerState.Recoiling);
-                }
-            }
-            else
-            {
-                exposure = 0;
+                Enter(StalkerState.Recoiling);
             }
 
             switch (State)
@@ -180,7 +174,7 @@ namespace EmergencyShift.Features.Enemies.Logic
                     return StalkerIntent.Retreat;
                 case StalkerState.Waiting:
                     Closure = 1;
-                    if (age >= settings.CooldownSeconds && !Exposed)
+                    if (age >= settings.CooldownSeconds && !eye.Critical)
                     {
                         Enter(HasAggro ? StalkerState.Sneaking : StalkerState.Dormant);
                     }
@@ -203,8 +197,8 @@ namespace EmergencyShift.Features.Enemies.Logic
             Vector2.Distance(goal, frame.Position) > .15f &&
             Vector2.Distance(frame.TargetPosition, frame.Position) > settings.StandOffDistance * .8f;
 
-        public StalkerStateSnapshot Capture() => new StalkerStateSnapshot(State, HasAggro, EyeDamageProgress, burnContact,
-            age, exposure, Closure, escape, approach, (float)Math.Max(0, staggerUntil - clock.Time), push);
+        public StalkerStateSnapshot Capture() => new StalkerStateSnapshot(State, HasAggro, EyeDamageProgress, eye.BurnContact,
+            age, eye.Exposure, Closure, escape, approach, (float)Math.Max(0, staggerUntil - clock.Time), push);
 
         public static CommandResult ValidateSnapshot(StalkerStateSnapshot state) =>
             Enum.IsDefined(typeof(StalkerState), state.State) && Unit(state.EyeDamage) && Unit(state.Closure) &&
@@ -261,7 +255,7 @@ namespace EmergencyShift.Features.Enemies.Logic
         internal void SetScriptedControl(bool active)
         {
             IsScripted = active;
-            exposure = 0;
+            eye.ResetReaction();
             Closure = 0;
             PatrolResetRequested?.Invoke();
             Enter(StalkerState.Dormant);
@@ -271,54 +265,14 @@ namespace EmergencyShift.Features.Enemies.Logic
         {
             State = state.State;
             HasAggro = state.Aggro;
-            EyeDamageProgress = state.EyeDamage;
-            burnContact = state.BurnContact;
-            burnActive = burnContact > 0;
-            nextBurnCue = clock.Time + settings.EyeBurnCue;
+            eye.Restore(state.EyeDamage, state.BurnContact, state.Exposure,
+                state.State == StalkerState.Recoiling || state.State == StalkerState.Retreating || state.State == StalkerState.Waiting);
             age = state.Age;
-            exposure = state.Exposure;
             Closure = state.Closure;
             escape = state.Escape;
             approach = state.Approach;
             staggerUntil = clock.Time + state.StaggerLeft;
             push = state.Push;
-        }
-
-        private void UpdateEyeBurn(bool illuminated, float deltaTime)
-        {
-            if (!illuminated)
-            {
-                burnContact = 0;
-                burnActive = false;
-                return;
-            }
-
-            if (!burnActive && clock.Time >= nextBurnCue)
-            {
-                EnsureBurnCue();
-            }
-
-            if (!burnActive || EyeDamageProgress >= 1)
-            {
-                return;
-            }
-
-            float previousDose = Mathf.Max(0, burnContact - settings.EyeBurnLead);
-            burnContact += deltaTime;
-            float dose = Mathf.Max(0, burnContact - settings.EyeBurnLead) - previousDose;
-            EyeDamageProgress = Mathf.Clamp01(EyeDamageProgress + dose / settings.EyeBurnSeconds);
-        }
-
-        private void EnsureBurnCue()
-        {
-            if (burnActive)
-            {
-                return;
-            }
-
-            burnActive = true;
-            nextBurnCue = clock.Time + settings.EyeBurnCue;
-            EyeBurnStarted?.Invoke();
         }
 
         private void Enter(StalkerState state)

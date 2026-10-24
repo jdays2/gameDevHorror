@@ -106,7 +106,9 @@ namespace EmergencyShift
                 }
             }
 
-            record.BeginEmission(profile, variant, spawnBudget, random, obstacles, transform.localToWorldMatrix, replacedBody);
+            var presentation = GetComponent<EnemyPresentationSource2D>();
+            record.BeginEmission(profile, variant, spawnBudget, random, obstacles, transform.localToWorldMatrix, replacedBody,
+                presentation != null ? presentation.EyeDamageProgress : 0);
         }
 
         private void CreateRemainsRoot(Vector3 position)
@@ -115,7 +117,8 @@ namespace EmergencyShift
             remainsRoot.position = position;
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(remainsRoot.gameObject, gameObject.scene);
             record = remainsRoot.gameObject.AddComponent<RemainsRecord2D>();
-            record.Configure(bloodPoolPrefab, fragments, litMaterial, contactShadowSprite, shadowMaterial, variant != null ? variant.Id : "restored");
+            record.Configure(bloodPoolPrefab, fragments, litMaterial, contactShadowSprite, shadowMaterial, variant != null ? variant.Id : "restored",
+                profile != null ? profile.EyeSurfaceMaterial : null);
             BindRecord();
         }
 
@@ -139,6 +142,13 @@ namespace EmergencyShift
             int poolRendererCount = saved.hasPool ? bloodPoolPrefab.GetComponentsInChildren<SpriteRenderer>(true).Length : 0;
             int fragmentCount = fragments != null ? fragments.Length : 0;
             RemainsSnapshotValidation.Validate(saved, fragmentCount, poolRendererCount);
+            foreach (RemainsPartState part in saved.parts)
+            {
+                if (part.hasEyeSurface && profile.EyeSurfaceMaterial == null)
+                {
+                    throw new InvalidOperationException("Saved ocular surface requires its configured material.");
+                }
+            }
         }
 
         public RemainsSnapshot CaptureRemains()

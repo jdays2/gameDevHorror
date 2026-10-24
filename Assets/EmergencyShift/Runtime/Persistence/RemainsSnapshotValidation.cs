@@ -7,7 +7,8 @@ namespace EmergencyShift
     {
         public static void Validate(RemainsSnapshot saved, int fragmentCount, int poolRendererCount)
         {
-            if (saved == null || !CheckpointValueValidation.IsFinite(saved.position) || saved.parts == null)
+            if (saved == null || saved.version < 0 || saved.version > RemainsSnapshot.CurrentVersion ||
+                !CheckpointValueValidation.IsFinite(saved.position) || saved.parts == null)
             {
                 throw new InvalidOperationException("Invalid remains snapshot");
             }
@@ -34,6 +35,11 @@ namespace EmergencyShift
                 }
 
                 ValidateSprite(part.body);
+                if (!float.IsFinite(part.eyeDamage) || part.eyeDamage < 0 || part.eyeDamage > 1 ||
+                    (!part.hasEyeSurface && part.eyeDamage != 0) || (saved.version == 0 && part.hasEyeSurface))
+                {
+                    throw new InvalidOperationException("Invalid saved ocular surface or unsupported legacy eye payload");
+                }
                 if (part.hasShadow)
                 {
                     ValidateSprite(part.shadow);

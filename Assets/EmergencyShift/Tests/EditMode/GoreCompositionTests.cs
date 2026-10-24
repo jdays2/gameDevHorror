@@ -35,7 +35,7 @@ namespace EmergencyShift.Tests
                     }
                 }
                 Assert.That(legs, Is.LessThanOrEqualTo(6));
-                Assert.That(flesh, Is.InRange(8, 10));
+                Assert.That(flesh, Is.InRange(8, 14));
             }
             Assert.That(EditorJsonUtility.ToJson(profile), Is.EqualTo(before));
             if (species == "Stalker")

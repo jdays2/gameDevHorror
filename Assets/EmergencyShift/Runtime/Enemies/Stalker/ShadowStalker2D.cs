@@ -81,6 +81,7 @@ namespace EmergencyShift
         public override bool IsAlive => State != BehaviourState.Dead;
         public bool HasAggro => controller != null && controller.Model.HasAggro;
         public float EyeDamageProgress => controller?.Model.EyeDamageProgress ?? 0;
+        public float EyeWarning => controller?.Model.EyeWarning ?? 0;
         public bool EyeBurned => EyeDamageProgress > 0;
         public float PursuitSpeed => controller?.Model.PursuitSpeed ?? (definition != null ? definition.PursuitSpeed : 0);
         public float RetreatSpeed => controller?.Model.RetreatSpeed ?? (behaviourProfile != null ? behaviourProfile.RetreatSpeed : 0);

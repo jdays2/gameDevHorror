@@ -11,12 +11,14 @@ namespace EmergencyShift
         [SerializeField] private Vector2 scale = Vector2.one;
         [SerializeField, Min(.01f)] private float impulseMultiplier = 1;
         [SerializeField, Min(.01f)] private float liftMultiplier = 1;
+        [SerializeField] private bool eyeSurface;
 
         public int SpriteIndex => spriteIndex;
         public Vector2 Offset => offset;
         public Vector2 Scale => scale;
         public float ImpulseMultiplier => impulseMultiplier;
         public float LiftMultiplier => liftMultiplier;
+        public bool EyeSurface => eyeSurface;
 
         public void Validate()
         {

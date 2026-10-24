@@ -8,11 +8,15 @@ namespace EmergencyShift
         private int spriteIndex;
         private SpriteRenderer body;
         private SpriteRenderer shadow;
-        public void Configure(int index, SpriteRenderer visual, SpriteRenderer contact)
+        private bool hasEyeSurface;
+        private float eyeDamage;
+        public void Configure(int index, SpriteRenderer visual, SpriteRenderer contact, bool eyeSurface = false, float damage = 0)
         {
             spriteIndex = index;
             body = visual;
             shadow = contact;
+            hasEyeSurface = eyeSurface;
+            eyeDamage = damage;
         }
 
         public RemainsPartState Capture()
@@ -21,6 +25,8 @@ namespace EmergencyShift
             {
                 position = transform.position,
                 spriteIndex = spriteIndex,
+                hasEyeSurface = hasEyeSurface,
+                eyeDamage = eyeDamage,
                 body = new RemainsSpriteState()
             };
             saved.body.Capture(body);

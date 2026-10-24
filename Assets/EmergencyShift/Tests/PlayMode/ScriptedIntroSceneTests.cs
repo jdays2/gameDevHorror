@@ -99,7 +99,7 @@ namespace EmergencyShift.Tests
             yield return new WaitForSeconds(.12f);
             Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingForTrigger), "The closed starting door must block the trigger.");
             context.Flashlight.SetPower(false);
-            MovePlayer(new Vector2(5.5f, .8f));
+            MovePlayer((Vector2)actor.transform.position + Vector2.left * 1.5f);
             yield return new WaitForSeconds(.1f);
             Assert.That(actor.HasAggro, Is.False, "Proximity alone cannot start combat during the intro.");
             actor.ApplyBulletHit(1, actor.transform.position, Vector2.right);

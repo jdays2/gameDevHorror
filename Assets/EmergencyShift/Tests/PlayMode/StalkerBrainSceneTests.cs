@@ -118,7 +118,7 @@ namespace EmergencyShift.Tests
             context.Flashlight.SetPower(false);
             yield return new WaitForSeconds(.06f);
             Assert.That(stalker.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Sneaking));
-            Assert.That(stalker.EyeDamageProgress, Is.EqualTo(eyeDamage));
+            Assert.That(stalker.EyeDamageProgress, Is.LessThan(eyeDamage), "The living eye gradually recovers after light stops.");
             ShadowStalker2D.Snapshot saved = stalker.CaptureState();
             saved.hasEyeDamageProgress = false;
             saved.eyeBurned = true;

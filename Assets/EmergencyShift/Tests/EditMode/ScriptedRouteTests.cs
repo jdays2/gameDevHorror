@@ -237,7 +237,7 @@ namespace EmergencyShift.Tests
         private static ScriptedRouteSettings Settings(float reaction = 0) => new ScriptedRouteSettings(3.8f, reaction, .16f, 3, .03f);
         private static ScriptedRouteModel Route(float reaction = 0) => new ScriptedRouteModel(Settings(reaction), new[] { Vector2.right });
         private static StalkerModel Stalker() => new StalkerModel(new StalkerSettings(1.5f, 3.8f, 1.05f, .35f,
-            1.05f, 3, 3.2f, .45f, .8f, .09f, 1.6f, .14f, 1.25f, 1.2f, .35f), new Clock(), Vector2.zero);
+            1.05f, 3, 3.2f, .45f, .8f, .09f, 1.6f, 1.9f, .3f, 10, .35f), new Clock(), Vector2.zero);
         private static StalkerObservation Frame() => new StalkerObservation(.02f, Vector2.zero, Vector2.zero,
             Vector2.right, Vector2.right, Vector2.left, true, true, true, true, false, true, 3.2f, .3f, 256);
 

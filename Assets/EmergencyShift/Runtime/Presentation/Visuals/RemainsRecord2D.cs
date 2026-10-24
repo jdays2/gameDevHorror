@@ -14,6 +14,8 @@ namespace EmergencyShift
         private Material litMaterial;
         private Sprite contactShadowSprite;
         private Material shadowMaterial;
+        private Material eyeSurfaceMaterial;
+        private float eyeDamage;
         private BloodPool2D spawnedPool;
         private readonly List<GibMotion2D> movingParts = new List<GibMotion2D>();
         private string variantId;
@@ -26,7 +28,8 @@ namespace EmergencyShift
         private bool emitting;
         private bool hasPresentation;
         public event Action<GibMotion2D> FragmentLaunched;
-        public void Configure(BloodPool2D pool, Sprite[] sprites, Material material, Sprite shadow, Material shadowStyle, string variant)
+        public void Configure(BloodPool2D pool, Sprite[] sprites, Material material, Sprite shadow, Material shadowStyle, string variant,
+            Material eyeMaterial = null)
         {
             bloodPoolPrefab = pool;
             fragments = sprites;
@@ -34,6 +37,7 @@ namespace EmergencyShift
             contactShadowSprite = shadow;
             shadowMaterial = shadowStyle;
             variantId = variant;
+            eyeSurfaceMaterial = eyeMaterial;
         }
 
         public void RegisterPool(BloodPool2D pool)
@@ -47,7 +51,7 @@ namespace EmergencyShift
         }
 
         public void BeginEmission(GoreProfile definition, GoreVariant composition, GoreSpawnBudget2D budget,
-            IRandomSource randomSource, LayerMask obstacles, Matrix4x4 sourceTransform, SpriteRenderer originalBody)
+            IRandomSource randomSource, LayerMask obstacles, Matrix4x4 sourceTransform, SpriteRenderer originalBody, float ocularDamage = 0)
         {
             if (hasPresentation || definition == null || composition == null || randomSource == null ||
                 (fragments != null && fragments.Length > 0 && budget == null))
@@ -61,6 +65,7 @@ namespace EmergencyShift
             random = randomSource;
             sourcePose = sourceTransform;
             replacedBody = originalBody;
+            eyeDamage = ocularDamage;
             hasPresentation = true;
             emitting = true;
             StartCoroutine(Burst(obstacles));
@@ -109,6 +114,11 @@ namespace EmergencyShift
                     renderer.sharedMaterial = litMaterial;
                     renderer.sortingOrder = RemainsVisualStyle.DeadOrder;
                     renderer.color = profile.SettledTint;
+                    bool hasEyeSurface = specification != null && specification.EyeSurface;
+                    if (hasEyeSurface)
+                    {
+                        RemainsEyeSurface.Apply(renderer, eyeSurfaceMaterial, eyeDamage);
+                    }
                     float angle = i * Mathf.PI * 2 / count + variant.RotationOffset * Mathf.Deg2Rad + Range(-.33f, .33f);
                     body.transform.rotation = Quaternion.Euler(0, 0, Range(0f, 360f));
                     SpriteRenderer shadow = null;
@@ -136,7 +146,8 @@ namespace EmergencyShift
                     }
 
                     motion.Launch(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * power, Range(-650f, 650f), obstacles.value | (1 << 9), lift, profile.Gravity);
-                    piece.AddComponent<RemainsPartIdentity2D>().Configure(spriteIndex, renderer, shadow);
+                    piece.AddComponent<RemainsPartIdentity2D>().Configure(spriteIndex, renderer, shadow, hasEyeSurface,
+                        hasEyeSurface ? eyeDamage : 0);
                     RegisterPart(motion);
                     FragmentLaunched?.Invoke(motion);
                 }
@@ -191,6 +202,7 @@ namespace EmergencyShift
 
             var result = new RemainsSnapshot
             {
+                version = RemainsSnapshot.CurrentVersion,
                 variantId = variantId,
                 position = transform.position
             };
@@ -232,6 +244,14 @@ namespace EmergencyShift
             int poolRendererCount = saved.hasPool ? bloodPoolPrefab.GetComponentsInChildren<SpriteRenderer>(true).Length : 0;
             int fragmentCount = fragments != null ? fragments.Length : 0;
             RemainsSnapshotValidation.Validate(saved, fragmentCount, poolRendererCount);
+
+            foreach (RemainsPartState part in saved.parts)
+            {
+                if (part.hasEyeSurface && eyeSurfaceMaterial == null)
+                {
+                    throw new InvalidOperationException("Saved ocular surface requires its configured material.");
+                }
+            }
 
             if (hasPresentation)
             {
@@ -279,6 +299,10 @@ namespace EmergencyShift
                 body.sharedMaterial = litMaterial;
                 body.sortingOrder = RemainsVisualStyle.DeadOrder;
                 part.body.Apply(body);
+                if (part.hasEyeSurface)
+                {
+                    RemainsEyeSurface.Apply(body, eyeSurfaceMaterial, part.eyeDamage);
+                }
                 SpriteRenderer shadow = null;
                 if (part.hasShadow)
                 {
@@ -290,7 +314,7 @@ namespace EmergencyShift
                     part.shadow.Apply(shadow);
                 }
 
-                root.GetComponent<RemainsPartIdentity2D>().Configure(part.spriteIndex, body, shadow);
+                root.GetComponent<RemainsPartIdentity2D>().Configure(part.spriteIndex, body, shadow, part.hasEyeSurface, part.eyeDamage);
             }
         }
     }

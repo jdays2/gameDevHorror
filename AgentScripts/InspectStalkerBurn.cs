@@ -11,7 +11,7 @@ public static class InspectStalkerBurn
 {
     public static string ModelSample()
     {
-        var settings = new StalkerSettings(1.5f, 3.8f, 1.05f, .35f, 1.05f, 3, 3.2f, .45f, .8f, .09f, 1.6f, .14f, 1.25f, 1.2f, .35f);
+        var settings = new StalkerSettings(1.5f, 3.8f, 1.05f, .2f, 1.05f, 3, 3.2f, .45f, .8f, .09f, 1.6f, 1.9f, .3f, 10, .35f);
         var results = new System.Collections.Generic.List<object>();
         foreach (StalkerState state in new[] { StalkerState.Recoiling, StalkerState.Retreating, StalkerState.Waiting })
         {

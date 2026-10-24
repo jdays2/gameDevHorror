@@ -17,6 +17,8 @@ namespace EmergencyShift
         [SerializeField] private bool replaceOriginalBody;
         [SerializeField, Tooltip("Available for old snapshots, excluded from a new death.")]
         private bool restorationOnly;
+        [SerializeField, Min(1)]
+        private int selectionWeight = 1;
 
         public string Id => id;
         public int FragmentCount => fragmentCount;
@@ -26,6 +28,7 @@ namespace EmergencyShift
         public float ImpulseMultiplier => impulseMultiplier;
         public bool ReplaceOriginalBody => replaceOriginalBody;
         public bool RestorationOnly => restorationOnly;
+        public int SelectionWeight => selectionWeight;
         public int PieceCount => pieces != null ? pieces.Length : 0;
         public GorePiece PieceAt(int index) => pieces[index];
 
@@ -43,7 +46,7 @@ namespace EmergencyShift
         {
             if (string.IsNullOrWhiteSpace(id) || fragmentCount < 1 || spriteOffset < 0 ||
                 !float.IsFinite(rotationOffset) || !float.IsFinite(scale.x) || !float.IsFinite(scale.y) ||
-                scale.x <= 0 || scale.y < scale.x || !float.IsFinite(impulseMultiplier) || impulseMultiplier <= 0)
+                scale.x <= 0 || scale.y < scale.x || !float.IsFinite(impulseMultiplier) || impulseMultiplier <= 0 || selectionWeight < 1)
             {
                 throw new InvalidOperationException("Invalid gore variant.");
             }

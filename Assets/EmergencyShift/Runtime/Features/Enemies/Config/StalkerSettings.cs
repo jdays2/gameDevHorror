@@ -7,15 +7,16 @@ namespace EmergencyShift.Features.Enemies.Config
     {
         public StalkerSettings(float pursuitSpeed, float retreatSpeed, float standOffDistance, float recoilSeconds,
             float retreatSeconds, float cooldownSeconds, float fearDistance, float reactionDelay, float attackDuration,
-            float staggerSeconds, float pushSpeed, float eyeBurnLead, float eyeBurnSeconds, float eyeBurnCue, float interruptDelay,
-            float eyeOpenRecoilFraction = .7f)
+            float staggerSeconds, float pushSpeed, float burnDistance, float eyeBurnSeconds, float eyeRecoverySeconds, float interruptDelay,
+            float eyeOpenRecoilFraction = .7f, float eyeWarningSeconds = .3f)
         {
             if (!Nonnegative(pursuitSpeed) || !Positive(retreatSpeed) || !Positive(standOffDistance) ||
                 !Positive(recoilSeconds) || !Positive(retreatSeconds) || !Nonnegative(cooldownSeconds) ||
                 !Positive(fearDistance) || !Positive(reactionDelay) || !Positive(attackDuration) ||
-                !Nonnegative(staggerSeconds) || !Nonnegative(pushSpeed) || !Nonnegative(eyeBurnLead) ||
-                !Nonnegative(eyeBurnSeconds) || !Nonnegative(eyeBurnCue) || !Nonnegative(interruptDelay) ||
-                !Nonnegative(eyeOpenRecoilFraction) || eyeOpenRecoilFraction >= 1)
+                !Nonnegative(staggerSeconds) || !Nonnegative(pushSpeed) || !Positive(burnDistance) ||
+                burnDistance <= standOffDistance || burnDistance > fearDistance ||
+                !Positive(eyeBurnSeconds) || !Positive(eyeRecoverySeconds) || !Positive(eyeWarningSeconds) ||
+                !Nonnegative(interruptDelay) || !Nonnegative(eyeOpenRecoilFraction) || eyeOpenRecoilFraction >= 1)
             {
                 throw new ArgumentException("Invalid Stalker movement, reaction, attack or eye-burn settings.");
             }
@@ -31,9 +32,10 @@ namespace EmergencyShift.Features.Enemies.Config
             AttackDuration = attackDuration;
             StaggerSeconds = staggerSeconds;
             PushSpeed = pushSpeed;
-            EyeBurnLead = Mathf.Max(.05f, eyeBurnLead);
-            EyeBurnSeconds = Mathf.Max(.1f, eyeBurnSeconds);
-            EyeBurnCue = Mathf.Max(.1f, eyeBurnCue);
+            BurnDistance = burnDistance;
+            EyeBurnSeconds = eyeBurnSeconds;
+            EyeRecoverySeconds = eyeRecoverySeconds;
+            EyeWarningSeconds = eyeWarningSeconds;
             InterruptDelay = interruptDelay;
             EyeOpenRecoilFraction = eyeOpenRecoilFraction;
         }
@@ -49,9 +51,10 @@ namespace EmergencyShift.Features.Enemies.Config
         public float AttackDuration { get; }
         public float StaggerSeconds { get; }
         public float PushSpeed { get; }
-        public float EyeBurnLead { get; }
+        public float BurnDistance { get; }
         public float EyeBurnSeconds { get; }
-        public float EyeBurnCue { get; }
+        public float EyeRecoverySeconds { get; }
+        public float EyeWarningSeconds { get; }
         public float InterruptDelay { get; }
         public float EyeOpenRecoilFraction { get; }
         private static bool Nonnegative(float value) => float.IsFinite(value) && value >= 0;
