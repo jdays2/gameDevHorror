@@ -1,0 +1,789 @@
+{
+  "version": 1,
+  "task": "TASK-005",
+  "disclaimer": "Условные функциональные мышечные группы вымышленного существа, а не медицинский атлас. 2D control layer, not animation rig.",
+  "countsPerLimb": {
+    "girdle": 1,
+    "proximal": 2,
+    "distal": 2,
+    "palm": 3,
+    "totalMuscleGroups": 8,
+    "digitalTendons": 3
+  },
+  "template": [
+    {
+      "id": "M01",
+      "block": "girdle",
+      "name": "Стабилизатор основания",
+      "role": "girdle to proximal segment",
+      "origin": {
+        "body": true
+      },
+      "insertion": {
+        "bone": "prox",
+        "t": 0.3,
+        "offset": 0
+      },
+      "belly": {
+        "bone": "prox",
+        "t": 0.1,
+        "offset": 0
+      },
+      "width": 39
+    },
+    {
+      "id": "M02",
+      "block": "proximal",
+      "name": "Проксимальный сгибатель",
+      "role": "proximal origin to distal insertion across hinge",
+      "origin": {
+        "bone": "prox",
+        "t": 0.04,
+        "offset": 18
+      },
+      "insertion": {
+        "bone": "dist",
+        "t": 0.14,
+        "offset": 8
+      },
+      "belly": {
+        "bone": "prox",
+        "t": 0.52,
+        "offset": 27
+      },
+      "width": 24
+    },
+    {
+      "id": "M03",
+      "block": "proximal",
+      "name": "Проксимальный разгибатель",
+      "role": "opposing side of same hinge",
+      "origin": {
+        "bone": "prox",
+        "t": 0.04,
+        "offset": -18
+      },
+      "insertion": {
+        "bone": "dist",
+        "t": 0.06,
+        "offset": -12
+      },
+      "belly": {
+        "bone": "prox",
+        "t": 0.54,
+        "offset": -26
+      },
+      "width": 23
+    },
+    {
+      "id": "M04",
+      "block": "distal",
+      "name": "Дистальный сгибатель",
+      "role": "crosses wrist from near hinge",
+      "origin": {
+        "bone": "prox",
+        "t": 0.88,
+        "offset": 13
+      },
+      "insertion": {
+        "bone": "palm",
+        "t": 0.85,
+        "offset": 5
+      },
+      "belly": {
+        "bone": "dist",
+        "t": 0.52,
+        "offset": 16
+      },
+      "width": 17
+    },
+    {
+      "id": "M05",
+      "block": "distal",
+      "name": "Дистальный разгибатель",
+      "role": "opposing side across wrist",
+      "origin": {
+        "bone": "prox",
+        "t": 0.92,
+        "offset": -12
+      },
+      "insertion": {
+        "bone": "palm",
+        "t": 0.75,
+        "offset": -5
+      },
+      "belly": {
+        "bone": "dist",
+        "t": 0.55,
+        "offset": -15
+      },
+      "width": 15
+    },
+    {
+      "id": "M06",
+      "block": "palm",
+      "name": "Пучок пальца 1",
+      "role": "intrinsic digit bundle with distal tendon",
+      "origin": {
+        "bone": "palm",
+        "t": 0.55,
+        "offset": 0
+      },
+      "insertion": {
+        "toe": 1
+      },
+      "belly": {
+        "fan": 1
+      },
+      "width": 6,
+      "tendon": {
+        "toe": 1
+      }
+    },
+    {
+      "id": "M07",
+      "block": "palm",
+      "name": "Пучок пальца 2",
+      "role": "intrinsic digit bundle with distal tendon",
+      "origin": {
+        "bone": "palm",
+        "t": 0.55,
+        "offset": 0
+      },
+      "insertion": {
+        "toe": 2
+      },
+      "belly": {
+        "fan": 2
+      },
+      "width": 6,
+      "tendon": {
+        "toe": 2
+      }
+    },
+    {
+      "id": "M08",
+      "block": "palm",
+      "name": "Пучок пальца 3",
+      "role": "intrinsic digit bundle with distal tendon",
+      "origin": {
+        "bone": "palm",
+        "t": 0.55,
+        "offset": 0
+      },
+      "insertion": {
+        "toe": 3
+      },
+      "belly": {
+        "fan": 3
+      },
+      "width": 6,
+      "tendon": {
+        "toe": 3
+      }
+    }
+  ],
+  "bodyGroups": [
+    {
+      "id": "B01",
+      "name": "Продольный массив спины, верх",
+      "a": [
+        750,
+        460
+      ],
+      "m": [
+        925,
+        440
+      ],
+      "z": [
+        1085,
+        485
+      ],
+      "width": 32
+    },
+    {
+      "id": "B02",
+      "name": "Продольный массив спины, низ",
+      "a": [
+        750,
+        555
+      ],
+      "m": [
+        925,
+        570
+      ],
+      "z": [
+        1085,
+        520
+      ],
+      "width": 32
+    },
+    {
+      "id": "B03",
+      "name": "Боковой стабилизатор, верх",
+      "a": [
+        720,
+        370
+      ],
+      "m": [
+        840,
+        380
+      ],
+      "z": [
+        1000,
+        470
+      ],
+      "width": 28
+    },
+    {
+      "id": "B04",
+      "name": "Боковой стабилизатор, низ",
+      "a": [
+        720,
+        640
+      ],
+      "m": [
+        840,
+        625
+      ],
+      "z": [
+        1000,
+        545
+      ],
+      "width": 28
+    }
+  ],
+  "limbs": [
+    {
+      "id": "U",
+      "groups": [
+        {
+          "id": "U_M01",
+          "templateId": "M01",
+          "block": "girdle",
+          "name": "Стабилизатор основания",
+          "originSpec": {
+            "body": true
+          },
+          "insertionSpec": {
+            "bone": "prox",
+            "t": 0.3,
+            "offset": 0
+          },
+          "origin": {
+            "x": 720,
+            "y": 415
+          },
+          "belly": {
+            "x": 766.9013892316432,
+            "y": 324.88621834420366
+          },
+          "insertion": {
+            "x": 740.7041676949294,
+            "y": 294.65865503261097
+          },
+          "width": 39,
+          "tendon": null
+        },
+        {
+          "id": "U_M02",
+          "templateId": "M02",
+          "block": "proximal",
+          "name": "Проксимальный сгибатель",
+          "originSpec": {
+            "bone": "prox",
+            "t": 0.04,
+            "offset": 18
+          },
+          "insertionSpec": {
+            "bone": "dist",
+            "t": 0.14,
+            "offset": 8
+          },
+          "origin": {
+            "x": 761.1581522024405,
+            "y": 345.74323702920265
+          },
+          "belly": {
+            "x": 691.4836187692192,
+            "y": 279.0914599271407
+          },
+          "insertion": {
+            "x": 619.2199052954473,
+            "y": 188.77087411380185
+          },
+          "width": 24,
+          "tendon": null
+        },
+        {
+          "id": "U_M03",
+          "templateId": "M03",
+          "block": "proximal",
+          "name": "Проксимальный разгибатель",
+          "originSpec": {
+            "bone": "prox",
+            "t": 0.04,
+            "offset": -18
+          },
+          "insertionSpec": {
+            "bone": "dist",
+            "t": 0.06,
+            "offset": -12
+          },
+          "origin": {
+            "x": 788.362959182874,
+            "y": 322.1657376461603
+          },
+          "belly": {
+            "x": 728.9154180034083,
+            "y": 241.35738505983582
+          },
+          "insertion": {
+            "x": 640.4332832820605,
+            "y": 173.9738273004314
+          },
+          "width": 23,
+          "tendon": null
+        },
+        {
+          "id": "U_M04",
+          "templateId": "M04",
+          "block": "distal",
+          "name": "Дистальный сгибатель",
+          "originSpec": {
+            "bone": "prox",
+            "t": 0.88,
+            "offset": 13
+          },
+          "insertionSpec": {
+            "bone": "palm",
+            "t": 0.85,
+            "offset": 5
+          },
+          "origin": {
+            "x": 654.9082671621921,
+            "y": 215.51281842842405
+          },
+          "belly": {
+            "x": 542.073394215932,
+            "y": 175.32372466649437
+          },
+          "insertion": {
+            "x": 405.6063800670662,
+            "y": 142.4248617723924
+          },
+          "width": 17,
+          "tendon": null
+        },
+        {
+          "id": "U_M05",
+          "templateId": "M05",
+          "block": "distal",
+          "name": "Дистальный разгибатель",
+          "originSpec": {
+            "bone": "prox",
+            "t": 0.92,
+            "offset": -12
+          },
+          "insertionSpec": {
+            "bone": "palm",
+            "t": 0.75,
+            "offset": -5
+          },
+          "origin": {
+            "x": 668.5610499245948,
+            "y": 193.09404230565946
+          },
+          "belly": {
+            "x": 544.5695938242916,
+            "y": 143.81830469603176
+          },
+          "insertion": {
+            "x": 410.17843524221337,
+            "y": 131.96798310448156
+          },
+          "width": 15,
+          "tendon": null
+        },
+        {
+          "id": "U_M06",
+          "templateId": "M06",
+          "block": "palm",
+          "name": "Пучок пальца 1",
+          "originSpec": {
+            "bone": "palm",
+            "t": 0.55,
+            "offset": 0
+          },
+          "insertionSpec": {
+            "toe": 1
+          },
+          "origin": {
+            "x": 421.5859392435707,
+            "y": 135.95155593035236
+          },
+          "belly": {
+            "x": 376.9404994763538,
+            "y": 123.94425261146333
+          },
+          "insertion": {
+            "x": 332.29505970913686,
+            "y": 111.9369492925743
+          },
+          "width": 6,
+          "tendon": {
+            "from": {
+              "x": 332.29505970913686,
+              "y": 111.9369492925743
+            },
+            "to": {
+              "x": 278.8157347454988,
+              "y": 99.0932036771551
+            }
+          }
+        },
+        {
+          "id": "U_M07",
+          "templateId": "M07",
+          "block": "palm",
+          "name": "Пучок пальца 2",
+          "originSpec": {
+            "bone": "palm",
+            "t": 0.55,
+            "offset": 0
+          },
+          "insertionSpec": {
+            "toe": 2
+          },
+          "origin": {
+            "x": 421.5859392435707,
+            "y": 135.95155593035236
+          },
+          "belly": {
+            "x": 378.38907141303406,
+            "y": 139.8785439149466
+          },
+          "insertion": {
+            "x": 335.1922035824974,
+            "y": 143.80553189954082
+          },
+          "width": 6,
+          "tendon": {
+            "from": {
+              "x": 335.1922035824974,
+              "y": 143.80553189954082
+            },
+            "to": {
+              "x": 280.41807722677373,
+              "y": 148.78499793187933
+            }
+          }
+        },
+        {
+          "id": "U_M08",
+          "templateId": "M08",
+          "block": "palm",
+          "name": "Пучок пальца 3",
+          "originSpec": {
+            "bone": "palm",
+            "t": 0.55,
+            "offset": 0
+          },
+          "insertionSpec": {
+            "toe": 3
+          },
+          "origin": {
+            "x": 421.5859392435707,
+            "y": 135.95155593035236
+          },
+          "belly": {
+            "x": 379.8376433497143,
+            "y": 155.81283521842985
+          },
+          "insertion": {
+            "x": 338.089347455858,
+            "y": 175.67411450650735
+          },
+          "width": 6,
+          "tendon": {
+            "from": {
+              "x": 338.089347455858,
+              "y": 175.67411450650735
+            },
+            "to": {
+              "x": 287.8028180124371,
+              "y": 197.95111961347732
+            }
+          }
+        }
+      ],
+      "mirrorSign": -1
+    },
+    {
+      "id": "L",
+      "groups": [
+        {
+          "id": "L_M01",
+          "templateId": "M01",
+          "block": "girdle",
+          "name": "Стабилизатор основания",
+          "originSpec": {
+            "body": true
+          },
+          "insertionSpec": {
+            "bone": "prox",
+            "t": 0.3,
+            "offset": 0
+          },
+          "origin": {
+            "x": 720,
+            "y": 595
+          },
+          "belly": {
+            "x": 787.2489252230989,
+            "y": 688.6400934308259
+          },
+          "insertion": {
+            "x": 801.7467756692969,
+            "y": 725.9202802924777
+          },
+          "width": 39,
+          "tendon": null
+        },
+        {
+          "id": "L_M02",
+          "templateId": "M02",
+          "block": "proximal",
+          "name": "Проксимальный сгибатель",
+          "originSpec": {
+            "bone": "prox",
+            "t": 0.04,
+            "offset": 18
+          },
+          "insertionSpec": {
+            "bone": "dist",
+            "t": 0.14,
+            "offset": 8
+          },
+          "origin": {
+            "x": 766.1234860014962,
+            "y": 683.9800700731195
+          },
+          "belly": {
+            "x": 792.5302850284996,
+            "y": 776.7145348914784
+          },
+          "insertion": {
+            "x": 822.7015964733839,
+            "y": 855.7799959325899
+          },
+          "width": 24,
+          "tendon": null
+        },
+        {
+          "id": "L_M03",
+          "templateId": "M03",
+          "block": "proximal",
+          "name": "Проксимальный разгибатель",
+          "originSpec": {
+            "bone": "prox",
+            "t": 0.04,
+            "offset": -18
+          },
+          "insertionSpec": {
+            "bone": "dist",
+            "t": 0.06,
+            "offset": -12
+          },
+          "origin": {
+            "x": 799.6756541769829,
+            "y": 670.9320046715412
+          },
+          "belly": {
+            "x": 843.3763176648081,
+            "y": 761.2329017364312
+          },
+          "insertion": {
+            "x": 843.5551908818604,
+            "y": 871.0799175090805
+          },
+          "width": 23,
+          "tendon": null
+        },
+        {
+          "id": "L_M04",
+          "templateId": "M04",
+          "block": "distal",
+          "name": "Дистальный сгибатель",
+          "originSpec": {
+            "bone": "prox",
+            "t": 0.88,
+            "offset": 13
+          },
+          "insertionSpec": {
+            "bone": "palm",
+            "t": 0.85,
+            "offset": 5
+          },
+          "origin": {
+            "x": 831.6744812332341,
+            "y": 838.7446235862823
+          },
+          "belly": {
+            "x": 745.2556785064112,
+            "y": 867.3791247900916
+          },
+          "insertion": {
+            "x": 606.9024735593827,
+            "y": 906.5709612082877
+          },
+          "width": 17,
+          "tendon": null
+        },
+        {
+          "id": "L_M05",
+          "templateId": "M05",
+          "block": "distal",
+          "name": "Дистальный разгибатель",
+          "originSpec": {
+            "bone": "prox",
+            "t": 0.92,
+            "offset": -12
+          },
+          "insertionSpec": {
+            "bone": "palm",
+            "t": 0.75,
+            "offset": -5
+          },
+          "origin": {
+            "x": 857.874168111006,
+            "y": 837.1395044297391
+          },
+          "belly": {
+            "x": 746.9980315885391,
+            "y": 898.9352130416034
+          },
+          "insertion": {
+            "x": 613.2852436553802,
+            "y": 916.0319466697309
+          },
+          "width": 15,
+          "tendon": null
+        },
+        {
+          "id": "L_M06",
+          "templateId": "M06",
+          "block": "palm",
+          "name": "Пучок пальца 1",
+          "originSpec": {
+            "bone": "palm",
+            "t": 0.55,
+            "offset": 0
+          },
+          "insertionSpec": {
+            "toe": 1
+          },
+          "origin": {
+            "x": 623.7873901963123,
+            "y": 910.0565874309247
+          },
+          "belly": {
+            "x": 579.1419504290955,
+            "y": 898.0492841120357
+          },
+          "insertion": {
+            "x": 534.4965106618785,
+            "y": 886.0419807931468
+          },
+          "width": 6,
+          "tendon": {
+            "from": {
+              "x": 534.4965106618785,
+              "y": 886.0419807931468
+            },
+            "to": {
+              "x": 481.0171856982404,
+              "y": 873.1982351777276
+            }
+          }
+        },
+        {
+          "id": "L_M07",
+          "templateId": "M07",
+          "block": "palm",
+          "name": "Пучок пальца 2",
+          "originSpec": {
+            "bone": "palm",
+            "t": 0.55,
+            "offset": 0
+          },
+          "insertionSpec": {
+            "toe": 2
+          },
+          "origin": {
+            "x": 623.7873901963123,
+            "y": 910.0565874309247
+          },
+          "belly": {
+            "x": 580.5905223657758,
+            "y": 913.983575415519
+          },
+          "insertion": {
+            "x": 537.3936545352391,
+            "y": 917.9105634001132
+          },
+          "width": 6,
+          "tendon": {
+            "from": {
+              "x": 537.3936545352391,
+              "y": 917.9105634001132
+            },
+            "to": {
+              "x": 482.6195281795154,
+              "y": 922.8900294324518
+            }
+          }
+        },
+        {
+          "id": "L_M08",
+          "templateId": "M08",
+          "block": "palm",
+          "name": "Пучок пальца 3",
+          "originSpec": {
+            "bone": "palm",
+            "t": 0.55,
+            "offset": 0
+          },
+          "insertionSpec": {
+            "toe": 3
+          },
+          "origin": {
+            "x": 623.7873901963123,
+            "y": 910.0565874309247
+          },
+          "belly": {
+            "x": 582.0390943024561,
+            "y": 929.9178667190022
+          },
+          "insertion": {
+            "x": 540.2907984085997,
+            "y": 949.7791460070797
+          },
+          "width": 6,
+          "tendon": {
+            "from": {
+              "x": 540.2907984085997,
+              "y": 949.7791460070797
+            },
+            "to": {
+              "x": 490.0042689651789,
+              "y": 972.0561511140497
+            }
+          }
+        }
+      ],
+      "mirrorSign": 1
+    }
+  ],
+  "attachmentPolicy": "Same template specs for both limbs. Signed perpendicular offsets mirror with limb chirality so flexor/extensor sides follow hinge bending. Equal bone lengths. No separate painted muscle is allowed to replace an attachment."
+}

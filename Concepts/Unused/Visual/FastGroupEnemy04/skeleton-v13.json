@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "task": "TASK-005",
+  "kind": "2D concept validation skeleton, not a Unity rig",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "front": "left",
+  "bodyIntent": "Compact rear ends at x1120; source v11 rear x1470; fixed head size and two equal-length limb chains",
+  "nodes": [
+    {
+      "id": "root",
+      "x": 780,
+      "y": 505,
+      "parent": null,
+      "group": "body"
+    },
+    {
+      "id": "head",
+      "x": 580,
+      "y": 500,
+      "parent": "root",
+      "group": "body"
+    },
+    {
+      "id": "mouth",
+      "x": 265,
+      "y": 500,
+      "parent": "head",
+      "group": "body"
+    },
+    {
+      "id": "spine_1",
+      "x": 910,
+      "y": 500,
+      "parent": "root",
+      "group": "body"
+    },
+    {
+      "id": "spine_2",
+      "x": 1030,
+      "y": 515,
+      "parent": "spine_1",
+      "group": "body"
+    },
+    {
+      "id": "rear",
+      "x": 1120,
+      "y": 500,
+      "parent": "spine_2",
+      "group": "body"
+    },
+    {
+      "id": "U_root",
+      "x": 780,
+      "y": 340,
+      "parent": "root",
+      "group": "upper"
+    },
+    {
+      "id": "U_knee",
+      "x": 650,
+      "y": 190,
+      "parent": "U_root",
+      "group": "upper"
+    },
+    {
+      "id": "U_ankle",
+      "x": 455,
+      "y": 135,
+      "parent": "U_knee",
+      "group": "upper"
+    },
+    {
+      "id": "U_foot",
+      "x": 400,
+      "y": 140,
+      "parent": "U_ankle",
+      "group": "upper"
+    },
+    {
+      "id": "U_toe_1",
+      "x": 345,
+      "y": 112,
+      "parent": "U_foot",
+      "group": "upper"
+    },
+    {
+      "id": "U_claw_1",
+      "x": 290,
+      "y": 90,
+      "parent": "U_toe_1",
+      "group": "upper"
+    },
+    {
+      "id": "U_toe_2",
+      "x": 330,
+      "y": 145,
+      "parent": "U_foot",
+      "group": "upper"
+    },
+    {
+      "id": "U_claw_2",
+      "x": 275,
+      "y": 150,
+      "parent": "U_toe_2",
+      "group": "upper"
+    },
+    {
+      "id": "U_toe_3",
+      "x": 350,
+      "y": 178,
+      "parent": "U_foot",
+      "group": "upper"
+    },
+    {
+      "id": "U_claw_3",
+      "x": 300,
+      "y": 205,
+      "parent": "U_toe_3",
+      "group": "upper"
+    },
+    {
+      "id": "L_root",
+      "x": 780,
+      "y": 670,
+      "parent": "root",
+      "group": "lower"
+    },
+    {
+      "id": "L_knee",
+      "x": 850,
+      "y": 850,
+      "parent": "L_root",
+      "group": "lower"
+    },
+    {
+      "id": "L_ankle",
+      "x": 655,
+      "y": 900,
+      "parent": "L_knee",
+      "group": "lower"
+    },
+    {
+      "id": "L_foot",
+      "x": 600,
+      "y": 895,
+      "parent": "L_ankle",
+      "group": "lower"
+    },
+    {
+      "id": "L_toe_1",
+      "x": 545,
+      "y": 865,
+      "parent": "L_foot",
+      "group": "lower"
+    },
+    {
+      "id": "L_claw_1",
+      "x": 490,
+      "y": 840,
+      "parent": "L_toe_1",
+      "group": "lower"
+    },
+    {
+      "id": "L_toe_2",
+      "x": 530,
+      "y": 900,
+      "parent": "L_foot",
+      "group": "lower"
+    },
+    {
+      "id": "L_claw_2",
+      "x": 475,
+      "y": 905,
+      "parent": "L_toe_2",
+      "group": "lower"
+    },
+    {
+      "id": "L_toe_3",
+      "x": 550,
+      "y": 933,
+      "parent": "L_foot",
+      "group": "lower"
+    },
+    {
+      "id": "L_claw_3",
+      "x": 500,
+      "y": 960,
+      "parent": "L_toe_3",
+      "group": "lower"
+    }
+  ]
+}

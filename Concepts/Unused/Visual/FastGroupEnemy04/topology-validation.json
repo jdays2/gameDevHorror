@@ -1,0 +1,238 @@
+{
+  "task": "TASK-005",
+  "kind": "Structural validation of the CONTROL LAYER, not approval of generated artwork",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Equal paired bone lengths root->knee",
+      "pass": true,
+      "details": {
+        "U": 200.00000000000006,
+        "L": 199.99999999999997,
+        "targetPx": 200
+      }
+    },
+    {
+      "name": "Equal paired bone lengths knee->ankle",
+      "pass": true,
+      "details": {
+        "U": 205.00000000000006,
+        "L": 205.00000000000003,
+        "targetPx": 205
+      }
+    },
+    {
+      "name": "Equal paired bone lengths ankle->foot",
+      "pass": true,
+      "details": {
+        "U": 54.999999999999986,
+        "L": 55.00000000000004,
+        "targetPx": 55
+      }
+    },
+    {
+      "name": "U muscle block counts",
+      "pass": true,
+      "details": {
+        "girdle": 1,
+        "proximal": 2,
+        "distal": 2,
+        "palm": 3
+      }
+    },
+    {
+      "name": "U three digit tendons",
+      "pass": true
+    },
+    {
+      "name": "U no degenerate groups",
+      "pass": true
+    },
+    {
+      "name": "L muscle block counts",
+      "pass": true,
+      "details": {
+        "girdle": 1,
+        "proximal": 2,
+        "distal": 2,
+        "palm": 3
+      }
+    },
+    {
+      "name": "L three digit tendons",
+      "pass": true
+    },
+    {
+      "name": "L no degenerate groups",
+      "pass": true
+    },
+    {
+      "name": "Paired template M01",
+      "pass": true,
+      "details": {
+        "sameTemplate": true,
+        "origin": {
+          "body": true
+        },
+        "insertion": {
+          "bone": "prox",
+          "t": 0.3,
+          "offset": 0
+        },
+        "width": 39
+      }
+    },
+    {
+      "name": "Paired template M02",
+      "pass": true,
+      "details": {
+        "sameTemplate": true,
+        "origin": {
+          "bone": "prox",
+          "t": 0.04,
+          "offset": 18
+        },
+        "insertion": {
+          "bone": "dist",
+          "t": 0.14,
+          "offset": 8
+        },
+        "width": 24
+      }
+    },
+    {
+      "name": "Paired template M03",
+      "pass": true,
+      "details": {
+        "sameTemplate": true,
+        "origin": {
+          "bone": "prox",
+          "t": 0.04,
+          "offset": -18
+        },
+        "insertion": {
+          "bone": "dist",
+          "t": 0.06,
+          "offset": -12
+        },
+        "width": 23
+      }
+    },
+    {
+      "name": "Paired template M04",
+      "pass": true,
+      "details": {
+        "sameTemplate": true,
+        "origin": {
+          "bone": "prox",
+          "t": 0.88,
+          "offset": 13
+        },
+        "insertion": {
+          "bone": "palm",
+          "t": 0.85,
+          "offset": 5
+        },
+        "width": 17
+      }
+    },
+    {
+      "name": "Paired template M05",
+      "pass": true,
+      "details": {
+        "sameTemplate": true,
+        "origin": {
+          "bone": "prox",
+          "t": 0.92,
+          "offset": -12
+        },
+        "insertion": {
+          "bone": "palm",
+          "t": 0.75,
+          "offset": -5
+        },
+        "width": 15
+      }
+    },
+    {
+      "name": "Paired template M06",
+      "pass": true,
+      "details": {
+        "sameTemplate": true,
+        "origin": {
+          "bone": "palm",
+          "t": 0.55,
+          "offset": 0
+        },
+        "insertion": {
+          "toe": 1
+        },
+        "width": 6
+      }
+    },
+    {
+      "name": "Paired template M07",
+      "pass": true,
+      "details": {
+        "sameTemplate": true,
+        "origin": {
+          "bone": "palm",
+          "t": 0.55,
+          "offset": 0
+        },
+        "insertion": {
+          "toe": 2
+        },
+        "width": 6
+      }
+    },
+    {
+      "name": "Paired template M08",
+      "pass": true,
+      "details": {
+        "sameTemplate": true,
+        "origin": {
+          "bone": "palm",
+          "t": 0.55,
+          "offset": 0
+        },
+        "insertion": {
+          "toe": 3
+        },
+        "width": 6
+      }
+    },
+    {
+      "name": "All skeleton links connected and acyclic",
+      "pass": true
+    },
+    {
+      "name": "Exactly two limb roots",
+      "pass": true
+    }
+  ],
+  "artReview": {
+    "v14": {
+      "approved": false,
+      "findings": [
+        "Lower distal chain and palm partly outside planned silhouette",
+        "U_M04 and L_M05 do not fit intended muscle envelope",
+        "Digit origins drift; visible muscle geography does not match same shared template"
+      ]
+    },
+    "v15": {
+      "approved": false,
+      "findings": [
+        "All six main bone centerlines lie inside silhouette; this alone passes an alpha test",
+        "U_M02 envelope coverage only 66.7%, U_M04 only 57.1%; the upper limb fails the muscle layer",
+        "Lower painted hinge still sits too far right; torso rear extends about100px beyond x1120 target",
+        "Reject as anatomy correction despite improved bone alpha coverage"
+      ]
+    }
+  },
+  "limitations": [
+    "The eight units are deliberately simplified functional muscle groups, not eight literal biological muscles.",
+    "No extraction of real muscle count from skin shading. Visual review of implied forms remains required.",
+    "No Unity rig, skin weights, moving-joint simulation or gait test was implemented."
+  ]
+}

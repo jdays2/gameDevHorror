@@ -19,6 +19,8 @@ Retain source authors/licenses, prompts or generation provenance and processing 
 
 ## Generated visual assets: natural irregularity
 
+For monster concepts and revisions, read the owner's anatomy workflow in `Docs/Guides/MONSTER_CONCEPT_WORKFLOW.md`, resolved from the Unity project root: concept, shared bones, muscle volumes, a separate numbered muscle-control layer, then skin and comparison. Corresponding limbs share counts, shape rules, fiber directions and attachments. Validate the control scheme and the artwork separately; a prompt or bone alpha coverage does not approve muscle anatomy. Preserve the separate overlays and report actual mismatches.
+
 For this project's generated props, materials and arrangements, avoid the sterile AI-catalogue look: every contour mechanically perfect, every item centered, every gap identical. Apply this requirement when writing prompts and reviewing outputs; a generic "not AI-looking" negative prompt is insufficient.
 
 - Specify plausible, restrained variation appropriate to the object: slightly uneven seams, wood grain and board widths, local rim irregularity, unequal packing gaps, or contents placed a little off-center/at different angles. Keep manufactured construction coherent; do not warp every straight edge or turn every circular object into an arbitrary blob.
