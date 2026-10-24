@@ -28,6 +28,82 @@ namespace EmergencyShift.Tests
         }
 
         [Test]
+        public void StartDelayBeginsAtFirstTriggerAndDoesNotRestartWhenItIsClearedOrRepeated()
+        {
+            var motor = new Motor();
+            var route = new ScriptedRouteModel(Settings(), new[] { Vector2.right }, .5f);
+            var controller = new ScriptedRouteController(route, motor);
+            controller.Step(10, Vector2.zero, false, true, true, Vector2.zero);
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingForTrigger));
+            controller.Step(.1f, Vector2.zero, true, true, true, Vector2.zero);
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingToStart));
+            Assert.That(route.ControlsActor, Is.True);
+            Assert.That(route.StartDelayRemaining, Is.EqualTo(.4f).Within(.001f));
+            Assert.That(route.Closure, Is.Zero, "Waiting is not a light reaction.");
+            Assert.That(motor.Follows, Is.Zero);
+            controller.Step(.1f, Vector2.zero, false, true, true, Vector2.zero);
+            controller.Step(.1f, Vector2.zero, true, true, true, Vector2.zero);
+            Assert.That(route.StartDelayRemaining, Is.EqualTo(.2f).Within(.001f));
+            Assert.That(motor.Velocity, Is.EqualTo(Vector2.zero));
+            controller.Step(.21f, Vector2.zero, false, true, true, Vector2.zero);
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.Moving));
+            Assert.That(motor.Follows, Is.EqualTo(1));
+            controller.Step(.02f, Vector2.right, true, true, true, Vector2.zero);
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.Completed));
+            Assert.That(new StartScriptedRouteCommand(route, true).Execute().Success, Is.False);
+        }
+
+        [Test]
+        public void StartDelayIsPersonalAndPrecedesTheSeparateReaction()
+        {
+            var settings = Settings(.3f);
+            var first = new ScriptedRouteModel(settings, new[] { Vector2.right }, .2f);
+            var second = new ScriptedRouteModel(settings, new[] { Vector2.right }, .7f);
+            new StartScriptedRouteCommand(first, true).Execute();
+            new StartScriptedRouteCommand(second, true).Execute();
+            first.Step(.21f, Vector2.zero, true);
+            second.Step(.21f, Vector2.zero, true);
+            Assert.That(first.State, Is.EqualTo(ScriptedRouteState.Reacting));
+            Assert.That(first.Closure, Is.Zero, "The start wait must not consume the reaction duration.");
+            Assert.That(second.State, Is.EqualTo(ScriptedRouteState.WaitingToStart));
+            Assert.That(second.StartDelayRemaining, Is.EqualTo(.49f).Within(.001f));
+            first.Step(.31f, Vector2.zero, true);
+            Assert.That(first.IsMoving, Is.True);
+            Assert.That(second.StartDelayRemaining, Is.EqualTo(.49f).Within(.001f));
+        }
+
+        [Test]
+        public void DeathDuringStartDelayAbortsAndStaggerPausesItsTimer()
+        {
+            var motor = new Motor();
+            var route = new ScriptedRouteModel(Settings(), new[] { Vector2.right }, .5f);
+            var controller = new ScriptedRouteController(route, motor);
+            controller.Step(.1f, Vector2.zero, true, true, true, Vector2.zero);
+            controller.Step(1, Vector2.zero, false, true, false, Vector2.left);
+            Assert.That(route.StartDelayRemaining, Is.EqualTo(.4f).Within(.001f));
+            Assert.That(motor.Velocity, Is.EqualTo(Vector2.left));
+            controller.Step(.1f, Vector2.zero, false, false, true, Vector2.zero);
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.Aborted));
+            Assert.That(route.ControlsActor, Is.False);
+            Assert.That(motor.Velocity, Is.EqualTo(Vector2.zero));
+            controller.Step(1, Vector2.zero, true, true, true, Vector2.zero);
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.Aborted));
+        }
+
+        [Test]
+        public void InvalidStartDelaysAreRejectedAndZeroKeepsImmediateStart()
+        {
+            foreach (float invalid in new[] { -1f, float.NaN, float.PositiveInfinity })
+            {
+                Assert.Throws<ArgumentOutOfRangeException>(() => new ScriptedRouteModel(Settings(), new[] { Vector2.right }, invalid));
+            }
+
+            var immediate = new ScriptedRouteModel(Settings(), new[] { Vector2.right }, 0);
+            new StartScriptedRouteCommand(immediate, true).Execute();
+            Assert.That(immediate.State, Is.EqualTo(ScriptedRouteState.Moving));
+        }
+
+        [Test]
         public void OrderedMarkersCompleteOnceAndReleaseOwnership()
         {
             var points = new[] { Vector2.right, Vector2.one };

@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 21.38,
+      "summary": {
+        "total": 5,
+        "passed": 4,
+        "failed": 1,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "EmergencyShift.Tests.ScriptedIntroSceneTests.DeathDuringTheRouteImmediatelyCancelsItAndCannotReviveTheActor",
+          "Status": "Passed",
+          "Duration": 1.5487681,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.ScriptedIntroSceneTests.FullDoorOpeningScattersAllFourOnceToTheirOwnPositionsWithoutLightOrAggro",
+          "Status": "Failed",
+          "Duration": 0.9274515,
+          "Message": "  An actor must remain still during its start delay.\r\n  Expected: less than 0.0199999996f\r\n  But was:  0.0452924557f\r\n",
+          "StackTrace": "at EmergencyShift.Tests.ScriptedIntroSceneTests+<FullDoorOpeningScattersAllFourOnceToTheirOwnPositionsWithoutLightOrAggro>d__11.MoveNext () [0x0033e] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\Assets\\EmergencyShift\\Tests\\PlayMode\\ScriptedIntroSceneTests.cs:237\r\nat UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@80f691d4262b\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:52\r\n"
+        },
+        {
+          "FullName": "EmergencyShift.Tests.ScriptedIntroSceneTests.LightCannotLaunchDoorGroupBeforeDoorOpens",
+          "Status": "Passed",
+          "Duration": 0.4788117,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.ScriptedIntroSceneTests.RealBeamStartsAuthoredRouteAndArrivalReturnsOrdinaryStalker",
+          "Status": "Passed",
+          "Duration": 9.2192119,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.ScriptedIntroSceneTests.TemporaryObstructionKeepsOwnershipThenRetriesTheRoute",
+          "Status": "Passed",
+          "Duration": 9.1557412,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

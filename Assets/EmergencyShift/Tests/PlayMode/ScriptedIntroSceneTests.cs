@@ -152,8 +152,8 @@ namespace EmergencyShift.Tests
             MovePlayer(Vector2.zero);
             yield return new WaitForSeconds(.1f);
             Assert.That(actor.HasAggro, Is.True, "Ordinary permanent aggression remains permanent.");
-            Directory.CreateDirectory("Docs/Validation/DoorScatter01");
-            File.WriteAllText("Docs/Validation/DoorScatter01/flashlight-route.json", JsonUtility.ToJson(new RouteReport
+            Directory.CreateDirectory("Docs/Validation/DoorScatterDelay01");
+            File.WriteAllText("Docs/Validation/DoorScatterDelay01/flashlight-route.json", JsonUtility.ToJson(new RouteReport
             {
                 route = route.EncounterId,
                 completed = true,
@@ -212,27 +212,67 @@ namespace EmergencyShift.Tests
                 "Opening intent/animation must not launch the group before the door is open.");
 
             var samples = new List<GroupSample>();
+            float openedAt = float.NaN;
+            float[] firstMovement = Enumerable.Repeat(float.NaN, group.Length).ToArray();
             float deadline = Time.time + 22;
             while (group.Any(value => value.ControlsActor) && Time.time < deadline)
             {
-                foreach (ScriptedStalkerRoute2D member in group)
+                if (float.IsNaN(openedAt) && route.TriggerDoor.IsOpen && !route.TriggerDoor.IsMoving)
                 {
+                    openedAt = Time.fixedTime;
+                }
+
+                for (int index = 0; index < group.Length; index++)
+                {
+                    ScriptedStalkerRoute2D member = group[index];
                     var stalker = member.GetComponent<ShadowStalker2D>();
+                    float distanceFromStart = Vector2.Distance(member.transform.position, starts[index]);
+                    if (float.IsNaN(firstMovement[index]) && distanceFromStart > .025f)
+                    {
+                        firstMovement[index] = Time.fixedTime;
+                    }
+
+                    if (member.State == ScriptedRouteState.WaitingToStart)
+                    {
+                        Assert.That(distanceFromStart, Is.LessThan(.02f), "An actor must remain still during its start delay.");
+                        Assert.That(member.ControlsActor, Is.True, "Start delay retains scripted ownership.");
+                        Assert.That(stalker.Closure, Is.Zero, "The delay is not a light recoil animation.");
+                    }
+
                     Assert.That(stalker.HasAggro, Is.False, member.EncounterId);
                     Assert.That(stalker.State, Is.Not.EqualTo(ShadowStalker2D.BehaviourState.Attacking));
                     Assert.That(stalker.EyeDamageProgress, Is.Zero, "Door opening must not create eye damage: " + member.EncounterId);
                     Assert.That(member.GetComponent<StalkerAudio2D>().PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.Zero,
                         "Door opening must not play an eye burn: " + member.EncounterId);
                     samples.Add(new GroupSample { id = member.EncounterId, x = member.transform.position.x,
-                        y = member.transform.position.y, point = member.PointIndex, state = member.State.ToString() });
+                        y = member.transform.position.y, point = member.PointIndex, state = member.State.ToString(), time = Time.fixedTime });
                 }
 
                 yield return new WaitForFixedUpdate();
             }
 
-            Directory.CreateDirectory("Docs/Validation/DoorScatter01");
-            File.WriteAllText("Docs/Validation/DoorScatter01/group-route.json", JsonUtility.ToJson(new GroupReport
-                { completed = group.All(value => value.State == ScriptedRouteState.Completed), samples = samples.ToArray() }, true));
+            int[] order = Enumerable.Range(0, group.Length).OrderBy(index => group[index].StartDelaySeconds).ToArray();
+            Assert.That(order.Select(index => group[index].StartDelaySeconds), Is.EqualTo(new[] { 0, .2f, .45f, .7f }),
+                "The authored four starts must have individual offsets.");
+            foreach (int index in order)
+            {
+                Assert.That(float.IsNaN(firstMovement[index]), Is.False, group[index].EncounterId);
+                Assert.That(firstMovement[index] - openedAt, Is.EqualTo(group[index].StartDelaySeconds).Within(.08f), group[index].EncounterId);
+            }
+
+            for (int index = 1; index < order.Length; index++)
+            {
+                Assert.That(firstMovement[order[index]] - firstMovement[order[index - 1]], Is.GreaterThan(.1f),
+                    "Each actor must visibly start after the previous one.");
+            }
+
+            Directory.CreateDirectory("Docs/Validation/DoorScatterDelay01");
+            File.WriteAllText("Docs/Validation/DoorScatterDelay01/group-route.json", JsonUtility.ToJson(new GroupReport
+            {
+                completed = group.All(value => value.State == ScriptedRouteState.Completed),
+                starts = order.Select(index => new StartSample { id = group[index].EncounterId, configuredDelay = group[index].StartDelaySeconds, actualDelay = firstMovement[index] - openedAt }).ToArray(),
+                samples = samples.ToArray()
+            }, true));
             foreach (ScriptedStalkerRoute2D member in group)
             {
                 Assert.That(member.State, Is.EqualTo(ScriptedRouteState.Completed), member.EncounterId);
@@ -329,12 +369,22 @@ namespace EmergencyShift.Tests
             public float y;
             public int point;
             public string state;
+            public float time;
+        }
+
+        [Serializable]
+        private sealed class StartSample
+        {
+            public string id;
+            public float configuredDelay;
+            public float actualDelay;
         }
 
         [Serializable]
         private sealed class GroupReport
         {
             public bool completed;
+            public StartSample[] starts;
             public GroupSample[] samples;
         }
 

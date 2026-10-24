@@ -20,6 +20,8 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
         private ScriptedRouteStartCondition startCondition;
         [SerializeField]
         private Door2D triggerDoor;
+        [SerializeField, Min(0), Tooltip("Seconds to wait after the first satisfied trigger, before reaction or movement.")]
+        private float startDelaySeconds;
         [SerializeField]
         private Transform[] routePoints;
         private ScriptedRouteControllerFactory factory;
@@ -30,6 +32,8 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
         public string EncounterId => encounterId;
         public ScriptedRouteStartCondition StartCondition => startCondition;
         public Door2D TriggerDoor => triggerDoor;
+        public float StartDelaySeconds => startDelaySeconds;
+        public float StartDelayRemaining => controller?.Model.StartDelayRemaining ?? 0;
         public ScriptedRouteState State => controller != null ? controller.Model.State : ScriptedRouteState.WaitingForTrigger;
         public int PointIndex => controller?.Model.PointIndex ?? 0;
         public bool ControlsActor => controller != null && controller.Model.ControlsActor;
@@ -101,7 +105,7 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
                     settings.BlockedSeconds, settings.ProgressDistance);
             }
 
-            controller = factory.Create(settings, points, new EnemyBrainMotor2D(motor));
+            controller = factory.Create(settings, points, new EnemyBrainMotor2D(motor), startDelaySeconds);
             var claim = new SetStalkerScriptedControlCommand(actor, true).Execute();
             if (!claim.Success)
             {

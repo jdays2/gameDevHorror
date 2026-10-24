@@ -8,6 +8,7 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
     {
         private readonly ScriptedRouteSettings settings;
         private readonly Vector2[] points;
+        private float startDelayLeft;
         private float reactionLeft;
         private float stalled;
         private float bestDistance = float.PositiveInfinity;
@@ -18,6 +19,7 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
         public bool IsMoving => State == ScriptedRouteState.Moving || State == ScriptedRouteState.Blocked;
         public Vector2 Goal => points[Mathf.Min(PointIndex, points.Length - 1)];
         public float Speed => settings.Speed;
+        public float StartDelayRemaining => State == ScriptedRouteState.WaitingToStart ? startDelayLeft : 0;
         public float Closure
         {
             get
@@ -33,9 +35,15 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
 
         public event Action<ScriptedRouteState> StateChanged;
 
-        public ScriptedRouteModel(ScriptedRouteSettings settings, Vector2[] route)
+        public ScriptedRouteModel(ScriptedRouteSettings settings, Vector2[] route, float startDelaySeconds = 0)
         {
             this.settings = settings ?? throw new ArgumentNullException(nameof(settings));
+            if (!float.IsFinite(startDelaySeconds) || startDelaySeconds < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startDelaySeconds), "Start delay must be finite and nonnegative.");
+            }
+
+            startDelayLeft = startDelaySeconds;
             if (route == null || route.Length == 0)
             {
                 throw new ArgumentException("A scripted route requires at least one point.", nameof(route));
@@ -55,6 +63,17 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
         {
             if (!float.IsFinite(deltaTime) || deltaTime <= 0 || !Finite(position) || !ControlsActor || !canMove)
             {
+                return;
+            }
+
+            if (State == ScriptedRouteState.WaitingToStart)
+            {
+                startDelayLeft = Mathf.Max(0, startDelayLeft - deltaTime);
+                if (startDelayLeft == 0)
+                {
+                    BeginReaction();
+                }
+
                 return;
             }
 
@@ -101,6 +120,17 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
         }
 
         internal void Start()
+        {
+            if (startDelayLeft > 0)
+            {
+                Enter(ScriptedRouteState.WaitingToStart);
+                return;
+            }
+
+            BeginReaction();
+        }
+
+        private void BeginReaction()
         {
             reactionLeft = settings.ReactionSeconds;
             Enter(reactionLeft > 0 ? ScriptedRouteState.Reacting : ScriptedRouteState.Moving);

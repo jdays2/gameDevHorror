@@ -7,6 +7,7 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
         Moving,
         Blocked,
         Completed,
-        Aborted
+        Aborted,
+        WaitingToStart
     }
 }

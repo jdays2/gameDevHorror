@@ -16,6 +16,7 @@ namespace EmergencyShift.Editor
                 EditorGUILayout.TextField("Current step", route.State.ToString());
                 EditorGUILayout.IntField("Next point", route.PointIndex + 1);
                 EditorGUILayout.Toggle("Controls actor", route.ControlsActor);
+                EditorGUILayout.FloatField("Start delay remaining", route.StartDelayRemaining);
             }
         }
 
