@@ -23,7 +23,7 @@ Start with the project's AGENTS, Docs/SPEC, Docs/ART_DIRECTION and the affected 
 - Geometry, movement collision, light blocking, rendering order and decoration are separate concerns. A blood mark must not block a doorway; grouping order in Hierarchy does not determine SpriteRenderer sort order. Preserve the accepted floor/blood/remains/actor relationship and read the actual renderer/material conventions before changing them.
 - Scene-specific dependencies are explicit through level composition. Prefab assets must not capture scene-player/UI/door references. Stable IDs and definition IDs are different; duplicates created while authoring must not duplicate persistent entity IDs in a saved scene.
 - Development objects are clearly separated, absent from release unless intentionally instrumented, and do not own production gameplay. No temporary probe, duplicate camera/AudioListener/EventSystem or loose test object is left in an authored production scene.
-- Finish with a compact report of groups/prefabs/variants changed, permitted overrides, verification and any remaining manual visual assessment. Update the affected level guide and prefab catalogue, not a new parallel source of truth.
+- Before completing any task that added or moved scene objects, apply the project's AGENTS "Итоговый контроль авторинга" to the actual affected Editor scene, including inactive objects. Fix wrong ownership and incomplete assemblies before handoff; a compile or old report is insufficient. Use [review](references/review.md), report the scene/groups, preservation and exceptions; when no scene objects changed, explicitly mark the gate not applicable. Update the affected level guide/catalogue without a parallel source of truth.
 
 ## Existing scenes versus new scenes
 

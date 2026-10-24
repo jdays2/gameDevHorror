@@ -157,8 +157,8 @@ public static class DoorScatterAuthoring
 
         SceneManager.SetActiveScene(scene);
         Transform root = scene.GetRootGameObjects().Single(value => value.name == "20_LevelGameplay").transform;
-        Transform introLane = root.Find("IntroLightRetreat_Route/01_CorridorExit");
-        Transform nearSplit = root.Find("StartDoorScatter_Routes/HallStalker01_Route/02_Passage");
+        Transform introLane = root.Find("StartDoorScatter/Routes/Intro_Route/01_CorridorExit");
+        Transform nearSplit = root.Find("StartDoorScatter/Routes/Hall01_Route/02_Passage");
         Undo.RecordObjects(new UnityEngine.Object[] { introLane, nearSplit }, "Separate corridor approach lanes");
         introLane.position = new Vector3(14, -.75f, 0);
         nearSplit.position = new Vector3(17.6f, .7f, 0);

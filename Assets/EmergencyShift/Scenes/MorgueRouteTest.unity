@@ -169,7 +169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5633924313200576225, guid: 8b62e32f1ed84f9499bad35cdb263f05, type: 3}
       propertyPath: m_Name
-      value: Shotgun reserve - 12 shells
+      value: ShotgunReserve_Left_12Shells
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3710,7 +3710,7 @@ GameObject:
   m_Component:
   - component: {fileID: 118063602}
   m_Layer: 0
-  m_Name: IntroLightRetreat_Route
+  m_Name: Intro_Route
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3724,7 +3724,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118063601}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3734,7 +3734,7 @@ Transform:
   - {fileID: 1969957883}
   - {fileID: 456859340}
   - {fileID: 1346377032}
-  m_Father: {fileID: 526376212}
+  m_Father: {fileID: 313038707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &135942146
 PrefabInstance:
@@ -4272,9 +4272,6 @@ Transform:
   - {fileID: 616194280}
   - {fileID: 627732574}
   - {fileID: 1657520627}
-  - {fileID: 1006571245}
-  - {fileID: 1234430365}
-  - {fileID: 1373916049}
   - {fileID: 1993100365}
   m_Father: {fileID: 517814242}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6127,7 +6124,6 @@ Transform:
   m_Children:
   - {fileID: 1444080600}
   - {fileID: 1489211619}
-  - {fileID: 730942994}
   m_Father: {fileID: 210797575}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &222898160
@@ -6827,7 +6823,7 @@ PrefabInstance:
       objectReference: {fileID: 572771695}
     - target: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
       propertyPath: m_Name
-      value: Intro Stalker - flashlight retreat
+      value: Stalker_Intro
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8516,7 +8512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 313038707}
   m_Layer: 0
-  m_Name: StartDoorScatter_Routes
+  m_Name: Routes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8530,7 +8526,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313038706}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8538,7 +8534,8 @@ Transform:
   - {fileID: 1440380983}
   - {fileID: 333771376}
   - {fileID: 1492094730}
-  m_Father: {fileID: 526376212}
+  - {fileID: 118063602}
+  m_Father: {fileID: 936377309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &316326285
 PrefabInstance:
@@ -8846,7 +8843,7 @@ GameObject:
   m_Component:
   - component: {fileID: 333771376}
   m_Layer: 0
-  m_Name: HallStalker02_Route
+  m_Name: Hall02_Route
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13288,8 +13285,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 118063602}
-  - {fileID: 313038707}
+  - {fileID: 936377309}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &529822033
@@ -19373,7 +19369,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730942994}
   m_Layer: 0
-  m_Name: Gameplay
+  m_Name: Actors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19387,13 +19383,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730942993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 226256975}
-  m_Father: {fileID: 222541831}
+  - {fileID: 1006571245}
+  - {fileID: 1234430365}
+  - {fileID: 1373916049}
+  m_Father: {fileID: 936377309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &735104987
 PrefabInstance:
@@ -28406,7 +28405,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 144181543}
+    m_TransformParent: {fileID: 730942994}
     m_Modifications:
     - target: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28462,7 +28461,7 @@ PrefabInstance:
       objectReference: {fileID: 572771695}
     - target: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
       propertyPath: m_Name
-      value: Additional Stalker 01
+      value: Stalker_Hall01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38050,7 +38049,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 144181543}
+    m_TransformParent: {fileID: 730942994}
     m_Modifications:
     - target: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -38106,7 +38105,7 @@ PrefabInstance:
       objectReference: {fileID: 572771695}
     - target: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
       propertyPath: m_Name
-      value: Additional Stalker 02
+      value: Stalker_Hall02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40001,7 +40000,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 144181543}
+    m_TransformParent: {fileID: 730942994}
     m_Modifications:
     - target: {fileID: 140272274637841013, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40057,7 +40056,7 @@ PrefabInstance:
       objectReference: {fileID: 572771695}
     - target: {fileID: 6801567498149846478, guid: fe931b93a52da5b4c8e285bbf1b8962f, type: 3}
       propertyPath: m_Name
-      value: Additional Stalker 03
+      value: Stalker_Hall03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42833,7 +42832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1440380983}
   m_Layer: 0
-  m_Name: HallStalker01_Route
+  m_Name: Hall01_Route
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44680,7 +44679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1492094730}
   m_Layer: 0
-  m_Name: HallStalker03_Route
+  m_Name: Hall03_Route
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47574,7 +47573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5633924313200576225, guid: 8b62e32f1ed84f9499bad35cdb263f05, type: 3}
       propertyPath: m_Name
-      value: Shotgun reserve - 12 shells
+      value: ShotgunReserve_Right_12Shells
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -60022,3 +60021,36 @@ SceneRoots:
   - {fileID: 1805588941}
   - {fileID: 210797575}
   - {fileID: 526376212}
+--- !u!1 &936377308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 936377309}
+  m_Layer: 0
+  m_Name: StartDoorScatter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &936377309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936377308}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 730942994}
+  - {fileID: 313038707}
+  m_Father: {fileID: 526376212}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
