@@ -108,10 +108,7 @@ namespace EmergencyShift.Editor
         }
 
         [MenuItem("Emergency Shift/UI/Use main menu as Play entry")]
-        public static void UseMenuEntry() => EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
-
-        [MenuItem("Emergency Shift/UI/Use current scene as Play entry")]
-        public static void UseCurrentEntry() => EditorSceneManager.playModeStartScene = null;
+        public static void UseMenuEntry() => MainMenuEntryPolicy.RestoreEntry();
 
         [MenuItem("Emergency Shift/UI/Apply minimal monochrome style")]
         public static void ApplyMinimalStyle()
@@ -364,6 +361,7 @@ namespace EmergencyShift.Editor
                             list.childControlHeight = true;
                             list.childControlWidth = true;
                             list.childForceExpandHeight = false;
+                            MainMenuCatalogAuthoring.ConfigureRows(rows);
                             Assign(view, "sceneRows", rows);
                             Assign(view, "rowPrefab", row.GetComponent<MenuSceneRowView>());
                             break;

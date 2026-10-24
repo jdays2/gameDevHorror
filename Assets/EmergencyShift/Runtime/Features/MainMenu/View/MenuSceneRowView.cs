@@ -10,6 +10,7 @@ namespace EmergencyShift.Features.MainMenu.View
         [SerializeField] private UnityEngine.UI.Text label;
         private Action<string> launch;
         private string sceneId;
+        public string SceneId => sceneId;
 
         public void Bind(MenuScene scene, bool available, Action<string> onLaunch)
         {

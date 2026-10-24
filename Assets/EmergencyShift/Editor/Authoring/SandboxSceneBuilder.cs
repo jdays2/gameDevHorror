@@ -143,16 +143,7 @@ namespace EmergencyShift.Editor
                     throw new IOException("Could not save sandbox scene.");
                 }
 
-                var builds = new List<EditorBuildSettingsScene> { new EditorBuildSettingsScene(ScenePath, true) };
-                foreach (var entry in EditorBuildSettings.scenes)
-                {
-                    if (entry.path != ScenePath && !entry.path.EndsWith("/FirstShift.unity"))
-                    {
-                        builds.Add(entry);
-                    }
-                }
-
-                EditorBuildSettings.scenes = builds.ToArray();
+                MainMenuSceneRegistry.Synchronize();
                 AssetDatabase.SaveAssets();
                 for (int i = SceneManager.sceneCount - 1; i >= 0; i--)
                 {

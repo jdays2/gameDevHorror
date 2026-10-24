@@ -1,6 +1,6 @@
 # Главное меню
 
-`Scenes/MainMenu.unity` — временная стартовая сцена для тестирования. Последнее указание владельца: чёрно-белый вид, без фонарика, декоративных линий и пояснений под пунктами. Финальная художественная приёмка не выполнена.
+`Scenes/MainMenu.unity` — постоянная универсальная точка входа для всех чатов проекта: обычный Play в Editor и сборка начинаются с неё. Чёрно-белый вид, без фонарика, декоративных линий и пояснений под пунктами.
 
 `Prefabs/UI/MainMenu/MainMenuUI.prefab` редактируется в Unity. Barlow Condensed Bold — узкий заголовок, Noto Sans Medium — текст с кириллицей; TTF и OFL находятся в `Fonts/MainMenu`. Цвета — `Data/UI/MainMenu/NightShift.asset`. CanvasScaler Expand сохраняет доступность элементов при смене пропорций окна.
 
@@ -10,7 +10,7 @@
 - Сохранения показывают пустое состояние: у доступных тестовых сцен сохранений пока нет. Демонстрационные слоты не выдаются за настоящие.
 - Настройки: общая громкость через AudioListener.volume и fullscreen Player. PlayerPrefs `EmergencyShift.MenuPreferences.v1` хранит версионированные значения. В Editor fullscreen сохраняется для Player без изменения окна редактора.
 - Выход подтверждается и ждёт затухания музыки. В Editor возвращает домой, не закрывая редактор.
-- Выбор сцены и F8 доступны в Editor/development build. `Data/UI/MainMenu/SceneCatalog.asset` содержит стабильный ID, название и полный путь каждой сцены. Добавить сцену можно данными и включением в Build Settings; отсутствующая в сборке строка блокируется. Сейчас включены MechanicsSandbox, MorgueRouteTest, BasementPrototype и LevelTemplate.
+- Выбор сцены и F8 доступны в Editor/development build. MainMenuSceneRegistry автоматически включает все сохранённые сцены под `Assets/EmergencyShift/Scenes`, включая ArtReview и будущую первую реальную сцену. Сейчас это 11 сцен кроме самого меню. Существующие ID/названия сохраняются; новым назначается GUID сцены как ID и имя файла как начальное название. Каталог прокручивается колесом/перетаскиванием и удерживает выбранную клавиатурой строку в видимой области.
 - Мышь/клавиатура используют один активный пункт, выделенный светлым текстом. Esc возвращает домой. F8 в игре возвращает в меню, а в меню открывает каталог.
 
 ## Владельцы и освобождение
@@ -27,4 +27,8 @@ LoadSceneAsync Single выполняется после отпускания п�
 
 ## Авторинг
 
-`AgentScripts/InstallMainMenu.cs` создаёт новые ресурсы через MainMenuAuthoring и подключает существующую музыку через MainMenuAudioAuthoring. Генерация поверх существующего меню запрещена: редактировать prefab/конфиги. Команды `Emergency Shift/UI/Use main menu as Play entry` и `Use current scene as Play entry` переключают редакторскую точку запуска. В Build Settings меню первое. `MainMenuTests` проверяют команды, каталог, настройки и disposal; `AgentScripts/VerifyMainMenu.cs` — реальные кнопки/переходы, Esc/F8, музыку и возврат из паузы с восстановлением временных InputSettings.
+`AgentScripts/InstallMainMenu.cs` создаёт новые ресурсы через MainMenuAuthoring и подключает музыку через MainMenuAudioAuthoring. Генерация поверх существующего меню запрещена: редактировать prefab/конфиги. MainMenuEntryPolicy восстанавливает playModeStartScene при загрузке Editor, возвращении в Edit Mode и перед обычным Play. Build Settings синхронизируются с каталогом, меню всегда первое. Автоматические Test Runner fixtures сохраняют собственный вход; после завершения тестов вход меню восстанавливается.
+
+Другим чатам запрещено сбрасывать/подменять playModeStartScene для ручных проб. Запустить Play, затем вызвать `MainMenuEditorNavigation.LaunchScene("Assets/EmergencyShift/Scenes/MorgueRouteTest.unity")` через run_script: helper нажимает соответствующую кнопку меню и ожидает завершения перехода. F8 возвращает домой. Включение будущего реального уровня в каталог не означает автоматической смены маршрута «Новой игры» или реализации кампании.
+
+`MainMenuTests` проверяют команды/настройки, MainMenuEntryTests — восстановление входа и добавление/удаление сцены без потери ID. MainMenuFixtureIsolationTests проверяет изоляцию PlayMode Test Runner.

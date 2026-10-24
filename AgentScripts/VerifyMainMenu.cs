@@ -107,12 +107,7 @@ public static class VerifyMainMenu
             }
             else
             {
-                view.Request(MenuPage.Scenes);
-                string title = Enumerable.Range(0, catalog.Count).Select(index => catalog.At(index))
-                    .Single(scene => scene.Path == path).Title;
-                Text row = view.transform.Find("Scenes/Content/Catalog rows").GetComponentsInChildren<Text>()
-                    .Single(text => text.text == title);
-                row.GetComponentInParent<Button>().onClick.Invoke();
+                await MainMenuEditorNavigation.LaunchScene(path);
             }
             await WaitScene(path);
             if (UnityEngine.Object.FindObjectsByType<MainMenuPresenter>().Length != 0)
