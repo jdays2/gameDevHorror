@@ -12,12 +12,12 @@ namespace EmergencyShift.Tests
     public sealed class ScriptedRouteTests
     {
         [Test]
-        public void OnlyFirstRealLightContactStartsTheRoute()
+        public void OnlyFirstSatisfiedConditionStartsTheRoute()
         {
             var route = Route(reaction: .12f);
             Assert.That(new StartScriptedRouteCommand(route, false).Execute().Success, Is.False);
             route.Step(1, Vector2.zero, true);
-            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingForLight));
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingForTrigger));
             Assert.That(new StartScriptedRouteCommand(route, true).Execute().Success, Is.True);
             route.Step(.02f, Vector2.zero, true);
             Assert.That(route.State, Is.EqualTo(ScriptedRouteState.Reacting));
@@ -73,7 +73,7 @@ namespace EmergencyShift.Tests
         }
 
         [Test]
-        public void ControllerKeepsMovingAfterLightIsSwitchedOffAndStopsOnArrival()
+        public void ControllerKeepsMovingAfterTriggerIsClearedAndStopsOnArrival()
         {
             var motor = new Motor();
             var route = Route();
@@ -106,7 +106,7 @@ namespace EmergencyShift.Tests
             new StartScriptedRouteCommand(first, true).Execute();
             first.Step(.02f, Vector2.right, true);
             Assert.That(first.State, Is.EqualTo(ScriptedRouteState.Completed));
-            Assert.That(second.State, Is.EqualTo(ScriptedRouteState.WaitingForLight));
+            Assert.That(second.State, Is.EqualTo(ScriptedRouteState.WaitingForTrigger));
         }
 
         [Test]

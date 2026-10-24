@@ -17,13 +17,20 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
         [SerializeField]
         private ScriptedRouteProfile profile;
         [SerializeField]
+        private ScriptedRouteStartCondition startCondition;
+        [SerializeField]
+        private Door2D triggerDoor;
+        [SerializeField]
         private Transform[] routePoints;
         private ScriptedRouteControllerFactory factory;
         private ScriptedRouteController controller;
         private StalkerModel actor;
+        private bool doorOpened;
 
         public string EncounterId => encounterId;
-        public ScriptedRouteState State => controller != null ? controller.Model.State : ScriptedRouteState.WaitingForLight;
+        public ScriptedRouteStartCondition StartCondition => startCondition;
+        public Door2D TriggerDoor => triggerDoor;
+        public ScriptedRouteState State => controller != null ? controller.Model.State : ScriptedRouteState.WaitingForTrigger;
         public int PointIndex => controller?.Model.PointIndex ?? 0;
         public bool ControlsActor => controller != null && controller.Model.ControlsActor;
         public float Closure => controller?.Model.Closure ?? 0;
@@ -57,6 +64,13 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
                 throw new InvalidOperationException("Scripted Stalker requires level composition, ID, profile and route points: " + name);
             }
 
+            if (!Enum.IsDefined(typeof(ScriptedRouteStartCondition), startCondition) ||
+                (startCondition == ScriptedRouteStartCondition.DoorOpened &&
+                (triggerDoor == null || triggerDoor.gameObject.scene != gameObject.scene)))
+            {
+                throw new InvalidOperationException("Scripted route requires a valid start condition and local trigger door: " + encounterId);
+            }
+
             var points = new Vector2[routePoints.Length];
             var shape = GetComponent<CircleCollider2D>();
             float radius = shape.radius * Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.y));
@@ -80,6 +94,11 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
             }
 
             controller.Model.StateChanged += OnStateChanged;
+            if (startCondition == ScriptedRouteStartCondition.DoorOpened)
+            {
+                triggerDoor.MotionStopped += OnDoorMotionStopped;
+                doorOpened = triggerDoor.IsOpen && !triggerDoor.IsMoving;
+            }
         }
 
         public bool TryStep(StalkerObservation frame)
@@ -96,7 +115,16 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
             }
 
             Exposed = frame.Exposed;
-            controller.Step(frame.DeltaTime, frame.Position, frame.Exposed, frame.TargetReady && frame.TargetAlive,
+            actor.Step(frame);
+            bool startSatisfied = frame.Exposed;
+            if (startCondition == ScriptedRouteStartCondition.DoorOpened)
+            {
+                // Also handles an initially open door whose Awake ran after the actor's.
+                doorOpened |= triggerDoor != null && triggerDoor.IsOpen && !triggerDoor.IsMoving;
+                startSatisfied = doorOpened;
+            }
+
+            controller.Step(frame.DeltaTime, frame.Position, startSatisfied, frame.TargetReady && frame.TargetAlive,
                 !actor.IsStaggered, actor.StaggerVelocity);
             if (!controller.Model.ControlsActor)
             {
@@ -122,6 +150,10 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
             }
 
             controller.Model.StateChanged -= OnStateChanged;
+            if (triggerDoor != null)
+            {
+                triggerDoor.MotionStopped -= OnDoorMotionStopped;
+            }
             if (actor.IsAlive && actor.IsScripted)
             {
                 new SetStalkerScriptedControlCommand(actor, false).Execute();
@@ -132,6 +164,8 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
         }
 
         private void OnDestroy() => Dispose();
+
+        private void OnDoorMotionStopped(bool open) => doorOpened |= open;
 
         private void OnStateChanged(ScriptedRouteState state)
         {

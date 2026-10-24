@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace EmergencyShift.Features.ScriptedEncounters.Config
 {
-    [CreateAssetMenu(menuName = "Emergency Shift/Encounters/Scripted light retreat")]
+    [CreateAssetMenu(menuName = "Emergency Shift/Encounters/Scripted route")]
     public sealed class ScriptedRouteProfile : ScriptableObject
     {
         [SerializeField, Min(.1f)]

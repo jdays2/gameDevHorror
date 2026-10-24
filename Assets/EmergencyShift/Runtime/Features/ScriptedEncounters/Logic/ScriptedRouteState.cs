@@ -2,7 +2,7 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
 {
     public enum ScriptedRouteState
     {
-        WaitingForLight,
+        WaitingForTrigger,
         Reacting,
         Moving,
         Blocked,

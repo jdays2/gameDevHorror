@@ -12,7 +12,7 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
         private float stalled;
         private float bestDistance = float.PositiveInfinity;
 
-        public ScriptedRouteState State { get; private set; } = ScriptedRouteState.WaitingForLight;
+        public ScriptedRouteState State { get; private set; } = ScriptedRouteState.WaitingForTrigger;
         public int PointIndex { get; private set; }
         public bool ControlsActor => State != ScriptedRouteState.Completed && State != ScriptedRouteState.Aborted;
         public bool IsMoving => State == ScriptedRouteState.Moving || State == ScriptedRouteState.Blocked;

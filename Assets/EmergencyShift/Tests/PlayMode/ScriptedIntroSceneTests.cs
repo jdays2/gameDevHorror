@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using EmergencyShift.Features.ScriptedEncounters.Logic;
 using EmergencyShift.Features.ScriptedEncounters.View;
 using NUnit.Framework;
@@ -21,6 +22,7 @@ namespace EmergencyShift.Tests
         private ScriptedStalkerRoute2D route;
         private ShadowStalker2D actor;
         private Rigidbody2D playerBody;
+        private ScriptedStalkerRoute2D[] group;
 
         [UnitySetUp]
         public IEnumerator Setup()
@@ -36,6 +38,8 @@ namespace EmergencyShift.Tests
                 route = route != null ? route : root.GetComponentInChildren<ScriptedStalkerRoute2D>(true);
             }
 
+            group = scene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<ScriptedStalkerRoute2D>(true)).ToArray();
+            route = group.Single(value => value.EncounterId == "morgue-intro-light-retreat");
             Assert.That(route, Is.Not.Null);
             Assert.That(context, Is.Not.Null);
             actor = route.GetComponent<ShadowStalker2D>();
@@ -80,14 +84,18 @@ namespace EmergencyShift.Tests
         [UnityTest]
         public IEnumerator RealBeamStartsAuthoredRouteAndArrivalReturnsOrdinaryStalker()
         {
-            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingForLight));
+            // Exercise the reusable flashlight condition on a runtime instance only.
+            var fields = new UnityEditor.SerializedObject(route);
+            fields.FindProperty("startCondition").enumValueIndex = (int)ScriptedRouteStartCondition.Flashlight;
+            fields.ApplyModifiedPropertiesWithoutUndo();
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingForTrigger));
             Assert.That(actor.HasAggro, Is.False);
             context.Flashlight.AimAt(actor.transform.position);
             context.Flashlight.SetPower(true);
             yield return new WaitForSeconds(.12f);
-            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingForLight), "The closed starting door must block the trigger.");
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingForTrigger), "The closed starting door must block the trigger.");
             context.Flashlight.SetPower(false);
-            MovePlayer(new Vector2(5.4f, 1.3f));
+            MovePlayer(new Vector2(5.5f, .8f));
             yield return new WaitForSeconds(.1f);
             Assert.That(actor.HasAggro, Is.False, "Proximity alone cannot start combat during the intro.");
             actor.ApplyBulletHit(1, actor.transform.position, Vector2.right);
@@ -97,7 +105,7 @@ namespace EmergencyShift.Tests
             context.Flashlight.SetPower(true);
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
-            Assert.That(route.State, Is.Not.EqualTo(ScriptedRouteState.WaitingForLight));
+            Assert.That(route.State, Is.Not.EqualTo(ScriptedRouteState.WaitingForTrigger));
             Assert.That(actor.HasAggro, Is.False);
             context.Flashlight.SetPower(false);
             MovePlayer(Vector2.zero);
@@ -139,8 +147,8 @@ namespace EmergencyShift.Tests
             MovePlayer(Vector2.zero);
             yield return new WaitForSeconds(.1f);
             Assert.That(actor.HasAggro, Is.True, "Ordinary permanent aggression remains permanent.");
-            Directory.CreateDirectory("Docs/Validation/IntroEncounter01");
-            File.WriteAllText("Docs/Validation/IntroEncounter01/live-route.json", JsonUtility.ToJson(new RouteReport
+            Directory.CreateDirectory("Docs/Validation/DoorScatter01");
+            File.WriteAllText("Docs/Validation/DoorScatter01/flashlight-route.json", JsonUtility.ToJson(new RouteReport
             {
                 route = route.EncounterId,
                 completed = true,
@@ -149,6 +157,96 @@ namespace EmergencyShift.Tests
                 normalAggroAfterArrival = actor.HasAggro,
                 samples = samples.ToArray()
             }, true));
+        }
+
+        [UnityTest]
+        public IEnumerator LightCannotLaunchDoorGroupBeforeDoorOpens()
+        {
+            foreach (ScriptedStalkerRoute2D member in group)
+            {
+                member.gameObject.SetActive(true);
+            }
+
+            MovePlayer(new Vector2(8.7f, 1.05f));
+            context.Flashlight.AimAt(actor.transform.position);
+            context.Flashlight.SetPower(true);
+            yield return new WaitForSeconds(.3f);
+            Assert.That(group.Any(value => value.Exposed), Is.True, "The beam must really reach the group for this check.");
+            foreach (ScriptedStalkerRoute2D member in group)
+            {
+                Assert.That(member.State, Is.EqualTo(ScriptedRouteState.WaitingForTrigger));
+                Assert.That(member.GetComponent<ShadowStalker2D>().HasAggro, Is.False);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator FullDoorOpeningScattersAllFourOnceToTheirOwnPositionsWithoutLightOrAggro()
+        {
+            Assert.That(group.Length, Is.EqualTo(4));
+            Vector2[] starts = group.Select(value => (Vector2)value.transform.position).ToArray();
+            foreach (ScriptedStalkerRoute2D member in group)
+            {
+                member.gameObject.SetActive(true);
+                Assert.That(member.StartCondition, Is.EqualTo(ScriptedRouteStartCondition.DoorOpened));
+                Assert.That(member.TriggerDoor, Is.SameAs(route.TriggerDoor));
+            }
+
+            yield return new WaitForSeconds(.15f);
+            for (int index = 0; index < group.Length; index++)
+            {
+                Assert.That(group[index].State, Is.EqualTo(ScriptedRouteState.WaitingForTrigger));
+                Assert.That(Vector2.Distance(group[index].transform.position, starts[index]), Is.LessThan(.02f));
+            }
+
+            context.Flashlight.SetPower(false);
+            MovePlayer(Vector2.zero);
+            route.TriggerDoor.Toggle();
+            Assert.That(route.TriggerDoor.IsMoving, Is.True);
+            yield return new WaitForFixedUpdate();
+            Assert.That(group.All(value => value.State == ScriptedRouteState.WaitingForTrigger), Is.True,
+                "Opening intent/animation must not launch the group before the door is open.");
+
+            var samples = new List<GroupSample>();
+            float deadline = Time.time + 22;
+            while (group.Any(value => value.ControlsActor) && Time.time < deadline)
+            {
+                foreach (ScriptedStalkerRoute2D member in group)
+                {
+                    var stalker = member.GetComponent<ShadowStalker2D>();
+                    Assert.That(stalker.HasAggro, Is.False, member.EncounterId);
+                    Assert.That(stalker.State, Is.Not.EqualTo(ShadowStalker2D.BehaviourState.Attacking));
+                    Assert.That(stalker.EyeDamageProgress, Is.Zero, "Door opening must not create eye damage: " + member.EncounterId);
+                    Assert.That(member.GetComponent<StalkerAudio2D>().PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.Zero,
+                        "Door opening must not play an eye burn: " + member.EncounterId);
+                    samples.Add(new GroupSample { id = member.EncounterId, x = member.transform.position.x,
+                        y = member.transform.position.y, point = member.PointIndex, state = member.State.ToString() });
+                }
+
+                yield return new WaitForFixedUpdate();
+            }
+
+            Directory.CreateDirectory("Docs/Validation/DoorScatter01");
+            File.WriteAllText("Docs/Validation/DoorScatter01/group-route.json", JsonUtility.ToJson(new GroupReport
+                { completed = group.All(value => value.State == ScriptedRouteState.Completed), samples = samples.ToArray() }, true));
+            foreach (ScriptedStalkerRoute2D member in group)
+            {
+                Assert.That(member.State, Is.EqualTo(ScriptedRouteState.Completed), member.EncounterId);
+                Vector2 goal = member.RoutePoints.Last().position;
+                Assert.That(Vector2.Distance(member.transform.position, goal), Is.LessThan(.2f), member.EncounterId);
+                Assert.That(member.GetComponent<EnemyPatrol2D>().PatrolEnabled, Is.False);
+            }
+
+            Vector2[] settled = group.Select(value => (Vector2)value.transform.position).ToArray();
+            route.TriggerDoor.Toggle();
+            yield return new WaitForSeconds(.4f);
+            route.TriggerDoor.Toggle();
+            yield return new WaitForSeconds(.5f);
+            for (int index = 0; index < group.Length; index++)
+            {
+                Assert.That(group[index].State, Is.EqualTo(ScriptedRouteState.Completed));
+                Assert.That(Vector2.Distance(group[index].transform.position, settled[index]), Is.LessThan(.01f));
+            }
+
         }
 
         [UnityTest]
@@ -210,13 +308,29 @@ namespace EmergencyShift.Tests
 
         private IEnumerator StartRoute()
         {
-            MovePlayer(new Vector2(5.4f, 1.3f));
-            context.Flashlight.AimAt(actor.transform.position);
-            context.Flashlight.SetPower(true);
-            yield return new WaitForSeconds(.2f);
-            Assert.That(route.State, Is.Not.EqualTo(ScriptedRouteState.WaitingForLight));
+            MovePlayer(Vector2.zero);
+            route.TriggerDoor.Toggle();
+            yield return new WaitForSeconds(.4f);
+            Assert.That(route.State, Is.Not.EqualTo(ScriptedRouteState.WaitingForTrigger));
             context.Flashlight.SetPower(false);
             MovePlayer(Vector2.zero);
+        }
+
+        [Serializable]
+        private sealed class GroupSample
+        {
+            public string id;
+            public float x;
+            public float y;
+            public int point;
+            public string state;
+        }
+
+        [Serializable]
+        private sealed class GroupReport
+        {
+            public bool completed;
+            public GroupSample[] samples;
         }
 
         private void MovePlayer(Vector2 position)

@@ -17,7 +17,7 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
             this.motor = motor ?? throw new ArgumentNullException(nameof(motor));
         }
 
-        public void Step(float deltaTime, Vector2 position, bool illuminated, bool targetAlive, bool canMove, Vector2 staggerVelocity)
+        public void Step(float deltaTime, Vector2 position, bool startSatisfied, bool targetAlive, bool canMove, Vector2 staggerVelocity)
         {
             if (!float.IsFinite(deltaTime) || deltaTime <= 0 || !float.IsFinite(position.sqrMagnitude) || !float.IsFinite(staggerVelocity.sqrMagnitude))
             {
@@ -32,10 +32,11 @@ namespace EmergencyShift.Features.ScriptedEncounters.Logic
                 return;
             }
 
-            if (illuminated && model.State == ScriptedRouteState.WaitingForLight)
+            if (startSatisfied && model.State == ScriptedRouteState.WaitingForTrigger)
             {
                 new StartScriptedRouteCommand(model, true).Execute();
             }
+
             model.Step(deltaTime, position, canMove);
             Vector2 velocity = Vector2.zero;
             if (!canMove && model.ControlsActor)
