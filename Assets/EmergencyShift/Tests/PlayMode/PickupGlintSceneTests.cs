@@ -85,11 +85,30 @@ namespace EmergencyShift.Tests
             Assert.That(firstGlint.IsShowing, Is.True);
             Time.timeScale = 1;
 
+            float deadline = Time.time + profile.Duration + .5f;
+            while (firstGlint.IsShowing && Time.time < deadline)
+            {
+                yield return null;
+            }
+            Assert.That(firstGlint.IsShowing, Is.False, "A held beam pauses between sweeps.");
+            deadline = Time.time + profile.RepeatPause + .5f;
+            while (!firstGlint.IsShowing && Time.time < deadline)
+            {
+                yield return null;
+            }
+            Assert.That(firstGlint.IsShowing, Is.True, "A held beam starts another sweep after the pause.");
+            light.AimAt(origin + Vector2.down * 3);
+            yield return null;
+            yield return null;
+            Assert.That(firstGlint.IsShowing, Is.False);
+            light.AimAt(origin + Vector2.up * 3);
+            yield return new WaitForSeconds(.12f);
+            Assert.That(firstGlint.IsShowing, Is.True, "A quick new aim restarts without a darkness cooldown.");
+
             light.SetPower(false);
             yield return null;
             yield return null;
             Assert.That(firstGlint.IsShowing, Is.False);
-            yield return new WaitForSeconds(.7f);
             light.SetPower(true);
             yield return new WaitForSeconds(.12f);
             Assert.That(firstGlint.IsShowing, Is.True);
@@ -105,7 +124,8 @@ namespace EmergencyShift.Tests
             Assert.That(secondGlint.IsShowing, Is.False);
             Object.Destroy(wall);
             light.SetPower(false);
-            yield return new WaitForSeconds(.7f);
+            yield return null;
+            yield return null;
             first.GetComponent<AccessCardPickup2D>().RestoreState(true);
             light.SetPower(true);
             yield return new WaitForSeconds(.12f);

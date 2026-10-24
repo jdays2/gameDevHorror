@@ -2,27 +2,30 @@ using System;
 
 namespace EmergencyShift.Features.Pickups.View
 {
-    /// <summary>Cosmetic instance timing. A held beam does not loop; darkness rearms discovery.</summary>
+    /// <summary>Cosmetic instance timing. Every beam entry restarts the sweep; a held beam repeats after a pause.</summary>
     public sealed class PickupGlintPulse
     {
-        private readonly float duration;
-        private readonly float rearmSeconds;
-        private float elapsed;
-        private float darkSeconds;
-        private bool wasVisible;
+        private readonly double duration;
+        private readonly double cycleDuration;
+        private double elapsed;
 
         public bool Active { get; private set; }
-        public float Progress => elapsed / duration;
+        public float Progress => (float)(Math.Min(elapsed, duration) / duration);
 
-        public PickupGlintPulse(float duration, float rearmSeconds)
+        public PickupGlintPulse(float duration, float repeatPause)
         {
-            if (!Finite(duration) || duration <= 0 || !Finite(rearmSeconds) || rearmSeconds < 0)
+            if (!Finite(duration) || duration <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(duration));
             }
 
+            if (!Finite(repeatPause) || repeatPause < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(repeatPause));
+            }
+
             this.duration = duration;
-            this.rearmSeconds = rearmSeconds;
+            cycleDuration = this.duration + repeatPause;
             Reset();
         }
 
@@ -35,32 +38,17 @@ namespace EmergencyShift.Features.Pickups.View
 
             if (!visible)
             {
-                Active = false;
-                wasVisible = false;
-                darkSeconds = Math.Min(rearmSeconds, darkSeconds + deltaTime);
+                Reset();
                 return;
             }
 
-            if (!wasVisible && darkSeconds >= rearmSeconds)
-            {
-                elapsed = 0;
-                Active = true;
-            }
-
-            wasVisible = true;
-            darkSeconds = 0;
-            if (Active)
-            {
-                elapsed = Math.Min(duration, elapsed + deltaTime);
-                Active = elapsed < duration;
-            }
+            elapsed = (elapsed + deltaTime) % cycleDuration;
+            Active = elapsed < duration;
         }
 
         public void Reset()
         {
             elapsed = 0;
-            darkSeconds = rearmSeconds;
-            wasVisible = false;
             Active = false;
         }
 

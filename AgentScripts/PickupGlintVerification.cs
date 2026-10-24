@@ -54,7 +54,7 @@ public static class PickupGlintVerification
             shaderErrors = ShaderUtil.GetShaderMessages(shader).Select(message => message.message).ToArray(),
             sceneSaved = false,
             duration = profile.Duration,
-            rearm = profile.RearmSeconds,
+            repeatPause = profile.RepeatPause,
             stripeWidth = profile.StripeWidth,
             intensity = profile.Intensity
         };

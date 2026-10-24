@@ -40,7 +40,7 @@ namespace EmergencyShift.Features.Pickups.View
             actor = recipient;
             owner = pickup;
             target = pickup as IPickupGlintTarget ?? throw new ArgumentException("Pickup must expose read-only acceptance.");
-            pulse = new PickupGlintPulse(profile.Duration, profile.RearmSeconds);
+            pulse = new PickupGlintPulse(profile.Duration, profile.RepeatPause);
         }
 
         private void Start()

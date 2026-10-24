@@ -7,30 +7,51 @@ namespace EmergencyShift.Tests
     public sealed class PickupGlintTests
     {
         [Test]
-        public void DiscoveryRunsOnceAndHoldingTheBeamDoesNotLoop()
+        public void HeldBeamRepeatsAfterTheConfiguredPause()
         {
-            var pulse = new PickupGlintPulse(.6f, .65f);
+            var pulse = new PickupGlintPulse(1, .8f);
+            pulse.Step(true, .25f);
+            Assert.That(pulse.Active, Is.True);
+            Assert.That(pulse.Progress, Is.EqualTo(.25f));
+            pulse.Step(true, .75f);
+            Assert.That(pulse.Active, Is.False);
+            Assert.That(pulse.Progress, Is.EqualTo(1));
+            pulse.Step(true, .7f);
+            Assert.That(pulse.Active, Is.False);
             pulse.Step(true, .2f);
             Assert.That(pulse.Active, Is.True);
-            Assert.That(pulse.Progress, Is.EqualTo(1f / 3).Within(.0001));
-            pulse.Step(true, .5f);
-            Assert.That(pulse.Active, Is.False);
-            pulse.Step(true, 10);
-            Assert.That(pulse.Active, Is.False);
+            Assert.That(pulse.Progress, Is.EqualTo(.1f).Within(.0001));
         }
 
         [Test]
-        public void LosingVisibilityHidesImmediatelyAndRequiresDarknessBeforeReentry()
+        public void EveryReentryRestartsImmediatelyEvenDuringTheRepeatPause()
         {
-            var pulse = new PickupGlintPulse(.6f, .65f);
-            pulse.Step(true, .1f);
-            pulse.Step(false, .1f);
+            var pulse = new PickupGlintPulse(1, .8f);
+            pulse.Step(true, .8f);
+            pulse.Step(false, .001f);
             Assert.That(pulse.Active, Is.False);
-            pulse.Step(true, .1f);
-            Assert.That(pulse.Active, Is.False);
-            pulse.Step(false, .7f);
             pulse.Step(true, .1f);
             Assert.That(pulse.Active, Is.True);
+            Assert.That(pulse.Progress, Is.EqualTo(.1f).Within(.0001));
+            pulse.Step(true, 1);
+            Assert.That(pulse.Active, Is.False);
+            pulse.Step(false, .001f);
+            pulse.Step(true, .1f);
+            Assert.That(pulse.Active, Is.True);
+            Assert.That(pulse.Progress, Is.EqualTo(.1f).Within(.0001));
+        }
+
+        [Test]
+        public void LongFramesKeepTheCycleBoundedAndZeroPauseIsSupported()
+        {
+            var pulse = new PickupGlintPulse(1, .5f);
+            pulse.Step(true, 6.25f);
+            Assert.That(pulse.Active, Is.True);
+            Assert.That(pulse.Progress, Is.EqualTo(.25f));
+            var continuous = new PickupGlintPulse(1, 0);
+            continuous.Step(true, 3.25f);
+            Assert.That(continuous.Active, Is.True);
+            Assert.That(continuous.Progress, Is.EqualTo(.25f));
         }
 
         [Test]
@@ -46,7 +67,7 @@ namespace EmergencyShift.Tests
             first.Reset();
             Assert.That(first.Active, Is.False);
             Assert.That(second.Active, Is.True);
-            Assert.That(second.Progress, Is.EqualTo(.5f));
+            Assert.That(second.Progress, Is.EqualTo(.5f).Within(.0001));
         }
 
         [Test]
