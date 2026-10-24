@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using EmergencyShift.Editor;
 using EmergencyShift.Features.Pickups.Config;
 using Newtonsoft.Json;
 using UnityEditor;
@@ -15,6 +14,7 @@ using UnityEngine;
 public static class PickupGlintTiming
 {
     private const string Folder = "Docs/Validation/PickupGlintTiming58";
+    private const string StartSceneFile = "work/PickupGlintTiming58-play-start.txt";
 
     public static object Apply()
     {
@@ -76,14 +76,22 @@ public static class PickupGlintTiming
     public static object SelectTestScene()
     {
         RequireIdleTestRunner();
-        MainMenuEntryPolicy.Synchronize();
-        return new { startScene = "MainMenu", sceneSaved = false };
+        string previous = AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene);
+        File.WriteAllText(StartSceneFile, previous);
+        EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/EmergencyShift/Scenes/MechanicsSandbox.unity");
+        return new { previous, sceneSaved = false };
     }
 
     public static object RestoreTestScene()
     {
-        MainMenuEntryPolicy.RestoreEntry();
-        return new { restored = "MainMenu", sceneSaved = false };
+        string previous = File.ReadAllText(StartSceneFile);
+        string current = AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene);
+        if (current != previous && current != "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity")
+        {
+            throw new InvalidOperationException("Another task changed the Play start scene; preserve its selection.");
+        }
+        EditorSceneManager.playModeStartScene = string.IsNullOrEmpty(previous) ? null : AssetDatabase.LoadAssetAtPath<SceneAsset>(previous);
+        return new { restored = previous, sceneSaved = false };
     }
 
     public static async Task<object> VerifyPlay()
@@ -93,7 +101,6 @@ public static class PickupGlintTiming
         {
             throw new InvalidOperationException("Verify in a disposable Play session.");
         }
-        await MainMenuEditorNavigation.LaunchScene("Assets/EmergencyShift/Scenes/MechanicsSandbox.unity");
         Type type = FindType("EmergencyShift.Tests.PickupGlintSceneTests");
         object fixture = Activator.CreateInstance(type);
         var scenario = (IEnumerator)type.GetMethod("BeamObstaclesInventoryChangesAndCleanupUseTheRealPickupPath").Invoke(fixture, null);

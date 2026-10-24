@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using EmergencyShift;
-using EmergencyShift.Editor;
 using EmergencyShift.Features.Pickups.View;
 using Newtonsoft.Json;
 using UnityEditor;
@@ -17,17 +16,21 @@ using Object = UnityEngine.Object;
 public static class PickupGlintReview
 {
     private const string Output = "Docs/Validation/PickupGlint57/";
+    private const string StartSceneFile = "work/PickupGlint57/original-play-start.txt";
 
     public static object SelectCaptureScene()
     {
-        MainMenuEntryPolicy.Synchronize();
-        return new { startScene = "MainMenu", sceneSaved = false };
+        string previous = AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene);
+        File.WriteAllText(StartSceneFile, previous);
+        EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>("Assets/EmergencyShift/Scenes/MorgueRouteTest.unity");
+        return new { previous, sceneSaved = false };
     }
 
     public static object RestoreCaptureScene()
     {
-        MainMenuEntryPolicy.RestoreEntry();
-        return new { restored = "MainMenu", sceneSaved = false };
+        string previous = File.ReadAllText(StartSceneFile);
+        EditorSceneManager.playModeStartScene = string.IsNullOrEmpty(previous) ? null : AssetDatabase.LoadAssetAtPath<SceneAsset>(previous);
+        return new { restored = previous, sceneSaved = false };
     }
 
     public static async Task<object> Capture()
@@ -37,7 +40,6 @@ public static class PickupGlintReview
             throw new InvalidOperationException("Capture requires a disposable Play session.");
         }
 
-        await MainMenuEditorNavigation.LaunchScene("Assets/EmergencyShift/Scenes/MorgueRouteTest.unity");
         GameObject[] roots = SceneManager.GetActiveScene().GetRootGameObjects();
         var context = roots.SelectMany(root => root.GetComponentsInChildren<LevelContext2D>(true)).Single();
         foreach (GameObject root in roots)

@@ -32,7 +32,7 @@
 - [ReviewDamageFeedbackVisuals.cs](../AgentScripts/ReviewDamageFeedbackVisuals.cs)
 - [ReviewEntranceBlood.cs](../AgentScripts/ReviewEntranceBlood.cs)
 - [VerifyMainMenu.cs](../AgentScripts/VerifyMainMenu.cs)
-- [VerifyUniversalMenu.cs](../AgentScripts/VerifyUniversalMenu.cs)
+- [VerifyMenuIsolation49.cs](../AgentScripts/VerifyMenuIsolation49.cs)
 
 ## Assets/EmergencyShift/Editor/Authoring
 
@@ -52,8 +52,6 @@
 - [MainMenuAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/MainMenuAuthoring.cs)
 - [MainMenuCatalogAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/MainMenuCatalogAuthoring.cs)
 - [MainMenuEditorNavigation.cs](../Assets/EmergencyShift/Editor/Authoring/MainMenuEditorNavigation.cs)
-- [MainMenuEntryPolicy.cs](../Assets/EmergencyShift/Editor/Authoring/MainMenuEntryPolicy.cs)
-- [MainMenuSceneRegistry.cs](../Assets/EmergencyShift/Editor/Authoring/MainMenuSceneRegistry.cs)
 - [NarrativeEnvironmentBuilder.cs](../Assets/EmergencyShift/Editor/Authoring/NarrativeEnvironmentBuilder.cs)
 - [PauseMenuAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs)
 - [PlayerRulesAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/PlayerRulesAuthoring.cs)
@@ -913,7 +911,6 @@
 - [LocalLampAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampAudioTests.cs)
 - [LocalLampSceneSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/LocalLampSceneSettingsTests.cs)
 - [MagazineWeaponTests.cs](../Assets/EmergencyShift/Tests/EditMode/MagazineWeaponTests.cs)
-- [MainMenuEntryTests.cs](../Assets/EmergencyShift/Tests/EditMode/MainMenuEntryTests.cs)
 - [MainMenuTests.cs](../Assets/EmergencyShift/Tests/EditMode/MainMenuTests.cs)
 - [ObjectiveProgressTests.cs](../Assets/EmergencyShift/Tests/EditMode/ObjectiveProgressTests.cs)
 - [PauseMenuEnvironmentTests.cs](../Assets/EmergencyShift/Tests/EditMode/PauseMenuEnvironmentTests.cs)
@@ -969,7 +966,6 @@
 - [InteractionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/InteractionSceneTests.cs)
 - [LevelObjectiveLifecycleTests.cs](../Assets/EmergencyShift/Tests/PlayMode/LevelObjectiveLifecycleTests.cs)
 - [LightScopeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/LightScopeSceneTests.cs)
-- [MainMenuFixtureIsolationTests.cs](../Assets/EmergencyShift/Tests/PlayMode/MainMenuFixtureIsolationTests.cs)
 - [PickupSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs)
 - [PlayerMovementSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs)
 - [ProbeCancellationTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProbeCancellationTests.cs)

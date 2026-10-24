@@ -103,12 +103,8 @@ namespace EmergencyShift.Editor
             }
 
             EditorBuildSettings.scenes = build.ToArray();
-            EditorSceneManager.playModeStartScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(ScenePath);
             MainMenuAudioAuthoring.Apply();
         }
-
-        [MenuItem("Emergency Shift/UI/Use main menu as Play entry")]
-        public static void UseMenuEntry() => MainMenuEntryPolicy.RestoreEntry();
 
         [MenuItem("Emergency Shift/UI/Apply minimal monochrome style")]
         public static void ApplyMinimalStyle()
@@ -218,7 +214,6 @@ namespace EmergencyShift.Editor
                 }
             }
             EditorBuildSettings.scenes = build.ToArray();
-            UseMenuEntry();
         }
 
         private static void InstallWorld(MainMenuCatalog catalog)
