@@ -1,0 +1,496 @@
+{
+  "captureUtc": "2026-10-24T10:28:32.7483417Z",
+  "source": "In-memory authored capture; no gameplay timing or player-test claims",
+  "scene": "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity",
+  "unsavedAtCapture": true,
+  "floorRectangles": 15,
+  "enemies": 27,
+  "enemyGroups": {
+    "R02_Arena": 8,
+    "R04_Hall": 3,
+    "R06_FlashlightRoom": 2,
+    "R07_ShotgunRoom": 10,
+    "C05_EastReturn": 2,
+    "R08_GreenCardRoom": 2
+  },
+  "doors": 11,
+  "lockedDoors": 6,
+  "graphEdges": [
+    {
+      "from": "S",
+      "to": "C0",
+      "requires": null
+    },
+    {
+      "from": "C0",
+      "to": "H",
+      "requires": null
+    },
+    {
+      "from": "H",
+      "to": "ER",
+      "requires": null
+    },
+    {
+      "from": "ER",
+      "to": "ED",
+      "requires": null
+    },
+    {
+      "from": "ED",
+      "to": "G",
+      "requires": null
+    },
+    {
+      "from": "G",
+      "to": "R",
+      "requires": null
+    },
+    {
+      "from": "R",
+      "to": "H",
+      "requires": "green"
+    },
+    {
+      "from": "H",
+      "to": "P",
+      "requires": "green"
+    },
+    {
+      "from": "P",
+      "to": "A",
+      "requires": null
+    },
+    {
+      "from": "A",
+      "to": "B",
+      "requires": null
+    },
+    {
+      "from": "B",
+      "to": "W",
+      "requires": null
+    },
+    {
+      "from": "W",
+      "to": "S",
+      "requires": "blue"
+    },
+    {
+      "from": "H",
+      "to": "O1",
+      "requires": "blue"
+    },
+    {
+      "from": "H",
+      "to": "O2",
+      "requires": "blue"
+    },
+    {
+      "from": "H",
+      "to": "O3",
+      "requires": "blue"
+    }
+  ],
+  "reachability": {
+    "noCards": [
+      "C0",
+      "ED",
+      "ER",
+      "G",
+      "H",
+      "R",
+      "S"
+    ],
+    "greenOnly": [
+      "A",
+      "B",
+      "C0",
+      "ED",
+      "ER",
+      "G",
+      "H",
+      "P",
+      "R",
+      "S",
+      "W"
+    ],
+    "greenAndBlue": [
+      "A",
+      "B",
+      "C0",
+      "ED",
+      "ER",
+      "G",
+      "H",
+      "O1",
+      "O2",
+      "O3",
+      "P",
+      "R",
+      "S",
+      "W"
+    ],
+    "withoutOptionalRooms": [
+      "A",
+      "B",
+      "C0",
+      "ED",
+      "ER",
+      "G",
+      "H",
+      "P",
+      "R",
+      "S",
+      "W"
+    ],
+    "greenReachableInitially": true,
+    "blueBlockedInitially": true,
+    "blueReachableWithGreen": true,
+    "optionalRoomsRequiredForBlue": false
+  },
+  "pickups": [
+    {
+      "path": "10_World/R02_Arena/Gameplay/Blue card - arena far end",
+      "xy": [
+        -6.25,
+        18.25
+      ],
+      "type": "AccessCardPickup2D",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.AccessCardPickup2D",
+        "cardId": "blue",
+        "displayName": "Синяя карта"
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "AccessCardPickup2D",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs"
+        }
+      ]
+    },
+    {
+      "path": "10_World/C01_WestCorridor/Gameplay/After-arena west return ammo - 8 cartridges",
+      "xy": [
+        -7.25,
+        5.35
+      ],
+      "type": "WeaponLootPickup",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.WeaponLootPickup",
+        "kind": 1,
+        "weaponDefinition": {
+          "fileID": 11400000,
+          "guid": "906a9ad751c453e4d99a054a5bd98078",
+          "type": 2
+        },
+        "cartridges": 8,
+        "pickupRange": 1.0
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "WeaponLootPickup",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs"
+        },
+        {
+          "field": "weaponDefinition",
+          "name": "PistolDefinition",
+          "type": "MagazineWeaponDefinition",
+          "asset": "Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset"
+        }
+      ]
+    },
+    {
+      "path": "10_World/R01_Morgue/Gameplay/Find flashlight in starting morgue",
+      "xy": [
+        1.5,
+        1.0
+      ],
+      "type": "FlashlightPickup2D",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "EmergencyShift.Runtime::EmergencyShift.FlashlightPickup2D"
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "FlashlightPickup2D",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/FlashlightPickup2D.cs"
+        }
+      ]
+    },
+    {
+      "path": "10_World/R03_Store/Gameplay/Pre-arena ammo - 16 cartridges",
+      "xy": [
+        13.9,
+        14.3
+      ],
+      "type": "WeaponLootPickup",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.WeaponLootPickup",
+        "kind": 1,
+        "weaponDefinition": {
+          "fileID": 11400000,
+          "guid": "906a9ad751c453e4d99a054a5bd98078",
+          "type": 2
+        },
+        "cartridges": 16,
+        "pickupRange": 1.0
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "WeaponLootPickup",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs"
+        },
+        {
+          "field": "weaponDefinition",
+          "name": "PistolDefinition",
+          "type": "MagazineWeaponDefinition",
+          "asset": "Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset"
+        }
+      ]
+    },
+    {
+      "path": "10_World/C03_NorthPassage/Gameplay/Pistol - 8 cartridges",
+      "xy": [
+        18.65,
+        8.75
+      ],
+      "type": "WeaponLootPickup",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.WeaponLootPickup",
+        "kind": 0,
+        "weaponDefinition": {
+          "fileID": 11400000,
+          "guid": "906a9ad751c453e4d99a054a5bd98078",
+          "type": 2
+        },
+        "cartridges": 8,
+        "pickupRange": 1.0
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "WeaponLootPickup",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs"
+        },
+        {
+          "field": "weaponDefinition",
+          "name": "PistolDefinition",
+          "type": "MagazineWeaponDefinition",
+          "asset": "Assets/EmergencyShift/Data/Weapons/PistolDefinition.asset"
+        }
+      ]
+    },
+    {
+      "path": "10_World/R04_Hall/Gameplay/Route pistol reserve - 8 cartridges",
+      "xy": [
+        31.9,
+        -3.5
+      ],
+      "type": "WeaponLootPickup",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.WeaponLootPickup",
+        "kind": 1,
+        "weaponDefinition": {
+          "instanceID": 0
+        },
+        "cartridges": 8,
+        "pickupRange": 1.0
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "WeaponLootPickup",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs"
+        }
+      ]
+    },
+    {
+      "path": "10_World/R06_FlashlightRoom/Gameplay/O1 flashlight lens - range +1",
+      "xy": [
+        19.3,
+        -7.2
+      ],
+      "type": "FlashlightUpgradePickup",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.FlashlightUpgradePickup",
+        "moduleId": "morgue-range-lens",
+        "displayName": "Модуль фонаря",
+        "rangeBonus": 1.0,
+        "angleBonus": 8.0,
+        "pickupRange": 1.0,
+        "repeatable": true
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "FlashlightUpgradePickup",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/FlashlightUpgradePickup.cs"
+        }
+      ]
+    },
+    {
+      "path": "10_World/R07_ShotgunRoom/Gameplay/Shotgun - 4 shells",
+      "xy": [
+        25.8,
+        -6.45
+      ],
+      "type": "WeaponLootPickup",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.WeaponLootPickup",
+        "kind": 0,
+        "weaponDefinition": {
+          "fileID": 11400000,
+          "guid": "c085bc32baeba864c8cb85aa639a1ffa",
+          "type": 2
+        },
+        "cartridges": 4,
+        "pickupRange": 1.0
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "WeaponLootPickup",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs"
+        },
+        {
+          "field": "weaponDefinition",
+          "name": "PumpShotgun",
+          "type": "PumpShotgunDefinition",
+          "asset": "Assets/EmergencyShift/Data/Weapons/PumpShotgun.asset"
+        }
+      ]
+    },
+    {
+      "path": "10_World/R07_ShotgunRoom/Gameplay/Shotgun reserve - 12 shells",
+      "xy": [
+        24.65,
+        -6.5
+      ],
+      "type": "WeaponLootPickup",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.WeaponLootPickup",
+        "kind": 1,
+        "weaponDefinition": {
+          "fileID": 11400000,
+          "guid": "c085bc32baeba864c8cb85aa639a1ffa",
+          "type": 2
+        },
+        "cartridges": 12,
+        "pickupRange": 1.0
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "WeaponLootPickup",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs"
+        },
+        {
+          "field": "weaponDefinition",
+          "name": "PumpShotgun",
+          "type": "PumpShotgunDefinition",
+          "asset": "Assets/EmergencyShift/Data/Weapons/PumpShotgun.asset"
+        }
+      ]
+    },
+    {
+      "path": "10_World/R07_ShotgunRoom/Gameplay/Shotgun reserve - 12 shells",
+      "xy": [
+        26.85,
+        -6.6
+      ],
+      "type": "WeaponLootPickup",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.WeaponLootPickup",
+        "kind": 1,
+        "weaponDefinition": {
+          "fileID": 11400000,
+          "guid": "c085bc32baeba864c8cb85aa639a1ffa",
+          "type": 2
+        },
+        "cartridges": 12,
+        "pickupRange": 1.0
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "WeaponLootPickup",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/WeaponLootPickup.cs"
+        },
+        {
+          "field": "weaponDefinition",
+          "name": "PumpShotgun",
+          "type": "PumpShotgunDefinition",
+          "asset": "Assets/EmergencyShift/Data/Weapons/PumpShotgun.asset"
+        }
+      ]
+    },
+    {
+      "path": "10_World/R08_GreenCardRoom/Gameplay/Green card - eastern loop",
+      "xy": [
+        43.25,
+        -14.662
+      ],
+      "type": "AccessCardPickup2D",
+      "fields": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "",
+        "m_EditorClassIdentifier": "Assembly-CSharp::EmergencyShift.AccessCardPickup2D",
+        "cardId": "green",
+        "displayName": "Зелёная карта"
+      },
+      "references": [
+        {
+          "field": "m_Script",
+          "name": "AccessCardPickup2D",
+          "type": "MonoScript",
+          "asset": "Assets/EmergencyShift/Runtime/World/Loot/AccessCardPickup2D.cs"
+        }
+      ]
+    }
+  ]
+}

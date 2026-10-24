@@ -30,7 +30,7 @@
 
 | Область | Документы | Когда читать |
 |---|---|---|
-| Песочница/маршрут | [SANDBOX](SANDBOX.md), [MorgueRouteTest](Guides/MORGUE_ROUTE_TEST.md), [разбор уровня](Levels/FIRST_LEVEL.md) | Расстановка, тестовая сцена и принятый маршрут |
+| Песочница/маршрут | [SANDBOX](SANDBOX.md), [MorgueRouteTest](Guides/MORGUE_ROUTE_TEST.md), [разбор уровня](Levels/FIRST_LEVEL.md), [TASK-001: оценка дизайна](Reports/Task001LevelDesign.md) | Расстановка, тестовая сцена, принятый маршрут и датированная оценка по сцене/коду |
 | Враги | [Сталкер](Enemies/STALKER.md), [Спящий](Enemies/SLEEPER.md), [разрыв](Enemies/RUPTURE_CONCEPT.md) | AI, световая реакция, смерть/останки |
 | Оружие | [Индекс](Weapons/README.md), [пистолет](Weapons/PISTOL.md), [дробовик](Weapons/SHOTGUN.md) | Правила оружия/баланс, не общий roadmap |
 | UI | [План UI](https://app.notion.com/p/3ff8d6dc06b681b3a635cf10e8836b1c?pvs=204), [HUD](UI/HUD_DESIGN_SYSTEM.md), [диалог](UI/DIALOGUE_DESIGN_SYSTEM.md) | Текущий внешний контракт и будущие экраны |
