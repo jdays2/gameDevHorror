@@ -49,6 +49,7 @@ namespace EmergencyShift.Features.Enemies.Logic
         public float RetreatSpeed => settings.RetreatSpeed;
         public float FearDistance => settings.FearDistance;
         public float ReactionDelay => settings.ReactionDelay;
+        public float RecoilSeconds => settings.RecoilSeconds;
         public float ReactionProgress => Mathf.Clamp01(exposure / settings.ReactionDelay);
         public float AttackProgress => State == StalkerState.Attacking ? Mathf.Clamp01(age / settings.AttackDuration) : 0;
         public float DeathTime => !IsAlive ? age : 0;
@@ -72,6 +73,12 @@ namespace EmergencyShift.Features.Enemies.Logic
             UpdateEyeBurn(closeLight, frame.DeltaTime);
             if (IsScripted && IsAlive)
             {
+                exposure = closeLight ? Mathf.Min(settings.ReactionDelay, exposure + frame.DeltaTime) : 0;
+                if (exposure >= settings.ReactionDelay)
+                {
+                    EnsureBurnCue();
+                }
+
                 return IsStaggered ? StalkerIntent.Stagger : StalkerIntent.DirectStop;
             }
 
@@ -109,6 +116,7 @@ namespace EmergencyShift.Features.Enemies.Logic
                 exposure += frame.DeltaTime;
                 if (exposure >= settings.ReactionDelay)
                 {
+                    EnsureBurnCue();
                     escape = (frame.Position - frame.LightOrigin).normalized;
                     if (escape.sqrMagnitude < .001f)
                     {
@@ -154,7 +162,7 @@ namespace EmergencyShift.Features.Enemies.Logic
 
                     return HasAggro ? StalkerIntent.Pursue : StalkerIntent.Stop;
                 case StalkerState.Recoiling:
-                    Closure = Mathf.Clamp01(age / settings.RecoilSeconds);
+                    Closure = LightReactionClosure(age / settings.RecoilSeconds);
                     if (age >= settings.RecoilSeconds)
                     {
                         Enter(StalkerState.Retreating);
@@ -188,6 +196,8 @@ namespace EmergencyShift.Features.Enemies.Logic
 
         public Vector2 PursuitCandidate(StalkerObservation frame) => frame.LineOfSight
             ? frame.TargetPosition - frame.LightDirection * settings.StandOffDistance : frame.TargetPosition;
+
+        public float LightReactionClosure(float progress) => Mathf.InverseLerp(settings.EyeOpenRecoilFraction, 1, progress);
 
         public bool ShouldFollow(StalkerObservation frame, Vector2 goal) =>
             Vector2.Distance(goal, frame.Position) > .15f &&
@@ -283,25 +293,32 @@ namespace EmergencyShift.Features.Enemies.Logic
                 return;
             }
 
-            if (EyeDamageProgress >= 1)
+            if (!burnActive && clock.Time >= nextBurnCue)
             {
-                return;
+                EnsureBurnCue();
             }
 
-            if (!burnActive)
+            if (!burnActive || EyeDamageProgress >= 1)
             {
-                burnActive = true;
-                if (clock.Time >= nextBurnCue)
-                {
-                    nextBurnCue = clock.Time + settings.EyeBurnCue;
-                    EyeBurnStarted?.Invoke();
-                }
+                return;
             }
 
             float previousDose = Mathf.Max(0, burnContact - settings.EyeBurnLead);
             burnContact += deltaTime;
             float dose = Mathf.Max(0, burnContact - settings.EyeBurnLead) - previousDose;
             EyeDamageProgress = Mathf.Clamp01(EyeDamageProgress + dose / settings.EyeBurnSeconds);
+        }
+
+        private void EnsureBurnCue()
+        {
+            if (burnActive)
+            {
+                return;
+            }
+
+            burnActive = true;
+            nextBurnCue = clock.Time + settings.EyeBurnCue;
+            EyeBurnStarted?.Invoke();
         }
 
         private void Enter(StalkerState state)

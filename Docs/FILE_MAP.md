@@ -31,6 +31,7 @@
 - [ReviewDamageAndRemains.cs](../AgentScripts/ReviewDamageAndRemains.cs)
 - [ReviewDamageFeedbackVisuals.cs](../AgentScripts/ReviewDamageFeedbackVisuals.cs)
 - [ReviewEntranceBlood.cs](../AgentScripts/ReviewEntranceBlood.cs)
+- [StalkerLightSequence.cs](../AgentScripts/StalkerLightSequence.cs)
 - [VerifyMainMenu.cs](../AgentScripts/VerifyMainMenu.cs)
 - [VerifyMenuIsolation49.cs](../AgentScripts/VerifyMenuIsolation49.cs)
 

@@ -7,13 +7,15 @@ namespace EmergencyShift.Features.Enemies.Config
     {
         public StalkerSettings(float pursuitSpeed, float retreatSpeed, float standOffDistance, float recoilSeconds,
             float retreatSeconds, float cooldownSeconds, float fearDistance, float reactionDelay, float attackDuration,
-            float staggerSeconds, float pushSpeed, float eyeBurnLead, float eyeBurnSeconds, float eyeBurnCue, float interruptDelay)
+            float staggerSeconds, float pushSpeed, float eyeBurnLead, float eyeBurnSeconds, float eyeBurnCue, float interruptDelay,
+            float eyeOpenRecoilFraction = .7f)
         {
             if (!Nonnegative(pursuitSpeed) || !Positive(retreatSpeed) || !Positive(standOffDistance) ||
                 !Positive(recoilSeconds) || !Positive(retreatSeconds) || !Nonnegative(cooldownSeconds) ||
                 !Positive(fearDistance) || !Positive(reactionDelay) || !Positive(attackDuration) ||
                 !Nonnegative(staggerSeconds) || !Nonnegative(pushSpeed) || !Nonnegative(eyeBurnLead) ||
-                !Nonnegative(eyeBurnSeconds) || !Nonnegative(eyeBurnCue) || !Nonnegative(interruptDelay))
+                !Nonnegative(eyeBurnSeconds) || !Nonnegative(eyeBurnCue) || !Nonnegative(interruptDelay) ||
+                !Nonnegative(eyeOpenRecoilFraction) || eyeOpenRecoilFraction >= 1)
             {
                 throw new ArgumentException("Invalid Stalker movement, reaction, attack or eye-burn settings.");
             }
@@ -33,6 +35,7 @@ namespace EmergencyShift.Features.Enemies.Config
             EyeBurnSeconds = Mathf.Max(.1f, eyeBurnSeconds);
             EyeBurnCue = Mathf.Max(.1f, eyeBurnCue);
             InterruptDelay = interruptDelay;
+            EyeOpenRecoilFraction = eyeOpenRecoilFraction;
         }
 
         public float PursuitSpeed { get; }
@@ -50,6 +53,7 @@ namespace EmergencyShift.Features.Enemies.Config
         public float EyeBurnSeconds { get; }
         public float EyeBurnCue { get; }
         public float InterruptDelay { get; }
+        public float EyeOpenRecoilFraction { get; }
         private static bool Nonnegative(float value) => float.IsFinite(value) && value >= 0;
         private static bool Positive(float value) => float.IsFinite(value) && value > 0;
     }

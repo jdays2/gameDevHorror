@@ -33,7 +33,15 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
         public ScriptedRouteState State => controller != null ? controller.Model.State : ScriptedRouteState.WaitingForTrigger;
         public int PointIndex => controller?.Model.PointIndex ?? 0;
         public bool ControlsActor => controller != null && controller.Model.ControlsActor;
-        public float Closure => controller?.Model.Closure ?? 0;
+        public float Closure
+        {
+            get
+            {
+                float closure = controller?.Model.Closure ?? 0;
+                return startCondition == ScriptedRouteStartCondition.Flashlight && actor != null
+                    ? actor.LightReactionClosure(closure) : closure;
+            }
+        }
         public bool Exposed { get; private set; }
         public Transform[] RoutePoints => routePoints != null ? (Transform[])routePoints.Clone() : Array.Empty<Transform>();
 
@@ -85,8 +93,15 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
                 points[index] = point.position;
             }
 
-            controller = factory.Create(profile.ToSettings(), points, new EnemyBrainMotor2D(motor));
             actor = stalker;
+            ScriptedRouteSettings settings = profile.ToSettings();
+            if (startCondition == ScriptedRouteStartCondition.Flashlight)
+            {
+                settings = new ScriptedRouteSettings(settings.Speed, actor.RecoilSeconds, settings.ArrivalDistance,
+                    settings.BlockedSeconds, settings.ProgressDistance);
+            }
+
+            controller = factory.Create(settings, points, new EnemyBrainMotor2D(motor));
             var claim = new SetStalkerScriptedControlCommand(actor, true).Execute();
             if (!claim.Success)
             {
@@ -116,7 +131,7 @@ namespace EmergencyShift.Features.ScriptedEncounters.View
 
             Exposed = frame.Exposed;
             actor.Step(frame);
-            bool startSatisfied = frame.Exposed;
+            bool startSatisfied = actor.ReactionProgress >= 1;
             if (startCondition == ScriptedRouteStartCondition.DoorOpened)
             {
                 // Also handles an initially open door whose Awake ran after the actor's.

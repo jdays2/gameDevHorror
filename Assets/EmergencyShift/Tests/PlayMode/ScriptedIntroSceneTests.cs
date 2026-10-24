@@ -85,9 +85,13 @@ namespace EmergencyShift.Tests
         public IEnumerator RealBeamStartsAuthoredRouteAndArrivalReturnsOrdinaryStalker()
         {
             // Exercise the reusable flashlight condition on a runtime instance only.
+            route.Dispose();
             var fields = new UnityEditor.SerializedObject(route);
             fields.FindProperty("startCondition").enumValueIndex = (int)ScriptedRouteStartCondition.Flashlight;
             fields.ApplyModifiedPropertiesWithoutUndo();
+            var controller = (EmergencyShift.Features.Enemies.Logic.StalkerController)typeof(ShadowStalker2D)
+                .GetField("controller", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(actor);
+            route.Initialize(controller.Model, actor.GetComponent<EnemyMotor2D>(), actor.BlockingGeometry.value | (1 << 9));
             Assert.That(route.State, Is.EqualTo(ScriptedRouteState.WaitingForTrigger));
             Assert.That(actor.HasAggro, Is.False);
             context.Flashlight.AimAt(actor.transform.position);
@@ -103,9 +107,10 @@ namespace EmergencyShift.Tests
             yield return new WaitForSeconds(.15f);
             context.Flashlight.AimAt(actor.transform.position);
             context.Flashlight.SetPower(true);
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForSeconds(actor.ReactionDelay + .08f);
             Assert.That(route.State, Is.Not.EqualTo(ScriptedRouteState.WaitingForTrigger));
+            Assert.That(route.State, Is.EqualTo(ScriptedRouteState.Reacting));
+            Assert.That(actor.GetComponent<StalkerAudio2D>().PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.GreaterThan(0));
             Assert.That(actor.HasAggro, Is.False);
             context.Flashlight.SetPower(false);
             MovePlayer(Vector2.zero);
@@ -141,7 +146,7 @@ namespace EmergencyShift.Tests
             context.Flashlight.AimAt(actor.transform.position);
             context.Flashlight.SetPower(true);
             yield return new WaitForSeconds(actor.ReactionDelay + .12f);
-            Assert.That(actor.Closure, Is.GreaterThan(0), "The ordinary delayed light reaction resumes.");
+            Assert.That(actor.State, Is.EqualTo(ShadowStalker2D.BehaviourState.Recoiling), "The ordinary delayed light reaction resumes.");
             Assert.That(route.State, Is.EqualTo(ScriptedRouteState.Completed), "Light cannot replay the one-shot route.");
             context.Flashlight.SetPower(false);
             MovePlayer(Vector2.zero);

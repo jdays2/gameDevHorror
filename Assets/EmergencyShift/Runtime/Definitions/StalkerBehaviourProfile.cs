@@ -12,7 +12,7 @@ namespace EmergencyShift
         [SerializeField, Min(.1f)]
         private float standOffDistance = 1.05f;
         [SerializeField, Min(.1f)]
-        private float recoilSeconds = .35f;
+        private float recoilSeconds = 1.4f;
         [SerializeField, Min(.1f)]
         private float retreatSeconds = 1.05f;
         [SerializeField, Min(.1f)]
@@ -21,11 +21,13 @@ namespace EmergencyShift
         private float lightFearDistance = 3.2f;
         [SerializeField, Min(.05f)]
         private float reactionDelay = .45f;
-        [Header("Eye burn — cumulative damage, separate from fear")]
+        [Header("Flashlight — sound, stopped burn, then retreat")]
+        [SerializeField, Range(0, .95f), Tooltip("Fraction of the stopped reaction with the eye visibly open.")]
+        private float eyeOpenRecoilFraction = .7f;
         [SerializeField, Min(.05f), Tooltip("Audible contact precedes any visible change, seconds.")]
         private float eyeBurnLeadSeconds = .14f;
         [SerializeField, Min(.1f), Tooltip("Illuminated seconds after the lead-in to reach full damage.")]
-        private float eyeBurnSeconds = 1.25f;
+        private float eyeBurnSeconds = 4;
         [SerializeField, Min(.1f)]
         private float eyeBurnCueInterval = 1.2f;
 
@@ -48,7 +50,7 @@ namespace EmergencyShift
             return new StalkerSettings(definition.PursuitSpeed, retreatSpeed, standOffDistance, recoilSeconds,
                 retreatSeconds, cooldownSeconds, lightFearDistance, reactionDelay, definition.AttackDuration,
                 definition.HitStaggerSeconds, definition.HitPushSpeed, eyeBurnLeadSeconds, eyeBurnSeconds,
-                eyeBurnCueInterval, interruptedAttackCooldown);
+                eyeBurnCueInterval, interruptedAttackCooldown, eyeOpenRecoilFraction);
         }
     }
 }

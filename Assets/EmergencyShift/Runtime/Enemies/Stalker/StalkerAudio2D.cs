@@ -391,7 +391,7 @@ namespace EmergencyShift
 
         private void OnEyeBurn()
         {
-            if (sounds == null || !MovementBudgetAvailable())
+            if (sounds == null)
             {
                 return;
             }
@@ -471,6 +471,11 @@ namespace EmergencyShift
         private void PlayMovement(Cue cue, float gain, Vector2 position)
         {
             if (movementSource == null || !Audible)
+            {
+                return;
+            }
+
+            if (cue != Cue.EyeBurn && movementCue == Cue.EyeBurn && movementSource.isPlaying)
             {
                 return;
             }
