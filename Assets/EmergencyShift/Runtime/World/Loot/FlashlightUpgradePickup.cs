@@ -1,6 +1,7 @@
 using System;
 using EmergencyShift.Features.Pickups;
 using EmergencyShift.Features.Pickups.Logic;
+using EmergencyShift.Features.Pickups.View;
 using UnityEngine;
 using Zenject;
 
@@ -9,7 +10,7 @@ namespace EmergencyShift
     [DisallowMultipleComponent]
     [RequireComponent(typeof(CircleCollider2D))]
     /// <summary>Proximity pickup; preserves repeatable IDs and upgrade caps.</summary>
-    public sealed class FlashlightUpgradePickup : MonoBehaviour, IAutoPickup
+    public sealed class FlashlightUpgradePickup : MonoBehaviour, IAutoPickup, IPickupGlintTarget
     {
         [SerializeField, Tooltip("ID вида модуля. При Repeatable каждая новая копия даёт ещё один бонус.")]
         private string moduleId = "range-lens-01";
@@ -26,6 +27,12 @@ namespace EmergencyShift
         private SingleUsePickupController controller;
         public string ModuleId => moduleId;
         public bool Collected => controller?.Collected ?? false;
+
+        public bool CanReceive(IPickupPreviewActor actor) => actor != null && controller != null &&
+            !Collected && isActiveAndEnabled && actor.CanAcceptModule(moduleId, rangeBonus, angleBonus, repeatable);
+
+        [Inject]
+        private void InstallPresentation(PickupGlintFactory presentation) => presentation.Attach(this);
 
         public void RestoreState(bool consumed)
         {

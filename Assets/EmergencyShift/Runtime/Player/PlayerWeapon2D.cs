@@ -228,6 +228,17 @@ namespace EmergencyShift
             return AddAmmo(cartridges, target) > 0;
         }
 
+        public bool CanReceiveWeapon(WeaponDefinition selected = null)
+        {
+            WeaponDefinition asset = selected != null ? selected : Definition;
+            return CanUse && asset != null && Inventory.CanAcquire(asset.ContentId, asset.SelectionSlot);
+        }
+
+        public bool CanReceiveAmmo(WeaponDefinition target = null)
+        {
+            return CanUse && Inventory.CanAddAmmo(target != null ? target.ContentId : null);
+        }
+
         public int AddAmmo(int cartridges, WeaponDefinition target = null)
         {
             if (!CanUse)

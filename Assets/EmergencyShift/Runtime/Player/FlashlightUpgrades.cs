@@ -67,6 +67,9 @@ namespace EmergencyShift
 
         public bool CanImprove(float rangeBonus, float angleBonus) => RequireController().CanImprove(new Vector2(rangeBonus, angleBonus));
 
+        public bool CanInstall(string id, float rangeBonus, float angleBonus, bool repeatable) =>
+            RequireController().CanInstall(id, new Vector2(rangeBonus, angleBonus), repeatable);
+
         public bool TryInstall(string moduleId, string displayName, float rangeBonus, float angleBonus,
             out string message, bool repeatable = false)
         {

@@ -11,7 +11,7 @@ using Zenject;
 namespace EmergencyShift
 {
     /// <summary>E selects a door; nearby loot collects automatically with queued HUD feedback.</summary>
-    public sealed class PlayerInteraction : MonoBehaviour, IInteractionEnvironment, IAccessCardRecipient, IFlashlightRecipient, IWeaponRecipient
+    public sealed class PlayerInteraction : MonoBehaviour, IInteractionEnvironment, IAccessCardRecipient, IFlashlightRecipient, IWeaponRecipient, IPickupPreviewActor
     {
         [SerializeField, Min(0.1f)]
         private float reach = 1.6f;
@@ -95,6 +95,13 @@ namespace EmergencyShift
         string IWeaponRecipient.WeaponName => this != null && weapon != null && weapon.Definition != null ? weapon.Definition.DisplayName : "Пистолет";
         int IWeaponRecipient.CollectAmmo(int amount, WeaponDefinition definition) => CanAct && weapon != null ? weapon.AddAmmo(amount, definition) : 0;
         bool IWeaponRecipient.CollectWeapon(int amount, WeaponDefinition definition) => CanAct && weapon != null && weapon.Acquire(amount, definition);
+
+        bool IPickupPreviewActor.CanAcceptFlashlight => CanAct && flashlight != null && !flashlight.IsOwned;
+        bool IPickupPreviewActor.CanAcceptCard(string id) => CanAct && cards != null && !string.IsNullOrWhiteSpace(id) && !cards.Has(id);
+        bool IPickupPreviewActor.CanAcceptWeapon(WeaponDefinition value) => CanAct && weapon != null && weapon.CanReceiveWeapon(value);
+        bool IPickupPreviewActor.CanAcceptAmmo(WeaponDefinition value) => CanAct && weapon != null && weapon.CanReceiveAmmo(value);
+        bool IPickupPreviewActor.CanAcceptModule(string id, float rangeBonus, float angleBonus, bool repeatable) =>
+            CanAct && upgrades != null && upgrades.CanInstall(id, rangeBonus, angleBonus, repeatable);
 
         public void Configure(Door2D[] sceneDoors) => doors = sceneDoors;
         private void Awake() => CacheComponents();

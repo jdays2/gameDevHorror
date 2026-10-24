@@ -48,21 +48,37 @@ namespace EmergencyShift
 
         internal CommandResult CheckAcquire(WeaponSettings definition)
         {
-            if (definition == null || owned.ContainsKey(definition.ContentId)
-                || (active != null && !active.Cycle.CanHolster))
+            return definition != null && CanAcquire(definition.ContentId, definition.SelectionSlot)
+                ? CommandResult.Ok() : CommandResult.Fail("The weapon is already owned or cannot be equipped.");
+        }
+
+        public bool CanAcquire(string contentId, int selectionSlot)
+        {
+            if (string.IsNullOrWhiteSpace(contentId) || owned.ContainsKey(contentId) || (active != null && !active.Cycle.CanHolster))
             {
-                return CommandResult.Fail("The weapon is already owned or cannot be equipped.");
+                return false;
             }
 
             foreach (OwnedWeapon entry in owned.Values)
             {
-                if (entry.Definition.SelectionSlot == definition.SelectionSlot)
+                if (entry.Definition.SelectionSlot == selectionSlot)
                 {
-                    return CommandResult.Fail("Two different weapons share a selection slot.");
+                    return false;
                 }
             }
 
-            return CommandResult.Ok();
+            return true;
+        }
+
+        public bool CanAddAmmo(string contentId = null)
+        {
+            OwnedWeapon entry = active;
+            if (contentId != null && !owned.TryGetValue(contentId, out entry))
+            {
+                return false;
+            }
+
+            return entry != null && entry.Cycle.TotalAmmo < entry.Definition.MaximumAmmo;
         }
 
         internal void ApplyAcquire(WeaponSettings definition, int cartridges)

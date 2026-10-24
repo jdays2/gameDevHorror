@@ -22,6 +22,13 @@ namespace EmergencyShift.Features.Flashlight.Logic
         public bool CanImprove(Vector2 bonus) => environment.CanUpgrade &&
             model.CanImprove(bonus, environment.Optics, environment.Limits).Success;
 
+        public bool CanInstall(string id, Vector2 bonus, bool repeatable)
+        {
+            var request = new FlashlightModuleRequest(id, bonus, repeatable, environment.Optics,
+                environment.Limits, environment.CanUpgrade);
+            return model.CanInstall(request).Success;
+        }
+
         public CommandResult TryInstall(string id, Vector2 bonus, bool repeatable)
         {
             var request = new FlashlightModuleRequest(id, bonus, repeatable, environment.Optics,

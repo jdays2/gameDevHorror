@@ -9,6 +9,21 @@ namespace EmergencyShift.Tests
     public sealed class FlashlightUpgradeModelTests
     {
         [Test]
+        public void PickupPreviewSharesInstallValidationWithoutApplyingOptics()
+        {
+            var environment = new OpticsPort();
+            FlashlightUpgradeController upgrades = Create(environment);
+            Assert.That(upgrades.CanInstall("lens", new Vector2(.6f, 6), false), Is.True);
+            Assert.That(upgrades.InstalledCount, Is.Zero);
+            Assert.That(environment.Updates, Is.Zero);
+            Assert.That(upgrades.TryInstall("lens", new Vector2(.6f, 6), false).Success, Is.True);
+            Assert.That(upgrades.CanInstall("lens", new Vector2(.6f, 6), false), Is.False);
+            Assert.That(upgrades.CanInstall("lens", new Vector2(.6f, 6), true), Is.True);
+            Assert.That(upgrades.TryInstall("maximum", new Vector2(100, 100), true).Success, Is.True);
+            Assert.That(upgrades.CanInstall("more", new Vector2(1, 1), true), Is.False);
+        }
+
+        [Test]
         public void RepeatableIdsAccumulateEveryInstallAndRoundTripWithoutLosingCount()
         {
             var environment = new OpticsPort();

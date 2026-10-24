@@ -1,6 +1,7 @@
 using System;
 using EmergencyShift.Features.Pickups;
 using EmergencyShift.Features.Pickups.Logic;
+using EmergencyShift.Features.Pickups.View;
 using UnityEngine;
 using Zenject;
 
@@ -8,11 +9,17 @@ namespace EmergencyShift
 {
     /// <summary>One scene-authored flashlight; proximity and wall checks use the common pickup contract.</summary>
     [DisallowMultipleComponent, RequireComponent(typeof(CircleCollider2D))]
-    public sealed class FlashlightPickup2D : MonoBehaviour, IAutoPickup
+    public sealed class FlashlightPickup2D : MonoBehaviour, IAutoPickup, IPickupGlintTarget
     {
         private SingleUsePickupController controller;
         public bool Collected => controller?.Collected ?? false;
         public Vector2 PickupPosition => transform.position;
+
+        public bool CanReceive(IPickupPreviewActor actor) => actor != null && controller != null &&
+            !Collected && isActiveAndEnabled && actor.CanAcceptFlashlight;
+
+        [Inject]
+        private void InstallPresentation(PickupGlintFactory presentation) => presentation.Attach(this);
 
         private void Awake()
         {

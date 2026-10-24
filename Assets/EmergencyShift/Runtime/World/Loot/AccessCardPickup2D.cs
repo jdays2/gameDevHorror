@@ -1,13 +1,14 @@
 using System;
 using EmergencyShift.Features.Pickups;
 using EmergencyShift.Features.Pickups.Logic;
+using EmergencyShift.Features.Pickups.View;
 using UnityEngine;
 using Zenject;
 
 namespace EmergencyShift
 {
     [DisallowMultipleComponent, RequireComponent(typeof(CircleCollider2D))]
-    public sealed class AccessCardPickup2D : MonoBehaviour, IAutoPickup
+    public sealed class AccessCardPickup2D : MonoBehaviour, IAutoPickup, IPickupGlintTarget
     {
         [SerializeField]
         private string cardId = "service";
@@ -16,6 +17,12 @@ namespace EmergencyShift
         public string CardId => cardId;
         private SingleUsePickupController controller;
         public bool Collected => controller?.Collected ?? false;
+
+        public bool CanReceive(IPickupPreviewActor actor) => actor != null && controller != null &&
+            !Collected && isActiveAndEnabled && actor.CanAcceptCard(cardId);
+
+        [Inject]
+        private void InstallPresentation(PickupGlintFactory presentation) => presentation.Attach(this);
 
         public void RestoreState(bool consumed)
         {

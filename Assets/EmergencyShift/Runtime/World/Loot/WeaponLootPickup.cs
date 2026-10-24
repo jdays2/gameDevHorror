@@ -1,6 +1,7 @@
 using System;
 using EmergencyShift.Features.Pickups;
 using EmergencyShift.Features.Pickups.Logic;
+using EmergencyShift.Features.Pickups.View;
 using UnityEngine;
 using Zenject;
 
@@ -8,7 +9,7 @@ namespace EmergencyShift
 {
     /// <summary>Automatic ground loot; full capacity leaves ammo on the floor.</summary>
     [DisallowMultipleComponent, RequireComponent(typeof(CircleCollider2D))]
-    public sealed class WeaponLootPickup : MonoBehaviour, IAutoPickup
+    public sealed class WeaponLootPickup : MonoBehaviour, IAutoPickup, IPickupGlintTarget
     {
         public enum LootKind
         {
@@ -28,6 +29,21 @@ namespace EmergencyShift
         public LootKind Kind => kind;
         public bool Collected => controller?.Collected ?? false;
         public int RemainingCartridges => controller?.Remaining ?? cartridges;
+
+        public bool CanReceive(IPickupPreviewActor actor)
+        {
+            if (actor == null || !isActiveAndEnabled || controller == null || Collected)
+            {
+                return false;
+            }
+
+            return kind == LootKind.Ammo
+                ? RemainingCartridges > 0 && actor.CanAcceptAmmo(weaponDefinition)
+                : actor.CanAcceptWeapon(weaponDefinition);
+        }
+
+        [Inject]
+        private void InstallPresentation(PickupGlintFactory presentation) => presentation.Attach(this);
 
         public void RestoreState(bool consumed, int remaining)
         {

@@ -44,6 +44,16 @@ WeaponLootModel/controller хранит remaining/consumed/busy и выполн�
 
 LocalLamp2D и ShotEffect2D участвуют в SceneRegistry своего LevelContext, без global Active. LocalIlluminationQuery2D проверяет также owner Scene; PlayerInteraction использует lamp+flash, AudioDirector — только lamp, как прежде. Источники регистрируются/удаляются на enable/disable, scope освобождает collections. Standalone preview светит без регистрации, gameplay queries требуют composition. Сцена A не видит свет B; источники не становятся defensive AI lights. Lamp power/clock и audio/VFX model/config перенос остаются открыты. [BUG-025 и native lifecycle](../Reports/LightScopes22.md).
 
+## Блик подбираемых предметов
+
+`Features/Pickups/View/PickupGlint2D` показывает короткую диагональную полосу по альфа-форме предмета. `PickupGlintFactory` уровня добавляет представление при DI-композиции оружия, патронов, карт, фонаря и модулей. Сцены и prefab для подключения не пересохраняются; у каждого экземпляра своё косметическое время. Исходные SpriteRenderer, материалы и механика автоподбора сохраняются. Новые виды подбора предоставляют `IPickupGlintTarget`, общий эффект не выбирает поведение по типам предметов.
+
+Блик начинается при попадании доступного предмета в прямой луч принадлежащего игроку включённого фонаря. Проверяется штатная `Illuminates` с blockingGeometry; дополнительно shader обрезает полосу по форме луча. Потолочные лампы, ambient и выстрел сами по себе эффект не включают. Аура, окружность и отдельный Light2D отсутствуют. Удержание луча не повторяет блик; повторное обнаружение возможно после выхода из луча на время rearm. Потеря видимости/доступности немедленно скрывает полосу, disable сбрасывает таймер, destroy удаляет принадлежащие View накладки. Пауза замораживает представление.
+
+Read-only `IPickupPreviewActor` проверяет возможность принять предмет независимо от короткого радиуса автоподбора: принадлежность и ёмкость нужного оружия, конфликт слотов, уже полученную карту/фонарь, точную командную проверку модуля с cap/repeatable. Проверки ничего не выдают и не расходуют; фактический подбор повторно исполняет прежнюю команду на прежней дистанции. Частично принятую коробку сохраняет прежняя WeaponLootModel.
+
+Общий readonly профиль — `Resources/PickupGlintProfile.asset`; материал и shader — `Materials/Effects/Pickups`. Начальная настройка для авторской оценки: duration .6 с, intensity .78, ширина .2 от диагонали, rearm .65 с; цвет серо-белый с лёгким тёплым оттенком. Проверки и игровой пример — [PickupGlint57](../Reports/PickupGlint57.md). Выбор концепта не заменяет художественную приёмку реализации.
+
 ## Питание ламп
 
 Питание лампы принадлежит личной LampPowerModel; SetPower выполняет команду, clock приходит через LevelContext/LampPowerInstaller. LocalLamp2D применяет внешний phase/position clock к прежним scene/profile/legacy формулам представления; scene tuning и bulb alpha/пороги сохраняются. Standalone preview остаётся явным bootstrap до injection и не добавляет себя в gameplay query. Rebind сохраняет питание, disable/re-enable — прежний режим. [Проверки и точная стоимость](../Reports/LampPower30.md). Legacy SceneSettings/config/style и lamp audio timing ещё требуют общего прохода.
