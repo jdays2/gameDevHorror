@@ -13,7 +13,7 @@ namespace EmergencyShift.Features.Enemies.Logic
             this.state = state;
         }
 
-        public CommandResult CanExecute() => model != null && model.ValidClock && StalkerModel.ValidateSnapshot(state).Success
+        public CommandResult CanExecute() => model != null && model.ValidClock && !model.IsScripted && StalkerModel.ValidateSnapshot(state).Success
             ? CommandResult.Ok() : CommandResult.Fail("Stalker action rejected: RestoreStalker.");
         public CommandResult Execute()
         {

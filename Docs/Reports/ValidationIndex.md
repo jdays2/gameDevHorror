@@ -6,6 +6,7 @@
 
 | Область | Свидетельства и границы |
 |---|---|
+| Сценарный отход первого Сталкера | [IntroEncounter01](IntroEncounter01.md): 11 новых model/command и 3 native route/lifecycle проверки; общая рабочая копия 1296/1296 EditMode, 87/87 PlayMode, обычная Windows64 success. 879 прежних scene blocks сохранены, 27 прежних врагов + 1 сценарный; checkpoint и дверь до фонаря не добавлялись, художественная приёмка ожидается. |
 | Блик доступного лута | [PickupGlint57](PickupGlint57.md): выбранная диагональная полоса в луче фонаря, общий scope/factory и readonly профиль; 1285/1285 EditMode, 84/84 PlayMode с препятствиями/инвентарём/частичным подбором, настоящие GameView и обычная Windows64. Сцены/исходные материалы сохранены; художественная оценка остаётся владельцу. |
 | Дым не светится в темноте, BUG-045 | [SmokeLighting56](SmokeLighting56.md): native до/после 2 режима × 6 условий света/тени; dark/shadow/no lights после дают нулевую разницу, lit/local PNG прежние. Реальная MorgueRouteTest с фонарём/ambient/blackout; 3/3 smoke PlayMode, native refs/shader/console чисты. Shader-only, карты/звук сохранены, новая full build/GPU приёмка не заявляется. |
 | Шесть вариантов B, приняты владельцем | [FleshVariants55](FleshVariants55.md): original B + пять производных, native шесть ссылок/PCM/preload, серия 24→24 без соседних повторов. Приёмка «я проверил, все норм» относится к аудиобанку; production C#/сцены прежние, новые полные test/build/GPU результаты не заявляются. |

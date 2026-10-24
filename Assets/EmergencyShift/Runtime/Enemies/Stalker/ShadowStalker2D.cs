@@ -2,6 +2,7 @@ using System;
 using EmergencyShift.Features.Enemies;
 using EmergencyShift.Features.Enemies.Logic;
 using EmergencyShift.Features.Enemies.View;
+using EmergencyShift.Features.ScriptedEncounters.View;
 using UnityEngine;
 using Zenject;
 
@@ -55,6 +56,7 @@ namespace EmergencyShift
         private StalkerAudio2D audioFeedback;
         private StalkerControllerFactory factory;
         private StalkerController controller;
+        private ScriptedStalkerRoute2D scriptedRoute;
         private static readonly Unity.Profiling.ProfilerMarker tickMarker = new Unity.Profiling.ProfilerMarker("EmergencyShift.Stalker.Tick");
 
         public event Action<BehaviourState> StateChanged;
@@ -64,7 +66,18 @@ namespace EmergencyShift
         public event Action<bool> AttackResolved;
         public EnemyDefinition Definition => definition;
         public StalkerBehaviourProfile BehaviourProfile => behaviourProfile;
-        public BehaviourState State => controller != null ? (BehaviourState)controller.Model.State : BehaviourState.Sneaking;
+        public BehaviourState State
+        {
+            get
+            {
+                if (scriptedRoute != null && scriptedRoute.ControlsActor && controller.Model.IsAlive)
+                {
+                    return scriptedRoute.PresentationState;
+                }
+
+                return controller != null ? (BehaviourState)controller.Model.State : BehaviourState.Sneaking;
+            }
+        }
         public override bool IsAlive => State != BehaviourState.Dead;
         public bool HasAggro => controller != null && controller.Model.HasAggro;
         public float EyeDamageProgress => controller?.Model.EyeDamageProgress ?? 0;
@@ -75,8 +88,8 @@ namespace EmergencyShift
         public Vector2 Home => controller?.Model.Home ?? Vector2.zero;
         public float HabitatRadius => habitatRadius;
         public bool IsStaggered => controller != null && controller.Model.IsStaggered;
-        public float Closure => controller?.Model.Closure ?? 0;
-        public bool Exposed => controller != null && controller.Model.Exposed;
+        public float Closure => scriptedRoute != null && scriptedRoute.ControlsActor ? scriptedRoute.Closure : controller?.Model.Closure ?? 0;
+        public bool Exposed => scriptedRoute != null && scriptedRoute.ControlsActor ? scriptedRoute.Exposed : controller != null && controller.Model.Exposed;
         public float MovementSpeed => body != null ? body.linearVelocity.magnitude : 0;
         public Vector2 Velocity => body != null ? body.linearVelocity : Vector2.zero;
         public Transform Player => player;
@@ -162,6 +175,21 @@ namespace EmergencyShift
             {
                 patrol.Initialize(Home);
             }
+
+            scriptedRoute = GetComponent<ScriptedStalkerRoute2D>();
+            if (scriptedRoute != null)
+            {
+                try
+                {
+                    scriptedRoute.Initialize(controller.Model, motor, blockingGeometry.value | (1 << 9));
+                    scriptedRoute.PresentationChanged += ForwardScriptedState;
+                }
+                catch
+                {
+                    enabled = false;
+                    throw;
+                }
+            }
         }
 
         private void FixedUpdate()
@@ -178,7 +206,10 @@ namespace EmergencyShift
                     flashlight != null ? flashlight.Direction : Vector2.zero,
                     ready, targetAlive, visible, exposed, patrol != null && patrol.PatrolEnabled,
                     attacksEnabled, habitatRadius, motor.Radius, blockingGeometry.value | (1 << 9));
-                controller.Step(frame);
+                if (scriptedRoute == null || !scriptedRoute.TryStep(frame))
+                {
+                    controller.Step(frame);
+                }
                 if (controller.Model.CanStopTicking)
                 {
                     enabled = false;
@@ -210,6 +241,7 @@ namespace EmergencyShift
         private void OnLunged() => AttackLunged?.Invoke();
         private void OnResolved(bool landed) => AttackResolved?.Invoke(landed);
         private void ForwardState(StalkerState state) => StateChanged?.Invoke((BehaviourState)state);
+        private void ForwardScriptedState(BehaviourState state) => StateChanged?.Invoke(state);
         private void ForwardBurn() => EyeBurnStarted?.Invoke();
 
         [ContextMenu("Preview/Kill creature (Play only)")]
@@ -224,6 +256,7 @@ namespace EmergencyShift
         private void OnDied()
         {
             controller.Kill();
+            scriptedRoute?.Abort();
             if (crowd != null)
             {
                 crowd.enabled = false;
@@ -257,6 +290,7 @@ namespace EmergencyShift
 
         public Snapshot CaptureState()
         {
+            RequireCheckpointSupport();
             StalkerStateSnapshot state = controller.Model.Capture();
             return new Snapshot
             {
@@ -281,6 +315,7 @@ namespace EmergencyShift
 
         public void RestoreState(Snapshot saved)
         {
+            RequireCheckpointSupport();
             ActorCheckpointValidation.ValidateStalker(saved, definition != null ? definition.MaximumHealth : int.MaxValue);
             if (saved == null || saved.melee == null)
             {
@@ -356,6 +391,12 @@ namespace EmergencyShift
                 controller.Dispose();
             }
 
+            if (scriptedRoute != null)
+            {
+                scriptedRoute.PresentationChanged -= ForwardScriptedState;
+                scriptedRoute.Dispose();
+            }
+
             if (health != null)
             {
                 health.Damaged -= OnDamaged;
@@ -366,6 +407,14 @@ namespace EmergencyShift
             {
                 melee.Lunged -= OnLunged;
                 melee.Resolved -= OnResolved;
+            }
+        }
+
+        private void RequireCheckpointSupport()
+        {
+            if (scriptedRoute != null || GetComponent<ScriptedStalkerRoute2D>() != null)
+            {
+                throw new InvalidOperationException("Scripted Stalker routes require their own checkpoint payload before capture or restore is enabled.");
             }
         }
 

@@ -11,7 +11,7 @@ namespace EmergencyShift.Features.Enemies.Logic
             this.model = model;
         }
 
-        public CommandResult CanExecute() => model != null && model.ValidClock && model.IsAlive && !model.HasAggro
+        public CommandResult CanExecute() => model != null && model.ValidClock && model.IsAlive && !model.IsScripted && !model.HasAggro
             ? CommandResult.Ok() : CommandResult.Fail("Stalker action rejected: ActivateStalkerAggro.");
         public CommandResult Execute()
         {

@@ -13,6 +13,7 @@
 | [MainMenu](MainMenu.md) | Чёрно-белое меню, каталог сцен, настройки и общая с паузой музыка | [Проверки](../Reports/MainMenu01.md) |
 | [Persistence](Persistence.md) | Цели, ID, snapshot/restore и дисковая запись | [Чекпоинты](../Guides/CHECKPOINTS.md) |
 | [Encounters](Encounters.md) | Личный one-shot флаг, команды и trigger adapter размещённой группы | [Чекпоинты](../Guides/CHECKPOINTS.md) |
+| [ScriptedEncounters](ScriptedEncounters.md) | Одноразовый отход по маркерам без агрессии и передача обычному AI при прибытии | [Первый маршрут](../Guides/MORGUE_ROUTE_TEST.md#первый-сценарный-сталкер) |
 | [Sandbox](Sandbox.md) | Временные условия независимых проверок | [Песочница](../SANDBOX.md), [маршрут](../Guides/MORGUE_ROUTE_TEST.md) |
 | [Lighting](Lighting.md) | Контуры/URP-тени и Editor-границы | [Форма теней](../Environment/FURNITURE_SHADOW_SHAPES.md) |
 

@@ -37,6 +37,7 @@ namespace EmergencyShift.Features.Enemies.Logic
         public event Action PatrolResetRequested;
         public StalkerState State { get; private set; } = StalkerState.Dormant;
         public bool HasAggro { get; private set; }
+        public bool IsScripted { get; private set; }
         public bool IsAlive => State != StalkerState.Dead;
         public bool IsStaggered => IsAlive && clock.Time < staggerUntil;
         public bool CanStopTicking => !IsAlive && age >= 3;
@@ -56,7 +57,7 @@ namespace EmergencyShift.Features.Enemies.Logic
         public float InterruptDelay => settings.InterruptDelay;
         public Vector2 StaggerVelocity => push * Mathf.Clamp01((float)(staggerUntil - clock.Time) / Mathf.Max(.01f, settings.StaggerSeconds));
         internal bool ValidClock => double.IsFinite(clock.Time) && clock.Time >= 0;
-        internal bool CanBeginAttack => IsAlive && State == StalkerState.Sneaking && HasAggro && Closure < .1f;
+        internal bool CanBeginAttack => IsAlive && !IsScripted && State == StalkerState.Sneaking && HasAggro && Closure < .1f;
 
         public StalkerIntent Step(StalkerObservation frame)
         {
@@ -66,6 +67,11 @@ namespace EmergencyShift.Features.Enemies.Logic
             }
 
             age += frame.DeltaTime;
+            if (IsScripted && IsAlive)
+            {
+                return IsStaggered ? StalkerIntent.Stagger : StalkerIntent.DirectStop;
+            }
+
             if (!IsAlive || !frame.TargetReady)
             {
                 return StalkerIntent.DirectStop;
@@ -200,6 +206,11 @@ namespace EmergencyShift.Features.Enemies.Logic
 
         internal void ActivateAggro()
         {
+            if (IsScripted)
+            {
+                return;
+            }
+
             HasAggro = true;
             PatrolResetRequested?.Invoke();
             if (State == StalkerState.Dormant || State == StalkerState.Patrolling)
@@ -233,9 +244,21 @@ namespace EmergencyShift.Features.Enemies.Logic
 
         internal void Die()
         {
+            IsScripted = false;
             Closure = 1;
             Enter(StalkerState.Dead);
             PatrolResetRequested?.Invoke();
+        }
+
+        internal void SetScriptedControl(bool active)
+        {
+            IsScripted = active;
+            exposure = 0;
+            Exposed = false;
+            Closure = 0;
+            UpdateEyeBurn(false, 0);
+            PatrolResetRequested?.Invoke();
+            Enter(StalkerState.Dormant);
         }
 
         internal void Restore(StalkerStateSnapshot state)
