@@ -1,0 +1,47 @@
+{
+  "task": "TASK-005",
+  "bestPreview": "paired-v2-preview.gif",
+  "independentGuide": "phase-anatomy-v1.json",
+  "guideChangedAfterGeneration": false,
+  "attempts": [
+    {
+      "id": "v1",
+      "visibleTopology": "Two feet × three short claws; no horizontal arms; paired movement",
+      "targetProjectionZones": "FAIL: foot spread/phase2 displacement differ from guide",
+      "cellClipping": "FAIL: phase2 rump crosses into phase3 cell",
+      "musclePass": "NOT RUN after failed projection/clipping gate"
+    },
+    {
+      "id": "v2",
+      "visibleTopology": "PASS for visible parts: two broad feet × three claws, same short visible attachments, no extra joint/limb or old horizontal arms",
+      "targetProjectionZones": "FAIL / residual deviation: lower foot outside intended zone, feet spread wider than plan; guide retained without fitting",
+      "hiddenBones": "NOT OBSERVABLE / not measured; no recovered 3D-length claim",
+      "pairedTiming": "Visible paired phase retained: 0/1 close, 2 both feet behind, 3 paired return. Phase1 abbreviated to50ms, no generated intermediate frames.",
+      "cellClipping": "PASS: all four cells borderPixels0",
+      "muscleVolumesAndTopology": "NOT COMPLETED: hidden groups unavailable, full scheme alignment failed. Visible skin-covered foot masses inspected only as external continuity; no new exposed random bands observed.",
+      "skinAndIdentity": "Large maw, two yellow eyes, two swept horns, dark continuous skin, blood, short rump retained. Mild shape/teeth/texture drift remains; no exact-rig claim.",
+      "loop": "Four-frame jerk preview; abrupt paired return and mild contour drift remain. Not a finished smooth locomotion cycle.",
+      "unity": "NOT RUN",
+      "ownerAcceptance": "PENDING"
+    }
+  ],
+  "timing": {
+    "frameOrder": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "delayMilliseconds": [
+      180,
+      50,
+      110,
+      140
+    ],
+    "loop": true,
+    "totalMilliseconds": 480,
+    "changeReason": "Parent requested a shorter phase 1 after reviewing v2; timing only, no drawing or guide-position edits.",
+    "interpolation": false,
+    "newFrames": false
+  }
+}

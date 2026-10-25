@@ -1,0 +1,11 @@
+Edit input 1, the 4-frame paired-thrust sprite sheet. Correct its framing and exaggeration while keeping the SAME character, broad feet, painting and almost simultaneous paired motion. Input 2 is the immutable phase/position guide; input 3 is the character anatomy reference.
+The bottom-left frame is WRONG: its body is enlarged/stretched so far right that the rump crosses into the next cell. Repaint that full pose directly at the SAME HEAD SCALE and BODY SCALE as the top-left pose. Keep its rear within x682 in its 768-pixel-wide cell, leaving at least 60 pixels of transparent right margin. Remove the stray clipped fragment from the left edge of the bottom-right cell. All four complete creatures must have clean generous margins; no body pixel may touch or cross any 768x512 cell border.
+Maintain exact 2x2 grid on a 1536x1024 transparent canvas. Constant camera strictly overhead, facing LEFT. Constant scene pivot(505,256). Body breathing/bending is SMALL; never balloon one frame. Head size, eyes, maw, teeth and two curved horns remain the same, not morphing.
+Repaint the two feet per pose around the joint centers in input 2: broad short foot shape from input 3, exactly THREE SHORT CLAWS EACH, positioned beside/under the mid-back body, no long horizontal arms. Both feet always share approximately the same x coordinate. Do NOT make a left/right alternating human gait.
+Precise desired paired-foot centers in local cell coordinates:
+top-left 0: (475,130) and (475,382), planted forward / compressed;
+top-right 1: (510,130) and (510,382), both pushing;
+bottom-left 2: (542,130) and (542,382), both finishing behind hips, only a small back extension;
+bottom-right 3: (493,130) and (493,382), both rapidly recovering under torso.
+Keep foot widths and all three claws consistent. Legs remain mostly hidden below the raised body, broad double-foot stance. Preserve meaningful paired fore/aft travel through the cycle, with a heavy brief body pull; do not output four identical pictures.
+Directly draw complete frames. No pasted cutouts, procedural deformation, interpolation or 3D. Dark continuous skin over large muscle masses, restrained blood, no exposed back bones, no extra limbs, no random muscles. Output ONLY the clean final RGBA transparent sheet. Do not include pose lines, dots, text, grid, shadow or background.

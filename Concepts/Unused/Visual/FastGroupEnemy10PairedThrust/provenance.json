@@ -1,0 +1,57 @@
+{
+  "task": "TASK-005",
+  "method": "built-in image_gen direct full-frame painting",
+  "transparentBackgroundRequested": true,
+  "source": {
+    "file": "character-source-v5.png",
+    "origin": "../FastGroupEnemy09Standing2D/standing-v5-wide-feet.png",
+    "sha256": "6394a0dc233f9b789159c7ac8a96bd959b5cb97b0cb925c7cd1766bc868bbd87"
+  },
+  "guide": {
+    "file": "phase-anatomy-v1.json",
+    "createdBeforeGeneration": true,
+    "unchanged": true,
+    "sha256": "f4005ab4ac6fdc718e384a8041c3a61332f8fedee25f061a713e71223e18cff8"
+  },
+  "attempts": [
+    {
+      "id": "v1",
+      "prompt": "paired-v1-prompt.txt",
+      "promptSha256": "5d264a2a199fb1a21396952e50d661d2e31a90f18d543c0fdb391f2bd5667dab",
+      "output": "paired-v1-source.png",
+      "outputSha256": "39e8eb59cd7739befdbfefb2f45a10a8cb5dc6ca8f273139d637ced82c74c40d",
+      "original": "C:/Users/Mark/.codex/generated_images/01a16fce-d886-7960-9f97-a93f5a1b7f70/exec-9bbce11a-5368-4f3f-b99f-a11ba39d5c7e.png",
+      "references": [
+        "paired-phase-guide.png",
+        "character-source-v5.png"
+      ]
+    },
+    {
+      "id": "v2",
+      "prompt": "paired-v2-prompt.txt",
+      "promptSha256": "0b84c7ac289474abde574c251837104a7281e1f743f6f900d01009aa192689e6",
+      "output": "paired-v2-source.png",
+      "outputSha256": "875e013a614db4d0009b8c5c1fbcef4d6949ca7a98f44967d5ea1452469033ff",
+      "original": "C:/Users/Mark/.codex/generated_images/01a16fce-d886-7960-9f97-a93f5a1b7f70/exec-c35286cc-7103-4766-b4ed-80a20aa12f0b.png",
+      "references": [
+        "paired-v1-source.png",
+        "paired-phase-guide.png",
+        "character-source-v5.png"
+      ]
+    }
+  ],
+  "processing": [
+    "copy exact sources",
+    "crop fixed cells",
+    "draw technical independent bone/projection overlay",
+    "package four exact frame rasters as GIF/strip",
+    "compose neutral backgrounds for review only"
+  ],
+  "notUsed": [
+    "collage or cutout animation",
+    "mesh warp",
+    "optical flow",
+    "new or interpolated frames",
+    "3D source"
+  ]
+}

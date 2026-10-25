@@ -1,0 +1,103 @@
+{
+  "task": "TASK-005",
+  "date": "2026-10-25",
+  "tool": "built-in image_gen",
+  "transparentBackground": true,
+  "orientation": "strict perpendicular overhead, front left",
+  "sourcePolicy": "Direct raster generation/editing. No assembled limbs, raster warping or 3D rendering. Code only produces independent technical guides and RGBA review.",
+  "currentCandidate": "standing-v5-wide-feet.png",
+  "ownerApproval": "pending",
+  "ownerGaitDecision": "Почти парные толчки, как рывки",
+  "validationLimits": "Visible support positions, parts and RGBA inspected. Hidden joints, actual 3D bone lengths and hidden muscle attachments are not established by the overhead drawing.",
+  "unityIntegration": false,
+  "notionUpload": false,
+  "generations": [
+    {
+      "version": 1,
+      "file": "standing-v1.png",
+      "sha256": "8ec9c0a1e53f4a66c48123a78c209f48c50dcdee9bfac3e0a1ebb5bed4c93e85",
+      "generatedOutput": "exec-87736571-f776-4db0-9b43-425489b82933.png",
+      "inputReferences": [
+        {
+          "file": "../FastGroupEnemy04/sprite-v25-painted.png",
+          "sha256": "4ea6c08515d57926b1733c256d63f14a5af457233dd4ac8e953b51129ce1d643"
+        },
+        {
+          "file": "../FastGroupEnemy07Model3D/standing-reference-owner.png",
+          "sha256": "8fc14a9054a2348b0fd8820ec34dddf89f5100d27435b664e7f2405ce01e9b43"
+        }
+      ],
+      "promptFile": "standing-v1-prompt.txt",
+      "promptSha256": "fa17c58ca7ea85b1a2e3b4047b44305e90b4e8e9c8f9642ba2554622e8c9838b",
+      "result": "Rejected: forward-reaching exposed limbs; independent support projection failed."
+    },
+    {
+      "version": 2,
+      "file": "standing-v2.png",
+      "sha256": "38b14fcf5e934cfd9ed33a0d9596ef847eedb13f83f5e29a79994e97608eb0e1",
+      "generatedOutput": "exec-4a195b94-5ddf-4c1d-8dbd-41a2c7fc7213.png",
+      "inputReferences": [
+        {
+          "file": "standing-v1.png",
+          "sha256": "8ec9c0a1e53f4a66c48123a78c209f48c50dcdee9bfac3e0a1ebb5bed4c93e85"
+        },
+        {
+          "file": "standing-projection-guide.png",
+          "sha256": "dd6556ccde24e609faab52d60b37fe351733032cbee86342f42fffa80ce6c951"
+        }
+      ],
+      "promptFile": "standing-v2-prompt.txt",
+      "promptSha256": "7569386fcd0a0c83a7fc3704432150e8c0970c6bcadd8fc4dca227b62876c5eb",
+      "result": "Rejected: external muscular loops still read as crawling arms."
+    },
+    {
+      "version": 3,
+      "file": "standing-v3.png",
+      "sha256": "ee12dec3d341bb41335ee2d2f514be7e5c97ddc9f6c7007642f17676f47e805b",
+      "generatedOutput": "exec-de29255e-bffa-4e69-a844-f222523b1a8f.png",
+      "inputReferences": [
+        {
+          "file": "standing-v2.png",
+          "sha256": "38b14fcf5e934cfd9ed33a0d9596ef847eedb13f83f5e29a79994e97608eb0e1"
+        },
+        {
+          "file": "standing-projection-guide.png",
+          "sha256": "dd6556ccde24e609faab52d60b37fe351733032cbee86342f42fffa80ce6c951"
+        }
+      ],
+      "promptFile": "standing-v3-prompt.txt",
+      "promptSha256": "35166e9531d29d1dd90d283bbf2a2971859d6f9ae72af7d3aeac961f73e07791",
+      "result": "Standing projection plausible; only two claw tips visible per foot, count failed."
+    },
+    {
+      "version": 4,
+      "file": "standing-v4.png",
+      "sha256": "2f0526e4b57cee656d9d02234ed3465a870ce1e428034bd7457d91dd10c2ea13",
+      "generatedOutput": "exec-30fb482d-33f6-4d00-b4e0-9288faee74ab.png",
+      "inputReferences": [
+        {
+          "file": "standing-v3.png",
+          "sha256": "ee12dec3d341bb41335ee2d2f514be7e5c97ddc9f6c7007642f17676f47e805b"
+        }
+      ],
+      "promptFile": "standing-v4-prompt.txt",
+      "promptSha256": "7c9505b29283a77a313629fde738700376d09e1dfea1e00cd5fe4f6a80aad384",
+      "result": "Three visible short claws per compact foot; superseded by owner request for broader feet."
+    },
+    {
+      "version": 5,
+      "file": "standing-v5-wide-feet.png",
+      "sha256": "6394a0dc233f9b789159c7ac8a96bd959b5cb97b0cb925c7cd1766bc868bbd87",
+      "generatedOutput": "exec-6eaec03a-9929-40e1-80c9-b4637bc4e5db.png",
+      "inputReferences": [
+        {
+          "file": "standing-v4.png",
+          "sha256": "2f0526e4b57cee656d9d02234ed3465a870ce1e428034bd7457d91dd10c2ea13"
+        }
+      ],
+      "promptFile": "standing-v5-prompt.txt",
+      "promptSha256": "50a661a233615d52007f0c5f83b49e4f2701681686d2230b12f1a05c3d05149c",
+      "result": "Current candidate: broad feet, wider stance, three short claws each; owner acceptance pending."
+    }
+  ]
+}

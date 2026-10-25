@@ -1,0 +1,12 @@
+Use case: stylized-concept. Asset type: directly painted 2D game animation sprite sheet.
+Edit input 1's four silhouettes into the exact monster shown in input 2. Input 1 defines the four paired-thrust poses, placement and equal 768x512 cells on a 1536x1024 sheet. Input 2 is the immutable character identity, wide-foot anatomy, palette and painting style. Paint four complete frames directly; no collaging, cutout rig, warping an existing raster or 3D.
+STRICT ORTHOGRAPHIC TOP VIEW, monster facing LEFT. It stands on TWO vertical weight-bearing legs mostly concealed under its raised body. Only two BROAD SHORT FEET with exactly THREE SHORT CURVED CLAWS each protrude from opposite sides around mid/back body, as in input 2. NO long horizontal arms or exposed forearm loops. The large heavy body stays hunched, with a short tapered rear and no extended tail.
+Movement is ALMOST PAIRED THRUSTS IN SHORT JERKS: both feet act in the SAME phase. Not a human walk, not alternating left and right, no human upright vertical bobbing, no crossing feet. Body pulls forward with each almost simultaneous double-foot thrust.
+Four key poses in row-major order, matching input 1:
+0 paired feet planted slightly forward of hips, both foot centers around x475,y130/382 within the cell; compact compressed torso.
+1 BOTH feet push together, centers x510,y130/382, body briefly pulled forward; same wide foot shapes.
+2 BOTH finish the thrust behind the hips, centers x542,y130/382, short extension and bend of the back; no head/jaw redesign.
+3 BOTH recover quickly together under the torso, centers x493,y130/382, body compressed again.
+Visible paired feet must actually travel fore/aft through these four phases; do not output four near identical still images. The upper and lower foot have nearly the SAME x position in each frame. Both legs remain hidden beneath body. Small one-frame asymmetry is allowed but never opposite phases.
+Rigid head scale, teeth, eyes, two curved ivory horns, broad three-claw feet, attachments, dark continuous skin, blood placement and art detail stay consistent. Giant toothed maw facing left, one tooth row per jaw, two bright yellow eyes. Skin encloses muscles, large soft painted volumes, no exposed muscles or back bones, no random new muscle groups.
+Fixed scene pivot near (505,256) in each cell, common scale, constant camera. Keep framing and generous transparent margins from input 1. Clean RGBA transparent sheet, no background, labels, grid, shadows, guide lines or colored dots. No identity morphing.

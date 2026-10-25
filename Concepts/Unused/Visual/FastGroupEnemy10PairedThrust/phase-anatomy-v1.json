@@ -1,0 +1,729 @@
+{
+  "version": 1,
+  "createdBeforeGeneration": true,
+  "source": "character-source-v5.png",
+  "canvas": [
+    1536,
+    1024
+  ],
+  "cell": [
+    768,
+    512
+  ],
+  "pivot": [
+    505,
+    256
+  ],
+  "camera": "strict overhead orthographic; facing LEFT; no camera yaw, scaling, framing or vertical human sway",
+  "stance": "standing on two weight-bearing legs under raised torso. Visible feet are broad, short and spread; long horizontal arms forbidden.",
+  "cycle": "almost paired impulses, never human left/right opposition",
+  "topology": {
+    "legs": 2,
+    "digitsPerFoot": 3,
+    "claw": "short curved",
+    "jawRowsPerJaw": 1,
+    "horns": 2,
+    "eyes": 2,
+    "muscleGroupsPerLeg": 8
+  },
+  "limits": {
+    "hidden3DLengthValidation": "NOT POSSIBLE FROM TOP SPRITE; no recovered 3D-length claim",
+    "pairFootXDifference": 12,
+    "footCenterEnvelopeRadius": [
+      45,
+      35
+    ],
+    "bodyPivotTolerance": 18,
+    "rigidHeadScaleToleranceFraction": 0.06,
+    "minimumPhase0to2PairedFootExcursion": 25,
+    "notes": "These are predetermined review limits in 768×512 cell coordinates; not adjusted to generated errors. Soft outline / surface folding can vary mildly. Bone gate precedes muscle artwork pass."
+  },
+  "muscleGroups": [
+    [
+      "M1",
+      "hip/proximal cap; mostly occluded"
+    ],
+    [
+      "M2",
+      "proximal flexor; mostly occluded"
+    ],
+    [
+      "M3",
+      "proximal extensor; mostly occluded"
+    ],
+    [
+      "M4",
+      "distal flexor; mostly occluded"
+    ],
+    [
+      "M5",
+      "distal extensor; mostly occluded"
+    ],
+    [
+      "M6",
+      "digit 1 bundle"
+    ],
+    [
+      "M7",
+      "digit 2 bundle"
+    ],
+    [
+      "M8",
+      "digit 3 bundle"
+    ]
+  ],
+  "phases": [
+    {
+      "id": 0,
+      "name": "paired plant and compression",
+      "footX": 475,
+      "headX": 220,
+      "rearX": 656,
+      "spineY": 256,
+      "delay": 180,
+      "root": [
+        505,
+        256
+      ],
+      "bodyAxis": [
+        [
+          220,
+          256
+        ],
+        [
+          350,
+          256
+        ],
+        [
+          505,
+          256
+        ],
+        [
+          656,
+          256
+        ]
+      ],
+      "feet": [
+        {
+          "side": "upper",
+          "hip": [
+            510,
+            186
+          ],
+          "knee": [
+            510,
+            164
+          ],
+          "ankle": [
+            505,
+            145
+          ],
+          "palm": [
+            475,
+            130
+          ],
+          "digits": [
+            {
+              "id": "U-digit-1",
+              "base": [
+                461,
+                112
+              ],
+              "tip": [
+                437,
+                110
+              ]
+            },
+            {
+              "id": "U-digit-2",
+              "base": [
+                461,
+                130
+              ],
+              "tip": [
+                437,
+                130
+              ]
+            },
+            {
+              "id": "U-digit-3",
+              "base": [
+                461,
+                148
+              ],
+              "tip": [
+                437,
+                150
+              ]
+            }
+          ],
+          "envelope": {
+            "center": [
+              475,
+              130
+            ],
+            "radius": [
+              51,
+              40
+            ]
+          },
+          "visible": "palm and three claws; hip/knee/most ankle hidden under body; dashed chain is only projected topology"
+        },
+        {
+          "side": "lower",
+          "hip": [
+            510,
+            326
+          ],
+          "knee": [
+            510,
+            348
+          ],
+          "ankle": [
+            505,
+            367
+          ],
+          "palm": [
+            475,
+            382
+          ],
+          "digits": [
+            {
+              "id": "L-digit-1",
+              "base": [
+                461,
+                364
+              ],
+              "tip": [
+                437,
+                362
+              ]
+            },
+            {
+              "id": "L-digit-2",
+              "base": [
+                461,
+                382
+              ],
+              "tip": [
+                437,
+                382
+              ]
+            },
+            {
+              "id": "L-digit-3",
+              "base": [
+                461,
+                400
+              ],
+              "tip": [
+                437,
+                402
+              ]
+            }
+          ],
+          "envelope": {
+            "center": [
+              475,
+              382
+            ],
+            "radius": [
+              51,
+              40
+            ]
+          },
+          "visible": "palm and three claws; hip/knee/most ankle hidden under body; dashed chain is only projected topology"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "paired push; body pulled",
+      "footX": 510,
+      "headX": 212,
+      "rearX": 670,
+      "spineY": 252,
+      "delay": 110,
+      "root": [
+        505,
+        256
+      ],
+      "bodyAxis": [
+        [
+          212,
+          256
+        ],
+        [
+          350,
+          256
+        ],
+        [
+          505,
+          252
+        ],
+        [
+          670,
+          256
+        ]
+      ],
+      "feet": [
+        {
+          "side": "upper",
+          "hip": [
+            510,
+            186
+          ],
+          "knee": [
+            510,
+            164
+          ],
+          "ankle": [
+            540,
+            145
+          ],
+          "palm": [
+            510,
+            130
+          ],
+          "digits": [
+            {
+              "id": "U-digit-1",
+              "base": [
+                496,
+                112
+              ],
+              "tip": [
+                472,
+                110
+              ]
+            },
+            {
+              "id": "U-digit-2",
+              "base": [
+                496,
+                130
+              ],
+              "tip": [
+                472,
+                130
+              ]
+            },
+            {
+              "id": "U-digit-3",
+              "base": [
+                496,
+                148
+              ],
+              "tip": [
+                472,
+                150
+              ]
+            }
+          ],
+          "envelope": {
+            "center": [
+              510,
+              130
+            ],
+            "radius": [
+              51,
+              40
+            ]
+          },
+          "visible": "palm and three claws; hip/knee/most ankle hidden under body; dashed chain is only projected topology"
+        },
+        {
+          "side": "lower",
+          "hip": [
+            510,
+            326
+          ],
+          "knee": [
+            510,
+            348
+          ],
+          "ankle": [
+            540,
+            367
+          ],
+          "palm": [
+            510,
+            382
+          ],
+          "digits": [
+            {
+              "id": "L-digit-1",
+              "base": [
+                496,
+                364
+              ],
+              "tip": [
+                472,
+                362
+              ]
+            },
+            {
+              "id": "L-digit-2",
+              "base": [
+                496,
+                382
+              ],
+              "tip": [
+                472,
+                382
+              ]
+            },
+            {
+              "id": "L-digit-3",
+              "base": [
+                496,
+                400
+              ],
+              "tip": [
+                472,
+                402
+              ]
+            }
+          ],
+          "envelope": {
+            "center": [
+              510,
+              382
+            ],
+            "radius": [
+              51,
+              40
+            ]
+          },
+          "visible": "palm and three claws; hip/knee/most ankle hidden under body; dashed chain is only projected topology"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "paired thrust completion; brief extension",
+      "footX": 542,
+      "headX": 204,
+      "rearX": 682,
+      "spineY": 256,
+      "delay": 110,
+      "root": [
+        505,
+        256
+      ],
+      "bodyAxis": [
+        [
+          204,
+          256
+        ],
+        [
+          350,
+          256
+        ],
+        [
+          505,
+          256
+        ],
+        [
+          682,
+          256
+        ]
+      ],
+      "feet": [
+        {
+          "side": "upper",
+          "hip": [
+            510,
+            186
+          ],
+          "knee": [
+            510,
+            164
+          ],
+          "ankle": [
+            572,
+            145
+          ],
+          "palm": [
+            542,
+            130
+          ],
+          "digits": [
+            {
+              "id": "U-digit-1",
+              "base": [
+                528,
+                112
+              ],
+              "tip": [
+                504,
+                110
+              ]
+            },
+            {
+              "id": "U-digit-2",
+              "base": [
+                528,
+                130
+              ],
+              "tip": [
+                504,
+                130
+              ]
+            },
+            {
+              "id": "U-digit-3",
+              "base": [
+                528,
+                148
+              ],
+              "tip": [
+                504,
+                150
+              ]
+            }
+          ],
+          "envelope": {
+            "center": [
+              542,
+              130
+            ],
+            "radius": [
+              51,
+              40
+            ]
+          },
+          "visible": "palm and three claws; hip/knee/most ankle hidden under body; dashed chain is only projected topology"
+        },
+        {
+          "side": "lower",
+          "hip": [
+            510,
+            326
+          ],
+          "knee": [
+            510,
+            348
+          ],
+          "ankle": [
+            572,
+            367
+          ],
+          "palm": [
+            542,
+            382
+          ],
+          "digits": [
+            {
+              "id": "L-digit-1",
+              "base": [
+                528,
+                364
+              ],
+              "tip": [
+                504,
+                362
+              ]
+            },
+            {
+              "id": "L-digit-2",
+              "base": [
+                528,
+                382
+              ],
+              "tip": [
+                504,
+                382
+              ]
+            },
+            {
+              "id": "L-digit-3",
+              "base": [
+                528,
+                400
+              ],
+              "tip": [
+                504,
+                402
+              ]
+            }
+          ],
+          "envelope": {
+            "center": [
+              542,
+              382
+            ],
+            "radius": [
+              51,
+              40
+            ]
+          },
+          "visible": "palm and three claws; hip/knee/most ankle hidden under body; dashed chain is only projected topology"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "paired rapid recovery and compression",
+      "footX": 493,
+      "headX": 218,
+      "rearX": 657,
+      "spineY": 260,
+      "delay": 140,
+      "root": [
+        505,
+        256
+      ],
+      "bodyAxis": [
+        [
+          218,
+          256
+        ],
+        [
+          350,
+          256
+        ],
+        [
+          505,
+          260
+        ],
+        [
+          657,
+          256
+        ]
+      ],
+      "feet": [
+        {
+          "side": "upper",
+          "hip": [
+            510,
+            186
+          ],
+          "knee": [
+            510,
+            164
+          ],
+          "ankle": [
+            523,
+            145
+          ],
+          "palm": [
+            493,
+            130
+          ],
+          "digits": [
+            {
+              "id": "U-digit-1",
+              "base": [
+                479,
+                112
+              ],
+              "tip": [
+                455,
+                110
+              ]
+            },
+            {
+              "id": "U-digit-2",
+              "base": [
+                479,
+                130
+              ],
+              "tip": [
+                455,
+                130
+              ]
+            },
+            {
+              "id": "U-digit-3",
+              "base": [
+                479,
+                148
+              ],
+              "tip": [
+                455,
+                150
+              ]
+            }
+          ],
+          "envelope": {
+            "center": [
+              493,
+              130
+            ],
+            "radius": [
+              51,
+              40
+            ]
+          },
+          "visible": "palm and three claws; hip/knee/most ankle hidden under body; dashed chain is only projected topology"
+        },
+        {
+          "side": "lower",
+          "hip": [
+            510,
+            326
+          ],
+          "knee": [
+            510,
+            348
+          ],
+          "ankle": [
+            523,
+            367
+          ],
+          "palm": [
+            493,
+            382
+          ],
+          "digits": [
+            {
+              "id": "L-digit-1",
+              "base": [
+                479,
+                364
+              ],
+              "tip": [
+                455,
+                362
+              ]
+            },
+            {
+              "id": "L-digit-2",
+              "base": [
+                479,
+                382
+              ],
+              "tip": [
+                455,
+                382
+              ]
+            },
+            {
+              "id": "L-digit-3",
+              "base": [
+                479,
+                400
+              ],
+              "tip": [
+                455,
+                402
+              ]
+            }
+          ],
+          "envelope": {
+            "center": [
+              493,
+              382
+            ],
+            "radius": [
+              51,
+              40
+            ]
+          },
+          "visible": "palm and three claws; hip/knee/most ankle hidden under body; dashed chain is only projected topology"
+        }
+      ]
+    }
+  ]
+}
