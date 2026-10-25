@@ -1,0 +1,86 @@
+{
+  "art": "base-v2.png",
+  "independentPlan": "../FastGroupEnemy12Quadruped/raised-stance-plan-v3.json",
+  "status": "BONE_FAIL — targeted redraw required; muscle review NOT performed",
+  "registration": "camera-registration-v2.json",
+  "noLimbFit": true,
+  "front": {
+    "digits": "3perhand preserved",
+    "guide": {
+      "upper": {
+        "elbow": [
+          719.57,
+          450.43
+        ],
+        "wrist": [
+          498.57,
+          431.38
+        ],
+        "palm": [
+          429.98,
+          423.76
+        ]
+      },
+      "lower": {
+        "elbow": [
+          719.57,
+          869.57
+        ],
+        "wrist": [
+          498.57,
+          888.62
+        ],
+        "palm": [
+          429.98,
+          896.24
+        ]
+      }
+    },
+    "observedApproximateVisibleBends": {
+      "upper": {
+        "elbow": [
+          595,
+          400
+        ],
+        "wrist": [
+          350,
+          405
+        ],
+        "digitFan": [
+          290,
+          405
+        ]
+      },
+      "lower": {
+        "elbow": [
+          595,
+          930
+        ],
+        "wrist": [
+          350,
+          925
+        ],
+        "digitFan": [
+          290,
+          925
+        ]
+      }
+    },
+    "issues": [
+      "Visible front elbow bends are approx125px ahead/left and45–60px outward of unchanged plan; planned wrist lies on forearm instead of actual carpal bend",
+      "Actual wrist/carpal zones approx150px ahead/left, digit fans approx140px ahead; projected phalanges are more compact than plan",
+      "Curved keratin sickles violate requested straighter claw form; keratin curvature is distinct from bone-chain geometry"
+    ],
+    "correction": "Preserve accepted new torso; rebuild BOTH forelimb chains elbow→singlecarpus→3digits against fixedguide, moving elbow/carpus rearward/right and somewhat inward. Do not merely translate the hand; restore projected phalanx proportions."
+  },
+  "rear": {
+    "upper": "3main+1lateral visible",
+    "lower": "FAIL5claws:3main+2lateral; remove one extra lateral",
+    "chain": "Coarse short rear chain/axis more compatible than front; no new rear plan requested"
+  },
+  "limits": [
+    "Manual approximate body anchors and visible bend estimates, not reconstructed3D joint centers",
+    "No hidden muscle or exact skin/length validation performed"
+  ],
+  "sceneAuthoring": "not applicable; Unity untouched"
+}

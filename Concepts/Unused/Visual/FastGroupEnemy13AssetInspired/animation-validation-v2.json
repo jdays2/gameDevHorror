@@ -1,0 +1,94 @@
+{
+  "version": 2,
+  "status": "BONE_PHASE_FAIL — no musclepass",
+  "thresholdsFixedBeforeReview": "animation-qa-thresholds-v2.json",
+  "camera": "IDENTITY atlastransform; fixedsource→cell .32+(55.36,55.36). No newregistration/refit.",
+  "sources": {
+    "run": "run-sheet-v2.png",
+    "attack": "attack-sheet-v2.png",
+    "attackExportWarning": "Attack01 contains staleV1preview/sheets; not used forV2review."
+  },
+  "improvements": [
+    "Wholebody scale/layout substantially closer totemplate thanV1",
+    "Attack0/5no longer curls frontfans60–90degrees towardhead; LEFTorientation improved"
+  ],
+  "run": {
+    "frames": [
+      {
+        "index": 0,
+        "status": "FAIL",
+        "issue": "Visible upper/lowerpalmpositions nearneutral rather than intended opposed forward/backA/B offsets; approximately10–15px targetmiss."
+      },
+      {
+        "index": 1,
+        "status": "FAIL",
+        "issue": "Expected opposite frontpawtravel not consistently established; visible elbow/palmzones depart from plannedphase."
+      },
+      {
+        "index": 2,
+        "status": "FAIL",
+        "issue": "Body/headXdrift and incorrect phaseprogression; no bonephaseGO."
+      },
+      {
+        "index": 3,
+        "status": "FAIL",
+        "issue": "Palms remain nearneutral instead of swappedA/B extrema; upperpalm target difference approximately14px."
+      },
+      {
+        "index": 4,
+        "status": "FAIL",
+        "issue": "Transfer/opposite-supporttrajectory inconsistent with guide; no musclepass."
+      },
+      {
+        "index": 5,
+        "status": "FAIL",
+        "issue": "Did not establish correct preparatoryreturn to0; loop not accepted."
+      }
+    ],
+    "summary": "Counterphase/amplitude not executed consistently. HeadX residual changes betweenframes beyond frozen4px drift target. Exactnumbers approximatevisual, not inferredhidden3Dlengths."
+  },
+  "attack": {
+    "frames": [
+      {
+        "index": 0,
+        "status": "PARTIAL",
+        "issue": "LEFTorientation restored; wholeplansequence stillunaccepted."
+      },
+      {
+        "index": 1,
+        "status": "FAIL technical boundary",
+        "issue": "Neighborframe2curvedclaw entersframe1 by4px (parent confirmed actualkeratin, not backgroundnoise). Attack01export stopped."
+      },
+      {
+        "index": 2,
+        "status": "CRITICAL FAIL",
+        "issue": "Visible frontreach/bodyshape stretches relative fixedtemplate and sourceidentity; claw crosses leftcellboundary. Bone/technicalgatesfail."
+      },
+      {
+        "index": 3,
+        "status": "NOT PASSED",
+        "issue": "Followthrough cannot be accepted within failedsequence; noindividualmusclepass claimed."
+      },
+      {
+        "index": 4,
+        "status": "NOT PASSED",
+        "issue": "Recovery/anchorcorrespondence not accepted after failedstrike."
+      },
+      {
+        "index": 5,
+        "status": "PARTIAL",
+        "issue": "LEFTorientation improved, but exactneutralhandoff not certified on failedsequence; no muscle/identitypass."
+      }
+    ],
+    "summary": "Attack2geometry/cellcrossing blocks sequence; do not pack staleAttack01 previews asV2result."
+  },
+  "counts": {
+    "firstPass": "No obvious extra frontdigit/newlimb on sheets; front3/rear3+1appear retained. Count alone does not override phase/boneFAIL.",
+    "fullPass": false
+  },
+  "musclesReviewed": false,
+  "guideChanged": false,
+  "thresholdsChanged": false,
+  "artChanged": false,
+  "next": "Individualwholeframe directimagegen from samebase-v3+one fixedphaseguide; shared1024frame sourceScale.64+translation110.72, common×.5packaging only. Repeat bones/countFIRST."
+}

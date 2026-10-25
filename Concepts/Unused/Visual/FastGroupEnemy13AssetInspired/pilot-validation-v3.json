@@ -1,0 +1,121 @@
+{
+  "version": 3,
+  "type": "twoindividualframe02pilots",
+  "status": "BONE_FAIL — do not expandto10remainingframes",
+  "anatomyPlan": "anatomy-plan-v4.json",
+  "phasePlans": [
+    "run-phase-plan-v4.json",
+    "attack-phase-plan-v4.json"
+  ],
+  "thresholds": "animation-qa-thresholds-v2.json scaled×2for1024",
+  "normalization": "Parentapplied ONE wholecanvas1254→1024 constant normalization; reviewed normalizedPNG directly. NO additionalcameraalignment/jointfit.",
+  "camera": {
+    "sourceScale": 0.64,
+    "sourceTranslation": [
+      110.72,
+      110.72
+    ],
+    "rootPivot": [
+      597.12,
+      536.32
+    ],
+    "additionalFit": false
+  },
+  "run": {
+    "file": "run-frame02-v3-canvas1024.png",
+    "status": "FAIL",
+    "counts": "front3each/rear3+1each visible; no extra limb",
+    "observations": [
+      {
+        "anchor": "head/caudalbody",
+        "difference": "BodyY approx−20to−30px vs fixedneutral/frameguide; exceeds10px1024anchorlimit."
+      },
+      {
+        "anchor": "upperfrontcarpus",
+        "expected": [
+          345.12,
+          373.12
+        ],
+        "observedApprox": [
+          350,
+          300
+        ],
+        "difference": "About−73pxY; exceeds16px jointzone, cannot be explained solely by bodyshift."
+      },
+      {
+        "anchor": "lowerfrontcarpus",
+        "expected": [
+          325.92,
+          693.52
+        ],
+        "observedApprox": [
+          282,
+          713
+        ],
+        "difference": "About−44pxX,+19pxY; exceeds16px jointzone."
+      }
+    ],
+    "verdict": "Actualpose not declared phase2; upperforelimb spread and distalreach wrong. Not meresofttexturedeformation."
+  },
+  "attack": {
+    "file": "attack-frame02-v3-canvas1024.png",
+    "status": "FAIL thoughcloser",
+    "counts": "front3each/rear3+1each visible; no extra limb",
+    "observations": [
+      {
+        "anchor": "head/caudalbody",
+        "expectedHead": [
+          424.32,
+          536.32
+        ],
+        "expectedCaudal": [
+          836.8,
+          536.32
+        ],
+        "observedHeadApprox": [
+          441,
+          540
+        ],
+        "observedCaudalApprox": [
+          857,
+          540
+        ],
+        "difference": "Body~17–20px right, exceeds10px; plannedbodylunge not followed."
+      },
+      {
+        "anchor": "frontcarpuses",
+        "expectedUpper": [
+          277.92,
+          373.12
+        ],
+        "expectedLower": [
+          277.92,
+          699.52
+        ],
+        "observedUpperApprox": [
+          280,
+          374
+        ],
+        "observedLowerApprox": [
+          281,
+          705
+        ],
+        "difference": "Within16px; majorimprovement overrunpilot."
+      },
+      {
+        "anchor": "frontelbowbendzones",
+        "difference": "Visiblebends approx20–25px down/right from fixedphaseguide, beyond16px; not a hiddenlengthmeasurement."
+      }
+    ],
+    "verdict": "Distaldigits/carpus close; torso/elbowcorrespondence stillfails frozenanchors."
+  },
+  "measurementLimit": "Approximate visualsurfacejoint/anchor estimates, not claimedsubpixel/hidden3Dreconstruction.",
+  "musclesReviewed": false,
+  "loopOrRecoveryReviewed": false,
+  "guideChanged": false,
+  "artChanged": false,
+  "outputs": [
+    "run-frame02-v3-bones-check.png",
+    "attack-frame02-v3-bones-check.png"
+  ]
+}

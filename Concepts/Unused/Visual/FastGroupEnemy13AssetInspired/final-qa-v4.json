@@ -1,0 +1,105 @@
+{
+  "task": "TASK-005",
+  "status": "CYCLES_NOT_READY",
+  "baseline": {
+    "file": "base-v3.png",
+    "status": "BASELINE_VISUAL_GO_WITH_LIMITS",
+    "ownerSelection": "Owner explicitly choseV2appearance/longforelimbs/curvedclaws; basev3removedonlyextra5thlowerrearclaw.",
+    "evidence": "base-v3-validation.json; bones→volumes→22functionalIDsdirections/routes",
+    "limits": [
+      "Independentplan4is declaredconceptual3Dstructure, not medicalreconstruction",
+      "Coarsevolumes overshoot skin/negative space; exactmuscleboundaries unverified",
+      "Truehiddenlengths/insertions/load/COM and rigweights unverified"
+    ]
+  },
+  "plans": {
+    "bones": "anatomy-plan-v4.json",
+    "muscles": "anatomy-muscle-plan-v4.json",
+    "phases": [
+      "run-phase-plan-v4.json",
+      "attack-phase-plan-v4.json"
+    ],
+    "status": "DeclaredfixedlengthphasekinematicsGO; actualdrawncyclesNOTGO",
+    "oldFailurePreserved": "bone-verdict-v2.json refers to supersededplan3, not rejection of ownerchosenV2."
+  },
+  "latestPilots": {
+    "version": 4,
+    "canvas": [
+      1254,
+      1254
+    ],
+    "camera": "Identity. Samefixedcellcamera multiplied1254/512; NObody/jointfit.",
+    "thresholds": {
+      "bodyAnchorPx": 12.24609375,
+      "visibleJointZonePx": 19.59375
+    },
+    "run": {
+      "file": "run-frame02-v4.png",
+      "status": "BONE_FAIL",
+      "counts": "3front/3+1rear each visible",
+      "upperWrist": {
+        "expected": [
+          422.64,
+          456.93
+        ],
+        "observedApprox": [
+          379,
+          458
+        ],
+        "difference": "~44px forward/left; exceeds19.59px"
+      },
+      "lowerWrist": {
+        "expected": [
+          399.12,
+          849.29
+        ],
+        "observedApprox": [
+          379,
+          862
+        ],
+        "difference": "~20pxleft+13pxdown; exceeds19.59px"
+      },
+      "note": "Not the specified phase2, not solely texturedeformation."
+    },
+    "attack": {
+      "file": "attack-frame02-v4.png",
+      "status": "BONE_FAIL",
+      "counts": "3front/3+1rear each visible",
+      "lowerWrist": {
+        "expected": [
+          340.34,
+          856.64
+        ],
+        "observedApprox": [
+          326,
+          922
+        ],
+        "difference": "~65pxdown, exceeds19.59px"
+      },
+      "body": "Head/caudal torso shifted right/down versus declaredlunge; both exceed12.25pxbodyanchor tolerance. Rearfootpositions also not fixedguide.",
+      "note": "Anatomical/phasecorrespondence failed; musclepass blocked."
+    },
+    "measurements": "Approximate visiblelandmark estimates, not hiddenbone/subpixelmeasurements.",
+    "proof": [
+      "run-frame02-v4-bones-check.png",
+      "attack-frame02-v4-bones-check.png"
+    ],
+    "musclesReviewed": false
+  },
+  "cycles": {
+    "run": "NOT_READY",
+    "attack": "NOT_READY",
+    "readyForUnityImport": false,
+    "acceptedAnimatedResult": false,
+    "gifs": "Diagnostics only, not approvedcycles",
+    "history": [
+      "animation-validation-v1.json",
+      "animation-validation-v2.json",
+      "pilot-validation-v3.json"
+    ]
+  },
+  "next": "No furtherpilotmultiplication. Parent asked owner about a2Drig fromONEsource; no rig work started by thisvalidator.",
+  "planChangedForPass": false,
+  "artDeformedOrAssembled": false,
+  "sceneAuthoringGate": "Not applicable; Unity/scenes untouched"
+}

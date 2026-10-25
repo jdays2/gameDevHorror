@@ -1,0 +1,107 @@
+{
+  "version": 2,
+  "status": "FIXED BEFORE looking at V2 sheets",
+  "planVersion": 4,
+  "camera": {
+    "sheet": [
+      1536,
+      1024
+    ],
+    "grid": [
+      3,
+      2
+    ],
+    "cell": [
+      512,
+      512
+    ],
+    "sourceScale": 0.32,
+    "sourceTranslation": [
+      55.36,
+      55.36
+    ],
+    "rootPivot": [
+      298.56,
+      268.16
+    ],
+    "additionalAtlasFitAllowed": false,
+    "perFrameFitAllowed": false
+  },
+  "referenceAnchors": {
+    "headCrownBase": [
+      219.36,
+      268.16
+    ],
+    "caudalOutlineBase": [
+      425.6,
+      268.16
+    ],
+    "note": "Approximate declared template anchors in512cell. Attack planned bodyXshift is intentional, not camera drift."
+  },
+  "body": {
+    "eachVisibleAnchorResidualPx": 5,
+    "interframeResidualJumpPx": 4,
+    "runLoopResidualJumpPx": 4,
+    "headToCaudalSpanTolerancePercent": 5,
+    "relativeHeadTorsoShape": "No obvious morph/newproportions; do not use global alignment to hide interframe drift."
+  },
+  "limbs": {
+    "visibleElbowWristPalmZoneResidualPx": 8,
+    "hiddenJoints": "Not measurable fromtop; check declared chain/occlusion consistency, never claim recoveredhidden3Dlengths.",
+    "frontDigitsPerHand": 3,
+    "rearDigitsPerFoot": "3main+1lateral",
+    "singleCarpalPerHand": true,
+    "noDetachedPartsOrNewJoints": true,
+    "fingerFanDirectionToleranceDegrees": 20,
+    "keratin": "Same adopted curvedkeratin family; not a new wristrotation or bonejoint."
+  },
+  "run": {
+    "A": "FU+RL",
+    "B": "FL+RU",
+    "frame0to2FrontPalmXMinimumOppositeTravelPx": 12,
+    "frame3to5FrontPalmXMinimumOppositeTravelPx": 12,
+    "frame5to0EachPawStepMaximumPx": 18,
+    "loopMustContinueSameRecoveryDirection": true,
+    "atLeastTwoApparentSupports": true,
+    "noHumanCrossover": true,
+    "plannedUpperPalmX": [
+      134.16,
+      143.76,
+      153.36,
+      162.96,
+      153.36,
+      143.76
+    ],
+    "plannedLowerPalmX": [
+      162.96,
+      153.36,
+      143.76,
+      134.16,
+      143.76,
+      153.36
+    ],
+    "note": "Compare paw motion relativebody. Any missed count/extra joint or camera jump fails before muscles."
+  },
+  "attack": {
+    "rearFootPalmResidualPx": 5,
+    "rearFeetRemainPlanted": true,
+    "phase0": "Current guide has mildpreparation, palms9.6px rearward but fingersLEFT; not60–90degree inwardcurl.",
+    "phase5": "Neutralbase-v3 required; frontpalm residual<=6px, direction within15degrees, bodyanchors within5px",
+    "sequence": "2preparation→strike→followthrough→2returns; no newwindup at5",
+    "plannedBodyXCellShift": [
+      0,
+      3.6,
+      -7.2,
+      -6,
+      -2.4,
+      0
+    ]
+  },
+  "softTissue": {
+    "minorTextureAndCellDeformationAllowed": true,
+    "randomNewGroupsOrChangedAttachmentsAllowed": false,
+    "declaredIDs": 22,
+    "coarseVolumeBoundaryExactFit": false
+  },
+  "process": "Bones/countFIRST perframe+loop/end. Only afterGO: volumes→IDs/directions/attachments→skin/identity/technical. Report uncertainty rather than inventing hiddenanatomy."
+}
