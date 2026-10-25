@@ -1,0 +1,49 @@
+{
+  "version": 5,
+  "task": "TASK-005",
+  "art": "sprite-base-v5-raised.png",
+  "bonePlan": "raised-stance-plan-v2.json",
+  "musclePlan": "raised-stance-muscle-plan-v2.json",
+  "order": [
+    "unchanged prospective bones with one global camera registration",
+    "visible skin/functional-volume diagnostic only after bone findings",
+    "presentation map"
+  ],
+  "registrationFile": "raised-canonical-transform-v5.json",
+  "registration": {
+    "uniformScale": 1.5312131919905771,
+    "translation": [
+      -189.9057714958775,
+      -113.9811542991755
+    ],
+    "rotationDegrees": 0,
+    "limbRefit": false
+  },
+  "overall": "LIMITED GO for one static concept and visible topology; exact projected skeleton alignment PARTIAL, hidden anatomy unverified",
+  "bones": {
+    "limbs": "PASS: four connected visible limb chains; no extra limb or obvious extra wrist joint",
+    "front": "PASS topology: three straight claws per hand, one coherent carpal block; coarse forearm chain agrees",
+    "frontProjection": "PARTIAL: visible wrists/hand spread remain slightly farther outward than fixed plan",
+    "axis": "PASS coarse head-crown/neck/body axis and short caudal mass",
+    "raisedStance": "PARTIAL: compact/occluded upper chains improve raised reading, but top raster cannot prove the declared Z heights or ground load",
+    "rearProjection": "PARTIAL: outward rotation fixed; all3main digits face left, but actual rear foot/short leg remains more compact and farther outward than prospective guide. Planned knee lies over digit tissue, so exact chain/sole correspondence NOT passed.",
+    "rearDigits": "PASS visible count: three separated main digits plus one lateral on each rear foot. No extra fifth digit."
+  },
+  "muscles": {
+    "status": "LIMITED visual diagnostic: topology permits visible aggregate review; exact rear muscle-to-bone correspondence remains unpassed",
+    "front": "Visible forearm masses flow toward one wrist and three digit roots; no obvious new free muscle block or detached hand",
+    "trunk": "Paired longitudinal and flank skin relief is broadly compatible with declared functional directions; visible texture is not an individual muscle count",
+    "rear": "Continuous skin links body to rear leg and one3+1foot; no detached digit or isolated muscle block. Planned RU3/RU4 and RL3/RL4 positions still diverge with the remaining projected rear-chain offset; hidden insertions not inferred.",
+    "counts": "Plan only: 5 functional aggregates per front limb, 4 per rear limb, 4 trunk =22, plus3 digital tendon routes per front; these are NOT a verified count of anatomical muscles",
+    "hidden": "True3Dsegment lengths, individual origins/insertions, occluded muscles, tendon wrapping and exact sole height unverified"
+  },
+  "presentation": {
+    "map": "body-map-raised-v2.png",
+    "allowed": "Show v5 as one static design candidate with current map and explicit residual rear-chain mismatch",
+    "notAllowed": "Do not label rig-ready, animation-ready or fully anatomically matched"
+  },
+  "remainingPriority": [
+    "If exact prospective-pose conformity is required later: align rear short-leg/foot positions, not only toe direction; keep guide unchanged",
+    "Preserve current four limbs, front3 straight claws and rear3+1 visible digits. No animation/rig readiness claimed"
+  ]
+}

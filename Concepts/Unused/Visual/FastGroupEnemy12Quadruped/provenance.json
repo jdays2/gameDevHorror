@@ -1,0 +1,233 @@
+{
+  "task": "TASK-005",
+  "date": "2026-10-25",
+  "method": "Built-in image_gen, transparent_background=true; direct generated artwork. No CLI fallback, body-part collage, raster warping or 3D art render.",
+  "scope": "ONE corrected static base sprite; no animation, Unity import, game balance or scene changes. Owner acceptance remains separate.",
+  "final": {
+    "sprite": "sprite-base-v7-raised.png",
+    "anatomyPlan": "raised-stance-plan-v3.json",
+    "musclePlan": "raised-stance-muscle-plan-v3.json",
+    "bodyMap": "body-map-raised-v3.png",
+    "validation": "validation-v7.json",
+    "ownerArtApproval": "pending",
+    "animation": false
+  },
+  "generationRoot": "$CODEX_HOME/generated_images/01a16f34-2ca0-7c33-8880-673b5909d2dd",
+  "generations": [
+    {
+      "output": {
+        "file": "massing-v1.png",
+        "sha256": "e81d62a460b3cab426ea2e1c69579636cd4dd93a2538c2c84d689c538db13172"
+      },
+      "prompt": {
+        "file": "massing-v1-prompt.txt",
+        "sha256": "d9a51c36ed2f121d51b689ec6a6eb52eae839d0f4b2d60c5648d7efff5eb2cab"
+      },
+      "original": "exec-20eec6ae-f854-4d70-af27-3b7fc10aea7d.png",
+      "inputs": [
+        {
+          "reference": "Recent owner white skeleton (oval explicitly confirmed as head)",
+          "availability": "Conversation input; not an independently preserved source file"
+        },
+        {
+          "reference": "Viewed current pink Stalker sheet, style only; exact file not encoded in generation call",
+          "availability": "Conversation input; not an independently preserved source file"
+        }
+      ],
+      "status": "Owner chose variant 3; original sketch toe count later superseded"
+    },
+    {
+      "output": {
+        "file": "selected-03-long-claws.png",
+        "sha256": "60f75ef8eafeb0a8f076ff143255428833936c9914c40ae1e3f2a7f18e6a81a1"
+      },
+      "prompt": {
+        "file": "selected-03-long-claws-prompt.txt",
+        "sha256": "7aa78738c9019472a4e3a1638db0f71c0b73078ce8ab632e7996a27ede59a463"
+      },
+      "original": "exec-6b8a4c51-1cc8-4d26-989c-da099e127572.png",
+      "inputs": [
+        {
+          "file": "selected-03-reference.png",
+          "sha256": "fdf2a3004b1be841a039ced67d581aa3f9a7e2312ba650ff71fa7462111272b0"
+        }
+      ],
+      "status": "Owner likes direction; requested straighter claws/anatomy afterward"
+    },
+    {
+      "output": {
+        "file": "selected-03-anatomy-v2.png",
+        "sha256": "6597ba29bbcb71f04032385c38a702da3041f8484fdc23058b1f8222a792b8d1"
+      },
+      "prompt": {
+        "file": "selected-03-anatomy-v2-prompt.txt",
+        "sha256": "92724d97ea83033bd55477bc09b5199f6c5ec0db4bcfff2d2ba48d2bb62016ac"
+      },
+      "original": "exec-976b609f-3ec1-4cb7-a854-5a7f39a0b6d4.png",
+      "inputs": [
+        {
+          "file": "selected-03-long-claws.png",
+          "sha256": "60f75ef8eafeb0a8f076ff143255428833936c9914c40ae1e3f2a7f18e6a81a1"
+        },
+        {
+          "file": "owner-claw-annotation.png",
+          "sha256": "6632874fce0ec85161901dd724b0aa152c3a47e8d0b5d8e3f269f67de19178c8"
+        },
+        {
+          "file": "anatomy-bones-v1.png",
+          "sha256": "4b98698277fd0aae2010995668ce4b060e43fcd924a850b41424eaea99dca133"
+        }
+      ],
+      "status": "Rejected stance: too wide/flat despite improved claws"
+    },
+    {
+      "output": {
+        "file": "sprite-base-v3-raised.png",
+        "sha256": "ad7fa6ca46829f62ed130b7cf8d46bf99e9001523ba9b9478e00339997d948ab"
+      },
+      "prompt": {
+        "file": "sprite-base-v3-raised-prompt.txt",
+        "sha256": "5eddf5dc493f72d2ffb9ea5fd81ac05624510d4203c6a8ed1f2b92df0f166601"
+      },
+      "original": "exec-e0581bac-a31f-4d3d-9239-4c75880e6f9d.png",
+      "inputs": [
+        {
+          "file": "raised-stance-top-control-v2.png",
+          "sha256": "61b9fd09380845cf6696cf2d82482c77177856dc4b8c38159045440009e26679"
+        },
+        {
+          "file": "selected-03-anatomy-v2.png",
+          "sha256": "6597ba29bbcb71f04032385c38a702da3041f8484fdc23058b1f8222a792b8d1"
+        },
+        {
+          "file": "raised-stance-projections-v2.png",
+          "sha256": "3bb0d84ae8f5f4a4f7a12d1cc9f170df7fb033075c85434eb21d9d373b4d7817"
+        }
+      ],
+      "status": "FAIL: extra rear digit"
+    },
+    {
+      "output": {
+        "file": "sprite-base-v4-raised.png",
+        "sha256": "23a3af88d0c8ed80578afcb43a9493ca4caa74d3e294ba4778196eb7db428d37"
+      },
+      "prompt": {
+        "file": "sprite-base-v4-raised-prompt.txt",
+        "sha256": "4c9f5f5ac17b530401490f91310e32471eb125f2a5c2c21fc796433d32e2c56b"
+      },
+      "original": "exec-eb3dc642-fedb-4ef9-877a-962a4b504320.png",
+      "inputs": [
+        {
+          "file": "sprite-base-v3-raised.png",
+          "sha256": "ad7fa6ca46829f62ed130b7cf8d46bf99e9001523ba9b9478e00339997d948ab"
+        },
+        {
+          "file": "raised-v3-rear-detail.png",
+          "sha256": "bf1d0b5c9b441884838b48a2723c0f3e0ef740a2a5efd466fac18fe14c6c0712"
+        }
+      ],
+      "status": "FAIL: rear foot rotation/pose fit; third main rear digit poorly readable"
+    },
+    {
+      "output": {
+        "file": "sprite-base-v5-raised.png",
+        "sha256": "acab9c24cb52e48543b448e8b1c65a544ae46b5ae15119e047fc03429fe732cc"
+      },
+      "prompt": {
+        "file": "sprite-base-v5-raised-prompt.txt",
+        "sha256": "7137fdaa348e0157cc04174c624600456f41b343e94178a58dd2c5d11a6c314f"
+      },
+      "original": "exec-9857b6a9-e7e6-423d-afd1-c626d4dc3828.png",
+      "inputs": [
+        {
+          "file": "sprite-base-v4-raised.png",
+          "sha256": "23a3af88d0c8ed80578afcb43a9493ca4caa74d3e294ba4778196eb7db428d37"
+        },
+        {
+          "file": "raised-v4-bones-check.png",
+          "sha256": "14071ec3a88d7d620f5d5ac1dd72bc106797758da0859c5d015b9c4419e0046d"
+        },
+        {
+          "file": "raised-stance-top-control-v2.png",
+          "sha256": "61b9fd09380845cf6696cf2d82482c77177856dc4b8c38159045440009e26679"
+        }
+      ],
+      "status": "Topology improved; no full fit PASS. V2 skeleton knee occlusion itself required a prospective pose correction"
+    },
+    {
+      "output": {
+        "file": "sprite-base-v6-raised.png",
+        "sha256": "119c8cea418b6f5b9c72eba789fe865094bafd5dca24039e62da57281fe124f4"
+      },
+      "prompt": {
+        "file": "sprite-base-v6-raised-prompt.txt",
+        "sha256": "89f17236ffadd5b4d6ab576f6020b7f55d34ec65194053daedcdd9fcf405c740"
+      },
+      "original": "exec-9f5e9c39-1707-40b9-be72-e91046af8ad9.png",
+      "inputs": [
+        {
+          "file": "sprite-base-v5-raised.png",
+          "sha256": "acab9c24cb52e48543b448e8b1c65a544ae46b5ae15119e047fc03429fe732cc"
+        },
+        {
+          "file": "pose-v3-control-1254.png",
+          "sha256": "c6f6fcc757fafd6bbcfbcecbf0ff3e2c916f8edc8f97150260a672ae3a2e46cd"
+        },
+        {
+          "file": "raised-stance-projections-v3.png",
+          "sha256": "5960fa0a048cdb86f8c604c8334efb9ef6d053c356e22b9e68ade364c26fd152"
+        }
+      ],
+      "status": "New prospective pose3 redraw; knee conflict removed, FAIL extra lower rear claw"
+    },
+    {
+      "output": {
+        "file": "sprite-base-v7-raised.png",
+        "sha256": "aad9ea8c3f7d9484da8745cd2b24676e7d731852445178ac33051f1675ee731a"
+      },
+      "prompt": {
+        "file": "sprite-base-v7-raised-prompt.txt",
+        "sha256": "981d5bea23d7b96ba8e9fdc64ba834bb598c7f587362315c429d6e7ff053f928"
+      },
+      "original": "exec-915059be-c6a0-41c9-bc95-7d87021912d6.png",
+      "inputs": [
+        {
+          "file": "sprite-base-v6-raised.png",
+          "sha256": "119c8cea418b6f5b9c72eba789fe865094bafd5dca24039e62da57281fe124f4"
+        },
+        {
+          "file": "sprite-base-v6-raised-rear-detail.png",
+          "sha256": "3b56d5f791b5bcbe38744363ffa2ba862f7561ca93f9c49ee415545305e7c158"
+        }
+      ],
+      "status": "Removed extra lower rear claw. Bone-first then visible muscle validation recorded separately in validation-v7.json; owner acceptance pending"
+    }
+  ],
+  "crop": {
+    "source": {
+      "file": "massing-v1.png",
+      "sha256": "e81d62a460b3cab426ea2e1c69579636cd4dd93a2538c2c84d689c538db13172"
+    },
+    "output": {
+      "file": "selected-03-reference.png",
+      "sha256": "fdf2a3004b1be841a039ced67d581aa3f9a7e2312ba650ff71fa7462111272b0"
+    },
+    "rect": {
+      "left": 1024,
+      "top": 0,
+      "width": 512,
+      "height": 850
+    },
+    "operation": "Whole third-column crop excluding label only; not body-part assembly"
+  },
+  "ownerAnnotation": {
+    "file": {
+      "file": "owner-claw-annotation.png",
+      "sha256": "6632874fce0ec85161901dd724b0aa152c3a47e8d0b5d8e3f269f67de19178c8"
+    },
+    "source": "Owner supplied codex-clipboard-5b6cdfca-33a4-4041-b3c2-ff63ce2644a1.png"
+  },
+  "technicalProcessing": "Sharp renders declared technical skeletal/muscle diagrams, composites diagnostic overlays/review backgrounds, crops whole column/rear detail and measures alpha/framing. It does not alter the clean generated art.",
+  "anatomyLimits": "Declared spatial skeleton and functional muscle aggregates are design controls, not reconstruction of hidden individual muscles, true skin depth or measured mass. Failed art/schemes retained as failed evidence.",
+  "externalSync": "No Notion write or push attempted in this revision after earlier automatic approval rejection. Local art and documentation retained."
+}

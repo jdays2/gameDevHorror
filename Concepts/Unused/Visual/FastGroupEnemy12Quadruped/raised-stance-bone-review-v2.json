@@ -1,0 +1,53 @@
+{
+  "task": "TASK-005",
+  "plan": "raised-stance-plan-v2.json",
+  "status": "BONE GO for prospective raised-stance redraw; not reconstructed skin anatomy",
+  "fronts": [
+    {
+      "side": "screenUpper",
+      "upper": 0.6873863542433761,
+      "forearm": 0.6691786009728644,
+      "wristPalm": 0.1941648783894759,
+      "digits": 3
+    },
+    {
+      "side": "screenLower",
+      "upper": 0.6873863542433761,
+      "forearm": 0.6691786009728644,
+      "wristPalm": 0.1941648783894759,
+      "digits": 3
+    }
+  ],
+  "rears": [
+    {
+      "side": "screenUpper",
+      "thigh": 0.5553377350765928,
+      "shank": 0.39115214431215894,
+      "hockPaw": 0.19235384061671348,
+      "digits": 4
+    },
+    {
+      "side": "screenLower",
+      "thigh": 0.5553377350765928,
+      "shank": 0.39115214431215894,
+      "hockPaw": 0.19235384061671348,
+      "digits": 4
+    }
+  ],
+  "contactCount": 4,
+  "allSolesZ0": true,
+  "frontUpperTop": 0.223606797749979,
+  "frontUpperZDrop": 0.65,
+  "bodyHeightRange": [
+    0.95,
+    1.15
+  ],
+  "projectedBodyAxisInsideSupport": "Y0 and trunkX0..0.85 bracketed by main solesX-0.86..0.95; trueCOM not measured",
+  "extraJoints": "None required. Wrist→palm is one carpal/metacarpal block, not an additional free wrist joint.",
+  "limits": [
+    "Coordinates/heights are prospective design choices, not recovered from skinv1/v2",
+    "Exact skin occlusion is schematic, not a solid-mesh ray test",
+    "No inferred hidden individual muscles or insertion depths"
+  ],
+  "next": "New single base sprite, then bone overlay before visible muscle/skin checks"
+}

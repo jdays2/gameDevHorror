@@ -1,0 +1,14 @@
+const fs=require('node:fs'),path=require('node:path');
+const sharp=require('C:/Users/Mark/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/sharp');
+const dir=__dirname,p=JSON.parse(fs.readFileSync(path.join(dir,'owner-skeleton-plan.json'))),c=p.approximateOwnerDrawingCoordinates;
+const line=pts=>`<polyline points="${pts.map(a=>a.join(',')).join(' ')}" fill="none" stroke="#d6ebee" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`;
+const dots=pts=>pts.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.2" fill="#f5cf75"/>`).join('');
+let bones=`<ellipse cx="200" cy="185" rx="39" ry="56" fill="none" stroke="#d6ebee" stroke-width="5"/>`;
+bones+=line([[239,185],c.shoulderGirdle,c.pelvis]);
+for(const chain of [c.upperForeChain,c.lowerForeChain,c.upperHindChain,c.lowerHindChain])bones+=line(chain)+dots(chain);
+for(const [root,tips] of [[c.upperForeChain[2],c.upperForeDigitTips],[c.lowerForeChain[2],c.lowerForeDigitTips]])for(const tip of tips)bones+=line([root,[(root[0]+tip[0])/2,(root[1]+tip[1])/2],tip]);
+for(const [root,tips] of [[c.upperHindChain[2],[[305,139],[303,153],[314,136]]],[c.lowerHindChain[2],[[310,241],[319,245],[324,233]]]])for(const tip of tips)bones+=line([root,tip]);
+const transform='translate(48 122) scale(2.3)';
+const layer=`<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024"><g transform="${transform}">${bones}</g></svg>`;
+const guide=`<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024"><rect width="1024" height="1024" fill="#282b30"/><g transform="${transform}"><path d="M234 173Q251 137 283 148Q312 150 326 174L326 205Q300 234 269 222Q245 220 234 197Z" fill="#626873"/><ellipse cx="200" cy="185" rx="39" ry="56" fill="#777b84"/>${bones}</g></svg>`;
+(async()=>{await sharp(Buffer.from(layer)).png().toFile(path.join(dir,'owner-bones-layer.png'));await sharp(Buffer.from(guide)).png().toFile(path.join(dir,'owner-skeleton-guide.png'));fs.writeFileSync(path.join(dir,'guide-transform.json'),JSON.stringify({canvas:[1024,1024],sourceCanvas:[403,339],uniformScale:2.3,translation:[48,122],head:'oval as confirmed by owner',noAnisotropicStretch:true,createdBeforeNextGeneration:true},null,2)+'\n');})();

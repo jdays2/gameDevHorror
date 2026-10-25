@@ -1,0 +1,72 @@
+{
+  "plan": "raised-stance-plan-v3.json",
+  "status": "BONE GO for prospective redraw only, not art validation",
+  "method": "Two sphere intersection at kneeY±.15, original thigh/shank lengths, fixed hip/hock/palm. Choose smallerX/front branch.",
+  "coordinatesFromArt": false,
+  "checks": {
+    "limbs": 4,
+    "frontDigitsPerLimb": 3,
+    "rearDigitsPerLimb": "3main+1lateral",
+    "onlyKneesChanged": true,
+    "segmentLengthsPreserved": true,
+    "contactsAndDigitsUnchanged": true,
+    "projection": "Selected knees x.774595,Y±.15 lie within conceptual body envelope; Z.358969 below bodyZ~.95..1.15. Proximal shank is dashed until it emerges from envelope.",
+    "actualOcclusion": "Envelope clipping only; not a ray-traced skin surface",
+    "trueLoad": "Not measured. Four unchanged sole contact points bound declared torso axis."
+  },
+  "metrics": [
+    {
+      "side": "screenUpper",
+      "kneeOld": [
+        0.75,
+        -0.47,
+        0.4
+      ],
+      "kneeNew": [
+        0.7745948831291345,
+        -0.15,
+        0.3589694386176591
+      ],
+      "rejectedCaudalBranch": [
+        1.1627424844956764,
+        -0.15,
+        0.4521248629456292
+      ],
+      "thighOld": 0.5553377350765928,
+      "thighNew": 0.5553377350765927,
+      "shankOld": 0.39115214431215894,
+      "shankNew": 0.391152144312159,
+      "hipHockPalmUnchanged": true,
+      "digitsUnchanged": true
+    },
+    {
+      "side": "screenLower",
+      "kneeOld": [
+        0.75,
+        0.47,
+        0.4
+      ],
+      "kneeNew": [
+        0.7745948831291345,
+        0.15,
+        0.3589694386176591
+      ],
+      "rejectedCaudalBranch": [
+        1.1627424844956764,
+        0.15,
+        0.4521248629456292
+      ],
+      "thighOld": 0.5553377350765928,
+      "thighNew": 0.5553377350765927,
+      "shankOld": 0.39115214431215894,
+      "shankNew": 0.391152144312159,
+      "hipHockPalmUnchanged": true,
+      "digitsUnchanged": true
+    }
+  ],
+  "limits": [
+    "A prospective kinematic pose, not reconstructed anatomy",
+    "Exact skin envelope and true COM unknown",
+    "Muscle insertions/visible anatomy require next redraw comparison"
+  ]
+}

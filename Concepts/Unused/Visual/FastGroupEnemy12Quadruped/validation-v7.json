@@ -1,0 +1,60 @@
+{
+  "version": 7,
+  "art": "sprite-base-v7-raised.png",
+  "plan": "raised-stance-plan-v3.json",
+  "musclePlan": "raised-stance-muscle-plan-v3.json",
+  "status": "STATIC_VISUAL_QA_GO_WITH_LIMITS",
+  "reviewOrder": [
+    "bones and digit count",
+    "separate soft volume diagnostic withoutIDs/tendons",
+    "same22functionalIDs, direction/attachment zones and digital routes"
+  ],
+  "registration": {
+    "file": "raised-canonical-transform-v7.json",
+    "scale": 1.5312131919905771,
+    "translation": [
+      -189.9057714958775,
+      -113.9811542991755
+    ],
+    "rotation": 0,
+    "perLimbFit": false
+  },
+  "bones": {
+    "status": "GO visible topology / coarse raised projection",
+    "limbs": 4,
+    "frontDigitsPerLimb": 3,
+    "rearDigitsPerLimb": "3main+1lateral",
+    "chain": "One carpal block per front; no detached hand/foot or extra joint detected. Rear knees are projected under torso in prospective pose3; distal short shank emerges continuously.",
+    "remaining": "Rear toe fan is more compact than guide, approximate20–30px discrepancy; guide unchanged. Same three main chains plus lateral branch retained. Pixel-perfect guide registration NOT passed."
+  },
+  "volumes": {
+    "status": "GO gross visible continuity and direction; not medical reconstruction",
+    "front": "Both forearms connect body/upper segment to one carpal passage and three digit roots; no new isolated functional block detected",
+    "rear": "Body→short shank→single3+1foot continuous; proximal thigh/knee covered by projected torso. No random new visible muscle attachment detected.",
+    "trunk": "Longitudinal/back/flank directions broadly compatible under continuous skin",
+    "limits": "Ellipses are declared coarse functional volumes, not measured tissue boundaries; hidden counts/insertions and true3Dlengths not established from raster",
+    "envelopeFit": "PARTIAL: coarse planned ellipses locally extend beyond the skin silhouette/over negative space; exact muscle boundary fit NOT claimed. Visible tissue continuity and functional direction reviewed separately."
+  },
+  "composition": {
+    "sameFunctionalIDs": true,
+    "declaredAggregateCount": 22,
+    "frontGroupsPerLimb": 5,
+    "rearGroupsPerLimb": 4,
+    "trunkGroups": 4,
+    "frontTendonRoutesPerLimb": 3,
+    "actualIndividualMuscleCount": "unverified under skin",
+    "markers": "circle planned origin zone, square planned insertion zone, arrow from→to; prospective zones only"
+  },
+  "limits": [
+    "True skin height, actual sole load/COM and occluded3Danatomy unverified",
+    "No rig or animation readiness claimed",
+    "Toe fan discrepancy explicitly retained; no guide refit"
+  ],
+  "deliverables": [
+    "raised-v7-bones-check.png",
+    "raised-v7-volumes-check.png",
+    "raised-v7-muscles-check.png",
+    "body-map-raised-v3.png"
+  ],
+  "use": "Show as final reviewed static design candidate, with stated limits; no animation expanded"
+}

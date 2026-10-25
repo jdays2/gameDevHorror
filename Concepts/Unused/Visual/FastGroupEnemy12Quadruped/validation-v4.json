@@ -1,0 +1,49 @@
+{
+  "version": 4,
+  "task": "TASK-005",
+  "art": "sprite-base-v4-raised.png",
+  "bonePlan": "raised-stance-plan-v2.json",
+  "musclePlan": "raised-stance-muscle-plan-v2.json",
+  "order": [
+    "unchanged prospective bones with one global camera registration",
+    "visible skin/functional-volume diagnostic only after bone findings",
+    "presentation map"
+  ],
+  "registrationFile": "raised-canonical-transform-v4.json",
+  "registration": {
+    "uniformScale": 1.4840989399293287,
+    "translation": [
+      -169.29328621908132,
+      -122.85865724381631
+    ],
+    "rotationDegrees": 0,
+    "limbRefit": false
+  },
+  "overall": "PARTIAL — useful static design candidate, NOT full anatomy/pose PASS",
+  "bones": {
+    "limbs": "PASS: four connected visible limb chains; no extra limb or obvious extra wrist joint",
+    "front": "PASS topology: three straight claws per hand, one coherent carpal block; coarse forearm chain agrees",
+    "frontProjection": "PARTIAL: visible wrists/hand spread remain slightly farther outward than fixed plan",
+    "axis": "PASS coarse head-crown/neck/body axis and short caudal mass",
+    "raisedStance": "PARTIAL: compact/occluded upper chains improve raised reading, but top raster cannot prove the declared Z heights or ground load",
+    "rearProjection": "FAIL exact planned alignment: rear feet/toes rotate diagonally outward; unchanged left-directed toe rays cross leg tissue; rear contact positions differ",
+    "rearDigits": "LIMITED: two large primary claws + one lateral are clear on each foot; proposed third main toe is substantially occluded, 3+1 not independently established with confidence"
+  },
+  "muscles": {
+    "status": "DIAGNOSTIC / NOT full PASS because rear bone registration diverges",
+    "front": "Visible forearm masses flow toward one wrist and three digit roots; no obvious new free muscle block or detached hand",
+    "trunk": "Paired longitudinal and flank skin relief is broadly compatible with declared functional directions; visible texture is not an individual muscle count",
+    "rear": "Visible leg/foot tissue is connected, but RU3/RU4 and RL3/RL4 axes diverge from fixed plan with rotated rear feet; no insertion match claimed",
+    "counts": "Plan only: 5 functional aggregates per front limb, 4 per rear limb, 4 trunk =22, plus3 digital tendon routes per front; these are NOT a verified count of anatomical muscles",
+    "hidden": "True3Dsegment lengths, individual origins/insertions, occluded muscles, tendon wrapping and exact sole height unverified"
+  },
+  "presentation": {
+    "map": "body-map-raised-v2.png",
+    "allowed": "Show as one static concept plus diagnostic map with rear mismatch marked",
+    "notAllowed": "Do not label rig-ready, animation-ready or fully anatomically matched"
+  },
+  "remainingPriority": [
+    "Clarify/align rear paw direction and main3+1 digit visibility against unchanged prospective plan",
+    "Preserve current front three claws and single carpal block while making any future correction"
+  ]
+}

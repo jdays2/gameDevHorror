@@ -1,0 +1,33 @@
+{
+  "task": "TASK-005",
+  "art": "sprite-base-v4-raised.png",
+  "plan": "raised-stance-plan-v2.json",
+  "method": "One uniform camera scale+translation fixed only from head-crown center and caudal torso outline before limb review; no per-joint/paw fit, no anisotropic scaling, no rotation.",
+  "controlAnchors": {
+    "head": [
+      437.5,
+      512
+    ],
+    "caudalOutline": [
+      862,
+      512
+    ]
+  },
+  "artAnchors": {
+    "head": [
+      480,
+      642
+    ],
+    "caudalOutline": [
+      1110,
+      632
+    ]
+  },
+  "fit": "Horizontal anchor distance sets uniform scale; mean anchor y637 preserves no-rotation constraint, residual±5px in y.",
+  "scale": 1.4840989399293287,
+  "translate": [
+    -169.29328621908132,
+    -122.85865724381631
+  ],
+  "uncertainty": "Manual visual anatomical anchors, approximate; not exact surface reconstruction."
+}
