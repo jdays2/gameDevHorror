@@ -1,0 +1,338 @@
+{
+  "scope": [
+    "AgentScripts/InspectStalkerLocomotion.cs",
+    "AgentScripts/InstallStalkerRig.cs",
+    "AgentScripts/PreviewStalkerRig.cs",
+    "AgentScripts/ReviewStalkerRig.cs",
+    "Assets/EmergencyShift/Art/Enemies/Stalker/Locomotion02",
+    "Assets/EmergencyShift/Art/Enemies/Stalker/Locomotion02.meta",
+    "Assets/EmergencyShift/Data/Enemies/StalkerLimbRig.asset",
+    "Assets/EmergencyShift/Data/Enemies/StalkerLimbRig.asset.meta",
+    "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
+    "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
+    "Docs/Enemies/STALKER.md",
+    "Docs/Features/Enemies.md",
+    "Concepts/Used/Stalker/Locomotion02",
+    "Assets/EmergencyShift/Materials/Characters/StalkerRigSurface.shader",
+    "Assets/EmergencyShift/Materials/Characters/StalkerRigSurface.shader.meta",
+    "Assets/EmergencyShift/Materials/Characters/StalkerRigSurface.mat",
+    "Assets/EmergencyShift/Materials/Characters/StalkerRigSurface.mat.meta",
+    "Assets/EmergencyShift/Materials/Characters/StalkerRigShadow.shader",
+    "Assets/EmergencyShift/Materials/Characters/StalkerRigShadow.shader.meta",
+    "Assets/EmergencyShift/Materials/Characters/StalkerRigShadow.mat",
+    "Assets/EmergencyShift/Materials/Characters/StalkerRigShadow.mat.meta",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Config/StalkerRigProfile.cs",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Config/StalkerRigProfile.cs.meta",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerGaitModel.cs",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerGaitModel.cs.meta",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLimbRig2D.cs",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLimbRig2D.cs.meta",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerRigShadows2D.cs",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerRigShadows2D.cs.meta",
+    "Assets/EmergencyShift/Tests/EditMode/StalkerGaitTests.cs",
+    "Assets/EmergencyShift/Tests/EditMode/StalkerGaitTests.cs.meta",
+    "Assets/EmergencyShift/Tests/PlayMode/StalkerRigSceneTests.cs",
+    "Assets/EmergencyShift/Tests/PlayMode/StalkerRigSceneTests.cs.meta"
+  ],
+  "files": [
+    {
+      "path": "AgentScripts/InspectStalkerLocomotion.cs",
+      "sha256": "c6850b4935304cf4e548fd555cb5ab7fd3fd69ec0cd12cce2d9ec175eba98181"
+    },
+    {
+      "path": "AgentScripts/InstallStalkerRig.cs",
+      "sha256": "3ca1c9bfcfb6cccb4dfda1022bc85218d9a6c0c8bca27e41bd4547f771dda1a0"
+    },
+    {
+      "path": "AgentScripts/PreviewStalkerRig.cs",
+      "sha256": "f60e6c95a1ef0989c8a2d2fcfe520de99a66aadc77ee913f59eb23f430b3b82c"
+    },
+    {
+      "path": "AgentScripts/ReviewStalkerRig.cs",
+      "sha256": "8a028beb14f5cc4bbb1cd1a1d629fc33ea29bb89c0f064c1cd9afa98c5bfad94"
+    },
+    {
+      "path": "Assets/EmergencyShift/Art/Enemies/Stalker/Locomotion02.meta",
+      "sha256": "d3f68664c4c611e6dbe47d7a124aa1366d1ad811e09804dc117a72338beafa86"
+    },
+    {
+      "path": "Assets/EmergencyShift/Art/Enemies/Stalker/Locomotion02/Torso.asset",
+      "sha256": "5ddba12388009582481a331863b663f1a5706990a72d87e2d81ad0472874777e"
+    },
+    {
+      "path": "Assets/EmergencyShift/Art/Enemies/Stalker/Locomotion02/Torso.asset.meta",
+      "sha256": "92405fe1bb2c1c3e59615a5af110d7ae4332af2aa4abd1f0334a72058cd3efce"
+    },
+    {
+      "path": "Assets/EmergencyShift/Art/Enemies/Stalker/Locomotion02/rig-atlas.png",
+      "sha256": "5c7ee7d23c6571586e13d7b1aa20f663b24c0a37fce48b126e865cabccc8b813"
+    },
+    {
+      "path": "Assets/EmergencyShift/Art/Enemies/Stalker/Locomotion02/rig-atlas.png.meta",
+      "sha256": "a8f92f4e307c77a6f432b28fa5964a88019cec543c5ba72f15433e51c599e462"
+    },
+    {
+      "path": "Assets/EmergencyShift/Data/Enemies/StalkerLimbRig.asset",
+      "sha256": "33fd859f5e6f6a65847e262a7936b02e3fc54c5bd8bfa45b9a20256d5218f0c4"
+    },
+    {
+      "path": "Assets/EmergencyShift/Data/Enemies/StalkerLimbRig.asset.meta",
+      "sha256": "a1a9dfed2ca9c0f0c2567a96575745fb36d383558016e373f9f3d9424fa3bc55"
+    },
+    {
+      "path": "Assets/EmergencyShift/Materials/Characters/StalkerRigShadow.mat",
+      "sha256": "c1d80c2937539675e09690470b847fd5877dab81a8bb035af39d8709424f462f"
+    },
+    {
+      "path": "Assets/EmergencyShift/Materials/Characters/StalkerRigShadow.mat.meta",
+      "sha256": "d40ee6cfa8963e2576542dca84cc04a1f21ac8cd8b4eb5cbb7225b4080769099"
+    },
+    {
+      "path": "Assets/EmergencyShift/Materials/Characters/StalkerRigShadow.shader",
+      "sha256": "7826b8f4843c63b20aeb2b9efd9a2e9c924654f522697740ac05d8e8b2b49dbf"
+    },
+    {
+      "path": "Assets/EmergencyShift/Materials/Characters/StalkerRigShadow.shader.meta",
+      "sha256": "e1791d56ed6d6e935c49ad8166dfb04a0db9d18bcf4e195f619bcd1432af36eb"
+    },
+    {
+      "path": "Assets/EmergencyShift/Materials/Characters/StalkerRigSurface.mat",
+      "sha256": "200d49c98523c6bb8f267fc9d9147b0fa21086d74f6637e21e181dfe3057faa6"
+    },
+    {
+      "path": "Assets/EmergencyShift/Materials/Characters/StalkerRigSurface.mat.meta",
+      "sha256": "6a8c8c6ee04938c68d9d077f134d2ed5f0947a4a688452186ed9ae426cf3c2df"
+    },
+    {
+      "path": "Assets/EmergencyShift/Materials/Characters/StalkerRigSurface.shader",
+      "sha256": "09e77924de3e95b1cbd3a5b7463980d7293874c2d8979bd93af94f178d49a4d9"
+    },
+    {
+      "path": "Assets/EmergencyShift/Materials/Characters/StalkerRigSurface.shader.meta",
+      "sha256": "32854bfddc3817ff46c6e47002d3ef398ab636d3bc5db7ae1fd7ac2bc7d030db"
+    },
+    {
+      "path": "Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab",
+      "sha256": "284ef6069d28cab1d73260e2bffb40863a811a33c214f65e7c9ea27745277bb3"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs",
+      "sha256": "60b25a0a120ca4ee0823b2ae23bf1f67ffc64e33a9403359818f930727f774d2"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Config/StalkerRigProfile.cs",
+      "sha256": "3c9937c868e95c27438c37859376d20db259586b74b4cc2ad1adcad024626b03"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Config/StalkerRigProfile.cs.meta",
+      "sha256": "7f249b0bd9f7f6f05f8aa3c8fa1d8991b64d934159baee6c7944f744f5351088"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerGaitModel.cs",
+      "sha256": "d57e4a30c85bc4ad7d79327dad81f30a0baaa2301b1d5057e827c1f5e26f183c"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Logic/StalkerGaitModel.cs.meta",
+      "sha256": "20b9196d0d067a26c31ef93c936cac97f7021a6aed8adf7ff442a6850d21bb4e"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLimbRig2D.cs",
+      "sha256": "8eb21f68e451409271db42c42f490306b7916b05a4dfb3a5b3dc179cedac13be"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerLimbRig2D.cs.meta",
+      "sha256": "7faea4ae920331b01a1d822627d27311b813cb4a6d17700cd14fd79f2de35cc4"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerRigShadows2D.cs",
+      "sha256": "79692414a2def6b69b5c2a93b901978085c426461d53f7381b6c8448bdfc36b9"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/View/StalkerRigShadows2D.cs.meta",
+      "sha256": "076af06510770224538c3a8e68d9f3a27096d3040b87cb4e46c963f3e0473d5c"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
+      "sha256": "e5336ee219aa8f65a7fc87b1aea4db4e7785aa4a98b7841e241169c0a7597ba3"
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/EditMode/StalkerGaitTests.cs",
+      "sha256": "8252c55e5ce7d90a6834481dc4d44476a3b8af492c4f701ceb97112b7826ec0b"
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/EditMode/StalkerGaitTests.cs.meta",
+      "sha256": "a18b699c55fc52e2d6e2e72dfd26ba301e6d2accf9347e551baa9e049b554050"
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/PlayMode/StalkerRigSceneTests.cs",
+      "sha256": "6db546332bcc6da32bded54a3c17177e2b79796e913458563673e2b8fdc100d2"
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/PlayMode/StalkerRigSceneTests.cs.meta",
+      "sha256": "1111fe87ffb000fcfcee4a7d753d8e13aa52b8c00f932902a15790911d714101"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/.gitignore",
+      "sha256": "252f37ca8376d2a814fdaea9e13fdeb0e3f20c31d6549ab1293b41d10ea6bdac"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MechanicsSandbox-live-0.png",
+      "sha256": "234ab6541f31be7a266097c8c7624cd95a6f2bed3765cc5347ea453827854ade"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MechanicsSandbox-live-1.png",
+      "sha256": "c0b140762ab0bc5805ed41751445befd981b419747b11f1d6df557d5e1adf293"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MechanicsSandbox-live-2.png",
+      "sha256": "445ae4da865abcc7967190dd55aa12fc6249c3e3367162462346ef5b3953bca0"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MechanicsSandbox-live-3.png",
+      "sha256": "dd23fd11da69ce5a320c04299dc5f0708aa2f9dd8fa80976a1f351928fe42244"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MechanicsSandbox-live-4.png",
+      "sha256": "c37b54f56721796ab9223517ee091aa27105b3129960e3e3a731e9465dcafd09"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MorgueRouteTest-live-0.png",
+      "sha256": "2a2a943d3559910c0a7353d4fd2bcac5b45d36760959b6d7bafc8300b11d110f"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MorgueRouteTest-live-1.png",
+      "sha256": "966ee56e7253f66335d027a63b9f815908a962a447db701b93a214a1eafa8cb8"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MorgueRouteTest-live-2.png",
+      "sha256": "5a1ee76fb3221452c6b5ea80e4643cb0aba81c12ebbf4bbe0e3f4e9d2da0a814"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MorgueRouteTest-live-3.png",
+      "sha256": "6601d75c666da22055f4fad459fd1dfa90e6a82823d2b2f17e96cd435ab60313"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/MorgueRouteTest-live-4.png",
+      "sha256": "73518a45acd8070982672298f5eb4448199212eb208c8c11bf46e2e62031ed3e"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/README.md",
+      "sha256": "5e5e8cc9e84aac3ed553080ceb4f80c9f8ac332c39eed79083109cb60916358d"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/anatomy.json",
+      "sha256": "125b01fc395b844ffa87f968062f691b24132bee7b7275280f9e45054929a0de"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/baseline-placements.json",
+      "sha256": "35d71ce57eb1fe4c1db2ec4209912c2edb6d1823f014c71bf87dc8a951e74298"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/build-result.json",
+      "sha256": "c65e6ea7bcc0412aeeab4f127db1ae1b2480263d989817f690e81c0804f30614"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/build_rig.py",
+      "sha256": "3f352e1f6b97981e1d9057c7614604325e4122f4d12651661a2c396f0421dba6"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/changed-files.json",
+      "sha256": null
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/close.mp4",
+      "sha256": "23e1eed9131b483b1a62ae3b78b85b2d50b4c60056e762934bc1df8324d67af2"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/collect_changes.py",
+      "sha256": "9abd53c34962670ddfd36dec08d2efb57ffeca31f1cd98c8f41812c7e0b47c85"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/cycle-review.jpg",
+      "sha256": "7bed6275bb33466d071734ab7dae1f7cad0eb2467d1ae79600dd26e2aaecc88f"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/editmode-results.json",
+      "sha256": "a30da889d1a8e806fca0b8e923259c9acfed10888909e9e4aa3a21fe1fb3026e"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/encode_preview.py",
+      "sha256": "0be699dae3271a36d700102d38d9005c5c8b1ebe740d61462832981a4949a87b"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/extraction.json",
+      "sha256": "131c3bf3c2c1c8b6300980f69080c1c9bab642c4fbc99447ce60cf372c6c2efb"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/game.mp4",
+      "sha256": "622003799a8d0bf98e2782ba0f965a601a488312d74e932b6d8f8145d1182db0"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/live-review.json",
+      "sha256": "9f7b04bb49a8f0adb5a9c0113ae23b8e5cc5d657102a0dc91f757087013704eb"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/master-review.png",
+      "sha256": "d15c0ad0d77e5a92837b9f6dcd485604704b6557955abc654c6cd41d7c82c3c6"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/master.png",
+      "sha256": "ffbd570b87c132382e2b69d41d0e8530bbbf2cc875a45355d3b8605b108dc15c"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/morgue-lit.mp4",
+      "sha256": "7fa50a4a86a6794d4df13b55c055a6158167614f8a6aa4020c9afb5253878693"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/morgue.mp4",
+      "sha256": "cac5fdd8fd20c68fdacc5d0097adf9188922a1530c488717fd25036b2da70b7b"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/muscle-review.png",
+      "sha256": "c20eb61fd740d870848b3027ebbc627f7f9f415b0ffe0a67e7468e5545903712"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/playmode-results.json",
+      "sha256": "27558ed17928e08918e607cedffc7d0235272cb16d76a633a52b00ed577d1ba4"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/preservation-and-shaders.json",
+      "sha256": "d13b8c5157bcfc83901234b2b1ae4bee56577718abab3a2abfc87d66cb55b7a5"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/preview-metadata.json",
+      "sha256": "19649a0477d9b228589e8d2fb17afe388e78cb8cfcf2ec49ca45c0a0f4a427a6"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/serve_viewer.py",
+      "sha256": "d0665211420f8ba32a79c14df7d8afb7d0e2a0abc8fea0835410f24e4f8d7ba9"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/skeleton-review.png",
+      "sha256": "31ce17ad515bd8ee8c8d287f6014a3e7efc4a4d0cc92031e759ded035f171bba"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/surface-review.png",
+      "sha256": "6b93b14d6051615e3f2006842006f88e8d7c1dc22959dda15cd883dff7ae06c8"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/viewer-review.png",
+      "sha256": "c8dd212a3b6b1d4d9ce0afd83b92539d465b3586c61cdba6b58e1acb4c05fc05"
+    },
+    {
+      "path": "Concepts/Used/Stalker/Locomotion02/viewer.html",
+      "sha256": "4e8206af1d3b6b11c0840b2fbce327e44a54c529ad0bff97e149a4da34dbcb54"
+    },
+    {
+      "path": "Docs/Enemies/STALKER.md",
+      "sha256": "21b68388298adb3efbcf3508abd3a058343c73b2d5698a21f87a7ab3a24d9801"
+    },
+    {
+      "path": "Docs/Features/Enemies.md",
+      "sha256": "2dd7149dc9fc083b2f807d7a5d19fc646a8363b698c15e72f9723f6b0c5985d5"
+    }
+  ],
+  "excluded": "Unrelated dirty files, authored scenes, Claw/F17–F21 work, menu/pause/input changes.",
+  "note": "Manifest excludes its own hash. Media never uploaded. Local commit only."
+}

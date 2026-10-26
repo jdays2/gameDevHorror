@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сталкер — сравнение движения</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#111519;color:#e5e9ec;font:16px system-ui;line-height:1.5}
+main{max-width:1160px;margin:auto;padding:24px}h1{font-size:28px;margin:0 0 8px}p{color:#abb5be;margin:8px 0 20px}
+video{width:100%;display:block;background:#080b0e;border-radius:12px}nav{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:16px 0}
+button,select{color:#e5e9ec;background:#252e37;border:1px solid #46525e;border-radius:7px;padding:10px;font:inherit;cursor:pointer}button:hover{background:#394856}
+input{flex:1;min-width:220px;accent-color:#93d8c9}output{font-variant-numeric:tabular-nums;min-width:90px}a{color:#93d8c9}.shots{display:grid;grid-template-columns:1fr 1fr;gap:16px}.shots img{width:100%;border-radius:8px}
+</style><main>
+<h1>Сталкер: до / после</h1>
+<p>Одинаковая фактическая скорость и траектория. Слева — прежние восемь рисунков; справа — риг из одного исходника PaleFlesh.</p>
+<video id="v" src="close.mp4" autoplay muted loop playsinline></video>
+<nav><button id="play">Пауза</button><button id="prev">− кадр</button><button id="next">+ кадр</button>
+<select id="camera" aria-label="Масштаб камеры"><option value="close">Крупно · 1.5</option><option value="game">MechanicsSandbox · 4.6</option><option value="morgue">Морг · старт · 2.4</option><option value="morgue-lit">Морг · с фонарём · 3.4</option></select>
+<select id="rate" aria-label="Темп просмотра"><option value="1">1×</option><option value=".5">0.5×</option><option value=".25">0.25×</option></select></nav>
+<nav><input id="time" type="range" min="0" max="239" value="0" aria-label="Кадр"><output id="stamp">0.00 s</output><strong id="state"></strong></nav>
+<p>0–2 с: 3.8 units/s; затем 1.2 units/s, поворот, остановка и продолжение. Скорость просмотра не меняет скорость симуляции. Это управляемый рендер Unity из настоящего prefab и модели движения; кадры не интерполированы. Ниже — отдельная проверка в живых уровнях с их камерой и фонарём.</p>
+<div class="shots"><div><a href="MechanicsSandbox-live-1.png"><img src="MechanicsSandbox-live-1.png" alt="Сталкер в MechanicsSandbox"></a>MechanicsSandbox</div><div><a href="MorgueRouteTest-live-1.png"><img src="MorgueRouteTest-live-1.png" alt="Сталкер в MorgueRouteTest"></a>MorgueRouteTest</div></div>
+<p><a href="cycle-review.jpg">24 позы для проверки цикла</a> · <a href="skeleton-review.png">Схема суставов</a> · <a href="README.md">Метод и ограничения</a></p>
+</main><script>
+const v=document.querySelector('#v'),time=document.querySelector('#time'),play=document.querySelector('#play');
+function sync(){let t=v.currentTime;time.value=Math.min(239,Math.floor(t*60));document.querySelector('#stamp').textContent=t.toFixed(2)+' s';document.querySelector('#state').textContent=t<2?'Бег · 3.8':t<2.5?'Ходьба · 1.2':t<190/60?'Поворот · 1.2':t<215/60?'Остановка · 0':'Продолжение · 1.2';play.textContent=v.paused?'Старт':'Пауза';requestAnimationFrame(sync)}sync();
+play.onclick=()=>v.paused?v.play():v.pause();time.oninput=()=>{v.pause();v.currentTime=(Number(time.value)+.01)/60};
+function step(n){v.pause();v.currentTime=Math.max(0,Math.min(3.99,v.currentTime+n/(document.querySelector('#camera').value==='close'?60:15)))}
+document.querySelector('#prev').onclick=()=>step(-1);document.querySelector('#next').onclick=()=>step(1);
+document.querySelector('#rate').onchange=e=>v.playbackRate=Number(e.target.value);
+document.querySelector('#camera').onchange=e=>{const t=v.currentTime,r=v.playbackRate,paused=v.paused;v.autoplay=false;v.onloadedmetadata=()=>{v.currentTime=t;v.playbackRate=r;if(!paused)v.play();else v.pause()};v.src=e.target.value+'.mp4'};
+</script></html>

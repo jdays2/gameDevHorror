@@ -770,6 +770,8 @@ GameObject:
   - component: {fileID: 690968468944842711}
   - component: {fileID: 4551410281294635097}
   - component: {fileID: 5468451351399276802}
+  - component: {fileID: 3086148765407882808}
+  - component: {fileID: 2559225106484453219}
   m_Layer: 0
   m_Name: ShadowStalker
   m_TagString: Untagged
@@ -1168,6 +1170,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bee67ca481e3b488b70d80e7f74de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.StalkerPresentationSource2D
+--- !u!114 &3086148765407882808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801567498149846478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd02ff1a5c255ba45acd48416ba710ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.Features.Enemies.View.StalkerLimbRig2D
+  profile: {fileID: 11400000, guid: 9fe3069fd87ffc94b9cc5de3f3b0f33b, type: 2}
+  visual: {fileID: 734055481866270515}
+  body: {fileID: 1361151187204916597}
+  iris: {fileID: 7872070389695808557}
+  pupil: {fileID: 4799677290374597046}
+  backing: {fileID: 5832703003688288012}
+  contact: {fileID: 6298417688308433658}
+  projection: {fileID: 4682392521900214919}
+--- !u!114 &2559225106484453219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6801567498149846478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64abb47706fc7e54c849dc1f741ada61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.Features.Enemies.View.StalkerRigShadows2D
 --- !u!1 &7750864743140940108
 GameObject:
   m_ObjectHideFlags: 0

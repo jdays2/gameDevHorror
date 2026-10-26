@@ -74,6 +74,8 @@ namespace EmergencyShift
         }
         public bool EyeOpen => pupil != null && pupil.enabled;
         public Vector2 PupilOffset => pupil != null ? (Vector2)(pupil.transform.localPosition - pupilRestPosition - currentEyeOffset) : Vector2.zero;
+        protected virtual bool AnimateCompactLocomotion => false;
+        protected virtual bool ApplySupportYaw => true;
 
         public void Configure(EnemyPresentationSource2D actor, Transform root, SpriteRenderer renderer, SpriteRenderer irisRenderer, SpriteRenderer pupilRenderer, Sprite[] walk, Sprite[] recoil)
         {
@@ -195,7 +197,9 @@ namespace EmergencyShift
 
             if (locomotionProfile != null)
             {
-                bool walking = creeping && !presentation.IsStaggered && presentation.Closure < 0.05f;
+                bool ordinaryWalk = creeping && presentation.Closure < 0.05f;
+                bool compactWalk = AnimateCompactLocomotion && presentation.IsCompactWalking;
+                bool walking = (ordinaryWalk || compactWalk) && !presentation.IsStaggered;
                 UpdateLocomotion(walking, translation);
             }
             else if (creeping && presentation.Velocity.sqrMagnitude > 0.01f)
@@ -417,7 +421,7 @@ namespace EmergencyShift
 
             float response = targetWeight > movementWeight ? locomotionProfile.StartSeconds : locomotionProfile.SettleSeconds;
             movementWeight = Mathf.MoveTowards(movementWeight, targetWeight, dt / Mathf.Max(0.01f, response));
-            supportYaw = Mathf.Sin(walkPhase * Mathf.PI * 2f) * Mathf.Clamp(locomotionProfile.SupportYawDegrees, 0, 3) * movementWeight;
+            supportYaw = ApplySupportYaw ? Mathf.Sin(walkPhase * Mathf.PI * 2f) * Mathf.Clamp(locomotionProfile.SupportYawDegrees, 0, 3) * movementWeight : 0;
             visualRoot.rotation = Quaternion.Euler(0, 0, heading + supportYaw);
         }
     }
