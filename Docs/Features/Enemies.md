@@ -22,7 +22,7 @@ EnemyDefinition, EnemyPatrolProfile, SleeperBehaviourProfile и StalkerBehaviour
 | Кровь/разрыв по событию смерти | EnemyDeathEffects2D + GoreBurst2D |
 | Попадание/тени | EnemyHitResponse2D; CreatureGroundShadow2D через EnemyPresentationSource2D |
 | Кадры | CreatureSpriteAnimator2D через EnemyPresentationSource2D; совместимая оболочка StalkerSpriteAnimator |
-| Цельные кадры Сталкера | Immutable StalkerSpriteSet: 48 фаз × 9 степеней поджатия; StalkerSpriteAnimator выбирает целое тело по пройденному пути и личному визуальному закрытию. Риг/IK существуют только в Editor для подготовки рисунков. [Контракт и проверка](../../Concepts/Used/Stalker/Locomotion03Sprites/README.md) |
+| Поза тела и цельные кадры | EnemyBodyPosture задаётся видовым адаптером отдельно от Closure глаза. Сталкер: StalkerSpriteSet 48×9, отдельные раскрытая/поджатая походки и полностью сложенная неподвижная поза; тело реагирует уже в Recoiling. Спящий сохраняет компактный Recoil03 и разворачивание Waking. IK только в Editor. [Контракт и проверка](../../Concepts/Used/Stalker/Postures04/README.md) |
 | Голос/контакты и сигнал угрозы | StalkerAudio2D / SleeperAudio2D и их AudioThreat-адаптеры |
 
 Это композиция: следующий AI получает нужные компоненты и собственные решения, не наследуется от Сталкера и не добавляет `if (enemyType==...)` в его код. Общие модули не содержат собственных Update: AI вызывает их в физическом шаге. События отделяют реакции представления от смерти/укуса. Общий проигрыватель кадров извлечён при подключении второго вида, использующего тот же набор анатомии; звук и решения остаются видовыми. Для Спящего общая атака поддерживает фиксированное направление без обходного поворота, прежний режим Сталкера сохранён.

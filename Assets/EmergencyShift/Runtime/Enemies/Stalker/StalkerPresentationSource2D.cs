@@ -16,6 +16,22 @@ namespace EmergencyShift
         public override bool IsWalking => actor.State == ShadowStalker2D.BehaviourState.Sneaking || actor.State == ShadowStalker2D.BehaviourState.Patrolling;
         public override bool IsAttacking => actor.State == ShadowStalker2D.BehaviourState.Attacking;
         public override bool IsCompactWalking => actor.State == ShadowStalker2D.BehaviourState.Retreating;
+        public override EnemyBodyPosture BodyPosture
+        {
+            get
+            {
+                switch (actor.State)
+                {
+                    case ShadowStalker2D.BehaviourState.Recoiling:
+                    case ShadowStalker2D.BehaviourState.Waiting:
+                        return EnemyBodyPosture.Folded;
+                    case ShadowStalker2D.BehaviourState.Retreating:
+                        return EnemyBodyPosture.CompactWalking;
+                    default:
+                        return EnemyBodyPosture.Extended;
+                }
+            }
+        }
         public override bool IsStaggered => actor.IsStaggered;
         public override bool HasEyeDamage => actor.EyeBurned;
         public override float EyeDamageProgress => actor.EyeDamageProgress;

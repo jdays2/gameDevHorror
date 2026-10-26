@@ -8,12 +8,15 @@ namespace EmergencyShift
     {
         [SerializeField] private ShadowStalker2D behaviour;
         [SerializeField] private StalkerSpriteSet spriteSet;
-        private float displayedClosure;
-        private bool hasDisplayedClosure;
-        public float DisplayedClosure => displayedClosure;
+        private float displayedBodyFold;
+        private bool hasDisplayedBodyFold;
+        public float DisplayedBodyFold => displayedBodyFold;
         public StalkerSpriteSet SpriteSet => spriteSet;
         protected override bool AnimateCompactLocomotion => spriteSet != null;
         protected override bool ApplySupportYaw => spriteSet == null;
+        protected override float LocomotionStrideScale => spriteSet != null ? spriteSet.StrideScale(displayedBodyFold) : 1;
+        protected override float BodyFoldTarget => spriteSet != null && Presentation.BodyPosture == EnemyBodyPosture.CompactWalking
+            ? spriteSet.CompactWalkingFold : base.BodyFoldTarget;
 
         protected override void Awake()
         {
@@ -21,19 +24,20 @@ namespace EmergencyShift
             spriteSet?.Validate();
         }
 
-        protected override bool TrySelectLocomotionFrame(float phase, float closure, out Sprite sprite, out int frame)
+        protected override bool TrySelectLocomotionFrame(float phase, out Sprite sprite, out int frame)
         {
             if (spriteSet == null)
             {
-                return base.TrySelectLocomotionFrame(phase, closure, out sprite, out frame);
+                return base.TrySelectLocomotionFrame(phase, out sprite, out frame);
             }
-            if (!hasDisplayedClosure)
+            float bodyTarget = BodyFoldTarget;
+            if (!hasDisplayedBodyFold)
             {
-                displayedClosure = closure;
-                hasDisplayedClosure = true;
+                displayedBodyFold = bodyTarget;
+                hasDisplayedBodyFold = true;
             }
-            displayedClosure = Mathf.MoveTowards(displayedClosure, closure, Time.deltaTime / spriteSet.ClosureSeconds);
-            frame = spriteSet.FrameIndex(phase, displayedClosure);
+            displayedBodyFold = Mathf.MoveTowards(displayedBodyFold, bodyTarget, Time.deltaTime / spriteSet.ClosureSeconds);
+            frame = spriteSet.FrameIndex(phase, displayedBodyFold);
             sprite = spriteSet.Frame(frame);
             return true;
         }

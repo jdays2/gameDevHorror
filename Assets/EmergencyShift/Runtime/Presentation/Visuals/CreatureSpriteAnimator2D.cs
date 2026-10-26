@@ -76,8 +76,26 @@ namespace EmergencyShift
         public Vector2 PupilOffset => pupil != null ? (Vector2)(pupil.transform.localPosition - pupilRestPosition - currentEyeOffset) : Vector2.zero;
         protected virtual bool AnimateCompactLocomotion => false;
         protected virtual bool ApplySupportYaw => true;
+        protected EnemyPresentationSource2D Presentation => presentation;
+        protected virtual float LocomotionStrideScale => 1;
+        protected virtual float BodyFoldTarget
+        {
+            get
+            {
+                switch (presentation.BodyPosture)
+                {
+                    case EnemyBodyPosture.Folded:
+                        return 1;
+                    case EnemyBodyPosture.Unfolding:
+                    case EnemyBodyPosture.CompactWalking:
+                        return presentation.Closure;
+                    default:
+                        return 0;
+                }
+            }
+        }
 
-        protected virtual bool TrySelectLocomotionFrame(float phase, float closure, out Sprite sprite, out int frame)
+        protected virtual bool TrySelectLocomotionFrame(float phase, out Sprite sprite, out int frame)
         {
             sprite = null;
             frame = 0;
@@ -213,7 +231,7 @@ namespace EmergencyShift
 
             if (locomotionProfile != null)
             {
-                bool ordinaryWalk = creeping && presentation.Closure < 0.05f;
+                bool ordinaryWalk = creeping && presentation.BodyPosture == EnemyBodyPosture.Extended;
                 bool compactWalk = AnimateCompactLocomotion && presentation.IsCompactWalking;
                 bool walking = (ordinaryWalk || compactWalk) && !presentation.IsStaggered;
                 UpdateLocomotion(walking, translation);
@@ -232,7 +250,7 @@ namespace EmergencyShift
                 visualRoot.rotation = Quaternion.RotateTowards(visualRoot.rotation, Quaternion.Euler(0, 0, angle), turnSpeed * Time.deltaTime);
             }
 
-            int eyeFrame = 0;
+            int eyeFrame = Mathf.Clamp(Mathf.RoundToInt(presentation.Closure * 3), 0, 3);
             if (dead && deathFrames != null && deathFrames.Length > 0)
             {
                 CurrentFrame = Mathf.Min(deathFrames.Length - 1, (int)(presentation.DeathTime * 6f));
@@ -247,20 +265,19 @@ namespace EmergencyShift
                 CurrentFrame = Mathf.Min(attackFrames.Length - 1, (int)(presentation.AttackProgress * attackFrames.Length));
                 bodyRenderer.sprite = attackFrames[CurrentFrame];
             }
-            else if (TrySelectLocomotionFrame(walkPhase, presentation.Closure, out Sprite locomotionSprite, out int poseFrame))
+            else if (TrySelectLocomotionFrame(walkPhase, out Sprite locomotionSprite, out int poseFrame))
             {
                 CurrentFrame = poseFrame;
                 bodyRenderer.sprite = locomotionSprite;
-                eyeFrame = Mathf.Clamp(Mathf.RoundToInt(presentation.Closure * 3), 0, 3);
             }
-            else if (presentation.Closure < 0.05f || recoilFrames == null || recoilFrames.Length == 0)
+            else if (BodyFoldTarget < 0.05f || recoilFrames == null || recoilFrames.Length == 0)
             {
                 CurrentFrame = WalkFrame();
                 bodyRenderer.sprite = walkFrames[CurrentFrame];
             }
             else
             {
-                CurrentFrame = Mathf.Clamp(Mathf.RoundToInt(presentation.Closure * (recoilFrames.Length - 1)), 0, recoilFrames.Length - 1);
+                CurrentFrame = Mathf.Clamp(Mathf.RoundToInt(BodyFoldTarget * (recoilFrames.Length - 1)), 0, recoilFrames.Length - 1);
                 if (presentation.IsCompactWalking)
                 {
                     compactClock += Time.deltaTime;
@@ -268,7 +285,6 @@ namespace EmergencyShift
                 }
 
                 bodyRenderer.sprite = recoilFrames[CurrentFrame];
-                eyeFrame = CurrentFrame;
             }
 
             UpdateEyePresentation(eyeFrame, dead);
@@ -408,7 +424,7 @@ namespace EmergencyShift
             }
 
             float scale = Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.y));
-            float cycleDistance = Mathf.Max(0.01f, locomotionProfile.DistancePerCycle * scale);
+            float cycleDistance = Mathf.Max(0.01f, locomotionProfile.DistancePerCycle * scale * LocomotionStrideScale);
             float distance = translation.magnitude;
             float acceptedDistance = Mathf.Max(cycleDistance, presentation.MovementSpeed * dt * 3f);
             if (distance > acceptedDistance)

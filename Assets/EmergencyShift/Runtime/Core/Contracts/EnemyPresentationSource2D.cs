@@ -12,6 +12,7 @@ namespace EmergencyShift
         public virtual float EyeDamageProgress => HasEyeDamage ? 1 : 0;
         public virtual float EyeWarning => 0;
         public virtual bool IsCompactWalking => false;
+        public virtual EnemyBodyPosture BodyPosture => EnemyBodyPosture.Extended;
         public virtual float Closure => 0;
         public virtual Vector2 Velocity => Vector2.zero;
         public float MovementSpeed => Velocity.magnitude;

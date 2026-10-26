@@ -81,10 +81,21 @@ namespace EmergencyShift.Tests
                 stalker.RestoreState(snapshot);
                 physics.linearVelocity = Vector2.up * 3.8f;
                 yield return null;
-                Assert.That(animator.DisplayedClosure, Is.LessThan(1), "Fear must not select the final compressed row immediately.");
+                Assert.That(animator.DisplayedBodyFold, Is.LessThan(1), "Fear must not select the final compressed row immediately.");
                 Assert.That(animator.CurrentFrame / animator.SpriteSet.Phases, Is.LessThan(animator.SpriteSet.ClosureRows - 1));
                 yield return new WaitForSeconds(.35f);
-                Assert.That(animator.DisplayedClosure, Is.EqualTo(1).Within(.001f));
+                Assert.That(animator.DisplayedBodyFold, Is.EqualTo(animator.SpriteSet.CompactWalkingFold).Within(.001f));
+                Assert.That(body.sprite.name, Does.StartWith("body-4-"));
+                // The body responds to the recoil state while the eye is still open.
+                snapshot.state = ShadowStalker2D.BehaviourState.Recoiling;
+                snapshot.age = 0;
+                snapshot.closure = 0;
+                stalker.RestoreState(snapshot);
+                stalker.enabled = false; // Restore re-enables the brain; hold this diagnostic state.
+                physics.linearVelocity = Vector2.zero;
+                yield return new WaitForSeconds(.3f);
+                Assert.That(animator.EyeOpen, Is.True);
+                Assert.That(animator.DisplayedBodyFold, Is.EqualTo(1).Within(.001f));
                 Assert.That(body.sprite.name, Does.StartWith("body-8-"));
                 foreach (ShadowStalker2D.BehaviourState state in new[] {
                     ShadowStalker2D.BehaviourState.Recoiling, ShadowStalker2D.BehaviourState.Retreating,

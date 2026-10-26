@@ -69,6 +69,10 @@ namespace EmergencyShift.Tests
             yield return new WaitForSeconds(.1f);
             Assert.That(sleeper.State, Is.EqualTo(Sleeper2D.BehaviourState.Sleeping));
             Assert.That(sleeper.HasAggro, Is.False, "Proximity alone does not wake this species.");
+            var body=enemy.transform.Find("Visual/Body").GetComponent<SpriteRenderer>();
+            Assert.That(body.sprite.name, Does.StartWith("Recoil03"), "Sleeping must use the authored folded body, not only a shut eye.");
+            Assert.That(enemy.GetComponent<EnemyPresentationSource2D>().BodyPosture, Is.EqualTo(EnemyBodyPosture.Folded));
+            Assert.That(body.bounds.size.x, Is.LessThan(1), "Sleeping silhouette must remain visibly compact.");
             context.Flashlight.AimAt(enemy.transform.position);
             context.Flashlight.SetPower(true);
             var wall = new GameObject("Beam obstruction");
@@ -88,6 +92,7 @@ namespace EmergencyShift.Tests
 
             Assert.That(sleeper.HasAggro, Is.True);
             Assert.That(sleeper.State, Is.EqualTo(Sleeper2D.BehaviourState.Waking));
+            Assert.That(enemy.GetComponent<EnemyPresentationSource2D>().BodyPosture, Is.EqualTo(EnemyBodyPosture.Unfolding));
             context.Flashlight.SetPower(false);
             deadline = Time.time + 2.5f;
             while (sleeper.State != Sleeper2D.BehaviourState.Attacking && Time.time < deadline)

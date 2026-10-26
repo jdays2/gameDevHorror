@@ -15,6 +15,21 @@ namespace EmergencyShift
         public override bool IsAttacking => actor.State == Sleeper2D.BehaviourState.Attacking;
         public override bool IsOrienting => IsAttacking || actor.State == Sleeper2D.BehaviourState.Waking;
         public override bool IsStaggered => actor.IsStaggered;
+        public override EnemyBodyPosture BodyPosture
+        {
+            get
+            {
+                switch (actor.State)
+                {
+                    case Sleeper2D.BehaviourState.Sleeping:
+                        return EnemyBodyPosture.Folded;
+                    case Sleeper2D.BehaviourState.Waking:
+                        return EnemyBodyPosture.Unfolding;
+                    default:
+                        return EnemyBodyPosture.Extended;
+                }
+            }
+        }
         public override float Closure => actor.Closure;
         public override Vector2 Velocity => actor.Velocity;
         public override Transform Target => actor.Player;
