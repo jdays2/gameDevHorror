@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TASK-005 · три варианта передвижения</title>
+<style>
+body{margin:0;background:#20272c;color:#ecf0f1;font:16px system-ui}main{max-width:1440px;margin:auto;padding:20px}h1{font-size:24px;margin:0 0 10px}p{color:#b9c5cc;margin:8px 0 16px}nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0}button,select,input{font:inherit}button,select{padding:8px 12px;background:#36444d;color:#fff;border:1px solid #61737d;border-radius:5px}button:hover{background:#48616e}canvas{width:100%;display:block;border:1px solid #536168}#frames{font-variant-numeric:tabular-nums}.note{font-size:14px}.timeline{width:160px}
+</style>
+<main>
+<h1>Передвижение · исходное → лапы → лапы и корпус</h1>
+<p id="status">Загрузка трёх анимаций…</p>
+<nav>
+<button id="play" disabled>Пауза</button><button id="step" disabled>+1 кадр</button>
+<label>Темп <select id="rate"><option value="1">100%</option><option value=".5">50%</option><option value=".25">25%</option></select></label>
+<label>Вид <select id="view"><option value="full">Полная фигура</option><option value="body">Корпус крупно</option></select></label>
+<label>Фон <select id="background"><option value="dark">Тёмный</option><option value="light">Светлый</option></select></label>
+<input id="timeline" class="timeline" type="range" min="0" max="1000" value="0" aria-label="Позиция в цикле новых вариантов">
+<span id="frames"></span>
+</nav>
+<canvas id="stage" width="1440" height="900"></canvas>
+<p class="note">Общая скорость 1.65 ед/с, общий масштаб и пол. Варианты 2 и 3 идут в одной фазе и используют один дизайн. У варианта 3 меняются плечевой пояс, изгиб спины и таз; голова движется сдержаннее. В первом сохранена прежняя голова. Пробел — пауза.</p>
+</main>
+<script>
+const canvas=document.querySelector('#stage'),ctx=canvas.getContext('2d');
+const play=document.querySelector('#play'),step=document.querySelector('#step');
+const timeline=document.querySelector('#timeline');
+const groundSpeed=1.65,pivot=[602.2,511.8];
+const labels=['1 · Исходный бег','2 · Обновлённые лапы','3 · Лапы + корпус'];
+const notes=['Прежняя походка','Длиннее зацеп, ниже перенос','Плечи, спина и таз участвуют в шаге'];
+let clips=[],playing=true,ready=false,time=0,last=0;
+async function load(url){
+ const config=await fetch(url).then(r=>{if(!r.ok)throw Error(url);return r.json()});
+ const images=await Promise.all(config.frames.map(path=>new Promise((ok,no)=>{const image=new Image();image.onload=()=>ok(image);image.onerror=()=>no(Error(path));image.src=new URL(path,new URL(url,location.href));})));
+ return{config,images};
+}
+function frameAt(seconds,config){
+ let phase=((seconds%config.duration)+config.duration)%config.duration,total=0;
+ for(let i=0;i<config.durationsMs.length;i++){total+=config.durationsMs[i]/1000;if(phase<total-1e-9)return i;}
+ return config.frames.length-1;
+}
+function draw(){
+ if(!ready)return;
+ const light=document.querySelector('#background').value==='light';
+ const scale=document.querySelector('#view').value==='body'?.88:.44;
+ const tile=.5*400*scale,drift=(time*groundSpeed*400*scale)%tile;
+ ctx.fillStyle=light?'#e9e8e3':'#292e31';ctx.fillRect(0,0,1440,900);
+ ctx.strokeStyle=light?'#c8cac5':'#394246';ctx.lineWidth=1;ctx.beginPath();
+ for(let x=0;x<=1440;x+=tile){ctx.moveTo(x,140);ctx.lineTo(x,840);}
+ for(let y=140-tile;y<840+tile;y+=tile){ctx.moveTo(0,y-drift);ctx.lineTo(1440,y-drift);}ctx.stroke();
+ const indices=[];
+ for(let col=0;col<3;col++){
+  const c=clips[col].config,index=frameAt(time*groundSpeed/c.referenceSpeed,c);indices.push(index);
+  ctx.save();ctx.beginPath();ctx.rect(col*480,140,480,700);ctx.clip();ctx.translate(col*480+240,460);ctx.rotate(-Math.PI/2);
+  ctx.drawImage(clips[col].images[index],-pivot[0]*scale,-pivot[1]*scale,1024*scale,1024*scale);ctx.restore();
+  ctx.fillStyle=light?'#e9e8e3':'#20272c';ctx.fillRect(col*480,0,480,140);ctx.fillRect(col*480,840,480,60);
+  ctx.fillStyle=light?'#26343a':'#ecf0f1';ctx.font='bold 25px system-ui';ctx.textAlign='center';ctx.fillText(labels[col],col*480+240,58);
+  ctx.font='16px system-ui';ctx.fillText(notes[col],col*480+240,95);
+  ctx.fillStyle=col===2?(light?'#08766c':'#89d8c5'):(light?'#4c5e66':'#a7b6bd');ctx.fillText('Кадр '+String(index).padStart(2,'0'),col*480+240,875);
+ }
+ ctx.strokeStyle=light?'#a5b1b2':'#56636a';ctx.beginPath();for(const x of[480,960]){ctx.moveTo(x,0);ctx.lineTo(x,900);}ctx.stroke();
+ document.querySelector('#frames').textContent=indices.map(i=>String(i).padStart(2,'0')).join(' / ');
+ const c=clips[2].config;timeline.value=Math.floor(((time*groundSpeed/c.referenceSpeed)%c.duration)/c.duration*1000);
+}
+function pause(){playing=!playing;play.textContent=playing?'Пауза':'Пуск';draw();}
+function animate(ms){if(last&&playing)time+=(ms-last)/1000*Number(document.querySelector('#rate').value);last=ms;draw();requestAnimationFrame(animate);}
+play.onclick=pause;
+step.onclick=()=>{playing=false;play.textContent='Пуск';const c=clips[2].config;time+=c.durationsMs[0]/1000*c.referenceSpeed/groundSpeed;draw();};
+timeline.oninput=()=>{playing=false;play.textContent='Пуск';const c=clips[2].config;time=Number(timeline.value)/1000*c.duration*c.referenceSpeed/groundSpeed;draw();};
+document.querySelector('#view').onchange=draw;document.querySelector('#background').onchange=draw;
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&ready){e.preventDefault();pause();}});
+Promise.all([load('../FastGroupEnemy20HeavyLocomotion/old.json'),load('../FastGroupEnemy20HeavyLocomotion/new.json'),load('body.json')]).then(values=>{
+ clips=values;ready=true;play.disabled=false;step.disabled=false;
+ const params=new URLSearchParams(location.search);
+ if(params.get('view')==='body')document.querySelector('#view').value='body';
+ if(params.has('frame')){const c=clips[2].config;time=Number(params.get('frame'))*c.durationsMs[0]/1000*c.referenceSpeed/groundSpeed;playing=false;play.textContent='Пуск';}
+ document.querySelector('#status').textContent='Три варианта рядом. Сравнение на одинаковой скорости; третий — новая проба с движением корпуса.';
+ draw();requestAnimationFrame(animate);
+}).catch(error=>{document.querySelector('#status').textContent='Не удалось загрузить сравнение: '+error.message;});
+</script>
+</html>

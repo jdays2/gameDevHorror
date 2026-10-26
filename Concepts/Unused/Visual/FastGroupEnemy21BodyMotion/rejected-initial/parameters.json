@@ -1,0 +1,37 @@
+{
+  "revision": "rejected chest-root trial",
+  "master": "../FastGroupEnemy19SpiderEyes/J-closed-mandibles.png",
+  "chainRoot": "chest",
+  "load": "sin(2*pi*(t-.08))",
+  "rearLoad": "sin(2*pi*(t-.18))",
+  "compress": "sin(4*pi*t+.4)",
+  "yawDegrees": [
+    "1.1*sin(2*pi*(t-.16))",
+    "4*load",
+    "-.8*rearLoad",
+    "-3.2*rearLoad"
+  ],
+  "pitchDegrees": [
+    "1.2*compress",
+    "1.2*compress",
+    "-2*compress",
+    "2.8*compress"
+  ],
+  "rollDegrees": [
+    0,
+    "4.5*load",
+    "rearLoad",
+    "-3*rearLoad"
+  ],
+  "chestOffset": [
+    ".018*cos(4*pi*t)",
+    "-.022*load",
+    "-.16+.018*compress"
+  ],
+  "shoulderMobileRingPixels": [
+    22,
+    105
+  ],
+  "areaProjectionIterations": 180,
+  "failure": "Rear ankle surface orientation failed in the archived intermediate frames; not production frames."
+}
