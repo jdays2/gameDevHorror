@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сталкер · цельные спрайты</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#13171b;color:#edf2ee;font:15px system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:24px}h1{font-size:26px;margin:0 0 8px}p{color:#b6c3bd;margin:8px 0 18px;line-height:1.5}.bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:14px 0}label{display:flex;align-items:center;gap:8px}select,button{background:#26312d;color:#f4fff9;border:1px solid #52665a;border-radius:7px;padding:9px 13px;font:inherit}button{cursor:pointer}button:hover{background:#385342}canvas{display:block;width:100%;aspect-ratio:16/9;background:#00ff00;border-radius:10px}input{width:100%;accent-color:#99eab5}.status{font-variant-numeric:tabular-nums;color:#c0d9ca;min-height:23px}.pill{display:inline-block;font-size:12px;background:#244634;color:#b9ffd2;padding:5px 9px;border-radius:20px;margin-bottom:12px}a{color:#b4ebc9}.foot{font-size:13px}
+</style>
+<main><span class="pill">48 фаз шага · 9 степеней поджатия · без IK в игре</span>
+<h1>Сталкер: движение и испуг</h1><p>Цельные спрайты из одного рисунка. Зелёный фон показывает края и просветы в креплениях.</p>
+<div class="bar"><label>Фрагмент <select id="clip" aria-label="Фрагмент"><option value="walk">Ходьба</option><option value="fear">Испуг → отход</option><option value="wait">Ожидание → раскрытие</option><option value="all">Весь проход, 8 секунд</option></select></label>
+<label>Вид <select id="camera" aria-label="Вид"><option value="green">Зелёный фон, крупно</option><option value="game">Игровой масштаб</option></select></label>
+<label>Скорость <select id="speed" aria-label="Скорость"><option value="1">1×</option><option value="0.5">½×</option><option value="0.25">¼×</option></select></label></div>
+<canvas id="canvas" width="1280" height="720" aria-label="Покадровое превью Сталкера"></canvas>
+<div class="bar"><button id="play">Пауза</button><button id="prev">← Кадр</button><button id="next">Кадр →</button><span class="status" id="status"></span></div>
+<input id="timeline" aria-label="Кадр" type="range" min="0" max="479" value="0" step="1">
+<p class="foot">Ходьба: 1.2 units/s, отход: 3.8 units/s. Скорость 1× соответствует времени игры. <a href="fear-green.jpg">Кадры испуга рядом</a> · <a href="Review/closure-0.jpg">Все фазы шага</a></p>
+</main>
+<script>
+const $=id=>document.getElementById(id),ctx=$('canvas').getContext('2d'),cache=new Map();
+const ranges={walk:[0,100],fear:[104,180],wait:[235,345],all:[0,480]};
+let frame=0,playing=true,last=0,carry=0,ticket=0,metadata=[];
+fetch('preview-timeline.json').then(r=>r.json()).then(data=>{metadata=data;draw()});
+function load(index){const step=$('camera').value==='green'?1:4;index=Math.floor(index/step);const key=$('camera').value+'-'+String(index).padStart(3,'0');if(!cache.has(key)){const image=new Image();image.src='Frames/'+key+'.webp?v=whole-sprites-03';cache.set(key,image);if(cache.size>72)cache.delete(cache.keys().next().value)}return cache.get(key)}
+async function draw(){const current=++ticket,image=load(frame);try{await image.decode()}catch{return}if(current!==ticket)return;ctx.drawImage(image,0,0,1280,720);$('timeline').value=frame;const pose=metadata[frame];$('status').textContent=`${(frame/60).toFixed(2)} с · кадр ${frame}/479`+(pose?` · поджатие ${Math.round(pose.displayedClosure*100)}%`:'');for(let i=1;i<6;i++)load(Math.min(479,frame+i))}
+function pause(){playing=false;$('play').textContent='Играть';carry=0}
+$('play').onclick=()=>{playing=!playing;$('play').textContent=playing?'Пауза':'Играть';carry=0};
+function step(direction){pause();$('clip').value='all';frame=Math.max(0,Math.min(479,frame+direction*($('camera').value==='green'?1:4)));draw()}
+$('prev').onclick=()=>step(-1);$('next').onclick=()=>step(1);
+$('timeline').oninput=()=>{pause();$('clip').value='all';frame=+$('timeline').value;draw()};
+$('clip').onchange=()=>{frame=ranges[$('clip').value][0];carry=0;draw()};
+$('camera').onchange=()=>{cache.clear();draw()};
+function tick(time){if(last&&playing){carry+=Math.min(.1,(time-last)/1000)*60*+$('speed').value;const count=Math.floor(carry);if(count){carry-=count;const [a,b]=ranges[$('clip').value];frame=a+((Math.max(a,frame)-a+count)%(b-a));draw()}}last=time;requestAnimationFrame(tick)}
+draw();requestAnimationFrame(tick);
+</script></html>

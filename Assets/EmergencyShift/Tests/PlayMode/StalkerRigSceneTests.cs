@@ -1,7 +1,6 @@
 #if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
-using EmergencyShift.Features.Enemies.View;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -30,7 +29,7 @@ namespace EmergencyShift.Tests
         }
 
         [UnityTest]
-        public IEnumerator BothAuthoredLevelsInheritRigAndMovingStatesKeepTheirLegs()
+        public IEnumerator BothAuthoredLevelsUseWholeSpritesAndFearDoesNotJumpToClosedBody()
         {
             previous = SceneManager.GetActiveScene();
             foreach (string level in new[] { "MechanicsSandbox", "MorgueRouteTest" })
@@ -53,15 +52,16 @@ namespace EmergencyShift.Tests
                 yield return null;
                 foreach (ShadowStalker2D actor in actors)
                 {
-                    var actual = actor.GetComponent<StalkerLimbRig2D>();
+                    var actual = actor.GetComponent<StalkerSpriteAnimator>();
                     Assert.That(actual, Is.Not.Null, actor.name);
-                    Assert.That(actual.Gait, Is.Not.Null, actor.name);
+                    Assert.That(actual.SpriteSet, Is.Not.Null, actor.name);
+                    Assert.That(actor.GetComponentsInChildren<MeshRenderer>(true), Is.Empty, actor.name);
                     actor.gameObject.SetActive(false);
                 }
                 var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Enemies/ShadowStalker.prefab");
                 GameObject probe = context.CreateInstance(prefab, new Vector3(100, 100, 0), Quaternion.identity);
                 var stalker = probe.GetComponent<ShadowStalker2D>();
-                var rig = probe.GetComponent<StalkerLimbRig2D>();
+                var animator = probe.GetComponent<StalkerSpriteAnimator>();
                 var physics = probe.GetComponent<Rigidbody2D>();
                 var body = probe.transform.Find("Visual/Body").GetComponent<SpriteRenderer>();
                 ShadowStalker2D.Snapshot snapshot = stalker.CaptureState();
@@ -73,9 +73,19 @@ namespace EmergencyShift.Tests
                 Vector2 start = physics.position;
                 yield return new WaitForSeconds(.35f);
                 Assert.That(physics.position.y - start.y, Is.GreaterThan(.3f));
-                Assert.That(rig.Gait.Phase, Is.GreaterThan(0));
-                var surface = probe.transform.Find("Visual/Stalker articulated skin").GetComponent<MeshRenderer>();
-                Assert.That(surface.enabled, Is.True);
+                Assert.That(body.sprite.name, Does.StartWith("body-0-"));
+                Assert.That(probe.GetComponentsInChildren<MeshRenderer>(true), Is.Empty);
+                snapshot = stalker.CaptureState();
+                snapshot.state = ShadowStalker2D.BehaviourState.Retreating;
+                snapshot.closure = 1;
+                stalker.RestoreState(snapshot);
+                physics.linearVelocity = Vector2.up * 3.8f;
+                yield return null;
+                Assert.That(animator.DisplayedClosure, Is.LessThan(1), "Fear must not select the final compressed row immediately.");
+                Assert.That(animator.CurrentFrame / animator.SpriteSet.Phases, Is.LessThan(animator.SpriteSet.ClosureRows - 1));
+                yield return new WaitForSeconds(.35f);
+                Assert.That(animator.DisplayedClosure, Is.EqualTo(1).Within(.001f));
+                Assert.That(body.sprite.name, Does.StartWith("body-8-"));
                 foreach (ShadowStalker2D.BehaviourState state in new[] {
                     ShadowStalker2D.BehaviourState.Recoiling, ShadowStalker2D.BehaviourState.Retreating,
                     ShadowStalker2D.BehaviourState.Waiting, ShadowStalker2D.BehaviourState.Attacking })
@@ -86,13 +96,13 @@ namespace EmergencyShift.Tests
                     stalker.RestoreState(snapshot);
                     physics.linearVelocity = state == ShadowStalker2D.BehaviourState.Retreating ? Vector2.right * 3.8f : Vector2.zero;
                     yield return new WaitForSeconds(.2f);
-                    Assert.That(surface.enabled, Is.True, state.ToString());
                     Assert.That(body.sprite, Is.Not.Null);
-                    Assert.That(body.sprite.name.Contains("torso"), Is.True, state + " still draws the full old limbs");
+                    Assert.That(body.sprite.name.Contains("torso"), Is.False, state + " draws only a cut torso");
+                    Assert.That(probe.GetComponentsInChildren<MeshRenderer>(true), Is.Empty);
                 }
                 stalker.Kill();
                 yield return null;
-                Assert.That(surface.enabled, Is.False, "Dead actor must not keep live legs.");
+                Assert.That(animator.EyeOpen, Is.False);
                 Object.Destroy(probe);
                 yield return SceneManager.UnloadSceneAsync(loaded);
                 loaded = default;

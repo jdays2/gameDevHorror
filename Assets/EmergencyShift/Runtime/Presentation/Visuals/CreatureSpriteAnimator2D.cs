@@ -77,6 +77,22 @@ namespace EmergencyShift
         protected virtual bool AnimateCompactLocomotion => false;
         protected virtual bool ApplySupportYaw => true;
 
+        protected virtual bool TrySelectLocomotionFrame(float phase, float closure, out Sprite sprite, out int frame)
+        {
+            sprite = null;
+            frame = 0;
+            return false;
+        }
+
+        protected virtual Vector2 EyePoseOffset(int frame)
+        {
+            if (eyeFrameOffsets != null && frame >= 0 && frame < eyeFrameOffsets.Length)
+            {
+                return eyeFrameOffsets[frame];
+            }
+            return Vector2.zero;
+        }
+
         public void Configure(EnemyPresentationSource2D actor, Transform root, SpriteRenderer renderer, SpriteRenderer irisRenderer, SpriteRenderer pupilRenderer, Sprite[] walk, Sprite[] recoil)
         {
             presentation = actor;
@@ -231,6 +247,12 @@ namespace EmergencyShift
                 CurrentFrame = Mathf.Min(attackFrames.Length - 1, (int)(presentation.AttackProgress * attackFrames.Length));
                 bodyRenderer.sprite = attackFrames[CurrentFrame];
             }
+            else if (TrySelectLocomotionFrame(walkPhase, presentation.Closure, out Sprite locomotionSprite, out int poseFrame))
+            {
+                CurrentFrame = poseFrame;
+                bodyRenderer.sprite = locomotionSprite;
+                eyeFrame = Mathf.Clamp(Mathf.RoundToInt(presentation.Closure * 3), 0, 3);
+            }
             else if (presentation.Closure < 0.05f || recoilFrames == null || recoilFrames.Length == 0)
             {
                 CurrentFrame = WalkFrame();
@@ -310,11 +332,7 @@ namespace EmergencyShift
         private void ApplyEyePose(int frame)
         {
             Vector2 gaze = PupilOffset;
-            currentEyeOffset = Vector3.zero;
-            if (eyeFrameOffsets != null && frame >= 0 && frame < eyeFrameOffsets.Length)
-            {
-                currentEyeOffset = eyeFrameOffsets[frame];
-            }
+            currentEyeOffset = EyePoseOffset(frame);
 
             if (iris != null)
             {

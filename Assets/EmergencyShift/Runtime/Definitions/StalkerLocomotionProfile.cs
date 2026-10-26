@@ -6,7 +6,7 @@ namespace EmergencyShift
     [CreateAssetMenu(menuName = "Emergency Shift/Enemies/Stalker locomotion profile")]
     public sealed class StalkerLocomotionProfile : ScriptableObject
     {
-        [Tooltip("Travel per complete eight-frame gait cycle in local creature units. Spawn scale is applied at runtime.")]
+        [Tooltip("Travel per complete gait cycle in local creature units. Spawn scale is applied at runtime.")]
         [Min(0.05f)]
         [SerializeField]
         private float distancePerCycle = 1.05f;

@@ -22,7 +22,7 @@ EnemyDefinition, EnemyPatrolProfile, SleeperBehaviourProfile и StalkerBehaviour
 | Кровь/разрыв по событию смерти | EnemyDeathEffects2D + GoreBurst2D |
 | Попадание/тени | EnemyHitResponse2D; CreatureGroundShadow2D через EnemyPresentationSource2D |
 | Кадры | CreatureSpriteAnimator2D через EnemyPresentationSource2D; совместимая оболочка StalkerSpriteAnimator |
-| Опора и поверхность шести лап Сталкера | Личная StalkerGaitModel; immutable StalkerRigProfile; StalkerSkinMesh, StalkerLimbRig2D и StalkerRigShadows2D — Unity View, без владения Rigidbody/AI. [Контракт и проверка](../../Concepts/Used/Stalker/Locomotion02/README.md) |
+| Цельные кадры Сталкера | Immutable StalkerSpriteSet: 48 фаз × 9 степеней поджатия; StalkerSpriteAnimator выбирает целое тело по пройденному пути и личному визуальному закрытию. Риг/IK существуют только в Editor для подготовки рисунков. [Контракт и проверка](../../Concepts/Used/Stalker/Locomotion03Sprites/README.md) |
 | Голос/контакты и сигнал угрозы | StalkerAudio2D / SleeperAudio2D и их AudioThreat-адаптеры |
 
 Это композиция: следующий AI получает нужные компоненты и собственные решения, не наследуется от Сталкера и не добавляет `if (enemyType==...)` в его код. Общие модули не содержат собственных Update: AI вызывает их в физическом шаге. События отделяют реакции представления от смерти/укуса. Общий проигрыватель кадров извлечён при подключении второго вида, использующего тот же набор анатомии; звук и решения остаются видовыми. Для Спящего общая атака поддерживает фиксированное направление без обходного поворота, прежний режим Сталкера сохранён.
