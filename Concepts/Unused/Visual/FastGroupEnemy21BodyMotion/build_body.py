@@ -185,16 +185,21 @@ class BodySurface(heavy.SkinSurface):
             inside &= (alpha>.001)&(rank>=old)
             uv[lo[1]:hi[1]+1,lo[0]:hi[0]+1][inside] = coords[inside]
             old[inside] = rank[inside]
-        x,y = uv[...,0],uv[...,1]
-        ix = np.clip(np.floor(x).astype(int),0,1252)
-        iy = np.clip(np.floor(y).astype(int),0,1252)
-        fx = np.clip(x-ix,0.,1.)[...,None]
-        fy = np.clip(y-iy,0.,1.)[...,None]
-        color = (self.art[iy,ix]*(1-fx)+self.art[iy,ix+1]*fx)*(1-fy)+(self.art[iy+1,ix]*(1-fx)+self.art[iy+1,ix+1]*fx)*fy
-        color *= (x>=0)[...,None]
-        color[...,:3] /= np.maximum(color[...,3:4],1e-6)
+        # Sample independent rows in bounded chunks. Arithmetic and texels are
+        # identical; full-frame float64 intermediates exhausted host memory.
+        pixels = np.zeros((r.W,r.W,4),dtype=np.uint8)
+        for row in range(0,r.W,64):
+            x,y = uv[row:row+64,:,0],uv[row:row+64,:,1]
+            ix = np.clip(np.floor(x).astype(int),0,1252)
+            iy = np.clip(np.floor(y).astype(int),0,1252)
+            fx = np.clip(x-ix,0.,1.)[...,None]
+            fy = np.clip(y-iy,0.,1.)[...,None]
+            color = (self.art[iy,ix]*(1-fx)+self.art[iy,ix+1]*fx)*(1-fy)+(self.art[iy+1,ix]*(1-fx)+self.art[iy+1,ix+1]*fx)*fy
+            color *= (x>=0)[...,None]
+            color[...,:3] /= np.maximum(color[...,3:4],1e-6)
+            pixels[row:row+64] = np.uint8(np.clip(color,0,1)*255)
         stats = {'minTriangleAreaRatio':float(minimum),'flippedTriangles':flipped,'minSolidTriangleAreaRatio':float(minimum_skin),'flippedSolidTriangles':flipped_skin,'overlapSamples':overlaps}
-        return Image.fromarray(np.uint8(np.clip(color,0,1)*255)),stats
+        return Image.fromarray(pixels),stats
 
 
 def write_json(name,data):
