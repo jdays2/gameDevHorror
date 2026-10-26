@@ -19,12 +19,10 @@ namespace EmergencyShift.Features.Enemies.View
         private EnemyPresentationSource2D presentation;
         private StalkerGaitModel gait;
         private Mesh mesh;
+        private StalkerSkinMesh skin;
         private MeshRenderer surface;
         private MeshRenderer contactMesh;
         private MeshRenderer projectionMesh;
-        private readonly Vector3[] vertices = new Vector3[48];
-        private readonly Vector3[] restVertices = new Vector3[48];
-        private readonly Color[] colors = new Color[48];
         private readonly Dictionary<Sprite, Sprite> torsoCrops = new Dictionary<Sprite, Sprite>();
         private MaterialPropertyBlock properties;
         private Vector3 eyeOffset;
@@ -42,7 +40,8 @@ namespace EmergencyShift.Features.Enemies.View
                 (float)new System.Random(System.Guid.NewGuid().GetHashCode()).NextDouble());
             restingBodyPosition = body.transform.localPosition;
             properties = new MaterialPropertyBlock();
-            BuildMesh();
+            skin = new StalkerSkinMesh(profile);
+            mesh = skin.Mesh;
             surface = CreateRenderer("Stalker articulated skin", visual, profile.SurfaceMaterial, body.sortingOrder - 1);
             contactMesh = CreateRenderer("Stalker limb contact shadow", contact.transform.parent, profile.ShadowMaterial, contact.sortingOrder);
             projectionMesh = CreateRenderer("Stalker limb beam shadow", projection.transform.parent, profile.ShadowMaterial, projection.sortingOrder);
@@ -110,30 +109,7 @@ namespace EmergencyShift.Features.Enemies.View
 
         public void RenderPose()
         {
-            for (int i = 0; i < 12; i++)
-            {
-                int leg = i / 2;
-                StalkerLimb limb = profile.Limbs[leg];
-                Vector2 sourceA = i % 2 == 0 ? limb.Hip : limb.Knee;
-                Vector2 sourceB = i % 2 == 0 ? limb.Knee : limb.Tip;
-                Vector2 targetA = visual.InverseTransformPoint(i % 2 == 0 ? gait.Hips[leg] : gait.Knees[leg]);
-                Vector2 targetB = visual.InverseTransformPoint(i % 2 == 0 ? gait.Knees[leg] : gait.Feet[leg]);
-                Vector2 sourceAxis = (sourceB - sourceA).normalized;
-                Vector2 targetAxis = (targetB - targetA).normalized;
-                float foreshortening = Vector2.Distance(targetA, targetB) / Vector2.Distance(sourceA, sourceB);
-                for (int j = 0; j < 4; j++)
-                {
-                    int index = i * 4 + j;
-                    Vector2 relative = (Vector2)restVertices[index] - sourceA;
-                    float along = Vector2.Dot(relative, sourceAxis);
-                    float across = Vector2.Dot(relative, new Vector2(-sourceAxis.y, sourceAxis.x));
-                    vertices[index] = targetA + targetAxis * (along * foreshortening) + new Vector2(-targetAxis.y, targetAxis.x) * across;
-                    colors[index] = body.color;
-                }
-            }
-            mesh.vertices = vertices;
-            mesh.colors = colors;
-            mesh.RecalculateBounds();
+            skin.Update(gait, visual, body.color);
             surface.GetPropertyBlock(properties);
             properties.SetTexture(TextureId, profile.Atlas);
             surface.SetPropertyBlock(properties);
@@ -197,41 +173,6 @@ namespace EmergencyShift.Features.Enemies.View
             renderer.sortingLayerID = body.sortingLayerID;
             renderer.sortingOrder = order;
             return renderer;
-        }
-
-        private void BuildMesh()
-        {
-            mesh = new Mesh { name = "Stalker twelve fixed bone surfaces" };
-            mesh.MarkDynamic();
-            var uv = new Vector2[48];
-            var triangles = new int[72];
-            for (int segment = 0; segment < 12; segment++)
-            {
-                int layer = segment + 1;
-                Rect bounds = profile.LayerBounds[layer];
-                for (int corner = 0; corner < 4; corner++)
-                {
-                    float x = (corner == 1 || corner == 2) ? bounds.xMax : bounds.xMin;
-                    float y = corner >= 2 ? bounds.yMax : bounds.yMin;
-                    restVertices[segment * 4 + corner] = new Vector3((x - profile.Pivot.x) / profile.PixelsPerUnit, (profile.Pivot.y - y) / profile.PixelsPerUnit, 0);
-                    uv[segment * 4 + corner] = new Vector2((layer % 4 * profile.CellSize.x + x) / profile.Atlas.width,
-                        1 - (layer / 4 * profile.CellSize.y + y) / profile.Atlas.height);
-                    colors[segment * 4 + corner] = Color.white;
-                }
-                int start = segment * 6;
-                int vertex = segment * 4;
-                triangles[start] = vertex;
-                triangles[start + 1] = vertex + 1;
-                triangles[start + 2] = vertex + 2;
-                triangles[start + 3] = vertex;
-                triangles[start + 4] = vertex + 2;
-                triangles[start + 5] = vertex + 3;
-            }
-            mesh.vertices = restVertices;
-            mesh.uv = uv;
-            mesh.colors = colors;
-            mesh.triangles = triangles;
-            mesh.RecalculateBounds();
         }
 
         private void OnDisable()

@@ -71,6 +71,46 @@ namespace EmergencyShift.Tests
             }
         }
 
+        [TestCase(1.2f)]
+        [TestCase(1.5f)]
+        [TestCase(3.8f)]
+        public void SteadyTravelKeepsTripodsAndDoesNotInsertExtraSteps(float speed)
+        {
+            const int rate = 120;
+            const int seconds = 6;
+            for (int sample = 0; sample < 8; sample++)
+            {
+                var gait = Create(sample / 8f);
+                int[] lifts = new int[6];
+                gait.Step(Vector2.zero, 0, 1f / rate, true, 0);
+                for (int frame = 1; frame <= seconds * rate; frame++)
+                {
+                    var previous = (bool[])gait.Swinging.Clone();
+                    gait.Step(Vector2.up * (frame * speed / rate), 0, 1f / rate, true, 0);
+                    int supports = 0;
+                    for (int limb = 0; limb < 6; limb++)
+                    {
+                        if (!previous[limb] && gait.Swinging[limb])
+                        {
+                            lifts[limb]++;
+                        }
+                        if (!gait.Swinging[limb])
+                        {
+                            supports++;
+                        }
+                        float projectedSpike = Vector2.Distance(gait.Knees[limb], gait.Feet[limb]);
+                        Assert.That(projectedSpike, Is.GreaterThan(Profile.Limbs[limb].LowerLength * .85f), "Spike collapsed in the overhead projection");
+                    }
+                    Assert.That(supports, Is.GreaterThanOrEqualTo(3), "Lost supporting tripod at phase " + sample / 8f);
+                }
+                Assert.That(gait.RecoverySteps, Is.Zero, "Unplanned extra step during steady travel");
+                foreach (int count in lifts)
+                {
+                    Assert.That(count, Is.EqualTo(seconds * speed / Profile.CycleDistance).Within(1.1f));
+                }
+            }
+        }
+
         [TestCase(0f)]
         [TestCase(.1f)]
         [TestCase(.25f)]
@@ -83,14 +123,22 @@ namespace EmergencyShift.Tests
             Vector2 position = Vector2.zero;
             float heading = 0;
             float turnVelocity = 0;
-            for (int frame = 0; frame < 240; frame++)
+            for (int frame = 0; frame < 480; frame++)
             {
-                float speed = frame < 120 ? 3.8f : 1.2f;
-                if (frame >= 190 && frame < 215)
+                float speed = 1.2f;
+                if (frame >= 180 && frame < 240)
+                {
+                    speed = 1.5f;
+                }
+                else if (frame >= 240 && frame < 360)
+                {
+                    speed = 3.8f;
+                }
+                if (frame >= 405 && frame < 450)
                 {
                     speed = 0;
                 }
-                float intended = Mathf.Clamp((frame - 150) * 2.25f, 0, 90);
+                float intended = Mathf.Clamp((frame - 360) * 2.25f, 0, 90);
                 position += (Vector2)(Quaternion.Euler(0, 0, intended) * Vector2.up) * (speed / 60);
                 if (speed > 0)
                 {

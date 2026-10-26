@@ -8,7 +8,9 @@ namespace EmergencyShift.Features.Enemies.Logic
     /// <summary>Instance-owned presentation kinematics. Never moves the authoritative actor.</summary>
     public sealed class StalkerGaitModel
     {
-        private const float ReachSafetyFraction = .88f;
+        private const float ReachSafetyFraction = .97f;
+        private const float PlannedReachFraction = .94f;
+        private const float TurningReachSafetyFraction = .84f;
         private readonly StalkerLimb[] anatomy;
         private readonly float scale;
         private readonly float cycleDistance;
@@ -34,6 +36,7 @@ namespace EmergencyShift.Features.Enemies.Logic
         public bool[] Swinging { get; } = new bool[6];
         public Vector2 BodyOffset { get; private set; }
         public int ReachCorrections { get; private set; }
+        public int RecoverySteps { get; private set; }
         public float Phase => phase;
 
         public StalkerGaitModel(IReadOnlyList<StalkerLimb> anatomy, float scale, float cycleDistance,
@@ -61,13 +64,20 @@ namespace EmergencyShift.Features.Enemies.Logic
         {
             previousPosition = position;
             previousHeading = heading;
-            phase = initialPhase;
+            // Reset creates six planted contacts. Start inside the overlap of
+            // both support windows, rather than halfway through an absent swing.
+            // Keep independent variation within either leading tripod.
+            float supportOverlap = (supportFraction - .5f) * .9f;
+            phase = Mathf.Floor(initialPhase * 2) * .5f + Mathf.Repeat(initialPhase * 2, 1) * supportOverlap;
             weight = 0;
             BodyOffset = Vector2.zero;
             ReachCorrections = 0;
+            RecoverySteps = 0;
             for (int i = 0; i < 6; i++)
             {
-                Feet[i] = World(anatomy[i].Tip, position, heading);
+                float localPhase = Mathf.Repeat(phase + anatomy[i].PhaseOffset, 1);
+                float remainingSupport = supportFraction * .5f - Mathf.Min(localPhase, supportFraction);
+                Feet[i] = ContactTarget(anatomy[i], position, heading, Rotate(Vector2.up, heading), remainingSupport * cycleDistance);
                 Swinging[i] = false;
                 previousSwingWindow[i] = false;
             }
@@ -123,23 +133,27 @@ namespace EmergencyShift.Features.Enemies.Logic
                 bool swingWindow = localPhase >= supportFraction;
                 float reach = Vector3.Distance(Hips[i], Feet[i]);
                 bool extending = Vector3.Dot(Hips[i] - Feet[i], Hips[i] - previousHip) > 0;
-                bool overreach = extending && reach > (limb.UpperLength + limb.LowerLength) * scale * ReachSafetyFraction;
+                float safety = Mathf.Abs(turn) > .001f ? TurningReachSafetyFraction : ReachSafetyFraction;
+                bool overreach = extending && reach > (limb.UpperLength + limb.LowerLength) * scale * safety;
                 if (!Swinging[i] && allowSteps && ((moving && swingWindow && !previousSwingWindow[i]) || overreach))
                 {
+                    if (overreach && !swingWindow)
+                    {
+                        RecoverySteps++;
+                    }
                     Swinging[i] = true;
                     takeoff[i] = Feet[i];
                     swingTime[i] = 0;
-                    swingDuration[i] = Mathf.Clamp(cycleDistance * (1 - supportFraction) / Mathf.Max(.2f, velocity.magnitude), .065f, .24f);
-                    float lead = cycleDistance * supportFraction * .42f;
+                    swingDuration[i] = SwingDuration(velocity.magnitude);
                     Vector2 direction = velocity.sqrMagnitude > .001f ? velocity.normalized : Vector2.zero;
-                    landing[i] = World(limb.Tip, position + direction * lead, heading);
+                    landing[i] = ContactTarget(limb, position, heading, direction, cycleDistance * supportFraction * .5f);
                 }
                 previousSwingWindow[i] = swingWindow;
                 if (Swinging[i])
                 {
                     if (moving)
                     {
-                        float duration = Mathf.Clamp(cycleDistance * (1 - supportFraction) / Mathf.Max(.2f, velocity.magnitude), .065f, .24f);
+                        float duration = SwingDuration(velocity.magnitude);
                         if (duration < swingDuration[i])
                         {
                             // A recoil can reverse and accelerate the root while
@@ -151,7 +165,7 @@ namespace EmergencyShift.Features.Enemies.Logic
                         // The airborne endpoint can adapt to a turn or a speed
                         // change. A planted endpoint never follows this target.
                         Vector2 direction = velocity.sqrMagnitude > .001f ? velocity.normalized : Vector2.zero;
-                        landing[i] = World(limb.Tip, position + direction * (cycleDistance * supportFraction * .42f), heading);
+                        landing[i] = ContactTarget(limb, position, heading, direction, cycleDistance * supportFraction * .5f);
                     }
                     swingTime[i] += dt;
                     float progress = Mathf.Clamp01(swingTime[i] / swingDuration[i]);
@@ -164,8 +178,18 @@ namespace EmergencyShift.Features.Enemies.Logic
                         Swinging[i] = false;
                     }
                 }
-                Vector3 pole = World(limb.Knee, position + BodyOffset, heading) - Hips[i];
-                pole.z = .08f * scale;
+                Vector2 reachAxis = Feet[i] - Hips[i];
+                if (reachAxis.sqrMagnitude < .000001f)
+                {
+                    reachAxis = Rotate(limb.Tip - limb.Hip, heading);
+                }
+                Vector2 sourceAxis = limb.Tip - limb.Hip;
+                Vector2 sourceBend = limb.Knee - limb.Hip;
+                float bendSide = Mathf.Sign(sourceAxis.x * sourceBend.y - sourceAxis.y * sourceBend.x);
+                // Preserve the source chain's bend side in the top-down plane.
+                // A nearly parallel fixed pole used to rotate the knee vertically,
+                // making a complete painted spike shrink to a few pixels.
+                Vector3 pole = new Vector3(-reachAxis.y, reachAxis.x, 0) * bendSide;
                 Vector3 requestedFoot = Feet[i];
                 Knees[i] = SolveKnee(Hips[i], ref requestedFoot, pole,
                     limb.UpperLength * scale, limb.LowerLength * scale);
@@ -177,6 +201,34 @@ namespace EmergencyShift.Features.Enemies.Logic
             }
             previousPosition = position;
             previousHeading = heading;
+        }
+
+        private float SwingDuration(float speed)
+        {
+            return Mathf.Clamp(cycleDistance * (1 - supportFraction) / Mathf.Max(.2f, speed), .065f, .4f);
+        }
+
+        private Vector3 ContactTarget(StalkerLimb limb, Vector2 position, float heading, Vector2 direction, float lead)
+        {
+            if (direction.sqrMagnitude < .5f)
+            {
+                direction = Rotate(Vector2.up, heading);
+            }
+            Vector2 offset = Rotate((limb.Tip - limb.Hip) * scale, heading);
+            float restAlong = Vector2.Dot(offset, direction);
+            Vector2 sideways = offset - direction * restAlong;
+            float halfSupportTravel = cycleDistance * supportFraction * .5f;
+            float reach = (limb.UpperLength + limb.LowerLength) * scale * PlannedReachFraction;
+            float planarReachSquared = Mathf.Max(0, reach * reach - bodyHeight * bodyHeight);
+            float desiredAlong = Mathf.Min(Mathf.Abs(restAlong) + halfSupportTravel, Mathf.Sqrt(planarReachSquared));
+            float maximumSideways = Mathf.Sqrt(Mathf.Max(0, planarReachSquared - desiredAlong * desiredAlong));
+            sideways = Vector2.ClampMagnitude(sideways, maximumSideways);
+            float availableAlong = Mathf.Sqrt(Mathf.Max(0, reach * reach - bodyHeight * bodyHeight - sideways.sqrMagnitude));
+            float centerLimit = Mathf.Max(0, availableAlong - halfSupportTravel);
+            // Reserve reach for the complete stance interval. A single lead
+            // added to the source rear tips made them lift again too early.
+            float center = Mathf.Clamp(restAlong, -centerLimit, centerLimit);
+            return World(limb.Hip, position, heading) + (Vector3)(sideways + direction * (center + lead));
         }
 
         public static Vector3 SolveKnee(Vector3 hip, ref Vector3 foot, Vector3 pole, float upper, float lower)

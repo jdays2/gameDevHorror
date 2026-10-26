@@ -16,7 +16,7 @@ namespace EmergencyShift.Features.Enemies.Config
         [SerializeField] private Vector2 cellSize = new Vector2(358, 406);
         [SerializeField] private Rect[] layerBounds;
         [SerializeField] private StalkerLimb[] limbs;
-        [SerializeField, Min(.05f)] private float cycleDistance = .68f;
+        [SerializeField, Min(.05f)] private float cycleDistance = 1f;
         [SerializeField, Range(.5f, .8f)] private float supportFraction = .60f;
         [SerializeField, Min(.01f)] private float liftHeight = .075f;
         [SerializeField, Min(.01f)] private float bodyHeight = .13f;

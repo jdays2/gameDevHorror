@@ -141,6 +141,7 @@ public static class ReviewStalkerRig
         });
         var result = new { result = report.summary.result.ToString(), errors = report.summary.totalErrors,
             warnings = report.summary.totalWarnings, bytes = report.summary.totalSize,
+            warningMessages = report.steps.SelectMany(s => s.messages).Where(m => m.type == LogType.Warning).Select(m => m.content).ToArray(),
             messages = report.steps.SelectMany(s => s.messages).Where(m => m.type == LogType.Error || m.type == LogType.Exception).Select(m => m.content).ToArray() };
         File.WriteAllText("Concepts/Used/Stalker/Locomotion02/build-result.json", Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented));
         if (report.summary.result != BuildResult.Succeeded)
@@ -214,9 +215,11 @@ public static class ReviewStalkerRig
             }
             shaders.Add(new { name, shader.isSupported, errors });
         }
+        var build = Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText("Concepts/Used/Stalker/Locomotion02/build-result.json"));
+        bool releaseBuildVerified = (string)build["result"] == "Succeeded";
         var result = new { scenes, shaders, playModeStartScene = EditorSceneManager.playModeStartScene,
-            authoringGate = "Not applicable: no scene objects added/moved and no scene saved", releaseBuildVerified = false,
-            releaseLimitation = "Insufficient free disk space on C; see build-result.json" };
+            authoringGate = "Not applicable: no scene objects added/moved and no scene saved", releaseBuildVerified,
+            releaseLimitation = releaseBuildVerified ? null : "See build-result.json" };
         File.WriteAllText("Concepts/Used/Stalker/Locomotion02/preservation-and-shaders.json", Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented));
         return result;
     }

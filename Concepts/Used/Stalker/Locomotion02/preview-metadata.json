@@ -1,6 +1,6 @@
 {
-  "frames": 240,
-  "seconds": 4,
+  "frames": 480,
+  "seconds": 8,
   "closeFps": 60,
   "scaleFps": 15,
   "cameraOrthoSizes": [
@@ -10,12 +10,15 @@
     3.4
   ],
   "speeds": [
-    3.8,
     1.2,
+    1.5,
+    3.8,
     0.0
   ],
   "reachCorrections": 0,
+  "recoverySteps": 2,
   "initialPhase": 0,
+  "timeline": "0-3 walk 1.2; 3-4 walk 1.5; 4-6 retreat 3.8; 6-6.75 turn 1.2; 6.75-7.5 stop; 7.5-8 resume 1.2",
   "scope": "Controlled actual prefab + gait-model URP render, no AI/physics. Live captures are separate.",
   "shadowShader": "EmergencyShift/Stalker Rig Shadow"
 }

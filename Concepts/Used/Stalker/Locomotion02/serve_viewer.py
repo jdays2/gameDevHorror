@@ -3,6 +3,8 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import argparse
 import re
+import subprocess
+import sys
 
 ROOT=Path(__file__).resolve().parent
 
@@ -46,4 +48,6 @@ class Handler(SimpleHTTPRequestHandler):
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--port',type=int,default=8796)
     args=parser.parse_args()
+    if not (ROOT/'Frames/close/479.webp').exists():
+        subprocess.run([sys.executable,str(ROOT/'pack_frame_cache.py')],check=True)
     ThreadingHTTPServer(('127.0.0.1',args.port),Handler).serve_forever()

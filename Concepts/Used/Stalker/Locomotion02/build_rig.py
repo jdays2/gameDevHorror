@@ -2,7 +2,8 @@
 from pathlib import Path
 import json, hashlib
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from collections import deque
 
 ROOT = Path(__file__).resolve().parent
 PROJECT = ROOT.parents[3]
@@ -19,13 +20,36 @@ LIMBS = [
     ('RR', [232,252], [287,326], [246,394], .48,.43, 1),
 ]
 
+def connected_skin(rgba, knee):
+    """Keep the leg attached to its knee, with its antialiased outer edge.
+
+    Voronoi ownership can steal a few disconnected forehead/torso pixels. They
+    belong to the stationary torso, not to a moving appendage.
+    """
+    alpha=rgba[...,3]>8
+    keep=np.zeros(alpha.shape,dtype=bool)
+    y,x=int(knee[1]),int(knee[0])
+    queue=deque([(y,x)])
+    keep[y,x]=True
+    while queue:
+        y,x=queue.popleft()
+        for dy,dx in [(a,b) for a in (-1,0,1) for b in (-1,0,1) if a or b]:
+            ny,nx=y+dy,x+dx
+            if 0<=ny<alpha.shape[0] and 0<=nx<alpha.shape[1] and alpha[ny,nx] and not keep[ny,nx]:
+                keep[ny,nx]=True
+                queue.append((ny,nx))
+    edge=np.array(Image.fromarray(keep.astype('uint8')*255).filter(ImageFilter.MaxFilter(3)))>0
+    result=rgba.copy()
+    result[~edge,3]=0
+    return result
+
 def plan():
     data = dict(species='Stalker: six paired appendages, one knee and rigid distal spike per limb',
                 source=str(SOURCE.relative_to(PROJECT)), sourceSha256=hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
                 crop=[30,84,388,490],pivot=PIVOT.tolist(),ppu=PPU,
                 projection='strict overhead XY; Z is height above floor, not depth in the image',
                 caveat='Heights/true lengths are explicit rig design parameters; a painting does not measure hidden anatomy.',
-                bodyHeight=.13, kneePlane='hip-tip with outward pole inherited from the same source',
+                bodyHeight=.13, kneePlane='stable XY bend side from source chain; Z interpolates hip/ground height',
                 limbs=[dict(id=n,hip=h,knee=k,tip=t,upperLength=u,lowerLength=l,pole=p,
                             muscleGroups=[n+' proximal actuator',n+' joint stabilizer',n+' distal tendon sleeve']) for n,h,k,t,u,l,p in LIMBS])
     (ROOT/'anatomy.json').write_text(json.dumps(data,indent=2))
@@ -39,8 +63,8 @@ def plan():
     canvas.convert('RGB').save(ROOT/'skeleton-review.png')
 
 def extract():
-    # Half-plane cuts through round joints, with overlapping round caps from the
-    # same painted joint. No synthesized muscle strips and no colour regrading.
+    # One connected painted surface per leg. The former two rigid pieces copied
+    # the knee twice; their rotating outlines produced visible seams in motion.
     yy,xx=np.mgrid[:ART.height,:ART.width]; pixels=np.stack([xx,yy],axis=-1)
     rgba=np.asarray(ART).copy()
     lines=[]
@@ -75,13 +99,19 @@ def extract():
                 root=np.linalg.norm(pixels-h,axis=-1)<15
                 cut[root]=rgba[root]
             layers.append(Image.fromarray(cut))
+        whole=rgba.copy()
+        own=(owner//2==index)&~body
+        own |= np.linalg.norm(pixels-h,axis=-1)<15
+        whole[~own,3]=0
+        layers[index*2+1]=Image.fromarray(connected_skin(whole,k))
         md.line([tuple(h),tuple(k)],fill=(250,112,90,120),width=15)
         md.ellipse((k[0]-10,k[1]-10,k[0]+10,k[1]+10),fill=(245,192,60,120))
         md.line([tuple(k),tuple(t)],fill=(84,167,245,100),width=9)
         md.text(tuple((h+k)*.5),n+' 1/2/3',fill='white')
     muscle.convert('RGB').save(ROOT/'muscle-review.png')
     # Pixels removed by the proximal half-plane belong to the torso attachment.
-    covered=np.max(np.stack([np.asarray(layer)[...,3] for layer in layers]),axis=0)
+    active=[layers[0]]+layers[1::2]
+    covered=np.max(np.stack([np.asarray(layer)[...,3] for layer in active]),axis=0)
     missing=(rgba[...,3]>0)&(covered==0)
     torso=np.array(layers[0]);torso[missing]=rgba[missing];layers[0]=Image.fromarray(torso)
     atlas=Image.new('RGBA',(ART.width*4,ART.height*4))
@@ -91,11 +121,11 @@ def extract():
     atlas.save(out/'rig-atlas.png')
     # Reassemble neutral source to check masks have neither holes nor stray parts.
     check=Image.new('RGBA',ART.size)
-    for layer in layers[1:]+layers[:1]:check.alpha_composite(layer)
+    for layer in layers[1::2]+layers[:1]:check.alpha_composite(layer)
     bg=Image.new('RGBA',ART.size,(29,33,38,255));bg.alpha_composite(check);bg.convert('RGB').save(ROOT/'surface-review.png')
     (ROOT/'extraction.json').write_text(json.dumps(dict(layers=13,atlasSize=atlas.size,
        bounds=[list(layer.getbbox()) for layer in layers],
-       notes='13 rigid painted layers; same joint cap overlaps. Torso last. No independent frame generation.',
+       notes='Six continuous leg surfaces in odd atlas cells; even cells retained but unused. One knee painting per leg. Torso last. No independent frame generation.',
        missingOpaquePixels=int(np.sum((rgba[...,3]>220)&(np.array(check)[...,3]<220)))),indent=2))
 
 if __name__=='__main__':

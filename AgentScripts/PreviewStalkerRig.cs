@@ -103,16 +103,24 @@ public static class PreviewStalkerRig
             float visualHeading = 0;
             float headingVelocity = 0;
             float oldMovementWeight = 0;
-            const int count = 240;
+            const int count = 480;
             for (int frame = 0; frame < count; frame++)
             {
-                float speed = frame < 120 ? 3.8f : 1.2f;
-                if (frame >= 190 && frame < 215)
+                float speed = 1.2f;
+                if (frame >= 180 && frame < 240)
+                {
+                    speed = 1.5f;
+                }
+                else if (frame >= 240 && frame < 360)
+                {
+                    speed = 3.8f;
+                }
+                if (frame >= 405 && frame < 450)
                 {
                     speed = 0;
                 }
                 distance += speed / 60;
-                float heading = Mathf.Clamp((frame - 150) * 2.25f, 0, 90);
+                float heading = Mathf.Clamp((frame - 360) * 2.25f, 0, 90);
                 rootPosition += (Vector2)(Quaternion.Euler(0, 0, heading) * Vector2.up) * (speed / 60);
                 if (speed > 0)
                 {
@@ -183,13 +191,14 @@ public static class PreviewStalkerRig
                     await Task.Yield();
                 }
             }
-            var metadata = new { frames = 240, seconds = 4, closeFps = 60, scaleFps = 15,
-                cameraOrthoSizes = new[] { 1.5f, 4.6f, 2.4f, 3.4f }, speeds = new[] { 3.8f, 1.2f, 0f },
-                reachCorrections = rig.Gait.ReachCorrections, initialPhase = 0,
+            var metadata = new { frames = count, seconds = 8, closeFps = 60, scaleFps = 15,
+                cameraOrthoSizes = new[] { 1.5f, 4.6f, 2.4f, 3.4f }, speeds = new[] { 1.2f, 1.5f, 3.8f, 0f },
+                reachCorrections = rig.Gait.ReachCorrections, recoverySteps = rig.Gait.RecoverySteps, initialPhase = 0,
+                timeline = "0-3 walk 1.2; 3-4 walk 1.5; 4-6 retreat 3.8; 6-6.75 turn 1.2; 6.75-7.5 stop; 7.5-8 resume 1.2",
                 scope = "Controlled actual prefab + gait-model URP render, no AI/physics. Live captures are separate.",
                 shadowShader = profile.ShadowMaterial.shader.name };
             File.WriteAllText("Concepts/Used/Stalker/Locomotion02/preview-metadata.json", Newtonsoft.Json.JsonConvert.SerializeObject(metadata, Newtonsoft.Json.Formatting.Indented));
-            return "240 close frames + three game camera scales; reach corrections=" + rig.Gait.ReachCorrections;
+            return count + " close frames + three game camera scales; reach corrections=" + rig.Gait.ReachCorrections;
         }
         finally
         {
