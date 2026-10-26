@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8544dff4f629174f9b50e627318713a, type: 3}
+  m_Name: Remains
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.GoreProfile
+  poolSize: 1.6
+  releaseDelay: 0.06
+  impulseRange: {x: 0, y: 0}
+  liftRange: {x: 0, y: 0}
+  gravity: 26
+  settledTint: {r: 0.65, g: 0.61, b: 0.64, a: 1}
+  airborneTint: {r: 0.65, g: 0.61, b: 0.64, a: 1}
+  eyeSurfaceMaterial: {fileID: 0}
+  variants:
+  - id: bloody-carcass
+    fragmentCount: 1
+    spriteOffset: 0
+    rotationOffset: 0
+    scale: {x: 1, y: 1}
+    impulseMultiplier: 1
+    pieces:
+    - spriteIndex: 0
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 1
+    replaceOriginalBody: 1
+    restorationOnly: 0
+    selectionWeight: 1
+  - id: torn-forelimb
+    fragmentCount: 1
+    spriteOffset: 0
+    rotationOffset: 0
+    scale: {x: 1, y: 1}
+    impulseMultiplier: 1
+    pieces:
+    - spriteIndex: 1
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 1
+    replaceOriginalBody: 1
+    restorationOnly: 0
+    selectionWeight: 1
+  - id: meat-heap
+    fragmentCount: 1
+    spriteOffset: 0
+    rotationOffset: 0
+    scale: {x: 1, y: 1}
+    impulseMultiplier: 1
+    pieces:
+    - spriteIndex: 2
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 1
+    replaceOriginalBody: 1
+    restorationOnly: 0
+    selectionWeight: 1

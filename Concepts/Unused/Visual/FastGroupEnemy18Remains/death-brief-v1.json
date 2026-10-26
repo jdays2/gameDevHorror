@@ -1,0 +1,34 @@
+{
+  "task": "TASK-005",
+  "date": "2026-10-26",
+  "request": "Three death/remains alternatives before sandbox integration; owner accepts a bloody lying carcass or meat heap.",
+  "anatomySource": "../FastGroupEnemy13AssetInspired/anatomy-plan-v4.json",
+  "muscleSource": "../FastGroupEnemy13AssetInspired/anatomy-muscle-plan-v4.json",
+  "master": "../FastGroupEnemy17SimplifiedMotion/simplified-master-v1.png",
+  "masterSha256": "fdff194f05abef33375a2c40046389a614669012789e9d68356ece1868fe67e5",
+  "support": "All pieces rest on floor. No live weight bearing or standing gait. No inference of medical hidden anatomy from overhead image.",
+  "variants": {
+    "corpse": {
+      "breaks": [],
+      "required": "All four limbs and original claw topology retained; flattened dead posture."
+    },
+    "torn": {
+      "breaks": [
+        "FU at shoulder"
+      ],
+      "required": "Detached complete FU chain/hand; other three limbs stay attached."
+    },
+    "heap": {
+      "breaks": [
+        "torso disrupted",
+        "FU/FL limb segments",
+        "RU/RL limb segments"
+      ],
+      "required": "One head, two forehands3 claws each, two rear feet3+1 each; broken aggregate tissue is intentional damage."
+    }
+  },
+  "functionalMuscleCount": 22,
+  "checks": "Concept then independent source skeleton / explicit breaks, volumes, persistent group attachments for surviving tissue, clean skin, RGBA/export. Artistic approval pending.",
+  "groundBlood": "Separate procedural layer; no fixed large baked pool.",
+  "newSounds": false
+}

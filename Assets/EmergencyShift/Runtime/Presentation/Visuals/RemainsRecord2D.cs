@@ -120,7 +120,9 @@ namespace EmergencyShift
                         RemainsEyeSurface.Apply(renderer, eyeSurfaceMaterial, eyeDamage);
                     }
                     float angle = i * Mathf.PI * 2 / count + variant.RotationOffset * Mathf.Deg2Rad + Range(-.33f, .33f);
-                    body.transform.rotation = Quaternion.Euler(0, 0, Range(0f, 360f));
+                    bool preservePose = specification != null && specification.PreserveSourcePose;
+                    body.transform.rotation = preservePose && replacedBody != null
+                        ? replacedBody.transform.rotation : Quaternion.Euler(0, 0, Range(0f, 360f));
                     SpriteRenderer shadow = null;
                     if (contactShadowSprite != null && shadowMaterial != null)
                     {
@@ -145,7 +147,8 @@ namespace EmergencyShift
                         lift *= specification.LiftMultiplier;
                     }
 
-                    motion.Launch(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * power, Range(-650f, 650f), obstacles.value | (1 << 9), lift, profile.Gravity);
+                    float angularSpeed = preservePose ? 0 : Range(-650f, 650f);
+                    motion.Launch(new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * power, angularSpeed, obstacles.value | (1 << 9), lift, profile.Gravity);
                     piece.AddComponent<RemainsPartIdentity2D>().Configure(spriteIndex, renderer, shadow, hasEyeSurface,
                         hasEyeSurface ? eyeDamage : 0);
                     RegisterPart(motion);

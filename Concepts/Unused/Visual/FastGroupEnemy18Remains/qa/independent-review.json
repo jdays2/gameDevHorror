@@ -1,0 +1,603 @@
+{
+  "task": "TASK-005",
+  "review": "independent F18 remains bone-first review",
+  "source": {
+    "anatomy-plan-v4.json": "9590b94a8daa63aed41ac67a8f91681782844c0d2675326099b201af761c4d8d",
+    "anatomy-muscle-plan-v4.json": "f9c7320628c22fddaf0adba473c1733e32128cce273fc0759ef1a362724c4600",
+    "simplified-master-v1.png": "fdff194f05abef33375a2c40046389a614669012789e9d68356ece1868fe67e5"
+  },
+  "assets": {
+    "corpse-v2.png": "9c340a6a6ff2961faa2687a71c28ac337aa70943a4f9873158a5d09d38a39d84",
+    "torn-v3.png": "c34ca9eaab1fa621405bc91abda8642149e315e5fa0b5309c81399e9e84f3b58",
+    "torn-v4.png": "f07744c1bf83328abeec517504dc6c96e8d7f4df3c4d5d75826712457bb6b24a",
+    "heap-v2.png": "8f8f3b31d461cfa8bc4a7be72c3154543fd0cdb612d0fde1bab7c7164373f8ed"
+  },
+  "commonBodyRegistration": {
+    "uniformScale": 1.0,
+    "offsetPx": [
+      0.0,
+      0.0
+    ],
+    "perBoneLengthFit": false,
+    "B3PostArtworkPoseWitness": true
+  },
+  "sourceSegmentLengths3D": {
+    "FU": [
+      0.8273451516749221,
+      0.7292461861401814,
+      0.17464249196572973
+    ],
+    "FL": [
+      0.8273451516749221,
+      0.7292461861401814,
+      0.17464249196572973
+    ],
+    "RU": [
+      0.5984981202978,
+      0.3844476557348217,
+      0.19104973174542797
+    ],
+    "RL": [
+      0.5984981202978,
+      0.3844476557348217,
+      0.19104973174542797
+    ]
+  },
+  "sourceMaximumProjectedPx": {
+    "FU": [
+      310.2544318780958,
+      273.46731980256806,
+      65.49093448714865
+    ],
+    "FL": [
+      310.2544318780958,
+      273.46731980256806,
+      65.49093448714865
+    ],
+    "RU": [
+      224.43679511167502,
+      144.16787090055814,
+      71.6436494045355
+    ],
+    "RL": [
+      224.43679511167502,
+      144.16787090055814,
+      71.6436494045355
+    ]
+  },
+  "measurements": {
+    "B3": {
+      "observationsPx": {
+        "shoulderCut": [
+          734.0,
+          401.0
+        ],
+        "elbow": [
+          551.0,
+          260.0
+        ],
+        "wrist": [
+          350.0,
+          245.0
+        ]
+      },
+      "estimatedCentreUncertaintyPx": 10,
+      "projectionUpperPx": 231.01947969814148,
+      "projectionForearmPx": 201.5589243868899,
+      "maximumUpperPx": 310.2544318780958,
+      "maximumForearmPx": 273.46731980256806,
+      "verdict": "FIXED_LENGTH_FEASIBILITY_GO_WITH_LIMITS",
+      "witnessJoints3D": [
+        [
+          -0.06933333333333333,
+          -0.704,
+          0.06060297582325502
+        ],
+        [
+          -0.5573333333333333,
+          -1.08,
+          0.612852919236561
+        ],
+        [
+          -1.0933333333333333,
+          -1.12,
+          0.12
+        ],
+        [
+          -1.2533333333333332,
+          -1.12,
+          0.05
+        ]
+      ],
+      "witnessLengthErrors": [
+        0.0,
+        -1.1102230246251565e-16,
+        0.0
+      ],
+      "witnessNote": "Elbow raised in a bent detached limb; proximal cut and hand are low. Existence proof only: no measured height, stability, or floor contact claim."
+    },
+    "B4": {
+      "observationsPx": {
+        "shoulderCut": [
+          835.0,
+          415.0
+        ],
+        "elbow": [
+          655.0,
+          264.0
+        ],
+        "wrist": [
+          353.0,
+          246.0
+        ]
+      },
+      "estimatedCentreUncertaintyPx": 10,
+      "projectionUpperPx": 234.94893062110327,
+      "projectionForearmPx": 302.5359482772254,
+      "maximumUpperPx": 310.2544318780958,
+      "maximumForearmPx": 273.46731980256806,
+      "verdict": "FAIL_MAXIMUM_PROJECTED_LENGTH",
+      "excessForearmPx": 29.068628474657316,
+      "minimumForearmUnderAxisUncertaintyPx": 282.0
+    }
+  },
+  "boneScope": {
+    "A2": "Unposed source-v4 projection over unchanged main body. Pose/height not reconstructed.",
+    "B3": "Retrospective 3D feasibility witness with fixed lengths. Observed centres are explicitly separate measurements.",
+    "B4": "Hard maximum-projection failure; no muscle pass generated.",
+    "C2": "Broken distal-chain accounting only. No complete torso/rear proximal chain inferred or fitted."
+  },
+  "muscleInventory": {
+    "A2": [
+      {
+        "id": "FU1",
+        "sourceCount": 1,
+        "status": "wound_or_occluded_attachment_unverified"
+      },
+      {
+        "id": "FU2",
+        "sourceCount": 1,
+        "status": "wound_or_occluded_attachment_unverified"
+      },
+      {
+        "id": "FU3",
+        "sourceCount": 1,
+        "status": "wound_or_occluded_attachment_unverified"
+      },
+      {
+        "id": "FU4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FU5",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL1",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL2",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL3",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL5",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RU1",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RU2",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RU3",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RU4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RL1",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RL2",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RL3",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RL4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "T1",
+        "sourceCount": 1,
+        "status": "wound_or_occluded_attachment_unverified"
+      },
+      {
+        "id": "T3",
+        "sourceCount": 1,
+        "status": "wound_or_occluded_attachment_unverified"
+      },
+      {
+        "id": "T2",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "T4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      }
+    ],
+    "B3": [
+      {
+        "id": "FU1",
+        "sourceCount": 1,
+        "status": "severed_at_shoulder_not_continuous"
+      },
+      {
+        "id": "FU2",
+        "sourceCount": 1,
+        "status": "wound_or_occluded_attachment_unverified"
+      },
+      {
+        "id": "FU3",
+        "sourceCount": 1,
+        "status": "wound_or_occluded_attachment_unverified"
+      },
+      {
+        "id": "FU4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FU5",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL1",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL2",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL3",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "FL5",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RU1",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RU2",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RU3",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RU4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RL1",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RL2",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RL3",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "RL4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "T1",
+        "sourceCount": 1,
+        "status": "wound_or_occluded_attachment_unverified"
+      },
+      {
+        "id": "T3",
+        "sourceCount": 1,
+        "status": "wound_or_occluded_attachment_unverified"
+      },
+      {
+        "id": "T2",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      },
+      {
+        "id": "T4",
+        "sourceCount": 1,
+        "status": "source_attachment_declared_retained_under_skin_unverified"
+      }
+    ],
+    "C2": [
+      {
+        "id": "FU1",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "FU2",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "FU3",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "FU4",
+        "sourceCount": 1,
+        "status": "distal_fragment_source_only"
+      },
+      {
+        "id": "FU5",
+        "sourceCount": 1,
+        "status": "distal_fragment_source_only"
+      },
+      {
+        "id": "FL1",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "FL2",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "FL3",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "FL4",
+        "sourceCount": 1,
+        "status": "distal_fragment_source_only"
+      },
+      {
+        "id": "FL5",
+        "sourceCount": 1,
+        "status": "distal_fragment_source_only"
+      },
+      {
+        "id": "RU1",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "RU2",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "RU3",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "RU4",
+        "sourceCount": 1,
+        "status": "distal_fragment_source_only"
+      },
+      {
+        "id": "RL1",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "RL2",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "RL3",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "RL4",
+        "sourceCount": 1,
+        "status": "distal_fragment_source_only"
+      },
+      {
+        "id": "T1",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "T3",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "T2",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      },
+      {
+        "id": "T4",
+        "sourceCount": 1,
+        "status": "ruptured_or_occluded_unverifiable"
+      }
+    ]
+  },
+  "limitations": [
+    "No inferred exact medical anatomy or hidden muscle count.",
+    "Fixed-length feasibility is necessary, not proof of actual 3D pose, floor contact, or stability.",
+    "No individual segment lengths, group radii, or insertions adjusted to the artwork.",
+    "C2 damaged aggregate tissue cannot prove 22 intact visible muscle groups.",
+    "Owner artistic approval and Unity validation are separate."
+  ],
+  "alphaChecks": {
+    "A2": {
+      "size": [
+        1254,
+        1254
+      ],
+      "nonzeroAlphaBBox": [
+        0,
+        103,
+        1229,
+        1210
+      ],
+      "alpha16BBox": [
+        52,
+        320,
+        1226,
+        1017
+      ],
+      "alpha128BBox": [
+        53,
+        321,
+        1225,
+        1017
+      ],
+      "outerBorderMaxAlpha": 1,
+      "partialAlphaPixels": 393200
+    },
+    "B3": {
+      "size": [
+        1254,
+        1254
+      ],
+      "nonzeroAlphaBBox": [
+        0,
+        37,
+        1234,
+        1230
+      ],
+      "alpha16BBox": [
+        27,
+        143,
+        1227,
+        1012
+      ],
+      "alpha128BBox": [
+        27,
+        143,
+        1227,
+        1011
+      ],
+      "outerBorderMaxAlpha": 1,
+      "partialAlphaPixels": 406453
+    },
+    "C2": {
+      "size": [
+        1254,
+        1254
+      ],
+      "nonzeroAlphaBBox": [
+        27,
+        23,
+        1244,
+        1254
+      ],
+      "alpha16BBox": [
+        46,
+        320,
+        1220,
+        1011
+      ],
+      "alpha128BBox": [
+        47,
+        321,
+        1220,
+        1010
+      ],
+      "outerBorderMaxAlpha": 1,
+      "partialAlphaPixels": 426458
+    }
+  },
+  "boneVisualReview": {
+    "A2": "CONDITIONAL_GO_SOURCE_SCHEME_AND_VISIBLE_CHAINS",
+    "B3": "GO_FIXED_LENGTH_FEASIBILITY_ONLY",
+    "B4": "FAIL_NO_MUSCLE_PASS",
+    "C2": "GO_VISIBLE_PART_ACCOUNTING_ONLY_NO_INTACT_HIDDEN_CHAINS"
+  },
+  "musclePassGenerated": true,
+  "musclePassVisualReview": {
+    "A2": "REVIEWED_SOURCE_ONLY_VOLUMES_AND_22_ID_STATUS; rough envelope overshoot accepted as limitation",
+    "B3": "REVIEWED_SOURCE_ONLY_VOLUMES_AND_22_ID_STATUS; shoulder suspension severed, not continuous across gap",
+    "C2": "REVIEWED_SEPARATE_SOURCE_INVENTORY_ONLY; no intact 22-group reconstruction or pose inside heap"
+  },
+  "C2MusclePresentation": "Separate actual damaged-parts panel and source-only master inventory panel; no intact muscle locations overlaid onto heap.",
+  "skinVisualReview": {
+    "A2": "REVIEWED_RGBA_COMPOSITED_LIGHT_AND_DARK; front claws3/3 rear3+1/3+1; no new unintended holes, duplicate limbs or meaningful clipping seen",
+    "B3": "REVIEWED_RGBA_COMPOSITED_LIGHT_AND_DARK; front claws3/3 rear3+1/3+1; no new unintended holes, duplicate limbs or meaningful clipping seen",
+    "C2": "REVIEWED_RGBA_COMPOSITED_LIGHT_AND_DARK; front claws3/3 rear3+1/3+1; no new unintended holes, duplicate limbs or meaningful clipping seen"
+  },
+  "reviewedAssetsSha256": {
+    "corpse-v2.png": "9c340a6a6ff2961faa2687a71c28ac337aa70943a4f9873158a5d09d38a39d84",
+    "torn-v3.png": "c34ca9eaab1fa621405bc91abda8642149e315e5fa0b5309c81399e9e84f3b58",
+    "torn-v4.png": "f07744c1bf83328abeec517504dc6c96e8d7f4df3c4d5d75826712457bb6b24a",
+    "heap-v2.png": "8f8f3b31d461cfa8bc4a7be72c3154543fd0cdb612d0fde1bab7c7164373f8ed"
+  },
+  "acceptedOwnerScopeNote": "A2 attached blood fringe retained by parent/owner scope decision; not cleaned from RGB or alpha threshold.",
+  "artisticLimits": "A2/B3 remain close to the living neutral silhouette. Convincing limp weight and floor contact are not demonstrated by these top-view PNGs.",
+  "finalIndependentVerdict": "QUALIFIED_TECHNICAL_GO_A2_B3_C2_WITH_DECLARED_SCOPE; B4_HARD_FAIL. Owner artistic acceptance and Unity verification are separate.",
+  "finalAssetBytesUnchanged": true
+}

@@ -1,3 +1,4 @@
+using EmergencyShift.Features.ClawEnemy;
 using Zenject;
 
 namespace EmergencyShift.Features.Enemies
@@ -10,6 +11,7 @@ namespace EmergencyShift.Features.Enemies
             container.Bind<EnemyPatrolControllerFactory>().AsSingle();
             container.Bind<SleeperControllerFactory>().AsSingle();
             container.Bind<StalkerControllerFactory>().AsSingle();
+            container.Bind<ClawEnemyControllerFactory>().AsSingle();
             ScriptedEncounters.ScriptedEncounterInstaller.Install(container);
         }
     }
