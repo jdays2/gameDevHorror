@@ -1,0 +1,395 @@
+{
+  "revision": "scorpion-native-r3",
+  "task": "TASK-005",
+  "scope": "Separate fast group enemy art family; mechanics remain a design brief.",
+  "units": "prospective local metres, not recovered measurements",
+  "axes": {
+    "x": "right",
+    "y": "forward",
+    "z": "height above ground"
+  },
+  "groundZ": 0,
+  "soleThickness": 0.015,
+  "bodyHeight": 0.13,
+  "projection": {
+    "canvas": [
+      1024,
+      1024
+    ],
+    "pixelsPerUnit": 340.0,
+    "originPixelsTopLeft": [
+      512.0,
+      548.0
+    ],
+    "camera": "orthographic dorsal"
+  },
+  "bodyAxis": [
+    [
+      0,
+      0.46,
+      0.14
+    ],
+    [
+      0,
+      0.13,
+      0.13
+    ],
+    [
+      0,
+      -0.26,
+      0.11
+    ],
+    [
+      0,
+      -0.46,
+      0.1
+    ]
+  ],
+  "walkingLegs": {
+    "L1": [
+      [
+        -0.2,
+        0.26,
+        0.13
+      ],
+      [
+        -0.48,
+        0.47,
+        0.32
+      ],
+      [
+        -0.69,
+        0.71,
+        0.015
+      ]
+    ],
+    "L2": [
+      [
+        -0.2,
+        0.1,
+        0.13
+      ],
+      [
+        -0.58,
+        0.22,
+        0.32
+      ],
+      [
+        -0.8,
+        0.24,
+        0.015
+      ]
+    ],
+    "L3": [
+      [
+        -0.2,
+        -0.08,
+        0.13
+      ],
+      [
+        -0.57,
+        -0.18,
+        0.32
+      ],
+      [
+        -0.78,
+        -0.35,
+        0.015
+      ]
+    ],
+    "L4": [
+      [
+        -0.2,
+        -0.24,
+        0.13
+      ],
+      [
+        -0.46,
+        -0.46,
+        0.32
+      ],
+      [
+        -0.63,
+        -0.71,
+        0.015
+      ]
+    ],
+    "R1": [
+      [
+        0.2,
+        0.26,
+        0.13
+      ],
+      [
+        0.48,
+        0.47,
+        0.32
+      ],
+      [
+        0.69,
+        0.71,
+        0.015
+      ]
+    ],
+    "R2": [
+      [
+        0.2,
+        0.1,
+        0.13
+      ],
+      [
+        0.58,
+        0.22,
+        0.32
+      ],
+      [
+        0.8,
+        0.24,
+        0.015
+      ]
+    ],
+    "R3": [
+      [
+        0.2,
+        -0.08,
+        0.13
+      ],
+      [
+        0.57,
+        -0.18,
+        0.32
+      ],
+      [
+        0.78,
+        -0.35,
+        0.015
+      ]
+    ],
+    "R4": [
+      [
+        0.2,
+        -0.24,
+        0.13
+      ],
+      [
+        0.46,
+        -0.46,
+        0.32
+      ],
+      [
+        0.63,
+        -0.71,
+        0.015
+      ]
+    ]
+  },
+  "pedipalps": {
+    "L": {
+      "arm": [
+        [
+          -0.13,
+          0.36,
+          0.14
+        ],
+        [
+          -0.4,
+          0.7,
+          0.15
+        ],
+        [
+          -0.46,
+          0.98,
+          0.08
+        ]
+      ],
+      "hinge": [
+        -0.46,
+        1.08,
+        0.08
+      ],
+      "fixedTip": [
+        -0.28,
+        1.38,
+        0.05
+      ],
+      "movingTip": [
+        -0.72,
+        1.34,
+        0.05
+      ]
+    },
+    "R": {
+      "arm": [
+        [
+          0.13,
+          0.36,
+          0.14
+        ],
+        [
+          0.4,
+          0.7,
+          0.15
+        ],
+        [
+          0.46,
+          0.98,
+          0.08
+        ]
+      ],
+      "hinge": [
+        0.46,
+        1.08,
+        0.08
+      ],
+      "fixedTip": [
+        0.28,
+        1.38,
+        0.05
+      ],
+      "movingTip": [
+        0.72,
+        1.34,
+        0.05
+      ]
+    }
+  },
+  "tail": [
+    [
+      0,
+      -0.46,
+      0.1
+    ],
+    [
+      0,
+      -0.66,
+      0.09
+    ],
+    [
+      0.05,
+      -0.84,
+      0.1
+    ],
+    [
+      0.2,
+      -0.99,
+      0.12
+    ],
+    [
+      0.38,
+      -0.96,
+      0.15
+    ],
+    [
+      0.47,
+      -0.8,
+      0.18
+    ],
+    [
+      0.39,
+      -0.67,
+      0.17
+    ]
+  ],
+  "counts": {
+    "walkingLegs": 8,
+    "majorLinksPerWalkingLeg": 2,
+    "pedipalps": 2,
+    "pincerFingersPerPedipalp": 2,
+    "tailLinksIncludingSting": 6,
+    "primaryEyes": 10
+  },
+  "support": "Eight ground contacts in neutral; alternating tetrapods in fast gait. Palps carry no locomotion load.",
+  "symmetry": "Walking legs and palps mirror anatomically. Tail has a declared lateral curve.",
+  "surface": "Stalker pale pink flesh, broad simple volumes, ivory bone tips; no glossy human shoulders.",
+  "artisticApproval": false,
+  "sourceStrategy": "Native modular artwork. Whole generated concepts v1-v4 failed the separate skeleton gate and are not approved masters.",
+  "changesFromR1": {
+    "kneeHeight": [
+      0.2,
+      0.32
+    ],
+    "reason": "Reserve true 3D reach for a fast grounded gait without flattening the legs or extending the image-plane bones.",
+    "topProjectionUnchanged": true,
+    "limbCountsUnchanged": true
+  },
+  "eyePositions": [
+    [
+      -0.055,
+      0.375,
+      0.15
+    ],
+    [
+      -0.12,
+      0.32,
+      0.15
+    ],
+    [
+      -0.075,
+      0.255,
+      0.15
+    ],
+    [
+      -0.15,
+      0.23,
+      0.15
+    ],
+    [
+      -0.1,
+      0.18,
+      0.15
+    ],
+    [
+      0.055,
+      0.375,
+      0.15
+    ],
+    [
+      0.12,
+      0.32,
+      0.15
+    ],
+    [
+      0.075,
+      0.255,
+      0.15
+    ],
+    [
+      0.15,
+      0.23,
+      0.15
+    ],
+    [
+      0.1,
+      0.18,
+      0.15
+    ]
+  ],
+  "changesFromR2": {
+    "pincers": "Larger two-finger pincers held forward; paired close during the strike and alternate clacking during run.",
+    "tailSurfaceWidthMultiplier": 1.65,
+    "eyes": 10,
+    "head": "Broader blunt anterior crown; same body axis and attachment sockets.",
+    "countsAndWalkingLegLengthsUnchanged": true
+  },
+  "gait": {
+    "stride": 0.4,
+    "duty": 0.64,
+    "frameCount": 24,
+    "frameMs": 15,
+    "nativeReferenceSpeed": 1.7361111111111112,
+    "alternatingTetrapods": [
+      [
+        "L1",
+        "R2",
+        "L3",
+        "R4"
+      ],
+      [
+        "R1",
+        "L2",
+        "R3",
+        "L4"
+      ]
+    ]
+  }
+}

@@ -1,5 +1,7 @@
 # TASK-005 · когтистый прототип в тестовой сцене
 
+**Историческая интеграция.** По решению владельца2026-10-26 текущий дизайн заканчивается отдельным молчаливым [ClawVisual01](../ClawVisual01/README.md) без назначенных механик. J, F21/F22 и новые останки импортированы туда; описание ниже относится к прежнему ClawPrototype и его старым кадрам. Авторенные сцены автоматически не заменялись.
+
 Реализованная семья: `Assets/EmergencyShift/{Art/Enemies,Data/Enemies}/ClawPrototype`, `Prefabs/Enemies/ClawPrototype.prefab` и `ClawRemainsPreview.prefab`. Общий FlatLit повторно используется; новых звуков нет.
 
 Неизменённые PNG движения: [F17](../../../Unused/Visual/FastGroupEnemy17SimplifiedMotion/README.md), walk16, run16, размашистая атакаD18. Останки: [F18](../../../Unused/Visual/FastGroupEnemy18Remains/README.md), A2/B3/C2. Пути источников сохраняются ради воспроизводимости прежних скриптов; Unused в историческом имени не означает, что эти точные копии не используются. Перенос источников не выполнялся.
