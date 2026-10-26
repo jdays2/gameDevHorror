@@ -122,6 +122,7 @@
 
 ### Visual
 
+- [TASK-005 · упрощённый враг: ходьба, атака и бег](Unused/Visual/FastGroupEnemy17SimplifiedMotion/README.md) — единый рисунок и фактура, стадия оценки; в Unity не импортировано.
 - [Процедурная кровь 01 — художественные пробы](Unused/Visual/ProceduralBlood01/README.md)
 - [Спящий: проверка постоянства анатомии и закрытия пасти](Unused/Visual/SleeperAnatomy02/README.md)
 - [Второй монстр: визуальная разведка 01 — история](Unused/Visual/SleeperExploration01/README.md)

@@ -1,0 +1,34 @@
+{
+  "task": "TASK-005",
+  "date": "2026-10-26",
+  "revision": "simplified-motion-r1",
+  "reviewers": ["primary agent", "independent visual_check agent"],
+  "masterBoneOverlay": "PASS within the declared v4 functional scheme; same joints and silhouette proportions",
+  "order": ["independent skeleton", "bones on actual skin", "volumes", "separate muscle IDs/directions/attachment zones", "clean skin/details", "animation and export"],
+  "walk": {
+    "actualPngFramesInspected": "00-15",
+    "result": "GO for visible continuity/claw/canvas defects",
+    "observations": "Three-claw forehands and three-plus-lateral rear feet retained. Shoulder, wrist and rear bridges connected; no new tears/spikes/strips. Neck08/09 stable. No abrupt reset15-to00."
+  },
+  "attack": {
+    "actualPngFramesInspected": "00-13; extra attention05,06,07,08,13",
+    "result": "GO for visible continuity/claw/canvas defects",
+    "observations": "Anticipation, extension and return read in the poses; claws stay left-facing, rear feet brace. No new holes, spikes, disconnected strips or clipped claws. First/last PNG identical."
+  },
+  "run": {
+    "actualPngFramesInspected": "00-15",
+    "result": "GO for visible continuity/claw/canvas defects",
+    "observations": "Greater forelimb excursion than walk, coherent same anatomy and simplified texture. All claws retained; no new holes, spikes, strips or double rims. No abrupt reset15-to00."
+  },
+  "browserReview": {
+    "url": "http://127.0.0.1:8100/viewer.html?revision=simplified-r1",
+    "verified": ["all three selectable states render", "100% playback advances frames", "grid/contact review", "dark and light compositing", "smaller size", "one-shot attack stops at frame13", "pause and frame step"],
+    "scope": "Browser controls and sampled rendered playback were inspected. Static sheets do not establish the perceived weight/menace of the full motion."
+  },
+  "functionalMuscleCount": 22,
+  "muscleLimitation": "Capsules are coarse prospective zones and may exceed skin; exact hidden medical attachments are not established.",
+  "artisticApproval": false,
+  "unityImport": false,
+  "sceneChanges": false,
+  "authoringReview": "not applicable"
+}
