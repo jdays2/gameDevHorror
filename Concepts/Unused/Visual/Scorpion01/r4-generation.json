@@ -1,0 +1,59 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-26",
+  "jobs": [
+    {
+      "key": "chela",
+      "prompt": "Use case: sketch-to-render. Asset: ONE isolated LEFT scorpion chela, dorsal orthographic, actual transparent background. Image1 is the exact independent 512-square geometry maquette: keep wrist at(256,448), thick manus centre(256,320), fixed finger root(340,270), fixed finger curve through(370,140) to tip(320,62); movable finger hinge at(175,278), curved through(115,140) to tip(156,19). Those bends are curve guides of rigid cuticular fingers, NOT extra finger joints. Paint a real recognisable scorpion chela with a broad swollen pear-shaped palm/manus, a single fixed finger extending from one side of the palm, and one separate opposing mobile finger pivoting at the side hinge. Two inwardly curved hooked grasping digits with small gripping teeth on INNER edges; close gap between grasping surfaces when rotated, no Y-shaped pair of tusks. Keep the maquette topology, scale and registration; blank surrounding margin stays blank. Image2 is style reference only: pale grey-rose fleshy arthropod, broad restrained volumes, ivory hooked tips, subtle joint rims, no fine noise. Omit the blue/gold guides from final. No arm, no whole creature, no text, no ground shadow, no glow, no extra fingers. Keep entire palm and both complete fingertips in the canvas.",
+      "referenceImages": [
+        "r4-chela-independent-guide.png",
+        "native-neutral.png"
+      ]
+    },
+    {
+      "key": "tail",
+      "prompt": "Use case: sketch-to-render. Asset: ONE isolated scorpion tail, dorsal orthographic, actual transparent background. Image1 is the exact independent 512-square tail guide. Retain root(175,70) then five stout articulated metasoma segments along (175,150),(185,230),(230,300),(300,300),(345,245). Distinct swollen venom vesicle/telson extends to(340,185). A sharp recurved aculeus emerges from the vesicle, curves forward-left, and ends at(265,120). Five actual tail segments, then the distinguishable bulb with its one hooked stinger; do not turn the sting into another jointed fleshy segment or a straight toe/claw. Preserve registration, overall C-shaped path, segment boundaries and empty surrounding area. Image2 is surface style reference only: pale grey-pink fleshy horror arthropod, broad stout segments with modest hard cuticular edges, ivory-dark sharp recurved sting. No legs, no torso, no head, no text, no guide dots/lines, no ground shadow or glow. Everything inside the transparent canvas.",
+      "referenceImages": [
+        "r4-tail-independent-guide.png",
+        "native-neutral.png"
+      ]
+    },
+    {
+      "key": "eyes",
+      "prompt": "Use case: precise-object-edit. Edit only the TEN existing black spider eyes on this isolated monster body surface. Change all ten eyes to threatening deep RED luminous spider eyes, with crimson outer globes and small bright scarlet cores. Restrained local red glow at each eye rim. Preserve exactly their number, size, placement, head shape, all skin and every body attachment socket, abdomen, canvas registration and alpha silhouette. Do not add pupils shaped like human eyes, eyelashes, text, legs, pincers, tail, extra eyes, or a central giant eye. Same top-down dorsal projection and same pale grey-pink skin style. Genuine transparent RGBA background; no glow on the background, no cast shadow. This is one reusable texture, not a sheet.",
+      "referenceImages": [
+        "body-source-r3-eyes.png"
+      ]
+    },
+    {
+      "key": "chelaSage",
+      "prompt": "Precise-object-edit of this isolated scorpion chela. Correct the two fingers into CONTINUOUS RIGID curved chitinous grasping digits: remove both round knuckles and ring seams in the middle of the fingers entirely. Only ONE movable-finger hinge remains at the left side of the swollen manus/palm; the right finger is a seamless fixed projection of that palm. Reduce the inner edge to three broad gripping teeth per finger. Keep wrist, whole outline extent, finger lengths, tips and overall open pose registered as in the input. This is a real scorpion pincer with broad swollen pear-shaped palm, not a fork of articulated arms. Use a muted cold sage-grey palette (body midtone about #9da58e, shadow #596359), warm ivory tips, broad matte painted forms. Greatly reduce micro-detail: no veins, pores, wet specular shine, tiny wrinkles or thick internal muscle ridges. Keep just a few broad shaded planes and necessary joint seams; dark restrained outline. Do not add grime, new wounds or noise. Genuine transparent background; preserve canvas and component layout.",
+      "referenceImages": [
+        "chela-r4-v1-rejected.png"
+      ]
+    },
+    {
+      "key": "tailSage",
+      "prompt": "Precise-object-edit of this isolated scorpion tail. Keep its C-shaped geometry and five major metasoma segments, terminal rounded venom vesicle and distinct recurved pointed stinger in exactly the same places. Simplify the swollen root into a smooth single connection socket, no forked pair of horns. Remove visible muscle bundles and extra tiny folds; make five clear stout tail segments with simple joint seams, a quiet bulb-shaped telson and ONE sharp curved ivory aculeus. Use a muted cold sage-grey palette (body midtone about #9da58e, shadow #596359), warm ivory tips, broad matte painted forms. Greatly reduce micro-detail: no veins, pores, wet specular shine, tiny wrinkles or thick internal muscle ridges. Keep just a few broad shaded planes and necessary joint seams; dark restrained outline. Do not add grime, new wounds or noise. Genuine transparent background; preserve canvas and component layout.",
+      "referenceImages": [
+        "tail-r4-v1.png"
+      ]
+    },
+    {
+      "key": "bodySage",
+      "prompt": "Precise-object-edit of this isolated monster body texture. Preserve all TEN luminous red spider eyes exactly (red glow, number, size and positions), all side sockets, canvas registration and body silhouette. Simplify the skin strongly: remove the raised rope-like muscular ridges and doubled folds around the triangular head and between abdomen segments, leave a broad quiet head shield and three simple connected abdomen lobes. No tiny wrinkles, veins or wet highlights. Palette change affects only the flesh; RED eyes stay red and brilliant. Use a muted cold sage-grey palette (body midtone about #9da58e, shadow #596359), warm ivory tips, broad matte painted forms. Greatly reduce micro-detail: no veins, pores, wet specular shine, tiny wrinkles or thick internal muscle ridges. Keep just a few broad shaded planes and necessary joint seams; dark restrained outline. Do not add grime, new wounds or noise. Genuine transparent background; preserve canvas and component layout.",
+      "referenceImages": [
+        "body-source-r4-eyes.png"
+      ]
+    },
+    {
+      "key": "legsSage",
+      "prompt": "Precise-object-edit: repaint the existing sprites IN PLACE in this sparse transparent atlas. EXACT same canvas dimensions/aspect, same component count, pixel locations, joint centres, silhouettes and empty spaces. Do not recenter, rearrange, enlarge or join the pieces. Keep each complete limb and knee joint. Repaint pink flesh to muted sage-grey, ivory tips and dark red minimal tip stains. Simplify every sprite to broad matte painted shading; remove wet highlights and fine surface noise. The one torso in the upper left remains in place and can be simplified to matching quiet sage-grey. This is an atlas texture edit, not a new character or contact sheet. Use a muted cold sage-grey palette (body midtone about #9da58e, shadow #596359), warm ivory tips, broad matte painted forms. Greatly reduce micro-detail: no veins, pores, wet specular shine, tiny wrinkles or thick internal muscle ridges. Keep just a few broad shaded planes and necessary joint seams; dark restrained outline. Do not add grime, new wounds or noise. Genuine transparent background; preserve canvas and component layout.",
+      "referenceImages": [
+        "sources/stalker-atlas.png"
+      ]
+    }
+  ],
+  "nativeRegistration": "scorpion_parts.py and r4-native-registration.json. Fixed maquette predates paint registration; unapproved raw component anatomy is not a passed master.",
+  "performanceTestsRun": false
+}

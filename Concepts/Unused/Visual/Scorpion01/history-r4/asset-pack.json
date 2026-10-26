@@ -1,0 +1,128 @@
+{
+  "task": "TASK-005",
+  "revision": "scorpion-native-r4-sage",
+  "role": "fast group attacker, visual prototype",
+  "sourceForward": "up",
+  "audio": false,
+  "brain": false,
+  "damageEvents": false,
+  "idle": {
+    "name": "Idle",
+    "asset": "Assets/EmergencyShift/Art/Enemies/Scorpion/Neutral.png",
+    "pixelsPerUnit": 400,
+    "pivotPixelsTopLeft": [
+      512,
+      548
+    ],
+    "emission": {
+      "name": "NeutralEyes",
+      "asset": "Assets/EmergencyShift/Art/Enemies/Scorpion/NeutralEyes.png",
+      "pixelsPerUnit": 100,
+      "pivotPixelsTopLeft": [
+        128,
+        137
+      ]
+    }
+  },
+  "emissionMaterial": "Assets/EmergencyShift/Materials/Characters/Scorpion/EyeGlow.mat",
+  "states": [
+    {
+      "name": "Run",
+      "asset": "Assets/EmergencyShift/Art/Enemies/Scorpion/Run.png",
+      "columns": 6,
+      "cell": 512,
+      "count": 24,
+      "durationsMs": [
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15,
+        15
+      ],
+      "loop": true,
+      "referenceSpeed": 1.4756944444444444,
+      "pixelsPerUnit": 200,
+      "pivotPixelsTopLeft": [
+        256,
+        274
+      ],
+      "emission": {
+        "name": "RunEyes",
+        "asset": "Assets/EmergencyShift/Art/Enemies/Scorpion/RunEyes.png",
+        "columns": 6,
+        "cell": 256,
+        "count": 24,
+        "pixelsPerUnit": 100,
+        "pivotPixelsTopLeft": [
+          128,
+          137
+        ]
+      }
+    },
+    {
+      "name": "Attack",
+      "asset": "Assets/EmergencyShift/Art/Enemies/Scorpion/Attack.png",
+      "columns": 6,
+      "cell": 512,
+      "count": 16,
+      "durationsMs": [
+        40,
+        40,
+        45,
+        45,
+        50,
+        50,
+        25,
+        25,
+        25,
+        35,
+        40,
+        45,
+        45,
+        50,
+        50,
+        55
+      ],
+      "loop": false,
+      "referenceSpeed": 0.0,
+      "pixelsPerUnit": 200,
+      "pivotPixelsTopLeft": [
+        256,
+        274
+      ],
+      "emission": {
+        "name": "AttackEyes",
+        "asset": "Assets/EmergencyShift/Art/Enemies/Scorpion/AttackEyes.png",
+        "columns": 6,
+        "cell": 256,
+        "count": 16,
+        "pixelsPerUnit": 100,
+        "pivotPixelsTopLeft": [
+          128,
+          137
+        ]
+      }
+    }
+  ],
+  "remains": [],
+  "previewSpeed": 2.4
+}

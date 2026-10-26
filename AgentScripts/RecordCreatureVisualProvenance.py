@@ -24,17 +24,24 @@ def main():
         paths.update(PROJECT/r['source'] for r in manifest.get('remains',[]))
         paths.update(p for p in source.glob('body-source-*.png'))
         paths.update(p for p in (source/'sources').glob('*.png'))
+        if art=='Scorpion':
+            for pattern in ['chela-*.png','tail-*.png','legs-*.png','eyes-emission-source.png','neutral-eyes.png','frames/*/*-eyes.png']:
+                paths.update(source.glob(pattern))
         assets=list((PROJECT/'Assets/EmergencyShift/Art/Enemies'/art).rglob('*'))
         assets+=list((PROJECT/'Assets/EmergencyShift/Animations/Enemies'/animation).rglob('*'))
         prefab=PROJECT/'Assets/EmergencyShift/Prefabs/Enemies'/(animation+'.prefab')
         assets.extend([prefab,prefab.with_suffix('.prefab.meta')])
+        if art=='Scorpion':
+            assets.extend((PROJECT/'Assets/EmergencyShift/Materials/Characters/Scorpion').rglob('*'))
         result={'revision':manifest['revision'],'task':'TASK-005','audio':False,'gameplayBrain':False,
                 'sources':[record(p) for p in sorted(paths)],
                 'production':[record(p) for p in sorted(assets) if p.is_file()],
                 'generationProvenance':record(source/('image-generation.json' if art=='ClawVisual' else 'provenance.json')),
-                'unityEvidence':'Docs/Validation/CreatureVisuals01/prefabs.json',
+                'unityEvidence':'Docs/Validation/CreatureVisuals01/'+('scorpion-r5.json' if art=='Scorpion' else 'prefabs.json'),
                 'artisticApproval':'Not inferred from import or technical checks.'}
         destination=PROJECT/'Concepts/Used/Visual'/used/'import-manifest.json'
+        if art=='Scorpion':
+            result['latestGenerationProvenance']=record(source/'r5-generation.json')
         destination.parent.mkdir(parents=True,exist_ok=True)
         destination.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         print(json.dumps({'family':animation,'sources':len(paths),'production':len(result['production'])}))

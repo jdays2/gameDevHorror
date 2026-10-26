@@ -8,6 +8,7 @@ import sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import build_anatomy as anatomy
+import scorpion_parts_r5 as parts
 
 ROOT=Path(__file__).resolve().parent
 PROJECT=ROOT.parents[3]
@@ -21,6 +22,9 @@ COUNT=24
 STRIDE=.40
 DUTY=.64
 NATIVE_SECONDS=.36
+ATTACK_MS=[18,17]*16
+ATTACK_SECONDS=sum(ATTACK_MS)/1000
+ATTACK_CYCLES=2
 
 
 def write(path,value):
@@ -39,7 +43,7 @@ def project(points):
 
 def plan():
     p=anatomy.make_plan()
-    p['revision']='scorpion-native-r3'
+    p['revision']='scorpion-native-r5-compact'
     p['sourceStrategy']='Native modular artwork. Whole generated concepts v1-v4 failed the separate skeleton gate and are not approved masters.'
     p['changesFromR1']={'kneeHeight':[.20,.32],
                        'reason':'Reserve true 3D reach for a fast grounded gait without flattening the legs or extending the image-plane bones.',
@@ -59,6 +63,10 @@ def plan():
     p['gait']={'stride':STRIDE,'duty':DUTY,'frameCount':COUNT,'frameMs':15,
                'nativeReferenceSpeed':STRIDE/DUTY/NATIVE_SECONDS,
                'alternatingTetrapods':[['L1','R2','L3','R4'],['R1','L2','R3','L4']]}
+    parts.update_plan(p)
+    p['changesFromR4']={'pincers':'Short pedipalps, bulbous manus, short dark grasping tips; stable nearly closed running grip.',
+                        'attack':'Two continuing gait cycles during a moving front claw capture.',
+                        'surface':'Quiet ash/olive with deliberate larger blood smears, ten red eyes.'}
     write(ROOT/'native-plan.json',p)
     anatomy.projections(p).save(ROOT/'02-native-independent-projections.jpg',quality=93)
     anatomy.top(p).save(ROOT/'02-native-independent-bones.png')
@@ -103,15 +111,17 @@ def rotate(points,angle,center):
 def pose(t,kind='run'):
     p=fixed_plan()
     legs={}
-    yaw=math.radians(.6)*math.sin(2*math.pi*t) if kind=='run' else 0.
-    root_offset=np.array([.006*math.sin(2*math.pi*t),0.,.003*math.cos(4*math.pi*t)]) if kind=='run' else np.zeros(3)
+    moving=kind in ('run','attack')
+    gait=t*ATTACK_CYCLES if kind=='attack' else t
+    yaw=math.radians(.6)*math.sin(2*math.pi*gait) if moving else 0.
+    root_offset=np.array([.006*math.sin(2*math.pi*gait),0.,.003*math.cos(4*math.pi*gait)]) if moving else np.zeros(3)
     tetrapod=set(p['gait']['alternatingTetrapods'][0])
     for ident,chain in p['walkingLegs'].items():
         rest=np.asarray(chain,dtype=float)
         joints=rest.copy()
         contact=True
-        if kind=='run':
-            q=(t+(0 if ident in tetrapod else .5))%1
+        if moving:
+            q=(gait+(0 if ident in tetrapod else .5))%1
             dy,lift,contact=foot(q)
             joints[0]=rotate(rest[0],yaw,np.array([0.,0.,0.]))+root_offset
             joints[2,1]+=dy
@@ -122,39 +132,40 @@ def pose(t,kind='run'):
     palps=copy.deepcopy(p['pedipalps'])
     tail=np.asarray(p['tail'],dtype=float)
     if kind=='attack':
-        if t<.35:
-            wind=t/.35
+        if t<.22:
+            wind=t/.22
             drive=0.
-        elif t<.52:
-            wind=1-(t-.35)/.17
-            drive=(t-.35)/.17
+        elif t<.40:
+            wind=1-(t-.22)/.18
+            drive=(t-.22)/.18
         else:
             wind=0.
-            drive=1-(t-.52)/.48
+            drive=1-(t-.40)/.60
         for ident,palp in palps.items():
             side=-1 if ident=='L' else 1
             origin=np.asarray(palp['arm'][0],dtype=float)
-            angle=-side*math.radians(16)*wind+side*math.radians(10)*drive
+            angle=-side*math.radians(8)*wind+side*math.radians(8)*drive
             palp['arm']=rotate(palp['arm'],angle,origin).tolist()
-            for key in ['hinge','fixedTip','movingTip']:
+            for key in parts.CHELA_KEYS:
                 palp[key]=rotate(palp[key],angle,origin).tolist()
-            hinge=np.asarray(palp['hinge'])
-            palp['movingTip']=rotate(palp['movingTip'],side*math.radians(75)*drive,hinge).tolist()
-        tail=rotate(tail,math.radians(-9)*wind+math.radians(5)*drive,tail[0])
+            parts.close_chela(palp,side,.70+.30*drive-.70*wind,rotate)
+        tail=rotate(tail,math.radians(-4)*wind+math.radians(2)*drive,tail[0])
     elif kind=='run':
         for ident,palp in palps.items():
             side=-1 if ident=='L' else 1
             origin=np.asarray(palp['arm'][0],dtype=float)
-            angle=side*math.radians(1.8)*math.sin(2*math.pi*t)
+            angle=side*math.radians(.5)*math.sin(2*math.pi*t)
             palp['arm']=rotate(palp['arm'],angle,origin).tolist()
-            for key in ['hinge','fixedTip','movingTip']:
+            for key in parts.CHELA_KEYS:
                 palp[key]=rotate(palp[key],angle,origin).tolist()
-            clack=(.5+.5*math.cos(2*math.pi*(t+(0. if side==-1 else .5))))**6
-            palp['movingTip']=rotate(palp['movingTip'],side*math.radians(65)*clack,np.asarray(palp['hinge'])).tolist()
+            parts.close_chela(palp,side,.70,rotate)
         tail=rotate(tail,math.radians(1.2)*math.sin(2*math.pi*(t-.18)),tail[0])
+    if moving:
+        if kind=='attack':
+            tail=rotate(tail,math.radians(1.2)*math.sin(2*math.pi*(gait-.18)),tail[0])
         for palp in palps.values():
             palp['arm']=(rotate(palp['arm'],yaw,np.zeros(3))+root_offset).tolist()
-            for key in ['hinge','fixedTip','movingTip']:
+            for key in parts.CHELA_KEYS:
                 palp[key]=(rotate(palp[key],yaw,np.zeros(3))+root_offset).tolist()
         tail=rotate(tail,yaw,np.zeros(3))+root_offset
     return {'kind':kind,'phase':t,'legs':legs,'palps':palps,'tail':tail.tolist(),
@@ -341,9 +352,42 @@ class Surface:
                 'jointPinErrorPx':float(np.max(np.linalg.norm(posed[~free]-initial[~free],axis=1))) if np.any(~free) else 0.}
 
 
+def clean_part_pixels(rgba):
+    """Remove detached atlas residue and single-pixel frays, retaining soft edges."""
+    from collections import deque
+    alpha=rgba[...,3]
+    solid=alpha>24
+    visited=np.zeros(solid.shape,dtype=bool)
+    largest=[]
+    for y,x in np.argwhere(solid):
+        if visited[y,x]:
+            continue
+        queue=deque([(y,x)])
+        visited[y,x]=True
+        component=[]
+        while queue:
+            cy,cx=queue.popleft()
+            component.append((cy,cx))
+            for dy,dx in [(0,1),(0,-1),(1,0),(-1,0)]:
+                ny,nx=cy+dy,cx+dx
+                if 0<=ny<solid.shape[0] and 0<=nx<solid.shape[1] and solid[ny,nx] and not visited[ny,nx]:
+                    visited[ny,nx]=True
+                    queue.append((ny,nx))
+        if len(component)>len(largest):
+            largest=component
+    mask=np.zeros(solid.shape,dtype=np.uint8)
+    if largest:
+        y,x=np.asarray(largest).T
+        mask[y,x]=255
+    mask=Image.fromarray(mask).filter(ImageFilter.MinFilter(3)).filter(ImageFilter.MaxFilter(3))
+    mask=mask.filter(ImageFilter.GaussianBlur(.55))
+    rgba[...,3]=np.minimum(alpha,np.asarray(mask))
+    return rgba
+
+
 def surfaces():
     anchors=json.loads((ROOT/'source-attachments.json').read_text())
-    atlas=Image.open(SOURCES/'stalker-atlas.png').convert('RGBA')
+    atlas=Image.open(SOURCES/'sage-atlas.png').convert('RGBA')
     ids=['LF','RF','LM','RM','LR','RR']
     data={}
     for index,ident in enumerate(ids):
@@ -367,53 +411,52 @@ def surfaces():
         along=np.sum((points-root)*axis,axis=-1)
         across=np.abs((points[...,0]-root[0])*axis[1]-(points[...,1]-root[1])*axis[0])
         rgba[(along<19)&(across>9),3]=0
-        image=Image.fromarray(rgba)
+        image=Image.fromarray(clean_part_pixels(rgba))
         data[ident]=Surface(image,anchors['legs'][ident])
-    for side in ['L','R']:
-        points=anchors[side]['chainPixels']+[anchors[side]['fixedTipPixels'],anchors[side]['movingTipPixels']]
-        image=Image.open(SOURCES/(side+'-palp.png')).convert('RGBA')
-        rgba=np.asarray(image).copy()
-        yy,xx=np.mgrid[:image.height,:image.width]
-        pixels=np.stack([xx,yy],axis=-1)
-        hinge=np.asarray(points[3],dtype=float)
-        tip=np.asarray(points[5],dtype=float)
-        direction=(tip-hinge)/np.linalg.norm(tip-hinge)
-        along=np.sum((pixels-hinge)*direction,axis=-1)
-        moving=distance_to_chain(pixels,[hinge,tip])
-        other=distance_to_chain(pixels,points[:5])
-        owned=(moving<other)&(along>5)
-        jaw=rgba.copy()
-        jaw[~(owned|(np.linalg.norm(pixels-hinge,axis=-1)<14)),3]=0
-        rgba[owned&(along>16),3]=0
-        data[side+'P']=Surface(Image.fromarray(rgba),points[:5],width_scale=1.45)
-        data[side+'Jaw']=Surface(Image.fromarray(jaw),[points[3],points[5]],width_scale=1.45)
-    data['tail']=Surface(Image.open(SOURCES/'tail.png'),anchors['tail']['chainPixels'],width_scale=1.65)
+    # Pedipalp shafts reuse one quiet proximal painted segment, without its talon.
+    cell=5
+    xy=(cell%4*358,cell//4*406)
+    image=atlas.crop((xy[0],xy[1],xy[0]+358,xy[1]+406))
+    rgba=np.asarray(image).copy()
+    yy,xx=np.mgrid[:406,:358]
+    pixels=np.stack([xx,yy],axis=-1)
+    a,b=map(np.asarray,anchors['legs']['LM'][:2])
+    axis=(b-a)/np.linalg.norm(b-a)
+    along=np.sum((pixels-a)*axis,axis=-1)
+    length=np.linalg.norm(b-a)
+    rgba[distance_to_chain(pixels,[a+axis*20,b-axis*26])>9,3]=0
+    data['arm']=Surface(Image.fromarray(rgba),[a+axis*12,b-axis*18],width_scale=.65)
+    data['chela']=parts.chela_layers()
+    data['tail']=Surface(Image.open(ROOT/'tail-source-r4.png'),parts.TAIL)
     return data
 
 
 def render(p,surface):
     canvas=Image.new('RGBA',(SIZE,SIZE))
     metrics=[]
+    leg_masks=[]
+    chela_masks=[]
     for ident,limb in p['legs'].items():
         number=int(ident[1])
         template=ident[0]+('F' if number==1 else 'R' if number==4 else 'M')
         image,m=surface[template].render(project(limb['joints3D']))
         canvas.alpha_composite(image)
+        leg_masks.append(np.asarray(image.getchannel('A'))>48)
         metrics.append(m)
     image,m=surface['tail'].render(project(p['tail']))
     canvas.alpha_composite(image)
     metrics.append(m)
     for side,palp in p['palps'].items():
-        image,m=surface[side+'Jaw'].render(project([palp['hinge'],palp['movingTip']]))
-        canvas.alpha_composite(image)
-        metrics.append(m)
-        target=project(palp['arm']+[palp['hinge'],palp['fixedTip']])
-        image,m=surface[side+'P'].render(target)
-        canvas.alpha_composite(image)
-        metrics.append(m)
+        for first,last in zip(palp['arm'],palp['arm'][1:]):
+            image,m=surface['arm'].render(project([first,last]))
+            canvas.alpha_composite(image)
+            metrics.append(m)
+        chela=parts.render_chela(palp,side,project,surface['chela'])
+        chela_masks.append(np.asarray(chela.getchannel('A'))>48)
+        canvas.alpha_composite(chela)
     # Reusable painted attachment caps belong to the declared hip/root nodes.
     # They cover ownership cuts under the torso; they add no new bone or hinge.
-    atlas=Image.open(SOURCES/'stalker-atlas.png').convert('RGBA')
+    atlas=Image.open(SOURCES/'sage-atlas.png').convert('RGBA')
     cell=5
     x,y=cell%4*358+53,cell//4*406+189
     cap=atlas.crop((x-12,y-12,x+12,y+12))
@@ -427,11 +470,26 @@ def render(p,surface):
     for root in roots:
         x,y=project(root)
         canvas.alpha_composite(cap,(round(x)-13,round(y)-13))
-    torso=Image.open(ROOT/'body-source-r3-eyes.png').convert('RGBA')
+    elbow_cap=cap.resize((36,36),Image.Resampling.LANCZOS)
+    for palp in p['palps'].values():
+        x,y=project(palp['arm'][1])
+        canvas.alpha_composite(elbow_cap,(round(x)-18,round(y)-18))
+    canvas.alpha_composite(torso_surface(p))
+    return canvas,{'flippedTriangles':sum(m['flippedTriangles'] for m in metrics),
+                   'correctedSurfaceTriangles':sum(m['correctedSurfaceTriangles'] for m in metrics),
+                   'maximumSurfaceCorrectionPx':max(m['maximumSurfaceCorrectionPx'] for m in metrics),
+                   'jointPinErrorPx':max(m['jointPinErrorPx'] for m in metrics),
+                   'chelaWalkingOverlapPixels':sum(int(np.count_nonzero(chela&leg)) for chela in chela_masks for leg in leg_masks),
+                   'chelaPairOverlapPixels':int(np.count_nonzero(chela_masks[0]&chela_masks[1]))}
+
+
+def torso_surface(p,emission=False):
+    name='eyes-emission-source.png' if emission else 'body-source-r5-blood.png'
+    torso=Image.open(ROOT/name).convert('RGBA')
     # A uniform body registration, anchored by anterior crown and tail socket.
     # All native bone coordinates remain those of the independent plan.
-    scale=(704.4-381.4)/(1362.-72.)*1.06
-    offset=np.array([512.-512.*scale,548.-(72.+1362.)*.5*scale])
+    scale=(704.4-381.4)/(1500.-30.)*1.06
+    offset=np.array([512.-512.*scale,548.-(30.+1500.)*.5*scale])
     theta=p['bodyYaw']
     c,s=math.cos(theta),math.sin(theta)
     matrix=np.array([[c,s],[-s,c]])
@@ -439,11 +497,7 @@ def render(p,surface):
     inv=matrix.T/scale
     translation=(ORIGIN-matrix.T@(ORIGIN+shift)-offset)/scale
     coefficients=(*inv[0],translation[0],*inv[1],translation[1])
-    canvas.alpha_composite(torso.transform((SIZE,SIZE),Image.Transform.AFFINE,coefficients,Image.Resampling.BICUBIC))
-    return canvas,{'flippedTriangles':sum(m['flippedTriangles'] for m in metrics),
-                   'correctedSurfaceTriangles':sum(m['correctedSurfaceTriangles'] for m in metrics),
-                   'maximumSurfaceCorrectionPx':max(m['maximumSurfaceCorrectionPx'] for m in metrics),
-                   'jointPinErrorPx':max(m['jointPinErrorPx'] for m in metrics)}
+    return torso.transform((SIZE,SIZE),Image.Transform.AFFINE,coefficients,Image.Resampling.BICUBIC)
 
 
 def bones(image,p):
@@ -457,12 +511,11 @@ def bones(image,p):
             d.ellipse((x-4,y-4,x+4,y+4),fill='#f6e0a6')
         d.text(tuple(points[1]+[8,0]),ident,fill='white',font=FONT)
     for palp in p['palps'].values():
-        points=project(palp['arm']+[palp['hinge']])
+        points=project(palp['arm']+[palp['palm'],palp['fixedBase'],palp['fixedMid'],palp['fixedTip']])
         d.line([tuple(q) for q in points],fill='#e6aef2',width=3)
         for x,y in points:
             d.ellipse((x-4,y-4,x+4,y+4),outline='white',width=2)
-        for key in ['fixedTip','movingTip']:
-            d.line([tuple(q) for q in project([palp['hinge'],palp[key]])],fill='#e6aef2',width=2)
+        d.line([tuple(q) for q in project([palp['hinge'],palp['movingMid'],palp['movingTip']])],fill='#e6aef2',width=2)
     d.line([tuple(q) for q in project(p['tail'])],fill='#f0cd70',width=3)
     return out.convert('RGB')
 
@@ -472,6 +525,7 @@ def neutral():
     p=pose(0,'neutral')
     image,metrics=render(p,surfaces())
     image.save(ROOT/'native-neutral.png')
+    torso_surface(p,True).save(ROOT/'neutral-eyes.png')
     bones(image,p).save(ROOT/'03-native-bones-on-skin.jpg',quality=94)
     write(ROOT/'native-neutral-metrics.json',metrics)
     print(json.dumps(metrics),flush=True)
@@ -495,10 +549,10 @@ def diagnostic(kind):
             {'id':ident+'-J','origin':(root+(knee-root)*.72).tolist(),'insertion':(knee+(tip-knee)*.12).tolist(),'width':.035,'function':'joint flexion/extension and stabilizer aggregate'},
             {'id':ident+'-T','origin':(knee+(tip-knee)*.08).tolist(),'insertion':(knee+(tip-knee)*.78).tolist(),'width':.018,'function':'distal tendon/sheath, bone tip has no muscle belly'}])
     for side,palp in p['pedipalps'].items():
-        chain=palp['arm']+[palp['hinge']]
+        chain=palp['arm']+[palp['palm']]
         for index,(a,b) in enumerate(zip(chain,chain[1:])):
             groups.append({'id':side+'P-'+str(index+1),'origin':a,'insertion':b,'width':.060 if index<2 else .050,'function':'pedipalp segment motor/stabilizer'})
-        groups.append({'id':side+'P-C','origin':palp['arm'][-1],'insertion':palp['hinge'],'width':.055,'function':'pincer adductor; moving finger inserts at hinge, fixed jaw remains rigid'})
+        groups.append({'id':side+'P-C','origin':palp['palm'],'insertion':palp['hinge'],'width':.055,'function':'manus adductor aggregate, tendon reaches movable finger hinge; fixed finger is rigid cuticle'})
     for index,(a,b) in enumerate(zip(p['tail'][:-2],p['tail'][1:-1])):
         groups.append({'id':'T-'+str(index+1),'origin':a,'insertion':b,'width':.058,'function':'segment flexion/extension aggregate; final ivory sting has no muscle belly'})
     groups.extend([{'id':'B-F','origin':p['bodyAxis'][0],'insertion':p['bodyAxis'][1],'width':.11,'function':'cephalothoracic attachment mass'},
@@ -530,28 +584,31 @@ def frames(kind):
     if not all(inspection.get(key,False) for key in ['nativeSkeletonVisualPass','nativeVolumesVisualPass','nativeMuscleAttachmentsVisualPass','cleanSkinVisualPass']):
         raise ValueError('Complete separate anatomy gates first.')
     surface=surfaces()
-    count=24 if kind=='run' else 16
+    count=24 if kind=='run' else len(ATTACK_MS)
     folder=ROOT/'frames'/kind
     folder.mkdir(parents=True,exist_ok=True)
     maximum=0.
     supports=[]
     for index in range(count):
-        t=index/count if kind=='run' else index/(count-1)
+        t=index/count if kind=='run' else sum(ATTACK_MS[:index])/sum(ATTACK_MS)
         p=pose(t,kind)
         image,stats=render(p,surface)
         image.save(folder/f'{kind}-{index:02d}.png')
+        torso_surface(p,True).save(folder/f'{kind}-{index:02d}-eyes.png')
         bones(image,p).save(folder/f'{kind}-{index:02d}-bones.jpg',quality=80)
         maximum=max(maximum,stats['flippedTriangles'])
         supports.append(sum(l['contact'] for l in p['legs'].values()))
         write(ROOT/'measurements'/kind/f'{index:02d}.json',{'pose':p,**stats})
         print(json.dumps({'kind':kind,'frame':index,**stats}),flush=True)
     write(ROOT/(kind+'-export.json'),{'kind':kind,'count':count,'maxFlippedTriangles':maximum,'minContacts':min(supports),
-          'durationsMs':[15]*count if kind=='run' else [40,40,45,45,50,50,25,25,25,35,40,45,45,50,50,55],
-          'loop':kind=='run','referenceSpeed':STRIDE/DUTY/NATIVE_SECONDS if kind=='run' else 0})
+          'durationsMs':[15]*count if kind=='run' else ATTACK_MS,
+          'loop':kind=='run','referenceSpeed':STRIDE/DUTY/(NATIVE_SECONDS if kind=='run' else ATTACK_SECONDS/ATTACK_CYCLES)})
 
 
 if __name__=='__main__':
-    if '--plan' in sys.argv:
+    if '--prepare-r5' in sys.argv:
+        parts.prepare(Surface,write)
+    elif '--plan' in sys.argv:
         plan()
     elif '--volumes' in sys.argv:
         diagnostic('volumes')

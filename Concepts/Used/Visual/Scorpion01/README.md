@@ -1,5 +1,9 @@
-# Скорпион · визуальная библиотека
+# Скорпион · импорт TASK-005 · r5
 
-Источник — [Scorpion01/native-r3](../../../Unused/Visual/Scorpion01/README.md), production — `Assets/EmergencyShift/Art/Enemies/Scorpion`, клипы/контроллер — `Animations/Enemies/ScorpionVisual`, префаб — `Prefabs/Enemies/ScorpionVisual.prefab`. [Контракт](../../../../Docs/Enemies/SCORPION.md).
+Текущий источник — [Scorpion01 native-r5-compact](../../../Unused/Visual/Scorpion01/README.md). Компактные кровавые клешни, спокойный хват в беге,32кадра атаки на ходу/.56s, десять красных светящихся глаз, хвост с жалом. [Контракт](../../../../Docs/Enemies/SCORPION.md).
 
-`import-manifest.json` фиксирует SHA256 фактических производственных файлов и исходные кадры. Восемь ног, две большие передние клешни с клацаньем, один массивный хвост, десять глаз; Run24 иAttack16. Это готовый к художественной оценке визуальный префаб с Animator/SpriteRenderer и общим FlatLit. У него нет AI/урона/коллайдеров/AudioSource. Групповая атака остаётся целевой игровой ролью; Used не означает её внедрение или авторскую приёмку рисунка.
+В production импортированы атласы тела/глаз, клипы Idle/Run/Attack, AnimatorController, материал EyeGlow и визуальный ScorpionVisual.prefab. `import-manifest.json` фиксирует точные SHA-256 источников и production-файлов, включая `.meta`; промпты — `r5-generation.json` в источнике. Used означает фактический импорт, а не авторское одобрение.
+
+Префаб содержит один Animator и два SpriteRenderer. Нет AI, урона, коллайдеров, звука и света на каждый глаз. Риг рассчитывается офлайн; игра меняет цельные кадры. Сценарий движения к мишени находится только в просмотрщике. Новых останков Скорпиона пока нет. [Импорт Unity r5](../../../../Docs/Validation/CreatureVisuals01/scorpion-r5.json).
+
+Сцены не редактировались. Play и нагрузочный тест не запускались. Notion пропущен по поручению владельца.

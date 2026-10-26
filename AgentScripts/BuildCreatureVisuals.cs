@@ -19,6 +19,16 @@ public static class BuildCreatureVisuals
 
     public static object Build()
     {
+        return BuildFamilies(true);
+    }
+
+    public static object BuildScorpion()
+    {
+        return BuildFamilies(false);
+    }
+
+    private static object BuildFamilies(bool includeClaw)
+    {
         if (EditorApplication.isPlaying || EditorApplication.isCompiling)
         {
             throw new InvalidOperationException("Requires stopped, compiled Editor.");
@@ -26,7 +36,10 @@ public static class BuildCreatureVisuals
         Directory.CreateDirectory(Evidence);
         var before = Scenes();
         var outputs = new List<object>();
-        outputs.Add(Family("ClawVisual", "Concepts/Unused/Visual/FastGroupEnemy23AssetPack/asset-pack.json"));
+        if (includeClaw)
+        {
+            outputs.Add(Family("ClawVisual", "Concepts/Unused/Visual/FastGroupEnemy23AssetPack/asset-pack.json"));
+        }
         string scorpion = "Concepts/Unused/Visual/Scorpion01/asset-pack.json";
         if (File.Exists(scorpion))
         {
@@ -39,7 +52,8 @@ public static class BuildCreatureVisuals
         }
         var report = new { families = outputs, scenesBefore = before, scenesAfter = after,
             sceneStatePreserved = true, addedSceneObjects = 0, audioSources = 0, gameplayScripts = 0 };
-        File.WriteAllText(Evidence + "prefabs.json", JObject.FromObject(report).ToString());
+        string filename = includeClaw ? "prefabs.json" : "scorpion-r5.json";
+        File.WriteAllText(Evidence + filename, JObject.FromObject(report).ToString());
         return report;
     }
 
@@ -55,8 +69,13 @@ public static class BuildCreatureVisuals
         {
             Sprite[] frames = ImportSheet(motion);
             sprites.Add((string)motion["name"], frames);
+            Sprite[] eyes = null;
+            if (motion["emission"] is JObject emission)
+            {
+                eyes = ImportSheet(emission);
+            }
             clips.Add(Clip(folder, (string)motion["name"], frames,
-                motion["durationsMs"].ToObject<int[]>(), (bool)motion["loop"], false));
+                motion["durationsMs"].ToObject<int[]>(), (bool)motion["loop"], false, eyes));
         }
         Sprite idle;
         if (manifest["idle"] is JObject idleSpec)
@@ -67,7 +86,13 @@ public static class BuildCreatureVisuals
         {
             idle = sprites["Sweep"][0];
         }
-        clips.Insert(0, Clip(folder, "Idle", new[] { idle }, new[] { 1000 }, true, false));
+        Sprite idleEye = null;
+        if (manifest["idle"]?["emission"] is JObject idleEmission)
+        {
+            idleEye = ImportSingle(idleEmission);
+        }
+        Sprite[] idleEyes = idleEye == null ? null : new[] { idleEye };
+        clips.Insert(0, Clip(folder, "Idle", new[] { idle }, new[] { 1000 }, true, false, idleEyes));
         if (manifest["remains"] is JArray remains)
         {
             foreach (JObject item in remains)
@@ -127,6 +152,14 @@ public static class BuildCreatureVisuals
             body.sprite = idle;
             body.sortingOrder = RemainsVisualStyle.LiveOrder;
             body.sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(Root + "Materials/Shared/FlatLit.mat");
+            if (idleEye != null)
+            {
+                var eyes = new GameObject("Eyes").AddComponent<SpriteRenderer>();
+                eyes.transform.SetParent(visual.transform, false);
+                eyes.sprite = idleEye;
+                eyes.sortingOrder = RemainsVisualStyle.LiveOrder + 1;
+                eyes.sharedMaterial = EyeMaterial((string)manifest["emissionMaterial"]);
+            }
             PrefabUtility.SaveAsPrefabAsset(actor, prefabPath);
             if (actor.GetComponentsInChildren<AudioSource>(true).Length != 0 ||
                 actor.GetComponentsInChildren<MonoBehaviour>(true).Length != 0 ||
@@ -150,7 +183,9 @@ public static class BuildCreatureVisuals
             }
             return new { name, prefab = prefabPath, controller = controllerPath,
                 motionValues = clips.Select((clip, index) => new { value = index, clip = clip.name, duration = clip.length }),
-                samples, audioSources = 0, gameplayScripts = 0, colliders = 0 };
+                samples, audioSources = 0, gameplayScripts = 0, colliders = 0,
+                spriteRenderers = actor.GetComponentsInChildren<SpriteRenderer>(true).Length,
+                emissiveEyes = idleEye != null };
         }
         finally
         {
@@ -236,7 +271,30 @@ public static class BuildCreatureVisuals
     private static Vector2 Pivot(JObject spec, int width, int height) =>
         new Vector2((float)spec["pivotPixelsTopLeft"][0] / width, 1 - (float)spec["pivotPixelsTopLeft"][1] / height);
 
-    private static AnimationClip Clip(string folder, string name, Sprite[] frames, int[] durations, bool loop, bool dead)
+    private static Material EyeMaterial(string path)
+    {
+        Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
+        if (material != null)
+        {
+            return material;
+        }
+        Directory.CreateDirectory(Path.GetDirectoryName(path));
+        AssetDatabase.Refresh();
+        Shader shader = Shader.Find("EmergencyShift/Prop Emission");
+        if (shader == null)
+        {
+            throw new InvalidOperationException("Missing shared emission shader.");
+        }
+        material = new Material(shader) { name = "EyeGlow" };
+        material.SetColor("_Color", new Color(1.8f, .025f, .012f, 1));
+        material.SetColor("_EmissionKey", Color.red);
+        material.SetFloat("_MinimumChroma", .25f);
+        material.SetFloat("_HueMatch", .96f);
+        AssetDatabase.CreateAsset(material, path);
+        return material;
+    }
+
+    private static AnimationClip Clip(string folder, string name, Sprite[] frames, int[] durations, bool loop, bool dead, Sprite[] eyes = null)
     {
         string path = folder + name + ".anim";
         AnimationClip clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
@@ -245,6 +303,10 @@ public static class BuildCreatureVisuals
         {
             clip = new AnimationClip { name = name, frameRate = 1000 };
         }
+        // These clips are wholly owned by this builder. Reset old curve ranges
+        // before shortening a revision, retaining the asset and its GUID.
+        clip.ClearCurves();
+        clip.frameRate = 1000;
         var keys = new List<ObjectReferenceKeyframe>();
         float age = 0;
         for (int index = 0; index < frames.Length; index++)
@@ -257,6 +319,13 @@ public static class BuildCreatureVisuals
         keys.Add(new ObjectReferenceKeyframe { time = Mathf.Max(0, age - .001f), value = frames[frames.Length - 1] });
         AnimationUtility.SetObjectReferenceCurve(clip,
             EditorCurveBinding.PPtrCurve("Visual/Body", typeof(SpriteRenderer), "m_Sprite"), keys.ToArray());
+        if (eyes != null)
+        {
+            var eyeKeys = keys.Select((key, index) => new ObjectReferenceKeyframe
+                { time = key.time, value = eyes[Math.Min(index, eyes.Length - 1)] }).ToArray();
+            AnimationUtility.SetObjectReferenceCurve(clip,
+                EditorCurveBinding.PPtrCurve("Visual/Eyes", typeof(SpriteRenderer), "m_Sprite"), eyeKeys);
+        }
         Color tint = dead ? RemainsVisualStyle.Tint : Color.white;
         string[] channels = { "r", "g", "b", "a" };
         for (int index = 0; index < channels.Length; index++)
@@ -276,6 +345,12 @@ public static class BuildCreatureVisuals
         }
         EditorUtility.SetDirty(clip);
         AssetDatabase.SaveAssetIfDirty(clip);
+        AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport | ImportAssetOptions.ForceUpdate);
+        clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
+        if (Mathf.Abs(clip.length - age) > .0011f)
+        {
+            throw new InvalidOperationException("Clip duration differs from frame timings: " + path);
+        }
         return clip;
     }
 

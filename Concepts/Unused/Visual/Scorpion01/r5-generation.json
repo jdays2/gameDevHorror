@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen",
+  "mode": "precise-object-edit / sketch-to-render",
+  "date": "2026-10-27",
+  "jobs": [
+    {
+      "key": "chela",
+      "prompt": "Use case: sketch-to-render. Asset type: single modular overhead game sprite. Input image 1 is the binding independent shape/bone guide (512 square); image 2 is ONLY the existing quiet sage-grey painted surface style; image 3 is real scorpion anatomy reference only. Create ONE compact LEFT scorpion chela matching guide 1 proportions: massive rounded bulbous manus occupying most of the object, short dark charcoal curved opposing pincers, fixed finger rigid continuous with right manus edge, ONE movable left finger with one hinge near (165,200). Wrist at (256,430); manus center (250,280); right fixed finger through (330,190),(340,120) to (280,90); left movable finger through (165,200),(132,115) to (206,47). These guide points are spatial anchors, not visible segments; smooth curves through them, no artificial finger knuckles. Fingers much shorter than palm. Strict orthographic top view, forward up, wrist down, same square crop. Muted cold ash grey with very subtle olive undertone, broad quiet painted volume, restrained highlights. Add prominent irregular dark maroon blood wipes across one side of palm and fresh red bloody stains on both gripping edges; few deliberate larger marks, no dense veins, small scales or uniform noise. Keep a wide open gap between fingers for rig articulation. Two or three blunt gripping teeth, short pointed tips. No arm, extra fingers, writing, colored guide marks, joint circles, diagram, shadow/background, watermark. Genuine transparent RGBA background.",
+      "result": "chela-r5-blood-paint.png",
+      "referenceImages": [
+        "r5-chela-independent-guide.png",
+        "chela-r4-sage-paint.png",
+        "user-provided yellow scorpion photo"
+      ]
+    },
+    {
+      "key": "body",
+      "prompt": "Use case: precise-object-edit. This is the edit target: one reusable overhead monster torso texture. Add visible irregular blood smears: one dark maroon wiped streak down the LEFT side of the head shield, a fresh red smear at the very front crown, several broader rubbed blood marks on one RIGHT abdomen lobe. Leave most calm pale ash/olive skin visible. Blood should read as residue of feeding and contact: directional smears and a few coherent red patches, not uniform tiny splatter over everything or red outlines. Preserve EXACTLY the TEN existing luminous red spider eyes, all their sizes and positions, every side limb attachment socket, all silhouette, canvas registration and body segment layout. Do not add new eyes, new limbs or texture detail, ridges, extra folds, wounds, holes or new joints. Same broad quiet matte painted volume and muted grey-green palette. Keep source perspective strict dorsal overhead and actual transparent background. This is a texture edit, no repositioning. No labels, lines, shadow, watermark.",
+      "result": "body-source-r5-blood.png",
+      "referenceImages": [
+        "body-source-r4-sage.png"
+      ]
+    }
+  ],
+  "scope": "Generated component paint is registered as UV into the predeclared native anatomy. User stock image is anatomy reference only, no stock pixels or watermark removal."
+}
