@@ -1,0 +1,33 @@
+{
+  "task": "TASK-005",
+  "date": "2026-10-26",
+  "revision": "broad-attacks-r1",
+  "reviewers": ["primary agent", "independent visual_check agent"],
+  "order": ["independent skeleton", "bones on actual skin", "volumes", "separate muscle IDs/directions/attachment zones", "clean skin/details", "export and sampled browser playback"],
+  "actualPngFramesInspected": {"sweep": "00-17", "flurry": "00-19", "cleave": "00-17"},
+  "technicalVisualResult": "GO for visible continuity/claw/canvas defects in all 56 final frames",
+  "observations": [
+    "Bone chains, wrist rotation, skin attachment and fixed 3-front / 3-plus-lateral-rear claw topology remain coherent.",
+    "Large anticipation arcs are visible in the pose sequences: one sweep, two successive sweeps, and bilateral opening/closing.",
+    "Early claw intersections were corrected before full export; full strike and intermediate rows retain separation.",
+    "Native shoulder/neck/elbow/wrist/rear bridge inspection found E08/E12 enclosed alpha pinholes. Final raw rerenders close the cores and the enclosed E12 AA halo; both were re-inspected on light/dark backgrounds.",
+    "No remaining visible holes, detached strips, double edges, clipped claws or texture/lighting jumps were identified. Open underarm gaps remain open.",
+    "All 54 frames untouched by raster repair retain their original full-PNG SHA256. First/last match the liked original neutral exactly."
+  ],
+  "recheckedFrames": {
+    "flurry08": "1998c2eb1a9fe94b109d1b4b173a0cb07998f3ca7cd377132ad72c59f3de0e7a",
+    "flurry12": "3ec49f014679b0421448c67bcdee515eb1e55e4537c44a086b8b365d7e643556"
+  },
+  "browserReview": {
+    "url": "http://127.0.0.1:8100/viewer.html?revision=broad-final&state=alternatives/heavy/sweep",
+    "verified": ["all D/E/F selectable and rendered", "100% and 50% sampled playback", "light/dark compositing", "ordinary and game sizes", "pause and actual strike-frame scrubbing", "one-shot F advances from00 and stops at17"],
+    "scope": "Primary agent checked controls and sampled actual playback. Independent agent assessed full pose rows and native PNGs, not real-time playback. Perceived weight and menace remain the owner's artistic judgment."
+  },
+  "functionalMuscleCount": 22,
+  "muscleLimitation": "Coarse prospective capsules can extend beyond skin; hidden medical attachments are not established.",
+  "physicsSimulation": false,
+  "artisticApproval": false,
+  "unityImport": false,
+  "sceneChanges": false,
+  "authoringReview": "not applicable"
+}

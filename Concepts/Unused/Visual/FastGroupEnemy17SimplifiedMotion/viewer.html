@@ -3,12 +3,12 @@
 <title>TASK-005 · ходьба, атака и бег</title>
 <style>
 :root{color-scheme:dark;font:16px/1.45 system-ui,sans-serif;background:#1b2026;color:#e7ebef}body{margin:0 auto;max-width:1120px;padding:20px}h1{font-size:22px;margin:0 0 6px}p{color:#b5bfc9;margin:6px 0 14px}
-canvas{width:min(100%,94vh);display:block;margin:auto;background:#262b31;border-radius:8px}section{display:flex;gap:13px;flex-wrap:wrap;align-items:center;margin:14px 0}button,select{font:inherit;padding:7px 10px;background:#303943;color:#fff;border:1px solid #52606f;border-radius:5px}label{display:flex;align-items:center;gap:7px}input[type=range]{width:180px;accent-color:#9bc2d7}output{font-variant-numeric:tabular-nums}small{color:#a3aeb9}#phase{color:#d2c4ae;min-width:110px}
+canvas{width:min(100%,74vh);display:block;margin:auto;background:#262b31;border-radius:8px}section{display:flex;gap:13px;flex-wrap:wrap;align-items:center;margin:14px 0}button,select{font:inherit;padding:7px 10px;background:#303943;color:#fff;border:1px solid #52606f;border-radius:5px}label{display:flex;align-items:center;gap:7px}input[type=range]{width:180px;accent-color:#9bc2d7}output{font-variant-numeric:tabular-nums}small{color:#a3aeb9}#phase{color:#d2c4ae;min-width:110px}
 </style>
-<h1>TASK-005 · упрощённый враг</h1><p>Ходьба, атака и бег из одного рисунка. Меньше мелких складок, прожилок и пятен.</p>
-<canvas id="stage" width="1024" height="650" aria-label="Анимация монстра"></canvas>
+<h1>TASK-005 · упрощённый враг</h1><p id="description">Ходьба, бег и варианты атаки из одного рисунка.</p>
+<canvas id="stage" width="1024" height="1024" aria-label="Анимация монстра"></canvas>
 <section>
-<label>Анимация <select id="state"><option value="walk">Ходьба</option><option value="attack">Атака</option><option value="run">Бег</option></select></label>
+<label>Анимация <select id="state"><option value="walk">Ходьба</option><option value="attack">Атака · исходная</option><option value="run">Бег</option><option value="alternatives/heavy/sweep">D · Размашистый удар</option><option value="alternatives/heavy/flurry">E · Две широкие сечки</option><option value="alternatives/heavy/cleave">F · Двойной размашистый удар</option><option value="alternatives/swipe">A · Косой удар</option><option value="alternatives/cross">B · Два диагональных удара</option><option value="alternatives/lunge">C · Тяжёлый двойной выпад</option></select></label>
 <button id="play">Пауза</button><button id="step">+1 кадр</button>
 <label>Кадр <input id="frame" type="range" min="0" max="15" value="0" step="1"></label><output id="number">00 / 15</output>
 <label><input id="repeat" type="checkbox" checked>Повторять</label>
@@ -23,19 +23,19 @@ canvas{width:min(100%,94vh);display:block;margin:auto;background:#262b31;border-
 <script>
 const canvas=document.querySelector('#stage'),ctx=canvas.getContext('2d'),frame=document.querySelector('#frame'),play=document.querySelector('#play');
 let plan=null,images=[],cumulative=[],elapsed=0,previous=0,playing=true,currentState='walk',generation=0;
-const stageNames={anticipation:'Подготовка',strike:'Удар',recovery:'Возврат'};
+const stageNames={ready:'Готовность',anticipation:'Подготовка',strike:'Удар',recovery:'Возврат'};
 async function loadState(state){
  const token=++generation;
  playing=false;
  play.disabled=true;
  document.querySelector('#timing').textContent='Загрузка кадров…';
  try{
-  const response=await fetch(`${state}/motion-plan.json?revision=simplified-r1`);
+  const response=await fetch(`${state}/motion-plan.json?revision=broad-final`);
   if(!response.ok)throw new Error('motion plan');
   const data=await response.json();
   const loaded=await Promise.all(Array.from({length:data.frameCount},async(_,i)=>{
    const image=new Image();
-   image.src=`${state}/frames/${state}-${String(i).padStart(2,'0')}.png?revision=simplified-r1`;
+   image.src=`${state}/frames/${data.state}-${String(i).padStart(2,'0')}.png?revision=broad-final`;
    await image.decode();
    return image;
   }));
@@ -52,7 +52,8 @@ async function loadState(state){
   playing=true;
   play.disabled=false;
   play.textContent='Пауза';
-  document.querySelector('#timing').textContent=`${plan.frameCount} кадров · ${plan.durationMs} мс.`+(state==='attack'?' Для однократной атаки отключите повтор.':'');
+  document.querySelector('#description').textContent=plan.displayDescription??'Ходьба, бег и варианты атаки из одного рисунка.';
+  document.querySelector('#timing').textContent=`${plan.frameCount} кадров · ${plan.durationMs} мс.`+(!plan.loop?' Для однократной атаки отключите повтор.':'');
  }catch(error){
   if(token!==generation)return;
   play.disabled=false;
@@ -69,24 +70,28 @@ play.onclick=()=>{if(!plan)return;if(elapsed>=plan.durationMs&&!document.querySe
 document.querySelector('#step').onclick=()=>{if(!plan)return;playing=false;play.textContent='Пуск';elapsed=cumulative[(currentIndex()+1)%plan.frameCount];draw()};
 frame.oninput=()=>{if(!plan)return;playing=false;play.textContent='Пуск';elapsed=cumulative[Number(frame.value)];draw()};
 document.querySelector('#state').onchange=e=>loadState(e.target.value);
-document.querySelector('#size').onchange=e=>canvas.style.width=e.target.value==='large'?'100%':e.target.value==='game'?'min(100%,420px)':'min(100%,94vh)';
+document.querySelector('#size').onchange=e=>canvas.style.width=e.target.value==='large'?'100%':e.target.value==='game'?'min(100%,420px)':'min(100%,74vh)';
 function draw(){
- const mode=document.querySelector('#bg').value;ctx.fillStyle=mode==='light'?'#ebeae6':'#262b31';ctx.fillRect(0,0,1024,650);if(!plan)return;
+ const mode=document.querySelector('#bg').value;ctx.fillStyle=mode==='light'?'#ebeae6':'#262b31';ctx.fillRect(0,0,1024,1024);if(!plan)return;
  const index=currentIndex();frame.value=index;document.querySelector('#number').textContent=`${String(index).padStart(2,'0')} / ${plan.frameCount-1}`;
- if(mode==='checker')for(let y=0;y<650;y+=24)for(let x=0;x<1024;x+=24){ctx.fillStyle=((x+y)/24)%2?'#b3b5b8':'#e5e6e7';ctx.fillRect(x,y,24,24)}
+ if(mode==='checker')for(let y=0;y<1024;y+=24)for(let x=0;x<1024;x+=24){ctx.fillStyle=((x+y)/24)%2?'#b3b5b8':'#e5e6e7';ctx.fillRect(x,y,24,24)}
  if(mode==='grid'){
   const cycle=Math.floor(elapsed/plan.durationMs);const sampledTime=(cycle*plan.durationMs+cumulative[index])/1000;
   const displacement=sampledTime*(plan.groundSpeed??0)*375*.72;
-  ctx.strokeStyle='#3a434c';ctx.beginPath();for(let x=displacement%96;x<1024;x+=96){ctx.moveTo(x,0);ctx.lineTo(x,650)}for(let y=7;y<650;y+=96){ctx.moveTo(0,y);ctx.lineTo(1024,y)}ctx.stroke();
+  ctx.strokeStyle='#3a434c';ctx.beginPath();for(let x=displacement%96;x<1024;x+=96){ctx.moveTo(x,0);ctx.lineTo(x,1024)}for(let y=7;y<1024;y+=96){ctx.moveTo(0,y);ctx.lineTo(1024,y)}ctx.stroke();
  }
- const image=images[index];if(image?.complete&&image.naturalWidth)ctx.drawImage(image,0,-190);
+ const image=images[index];if(image?.complete&&image.naturalWidth)ctx.drawImage(image,0,0);
  const pose=plan.frames[index];document.querySelector('#phase').textContent=stageNames[pose.stage]??'';
  if(document.querySelector('#contacts').checked)for(const limb of Object.values(pose.limbs)){
-  const p=limb.projected[3],x=p[0]*.72+55,y=p[1]*.72+33-190;
+  const p=limb.projected[3],x=p[0]*.72+55,y=p[1]*.72+33;
   ctx.strokeStyle=['stance','brace'].includes(limb.state)?'#7bf2bd':'#f2be78';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.stroke();
  }
 }
 function tick(now){if(previous&&playing&&plan){elapsed+=(now-previous)*Number(document.querySelector('#speed').value);if(!document.querySelector('#repeat').checked&&elapsed>=plan.durationMs){elapsed=plan.durationMs;playing=false;play.textContent='Пуск'}}previous=now;draw();requestAnimationFrame(tick)}
-loadState('walk');requestAnimationFrame(tick);
+const requestedState=new URLSearchParams(location.search).get('state');
+const stateSelector=document.querySelector('#state');
+const initialState=Array.from(stateSelector.options).some(option=>option.value===requestedState)?requestedState:'walk';
+stateSelector.value=initialState;
+loadState(initialState);requestAnimationFrame(tick);
 </script>
 </html>

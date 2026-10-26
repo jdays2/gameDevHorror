@@ -1,0 +1,29 @@
+{
+  "task": "TASK-005",
+  "date": "2026-10-26",
+  "revision": "broad-attacks-r1",
+  "request": "The owner judged A/B/C too restrained and requested broader, more forceful claw attacks and additional variants.",
+  "master": "../../simplified-master-v1.png",
+  "masterSha256": "fdff194f05abef33375a2c40046389a614669012789e9d68356ece1868fe67e5",
+  "masterProvenance": "../../provenance.json",
+  "newImageGenerations": 0,
+  "masterEdited": false,
+  "originalAnimationsRerendered": false,
+  "anatomy": "../../../FastGroupEnemy13AssetInspired/anatomy-plan-v4.json",
+  "muscles": "../../../FastGroupEnemy13AssetInspired/anatomy-muscle-plan-v4.json",
+  "functionalMuscleCount": 22,
+  "scripts": ["build_wide_attacks.py", "raster_finish.py", "upgrade_raster_cache.py", "verify_wide_attacks.py", "validate_arcs.py", "../build_attacks.py", "../../skin_surface.py"],
+  "processing": [
+    "Three additional 3D attack trajectories with large shoulder arcs and rigid wrist rotation: D sweep, E successive sweeps, F double cleave.",
+    "Unchanged source texture, fixed bone lengths, connected skin deformation and original claw topology.",
+    "Corrected front claw intersections from early cleave pilots by separating trajectories before final full export.",
+    "A final local raster pass closes tiny enclosed alpha cores and their still-enclosed antialias halo; E08 has one corrected pixel, E12 has six. Open gaps and original neutral are retained.",
+    "Fixed full 1024-square canvas, source scale .72, offset [55,33], pivot [602.2,511.8]; no per-frame camera fitting.",
+    "Separate bone, volume, muscle ID/attachment and clean skin review; PNG, shared-palette GIF and one-shot APNG exports."
+  ],
+  "frameCount": 56,
+  "newThirdPartyMaterials": false,
+  "alternativeArtisticApproval": false,
+  "unityImport": false,
+  "authoringReview": "not applicable; no scene objects changed"
+}
