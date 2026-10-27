@@ -6,6 +6,7 @@ namespace EmergencyShift.Features.Scorpion.View
     public sealed class ScorpionAudio2D : MonoBehaviour
     {
         [SerializeField] private AudioSource voice;
+        [SerializeField] private AudioSource claws;
         [SerializeField] private AudioSource contact;
         [SerializeField] private AudioSource presence;
         private Scorpion2D actor;
@@ -26,6 +27,7 @@ namespace EmergencyShift.Features.Scorpion.View
             actor = GetComponent<Scorpion2D>();
             previous = transform.position;
             Prepare(voice);
+            Prepare(claws);
             Prepare(contact);
             Prepare(presence);
         }
@@ -33,6 +35,7 @@ namespace EmergencyShift.Features.Scorpion.View
         private static void Prepare(AudioSource source)
         {
             source.playOnAwake = false;
+            source.loop = false;
             source.spatialBlend = 0;
             source.dopplerLevel = 0;
             source.Stop();
@@ -43,6 +46,7 @@ namespace EmergencyShift.Features.Scorpion.View
             actor.Hit += OnHit;
             actor.Died += Stop;
             previous = transform.position;
+            attackSound = false;
         }
 
         private void OnDisable()
@@ -54,9 +58,14 @@ namespace EmergencyShift.Features.Scorpion.View
 
         private void Update()
         {
-            if (!actor.enabled || !actor.IsAlive || Time.timeScale <= 0)
+            if (!actor.enabled || !actor.IsAlive)
             {
                 Stop();
+                return;
+            }
+            // PauseMenu pauses the listener; retain the playhead for resume.
+            if (Time.timeScale <= 0)
+            {
                 return;
             }
             var set = actor.Presentation;
@@ -69,6 +78,7 @@ namespace EmergencyShift.Features.Scorpion.View
                     actor.Target != null ? actor.Target.position : transform.position, actor.BlockingGeometry).collider == null ? 1 : .18f;
                 float gain = attenuation * attenuation * obstruction;
                 voice.volume = set.VoiceVolume * gain;
+                claws.volume = set.VoiceVolume * gain;
                 contact.volume = set.StepVolume * gain;
                 presence.volume = set.VoiceVolume * .16f * gain;
             }
@@ -106,9 +116,9 @@ namespace EmergencyShift.Features.Scorpion.View
             }
             if (actor.IsAttacking && !attackSound && actor.AttackProgress >= .32f)
             {
-                voice.clip = set.Grasp;
-                voice.pitch = Random.Range(.96f, 1.03f);
-                voice.Play();
+                claws.clip = set.Grasp;
+                claws.pitch = Random.Range(.96f, 1.03f);
+                claws.Play();
                 AttacksPlayed++;
                 attackSound = true;
             }
@@ -143,8 +153,10 @@ namespace EmergencyShift.Features.Scorpion.View
         private void Stop()
         {
             voice.Stop();
+            claws.Stop();
             contact.Stop();
             presence.Stop();
+            attackSound = false;
         }
     }
 }

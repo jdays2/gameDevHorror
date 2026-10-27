@@ -13,7 +13,7 @@ def main():
         paths.extend(p for p in (PROJECT/folder).rglob('*') if p.is_file())
     for file in ['Assets/EmergencyShift/Prefabs/Enemies/Scorpion.prefab','Assets/EmergencyShift/Prefabs/Enemies/Scorpion.prefab.meta']:
         paths.append(PROJECT/file)
-    result=dict(task='TASK-005',revision='scorpion-r7-room01',production=[entry(p) for p in sorted(paths)],
+    result=dict(task='TASK-005',revision='scorpion-r7-audio-r2-room01',production=[entry(p) for p in sorted(paths)],
         scene='Assets/EmergencyShift/Scenes/MechanicsSandbox.unity',sceneEvidence='Docs/Validation/ScorpionRoom01/authoring.json',
         audioProvenance='Concepts/Used/Audio/Scorpion01/provenance.json',
         artisticApproval=False,stressTest=False)

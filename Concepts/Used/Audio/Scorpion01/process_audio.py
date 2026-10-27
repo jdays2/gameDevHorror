@@ -41,13 +41,15 @@ def main():
         peak=int(np.argmax(energy))
         start=max(0, min(peak-int(.035*RATE), len(part)-window))
         report.append(save('Step'+str(i+1), part[start:start+window], .60))
-    for key,limit,peak in [('hit',.50,.85),('attack',.52,.80),('alarm',1.45,.83)]:
+    for key,limit,peak in [('hit',.50,.85),('alarm',1.45,.83)]:
         x=decode(key)
         active=np.flatnonzero(np.abs(x)>.02*np.max(np.abs(x)))
         start=max(0, int(active[0])-int(.012*RATE)) if len(active) else 0
         report.append(save(key.title(), x[start:start+int(limit*RATE)], peak))
     report.append(save('Presence',decode('idle'),.55,True))
     (ROOT/'processing.json').write_text(json.dumps(dict(rate=RATE,channels=1,bits=16,outputs=report,method='Original generated MP3, DC removal, mono resample, contact extraction, peak normalization and 12ms edge fades. No reference audio copied.'),indent=2)+'\n')
+    from process_attack_r2 import main as rebuild_attack
+    rebuild_attack()
     print(json.dumps(report,indent=2))
 
 

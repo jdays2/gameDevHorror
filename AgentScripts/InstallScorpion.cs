@@ -152,7 +152,8 @@ public static class InstallScorpion
             var feedback = actor.AddComponent<ScorpionAudio2D>();
             Edit(feedback, s =>
             {
-                Ref(s, "voice", Source(audio, "Voice and claws", 120));
+                Ref(s, "voice", Source(audio, "Voice", 120));
+                Ref(s, "claws", Source(audio, "Claw grasp", 120));
                 Ref(s, "contact", Source(audio, "Foot contacts", 180));
                 Ref(s, "presence", Source(audio, "Quiet presence", 220));
             });
