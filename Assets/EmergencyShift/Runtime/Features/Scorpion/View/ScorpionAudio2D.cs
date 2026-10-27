@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using Zenject;
+using Random = UnityEngine.Random;
 
 namespace EmergencyShift.Features.Scorpion.View
 {
@@ -9,6 +12,8 @@ namespace EmergencyShift.Features.Scorpion.View
         [SerializeField] private AudioSource claws;
         [SerializeField] private AudioSource contact;
         [SerializeField] private AudioSource presence;
+        [SerializeField] private AudioSource detection;
+        private EnemyDeathAudioVariants deathVariants;
         private Scorpion2D actor;
         private Vector2 previous;
         private float travelled;
@@ -16,11 +21,21 @@ namespace EmergencyShift.Features.Scorpion.View
         private float nextHit;
         private float nextMix;
         private bool attackSound;
+        private bool deathPlayed;
         private float obstruction = 1;
         public int StepsPlayed { get; private set; }
         public int AlarmsPlayed { get; private set; }
         public int AttacksPlayed { get; private set; }
         public int HitsPlayed { get; private set; }
+        public int DeathsPlayed { get; private set; }
+        public int DetectionAccentsPlayed { get; private set; }
+        public event Action<float, float, bool> PerceptibleCue;
+
+        [Inject]
+        private void Construct(EnemyDeathAudioVariants variants)
+        {
+            deathVariants = variants;
+        }
 
         private void Awake()
         {
@@ -30,6 +45,7 @@ namespace EmergencyShift.Features.Scorpion.View
             Prepare(claws);
             Prepare(contact);
             Prepare(presence);
+            Prepare(detection);
         }
 
         private static void Prepare(AudioSource source)
@@ -44,7 +60,7 @@ namespace EmergencyShift.Features.Scorpion.View
         private void OnEnable()
         {
             actor.Hit += OnHit;
-            actor.Died += Stop;
+            actor.Died += OnDeath;
             previous = transform.position;
             attackSound = false;
         }
@@ -52,36 +68,44 @@ namespace EmergencyShift.Features.Scorpion.View
         private void OnDisable()
         {
             actor.Hit -= OnHit;
-            actor.Died -= Stop;
+            actor.Died -= OnDeath;
             Stop();
         }
 
         private void Update()
         {
-            if (!actor.enabled || !actor.IsAlive)
+            if (!actor.enabled && actor.IsAlive)
             {
                 Stop();
                 return;
             }
             // PauseMenu pauses the listener; retain the playhead for resume.
-            if (Time.timeScale <= 0)
+            if (Time.timeScale <= 0 || AudioListener.pause)
             {
                 return;
             }
-            var set = actor.Presentation;
             if (Time.time >= nextMix)
             {
-                nextMix = Time.time + .12f;
-                Vector2 delta = actor.Target != null ? (Vector2)actor.Target.position - (Vector2)transform.position : Vector2.one * set.SoundRadius;
-                float attenuation = Mathf.Clamp01(1 - delta.magnitude / set.SoundRadius);
-                obstruction = Physics2D.Linecast(transform.position,
-                    actor.Target != null ? actor.Target.position : transform.position, actor.BlockingGeometry).collider == null ? 1 : .18f;
-                float gain = attenuation * attenuation * obstruction;
-                voice.volume = set.VoiceVolume * gain;
-                claws.volume = set.VoiceVolume * gain;
-                contact.volume = set.StepVolume * gain;
-                presence.volume = set.VoiceVolume * .16f * gain;
+                UpdateMix();
+                if (actor.IsAlive)
+                {
+                    Report(voice, actor.HasAggro);
+                    Report(claws, true);
+                    Report(contact, actor.IsAttacking);
+                    Report(presence, false);
+                    Report(detection, true);
+                }
             }
+            // The brain is disabled on death; its existing voice source owns the remaining tail.
+            if (!actor.IsAlive)
+            {
+                if (!voice.isPlaying && !detection.isPlaying)
+                {
+                    enabled = false;
+                }
+                return;
+            }
+            var set = actor.Presentation;
             bool idle = !actor.HasAggro;
             if (idle && !presence.isPlaying)
             {
@@ -130,33 +154,98 @@ namespace EmergencyShift.Features.Scorpion.View
 
         public void PlayAlarm()
         {
+            if (!isActiveAndEnabled || !actor.IsAlive || !actor.enabled)
+            {
+                return;
+            }
+            UpdateMix();
             presence.Stop();
-            voice.pitch = 1;
-            voice.clip = actor.Presentation.Alarm;
-            voice.Play();
+            detection.clip = actor.Presentation.Alarm;
+            detection.pitch = 1;
+            detection.Play();
             AlarmsPlayed++;
+            DetectionAccentsPlayed++;
+            Report(detection, true);
         }
 
         private void OnHit()
         {
-            if (Time.time < nextHit)
+            // Fatal damage raises Died synchronously before Scorpion2D raises Hit.
+            if (!actor.IsAlive || Time.time < nextHit)
             {
                 return;
             }
             nextHit = Time.time + .12f;
+            UpdateMix();
             voice.pitch = Random.Range(.96f, 1.04f);
             voice.clip = actor.Presentation.Hit;
             voice.Play();
             HitsPlayed++;
+            Report(voice, true);
+        }
+
+        private void OnDeath()
+        {
+            if (deathPlayed)
+            {
+                return;
+            }
+            deathPlayed = true;
+            StopLiving();
+            voice.Stop();
+            voice.pitch = 1;
+            voice.clip = deathVariants.Choose(actor.Presentation.DeathSounds);
+            UpdateMix();
+            if (voice.clip != null)
+            {
+                voice.Play();
+                DeathsPlayed++;
+            }
+        }
+
+        private void UpdateMix()
+        {
+            var set = actor.Presentation;
+            nextMix = Time.time + .12f;
+            float gain = 0;
+            if (actor.Target != null)
+            {
+                float distance = Vector2.Distance(actor.Target.position, transform.position);
+                float attenuation = Mathf.Clamp01(1 - distance / set.SoundRadius);
+                bool blocked = Physics2D.Linecast(transform.position, actor.Target.position, actor.BlockingGeometry).collider != null;
+                obstruction = blocked ? .18f : 1;
+                gain = attenuation * attenuation * obstruction;
+            }
+            float voiceGain = deathPlayed ? set.DeathSounds.Volume : 1;
+            voice.volume = set.VoiceVolume * voiceGain * gain;
+            claws.volume = set.VoiceVolume * gain;
+            contact.volume = set.StepVolume * gain;
+            presence.volume = set.VoiceVolume * .16f * gain;
+            detection.volume = set.DetectionVolume * gain;
+        }
+
+        private void Report(AudioSource source, bool urgent)
+        {
+            if (source.isPlaying && !source.isVirtual && !source.mute && source.volume >= .02f &&
+                !AudioListener.pause && AudioListener.volume > .001f)
+            {
+                PerceptibleCue?.Invoke(.3f, source.volume, urgent);
+            }
+        }
+
+        private void StopLiving()
+        {
+            claws.Stop();
+            contact.Stop();
+            presence.Stop();
+            attackSound = false;
         }
 
         private void Stop()
         {
             voice.Stop();
-            claws.Stop();
-            contact.Stop();
-            presence.Stop();
-            attackSound = false;
+            detection.Stop();
+            StopLiving();
         }
     }
 }

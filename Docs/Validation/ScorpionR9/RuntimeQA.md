@@ -1,0 +1,11 @@
+# TASK-005 · Scorpion r9 · независимая проверка кода
+
+2026-10-27. Результат: **PASS**. Два замечания предыдущего прохода закрыты; новых блокирующих ошибок в проверенной области не найдено.
+
+- [ScorpionAudio2D](../../../Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudio2D.cs) отключает себя после окончания обоих хвостов `voice` и `detection`. Проверка `Time.timeScale <= 0 || AudioListener.pause` выполняется раньше: пауза не принимается за окончание клипа. `OnDisable` отписывает события и останавливает каналы. Guard смертельного `Hit` сохраняет death voice.
+- [InstallScorpion](../../../AgentScripts/InstallScorpion.cs) отказывается работать при существующем префабе до изменения ассетов. Свежий bootstrap получает Detection, общий death bank, пятый канал и адаптер угрозы. Для доведения свежего bootstrap до текущего состава останков требуется `ReviseScorpionR9.Install`; существующий префаб обновляется только этим узким патчем.
+- Ранее проверенные границы сохранены: одна тревога на стаю и на первое обнаружение одиночного скорпиона; сигналы слышимости учитывают mute, virtual source и паузу слушателя; fatal hit не заменяет смерть. Банк останков сохраняет corpse index 0, три стабильных flesh index и старый ID `scorpion-carcass` как `restorationOnly`. Все offsets равны нулю. Исходное тело скрывается после создания первого replacement.
+
+Сверены результаты родительского native-прогона [play.json](play.json): все 22 булевы проверки положительны, включая `deathFeedbackReleased`, `deathPauseRetained`, `fatalHitDidNotReplaceDeath`, `onceOnly`, `survivesActor` и `disableStopsSources`. [build.json](build.json) сообщает Succeeded, 0 ошибок и одно предупреждение: RuntimePipelineConfig отсутствует, Pipeline отключён в Player. Это свидетельства выполненного родительским агентом прогона, а не новый запуск этой проверки. Проверка локальных ссылок отчёта: 0 нарушений.
+
+Область: Scorpion audio/threat/corpse/actor/presentation, узкий патч r9, проверочный скрипт и перенос скрытия тела в RemainsRecord2D. Источники и сцены не редактировались; добавлен только этот отчёт. Unity не запускалась. Художественная приёмка, оценка тембра на слух, FPS и массовая гибель этим результатом не подтверждаются. Итоговый контроль авторинга: неприменим.

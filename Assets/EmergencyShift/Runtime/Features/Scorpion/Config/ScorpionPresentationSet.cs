@@ -18,6 +18,8 @@ namespace EmergencyShift.Features.Scorpion.Config
         [SerializeField] private AudioClip presence;
         [SerializeField] private AudioClip grasp;
         [SerializeField] private AudioClip alarm;
+        [SerializeField] private EnemyDeathAudioSet deathSounds;
+        [SerializeField, Range(0, 1)] private float detectionVolume = .45f;
         [SerializeField, Min(1)] private float turnDegrees = 360;
         [SerializeField, Range(0, 1)] private float voiceVolume = .6f;
         [SerializeField, Range(0, 1)] private float stepVolume = .24f;
@@ -35,6 +37,8 @@ namespace EmergencyShift.Features.Scorpion.Config
         public AudioClip Presence => presence;
         public AudioClip Grasp => grasp;
         public AudioClip Alarm => alarm;
+        public EnemyDeathAudioSet DeathSounds => deathSounds;
+        public float DetectionVolume => detectionVolume;
         public float TurnDegrees => turnDegrees;
         public float VoiceVolume => voiceVolume;
         public float StepVolume => stepVolume;
@@ -49,6 +53,8 @@ namespace EmergencyShift.Features.Scorpion.Config
             attackEyes.Validate();
             if (idle == null || idleEyes == null || steps == null || steps.Length == 0 ||
                 hit == null || presence == null || grasp == null || alarm == null ||
+                deathSounds == null || deathSounds.Clips.Count == 0 ||
+                !float.IsFinite(detectionVolume) || detectionVolume < 0 || detectionVolume > 1 ||
                 !float.IsFinite(attack.ReferenceSpeed) || attack.ReferenceSpeed <= 0 ||
                 !float.IsFinite(turnDegrees) || turnDegrees < 1 ||
                 !float.IsFinite(soundRadius) || soundRadius <= 0 ||
@@ -58,6 +64,7 @@ namespace EmergencyShift.Features.Scorpion.Config
             {
                 throw new InvalidOperationException("Incomplete scorpion presentation: " + name);
             }
+            deathSounds.Validate();
             foreach (AudioClip step in steps)
             {
                 if (step == null)

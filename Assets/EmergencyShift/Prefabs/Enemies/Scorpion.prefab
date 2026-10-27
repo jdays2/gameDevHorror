@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -215498846, guid: 7492cff2a5942ad41aac3eff0acc8aae, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6, g: 0.6, b: 0.6, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -313,6 +313,135 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &3595671992085425847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5670284896570631621}
+  - component: {fileID: 2962039702491767784}
+  m_Layer: 0
+  m_Name: Detection squeal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5670284896570631621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595671992085425847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7184950938059017683}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &2962039702491767784
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3595671992085425847}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 100
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5060479925575021481
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +466,7 @@ GameObject:
   - component: {fileID: 8052903448141458333}
   - component: {fileID: 422013508368054179}
   - component: {fileID: 7607498789476955787}
+  - component: {fileID: 3478745266346239364}
   m_Layer: 0
   m_Name: Scorpion
   m_TagString: Untagged
@@ -571,6 +701,7 @@ MonoBehaviour:
   claws: {fileID: 5119845059959980561}
   contact: {fileID: 4859974958246696100}
   presence: {fileID: 6349644224996065990}
+  detection: {fileID: 2962039702491767784}
 --- !u!114 &8052903448141458333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +717,9 @@ MonoBehaviour:
   bloodPoolPrefab: {fileID: 6427285181492517738, guid: d14cb242fb926b84fa3ccb76a69f3454, type: 3}
   fragments:
   - {fileID: 58870297, guid: 5e1b217de474540418f32090f7b2d4d4, type: 3}
+  - {fileID: 21300000, guid: 97c347d3b249abe4ab900b5b1148a730, type: 2}
+  - {fileID: 21300000, guid: 27f4200ef88653c4781c7b1dc4337935, type: 2}
+  - {fileID: 21300000, guid: 475244463a2c2a147a0d6e4dc597fd19, type: 2}
   litMaterial: {fileID: 2100000, guid: 1356292d317ac7a47bb9e752bcb92db2, type: 2}
   bloodSpraySprite: {fileID: 0}
   contactShadowSprite: {fileID: 0}
@@ -606,6 +740,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.Features.Scorpion.View.ScorpionCorpsePose2D
   body: {fileID: 7397637447146000155}
   pool: {fileID: 6427285181492517738, guid: d14cb242fb926b84fa3ccb76a69f3454, type: 3}
+  flesh:
+  - {fileID: 21300000, guid: 97c347d3b249abe4ab900b5b1148a730, type: 2}
+  - {fileID: 21300000, guid: 27f4200ef88653c4781c7b1dc4337935, type: 2}
+  - {fileID: 21300000, guid: 475244463a2c2a147a0d6e4dc597fd19, type: 2}
 --- !u!114 &7607498789476955787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,6 +759,18 @@ MonoBehaviour:
   blockingGeometry:
     serializedVersion: 2
     m_Bits: 768
+--- !u!114 &3478745266346239364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5060479925575021481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5384cce2a5df9f44991f0291f5312d83, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.Features.Scorpion.View.ScorpionAudioThreat2D
 --- !u!1 &5525829566805137722
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +966,7 @@ Transform:
   - {fileID: 3398981195204738434}
   - {fileID: 3513147759893787726}
   - {fileID: 3607943740134025613}
+  - {fileID: 5670284896570631621}
   m_Father: {fileID: 8008679231229000665}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6347245567410389403

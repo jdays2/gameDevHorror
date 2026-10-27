@@ -8,6 +8,7 @@ namespace EmergencyShift.Features.Scorpion.View
     {
         [SerializeField] private SpriteRenderer body;
         [SerializeField] private BloodPool2D pool;
+        [SerializeField] private Sprite[] flesh = System.Array.Empty<Sprite>();
         private EnemyHealth2D health;
         private GoreBurst2D gore;
         private void Awake()
@@ -17,6 +18,13 @@ namespace EmergencyShift.Features.Scorpion.View
         }
         private void OnEnable() => health.Died += FreezePose;
         private void OnDisable() => health.Died -= FreezePose;
-        private void FreezePose() => gore.Configure(pool, new[]{body.sprite}, body.sharedMaterial);
+        private void FreezePose()
+        {
+            // Index zero stays the current full pose; later indices are stable shared flesh assets.
+            var pieces = new Sprite[flesh.Length + 1];
+            pieces[0] = body.sprite;
+            System.Array.Copy(flesh, 0, pieces, 1, flesh.Length);
+            gore.Configure(pool, pieces, body.sharedMaterial);
+        }
     }
 }

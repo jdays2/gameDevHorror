@@ -26,6 +26,10 @@ public static class InstallScorpion
         {
             throw new InvalidOperationException("Requires stopped compiled editor.");
         }
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(Prefab) != null)
+        {
+            throw new InvalidOperationException("Scorpion already exists. Use ReviseScorpionR9.Install for the current prefab; this bootstrap must not reset authored profiles.");
+        }
         Directory.CreateDirectory(Data);
         AssetDatabase.Refresh();
         JObject pack = JObject.Parse(File.ReadAllText("Concepts/Unused/Visual/Scorpion01/asset-pack.json"));
@@ -54,7 +58,8 @@ public static class InstallScorpion
             Ref(s, "hit", Audio("Hit"));
             Ref(s, "presence", Audio("Presence"));
             Ref(s, "grasp", Audio("Attack"));
-            Ref(s, "alarm", Audio("Alarm"));
+            Ref(s, "alarm", Audio("Detection"));
+            Ref(s, "deathSounds", AssetDatabase.LoadAssetAtPath<EnemyDeathAudioSet>(Root + "Data/Audio/CreatureRupture06.asset"));
         });
         presentation.Validate();
         var definition = Asset<EnemyDefinition>("Definition");
@@ -156,7 +161,9 @@ public static class InstallScorpion
                 Ref(s, "claws", Source(audio, "Claw grasp", 120));
                 Ref(s, "contact", Source(audio, "Foot contacts", 180));
                 Ref(s, "presence", Source(audio, "Quiet presence", 220));
+                Ref(s, "detection", Source(audio, "Detection squeal", 100));
             });
+            actor.AddComponent<ScorpionAudioThreat2D>();
             var burst = actor.AddComponent<GoreBurst2D>();
             burst.Configure(AssetDatabase.LoadAssetAtPath<GameObject>(Root + "Prefabs/Enemies/BloodPool.prefab").GetComponent<BloodPool2D>(),
                 new[]{body.sprite}, body.sharedMaterial);

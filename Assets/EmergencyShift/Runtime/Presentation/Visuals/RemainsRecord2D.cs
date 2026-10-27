@@ -84,11 +84,6 @@ namespace EmergencyShift
 
                 bool explicitComposition = variant.PieceCount > 0;
                 int count = explicitComposition ? variant.PieceCount : variant.FragmentCount;
-                if (variant.ReplaceOriginalBody && replacedBody != null)
-                {
-                    replacedBody.enabled = false;
-                }
-
                 for (int i = 0; i < count; i++)
                 {
                     while (!spawnBudget.TryReserve())
@@ -114,6 +109,11 @@ namespace EmergencyShift
                     renderer.sharedMaterial = litMaterial;
                     renderer.sortingOrder = RemainsVisualStyle.DeadOrder;
                     renderer.color = profile.SettledTint;
+                    // A busy spawn budget must not leave a gap before the first replacement exists.
+                    if (i == 0 && variant.ReplaceOriginalBody && replacedBody != null)
+                    {
+                        replacedBody.enabled = false;
+                    }
                     bool hasEyeSurface = specification != null && specification.EyeSurface;
                     if (hasEyeSurface)
                     {

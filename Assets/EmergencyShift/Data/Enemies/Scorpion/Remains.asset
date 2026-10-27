@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.GoreProfile
   poolSize: 1.1
   releaseDelay: 0.06
-  impulseRange: {x: 0, y: 0}
-  liftRange: {x: 0, y: 0}
+  impulseRange: {x: 2.2, y: 3.6}
+  liftRange: {x: 2.4, y: 3.2}
   gravity: 26
-  settledTint: {r: 0.78, g: 0.73, b: 0.76, a: 1}
-  airborneTint: {r: 0.88, g: 0.82, b: 0.86, a: 1}
+  settledTint: {r: 0.58, g: 0.55, b: 0.6, a: 1}
+  airborneTint: {r: 0.74, g: 0.68, b: 0.72, a: 1}
   eyeSurfaceMaterial: {fileID: 0}
   variants:
   - id: scorpion-carcass
@@ -31,10 +31,145 @@ MonoBehaviour:
     - spriteIndex: 0
       offset: {x: 0, y: 0}
       scale: {x: 1, y: 1}
+      impulseMultiplier: 0.01
+      liftMultiplier: 0.01
+      eyeSurface: 0
+      preserveSourcePose: 1
+    replaceOriginalBody: 1
+    restorationOnly: 1
+    selectionWeight: 1
+  - id: scorpion-flesh-r9-1
+    fragmentCount: 4
+    spriteOffset: 0
+    rotationOffset: 23
+    scale: {x: 1, y: 1}
+    impulseMultiplier: 1
+    pieces:
+    - spriteIndex: 0
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      impulseMultiplier: 0.01
+      liftMultiplier: 0.01
+      eyeSurface: 0
+      preserveSourcePose: 1
+    - spriteIndex: 3
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
       impulseMultiplier: 1
       liftMultiplier: 1
       eyeSurface: 0
+      preserveSourcePose: 0
+    - spriteIndex: 1
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    - spriteIndex: 2
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    replaceOriginalBody: 1
+    restorationOnly: 0
+    selectionWeight: 1
+  - id: scorpion-flesh-r9-2
+    fragmentCount: 5
+    spriteOffset: 0
+    rotationOffset: 46
+    scale: {x: 1, y: 1}
+    impulseMultiplier: 1
+    pieces:
+    - spriteIndex: 0
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      impulseMultiplier: 0.01
+      liftMultiplier: 0.01
+      eyeSurface: 0
       preserveSourcePose: 1
+    - spriteIndex: 1
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    - spriteIndex: 2
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    - spriteIndex: 3
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    - spriteIndex: 1
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    replaceOriginalBody: 1
+    restorationOnly: 0
+    selectionWeight: 1
+  - id: scorpion-flesh-r9-3
+    fragmentCount: 6
+    spriteOffset: 0
+    rotationOffset: 69
+    scale: {x: 1, y: 1}
+    impulseMultiplier: 1
+    pieces:
+    - spriteIndex: 0
+      offset: {x: 0, y: 0}
+      scale: {x: 1, y: 1}
+      impulseMultiplier: 0.01
+      liftMultiplier: 0.01
+      eyeSurface: 0
+      preserveSourcePose: 1
+    - spriteIndex: 2
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    - spriteIndex: 3
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    - spriteIndex: 1
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    - spriteIndex: 2
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
+    - spriteIndex: 3
+      offset: {x: 0, y: 0}
+      scale: {x: 0.8, y: 1.05}
+      impulseMultiplier: 1
+      liftMultiplier: 1
+      eyeSurface: 0
+      preserveSourcePose: 0
     replaceOriginalBody: 1
     restorationOnly: 0
     selectionWeight: 1

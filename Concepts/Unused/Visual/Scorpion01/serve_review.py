@@ -8,6 +8,8 @@ VISUAL=ROOT.parent
 PROJECT=ROOT.parents[3]
 ART=PROJECT/'Assets/EmergencyShift/Art/Enemies'
 AUDIO=PROJECT/'Concepts/Used/Audio/Scorpion01/Previews'
+FLESH=PROJECT/'Assets/EmergencyShift/Art/Effects/CreatureFlesh04'
+GAME_AUDIO=PROJECT/'Assets/EmergencyShift/Audio/Enemies/Scorpion'
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -17,6 +19,12 @@ class Handler(SimpleHTTPRequestHandler):
             target=ART/parts[1]/parts[2]
         elif len(parts)==2 and parts[0]=='scorpion-audio' and parts[1] in ['HeavyShellA.wav','HeavyShellB.wav']:
             target=AUDIO/parts[1]
+        elif len(parts)==2 and parts[0]=='scorpion-audio' and parts[1]=='Detection.wav':
+            target=GAME_AUDIO/parts[1]
+        elif len(parts)==2 and parts[0]=='scorpion-audio' and parts[1]=='Death.wav':
+            target=PROJECT/'Assets/EmergencyShift/Audio/CreatureRupture06/rupture_06_01.wav'
+        elif len(parts)==2 and parts[0]=='scorpion-flesh' and parts[1] in ['MuscleWad.png','DenseClot.png','TissueStrip.png']:
+            target=FLESH/parts[1]
         elif parts and parts[0] in ['Scorpion01','FastGroupEnemy23AssetPack'] and '..' not in parts:
             target=VISUAL.joinpath(*parts)
         elif parts==['']:

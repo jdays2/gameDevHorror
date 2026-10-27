@@ -134,7 +134,12 @@ namespace EmergencyShift.Features.Scorpion.View
             }
             else
             {
+                bool wasAlerted = HasAggro;
                 controller.Alert();
+                if (!wasAlerted && HasAggro)
+                {
+                    GetComponent<ScorpionAudio2D>().PlayAlarm();
+                }
             }
         }
 

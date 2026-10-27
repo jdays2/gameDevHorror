@@ -1,12 +1,12 @@
 # Скорпион · оригинальные звуки · TASK-005
 
-Production — Assets/EmergencyShift/Audio/Enemies/Scorpion. Четыре контакта лап, попадание, клешни, тревога и присутствие: восемь WAV mono PCM16/32kHz. MP3 — Sources; хеши/длительности — processing.json, промпты — provenance.json. Сэмплы референсов не копировались.
+Production — Assets/EmergencyShift/Audio/Enemies/Scorpion. Четыре контакта лап, попадание, клешни, присутствие. Старый Alarm.wav теперь Historical; текущий писк Detection.wav и его отдельные исходники описаны в [ScorpionDiscovery01](../ScorpionDiscovery01/README.md). Смерть переиспользует принятый общий [CreatureRupture06](../CreatureRupture06/README.md), без копии WAV. MP3 этой семьи — Sources; хеши/длительности — processing.json, промпты — provenance.json. Сэмплы референсов не копировались.
 
 Владелец отверг клацанье r1, затем влажный хруст r2 как не соответствующие концепту. Sources/attack.mp3 и attack-r2-1/2.mp3, процессор/отчёт r2 сохранены Historical. r3 следует массивным реальным клешням: короткое плотное смыкание панциря. Две новые пробы: [A — одиночное смыкание](Previews/HeavyShellA.wav), [B — парный хват](Previews/HeavyShellB.wav). B подключён в Attack.wav как кандидат для оценки.
 
 Обработка r3 минимальна: mono/resample, выбор контакта по5ms RMS, нормализация, fade4/45ms. Нет смеси r2, pitch исходника, EQ или искажения. Обе пробы340ms, peak.75, clipped0, акцент+44.8125ms: cue.32 и strike.40 атаки.56s дают44.8ms. Игровой pitch.96..1.03 остаётся; ошибка акцента до1.9ms без Update/DSP-буфера. [Обработка r3](attack-r3-processing.json).
 
-Четыре AudioSource: голос/попадания, клешни, контакты, присутствие. Попадание не обрывает клешни. Дальность/стены ослабляют звук, тревога — у одного члена. Idle прекращается при тревоге; контакты требуют перемещения. Disable/смерть останавливают каналы и сбрасывают latch; пауза сохраняет playhead. Каналы проверены в [ScorpionAudio02](../../../../Docs/Validation/ScorpionAudio02/README.md); r3 меняет только WAV.
+Пять AudioSource: голос попадания/смерти, клешни, контакты, присутствие и писк. Попадание не обрывает клешни/писк; смертельное попадание не перебивает смерть. Дальность/стены ослабляют звук, тревога — у одного члена. Idle прекращается при тревоге; контакты требуют перемещения. Disable останавливает всё; смерть останавливает живые каналы, оставляет voice/detection до конца хвоста и затем выключает компонент. Пауза сохраняет playhead. [Текущие проверки r9](../../../../Docs/Validation/ScorpionR9/README.md); ScorpionAudio02 — историческая проверка прежних четырёх каналов.
 
 Полный rebuild: `python process_audio.py` вызывает process_attack_r3.py. Только клешни: `python process_attack_r3.py`. Отвергнутый r2 не возвращается. В [просмотрщике](http://127.0.0.1:8103/Scorpion01/viewer.html?revision=heavy-chela-r8) есть A/B и опциональная синхронизация первой особи.
 
