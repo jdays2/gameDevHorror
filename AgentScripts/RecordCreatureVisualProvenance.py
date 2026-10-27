@@ -2,6 +2,7 @@
 from pathlib import Path
 import hashlib
 import json
+import sys
 
 PROJECT=Path(__file__).resolve().parents[1]
 
@@ -15,6 +16,8 @@ def main():
     for folder,used,art,animation in [
         ('FastGroupEnemy23AssetPack','ClawVisual01','ClawVisual','ClawVisual'),
         ('Scorpion01','Scorpion01','Scorpion','ScorpionVisual')]:
+        if '--scorpion-only' in sys.argv and art != 'Scorpion':
+            continue
         source=PROJECT/'Concepts/Unused/Visual'/folder
         manifest=json.loads((source/'asset-pack.json').read_text(encoding='utf-8'))
         paths=set()
@@ -37,11 +40,11 @@ def main():
                 'sources':[record(p) for p in sorted(paths)],
                 'production':[record(p) for p in sorted(assets) if p.is_file()],
                 'generationProvenance':record(source/('image-generation.json' if art=='ClawVisual' else 'provenance.json')),
-                'unityEvidence':'Docs/Validation/CreatureVisuals01/'+('scorpion-r7.json' if art=='Scorpion' else 'prefabs.json'),
+                'unityEvidence':'Docs/Validation/CreatureVisuals01/'+('scorpion-r8.json' if art=='Scorpion' else 'prefabs.json'),
                 'artisticApproval':'Not inferred from import or technical checks.'}
         destination=PROJECT/'Concepts/Used/Visual'/used/'import-manifest.json'
         if art=='Scorpion':
-            result['latestGenerationProvenance']=record(source/'r7-generation.json')
+            result['latestGenerationProvenance']=record(source/'r8-generation.json')
         destination.parent.mkdir(parents=True,exist_ok=True)
         destination.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         print(json.dumps({'family':animation,'sources':len(paths),'production':len(result['production'])}))

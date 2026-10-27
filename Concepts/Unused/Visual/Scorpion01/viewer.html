@@ -5,7 +5,7 @@
 *{box-sizing:border-box}body{margin:0;background:#171d22;color:#e8edf0;font:16px system-ui,sans-serif}main{max-width:1320px;margin:auto;padding:24px}h1{font-size:26px;margin:0 0 8px}p{color:#b5c3cc;line-height:1.5;margin:8px 0 18px}.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:15px;background:#242e36;border-radius:8px}button,select{font:inherit;color:#e6edf1;background:#34434e;border:1px solid #62747f;padding:9px 13px;border-radius:5px}button{cursor:pointer}label{display:flex;gap:7px;align-items:center}input[type=range]{width:180px}canvas{display:block;width:100%;height:auto;background:#262d32;border:1px solid #46545f;border-radius:7px;margin:16px 0}.note{font-size:14px;color:#aebdc6}.links{display:flex;gap:22px;flex-wrap:wrap}a{color:#8bcee8}#play{min-width:90px}.status{font-variant-numeric:tabular-nums;min-width:110px}@media(max-width:650px){main{padding:12px}.controls{gap:8px}h1{font-size:22px}}
 </style>
 <main><h1>Когтистый и Скорпион</h1>
-<p>Когтистый — молчаливый набор анимаций и останков. Скорпион r7 — короткие массивные лапы, цельный корпус, компактные клешни и захват на ходу.</p>
+<p>Когтистый — молчаливый набор анимаций и останков. Скорпион r8 — тяжёлые округлые ладони клешней и короткие загнутые пальцы, захват на ходу.</p>
 <div class="controls">
 <label>Враг <select id="family"><option value="scorpion">Скорпион</option><option value="claw">Когтистый</option></select></label>
 <label>Действие <select id="action"></select></label>
@@ -14,10 +14,14 @@
 <label>Темп <select id="tempo"><option value="1">100%</option><option value=".5">50%</option><option value=".25">25%</option></select></label>
 <label>Фон <select id="background"><option value="dark">Тёмный</option><option value="light">Светлый</option><option value="night">Ночь</option></select></label>
 <label><input type="checkbox" id="close">Крупно</label>
+<label><input type="checkbox" id="sound">Звук первой особи</label>
+<label>Клешни <select id="soundVariant"><option value="B">B · плотный парный хват</option><option value="A">A · одиночное смыкание</option></select></label>
+<button id="audition">Послушать удар</button>
+<span id="audioStatus" class="note">Проба готова</span>
 <input id="phase" type="range" min="0" max="999" value="0" aria-label="Фаза анимации"><span id="status" class="status">Загрузка…</span>
 </div>
 <canvas id="screen" width="1280" height="700" aria-label="Просмотр анимаций монстров"></canvas>
 <p id="caption" class="note"></p>
 <div class="links"><a href="02-native-independent-projections.jpg">Скорпион: каркас</a><a href="05-native-muscle-ids.jpg">Скорпион: крепления</a><a href="run-all-bones.jpg">Проверка всех фаз</a><a href="../FastGroupEnemy23AssetPack/review/remains-bones.jpg">Останки Когтистого</a></div>
-<p class="note">Разные фазы особей позволяют оценить движение группы. Здесь нет боевого AI, урона или звука. Новые рисунки и пробы Скорпиона ожидают художественной оценки.</p></main>
+<p class="note">Разные фазы особей позволяют оценить движение группы. Звук клешней включается отдельно; A/B — новые пробы вместо отвергнутого влажного хвата. Здесь нет боевого AI и урона. Рисунки и звук ожидают художественной оценки.</p></main>
 <script src="viewer.js"></script></html>

@@ -7,6 +7,7 @@ ROOT=Path(__file__).resolve().parent
 VISUAL=ROOT.parent
 PROJECT=ROOT.parents[3]
 ART=PROJECT/'Assets/EmergencyShift/Art/Enemies'
+AUDIO=PROJECT/'Concepts/Used/Audio/Scorpion01/Previews'
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -14,6 +15,8 @@ class Handler(SimpleHTTPRequestHandler):
         parts=unquote(urlsplit(path).path).strip('/').split('/')
         if parts[:1]==['production'] and len(parts)==3 and parts[1] in ['ClawVisual','Scorpion']:
             target=ART/parts[1]/parts[2]
+        elif len(parts)==2 and parts[0]=='scorpion-audio' and parts[1] in ['HeavyShellA.wav','HeavyShellB.wav']:
+            target=AUDIO/parts[1]
         elif parts and parts[0] in ['Scorpion01','FastGroupEnemy23AssetPack'] and '..' not in parts:
             target=VISUAL.joinpath(*parts)
         elif parts==['']:

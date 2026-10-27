@@ -1,9 +1,9 @@
-# Скорпион · импорт TASK-005 · r7
+# Скорпион · импорт TASK-005 · r8
 
-Источник — [Scorpion01 native-r7-stocky](../../../Unused/Visual/Scorpion01/README.md): короткие массивные лапы, цельный корпус r6, компактные кровавые клешни,10 красных глаз, хвост с жалом. [Контракт](../../../../Docs/Enemies/SCORPION.md).
+Источник — [native-r8-heavy-chela](../../../Unused/Visual/Scorpion01/README.md): широкие округлые ладони и короткие тёмные пальцы по новому фото. Ноги r7, цельный корпус r6, десять глаз и хвост сохранены. [Контракт](../../../../Docs/Enemies/SCORPION.md).
 
-Визуальные атласы/клипы/Animator/EyeGlow/ScorpionVisual.prefab перечислены с SHA-256 в import-manifest.json. ScorpionVisual имеет Animator и2 SpriteRenderer; Used означает импорт, а не художественную приёмку.
+Атласы/клипы/Animator/EyeGlow/ScorpionVisual.prefab перечислены с SHA-256 в import-manifest.json. Used означает импорт, не художественную приёмку. Игровой Scorpion.prefab использует те же рисунки и TimedSpriteMotion; ожидание —Run00. Ресурсы —runtime-manifest.json. Прежняя комната04 не перестраивается.
 
-Отдельный Scorpion.prefab использует те же рисунки и TimedSpriteMotion. Стая/движение/удар/тени/звуки подключены в комнате04 MechanicsSandbox. Ожидание игрового prefab — Run00, а не отличающаяся Neutral. Игровые файлы — runtime-manifest.json. [Проверки](../../../../Docs/Validation/ScorpionRoom01/README.md).
+Каркас →объёмы →40ID/крепления →кожа →56 кадров осмотрены отдельно. Плавная линия разделения у шарнира и подготовка4° исправляют выемку/пересечение новой широкой ладони. IK офлайн. Промпт —r8-generation.json. Прежние версии Historical в Git/history-r7.
 
-Каркас →объёмы →40 функциональных ID/креплений →кожа →56 кадров осмотрены отдельно. Локальный сектор перекрытия шарнира исправляет щель без широкой накладки в проём. IK работает офлайн. Промпты —r6-generation.json/r7-generation.json в источнике. Старые версии доступны в Git. Notion пропущен по поручению владельца.
+[Импорт](../../../../Docs/Validation/CreatureVisuals01/scorpion-r8.json), [визуальная QA](../../../../Docs/Validation/CreatureVisuals01/ScorpionR8VisualQA.md), [кинематика](../../../../Docs/Validation/CreatureVisuals01/ScorpionR8MotionQA.md). Notion пропущен по поручению владельца.

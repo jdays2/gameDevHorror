@@ -8,7 +8,7 @@ import sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import build_anatomy as anatomy
-import scorpion_parts_r5 as parts
+import scorpion_parts_r8 as parts
 import scorpion_legs_r7 as walking
 
 ROOT=Path(__file__).resolve().parent
@@ -44,7 +44,7 @@ def project(points):
 
 def plan():
     p=anatomy.make_plan()
-    p['revision']='scorpion-native-r7-stocky'
+    p['revision']='scorpion-native-r8-heavy-chela'
     p['sourceStrategy']='Native modular artwork. Whole generated concepts v1-v4 failed the separate skeleton gate and are not approved masters.'
     p['changesFromR1']={'kneeHeight':[.20,.32],
                        'reason':'Reserve true 3D reach for a fast grounded gait without flattening the legs or extending the image-plane bones.',
@@ -148,7 +148,8 @@ def pose(t,kind='run'):
         for ident,palp in palps.items():
             side=-1 if ident=='L' else 1
             origin=np.asarray(palp['arm'][0],dtype=float)
-            angle=-side*math.radians(8)*wind+side*math.radians(8)*drive
+            # A broad manus reserves the front walking-leg sector during windup.
+            angle=-side*math.radians(4)*wind+side*math.radians(8)*drive
             palp['arm']=rotate(palp['arm'],angle,origin).tolist()
             for key in parts.CHELA_KEYS:
                 palp[key]=rotate(palp[key],angle,origin).tolist()
@@ -570,7 +571,7 @@ def frames(kind):
 
 
 if __name__=='__main__':
-    if '--prepare-r5' in sys.argv:
+    if '--prepare-r8' in sys.argv:
         parts.prepare(Surface,write)
     elif '--plan' in sys.argv:
         plan()

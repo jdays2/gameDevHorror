@@ -7,6 +7,29 @@ let time = 0;
 let paused = false;
 let previous = performance.now();
 let override = null;
+const attackAudio = new Audio();
+let previousAttackPhase = -1;
+let playedAudio = 0;
+
+function stopAudio() {
+  attackAudio.pause();
+  attackAudio.currentTime = 0;
+}
+
+function playGrasp() {
+  stopAudio();
+  attackAudio.src = '/scorpion-audio/HeavyShell' + $('soundVariant').value + '.wav';
+  attackAudio.volume = .6;
+  attackAudio.playbackRate = Number($('tempo').value);
+  attackAudio.play().then(() => {
+    playedAudio++;
+    $('audioStatus').textContent = 'Играет ' + $('soundVariant').value;
+  }).catch(() => {
+    $('audioStatus').textContent = 'Звук заблокирован браузером';
+    $('caption').textContent = 'Нажмите «Послушать удар», чтобы разрешить звук в браузере.';
+  });
+}
+attackAudio.onended = () => { $('audioStatus').textContent = $('soundVariant').value + ' · проба завершена'; };
 
 function url(path) {
   return '/production/' + path.split('/Art/Enemies/')[1];
@@ -44,8 +67,9 @@ function options() {
 
 function describe() {
   const scorpion = $('family').value === 'scorpion';
+  for (const id of ['sound', 'soundVariant', 'audition']) $(id).disabled = !scorpion;
   $('caption').textContent = scorpion
-    ? 'Цельный корпус без пустых гнёзд. Короткие клешни с массивной ладонью. На беге хват спокойный; при сближении — раскрытие и резкое смыкание. Атака: 0,56 с, лапы продолжают шаг, скорость снижается с 2,4 до 1,90. Мишень показывает только момент захвата, боевого AI и урона здесь нет.'
+    ? 'Клешни r8: широкая округлая ладонь, короткие тёмные пальцы, прежние руки и суставы. На беге хват спокойный; при сближении — раскрытие и резкое смыкание. Атака: 0,56 с, лапы продолжают шаг, скорость снижается с 2,4 до 1,90. Звук первой особи можно включить и сравнить A/B.'
     : 'Когтистый: выбранный дизайн J, ходьба, бег, размашистый удар и три композиции останков. Молчаливый визуальный префаб.';
 }
 
@@ -190,6 +214,12 @@ function render() {
       if (count === 3) age += total * [0, .31, .67][i];
     }
     const frame = override === null || scenario ? indexAt(clip, age) : override % clip.ms.length;
+    if (i === 0) {
+      const attackPhase = family === 'scorpion' && clip.key === 'Attack' ? (age % duration(clip)) / duration(clip) : -1;
+      const crossed = attackPhase >= .32 && (previousAttackPhase < .32 || attackPhase < previousAttackPhase);
+      if (!paused && override === null && $('sound').checked && crossed && attackPhase < .65) playGrasp();
+      previousAttackPhase = attackPhase;
+    }
     if (i === 0) { shown = frame; frameCount = clip.ms.length; }
     drawActor(clip, frame, x, y, scale, night, family);
     ctx.fillStyle = dark ? '#cad4da' : '#465058';
@@ -199,7 +229,7 @@ function render() {
   }
   $('status').textContent = String(shown + 1).padStart(2, '0') + ' / ' + frameCount;
   if (override === null) $('phase').value = Math.round(shown / Math.max(1, frameCount - 1) * 999);
-  window.__reviewAudit = { family, state: selected.key, count, frame: shown, frameCount, actors, loaded: true };
+  window.__reviewAudit = { family, state: selected.key, count, frame: shown, frameCount, actors, loaded: true, playedAudio, sound: $('sound').checked, soundVariant: $('soundVariant').value };
 }
 
 async function init() {
@@ -230,13 +260,16 @@ async function init() {
     clips[family] = { data, options: list };
   }
   options();
-  $('family').onchange = options;
-  $('action').onchange = () => { time = 0; override = null; describe(); };
+  $('family').onchange = () => { stopAudio(); previousAttackPhase = -1; options(); };
+  $('action').onchange = () => { stopAudio(); previousAttackPhase = -1; time = 0; override = null; describe(); };
   $('count').onchange = render; $('close').onchange = render; $('background').onchange = render;
-  $('play').onclick = () => { paused = !paused; override = null; $('play').textContent = paused ? 'Пуск' : 'Пауза'; };
-  $('next').onclick = () => { paused = true; $('play').textContent = 'Пуск'; override = (window.__reviewAudit?.frame || 0) + 1; render(); };
+  $('play').onclick = () => { paused = !paused; override = null; if (paused) stopAudio(); $('play').textContent = paused ? 'Пуск' : 'Пауза'; };
+  $('next').onclick = () => { stopAudio(); paused = true; $('play').textContent = 'Пуск'; override = (window.__reviewAudit?.frame || 0) + 1; render(); };
+  $('audition').onclick = playGrasp;
+  $('sound').onchange = () => { stopAudio(); previousAttackPhase = -1; };
+  $('soundVariant').onchange = () => { stopAudio(); previousAttackPhase = -1; };
   $('phase').oninput = () => {
-    paused = true; $('play').textContent = 'Пуск';
+    stopAudio(); paused = true; $('play').textContent = 'Пуск';
     override = Math.round(Number($('phase').value) / 999 * (active().ms.length - 1)); render();
   };
   requestAnimationFrame(tick);

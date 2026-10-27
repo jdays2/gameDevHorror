@@ -48,7 +48,7 @@ def main():
         report.append(save(key.title(), x[start:start+int(limit*RATE)], peak))
     report.append(save('Presence',decode('idle'),.55,True))
     (ROOT/'processing.json').write_text(json.dumps(dict(rate=RATE,channels=1,bits=16,outputs=report,method='Original generated MP3, DC removal, mono resample, contact extraction, peak normalization and 12ms edge fades. No reference audio copied.'),indent=2)+'\n')
-    from process_attack_r2 import main as rebuild_attack
+    from process_attack_r3 import main as rebuild_attack
     rebuild_attack()
     print(json.dumps(report,indent=2))
 
