@@ -12,6 +12,7 @@ namespace EmergencyShift.Features.Enemies
             container.Bind<SleeperControllerFactory>().AsSingle();
             container.Bind<StalkerControllerFactory>().AsSingle();
             container.Bind<ClawEnemyControllerFactory>().AsSingle();
+            container.Bind<Scorpion.ScorpionControllerFactory>().AsSingle();
             ScriptedEncounters.ScriptedEncounterInstaller.Install(container);
         }
     }

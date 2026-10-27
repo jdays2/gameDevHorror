@@ -134,10 +134,14 @@ def chela_layers():
     hinge=np.asarray(CHELA['hinge'])
     branch=(moving<fixed)&(yy<hinge[1]+8)
     jaw=pixels.copy()
-    jaw[~(branch|(np.linalg.norm(xy-hinge,axis=-1)<20)),3]=0
-    pixels[branch,3]=0
+    # Keep the common disk plus only the lower/outer insertion sector. A large
+    # round cap intrudes into the finger opening; a hard split opens Attack06.
+    radius=np.linalg.norm(xy-hinge,axis=-1)
+    hinge_overlap=(radius<28)|((radius<38)&(xx<=hinge[0])&(yy>=hinge[1]-2))
+    jaw[~(branch|hinge_overlap),3]=0
+    pixels[branch&~hinge_overlap,3]=0
     cap=np.asarray(image).copy()
-    cap[np.linalg.norm(xy-hinge,axis=-1)>20,3]=0
+    cap[radius>28,3]=0
     return Image.fromarray(pixels),Image.fromarray(jaw),Image.fromarray(cap)
 
 

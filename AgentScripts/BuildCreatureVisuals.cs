@@ -52,7 +52,7 @@ public static class BuildCreatureVisuals
         }
         var report = new { families = outputs, scenesBefore = before, scenesAfter = after,
             sceneStatePreserved = true, addedSceneObjects = 0, audioSources = 0, gameplayScripts = 0 };
-        string filename = includeClaw ? "prefabs.json" : "scorpion-r5.json";
+        string filename = includeClaw ? "prefabs.json" : "scorpion-r7.json";
         File.WriteAllText(Evidence + filename, JObject.FromObject(report).ToString());
         return report;
     }

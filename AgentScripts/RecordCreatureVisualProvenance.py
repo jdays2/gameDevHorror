@@ -25,7 +25,7 @@ def main():
         paths.update(p for p in source.glob('body-source-*.png'))
         paths.update(p for p in (source/'sources').glob('*.png'))
         if art=='Scorpion':
-            for pattern in ['chela-*.png','tail-*.png','legs-*.png','eyes-emission-source.png','neutral-eyes.png','frames/*/*-eyes.png']:
+            for pattern in ['chela-*.png','tail-*.png','legs-*.png','leg-*.png','eyes-emission-source.png','neutral-eyes.png','frames/*/*-eyes.png']:
                 paths.update(source.glob(pattern))
         assets=list((PROJECT/'Assets/EmergencyShift/Art/Enemies'/art).rglob('*'))
         assets+=list((PROJECT/'Assets/EmergencyShift/Animations/Enemies'/animation).rglob('*'))
@@ -37,11 +37,11 @@ def main():
                 'sources':[record(p) for p in sorted(paths)],
                 'production':[record(p) for p in sorted(assets) if p.is_file()],
                 'generationProvenance':record(source/('image-generation.json' if art=='ClawVisual' else 'provenance.json')),
-                'unityEvidence':'Docs/Validation/CreatureVisuals01/'+('scorpion-r5.json' if art=='Scorpion' else 'prefabs.json'),
+                'unityEvidence':'Docs/Validation/CreatureVisuals01/'+('scorpion-r7.json' if art=='Scorpion' else 'prefabs.json'),
                 'artisticApproval':'Not inferred from import or technical checks.'}
         destination=PROJECT/'Concepts/Used/Visual'/used/'import-manifest.json'
         if art=='Scorpion':
-            result['latestGenerationProvenance']=record(source/'r5-generation.json')
+            result['latestGenerationProvenance']=record(source/'r7-generation.json')
         destination.parent.mkdir(parents=True,exist_ok=True)
         destination.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         print(json.dumps({'family':animation,'sources':len(paths),'production':len(result['production'])}))

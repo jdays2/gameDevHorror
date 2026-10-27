@@ -45,7 +45,7 @@ function options() {
 function describe() {
   const scorpion = $('family').value === 'scorpion';
   $('caption').textContent = scorpion
-    ? 'Короткие клешни с массивной ладонью. На беге хват спокойный; при сближении — раскрытие и резкое смыкание. Атака: 0,56 с, лапы продолжают шаг, скорость снижается с 2,4 до 1,90. Мишень показывает только момент захвата, боевого AI и урона здесь нет.'
+    ? 'Цельный корпус без пустых гнёзд. Короткие клешни с массивной ладонью. На беге хват спокойный; при сближении — раскрытие и резкое смыкание. Атака: 0,56 с, лапы продолжают шаг, скорость снижается с 2,4 до 1,90. Мишень показывает только момент захвата, боевого AI и урона здесь нет.'
     : 'Когтистый: выбранный дизайн J, ходьба, бег, размашистый удар и три композиции останков. Молчаливый визуальный префаб.';
 }
 
@@ -72,6 +72,11 @@ function drawActor(clip, frame, x, y, scale, night, family) {
   ctx.save();
   ctx.translate(x, y);
   if (family === 'claw') ctx.rotate(Math.PI / 2);
+  ctx.save();
+  ctx.translate(6 * scale, 9 * scale);
+  ctx.filter = 'brightness(0) opacity(38%)';
+  drawFrame(clip.image, 512, clip.columns, clip.pivot, frame, scale * 1.035, clip.single);
+  ctx.restore();
   ctx.filter = night ? 'brightness(15%) saturate(70%)' : clip.dead ? 'brightness(60%) saturate(85%)' : 'none';
   drawFrame(clip.image, 512, clip.columns, clip.pivot, frame, scale, clip.single);
   if (clip.emission) {
@@ -110,7 +115,7 @@ function approach(actorIndex, scale) {
   const lead = runPeriod * 9; // enter at the shared neutral gait boundary
   const attackTime = duration(attack);
   const targetY = 140;
-  const contactY = targetY + (.4 * attackTime * attack.reference + .86) * pixels;
+  const contactY = targetY + (.4 * attackTime * attack.reference + .80) * pixels;
   const startY = contactY + lead * runSpeed * pixels;
   const exitTime = (contactY - attackTime * attack.reference * pixels + 300) / (runSpeed * pixels);
   const period = lead + attackTime + exitTime;

@@ -93,7 +93,7 @@ namespace EmergencyShift
 
             bool dead = creature.IsDead;
             // Размер и поза уже содержатся в текущем кадре: дополнительное сжатие силуэта не нужно.
-            float leap = creature.AttackProgress > 0 ? Mathf.Sin(creature.AttackProgress * Mathf.PI) : 0f;
+            float leap = creature.AttackElevation;
             float size = dead ? Mathf.Lerp(1f, 0.95f, Mathf.Clamp01(creature.DeathTime * 2f)) : contactScale - leap * 0.02f;
             Vector2 center = bodyRenderer.transform.position;
             SyncSilhouette(contact, size);

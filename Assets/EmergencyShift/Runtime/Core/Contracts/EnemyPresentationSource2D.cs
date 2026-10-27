@@ -6,6 +6,7 @@ namespace EmergencyShift
     {
         public virtual bool IsWalking => false;
         public virtual bool IsAttacking => false;
+        public virtual float AttackElevation => Mathf.Sin(AttackProgress * Mathf.PI);
         public virtual bool IsOrienting => IsAttacking;
         public virtual bool IsStaggered => false;
         public virtual bool HasEyeDamage => false;

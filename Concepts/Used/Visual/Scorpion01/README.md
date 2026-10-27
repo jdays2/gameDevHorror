@@ -1,9 +1,9 @@
-# Скорпион · импорт TASK-005 · r5
+# Скорпион · импорт TASK-005 · r7
 
-Текущий источник — [Scorpion01 native-r5-compact](../../../Unused/Visual/Scorpion01/README.md). Компактные кровавые клешни, спокойный хват в беге,32кадра атаки на ходу/.56s, десять красных светящихся глаз, хвост с жалом. [Контракт](../../../../Docs/Enemies/SCORPION.md).
+Источник — [Scorpion01 native-r7-stocky](../../../Unused/Visual/Scorpion01/README.md): короткие массивные лапы, цельный корпус r6, компактные кровавые клешни,10 красных глаз, хвост с жалом. [Контракт](../../../../Docs/Enemies/SCORPION.md).
 
-В production импортированы атласы тела/глаз, клипы Idle/Run/Attack, AnimatorController, материал EyeGlow и визуальный ScorpionVisual.prefab. `import-manifest.json` фиксирует точные SHA-256 источников и production-файлов, включая `.meta`; промпты — `r5-generation.json` в источнике. Used означает фактический импорт, а не авторское одобрение.
+Визуальные атласы/клипы/Animator/EyeGlow/ScorpionVisual.prefab перечислены с SHA-256 в import-manifest.json. ScorpionVisual имеет Animator и2 SpriteRenderer; Used означает импорт, а не художественную приёмку.
 
-Префаб содержит один Animator и два SpriteRenderer. Нет AI, урона, коллайдеров, звука и света на каждый глаз. Риг рассчитывается офлайн; игра меняет цельные кадры. Сценарий движения к мишени находится только в просмотрщике. Новых останков Скорпиона пока нет. [Импорт Unity r5](../../../../Docs/Validation/CreatureVisuals01/scorpion-r5.json).
+Отдельный Scorpion.prefab использует те же рисунки и TimedSpriteMotion. Стая/движение/удар/тени/звуки подключены в комнате04 MechanicsSandbox. Ожидание игрового prefab — Run00, а не отличающаяся Neutral. Игровые файлы — runtime-manifest.json. [Проверки](../../../../Docs/Validation/ScorpionRoom01/README.md).
 
-Сцены не редактировались. Play и нагрузочный тест не запускались. Notion пропущен по поручению владельца.
+Каркас →объёмы →40 функциональных ID/креплений →кожа →56 кадров осмотрены отдельно. Локальный сектор перекрытия шарнира исправляет щель без широкой накладки в проём. IK работает офлайн. Промпты —r6-generation.json/r7-generation.json в источнике. Старые версии доступны в Git. Notion пропущен по поручению владельца.

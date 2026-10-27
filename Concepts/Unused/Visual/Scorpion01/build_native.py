@@ -9,6 +9,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import build_anatomy as anatomy
 import scorpion_parts_r5 as parts
+import scorpion_legs_r7 as walking
 
 ROOT=Path(__file__).resolve().parent
 PROJECT=ROOT.parents[3]
@@ -43,7 +44,7 @@ def project(points):
 
 def plan():
     p=anatomy.make_plan()
-    p['revision']='scorpion-native-r5-compact'
+    p['revision']='scorpion-native-r7-stocky'
     p['sourceStrategy']='Native modular artwork. Whole generated concepts v1-v4 failed the separate skeleton gate and are not approved masters.'
     p['changesFromR1']={'kneeHeight':[.20,.32],
                        'reason':'Reserve true 3D reach for a fast grounded gait without flattening the legs or extending the image-plane bones.',
@@ -67,6 +68,9 @@ def plan():
     p['changesFromR4']={'pincers':'Short pedipalps, bulbous manus, short dark grasping tips; stable nearly closed running grip.',
                         'attack':'Two continuing gait cycles during a moving front claw capture.',
                         'surface':'Quiet ash/olive with deliberate larger blood smears, ten red eyes.'}
+    p['changesFromR5']={'skin':'Ten empty painted body sockets and their rims filled with continuous quiet skin.',
+                        'anatomyAndMotionUnchanged':True}
+    walking.update_plan(p)
     write(ROOT/'native-plan.json',p)
     anatomy.projections(p).save(ROOT/'02-native-independent-projections.jpg',quality=93)
     anatomy.top(p).save(ROOT/'02-native-independent-bones.png')
@@ -386,46 +390,9 @@ def clean_part_pixels(rgba):
 
 
 def surfaces():
-    anchors=json.loads((ROOT/'source-attachments.json').read_text())
-    atlas=Image.open(SOURCES/'sage-atlas.png').convert('RGBA')
-    ids=['LF','RF','LM','RM','LR','RR']
-    data={}
-    for index,ident in enumerate(ids):
-        layer=1+index*2
-        xy=(layer%4*358,layer//4*406)
-        image=atlas.crop((xy[0],xy[1],xy[0]+358,xy[1]+406))
-        rgba=np.asarray(image).copy()
-        yy,xx=np.mgrid[:406,:358]
-        points=np.stack([xx,yy],axis=-1)
-        chain=anchors['legs'][ident]
-        proximal=distance_to_chain(points,chain[:2])
-        distal=distance_to_chain(points,chain[1:])
-        # Native part ownership: omit neighbouring torso/limb pixels in donor
-        # atlas cells, while retaining a full joint cap and root overlap.
-        rgba[(proximal>24)&(distal>17),3]=0
-        root=np.asarray(chain[0],dtype=float)
-        axis=np.asarray(chain[1],dtype=float)-root
-        axis/=np.linalg.norm(axis)
-        behind=np.sum((points-root)*axis,axis=-1)<-4
-        rgba[behind&(np.linalg.norm(points-root,axis=-1)>6),3]=0
-        along=np.sum((points-root)*axis,axis=-1)
-        across=np.abs((points[...,0]-root[0])*axis[1]-(points[...,1]-root[1])*axis[0])
-        rgba[(along<19)&(across>9),3]=0
-        image=Image.fromarray(clean_part_pixels(rgba))
-        data[ident]=Surface(image,anchors['legs'][ident])
-    # Pedipalp shafts reuse one quiet proximal painted segment, without its talon.
-    cell=5
-    xy=(cell%4*358,cell//4*406)
-    image=atlas.crop((xy[0],xy[1],xy[0]+358,xy[1]+406))
-    rgba=np.asarray(image).copy()
-    yy,xx=np.mgrid[:406,:358]
-    pixels=np.stack([xx,yy],axis=-1)
-    a,b=map(np.asarray,anchors['legs']['LM'][:2])
-    axis=(b-a)/np.linalg.norm(b-a)
-    along=np.sum((pixels-a)*axis,axis=-1)
-    length=np.linalg.norm(b-a)
-    rgba[distance_to_chain(pixels,[a+axis*20,b-axis*26])>9,3]=0
-    data['arm']=Surface(Image.fromarray(rgba),[a+axis*12,b-axis*18],width_scale=.65)
+    data,arm,cap=walking.surfaces()
+    data['arm']=arm
+    data['jointCap']=cap
     data['chela']=parts.chela_layers()
     data['tail']=Surface(Image.open(ROOT/'tail-source-r4.png'),parts.TAIL)
     return data
@@ -456,10 +423,7 @@ def render(p,surface):
         canvas.alpha_composite(chela)
     # Reusable painted attachment caps belong to the declared hip/root nodes.
     # They cover ownership cuts under the torso; they add no new bone or hinge.
-    atlas=Image.open(SOURCES/'sage-atlas.png').convert('RGBA')
-    cell=5
-    x,y=cell%4*358+53,cell//4*406+189
-    cap=atlas.crop((x-12,y-12,x+12,y+12))
+    cap=surface['jointCap'].resize((24,24),Image.Resampling.LANCZOS)
     cap_mask=Image.new('L',(24,24))
     ImageDraw.Draw(cap_mask).ellipse((1,1,22,22),fill=255)
     original=np.asarray(cap).copy()
@@ -470,10 +434,10 @@ def render(p,surface):
     for root in roots:
         x,y=project(root)
         canvas.alpha_composite(cap,(round(x)-13,round(y)-13))
-    elbow_cap=cap.resize((36,36),Image.Resampling.LANCZOS)
+    elbow_cap=cap.resize((32,32),Image.Resampling.LANCZOS)
     for palp in p['palps'].values():
         x,y=project(palp['arm'][1])
-        canvas.alpha_composite(elbow_cap,(round(x)-18,round(y)-18))
+        canvas.alpha_composite(elbow_cap,(round(x)-16,round(y)-16))
     canvas.alpha_composite(torso_surface(p))
     return canvas,{'flippedTriangles':sum(m['flippedTriangles'] for m in metrics),
                    'correctedSurfaceTriangles':sum(m['correctedSurfaceTriangles'] for m in metrics),
@@ -484,7 +448,7 @@ def render(p,surface):
 
 
 def torso_surface(p,emission=False):
-    name='eyes-emission-source.png' if emission else 'body-source-r5-blood.png'
+    name='eyes-emission-source.png' if emission else 'body-source-r6-sealed.png'
     torso=Image.open(ROOT/name).convert('RGBA')
     # A uniform body registration, anchored by anterior crown and tail socket.
     # All native bone coordinates remain those of the independent plan.
@@ -545,9 +509,9 @@ def diagnostic(kind):
     for ident,chain in p['walkingLegs'].items():
         root,knee,tip=map(np.asarray,chain)
         groups.extend([
-            {'id':ident+'-P','origin':(root+(knee-root)*.08).tolist(),'insertion':(root+(knee-root)*.85).tolist(),'width':.040,'function':'proximal protraction/retraction aggregate'},
-            {'id':ident+'-J','origin':(root+(knee-root)*.72).tolist(),'insertion':(knee+(tip-knee)*.12).tolist(),'width':.035,'function':'joint flexion/extension and stabilizer aggregate'},
-            {'id':ident+'-T','origin':(knee+(tip-knee)*.08).tolist(),'insertion':(knee+(tip-knee)*.78).tolist(),'width':.018,'function':'distal tendon/sheath, bone tip has no muscle belly'}])
+            {'id':ident+'-P','origin':(root+(knee-root)*.08).tolist(),'insertion':(root+(knee-root)*.85).tolist(),'width':.052,'function':'proximal protraction/retraction aggregate'},
+            {'id':ident+'-J','origin':(root+(knee-root)*.72).tolist(),'insertion':(knee+(tip-knee)*.12).tolist(),'width':.043,'function':'joint flexion/extension and stabilizer aggregate'},
+            {'id':ident+'-T','origin':(knee+(tip-knee)*.08).tolist(),'insertion':(knee+(tip-knee)*.78).tolist(),'width':.028,'function':'distal tendon/sheath, bone tip has no muscle belly'}])
     for side,palp in p['pedipalps'].items():
         chain=palp['arm']+[palp['palm']]
         for index,(a,b) in enumerate(zip(chain,chain[1:])):
