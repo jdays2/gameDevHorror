@@ -1,0 +1,1328 @@
+{
+  "status": "MATH-ONLY PROPOSAL; no implementation or artistic tempo acceptance",
+  "source_sha256": "b3dd2c08376412c58676c492f686986b605df24c1e73b677e96ef90408a6f12b",
+  "assumptions": {
+    "compact_stride_scale": 0.8,
+    "compact_walking_fold": 0.5,
+    "fore_hind_support_fraction": 0.56,
+    "middle_support_fraction": 0.52,
+    "stance_foot_height": 0,
+    "hip_height": ".13+.07*fold",
+    "grounded_knee_height": "hip_height/2",
+    "walking_folds_checked": "0..0.5 inclusive,1001samples; analytic interval endpoints cover every stance phase at each fold",
+    "reach_clamp_epsilon": 0.0001
+  },
+  "critical_formula": "A=supportFraction*0.5*cycleDistance*strideScale. Runtime phase rate=speed/(cycleDistance*strideScale*actorScale). Increasing runtime cycle distance alone without increasing baked stance amplitude causes sliding.",
+  "lerp_caveat": "Current C# interpolates extended->guarded with walkingFold itself (0..0.5), not walkingFold/.5. Compact row4 therefore uses the MIDPOINT of the two lane definitions; strideScale independently reaches .8 at fold.5.",
+  "results": [
+    {
+      "id": "unchanged_old_lanes",
+      "mount_factors": [
+        0.65,
+        0.65,
+        0.7,
+        0.7,
+        0.72,
+        0.72
+      ],
+      "foot_centers_are": "specified offsets relative to chosen hip",
+      "cycle_max_without_reach_clamp_by_leg": [
+        {
+          "id": "LF",
+          "maximum_cycle_units": 1.059619156940352,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RF",
+          "maximum_cycle_units": 1.059619156940352,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LM",
+          "maximum_cycle_units": 0.9620190573207815,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RM",
+          "maximum_cycle_units": 0.9620190573207815,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LR",
+          "maximum_cycle_units": 1.013549840892484,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RR",
+          "maximum_cycle_units": 1.013549840892484,
+          "limiting_fold": 0.0
+        }
+      ],
+      "cycle_samples": [
+        {
+          "cycle_units": 1.2,
+          "stance_reach_no_clamp": false,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": -0.051836461728357985,
+            "lower_margin_after_clamp_epsilon": 0.2446360457629171
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.13932071927113798,
+            "lower_margin_after_clamp_epsilon": 0.18273261313656608
+          }
+        },
+        {
+          "cycle_units": 1.25,
+          "stance_reach_no_clamp": false,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": -0.06574411803801383,
+            "lower_margin_after_clamp_epsilon": 0.23169210875231733
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.12821784408955894,
+            "lower_margin_after_clamp_epsilon": 0.17266134174012304
+          }
+        },
+        {
+          "cycle_units": 1.3,
+          "stance_reach_no_clamp": false,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": -0.07965440352634834,
+            "lower_margin_after_clamp_epsilon": 0.21885378533769018
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.11711218340187812,
+            "lower_margin_after_clamp_epsilon": 0.16270247868645699
+          }
+        },
+        {
+          "cycle_units": 1.325,
+          "stance_reach_no_clamp": false,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": -0.08661049748010985,
+            "lower_margin_after_clamp_epsilon": 0.21247906522486526
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.11155834552104249,
+            "lower_margin_after_clamp_epsilon": 0.15777023578163346
+          }
+        }
+      ],
+      "maximum_cycle_units_all_legs": 0.9620190573207815
+    },
+    {
+      "id": "proposed_lanes_current_mounts",
+      "mount_factors": [
+        0.65,
+        0.65,
+        0.7,
+        0.7,
+        0.72,
+        0.72
+      ],
+      "foot_centers_are": "specified offsets relative to chosen hip",
+      "cycle_max_without_reach_clamp_by_leg": [
+        {
+          "id": "LF",
+          "maximum_cycle_units": 1.3810477283689233,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RF",
+          "maximum_cycle_units": 1.3810477283689233,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LM",
+          "maximum_cycle_units": 1.4555610599512219,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RM",
+          "maximum_cycle_units": 1.4555610599512219,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LR",
+          "maximum_cycle_units": 1.334978412321055,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RR",
+          "maximum_cycle_units": 1.334978412321055,
+          "limiting_fold": 0.0
+        }
+      ],
+      "cycle_samples": [
+        {
+          "cycle_units": 1.2,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.03749859723233928,
+            "lower_margin_after_clamp_epsilon": 0.16375373030815193
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.20864215761030913,
+            "lower_margin_after_clamp_epsilon": 0.12207893533425489
+          }
+        },
+        {
+          "cycle_units": 1.25,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.023610963700079646,
+            "lower_margin_after_clamp_epsilon": 0.15186479179562112
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.19755983941689648,
+            "lower_margin_after_clamp_epsilon": 0.11306673865871135
+          }
+        },
+        {
+          "cycle_units": 1.3,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.009719812454369148,
+            "lower_margin_after_clamp_epsilon": 0.14026238708546013
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.18647381904957028,
+            "lower_margin_after_clamp_epsilon": 0.10433957224464128
+          }
+        },
+        {
+          "cycle_units": 1.325,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.0027729687152389104,
+            "lower_margin_after_clamp_epsilon": 0.13458551598353524
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.18092947445025875,
+            "lower_margin_after_clamp_epsilon": 0.100098378687228
+          }
+        }
+      ],
+      "maximum_cycle_units_all_legs": 1.334978412321055
+    },
+    {
+      "id": "proposed_relative_lanes_inner_fore_middle_mounts",
+      "mount_factors": [
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.72,
+        0.72
+      ],
+      "foot_centers_are": "specified offsets relative to chosen hip",
+      "cycle_max_without_reach_clamp_by_leg": [
+        {
+          "id": "LF",
+          "maximum_cycle_units": 1.3810477283689233,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RF",
+          "maximum_cycle_units": 1.3810477283689233,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LM",
+          "maximum_cycle_units": 1.4555610599512219,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RM",
+          "maximum_cycle_units": 1.4555610599512219,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LR",
+          "maximum_cycle_units": 1.334978412321055,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RR",
+          "maximum_cycle_units": 1.334978412321055,
+          "limiting_fold": 0.0
+        }
+      ],
+      "cycle_samples": [
+        {
+          "cycle_units": 1.2,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.03749859723233928,
+            "lower_margin_after_clamp_epsilon": 0.16375373030815193
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.20864215761030913,
+            "lower_margin_after_clamp_epsilon": 0.12207893533425489
+          }
+        },
+        {
+          "cycle_units": 1.25,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.023610963700079646,
+            "lower_margin_after_clamp_epsilon": 0.15186479179562112
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.19755983941689648,
+            "lower_margin_after_clamp_epsilon": 0.11306673865871135
+          }
+        },
+        {
+          "cycle_units": 1.3,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.009719812454369148,
+            "lower_margin_after_clamp_epsilon": 0.14026238708546013
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.18647381904957028,
+            "lower_margin_after_clamp_epsilon": 0.10433957224464128
+          }
+        },
+        {
+          "cycle_units": 1.325,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.0027729687152389104,
+            "lower_margin_after_clamp_epsilon": 0.13458551598353524
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.18092947445025875,
+            "lower_margin_after_clamp_epsilon": 0.100098378687228
+          }
+        }
+      ],
+      "maximum_cycle_units_all_legs": 1.334978412321055
+    },
+    {
+      "id": "same_absolute_world_feet_inner_fore_middle_mounts",
+      "mount_factors": [
+        0.4,
+        0.4,
+        0.4,
+        0.4,
+        0.72,
+        0.72
+      ],
+      "foot_centers_are": "old-current world positions retained",
+      "cycle_max_without_reach_clamp_by_leg": [
+        {
+          "id": "LF",
+          "maximum_cycle_units": 1.2166681834164692,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RF",
+          "maximum_cycle_units": 1.2244608566751023,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LM",
+          "maximum_cycle_units": 1.1760885559467633,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RM",
+          "maximum_cycle_units": 1.1444451021570325,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LR",
+          "maximum_cycle_units": 1.334978412321055,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RR",
+          "maximum_cycle_units": 1.334978412321055,
+          "limiting_fold": 0.0
+        }
+      ],
+      "cycle_samples": [
+        {
+          "cycle_units": 1.2,
+          "stance_reach_no_clamp": false,
+          "worst_upper_margin": {
+            "id": "RM",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": -0.009570088852899006,
+            "lower_margin_after_clamp_epsilon": 0.592090073551021
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.20864215761030913,
+            "lower_margin_after_clamp_epsilon": 0.12207893533425489
+          }
+        },
+        {
+          "cycle_units": 1.25,
+          "stance_reach_no_clamp": false,
+          "worst_upper_margin": {
+            "id": "RM",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": -0.01830567128688676,
+            "lower_margin_after_clamp_epsilon": 0.592090073551021
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.19755983941689648,
+            "lower_margin_after_clamp_epsilon": 0.11306673865871135
+          }
+        },
+        {
+          "cycle_units": 1.3,
+          "stance_reach_no_clamp": false,
+          "worst_upper_margin": {
+            "id": "RM",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": -0.027153401454985904,
+            "lower_margin_after_clamp_epsilon": 0.592090073551021
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.18647381904957028,
+            "lower_margin_after_clamp_epsilon": 0.10433957224464128
+          }
+        },
+        {
+          "cycle_units": 1.325,
+          "stance_reach_no_clamp": false,
+          "worst_upper_margin": {
+            "id": "RM",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": -0.0316182043168759,
+            "lower_margin_after_clamp_epsilon": 0.592090073551021
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.18092947445025875,
+            "lower_margin_after_clamp_epsilon": 0.100098378687228
+          }
+        }
+      ],
+      "maximum_cycle_units_all_legs": 1.1444451021570325
+    },
+    {
+      "id": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "mount_factors": [
+        [
+          0.4,
+          0.65
+        ],
+        [
+          0.4,
+          0.65
+        ],
+        [
+          0.4,
+          0.4
+        ],
+        [
+          0.4,
+          0.4
+        ],
+        [
+          0.72,
+          0.72
+        ],
+        [
+          0.72,
+          0.72
+        ]
+      ],
+      "foot_centers_are": "specified offsets relative to chosen hip",
+      "cycle_max_without_reach_clamp_by_leg": [
+        {
+          "id": "LF",
+          "maximum_cycle_units": 1.3921071666436657,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RF",
+          "maximum_cycle_units": 1.3921071666436657,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LM",
+          "maximum_cycle_units": 1.4555610599512219,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RM",
+          "maximum_cycle_units": 1.4555610599512219,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "LR",
+          "maximum_cycle_units": 1.334978412321055,
+          "limiting_fold": 0.0
+        },
+        {
+          "id": "RR",
+          "maximum_cycle_units": 1.334978412321055,
+          "limiting_fold": 0.0
+        }
+      ],
+      "cycle_samples": [
+        {
+          "cycle_units": 1.2,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.03749859723233928,
+            "lower_margin_after_clamp_epsilon": 0.16375373030815193
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.20864215761030913,
+            "lower_margin_after_clamp_epsilon": 0.12207893533425489
+          }
+        },
+        {
+          "cycle_units": 1.25,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.023610963700079646,
+            "lower_margin_after_clamp_epsilon": 0.15186479179562112
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.19755983941689648,
+            "lower_margin_after_clamp_epsilon": 0.11306673865871135
+          }
+        },
+        {
+          "cycle_units": 1.3,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.009719812454369148,
+            "lower_margin_after_clamp_epsilon": 0.14026238708546013
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.18647381904957028,
+            "lower_margin_after_clamp_epsilon": 0.10433957224464128
+          }
+        },
+        {
+          "cycle_units": 1.325,
+          "stance_reach_no_clamp": true,
+          "worst_upper_margin": {
+            "id": "LR",
+            "fold": 0.0,
+            "upper_margin_after_clamp_epsilon": 0.0027729687152389104,
+            "lower_margin_after_clamp_epsilon": 0.13458551598353524
+          },
+          "worst_lower_margin": {
+            "id": "LR",
+            "fold": 0.5,
+            "upper_margin_after_clamp_epsilon": 0.18092947445025875,
+            "lower_margin_after_clamp_epsilon": 0.100098378687228
+          }
+        }
+      ],
+      "maximum_cycle_units_all_legs": 1.334978412321055
+    }
+  ],
+  "recommended_unchanged_mounts_range": {
+    "cycle_units": [
+      1.2,
+      1.3
+    ],
+    "compact_stride_scale": 0.8,
+    "normal_relative_lanes": {
+      "fore": [
+        "inward .085",
+        "forward .52"
+      ],
+      "middle": [
+        "outward .53",
+        "rear .22"
+      ],
+      "hind": [
+        "inward .11",
+        "rear .52"
+      ]
+    },
+    "guarded_lane_definitions": {
+      "fore": [
+        "inward .075",
+        "forward .30"
+      ],
+      "middle": [
+        "outward .46",
+        "rear .14"
+      ],
+      "hind": [
+        "inward .09",
+        "rear .30"
+      ]
+    },
+    "caveat": "Reach-only safe range under stated construct, not a skin, foot-ground material, sector, motion or art PASS.1.30 leaves about.01unit worst reach margin, so1.25 is more conservative. Actual3D length/physical anatomy is not inferred fromPNG."
+  },
+  "absolute_foot_plans_cycle1p3": [
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0,
+      "id": "LF",
+      "mount_xy": [
+        -0.11607142857142858,
+        0.12767857142857142
+      ],
+      "foot_world_center_xy": [
+        -0.03107142857142857,
+        0.6476785714285714
+      ],
+      "relative_lane_xy": [
+        0.085,
+        0.52
+      ],
+      "stance_y_offset_half_range": 0.36400000000000005,
+      "stance_world_endpoints_xy": [
+        [
+          -0.03107142857142857,
+          1.0116785714285714
+        ],
+        [
+          -0.03107142857142857,
+          0.2836785714285714
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0,
+      "id": "RF",
+      "mount_xy": [
+        0.11316964285714286,
+        0.12187500000000001
+      ],
+      "foot_world_center_xy": [
+        0.02816964285714285,
+        0.641875
+      ],
+      "relative_lane_xy": [
+        -0.085,
+        0.52
+      ],
+      "stance_y_offset_half_range": 0.36400000000000005,
+      "stance_world_endpoints_xy": [
+        [
+          0.02816964285714285,
+          1.005875
+        ],
+        [
+          0.02816964285714285,
+          0.2778749999999999
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0,
+      "id": "LM",
+      "mount_xy": [
+        -0.165625,
+        -0.0031249999999999997
+      ],
+      "foot_world_center_xy": [
+        -0.695625,
+        -0.223125
+      ],
+      "relative_lane_xy": [
+        -0.53,
+        -0.22
+      ],
+      "stance_y_offset_half_range": 0.338,
+      "stance_world_endpoints_xy": [
+        [
+          -0.695625,
+          0.11487500000000003
+        ],
+        [
+          -0.695625,
+          -0.561125
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0,
+      "id": "RM",
+      "mount_xy": [
+        0.16874999999999998,
+        -0.01875
+      ],
+      "foot_world_center_xy": [
+        0.69875,
+        -0.23875
+      ],
+      "relative_lane_xy": [
+        0.53,
+        -0.22
+      ],
+      "stance_y_offset_half_range": 0.338,
+      "stance_world_endpoints_xy": [
+        [
+          0.69875,
+          0.09925000000000003
+        ],
+        [
+          0.69875,
+          -0.57675
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0,
+      "id": "LR",
+      "mount_xy": [
+        -0.14785714285714285,
+        -0.16714285714285715
+      ],
+      "foot_world_center_xy": [
+        -0.03785714285714285,
+        -0.6871428571428572
+      ],
+      "relative_lane_xy": [
+        0.11,
+        -0.52
+      ],
+      "stance_y_offset_half_range": 0.36400000000000005,
+      "stance_world_endpoints_xy": [
+        [
+          -0.03785714285714285,
+          -0.3231428571428571
+        ],
+        [
+          -0.03785714285714285,
+          -1.0511428571428572
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0,
+      "id": "RR",
+      "mount_xy": [
+        0.14464285714285716,
+        -0.16714285714285715
+      ],
+      "foot_world_center_xy": [
+        0.034642857142857156,
+        -0.6871428571428572
+      ],
+      "relative_lane_xy": [
+        -0.11,
+        -0.52
+      ],
+      "stance_y_offset_half_range": 0.36400000000000005,
+      "stance_world_endpoints_xy": [
+        [
+          0.034642857142857156,
+          -0.3231428571428571
+        ],
+        [
+          0.034642857142857156,
+          -1.0511428571428572
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0.5,
+      "id": "LF",
+      "mount_xy": [
+        -0.11607142857142858,
+        0.12767857142857142
+      ],
+      "foot_world_center_xy": [
+        -0.036071428571428574,
+        0.5376785714285715
+      ],
+      "relative_lane_xy": [
+        0.08,
+        0.41000000000000003
+      ],
+      "stance_y_offset_half_range": 0.29120000000000007,
+      "stance_world_endpoints_xy": [
+        [
+          -0.036071428571428574,
+          0.8288785714285716
+        ],
+        [
+          -0.036071428571428574,
+          0.24647857142857138
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0.5,
+      "id": "RF",
+      "mount_xy": [
+        0.11316964285714286,
+        0.12187500000000001
+      ],
+      "foot_world_center_xy": [
+        0.033169642857142856,
+        0.5318750000000001
+      ],
+      "relative_lane_xy": [
+        -0.08,
+        0.41000000000000003
+      ],
+      "stance_y_offset_half_range": 0.29120000000000007,
+      "stance_world_endpoints_xy": [
+        [
+          0.033169642857142856,
+          0.8230750000000002
+        ],
+        [
+          0.033169642857142856,
+          0.24067500000000003
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0.5,
+      "id": "LM",
+      "mount_xy": [
+        -0.165625,
+        -0.0031249999999999997
+      ],
+      "foot_world_center_xy": [
+        -0.660625,
+        -0.18312499999999998
+      ],
+      "relative_lane_xy": [
+        -0.495,
+        -0.18
+      ],
+      "stance_y_offset_half_range": 0.27040000000000003,
+      "stance_world_endpoints_xy": [
+        [
+          -0.660625,
+          0.08727500000000005
+        ],
+        [
+          -0.660625,
+          -0.453525
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0.5,
+      "id": "RM",
+      "mount_xy": [
+        0.16874999999999998,
+        -0.01875
+      ],
+      "foot_world_center_xy": [
+        0.66375,
+        -0.19874999999999998
+      ],
+      "relative_lane_xy": [
+        0.495,
+        -0.18
+      ],
+      "stance_y_offset_half_range": 0.27040000000000003,
+      "stance_world_endpoints_xy": [
+        [
+          0.66375,
+          0.07165000000000005
+        ],
+        [
+          0.66375,
+          -0.46915
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0.5,
+      "id": "LR",
+      "mount_xy": [
+        -0.14785714285714285,
+        -0.16714285714285715
+      ],
+      "foot_world_center_xy": [
+        -0.04785714285714285,
+        -0.5771428571428572
+      ],
+      "relative_lane_xy": [
+        0.1,
+        -0.41000000000000003
+      ],
+      "stance_y_offset_half_range": 0.29120000000000007,
+      "stance_world_endpoints_xy": [
+        [
+          -0.04785714285714285,
+          -0.2859428571428571
+        ],
+        [
+          -0.04785714285714285,
+          -0.8683428571428573
+        ]
+      ]
+    },
+    {
+      "scenario": "proposed_lanes_current_mounts",
+      "fold": 0.5,
+      "id": "RR",
+      "mount_xy": [
+        0.14464285714285716,
+        -0.16714285714285715
+      ],
+      "foot_world_center_xy": [
+        0.04464285714285715,
+        -0.5771428571428572
+      ],
+      "relative_lane_xy": [
+        -0.1,
+        -0.41000000000000003
+      ],
+      "stance_y_offset_half_range": 0.29120000000000007,
+      "stance_world_endpoints_xy": [
+        [
+          0.04464285714285715,
+          -0.2859428571428571
+        ],
+        [
+          0.04464285714285715,
+          -0.8683428571428573
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0,
+      "id": "LF",
+      "mount_xy": [
+        -0.07142857142857144,
+        0.12767857142857142
+      ],
+      "foot_world_center_xy": [
+        -0.03142857142857144,
+        0.6476785714285714
+      ],
+      "relative_lane_xy": [
+        0.04,
+        0.52
+      ],
+      "stance_y_offset_half_range": 0.36400000000000005,
+      "stance_world_endpoints_xy": [
+        [
+          -0.03142857142857144,
+          1.0116785714285714
+        ],
+        [
+          -0.03142857142857144,
+          0.2836785714285714
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0,
+      "id": "RF",
+      "mount_xy": [
+        0.06964285714285715,
+        0.12187500000000001
+      ],
+      "foot_world_center_xy": [
+        0.029642857142857144,
+        0.641875
+      ],
+      "relative_lane_xy": [
+        -0.04,
+        0.52
+      ],
+      "stance_y_offset_half_range": 0.36400000000000005,
+      "stance_world_endpoints_xy": [
+        [
+          0.029642857142857144,
+          1.005875
+        ],
+        [
+          0.029642857142857144,
+          0.2778749999999999
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0,
+      "id": "LM",
+      "mount_xy": [
+        -0.09464285714285714,
+        -0.0017857142857142857
+      ],
+      "foot_world_center_xy": [
+        -0.6246428571428572,
+        -0.22178571428571428
+      ],
+      "relative_lane_xy": [
+        -0.53,
+        -0.22
+      ],
+      "stance_y_offset_half_range": 0.338,
+      "stance_world_endpoints_xy": [
+        [
+          -0.6246428571428572,
+          0.11621428571428574
+        ],
+        [
+          -0.6246428571428572,
+          -0.5597857142857143
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0,
+      "id": "RM",
+      "mount_xy": [
+        0.09642857142857143,
+        -0.010714285714285714
+      ],
+      "foot_world_center_xy": [
+        0.6264285714285714,
+        -0.2307142857142857
+      ],
+      "relative_lane_xy": [
+        0.53,
+        -0.22
+      ],
+      "stance_y_offset_half_range": 0.338,
+      "stance_world_endpoints_xy": [
+        [
+          0.6264285714285714,
+          0.10728571428571432
+        ],
+        [
+          0.6264285714285714,
+          -0.5687142857142857
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0,
+      "id": "LR",
+      "mount_xy": [
+        -0.14785714285714285,
+        -0.16714285714285715
+      ],
+      "foot_world_center_xy": [
+        -0.03785714285714285,
+        -0.6871428571428572
+      ],
+      "relative_lane_xy": [
+        0.11,
+        -0.52
+      ],
+      "stance_y_offset_half_range": 0.36400000000000005,
+      "stance_world_endpoints_xy": [
+        [
+          -0.03785714285714285,
+          -0.3231428571428571
+        ],
+        [
+          -0.03785714285714285,
+          -1.0511428571428572
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0,
+      "id": "RR",
+      "mount_xy": [
+        0.14464285714285716,
+        -0.16714285714285715
+      ],
+      "foot_world_center_xy": [
+        0.034642857142857156,
+        -0.6871428571428572
+      ],
+      "relative_lane_xy": [
+        -0.11,
+        -0.52
+      ],
+      "stance_y_offset_half_range": 0.36400000000000005,
+      "stance_world_endpoints_xy": [
+        [
+          0.034642857142857156,
+          -0.3231428571428571
+        ],
+        [
+          0.034642857142857156,
+          -1.0511428571428572
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0.5,
+      "id": "LF",
+      "mount_xy": [
+        -0.07142857142857144,
+        0.12767857142857142
+      ],
+      "foot_world_center_xy": [
+        -0.03392857142857143,
+        0.5376785714285715
+      ],
+      "relative_lane_xy": [
+        0.037500000000000006,
+        0.41000000000000003
+      ],
+      "stance_y_offset_half_range": 0.29120000000000007,
+      "stance_world_endpoints_xy": [
+        [
+          -0.03392857142857143,
+          0.8288785714285716
+        ],
+        [
+          -0.03392857142857143,
+          0.24647857142857138
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0.5,
+      "id": "RF",
+      "mount_xy": [
+        0.06964285714285715,
+        0.12187500000000001
+      ],
+      "foot_world_center_xy": [
+        0.03214285714285714,
+        0.5318750000000001
+      ],
+      "relative_lane_xy": [
+        -0.037500000000000006,
+        0.41000000000000003
+      ],
+      "stance_y_offset_half_range": 0.29120000000000007,
+      "stance_world_endpoints_xy": [
+        [
+          0.03214285714285714,
+          0.8230750000000002
+        ],
+        [
+          0.03214285714285714,
+          0.24067500000000003
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0.5,
+      "id": "LM",
+      "mount_xy": [
+        -0.09464285714285714,
+        -0.0017857142857142857
+      ],
+      "foot_world_center_xy": [
+        -0.5896428571428571,
+        -0.18178571428571427
+      ],
+      "relative_lane_xy": [
+        -0.495,
+        -0.18
+      ],
+      "stance_y_offset_half_range": 0.27040000000000003,
+      "stance_world_endpoints_xy": [
+        [
+          -0.5896428571428571,
+          0.08861428571428576
+        ],
+        [
+          -0.5896428571428571,
+          -0.4521857142857143
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0.5,
+      "id": "RM",
+      "mount_xy": [
+        0.09642857142857143,
+        -0.010714285714285714
+      ],
+      "foot_world_center_xy": [
+        0.5914285714285714,
+        -0.1907142857142857
+      ],
+      "relative_lane_xy": [
+        0.495,
+        -0.18
+      ],
+      "stance_y_offset_half_range": 0.27040000000000003,
+      "stance_world_endpoints_xy": [
+        [
+          0.5914285714285714,
+          0.07968571428571433
+        ],
+        [
+          0.5914285714285714,
+          -0.4611142857142857
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0.5,
+      "id": "LR",
+      "mount_xy": [
+        -0.14785714285714285,
+        -0.16714285714285715
+      ],
+      "foot_world_center_xy": [
+        -0.04785714285714285,
+        -0.5771428571428572
+      ],
+      "relative_lane_xy": [
+        0.1,
+        -0.41000000000000003
+      ],
+      "stance_y_offset_half_range": 0.29120000000000007,
+      "stance_world_endpoints_xy": [
+        [
+          -0.04785714285714285,
+          -0.2859428571428571
+        ],
+        [
+          -0.04785714285714285,
+          -0.8683428571428573
+        ]
+      ]
+    },
+    {
+      "scenario": "new_deep_foreX40Y65_middleXY40_relative_lanes",
+      "fold": 0.5,
+      "id": "RR",
+      "mount_xy": [
+        0.14464285714285716,
+        -0.16714285714285715
+      ],
+      "foot_world_center_xy": [
+        0.04464285714285715,
+        -0.5771428571428572
+      ],
+      "relative_lane_xy": [
+        -0.1,
+        -0.41000000000000003
+      ],
+      "stance_y_offset_half_range": 0.29120000000000007,
+      "stance_world_endpoints_xy": [
+        [
+          0.04464285714285715,
+          -0.2859428571428571
+        ],
+        [
+          0.04464285714285715,
+          -0.8683428571428573
+        ]
+      ]
+    }
+  ],
+  "tempo_at_unit_actor_scale": [
+    {
+      "cycle_units": 1.2,
+      "open_walk1p2_cycles_per_second": 1.0,
+      "open_pursuit1p5_cycles_per_second": 1.25,
+      "compact_retreat3p8_cycles_per_second": 3.9583333333333335
+    },
+    {
+      "cycle_units": 1.25,
+      "open_walk1p2_cycles_per_second": 0.96,
+      "open_pursuit1p5_cycles_per_second": 1.2,
+      "compact_retreat3p8_cycles_per_second": 3.8
+    },
+    {
+      "cycle_units": 1.3,
+      "open_walk1p2_cycles_per_second": 0.923076923076923,
+      "open_pursuit1p5_cycles_per_second": 1.1538461538461537,
+      "compact_retreat3p8_cycles_per_second": 3.6538461538461537
+    }
+  ],
+  "limits": [
+    "Do not change mount factors while calling relative offsets world-fixed lanes. Keep explicit world centers in plans.",
+    "Keeping absolute feet while moving fore/middle mounts inward to.4 reduces reach and fails this1.2\u20131.3cycle proposal; see scenario4.",
+    "Full-tuck raised-pose interpolation and knee sectors need their own new canonical gate after one proposal is chosen.",
+    "Visual toe contact, actual authored displacement, footspeed and artistic calmness require native movement video after coherent art."
+  ]
+}

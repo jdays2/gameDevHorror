@@ -1,0 +1,104 @@
+{
+  "status": "CONFIRMED_EYE_THRESHOLD_DEFECT; OLD_BODY_AND_TEMPORAL_REVIEW_CONTINUES; EYE_GATE_OPEN",
+  "sourceFile": "Assets\\EmergencyShift\\Runtime\\Presentation\\Visuals\\CreatureSpriteAnimator2D.cs",
+  "actualAfterSha256": "75fc6c890b1b63ffb0908a7f253ed21377d58bf18208f1b601706665f77438df",
+  "beforeReconstructedSha256": "73b623f166567e4f9af2b1a088124cffcf515d28a1bfd2687cce1e63d4aa3e47",
+  "beforeProvenance": "Old predicate and discrete iris line personally read before diagnosis; entire previous text reconstructed from root-confirmed one-line delta, not claimed as an independently saved pre-edit source snapshot.",
+  "exactDelta": {
+    "before": "bool open = !dead && presentation.Closure < 0.166f;",
+    "after": "bool open = !dead && eyeFrame == 0;"
+  },
+  "affectedRecordedFrames": [
+    {
+      "capture": "cold-full-before-eye-fix",
+      "affectedCount": 9,
+      "rows": [
+        {
+          "profile": "BasementPrototype-sleeper-live-1ec546fc",
+          "frame": 90,
+          "closure": 0.166666567,
+          "body": "body-1-12",
+          "sourcePngSha256": "67539d318052fa52cee6fa0b5cc355ed553d690f226cbf15e955e1247e88c078",
+          "decodedRgbSha256": "96771f1c76c7af1bb7c409a5f90254c593201f6a47d8577a479f61c247d6c70f"
+        },
+        {
+          "profile": "BasementPrototype-sleeper-live-1ec546fc",
+          "frame": 783,
+          "closure": 0.166666627,
+          "body": "body-1-23",
+          "sourcePngSha256": "a7e7c5b30feb8c6d83d9360a1956f6e99aebffbdafa4e834deccbfc76df99780",
+          "decodedRgbSha256": "2cef0bd3f7e43ac9ceb0452f93be62008bdddb466609097b22910865d6d56ca8"
+        },
+        {
+          "profile": "BasementPrototype-sleeper-live-1ec546fc",
+          "frame": 957,
+          "closure": 0.166666567,
+          "body": "body-1-35",
+          "sourcePngSha256": "6417178eab96861fc6eda650585ffba0a8ef0a9c44e57ea273a5b320a642718a",
+          "decodedRgbSha256": "0aedfed104c3b8a294c426e6b98b497b41f0ab94c61778de02a5b3358dd09d4b"
+        },
+        {
+          "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+          "frame": 90,
+          "closure": 0.166666567,
+          "body": "body-1-12",
+          "sourcePngSha256": "67539d318052fa52cee6fa0b5cc355ed553d690f226cbf15e955e1247e88c078",
+          "decodedRgbSha256": "96771f1c76c7af1bb7c409a5f90254c593201f6a47d8577a479f61c247d6c70f"
+        },
+        {
+          "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+          "frame": 783,
+          "closure": 0.166666627,
+          "body": "body-1-23",
+          "sourcePngSha256": "a7e7c5b30feb8c6d83d9360a1956f6e99aebffbdafa4e834deccbfc76df99780",
+          "decodedRgbSha256": "2cef0bd3f7e43ac9ceb0452f93be62008bdddb466609097b22910865d6d56ca8"
+        },
+        {
+          "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+          "frame": 957,
+          "closure": 0.166666567,
+          "body": "body-1-35",
+          "sourcePngSha256": "6417178eab96861fc6eda650585ffba0a8ef0a9c44e57ea273a5b320a642718a",
+          "decodedRgbSha256": "0aedfed104c3b8a294c426e6b98b497b41f0ab94c61778de02a5b3358dd09d4b"
+        },
+        {
+          "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+          "frame": 90,
+          "closure": 0.166666567,
+          "body": "body-1-12",
+          "sourcePngSha256": "67539d318052fa52cee6fa0b5cc355ed553d690f226cbf15e955e1247e88c078",
+          "decodedRgbSha256": "96771f1c76c7af1bb7c409a5f90254c593201f6a47d8577a479f61c247d6c70f"
+        },
+        {
+          "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+          "frame": 783,
+          "closure": 0.166666627,
+          "body": "body-1-23",
+          "sourcePngSha256": "a7e7c5b30feb8c6d83d9360a1956f6e99aebffbdafa4e834deccbfc76df99780",
+          "decodedRgbSha256": "2cef0bd3f7e43ac9ceb0452f93be62008bdddb466609097b22910865d6d56ca8"
+        },
+        {
+          "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+          "frame": 957,
+          "closure": 0.166666567,
+          "body": "body-1-35",
+          "sourcePngSha256": "6417178eab96861fc6eda650585ffba0a8ef0a9c44e57ea273a5b320a642718a",
+          "decodedRgbSha256": "0aedfed104c3b8a294c426e6b98b497b41f0ab94c61778de02a5b3358dd09d4b"
+        }
+      ]
+    },
+    {
+      "capture": "warm-full-before-eye-fix",
+      "affectedCount": 0,
+      "rows": []
+    }
+  ],
+  "statefulCaveat": "The same open flag gates gaze MoveTowards, so an earlier pupil enable can alter later pupil/iris gaze offsets until convergence; do not inherit later eye RGB merely from the 9 direct threshold frames.",
+  "boundedReplayPlan": [
+    "All12actual source configurations, record new code/capture SHA and immutable run/manifests.",
+    "Replay continuous opening and closing across the 1/6 iris quantization boundary, with target/gaze movement and at least12 follow-up frames per crossing; actual images must show pupil whenever iris EyeOpen is selected.",
+    "Include the full cold natural02, restored17 and near22 threshold neighborhoods (F90/F783/F957 equivalents) and match body/core/pose registration; preserve current full source/body proofs as before-fix evidence.",
+    "Directly compare actual replay material, outer skin and pupil/iris pixels; classify all changed frames, including stateful gaze convergence.",
+    "New bounded eye acceptance is separate from old full-run body/temporal evidence; no silent runtime codehash equality or blanket new4095capture claim."
+  ]
+}

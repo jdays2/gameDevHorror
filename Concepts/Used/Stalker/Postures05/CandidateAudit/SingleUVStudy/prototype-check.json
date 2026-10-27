@@ -1,0 +1,181 @@
+{
+  "status": "One-frame prototype only. Not production and not accepted art.",
+  "identity": [
+    {
+      "id": "LF",
+      "changedRGBABytes": 0,
+      "maxByteError": 0
+    },
+    {
+      "id": "RF",
+      "changedRGBABytes": 0,
+      "maxByteError": 0
+    },
+    {
+      "id": "LM",
+      "changedRGBABytes": 0,
+      "maxByteError": 0
+    },
+    {
+      "id": "RM",
+      "changedRGBABytes": 0,
+      "maxByteError": 0
+    },
+    {
+      "id": "LR",
+      "changedRGBABytes": 0,
+      "maxByteError": 0
+    },
+    {
+      "id": "RR",
+      "changedRGBABytes": 0,
+      "maxByteError": 0
+    }
+  ],
+  "pose": {
+    "row": 7,
+    "phase": 0
+  },
+  "actual": [
+    {
+      "id": "LF",
+      "sourceCleanup": {
+        "removedPixelsAlphaOver4": 0,
+        "removedOpaquePixels": 0,
+        "sourceRemovedBounds": null,
+        "proximalRadiusPixels": 43.0,
+        "method": "Local source opening, principal source chain component, one-pixel AA restoration; distal zone unchanged"
+      },
+      "boundedHolePixelsOver4": 0,
+      "boundedHolePixelsOver128": 0,
+      "opaqueUvFoldoverPixelsFineEpsilon": 0,
+      "fineNegativeJacobian": [],
+      "holes128": []
+    },
+    {
+      "id": "RF",
+      "sourceCleanup": {
+        "removedPixelsAlphaOver4": 14,
+        "removedOpaquePixels": 11,
+        "sourceRemovedBounds": [
+          228,
+          180,
+          234,
+          184
+        ],
+        "proximalRadiusPixels": 42.0,
+        "method": "Local source opening, principal source chain component, one-pixel AA restoration; distal zone unchanged"
+      },
+      "boundedHolePixelsOver4": 0,
+      "boundedHolePixelsOver128": 0,
+      "opaqueUvFoldoverPixelsFineEpsilon": 0,
+      "fineNegativeJacobian": [],
+      "holes128": []
+    },
+    {
+      "id": "LM",
+      "sourceCleanup": {
+        "removedPixelsAlphaOver4": 2,
+        "removedOpaquePixels": 0,
+        "sourceRemovedBounds": [
+          132,
+          183,
+          134,
+          184
+        ],
+        "proximalRadiusPixels": 39.0,
+        "method": "Local source opening, principal source chain component, one-pixel AA restoration; distal zone unchanged"
+      },
+      "boundedHolePixelsOver4": 0,
+      "boundedHolePixelsOver128": 0,
+      "opaqueUvFoldoverPixelsFineEpsilon": 0,
+      "fineNegativeJacobian": [],
+      "holes128": []
+    },
+    {
+      "id": "RM",
+      "sourceCleanup": {
+        "removedPixelsAlphaOver4": 60,
+        "removedOpaquePixels": 47,
+        "sourceRemovedBounds": [
+          249,
+          221,
+          258,
+          237
+        ],
+        "proximalRadiusPixels": 40.0,
+        "method": "Local source opening, principal source chain component, one-pixel AA restoration; distal zone unchanged"
+      },
+      "boundedHolePixelsOver4": 0,
+      "boundedHolePixelsOver128": 0,
+      "opaqueUvFoldoverPixelsFineEpsilon": 0,
+      "fineNegativeJacobian": [],
+      "holes128": []
+    },
+    {
+      "id": "LR",
+      "sourceCleanup": {
+        "removedPixelsAlphaOver4": 2,
+        "removedOpaquePixels": 2,
+        "sourceRemovedBounds": [
+          116,
+          233,
+          117,
+          235
+        ],
+        "proximalRadiusPixels": 42.0,
+        "method": "Local source opening, principal source chain component, one-pixel AA restoration; distal zone unchanged"
+      },
+      "boundedHolePixelsOver4": 0,
+      "boundedHolePixelsOver128": 0,
+      "opaqueUvFoldoverPixelsFineEpsilon": 0,
+      "fineNegativeJacobian": [],
+      "holes128": []
+    },
+    {
+      "id": "RR",
+      "sourceCleanup": {
+        "removedPixelsAlphaOver4": 0,
+        "removedOpaquePixels": 0,
+        "sourceRemovedBounds": null,
+        "proximalRadiusPixels": 41.5,
+        "method": "Local source opening, principal source chain component, one-pixel AA restoration; distal zone unchanged"
+      },
+      "boundedHolePixelsOver4": 0,
+      "boundedHolePixelsOver128": 0,
+      "opaqueUvFoldoverPixelsFineEpsilon": 0,
+      "fineNegativeJacobian": [],
+      "holes128": []
+    }
+  ],
+  "wholeChecks": {
+    "componentsAlphaOver4": [
+      {
+        "pixels": 25918,
+        "bbox": [
+          173,
+          187,
+          406,
+          401
+        ]
+      }
+    ],
+    "pairIntersectionsOutsideActualTorso": [
+      {
+        "pair": [
+          1,
+          3
+        ],
+        "pixels": 5,
+        "bbox": [
+          325,
+          270,
+          328,
+          274
+        ]
+      }
+    ],
+    "borderPixelsAlphaOver1": 0
+  },
+  "method": "One full native RGBA per limb; radius-preserving polar UV and rigid UV transition over8px. The complete joint zone is axially locked; only the shaft beyond jointRadius+8 compresses to its native endpoint. Angular ray ownership selects the shaft UV chart. In the empty exterior sector beyond14..22px from both rays, the polar chart remains, avoiding opposite-branch ghost samples. Only UV coordinates are interpolated; exactly one bilinear source RGBA sample. Explicit traced proximal source dirt cleanup. No alpha feathers, no circular cap layers, no target alpha clipping and no hole fill."
+}

@@ -1,0 +1,674 @@
+{
+  "status": "CONFIRMED pre-fix threshold mismatch: open iris sprite while actual pupil.enabled is false",
+  "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+  "manifestSha256": "ebb136a36f6af50e78165585beeb8171560634ec3c85f8606c572185fab4543d",
+  "sourceCodePath": "Assets\\EmergencyShift\\Runtime\\Presentation\\Visuals\\CreatureSpriteAnimator2D.cs",
+  "sourceCodeSha256BeforeFix": null,
+  "sourceCodeSha256WhenEvidenceWritten": "75fc6c890b1b63ffb0908a7f253ed21377d58bf18208f1b601706665f77438df",
+  "sourceBeforeLimit": "The old threshold lines were directly read before root edited the code. Frozen PNG and actual pupil-enabled metadata are pre-fix. The full old source file SHA is not independently captured by this helper; no new source hash is labelled old.",
+  "captureHelperSha256": "dd0293b8be686741c93dc6d72b9072ae011704731915b7a3a0061f2eb4c2d003",
+  "thresholdCode": [
+    "int eyeFrame = Mathf.Clamp(Mathf.RoundToInt(presentation.Closure * 3), 0, 3);",
+    "bool open = !dead && presentation.Closure < 0.166f;",
+    "pupil.enabled = open;",
+    "pupil.transform.localScale = pupilRestScale * (1 + pupilWarningExpansion * presentation.EyeWarning);"
+  ],
+  "scaleEvidenceLimit": "Actual localScale is not in this frozen capture schema. Code updates scale independently of open; scale is not used to hide the pupil. Do not claim a measured actual localScale.",
+  "nativeCrop": [
+    224,
+    224,
+    416,
+    416
+  ],
+  "pageSize": [
+    768,
+    464
+  ],
+  "resampling": false,
+  "page": "eye-threshold-native-neighbours.png",
+  "pageSha256": "1222b3d2cc0035113260b136810933c0677b63ff876b2448641b0fd9cee422ee",
+  "actuallyViewed": true,
+  "frames": [
+    {
+      "frame": 89,
+      "sourcePngSha256": "aff648ad3428a215d628fd519afa5e23ae6a96ffb3a9397447fa8d4f329463f6",
+      "actualIrisSprite": "EyeHalf",
+      "actualPupilEnabled": false,
+      "actualPupilEnabledEvidence": "capture eyeOpen reads animator.EyeOpen; getter reads actual pupil.enabled",
+      "pupilLocalScale": null,
+      "pupilLocalScaleCaptured": false,
+      "irisEnabledSeparatelyCaptured": false,
+      "facts": {
+        "frame": 89,
+        "seconds": 1.48333347,
+        "scenario": "02-waking-entire-transition",
+        "local": 44,
+        "state": "Waking",
+        "body": "body-1-12",
+        "bodyAsset": "Assets/EmergencyShift/Art/Enemies/Sleeper/Postures05/body-00.png",
+        "spritePivotPixels": [
+          151.0,
+          155.999985
+        ],
+        "spriteRect": [
+          2423.0,
+          2071.0,
+          303.0,
+          302.0
+        ],
+        "spritePixelsPerUnit": 224.0,
+        "bodyLocalPosition": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bodyLocalScale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bodyLocalRotation": 0.0,
+        "frameIndex": 60,
+        "fold": 0.185185134,
+        "phase": 0.25,
+        "closure": 0.185185134,
+        "eyeOpen": false,
+        "eye": "EyeHalf",
+        "posture": "Unfolding",
+        "attack": 0.0,
+        "death": 0.0,
+        "staggered": false,
+        "position": [
+          1000.0,
+          1000.0,
+          0.0
+        ],
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visualRotation": 3.55503039e-06,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bounds": [
+          0.00225830078,
+          -0.0223388672,
+          1.35267866,
+          1.34821439
+        ],
+        "bodyEnabled": true,
+        "orthographicSize": 1.65,
+        "animatorEnabled": false,
+        "deathEvents": 0,
+        "killCalls": 0,
+        "remainsRoots": 0,
+        "Teleport": false,
+        "RestoreRotation": false
+      }
+    },
+    {
+      "frame": 90,
+      "sourcePngSha256": "67539d318052fa52cee6fa0b5cc355ed553d690f226cbf15e955e1247e88c078",
+      "actualIrisSprite": "EyeOpen",
+      "actualPupilEnabled": false,
+      "actualPupilEnabledEvidence": "capture eyeOpen reads animator.EyeOpen; getter reads actual pupil.enabled",
+      "pupilLocalScale": null,
+      "pupilLocalScaleCaptured": false,
+      "irisEnabledSeparatelyCaptured": false,
+      "facts": {
+        "frame": 90,
+        "seconds": 1.50000012,
+        "scenario": "02-waking-entire-transition",
+        "local": 45,
+        "state": "Waking",
+        "body": "body-1-12",
+        "bodyAsset": "Assets/EmergencyShift/Art/Enemies/Sleeper/Postures05/body-00.png",
+        "spritePivotPixels": [
+          151.0,
+          155.999985
+        ],
+        "spriteRect": [
+          2423.0,
+          2071.0,
+          303.0,
+          302.0
+        ],
+        "spritePixelsPerUnit": 224.0,
+        "bodyLocalPosition": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bodyLocalScale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bodyLocalRotation": 0.0,
+        "frameIndex": 60,
+        "fold": 0.166666567,
+        "phase": 0.25,
+        "closure": 0.166666567,
+        "eyeOpen": false,
+        "eye": "EyeOpen",
+        "posture": "Unfolding",
+        "attack": 0.0,
+        "death": 0.0,
+        "staggered": false,
+        "position": [
+          1000.0,
+          1000.0,
+          0.0
+        ],
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visualRotation": 3.55503039e-06,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bounds": [
+          0.00225830078,
+          -0.0223388672,
+          1.35267866,
+          1.34821439
+        ],
+        "bodyEnabled": true,
+        "orthographicSize": 1.65,
+        "animatorEnabled": false,
+        "deathEvents": 0,
+        "killCalls": 0,
+        "remainsRoots": 0,
+        "Teleport": false,
+        "RestoreRotation": false
+      }
+    },
+    {
+      "frame": 91,
+      "sourcePngSha256": "a67363476a3d97d55c5213cb421eb04d2f6b35b4e2f63b2a635ff7d2453921be",
+      "actualIrisSprite": "EyeOpen",
+      "actualPupilEnabled": true,
+      "actualPupilEnabledEvidence": "capture eyeOpen reads animator.EyeOpen; getter reads actual pupil.enabled",
+      "pupilLocalScale": null,
+      "pupilLocalScaleCaptured": false,
+      "irisEnabledSeparatelyCaptured": false,
+      "facts": {
+        "frame": 91,
+        "seconds": 1.51666677,
+        "scenario": "02-waking-entire-transition",
+        "local": 46,
+        "state": "Waking",
+        "body": "body-1-12",
+        "bodyAsset": "Assets/EmergencyShift/Art/Enemies/Sleeper/Postures05/body-00.png",
+        "spritePivotPixels": [
+          151.0,
+          155.999985
+        ],
+        "spriteRect": [
+          2423.0,
+          2071.0,
+          303.0,
+          302.0
+        ],
+        "spritePixelsPerUnit": 224.0,
+        "bodyLocalPosition": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bodyLocalScale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bodyLocalRotation": 0.0,
+        "frameIndex": 60,
+        "fold": 0.14814806,
+        "phase": 0.25,
+        "closure": 0.14814806,
+        "eyeOpen": true,
+        "eye": "EyeOpen",
+        "posture": "Unfolding",
+        "attack": 0.0,
+        "death": 0.0,
+        "staggered": false,
+        "position": [
+          1000.0,
+          1000.0,
+          0.0
+        ],
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visualRotation": 3.55503039e-06,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bounds": [
+          0.00225830078,
+          -0.0223388672,
+          1.35267866,
+          1.34821439
+        ],
+        "bodyEnabled": true,
+        "orthographicSize": 1.65,
+        "animatorEnabled": false,
+        "deathEvents": 0,
+        "killCalls": 0,
+        "remainsRoots": 0,
+        "Teleport": false,
+        "RestoreRotation": false
+      }
+    },
+    {
+      "frame": 92,
+      "sourcePngSha256": "0a99e73e22d2f2734fb29be8dd1854e98faea60c15311620ecd72a3241f1fdcf",
+      "actualIrisSprite": "EyeOpen",
+      "actualPupilEnabled": true,
+      "actualPupilEnabledEvidence": "capture eyeOpen reads animator.EyeOpen; getter reads actual pupil.enabled",
+      "pupilLocalScale": null,
+      "pupilLocalScaleCaptured": false,
+      "irisEnabledSeparatelyCaptured": false,
+      "facts": {
+        "frame": 92,
+        "seconds": 1.53333342,
+        "scenario": "02-waking-entire-transition",
+        "local": 47,
+        "state": "Waking",
+        "body": "body-1-12",
+        "bodyAsset": "Assets/EmergencyShift/Art/Enemies/Sleeper/Postures05/body-00.png",
+        "spritePivotPixels": [
+          151.0,
+          155.999985
+        ],
+        "spriteRect": [
+          2423.0,
+          2071.0,
+          303.0,
+          302.0
+        ],
+        "spritePixelsPerUnit": 224.0,
+        "bodyLocalPosition": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bodyLocalScale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bodyLocalRotation": 0.0,
+        "frameIndex": 60,
+        "fold": 0.129629552,
+        "phase": 0.25,
+        "closure": 0.129629552,
+        "eyeOpen": true,
+        "eye": "EyeOpen",
+        "posture": "Unfolding",
+        "attack": 0.0,
+        "death": 0.0,
+        "staggered": false,
+        "position": [
+          1000.0,
+          1000.0,
+          0.0
+        ],
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visualRotation": 3.55503039e-06,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bounds": [
+          0.00225830078,
+          -0.0223388672,
+          1.35267866,
+          1.34821439
+        ],
+        "bodyEnabled": true,
+        "orthographicSize": 1.65,
+        "animatorEnabled": false,
+        "deathEvents": 0,
+        "killCalls": 0,
+        "remainsRoots": 0,
+        "Teleport": false,
+        "RestoreRotation": false
+      }
+    },
+    {
+      "frame": 956,
+      "sourcePngSha256": "1fafad21a67f4ed1d9ded6f019b9c41384ac5b0b6fd10af5beded70512b9bed0",
+      "actualIrisSprite": "EyeHalf",
+      "actualPupilEnabled": false,
+      "actualPupilEnabledEvidence": "capture eyeOpen reads animator.EyeOpen; getter reads actual pupil.enabled",
+      "pupilLocalScale": null,
+      "pupilLocalScaleCaptured": false,
+      "irisEnabledSeparatelyCaptured": false,
+      "facts": {
+        "frame": 956,
+        "seconds": 15.9333344,
+        "scenario": "22-wake-to-near-attack-boundary",
+        "local": 44,
+        "state": "Waking",
+        "body": "body-1-35",
+        "bodyAsset": "Assets/EmergencyShift/Art/Enemies/Sleeper/Postures05/body-00.png",
+        "spritePivotPixels": [
+          151.0,
+          171.0
+        ],
+        "spriteRect": [
+          1520.0,
+          1231.0,
+          303.0,
+          319.0
+        ],
+        "spritePixelsPerUnit": 224.0,
+        "bodyLocalPosition": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bodyLocalScale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bodyLocalRotation": 0.0,
+        "frameIndex": 83,
+        "fold": 0.185185134,
+        "phase": 0.7428765,
+        "closure": 0.185185134,
+        "eyeOpen": false,
+        "eye": "EyeHalf",
+        "posture": "Unfolding",
+        "attack": 0.0,
+        "death": 0.0,
+        "staggered": false,
+        "position": [
+          1021.93835,
+          990.7116,
+          0.0
+        ],
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visualRotation": 3.55503039e-06,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bounds": [
+          0.00225830078,
+          -0.0513305664,
+          1.35267866,
+          1.42410731
+        ],
+        "bodyEnabled": true,
+        "orthographicSize": 1.65,
+        "animatorEnabled": false,
+        "deathEvents": 0,
+        "killCalls": 0,
+        "remainsRoots": 0,
+        "Teleport": false,
+        "RestoreRotation": false
+      }
+    },
+    {
+      "frame": 957,
+      "sourcePngSha256": "6417178eab96861fc6eda650585ffba0a8ef0a9c44e57ea273a5b320a642718a",
+      "actualIrisSprite": "EyeOpen",
+      "actualPupilEnabled": false,
+      "actualPupilEnabledEvidence": "capture eyeOpen reads animator.EyeOpen; getter reads actual pupil.enabled",
+      "pupilLocalScale": null,
+      "pupilLocalScaleCaptured": false,
+      "irisEnabledSeparatelyCaptured": false,
+      "facts": {
+        "frame": 957,
+        "seconds": 15.9500008,
+        "scenario": "22-wake-to-near-attack-boundary",
+        "local": 45,
+        "state": "Waking",
+        "body": "body-1-35",
+        "bodyAsset": "Assets/EmergencyShift/Art/Enemies/Sleeper/Postures05/body-00.png",
+        "spritePivotPixels": [
+          151.0,
+          171.0
+        ],
+        "spriteRect": [
+          1520.0,
+          1231.0,
+          303.0,
+          319.0
+        ],
+        "spritePixelsPerUnit": 224.0,
+        "bodyLocalPosition": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bodyLocalScale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bodyLocalRotation": 0.0,
+        "frameIndex": 83,
+        "fold": 0.166666567,
+        "phase": 0.7428765,
+        "closure": 0.166666567,
+        "eyeOpen": false,
+        "eye": "EyeOpen",
+        "posture": "Unfolding",
+        "attack": 0.0,
+        "death": 0.0,
+        "staggered": false,
+        "position": [
+          1021.93835,
+          990.7116,
+          0.0
+        ],
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visualRotation": 3.55503039e-06,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bounds": [
+          0.00225830078,
+          -0.0513305664,
+          1.35267866,
+          1.42410731
+        ],
+        "bodyEnabled": true,
+        "orthographicSize": 1.65,
+        "animatorEnabled": false,
+        "deathEvents": 0,
+        "killCalls": 0,
+        "remainsRoots": 0,
+        "Teleport": false,
+        "RestoreRotation": false
+      }
+    },
+    {
+      "frame": 958,
+      "sourcePngSha256": "4c3b3017ca0c4d59dcc43c4993a543650f176d1d6ce0ca5e35061a5739cd9265",
+      "actualIrisSprite": "EyeOpen",
+      "actualPupilEnabled": true,
+      "actualPupilEnabledEvidence": "capture eyeOpen reads animator.EyeOpen; getter reads actual pupil.enabled",
+      "pupilLocalScale": null,
+      "pupilLocalScaleCaptured": false,
+      "irisEnabledSeparatelyCaptured": false,
+      "facts": {
+        "frame": 958,
+        "seconds": 15.9666672,
+        "scenario": "22-wake-to-near-attack-boundary",
+        "local": 46,
+        "state": "Waking",
+        "body": "body-1-35",
+        "bodyAsset": "Assets/EmergencyShift/Art/Enemies/Sleeper/Postures05/body-00.png",
+        "spritePivotPixels": [
+          151.0,
+          171.0
+        ],
+        "spriteRect": [
+          1520.0,
+          1231.0,
+          303.0,
+          319.0
+        ],
+        "spritePixelsPerUnit": 224.0,
+        "bodyLocalPosition": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bodyLocalScale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bodyLocalRotation": 0.0,
+        "frameIndex": 83,
+        "fold": 0.14814806,
+        "phase": 0.7428765,
+        "closure": 0.14814806,
+        "eyeOpen": true,
+        "eye": "EyeOpen",
+        "posture": "Unfolding",
+        "attack": 0.0,
+        "death": 0.0,
+        "staggered": false,
+        "position": [
+          1021.93835,
+          990.7116,
+          0.0
+        ],
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visualRotation": 3.55503039e-06,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bounds": [
+          0.00225830078,
+          -0.0513305664,
+          1.35267866,
+          1.42410731
+        ],
+        "bodyEnabled": true,
+        "orthographicSize": 1.65,
+        "animatorEnabled": false,
+        "deathEvents": 0,
+        "killCalls": 0,
+        "remainsRoots": 0,
+        "Teleport": false,
+        "RestoreRotation": false
+      }
+    },
+    {
+      "frame": 959,
+      "sourcePngSha256": "3d6191b7297b12cd003cba079cc877fec713d31717e2ade761c9db135c3e4b24",
+      "actualIrisSprite": "EyeOpen",
+      "actualPupilEnabled": true,
+      "actualPupilEnabledEvidence": "capture eyeOpen reads animator.EyeOpen; getter reads actual pupil.enabled",
+      "pupilLocalScale": null,
+      "pupilLocalScaleCaptured": false,
+      "irisEnabledSeparatelyCaptured": false,
+      "facts": {
+        "frame": 959,
+        "seconds": 15.9833345,
+        "scenario": "22-wake-to-near-attack-boundary",
+        "local": 47,
+        "state": "Waking",
+        "body": "body-1-35",
+        "bodyAsset": "Assets/EmergencyShift/Art/Enemies/Sleeper/Postures05/body-00.png",
+        "spritePivotPixels": [
+          151.0,
+          171.0
+        ],
+        "spriteRect": [
+          1520.0,
+          1231.0,
+          303.0,
+          319.0
+        ],
+        "spritePixelsPerUnit": 224.0,
+        "bodyLocalPosition": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bodyLocalScale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bodyLocalRotation": 0.0,
+        "frameIndex": 83,
+        "fold": 0.129629552,
+        "phase": 0.7428765,
+        "closure": 0.129629552,
+        "eyeOpen": true,
+        "eye": "EyeOpen",
+        "posture": "Unfolding",
+        "attack": 0.0,
+        "death": 0.0,
+        "staggered": false,
+        "position": [
+          1021.93835,
+          990.7116,
+          0.0
+        ],
+        "velocity": [
+          0.0,
+          0.0
+        ],
+        "visualRotation": 3.55503039e-06,
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "bounds": [
+          0.00225830078,
+          -0.0513305664,
+          1.35267866,
+          1.42410731
+        ],
+        "bodyEnabled": true,
+        "orthographicSize": 1.65,
+        "animatorEnabled": false,
+        "deathEvents": 0,
+        "killCalls": 0,
+        "remainsRoots": 0,
+        "Teleport": false,
+        "RestoreRotation": false
+      }
+    }
+  ],
+  "viewMethod": "tools.view_image(detail=original), image(...,original); native192x192 source crops on768x464 page; no resampling"
+}

@@ -1,0 +1,1258 @@
+{
+  "status": "DRAFT ENVELOPE PROPOSAL ONLY; not a passed muscle or skin stage",
+  "bone_gate_source_hashes": {
+    "poses.json": "46324e2a999afb9dfe56ecc797714b806aed52bfd500e33c33765ccba5d5fe38",
+    "source_anatomy.json": "b3dd2c08376412c58676c492f686986b605df24c1e73b677e96ef90408a6f12b",
+    "StalkerPoseComposer.cs": "1f2c75cff8a4491f55d0f525f97c1daae7af0b94a00fce806389ebdbee8c4fb0"
+  },
+  "group_contract": "Six unchanged chains, three existing functional groups each =18; no new muscle/limb/joint. Skin covers diagnostic subdivisions.",
+  "scope": "2D projected art envelope only; no collider, physics3D asset or body-volume resource. No source raster was altered.",
+  "authoring_choice": "Peak proximal soft radius is deliberately fuller at closed row8 than row4 to address thin walking-shaft material. Values are explicit proposals, not measured hidden anatomy or approved final shape.",
+  "constraints": [
+    "Keep canonical hips/knees/toes and stable group IDs.",
+    "Root belongs under one body-owned continuous skin cover in the whole 2D image; inspect all extreme phases and colors.",
+    "No circular patch, complementary alpha cut, duplicate root outline or isolated skin remnant.",
+    "Preserve bone/claw taper and markings; do not enlarge white blade to imitate flesh volume.",
+    "Use separate clean controls for source ownership then volume; compare native size on green/light/dark before any mass export.",
+    "Do not claim3D surface occlusion, support or floor clearance from these 2D outlines.",
+    "H01 remains FAIL; a formal coordinate gate does not approve new art."
+  ],
+  "envelopes": [
+    {
+      "row": 4,
+      "phase": 0,
+      "id": "LF",
+      "hip_xy": [
+        -0.116071425,
+        0.127678558
+      ],
+      "knee_xy": [
+        -0.387107253,
+        0.490078
+      ],
+      "toe_xy": [
+        -0.0360714272,
+        0.7756785
+      ],
+      "functional_groups": [
+        {
+          "id": "LF-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.045,
+            0.047,
+            0.04910714285714286
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "LF-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.05580357142857143
+        },
+        {
+          "id": "LF-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.04464285714285715
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          -0.15210784647257602,
+          0.1007271883232867
+        ],
+        [
+          -0.24104369798831526,
+          0.22258110033730927
+        ],
+        [
+          -0.3344000172046905,
+          0.3411289776709883
+        ],
+        [
+          -0.42643271294031115,
+          0.46066678309088827
+        ],
+        [
+          -0.3477817930596888,
+          0.5194892169091118
+        ],
+        [
+          -0.25912393679530943,
+          0.3974273943290117
+        ],
+        [
+          -0.1717897040116847,
+          0.27437564366269074
+        ],
+        [
+          -0.08003500352742399,
+          0.1546299276767133
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          -0.415281514840054,
+          0.5247074046100366
+        ],
+        [
+          -0.3608538251330439,
+          0.5581984612456549
+        ],
+        [
+          -0.30466524406103035,
+          0.5895251800931457
+        ],
+        [
+          -0.27296919949096965,
+          0.5505670999068545
+        ],
+        [
+          -0.3150706496429561,
+          0.5019256787543452
+        ],
+        [
+          -0.358932991159946,
+          0.45544859538996335
+        ]
+      ]
+    },
+    {
+      "row": 4,
+      "phase": 0,
+      "id": "RF",
+      "hip_xy": [
+        0.11316964,
+        0.121874996
+      ],
+      "knee_xy": [
+        0.478432834,
+        0.38903892
+      ],
+      "toe_xy": [
+        0.0331696421,
+        0.469874978
+      ],
+      "functional_groups": [
+        {
+          "id": "RF-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.045,
+            0.047,
+            0.04714285714285714
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "RF-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.05357142857142857
+        },
+        {
+          "id": "RF-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.04285714285714286
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          0.0866032854634449,
+          0.15819618549921738
+        ],
+        [
+          0.20939672310754126,
+          0.24583026475435907
+        ],
+        [
+          0.32893135459515355,
+          0.3379197432547381
+        ],
+        [
+          0.45060141496170414,
+          0.42708968995156105
+        ],
+        [
+          0.5062642530382958,
+          0.350988150048439
+        ],
+        [
+          0.38442551740484643,
+          0.2620488140785952
+        ],
+        [
+          0.26045135289245874,
+          0.17602900991230755
+        ],
+        [
+          0.1397359945365551,
+          0.08555380650078263
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          0.47077739743346225,
+          0.34687105326651124
+        ],
+        [
+          0.40987594492368806,
+          0.3660945763990404
+        ],
+        [
+          0.3494529571993225,
+          0.3879535912024126
+        ],
+        [
+          0.35806532333667745,
+          0.43539244127758747
+        ],
+        [
+          0.4223160293443119,
+          0.4346173598409596
+        ],
+        [
+          0.4860882705665377,
+          0.4312067867334888
+        ]
+      ]
+    },
+    {
+      "row": 4,
+      "phase": 0,
+      "id": "LM",
+      "hip_xy": [
+        -0.165625,
+        -0.003125
+      ],
+      "knee_xy": [
+        -0.556787968,
+        -0.016737327
+      ],
+      "toe_xy": [
+        -0.685624957,
+        -0.397125
+      ],
+      "functional_groups": [
+        {
+          "id": "LM-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.04,
+            0.043,
+            0.039285714285714285
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "LM-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.044642857142857144
+        },
+        {
+          "id": "LM-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.03571428571428572
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          -0.16423385684688277,
+          -0.04310080168961638
+        ],
+        [
+          -0.294636815421567,
+          -0.04719851020436392
+        ],
+        [
+          -0.42490483311039895,
+          -0.05517387148300427
+        ],
+        [
+          -0.5554216666889027,
+          -0.05599927508801608
+        ],
+        [
+          -0.5581542693110972,
+          0.02252462108801608
+        ],
+        [
+          -0.42789579088960095,
+          0.030774102149670933
+        ],
+        [
+          -0.29738849657843286,
+          0.03187362553769726
+        ],
+        [
+          -0.16701614315311722,
+          0.03685080168961637
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          -0.5229612680134273,
+          -0.028194402198323677
+        ],
+        [
+          -0.5473409527209099,
+          -0.079300474818638
+        ],
+        [
+          -0.5738348061775529,
+          -0.12969048023905708
+        ],
+        [
+          -0.6118898436624471,
+          -0.11680127064094294
+        ],
+        [
+          -0.6023093401990902,
+          -0.060682727621362016
+        ],
+        [
+          -0.5906146679865726,
+          -0.0052802518016763205
+        ]
+      ]
+    },
+    {
+      "row": 4,
+      "phase": 0,
+      "id": "RM",
+      "hip_xy": [
+        0.16875,
+        -0.01875
+      ],
+      "knee_xy": [
+        0.473790169,
+        0.226493239
+      ],
+      "toe_xy": [
+        0.68875,
+        -0.112750009
+      ],
+      "functional_groups": [
+        {
+          "id": "RM-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.04,
+            0.043,
+            0.04125
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "RM-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.046875
+        },
+        {
+          "id": "RM-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.037500000000000006
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          0.14368680058172395,
+          0.012424284834134141
+        ],
+        [
+          0.2456425521086583,
+          0.09382911403429199
+        ],
+        [
+          0.3451671732920199,
+          0.17825784886336088
+        ],
+        [
+          0.44794374459990277,
+          0.2586417202352008
+        ],
+        [
+          0.4996365934000972,
+          0.19434475776479918
+        ],
+        [
+          0.3990530520413134,
+          0.11123313646997247
+        ],
+        [
+          0.29521756055800835,
+          0.03216637863237466
+        ],
+        [
+          0.19381319941827607,
+          -0.049924284834134136
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          0.5054664191709106,
+          0.246564740565899
+        ],
+        [
+          0.5296214986038648,
+          0.19530727930229294
+        ],
+        [
+          0.5517968124011372,
+          0.14279534919081818
+        ],
+        [
+          0.5161610309588627,
+          0.12021490992918181
+        ],
+        [
+          0.47814759207613505,
+          0.16269108925770706
+        ],
+        [
+          0.44211391882908935,
+          0.20642173743410103
+        ]
+      ]
+    },
+    {
+      "row": 4,
+      "phase": 0,
+      "id": "LR",
+      "hip_xy": [
+        -0.147857159,
+        -0.167142853
+      ],
+      "knee_xy": [
+        -0.468358785,
+        -0.51481
+      ],
+      "toe_xy": [
+        -0.04785715,
+        -0.4791429
+      ],
+      "functional_groups": [
+        {
+          "id": "LR-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.048,
+            0.05,
+            0.04714285714285714
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "LR-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.05357142857142857
+        },
+        {
+          "id": "LR-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.04285714285714286
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          -0.11256525627788536,
+          -0.19967716722748602
+        ],
+        [
+          -0.22086962755797343,
+          -0.31421061980134074
+        ],
+        [
+          -0.3247625109977972,
+          -0.43281086165363125
+        ],
+        [
+          -0.4336970948264945,
+          -0.5467633443305666
+        ],
+        [
+          -0.5030204751735053,
+          -0.48285665566943337
+        ],
+        [
+          -0.39828730833553605,
+          -0.3650310403463688
+        ],
+        [
+          -0.2885124411086932,
+          -0.25185318419865926
+        ],
+        [
+          -0.18314906172211462,
+          -0.134608538772514
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          -0.47198093685729836,
+          -0.4721061979467844
+        ],
+        [
+          -0.41243155448405494,
+          -0.4751197668317623
+        ],
+        [
+          -0.35265578761973027,
+          -0.48080232334506623
+        ],
+        [
+          -0.34858086678026967,
+          -0.5288441006549338
+        ],
+        [
+          -0.4065455577159451,
+          -0.5445134451682376
+        ],
+        [
+          -0.46473663314270164,
+          -0.5575138020532155
+        ]
+      ]
+    },
+    {
+      "row": 4,
+      "phase": 0,
+      "id": "RR",
+      "hip_xy": [
+        0.14464286,
+        -0.167142853
+      ],
+      "knee_xy": [
+        0.406018317,
+        -0.5611944
+      ],
+      "toe_xy": [
+        0.04464286,
+        -0.7791429
+      ],
+      "functional_groups": [
+        {
+          "id": "RR-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.048,
+            0.05,
+            0.04517857142857143
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "RR-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.05133928571428571
+        },
+        {
+          "id": "RR-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.04107142857142857
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          0.18464327002930384,
+          -0.14061047282995928
+        ],
+        [
+          0.2701017386114162,
+          -0.27306650433704427
+        ],
+        [
+          0.3605602584471914,
+          -0.40220598832287424
+        ],
+        [
+          0.4436675124516885,
+          -0.5362215868191209
+        ],
+        [
+          0.36836912154831153,
+          -0.586167213180879
+        ],
+        [
+          0.2772260708861418,
+          -0.4574817803437924
+        ],
+        [
+          0.19343428605525048,
+          -0.323920232996289
+        ],
+        [
+          0.10464244997069619,
+          -0.19367523317004073
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          0.42722971682114447,
+          -0.5963645402119114
+        ],
+        [
+          0.37266001537467985,
+          -0.6202829289221781
+        ],
+        [
+          0.3167646014393938,
+          -0.6420031838692002
+        ],
+        [
+          0.29290177664060624,
+          -0.6024367761307998
+        ],
+        [
+          0.33819149066532017,
+          -0.5631314510778218
+        ],
+        [
+          0.38480691717885557,
+          -0.5260242597880885
+        ]
+      ]
+    },
+    {
+      "row": 8,
+      "phase": 0,
+      "id": "LF",
+      "hip_xy": [
+        -0.116071425,
+        0.127678558
+      ],
+      "knee_xy": [
+        -0.34,
+        0.2
+      ],
+      "toe_xy": [
+        -0.06799999,
+        0.411
+      ],
+      "functional_groups": [
+        {
+          "id": "LF-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.06,
+            0.072,
+            0.04910714285714286
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "LF-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.05580357142857143
+        },
+        {
+          "id": "LF-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.04464285714285715
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          -0.1345115482551975,
+          0.07058248235260436
+        ],
+        [
+          -0.21107217940707138,
+          0.08875163781860855
+        ],
+        [
+          -0.28748528957290365,
+          0.1073775618897919
+        ],
+        [
+          -0.3550923627832718,
+          0.1532695809433518
+        ],
+        [
+          -0.3249076372167283,
+          0.24673041905664822
+        ],
+        [
+          -0.2432289937604297,
+          0.2444081434435414
+        ],
+        [
+          -0.17035638725959532,
+          0.2148197728480581
+        ],
+        [
+          -0.09763130174480251,
+          0.18477463364739563
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          -0.36736314990582764,
+          0.23527382487211668
+        ],
+        [
+          -0.32415255789848496,
+          0.2581999827085948
+        ],
+        [
+          -0.27923176902202806,
+          0.2789215264905656
+        ],
+        [
+          -0.24844822537797198,
+          0.23923847350943434
+        ],
+        [
+          -0.2796874393015151,
+          0.2008800172914052
+        ],
+        [
+          -0.3126368500941724,
+          0.16472617512788335
+        ]
+      ]
+    },
+    {
+      "row": 8,
+      "phase": 0,
+      "id": "RF",
+      "hip_xy": [
+        0.11316964,
+        0.121874996
+      ],
+      "knee_xy": [
+        0.339999974,
+        0.199999988
+      ],
+      "toe_xy": [
+        0.06799999,
+        0.411
+      ],
+      "functional_groups": [
+        {
+          "id": "RF-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.06,
+            0.072,
+            0.04714285714285714
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "RF-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.05357142857142857
+        },
+        {
+          "id": "RF-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.04285714285714286
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          0.09363084551463399,
+          0.17860449018123373
+        ],
+        [
+          0.16720892222148923,
+          0.21054602157608204
+        ],
+        [
+          0.2409433092842274,
+          0.24203371701748044
+        ],
+        [
+          0.3246480640472124,
+          0.24457316199954077
+        ],
+        [
+          0.35535188395278755,
+          0.1554268140004592
+        ],
+        [
+          0.28783641604910587,
+          0.10588293098251954
+        ],
+        [
+          0.21035058044517738,
+          0.08528729842391798
+        ],
+        [
+          0.132708434485366,
+          0.06514550181876627
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          0.31373134759008797,
+          0.16613711806235257
+        ],
+        [
+          0.2805767172819465,
+          0.20202640785566148
+        ],
+        [
+          0.24906387612442446,
+          0.24003212702007332
+        ],
+        [
+          0.27861608083557543,
+          0.27812785569992665
+        ],
+        [
+          0.3232632351980535,
+          0.2570535715043385
+        ],
+        [
+          0.366268600409912,
+          0.2338628579376474
+        ]
+      ]
+    },
+    {
+      "row": 8,
+      "phase": 0,
+      "id": "LM",
+      "hip_xy": [
+        -0.165625,
+        -0.003125
+      ],
+      "knee_xy": [
+        -0.38,
+        0.0200000182
+      ],
+      "toe_xy": [
+        -0.129999965,
+        -0.120000042
+      ],
+      "functional_groups": [
+        {
+          "id": "LM-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.055,
+            0.063,
+            0.039285714285714285
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "LM-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.044642857142857144
+        },
+        {
+          "id": "LM-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.03571428571428572
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          -0.17152372877169117,
+          -0.05780776692778103
+        ],
+        [
+          -0.2432995209625555,
+          -0.053042354620621616
+        ],
+        [
+          -0.3152983923506038,
+          -0.05034494513545827
+        ],
+        [
+          -0.3842133776940651,
+          -0.019059101034129302
+        ],
+        [
+          -0.3757866223059349,
+          0.0590591374341293
+        ],
+        [
+          -0.3017849409827295,
+          0.07492830273545827
+        ],
+        [
+          -0.23086714570411113,
+          0.06220903342062161
+        ],
+        [
+          -0.15972627122830882,
+          0.051557766927781024
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          -0.3625498758285896,
+          0.05116094518370816
+        ],
+        [
+          -0.33082176921072903,
+          0.025718262946262872
+        ],
+        [
+          -0.30018429535358165,
+          -0.0016719772276641669
+        ],
+        [
+          -0.3198156850464184,
+          -0.036728020084335844
+        ],
+        [
+          -0.359178220989271,
+          -0.024918243402262875
+        ],
+        [
+          -0.3974501241714104,
+          -0.011160908783708155
+        ]
+      ]
+    },
+    {
+      "row": 8,
+      "phase": 0,
+      "id": "RM",
+      "hip_xy": [
+        0.16875,
+        -0.01875
+      ],
+      "knee_xy": [
+        0.380000025,
+        0.02000001
+      ],
+      "toe_xy": [
+        0.129999965,
+        -0.12000002
+      ],
+      "functional_groups": [
+        {
+          "id": "RM-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.055,
+            0.063,
+            0.04125
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "RM-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.046875
+        },
+        {
+          "id": "RM-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.037500000000000006
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          0.15882680435213356,
+          0.03534741387658161
+        ],
+        [
+          0.22870943100453928,
+          0.051175508332484916
+        ],
+        [
+          0.29821678043971667,
+          0.06904946862226621
+        ],
+        [
+          0.3725576282641002,
+          0.0605730704074362
+        ],
+        [
+          0.3874424217358998,
+          -0.020573050407436202
+        ],
+        [
+          0.3209499195602834,
+          -0.054882788622266206
+        ],
+        [
+          0.24962391899546071,
+          -0.06284216833248492
+        ],
+        [
+          0.17867319564786646,
+          -0.07284741387658161
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          0.3983226509762709,
+          -0.012718965798971506
+        ],
+        [
+          0.3598871502057201,
+          -0.02618416203666435
+        ],
+        [
+          0.3203064853116524,
+          -0.03760442228692147
+        ],
+        [
+          0.2996935310883476,
+          -0.0007955745130785313
+        ],
+        [
+          0.33011288299427993,
+          0.026984173636664346
+        ],
+        [
+          0.36167739902372914,
+          0.0527189857989715
+        ]
+      ]
+    },
+    {
+      "row": 8,
+      "phase": 0,
+      "id": "LR",
+      "hip_xy": [
+        -0.147857159,
+        -0.167142853
+      ],
+      "knee_xy": [
+        -0.339999974,
+        -0.153999984
+      ],
+      "toe_xy": [
+        -0.0599998534,
+        -0.348999977
+      ],
+      "functional_groups": [
+        {
+          "id": "LR-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.062,
+            0.075,
+            0.04714285714285714
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "LR-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.05357142857142857
+        },
+        {
+          "id": "LR-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.04285714285714286
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          -0.1520881695292239,
+          -0.22899831799624423
+        ],
+        [
+          -0.21661346926639433,
+          -0.23160104319474495
+        ],
+        [
+          -0.28107052689825474,
+          -0.2332060996029836
+        ],
+        [
+          -0.34321710182176013,
+          -0.20103294125520876
+        ],
+        [
+          -0.33678284617823984,
+          -0.10696702674479126
+        ],
+        [
+          -0.2708342111017452,
+          -0.08355578106368305
+        ],
+        [
+          -0.2071960587336056,
+          -0.09392275013858842
+        ],
+        [
+          -0.14362614847077607,
+          -0.10528738800375578
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          -0.3155073922490726,
+          -0.1188311322551436
+        ],
+        [
+          -0.2808997344433714,
+          -0.15272529097730417
+        ],
+        [
+          -0.2478228629971033,
+          -0.1888175029335183
+        ],
+        [
+          -0.27537701746689663,
+          -0.22838246114648175
+        ],
+        [
+          -0.32070017978862847,
+          -0.20987467506269583
+        ],
+        [
+          -0.36449255575092737,
+          -0.1891688357448564
+        ]
+      ]
+    },
+    {
+      "row": 8,
+      "phase": 0,
+      "id": "RR",
+      "hip_xy": [
+        0.14464286,
+        -0.167142853
+      ],
+      "knee_xy": [
+        0.339999974,
+        -0.153999984
+      ],
+      "toe_xy": [
+        0.0599998534,
+        -0.348999977
+      ],
+      "functional_groups": [
+        {
+          "id": "RR-1",
+          "name": "proximal actuator",
+          "attachment": "same canonical hip->knee chain",
+          "projected_radii_root_peak_end": [
+            0.062,
+            0.075,
+            0.04517857142857143
+          ],
+          "fiber_direction": "hip->knee"
+        },
+        {
+          "id": "RR-2",
+          "name": "joint stabilizer",
+          "attachment": "same canonical knee, no new joint",
+          "projected_radius": 0.05133928571428571
+        },
+        {
+          "id": "RR-3",
+          "name": "distal tendon sleeve",
+          "attachment": "knee->28% of existing distal chain",
+          "fiber_direction": "knee->toe",
+          "maximum_projected_radius": 0.04107142857142857
+        }
+      ],
+      "upper_envelope_polygon_xy": [
+        [
+          0.1404811479281347,
+          -0.10528268687808524
+        ],
+        [
+          0.20513031521034347,
+          -0.09391751824066476
+        ],
+        [
+          0.2698466068808081,
+          -0.08355009421811387
+        ],
+        [
+          0.336967390030582,
+          -0.10892330764964162
+        ],
+        [
+          0.34303255796941795,
+          -0.1990766603503584
+        ],
+        [
+          0.27991526511919185,
+          -0.23321178644855278
+        ],
+        [
+          0.21439348078965653,
+          -0.23160627509266862
+        ],
+        [
+          0.14880457207186532,
+          -0.22900301912191479
+        ]
+      ],
+      "distal_sleeve_polygon_xy": [
+        [
+          0.3634720315113054,
+          -0.18770346692215406
+        ],
+        [
+          0.31987100384393563,
+          -0.20868406289425018
+        ],
+        [
+          0.2748029725821093,
+          -0.22755819118371168
+        ],
+        [
+          0.24839690788189064,
+          -0.18964177289628836
+        ],
+        [
+          0.28172891038806425,
+          -0.15391590314574982
+        ],
+        [
+          0.31652791648869455,
+          -0.12029650107784595
+        ]
+      ]
+    }
+  ]
+}

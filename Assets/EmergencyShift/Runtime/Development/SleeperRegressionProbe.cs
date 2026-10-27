@@ -120,7 +120,15 @@ namespace EmergencyShift
             decor.transform.position = origin;
             yield return new WaitForSeconds(.8f);
             Check("Sleeping ignores proximity and decorative lights", first.State == Sleeper2D.BehaviourState.Sleeping && !first.HasAggro);
-            Check("Sleeping uses compact pose, closed eye and membrane loop", first.GetComponent<CreatureSpriteAnimator2D>().CurrentFrame == 3 && !first.GetComponent<CreatureSpriteAnimator2D>().EyeOpen && firstAudio.BreathingSource.isPlaying);
+            var animator = first.GetComponent<SleeperSpriteAnimator>();
+            Check("Sleeper has its whole-body pose set", animator != null && animator.SpriteSet != null);
+            var sprites = animator.SpriteSet;
+            float phase = (animator.CurrentFrame % sprites.Phases + .5f) / sprites.Phases;
+            int foldedFrame = sprites.FrameIndex(phase, 1);
+            var body = first.transform.Find("Visual/Body").GetComponent<SpriteRenderer>();
+            Check("Sleeping displays the fully folded body, closed eye and membrane loop",
+                Mathf.Abs(animator.DisplayedBodyFold - 1) < .001f && animator.CurrentFrame == foldedFrame &&
+                body.sprite == sprites.Frame(foldedFrame) && !animator.EyeOpen && firstAudio.BreathingSource.isPlaying);
 
             lamp.SetPower(true);
             yield return new WaitForSeconds(.22f);

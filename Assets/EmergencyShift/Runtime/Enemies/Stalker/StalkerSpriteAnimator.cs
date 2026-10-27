@@ -8,12 +8,15 @@ namespace EmergencyShift
     {
         [SerializeField] private ShadowStalker2D behaviour;
         [SerializeField] private StalkerSpriteSet spriteSet;
+        [SerializeField] private CreatureAttackSpriteSet attackSpriteSet;
+        private readonly CreatureAttackSpritePlayback attackPlayback = new CreatureAttackSpritePlayback();
         private float displayedBodyFold;
         private bool hasDisplayedBodyFold;
         public float DisplayedBodyFold => displayedBodyFold;
         public StalkerSpriteSet SpriteSet => spriteSet;
         protected override bool AnimateCompactLocomotion => spriteSet != null;
         protected override bool ApplySupportYaw => spriteSet == null;
+        protected override bool HoldLastBodyOnDeath => spriteSet != null;
         protected override float LocomotionStrideScale => spriteSet != null ? spriteSet.StrideScale(displayedBodyFold) : 1;
         protected override float BodyFoldTarget => spriteSet != null && Presentation.BodyPosture == EnemyBodyPosture.CompactWalking
             ? spriteSet.CompactWalkingFold : base.BodyFoldTarget;
@@ -21,11 +24,43 @@ namespace EmergencyShift
         protected override void Awake()
         {
             base.Awake();
+            if (behaviour == null)
+            {
+                behaviour = GetComponent<ShadowStalker2D>();
+            }
             spriteSet?.Validate();
+            attackSpriteSet?.Validate();
+        }
+
+        protected override bool TrySelectAttackFrame(float phase, float progress, out Sprite sprite, out int frame)
+        {
+            if (attackSpriteSet == null)
+            {
+                return base.TrySelectAttackFrame(phase, progress, out sprite, out frame);
+            }
+            frame = attackSpriteSet.FrameIndex(phase, progress, behaviour.Definition.StrikeAt, behaviour.Definition.AttackDuration);
+            sprite = attackSpriteSet.Frame(frame);
+            attackPlayback.RecordAttackFrame(attackSpriteSet, frame);
+            displayedBodyFold = 0;
+            hasDisplayedBodyFold = true;
+            return true;
+        }
+
+        protected override void ResetDisplayedBodyPosture()
+        {
+            hasDisplayedBodyFold = false;
+            attackPlayback.Reset();
         }
 
         protected override bool TrySelectLocomotionFrame(float phase, out Sprite sprite, out int frame)
         {
+            if (attackPlayback.TrySelectRetractionFrame(attackSpriteSet, phase, Time.deltaTime, out frame))
+            {
+                sprite = attackSpriteSet.Frame(frame);
+                displayedBodyFold = 0;
+                hasDisplayedBodyFold = true;
+                return true;
+            }
             if (spriteSet == null)
             {
                 return base.TrySelectLocomotionFrame(phase, out sprite, out frame);

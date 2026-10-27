@@ -1,0 +1,51 @@
+{
+  "status": "READ_ONLY_CODE_REVIEW_NO_CONCRETE_DEFECT_FOUND; UNITY_TESTS_AND_REPLAY_NOT_EXECUTED_BY_THIS_AUDIT",
+  "sources": {
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Config/CreatureAttackSpriteSet.cs": "2aff9fad9065070dbc1207e9955e83170fd084bf3f7f0b1220054b2ce6cfff8e",
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureAttackSpritePlayback.cs": "ab0f9646743e5b9e9e76885341e98fbc2b524cae6404ee4004372dae814c8cfd",
+    "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs": "50d8ccb1ff0d37b5bbcbccad0ad766d27c4b9ca944e70cc21132a894ebab9e04",
+    "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperSpriteAnimator.cs": "ee7925cccba69cf267a3107147f2f9fc4b1766426211c76ce5728f0e389fb475",
+    "Assets/EmergencyShift/Tests/EditMode/CreatureAttackSpriteSetTests.cs": "3e42339729f7e91498bbd2e1be15a67cd81b6f1a39e7e8a15ffced2323a5b5ed",
+    "Assets/EmergencyShift/Tests/EditMode/CreatureAttackSpritePlaybackTests.cs": "815c8d3539c0226e89a29a7ff80b8af371c8355fc7c4a7542d70659787d3cc62"
+  },
+  "inspected": [
+    "actual duration and StrikeAt forwarded by both animators",
+    "entry/return .24s budget and hit peak placement at both .8/.42 and1.05/.62",
+    "linear bridge sample index; authoring already eases",
+    "interruption retains displayed first sample and retracts through own chamber",
+    "current gait column on exact endpoint; playback state reset and actor isolation",
+    "13 EditMode cases cover geometry, species durations, normal bridge adjacency and interruption cases"
+  ],
+  "Stalker": {
+    "duration": 0.8,
+    "strikeAt": 0.42,
+    "entryEnd": 0.3,
+    "entryEndSeconds": 0.24,
+    "hitPeakSeconds": 0.336,
+    "returnStart": 0.67,
+    "returnStartSeconds": 0.536,
+    "returnCompleteSeconds": 0.776
+  },
+  "Sleeper": {
+    "duration": 1.05,
+    "strikeAt": 0.62,
+    "entryEnd": 0.22857142857142856,
+    "entryEndSeconds": 0.24,
+    "hitPeakSeconds": 0.651,
+    "returnStart": 0.7414285714285714,
+    "returnStartSeconds": 0.7785,
+    "returnCompleteSeconds": 1.0185
+  },
+  "bridgeAdjacentStepPer60HzTick": 0.9722222222222223,
+  "interruptedRetractionBudget": {
+    "bridge": 0.24,
+    "extraStrikeMaximum": 0.12,
+    "maximumExcludingInitialPoseHold": 0.36
+  },
+  "pending": [
+    "install serialized15-frame arrays replacing existing8",
+    "root compile and13 Unity tests",
+    "new672 art checks",
+    "actual runtime recapture and smoothness review"
+  ]
+}

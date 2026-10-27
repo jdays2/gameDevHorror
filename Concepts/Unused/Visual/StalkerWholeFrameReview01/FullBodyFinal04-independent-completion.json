@@ -1,0 +1,161 @@
+{
+  "scope": "Independent full body static artwork review; 432 poses on all three backgrounds. No motion/runtime approval.",
+  "artVerdict": "PASS: no remaining visible body skin/attachment blocker in reviewed pixels",
+  "reviewedFrames": 432,
+  "reviewedBackgroundInstances": 1296,
+  "reviewedPages": 216,
+  "backgroundPageCounts": {
+    "green": 72,
+    "dark": 72,
+    "light": 72
+  },
+  "allRaw432HashesUnchangedAtCompletion": true,
+  "allReviewPage216HashesUnchangedAtCompletion": true,
+  "bodyCompositionSha256": "caa890e1cc5b85720a4863390f1e77f8fc78fc2bb5fecd2774f335353c9c250a",
+  "bodyPosesSha256": "c35ae84b8c0ace617a67b6e291c1d11d7be00b3c6510f963c9cb74022571db7a",
+  "bodyComposition": {
+    "algorithm": "whole-native-continuous-polar",
+    "poses": 432,
+    "alpha": "straight",
+    "workingColor": "linear premultiplied",
+    "posesSha256": "c35ae84b8c0ace617a67b6e291c1d11d7be00b3c6510f963c9cb74022571db7a",
+    "bonesSha256": "9e69c89b3cb077e9367fac83c2accd6514948fc1293ef904747c5d015b73cbe3",
+    "composerSha256": "025d82fc2380799dc444fe3491b8bb8b3116fd6b19d353717878643f4858f86d",
+    "painterSha256": "2777a84fff7194b1be4aa75642f47801180703f60b6b6b1e5790dd53dc24dd7e",
+    "colorsSha256": "a88e7c75d03a056641e4ea2c6c657286d84bc0a68c86492bb93c7dcf287bbf91",
+    "sourceAtlasSha256": "0b478fc7d915d2282d7d497d32a0dec16eb0c75dbc42a0583b5e4d59e13d3972",
+    "nativeWalkSha256": "6733cb493c8ef1cf128ee05f730b5c7fa1c75e4dd89787e46ac8451a8d9bd807",
+    "anatomySha256": "b3dd2c08376412c58676c492f686986b605df24c1e73b677e96ef90408a6f12b",
+    "mouthOverlayApplied": false,
+    "contourCapsuleClipping": false,
+    "runtimeIk": false,
+    "method": "One continuous native material per limb; traced body ownership; complete baked frames"
+  },
+  "nativePresentation": {
+    "ppu": 224,
+    "canvas": [
+      576,
+      576
+    ],
+    "sharedCrop": [
+      72,
+      48,
+      504,
+      528
+    ],
+    "rescale": false,
+    "autoFit": false,
+    "spatialFilter": false,
+    "compositing": "linear light from original straight RGBA"
+  },
+  "numericFollowups": {
+    "producer": "Sibling visual_audit; independently classified from current raw frames and exact context image",
+    "summarySha256": "2bf94fd0f43956b172e35e62fcdea840363528f3728329b31ecd24e3ba363ad8",
+    "contextImageSha256": "3ae2c7c4e3ecb53231c245224cc9a64fea23cc2161c9cf7979d30a21c65cc2a6",
+    "holeTraceSha256": "425121c5eaea77d11246f2f6e8923fe0b45651d739de1e6f71f8a8bb21ea40e8",
+    "contactFrames": 226,
+    "contactPixelsAcrossFrames": 1192,
+    "contactPairs": [
+      [
+        1,
+        3
+      ]
+    ],
+    "largestContact": {
+      "name": "body-4-31",
+      "pair": [
+        1,
+        3
+      ],
+      "pixels": 32,
+      "bbox": [
+        323,
+        263,
+        332,
+        273
+      ],
+      "sourceMaterialTrace": [
+        {
+          "leg": 1,
+          "sourceUvFirst": [
+            252.6017859466125,
+            151.33134128979384
+          ],
+          "sourceHipDistanceRange": [
+            18.955191060603422,
+            27.42491612644601
+          ],
+          "sourceKneeDistanceRange": [
+            73.7541657225596,
+            83.97834135640164
+          ]
+        },
+        {
+          "leg": 3,
+          "sourceUvFirst": [
+            272.02506525579884,
+            196.9407623005658
+          ],
+          "sourceHipDistanceRange": [
+            22.243531656800535,
+            32.320650702320734
+          ],
+          "sourceKneeDistanceRange": [
+            52.621171228564364,
+            61.203282028725255
+          ]
+        }
+      ],
+      "reviewStatus": "Kept in metrics; needs actual context. Proximal Y contacts are not excluded by a mask or tolerance."
+    },
+    "contactClassification": "Accepted proximal RF/RM Y overlap at body edge. Both shafts readable, no distal crossing, cut tissue, root needle or double collar. Numeric contact is retained; no claim of zero skin overlap or measured 3D separation.",
+    "hiddenLimbMaskCavities": [
+      {
+        "name": "body-3-28",
+        "pixel": [
+          323,
+          296
+        ],
+        "independentlyReadWholeRgba": [
+          215,
+          140,
+          161,
+          253
+        ],
+        "independentlyReadLimbMaskAlpha": 3
+      },
+      {
+        "name": "body-4-29",
+        "pixel": [
+          323,
+          296
+        ],
+        "independentlyReadWholeRgba": [
+          215,
+          140,
+          161,
+          253
+        ],
+        "independentlyReadLimbMaskAlpha": 3
+      }
+    ],
+    "cavityClassification": "No visible aperture on green/dark/light: source ownership boundary lies beneath continuous torso. No fill or torso-mask expansion justified."
+  },
+  "packingEvidence": {
+    "producer": "Root verify_packed_frames.py; report inspected, packing not independently reimplemented here",
+    "reportSha256": "5e78119ed03e9a246382c95adaed2e079bfa6f014104e46cdcf7069a8a21180b",
+    "frames": 432,
+    "allAtlasRoundTripsVisibleByteExact": true,
+    "alphaPixelsChanged": 0,
+    "packingAddedCoverage": false
+  },
+  "separateGates": {
+    "offlineCoordinates": "PASS under Final04-independent-body-attack-coordinate-gate.json, virtual authored chains only",
+    "upperVolume": "Baseline credible. Middle upper segments are thin, consistent with open source material; native Recoil03 is a different drawing/pose. No mandatory volume edit justified by this full matrix.",
+    "skinArt": "PASS body432 static native pixels",
+    "motionAndTempo": "Pending native playback; still review does not approve cadence, smoothness or temporal silhouette",
+    "attackFullArt": "Sibling ownership, outside this body verdict",
+    "sleeperPaletteAndSleep": "Outside this body matrix review",
+    "physical3DSupport": "Not established by PNG or authored endpoint Z"
+  }
+}

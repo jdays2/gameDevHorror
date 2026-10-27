@@ -76,6 +76,10 @@ namespace EmergencyShift
         public Vector2 PupilOffset => pupil != null ? (Vector2)(pupil.transform.localPosition - pupilRestPosition - currentEyeOffset) : Vector2.zero;
         protected virtual bool AnimateCompactLocomotion => false;
         protected virtual bool ApplySupportYaw => true;
+        protected virtual bool HoldLastBodyOnDeath => false;
+        protected virtual void ResetDisplayedBodyPosture()
+        {
+        }
         protected EnemyPresentationSource2D Presentation => presentation;
         protected virtual float LocomotionStrideScale => 1;
         protected virtual float BodyFoldTarget
@@ -96,6 +100,13 @@ namespace EmergencyShift
         }
 
         protected virtual bool TrySelectLocomotionFrame(float phase, out Sprite sprite, out int frame)
+        {
+            sprite = null;
+            frame = 0;
+            return false;
+        }
+
+        protected virtual bool TrySelectAttackFrame(float phase, float progress, out Sprite sprite, out int frame)
         {
             sprite = null;
             frame = 0;
@@ -164,6 +175,7 @@ namespace EmergencyShift
         protected virtual void OnEnable()
         {
             hasPreviousPosition = false;
+            ResetDisplayedBodyPosture();
         }
 
         public Quaternion VisualRotation => visualRoot.rotation;
@@ -174,6 +186,7 @@ namespace EmergencyShift
             turnVelocity = 0;
             movementWeight = 0;
             hasPreviousPosition = false;
+            ResetDisplayedBodyPosture();
         }
 
         public void RestoreDead()
@@ -251,14 +264,22 @@ namespace EmergencyShift
             }
 
             int eyeFrame = Mathf.Clamp(Mathf.RoundToInt(presentation.Closure * 3), 0, 3);
-            if (dead && deathFrames != null && deathFrames.Length > 0)
+            if (dead)
             {
-                CurrentFrame = Mathf.Min(deathFrames.Length - 1, (int)(presentation.DeathTime * 6f));
-                bodyRenderer.sprite = deathFrames[CurrentFrame];
+                if (!HoldLastBodyOnDeath && deathFrames != null && deathFrames.Length > 0)
+                {
+                    CurrentFrame = Mathf.Min(deathFrames.Length - 1, (int)(presentation.DeathTime * 6f));
+                    bodyRenderer.sprite = deathFrames[CurrentFrame];
+                }
                 if (presentation.DeathTime >= 1)
                 {
                     enabled = false;
                 }
+            }
+            else if (attacking && TrySelectAttackFrame(walkPhase, presentation.AttackProgress, out Sprite attackSprite, out int attackPose))
+            {
+                CurrentFrame = attackPose;
+                bodyRenderer.sprite = attackSprite;
             }
             else if (attacking && attackFrames != null && attackFrames.Length > 0)
             {
@@ -293,7 +314,7 @@ namespace EmergencyShift
         private void UpdateEyePresentation(int eyeFrame, bool dead)
         {
             ApplyEyePose(eyeFrame);
-            bool open = !dead && presentation.Closure < 0.166f;
+            bool open = !dead && eyeFrame == 0;
             if (eyeUnderlay != null)
             {
                 eyeUnderlay.enabled = !dead;

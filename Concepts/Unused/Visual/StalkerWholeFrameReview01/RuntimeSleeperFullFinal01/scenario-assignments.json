@@ -1,0 +1,639 @@
+{
+  "status": "ALL4095_CURRENT_FRAME_OWNERS_ASSIGNED_WITHOUT_GAPS_OR_OVERLAP",
+  "owners": {
+    "native_whole_audit": {
+      "scenarioIds": [
+        13,
+        14,
+        15,
+        17,
+        18,
+        19,
+        23,
+        24,
+        25,
+        26
+      ],
+      "frames": 1335
+    },
+    "sleeper_native": {
+      "scenarioIds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        16,
+        21,
+        22
+      ],
+      "frames": 2007
+    },
+    "runtime_review": {
+      "scenarioIds": [
+        20,
+        27,
+        29
+      ],
+      "frames": 753
+    }
+  },
+  "neighborContextMayOverlap": true,
+  "assignments": [
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "01-idle",
+      "first": 0,
+      "last": 44,
+      "count": 45,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "c0d5766040d3d97e8f2279e010aed4ce3c084fdad7da91fca570a23199efc2d9"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "02-waking-entire-transition",
+      "first": 45,
+      "last": 104,
+      "count": 60,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "2c77b02ff22805f0ffb459801136349b77828668e20fb3b42afee5a64098c28f"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "03-walk-up",
+      "first": 105,
+      "last": 194,
+      "count": 90,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "8b70e8ab9bfc472174634650cb3a7ba43c73cfce38ba5c318cbe8abaaf799d6b"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "04-walk-down",
+      "first": 195,
+      "last": 284,
+      "count": 90,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "188b7e4af4ed7895265214e081c5ca79804874f5d854fcc787db819e11ac236b"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "05-turn-90-and-180",
+      "first": 285,
+      "last": 404,
+      "count": 120,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "e9846229f03903ea6f1f38ee25176d538fdda2fc35422b63059b01b77686ab9f"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "06-start-stop-teleport",
+      "first": 405,
+      "last": 524,
+      "count": 120,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "29b90b474e4f8072931976133ed494667f440514d627e2fe978fbbe84a4bc581"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "13-attack-windup-strike-recovery",
+      "first": 525,
+      "last": 587,
+      "count": 63,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "b2633cd692d7277b6d3886d09fd75e714f73d0b813cc48d23e84b780fe136be0"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "14-post-lunge-recovery",
+      "first": 588,
+      "last": 626,
+      "count": 39,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "11a035b459424cea00610772aaf4d8ef1f808e7215fc5ac0aa86a548f270a3b4"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "15-attack-to-walk",
+      "first": 627,
+      "last": 686,
+      "count": 60,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "46fd577bc860e8f2c257d99b4f083867bc0bcb5979fd8707c0569cd5648643b1"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "16-stagger-hit-stop-and-resume",
+      "first": 687,
+      "last": 746,
+      "count": 60,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "9947cca77e669cb1952ca0294c984c094e438dac2baecd3e071969064a06bd03"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "17-restore-waking-half",
+      "first": 747,
+      "last": 791,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "18368b14fc6d4c14e7ea7f55a2ec7dde94c4a2e1497fcc3850bae1e0156a8278"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "18-restore-hunting",
+      "first": 792,
+      "last": 836,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "75c961fd6587b1021cb84969ff850398c2332679bbb9845897da45a5ccafe33e"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "19-target-dead-stop",
+      "first": 837,
+      "last": 881,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "3d09b8b64d5cb6b329774f5057a7c86421767cad51cb7a8bebf87efc1f91b313"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "21-sleep-before-near-attack",
+      "first": 882,
+      "last": 911,
+      "count": 30,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "da933df473b16eb785946662fdddb6e3403c32d14ee82d07b067cf5ecd702870"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "22-wake-to-near-attack-boundary",
+      "first": 912,
+      "last": 965,
+      "count": 54,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "3213889f0a887cb4ff982f5f5874560ef84fd001f2b6222345ffb0b1c72e4f89"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "23-hunt-near-one-frame",
+      "first": 966,
+      "last": 966,
+      "count": 1,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "8060962cc3a8b9b41e79e3bbd6897f074821eefe49bdb0884efa64a30695b2be"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "24-near-attack-after-wake",
+      "first": 967,
+      "last": 1029,
+      "count": 63,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "1cd4f1aed1002ee4df3d2e4f1b56e47e22a4f83e1994c2169b55230c60939dd1"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "25-near-attack-recovery",
+      "first": 1030,
+      "last": 1068,
+      "count": 39,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "9be70b2f36298ab3486da080d05848225ae841c36d6162a88caf715734cd4f3c"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "26-near-attack-resume",
+      "first": 1069,
+      "last": 1113,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "5ba525c69ade2f8ac87db1167d7442de7ca8b8c4c1f8b8cd02f6b29df7a283fa"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "27-attack-to-hit-state-cut",
+      "first": 1114,
+      "last": 1199,
+      "count": 86,
+      "owner": "runtime_review",
+      "sequenceRgbSha256": "4ed5b5e298f35b93c195b2fe301be484beec34ce9f0f24d3af69eeb307958ae6"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "29-waking-to-target-death",
+      "first": 1200,
+      "last": 1274,
+      "count": 75,
+      "owner": "runtime_review",
+      "sequenceRgbSha256": "a9a461c2ab915ba4550e0eb514f37e096d2e8a6a7f44df620dd38e026055ab91"
+    },
+    {
+      "profile": "BasementPrototype-sleeper-live-1ec546fc",
+      "scenario": "20-death-actual-kill-gore",
+      "first": 1275,
+      "last": 1364,
+      "count": 90,
+      "owner": "runtime_review",
+      "sequenceRgbSha256": "73083eccdb23d46ab8b4db398a7a09c12fa9c7b5708150f14a249c9c41d6ba3f"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "01-idle",
+      "first": 0,
+      "last": 44,
+      "count": 45,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "c0d5766040d3d97e8f2279e010aed4ce3c084fdad7da91fca570a23199efc2d9"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "02-waking-entire-transition",
+      "first": 45,
+      "last": 104,
+      "count": 60,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "2c77b02ff22805f0ffb459801136349b77828668e20fb3b42afee5a64098c28f"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "03-walk-up",
+      "first": 105,
+      "last": 194,
+      "count": 90,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "8b70e8ab9bfc472174634650cb3a7ba43c73cfce38ba5c318cbe8abaaf799d6b"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "04-walk-down",
+      "first": 195,
+      "last": 284,
+      "count": 90,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "188b7e4af4ed7895265214e081c5ca79804874f5d854fcc787db819e11ac236b"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "05-turn-90-and-180",
+      "first": 285,
+      "last": 404,
+      "count": 120,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "e9846229f03903ea6f1f38ee25176d538fdda2fc35422b63059b01b77686ab9f"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "06-start-stop-teleport",
+      "first": 405,
+      "last": 524,
+      "count": 120,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "29b90b474e4f8072931976133ed494667f440514d627e2fe978fbbe84a4bc581"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "13-attack-windup-strike-recovery",
+      "first": 525,
+      "last": 587,
+      "count": 63,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "b2633cd692d7277b6d3886d09fd75e714f73d0b813cc48d23e84b780fe136be0"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "14-post-lunge-recovery",
+      "first": 588,
+      "last": 626,
+      "count": 39,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "11a035b459424cea00610772aaf4d8ef1f808e7215fc5ac0aa86a548f270a3b4"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "15-attack-to-walk",
+      "first": 627,
+      "last": 686,
+      "count": 60,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "46fd577bc860e8f2c257d99b4f083867bc0bcb5979fd8707c0569cd5648643b1"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "16-stagger-hit-stop-and-resume",
+      "first": 687,
+      "last": 746,
+      "count": 60,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "9947cca77e669cb1952ca0294c984c094e438dac2baecd3e071969064a06bd03"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "17-restore-waking-half",
+      "first": 747,
+      "last": 791,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "18368b14fc6d4c14e7ea7f55a2ec7dde94c4a2e1497fcc3850bae1e0156a8278"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "18-restore-hunting",
+      "first": 792,
+      "last": 836,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "75c961fd6587b1021cb84969ff850398c2332679bbb9845897da45a5ccafe33e"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "19-target-dead-stop",
+      "first": 837,
+      "last": 881,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "3d09b8b64d5cb6b329774f5057a7c86421767cad51cb7a8bebf87efc1f91b313"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "21-sleep-before-near-attack",
+      "first": 882,
+      "last": 911,
+      "count": 30,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "da933df473b16eb785946662fdddb6e3403c32d14ee82d07b067cf5ecd702870"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "22-wake-to-near-attack-boundary",
+      "first": 912,
+      "last": 965,
+      "count": 54,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "3213889f0a887cb4ff982f5f5874560ef84fd001f2b6222345ffb0b1c72e4f89"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "23-hunt-near-one-frame",
+      "first": 966,
+      "last": 966,
+      "count": 1,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "8060962cc3a8b9b41e79e3bbd6897f074821eefe49bdb0884efa64a30695b2be"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "24-near-attack-after-wake",
+      "first": 967,
+      "last": 1029,
+      "count": 63,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "1cd4f1aed1002ee4df3d2e4f1b56e47e22a4f83e1994c2169b55230c60939dd1"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "25-near-attack-recovery",
+      "first": 1030,
+      "last": 1068,
+      "count": 39,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "9be70b2f36298ab3486da080d05848225ae841c36d6162a88caf715734cd4f3c"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "26-near-attack-resume",
+      "first": 1069,
+      "last": 1113,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "5ba525c69ade2f8ac87db1167d7442de7ca8b8c4c1f8b8cd02f6b29df7a283fa"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "27-attack-to-hit-state-cut",
+      "first": 1114,
+      "last": 1199,
+      "count": 86,
+      "owner": "runtime_review",
+      "sequenceRgbSha256": "4ed5b5e298f35b93c195b2fe301be484beec34ce9f0f24d3af69eeb307958ae6"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "29-waking-to-target-death",
+      "first": 1200,
+      "last": 1274,
+      "count": 75,
+      "owner": "runtime_review",
+      "sequenceRgbSha256": "a9a461c2ab915ba4550e0eb514f37e096d2e8a6a7f44df620dd38e026055ab91"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-live-ce174f83",
+      "scenario": "20-death-actual-kill-gore",
+      "first": 1275,
+      "last": 1364,
+      "count": 90,
+      "owner": "runtime_review",
+      "sequenceRgbSha256": "e7fbc9b1971c7682225771c3c6cae4542deb984142f4c71f9a502c8061a21249"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "01-idle",
+      "first": 0,
+      "last": 44,
+      "count": 45,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "c0d5766040d3d97e8f2279e010aed4ce3c084fdad7da91fca570a23199efc2d9"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "02-waking-entire-transition",
+      "first": 45,
+      "last": 104,
+      "count": 60,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "2c77b02ff22805f0ffb459801136349b77828668e20fb3b42afee5a64098c28f"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "03-walk-up",
+      "first": 105,
+      "last": 194,
+      "count": 90,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "8b70e8ab9bfc472174634650cb3a7ba43c73cfce38ba5c318cbe8abaaf799d6b"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "04-walk-down",
+      "first": 195,
+      "last": 284,
+      "count": 90,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "188b7e4af4ed7895265214e081c5ca79804874f5d854fcc787db819e11ac236b"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "05-turn-90-and-180",
+      "first": 285,
+      "last": 404,
+      "count": 120,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "e9846229f03903ea6f1f38ee25176d538fdda2fc35422b63059b01b77686ab9f"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "06-start-stop-teleport",
+      "first": 405,
+      "last": 524,
+      "count": 120,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "29b90b474e4f8072931976133ed494667f440514d627e2fe978fbbe84a4bc581"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "13-attack-windup-strike-recovery",
+      "first": 525,
+      "last": 587,
+      "count": 63,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "b2633cd692d7277b6d3886d09fd75e714f73d0b813cc48d23e84b780fe136be0"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "14-post-lunge-recovery",
+      "first": 588,
+      "last": 626,
+      "count": 39,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "11a035b459424cea00610772aaf4d8ef1f808e7215fc5ac0aa86a548f270a3b4"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "15-attack-to-walk",
+      "first": 627,
+      "last": 686,
+      "count": 60,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "46fd577bc860e8f2c257d99b4f083867bc0bcb5979fd8707c0569cd5648643b1"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "16-stagger-hit-stop-and-resume",
+      "first": 687,
+      "last": 746,
+      "count": 60,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "9947cca77e669cb1952ca0294c984c094e438dac2baecd3e071969064a06bd03"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "17-restore-waking-half",
+      "first": 747,
+      "last": 791,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "18368b14fc6d4c14e7ea7f55a2ec7dde94c4a2e1497fcc3850bae1e0156a8278"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "18-restore-hunting",
+      "first": 792,
+      "last": 836,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "75c961fd6587b1021cb84969ff850398c2332679bbb9845897da45a5ccafe33e"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "19-target-dead-stop",
+      "first": 837,
+      "last": 881,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "3d09b8b64d5cb6b329774f5057a7c86421767cad51cb7a8bebf87efc1f91b313"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "21-sleep-before-near-attack",
+      "first": 882,
+      "last": 911,
+      "count": 30,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "da933df473b16eb785946662fdddb6e3403c32d14ee82d07b067cf5ecd702870"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "22-wake-to-near-attack-boundary",
+      "first": 912,
+      "last": 965,
+      "count": 54,
+      "owner": "sleeper_native",
+      "sequenceRgbSha256": "3213889f0a887cb4ff982f5f5874560ef84fd001f2b6222345ffb0b1c72e4f89"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "23-hunt-near-one-frame",
+      "first": 966,
+      "last": 966,
+      "count": 1,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "8060962cc3a8b9b41e79e3bbd6897f074821eefe49bdb0884efa64a30695b2be"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "24-near-attack-after-wake",
+      "first": 967,
+      "last": 1029,
+      "count": 63,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "1cd4f1aed1002ee4df3d2e4f1b56e47e22a4f83e1994c2169b55230c60939dd1"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "25-near-attack-recovery",
+      "first": 1030,
+      "last": 1068,
+      "count": 39,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "9be70b2f36298ab3486da080d05848225ae841c36d6162a88caf715734cd4f3c"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "26-near-attack-resume",
+      "first": 1069,
+      "last": 1113,
+      "count": 45,
+      "owner": "native_whole_audit",
+      "sequenceRgbSha256": "5ba525c69ade2f8ac87db1167d7442de7ca8b8c4c1f8b8cd02f6b29df7a283fa"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "27-attack-to-hit-state-cut",
+      "first": 1114,
+      "last": 1199,
+      "count": 86,
+      "owner": "runtime_review",
+      "sequenceRgbSha256": "4ed5b5e298f35b93c195b2fe301be484beec34ce9f0f24d3af69eeb307958ae6"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "29-waking-to-target-death",
+      "first": 1200,
+      "last": 1274,
+      "count": 75,
+      "owner": "runtime_review",
+      "sequenceRgbSha256": "a9a461c2ab915ba4550e0eb514f37e096d2e8a6a7f44df620dd38e026055ab91"
+    },
+    {
+      "profile": "MechanicsSandbox-sleeper-stationary-1731469b",
+      "scenario": "20-death-actual-kill-gore",
+      "first": 1275,
+      "last": 1364,
+      "count": 90,
+      "owner": "runtime_review",
+      "sequenceRgbSha256": "bdb23ae5d6f86e78e8abcb645a939c8b8bcf63a6d42f58d2c644abe1cebbed51"
+    }
+  ]
+}

@@ -29,6 +29,70 @@ namespace EmergencyShift.Tests
         }
 
         [UnityTest]
+        public IEnumerator PartialWakeTargetDeathFinishesTheBodyMovementWithoutSnappingToWalk()
+        {
+            previous = SceneManager.GetActiveScene();
+            const string path = "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity";
+            yield return EditorSceneManager.LoadSceneAsyncInPlayMode(path, new LoadSceneParameters(LoadSceneMode.Additive));
+            scene = SceneManager.GetSceneByPath(path);
+            SceneManager.SetActiveScene(scene);
+            LevelContext2D context = null;
+            foreach (GameObject root in scene.GetRootGameObjects())
+            {
+                foreach (ShadowStalker2D actor in root.GetComponentsInChildren<ShadowStalker2D>(true))
+                {
+                    actor.gameObject.SetActive(false);
+                }
+                foreach (Sleeper2D actor in root.GetComponentsInChildren<Sleeper2D>(true))
+                {
+                    actor.gameObject.SetActive(false);
+                }
+                context = context != null ? context : root.GetComponentInChildren<LevelContext2D>(true);
+            }
+            Assert.That(context, Is.Not.Null);
+            context.Player.SetHealthCapacity(100, 100);
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab");
+            GameObject enemy = context.CreateInstance(prefab, new Vector3(100, 100, 0), Quaternion.identity);
+            var sleeper = enemy.GetComponent<Sleeper2D>();
+            var animator = enemy.GetComponent<SleeperSpriteAnimator>();
+            Assert.That(animator, Is.Not.Null);
+            float captureDelta = Time.captureDeltaTime;
+            try
+            {
+                Time.captureDeltaTime = 1f / 60;
+                Sleeper2D.Snapshot waking = sleeper.CaptureState();
+                waking.state = Sleeper2D.BehaviourState.Waking;
+                waking.aggro = true;
+                waking.age = .45f;
+                sleeper.RestoreState(waking);
+                animator.RestoreVisualRotation(Quaternion.identity);
+                yield return null;
+                float before = animator.DisplayedBodyFold;
+                Assert.That(before, Is.InRange(.4f, .6f));
+
+                Assert.That(context.Player.TakeDamage(999), Is.True);
+                yield return new WaitForFixedUpdate();
+                yield return null;
+                Assert.That(sleeper.State, Is.EqualTo(Sleeper2D.BehaviourState.TargetDead));
+                Assert.That(animator.DisplayedBodyFold, Is.GreaterThan(0).And.LessThan(before));
+                Assert.That(animator.CurrentFrame / animator.SpriteSet.Phases, Is.GreaterThan(0),
+                    "A cut during waking must still display an intermediate whole-body row.");
+                int completionFrames = Mathf.CeilToInt(animator.SpriteSet.ClosureSeconds / Time.captureDeltaTime) + 2;
+                for (int frame = 0; frame < completionFrames; frame++)
+                {
+                    yield return null;
+                }
+                Assert.That(animator.DisplayedBodyFold, Is.Zero);
+                Assert.That(animator.CurrentFrame / animator.SpriteSet.Phases, Is.Zero);
+                Assert.That(sleeper.State, Is.EqualTo(Sleeper2D.BehaviourState.TargetDead));
+            }
+            finally
+            {
+                Time.captureDeltaTime = captureDelta;
+            }
+        }
+
+        [UnityTest]
         public IEnumerator RealSleeperWakesToBeamKeepsAggroCommitsLungeAndRestoresSilently()
         {
             previous = SceneManager.GetActiveScene();
@@ -69,8 +133,14 @@ namespace EmergencyShift.Tests
             yield return new WaitForSeconds(.1f);
             Assert.That(sleeper.State, Is.EqualTo(Sleeper2D.BehaviourState.Sleeping));
             Assert.That(sleeper.HasAggro, Is.False, "Proximity alone does not wake this species.");
-            var body=enemy.transform.Find("Visual/Body").GetComponent<SpriteRenderer>();
-            Assert.That(body.sprite.name, Does.StartWith("Recoil03"), "Sleeping must use the authored folded body, not only a shut eye.");
+            var body = enemy.transform.Find("Visual/Body").GetComponent<SpriteRenderer>();
+            var animator = enemy.GetComponent<SleeperSpriteAnimator>();
+            Assert.That(animator, Is.Not.Null);
+            Assert.That(animator.SpriteSet, Is.Not.Null);
+            Assert.That(AssetDatabase.GetAssetPath(animator.SpriteSet), Is.EqualTo("Assets/EmergencyShift/Data/Enemies/SleeperSprites05.asset"));
+            Assert.That(animator.DisplayedBodyFold, Is.EqualTo(1).Within(.001f));
+            Assert.That(animator.CurrentFrame / animator.SpriteSet.Phases, Is.EqualTo(animator.SpriteSet.ClosureRows - 1),
+                "Sleeping must use the last whole-body fold row, not only a shut eye.");
             Assert.That(enemy.GetComponent<EnemyPresentationSource2D>().BodyPosture, Is.EqualTo(EnemyBodyPosture.Folded));
             Assert.That(body.bounds.size.x, Is.LessThan(1), "Sleeping silhouette must remain visibly compact.");
             context.Flashlight.AimAt(enemy.transform.position);
@@ -123,10 +193,13 @@ namespace EmergencyShift.Tests
             sleeper.RestoreState(snapshot);
             Assert.That(states, Is.Zero);
             Assert.That(sleeper.CaptureState().heading, Is.EqualTo(snapshot.heading));
+            Sprite poseAtHit = body.sprite;
             sleeper.ReceiveBulletHit(99, enemy.transform.position, Vector2.right);
             Assert.That(sleeper.State, Is.EqualTo(Sleeper2D.BehaviourState.Dead));
             Assert.That(enemy.GetComponent<Rigidbody2D>().simulated, Is.False);
             Assert.That(states, Is.EqualTo(1));
+            yield return null;
+            Assert.That(body.sprite, Is.SameAs(poseAtHit), "The new body must keep its last pose until rupture instead of expanding into a legacy Death frame.");
             Object.Destroy(enemy);
             Object.Destroy(wall);
             yield return null;

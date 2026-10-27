@@ -1,0 +1,25 @@
+{
+  "mode": "Read-only review, no production edits",
+  "sourceSha256": {
+    "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs": "73b623f166567e4f9af2b1a088124cffcf515d28a1bfd2687cce1e63d4aa3e47",
+    "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs": "094c1055414a510b19a2c76ee6f7402c88c5b9cd0fce765a1c7151b6cf19b773",
+    "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperSpriteAnimator.cs": "a9abb20c8b5e5e2da00098456ac4995d16aa68a9bc5a9212b82141b4faded1cf",
+    "Assets/EmergencyShift/Runtime/Features/Enemies/Config/CreatureAttackSpriteSet.cs": "34de9b72bc029d17e88e1135a15e47debaf9d21ccd91f3eafd43497d180c0761"
+  },
+  "findings": [],
+  "checks": [
+    "New hooks are view-only, common animator has no species dispatch or writes to domain state.",
+    "HoldLastBodyOnDeath preserves the current body for migrated sprite sets; shared legacy default remains false.",
+    "RestoreDead method remains unchanged: settled final legacy sprite, remains style and disabled eye/animator.",
+    "Checkpoint wrappers restore actor then call RestoreVisualRotation; both that method and OnEnable reset displayed posture cache and previous position.",
+    "Stalker invalidates cache on restore and initializes first selected body directly; the first displacement is rejected by hasPreviousPosition=false.",
+    "Both species reset displayed fold to zero when a whole attack frame is selected.",
+    "Walk phase stops during attack, movement previousPosition still advances, and return uses that same gait phase.",
+    "Attack FrameIndex reads each species Definition.StrikeAt only to remap artwork; model/melee durations and conditions are unchanged.",
+    "Sleeper uses brain Closure directly, preserving .9-second waking progression.",
+    "No diff found in StalkerModel, SleeperModel, EnemyMeleeModel, EnemyMeleeAttack2D, GoreBurst2D or RemainsRecord2D."
+  ],
+  "harnessCorrection": "Actual Kill captures no longer call actor.RestoreState(Dead), which intentionally invokes settled RestoreDead and would overwrite the fresh live pose. The actual dead brain is enabled only to advance its age naturally. No body/eye sprite is assigned by the harness.",
+  "verificationLimit": "Final Play capture deferred after owner rejected current skin quality. Static review and baseline Kill/Gore evidence do not establish final visual acceptance.",
+  "authoringReview": "Not applicable: no scene objects edited or saved."
+}

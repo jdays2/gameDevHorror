@@ -1,0 +1,130 @@
+{
+  "scope": "Offline coordinate and virtual floor gate; no art, physical resting body, Unity runtime or motion-tempo approval",
+  "sourceHashes": {
+    "poses.json": "01fd4f1ba46920b2b107ca1b95931d89e5c781d961bc1ec908dc043972ce0114",
+    "attack-poses.json": "b321faf2deb58c27cfa1d777d350e784c2bb495c97f823941fbdbc33ba496d29",
+    "bones.json": "212a85bc0181a0237ccbf7bd975385b17f5f42c8c8b74f55e6eac19b6f44d9f6",
+    "attack-pose-validation.json": "a158db7f146eabb75b59ba1170dc081d671fac38266c5c49786bf996568eab6c"
+  },
+  "metadata": {
+    "count": 432,
+    "maxBoneError": 1.1920929e-07,
+    "minDistalProjection": 0.296816438,
+    "minFootHeight": 0.0,
+    "minWinding": 0.003427389,
+    "cycleDistance": 1.25,
+    "compactStrideScale": 0.8,
+    "frontHindSupportFraction": 0.65,
+    "middleSupportFraction": 0.35,
+    "middlePhaseShift": 0.35,
+    "runtimeIk": false
+  },
+  "bodyCount": 432,
+  "bodyMatchesIndependentMathWithin1e-6": true,
+  "maximumBodyCoordinateErrorAgainstIndependentDoubleMath": 3.0347812052244905e-07,
+  "worstBodyCoordinateComparison": {
+    "row": 0,
+    "phase": 25,
+    "maxAbsoluteCoordinateError": 3.0347812052244905e-07
+  },
+  "independentCandidateSummary": {
+    "cycle": 1.25,
+    "fore_mount_factor_xy": [
+      0.4,
+      0.4
+    ],
+    "fore_hind_support": 0.65,
+    "fore_hind_extended_lane_y": 0.48,
+    "middle_support": 0.35,
+    "middle_phase_add": 0.35,
+    "middle_extended_relative_xy": [
+      0.56,
+      -0.3
+    ],
+    "middle_guarded_relative_xy": [
+      0.5,
+      -0.3
+    ],
+    "closed_middle_toe_y": -0.1,
+    "closed_middle_knee_y": 0.06,
+    "max_grounded_pre_tuck_reach_clamp_error": 0.0,
+    "pre_tuck_clamped_chain_count": 0,
+    "min_fore_middle_knee_gap": 0.14,
+    "min_middle_hind_knee_gap": 0.214,
+    "min_source_winding_product": 0.003427388449799563,
+    "max_bone_error": 1.6653345369377348e-16,
+    "min_contacts_walking_rows0to4": 3,
+    "min_endpoint_z": -5.551115123125783e-17,
+    "minimum_toe_row_phase_leg": {
+      "row": 0,
+      "phase": 0,
+      "leg": "LF",
+      "z": -5.551115123125783e-17
+    },
+    "minimum_toe_z_by_row": [
+      -5.551115123125783e-17,
+      -5.551115123125783e-17,
+      -5.551115123125783e-17,
+      -5.551115123125783e-17,
+      -5.551115123125783e-17,
+      0.011704764618397118,
+      0.04894309869487834,
+      0.1101610224024212,
+      0.19026300825249726
+    ],
+    "separate_uniform_virtual_transition_lift_proposal": {
+      "formula": "After composing the raised virtual chain, translate ALL hip/knee/toeZ by.015*sin(pi*tuck)^2,tuck=clamp((fold-.5)/.5,0,1). Explicit hypothetical virtual body-height curve, not toe clamping; does not changeXY or3Dlengths. No canonical edit was made.",
+      "minimum_toe_z_by_row_after_translation": [
+        -5.551115123125783e-17,
+        -5.551115123125783e-17,
+        -5.551115123125783e-17,
+        -5.551115123125783e-17,
+        -5.551115123125783e-17,
+        0.019204764618397117,
+        0.06394309869487834,
+        0.11766102240242121,
+        0.19026300825249726
+      ],
+      "required_nominal_peak_H_for_z_ge0": 0,
+      "required_nominal_peak_H_for_raised_z_ge_point001": 0,
+      "all432_endpoints_nonnegative_after_common_lift": true,
+      "fully_closed_translation": 0,
+      "walking_row_translation": 0
+    },
+    "distal_distal_intersections": [],
+    "distal_upper_intersections_outside_source_owned_body": [],
+    "formal_region_reach_candidate": true,
+    "plus_min3_contacts": true
+  },
+  "stancePairsChecked": 770,
+  "maximumStanceWorldTranslationResidual": 2.391176488807314e-07,
+  "worstStanceWorldTranslationResidual": {
+    "row": 2,
+    "phase": 34,
+    "leg": "RR",
+    "worldSupportTranslationResidual": 2.391176488807314e-07
+  },
+  "attackCount": 792,
+  "attackGroups": {
+    "entry": 384,
+    "return": 384,
+    "strike": 24
+  },
+  "minimumAttackPointZ": 0.0,
+  "maximumAttackBoneLengthError": 1.0407660278044517e-07,
+  "minimumAttackFloorContacts": 2,
+  "strikeNonattackingFeetMaximumAbsoluteZ": 0.0,
+  "strikeFloorContactCounts": [
+    4
+  ],
+  "bodyAttackEntryReturnMaximumEdgeError": 0.0,
+  "allPhaseChamberMaximumEdgeError": 0.0,
+  "strikeFirstLastChamberError": 0.0,
+  "floorOrLengthFailures": [],
+  "limits": [
+    "FootZ=0 is an authored contact, not measured support force or skin-floor clearance.",
+    "The432grid agreement checks exactly9folds x48phases; no continuous interpolation or final skin set is certified.",
+    "Gait frequency is v/(1.25*strideScale*actorScale); artistic calmness still requires native video.",
+    "No source PNG validates virtual Z heights or true3D bone lengths."
+  ]
+}

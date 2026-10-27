@@ -1,0 +1,15 @@
+# Selected cadence candidate: independent coordinate gate
+
+The new C# export was read without running Unity or changing authoring code. All432 body poses agree with the independent double-precision reproduction within3.035e−7 world units. The fresh skinless top/side plans are `selected-cadence-canonical-bone-plans-row4-row8-top-side.png`; exact source hashes and results are in the two selected-cadence gate JSON files. Older native endpoint observations and earlier candidate reports remain separate.
+
+Candidate: cycle1.25, compact stride.8, fore/hind support.65, middle support.35, middle phase +.35; fore and middle mounts XY*.4, hind*.72. Relative extended fore/hind laneY±.48, guarded±.30; middle extended outward.56/rear.30, guarded.50/rear.30. Closed middle kneeY+.06, toeY−.10.
+
+All432 pass the offline coordinate gate: no source-winding reversal, no negative bone endpointZ, maximum3D length error1.402e−7, minimum fore/middle kneeY gap.13999997 and middle/hind.21399997, minimum distal projected/true length ratio.72394. Fully closed is identical over48phases. Walking rows0–4 retain3–5 authored floor contacts. Raised folding rows5–8 have no toe floor contacts; no virtualZ bump is needed for this candidate. Independent centerline calculations have no distal/distal intersections and no distal/other-upper intersection clearly outside the source body owner; this does not certify thick skin overlap.
+
+All792 attack poses have bone endpointZ≥0 and maximum length error1.041e−7. Strike has exactly four grounded nonattacking feet across all24samples. Entry begins at, and return ends at, its exact phase0–47 walking coordinates; every entry/return chamber edge and strike first/last chamber matches exactly. Some bridge frames have only two authored contacts. This is continuity and virtual floor evidence, not validated physical support.
+
+With the selected FHsupport.65 and laneY.48, the analytically limiting normal hind stance reaches the configured projected chain limit near cycle1.2732 (including the .0001 reach margin). Cycle1.25 retains approximately.00749 reach margin;1.30 would exceed it by.00864. The earlier1.30 recommendation for support.56 does not carry over. New cycle/support amplitudes are paired so a planted toe moves backward locally by the actor's forward translation; changing only runtime cycle distance would cause sliding.
+
+Across770 consecutive actual planted-foot pairs in rows0–4, including valid loop-boundary pairs, local foot translation plus authored actor translation1.25*strideScale/48 has maximum residual2.391e−7 world units. This verifies the discrete support-speed equality of this export, independently of any image-level overlap or runtime playback judgement.
+
+At unit actor scale the model frequency is speed/(1.25*strideScale): walk1.2 gives.96 cycles/sec, pursuit1.5 gives1.2, compact retreat3.8 gives3.8. No artistic tempo PASS is claimed without native motion review. No source PNG measured these virtual heights or true3D lengths; no grounded closed body surface or physical resting state is certified. Old H01 remains an art FAIL.

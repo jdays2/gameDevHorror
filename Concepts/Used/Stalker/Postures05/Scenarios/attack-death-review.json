@@ -1,0 +1,67 @@
+{
+  "source": "before/MechanicsSandbox-stalker/manifest.json and neighboring-frame contact sheets",
+  "reviewer": "independent scenario capture agent",
+  "attack": {
+    "finding": "Support legs snap from an asymmetric whole-body gait pose to the old symmetric Walk00 attack endpoint, then to Attack01/04 and back. The visible eye ring remains at the same apparent size and center. Actor scale stays [1,1,1], rotation stays effectively constant.",
+    "evidence": [
+      {
+        "frame": 825,
+        "before": "body-0-47",
+        "after": "Walk00-corrected",
+        "sheet": "before/MechanicsSandbox-stalker/Boundaries/boundary-00825.jpg"
+      },
+      {
+        "frame": 833,
+        "before": "Walk00-corrected",
+        "after": "Attack01",
+        "sheet": "before/MechanicsSandbox-stalker/Boundaries/boundary-00833.jpg"
+      },
+      {
+        "frame": 865,
+        "before": "Attack04",
+        "after": "Walk00-corrected",
+        "sheet": "before/MechanicsSandbox-stalker/Boundaries/boundary-00865.jpg"
+      },
+      {
+        "frame": 873,
+        "before": "Walk00-corrected",
+        "after": "body-0-00",
+        "sheet": "before/MechanicsSandbox-stalker/Boundaries/boundary-00873.jpg"
+      }
+    ],
+    "notEstablished": "The changing renderer bounds alone do not establish a whole-body scale or pivot bug: bounds necessarily change with leg reach. Core similarity is a visual observation, not a reconstructed 3D measurement.",
+    "targetedRecommendation": "Bake a continuous whole-body attack from the same 05 limb parts, with short entry/return bridges indexed by captured gait phase. First bridge frame must equal the selected incoming whole-body pose; final return must match that gait phase. Preserve melee timings and root lunge movement. Keep runtime work to sprite lookup via a species override.",
+    "suggestedBridgeBudget": {
+      "gaitPhases": 48,
+      "framesPerBridge": "6\u0432\u0402\u201c8",
+      "bridgeSeconds": "0.10\u0432\u0402\u201c0.13",
+      "directions": 2
+    },
+    "avoid": "RGBA crossfade of mismatched leg silhouettes creates duplicate spikes. Resetting the gait to phase zero only moves the visible snap to a different transition. Do not remove intentional attack reach to conceal this mismatch."
+  },
+  "death": {
+    "frame": 1068,
+    "before": "Death02",
+    "after": "Death03",
+    "sheet": "before/MechanicsSandbox-stalker/Boundaries/boundary-01068.jpg",
+    "visualFinding": "Detached legs disappear while the central ring/body stays in place. This resembles the authored transfer of detached anatomy into independently moving Gore fragments, rather than a uniform scale reduction.",
+    "runtimeFinding": "EnemyDeathEffects2D listens to EnemyHealth2D.Died and calls GoreBurst2D.Play once. RemainsRecord2D releases independent pieces after GoreProfile.releaseDelay=0.12. ALL current fresh-death Stalker variants (restorationOnly=0: hollow/retained/split-core eye03/flesh03) have replaceOriginalBody=1. The radial/heavy-close/scattered variants with replaceOriginalBody=0 are restorationOnly=1 and cannot be selected by a fresh Kill. Therefore the old renderer should already be hidden at .12s, before Death02\u0432\u2020\u2019Death03 at .5s. Sleeper fresh-death variants likewise replace it.",
+    "beforeLimitation": "The historical before diagnostic silently restored Dead, so it did not trigger procedural Gore. Its 64% foreground drop is insufficient to call the live death effect defective.",
+    "requiredLiveCheck": "Repeat GoreFinalProbe after the view-only last-live-frame hold correction and final assets: exact previous live sprite until Gore hides original body, two attempted Kill calls still one Died/one remains. Preserve native .12s release and rupture.",
+    "actualGoreBaseline": {
+      "folder": "gore-current",
+      "frames": 1080,
+      "sources": 6,
+      "captureErrors": 0,
+      "duplicateKillCallsPerActor": 2,
+      "diedEventsPerActor": 1,
+      "remainsRootsPerActor": 1,
+      "foldedDefect": "Waiting/fullfold and Sleeping switch to extended legacy Death00 on samples0-7 before the intended body replacement at sample8. This is an unintended pre-rupture pose jump, distinct from intentional native Gore fragmentation.",
+      "evidence": "gore-current/actual-gore-review.json; each actor/death-first-frames.jpg",
+      "framingLimitation": "Distant flying blood clips some 2.8-ortho baseline captures. Final death camera is 4.5; no actor-body clipping established."
+    }
+  },
+  "productionEditedByThisReview": false,
+  "artApprovalClaimed": false,
+  "reviewScope": "Historical before art audit and actual Gore diagnostics. Subsequent attack bridge implementation and root-owned death hold correction are separate follow-up changes requiring final validation."
+}

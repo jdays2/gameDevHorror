@@ -1,0 +1,11 @@
+# Eye threshold fix — current first replay
+
+Scoped PASS for `eye-threshold-final`, all nine warm and three cold source variants. The completed run has zero capture errors. All 2328 actual PNG/full RGB hashes and all twelve source manifests were frozen and rechecked. Every metadata sample selects the expected iris sprite from float32 closure×3, rounded to the nearest integer with ties to even, and its pupil enabled state agrees exactly with that selected open iris. Mismatches: zero.
+
+All fourteen opening/closing matrix samples per source and natural transition contexts were actually viewed as 753 native 128×128 eye crops on 31 pages, each 740×820, original detail with no resize notice. Every crop payload matches the current source exactly; no resize, blend or rotation normalization was applied. This is an eyes-only crop, not a claim that the full body foreground is retained. Natural contexts cover recoil, reopening, waking, restored waking and near-attack waking as applicable. The open pupil is visible at the boundary, with no empty white iris flash or pupil escaping the eye in the viewed sequences.
+
+The real historical full-cold boundaries were also viewed next to their new logical equivalents: old F90/F783/F957 versus fixed F90/F141/F225, all three Sleepers, with one neighbor on both sides. The separate 54-crop comparison shows the old nine white iris frames without a pupil and a black pupil on all nine corresponding fixed opening samples. Old PNG/RGB hashes match the frozen full provenance. The compared restored and near-attack poses can differ in phase/orientation between independent captures; no whole RGB or full-body inheritance is asserted.
+
+The first run has no pupilOffset metadata. None was reconstructed. Natural wake F90–104 supplies fourteen following open samples, but restored and near-attack openings only supply eight following samples. Thus this acceptance closes the sprite/pupil threshold and natural visual-boundary scope; the longer stateful gaze gate belongs to the separate `eye-threshold-followup` capture.
+
+The runtime file hash is explicitly a read-time fixed source snapshot, not a compiled capture hash. The helper was subsequently changed for followup diagnostics; its new hash is not attributed to this first capture. No Unity calls, production edits or scene saves were made. Authoring audit: N/A.
