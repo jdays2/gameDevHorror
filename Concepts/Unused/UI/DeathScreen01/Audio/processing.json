@@ -1,0 +1,54 @@
+{
+  "status": "Concept audition only; no production integration; artistic listening pending",
+  "source": "Originals\\last_ward_02.mp3",
+  "source_sha256": "0c39d94b6126f20e91d787c1da50a5decf1b9acd0c4f975d11ec1e97a035dfce",
+  "source_is_lossy": true,
+  "selection": {
+    "start_seconds": 9.24,
+    "length_seconds": 16.0,
+    "chroma_similarity": 0.9943989515304565,
+    "boundary_rms_difference_db": 0.0137862170543524,
+    "score": 0.9940542961040977
+  },
+  "tempo_note": "Local onset autocorrelation in 50–75 BPM range; not a verified beat/bar transcription.",
+  "estimated_local_bpm": 60.0,
+  "intro_overlap_seconds": 0.3,
+  "loop_tail_blend_seconds": 0.6,
+  "processing": "FFmpeg decode to stereo48k; exact crops; final0.6s equal-power blend with real pre-roll; one common constant gain; PCM24 export. No pitch/time stretch/EQ/compression.",
+  "gain_db": -2.8483143139023883,
+  "preview_fadein_seconds": 1.4,
+  "preview_fadeout_seconds": 0.8,
+  "intro_loop_overlap_max_abs_difference": 0.0,
+  "loop_seam_adjacent_step_dbfs": -68.09299723246446,
+  "loop_seam_matches_natural_source_pair_max_error": 1.644846666883819e-08,
+  "preview_repeat_boundaries_seconds": [
+    25.240000000000002,
+    41.24
+  ],
+  "style_comparison_sequence": "0–10s approved Below the Ward opening; 10–11s silence; 11–21s LastWard02 opening; 21–22s silence;22–32s LastWard02 bed. Each matched to-23dBFS RMS,80ms edge fades. RMS matching is not LUFS matching.",
+  "exports": [
+    {
+      "file": "Exports/LastWard02_Intro.wav",
+      "samples": 457920,
+      "duration_seconds": 9.54,
+      "sample_rate": 48000,
+      "channels": 2,
+      "subtype": "PCM_24",
+      "finite": true,
+      "true_peak_4x_dbtp": -3.000001052582376,
+      "sha256": "0271ebde09c38ddaa70f0ae839bd880cdf8867009da76748300d9bdbd220489e"
+    },
+    {
+      "file": "Exports/LastWard02_Loop.wav",
+      "samples": 768000,
+      "duration_seconds": 16.0,
+      "sample_rate": 48000,
+      "channels": 2,
+      "subtype": "PCM_24",
+      "finite": true,
+      "true_peak_4x_dbtp": -4.0180304932313184,
+      "sha256": "a5fe44c0c6ff9e1915d85bc5a9ca5b4de63fa1624b6661d6058e831985450e02"
+    }
+  ],
+  "direct_auditory_review": false
+}

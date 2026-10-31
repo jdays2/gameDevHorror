@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TASK-006 · Макет экрана смерти</title>
+<style>
+@font-face{font-family:Noto;src:url('../../../../Assets/EmergencyShift/Fonts/MainMenu/NotoSans-Medium.ttf')}
+@font-face{font-family:Barlow;src:url('../../../../Assets/EmergencyShift/Fonts/MainMenu/BarlowCondensed-Bold.ttf')}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0d0d0c;color:#ededeb;font-family:Noto,sans-serif}
+#world{position:absolute;inset:0;background:url('Sources/world-reference.png') center/cover no-repeat;filter:grayscale(1);opacity:0;transition:opacity 1.4s ease-out}
+#veil{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(8,10,12,.76),rgba(8,10,12,.65) 60%,rgba(8,10,12,.88));opacity:0}
+#stage{position:absolute;transform-origin:0 0;inset:0 auto auto 0}
+.brand{position:absolute;left:90px;top:64px;font-size:17px;letter-spacing:2px;color:#aaaead}
+.body{position:absolute;left:90px;top:223px;width:610px}
+h1{font-size:56px;line-height:1.4;font-weight:500;letter-spacing:-1.4px;margin:0 0 17px}
+.context{font-size:18px;line-height:1.5;color:#acb1b0;margin:0 0 35px;min-height:27px}
+.actions{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+button{position:relative;background:none;border:0;color:#a7abaa;font:500 27px/1.35 Noto,sans-serif;text-align:left;min-height:58px;min-width:440px;padding:7px 10px 7px 0;cursor:pointer;outline:none;max-width:600px}
+button.active,button:hover,button:focus-visible{color:#f5f5f2}
+button.active:before{content:'›';position:absolute;left:-27px;top:6px;font-size:29px;color:#f5f5f2}
+button:active{opacity:.7}button:disabled{cursor:default;color:#aaaead}
+button:disabled:before{content:''}.secondary{font-size:20px;margin-top:35px}
+.hint{position:absolute;left:90px;bottom:40px;color:#a7abaa;font-size:16px;line-height:1.5}
+.error{color:#d2b6b0;font-size:18px;line-height:1.6;max-width:560px;margin:0 0 20px;display:none}
+.fresh{font-size:22px}
+body.variant-b #world{opacity:.55}body.variant-b #veil{opacity:1}
+body.variant-b .brand{left:0;right:0;text-align:center;top:67px}
+body.variant-b .body{left:50%;top:219px;transform:translateX(-50%);text-align:center;width:700px}
+body.variant-b h1{font-size:59px;margin-bottom:25px}
+body.variant-b .actions{align-items:center}body.variant-b button{text-align:center;padding-left:16px;padding-right:16px;min-width:0}
+body.variant-b button.active:before{left:-12px}body.variant-b .hint{left:0;right:0;text-align:center}
+body.variant-b .error{margin-left:auto;margin-right:auto}
+body.state-loading .context{color:#c1c6c4}
+body.state-error .error{display:block}body.state-error .context{display:none}
+body.text-large h1{font-size:70px}body.text-large button{font-size:33.75px;min-height:70px}body.text-large .context,body.text-large .error{font-size:22.5px}body.text-large .secondary{font-size:25px;margin-top:18px}body.text-large .fresh{font-size:27.5px}body.text-large .hint{font-size:20px}body.text-large .brand{font-size:21.25px}body.text-large .body{top:185px;width:850px}body.variant-b.text-large h1{font-size:73.75px}
+body.transition #world{opacity:.76}body.transition #veil{opacity:0}body.transition #stage{opacity:0}
+body.fading #world{opacity:0}body.variant-b.fading #world{opacity:.55}body.fading #veil{opacity:1;transition:opacity 1.4s ease-out}body.appear #stage{opacity:1;transition:opacity .55s ease-out}
+</style>
+<div id="world" aria-hidden="true"></div><div id="veil" aria-hidden="true"></div>
+<main id="stage"><div class="brand">АВАРИЙНАЯ СМЕНА</div><section class="body"><h1>ВЫ ПОГИБЛИ</h1><p class="context" id="context">Повторная попытка начнётся с начала сцены.</p><p class="error" id="error">Не удалось загрузить сохранение.<br>Файл сохранён. Можно попробовать ещё раз.</p><div class="actions"><button class="active" id="retry">Повторить попытку</button><button class="secondary" id="exit">Выйти из игры</button></div></section><div class="hint">↑ ↓ Выбор &nbsp;&nbsp; Enter Подтвердить &nbsp;&nbsp; R Повторить</div></main>
+<script>
+const q=new URLSearchParams(location.search),variant=q.get('variant')||'a',state=q.get('state')||'fresh';
+document.body.classList.add('variant-'+variant,'state-'+state);if(q.has('large'))document.body.classList.add('text-large');
+const context=document.querySelector('#context'),retry=document.querySelector('#retry'),exit=document.querySelector('#exit');
+if(state==='checkpoint'){retry.textContent='С контрольной точки';context.textContent='Восстановится сохранённое состояние.'}
+if(state==='loading'){retry.textContent='Загрузка…';context.textContent='Подождите. Возвращаемся в игру.';retry.disabled=true;exit.disabled=true}
+if(state==='loading')document.querySelector('.hint').style.display='none';
+if(state==='exit'){context.textContent='Выйти из игры?';retry.textContent='Остаться';exit.textContent='Выйти';document.querySelector('.hint').textContent='↑ ↓ Выбор   Enter Подтвердить   Esc Остаться'}
+if(state==='error'){retry.textContent='Попробовать снова';const fresh=document.createElement('button');fresh.textContent='С начала сцены';fresh.className='fresh';fresh.dataset.intent='fresh-confirm';retry.after(fresh)}
+const buttons=[...document.querySelectorAll('button')];let selected=0;
+function focus(i){selected=(i+buttons.length)%buttons.length;buttons.forEach((b,j)=>b.classList.toggle('active',j===selected))}
+if(q.get('focus')==='exit')focus(buttons.length-1);
+buttons.forEach((b,i)=>{b.onpointermove=()=>focus(i);b.onfocus=()=>focus(i);b.addEventListener('click',()=>parent.postMessage({type:'intent',intent:b.dataset.intent||(b===exit?'exit-confirm':b.textContent)},'*'))});
+addEventListener('keydown',e=>{if(retry.disabled||e.repeat)return;if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();focus(selected+(e.key==='ArrowDown'?1:-1))}if(e.key==='Enter'){e.preventDefault();buttons[selected].click()}if(e.code==='KeyR'&&state!=='exit')retry.click();if(e.key==='Escape'&&state==='exit')retry.click()});
+function resize(){const s=Math.min(innerWidth/1280,innerHeight/720),w=innerWidth/s,h=innerHeight/s;const stage=document.querySelector('#stage');stage.style.width=w+'px';stage.style.height=h+'px';stage.style.transform='scale('+s+')';if(variant==='a')document.querySelectorAll('.brand,.body,.hint').forEach(e=>e.style.left=Math.max(90,(w-1100)/2)+'px')}
+addEventListener('resize',resize);resize();
+let replayTimers=[];window.replay=()=>{replayTimers.forEach(clearTimeout);document.body.classList.remove('appear','fading');document.body.classList.add('transition');replayTimers=[setTimeout(()=>document.body.classList.add('fading'),50),setTimeout(()=>document.body.classList.add('appear'),700),setTimeout(()=>document.body.classList.remove('transition','fading','appear'),2500)]};
+addEventListener('message',e=>{if(e.data?.type==='replay')window.replay()});
+window.layoutEvidence=()=>[...document.querySelectorAll('h1,.context,.error,button,.hint')].filter(e=>getComputedStyle(e).display!=='none').map(e=>{const r=e.getBoundingClientRect();return{text:e.textContent,box:[r.x,r.y,r.width,r.height],fontSize:parseFloat(getComputedStyle(e).fontSize)*Math.min(innerWidth/1280,innerHeight/720),visible:r.x>=0&&r.y>=0&&r.right<=innerWidth&&r.bottom<=innerHeight,overflow:e.scrollWidth>e.clientWidth+1||e.scrollHeight>e.clientHeight+1}});
+</script></html>

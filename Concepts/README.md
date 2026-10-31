@@ -115,6 +115,7 @@
 ### UI
 
 - [Диалоговый интерфейс 01](Unused/UI/Dialogue01/README.md)
+- [TASK-006 · экран смерти 01 — два макета и короткие музыкальные пробы](Unused/UI/DeathScreen01/README.md) — концепт на оценке, внедрение не начато.
 - [Диалоговый интерфейс 02](Unused/UI/Dialogue02/README.md)
 - [Диалоговый интерфейс 03](Unused/UI/Dialogue03/README.md)
 - [HUD · выбранная композиция](Unused/UI/Hud01/README.md)
