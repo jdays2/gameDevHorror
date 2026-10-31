@@ -15,8 +15,15 @@ namespace EmergencyShift
 
         private Drop[] drops;
         private float age;
+        private Color tint;
         public void Initialize(Sprite sprite, Material material, Vector2 heading)
         {
+            Initialize(sprite, material, heading, new Color(.95f, .025f, .035f, 1));
+        }
+
+        public void Initialize(Sprite sprite, Material material, Vector2 heading, Color color)
+        {
+            tint = color;
             drops = new Drop[8];
             float forward = Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg;
             for (int i = 0; i < drops.Length; i++)
@@ -27,7 +34,7 @@ namespace EmergencyShift
                 renderer.sprite = sprite;
                 renderer.sharedMaterial = material;
                 renderer.sortingOrder = 2;
-                renderer.color = new Color(.95f, .025f, .035f, 1);
+                renderer.color = tint;
                 float angle = (forward + (i < 2 ? 180 : 0) + Random.Range(-55f, 55f)) * Mathf.Deg2Rad;
                 Vector2 velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * Random.Range(1.4f, 4.2f);
                 var scale = new Vector3(Random.Range(.035f, .065f), Random.Range(.10f, .23f), 1);
@@ -56,7 +63,9 @@ namespace EmergencyShift
             {
                 drops[i].visual.localPosition = (Vector3)(drops[i].velocity * (age - age * age * 1.5f));
                 drops[i].visual.localScale = drops[i].scale * Mathf.Lerp(1, .35f, t);
-                drops[i].renderer.color = new Color(.95f, .025f, .035f, 1 - t * t);
+                Color fadingTint = tint;
+                fadingTint.a *= 1 - t * t;
+                drops[i].renderer.color = fadingTint;
             }
 
             if (age >= .24f)

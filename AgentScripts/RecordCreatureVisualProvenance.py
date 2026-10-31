@@ -45,8 +45,8 @@ def main():
         destination=PROJECT/'Concepts/Used/Visual'/used/'import-manifest.json'
         if art=='Scorpion':
             result['latestGenerationProvenance']=record(source/'r8-generation.json')
-            result['presentationRevision']='r13 owner-selected BlushIvory for bodies and remains; eyes .12, 56x12 rupture parts; source movement frames remain r8'
-            result['presentationEvidence']='Docs/Validation/ScorpionPaletteR13/apply.json'
+            result['presentationRevision']='r14 hit feedback and eyes .32; owner-selected BlushIvory for bodies/remains; 56x12 rupture parts; source movement frames remain r8'
+            result['presentationEvidence']='Docs/Validation/ScorpionFeedbackR14/install.json'
         destination.parent.mkdir(parents=True,exist_ok=True)
         destination.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         print(json.dumps({'family':animation,'sources':len(paths),'production':len(result['production'])}))

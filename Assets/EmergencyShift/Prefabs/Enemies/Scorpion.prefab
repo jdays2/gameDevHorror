@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -215498846, guid: 7492cff2a5942ad41aac3eff0acc8aae, type: 3}
-  m_Color: {r: 0.12, g: 0.12, b: 0.12, a: 1}
+  m_Color: {r: 0.32, g: 0.32, b: 0.32, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 422013508368054179}
   - component: {fileID: 7607498789476955787}
   - component: {fileID: 3478745266346239364}
+  - component: {fileID: 3052953041090586720}
   m_Layer: 0
   m_Name: Scorpion
   m_TagString: Untagged
@@ -1446,6 +1447,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5384cce2a5df9f44991f0291f5312d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.Features.Scorpion.View.ScorpionAudioThreat2D
+--- !u!114 &3052953041090586720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5060479925575021481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338c7d1a9e8f670409c139ba9c20a7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.EnemyHitResponse2D
+  visual: {fileID: 6431038187269742122}
+  body: {fileID: 7397637447146000155}
+  bloodSprite: {fileID: 21300000, guid: c14c5873bb679f44fb2ff0a8f297f76c, type: 2}
+  bloodMaterial: {fileID: 2100000, guid: 81af47e11a9fd044f83cc45c6c0eecdf, type: 2}
+  bloodTint: {r: 1, g: 1, b: 1, a: 1}
+  reactionSeconds: 0.16
+  visualPush: 0.07
+  deformVisual: 0
 --- !u!1 &5525829566805137722
 GameObject:
   m_ObjectHideFlags: 0

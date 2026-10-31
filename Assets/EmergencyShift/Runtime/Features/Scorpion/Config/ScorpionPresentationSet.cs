@@ -15,6 +15,7 @@ namespace EmergencyShift.Features.Scorpion.Config
         [SerializeField] private Sprite idleEyes;
         [SerializeField] private AudioClip[] steps;
         [SerializeField] private AudioClip hit;
+        [SerializeField, Range(0, 1)] private float hitVolume = .75f;
         [SerializeField] private AudioClip presence;
         [SerializeField] private AudioClip grasp;
         [SerializeField] private AudioClip alarm;
@@ -40,6 +41,7 @@ namespace EmergencyShift.Features.Scorpion.Config
         public int StepCount => steps.Length;
         public AudioClip Step(int index) => steps[index];
         public AudioClip Hit => hit;
+        public float HitVolume => hitVolume;
         public AudioClip Presence => presence;
         public AudioClip Grasp => grasp;
         public AudioClip Alarm => alarm;
@@ -66,6 +68,7 @@ namespace EmergencyShift.Features.Scorpion.Config
             attackEyes.Validate();
             if (idle == null || idleEyes == null || steps == null || steps.Length == 0 ||
                 hit == null || presence == null || grasp == null || alarm == null ||
+                !float.IsFinite(hitVolume) || hitVolume < 0 || hitVolume > 1 ||
                 deathSounds == null || deathSounds.Clips.Count == 0 ||
                 !float.IsFinite(detectionVolume) || detectionVolume < 0 || detectionVolume > 1 ||
                 !float.IsFinite(attack.ReferenceSpeed) || attack.ReferenceSpeed <= 0 ||

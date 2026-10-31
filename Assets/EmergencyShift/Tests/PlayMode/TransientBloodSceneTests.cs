@@ -83,6 +83,73 @@ namespace EmergencyShift.Tests
         [UnityTest]
         public IEnumerator RemainsEmissionSurvivesDestroyedActor() => VerifyRemainsEmission(true);
 
+        [UnityTest]
+        public IEnumerator ColoredHitSprayKeepsItsTintWhileFading() => VerifyHitTint(true);
+
+        [UnityTest]
+        public IEnumerator LegacyHitSprayKeepsRedWhileFading() => VerifyHitTint(false);
+
+        private IEnumerator VerifyHitTint(bool custom)
+        {
+            var root = new GameObject("Hit tint fixture");
+            SceneManager.MoveGameObjectToScene(root, ownerScene);
+            var spray = root.AddComponent<BloodHitSpray2D>();
+            Color expected = custom ? Color.white : new Color(.95f, .025f, .035f, 1);
+            if (custom)
+            {
+                spray.Initialize(sprite, material, Vector2.up, expected);
+            }
+            else
+            {
+                spray.Initialize(sprite, material, Vector2.up);
+            }
+            Time.timeScale = 1;
+            yield return new WaitForSeconds(.04f);
+            var renderers = spray.GetComponentsInChildren<SpriteRenderer>();
+            Assert.That(renderers.Length, Is.EqualTo(8));
+            foreach (var renderer in renderers)
+            {
+                Assert.That(renderer.color.r, Is.EqualTo(expected.r).Within(.0001f));
+                Assert.That(renderer.color.g, Is.EqualTo(expected.g).Within(.0001f));
+                Assert.That(renderer.color.b, Is.EqualTo(expected.b).Within(.0001f));
+                Assert.That(renderer.color.a, Is.GreaterThan(0).And.LessThan(1));
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator ColorOnlyHitResponsePreservesBodyGeometryForRapidDeath()
+        {
+            var actor = new GameObject("Color-only hit fixture");
+            actor.SetActive(false);
+            SceneManager.MoveGameObjectToScene(actor, ownerScene);
+            var visual = new GameObject("Visual", typeof(SpriteRenderer));
+            visual.transform.SetParent(actor.transform, false);
+            Vector3 position = new Vector3(.2f, .3f, .1f);
+            Vector3 scale = new Vector3(1.3f, 1.1f, 1);
+            visual.transform.localPosition = position;
+            visual.transform.localScale = scale;
+            var health = actor.AddComponent<EnemyHealth2D>();
+            health.Construct(new Features.Health.Logic.HealthModelFactory(new Core.Time.UnityGameClock()));
+            health.Initialize(3);
+            var response = actor.AddComponent<EnemyHitResponse2D>();
+            var renderer = visual.GetComponent<SpriteRenderer>();
+            response.Configure(visual.transform, renderer, sprite, material);
+            Set(response, "deformVisual", false);
+            actor.SetActive(true);
+            response.Play(Vector2.zero, Vector2.up, false);
+            Time.timeScale = 1;
+            yield return new WaitForSeconds(.04f);
+            Assert.That(response.Reacting, Is.True);
+            Assert.That(renderer.color, Is.Not.EqualTo(Color.white));
+            Assert.That(visual.transform.localPosition, Is.EqualTo(position));
+            Assert.That(visual.transform.localScale, Is.EqualTo(scale));
+            Assert.That(UnityEngine.Object.FindObjectsByType<BloodHitSpray2D>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+            health.Kill();
+            response.Play(Vector2.zero, Vector2.up, true);
+            Assert.That(visual.transform.localScale, Is.EqualTo(scale));
+            Assert.That(visual.transform.localPosition.z, Is.EqualTo(RemainsVisualStyle.SurfaceZ).Within(.00001f));
+        }
+
         private IEnumerator VerifyRemainsEmission(bool destroy)
         {
             Set(profile, "releaseDelay", .05f);

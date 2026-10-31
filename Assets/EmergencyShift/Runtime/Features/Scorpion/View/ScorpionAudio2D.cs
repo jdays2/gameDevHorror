@@ -197,9 +197,9 @@ namespace EmergencyShift.Features.Scorpion.View
                 return;
             }
             nextHit = Time.time + .12f;
-            UpdateMix();
-            voice.pitch = Random.Range(.96f, 1.04f);
+            voice.pitch = 1;
             voice.clip = actor.Presentation.Hit;
+            UpdateMix();
             voice.Play();
             HitsPlayed++;
             Report(voice, true);
@@ -237,8 +237,16 @@ namespace EmergencyShift.Features.Scorpion.View
                 obstruction = blocked ? .18f : 1;
                 gain = attenuation * attenuation * obstruction;
             }
-            float voiceGain = deathPlayed ? set.DeathSounds.Volume : 1;
-            voice.volume = set.VoiceVolume * voiceGain * gain;
+            float voiceVolume = set.VoiceVolume;
+            if (deathPlayed)
+            {
+                voiceVolume *= set.DeathSounds.Volume;
+            }
+            else if (voice.clip == set.Hit)
+            {
+                voiceVolume = set.HitVolume;
+            }
+            voice.volume = voiceVolume * gain;
             claws.volume = set.VoiceVolume * gain;
             contact.volume = set.StepVolume * gain;
             presence.volume = set.SqueakVolume * gain;

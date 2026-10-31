@@ -26,6 +26,7 @@ namespace EmergencyShift.Features.Scorpion.View
         private Rigidbody2D body;
         private CircleCollider2D shape;
         private CrowdAgent2D crowd;
+        private EnemyHitResponse2D hitResponse;
         private ScorpionPack2D pack;
         private Vector2 previousPosition;
         public event Action Hit;
@@ -70,6 +71,7 @@ namespace EmergencyShift.Features.Scorpion.View
             perception = GetComponent<EnemyPerception2D>();
             melee = GetComponent<EnemyMeleeAttack2D>();
             crowd = GetComponent<CrowdAgent2D>();
+            hitResponse = GetComponent<EnemyHitResponse2D>();
             // Light belongs only to the shadow presenter; it is never a threat input.
             perception.Configure(target, blockingGeometry, null);
             motor.Configure(blockingGeometry);
@@ -118,6 +120,7 @@ namespace EmergencyShift.Features.Scorpion.View
             }
             if (health.TakeDamage(damage))
             {
+                hitResponse?.Play(point, direction, !IsAlive);
                 Hit?.Invoke();
                 if (IsAlive)
                 {

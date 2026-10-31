@@ -1,5 +1,7 @@
 # Скорпион · оригинальные звуки · TASK-005
 
+R14: прежний глухой Hit.wav сохранён как история контакта. Игровой голос боли теперь переиспользует одобренный насекомый Detection.wav с pitch1 и отдельным HitVolume=.75. Старое событие Hit работало, но тихий контакт терялся за оружием. Новый WAV не создавался; смерть/клешни/обычный писк сохраняют свой микс. [Нативные попадания и тесты](../../../../Docs/Validation/ScorpionFeedbackR14/README.md).
+
 Production — Assets/EmergencyShift/Audio/Enemies/Scorpion. Четыре контакта лап, попадание, клешни, присутствие. Старый Alarm.wav теперь Historical; текущий писк Detection.wav и его отдельные исходники описаны в [ScorpionDiscovery01](../ScorpionDiscovery01/README.md). Смерть переиспользует принятый общий [CreatureRupture06](../CreatureRupture06/README.md), без копии WAV. MP3 этой семьи — Sources; хеши/длительности — processing.json, промпты — provenance.json. Сэмплы референсов не копировались.
 
 Владелец отверг клацанье r1, затем влажный хруст r2 как не соответствующие концепту. Sources/attack.mp3 и attack-r2-1/2.mp3, процессор/отчёт r2 сохранены Historical. r3 следует массивным реальным клешням: короткое плотное смыкание панциря. Две новые пробы: [A — одиночное смыкание](Previews/HeavyShellA.wav), [B — парный хват](Previews/HeavyShellB.wav). B подключён в Attack.wav как кандидат для оценки.

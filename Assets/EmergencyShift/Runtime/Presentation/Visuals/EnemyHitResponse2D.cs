@@ -14,10 +14,14 @@ namespace EmergencyShift
         private Sprite bloodSprite;
         [SerializeField]
         private Material bloodMaterial;
+        [SerializeField]
+        private Color bloodTint = new Color(.95f, .025f, .035f, 1);
         [SerializeField, Min(.02f)]
         private float reactionSeconds = .16f;
         [SerializeField, Range(0, .2f)]
         private float visualPush = .07f;
+        [SerializeField]
+        private bool deformVisual = true;
         private EnemyHealth2D actor;
         private Vector3 restingPosition;
         private Vector3 restingScale;
@@ -64,7 +68,7 @@ namespace EmergencyShift
                 var obj = new GameObject("Bullet blood spray");
                 UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(obj, gameObject.scene);
                 obj.transform.position = new Vector3(point.x, point.y, -.12f);
-                obj.AddComponent<BloodHitSpray2D>().Initialize(bloodSprite, bloodMaterial, heading);
+                obj.AddComponent<BloodHitSpray2D>().Initialize(bloodSprite, bloodMaterial, heading, bloodTint);
             }
 
             direction = heading.normalized;
@@ -92,9 +96,12 @@ namespace EmergencyShift
 
             remaining = Mathf.Max(0, remaining - Time.deltaTime);
             float weight = remaining / reactionSeconds;
-            Vector3 local = visual.parent != null ? visual.parent.InverseTransformVector(direction) : new Vector3(direction.x, direction.y, 0);
-            visual.localPosition = restingPosition + local * visualPush * weight;
-            visual.localScale = Vector3.Scale(restingScale, new Vector3(1 + .08f * weight, 1 - .10f * weight, 1));
+            if (deformVisual)
+            {
+                Vector3 local = visual.parent != null ? visual.parent.InverseTransformVector(direction) : new Vector3(direction.x, direction.y, 0);
+                visual.localPosition = restingPosition + local * visualPush * weight;
+                visual.localScale = Vector3.Scale(restingScale, new Vector3(1 + .08f * weight, 1 - .10f * weight, 1));
+            }
             body.color = Color.Lerp(restingColor, new Color(1, .48f, .42f), weight * .65f);
             if (remaining <= 0)
             {

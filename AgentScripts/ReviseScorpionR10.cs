@@ -79,6 +79,8 @@ public static class ReviseScorpionR10
             var discovery = serialized.FindProperty("alarm").objectReferenceValue;
             bank.GetArrayElementAtIndex(0).objectReferenceValue = discovery;
             serialized.FindProperty("presence").objectReferenceValue = discovery;
+            serialized.FindProperty("hit").objectReferenceValue = discovery;
+            serialized.FindProperty("hitVolume").floatValue = .75f;
         });
         presentation.Validate();
         var profile = AssetDatabase.LoadAssetAtPath<GoreProfile>(Data + "Remains.asset");
@@ -141,7 +143,7 @@ public static class ReviseScorpionR10
             var body = prefab.transform.Find("Visual/Body").GetComponent<SpriteRenderer>();
             body.sharedMaterial = shell;
             body.color = Color.white;
-            prefab.transform.Find("Visual/Eyes").GetComponent<SpriteRenderer>().color = new Color(.12f,.12f,.12f,1);
+            prefab.transform.Find("Visual/Eyes").GetComponent<SpriteRenderer>().color = new Color(.32f, .32f, .32f, 1);
             var corpse = prefab.GetComponent<ScorpionCorpsePose2D>();
             prefab.transform.Find("Audio/Quiet presence").GetComponent<AudioSource>().clip = presentation.Alarm;
             Edit(corpse, serialized =>
@@ -170,6 +172,17 @@ public static class ReviseScorpionR10
             var stalker = AssetDatabase.LoadAssetAtPath<GameObject>(Root + "Prefabs/Enemies/ShadowStalker.prefab");
             var source = new SerializedObject(stalker.GetComponent<GoreBurst2D>());
             Edit(gore, serialized => Ref(serialized,"bloodSpraySprite",source.FindProperty("bloodSpraySprite").objectReferenceValue));
+            var hit = prefab.GetComponent<EnemyHitResponse2D>();
+            if (hit == null)
+            {
+                hit = prefab.AddComponent<EnemyHitResponse2D>();
+            }
+            hit.Configure(body.transform.parent, body, (Sprite)source.FindProperty("bloodSpraySprite").objectReferenceValue, fluid);
+            Edit(hit, serialized =>
+            {
+                serialized.FindProperty("bloodTint").colorValue = Color.white;
+                serialized.FindProperty("deformVisual").boolValue = false;
+            });
             PrefabUtility.SaveAsPrefabAsset(prefab,PrefabPath);
         }
         finally
@@ -183,7 +196,7 @@ public static class ReviseScorpionR10
             {
                 if (renderer.sharedMaterial.name == "EyeGlow")
                 {
-                    renderer.color = new Color(.12f, .12f, .12f, 1);
+                    renderer.color = new Color(.32f, .32f, .32f, 1);
                 }
                 else
                 {
