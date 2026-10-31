@@ -19,7 +19,7 @@ class Handler(SimpleHTTPRequestHandler):
             target=ART/parts[1]/parts[2]
         elif len(parts)==2 and parts[0]=='scorpion-audio' and parts[1] in ['HeavyShellA.wav','HeavyShellB.wav']:
             target=AUDIO/parts[1]
-        elif len(parts)==2 and parts[0]=='scorpion-audio' and parts[1]=='Detection.wav':
+        elif len(parts)==2 and parts[0]=='scorpion-audio' and parts[1] in ['Detection.wav','Squeak1.wav','Squeak2.wav','Squeak3.wav']:
             target=GAME_AUDIO/parts[1]
         elif len(parts)==2 and parts[0]=='scorpion-audio' and parts[1]=='Death.wav':
             target=PROJECT/'Assets/EmergencyShift/Audio/CreatureRupture06/rupture_06_01.wav'

@@ -32,6 +32,16 @@ namespace EmergencyShift
         private RemainsRecord2D record;
         private RemainsRecord2D subscribedRecord;
         private bool emitted;
+        private Vector2[] poseOffsets;
+        private Transform sourcePose;
+        private int[] poseIndices;
+
+        public void ConfigurePose(Vector2[] offsets, Transform source, int[] indices = null)
+        {
+            poseOffsets = offsets;
+            sourcePose = source;
+            poseIndices = indices;
+        }
 
         public bool IsSettled => record == null || record.IsSettled;
         public event System.Action<GibMotion2D> FragmentLaunched;
@@ -74,7 +84,13 @@ namespace EmergencyShift
             for (int partIndex = 0; partIndex < variant.PieceCount; partIndex++)
             {
                 GorePiece part = variant.PieceAt(partIndex);
-                if (part == null || fragments == null || part.SpriteIndex < 0 || part.SpriteIndex >= fragments.Length || fragments[part.SpriteIndex] == null)
+                if (part == null || part.SpriteIndex < 0 || poseIndices != null && part.SpriteIndex >= poseIndices.Length)
+                {
+                    Debug.LogError("Invalid anatomical gore index: " + name, this);
+                    return;
+                }
+                int spriteIndex = poseIndices != null ? poseIndices[part.SpriteIndex] : part.SpriteIndex;
+                if (fragments == null || spriteIndex < 0 || spriteIndex >= fragments.Length || fragments[spriteIndex] == null)
                 {
                     Debug.LogError("Invalid anatomical gore composition: " + name, this);
                     return;
@@ -102,13 +118,16 @@ namespace EmergencyShift
                     var spray = new GameObject("Blood rupture burst");
                     UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(spray, gameObject.scene);
                     spray.transform.position = new Vector3(transform.position.x, transform.position.y, -.034f);
-                    spray.AddComponent<BloodRuptureBurst2D>().Initialize(pool, bloodSpraySprite, litMaterial);
+                    Material fluid = profile.FluidMaterial != null ? profile.FluidMaterial : litMaterial;
+                    Color? tint = profile.FluidMaterial != null ? profile.FluidTint : (Color?)null;
+                    spray.AddComponent<BloodRuptureBurst2D>().Initialize(pool, bloodSpraySprite, fluid, tint);
                 }
             }
 
             var presentation = GetComponent<EnemyPresentationSource2D>();
-            record.BeginEmission(profile, variant, spawnBudget, random, obstacles, transform.localToWorldMatrix, replacedBody,
-                presentation != null ? presentation.EyeDamageProgress : 0);
+            record.BeginEmission(profile, variant, spawnBudget, random, obstacles,
+                sourcePose != null ? sourcePose.localToWorldMatrix : transform.localToWorldMatrix, replacedBody,
+                presentation != null ? presentation.EyeDamageProgress : 0, poseOffsets, poseIndices);
         }
 
         private void CreateRemainsRoot(Vector3 position)
@@ -116,9 +135,13 @@ namespace EmergencyShift
             remainsRoot = new GameObject("Persistent remains — " + name).transform;
             remainsRoot.position = position;
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(remainsRoot.gameObject, gameObject.scene);
+            if (variant != null && variant.AssembleBeforeRelease)
+            {
+                remainsRoot.gameObject.AddComponent<UnityEngine.Rendering.SortingGroup>().sortingOrder = RemainsVisualStyle.DeadOrder;
+            }
             record = remainsRoot.gameObject.AddComponent<RemainsRecord2D>();
             record.Configure(bloodPoolPrefab, fragments, litMaterial, contactShadowSprite, shadowMaterial, variant != null ? variant.Id : "restored",
-                profile != null ? profile.EyeSurfaceMaterial : null);
+                profile != null ? profile.EyeSurfaceMaterial : null, variant != null && variant.AssembleBeforeRelease);
             BindRecord();
         }
 
@@ -176,10 +199,10 @@ namespace EmergencyShift
                 return;
             }
 
+            variant = profile.FindVariant(saved.variantId);
             CreateRemainsRoot(saved.position);
             record.Restore(saved);
-            GoreVariant restoredVariant = profile.FindVariant(saved.variantId);
-            if (restoredVariant != null && restoredVariant.ReplaceOriginalBody && replacedBody != null)
+            if (variant.ReplaceOriginalBody && replacedBody != null)
             {
                 replacedBody.enabled = false;
             }

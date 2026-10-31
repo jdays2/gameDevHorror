@@ -74,7 +74,7 @@ namespace EmergencyShift.Features.Scorpion.View
             perception.Configure(target, blockingGeometry, null);
             motor.Configure(blockingGeometry);
             melee.Configure(definition, perception, motor);
-            controller = factory.Create(definition, new EnemyBrainMotor2D(motor), new EnemyBrainMelee2D(melee), transform.up);
+            controller = factory.Create(definition, new ScorpionMotionAdapter(motor), new EnemyBrainMelee2D(melee), transform.up);
             health.Initialize(definition.MaximumHealth);
             health.Died += OnDied;
             previousPosition = body.position;
@@ -84,19 +84,19 @@ namespace EmergencyShift.Features.Scorpion.View
         {
             float travelled = Vector2.Distance(body.position, previousPosition);
             previousPosition = body.position;
+            // Separation, walls and contacts can reduce the requested speed to zero.
+            // Start the next acceleration from the movement that physics actually allowed.
+            controller.Model.CommitMotion(body.linearVelocity.magnitude);
             controller.Model.AdvanceTravel(travelled, presentation.DistancePerCycle);
             HasTargetLineOfSight = perception.CanSeeTarget(body.position);
             if (!HasAggro && perception.Within(body.position, detectionRadius) && HasTargetLineOfSight)
             {
                 RequestAlarm();
             }
-            if (HasAggro && target != null)
-            {
-                controller.Model.AdvanceFacing((Vector2)target.position - body.position, presentation.TurnDegrees * Time.fixedDeltaTime);
-            }
             controller.Step(body.position, target != null ? (Vector2)target.position : body.position,
                 perception.TargetAlive, definition.PursuitSpeed, presentation.Attack.ReferenceSpeed / definition.PursuitSpeed,
-                presentation.DistancePerCycle / presentation.Attack.ReferenceSpeed);
+                presentation.DistancePerCycle / presentation.Attack.ReferenceSpeed, presentation.TurnDegrees * Time.fixedDeltaTime,
+                presentation.Acceleration * Time.fixedDeltaTime, presentation.Braking * Time.fixedDeltaTime);
         }
 
         public void BindPack(ScorpionPack2D owner)

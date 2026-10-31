@@ -43,7 +43,7 @@ namespace EmergencyShift.Tests
             controller.Alert();
             controller.Step(Vector2.zero, Vector2.up, true, 2.4f, .79f);
             Assert.That(melee.Begins, Is.EqualTo(1));
-            Assert.That(motor.Speed, Is.EqualTo(2.4f * .79f).Within(.001));
+            Assert.That(motor.Velocity.magnitude, Is.EqualTo(2.4f * .79f).Within(.001));
             clock.Time = 1;
             controller.Step(Vector2.zero, Vector2.up, true, 2.4f, .79f);
             Assert.That(melee.LastProgress, Is.EqualTo(1));
@@ -123,6 +123,105 @@ namespace EmergencyShift.Tests
             Assert.That(Vector2.Angle(model.Facing, model.Heading), Is.LessThan(.001f));
         }
 
+        [TestCase(true)]
+        [TestCase(false)]
+        public void StoppedLocomotionRestartsAcceleration(bool suspended)
+        {
+            var clock = new Clock();
+            var motor = new Motor();
+            var controller = Controller(clock, motor, new Melee());
+            controller.Alert();
+            for (int i = 0; i < 20; i++)
+            {
+                MotionStep(controller, Vector2.up);
+            }
+            Assert.That(motor.Velocity.magnitude, Is.EqualTo(2.4f).Within(.001f));
+            if (suspended)
+            {
+                controller.Suspend();
+            }
+            else
+            {
+                MotionStep(controller, Vector2.up, false);
+            }
+            Assert.That(motor.Velocity, Is.EqualTo(Vector2.zero));
+            clock.Time = 20;
+            MotionStep(controller, Vector2.up);
+            Assert.That(motor.Velocity.magnitude, Is.EqualTo(.18f).Within(.001f));
+            Assert.That(controller.Model.HasAggro, Is.True);
+        }
+
+        [Test]
+        public void ReversingRouteBrakesAlongTheTurningBodyWithoutStrafing()
+        {
+            var model = new ScorpionModel(new Clock(), .56f);
+            new ScorpionCommand(model, ScorpionAction.Alert).Execute();
+            for (int i = 0; i < 20; i++)
+            {
+                model.Steer(Vector2.up * 2.4f, 7.2f, .18f, .36f);
+            }
+            Vector2 before = model.Facing;
+            Vector2 velocity = model.Steer(Vector2.down * 2.4f, 7.2f, .18f, .36f);
+            Assert.That(Vector2.Angle(before, model.Facing), Is.LessThanOrEqualTo(7.201f));
+            Assert.That(Vector2.Angle(model.Facing, velocity), Is.LessThan(.05f));
+            Assert.That(velocity.magnitude, Is.LessThanOrEqualTo(2.041f));
+        }
+
+        [Test]
+        public void LocomotionFacesTheResolvedRouteRatherThanTheTargetAcrossTheWall()
+        {
+            var motor = new Motor { RouteDirection = Vector2.right };
+            var controller = Controller(new Clock(), motor, new Melee());
+            controller.Alert();
+            controller.Step(Vector2.zero, Vector2.up, true, 2.4f, .79f, .36f, 90);
+            Assert.That(Vector2.Angle(controller.Model.Facing, Vector2.right), Is.LessThan(.001f));
+            Assert.That(Vector2.Angle(motor.Velocity, Vector2.right), Is.LessThan(.001f));
+        }
+
+        [Test]
+        public void GraspKeepsItsVisibleHeadingWhenTargetMovesAcrossIt()
+        {
+            var clock = new Clock();
+            var motor = new Motor();
+            var melee = new Melee { Ready = true };
+            var controller = Controller(clock, motor, melee);
+            controller.Alert();
+            Vector2 nearHeading = Quaternion.Euler(0, 0, 10) * Vector2.up;
+            MotionStep(controller, nearHeading);
+            Assert.That(melee.Begins, Is.EqualTo(1));
+            Vector2 committed = controller.Model.Facing;
+            Assert.That(Vector2.Angle(controller.Model.Heading, committed), Is.LessThan(.001f));
+            clock.Time = .2;
+            MotionStep(controller, Vector2.left * 4);
+            Assert.That(controller.Model.State, Is.EqualTo(ScorpionState.Attacking));
+            Assert.That(Vector2.Angle(controller.Model.Facing, committed), Is.LessThan(.001f));
+            Assert.That(Vector2.Angle(motor.Velocity, committed), Is.LessThan(.001f));
+            Assert.That(Vector2.Angle(melee.LastHeading, committed), Is.LessThan(.001f));
+            Assert.That(motor.Velocity.magnitude, Is.EqualTo(2.4f * .79f).Within(.001f));
+            Assert.That(motor.Follows, Is.Zero);
+        }
+
+        [Test]
+        public void RecoveryFromAnImmediateGraspContinuesMovingWithoutASecondStartFromRest()
+        {
+            var clock = new Clock();
+            var motor = new Motor();
+            var melee = new Melee { Ready = true };
+            var controller = Controller(clock, motor, melee);
+            controller.Alert();
+            MotionStep(controller, Vector2.up);
+            float attackSpeed = motor.Velocity.magnitude;
+            melee.Ready = false;
+            clock.Time = .57;
+            MotionStep(controller, Vector2.up);
+            Assert.That(melee.Finishes, Is.EqualTo(1));
+            Assert.That(motor.Velocity.magnitude, Is.GreaterThanOrEqualTo(attackSpeed - .001f));
+            Assert.That(motor.Velocity.magnitude, Is.LessThanOrEqualTo(attackSpeed + .181f));
+        }
+
+        private static void MotionStep(ScorpionController controller, Vector2 target, bool targetAlive = true) =>
+            controller.Step(Vector2.zero, target, targetAlive, 2.4f, .79f, .36f, 7.2f, .18f, .36f);
+
         private sealed class Clock : IGameClock
         {
             public double Time { get; set; }
@@ -132,10 +231,13 @@ namespace EmergencyShift.Tests
         {
             public float Speed;
             public Vector2 Velocity;
+            public Vector2? RouteDirection;
+            public int Follows;
             public Vector2 Follow(Vector2 goal, float speed)
             {
                 Speed = speed;
-                return goal.normalized * speed;
+                Follows++;
+                return (RouteDirection ?? goal.normalized) * speed;
             }
             public void Move(Vector2 velocity, bool separateFromNeighbours) => Velocity = velocity;
         }
@@ -147,11 +249,13 @@ namespace EmergencyShift.Tests
             public int Finishes;
             public int Interruptions;
             public float LastProgress;
+            public Vector2 LastHeading;
             public bool CanStart(Vector2 at) => Ready;
             public void Begin() => Begins++;
             public Vector2 Step(float progress, Vector2 at, Vector2 heading, bool fixedHeading)
             {
                 LastProgress = progress;
+                LastHeading = heading;
                 return Vector2.one * 100; // Must never replace the requested on-the-move attack speed.
             }
             public void Finish() => Finishes++;

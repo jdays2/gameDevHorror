@@ -23,6 +23,22 @@ namespace EmergencyShift.Tests
         }
 
         [Test]
+        public void AnatomicalGroupReservationIsAtomicAndRetriedOnNextFrame()
+        {
+            var clock = new TestFrameClock();
+            var budget = new FrameWorkBudget(clock, 32);
+            Assert.That(budget.TryReserve(24), Is.True);
+            Assert.That(budget.TryReserve(12), Is.False);
+            Assert.That(budget.TotalReservations, Is.EqualTo(24));
+            Assert.That(budget.TryReserve(8), Is.True);
+            Assert.That(budget.PeakReservations, Is.EqualTo(32));
+            clock.Frame++;
+            Assert.That(budget.TryReserve(12), Is.True);
+            Assert.That(budget.TotalReservations, Is.EqualTo(44));
+            Assert.Throws<ArgumentOutOfRangeException>(() => budget.TryReserve(33));
+        }
+
+        [Test]
         public void NavigationAndFragmentsKeepTheirExistingIndependentQuotas()
         {
             var clock = new TestFrameClock();

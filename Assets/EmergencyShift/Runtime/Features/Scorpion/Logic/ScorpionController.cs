@@ -19,7 +19,8 @@ namespace EmergencyShift.Features.Scorpion.Logic
 
         public ScorpionModel Model { get; }
 
-        public void Step(Vector2 position, Vector2 target, bool targetAlive, float speed, float attackMultiplier, float cycleSeconds = .36f)
+        public void Step(Vector2 position, Vector2 target, bool targetAlive, float speed, float attackMultiplier, float cycleSeconds = .36f,
+            float maximumTurnDegrees = 360, float accelerationStep = float.PositiveInfinity, float brakingStep = float.PositiveInfinity)
         {
             if (!Model.IsAlive || !targetAlive || !Model.HasAggro)
             {
@@ -28,6 +29,7 @@ namespace EmergencyShift.Features.Scorpion.Logic
                     melee.Interrupt(0);
                     new ScorpionCommand(Model, ScorpionAction.CancelAttack).Execute();
                 }
+                Model.StopMotion();
                 motor.Move(Vector2.zero, false);
                 return;
             }
@@ -60,8 +62,20 @@ namespace EmergencyShift.Features.Scorpion.Logic
                 melee.Step(Model.AttackProgress, position, Model.Heading, true);
             }
             bool slowed = attacking || Model.State == ScorpionState.Gathering;
-            Vector2 velocity = motor.Follow(target, speed * (slowed ? attackMultiplier : 1));
-            motor.Move(velocity, true);
+            float moveSpeed = speed * (slowed ? attackMultiplier : 1);
+            Vector2 velocity;
+            if (attacking)
+            {
+                // The moving grasp stays aligned with its committed claws until recovery.
+                velocity = Model.Heading * moveSpeed;
+                Model.CommitMotion(moveSpeed);
+            }
+            else
+            {
+                Vector2 route = motor.Follow(target, moveSpeed);
+                velocity = Model.Steer(route, maximumTurnDegrees, accelerationStep, brakingStep);
+            }
+            motor.Move(velocity, false);
         }
 
         public void Alert() => new ScorpionCommand(Model, ScorpionAction.Alert).Execute();
@@ -73,6 +87,7 @@ namespace EmergencyShift.Features.Scorpion.Logic
                 melee.Interrupt(0);
                 new ScorpionCommand(Model, ScorpionAction.CancelAttack).Execute();
             }
+            Model.StopMotion();
             motor.Move(Vector2.zero, false);
         }
 
@@ -83,6 +98,7 @@ namespace EmergencyShift.Features.Scorpion.Logic
                 melee.Interrupt(0);
             }
             new ScorpionCommand(Model, ScorpionAction.Kill).Execute();
+            Model.StopMotion();
             motor.Move(Vector2.zero, false);
         }
     }

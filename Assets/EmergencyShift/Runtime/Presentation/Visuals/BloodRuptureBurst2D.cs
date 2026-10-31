@@ -17,8 +17,16 @@ namespace EmergencyShift
         private SpriteRenderer cloud;
         private Vector2 origin;
         private float age;
-        public void Initialize(BloodPool2D pool, Sprite sprite, Material material)
+        private Color dropTint = new Color(.88f, .015f, .025f, .95f);
+        private Color cloudTint = new Color(.85f, .01f, .02f, .75f);
+        public void Initialize(BloodPool2D pool, Sprite sprite, Material material, Color? pigment = null)
         {
+            if (pigment.HasValue)
+            {
+                dropTint = pigment.Value;
+                cloudTint = pigment.Value;
+                cloudTint.a = .75f;
+            }
             origin = transform.position;
             age = 0;
             drops = new Drop[pool.DropletCount];
@@ -50,7 +58,7 @@ namespace EmergencyShift
             image.sprite = sprite;
             image.sharedMaterial = material;
             image.sortingOrder = RemainsVisualStyle.DeadOrder;
-            image.color = new Color(.88f, .015f, .025f, .95f);
+            image.color = dropTint;
             return image;
         }
 
@@ -73,7 +81,9 @@ namespace EmergencyShift
 
             float swell = Mathf.Clamp01(age / .07f);
             cloud.transform.localScale = new Vector3(1.2f, .85f, 1) * Mathf.Lerp(.12f, 1, swell);
-            cloud.color = new Color(.85f, .01f, .02f, .75f * (1 - Mathf.Clamp01(age / .22f)));
+            Color faded = cloudTint;
+            faded.a *= 1 - Mathf.Clamp01(age / .22f);
+            cloud.color = faded;
             if (age >= .36f)
             {
                 Destroy(gameObject);

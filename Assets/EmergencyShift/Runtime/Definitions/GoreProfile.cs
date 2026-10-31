@@ -26,6 +26,8 @@ namespace EmergencyShift
         private Color airborneTint = new Color(.88f, .82f, .86f, 1);
         [SerializeField]
         private Material eyeSurfaceMaterial;
+        [SerializeField] private Material fluidMaterial;
+        [SerializeField] private Color fluidTint = new Color(.88f, .015f, .025f, .95f);
         [SerializeField]
         private GoreVariant[] variants =
         {
@@ -40,6 +42,8 @@ namespace EmergencyShift
         public Color SettledTint => settledTint;
         public Color AirborneTint => airborneTint;
         public Material EyeSurfaceMaterial => eyeSurfaceMaterial;
+        public Material FluidMaterial => fluidMaterial;
+        public Color FluidTint => fluidTint;
         public int VariantCount => variants != null ? variants.Length : 0;
         public GoreVariant VariantAt(int index) => variants[index];
 
@@ -109,6 +113,14 @@ namespace EmergencyShift
                 !ValidRange(impulseRange) || !ValidRange(liftRange) || !ValidTint(settledTint) || !ValidTint(airborneTint))
             {
                 throw new InvalidOperationException("Invalid gore profile: " + name);
+            }
+
+            if (fluidMaterial != null && (!float.IsFinite(fluidTint.r) || !float.IsFinite(fluidTint.g) ||
+                !float.IsFinite(fluidTint.b) || !float.IsFinite(fluidTint.a) ||
+                fluidTint.r < 0 || fluidTint.r > 1 || fluidTint.g < 0 || fluidTint.g > 1 ||
+                fluidTint.b < 0 || fluidTint.b > 1 || fluidTint.a < 0 || fluidTint.a > 1))
+            {
+                throw new InvalidOperationException("Invalid fluid tint: " + name);
             }
 
             for (int index = 0; index < VariantCount; index++)

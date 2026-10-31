@@ -15,6 +15,7 @@ namespace EmergencyShift
         [SerializeField, Tooltip("Optional explicit composition; empty retains radial fragments.")]
         private GorePiece[] pieces;
         [SerializeField] private bool replaceOriginalBody;
+        [SerializeField] private bool assembleBeforeRelease;
         [SerializeField, Tooltip("Available for old snapshots, excluded from a new death.")]
         private bool restorationOnly;
         [SerializeField, Min(1)]
@@ -27,6 +28,7 @@ namespace EmergencyShift
         public Vector2 Scale => scale;
         public float ImpulseMultiplier => impulseMultiplier;
         public bool ReplaceOriginalBody => replaceOriginalBody;
+        public bool AssembleBeforeRelease => assembleBeforeRelease;
         public bool RestorationOnly => restorationOnly;
         public int SelectionWeight => selectionWeight;
         public int PieceCount => pieces != null ? pieces.Length : 0;

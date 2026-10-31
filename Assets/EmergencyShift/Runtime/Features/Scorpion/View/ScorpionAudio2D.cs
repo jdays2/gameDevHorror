@@ -22,6 +22,9 @@ namespace EmergencyShift.Features.Scorpion.View
         private float nextMix;
         private bool attackSound;
         private bool deathPlayed;
+        private float nextSqueak;
+        private int previousSqueak = -1;
+        private bool wasAggro;
         private float obstruction = 1;
         public int StepsPlayed { get; private set; }
         public int AlarmsPlayed { get; private set; }
@@ -29,6 +32,7 @@ namespace EmergencyShift.Features.Scorpion.View
         public int HitsPlayed { get; private set; }
         public int DeathsPlayed { get; private set; }
         public int DetectionAccentsPlayed { get; private set; }
+        public int SqueaksPlayed { get; private set; }
         public event Action<float, float, bool> PerceptibleCue;
 
         [Inject]
@@ -63,6 +67,7 @@ namespace EmergencyShift.Features.Scorpion.View
             actor.Died += OnDeath;
             previous = transform.position;
             attackSound = false;
+            ScheduleNextSqueak();
         }
 
         private void OnDisable()
@@ -106,17 +111,25 @@ namespace EmergencyShift.Features.Scorpion.View
                 return;
             }
             var set = actor.Presentation;
-            bool idle = !actor.HasAggro;
-            if (idle && !presence.isPlaying)
+            if (actor.HasAggro != wasAggro)
             {
-                presence.clip = set.Presence;
-                presence.loop = true;
-                presence.Play();
-                presence.time = Random.Range(0, presence.clip.length * .8f);
+                ScheduleNextSqueak();
             }
-            else if (!idle)
+            if (Time.time >= nextSqueak && !presence.isPlaying && !actor.IsAttacking && !detection.isPlaying && set.SqueakCount > 0)
             {
-                presence.Stop();
+                int selected = Random.Range(0, set.SqueakCount);
+                if (set.SqueakCount > 1 && selected == previousSqueak)
+                {
+                    selected = (selected + 1) % set.SqueakCount;
+                }
+                previousSqueak = selected;
+                presence.clip = set.Squeak(selected);
+                presence.loop = false;
+                presence.pitch = 1;
+                presence.Play();
+                SqueaksPlayed++;
+                ScheduleNextSqueak();
+                Report(presence, false);
             }
             Vector2 position = transform.position;
             float distance = Vector2.Distance(position, previous);
@@ -160,12 +173,20 @@ namespace EmergencyShift.Features.Scorpion.View
             }
             UpdateMix();
             presence.Stop();
+            ScheduleNextSqueak();
             detection.clip = actor.Presentation.Alarm;
             detection.pitch = 1;
             detection.Play();
             AlarmsPlayed++;
             DetectionAccentsPlayed++;
             Report(detection, true);
+        }
+
+        private void ScheduleNextSqueak()
+        {
+            wasAggro = actor.HasAggro;
+            Vector2 interval = wasAggro ? actor.Presentation.RunSqueakInterval : actor.Presentation.IdleSqueakInterval;
+            nextSqueak = Time.time + Random.Range(interval.x, interval.y);
         }
 
         private void OnHit()
@@ -220,7 +241,7 @@ namespace EmergencyShift.Features.Scorpion.View
             voice.volume = set.VoiceVolume * voiceGain * gain;
             claws.volume = set.VoiceVolume * gain;
             contact.volume = set.StepVolume * gain;
-            presence.volume = set.VoiceVolume * .16f * gain;
+            presence.volume = set.SqueakVolume * gain;
             detection.volume = set.DetectionVolume * gain;
         }
 

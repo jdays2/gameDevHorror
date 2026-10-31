@@ -14,6 +14,7 @@ namespace EmergencyShift
         [SerializeField] private bool eyeSurface;
         [SerializeField, Tooltip("Complete carcass keeps the actor visual's facing and does not spin like a small gib.")]
         private bool preserveSourcePose;
+        [SerializeField] private bool alignSourcePose;
 
         public int SpriteIndex => spriteIndex;
         public Vector2 Offset => offset;
@@ -22,6 +23,7 @@ namespace EmergencyShift
         public float LiftMultiplier => liftMultiplier;
         public bool EyeSurface => eyeSurface;
         public bool PreserveSourcePose => preserveSourcePose;
+        public bool AlignSourcePose => alignSourcePose;
 
         public void Validate()
         {

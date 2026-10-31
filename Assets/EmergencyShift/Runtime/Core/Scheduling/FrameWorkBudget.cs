@@ -25,8 +25,14 @@ namespace EmergencyShift.Core.Scheduling
             Maximum = maximum;
         }
 
-        public bool TryReserve()
+        public bool TryReserve() => TryReserve(1);
+
+        public bool TryReserve(int amount)
         {
+            if (amount < 1 || amount > Maximum)
+            {
+                throw new ArgumentOutOfRangeException(nameof(amount));
+            }
             int currentFrame = clock.Frame;
             if (frame != currentFrame)
             {
@@ -34,13 +40,13 @@ namespace EmergencyShift.Core.Scheduling
                 count = 0;
             }
 
-            if (count >= Maximum)
+            if (amount > Maximum - count)
             {
                 return false;
             }
 
-            count++;
-            TotalReservations++;
+            count += amount;
+            TotalReservations += amount;
             PeakReservations = Math.Max(PeakReservations, count);
             return true;
         }

@@ -25,11 +25,14 @@ namespace EmergencyShift
         private IRandomSource random;
         private Matrix4x4 sourcePose;
         private SpriteRenderer replacedBody;
+        private Vector2[] poseOffsets;
+        private int[] poseIndices;
         private bool emitting;
         private bool hasPresentation;
+        private bool assembledSorting;
         public event Action<GibMotion2D> FragmentLaunched;
         public void Configure(BloodPool2D pool, Sprite[] sprites, Material material, Sprite shadow, Material shadowStyle, string variant,
-            Material eyeMaterial = null)
+            Material eyeMaterial = null, bool assemble = false)
         {
             bloodPoolPrefab = pool;
             fragments = sprites;
@@ -38,6 +41,7 @@ namespace EmergencyShift
             shadowMaterial = shadowStyle;
             variantId = variant;
             eyeSurfaceMaterial = eyeMaterial;
+            assembledSorting = assemble;
         }
 
         public void RegisterPool(BloodPool2D pool)
@@ -51,7 +55,8 @@ namespace EmergencyShift
         }
 
         public void BeginEmission(GoreProfile definition, GoreVariant composition, GoreSpawnBudget2D budget,
-            IRandomSource randomSource, LayerMask obstacles, Matrix4x4 sourceTransform, SpriteRenderer originalBody, float ocularDamage = 0)
+            IRandomSource randomSource, LayerMask obstacles, Matrix4x4 sourceTransform, SpriteRenderer originalBody, float ocularDamage = 0,
+            Vector2[] partOffsets = null, int[] partIndices = null)
         {
             if (hasPresentation || definition == null || composition == null || randomSource == null ||
                 (fragments != null && fragments.Length > 0 && budget == null))
@@ -66,6 +71,8 @@ namespace EmergencyShift
             sourcePose = sourceTransform;
             replacedBody = originalBody;
             eyeDamage = ocularDamage;
+            poseOffsets = partOffsets;
+            poseIndices = partIndices;
             hasPresentation = true;
             emitting = true;
             StartCoroutine(Burst(obstacles));
@@ -84,21 +91,33 @@ namespace EmergencyShift
 
                 bool explicitComposition = variant.PieceCount > 0;
                 int count = explicitComposition ? variant.PieceCount : variant.FragmentCount;
+                if (variant.AssembleBeforeRelease)
+                {
+                    while (!spawnBudget.TryReserve(count))
+                    {
+                        yield return null;
+                    }
+                }
                 for (int i = 0; i < count; i++)
                 {
-                    while (!spawnBudget.TryReserve())
+                    while (!variant.AssembleBeforeRelease && !spawnBudget.TryReserve())
                     {
                         yield return null;
                     }
 
                     GorePiece specification = explicitComposition ? variant.PieceAt(i) : null;
                     int spriteIndex = specification != null ? specification.SpriteIndex : (i + variant.SpriteOffset) % fragments.Length;
+                    if (poseIndices != null)
+                    {
+                        spriteIndex = poseIndices[spriteIndex];
+                    }
                     Vector2 scaleRange = specification != null ? specification.Scale : variant.Scale;
                     var piece = new GameObject("Creature fragment", typeof(GibMotion2D));
                     piece.transform.position = new Vector3(transform.position.x, transform.position.y, RemainsVisualStyle.SurfaceZ);
                     if (specification != null)
                     {
-                        piece.transform.position += sourcePose.MultiplyVector(specification.Offset);
+                        Vector2 offset = poseOffsets != null && spriteIndex < poseOffsets.Length ? poseOffsets[spriteIndex] : specification.Offset;
+                        piece.transform.position += sourcePose.MultiplyVector(offset);
                     }
                     piece.transform.SetParent(transform, true);
                     var body = new GameObject("Fragment visual", typeof(SpriteRenderer));
@@ -107,7 +126,7 @@ namespace EmergencyShift
                     var renderer = body.GetComponent<SpriteRenderer>();
                     renderer.sprite = fragments[spriteIndex];
                     renderer.sharedMaterial = litMaterial;
-                    renderer.sortingOrder = RemainsVisualStyle.DeadOrder;
+                    renderer.sortingOrder = variant.AssembleBeforeRelease ? i + 1 : RemainsVisualStyle.DeadOrder;
                     renderer.color = profile.SettledTint;
                     // A busy spawn budget must not leave a gap before the first replacement exists.
                     if (i == 0 && variant.ReplaceOriginalBody && replacedBody != null)
@@ -121,7 +140,7 @@ namespace EmergencyShift
                     }
                     float angle = i * Mathf.PI * 2 / count + variant.RotationOffset * Mathf.Deg2Rad + Range(-.33f, .33f);
                     bool preservePose = specification != null && specification.PreserveSourcePose;
-                    body.transform.rotation = preservePose && replacedBody != null
+                    body.transform.rotation = (preservePose || specification != null && specification.AlignSourcePose) && replacedBody != null
                         ? replacedBody.transform.rotation : Quaternion.Euler(0, 0, Range(0f, 360f));
                     SpriteRenderer shadow = null;
                     if (contactShadowSprite != null && shadowMaterial != null)
@@ -286,8 +305,9 @@ namespace EmergencyShift
                 return;
             }
 
-            foreach (var part in saved.parts)
+            for (int partIndex = 0; partIndex < saved.parts.Length; partIndex++)
             {
+                var part = saved.parts[partIndex];
                 if (part.spriteIndex < 0 || part.spriteIndex >= fragments.Length)
                 {
                     throw new System.InvalidOperationException("Missing saved fragment");
@@ -300,7 +320,7 @@ namespace EmergencyShift
                 body.transform.SetParent(root.transform, false);
                 body.sprite = fragments[part.spriteIndex];
                 body.sharedMaterial = litMaterial;
-                body.sortingOrder = RemainsVisualStyle.DeadOrder;
+                body.sortingOrder = assembledSorting ? partIndex + 1 : RemainsVisualStyle.DeadOrder;
                 part.body.Apply(body);
                 if (part.hasEyeSurface)
                 {

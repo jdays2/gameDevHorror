@@ -17,5 +17,6 @@ namespace EmergencyShift
         }
 
         public bool TryReserve() => budget.TryReserve();
+        public bool TryReserve(int count) => budget.TryReserve(count);
     }
 }

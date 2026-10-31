@@ -23,6 +23,10 @@ public static class ReviseScorpionR9
 
     public static object Install()
     {
+        if (AssetDatabase.LoadAssetAtPath<ScorpionRuptureSet>(Root + "Data/Enemies/Scorpion/RupturePosesR10.asset") != null)
+        {
+            throw new InvalidOperationException("R10 is already installed. Use ReviseScorpionR10; R9 would undo the new rupture and palette.");
+        }
         if (Application.isPlaying || EditorApplication.isCompiling)
         {
             throw new InvalidOperationException("Requires stopped compiled Editor.");

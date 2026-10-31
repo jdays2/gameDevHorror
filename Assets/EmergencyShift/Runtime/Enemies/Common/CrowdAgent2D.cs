@@ -13,6 +13,9 @@ namespace EmergencyShift
         private float clearance = .16f;
         [SerializeField, Range(0, 2)]
         private float strength = .85f;
+        [SerializeField, Min(0), Tooltip("Optional silhouette spacing; zero keeps physical-radius spacing.")]
+        private float personalRadius;
+        [SerializeField] private bool yieldToNeighbours;
         private Rigidbody2D body;
         private CircleCollider2D shape;
         private Damageable2D life;
@@ -20,6 +23,7 @@ namespace EmergencyShift
         private SceneRegistry<CrowdAgent2D> registry;
         private static readonly ProfilerMarker marker = new ProfilerMarker("EmergencyShift.Crowd.Separation");
         public float Radius => shape.radius * Mathf.Max(Mathf.Abs(transform.lossyScale.x), Mathf.Abs(transform.lossyScale.y));
+        public float SeparationRadius => Mathf.Max(Radius, personalRadius);
 
         [Inject]
         private void Construct(SceneRegistry<CrowdAgent2D> sceneRegistry)
@@ -80,7 +84,7 @@ namespace EmergencyShift
                     }
 
                     Vector2 delta = body.position - other.body.position;
-                    float range = Radius + other.Radius + clearance;
+                    float range = SeparationRadius + other.SeparationRadius + clearance;
                     if (delta.sqrMagnitude >= range * range)
                     {
                         continue;
@@ -104,6 +108,42 @@ namespace EmergencyShift
 
                 return next;
             }
+        }
+
+        /// <summary>Reduce forward speed without introducing a lateral component after steering.</summary>
+        public Vector2 LimitForwardVelocity(Vector2 desired, LayerMask solids)
+        {
+            if (!yieldToNeighbours || desired.sqrMagnitude < .0001f)
+            {
+                return desired;
+            }
+            float speed = desired.magnitude;
+            Vector2 direction = desired / speed;
+            foreach (CrowdAgent2D other in registry.Members)
+            {
+                if (other == this || other.body == null || (other.life != null && !other.life.IsAlive) || other.gameObject.scene != gameObject.scene)
+                {
+                    continue;
+                }
+                Vector2 delta = other.body.position - body.position;
+                float ahead = Vector2.Dot(delta, direction);
+                float spacing = SeparationRadius + other.SeparationRadius;
+                if (ahead <= 0 || delta.sqrMagnitude > (spacing + clearance) * (spacing + clearance) ||
+                    Physics2D.Linecast(body.position, other.body.position, solids).collider != null)
+                {
+                    continue;
+                }
+                float lateralSquared = Mathf.Max(0, delta.sqrMagnitude - ahead * ahead);
+                if (lateralSquared >= spacing * spacing)
+                {
+                    continue;
+                }
+                float clearanceAhead = ahead - Mathf.Sqrt(spacing * spacing - lateralSquared);
+                float neighbourSpeed = Vector2.Dot(other.body.linearVelocity, direction);
+                float allowedSpeed = Mathf.Max(0, neighbourSpeed + Mathf.Max(0, clearanceAhead) / Time.fixedDeltaTime);
+                speed = Mathf.Min(speed, allowedSpeed);
+            }
+            return direction * speed;
         }
 
     }

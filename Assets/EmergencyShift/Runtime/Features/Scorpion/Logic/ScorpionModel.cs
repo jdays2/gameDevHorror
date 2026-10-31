@@ -17,6 +17,7 @@ namespace EmergencyShift.Features.Scorpion.Logic
         private double gatherAt;
         private float gatherPhase;
         private float attackStartProgress;
+        private float motionSpeed;
 
         public ScorpionModel(IGameClock clock, float attackSeconds, Vector2 initialFacing = default)
         {
@@ -38,6 +39,30 @@ namespace EmergencyShift.Features.Scorpion.Logic
         public float AttackProgress => State == ScorpionState.Attacking ? Mathf.Clamp01(attackStartProgress + (float)(clock.Time - attackAt) / attackSeconds) : 0;
         public float DeathTime => IsAlive ? 0 : Mathf.Max(0, (float)(clock.Time - diedAt));
         public bool CrossedGaitBoundary => GaitPhase < previousPhase || GaitPhase < .08f;
+
+        public void StopMotion()
+        {
+            motionSpeed = 0;
+        }
+
+        public void CommitMotion(float speed)
+        {
+            motionSpeed = speed;
+        }
+
+        public Vector2 Steer(Vector2 preferred, float maximumDegrees, float accelerationStep, float brakingStep)
+        {
+            if (preferred.sqrMagnitude < .0001f)
+            {
+                motionSpeed = 0;
+                return Vector2.zero;
+            }
+            AdvanceFacing(preferred, maximumDegrees);
+            float alignment = Mathf.Max(0, Vector2.Dot(Facing, preferred.normalized));
+            float targetSpeed = preferred.magnitude * alignment * alignment;
+            motionSpeed = Mathf.MoveTowards(motionSpeed, targetSpeed, targetSpeed < motionSpeed ? brakingStep : accelerationStep);
+            return Facing * motionSpeed;
+        }
 
         public void AdvanceFacing(Vector2 preferred, float maximumDegrees)
         {
@@ -71,7 +96,7 @@ namespace EmergencyShift.Features.Scorpion.Logic
 
         internal void BeginAttack(Vector2 heading)
         {
-            Heading = heading.normalized;
+            Heading = Facing;
             // The attack contains two gait cycles. Carry a boundary overshoot into
             // its matching foot phase instead of snapping the feet backwards.
             attackStartProgress = GaitPhase * .5f;

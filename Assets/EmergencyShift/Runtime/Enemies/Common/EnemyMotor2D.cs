@@ -38,8 +38,14 @@ namespace EmergencyShift
 
         public void Move(Vector2 velocity, bool separation = true)
         {
-            body.linearVelocity = separation && crowd != null ? crowd.Adjust(velocity, solids) : velocity;
+            body.linearVelocity = ResolveVelocity(velocity, separation);
         }
+
+        public Vector2 ResolveVelocity(Vector2 velocity, bool separation = true) =>
+            separation && crowd != null ? crowd.Adjust(velocity, solids) : velocity;
+
+        public Vector2 LimitForwardVelocity(Vector2 velocity) =>
+            crowd != null ? crowd.LimitForwardVelocity(velocity, solids) : velocity;
 
         public Vector2 Follow(Vector2 goal, float speed) => path.Direction(body.position, goal, Radius, solids) * speed;
         public Vector2 FixedHeadingVelocity(Vector2 heading, float speed)

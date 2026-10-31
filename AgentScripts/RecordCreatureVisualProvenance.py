@@ -40,12 +40,13 @@ def main():
                 'sources':[record(p) for p in sorted(paths)],
                 'production':[record(p) for p in sorted(assets) if p.is_file()],
                 'generationProvenance':record(source/('image-generation.json' if art=='ClawVisual' else 'provenance.json')),
-                'unityEvidence':('Docs/Validation/ScorpionR9/import.json' if art=='Scorpion' else 'Docs/Validation/CreatureVisuals01/prefabs.json'),
+                'unityEvidence':('Docs/Validation/ScorpionR10/import.json' if art=='Scorpion' else 'Docs/Validation/CreatureVisuals01/prefabs.json'),
                 'artisticApproval':'Not inferred from import or technical checks.'}
         destination=PROJECT/'Concepts/Used/Visual'/used/'import-manifest.json'
         if art=='Scorpion':
             result['latestGenerationProvenance']=record(source/'r8-generation.json')
-            result['presentationRevision']='r9 renderer tint .6; source movement frames remain r8'
+            result['presentationRevision']='r11 wine-copper palette shader, eyes .12, 56x12 rupture parts; source movement frames remain r8'
+            result['presentationEvidence']='Docs/Validation/ScorpionPaletteR11/native.json'
         destination.parent.mkdir(parents=True,exist_ok=True)
         destination.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
         print(json.dumps({'family':animation,'sources':len(paths),'production':len(result['production'])}))

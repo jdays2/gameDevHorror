@@ -3,13 +3,16 @@ const canvas = $('screen');
 const ctx = canvas.getContext('2d');
 const clips = {};
 const images = new Map();
-const flesh = [];
+let rupture;
+let ruptureImage;
 let time = 0;
 let paused = false;
 let previous = performance.now();
 let override = null;
 const attackAudio = new Audio();
 const cueAudio = new Audio();
+const presenceAudio = new Audio();
+let nextSqueak = 3 + Math.random() * 2;
 let previousAttackPhase = -1;
 let playedAudio = 0;
 
@@ -18,19 +21,22 @@ function stopAudio() {
   attackAudio.currentTime = 0;
   cueAudio.pause();
   cueAudio.currentTime = 0;
+  presenceAudio.pause();
+  presenceAudio.currentTime = 0;
 }
 
-function auditionCue(name) {
+function auditionCue(name, quiet = false) {
   stopAudio();
   cueAudio.src = '/scorpion-audio/' + name + '.wav';
-  cueAudio.volume = name === 'Death' ? .48 : .6;
+  cueAudio.volume = name === 'Death' ? .48 : quiet ? .22 : .6;
   cueAudio.play().then(() => { $('audioStatus').textContent = name === 'Death' ? 'Играет смерть' : 'Играет писк'; })
     .catch(() => { $('audioStatus').textContent = 'Нажмите ещё раз для разрешения звука'; });
 }
 cueAudio.onended = () => { $('audioStatus').textContent = 'Проба завершена'; };
 
 function playGrasp() {
-  stopAudio();
+  attackAudio.pause();
+  attackAudio.currentTime = 0;
   attackAudio.src = '/scorpion-audio/HeavyShell' + $('soundVariant').value + '.wav';
   attackAudio.volume = .6;
   attackAudio.playbackRate = Number($('tempo').value);
@@ -46,6 +52,27 @@ attackAudio.onended = () => { $('audioStatus').textContent = $('soundVariant').v
 
 function url(path) {
   return '/production/' + path.split('/Art/Enemies/')[1];
+}
+
+function burgundy(image) {
+  const tinted = document.createElement('canvas');
+  tinted.width = image.width; tinted.height = image.height;
+  const paint = tinted.getContext('2d', { willReadFrequently: true });
+  paint.drawImage(image, 0, 0);
+  const pixels = paint.getImageData(0, 0, tinted.width, tinted.height);
+  const smooth = (a, b, value) => { const t = Math.max(0, Math.min(1, (value - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const dark = [.12, .04, .055], middle = [.42, .115, .14], light = [.64, .32, .27];
+  for (let p = 0; p < pixels.data.length; p += 4) {
+    if (!pixels.data[p + 3]) continue;
+    const lum = (pixels.data[p] * .25 + pixels.data[p + 1] * .60 + pixels.data[p + 2] * .15) / 255;
+    const low = smooth(0, .5, lum), high = smooth(.45, 1, lum);
+    for (let channel = 0; channel < 3; channel++) {
+      const base = dark[channel] + (middle[channel] - dark[channel]) * low;
+      pixels.data[p + channel] = Math.round((base + (light[channel] - base) * high) * 255);
+    }
+  }
+  paint.putImageData(pixels, 0, 0);
+  return tinted;
 }
 
 async function loadImage(path) {
@@ -80,9 +107,9 @@ function options() {
 
 function describe() {
   const scorpion = $('family').value === 'scorpion';
-  for (const id of ['sound', 'soundVariant', 'audition', 'discoveryAudition', 'deathAudition']) $(id).disabled = !scorpion;
+  for (const id of ['sound', 'soundVariant', 'audition', 'discoveryAudition', 'deathAudition', 'squeakAudition', 'deathPose']) $(id).disabled = !scorpion;
   $('caption').textContent = scorpion
-    ? 'Свечение глаз приглушено. Писк — один на стаю. «Смерть и разлёт» показывает три раскладки: туша и 3–5 малых фрагментов внутренней плоти. Здесь художественная демонстрация без стен/AI; физика и звук отдельно проверены в Unity. Кнопки дают прослушать писк и принятую смерть.'
+    ? 'Три направления разлёта, 12 частей выбранной фазы. Панцирь бордовый, глаза едва светятся, кровь жёлтая. Это художественная демонстрация: повороты, стены и дистанция между врагами проверяются отдельно в Unity. При включённом звуке первая особь иногда пищит.'
     : 'Когтистый: выбранный дизайн J, ходьба, бег, размашистый удар и три композиции останков. Молчаливый визуальный префаб.';
 }
 
@@ -119,7 +146,7 @@ function drawActor(clip, frame, x, y, scale, night, family) {
   if (clip.emission) {
     ctx.filter = 'none';
     ctx.globalCompositeOperation = 'lighter';
-    if (family === 'scorpion') ctx.globalAlpha = .6;
+    if (family === 'scorpion') ctx.globalAlpha = .12;
     const eye = clip.emission;
     drawFrame(eye.image, eye.cell, eye.columns, eye.pivot, frame, scale * 200 / eye.ppu);
   }
@@ -127,31 +154,48 @@ function drawActor(clip, frame, x, y, scale, night, family) {
 }
 
 function drawDeath(clip, x, y, scale, night, variant) {
-  const age = override === null ? time % 3.2 : Number($('phase').value) / 999 * 1.4;
+  const age = override === null ? time % 3.2 : override / 31 * 3.2;
+  const [state, frame] = $('deathPose').value.split('-');
+  const pose = rupture.poses.find(item => item.state === state && item.frame === Number(frame));
   ctx.save();
   ctx.translate(x, y);
-  ctx.fillStyle = '#4f1319';
+  ctx.fillStyle = night ? '#171d08' : '#a7ad20';
   ctx.globalAlpha = Math.min(age / .24, 1) * .75;
-  ctx.beginPath(); ctx.ellipse(0, 0, 100 * scale, 65 * scale, .3, 0, Math.PI * 2); ctx.fill();
+  ctx.beginPath();
+  for (let point = 0; point < 20; point++) {
+    const angle = point * Math.PI * 2 / 20;
+    const radius = .8 + .17 * Math.sin(point * 2.7 + variant);
+    const px = Math.cos(angle) * 100 * scale * radius;
+    const py = Math.sin(angle) * 65 * scale * radius;
+    if (!point) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  ctx.closePath(); ctx.fill();
+  for (let drop = 0; drop < 9; drop++) {
+    const angle = drop * 2.4 + variant;
+    ctx.beginPath();
+    ctx.ellipse(Math.cos(angle) * (80 + drop * 4) * scale, Math.sin(angle) * (55 + drop * 3) * scale,
+      (2 + drop % 3) * scale, (3 + drop % 4) * scale, angle, 0, Math.PI * 2);
+    ctx.fill();
+  }
   ctx.restore();
-  drawActor(clip, 0, x, y, scale, night, 'scorpion');
-  const count = variant + 3;
-  const seconds = Math.max(0, Math.min(age - .06, .25));
-  const distance = (1 - Math.exp(-.65 * seconds)) / .65 * 2.8 * 200 * scale;
-  const lift = Math.max(0, 2.8 * seconds - 13 * seconds * seconds);
-  for (let i = 1; i < count; i++) {
-    const item = flesh[(i + variant) % flesh.length];
-    const angle = i * Math.PI * 2 / count + variant * 23 * Math.PI / 180 + .1;
-    // Keep the isolated preview's upper pieces visibly separate from the head silhouette.
-    const power = Math.sin(angle) < -.7 ? 1.2 : i % 3 === 0 ? .65 : 1;
-    ctx.save(); ctx.translate(x + Math.cos(angle) * distance * power, y + Math.sin(angle) * distance * power);
+  const seconds = Math.max(0, Math.min(age - .035, .18));
+  const lift = Math.max(0, 2 * seconds - 13 * seconds * seconds);
+  for (let i = 0; i < pose.parts.length; i++) {
+    const item = pose.parts[i];
+    const rect = item.rectTopLeft;
+    const angle = i * Math.PI * 2 / 12 + (variant - 1) * 43 * Math.PI / 180 + .1;
+    const power = (i === 11 ? .4 : 1) * (i % 3 === 0 ? .65 : 1) * (.8 + (variant - 1) * .2);
+    const distance = seconds * 3.5 * 200 * scale * power;
+    ctx.save();
+    ctx.translate(x + item.offset[0] * 200 * scale + Math.cos(angle) * distance,
+      y - item.offset[1] * 200 * scale + Math.sin(angle) * distance);
     ctx.fillStyle = '#101214'; ctx.globalAlpha = .3;
     ctx.beginPath(); ctx.ellipse(0, 0, 11 * scale, 5 * scale, 0, 0, Math.PI * 2); ctx.fill();
     ctx.globalAlpha = 1;
-    ctx.rotate(i * 2.1 + seconds * (i % 2 ? 5 : -5));
+    ctx.rotate(i === 11 ? 0 : seconds * (i % 2 ? 5 : -5));
     ctx.filter = night ? 'brightness(15%)' : 'brightness(74%)';
-    const ratio = 200 / item.ppu * scale * .9 * (1 + lift * .5);
-    ctx.drawImage(item.image, -item.image.width * ratio / 2, -item.image.height * ratio / 2, item.image.width * ratio, item.image.height * ratio);
+    const ratio = scale * (1 + lift * .5);
+    ctx.drawImage(ruptureImage, ...rect, -rect[2] * ratio / 2, -rect[3] * ratio / 2, rect[2] * ratio, rect[3] * ratio);
     ctx.restore();
   }
 }
@@ -220,6 +264,7 @@ function render() {
   if (large) {
     scale = family === 'scorpion' ? 1.65 : 1.2;
     if (scenario) scale = .9;
+    if (selected.key === 'Death') scale = 1.05;
   }
   ctx.fillStyle = night ? '#050708' : dark ? '#262d32' : '#e4e4de';
   ctx.fillRect(0, 0, 1280, 700);
@@ -241,6 +286,13 @@ function render() {
   let shown = 0;
   let frameCount = selected.ms.length;
   const actors = [];
+  if (!paused && override === null && family === 'scorpion' && selected.key !== 'Death' && $('sound').checked && time >= nextSqueak && presenceAudio.paused) {
+    presenceAudio.src = '/scorpion-audio/Detection.wav';
+    presenceAudio.volume = .22;
+    presenceAudio.playbackRate = 1;
+    presenceAudio.play().catch(() => {});
+    nextSqueak = time + 3 + Math.random() * 2;
+  }
   for (let i = 0; i < count; i++) {
     const x = count === 1 ? 640 : 260 + i * 380;
     let clip = selected;
@@ -285,9 +337,10 @@ async function init() {
     });
     const list = [];
     for (const state of data.states) {
+      const bodyImage = await loadImage(url(state.asset));
       list.push({ key: state.name,
         label: ({ Run: 'Бег', Walk: 'Спокойная ходьба', Sweep: 'Размашистый удар', Hit: 'Попадание', Attack: 'Атака на ходу' })[state.name],
-        image: await loadImage(url(state.asset)), columns: state.columns, ms: state.durationsMs,
+        image: family === 'scorpion' ? burgundy(bodyImage) : bodyImage, columns: state.columns, ms: state.durationsMs,
         loop: state.loop, reference: state.referenceSpeed, pivot: state.pivotPixelsTopLeft,
         emission: state.emission ? { image: await loadImage(url(state.emission.asset)), cell: state.emission.cell,
           columns: state.emission.columns, pivot: state.emission.pivotPixelsTopLeft, ppu: state.emission.pixelsPerUnit } : null });
@@ -303,23 +356,24 @@ async function init() {
     }
     if (family === 'scorpion') {
       const run = list.find(clip => clip.key === 'Run');
-      list.push({ ...run, key: 'Death', label: 'Смерть и разлёт', ms: [3200], loop: false, dead: true, emission: null });
+      list.push({ ...run, key: 'Death', label: 'Смерть и разлёт', ms: Array(32).fill(100), loop: false, dead: true, emission: null });
       list.unshift({ key: 'Approach', label: 'Сближение и атака', ms: list.find(c => c.key === 'Attack').ms });
     }
     clips[family] = { data, options: list };
   }
+  rupture = await fetch('rupture-r10.json').then(response => response.json());
+  ruptureImage = burgundy(await loadImage(url(rupture.atlas)));
   options();
-  for (const [name, ppu] of [['MuscleWad', 2000], ['DenseClot', 2650], ['TissueStrip', 2072]]) {
-    flesh.push({ image: await loadImage('/scorpion-flesh/' + name + '.png'), ppu });
-  }
   $('family').onchange = () => { stopAudio(); previousAttackPhase = -1; options(); };
-  $('action').onchange = () => { stopAudio(); previousAttackPhase = -1; time = 0; override = null; describe(); };
+  $('action').onchange = () => { stopAudio(); nextSqueak = 3 + Math.random() * 2; previousAttackPhase = -1; time = 0; override = null; describe(); };
   $('count').onchange = render; $('close').onchange = render; $('background').onchange = render;
   $('play').onclick = () => { paused = !paused; override = null; if (paused) stopAudio(); $('play').textContent = paused ? 'Пуск' : 'Пауза'; };
   $('next').onclick = () => { stopAudio(); paused = true; $('play').textContent = 'Пуск'; override = (window.__reviewAudit?.frame || 0) + 1; render(); };
   $('audition').onclick = playGrasp;
   $('discoveryAudition').onclick = () => auditionCue('Detection');
   $('deathAudition').onclick = () => auditionCue('Death');
+  $('squeakAudition').onclick = () => auditionCue('Detection', true);
+  $('deathPose').onchange = () => { time = 0; override = null; render(); };
   $('sound').onchange = () => { stopAudio(); previousAttackPhase = -1; };
   $('soundVariant').onchange = () => { stopAudio(); previousAttackPhase = -1; };
   $('phase').oninput = () => {
