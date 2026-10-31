@@ -11,14 +11,14 @@ const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirector
  await page.waitForFunction(()=>[...document.querySelectorAll('audio')].every(a=>Number.isFinite(a.duration)),{timeout:10000});
  const players=await page.locator('audio').evaluateAll(as=>as.map(a=>({file:a.getAttribute('src'),duration:a.duration,error:a.error?.code??null,readyState:a.readyState})));
  const ui=path.join(project,'Concepts/Unused/UI/DeathScreen01/review.html');await page.goto(pathToFileURL(ui).href);
- const selection=[];for(const id of ['a_piano','b_guitar','c_cello','d_vibraphone']){await page.selectOption('#music',id);await page.waitForFunction(()=>Number.isFinite(document.querySelector('audio').duration),{timeout:10000});selection.push(await page.locator('audio').evaluate(a=>({file:a.getAttribute('src'),duration:a.duration,error:a.error?.code??null})))}
+ const currentDeathMedia=await page.evaluate(()=>({audio:document.querySelectorAll('audio').length,video:document.querySelectorAll('video').length}));
  await browser.close();
  let broken=[];for(const file of walk(root).filter(f=>f.endsWith('.md'))){for(const m of fs.readFileSync(file,'utf8').matchAll(/\]\(([^)]+)\)/g)){const href=m[1].split('#')[0];if(href&&!/^[a-z]+:\/\//i.test(href)&&!fs.existsSync(path.resolve(path.dirname(file),href)))broken.push({file,href})}}
- const validation={scope:'Local audio browser metadata and selectors, not a listening judgment',players,visualReviewAudioSelection:selection,jsErrors:errors,brokenLocalMarkdownLinks:broken};
+ const validation={scope:'Historical audio player metadata; current death review has no music; not a listening judgment',players,currentDeathReviewMedia:currentDeathMedia,jsErrors:errors,brokenLocalMarkdownLinks:broken};
  fs.writeFileSync(path.join(root,'preview-validation.json'),JSON.stringify(validation,null,2)+'\n');
- if(errors.length||broken.length||players.some((a,i)=>a.error||Math.abs(a.duration-(i===4?83:20))>.1)||selection.some(a=>a.error||Math.abs(a.duration-20)>.1))throw new Error(JSON.stringify(validation));
- const data={task:'TASK-006',date:'2026-10-31',stage:'Four20second samples ready for owner direction choice; integration not begun',
- owner_direction:'No synth-led melody; prepare several15–20second samples and let the owner choose.',
+ if(errors.length||broken.length||players.some((a,i)=>a.error||Math.abs(a.duration-(i===4?83:20))>.1)||currentDeathMedia.audio!==0||currentDeathMedia.video!==0)throw new Error(JSON.stringify(validation));
+ const data={task:'TASK-006',date:'2026-10-31',stage:'Historical music research; owner chose death screen without music; no integration',
+ owner_direction:'Latest decision: no music on death screen. Retain previous timbre studies as history.',
  current:'Directions04/review.html',approved:false,unity_used:false,authoring_review:'not applicable',
  music_generation:'Runway text-only;03intermediate4credits (not recommended),four new directions4credits each (16);family total20. Earlier01/02 belong to another retained family. No reference audio uploaded.',
  rights:'AI-generated originals in connected account; no external samples added; not asserted CC0.',
@@ -26,5 +26,5 @@ const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirector
  listening:'No direct auditory review by agent. Instrument names are requested directions, not verified credits. Owner chooses by listening; previous synth direction withdrawn.',
  files:walk(root).filter(f=>path.basename(f)!=='provenance.json').sort().map(f=>({file:path.relative(root,f).replaceAll('\\','/'),bytes:fs.statSync(f).size,sha256:hash(f)}))};
  fs.writeFileSync(path.join(root,'provenance.json'),JSON.stringify(data,null,2)+'\n');
- console.log(JSON.stringify({players:players.length,selectedTracks:selection.length,jsErrors:errors.length,brokenLinks:broken.length,files:data.files.length}));
+ console.log(JSON.stringify({historicalPlayers:players.length,currentDeathMedia,jsErrors:errors.length,brokenLinks:broken.length,files:data.files.length}));
 })().catch(e=>{console.error(e);process.exit(1)});

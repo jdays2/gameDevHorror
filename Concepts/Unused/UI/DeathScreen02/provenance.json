@@ -1,0 +1,254 @@
+{
+  "task": "TASK-006",
+  "date": "2026-10-31",
+  "stage": "Concepts C–F for owner review; no implementation",
+  "owner_decision": "No music on death screen. More visual concepts based on current main and pause menus.",
+  "recommendation": "D — continuation of pause-menu layout; owner choice pending",
+  "artistic_approval": false,
+  "source_assessment": "Main menu inspected via saved screenshot plus current prefab/style; pause inspected via actual serialized prefab and authoring source, not a live Unity capture.",
+  "visual_creation": "Original HTML/CSS UI and browser PNG renders; no AI raster generation. Existing archived live-player frame is only a layout background, not a death capture.",
+  "music": "None; no generation or playback in current mockups. Previous sources retained as history.",
+  "unity_used": false,
+  "assets_runtime_scenes_changed": false,
+  "authoring_review": "not applicable",
+  "bug053": "Context updated for no-music design; not reproduced or fixed",
+  "mainMenu": "Remains deferred; normal Play from open level preserved",
+  "verification": {
+    "combinations": 120,
+    "layoutFailures": 0,
+    "interaction": {
+      "jsErrors": [],
+      "appearing": true,
+      "intentReceived": true,
+      "mediaCounts": {
+        "audio": 0,
+        "video": 0
+      }
+    },
+    "brokenLocalLinks": []
+  },
+  "sources": [
+    {
+      "file": "Assets/EmergencyShift/Prefabs/UI/MainMenu/MainMenuUI.prefab",
+      "sha256": "b8e4bec8503845d3ab266e5827e454712df6fac41ae893cce6236a4abd3e19e1"
+    },
+    {
+      "file": "Assets/EmergencyShift/Prefabs/UI/PauseMenuUI.prefab",
+      "sha256": "28a49379c09308e8be28404e698b6fb6dce42b8dd89fac41a1d18e1c178f4886"
+    },
+    {
+      "file": "Assets/EmergencyShift/Data/UI/MainMenu/NightShift.asset",
+      "sha256": "531bd8f05312bfab6a6bf2b2de78decd0212425e37ca180fecd0a39e66daccd1"
+    },
+    {
+      "file": "Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs",
+      "sha256": "d9c209a74eab22d90551c31d69a891c183300e16987e0b4f802ba28b20094b43"
+    },
+    {
+      "file": "Docs/Validation/MainMenu01/home.png",
+      "sha256": "e0788604ba2ca274c7829a4a9d4d5a46b7e6011373412df60de4d9fda55acbfb"
+    },
+    {
+      "file": "Concepts/Unused/UI/DeathScreen01/Sources/world-reference.png",
+      "sha256": "0952e64bf130453d528194d5d95b68a58d8f54d3c503fd42cb7771373b7f006f"
+    },
+    {
+      "file": "Assets/EmergencyShift/Fonts/MainMenu/NotoSans-Medium.ttf",
+      "sha256": "7bbe267354704c6ad18bde24b1dbc756c8e4380ca1c3f3c25c45ec5c4471510b"
+    },
+    {
+      "file": "Assets/EmergencyShift/Fonts/MainMenu/NotoSans-OFL.txt",
+      "sha256": "cee9892f9f0cc8fe882c9e9537ee6a89621d86ee7ceaf70b02e2b2b1c25c061a"
+    },
+    {
+      "file": "Assets/EmergencyShift/Fonts/MainMenu/BarlowCondensed-Bold.ttf",
+      "sha256": "e476562ec9c1e16cf16475895b511f08c804f438cc9a9f80a44ea50a0eeb5b65"
+    },
+    {
+      "file": "Assets/EmergencyShift/Fonts/MainMenu/BarlowCondensed-OFL.txt",
+      "sha256": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f"
+    }
+  ],
+  "files": [
+    {
+      "file": "Previews/c-error-1280x720.png",
+      "bytes": 30481,
+      "sha256": "b9cda3423b887bf6fca4072f3fd379bcc72971362065665b73a119fd5a681dbf"
+    },
+    {
+      "file": "Previews/c-fresh-1024x768.png",
+      "bytes": 17413,
+      "sha256": "623c950dbbd5aa69d8adb2d5af6b2d0cb58440d2c3c5158ef7a1bf0914ba3b38"
+    },
+    {
+      "file": "Previews/c-fresh-1280x720.png",
+      "bytes": 22601,
+      "sha256": "55d30adff489dcc5eb45b903c28f19c232e6b5fcb3004ba2eecc47faa8a96363"
+    },
+    {
+      "file": "Previews/c-fresh-1920x1080.png",
+      "bytes": 35535,
+      "sha256": "f3a53d8d41bfba225e36827fff81a4f10a4ac03faac4d3fa9ee1a0dddc583fb3"
+    },
+    {
+      "file": "Previews/c-fresh-2560x1080.png",
+      "bytes": 37879,
+      "sha256": "1fc292dd8e24e760b045fa4a096ef86f8dd2f3806cb83658833848e069e5a450"
+    },
+    {
+      "file": "Previews/c-fresh-2560x1440.png",
+      "bytes": 52953,
+      "sha256": "e17a008ebbc2459ed0ed9c9c0da86db714f5dc7c7f98ad19ef021f1b0227ca16"
+    },
+    {
+      "file": "Previews/c-text125-1280x720.png",
+      "bytes": 25296,
+      "sha256": "c56abb8b5dc57fa5e34392bb19ecfe4f66b7e6f1d9aa5f3b9632aad6411eb132"
+    },
+    {
+      "file": "Previews/d-error-1280x720.png",
+      "bytes": 141267,
+      "sha256": "1c34bfac580fca99f0e6c656bcf17ab28110212ee18a6fc0aecc905ef4c62689"
+    },
+    {
+      "file": "Previews/d-fresh-1024x768.png",
+      "bytes": 133589,
+      "sha256": "4906541687c6d4bea16a3219658be26a8d8d320840cb41901546870b78023e21"
+    },
+    {
+      "file": "Previews/d-fresh-1280x720.png",
+      "bytes": 131193,
+      "sha256": "e6120c18dc81bd51c721250e5afe121519e79a5dd98937d5b27c0c522791cb2e"
+    },
+    {
+      "file": "Previews/d-fresh-1920x1080.png",
+      "bytes": 213592,
+      "sha256": "d299c1b82f7c7bbcdda7c13c14fe8c7a63e15fe88e2c7ecd9b28450153a124b1"
+    },
+    {
+      "file": "Previews/d-fresh-2560x1080.png",
+      "bytes": 256569,
+      "sha256": "13bb185227d94265a83f57c150068df37e247f0fd20d76649d7d678eff0af8d1"
+    },
+    {
+      "file": "Previews/d-fresh-2560x1440.png",
+      "bytes": 306202,
+      "sha256": "e4a8912e5a0fbcfece48af5ce930b3619e607feea7a750eb59ca56b8801ce965"
+    },
+    {
+      "file": "Previews/d-text125-1280x720.png",
+      "bytes": 135187,
+      "sha256": "845331a8cba3514ff99f799559ffbf8ef94f573855d238d3009cd3aedbb6ba4e"
+    },
+    {
+      "file": "Previews/e-error-1280x720.png",
+      "bytes": 314187,
+      "sha256": "3acdac1ab9cc01b861eb5f8b0090066145e060d88125d0948fdd1853ab08a84f"
+    },
+    {
+      "file": "Previews/e-fresh-1024x768.png",
+      "bytes": 291361,
+      "sha256": "50966136b6656b1939ebd7fccdfcaa8da992ff1cd002a34666bdb1391a9856c1"
+    },
+    {
+      "file": "Previews/e-fresh-1280x720.png",
+      "bytes": 305039,
+      "sha256": "4e434bf60ae7d320d4ad8f1e8bfab9396e5839b5d305393cf46e515c0b7a0b81"
+    },
+    {
+      "file": "Previews/e-fresh-1920x1080.png",
+      "bytes": 603259,
+      "sha256": "21b07f0f6611d47d9752d48557d928710ae58866f0de51eae1fcc692bf3e1553"
+    },
+    {
+      "file": "Previews/e-fresh-2560x1080.png",
+      "bytes": 742133,
+      "sha256": "6b86a1b36f099d000e8052af7bf26908b4dc7948ac617efb1802e6278fd8e1b7"
+    },
+    {
+      "file": "Previews/e-fresh-2560x1440.png",
+      "bytes": 961947,
+      "sha256": "9560bc68d02fe2986d70b19f49c316d68f44afd05786db777eeb3aa67248122f"
+    },
+    {
+      "file": "Previews/e-text125-1280x720.png",
+      "bytes": 311794,
+      "sha256": "6a957c66bc199cc5cd4b94dac552da56407b3b7c7220ae937378e8db3f2223ce"
+    },
+    {
+      "file": "Previews/f-error-1280x720.png",
+      "bytes": 28111,
+      "sha256": "073dc07063caadf0ec22f747d13cded82749787036841a5167d25f7a508bb7c6"
+    },
+    {
+      "file": "Previews/f-fresh-1024x768.png",
+      "bytes": 17015,
+      "sha256": "b499b8ee4092c4d1987c063a5955143f8efcbef404749f22b6b7570e154b88e7"
+    },
+    {
+      "file": "Previews/f-fresh-1280x720.png",
+      "bytes": 20633,
+      "sha256": "2ab3857bb0ae234534818deb844dbcbab04952f8ad5d6d4521592cef4b4cf46d"
+    },
+    {
+      "file": "Previews/f-fresh-1920x1080.png",
+      "bytes": 32860,
+      "sha256": "8b0dfe4fd0fbd31be80f37618cf8e3079169f24b14cbca098dbcc25a759028f6"
+    },
+    {
+      "file": "Previews/f-fresh-2560x1080.png",
+      "bytes": 35059,
+      "sha256": "1e80cce2ebacf0315056402d51c8810fdfb39d3f713819614ee1b53efdabf8da"
+    },
+    {
+      "file": "Previews/f-fresh-2560x1440.png",
+      "bytes": 47420,
+      "sha256": "e81696a6aaaaf2e6eae55e07a34082f387f8252e82cac1f390281092022d36f9"
+    },
+    {
+      "file": "Previews/f-text125-1280x720.png",
+      "bytes": 23781,
+      "sha256": "202b1dea6d06891e4b8f0be98762fa5c1593d489831dc0064d2151688e46c5f0"
+    },
+    {
+      "file": "Previews/four-concepts.png",
+      "bytes": 270336,
+      "sha256": "902e67b91a889662385919e2c721c576d1019b76f9afc044ef5e2cbcf1a4e5bb"
+    },
+    {
+      "file": "README.md",
+      "bytes": 10221,
+      "sha256": "b0c3236fece2f32742633b40ffb78b4dbee00c8ad3348d2121122a234a046d50"
+    },
+    {
+      "file": "board.html",
+      "bytes": 2085,
+      "sha256": "a5a6abd656be0c75e021c44d62ab724a95166aef7c621de99fd0def4bd7f55c6"
+    },
+    {
+      "file": "mockup.html",
+      "bytes": 9303,
+      "sha256": "673486b069034b13d67c921011f44afc3365e63422856cd2dcb7cdaee9796ac8"
+    },
+    {
+      "file": "record_manifest.cjs",
+      "bytes": 3044,
+      "sha256": "5d3946a934268e9a71c77de59a224eb71f72c3cb8f4489c5fde0f4f9b7c8dcba"
+    },
+    {
+      "file": "render_review.cjs",
+      "bytes": 3534,
+      "sha256": "c23bb9c1ef5c07a25fb35c7203361c8e768cab3fc5de13e94d52d44dab4c5145"
+    },
+    {
+      "file": "review.html",
+      "bytes": 3568,
+      "sha256": "4bc627d054d536cfe3445d8e696d167391262a3ce04df6befd6c995e442d2ded"
+    },
+    {
+      "file": "validation.json",
+      "bytes": 181075,
+      "sha256": "bded9f5a50fafb1fa2bff92ac852085d7fcf0a61e932e74734a5bdbcd547c2c5"
+    }
+  ]
+}
