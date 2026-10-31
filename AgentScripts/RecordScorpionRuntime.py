@@ -22,7 +22,7 @@ def main():
     historical_names = {'Alarm.wav', 'Presence.wav', 'Squeak1.wav', 'Squeak2.wav', 'Squeak3.wav'}
     historical = [path for path in paths if path.name.removesuffix('.meta') in historical_names]
     paths = [path for path in paths if path not in historical]
-    result=dict(task='TASK-005',revision='scorpion-r12-pale-palettes',production=[entry(p) for p in sorted(paths)], historicalAudio=[entry(p) for p in sorted(historical)], sharedDependencies=[entry(p) for p in shared],
+    result=dict(task='TASK-005',revision='scorpion-r13-blush-selected',production=[entry(p) for p in sorted(paths)], historicalAudio=[entry(p) for p in sorted(historical)], sharedDependencies=[entry(p) for p in shared],
         paletteOptions='Concepts/Unused/Visual/Scorpion01/palette-variants-r12.json',
         scene='Assets/EmergencyShift/Scenes/MechanicsSandbox.unity',sceneEvidence='Docs/Validation/ScorpionRoom01/authoring.json',
         audioProvenance=['Concepts/Used/Audio/Scorpion01/provenance.json','Concepts/Used/Audio/ScorpionDiscovery01/provenance.json'],
