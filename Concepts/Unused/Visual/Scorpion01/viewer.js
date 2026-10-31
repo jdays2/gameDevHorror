@@ -5,6 +5,9 @@ const clips = {};
 const images = new Map();
 let rupture;
 let ruptureImage;
+let paletteData;
+const frameTints = new Map();
+const paletteTables = new Map();
 let time = 0;
 let paused = false;
 let previous = performance.now();
@@ -54,24 +57,57 @@ function url(path) {
   return '/production/' + path.split('/Art/Enemies/')[1];
 }
 
-function burgundy(image) {
+function paletteFrame(image, rect, key) {
+  const cacheKey = image.src + ':' + rect.join(',') + ':' + key;
+  if (frameTints.has(cacheKey)) {
+    const cached = frameTints.get(cacheKey);
+    frameTints.delete(cacheKey);
+    frameTints.set(cacheKey, cached);
+    return cached;
+  }
+  const palette = paletteData.palettes.find(item => item.key === key);
+  if (!paletteTables.has(key)) {
+    const table = new Uint8ClampedArray(256 * 3);
+    const smooth = (a, b, value) => {
+      const t = Math.max(0, Math.min(1, (value - a) / (b - a)));
+      return t * t * (3 - 2 * t);
+    };
+    for (let value = 0; value < 256; value++) {
+      const low = smooth(0, .5, value / 255);
+      const high = smooth(.45, 1, value / 255);
+      for (let channel = 0; channel < 3; channel++) {
+        const base = palette.dark[channel] + (palette.middle[channel] - palette.dark[channel]) * low;
+        table[value * 3 + channel] = Math.round((base + (palette.light[channel] - base) * high) * 255);
+      }
+    }
+    paletteTables.set(key, table);
+  }
   const tinted = document.createElement('canvas');
-  tinted.width = image.width; tinted.height = image.height;
+  tinted.width = rect[2];
+  tinted.height = rect[3];
   const paint = tinted.getContext('2d', { willReadFrequently: true });
-  paint.drawImage(image, 0, 0);
+  paint.drawImage(image, ...rect, 0, 0, rect[2], rect[3]);
   const pixels = paint.getImageData(0, 0, tinted.width, tinted.height);
-  const smooth = (a, b, value) => { const t = Math.max(0, Math.min(1, (value - a) / (b - a))); return t * t * (3 - 2 * t); };
-  const dark = [.12, .04, .055], middle = [.42, .115, .14], light = [.64, .32, .27];
+  const table = paletteTables.get(key);
   for (let p = 0; p < pixels.data.length; p += 4) {
-    if (!pixels.data[p + 3]) continue;
-    const lum = (pixels.data[p] * .25 + pixels.data[p + 1] * .60 + pixels.data[p + 2] * .15) / 255;
-    const low = smooth(0, .5, lum), high = smooth(.45, 1, lum);
+    if (!pixels.data[p + 3]) {
+      continue;
+    }
+    const lum = Math.round(pixels.data[p] * .25 + pixels.data[p + 1] * .60 + pixels.data[p + 2] * .15);
     for (let channel = 0; channel < 3; channel++) {
-      const base = dark[channel] + (middle[channel] - dark[channel]) * low;
-      pixels.data[p + channel] = Math.round((base + (light[channel] - base) * high) * 255);
+      pixels.data[p + channel] = table[lum * 3 + channel];
     }
   }
   paint.putImageData(pixels, 0, 0);
+  frameTints.set(cacheKey, tinted);
+  // Only frame-sized images are retained, never four recoloured full atlases.
+  if (frameTints.size > 128) {
+    const oldest = frameTints.keys().next().value;
+    const expired = frameTints.get(oldest);
+    expired.width = 0;
+    expired.height = 0;
+    frameTints.delete(oldest);
+  }
   return tinted;
 }
 
@@ -102,14 +138,15 @@ function options() {
   }
   time = 0;
   override = null;
+  nextSqueak = 3 + Math.random() * 2;
   describe();
 }
 
 function describe() {
   const scorpion = $('family').value === 'scorpion';
-  for (const id of ['sound', 'soundVariant', 'audition', 'discoveryAudition', 'deathAudition', 'squeakAudition', 'deathPose']) $(id).disabled = !scorpion;
+  for (const id of ['sound', 'soundVariant', 'audition', 'discoveryAudition', 'deathAudition', 'squeakAudition', 'deathPose', 'palette', 'comparePalettes']) $(id).disabled = !scorpion;
   $('caption').textContent = scorpion
-    ? 'Три направления разлёта, 12 частей выбранной фазы. Панцирь бордовый, глаза едва светятся, кровь жёлтая. Это художественная демонстрация: повороты, стены и дистанция между врагами проверяются отдельно в Unity. При включённом звуке первая особь иногда пищит.'
+    ? 'В режиме «Четыре палитры рядом» все особи показывают один кадр, при смерти — одну раскладку частей. Выберите палитру для крупного просмотра; доступны также прежний бордовый цвет, светлый фон и ночь. Обычный писк — одобренный звук обнаружения.'
     : 'Когтистый: выбранный дизайн J, ходьба, бег, размашистый удар и три композиции останков. Молчаливый визуальный префаб.';
 }
 
@@ -132,7 +169,7 @@ function drawFrame(image, cell, columns, pivot, frame, scale, single = false) {
     -pivot[0] * scale, -pivot[1] * scale, cell * scale, cell * scale);
 }
 
-function drawActor(clip, frame, x, y, scale, night, family) {
+function drawActor(clip, frame, x, y, scale, night, family, palette) {
   ctx.save();
   ctx.translate(x, y);
   if (family === 'claw') ctx.rotate(Math.PI / 2);
@@ -142,7 +179,12 @@ function drawActor(clip, frame, x, y, scale, night, family) {
   drawFrame(clip.image, 512, clip.columns, clip.pivot, frame, scale * 1.035, clip.single);
   ctx.restore();
   ctx.filter = night ? 'brightness(15%) saturate(70%)' : clip.dead ? 'brightness(60%) saturate(85%)' : 'none';
-  drawFrame(clip.image, 512, clip.columns, clip.pivot, frame, scale, clip.single);
+  if (family === 'scorpion') {
+    const rect = [(frame % clip.columns) * 512, Math.floor(frame / clip.columns) * 512, 512, 512];
+    drawFrame(paletteFrame(clip.image, rect, palette), 512, 1, clip.pivot, 0, scale, true);
+  } else {
+    drawFrame(clip.image, 512, clip.columns, clip.pivot, frame, scale, clip.single);
+  }
   if (clip.emission) {
     ctx.filter = 'none';
     ctx.globalCompositeOperation = 'lighter';
@@ -153,7 +195,7 @@ function drawActor(clip, frame, x, y, scale, night, family) {
   ctx.restore();
 }
 
-function drawDeath(clip, x, y, scale, night, variant) {
+function drawDeath(clip, x, y, scale, night, variant, palette) {
   const age = override === null ? time % 3.2 : override / 31 * 3.2;
   const [state, frame] = $('deathPose').value.split('-');
   const pose = rupture.poses.find(item => item.state === state && item.frame === Number(frame));
@@ -195,7 +237,7 @@ function drawDeath(clip, x, y, scale, night, variant) {
     ctx.rotate(i === 11 ? 0 : seconds * (i % 2 ? 5 : -5));
     ctx.filter = night ? 'brightness(15%)' : 'brightness(74%)';
     const ratio = scale * (1 + lift * .5);
-    ctx.drawImage(ruptureImage, ...rect, -rect[2] * ratio / 2, -rect[3] * ratio / 2, rect[2] * ratio, rect[3] * ratio);
+    ctx.drawImage(paletteFrame(ruptureImage, rect, palette), -rect[2] * ratio / 2, -rect[3] * ratio / 2, rect[2] * ratio, rect[3] * ratio);
     ctx.restore();
   }
 }
@@ -259,12 +301,30 @@ function render() {
   const night = $('background').value === 'night';
   const dark = $('background').value !== 'light';
   const large = $('close').checked;
-  const count = large ? 1 : Number($('count').value);
+  const comparing = family === 'scorpion' && $('comparePalettes').checked;
+  $('count').disabled = comparing;
+  $('close').disabled = comparing;
+  let count = Number($('count').value);
+  if (large) {
+    count = 1;
+  }
+  if (comparing) {
+    count = 4;
+  }
   let scale = .66;
   if (large) {
     scale = family === 'scorpion' ? 1.65 : 1.2;
     if (scenario) scale = .9;
     if (selected.key === 'Death') scale = 1.05;
+  }
+  if (comparing) {
+    scale = 1.12;
+    if (scenario) {
+      scale = .72;
+    }
+    if (selected.key === 'Death') {
+      scale = .64;
+    }
   }
   ctx.fillStyle = night ? '#050708' : dark ? '#262d32' : '#e4e4de';
   ctx.fillRect(0, 0, 1280, 700);
@@ -294,20 +354,29 @@ function render() {
     nextSqueak = time + 3 + Math.random() * 2;
   }
   for (let i = 0; i < count; i++) {
-    const x = count === 1 ? 640 : 260 + i * 380;
+    let x = 260 + i * 380;
+    if (count === 1) {
+      x = 640;
+    }
+    if (comparing) {
+      x = 160 + i * 320;
+    }
+    const palette = comparing ? paletteData.comparison[i] : $('palette').value;
     let clip = selected;
     let age = time;
     let y = 350;
     let label = selected.label;
     if (scenario) {
-      const state = approach(i, scale);
+      const state = approach(comparing ? 0 : i, scale);
       clip = state.clip; age = state.age; y = state.y; label = state.label;
       drawTarget(x, state.targetY, state.hit, dark);
     } else {
       const total = duration(clip);
       if (clip.loop && speed) age = time * speed / clip.reference;
       if (!clip.loop && !clip.dead) age = time % (family === 'scorpion' ? total : total + .9);
-      if (count === 3) age += total * [0, .31, .67][i];
+      if (!comparing && count === 3) {
+        age += total * [0, .31, .67][i];
+      }
     }
     const frame = override === null || scenario ? indexAt(clip, age) : override % clip.ms.length;
     if (i === 0) {
@@ -317,12 +386,16 @@ function render() {
       previousAttackPhase = attackPhase;
     }
     if (i === 0) { shown = frame; frameCount = clip.ms.length; }
-    if (clip.key === 'Death') drawDeath(clip, x, y, scale, night, i + 1);
-    else drawActor(clip, frame, x, y, scale, night, family);
+    if (clip.key === 'Death') {
+      drawDeath(clip, x, y, scale, night, comparing ? 1 : i + 1, palette);
+    } else {
+      drawActor(clip, frame, x, y, scale, night, family, palette);
+    }
     ctx.fillStyle = dark ? '#cad4da' : '#465058';
-    ctx.font = '16px system-ui'; ctx.textAlign = 'center';
-    ctx.fillText(label, x, 665);
-    actors.push({ clip: clip.key, frame, x, y });
+    ctx.font = comparing ? '21px system-ui' : '16px system-ui';
+    ctx.textAlign = 'center';
+    ctx.fillText(comparing ? paletteData.palettes.find(item => item.key === palette).label : label, x, 665);
+    actors.push({ clip: clip.key, frame, x, y, palette: family === 'scorpion' ? palette : null });
   }
   $('status').textContent = String(shown + 1).padStart(2, '0') + ' / ' + frameCount;
   if (override === null) $('phase').value = Math.round(shown / Math.max(1, frameCount - 1) * 999);
@@ -330,6 +403,17 @@ function render() {
 }
 
 async function init() {
+  paletteData = await fetch('palette-variants-r12.json').then(response => response.json());
+  for (const palette of paletteData.palettes) {
+    const option = document.createElement('option');
+    option.value = palette.key;
+    option.textContent = palette.label;
+    $('palette').append(option);
+  }
+  const query = new URLSearchParams(location.search);
+  const requested = query.get('palette');
+  $('palette').value = paletteData.palettes.some(item => item.key === requested) ? requested : paletteData.default;
+  $('comparePalettes').checked = query.get('compare') !== '0';
   for (const [family, path] of [['scorpion', 'asset-pack.json'], ['claw', '../FastGroupEnemy23AssetPack/asset-pack.json']]) {
     const data = await fetch(path).then(response => {
       if (!response.ok) throw Error(path);
@@ -340,7 +424,7 @@ async function init() {
       const bodyImage = await loadImage(url(state.asset));
       list.push({ key: state.name,
         label: ({ Run: 'Бег', Walk: 'Спокойная ходьба', Sweep: 'Размашистый удар', Hit: 'Попадание', Attack: 'Атака на ходу' })[state.name],
-        image: family === 'scorpion' ? burgundy(bodyImage) : bodyImage, columns: state.columns, ms: state.durationsMs,
+        image: bodyImage, columns: state.columns, ms: state.durationsMs,
         loop: state.loop, reference: state.referenceSpeed, pivot: state.pivotPixelsTopLeft,
         emission: state.emission ? { image: await loadImage(url(state.emission.asset)), cell: state.emission.cell,
           columns: state.emission.columns, pivot: state.emission.pivotPixelsTopLeft, ppu: state.emission.pixelsPerUnit } : null });
@@ -362,8 +446,20 @@ async function init() {
     clips[family] = { data, options: list };
   }
   rupture = await fetch('rupture-r10.json').then(response => response.json());
-  ruptureImage = burgundy(await loadImage(url(rupture.atlas)));
+  ruptureImage = await loadImage(url(rupture.atlas));
   options();
+  $('action').value = 'Run';
+  $('palette').onchange = () => {
+    $('comparePalettes').checked = false;
+    $('count').value = '1';
+    $('close').checked = true;
+    updatePaletteUrl();
+    render();
+  };
+  $('comparePalettes').onchange = () => {
+    updatePaletteUrl();
+    render();
+  };
   $('family').onchange = () => { stopAudio(); previousAttackPhase = -1; options(); };
   $('action').onchange = () => { stopAudio(); nextSqueak = 3 + Math.random() * 2; previousAttackPhase = -1; time = 0; override = null; describe(); };
   $('count').onchange = render; $('close').onchange = render; $('background').onchange = render;
@@ -381,6 +477,13 @@ async function init() {
     override = Math.round(Number($('phase').value) / 999 * (active().ms.length - 1)); render();
   };
   requestAnimationFrame(tick);
+}
+
+function updatePaletteUrl() {
+  const address = new URL(location.href);
+  address.searchParams.set('palette', $('palette').value);
+  address.searchParams.set('compare', $('comparePalettes').checked ? '1' : '0');
+  history.replaceState(null, '', address);
 }
 
 function tick(now) {

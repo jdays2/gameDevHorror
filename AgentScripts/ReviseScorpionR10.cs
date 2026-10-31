@@ -56,6 +56,13 @@ public static class ReviseScorpionR10
         });
         rupture.Validate();
         var shell = Palette("BurgundyShell", new Color(.12f, .04f, .055f), new Color(.42f, .115f, .14f), new Color(.64f, .32f, .27f), 0);
+        const string paletteOptions = "Concepts/Unused/Visual/Scorpion01/palette-variants-r12.json";
+        if (File.Exists(paletteOptions))
+        {
+            var options = JObject.Parse(File.ReadAllText(paletteOptions));
+            var selected = options["palettes"].First(palette => (string)palette["key"] == (string)options["default"]);
+            shell = Palette((string)selected["material"], PaletteColor(selected["dark"]), PaletteColor(selected["middle"]), PaletteColor(selected["light"]), 0);
+        }
         var fluid = Palette("ToxicBlood", new Color(.22f,.25f,.015f), new Color(.72f,.79f,.065f), new Color(.94f,.98f,.38f), 1);
         var pool = BuildPool(fluid);
         var presentation = AssetDatabase.LoadAssetAtPath<ScorpionPresentationSet>(Data + "Presentation.asset");
@@ -232,6 +239,8 @@ public static class ReviseScorpionR10
         importer.SaveAndReimport();
         return AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().ToDictionary(sprite=>sprite.name);
     }
+    private static Color PaletteColor(JToken value) => new Color((float)value[0], (float)value[1], (float)value[2], 1);
+
     private static Material Palette(string name,Color dark,Color middle,Color light,float strongest)
     {
         string path=Materials+name+".mat";

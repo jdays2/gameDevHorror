@@ -5,10 +5,12 @@
 *{box-sizing:border-box}body{margin:0;background:#171d22;color:#e8edf0;font:16px system-ui,sans-serif}main{max-width:1320px;margin:auto;padding:24px}h1{font-size:26px;margin:0 0 8px}p{color:#b5c3cc;line-height:1.5;margin:8px 0 18px}.controls{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:15px;background:#242e36;border-radius:8px}button,select{font:inherit;color:#e6edf1;background:#34434e;border:1px solid #62747f;padding:9px 13px;border-radius:5px}button{cursor:pointer}label{display:flex;gap:7px;align-items:center}input[type=range]{width:180px}canvas{display:block;width:100%;height:auto;background:#262d32;border:1px solid #46545f;border-radius:7px;margin:16px 0}.note{font-size:14px;color:#aebdc6}.links{display:flex;gap:22px;flex-wrap:wrap}a{color:#8bcee8}#play{min-width:90px}.status{font-variant-numeric:tabular-nums;min-width:110px}@media(max-width:650px){main{padding:12px}.controls{gap:8px}h1{font-size:22px}}
 </style>
 <main><h1>Когтистый и Скорпион</h1>
-<p>Скорпион r11: винно-красный панцирь, слабые красные глаза, жёлтая кровь. Одобренный писк обнаружения используется и для редких обычных писков.</p>
+<p>Скорпион r12: четыре бледные палитры — от телесно-розовой до меловой. В сравнении поза и фаза движения одинаковы; красные глаза и жёлтая кровь сохранены.</p>
 <div class="controls">
 <label>Враг <select id="family"><option value="scorpion">Скорпион</option><option value="claw">Когтистый</option></select></label>
 <label>Действие <select id="action"></select></label>
+<label>Палитра <select id="palette"></select></label>
+<label><input type="checkbox" id="comparePalettes" checked>Четыре палитры рядом</label>
 <label>Особей <select id="count"><option value="3">Три</option><option value="1">Один</option></select></label>
 <button id="play">Пауза</button><button id="next">+1 кадр</button>
 <label>Темп <select id="tempo"><option value="1">100%</option><option value=".5">50%</option><option value=".25">25%</option></select></label>
