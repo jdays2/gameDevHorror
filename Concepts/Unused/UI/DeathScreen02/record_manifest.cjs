@@ -5,9 +5,10 @@ const walk=d=>fs.readdirSync(d,{withFileTypes:true}).flatMap(e=>e.isDirectory()?
 const sources=['Assets/EmergencyShift/Prefabs/UI/MainMenu/MainMenuUI.prefab','Assets/EmergencyShift/Prefabs/UI/PauseMenuUI.prefab','Assets/EmergencyShift/Data/UI/MainMenu/NightShift.asset','Assets/EmergencyShift/Editor/Authoring/PauseMenuAuthoring.cs','Docs/Validation/MainMenu01/home.png','Concepts/Unused/UI/DeathScreen01/Sources/world-reference.png','Assets/EmergencyShift/Fonts/MainMenu/NotoSans-Medium.ttf','Assets/EmergencyShift/Fonts/MainMenu/NotoSans-OFL.txt','Assets/EmergencyShift/Fonts/MainMenu/BarlowCondensed-Bold.ttf','Assets/EmergencyShift/Fonts/MainMenu/BarlowCondensed-OFL.txt'];
 const validation=JSON.parse(fs.readFileSync(path.join(root,'validation.json'),'utf8'));
 let broken=[];for(const file of walk(root).filter(f=>f.endsWith('.md')))for(const m of fs.readFileSync(file,'utf8').matchAll(/\]\(([^)]+)\)/g)){const href=m[1].split('#')[0];if(href&&!/^[a-z]+:\/\//i.test(href)&&!fs.existsSync(path.resolve(path.dirname(file),href)))broken.push({file,href})}
-const out={task:'TASK-006',date:'2026-10-31',stage:'Concepts C–F for owner review; no implementation',
- owner_decision:'No music on death screen. More visual concepts based on current main and pause menus.',
- recommendation:'D — continuation of pause-menu layout; owner choice pending',artistic_approval:false,
+const out={task:'TASK-006',date:'2026-10-31',decision_date:'2026-11-02',stage:'Visual direction D selected by owner; no implementation',
+ owner_decision:'D selected as closest to the overall game idea. No music on death screen.',
+ selected_variant:'D',recommendation:'D — continuation of pause-menu layout; selected by owner',artistic_approval:true,
+ approval_scope:'Visual direction D only; transition timings and runtime behavior are not accepted or verified by this selection.',
  source_assessment:'Main menu inspected via saved screenshot plus current prefab/style; pause inspected via actual serialized prefab and authoring source, not a live Unity capture.',
  visual_creation:'Original HTML/CSS UI and browser PNG renders; no AI raster generation. Existing archived live-player frame is only a layout background, not a death capture.',
  music:'None; no generation or playback in current mockups. Previous sources retained as history.',
