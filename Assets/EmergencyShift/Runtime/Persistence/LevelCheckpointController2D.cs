@@ -31,6 +31,7 @@ namespace EmergencyShift
         public string LastError { get; private set; }
         public bool IsSaving => session != null && session.IsSaving;
         public bool HasCheckpoint => Store.Exists;
+        public bool ResumesOnStart => resumeOnStart;
         private string StorePath => RequirePaths().Resolve(definition.LevelId, StorageDirectory());
         private CheckpointStore Store => store ??= new CheckpointStore(StorePath);
         private bool CanSave => isActiveAndEnabled && player != null && !player.IsDead && run != null && !run.Completed;
@@ -268,15 +269,40 @@ namespace EmergencyShift
         {
             CheckpointStore.Validate(saved);
             var visits = new CheckpointVisitSnapshot(saved.checkpointId, saved.visitedCheckpoints);
-            if (catalog.Find(saved.levelId) != definition || saved.levelId != definition.LevelId || saved.levelRevision != definition.SaveRevision)
-            {
-                throw new InvalidOperationException("Checkpoint belongs to another level");
-            }
+            ValidateLevelIdentity(saved);
 
             world.Apply(saved.entities);
             run.RestoreElapsed(saved.elapsedSeconds);
             RequireSession().Restore(visits);
             player.GetComponent<PlayerInteraction>().ShowNotification("Контрольная точка загружена");
+        }
+
+        /// <summary>Checks a return before replacing the scene; never applies or deletes the slot.</summary>
+        public bool TryValidateReload(out string error)
+        {
+            try
+            {
+                CheckpointData saved = Store.Read();
+                ValidateLevelIdentity(saved);
+                world.Validate(saved.entities);
+                LastError = null;
+                error = null;
+                return true;
+            }
+            catch (Exception failure)
+            {
+                LastError = failure.Message;
+                error = failure.Message;
+                return false;
+            }
+        }
+
+        private void ValidateLevelIdentity(CheckpointData saved)
+        {
+            if (catalog.Find(saved.levelId) != definition || saved.levelId != definition.LevelId || saved.levelRevision != definition.SaveRevision)
+            {
+                throw new InvalidOperationException("Checkpoint belongs to another level");
+            }
         }
 
         private CheckpointSessionController RequireSession() => session ?? throw new InvalidOperationException("Checkpoint requires level composition.");

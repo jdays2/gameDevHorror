@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -58,7 +59,32 @@ namespace EmergencyShift
             return saved;
         }
 
+        public void Validate(CheckpointEntityState[] saved) => ValidateEntities(saved);
+
         public void Apply(CheckpointEntityState[] saved)
+        {
+            Dictionary<string, PersistentEntity2D> entities = ValidateEntities(saved);
+            foreach (CheckpointEntityState state in saved)
+            {
+                entities[state.id].PrepareRestore(state);
+            }
+
+            foreach (CheckpointEntityState state in saved)
+            {
+                entities[state.id].Restore(state);
+            }
+
+            Physics2D.SyncTransforms();
+            foreach (GameObject root in scene.GetRootGameObjects())
+            {
+                foreach (CameraFollow2D camera in root.GetComponentsInChildren<CameraFollow2D>())
+                {
+                    camera.SnapToTarget();
+                }
+            }
+        }
+
+        private Dictionary<string, PersistentEntity2D> ValidateEntities(CheckpointEntityState[] saved)
         {
             RequireLoaded();
             var entities = PersistentEntity2D.Collect(scene);
@@ -78,24 +104,7 @@ namespace EmergencyShift
                 entity.Validate(state);
             }
 
-            foreach (CheckpointEntityState state in saved)
-            {
-                entities[state.id].PrepareRestore(state);
-            }
-
-            foreach (CheckpointEntityState state in saved)
-            {
-                entities[state.id].Restore(state);
-            }
-
-            Physics2D.SyncTransforms();
-            foreach (GameObject root in scene.GetRootGameObjects())
-            {
-                foreach (CameraFollow2D camera in root.GetComponentsInChildren<CameraFollow2D>())
-                {
-                    camera.SnapToTarget();
-                }
-            }
+            return entities;
         }
 
         public void Reload()

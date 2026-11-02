@@ -1,0 +1,49 @@
+{
+  "task": "TASK-006",
+  "date": "2026-11-03",
+  "stage": "Implemented, technically verified; owner runtime review pending",
+  "selectedDirection": "D",
+  "directionOwnerApproved": true,
+  "runtimeArtisticApproval": false,
+  "music": "None; no audio generated or added",
+  "creation": "Original uGUI prefab/native authoring; existing game frame and Noto Sans Medium (SIL OFL1.1)",
+  "sourceFamily": "Concepts/Unused/UI/DeathScreen02",
+  "noCanonicalMaterialsMoved": true,
+  "mainMenu": "Deferred; ordinary Play from open level preserved",
+  "sources": [
+    {
+      "file": "Assets/EmergencyShift/Prefabs/UI/DeathScreenUI.prefab",
+      "sha256": "b61d27dce29dec21b2bbb2f6d231a901a97825287a4d17990a1945860e1ab0a0"
+    },
+    {
+      "file": "Assets/EmergencyShift/Data/UI/DeathScreen/Transition.asset",
+      "sha256": "66b4826638a1cffa959833060f07985cbaa27788bb6d222cd1b87b72b88a74ff"
+    },
+    {
+      "file": "Assets/EmergencyShift/Fonts/MainMenu/NotoSans-Medium.ttf",
+      "sha256": "7bbe267354704c6ad18bde24b1dbc756c8e4380ca1c3f3c25c45ec5c4471510b"
+    },
+    {
+      "file": "Assets/EmergencyShift/Fonts/MainMenu/NotoSans-OFL.txt",
+      "sha256": "cee9892f9f0cc8fe882c9e9537ee6a89621d86ee7ceaf70b02e2b2b1c25c061a"
+    },
+    {
+      "file": "Concepts/Unused/UI/DeathScreen02/Previews/d-fresh-1280x720.png",
+      "sha256": "e6120c18dc81bd51c721250e5afe121519e79a5dd98937d5b27c0c522791cb2e"
+    },
+    {
+      "file": "Concepts/Unused/UI/DeathScreen02/provenance.json",
+      "sha256": "f3d2894c8e41c09fcf33f47ac8a96a6600e913b6c7f12ffc56cdc7c934dd2838"
+    }
+  ],
+  "verification": {
+    "editModePassed": 1445,
+    "targetedDeathScreenTests": 22,
+    "sleeperPlayModePassed": 2,
+    "nativeInteractionCases": 8,
+    "nativeCheckpointCases": 7,
+    "actualViewportLayoutCases": 30
+  },
+  "report": "Docs/Reports/DeathScreenD01.md",
+  "authoring": "Five real scenes inspected including inactive; no new audio/camera/checkpoint controller"
+}

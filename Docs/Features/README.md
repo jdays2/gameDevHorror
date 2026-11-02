@@ -10,6 +10,7 @@
 | [Weapons](Weapons.md) | Циклы/инвентарь и Unity-мост | [Оружие](../Weapons/README.md) |
 | [Dialogue](Dialogue.md) | Данные, сеанс, пауза/захват, UI-prefab | [Дизайн диалога](../UI/DIALOGUE_DESIGN_SYSTEM.md) |
 | [PauseMenu](PauseMenu.md) | Esc, пауза мира/аудио, возврат без сквозного игрового ввода, Below the Ward | [План UI](https://app.notion.com/p/3ff8d6dc06b681b3a635cf10e8836b1c?pvs=204), [музыка](../Audio/AUDIO_GUIDE.md#музыка-меню-паузы) |
+| [DeathScreen](DeathScreen.md) | D без музыки, смерть/повтор/ошибка/подтверждение выхода, собственные modal leases | [Проверки](../Reports/DeathScreenD01.md) |
 | [Hud](Hud.md) | Данные HUD и представление | [HUD](../UI/HUD_DESIGN_SYSTEM.md) |
 | [MainMenu](MainMenu.md) | Чёрно-белое меню, каталог сцен, настройки и общая с паузой музыка | [Проверки](../Reports/MainMenu01.md) |
 | [Persistence](Persistence.md) | Цели, ID, snapshot/restore и дисковая запись | [Чекпоинты](../Guides/CHECKPOINTS.md) |

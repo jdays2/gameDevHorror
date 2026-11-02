@@ -5,6 +5,8 @@ using EmergencyShift.Core.Time;
 using EmergencyShift.Features.AccessControl;
 using EmergencyShift.Features.Flashlight;
 using EmergencyShift.Features.DamageFeedback;
+using EmergencyShift.Features.DeathScreen;
+using EmergencyShift.Features.DeathScreen.View;
 using EmergencyShift.Features.Health;
 using EmergencyShift.Features.Interaction;
 using EmergencyShift.Features.LevelProgress;
@@ -33,6 +35,8 @@ namespace EmergencyShift
         private Flashlight2D flashlight;
         [SerializeField]
         private InputActionAsset controls;
+        [SerializeField]
+        private DeathScreenEnvironment deathScreen;
         private DisposableManager lifetime;
         private DisposableManager playerLifetime;
         private bool disposed;
@@ -124,6 +128,10 @@ namespace EmergencyShift
             PlayerInteractionInstaller.Install(Container);
             PickupInstaller.Install(Container);
             LevelProgressInstaller.Install(Container);
+            if (deathScreen != null)
+            {
+                DeathScreenInstaller.Install(Container, deathScreen);
+            }
         }
 
         private void OnDestroy() => Dispose();

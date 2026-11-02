@@ -25,6 +25,7 @@ namespace EmergencyShift
         private PlayerLifeController controller;
         private HealthModelFactory models;
         private IPlayerInput input;
+        [Inject(Optional = true)] private GameplayInputBlock inputBlock;
         public int Health => model?.Current ?? 0;
         public int MaximumHealth => model?.Maximum ?? maximumHealth;
         public bool IsDead => Health <= 0;
@@ -155,7 +156,7 @@ namespace EmergencyShift
 
         private void Update()
         {
-            if (IsDead && input.RestartPressed)
+            if (IsDead && input.RestartPressed && (inputBlock == null || !inputBlock.IsBlocked))
             {
                 RestartRoom();
             }

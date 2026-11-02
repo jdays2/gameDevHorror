@@ -116979,6 +116979,7 @@ MonoBehaviour:
   player: {fileID: 4285742385993795653}
   flashlight: {fileID: 4285742385993795651}
   controls: {fileID: -944628639613478452, guid: 5cee850216431e94584882797b2a10a4, type: 3}
+  deathScreen: {fileID: 338682521}
 --- !u!4 &1537489082
 Transform:
   m_ObjectHideFlags: 0
@@ -257004,6 +257005,86 @@ MonoBehaviour:
   requiredCardId: service
   cardName: "\u0421\u043B\u0443\u0436\u0435\u0431\u043D\u0430\u044F \u043A\u0430\u0440\u0442\u0430"
   feedbackProfile: {fileID: 0}
+--- !u!1001 &338682520
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4123723087378200415, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_Name
+      value: Death Screen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693692203375058078, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 317897264}
+    - target: {fileID: 6693692203375058078, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: gameplayCanvases.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693692203375058078, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: 'gameplayCanvases.Array.data[0]'
+      value: 
+      objectReference: {fileID: 527110358}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8871625166958191343, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+--- !u!114 &338682521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 785612831301708665, guid: 727f5fddd937da44ca32e7345ed689dd, type: 3}
+  m_PrefabInstance: {fileID: 338682520}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980826e2528a38f4fb9b0a0f7c982e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EmergencyShift.Runtime::EmergencyShift.Features.DeathScreen.View.DeathScreenEnvironment
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -257011,3 +257092,4 @@ SceneRoots:
   - {fileID: 1194123917}
   - {fileID: 1702188880}
   - {fileID: 780832731}
+  - {fileID: 338682520}

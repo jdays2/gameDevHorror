@@ -1,0 +1,52 @@
+{
+  "fixture": "Assets/EmergencyShift/Tests/Fixtures/DeathScreenTask006/CheckpointScene.unity",
+  "slot": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\work\\task006-deathscreen\\checkpoint\\slot.json",
+  "cases": [
+    {
+      "label": "valid-checkpoint-full-Single-reload",
+      "health": 1,
+      "position": [
+        2.0,
+        0.0,
+        0.0
+      ],
+      "actualNewScene": true,
+      "fileRetained": true
+    },
+    {
+      "label": "corrupt-slot",
+      "noSceneReplacement": true,
+      "fileRetained": true,
+      "blocked": true
+    },
+    {
+      "label": "missing-selected-slot",
+      "noSceneReplacement": true,
+      "noFreshFallback": true
+    },
+    {
+      "label": "incompatible-revision",
+      "noSceneReplacement": true,
+      "fileRetained": true
+    },
+    {
+      "label": "retry-after-repair",
+      "actualNewScene": true,
+      "fileRetained": true
+    },
+    {
+      "label": "startup-restore-error",
+      "defaultPlayerBlocked": true,
+      "title": "ОШИБКА",
+      "fileRetained": true
+    },
+    {
+      "label": "startup-error-recovered",
+      "health": 1,
+      "phase": "Hidden",
+      "fileRetained": true
+    }
+  ],
+  "productionMapsModified": false,
+  "userSlotsUsed": false
+}
