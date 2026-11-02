@@ -1,5 +1,6 @@
 using EmergencyShift.Features.PauseMenu.Config;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift.Features.PauseMenu.View
 {
@@ -16,10 +17,22 @@ namespace EmergencyShift.Features.PauseMenu.View
         private bool playing;
         private bool loopStarted;
         private double startedAt;
+        private PlayerLife2D player;
 
         public PauseMenuAudioConfig Config => config;
         public bool IsPlaying => playing;
         public float Gain => gain;
+
+        [Inject]
+        private void Construct(PlayerLife2D player = null) => this.player = player;
+
+        private void OnEnable()
+        {
+            if (player != null)
+            {
+                player.HealthChanged += OnHealthChanged;
+            }
+        }
 
         private void Awake()
         {
@@ -35,6 +48,16 @@ namespace EmergencyShift.Features.PauseMenu.View
 
         private void Update()
         {
+            if (player != null && player.IsDead)
+            {
+                if (playing)
+                {
+                    StopImmediate();
+                }
+
+                return;
+            }
+
             if (!playing)
             {
                 return;
@@ -55,6 +78,12 @@ namespace EmergencyShift.Features.PauseMenu.View
 
         public void SetMenuOpen(bool open)
         {
+            if (open && player != null && player.IsDead)
+            {
+                StopImmediate();
+                return;
+            }
+
             menuOpen = open;
             if (open && !playing)
             {
@@ -89,7 +118,23 @@ namespace EmergencyShift.Features.PauseMenu.View
             }
         }
 
-        private void OnDisable() => StopImmediate();
+        private void OnDisable()
+        {
+            if (player != null)
+            {
+                player.HealthChanged -= OnHealthChanged;
+            }
+
+            StopImmediate();
+        }
+
+        private void OnHealthChanged(int health)
+        {
+            if (health <= 0)
+            {
+                StopImmediate();
+            }
+        }
 
         private void AdvanceIntro()
         {

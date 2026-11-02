@@ -5,6 +5,7 @@
 | Фича | Что здесь | Детали/настройка |
 |---|---|---|
 | [World](World.md) | Игрок/контекст, камера, фонарь, двери/подборы и локальный свет | [Авторинг](../Guides/LEVEL_AUTHORING.md), [лампы](../Guides/HOSPITAL_LAMPS.md) |
+| [WorldAudio](WorldAudio.md) | Мировой mixer, unscaled death fade/restore и независимость UI | [Аудио](../Audio/AUDIO_GUIDE.md), [BUG-053](../Reports/DeathAudio53.md) |
 | [Enemies](Enemies.md) | Общие модули, решения видов, данные/останки | [Сталкер](../Enemies/STALKER.md), [Спящий](../Enemies/SLEEPER.md) |
 | [Weapons](Weapons.md) | Циклы/инвентарь и Unity-мост | [Оружие](../Weapons/README.md) |
 | [Dialogue](Dialogue.md) | Данные, сеанс, пауза/захват, UI-prefab | [Дизайн диалога](../UI/DIALOGUE_DESIGN_SYSTEM.md) |

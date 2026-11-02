@@ -1,5 +1,6 @@
 using UnityEngine;
 using EmergencyShift.Features.LampPower.Config;
+using EmergencyShift.Features.WorldAudio.View;
 using Zenject;
 using UnityEngine.Rendering.Universal;
 
@@ -64,6 +65,9 @@ namespace EmergencyShift
                 listener = scenePlayer.transform;
             }
         }
+
+        [Inject]
+        private void RouteWorldAudio(WorldAudioBus bus = null) => bus?.Route(humSource, contactSource);
 
         private void Awake()
         {

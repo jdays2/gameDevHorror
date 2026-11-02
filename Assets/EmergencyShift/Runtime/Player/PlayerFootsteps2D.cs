@@ -2,6 +2,7 @@ using EmergencyShift.Core.Randomness;
 using EmergencyShift.Features.PlayerFootsteps;
 using EmergencyShift.Features.PlayerFootsteps.Config;
 using EmergencyShift.Features.PlayerFootsteps.Logic;
+using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
 using Zenject;
 
@@ -68,6 +69,9 @@ namespace EmergencyShift
                 throw new System.InvalidOperationException("Invalid resolved audio tuning: " + name);
             }
         }
+
+        [Inject]
+        private void RouteWorldAudio(WorldAudioBus bus = null) => bus?.Route(leftSource, rightSource);
 
         private void Awake()
         {

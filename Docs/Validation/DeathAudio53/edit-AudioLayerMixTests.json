@@ -1,0 +1,168 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "AudioLayerMixTests"
+    },
+    "result": {
+      "Summary": {
+        "Total": 19,
+        "Passed": 19,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.DeathUsesItsOwnFadeAndDoesNotApplyUrgentDuckResponse",
+          "Status": "Passed",
+          "Duration": 0.0022731,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.DuckUsesPromptResponseAndRecoveryUsesNormalRise",
+          "Status": "Passed",
+          "Duration": 0.000437,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.FiniteExternalVolumeKeepsLegacyClamping(-1,0)",
+          "Status": "Passed",
+          "Duration": 0.0003515,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.FiniteExternalVolumeKeepsLegacyClamping(2,0.42f)",
+          "Status": "Passed",
+          "Duration": 0.0001072,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.InvalidDeltaCannotMutateMixOrPresentANewValue(float.NaN)",
+          "Status": "Passed",
+          "Duration": 0.0007059,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.InvalidDeltaCannotMutateMixOrPresentANewValue(float.PositiveInfinity)",
+          "Status": "Passed",
+          "Duration": 0.0001352,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.InvalidDeltaCannotMutateMixOrPresentANewValue(-1)",
+          "Status": "Passed",
+          "Duration": 0.0001205,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.InvalidMoodOrNonFiniteVolumeIsRejected",
+          "Status": "Passed",
+          "Duration": 0.0004039,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.InvalidSettingsAreRejectedAtComposition",
+          "Status": "Passed",
+          "Duration": 0.0005223,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.LeavingCombatUsesFallTimeForOverlayLayers",
+          "Status": "Passed",
+          "Duration": 0.000266,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.MoodSelectsOnlyItsLayers(Explore,0.42f,0,0)",
+          "Status": "Passed",
+          "Duration": 0.0004392,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.MoodSelectsOnlyItsLayers(Threat,0.42f,0.595f,0)",
+          "Status": "Passed",
+          "Duration": 0.0001591,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.MoodSelectsOnlyItsLayers(Combat,0.42f,0.595f,0.63f)",
+          "Status": "Passed",
+          "Duration": 0.0001073,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.OneRiseTimeConstantReachesExpectedExponentialFraction",
+          "Status": "Passed",
+          "Duration": 0.0002056,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.ProfileSnapshotPreservesFieldsAndDoesNotWriteBack",
+          "Status": "Passed",
+          "Duration": 0.0013941,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.ResetIsQuietAndDoesNotChangeAnotherMix",
+          "Status": "Passed",
+          "Duration": 0.0006283,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.WarmedMixLoopDoesNotAllocateManagedMemory",
+          "Status": "Passed",
+          "Duration": 0.0010614,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.WoundedVolumeAndDuckingMultiplyWithoutChangingSettings",
+          "Status": "Passed",
+          "Duration": 0.0002651,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "EmergencyShift.Tests.AudioLayerMixTests.ZeroScaledDeltaFreezesSmoothing",
+          "Status": "Passed",
+          "Duration": 0.0002944,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 0.43,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: AudioLayerMixTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

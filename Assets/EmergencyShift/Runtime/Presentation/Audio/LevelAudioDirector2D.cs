@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EmergencyShift.Features.AudioMood;
 using EmergencyShift.Features.AudioMood.Logic;
 using EmergencyShift.Features.AudioMood.View;
+using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
 using Zenject;
 
@@ -90,6 +91,9 @@ namespace EmergencyShift
             ConfigureMood();
         }
 
+        [Inject]
+        private void RouteWorldAudio(WorldAudioBus bus = null) => bus?.Route(explorationSource, threatSource, combatSource);
+
         private void OnEnable()
         {
             playback = new AudioLayerPlayback(explorationSource, threatSource, combatSource);
@@ -163,7 +167,8 @@ namespace EmergencyShift
                 return;
             }
 
-            bool wantPause = AudioListener.pause || (Time.timeScale <= 0 && !motionPause.PreservesAudioPlayback);
+            bool defeated = player != null && player.IsDead;
+            bool wantPause = AudioListener.pause || (!defeated && Time.timeScale <= 0 && !motionPause.PreservesAudioPlayback);
             if (playback.UpdatePause(wantPause))
             {
                 return;
@@ -202,7 +207,8 @@ namespace EmergencyShift
                 mood.Observe(observations, !player.IsDead);
             }
 
-            mix.Step(Time.deltaTime, Mood, !player.IsDead, player.Health < player.MaximumHealth, IsDucking, volume);
+            float mixSeconds = defeated ? Time.unscaledDeltaTime : Time.deltaTime;
+            mix.Step(mixSeconds, Mood, !player.IsDead, player.Health < player.MaximumHealth, IsDucking, volume);
         }
 
         private void OnAudioConfigurationChanged(bool deviceChanged)

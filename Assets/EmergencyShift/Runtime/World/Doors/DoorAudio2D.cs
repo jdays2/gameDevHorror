@@ -1,3 +1,4 @@
+using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
 using Zenject;
 
@@ -70,6 +71,9 @@ namespace EmergencyShift
                 throw new System.InvalidOperationException("Invalid resolved audio tuning: " + name);
             }
         }
+
+        [Inject]
+        private void RouteWorldAudio(WorldAudioBus bus = null) => bus?.Route(motion, transient);
 
         private void Awake()
         {

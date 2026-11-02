@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -116,6 +118,15 @@ namespace EmergencyShift
             {
                 throw new System.InvalidOperationException("Invalid resolved audio tuning: " + name);
             }
+        }
+
+        [Inject]
+        private void RouteWorldAudio(WorldAudioBus bus = null)
+        {
+            bus?.Route(pickupSource);
+            bus?.Route(shotSources);
+            bus?.Route(casingSources);
+            bus?.Route(impactSources);
         }
 
         private void Awake()

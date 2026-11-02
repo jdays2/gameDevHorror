@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "format": "unaltered Unity AudioRenderer float32 stereo / 48 kHz",
+  "summary": [
+    {
+      "label": "before",
+      "wavPath": "Docs/Validation/DeathAudio53/before-world.wav",
+      "seconds": 4.992,
+      "sha256": "650f7a27c9e7f4de3b47deafdda4468e2f561d39fc083c3ebfb85c41ce11a155",
+      "alive": {
+        "rms": 0.035957056282818985,
+        "peak": 0.09338391572237015,
+        "samples": 67200
+      },
+      "deadWorld": {
+        "rms": 0.0018874424357533711,
+        "peak": 0.0052079143933951855,
+        "samples": 105600
+      },
+      "ui": null
+    },
+    {
+      "label": "after",
+      "wavPath": "Docs/Validation/DeathAudio53/after-world.wav",
+      "seconds": 4.992,
+      "sha256": "0b68dbf1285a2b02596eaccca1c7920a2c1bc1ebad09752a098dc226b7f3b490",
+      "alive": {
+        "rms": 0.04221004323912007,
+        "peak": 0.11503954976797104,
+        "samples": 67200
+      },
+      "deadWorld": {
+        "rms": 0,
+        "peak": 0,
+        "samples": 105600
+      },
+      "ui": {
+        "rms": 0.007908969449450827,
+        "peak": 0.02156839706003666,
+        "samples": 76802
+      },
+      "routedWorldVoices": 93,
+      "independentUiVoices": 3,
+      "unroutedWorldVoices": []
+    },
+    {
+      "label": "morgue-after",
+      "wavPath": "Docs/Validation/DeathAudio53/morgue-after-world.wav",
+      "seconds": 4.992,
+      "sha256": "955b07f3ed5a4cb69007ef18cf97ded0989c9097aa4ee78cf68237d8ae00e906",
+      "alive": {
+        "rms": 0.014581327574742821,
+        "peak": 0.04536593332886696,
+        "samples": 67200
+      },
+      "deadWorld": {
+        "rms": 0,
+        "peak": 0,
+        "samples": 105600
+      },
+      "ui": {
+        "rms": 0.007908969449450827,
+        "peak": 0.02156839706003666,
+        "samples": 76802
+      },
+      "routedWorldVoices": 117,
+      "independentUiVoices": 3,
+      "unroutedWorldVoices": []
+    }
+  ]
+}

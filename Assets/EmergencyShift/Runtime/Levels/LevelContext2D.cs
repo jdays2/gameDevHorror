@@ -15,6 +15,8 @@ using EmergencyShift.Features.PlayerMovement;
 using EmergencyShift.Features.Doors;
 using EmergencyShift.Features.PlayerFootsteps;
 using EmergencyShift.Features.PlayerInput.Logic;
+using EmergencyShift.Features.WorldAudio;
+using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -35,6 +37,7 @@ namespace EmergencyShift
         private DisposableManager playerLifetime;
         private bool disposed;
         private ScenePrefabFactory prefabs;
+        private WorldAudioPresenter worldAudio;
         public PlayerLife2D Player => player;
         public Flashlight2D Flashlight => flashlight;
         internal DiContainer Scope => Container;
@@ -69,6 +72,7 @@ namespace EmergencyShift
 
                 Container.ResolveRoots();
                 prefabs = Container.Resolve<ScenePrefabFactory>();
+                worldAudio = WorldAudioInstaller.AttachPlayer(Container, player);
             }
             catch (Exception initializationError)
             {
@@ -132,6 +136,7 @@ namespace EmergencyShift
             }
 
             disposed = true;
+            worldAudio?.Dispose();
             var errors = new List<Exception>();
             DisposeManager(playerLifetime, errors);
             DisposeManager(lifetime, errors);

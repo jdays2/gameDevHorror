@@ -1,4 +1,6 @@
+using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
+using Zenject;
 
 namespace EmergencyShift
 {
@@ -20,6 +22,9 @@ namespace EmergencyShift
         {
             get; private set;
         }
+
+        [Inject]
+        private void RouteWorldAudio(WorldAudioBus bus = null) => bus?.Route(source);
 
         private void Awake()
         {

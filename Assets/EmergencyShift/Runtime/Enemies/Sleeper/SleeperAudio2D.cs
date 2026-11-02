@@ -1,3 +1,4 @@
+using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
 using Zenject;
 
@@ -32,6 +33,9 @@ namespace EmergencyShift
 
         [Inject]
         private void Construct(EnemyDeathAudioVariants variants) => deathVariants = variants;
+
+        [Inject]
+        private void RouteWorldAudio(WorldAudioBus bus = null) => bus?.Route(breathing, voice, contact);
 
         private void Awake()
         {

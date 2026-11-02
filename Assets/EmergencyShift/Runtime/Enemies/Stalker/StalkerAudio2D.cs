@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using EmergencyShift.Core.Composition;
+using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
 using Zenject;
 using Cue = EmergencyShift.StalkerAudioSet.Cue;
@@ -155,6 +156,9 @@ namespace EmergencyShift
                 throw new System.InvalidOperationException("Invalid resolved audio tuning: " + name);
             }
         }
+
+        [Inject]
+        private void RouteWorldAudio(WorldAudioBus bus = null) => bus?.Route(movementSource, voiceSource);
 
         private void Awake()
         {

@@ -1,4 +1,5 @@
 using System;
+using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -40,6 +41,9 @@ namespace EmergencyShift.Features.Scorpion.View
         {
             deathVariants = variants;
         }
+
+        [Inject]
+        private void RouteWorldAudio(WorldAudioBus bus = null) => bus?.Route(voice, claws, contact, presence, detection);
 
         private void Awake()
         {
