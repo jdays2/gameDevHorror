@@ -1,0 +1,56 @@
+{
+  "transformsIncludingInactive": 701,
+  "missingScripts": 0,
+  "missingReferences": 0,
+  "notes": [
+    {
+      "path": "10_World/R02_AccessTest/Notes/Sleeper_BehaviorNote",
+      "position": [
+        35.5,
+        14.2,
+        0.0
+      ],
+      "active": true,
+      "text": "СПЯЩИЙ · 8 HP\nФонарь будит · попадание будит\nПогоня и прямой выпад"
+    },
+    {
+      "path": "10_World/R03_WeaponsRange/Notes/Sleeper_TargetNote",
+      "position": [
+        56.5,
+        7.3,
+        0.0
+      ],
+      "active": true,
+      "text": "СПЯЩИЙ · 8 HP\nНеподвижный · без атак"
+    }
+  ],
+  "actors": [
+    {
+      "path": "10_World/R02_AccessTest/Gameplay/Sleeper · live behind the card door",
+      "position": [
+        35.0,
+        11.0,
+        0.0
+      ],
+      "AttacksEnabled": true,
+      "constraints": "FreezeRotation",
+      "crowdEnabled": true,
+      "maximumHealth": 8,
+      "prefab": "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
+    },
+    {
+      "path": "10_World/R03_WeaponsRange/Gameplay/Sleeper · stationary range target · 8 HP",
+      "position": [
+        57.0,
+        5.0,
+        0.0
+      ],
+      "AttacksEnabled": false,
+      "constraints": "FreezeAll",
+      "crowdEnabled": false,
+      "maximumHealth": 8,
+      "prefab": "Assets/EmergencyShift/Prefabs/Enemies/Sleeper.prefab"
+    }
+  ],
+  "unsavedWorkingSceneChanged": false
+}
