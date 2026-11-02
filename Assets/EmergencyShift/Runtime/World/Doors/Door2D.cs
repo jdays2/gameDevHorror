@@ -24,11 +24,14 @@ namespace EmergencyShift
         private SceneRegistry<Door2D> registry;
         private DoorMotionControllerFactory factory;
         private DoorMotionController controller;
+        private float appliedOpenAmount;
+        private bool advancingMotion;
         public bool IsOpen => controller != null && controller.IsOpen;
         public bool IsMoving => controller != null && controller.IsMoving;
 
         public event System.Action<bool> MotionStarted;
         public event System.Action<bool> MotionStopped;
+        public event Action<DoorLeafStep> BeforeLeafMoved;
         public bool CanInteract => controller == null || controller.CanInteract;
         public Collider2D Blocker => leaf.GetComponent<Collider2D>();
         public Vector2 InteractionPosition => transform.position;
@@ -90,6 +93,7 @@ namespace EmergencyShift
         public void RestoreState(bool open)
         {
             StopAllCoroutines();
+            advancingMotion = false;
             RequireController().Restore(open);
         }
 
@@ -102,12 +106,20 @@ namespace EmergencyShift
         {
             registry?.Remove(this);
             StopAllCoroutines();
+            advancingMotion = false;
             controller?.Stop();
         }
 
         private void OnDestroy() => controller?.Dispose();
 
-        void IDoorMotionView.ApplyOpenAmount(float amount) => leaf.localPosition = Vector3.LerpUnclamped(closedPosition, closedPosition + openOffset, amount);
+        void IDoorMotionView.ApplyOpenAmount(float amount)
+        {
+            Vector3 next = Vector3.LerpUnclamped(closedPosition, closedPosition + openOffset, amount);
+            Vector3 worldNext = leaf.parent != null ? leaf.parent.TransformPoint(next) : next;
+            BeforeLeafMoved?.Invoke(new DoorLeafStep(advancingMotion, appliedOpenAmount, amount, worldNext - leaf.position));
+            leaf.localPosition = next;
+            appliedOpenAmount = amount;
+        }
         void IDoorMotionView.MotionStarted(bool open) => MotionStarted?.Invoke(open);
         void IDoorMotionView.MotionStopped(bool open) => MotionStopped?.Invoke(open);
 
@@ -126,7 +138,15 @@ namespace EmergencyShift
         {
             while (!controller.CanInteract)
             {
-                controller.Tick();
+                advancingMotion = true;
+                try
+                {
+                    controller.Tick();
+                }
+                finally
+                {
+                    advancingMotion = false;
+                }
                 yield return null;
             }
         }

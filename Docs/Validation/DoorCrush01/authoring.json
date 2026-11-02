@@ -1,0 +1,107 @@
+{
+  "scene": "Assets/EmergencyShift/Scenes/DoorCrushTest.unity",
+  "isDirty": false,
+  "roots": [
+    "00_Systems",
+    "10_World"
+  ],
+  "missing": 0,
+  "targetLinks": true,
+  "signs": [
+    {
+      "text": "LURE THROUGH DOOR\nE: OPEN / CLOSE\nR: FRESH TEST",
+      "characterSize": 0.04,
+      "prefab": "Assets/EmergencyShift/Prefabs/World/CrushTestSign.prefab"
+    },
+    {
+      "text": "ORDINARY DOOR",
+      "characterSize": 0.055,
+      "prefab": "Assets/EmergencyShift/Prefabs/World/CrushTestSign.prefab"
+    },
+    {
+      "text": "STALKER",
+      "characterSize": 0.055,
+      "prefab": "Assets/EmergencyShift/Prefabs/World/CrushTestSign.prefab"
+    },
+    {
+      "text": "SLEEPER",
+      "characterSize": 0.055,
+      "prefab": "Assets/EmergencyShift/Prefabs/World/CrushTestSign.prefab"
+    }
+  ],
+  "identities": [
+    {
+      "Id": "crush-example-player",
+      "name": "Player"
+    },
+    {
+      "Id": "crush-example-ordinary-door",
+      "name": "Ordinary reference door - no crushing"
+    },
+    {
+      "Id": "R01_Stalker-door",
+      "name": "Lift door - crush enabled"
+    },
+    {
+      "Id": "R01_Stalker-subject",
+      "name": "STALKER - lure subject"
+    },
+    {
+      "Id": "R02_Sleeper-door",
+      "name": "Lift door - crush enabled"
+    },
+    {
+      "Id": "R02_Sleeper-subject",
+      "name": "SLEEPER - lure subject"
+    }
+  ],
+  "cameras": 1,
+  "listeners": 1,
+  "contexts": 1,
+  "temporaryProbes": 0,
+  "doors": [
+    {
+      "path": "10_World/C01_ObservationCorridor/Ordinary reference door - no crushing",
+      "prefab": "Assets/EmergencyShift/Prefabs/World/Door.prefab",
+      "crushing": false,
+      "xy": [
+        -2.5,
+        6.0
+      ],
+      "leafScale": [
+        0.300000072,
+        3.000001
+      ],
+      "collider": "BoxCollider2D"
+    },
+    {
+      "path": "10_World/R01_Stalker/Gameplay/Lift door - crush enabled",
+      "prefab": "Assets/EmergencyShift/Prefabs/World/CrushingDoor.prefab",
+      "crushing": true,
+      "xy": [
+        0.0,
+        0.0
+      ],
+      "leafScale": [
+        0.3,
+        3.0
+      ],
+      "collider": "BoxCollider2D"
+    },
+    {
+      "path": "10_World/R02_Sleeper/Gameplay/Lift door - crush enabled",
+      "prefab": "Assets/EmergencyShift/Prefabs/World/CrushingDoor.prefab",
+      "crushing": true,
+      "xy": [
+        0.0,
+        10.0
+      ],
+      "leafScale": [
+        0.3,
+        3.0
+      ],
+      "collider": "BoxCollider2D"
+    }
+  ],
+  "scope": "Only DoorCrushTest and new variants authored; source byte comparison is reported separately."
+}
