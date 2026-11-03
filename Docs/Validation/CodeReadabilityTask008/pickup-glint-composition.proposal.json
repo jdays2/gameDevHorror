@@ -1,0 +1,17 @@
+{
+  "state": "proposal only; not applied, compiled or tested",
+  "createdUtc": "2026-11-03T09:34:33.511346+00:00",
+  "sourceFiles": [
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/PickupInstaller.cs",
+      "baselineSha256": "566b5f4628670eaf5f1a900447fa7224ab2fab906b2958095e6732ff17fbbc26"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Pickups/PickupGlintInstaller.cs",
+      "baselineSha256": null
+    }
+  ],
+  "gameSourceWrites": 0,
+  "applicabilityCheck": "git apply --check --whitespace=error PASS",
+  "requiredBeforeApply": "Explicit game handoff/native baseline. This source patch alone is incomplete: after compile, add/wire PickupGlintInstaller exactly once in the existing ProjectContext.prefab through Unity, referencing the unchanged existing Resources/PickupGlintProfile.asset and preserving all other installers/GUIDs. No level scene saves. Verify DI identity/profile JSON, actual light/eligibility/occlusion/pause/restore and ordinary build inclusion."
+}

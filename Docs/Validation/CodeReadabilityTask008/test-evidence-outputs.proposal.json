@@ -1,0 +1,17 @@
+{
+  "state": "proposal only; not applied, compiled or tested",
+  "createdUtc": "2026-11-03T09:43:05.233683+00:00",
+  "sourceFiles": [
+    {
+      "path": "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
+      "baselineSha256": "24e15c0dda99abf27875e8706ea7006c71d8e977ced718c87443e11b64119885"
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs",
+      "baselineSha256": "088c878b9ebbd2945d09cc3b0d454d312a4b2da2c6f6af05e2bceaf9bc327858"
+    }
+  ],
+  "intent": "F08: active tests write new evidence to absolute project Logs/Tests paths, independent of the Unity process cwd; all assertions and historical Docs/Validation bytes preserved.",
+  "gameSourceWrites": 0,
+  "requiredBeforeApply": "Explicit game handoff/native and file-hash baseline, current source/duplicate BUG check. Before running affected scene tests, redirect only outputs. Verify actual Logs files and byte-for-byte unchanged historical evidence after real PlayMode tests; no extra behavior test that merely mirrors these paths."
+}

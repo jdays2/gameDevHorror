@@ -1,0 +1,21 @@
+{
+  "state": "proposal only; not applied, compiled or tested",
+  "createdUtc": "2026-11-03T09:34:33.464120+00:00",
+  "sourceFiles": [
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs",
+      "baselineSha256": "2de650f50ba10050ea0deb1faddc0b06768de9406853a3382a5434d36d9bb37c"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPack2D.cs",
+      "baselineSha256": "946b7db764bfd4d06be4a9fda599ea1725550482d4830030e1327cce99b150f8"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudio2D.cs",
+      "baselineSha256": "a27355b20e4f62a000cb0dbb16410c6f99d6b516ea9657e768adb9cbeb58b281"
+    }
+  ],
+  "gameSourceWrites": 0,
+  "applicabilityCheck": "git apply --check --whitespace=error PASS",
+  "requiredBeforeApply": "Explicit game handoff and source/native baseline. Characterize selected caller and cue-before-AlarmCount ordering, one pack/standalone/muted/disabled/re-enabled audio, independent packs and fatal-hit order before/after. Keep Alert() silent and PlayAlarm compatibility API. Run native tests/build after apply."
+}

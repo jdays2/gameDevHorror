@@ -1,0 +1,17 @@
+{
+  "state": "partial diagnostic proposal only; not applied, compiled or run",
+  "createdUtc": "2026-11-03T10:03:06.491169+00:00",
+  "sourceFiles": [
+    {
+      "path": "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
+      "baselineSha256": "c95ef95661be717ac8c08723a213aa98d29c1963ce3b9907153aad70e4984365"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
+      "baselineSha256": "02813f42daa64e454b1c770867faf22a3326fe54b19aef01296bc000eb9aeb15"
+    }
+  ],
+  "gameSourceWrites": 0,
+  "intent": "F07 source-proven missing composition: inject EncounterActivation before Activate, create flashlight inactive and inject from existing real level before Awake, cache one level context and own fixture in its scene; no fallback controller or new service.",
+  "requiredBeforeApply": "Explicit game handoff, final source/native baseline, duplicate BUG/repro qualification. Execute original failing boundaries safely, then actual probes and cancellation/lifecycle checks after fix. This patch does not certify the whole historical smoke/Sleeper diagnostic: entry input readiness, fixed audio counts, current checkpoint/presentation fixture assumptions and timings still require actual execution; fix only confirmed fixture mismatches without weakening assertions or restoring retired maps."
+}

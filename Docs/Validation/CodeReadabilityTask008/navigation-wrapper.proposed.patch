@@ -1,0 +1,56 @@
+--- a/Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs
++++ b/Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs
+@@ -19,11 +19,10 @@
+             this.random = random ?? throw new ArgumentNullException(nameof(random));
+         }
+
+-        internal EnemyChasePath2D Create()
++        internal EnemyChasePathModel Create()
+         {
+             var schedule = new EnemyPathSchedule(clock, budget, random.Create());
+-            var path = new EnemyChasePathModel(new EnemyPathGeometry2D(), new ProfiledEnemyPathSchedule2D(schedule));
+-            return new EnemyChasePath2D(path);
++            return new EnemyChasePathModel(new EnemyPathGeometry2D(), new ProfiledEnemyPathSchedule2D(schedule));
+         }
+     }
+ }
+--- a/Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs
++++ b/Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMotor2D.cs
+@@ -1,3 +1,4 @@
++using EmergencyShift.Features.Enemies.Logic;
+ using UnityEngine;
+ using Zenject;
+
+@@ -9,7 +10,7 @@
+         private Rigidbody2D body;
+         private CircleCollider2D shape;
+         private CrowdAgent2D crowd;
+-        private EnemyChasePath2D path;
++        private EnemyChasePathModel path;
+         private static readonly float[] angles =
+         {
+             45,
+--- a/Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs
++++ /dev/null
+@@ -1,15 +0,0 @@
+-using System;
+-using EmergencyShift.Features.Enemies.Logic;
+-using UnityEngine;
+-
+-namespace EmergencyShift
+-{
+-    /// <summary>Compatibility API for the motor; the personal solver owns cached route state.</summary>
+-    internal sealed class EnemyChasePath2D
+-    {
+-        private readonly EnemyChasePathModel model;
+-        public EnemyChasePath2D(EnemyChasePathModel model) => this.model = model ?? throw new ArgumentNullException(nameof(model));
+-        public int WaypointCount => model.WaypointCount;
+-        public Vector2 Direction(Vector2 position, Vector2 goal, float radius, LayerMask solids) => model.Direction(position, goal, radius, solids.value);
+-    }
+-}
+--- a/Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs.meta
++++ /dev/null
+@@ -1,2 +0,0 @@
+-fileFormatVersion: 2
+-guid: 3173718c069f4314a8a68a07766839d7
+\ No newline at end of file

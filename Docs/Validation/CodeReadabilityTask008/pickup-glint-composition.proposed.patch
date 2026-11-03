@@ -1,0 +1,53 @@
+--- a/Assets/EmergencyShift/Runtime/Features/Pickups/PickupInstaller.cs
++++ b/Assets/EmergencyShift/Runtime/Features/Pickups/PickupInstaller.cs
+@@ -1,23 +1,13 @@
+-using System;
+-using EmergencyShift.Features.Pickups.Config;
+ using EmergencyShift.Features.Pickups.View;
+-using UnityEngine;
+ using Zenject;
+
+ namespace EmergencyShift.Features.Pickups
+ {
++    /// <summary>Level-owned factories; the shared presentation profile belongs to ProjectContext.</summary>
+     public static class PickupInstaller
+     {
+         public static void Install(DiContainer container)
+         {
+-            var profile = Resources.Load<PickupGlintProfile>("PickupGlintProfile");
+-            if (profile == null)
+-            {
+-                throw new InvalidOperationException("Pickup presentation requires Resources/PickupGlintProfile.");
+-            }
+-
+-            profile.Validate();
+-            container.Bind<PickupGlintProfile>().FromInstance(profile);
+             container.Bind<PickupGlintFactory>().AsSingle();
+             container.Bind<PickupControllerFactory>().AsSingle();
+         }
+--- /dev/null
++++ b/Assets/EmergencyShift/Runtime/Features/Pickups/PickupGlintInstaller.cs
+@@ -0,0 +1,23 @@
++using System;
++using EmergencyShift.Features.Pickups.Config;
++using UnityEngine;
++using Zenject;
++
++namespace EmergencyShift.Features.Pickups
++{
++    public sealed class PickupGlintInstaller : MonoInstaller
++    {
++        [SerializeField] private PickupGlintProfile profile;
++
++        public override void InstallBindings()
++        {
++            if (profile == null)
++            {
++                throw new InvalidOperationException("Pickup presentation needs its authored world profile.");
++            }
++
++            profile.Validate();
++            Container.Bind<PickupGlintProfile>().FromInstance(profile);
++        }
++    }
++}

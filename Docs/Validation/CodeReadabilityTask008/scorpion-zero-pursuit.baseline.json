@@ -1,0 +1,10 @@
+{
+  "state": "unapplied baseline counterexample; not compiled or run",
+  "createdUtc": "2026-11-03T09:39:40.353248+00:00",
+  "source": "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs",
+  "baselineSha256": "1cddba12555c647d0743c039b3fb4eb8640a17046efa98add8b4ff54ac4289cd",
+  "gameSourceWrites": 0,
+  "expectedBeforeFix": "One expected failing finite-velocity assertion against original code; must actually execute after game handoff before registering a reproduced BUG.",
+  "scope": "Real existing controller/model through fake motor/melee ports; no Rigidbody/scene or synthetic Python reproduction.",
+  "requiredNext": "After explicit game handoff/native baseline, apply only this characterization patch first. Run existing positive controls plus counterexample. Then migrate it and all existing callers to immutable Settings/short Step while retaining absolute finite-speed assertion; run actual regressions/native/build."
+}

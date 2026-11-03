@@ -1,0 +1,26 @@
+--- a/Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs
++++ b/Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs
+@@ -90,6 +90,23 @@
+             controller.Step(Vector2.zero, Vector2.up, true, 2.4f, .79f);
+             Assert.That(melee.Finishes, Is.Zero);
+             Assert.That(new ScorpionCommand(controller.Model, ScorpionAction.Alert).Execute().Success, Is.False);
++        }
++
++        [Test]
++        public void ZeroPursuitSpeedDoesNotContaminateTheGraspVelocity()
++        {
++            var motor = new Motor();
++            var controller = Controller(new Clock(), motor, new Melee { Ready = true });
++            float pursuitSpeed = 0;
++            float attackReferenceSpeed = 1.8973215f;
++            controller.Alert();
++            controller.Step(Vector2.zero, Vector2.up, true, pursuitSpeed,
++                attackReferenceSpeed / pursuitSpeed, .28f, 8.4f, .18f, .36f);
++
++            Assert.That(controller.Model.State, Is.EqualTo(ScorpionState.Attacking));
++            // The fake port observes the requested value; no NaN is sent to native physics.
++            Assert.That(float.IsFinite(motor.Velocity.x) && float.IsFinite(motor.Velocity.y), Is.True);
++            Assert.That(motor.Velocity.magnitude, Is.EqualTo(attackReferenceSpeed).Within(.0001f));
+         }
+
+         private static ScorpionController Controller(Clock clock, Motor motor, Melee melee) =>

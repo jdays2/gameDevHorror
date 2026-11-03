@@ -1,0 +1,56 @@
+--- a/Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs
++++ b/Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs
+@@ -31,6 +31,7 @@
+         private Vector2 previousPosition;
+         public event Action Hit;
+         public event Action Died;
++        public event Action AlarmCueRequested;
+         public override bool IsAlive => health != null && health.IsAlive;
+         public int Health => health != null ? health.Current : 0;
+         public bool HasAggro => controller != null && controller.Model.HasAggro;
+@@ -110,6 +111,8 @@
+             pack = owner;
+         }
+
++        internal void EmitAlarmCue() => AlarmCueRequested?.Invoke();
++
+         public void Alert() => controller?.Alert();
+
+         public override void ReceiveBulletHit(int damage, Vector2 point, Vector2 direction)
+@@ -141,7 +144,7 @@
+                 controller.Alert();
+                 if (!wasAlerted && HasAggro)
+                 {
+-                    GetComponent<ScorpionAudio2D>().PlayAlarm();
++                    EmitAlarmCue();
+                 }
+             }
+         }
+--- a/Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPack2D.cs
++++ b/Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPack2D.cs
+@@ -70,7 +70,7 @@
+             }
+             if (caller != null)
+             {
+-                caller.GetComponent<ScorpionAudio2D>().PlayAlarm();
++                caller.EmitAlarmCue();
+                 AlarmCount++;
+             }
+         }
+--- a/Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudio2D.cs
++++ b/Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudio2D.cs
+@@ -69,6 +69,7 @@
+         {
+             actor.Hit += OnHit;
+             actor.Died += OnDeath;
++            actor.AlarmCueRequested += PlayAlarm;
+             previous = transform.position;
+             attackSound = false;
+             ScheduleNextSqueak();
+@@ -78,5 +79,6 @@
+         {
+             actor.Hit -= OnHit;
+             actor.Died -= OnDeath;
++            actor.AlarmCueRequested -= PlayAlarm;
+             Stop();
+         }

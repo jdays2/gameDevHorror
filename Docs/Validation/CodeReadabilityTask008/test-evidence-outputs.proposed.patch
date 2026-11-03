@@ -1,0 +1,39 @@
+--- a/Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs
++++ b/Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs
+@@ -152,8 +152,9 @@
+             MovePlayer(Vector2.zero);
+             yield return new WaitForSeconds(.1f);
+             Assert.That(actor.HasAggro, Is.True, "Ordinary permanent aggression remains permanent.");
+-            Directory.CreateDirectory("Docs/Validation/DoorScatterDelay01");
+-            File.WriteAllText("Docs/Validation/DoorScatterDelay01/flashlight-route.json", JsonUtility.ToJson(new RouteReport
++            string output = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Logs", "Tests", "ScriptedIntro", "flashlight-route.json"));
++            Directory.CreateDirectory(Path.GetDirectoryName(output));
++            File.WriteAllText(output, JsonUtility.ToJson(new RouteReport
+             {
+                 route = route.EncounterId,
+                 completed = true,
+@@ -266,8 +267,9 @@
+                     "Each actor must visibly start after the previous one.");
+             }
+
+-            Directory.CreateDirectory("Docs/Validation/DoorScatterDelay01");
+-            File.WriteAllText("Docs/Validation/DoorScatterDelay01/group-route.json", JsonUtility.ToJson(new GroupReport
++            string output = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Logs", "Tests", "ScriptedIntro", "group-route.json"));
++            Directory.CreateDirectory(Path.GetDirectoryName(output));
++            File.WriteAllText(output, JsonUtility.ToJson(new GroupReport
+             {
+                 completed = group.All(value => value.State == ScriptedRouteState.Completed),
+                 starts = order.Select(index => new StartSample { id = group[index].EncounterId, configuredDelay = group[index].StartDelaySeconds, actualDelay = firstMovement[index] - openedAt }).ToArray(),
+--- a/Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs
++++ b/Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs
+@@ -178,7 +178,8 @@
+             Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.EqualTo(2));
+             Assert.That(audio.MovementSource.isPlaying, Is.True);
+             Assert.That(actor.EyeDamageProgress, Is.GreaterThan(0));
+-            System.IO.Directory.CreateDirectory("Docs/Validation/MonsterEyes03");
+-            System.IO.File.WriteAllText("Docs/Validation/MonsterEyes03/native-light-timeline.json",
++            string output = System.IO.Path.GetFullPath(System.IO.Path.Combine(Application.dataPath, "..", "Logs", "Tests", "StalkerBurn", "native-light-timeline.json"));
++            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(output));
++            System.IO.File.WriteAllText(output,
+                 JsonUtility.ToJson(new TimelineReport { secondCycleBurnCues = audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), samples = samples.ToArray() }, true));
+         }
