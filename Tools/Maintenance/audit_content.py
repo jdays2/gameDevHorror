@@ -4,6 +4,8 @@ import collections
 import json
 import re
 
+from audit_documentation import inventory as documentation_inventory
+
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -31,13 +33,8 @@ def inventory():
                         references[target].add(source)
                 elif guid[:16] != "0" * 16:
                     missing[guid].add(source)
-    broken_links = []
-    for base in ["Docs", "Concepts"]:
-        for path in (ROOT / base).rglob("*.md"):
-            for link in re.findall(r"!?\[[^\]]*\]\(([^)]+)\)", path.read_text(encoding="utf-8-sig")):
-                target = link.split("#")[0].strip("<>")
-                if target and not re.match(r"^[a-zA-Z]+:", target) and not (path.parent / target).exists():
-                    broken_links.append([path.relative_to(ROOT).as_posix(), link])
+    broken_links = [[link["source"], link["target"]]
+                    for link in documentation_inventory()["brokenLocalLinks"]]
     return {
         "meta": metas,
         "references": {key: sorted(value) for key, value in references.items()},

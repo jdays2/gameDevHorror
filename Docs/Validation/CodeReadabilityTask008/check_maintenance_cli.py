@@ -21,7 +21,7 @@ class MaintenanceCliTests(unittest.TestCase):
                        "Concepts", "Docs/Reports", ".agents/skills"):
             (self.root / folder).mkdir(parents=True, exist_ok=True)
         self.write("AGENTS.md", "# Test fixture\n")
-        for name in ("audit_code.py", "audit_documentation.py"):
+        for name in ("audit_code.py", "audit_documentation.py", "audit_content.py"):
             shutil.copyfile(PROJECT / "Tools/Maintenance" / name,
                             self.root / "Tools/Maintenance" / name)
 
@@ -132,6 +132,21 @@ class MaintenanceCliTests(unittest.TestCase):
         self.assertEqual(1, result.returncode, result.stderr)
         self.assertEqual([{"source": "Docs/links.md", "target": "missing.md?revision=r1#section"}],
                          json.loads(result.stdout)["brokenLocalLinks"])
+
+    def test_content_inventory_follows_the_same_document_link_rules(self):
+        self.write("Concepts/viewer.html", "<html></html>")
+        self.write("Docs/chapter #1.md", "# Encoded filename\n")
+        self.write("Docs/links.md", "[Viewer](../Concepts/viewer.html?revision=r1#frame)\n"
+                   "[Encoded](chapter%20%231.md?mode=preview)\n"
+                   "[Missing](missing.md?revision=r1#section)\n"
+                   "```text\n[Example](missing-example.md)\n```\n")
+        result = self.run_cli("audit_content.py", "--output", "content-report.json")
+        self.assertEqual(0, result.returncode, result.stderr)
+        expected = [["Docs/links.md", "missing.md?revision=r1#section"]]
+        self.assertEqual(expected, json.loads(result.stdout)["broken_links"])
+        saved = json.loads((self.root / "content-report.json").read_text(encoding="utf-8"))
+        self.assertEqual(expected, saved["broken_links"])
+        self.assertEqual({}, saved["missing_guids"])
 
 
 if __name__ == "__main__":

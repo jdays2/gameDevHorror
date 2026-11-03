@@ -1,0 +1,106 @@
+{
+  "task": "TASK-008",
+  "state": "preliminary; final SHA qualification pending game handoff",
+  "reads": [
+    {
+      "path": "AgentScripts/InstallMainMenu.cs",
+      "readCommand": "a49fa1",
+      "conclusion": "Explicit cold authoring/build recipe outside Unity assemblies; its first-build-entry/catalog validation describes deferred integration. Not executed or revived: ordinary Play must retain open level, and BUG-048 stays Won't do. Keep deferred assets and recipe as history; not a current gameplay caller."
+    },
+    {
+      "path": "AgentScripts/InstallPauseMenu.cs",
+      "readCommand": "a49fa1",
+      "conclusion": "Foreign unfinished pause-authoring draft, explicit cold recipe. Validate calls Install and can mark scenes dirty; it is not a read-only verifier. Preserve separately and do not invoke or commit as part of this audit. Current pause runtime was reviewed separately; no owner acceptance claimed."
+    },
+    {
+      "path": "AgentScripts/VerifyMainMenu.cs",
+      "readCommand": "a49fa1",
+      "conclusion": "Explicit native Play diagnostic for deferred menu; global input settings restored in finally, transitions/timeouts and music/clock lifecycle assertions meaningful for that integration. Loads catalog scenes and expects F8/menu entry, so not the ordinary-open-level verification. Not run and not used to restore mandatory entry."
+    },
+    {
+      "path": "AgentScripts/AuthorWeaponFx.cs",
+      "readCommand": "578bd1",
+      "conclusion": "Cold recipe edits shared smoke/audio profiles and prefab, imports PCM derivatives and calls SaveAssets. It is historical authoring, not a read-only/current gameplay verifier; no rerun or balance/art change authorized by this audit. Native runtime smoke ownership was reviewed separately."
+    },
+    {
+      "path": "AgentScripts/InspectWeaponFeedback.cs",
+      "readCommand": "578bd1",
+      "conclusion": "VerifyAudio/Check inspect a specific six-clip B-bank and current scene. RestorePreloadedInput explicitly writes PlayerSettings using an old GUID and SaveAssets; Begin adds a native probe. Names do not imply read-only behavior; historical fixture assumptions must be qualified before any invocation. Not run."
+    },
+    {
+      "path": "AgentScripts/ReviewWeaponFx.cs",
+      "readCommand": "578bd1",
+      "conclusion": "Explicit Play capture/benchmark launcher with historical work outputs. Prepare/Restore persist playModeStartScene, so blindly restoring an old file could contradict the owner's null policy. Not run; no performance/OPT-01 claim."
+    },
+    {
+      "path": "AgentScripts/VerifyWeaponFx.cs",
+      "readCommand": "578bd1",
+      "conclusion": "Native validation of shared profiles, sibling smoke renderers, external/local object references and shader errors; writes a task-specific old work report. Read fully but not executed or treated as fresh proof; assertions remain coherent with the reviewed presentation boundary."
+    },
+    {
+      "path": "AgentScripts/InstallDirectionalDamage.cs",
+      "readCommand": "578bd1",
+      "conclusion": "Cold reusable-HUD installation has stable Edit checks, existing-output/backup preflight, shader and old-component/sibling snapshots, targeted prefab/assets saves and finally unload; saved scene hashes and dirty active scene are checked. It is intentionally a one-shot recipe, not a runtime layer. Not invoked; existing HUD/draft/art preserved."
+    },
+    {
+      "path": "AgentScripts/InstallDeathAudio53.cs",
+      "readCommand": "05a8d0",
+      "conclusion": "Explicit world-profile/ProjectContext prefab wiring, guarded stopped/compiled Editor, one installer binding without scene edits and targeted saves/finally unload. Useful existing composition precedent for PickupGlint; not invoked or copied as an automatic installer."
+    },
+    {
+      "path": "AgentScripts/VerifyDeathAudio53.cs",
+      "readCommand": "05a8d0",
+      "conclusion": "Cold controlled Play repro/capture/restore/unload diagnostics with routed temporary sources, AudioRenderer cleanup and actual restart. Writes historical DeathAudio53 evidence and assumes a clean final single scene; not a general verifier for today's dirty maps. Read fully, not run; current evidence must use its own output and preserved baseline."
+    },
+    {
+      "path": "AgentScripts/ReviseScorpionAudio.cs",
+      "readCommand": "b81656",
+      "conclusion": "Historical prefab-only claw-channel installer and source/import inspection; saves no scenes, unloads prefab in finally, but writes old ScorpionAudio02 report. Not run; accepted audio and prefab wiring remain unchanged."
+    },
+    {
+      "path": "AgentScripts/ReviseScorpionSqueakR11.cs",
+      "readCommand": "b81656",
+      "conclusion": "Historical owner's selected Detection.wav reuse with explicit idle/run intervals, volume and targeted profile/prefab saves; scene identity/dirty/root-count snapshot guards are narrower than full preservation. No sound/balance/art rewrite or rerun."
+    },
+    {
+      "path": "AgentScripts/VerifyScorpionSqueakR11.cs",
+      "readCommand": "b81656",
+      "conclusion": "Controlled authored four-member room Play check observes actual AudioSource clip/pitch and one alarm per pack; changes runtime player/door and writes historical output. Preserve its once-per-pack intent in the future F02 regressions, without rerunning this fixture as current proof or claiming listening/art approval."
+    },
+    {
+      "path": "AgentScripts/ApplyScorpionPaletteR13.cs",
+      "readCommand": "b81656",
+      "conclusion": "Explicit selected palette propagation to existing body/gore prefab renderers; targeted prefab saves and unload, JSON-selected material and shader/native-users check. Old task-specific reports and partial scene fingerprint are history; no invocation or new artistic decision."
+    },
+    {
+      "path": "AgentScripts/RefreshScorpionArt.cs",
+      "readCommand": "b81656",
+      "conclusion": "Explicit synchronous resource reimport/validation and old r8 evidence output, saved GUID and loaded-scene fingerprint checks; not read-only despite its inspection step. Not invoked during another writer's import. Existing approved whole-body sheets/audio stay unchanged."
+    },
+    {
+      "path": "AgentScripts/FormatClawAuthoring.cs",
+      "readCommand": "f5c9c0",
+      "conclusion": "Explicit Roslyn NormalizeWhitespace recipe writes three cold authoring sources; no automatic entry point or runtime value. Do not invoke broad formatting as this task's cleanup."
+    },
+    {
+      "path": "AgentScripts/FinalizeClawSandbox.cs",
+      "readCommand": "f5c9c0",
+      "conclusion": "Historical clean-MechanicsSandbox placement/lamp-override repair saves the scene. Its fixed GUIDs/coordinates and old brace style are not a generic repair path; no rerun, regenerated map or lamp change. Preserve as task history."
+    },
+    {
+      "path": "AgentScripts/InspectClawSandbox.cs",
+      "readCommand": "f5c9c0",
+      "conclusion": "OpenSandbox rejects unsaved scenes before replacing setup; Capture recursively records active/inactive authoring and overwrites old ClawSandbox01 before.json. It is an explicit cold historical fixture, not a current evidence destination. Not executed."
+    },
+    {
+      "path": "AgentScripts/InstallClawSandbox.cs",
+      "readCommand": "f5c9c0",
+      "conclusion": "Cold one-shot prototype imports approved source sheets, creates configs/prefab and three actors/remains displays, with existing-output/clean-scene guard and GUID-preserving correction. It saves the authored map and contains historical procedural style; no rerun or formal gameplay abstraction rewrite. Existing runtime Claw boundary is separate."
+    },
+    {
+      "path": "AgentScripts/VerifyClawSandbox.cs",
+      "readCommand": "f5c9c0",
+      "conclusion": "Historical fixture compares saved pre-install authoring and records controlled patrol/melee/death variants. Play returns raw booleans rather than a full all-pass verdict and leaves runtime profile copies alive until Stop; old outputs/fixed three-actor assumptions cannot certify current maps. Render capture restores camera/targets in finally. Not run or used as today's verification."
+    }
+  ]
+}
