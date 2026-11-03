@@ -1,11 +1,12 @@
 ---
 name: emergency-shift-workflow
-description: Work on Emergency Shift Unity horror with its current project rules. Use for every task in this project, including discussion, review, docs, code, assets and cleanup. Do not apply game-specific rules to unrelated projects.
+description: Execute Emergency Shift work under project rules, with applicable technical skills and coordinated shared access. Task management alone uses emergency-shift-manager.
 ---
 
 # Emergency Shift workflow
 
-1. Locate the Unity project by its AGENTS.md and Assets/EmergencyShift. Read AGENTS.md, Docs/README.md, Docs/NOTION_WORKFLOW.md, Docs/SPEC.md and the task-relevant document. Before every project task, fetch the Notion home/current plan and relevant cards/bugs using .agents/notion-project.json. Active planning lives only in Notion; removed local duplicates remain in Git, and Archive/Reports retain unique evidence. User instructions override project defaults.
+1. Execution chats use [worker](../emergency-shift-worker/SKILL.md); task management alone uses [manager](../emergency-shift-manager/SKILL.md) and does not load this technical workflow by default. Locate AGENTS and Assets/EmergencyShift. Read project AGENTS, NOTION_WORKFLOW and the task-relevant SPEC/feature; use Docs/README as an index when needed. Fetch Notion home/current plan and relevant cards/bugs via .agents/notion-project.json. Active planning lives only in Notion. Reuse unchanged instructions within a task; user instructions override project defaults.
+   Both roles follow [coordination](../emergency-shift-coordination/SKILL.md): parallel read-only research and disjoint reserved outputs; one shared game/Editor lease, path conflict reservations and a separate git lease. Read the canonical protocol instead of copying it into every prompt. Waiting for a shared resource does not stop useful independent work.
 2. Distinguish discussion from authorized mutation. Preserve manual scene tuning, placements, patrols and accepted sounds/art. Do not regenerate levels to solve local problems.
 3. Use the adopted [SOD architecture](../sod-unity-architecture/SKILL.md) for gameplay design/C# and review. Its MVC, command, dependency, config and identity rules replace older architecture advice. Separate shared tuning, per-spawn scene data and instance state; preserve the game's species contracts. Current MonoBehaviour code and Configure wiring are legacy, not proof of a completed MVC/Zenject migration.
    Readability is part of completion: one meaningful action per line, explicit control-flow blocks, no nested ternaries, meaningful names. Short code means less cognitive work, not compressed statements. Guards and a finite state switch are legitimate; growing type-dispatch chains need a design review.

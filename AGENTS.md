@@ -2,14 +2,15 @@
 
 Эти правила действуют для этого Unity-проекта, не для других задач пользователя. Последние прямые указания пользователя имеют приоритет.
 
-В начале **каждой задачи**, включая обсуждение/документацию, прочитать project skills:
+## Роль и обязательное чтение
 
-1. [.agents/skills/emergency-shift-workflow/SKILL.md](.agents/skills/emergency-shift-workflow/SKILL.md).
-2. [.agents/skills/emergency-shift-unity-migration/SKILL.md](.agents/skills/emergency-shift-unity-migration/SKILL.md).
-3. [.agents/skills/emergency-shift-content-library/SKILL.md](.agents/skills/emergency-shift-content-library/SKILL.md).
-4. [.agents/skills/sod-unity-architecture/SKILL.md](.agents/skills/sod-unity-architecture/SKILL.md) — принятая владельцем архитектура SOD; подробные references читать по задаче.
+По решению владельца от 2026-11-03 менеджер и исполнитель используют разные профили:
 
-Чеклисты изменений/контента выполнять по применимости. Обсуждение само по себе не разрешает рефакторинг. Канонические skills хранятся здесь; копии установлены в ~/.codex/skills. После обновления синхронизировать копии. Не обещать автоматическое срабатывание skills вне области проекта.
+- **Менеджер** — [.agents/skills/emergency-shift-manager/SKILL.md](.agents/skills/emergency-shift-manager/SKILL.md): Notion, постановка, запуск отдельных чатов, очередь и результаты. Для этой работы не читать Unity/migration/art/SOD skills, SPEC и технические guides автоматически. Этот чат «Обновлять задачки» — менеджер; правила исполнения ниже не создают ему обязательного технического чтения.
+- **Исполнитель** — [.agents/skills/emergency-shift-worker/SKILL.md](.agents/skills/emergency-shift-worker/SKILL.md), по умолчанию для новых чатов задач. Читать этот AGENTS, workflow и карточку; migration — при изменении C#/Unity-ресурсов, SOD — при gameplay/C#/архитектурном аудите, content-library — для контента/технических docs, level-authoring — при сценовом авторинге. Остальные skills/references — по соответствующей работе, не все на каждый шаг.
+- **Обе роли** — [.agents/skills/emergency-shift-coordination/SKILL.md](.agents/skills/emergency-shift-coordination/SKILL.md), единый протокол [CHAT_COORDINATION](Docs/Guides/CHAT_COORDINATION.md). Исследование и непересекающиеся независимые результаты выполняются параллельно; общий код/ресурсы Unity и Editor имеют одного владельца. Пересекающиеся файлы и Git-index также резервируются. Передача записывается явно, ожидание не останавливает полезное чтение.
+
+Обсуждение само по себе не разрешает рефакторинг. Канонические skills хранятся здесь; три ролевых skills дополнительно зеркалируются в workspace `.agents/skills` для запуска из внешней папки, личные установленные копии — в ~/.codex/skills. Синхронизировать изменённые копии без перезаписи чужих файлов. Роли задаются инструкциями, не меняют UI-теги или права доступа.
 
 Для концептов, спрайтов, поз и анимаций врагов обязательны [правила создания ассетов врагов](Docs/Guides/MONSTER_CONCEPT_WORKFLOW.md): сначала отдельная проверка скелета, затем объёмы/состав/крепления мышц, кожа, детали и анимация. Не подгонять схему под ошибочный рисунок, не завершать генерацию на проваленном наложении и не менять устройство лап между состояниями.
 

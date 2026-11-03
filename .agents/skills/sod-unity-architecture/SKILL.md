@@ -1,6 +1,6 @@
 ---
 name: sod-unity-architecture
-description: Apply janitoooor/SOD architecture to Unity gameplay design, C# changes and code reviews. Use for domain models, controllers, commands, dependency injection, configs, state, persistence and feature boundaries; not for unrelated software or asset-only tasks.
+description: Apply the adopted SOD architecture to Unity gameplay design, C# changes and technical reviews. Not for task administration, unrelated software or asset-only work.
 ---
 
 # Unity architecture from SOD
@@ -8,6 +8,8 @@ description: Apply janitoooor/SOD architecture to Unity gameplay design, C# chan
 Adopted by the owner on 2026-10-19 from [janitoooor/SOD](https://github.com/janitoooor/SOD/tree/1479eec1bf8dc133093be05de164b46a6078e789). The five upstream skills cover Editor tools, UI, packages and physics; the architecture itself is in `.cursor/rules/architecture.mdc` and related rules. This skill makes those architectural decisions discoverable in Codex.
 
 ## Apply the architecture
+
+For Emergency Shift shared changes, follow [coordination](../emergency-shift-coordination/SKILL.md): review/read-only design can proceed in parallel, code/Editor changes wait for game access, and common files/commits have separate reservations. Architecture guidance does not grant the manager an implementation role or reserve a shared resource.
 
 Read [architecture](references/architecture.md) for gameplay work. For C# changes also read [C# and lifetimes](references/csharp-and-lifetimes.md). Read [state and authority](references/state-and-authority.md) when changing saves, IDs, clocks, randomness, player ownership or simulation. Use [workflow](references/workflow.md) for verification and reporting.
 

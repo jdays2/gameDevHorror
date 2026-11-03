@@ -4,7 +4,9 @@
 
 | Задача | Что читать/использовать | Граница |
 |---|---|---|
-| Любая задача Emergency Shift | AGENTS и перечисленные в нём project skills | Проектные ограничения не распространяются на другие игры |
+| Управление задачами/чатами | emergency-shift-manager + emergency-shift-coordination; NOTION_WORKFLOW | Без обязательного чтения Unity/migration/art/SOD |
+| Исполнение отдельной задачи | emergency-shift-worker + workflow, технические skills по применимости | Новые чаты — исполнители, не все skills читаются заранее |
+| Параллельная работа/передача доступа | emergency-shift-coordination; [единый протокол](../Guides/CHAT_COORDINATION.md) | Исследование параллельно; game/Editor, конфликтующие пути и git index резервируются |
 | Архитектура/C# | sod-unity-architecture + нужные references; migration safety | Планы не выдаются за уже переписанный код |
 | Editor, компиляция, тесты, сцены/ассеты | unity-pipeline, при необходимости unity:unity-cli | Сначала status/каталог; явный проект и caller/skill flags; изменения через Editor |
 | UPM | unity-package-management | Сначала ID/совместимость/реальная необходимость; не запускать второй Editor на тот же проект |

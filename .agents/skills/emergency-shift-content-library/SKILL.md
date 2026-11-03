@@ -1,9 +1,11 @@
 ---
 name: emergency-shift-content-library
-description: Organize or create Emergency Shift concepts, sprites, audio, documentation and source provenance. Read for every project task; use the content checks when content or docs change.
+description: Create or organize Emergency Shift content, technical documentation and provenance. Use for these artifacts, not ordinary manager-only Notion or chat coordination.
 ---
 
 # Content and documentation
+
+Follow [coordination](../emergency-shift-coordination/SKILL.md). Independent non-imported concepts/docs may run in parallel under disjoint file reservations. Reserve common catalogs/README files before editing; two different tasks can still conflict there. Imports, production assets and live Editor use require the game lease, and staging/commit require the git lease. Management-only Notion work does not require this content workflow.
 
 Read Concepts/README.md and Docs/SPEC.md. Production resources stay under Assets/EmergencyShift. Concepts/Used contains implemented source families, with replaced versions marked Historical. Concepts/Unused contains rejected or unused studies. Used is not a promise of current use or artistic approval.
 

@@ -5,6 +5,8 @@ description: Structure and author Emergency Shift levels for clear navigation an
 
 # Level structure and reusable authoring
 
+Before authoring, obtain the shared game lease through [coordination](../emergency-shift-coordination/SKILL.md). Research/layout planning and independent non-imported outputs can proceed in parallel under file reservations. Do not edit the same map, prefab or code concurrently with another chat, even through a different tool; explicit handoff is required.
+
 Apply the owner's requirement: a level must be easy to navigate in Hierarchy, ordinary repeated content must remain reusable, and the next level must not require copying scene-specific gameplay code. This skill defines authoring decisions; it does not authorize replacing existing maps or changing mechanics.
 
 ## Read only what the task needs

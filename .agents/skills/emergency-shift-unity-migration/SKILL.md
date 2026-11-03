@@ -1,9 +1,11 @@
 ---
 name: emergency-shift-unity-migration
-description: Safely modify Emergency Shift C#, Unity scenes, prefabs, configs or assemblies. Read for every project task; execute this checklist only when those resources change.
+description: Safely change Emergency Shift C#, scenes, prefabs, configs or assemblies. Load for these changes or their technical review, not manager-only task administration.
 ---
 
 # Unity changes and migration
+
+Shared changes require [coordination](../emergency-shift-coordination/SKILL.md): acquire game access before code/import/Editor work and git access before staging/commit. Reserve overlapping non-imported paths; do independent analysis in parallel while waiting. A pending import or modal retains the lease; idle does not hand it off.
 
 Architecture comes from the owner's adopted [SOD skill](../sod-unity-architecture/SKILL.md). This skill retains Emergency Shift migration safety and accepted behavior; it does not provide a competing architecture.
 
