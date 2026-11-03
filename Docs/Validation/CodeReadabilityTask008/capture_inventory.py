@@ -2,6 +2,7 @@
 
 Uses the existing read-only collector; never refreshes CodeAudit or calls Unity.
 """
+import argparse
 import collections
 import datetime
 import hashlib
@@ -17,16 +18,27 @@ PROJECT = OUTPUT.parents[2]
 
 
 def write(name, value):
-    (OUTPUT / name).write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    with (OUTPUT / name).open("x", encoding="utf-8") as destination:
+        destination.write(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--name", default="source-inventory.pre-handoff.json")
+    parser.add_argument("--phase", choices=("pre-handoff", "post-handoff"), default="pre-handoff")
+    args = parser.parse_args()
+    if Path(args.name).name != args.name or not args.name.startswith("source-inventory.") or not args.name.endswith(".json"):
+        parser.error("--name must be a source-inventory.*.json filename in this evidence directory")
+    if (OUTPUT / args.name).exists():
+        parser.error("Snapshot already exists; choose a new --name to preserve prior evidence")
     spec = importlib.util.spec_from_file_location("task008_inventory", PROJECT / "Tools/Maintenance/audit_code.py")
     collector = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(collector)
     inventory = collector.inventory()
-    trace = json.loads((OUTPUT / "read-trace.json").read_text(encoding="utf-8"))
-    reads = {entry["path"]: entry for entry in trace["reads"]}
+    reads = {}
+    for name in ("read-trace.json", "additional-read-trace.json"):
+        trace = json.loads((OUTPUT / name).read_text(encoding="utf-8"))
+        reads.update({entry["path"]: entry for entry in trace["reads"]})
     rows = []
     for path, entry in inventory.items():
         row = {key: entry[key] for key in ("path", "sourceScope", "sha256", "guid", "lines", "serializedUsers", "dependencyScenes")}
@@ -41,7 +53,7 @@ def main():
             row["assemblyArea"] = "Tests"
         else:
             row["assemblyArea"] = "Outside automatic Unity compilation"
-        row["finalQualification"] = "pending explicit predecessor handoff and final revision review"
+        row["finalQualification"] = "pending final revision review; read locator is not a reviewedSha256 verdict"
         rows.append(row)
     git = lambda *args: subprocess.run(["git", "--no-optional-locks", *args], cwd=PROJECT, check=True, capture_output=True).stdout
     status = git("status", "--porcelain=v1", "-uall")
@@ -53,7 +65,7 @@ def main():
     result = {
         "schemaVersion": 1,
         "task": "TASK-008",
-        "state": "preliminary_during_TASK007_game_lease",
+        "state": args.phase + "_mechanical_metadata",
         "capturedUtc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "head": git("rev-parse", "HEAD").decode().strip(),
         "gitStatusSha256": hashlib.sha256(status).hexdigest(),
@@ -66,14 +78,14 @@ def main():
         "assemblies": assemblies,
         "limits": [
             "Metadata and read locators do not prove semantic correctness or final source coverage.",
-            "TASK007 owns the changing game; this is not the post-handoff preservation baseline.",
+            "This working-tree metadata snapshot is not a native scene preservation baseline.",
             "Saved YAML external GUID traversal is neither native AssetDatabase nor local fileID validation.",
             "No Unity call, compile, test, build, CodeAudit refresh or gameplay write is performed.",
             "Historical and unread sources are not automatically marked reviewed."
         ],
         "files": rows
     }
-    write("source-inventory.pre-handoff.json", result)
+    write(args.name, result)
     print(json.dumps({key: result[key] for key in ("state", "head", "areaCounts", "sourceScopeCounts", "traceFiles")}, ensure_ascii=False))
 
 

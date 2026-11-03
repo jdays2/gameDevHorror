@@ -1,0 +1,30 @@
+{
+  "state": "proposal only; not applied, compiled or tested",
+  "createdUtc": "2026-11-03T09:23:07.524479+00:00",
+  "patch": "scorpion-settings.proposed.patch",
+  "sourceFiles": [
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionModel.cs",
+      "baselineSha256": "9d5f28ab7955889e8bf8862181067d8ed7cfe9b581f8bbfb92a6b6d1898d2af5"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionController.cs",
+      "baselineSha256": "98a786a36ebfd94d9f5974fe4f015149b9d064626c4422baaa4bb5144375697b"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/ScorpionControllerFactory.cs",
+      "baselineSha256": "bf502305955b29e49b5671b30bff78b8fd111f785f30c1dbf9fa1b64a17e4908"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs",
+      "baselineSha256": "2de650f50ba10050ea0deb1faddc0b06768de9406853a3382a5434d36d9bb37c"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionSettings.cs",
+      "baselineSha256": null
+    }
+  ],
+  "requiredBeforeApply": "Explicit game handoff, fresh native/dirty baseline, old-behavior characterization and zero-pursuit repro; migrate all callers/tests and verify native authored settings after apply.",
+  "intent": "F01 only: immutable snapshot, absolute attack speed, short per-tick facts API; same melee ordering and authored SO fields/values.",
+  "limits": "This is reviewable source preparation outside Unity imports, not an implemented refactor or verification result."
+}

@@ -1,0 +1,255 @@
+--- a/Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionModel.cs
++++ b/Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionModel.cs
+@@ -10,7 +10,6 @@
+     public sealed class ScorpionModel
+     {
+         private readonly IGameClock clock;
+-        private readonly float attackSeconds;
+         private double attackAt;
+         private double diedAt;
+         private float previousPhase;
+@@ -19,24 +18,21 @@
+         private float attackStartProgress;
+         private float motionSpeed;
+
+-        public ScorpionModel(IGameClock clock, float attackSeconds, Vector2 initialFacing = default)
++        public ScorpionModel(IGameClock clock, ScorpionSettings settings, Vector2 initialFacing = default)
+         {
+             this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
+-            if (!float.IsFinite(attackSeconds) || attackSeconds <= 0)
+-            {
+-                throw new ArgumentOutOfRangeException(nameof(attackSeconds));
+-            }
+-            this.attackSeconds = attackSeconds;
++            Settings = settings ?? throw new ArgumentNullException(nameof(settings));
+             Facing = initialFacing.sqrMagnitude > .001f ? initialFacing.normalized : Vector2.up;
+         }
+
++        public ScorpionSettings Settings { get; }
+         public ScorpionState State { get; private set; }
+         public bool HasAggro { get; private set; }
+         public bool IsAlive => State != ScorpionState.Dead;
+         public float GaitPhase { get; private set; }
+         public Vector2 Heading { get; private set; }
+         public Vector2 Facing { get; private set; }
+-        public float AttackProgress => State == ScorpionState.Attacking ? Mathf.Clamp01(attackStartProgress + (float)(clock.Time - attackAt) / attackSeconds) : 0;
++        public float AttackProgress => State == ScorpionState.Attacking ? Mathf.Clamp01(attackStartProgress + (float)(clock.Time - attackAt) / Settings.AttackSeconds) : 0;
+         public float DeathTime => IsAlive ? 0 : Mathf.Max(0, (float)(clock.Time - diedAt));
+         public bool CrossedGaitBoundary => GaitPhase < previousPhase || GaitPhase < .08f;
+
+@@ -50,17 +46,18 @@
+             motionSpeed = speed;
+         }
+
+-        public Vector2 Steer(Vector2 preferred, float maximumDegrees, float accelerationStep, float brakingStep)
++        public Vector2 Steer(Vector2 preferred, float deltaTime)
+         {
+             if (preferred.sqrMagnitude < .0001f)
+             {
+                 motionSpeed = 0;
+                 return Vector2.zero;
+             }
+-            AdvanceFacing(preferred, maximumDegrees);
++            AdvanceFacing(preferred, Settings.TurnDegrees * deltaTime);
+             float alignment = Mathf.Max(0, Vector2.Dot(Facing, preferred.normalized));
+             float targetSpeed = preferred.magnitude * alignment * alignment;
+-            motionSpeed = Mathf.MoveTowards(motionSpeed, targetSpeed, targetSpeed < motionSpeed ? brakingStep : accelerationStep);
++            float rate = targetSpeed < motionSpeed ? Settings.Braking : Settings.Acceleration;
++            motionSpeed = Mathf.MoveTowards(motionSpeed, targetSpeed, rate * deltaTime);
+             return Facing * motionSpeed;
+         }
+
+@@ -76,12 +73,12 @@
+             Facing = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+         }
+
+-        public void AdvanceTravel(float distance, float distancePerCycle)
++        public void AdvanceTravel(float distance)
+         {
+             previousPhase = GaitPhase;
+-            if (State == ScorpionState.Charging && float.IsFinite(distance) && distance >= 0 && distance < distancePerCycle)
++            if (State == ScorpionState.Charging && float.IsFinite(distance) && distance >= 0 && distance < Settings.DistancePerCycle)
+             {
+-                GaitPhase = Mathf.Repeat(GaitPhase + distance / distancePerCycle, 1);
++                GaitPhase = Mathf.Repeat(GaitPhase + distance / Settings.DistancePerCycle, 1);
+             }
+         }
+
+@@ -111,9 +108,9 @@
+             State = ScorpionState.Gathering;
+         }
+
+-        public bool AdvanceGather(float cycleSeconds)
++        public bool AdvanceGather()
+         {
+-            float phase = gatherPhase + (float)(clock.Time - gatherAt) / cycleSeconds;
++            float phase = gatherPhase + (float)(clock.Time - gatherAt) / Settings.GatherCycleSeconds;
+             GaitPhase = Mathf.Clamp01(phase);
+             if (phase < 1)
+             {
+--- a/Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionController.cs
++++ b/Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionController.cs
+@@ -19,9 +19,12 @@
+
+         public ScorpionModel Model { get; }
+
+-        public void Step(Vector2 position, Vector2 target, bool targetAlive, float speed, float attackMultiplier, float cycleSeconds = .36f,
+-            float maximumTurnDegrees = 360, float accelerationStep = float.PositiveInfinity, float brakingStep = float.PositiveInfinity)
++        public void Step(Vector2 position, Vector2 target, bool targetAlive, float deltaTime)
+         {
++            if (!float.IsFinite(deltaTime) || deltaTime < 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(deltaTime));
++            }
+             if (!Model.IsAlive || !targetAlive || !Model.HasAggro)
+             {
+                 if (Model.State == ScorpionState.Attacking || Model.State == ScorpionState.Gathering)
+@@ -37,7 +40,7 @@
+             {
+                 // A blocked actor finishes a deliberate foot reposition rather
+                 // than waiting forever for travel through a neighbour.
+-                Model.AdvanceGather(cycleSeconds);
++                Model.AdvanceGather();
+             }
+             if (Model.FinishIfElapsed())
+             {
+@@ -62,7 +65,7 @@
+                 melee.Step(Model.AttackProgress, position, Model.Heading, true);
+             }
+             bool slowed = attacking || Model.State == ScorpionState.Gathering;
+-            float moveSpeed = speed * (slowed ? attackMultiplier : 1);
++            float moveSpeed = slowed ? Model.Settings.AttackSpeed : Model.Settings.PursuitSpeed;
+             Vector2 velocity;
+             if (attacking)
+             {
+@@ -73,7 +76,7 @@
+             else
+             {
+                 Vector2 route = motor.Follow(target, moveSpeed);
+-                velocity = Model.Steer(route, maximumTurnDegrees, accelerationStep, brakingStep);
++                velocity = Model.Steer(route, deltaTime);
+             }
+             motor.Move(velocity, false);
+         }
+--- a/Assets/EmergencyShift/Runtime/Features/Scorpion/ScorpionControllerFactory.cs
++++ b/Assets/EmergencyShift/Runtime/Features/Scorpion/ScorpionControllerFactory.cs
+@@ -1,5 +1,6 @@
+ using EmergencyShift.Core.Time;
+ using EmergencyShift.Features.Enemies.Logic;
++using EmergencyShift.Features.Scorpion.Config;
+ using EmergencyShift.Features.Scorpion.Logic;
+ using UnityEngine;
+
+@@ -9,10 +10,14 @@
+     {
+         private readonly IGameClock clock;
+         public ScorpionControllerFactory(IGameClock clock) => this.clock = clock;
+-        public ScorpionController Create(EnemyDefinition definition, IEnemyBrainMotor motor, IEnemyBrainMelee melee, Vector2 facing)
++        public ScorpionController Create(EnemyDefinition definition, ScorpionPresentationSet presentation, IEnemyBrainMotor motor, IEnemyBrainMelee melee, Vector2 facing)
+         {
+             definition.Validate();
+-            return new ScorpionController(new ScorpionModel(clock, definition.AttackDuration, facing), motor, melee);
++            presentation.Validate();
++            var settings = new ScorpionSettings(definition.PursuitSpeed, presentation.Attack.ReferenceSpeed,
++                definition.AttackDuration, presentation.DistancePerCycle, presentation.TurnDegrees,
++                presentation.Acceleration, presentation.Braking);
++            return new ScorpionController(new ScorpionModel(clock, settings, facing), motor, melee);
+         }
+     }
+ }
+--- a/Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs
++++ b/Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs
+@@ -76,7 +76,7 @@
+             perception.Configure(target, blockingGeometry, null);
+             motor.Configure(blockingGeometry);
+             melee.Configure(definition, perception, motor);
+-            controller = factory.Create(definition, new ScorpionMotionAdapter(motor), new EnemyBrainMelee2D(melee), transform.up);
++            controller = factory.Create(definition, presentation, new ScorpionMotionAdapter(motor), new EnemyBrainMelee2D(melee), transform.up);
+             health.Initialize(definition.MaximumHealth);
+             health.Died += OnDied;
+             previousPosition = body.position;
+@@ -89,16 +89,14 @@
+             // Separation, walls and contacts can reduce the requested speed to zero.
+             // Start the next acceleration from the movement that physics actually allowed.
+             controller.Model.CommitMotion(body.linearVelocity.magnitude);
+-            controller.Model.AdvanceTravel(travelled, presentation.DistancePerCycle);
++            controller.Model.AdvanceTravel(travelled);
+             HasTargetLineOfSight = perception.CanSeeTarget(body.position);
+             if (!HasAggro && perception.Within(body.position, detectionRadius) && HasTargetLineOfSight)
+             {
+                 RequestAlarm();
+             }
+             controller.Step(body.position, target != null ? (Vector2)target.position : body.position,
+-                perception.TargetAlive, definition.PursuitSpeed, presentation.Attack.ReferenceSpeed / definition.PursuitSpeed,
+-                presentation.DistancePerCycle / presentation.Attack.ReferenceSpeed, presentation.TurnDegrees * Time.fixedDeltaTime,
+-                presentation.Acceleration * Time.fixedDeltaTime, presentation.Braking * Time.fixedDeltaTime);
++                perception.TargetAlive, Time.fixedDeltaTime);
+         }
+
+         public void BindPack(ScorpionPack2D owner)
+--- /dev/null
++++ b/Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionSettings.cs
+@@ -0,0 +1,63 @@
++using System;
++
++namespace EmergencyShift.Features.Scorpion.Logic
++{
++    /// <summary>Immutable motion/timeline snapshot; distances are world units and rates are per second.</summary>
++    public sealed class ScorpionSettings
++    {
++        public ScorpionSettings(float pursuitSpeed, float attackSpeed, float attackSeconds, float distancePerCycle,
++            float turnDegrees, float acceleration, float braking)
++        {
++            if (!float.IsFinite(pursuitSpeed) || pursuitSpeed < 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(pursuitSpeed));
++            }
++            if (!float.IsFinite(attackSpeed) || attackSpeed <= 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(attackSpeed));
++            }
++            if (!float.IsFinite(attackSeconds) || attackSeconds <= 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(attackSeconds));
++            }
++            if (!float.IsFinite(distancePerCycle) || distancePerCycle <= 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(distancePerCycle));
++            }
++            if (!float.IsFinite(turnDegrees) || turnDegrees <= 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(turnDegrees));
++            }
++            if (!float.IsFinite(acceleration) || acceleration <= 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(acceleration));
++            }
++            if (!float.IsFinite(braking) || braking <= 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(braking));
++            }
++            float gatherCycleSeconds = distancePerCycle / attackSpeed;
++            if (!float.IsFinite(gatherCycleSeconds) || gatherCycleSeconds <= 0)
++            {
++                throw new ArgumentOutOfRangeException(nameof(distancePerCycle), "Gather cycle must have a finite positive duration.");
++            }
++            PursuitSpeed = pursuitSpeed;
++            AttackSpeed = attackSpeed;
++            AttackSeconds = attackSeconds;
++            DistancePerCycle = distancePerCycle;
++            TurnDegrees = turnDegrees;
++            Acceleration = acceleration;
++            Braking = braking;
++            GatherCycleSeconds = gatherCycleSeconds;
++        }
++
++        public float PursuitSpeed { get; }
++        public float AttackSpeed { get; }
++        public float AttackSeconds { get; }
++        public float DistancePerCycle { get; }
++        public float TurnDegrees { get; }
++        public float Acceleration { get; }
++        public float Braking { get; }
++        public float GatherCycleSeconds { get; }
++    }
++}
