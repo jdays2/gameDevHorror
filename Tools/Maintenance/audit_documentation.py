@@ -5,7 +5,7 @@ import collections
 import hashlib
 import json
 import re
-from urllib.parse import unquote
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
 LINK = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
@@ -25,7 +25,7 @@ def inventory():
             target = match.group(1).strip().split(' "', 1)[0].strip("<>")
             if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://|^mailto:", target) or target.startswith("#"):
                 continue
-            file = unquote(target.split("#", 1)[0])
+            file = unquote(urlsplit(target).path)
             if file and not (path.parent / file).resolve().exists():
                 broken.append({"source": path.relative_to(ROOT).as_posix(), "target": target})
     return {

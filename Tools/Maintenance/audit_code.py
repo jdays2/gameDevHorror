@@ -93,7 +93,13 @@ def main():
         if removed:
             registry.setdefault("removedEntries", []).extend(old[p] for p in removed)
         registry["date"] = args.date
-        registry["complete"] = False
+        # Refresh records inventory, not a new semantic review or technical verification.
+        # Keep dated review evidence and reviewedSha256 intact, but invalidate readiness.
+        for flag in ("complete", "sourceCoverageComplete", "technicalSourceReviewComplete",
+                     "technicalMigrationComplete"):
+            registry[flag] = False
+        if "sourceCoverage" in registry:
+            registry["sourceCoverage"]["hashesCurrent"] = False
         registry["counts"] = dict(collections.Counter(entry["reviewStatus"] for entry in current.values()))
         registry["scopeCounts"] = dict(collections.Counter(entry["sourceScope"] for entry in current.values()))
         registry["method"] = "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict."
