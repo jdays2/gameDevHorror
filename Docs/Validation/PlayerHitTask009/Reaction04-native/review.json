@@ -1,0 +1,39 @@
+{
+  "sceneSnapshotsEqual": true,
+  "startScene": null,
+  "timeScale": 1.0,
+  "captureFramerate": 0,
+  "listenerVolume": 1.0,
+  "listenerPause": false,
+  "temporaryAuditionClips": 0,
+  "runtimeHitPresenters": 0,
+  "consoleCountsBefore": {
+    "error": 11,
+    "warn": 147,
+    "log": 142
+  },
+  "consoleCountsAfter": {
+    "error": 25,
+    "warn": 147,
+    "log": 145
+  },
+  "consoleGroundTruth": {
+    "sampledUtc": "2026-11-04T11:21:47.2182941Z",
+    "ageMs": 221,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 0,
+    "consoleLogs": 1,
+    "seeded": true
+  },
+  "consoleQualification": {
+    "newRetainedErrors": 14,
+    "newRetainedWarnings": 0,
+    "cause": "CLI status --until-ready sent unsupported editor status during the first Play startup; 8 resolution errors and 6 API main-thread timeouts. Direct editor_status worked; no such status polling used for K/L. No gameplay exception in new retained entries. Ground-truth console errors/warnings0 after Stop.",
+    "classifiedMessages": {
+      "ExecuteCommandByName: No command named 'editor status' is available": 8,
+      "Failed to handle /api/exec request: Main thread operation timed out after 4000ms": 6
+    }
+  }
+}

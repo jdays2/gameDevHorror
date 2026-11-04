@@ -22,6 +22,10 @@ public static class InspectPlayerHit
 
     public static object NativeFinal() => NativeSnapshot("native-final.json");
 
+    public static object ReactionBaseline() => NativeSnapshot("Reaction04-native/editor-before.json");
+
+    public static object ReactionFinal() => NativeSnapshot("Reaction04-native/editor-stopped.json");
+
     private static object NativeSnapshot(string filename)
     {
         if (Application.isPlaying || EditorApplication.isCompiling || EditorApplication.isUpdating)
@@ -45,7 +49,9 @@ public static class InspectPlayerHit
                 sources = Sources(scene) });
         }
         var result = new { scenes, startScene = EditorSceneManager.playModeStartScene == null ? null : AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene),
-            AudioListener.volume, AudioListener.pause, Time.timeScale, Time.captureFramerate, Application.runInBackground };
+            AudioListener.volume, AudioListener.pause, Time.timeScale, Time.captureFramerate, Application.runInBackground,
+            temporaryAuditionClips = Resources.FindObjectsOfTypeAll<AudioClip>().Count(clip => clip.name.StartsWith("TASK009 audition ")),
+            runtimeHitPresenters = Resources.FindObjectsOfTypeAll<EmergencyShift.Features.PlayerHitAudio.View.PlayerHitAudioPresenter>().Length };
         Save(filename, result);
         return new { scenes = scenes.Count, saved = Evidence + filename };
     }

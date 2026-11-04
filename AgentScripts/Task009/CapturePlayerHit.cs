@@ -21,12 +21,15 @@ public static class CapturePlayerHit
     public static Task<object> RecordD() => Record("D");
     public static Task<object> RecordE() => Record("E");
     public static Task<object> RecordF() => Record("F");
+    public static Task<object> RecordJ() => Record("J");
+    public static Task<object> RecordK() => Record("K");
+    public static Task<object> RecordL() => Record("L");
 
     public static Task<object> Record(string candidate)
     {
-        if (!Application.isPlaying || !new[] { "A", "B", "C", "D", "E", "F" }.Contains(candidate))
+        if (!Application.isPlaying || !new[] { "A", "B", "C", "D", "E", "F", "J", "K", "L" }.Contains(candidate))
         {
-            throw new InvalidOperationException("Requires ordinary Play and candidate A/B/C/D/E/F.");
+            throw new InvalidOperationException("Requires ordinary Play and candidate A/B/C/D/E/F/J/K/L.");
         }
         var viewType = typeof(Editor).Assembly.GetType("UnityEditor.GameView");
         EditorWindow view = EditorWindow.GetWindow(viewType);
@@ -119,17 +122,22 @@ public sealed class PlayerHitCaptureProbe : MonoBehaviour
             using (var data = new SerializedObject(audition))
             {
                 SerializedProperty clips = data.FindProperty("clips");
-                bool bodilyAudition = new[] { "D", "E", "F" }.Contains(candidate);
-                if (bodilyAudition)
+                bool singleSourceAudition = new[] { "D", "E", "F", "J", "K", "L" }.Contains(candidate);
+                if (singleSourceAudition)
                 {
                     clips.arraySize = 1;
                 }
                 for (int index = 0; index < clips.arraySize; index++)
                 {
                     string path;
-                    if (bodilyAudition)
+                    if (singleSourceAudition)
                     {
-                        path = "Concepts/Unused/Audio/PlayerHitTask009/Bite02/Exports/" + candidate + "_hit.wav";
+                        string revision = "Bite02";
+                        if (new[] { "J", "K", "L" }.Contains(candidate))
+                        {
+                            revision = "Reaction04";
+                        }
+                        path = "Concepts/Unused/Audio/PlayerHitTask009/" + revision + "/Exports/" + candidate + "_hit.wav";
                     }
                     else
                     {
@@ -225,7 +233,7 @@ public sealed class PlayerHitCaptureProbe : MonoBehaviour
                 auditionClipCount = audition != null ? audition.Clips.Count : original.Clips.Count,
                 source = "Native AudioRenderer main mix and composited GameView, no normalization or substituted audio.",
                 fixture = "Four spaced accepted hits by an autonomous ShadowStalker, no firing. Player held at original spawn with temporary 100HP and aim at the enemy; other enemies disabled only during Play. Attacks stopped after hit four, with a 1.2s tail. Attack timing/damage/assets unchanged.",
-                auditionBank = new[] { "D", "E", "F" }.Contains(candidate)
+                auditionBank = new[] { "D", "E", "F", "J", "K", "L" }.Contains(candidate)
                     ? "One source for this audition, repeated on four real hits; not a completed variation bank. Only the memory-copy clip bank changes; production gain/pitch/routing retained."
                     : "Existing B bank, or historical A/C audition variants.",
                 originalProfileUnchanged = JsonUtility.ToJson(original) == unchanged,

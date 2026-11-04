@@ -1,4 +1,4 @@
-"""Join native D/E/F auditions with visible labels and unchanged source levels."""
+"""Join three native auditions with visible labels and unchanged source levels."""
 import argparse
 import hashlib
 import json
@@ -7,21 +7,25 @@ import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[2]
-OUTPUT = ROOT / "Docs/Validation/PlayerHitTask009/Bite02-native"
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--ffmpeg", required=True)
+    parser.add_argument("--revision", default="Bite02")
+    parser.add_argument("--candidates", default="DEF")
     args = parser.parse_args()
+    if not args.revision.isalnum() or len(args.candidates) != 3 or not args.candidates.isalpha():
+        raise ValueError("Use an alphanumeric revision and three candidate letters.")
+    output = ROOT / f"Docs/Validation/PlayerHitTask009/{args.revision}-native"
     inputs = []
     filters = []
     segments = []
-    output_path = OUTPUT / "DEF-native-gameplay.mp4"
+    output_path = output / f"{args.candidates}-native-gameplay.mp4"
     if output_path.exists():
         raise FileExistsError("Preserve the existing comparison before rerunning.")
-    for index, key in enumerate("DEF"):
-        folder = OUTPUT / key
+    for index, key in enumerate(args.candidates):
+        folder = output / key
         metrics = json.loads((folder / "mix-analysis.json").read_text(encoding="utf-8-sig"))
         capture = metrics["nativeCapture"]
         assert capture["candidate"] == key and capture["shots"] == 0 and capture["PlayedCount"] == 4
@@ -43,16 +47,16 @@ def main():
                     "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-crf", "20", "-pix_fmt", "yuv420p",
                     "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(output_path)], check=True)
     audio_inputs = []
-    for key in "DEF":
-        audio_inputs += ["-i", str(OUTPUT / key / "native-main-mix.wav")]
+    for key in args.candidates:
+        audio_inputs += ["-i", str(output / key / "native-main-mix.wav")]
     subprocess.run([args.ffmpeg, "-y", "-v", "error", *audio_inputs,
                     "-filter_complex", "[0:a][1:a][2:a]concat=n=3:v=0:a=1[a]", "-map", "[a]",
-                    "-c:a", "pcm_s24le", str(OUTPUT / "DEF-native-main-mix.wav")], check=True)
-    result = {"task": "TASK-009", "revision": "Bite02 native comparison", "segments": segments,
-              "order": "D, then E, then F; four actual accepted hits each, zero shots",
+                    "-c:a", "pcm_s24le", str(output / f"{args.candidates}-native-main-mix.wav")], check=True)
+    result = {"task": "TASK-009", "revision": args.revision + " native comparison", "segments": segments,
+              "order": ", then ".join(args.candidates) + "; four actual accepted hits each, zero shots",
               "processing": "Visible candidate letter and concatenation only. Native WAV levels unchanged; AAC video encode. Concat may pad audio by less than one video frame at segment boundaries.",
               "limits": "One audition source per direction, repeated on four native hits with the existing profile pitch range; not a finished variation bank or artistic approval."}
-    (OUTPUT / "comparison.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    (output / "comparison.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"output": str(output_path), "segments": segments}, indent=2))
 
 
