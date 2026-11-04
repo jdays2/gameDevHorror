@@ -31,6 +31,7 @@ namespace EmergencyShift.Features.Scorpion.View
         private Vector2 previousPosition;
         public event Action Hit;
         public event Action Died;
+        public event Action AlarmCueRequested;
         public override bool IsAlive => health != null && health.IsAlive;
         public int Health => health != null ? health.Current : 0;
         public bool HasAggro => controller != null && controller.Model.HasAggro;
@@ -76,7 +77,7 @@ namespace EmergencyShift.Features.Scorpion.View
             perception.Configure(target, blockingGeometry, null);
             motor.Configure(blockingGeometry);
             melee.Configure(definition, perception, motor);
-            controller = factory.Create(definition, new ScorpionMotionAdapter(motor), new EnemyBrainMelee2D(melee), transform.up);
+            controller = factory.Create(definition, presentation, new ScorpionMotionAdapter(motor), new EnemyBrainMelee2D(melee), transform.up);
             health.Initialize(definition.MaximumHealth);
             health.Died += OnDied;
             previousPosition = body.position;
@@ -89,16 +90,14 @@ namespace EmergencyShift.Features.Scorpion.View
             // Separation, walls and contacts can reduce the requested speed to zero.
             // Start the next acceleration from the movement that physics actually allowed.
             controller.Model.CommitMotion(body.linearVelocity.magnitude);
-            controller.Model.AdvanceTravel(travelled, presentation.DistancePerCycle);
+            controller.Model.AdvanceTravel(travelled);
             HasTargetLineOfSight = perception.CanSeeTarget(body.position);
             if (!HasAggro && perception.Within(body.position, detectionRadius) && HasTargetLineOfSight)
             {
                 RequestAlarm();
             }
             controller.Step(body.position, target != null ? (Vector2)target.position : body.position,
-                perception.TargetAlive, definition.PursuitSpeed, presentation.Attack.ReferenceSpeed / definition.PursuitSpeed,
-                presentation.DistancePerCycle / presentation.Attack.ReferenceSpeed, presentation.TurnDegrees * Time.fixedDeltaTime,
-                presentation.Acceleration * Time.fixedDeltaTime, presentation.Braking * Time.fixedDeltaTime);
+                perception.TargetAlive, Time.fixedDeltaTime);
         }
 
         public void BindPack(ScorpionPack2D owner)
@@ -109,6 +108,8 @@ namespace EmergencyShift.Features.Scorpion.View
             }
             pack = owner;
         }
+
+        internal void EmitAlarmCue() => AlarmCueRequested?.Invoke();
 
         public void Alert() => controller?.Alert();
 
@@ -141,7 +142,7 @@ namespace EmergencyShift.Features.Scorpion.View
                 controller.Alert();
                 if (!wasAlerted && HasAggro)
                 {
-                    GetComponent<ScorpionAudio2D>().PlayAlarm();
+                    EmitAlarmCue();
                 }
             }
         }

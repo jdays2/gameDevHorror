@@ -10,7 +10,6 @@ namespace EmergencyShift.Features.Scorpion.Logic
     public sealed class ScorpionModel
     {
         private readonly IGameClock clock;
-        private readonly float attackSeconds;
         private double attackAt;
         private double diedAt;
         private float previousPhase;
@@ -19,24 +18,21 @@ namespace EmergencyShift.Features.Scorpion.Logic
         private float attackStartProgress;
         private float motionSpeed;
 
-        public ScorpionModel(IGameClock clock, float attackSeconds, Vector2 initialFacing = default)
+        public ScorpionModel(IGameClock clock, ScorpionSettings settings, Vector2 initialFacing = default)
         {
             this.clock = clock ?? throw new ArgumentNullException(nameof(clock));
-            if (!float.IsFinite(attackSeconds) || attackSeconds <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(attackSeconds));
-            }
-            this.attackSeconds = attackSeconds;
+            Settings = settings ?? throw new ArgumentNullException(nameof(settings));
             Facing = initialFacing.sqrMagnitude > .001f ? initialFacing.normalized : Vector2.up;
         }
 
+        public ScorpionSettings Settings { get; }
         public ScorpionState State { get; private set; }
         public bool HasAggro { get; private set; }
         public bool IsAlive => State != ScorpionState.Dead;
         public float GaitPhase { get; private set; }
         public Vector2 Heading { get; private set; }
         public Vector2 Facing { get; private set; }
-        public float AttackProgress => State == ScorpionState.Attacking ? Mathf.Clamp01(attackStartProgress + (float)(clock.Time - attackAt) / attackSeconds) : 0;
+        public float AttackProgress => State == ScorpionState.Attacking ? Mathf.Clamp01(attackStartProgress + (float)(clock.Time - attackAt) / Settings.AttackSeconds) : 0;
         public float DeathTime => IsAlive ? 0 : Mathf.Max(0, (float)(clock.Time - diedAt));
         public bool CrossedGaitBoundary => GaitPhase < previousPhase || GaitPhase < .08f;
 
@@ -50,17 +46,18 @@ namespace EmergencyShift.Features.Scorpion.Logic
             motionSpeed = speed;
         }
 
-        public Vector2 Steer(Vector2 preferred, float maximumDegrees, float accelerationStep, float brakingStep)
+        public Vector2 Steer(Vector2 preferred, float deltaTime)
         {
             if (preferred.sqrMagnitude < .0001f)
             {
                 motionSpeed = 0;
                 return Vector2.zero;
             }
-            AdvanceFacing(preferred, maximumDegrees);
+            AdvanceFacing(preferred, Settings.TurnDegrees * deltaTime);
             float alignment = Mathf.Max(0, Vector2.Dot(Facing, preferred.normalized));
             float targetSpeed = preferred.magnitude * alignment * alignment;
-            motionSpeed = Mathf.MoveTowards(motionSpeed, targetSpeed, targetSpeed < motionSpeed ? brakingStep : accelerationStep);
+            float rate = targetSpeed < motionSpeed ? Settings.Braking : Settings.Acceleration;
+            motionSpeed = Mathf.MoveTowards(motionSpeed, targetSpeed, rate * deltaTime);
             return Facing * motionSpeed;
         }
 
@@ -76,12 +73,12 @@ namespace EmergencyShift.Features.Scorpion.Logic
             Facing = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         }
 
-        public void AdvanceTravel(float distance, float distancePerCycle)
+        public void AdvanceTravel(float distance)
         {
             previousPhase = GaitPhase;
-            if (State == ScorpionState.Charging && float.IsFinite(distance) && distance >= 0 && distance < distancePerCycle)
+            if (State == ScorpionState.Charging && float.IsFinite(distance) && distance >= 0 && distance < Settings.DistancePerCycle)
             {
-                GaitPhase = Mathf.Repeat(GaitPhase + distance / distancePerCycle, 1);
+                GaitPhase = Mathf.Repeat(GaitPhase + distance / Settings.DistancePerCycle, 1);
             }
         }
 
@@ -111,9 +108,9 @@ namespace EmergencyShift.Features.Scorpion.Logic
             State = ScorpionState.Gathering;
         }
 
-        public bool AdvanceGather(float cycleSeconds)
+        public bool AdvanceGather()
         {
-            float phase = gatherPhase + (float)(clock.Time - gatherAt) / cycleSeconds;
+            float phase = gatherPhase + (float)(clock.Time - gatherAt) / Settings.GatherCycleSeconds;
             GaitPhase = Mathf.Clamp01(phase);
             if (phase < 1)
             {

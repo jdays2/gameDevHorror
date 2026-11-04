@@ -69,6 +69,7 @@ namespace EmergencyShift.Features.Scorpion.View
         {
             actor.Hit += OnHit;
             actor.Died += OnDeath;
+            actor.AlarmCueRequested += PlayAlarm;
             previous = transform.position;
             attackSound = false;
             ScheduleNextSqueak();
@@ -78,6 +79,7 @@ namespace EmergencyShift.Features.Scorpion.View
         {
             actor.Hit -= OnHit;
             actor.Died -= OnDeath;
+            actor.AlarmCueRequested -= PlayAlarm;
             Stop();
         }
 

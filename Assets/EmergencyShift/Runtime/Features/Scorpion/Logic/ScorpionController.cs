@@ -19,9 +19,12 @@ namespace EmergencyShift.Features.Scorpion.Logic
 
         public ScorpionModel Model { get; }
 
-        public void Step(Vector2 position, Vector2 target, bool targetAlive, float speed, float attackMultiplier, float cycleSeconds = .36f,
-            float maximumTurnDegrees = 360, float accelerationStep = float.PositiveInfinity, float brakingStep = float.PositiveInfinity)
+        public void Step(Vector2 position, Vector2 target, bool targetAlive, float deltaTime)
         {
+            if (!float.IsFinite(deltaTime) || deltaTime < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(deltaTime));
+            }
             if (!Model.IsAlive || !targetAlive || !Model.HasAggro)
             {
                 if (Model.State == ScorpionState.Attacking || Model.State == ScorpionState.Gathering)
@@ -37,7 +40,7 @@ namespace EmergencyShift.Features.Scorpion.Logic
             {
                 // A blocked actor finishes a deliberate foot reposition rather
                 // than waiting forever for travel through a neighbour.
-                Model.AdvanceGather(cycleSeconds);
+                Model.AdvanceGather();
             }
             if (Model.FinishIfElapsed())
             {
@@ -62,7 +65,7 @@ namespace EmergencyShift.Features.Scorpion.Logic
                 melee.Step(Model.AttackProgress, position, Model.Heading, true);
             }
             bool slowed = attacking || Model.State == ScorpionState.Gathering;
-            float moveSpeed = speed * (slowed ? attackMultiplier : 1);
+            float moveSpeed = slowed ? Model.Settings.AttackSpeed : Model.Settings.PursuitSpeed;
             Vector2 velocity;
             if (attacking)
             {
@@ -73,7 +76,7 @@ namespace EmergencyShift.Features.Scorpion.Logic
             else
             {
                 Vector2 route = motor.Follow(target, moveSpeed);
-                velocity = Model.Steer(route, maximumTurnDegrees, accelerationStep, brakingStep);
+                velocity = Model.Steer(route, deltaTime);
             }
             motor.Move(velocity, false);
         }

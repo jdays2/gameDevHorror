@@ -70,7 +70,7 @@ namespace EmergencyShift.Features.Scorpion.View
             }
             if (caller != null)
             {
-                caller.GetComponent<ScorpionAudio2D>().PlayAlarm();
+                caller.EmitAlarmCue();
                 AlarmCount++;
             }
         }
