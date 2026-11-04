@@ -5797,17 +5797,17 @@
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
-      "notes": "Explicit external authoring/build/inspection recipes are outside automatic Unity compilation. Recorded per-file conclusions distinguish mutating Install/restore recipes, old schema/candidate assumptions, evidence-only helpers and current probes. Preserve cold history and do not mass-format or automatically execute it. Per-file decision: Full original capture and current D/E/F extension read. Existing autonomous four accepted contacts/zero shots/tail/native mix and known-baseline cleanup retained. D/E/F use one temporary memory-only clip bank loaded from Bite02 PCM16 sources, preserve original gain/pitch/routing and explicitly state this is no variation bank. Prepared for owner execution after TASK008, not executed/approved by this audit. Production assets/profile not changed. Historical B artistic rejection and new single-clip auditions remain distinct from runtime code correctness.",
+      "notes": "After TASK008 native handoff the owner added only three parameterless CLI entry points RecordD/E/F => Record(\"D\"/\"E\"/\"F\"). Exact diff c9646e read against the already fully read capture and D/E/F extension. These non-imported opt-in gateways create no new gameplay or shared state. Native/game/build inputs unchanged; owner executes capture in its later lease, not TASK008.",
       "path": "AgentScripts/Task009/CapturePlayerHit.cs",
       "sourceScope": "agent_tool",
-      "sha256": "3fbeddf7c016071db0dc5fbd5214aba053fde439231dcca3e9b3b415aab3a127",
+      "sha256": "2c286c5135d4fc3339ce5c6b85e8a48f2c556e006f9e62929d1edf6cfdc804fe",
       "guid": null,
       "types": [
         "CapturePlayerHit",
         "PlayerHitCaptureProbe",
         "Viewport"
       ],
-      "lines": 358,
+      "lines": 362,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -5821,27 +5821,39 @@
         {
           "reviewStatus": "queued",
           "notes": "New inventory entry; no semantic review yet."
+        },
+        {
+          "reviewedSha256": "3fbeddf7c016071db0dc5fbd5214aba053fde439231dcca3e9b3b415aab3a127",
+          "reviewedSnapshot": "Docs/Validation/CodeReadabilityTask008/source-review.final.json",
+          "reviewDate": "2026-11-04",
+          "reviewScope": "Per-file receipts distinguish actual current helpers from historical candidate/schema-specific recipes. TASK008 native/diagnostic/install/build tools have separate scoped execution evidence; retained cold recipes are source-reviewed, not universally compiled/executed. False-in-JSON and overwrite-prone old verifiers are explicitly limited.",
+          "notes": "Explicit external authoring/build/inspection recipes are outside automatic Unity compilation. Recorded per-file conclusions distinguish mutating Install/restore recipes, old schema/candidate assumptions, evidence-only helpers and current probes. Preserve cold history and do not mass-format or automatically execute it. Per-file decision: Full original capture and current D/E/F extension read. Existing autonomous four accepted contacts/zero shots/tail/native mix and known-baseline cleanup retained. D/E/F use one temporary memory-only clip bank loaded from Bite02 PCM16 sources, preserve original gain/pitch/routing and explicitly state this is no variation bank. Prepared for owner execution after TASK008, not executed/approved by this audit. Production assets/profile not changed. Historical B artistic rejection and new single-clip auditions remain distinct from runtime code correctness."
         }
       ],
       "reviewDate": "2026-11-04",
-      "reviewedSnapshot": "Docs/Validation/CodeReadabilityTask008/source-review.final.json",
+      "reviewedSnapshot": "Docs/Validation/CodeReadabilityTask008/post-handoff-capture-source.json",
       "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
       "task008Decision": {
         "evidence": "Docs/Validation/CodeReadabilityTask008/source-review.final.json",
         "state": "manual_source_conclusion",
         "module": "AgentScripts/"
       },
-      "reviewedSha256": "3fbeddf7c016071db0dc5fbd5214aba053fde439231dcca3e9b3b415aab3a127",
+      "reviewedSha256": "2c286c5135d4fc3339ce5c6b85e8a48f2c556e006f9e62929d1edf6cfdc804fe",
       "responsibility": "AgentScripts/",
       "usageEvidence": {
         "path": "AgentScripts/Task009/CapturePlayerHit.cs",
-        "sha256": "3fbeddf7c016071db0dc5fbd5214aba053fde439231dcca3e9b3b415aab3a127",
+        "qualifiedUtc": "2026-11-04T06:16:37.925569+00:00",
+        "previousReviewedSha256": "3fbeddf7c016071db0dc5fbd5214aba053fde439231dcca3e9b3b415aab3a127",
+        "sha256": "2c286c5135d4fc3339ce5c6b85e8a48f2c556e006f9e62929d1edf6cfdc804fe",
         "readCommands": [
           "05bcb7",
           "26a54a",
-          "00a490 current exact diff"
+          "00a490",
+          "c9646e"
         ],
-        "conclusion": "Full original capture and current D/E/F extension read. Existing autonomous four accepted contacts/zero shots/tail/native mix and known-baseline cleanup retained. D/E/F use one temporary memory-only clip bank loaded from Bite02 PCM16 sources, preserve original gain/pitch/routing and explicitly state this is no variation bank. Prepared for owner execution after TASK008, not executed/approved by this audit. Production assets/profile not changed. Historical B artistic rejection and new single-clip auditions remain distinct from runtime code correctness."
+        "conclusion": "After TASK008 native handoff the owner added only three parameterless CLI entry points RecordD/E/F => Record(\"D\"/\"E\"/\"F\"). Exact diff c9646e read against the already fully read capture and D/E/F extension. These non-imported opt-in gateways create no new gameplay or shared state. Native/game/build inputs unchanged; owner executes capture in its later lease, not TASK008.",
+        "nativeVerificationUnchanged": true,
+        "scope": "One source-only delta after completed game window; original snapshot retained verbatim."
       },
       "reviewScope": "Per-file receipts distinguish actual current helpers from historical candidate/schema-specific recipes. TASK008 native/diagnostic/install/build tools have separate scoped execution evidence; retained cold recipes are source-reviewed, not universally compiled/executed. False-in-JSON and overwrite-prone old verifiers are explicitly limited."
     },
@@ -59966,12 +59978,12 @@
     "hashesCurrent": true,
     "date": "2026-11-04",
     "scope": "Explicit manual source conclusions and actual scoped/full regressions of the shared working tree. Six named owner-paused drafts unread; historical external recipes source-only. No clean publication, performance or artistic acceptance claim.",
-    "validation": "Manual receipts/module and per-file decisions: source-review.final.json. Actual integration: final-verification.json. Exclusions are not counted as reviewed."
+    "validation": "Manual source-review.final.json plus explicit post-handoff-capture-source.json one-file delta; all950 current SHA verified. Native/game inputs and final-verification.json unchanged. Six exclusions are not counted as reviewed."
   },
   "technicalSourceReviewComplete": true,
   "technicalMigrationComplete": true,
   "ownerAcceptanceComplete": false,
-  "verifiedCodeRevision": "Shared working tree on base 8e10b3fe853cfa3eac57f933f898dc6a1c1f58bb; exact source SHA snapshot: 735cce1c5f1a3a3121d6ca2b3cd46a7bf43a3a925efe10ecd2b29c06f413b766",
+  "verifiedCodeRevision": "Shared working tree on base 8e10b3fe853cfa3eac57f933f898dc6a1c1f58bb; exact source SHA snapshot: 735cce1c5f1a3a3121d6ca2b3cd46a7bf43a3a925efe10ecd2b29c06f413b766; source-only subsequent CapturePlayerHit CLI gateway delta: 2c286c5135d4fc3339ce5c6b85e8a48f2c556e006f9e62929d1edf6cfdc804fe",
   "inventoryRefresh": {
     "date": "2026-11-03",
     "state": "provisional while TASK-007 owns game",
@@ -60079,6 +60091,7 @@
     "authoringReview": "Not applicable: no authored scene objects added/moved or scenes saved. One explicit ProjectContext prefab installer append is verified separately.",
     "maintenanceCli": "maintenance-cli.final.json (8/8)",
     "documentation": "documentation-links.final-after-history-link.json (463/0broken)",
-    "handoff": "handoff-to-task009.final.json; subsequent game work belongs to TASK009"
+    "handoff": "handoff-to-task009.final.json; subsequent game work belongs to TASK009",
+    "postHandoffSourceDelta": "post-handoff-capture-source.json"
   }
 }

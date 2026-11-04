@@ -10,6 +10,8 @@
 
 CodeAudit содержит 944 reviewed_boundary, шесть preserved_unread_draft_exclusion, queued/partial0. Прежние dated passes, reviewed SHA и выводы сохранены в reviewHistory и backup. Шесть сохранённых `SleeperSpriteRig01/{AuthoringDrafts,PausedAttempt}` не прочитаны заново, не компилировались и не исполнялись. Исторические внешние генераторы квалифицированы как source/provenance, а не универсальные валидаторы сегодняшних карт. Подготовленный capture-only helper D/E/F TASK009 прочитан; его последующее исполнение относится к следующему окну владельца.
 
+После передачи Unity TASK009 добавил в тот же внешний helper только три parameterless CLI entry points RecordD/E/F. [Однофайловое дополнение чтения](../Validation/CodeReadabilityTask008/post-handoff-capture-source.json) квалифицирует новые байты отдельно; исходный source snapshot сохранён без переписывания. В CodeAudit учтён delta и вновь сверены все950 SHA. Проверки игрового кода/сборки относятся к завершённому окну TASK008; последующие записи TASK009 не выдаются за его работу.
+
 Небольшие осмысленные границы SOD сохранены. Конечные FSM, guard-проверки, три явные зависимости clock/quota/личный RNG, scoped factory и длинные связные native/View-рецепты не объявлены spaghetti по форме. Общие потребители урона, оружия, UI и угрозы не получили выбора по названию вида.
 
 | Находка | Итог |

@@ -1,0 +1,15 @@
+{
+  "path": "AgentScripts/Task009/CapturePlayerHit.cs",
+  "qualifiedUtc": "2026-11-04T06:16:37.925569+00:00",
+  "previousReviewedSha256": "3fbeddf7c016071db0dc5fbd5214aba053fde439231dcca3e9b3b415aab3a127",
+  "sha256": "2c286c5135d4fc3339ce5c6b85e8a48f2c556e006f9e62929d1edf6cfdc804fe",
+  "readCommands": [
+    "05bcb7",
+    "26a54a",
+    "00a490",
+    "c9646e"
+  ],
+  "conclusion": "After TASK008 native handoff the owner added only three parameterless CLI entry points RecordD/E/F => Record(\"D\"/\"E\"/\"F\"). Exact diff c9646e read against the already fully read capture and D/E/F extension. These non-imported opt-in gateways create no new gameplay or shared state. Native/game/build inputs unchanged; owner executes capture in its later lease, not TASK008.",
+  "nativeVerificationUnchanged": true,
+  "scope": "One source-only delta after completed game window; original snapshot retained verbatim."
+}
