@@ -13,6 +13,7 @@
 
 ### Audio
 
+- [TASK-009 · реакция игрока B, плоть и ткань](Used/Audio/PlayerHit01/README.md) — направление выбрано владельцем; [A/B/C](Unused/Audio/PlayerHitTask009/README.md) сохранены для сравнения.
 - [Шаги игрока · короткий контакт 02](Used/Audio/PlayerFootsteps02/README.md)
 - [Общий короткий разрыв 06](Used/Audio/CreatureRupture06/README.md)
 - [FirearmMix02 · парный микс и пистолетная механика](Used/Audio/FirearmMix02/README.md)

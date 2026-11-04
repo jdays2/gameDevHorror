@@ -1,0 +1,18 @@
+{
+  "result": "Succeeded",
+  "messages": [
+    {
+      "type": "Warning",
+      "content": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+    },
+    {
+      "type": "Error",
+      "content": "Failed to handle /api/exec request: Main thread operation timed out after 30000ms"
+    },
+    {
+      "type": "Error",
+      "content": "Failed to handle /api/exec request: Main thread operation timed out after 30000ms"
+    }
+  ],
+  "classification": "Two Pipeline HTTP main-thread timeout logs occurred during the synchronous build, not compiler/game failures. The warning reports intentionally disabled Pipeline in the ordinary Player."
+}

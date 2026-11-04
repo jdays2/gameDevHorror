@@ -1,0 +1,33 @@
+{
+  "rows": [
+    {
+      "check": "native world/UI separation",
+      "worldRms": 0.0,
+      "worldPeak": 0.0,
+      "uiRms": 0.0023153303202148637,
+      "uiPeak": 0.0565655231
+    },
+    {
+      "check": "death during open pause music and real reload",
+      "lethalCueDelta": 1,
+      "musicStopped": true,
+      "oldScopeDestroyed": true,
+      "freshCues": 0,
+      "worldGainAfterReload": 1.0
+    },
+    {
+      "check": "death during closing pause music and real reload",
+      "lethalCueDelta": 1,
+      "musicStopped": true,
+      "oldScopeDestroyed": true,
+      "freshCues": 0,
+      "worldGainAfterReload": 1.0
+    }
+  ],
+  "sceneCount": 1,
+  "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+  "volume": 1.0,
+  "pause": false,
+  "timeScale": 1.0,
+  "method": "Actual new hit voices and DSP; temporary independent UI probe. Pause music audio boundary driven directly; Single reload uses the native scene loader. Existing UI intent flow belongs to TASK006."
+}

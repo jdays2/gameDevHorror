@@ -6,7 +6,8 @@
 - **PlayerAudio2D / PlayerAudioSet:** пистолет, гильзы, попадания, подбор. Player prefab содержит25 уникальных AudioSource:12 shot,8 casing,4 impact,1 pickup. При увеличении массива Inspector не клонировать ссылки.
 - **DoorAudio2D / DoorAudioSet:** начало/движение/остановка двери, два источника и пространственная слышимость.
 - **LocalLampAudio2D / LocalLampAudioSet:** тихий местный гул и контакты по фактическому мерцанию Light2D; два голоса на лампу, общий набор без runtime-состояния.
-- **PlayerFootsteps2D / PlayerUtilityAudio2D / PlayerWorldAudioSet:** шаги, фонарь, сухой спуск, ранение/поражение. Шаги по пути, не при толкании стены; footstepVolume=.24.
+- **PlayerFootsteps2D / PlayerUtilityAudio2D / PlayerWorldAudioSet:** шаги, фонарь и сухой спуск. Шаги по пути, не при толкании стены; footstepVolume=.24.
+- **PlayerHitAudioPresenter / PlayerHitAudioProfile:** выбранный B, плоть/ткань, четыре контакта только по принятому `PlayerLife2D.Damaged`, включая последний удар. [Настройки и жизненный цикл](../Features/PlayerHitAudio.md).
 - **LevelAudioDirector2D / AudioMoodProfile:** Explore/Tension/Combat, Critical независимо; локальные AudioThreatEmitter2D сообщают угрозу через видовые адаптеры.
 
 Общие профили — Data/Audio; видовые наборы — соответствующие каталоги Assets/EmergencyShift/Audio. WeaponDefinition/ShotVisualProfile — Data/Weapons. Общий asset влияет на все ссылки, не использовать его как временную переменную в Play.

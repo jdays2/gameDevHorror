@@ -32,6 +32,7 @@ namespace EmergencyShift
 
         public event System.Action<int> HealthChanged;
         public event System.Action<int, Vector2> Damaged;
+        public event System.Action HealthRestored;
         public override bool IsAlive => this != null && !IsDead;
 
         [Inject]
@@ -114,6 +115,7 @@ namespace EmergencyShift
             {
                 StopAllCoroutines();
                 visual.color = normalColor;
+                HealthRestored?.Invoke();
             }
 
             HealthChanged?.Invoke(current);

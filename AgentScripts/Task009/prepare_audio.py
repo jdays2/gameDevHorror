@@ -32,8 +32,14 @@ def write(path, signal):
         output.setsampwidth(2)
         output.setframerate(SR)
         output.writeframes(np.rint(signal * 32767).astype("<i2").tobytes())
+    block = 96
+    windows = signal[:len(signal) // block * block].reshape(-1, block)
+    active = np.flatnonzero(np.sqrt(np.mean(windows**2, axis=1)) > max(.001, np.max(np.abs(signal)) * .01))
     return {"path": path.relative_to(ROOT).as_posix(), "seconds": len(signal) / SR,
             "peak": float(np.max(np.abs(signal))), "rms": float(np.sqrt(np.mean(signal**2))),
+            "firstActiveMs": int(active[0]) * 2 if len(active) else None,
+            "endSample": float(signal[-1]), "dcMean": float(np.mean(signal)),
+            "clippedSamples": int(np.count_nonzero(np.abs(signal) >= 1)),
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
 
 
@@ -99,7 +105,21 @@ def main():
         variants = []
         entries = []
         for index, rate in enumerate([1, .982, 1.021, .993], 1):
-            shifted = np.interp(np.arange(0, len(signal) - 1, rate), np.arange(len(signal)), signal)
+            independent = FAMILY / f"Sources/B_take{index:02}_source.mp3"
+            if key == "B" and index > 1 and independent.exists():
+                filters = "highpass=f=110,lowpass=f=6500"
+                if index == 2:
+                    filters += ",acompressor=threshold=0.03:ratio=4:attack=0.01:release=50"
+                shifted = decode(independent, args.ffmpeg, filters)
+                shifted = fade(shifted[:round(.32 * SR)])
+                edit = FAMILY / f"Edits/B_take{index:02}.wav"
+                write(edit, shifted / max(1, np.max(np.abs(shifted)) / .75))
+                shifted = decode(edit, args.ffmpeg)
+                level = float(loudness(edit, args.ffmpeg)["input_i"])
+                shifted *= 10**((target - level) / 20)
+                rate = 1
+            else:
+                shifted = np.interp(np.arange(0, len(signal) - 1, rate), np.arange(len(signal)), signal)
             shifted = fade(shifted)
             # Small gain differences are deliberate natural variation, < 0.5 dB.
             shifted *= [1, .97, 1.015, .99][index - 1]
@@ -108,6 +128,9 @@ def main():
             entry = write(path, shifted)
             entry["loudness"] = loudness(path, args.ffmpeg)
             entry["sourceRate"] = rate
+            entry["source"] = (independent if key == "B" and index > 1 and independent.exists()
+                               else FAMILY / f"Sources/{key}_source.mp3").relative_to(ROOT).as_posix()
+            entry["sourceSha256"] = hashlib.sha256((ROOT / entry["source"]).read_bytes()).hexdigest()
             entries.append(entry)
             variants.append(shifted)
         families[key] = variants
@@ -126,14 +149,21 @@ def main():
     step = decode(audio / "PlayerFootsteps02/shoe-contact-02.wav", args.ffmpeg)
     windup = decode(audio / "Stalker/Membrane04/stalker_windup_01.wav", args.ffmpeg)
     lunge = decode(audio / "Stalker/Membrane04/stalker_lunge_01.wav", args.ffmpeg)
+    bite = decode(audio / "Stalker/Membrane04/stalker_bite_01.wav", args.ffmpeg)
     context = np.zeros(round(8 * SR))
+    report["contextGains"] = {"pistol": .45, "playerStep": .24, "stalkerWindup": 1,
+                              "stalkerLunge": .9, "stalkerAcceptedBite": 1,
+                              "note": "Illustrative close-range montage; no native distance/pan/priority/mixer simulation."}
+    report["contextTimeline"] = {"hitSeconds": [2.6, 6.2], "nearbyShotSeconds": [2.56, 6.16],
+                                 "comparison": "Same accepted Bite and gunshot 40ms before each player hit in all three mixes."}
     for time in [.2, .5, .8, 3.4, 3.7, 6.8]:
         add(context, step, time, .24)
-    for time in [1.1, 1.65, 4.6, 5.2]:
+    for time in [1.1, 1.65, 2.56, 4.6, 5.2, 6.16]:
         add(context, pistol, time, .45)
     for time in [2.2, 5.8]:
-        add(context, windup, time, .22)
-        add(context, lunge, time + .3, .22)
+        add(context, windup, time, 1)
+        add(context, lunge, time + .3, .9)
+        add(context, bite, time + .4, 1)
     for key in "ABC":
         mix = context.copy()
         for index, time in enumerate([2.6, 6.2]):
