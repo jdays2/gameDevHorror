@@ -1,0 +1,199 @@
+{
+  "task": "TASK-008",
+  "capturedUtc": "2026-11-04T02:34:52.113589+00:00",
+  "state": "Explicit source reads; integration/compile claims only where separately evidenced",
+  "reads": [
+    {
+      "path": "Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperSpriteAnimator.cs",
+      "sha256": "3451f27184240e98b3e206ffa0c3f04171f6e701e2f62046b075f80162abd7b1",
+      "readCommands": [
+        "c6b6df"
+      ],
+      "conclusion": "Native presentation owns posture and interrupted-pose playback only; combat remains on Sleeper2D. Pending return follows personal playback and actual travel; OnEnable resets displayed posture. Existing SO references remain serialized."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Enemies/Stalker/StalkerSpriteAnimator.cs",
+      "sha256": "80f0957dc04e5c2e8c393c58b5c5df6e44892521045f53af26e7ebe56eecb0f7",
+      "readCommands": [
+        "c6b6df"
+      ],
+      "conclusion": "Species posture/View specialization and private attack playback preserve shared combat timing. Compact stride is data-driven; interrupted poses retract without owning motor or damage. No generic consumer gains species dispatch."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Enemies/Config/CreatureAttackSpriteSet.cs",
+      "sha256": "7d98f9df0dca9cbf449fd98eb2bf6d26e78f79b632a90f5ddf2e6d95230d3034",
+      "readCommands": [
+        "c6b6df"
+      ],
+      "conclusion": "Validated immutable frame grid maps current gait column and real strike time to entry/strike/return samples. Numeric animation configuration is not actor state. Array completeness is required; visual/owner acceptance is separate."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerInput/Logic/IPlayerInput.cs",
+      "sha256": "14642eead37da8e3cbc87be505fb7d7492b29c0495c3ce99816f1687d041a629",
+      "readCommands": [
+        "c6b6df"
+      ],
+      "conclusion": "Small intent-only contract including pause/confirmation. No authorization or simulation mutation. Two explicit weapon inputs are current capability rather than generic arbitrary slot support."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/PlayerInput/View/InputActionPlayerInput.cs",
+      "sha256": "39a9a9b6bfcbb62fc771c205477ee9870092e748a52ea6559f2d4f0987445ff0",
+      "readCommands": [
+        "c6b6df"
+      ],
+      "conclusion": "Clones authored InputActionAsset per player, eagerly resolves required actions and disables/destroys only personal clone on Dispose. Pointer availability accounts for focus. Constructor catch releases allocated clone; no shared asset mutation."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureAttackSpritePlayback.cs",
+      "sha256": "853161f527a5a7b990d79a4f6bb4419eb3a9942a2807f172cc09644b92e850f7",
+      "readCommands": [
+        "c6b6df"
+      ],
+      "conclusion": "Personal presentation-only entry/strike/return retraction. Distinguishes arm sample from advancing gait column and emits walking endpoint once. Zero-dt return pauses; completed/changed-profile/reset clears pending state. Finite bounded switch is a cohesive algorithm, not spaghetti."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs",
+      "sha256": "25b865f52e55b078c96f4e46884c52ba725e2e04daf9a73865e072bf83dfaaa7",
+      "readCommands": [
+        "3bc085"
+      ],
+      "conclusion": "Explicit world-to-level/player containers, eager native injection and scoped prefab factory. Init failure disposes captured managers; Dispose idempotent, player/level lifetimes separate. InjectScoped rejects components from another scene. Installation breadth is composition, not gameplay authority."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs",
+      "sha256": "fde1154ea5c43ace9eb76f25cdff85b57502e4c16cd5817be2a3cc3188d4aa52",
+      "readCommands": [
+        "3bc085",
+        "08537b"
+      ],
+      "conclusion": "Native body/eye playback consumes presentation facts and actual rendered translation, rejects teleport stride, pauses with dt and keeps committed combat ownership elsewhere. Shared material/property blocks avoid mutable shared profile state. Whole-body death can hold last pose; old array compatibility intentionally retained. Length reflects related projection work, no extra pass-through layer needed."
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/EditMode/FixedCreatureAttackPlaybackTests.cs",
+      "sha256": "ba8dbc9020fc3c8c8687b868386dd0961199cad5fc4c168986e7481d5bdf333f",
+      "readCommands": [
+        "3bc085"
+      ],
+      "conclusion": "Substantive numeric controls cover real strike instant/all gait columns and interrupted entry/strike/return phase continuity, monotonic arm samples, pause and one endpoint. Created config deliberately omits raster frames because these cases exercise index/playback math only; no art quality inference."
+    },
+    {
+      "path": "Assets/EmergencyShift/Editor/Authoring/StalkerSprites/FixedCreatureAttackPoseComposer.cs",
+      "sha256": "3c24dd3ae8ce3a93f505134007a96a2d4bcb5889e48c004944bc0afc632cc9e9",
+      "readCommands": [
+        "08537b"
+      ],
+      "conclusion": "Editor-only baked geometry recipe with fixed limb ownership and bounded entry/strike/return phases. No Player geometry evaluator. Uses limb lengths and support schedule; accepted-anatomy wording in comments is not an owner approval of the rejected current drawings. Do not invoke/rebake for audit."
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
+      "sha256": "a6ae09648f78322f85874b5bf4163f483b7bd198fee119269eddc0c1b26876e2",
+      "readCommands": [
+        "08537b",
+        "e5d1de"
+      ],
+      "conclusion": "Editor-only opt-in actual mix probe; scoped scene lookup and created lamp/surface injection, personal test profile, capture ownership and time restoration. Caller currently waits for real startup fence; probe is not a general immediate-start API. Death observation uses unscaled wait. Audio recording restores integer capture rate (baseline zero); arbitrary nonreciprocal captureDelta preservation is not certified. No release inclusion or art approval."
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/PlayMode/FixedCreatureSpriteSceneTests.cs",
+      "sha256": "4c83f4ecc07391477ec0f9347cdf5544aee578da8740ae2090ca181288b43c4e",
+      "readCommands": [
+        "e5d1de",
+        "fad029"
+      ],
+      "conclusion": "Real prefabs/semantic imported frame names, personal-phase/data isolation, actual natural unobstructed lunge plus positive wall-blocked melee control, hit retraction and pause. Distinguishes physics from rendered interpolation; temporary pocket avoids depenetration and retained motor alternatives. Reflection holds only first isolated projection scenario; natural second scenario retains real controller. Teardown restores exact captureDelta and unloads fixture. Current source reviewed; previous TASK007 green runs are not TASK008 execution."
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs",
+      "sha256": "b87878e112898ae41c59e7d474e41039d9635f5c87eea1985ac137cb9cc56e4f",
+      "readCommands": [
+        "fad029"
+      ],
+      "conclusion": "Isolated cloned InputSettings and virtual keyboard controls confirm original intents plus Escape pause, template immutability and independent player disposal. Cleanup restores settings/devices in finally; no new gameplay lock bypass."
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/PlayMode/AdaptiveAudioProbeRegressionTests.cs",
+      "sha256": "e564152bc94d9d6288db7b0d0810c9418cd67e52c1a5d0cdd42c6e8f6cee4f15",
+      "readCommands": [
+        "fad029"
+      ],
+      "conclusion": "Runs the actual existing probe, waits bounded normal weapon operational fence before Acquire, supplies deterministic scripted aim and asserts full probe report/failure. Temporary scene cleanup restores previous scale; death wait is inside the probe. Seventy-second actual completion not inferred here."
+    },
+    {
+      "path": "AgentScripts/AdjustDeathScreenD02.cs",
+      "sha256": "eac84a30e7531d758890f9042eebb13d4374ff939818d44060ece70a07c52c35",
+      "readCommands": [
+        "1aaebd"
+      ],
+      "conclusion": "Explicit TASK006 targeted profile/prefab authoring adjusts visual/death pause and native iris wiring; preserves authored maps/transforms/GUID. Outside imports; not an audit read-only command or ours to execute."
+    },
+    {
+      "path": "AgentScripts/VerifyDeathScreenD02.cs",
+      "sha256": "6894301ccc3f2e3b5ed8ac520346d8b525cee6ac593a0a7ccf65ba2cf4c1329e",
+      "readCommands": [
+        "b44186",
+        "129f80"
+      ],
+      "conclusion": "Explicit TASK006 native death/iris pixel/readiness/retry diagnostic with bounded phases and temporary viewport cleanup. Current owner-qualified output is distinct from our final verification; no ordinary gameplay installation."
+    },
+    {
+      "path": "AgentScripts/InstallDeathScreenD.cs",
+      "sha256": "26b11e5ba6ec655f09c49a65ff5727d47d557563af6b166680cf26f6e03d8184",
+      "readCommands": [
+        "129f80",
+        "f77529"
+      ],
+      "conclusion": "Explicit mutating authoring recipe with current iris references and hierarchy validation, guarded targeted saves. Not a generic read-only verifier and not invoked by TASK008. Preserve owner changes."
+    },
+    {
+      "path": "AgentScripts/DoorCrushLive02.cs",
+      "sha256": "97f60409c42ab4b14d87af391ac066f4e64424cb2bb9bc44f3ba0da726678773",
+      "readCommands": [
+        "b44186",
+        "129f80"
+      ],
+      "conclusion": "Explicit clean-map opt-in native door demonstration: targeted door scalar changes preserved/checked, two species actual crush cases and scoped viewport/capture cleanup. Not an ordinary scene repair script. Current owner controls execution."
+    },
+    {
+      "path": "AgentScripts/Task009/InspectPlayerHit.cs",
+      "sha256": "c210adda8b5e07bcedc2f4dd72e02fa228df2f8bee6e868139eccd6742e7dc00",
+      "readCommands": [
+        "1aaebd"
+      ],
+      "conclusion": "TASK009 actual accepted-hit audio capture with renderer ownership and temporary staging. Restores integer capture rate; current baseline zero, arbitrary fractional captureDelta not certified. No invocation by TASK008 while another owner has game."
+    },
+    {
+      "path": "AgentScripts/Task008/Task008Diagnostics.cs",
+      "sha256": "54f707ee0ac929fd5c052d21a23b33133d86d618d6b457cc8b2ec3bdf1dc5c0c",
+      "readCommands": [
+        "apply_patch source construction",
+        "de34d7"
+      ],
+      "conclusion": "Explicit disposable Play launcher reflects actual old smoke routine or invokes actual Sleeper Begin, bounded unscaled monitor, unique report filename and host cleanup. No copied game logic or fallback injection. Not compiled/executed yet; actual probes must still reproduce/pass under owned game slot."
+    },
+    {
+      "path": "AgentScripts/Task008/Task008PickupComposition.cs",
+      "sha256": "e0a4deda735c9ab3949023ea19f8e8ad83ac56631639a9b39964deb0193996c9",
+      "readCommands": [
+        "apply_patch source construction"
+      ],
+      "conclusion": "Prepared targeted ProjectContext prefab migration only after new installer compiles; dirty/prefab-stage guards, validates existing installer prefix and original component JSON, saves this prefab alone and verifies existing profile/GUID. No scene loads/saves. Not compiled/executed yet, source proposal only."
+    },
+    {
+      "path": "AgentScripts/Task008/Task008NavigationReferences.cs",
+      "sha256": "7100b9dbfb8b1c2569227a8d8a6867c5cd12c1e2b049da0e155294ad0cab7a5c",
+      "readCommands": [
+        "apply_patch source construction",
+        "source revision: resolve internal type from public motor assembly, not MonoScript.GetClass"
+      ],
+      "conclusion": "Prepared native read-only direct AssetDatabase dependency/type/GUID check over Assets/Packages before internal wrapper deletion. Explicit unique evidence output; no mutation or source usage inference. Actual native invocation, text/dynamic references, nav behavior and build remain pending."
+    },
+    {
+      "path": "AgentScripts/Task008/Task008Build.cs",
+      "sha256": "5e7b52e2234a16b679929e19aa329744c758e5f3e36311e221d2382afb4f29e0",
+      "readCommands": [
+        "apply_patch source construction"
+      ],
+      "conclusion": "Prepared ordinary Mono Windows64 release build of four existing authored game scenes without changing settings or saving scenes. Refuses dirty/active Editor or existing output, records actual report/options/assemblies and packed existing pickup profile; requires Runtime DLL and excludes Editor/Development/Tests. Not compiled/executed yet; full scene/input preservation remains separate. No art/performance approval."
+    }
+  ]
+}

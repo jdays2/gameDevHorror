@@ -1,0 +1,22 @@
+--- a/Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs
++++ b/Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs
+@@ -8,4 +8,5 @@
+ using UnityEngine;
++using Zenject;
+ using UnityEngine.Rendering.Universal;
+ using UnityEngine.SceneManagement;
+ using UnityEngine.TestTools;
+@@ -65,7 +66,12 @@
+             light.SetPower(true);
+             light.AimAt(origin + Vector2.up * 3);
+             Physics2D.SyncTransforms();
+-            var profile = Resources.Load<PickupGlintProfile>("PickupGlintProfile");
++            var profile = context.Scope.Resolve<PickupGlintProfile>();
++            Assert.That(profile, Is.SameAs(ProjectContext.Instance.Container.Resolve<PickupGlintProfile>()),
++                "The level inherits its existing authored world profile instead of loading another owner.");
++            Assert.That(profile, Is.SameAs(AssetDatabase.LoadAssetAtPath<PickupGlintProfile>(
++                "Assets/EmergencyShift/Resources/PickupGlintProfile.asset")),
++                "Composition preserves the existing asset identity and tuning.");
+             string settingsBefore = JsonUtility.ToJson(profile);
+             GameObject first = Spawn(context, "World/AccessCards01/ServiceCard", origin + Vector2.up * 2);
+             GameObject second = Spawn(context, "World/AccessCards01/ResearchCard", origin + new Vector2(.35f, 2.5f));

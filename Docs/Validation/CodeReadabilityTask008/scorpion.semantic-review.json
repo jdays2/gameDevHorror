@@ -1,0 +1,105 @@
+{
+  "state": "explicit scoped manual decisions",
+  "reviews": [
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionSettings.cs",
+      "reviewedSha256": "c53967207a9145ff94dea70a55eeeee65650f8da46ffaf6975931499368793b6",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Immutable validated tuning snapshot; accepts zero pursuit, requires positive absolute attack speed and finite positive derived gather cycle. No SO or per-instance state ownership. Seven scalars are configuration, not hidden service dependencies.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionModel.cs",
+      "reviewedSha256": "9a8494e9a9384e91e4f018cba7feea689278e315f1069df3c2286c91d4eee0e8",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Own clock/timeline, facing, gait, aggro and motion speed; shared settings readonly. Steering applies per-second rates to dt; gathering uses independent travel/attack-speed cycle. Committed heading, finish/cancel/death order retained. Pure math/clock domain; no View, input or camera authority.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionController.cs",
+      "reviewedSha256": "a8ead61b155a835e452be4118ab5141523b026d792ce211d4179e05df027cd54",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Short current-facts Step, finite nonnegative dt validated before effects, absolute attack speed avoids 0*Infinity. Existing one-shot melee finish/interrupt and resolved-route steering retained; model plus two ports are an explicit three-dependency coordinator exception.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/ScorpionControllerFactory.cs",
+      "reviewedSha256": "41f739896db9ad77cac414fc19050ff2e3f7a338fa2ed850c471141ae7f661e7",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Composition maps existing authored definition/presentation once to settings and a personal model. Scoped factory does not imply shared actor state. No serialized field/value/path migration; authored-asset JSON and mapped scalar values verified by real factory test.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs",
+      "reviewedSha256": "01dd995f01275d2d8ad6d4e71cf631de2027a22ba26e7d8a35df108be59c3473",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Native health/perception/motor/melee adapter retains actual travel and allowed physical speed, passes current dt/facts. First standalone aggro emits cue once; Alert remains silent. Hit/death/native-disable order retained; no concrete audio lookup remains in actor.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPack2D.cs",
+      "reviewedSha256": "43b82bd54c10e9b7fcd590fbc5dc2387821e1f385c5dd117aaec56255d4c1f52",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit room membership/door subscriptions and personal pack state; alert live members, select one living caller, request cue before counter increment. Native independent second pack and repeat suppression checked. No world-wide species dispatcher or audio playback ownership.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudio2D.cs",
+      "reviewedSha256": "a50531e11e82a940ee0b8a56e1b2e850654f439726c73873711c7341b12a1722",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "View owns cue subscription in OnEnable/OnDisable and native playback/counters. Existing pause/hearing/mute/perceptible-cue and fatal-hit guards retained. Re-enable is not historical event replay; three subscription cycles still produce one pack voice.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs",
+      "reviewedSha256": "c6942b6826e59e022007d8bcc103a872c3dfee5cb1dc2de189e866f3f065eb25",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Original 13 controls migrated without weakening assertions. Real counterexample first failed on finite velocity; now covers zero pursuit, exact authored factory map/immutable assets, separate gather duration, invalid dt before effects, instance isolation and existing motion/melee interruption order. Twenty model/factory cases pass; with audio-hit fixture28/28.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "path": "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
+      "reviewedSha256": "a182a1922e333176d3566e923888708fae8fcde9dd13a81396ae00e072f0d8e2",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Four real-prefab/level-composition scenarios, not a copied selector: selected voice and cue order, lifecycle no replay, muted negative plus audible positive control, second-pack isolation, standalone/fatal hit. Baseline4/4 and post4/4. Temporary actors unload; no saved authoring or art acceptance claim.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "path": "AgentScripts/Task008/Task008NativeAudit.cs",
+      "reviewedSha256": "1453e56a58bba8768d8ec939fbd3e5b4861982bcba8654840d633638d4d40a18",
+      "reviewDate": "2026-11-04",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit non-imported evidence helper compares loaded authored hierarchy/normalized Editor JSON and native refs, saved scene hashes and dirty/setup state. Own JSON-null instrumentation mismatch diagnosed and fixed without changing baseline. Gzip exact reads exercised. No scene load/save; closed scenes and gameplay require other validation.",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    }
+  ]
+}

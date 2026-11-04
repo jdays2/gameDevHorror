@@ -1,15 +1,33 @@
 {
   "baselineRevision": "abeb23c4565639faeec8d04ab4b7fdd21d67c85f",
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "complete": false,
   "method": "Manual semantic boundary reviews keyed to reviewedSha256; mechanical inventory of own C# in Assets/EmergencyShift, AgentScripts and Concepts. No automatic semantic/unused-code verdict.",
-  "limits": "TASK-008 provisional metadata refresh, 2026-11-03: 924 current own C# paths; 585 inherited same-byte reviews, 78 partial, 261 queued. These statuses are not fresh TASK-008 semantic coverage. Final changed-source review, game implementation, native regressions and build remain pending. Dated review evidence/reviewedSha256 preserved; see Docs/Reports/CodeReadabilityTask008.md.",
+  "limits": "TASK-008 in progress. Ten explicitly listed Scorpion/evidence sources received new SHA-qualified manual decisions. Other inherited statuses are historical, not new TASK-008 coverage. Full current-source qualification, remaining fixes, full native regressions and ordinary build are pending. Other chats have coordinated native windows.",
   "counts": {
-    "reviewed_boundary": 585,
-    "queued": 261,
+    "queued": 259,
+    "reviewed_boundary": 595,
     "partial": 78
   },
   "files": [
+    {
+      "baselineSha256": null,
+      "reviewStatus": "queued",
+      "notes": "New inventory entry; no semantic review yet.",
+      "path": "AgentScripts/AdjustDeathScreenD02.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "eac84a30e7531d758890f9042eebb13d4374ff939818d44060ece70a07c52c35",
+      "guid": null,
+      "types": [
+        "AdjustDeathScreenD02"
+      ],
+      "lines": 79,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false
+    },
     {
       "baselineSha256": null,
       "reviewStatus": "reviewed_boundary",
@@ -861,6 +879,28 @@
       "baselineSha256": null,
       "reviewStatus": "queued",
       "notes": "New inventory entry; no semantic review yet.",
+      "path": "AgentScripts/DoorCrushLive02.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "3d4ae00363a179c5197610de087a6a2c50839a4c3e9f7b1a931e01b2a592bd99",
+      "guid": null,
+      "types": [
+        "DoorCrushLive02",
+        "Viewport"
+      ],
+      "lines": 459,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/VerifyDeathScreenD02.cs",
+        "Assets/EmergencyShift/Editor/Authoring/MainMenuCatalogAuthoring.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "queued",
+      "notes": "New inventory entry; no semantic review yet.",
       "path": "AgentScripts/DoorCrushReview.cs",
       "sourceScope": "agent_tool",
       "sha256": "096792a05fa86153bf991d6393eb0527406c64f6cb145329ad15a13f94d33f2c",
@@ -1282,12 +1322,12 @@
       "notes": "New inventory entry; no semantic review yet.",
       "path": "AgentScripts/InstallDeathScreenD.cs",
       "sourceScope": "agent_tool",
-      "sha256": "d53782b7c38e51e402ea0818fb525fadd1d66957c12e5cc4640cf18a50a85062",
+      "sha256": "26b11e5ba6ec655f09c49a65ff5727d47d557563af6b166680cf26f6e03d8184",
       "guid": null,
       "types": [
         "InstallDeathScreenD"
       ],
-      "lines": 481,
+      "lines": 497,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [],
@@ -2569,6 +2609,71 @@
       "baselineSha256": null,
       "reviewStatus": "queued",
       "notes": "New inventory entry; no semantic review yet.",
+      "path": "AgentScripts/Task008/Task008Diagnostics.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "54f707ee0ac929fd5c052d21a23b33133d86d618d6b457cc8b2ec3bdf1dc5c0c",
+      "guid": null,
+      "types": [
+        "Task008Diagnostics"
+      ],
+      "lines": 142,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit non-imported evidence helper compares loaded authored hierarchy/normalized Editor JSON and native refs, saved scene hashes and dirty/setup state. Own JSON-null instrumentation mismatch diagnosed and fixed without changing baseline. Gzip exact reads exercised. No scene load/save; closed scenes and gameplay require other validation.",
+      "path": "AgentScripts/Task008/Task008NativeAudit.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "1453e56a58bba8768d8ec939fbd3e5b4861982bcba8654840d633638d4d40a18",
+      "guid": null,
+      "types": [
+        "Task008NativeAudit"
+      ],
+      "lines": 235,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "1453e56a58bba8768d8ec939fbd3e5b4861982bcba8654840d633638d4d40a18",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "queued",
+      "notes": "New inventory entry; no semantic review yet.",
+      "path": "AgentScripts/Task009/InspectPlayerHit.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "c210adda8b5e07bcedc2f4dd72e02fa228df2f8bee6e868139eccd6742e7dc00",
+      "guid": null,
+      "types": [
+        "InspectPlayerHit"
+      ],
+      "lines": 135,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "queued",
+      "notes": "New inventory entry; no semantic review yet.",
       "path": "AgentScripts/ValidateDoorCrush.cs",
       "sourceScope": "agent_tool",
       "sha256": "d0daa807f620c62576a16784b603124f23349b71aa0c347229709e4e012adbcf",
@@ -2640,6 +2745,28 @@
       "lexicalSourceUsers": [
         "AgentScripts/DeathScreenCheckpointFixture.cs",
         "AgentScripts/ExerciseDeathScreenD.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "queued",
+      "notes": "New inventory entry; no semantic review yet.",
+      "path": "AgentScripts/VerifyDeathScreenD02.cs",
+      "sourceScope": "agent_tool",
+      "sha256": "b231e492d1ac6d78bd477298e8cc888927f8b7972f8cf48412827cc975df1921",
+      "guid": null,
+      "types": [
+        "VerifyDeathScreenD02",
+        "Viewport"
+      ],
+      "lines": 267,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "AgentScripts/DoorCrushLive02.cs",
+        "Assets/EmergencyShift/Editor/Authoring/MainMenuCatalogAuthoring.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false
@@ -4130,6 +4257,7 @@
         "Assets/_Recovery/0.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/Task008/Task008Diagnostics.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/WeaponFxBenchmarkProbe.cs",
@@ -7043,6 +7171,7 @@
         "Assets/EmergencyShift/Tests/EditMode/EnemyConfigTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemyMeleeModelTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs",
         "Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FixedCreatureSpriteSceneTests.cs"
       ],
@@ -7867,6 +7996,7 @@
         "Assets/_Recovery/0.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/Task008/Task008Diagnostics.cs",
         "Assets/EmergencyShift/Runtime/Combat/Weapons/BulletProjectile2D.cs",
         "Assets/EmergencyShift/Runtime/Definitions/WeaponDefinition.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
@@ -7999,6 +8129,7 @@
       ],
       "lexicalSourceUsers": [
         "AgentScripts/AuthorWeaponFx.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/StalkerLightSequence.cs",
         "Assets/EmergencyShift/Runtime/Definitions/SleeperAudioProfile.cs",
@@ -8576,6 +8707,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/Task008/Task008Diagnostics.cs",
         "Assets/EmergencyShift/Runtime/Development/CheckpointRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/CrowdReadinessProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/WeaponFxBenchmarkProbe.cs"
@@ -9026,6 +9158,7 @@
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "AgentScripts/InstallFixedCreatureSprites06.cs",
+        "AgentScripts/Task008/Task008Diagnostics.cs",
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/EngineeringBenchmark2D.cs",
         "Assets/EmergencyShift/Runtime/Development/EnvironmentLoadProbe.cs",
@@ -9682,6 +9815,7 @@
       "lexicalSourceUsers": [
         "AgentScripts/CaptureCreatureScenarios05.cs",
         "AgentScripts/CheckWorldServices.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/InstallClawSandbox.cs",
         "AgentScripts/InstallScorpion.cs",
@@ -9847,6 +9981,7 @@
         "AgentScripts/CaptureDamageReview.cs",
         "AgentScripts/CheckInjectedActorCreation.cs",
         "AgentScripts/CheckWorldServices.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/InstallClawSandbox.cs",
         "AgentScripts/InstallScorpion.cs",
@@ -9856,6 +9991,7 @@
         "AgentScripts/ReviewFleshTrial.cs",
         "AgentScripts/Task007Capture.cs",
         "AgentScripts/Task007Preservation.cs",
+        "AgentScripts/Task009/InspectPlayerHit.cs",
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/SandboxRegressionProbe.cs",
         "Assets/EmergencyShift/Runtime/Development/WeaponFeedbackSceneProbe.cs",
@@ -9879,6 +10015,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSpeciesContactTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/RemainsPaletteLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs"
@@ -10274,6 +10411,7 @@
         "AgentScripts/AuditCreaturePostures.cs",
         "AgentScripts/CaptureCreatureScenarios05.cs",
         "AgentScripts/CreateDoorCrushTest.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/InspectTask001.cs",
         "AgentScripts/InstallDeathScreenD.cs",
@@ -10375,6 +10513,7 @@
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/VerifySleeperNotes51.cs",
         "Assets/EmergencyShift/Runtime/Development/SleeperRegressionProbe.cs",
@@ -10534,6 +10673,7 @@
         "AgentScripts/CaptureCreatureScenarios05.cs",
         "AgentScripts/CheckInjectedActorCreation.cs",
         "AgentScripts/CreateDoorCrushTest.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/DoorScatterAuthoring.cs",
         "AgentScripts/InspectStalkerBurn.cs",
@@ -10659,6 +10799,7 @@
       ],
       "lexicalSourceUsers": [
         "AgentScripts/CheckWorldServices.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/StalkerLightSequence.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
@@ -12840,6 +12981,7 @@
         "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/AdjustDeathScreenD02.cs",
         "AgentScripts/InstallDeathScreenD.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenEnvironment.cs"
       ],
@@ -12952,6 +13094,7 @@
         "AgentScripts/DeathScreenSceneReview.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenCommand.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenController.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenPresenter.cs",
@@ -12975,6 +13118,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/DeathScreenInstaller.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenController.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenView.cs",
@@ -13003,6 +13147,7 @@
         "AgentScripts/DeathScreenSceneReview.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
         "AgentScripts/ExerciseDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenController.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenModel.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenPresenter.cs",
@@ -13096,6 +13241,7 @@
       "lexicalSourceUsers": [
         "AgentScripts/InstallDeathScreenD.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/DeathScreenInstaller.cs",
         "Assets/EmergencyShift/Runtime/Levels/LevelContext2D.cs"
       ],
@@ -13160,7 +13306,8 @@
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
         "AgentScripts/ExerciseDeathScreenD.cs",
         "AgentScripts/InstallDeathScreenD.cs",
-        "AgentScripts/VerifyDeathScreenD.cs"
+        "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false
@@ -13188,6 +13335,7 @@
         "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/AdjustDeathScreenD02.cs",
         "AgentScripts/InstallDeathScreenD.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
         "Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenPresenter.cs"
@@ -13616,13 +13764,16 @@
       ],
       "lines": 112,
       "serializedUsers": [
-        "Assets/EmergencyShift/Prefabs/World/CrushingDoor.prefab"
+        "Assets/EmergencyShift/Prefabs/World/CrushingDoor.prefab",
+        "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
       "dependencyScenes": [
-        "Assets/EmergencyShift/Scenes/DoorCrushTest.unity"
+        "Assets/EmergencyShift/Scenes/DoorCrushTest.unity",
+        "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
       "lexicalSourceUsers": [
         "AgentScripts/CreateDoorCrushTest.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/ValidateDoorCrush.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushCheckpointTests.cs",
@@ -20486,8 +20637,10 @@
         "AgentScripts/ReviseScorpionR9.cs",
         "AgentScripts/ReviseScorpionSqueakR11.cs",
         "AgentScripts/ScorpionPalettesR12.cs",
+        "Assets/EmergencyShift/Runtime/Features/Scorpion/ScorpionControllerFactory.cs",
         "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/ScorpionAudioHitTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/ScorpionAudioHitTests.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs"
       ],
       "entryPointHints": [],
       "sourceChangedSinceReview": false
@@ -20580,16 +20733,16 @@
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Short current-facts Step, finite nonnegative dt validated before effects, absolute attack speed avoids 0*Infinity. Existing one-shot melee finish/interrupt and resolved-route steering retained; model plus two ports are an explicit three-dependency coordinator exception.",
       "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionController.cs",
       "sourceScope": "unity",
-      "sha256": "98a786a36ebfd94d9f5974fe4f015149b9d064626c4422baaa4bb5144375697b",
+      "sha256": "a8ead61b155a835e452be4118ab5141523b026d792ce211d4179e05df027cd54",
       "guid": "cfb02ac8c3e27074a8bc987cd0255cdf",
       "types": [
         "ScorpionController"
       ],
-      "lines": 105,
+      "lines": 108,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -20598,21 +20751,32 @@
         "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "a8ead61b155a835e452be4118ab5141523b026d792ce211d4179e05df027cd54",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Own clock/timeline, facing, gait, aggro and motion speed; shared settings readonly. Steering applies per-second rates to dt; gathering uses independent travel/attack-speed cycle. Committed heading, finish/cancel/death order retained. Pure math/clock domain; no View, input or camera authority.",
       "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionModel.cs",
       "sourceScope": "unity",
-      "sha256": "9d5f28ab7955889e8bf8862181067d8ed7cfe9b581f8bbfb92a6b6d1898d2af5",
+      "sha256": "9a8494e9a9384e91e4f018cba7feea689278e315f1069df3c2286c91d4eee0e8",
       "guid": "c78f204a6a961b84f93b5a617288e342",
       "types": [
         "ScorpionModel",
         "ScorpionState"
       ],
-      "lines": 153,
+      "lines": 150,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -20623,7 +20787,18 @@
         "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "9a8494e9a9384e91e4f018cba7feea689278e315f1069df3c2286c91d4eee0e8",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
     },
     {
       "baselineSha256": null,
@@ -20649,37 +20824,82 @@
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Immutable validated tuning snapshot; accepts zero pursuit, requires positive absolute attack speed and finite positive derived gather cycle. No SO or per-instance state ownership. Seven scalars are configuration, not hidden service dependencies.",
+      "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionSettings.cs",
+      "sourceScope": "unity",
+      "sha256": "c53967207a9145ff94dea70a55eeeee65650f8da46ffaf6975931499368793b6",
+      "guid": "5aa4d0750b801004b84b152457ea1726",
+      "types": [
+        "ScorpionSettings"
+      ],
+      "lines": 63,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [
+        "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionModel.cs",
+        "Assets/EmergencyShift/Runtime/Features/Scorpion/ScorpionControllerFactory.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs"
+      ],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "c53967207a9145ff94dea70a55eeeee65650f8da46ffaf6975931499368793b6",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Composition maps existing authored definition/presentation once to settings and a personal model. Scoped factory does not imply shared actor state. No serialized field/value/path migration; authored-asset JSON and mapped scalar values verified by real factory test.",
       "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/ScorpionControllerFactory.cs",
       "sourceScope": "unity",
-      "sha256": "bf502305955b29e49b5671b30bff78b8fd111f785f30c1dbf9fa1b64a17e4908",
+      "sha256": "41f739896db9ad77cac414fc19050ff2e3f7a338fa2ed850c471141ae7f661e7",
       "guid": "82c82ce7801a31648952a4df19ee181f",
       "types": [
         "ScorpionControllerFactory"
       ],
-      "lines": 18,
+      "lines": 23,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
         "Assets/EmergencyShift/Runtime/Features/Enemies/EnemyInstaller.cs",
-        "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs"
+        "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs",
+        "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "41f739896db9ad77cac414fc19050ff2e3f7a338fa2ed850c471141ae7f661e7",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Native health/perception/motor/melee adapter retains actual travel and allowed physical speed, passes current dt/facts. First standalone aggro emits cue once; Alert remains silent. Hit/death/native-disable order retained; no concrete audio lookup remains in actor.",
       "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs",
       "sourceScope": "unity",
-      "sha256": "2de650f50ba10050ea0deb1faddc0b06768de9406853a3382a5434d36d9bb37c",
+      "sha256": "01dd995f01275d2d8ad6d4e71cf631de2027a22ba26e7d8a35df108be59c3473",
       "guid": "7ca49a3d3142b034daf8b5765b324d3a",
       "types": [
         "Scorpion2D"
       ],
-      "lines": 183,
+      "lines": 184,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/Scorpion.prefab",
         "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity"
@@ -20706,23 +20926,35 @@
         "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPack2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPresentationSource2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionSpriteAnimator2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/ScorpionAudioHitTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/ScorpionAudioHitTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "01dd995f01275d2d8ad6d4e71cf631de2027a22ba26e7d8a35df108be59c3473",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "View owns cue subscription in OnEnable/OnDisable and native playback/counters. Existing pause/hearing/mute/perceptible-cue and fatal-hit guards retained. Re-enable is not historical event replay; three subscription cycles still produce one pack voice.",
       "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudio2D.cs",
       "sourceScope": "unity",
-      "sha256": "a27355b20e4f62a000cb0dbb16410c6f99d6b516ea9657e768adb9cbeb58b281",
+      "sha256": "a50531e11e82a940ee0b8a56e1b2e850654f439726c73873711c7341b12a1722",
       "guid": "ec2631e569f66df47b9f4648c63a588d",
       "types": [
         "ScorpionAudio2D"
       ],
-      "lines": 284,
+      "lines": 286,
       "serializedUsers": [
         "Assets/EmergencyShift/Prefabs/Enemies/Scorpion.prefab"
       ],
@@ -20739,13 +20971,23 @@
         "AgentScripts/VerifyScorpionR10.cs",
         "AgentScripts/VerifyScorpionR9.cs",
         "AgentScripts/VerifyScorpionSqueakR11.cs",
-        "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs",
         "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudioThreat2D.cs",
-        "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPack2D.cs",
-        "Assets/EmergencyShift/Tests/EditMode/ScorpionAudioHitTests.cs"
+        "Assets/EmergencyShift/Tests/EditMode/ScorpionAudioHitTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "a50531e11e82a940ee0b8a56e1b2e850654f439726c73873711c7341b12a1722",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
     },
     {
       "baselineSha256": null,
@@ -20821,11 +21063,11 @@
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Explicit room membership/door subscriptions and personal pack state; alert live members, select one living caller, request cue before counter increment. Native independent second pack and repeat suppression checked. No world-wide species dispatcher or audio playback ownership.",
       "path": "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPack2D.cs",
       "sourceScope": "unity",
-      "sha256": "946b7db764bfd4d06be4a9fda599ea1725550482d4830030e1327cce99b150f8",
+      "sha256": "43b82bd54c10e9b7fcd590fbc5dc2387821e1f385c5dd117aaec56255d4c1f52",
       "guid": "2f6f7171fcbe7d34ba30adb315f843dd",
       "types": [
         "ScorpionPack2D"
@@ -20845,10 +21087,22 @@
         "AgentScripts/VerifyScorpionR10.cs",
         "AgentScripts/VerifyScorpionR9.cs",
         "AgentScripts/VerifyScorpionSqueakR11.cs",
-        "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs"
+        "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs"
       ],
       "entryPointHints": [],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "43b82bd54c10e9b7fcd590fbc5dc2387821e1f385c5dd117aaec56255d4c1f52",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
     },
     {
       "baselineSha256": null,
@@ -21489,6 +21743,7 @@
         "AgentScripts/DeathScreenCheckpointFixture.cs",
         "AgentScripts/DeathScreenLayoutReview.cs",
         "AgentScripts/DeathScreenSceneReview.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
         "AgentScripts/ExerciseDeathScreenD.cs",
@@ -21504,9 +21759,11 @@
         "AgentScripts/ReviewStalkerRig.cs",
         "AgentScripts/StalkerLightSequence.cs",
         "AgentScripts/Task007Capture.cs",
+        "AgentScripts/Task009/InspectPlayerHit.cs",
         "AgentScripts/ValidateDoorCrush.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "AgentScripts/VerifyHallAmmo46.cs",
         "AgentScripts/VerifyScorpion.cs",
         "AgentScripts/VerifyScorpionAudio.cs",
@@ -21544,6 +21801,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSpeciesContactTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/RemainsPaletteLifetimeTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
@@ -23097,6 +23355,7 @@
       ],
       "lexicalSourceUsers": [
         "AgentScripts/CaptureDamageReview.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/PickupGlintReview.cs",
         "AgentScripts/PreviewMonsterEyes03.cs",
@@ -23433,6 +23692,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/FixedCreatureSpriteSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/FleshContactAudioTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs"
       ],
@@ -23664,6 +23924,7 @@
         "Assets/_Recovery/0.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/PickupGlintReview.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
@@ -23757,6 +24018,7 @@
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
         "AgentScripts/ExerciseDeathScreenD.cs",
         "AgentScripts/Task007Capture.cs",
+        "AgentScripts/Task009/InspectPlayerHit.cs",
         "AgentScripts/VerifyClawSandbox.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "AgentScripts/VerifyScorpionR10.cs",
@@ -23880,6 +24142,7 @@
         "AgentScripts/ReviewSmokeLightingScene.cs",
         "AgentScripts/ReviewStalkerRig.cs",
         "AgentScripts/StalkerLightSequence.cs",
+        "AgentScripts/Task009/InspectPlayerHit.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "Assets/EmergencyShift/Editor/Authoring/LevelPersistenceAuthoring.cs",
         "Assets/EmergencyShift/Runtime/Development/AdaptiveAudioProbe.cs",
@@ -23902,6 +24165,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ProjectileSpeciesContactTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs",
@@ -24741,6 +25005,7 @@
         "AgentScripts/ApplyScorpionPaletteR13.cs",
         "AgentScripts/CaptureCreatureScenarios05.cs",
         "AgentScripts/CheckWorldServices.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/InstallClawSandbox.cs",
         "AgentScripts/InstallScorpion.cs",
@@ -25820,6 +26085,7 @@
       ],
       "lexicalSourceUsers": [
         "AgentScripts/AuthorEntranceBlood.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/DoorScatterAuthoring.cs",
         "AgentScripts/InstallScorpion.cs",
@@ -25908,6 +26174,7 @@
         "Assets/EmergencyShift/Scenes/MorgueRouteTest.unity"
       ],
       "lexicalSourceUsers": [
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "Assets/EmergencyShift/Editor/Authoring/SandboxSceneBuilder.cs",
         "Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs",
@@ -27042,6 +27309,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/AdjustDeathScreenD02.cs",
         "AgentScripts/ApplyScorpionPaletteR13.cs",
         "AgentScripts/AuditSceneGrouping.cs",
         "AgentScripts/AuditStalkerMotion.cs",
@@ -27054,6 +27322,7 @@
         "AgentScripts/DeathScreenAudioReview.cs",
         "AgentScripts/DeathScreenLayoutReview.cs",
         "AgentScripts/DeathScreenSceneReview.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/DoorScatterAuthoring.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
@@ -27088,6 +27357,7 @@
         "AgentScripts/VerifyClawSandbox.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "AgentScripts/VerifyMainMenu.cs",
         "AgentScripts/VerifyMenuIsolation49.cs",
         "AgentScripts/VerifySceneGroupingCommit.cs",
@@ -27202,6 +27472,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushCheckpointTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WorldAudioBusTests.cs"
@@ -27233,6 +27504,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/AdjustDeathScreenD02.cs",
         "AgentScripts/ApplyScorpionPaletteR13.cs",
         "AgentScripts/AuditSceneGrouping.cs",
         "AgentScripts/AuditStalkerMotion.cs",
@@ -27245,6 +27517,7 @@
         "AgentScripts/DeathScreenAudioReview.cs",
         "AgentScripts/DeathScreenLayoutReview.cs",
         "AgentScripts/DeathScreenSceneReview.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/DoorScatterAuthoring.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
@@ -27281,6 +27554,7 @@
         "AgentScripts/VerifyClawSandbox.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "AgentScripts/VerifyMainMenu.cs",
         "AgentScripts/VerifyMenuIsolation49.cs",
         "AgentScripts/VerifySceneGroupingCommit.cs",
@@ -27411,6 +27685,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushFixture.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WorldAudioBusTests.cs"
@@ -28230,6 +28505,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/AdjustDeathScreenD02.cs",
         "AgentScripts/ApplyScorpionPaletteR13.cs",
         "AgentScripts/AuditSceneGrouping.cs",
         "AgentScripts/AuditStalkerMotion.cs",
@@ -28242,6 +28518,7 @@
         "AgentScripts/DeathScreenAudioReview.cs",
         "AgentScripts/DeathScreenLayoutReview.cs",
         "AgentScripts/DeathScreenSceneReview.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/DoorScatterAuthoring.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
@@ -28278,6 +28555,7 @@
         "AgentScripts/VerifyClawSandbox.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "AgentScripts/VerifyMainMenu.cs",
         "AgentScripts/VerifyMenuIsolation49.cs",
         "AgentScripts/VerifySceneGroupingCommit.cs",
@@ -28408,6 +28686,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushFixture.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WorldAudioBusTests.cs"
@@ -28438,6 +28717,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/AdjustDeathScreenD02.cs",
         "AgentScripts/ApplyScorpionPaletteR13.cs",
         "AgentScripts/AuditSceneGrouping.cs",
         "AgentScripts/AuditStalkerMotion.cs",
@@ -28450,6 +28730,7 @@
         "AgentScripts/DeathScreenAudioReview.cs",
         "AgentScripts/DeathScreenLayoutReview.cs",
         "AgentScripts/DeathScreenSceneReview.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/DoorScatterAuthoring.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
@@ -28484,6 +28765,7 @@
         "AgentScripts/VerifyClawSandbox.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "AgentScripts/VerifyMainMenu.cs",
         "AgentScripts/VerifyMenuIsolation49.cs",
         "AgentScripts/VerifySceneGroupingCommit.cs",
@@ -28598,6 +28880,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushCheckpointTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WorldAudioBusTests.cs"
@@ -29576,6 +29859,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/AdjustDeathScreenD02.cs",
         "AgentScripts/ApplyScorpionPaletteR13.cs",
         "AgentScripts/AuditSceneGrouping.cs",
         "AgentScripts/AuditStalkerMotion.cs",
@@ -29588,6 +29872,7 @@
         "AgentScripts/DeathScreenAudioReview.cs",
         "AgentScripts/DeathScreenLayoutReview.cs",
         "AgentScripts/DeathScreenSceneReview.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/DoorScatterAuthoring.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
@@ -29624,6 +29909,7 @@
         "AgentScripts/VerifyClawSandbox.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "AgentScripts/VerifyMainMenu.cs",
         "AgentScripts/VerifyMenuIsolation49.cs",
         "AgentScripts/VerifySceneGroupingCommit.cs",
@@ -29754,6 +30040,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushFixture.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WorldAudioBusTests.cs"
@@ -30187,6 +30474,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/AdjustDeathScreenD02.cs",
         "AgentScripts/ApplyScorpionPaletteR13.cs",
         "AgentScripts/AuditSceneGrouping.cs",
         "AgentScripts/AuditStalkerMotion.cs",
@@ -30199,6 +30487,7 @@
         "AgentScripts/DeathScreenAudioReview.cs",
         "AgentScripts/DeathScreenLayoutReview.cs",
         "AgentScripts/DeathScreenSceneReview.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/DoorScatterAuthoring.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
@@ -30233,6 +30522,7 @@
         "AgentScripts/VerifyClawSandbox.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "AgentScripts/VerifyMainMenu.cs",
         "AgentScripts/VerifyMenuIsolation49.cs",
         "AgentScripts/VerifySceneGroupingCommit.cs",
@@ -30348,6 +30638,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushCheckpointTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WorldAudioBusTests.cs"
@@ -30515,6 +30806,7 @@
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
+        "AgentScripts/AdjustDeathScreenD02.cs",
         "AgentScripts/ApplyScorpionPaletteR13.cs",
         "AgentScripts/AuditSceneGrouping.cs",
         "AgentScripts/AuditStalkerMotion.cs",
@@ -30527,6 +30819,7 @@
         "AgentScripts/DeathScreenAudioReview.cs",
         "AgentScripts/DeathScreenLayoutReview.cs",
         "AgentScripts/DeathScreenSceneReview.cs",
+        "AgentScripts/DoorCrushLive02.cs",
         "AgentScripts/DoorCrushReview.cs",
         "AgentScripts/DoorScatterAuthoring.cs",
         "AgentScripts/ExerciseDeathScreenCheckpoint.cs",
@@ -30563,6 +30856,7 @@
         "AgentScripts/VerifyClawSandbox.cs",
         "AgentScripts/VerifyDeathAudio53.cs",
         "AgentScripts/VerifyDeathScreenD.cs",
+        "AgentScripts/VerifyDeathScreenD02.cs",
         "AgentScripts/VerifyMainMenu.cs",
         "AgentScripts/VerifyMenuIsolation49.cs",
         "AgentScripts/VerifySceneGroupingCommit.cs",
@@ -30693,6 +30987,7 @@
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushFixture.cs",
         "Assets/EmergencyShift/Tests/PlayMode/DoorCrushSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs",
+        "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs",
         "Assets/EmergencyShift/Tests/PlayMode/WorldAudioBusTests.cs"
@@ -31138,11 +31433,11 @@
     },
     {
       "baselineSha256": null,
-      "reviewStatus": "queued",
-      "notes": "New inventory entry; no semantic review yet.",
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Original 13 controls migrated without weakening assertions. Real counterexample first failed on finite velocity; now covers zero pursuit, exact authored factory map/immutable assets, separate gather duration, invalid dt before effects, instance isolation and existing motion/melee interruption order. Twenty model/factory cases pass; with audio-hit fixture28/28.",
       "path": "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs",
       "sourceScope": "unity",
-      "sha256": "1cddba12555c647d0743c039b3fb4eb8640a17046efa98add8b4ff54ac4289cd",
+      "sha256": "c6942b6826e59e022007d8bcc103a872c3dfee5cb1dc2de189e866f3f065eb25",
       "guid": "5c69688a3f82cd64485e7495fd74a73a",
       "types": [
         "Clock",
@@ -31150,7 +31445,7 @@
         "Motor",
         "ScorpionTests"
       ],
-      "lines": 265,
+      "lines": 373,
       "serializedUsers": [],
       "dependencyScenes": [],
       "lexicalSourceUsers": [
@@ -31189,7 +31484,18 @@
         "Test",
         "TestCase"
       ],
-      "sourceChangedSinceReview": false
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "c6942b6826e59e022007d8bcc103a872c3dfee5cb1dc2de189e866f3f065eb25",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
     },
     {
       "baselineSha256": null,
@@ -32015,6 +32321,8 @@
         "AgentScripts/ReviewDamageFeedbackVisuals.cs",
         "AgentScripts/ReviewEntranceBlood.cs",
         "AgentScripts/Task007Capture.cs",
+        "AgentScripts/Task008/Task008Diagnostics.cs",
+        "AgentScripts/Task008/Task008NativeAudit.cs",
         "AgentScripts/VerifyHallAmmo46.cs",
         "AgentScripts/VerifySleeperNotes51.cs",
         "Assets/EmergencyShift/Runtime/Features/WorldAudio/View/WorldAudioBus.cs"
@@ -32932,6 +33240,35 @@
     },
     {
       "baselineSha256": null,
+      "reviewStatus": "reviewed_boundary",
+      "notes": "Four real-prefab/level-composition scenarios, not a copied selector: selected voice and cue order, lifecycle no replay, muted negative plus audible positive control, second-pack isolation, standalone/fatal hit. Baseline4/4 and post4/4. Temporary actors unload; no saved authoring or art acceptance claim.",
+      "path": "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
+      "sourceScope": "unity",
+      "sha256": "a182a1922e333176d3566e923888708fae8fcde9dd13a81396ae00e072f0d8e2",
+      "guid": "68bdfa385cf4329478f5c425bd170585",
+      "types": [
+        "ScorpionAlarmSceneTests"
+      ],
+      "lines": 228,
+      "serializedUsers": [],
+      "dependencyScenes": [],
+      "lexicalSourceUsers": [],
+      "entryPointHints": [],
+      "sourceChangedSinceReview": false,
+      "reviewHistory": [
+        {
+          "reviewStatus": "queued",
+          "notes": "New inventory entry; no semantic review yet."
+        }
+      ],
+      "reviewedSha256": "a182a1922e333176d3566e923888708fae8fcde9dd13a81396ae00e072f0d8e2",
+      "reviewDate": "2026-11-04",
+      "reviewReport": "Docs/Reports/CodeReadabilityTask008.md",
+      "reviewScope": "Scoped source/manual review and actual Scorpion28 EditMode/4 native PlayMode; not complete TASK-008 or release verification.",
+      "reviewedCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6"
+    },
+    {
+      "baselineSha256": null,
       "reviewStatus": "queued",
       "notes": "New inventory entry; no semantic review yet.",
       "path": "Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs",
@@ -33565,8 +33902,8 @@
   "unresolvedExternalReferences": [],
   "referenceMethod": "Saved YAML external GUID graph (Assets), transitive scene-to-prefab/asset traversal; not AssetDatabase or local fileID validation. Lexical type tokens include comments/strings and are hints only.",
   "scopeCounts": {
-    "agent_tool": 134,
-    "unity": 782,
+    "agent_tool": 140,
+    "unity": 784,
     "content_source": 8
   },
   "latestReview": {
@@ -33761,5 +34098,23 @@
     "delta": "Docs/Validation/CodeReadabilityTask008/registry-refresh.pre-handoff.json",
     "newSemanticVerdictsAssigned": 0,
     "nativeVerificationOrBuildPerformed": false
+  },
+  "task008ScopedReview": {
+    "date": "2026-11-04",
+    "commit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6",
+    "qualifiedPaths": [
+      "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionSettings.cs",
+      "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionModel.cs",
+      "Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionController.cs",
+      "Assets/EmergencyShift/Runtime/Features/Scorpion/ScorpionControllerFactory.cs",
+      "Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs",
+      "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPack2D.cs",
+      "Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudio2D.cs",
+      "Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs",
+      "Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs",
+      "AgentScripts/Task008/Task008NativeAudit.cs"
+    ],
+    "completeTask": false,
+    "verification": "Scorpion28 EditMode and4 native PlayMode, 2703 loaded objects preserved, 114 foreign imported files unchanged; full suite/build pending."
   }
 }
