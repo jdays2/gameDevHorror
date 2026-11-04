@@ -18,11 +18,15 @@ using Object = UnityEngine.Object;
 
 public static class CapturePlayerHit
 {
+    public static Task<object> RecordD() => Record("D");
+    public static Task<object> RecordE() => Record("E");
+    public static Task<object> RecordF() => Record("F");
+
     public static Task<object> Record(string candidate)
     {
-        if (!Application.isPlaying || !new[] { "A", "B", "C" }.Contains(candidate))
+        if (!Application.isPlaying || !new[] { "A", "B", "C", "D", "E", "F" }.Contains(candidate))
         {
-            throw new InvalidOperationException("Requires ordinary Play and candidate A/B/C.");
+            throw new InvalidOperationException("Requires ordinary Play and candidate A/B/C/D/E/F.");
         }
         var viewType = typeof(Editor).Assembly.GetType("UnityEditor.GameView");
         EditorWindow view = EditorWindow.GetWindow(viewType);
@@ -115,9 +119,23 @@ public sealed class PlayerHitCaptureProbe : MonoBehaviour
             using (var data = new SerializedObject(audition))
             {
                 SerializedProperty clips = data.FindProperty("clips");
+                bool bodilyAudition = new[] { "D", "E", "F" }.Contains(candidate);
+                if (bodilyAudition)
+                {
+                    clips.arraySize = 1;
+                }
                 for (int index = 0; index < clips.arraySize; index++)
                 {
-                    AudioClip clip = ReadClip("Concepts/Unused/Audio/PlayerHitTask009/Exports/" + candidate + "/player-hit-" + (index + 1).ToString("D2") + ".wav");
+                    string path;
+                    if (bodilyAudition)
+                    {
+                        path = "Concepts/Unused/Audio/PlayerHitTask009/Bite02/Exports/" + candidate + "_hit.wav";
+                    }
+                    else
+                    {
+                        path = "Concepts/Unused/Audio/PlayerHitTask009/Exports/" + candidate + "/player-hit-" + (index + 1).ToString("D2") + ".wav";
+                    }
+                    AudioClip clip = ReadClip(path);
                     temporaryClips.Add(clip);
                     clips.GetArrayElementAtIndex(index).objectReferenceValue = clip;
                 }
@@ -203,8 +221,13 @@ public sealed class PlayerHitCaptureProbe : MonoBehaviour
                 sampleRate = AudioSettings.outputSampleRate, frames = frames.Count,
                 width = Screen.width, height = Screen.height, clips = damageEvents,
                 shots = weapon.ShotsFired - shotsBefore, hit.PlayedCount, framesObserved = frames,
+                profileVolume = original.Volume, profilePitchVariation = original.PitchVariation,
+                auditionClipCount = audition != null ? audition.Clips.Count : original.Clips.Count,
                 source = "Native AudioRenderer main mix and composited GameView, no normalization or substituted audio.",
                 fixture = "Four spaced accepted hits by an autonomous ShadowStalker, no firing. Player held at original spawn with temporary 100HP and aim at the enemy; other enemies disabled only during Play. Attacks stopped after hit four, with a 1.2s tail. Attack timing/damage/assets unchanged.",
+                auditionBank = new[] { "D", "E", "F" }.Contains(candidate)
+                    ? "One source for this audition, repeated on four real hits; not a completed variation bank. Only the memory-copy clip bank changes; production gain/pitch/routing retained."
+                    : "Existing B bank, or historical A/C audition variants.",
                 originalProfileUnchanged = JsonUtility.ToJson(original) == unchanged,
                 captureTiming = "Per-frame audio sample count follows unscaled time; video uses those sample durations." };
         }

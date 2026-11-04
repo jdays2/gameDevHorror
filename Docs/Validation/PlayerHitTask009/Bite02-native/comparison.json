@@ -1,0 +1,48 @@
+{
+  "task": "TASK-009",
+  "revision": "Bite02 native comparison",
+  "segments": [
+    {
+      "candidate": "D",
+      "seconds": 7.616,
+      "hits": 4,
+      "shots": 0,
+      "peak": 0.4995272159576416,
+      "clippedSamples": 0,
+      "video": "Docs/Validation/PlayerHitTask009/Bite02-native/D/native-gameplay.mp4",
+      "videoSha256": "7c657e23c170eb2841e102044f3033d883906ac0df33b34b04256ba41ccb4d2a",
+      "audio": "Docs/Validation/PlayerHitTask009/Bite02-native/D/native-main-mix.wav",
+      "audioSha256": "d986ffa41ccdff035ee83dfb4c52955bd1d18980d7cc6e9d692cd37f03f7b33b",
+      "nativeRawSha256": "d5ce859324efce55fda80327dd9c508f4ad304f47053518ad690bcee4f8940e0"
+    },
+    {
+      "candidate": "E",
+      "seconds": 7.637333333333333,
+      "hits": 4,
+      "shots": 0,
+      "peak": 0.45388466119766235,
+      "clippedSamples": 0,
+      "video": "Docs/Validation/PlayerHitTask009/Bite02-native/E/native-gameplay.mp4",
+      "videoSha256": "1bbe98f763436ea68b9f6ac2e0a7e3e1912e983a5951debb1d3e33d5220a9384",
+      "audio": "Docs/Validation/PlayerHitTask009/Bite02-native/E/native-main-mix.wav",
+      "audioSha256": "0e5608d674cf718624f594c55a233f6a2c3915354688b1162f288c22d34c9617",
+      "nativeRawSha256": "ac1daf43a72af498d0aa4fb3671a3d0e5ccd53cda2ab9c343eb029d409f62ef8"
+    },
+    {
+      "candidate": "F",
+      "seconds": 7.701333333333333,
+      "hits": 4,
+      "shots": 0,
+      "peak": 0.5657406449317932,
+      "clippedSamples": 0,
+      "video": "Docs/Validation/PlayerHitTask009/Bite02-native/F/native-gameplay.mp4",
+      "videoSha256": "56fb151374ac216cacf63c0a3bf71a51b2ce9319d9e51c9555048d48cdd59c9c",
+      "audio": "Docs/Validation/PlayerHitTask009/Bite02-native/F/native-main-mix.wav",
+      "audioSha256": "3a0f61c77826846946ca5816b42b78f3a13f38ca2604829337ec2d4aa14508bf",
+      "nativeRawSha256": "d59aeb9ac43a87e455973be47b0cba7d789cc400333a8d7e251d4c0b5da031a6"
+    }
+  ],
+  "order": "D, then E, then F; four actual accepted hits each, zero shots",
+  "processing": "Visible candidate letter and concatenation only. Native WAV levels unchanged; AAC video encode. Concat may pad audio by less than one video frame at segment boundaries.",
+  "limits": "One audition source per direction, repeated on four native hits with the existing profile pitch range; not a finished variation bank or artistic approval."
+}
