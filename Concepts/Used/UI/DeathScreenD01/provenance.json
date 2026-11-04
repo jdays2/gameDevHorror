@@ -1,7 +1,7 @@
 {
   "task": "TASK-006",
   "date": "2026-11-03",
-  "stage": "D02 fast inward black closure implemented and technically verified; owner visual review pending",
+  "stage": "D03 instant black background and menu; no entry transition",
   "selectedDirection": "D",
   "directionOwnerApproved": true,
   "runtimeArtisticApproval": false,
@@ -17,7 +17,7 @@
     },
     {
       "file": "Assets/EmergencyShift/Data/UI/DeathScreen/Transition.asset",
-      "sha256": "e5264e7e662f7a76752391e4a4ef61969215ca5f212dc43a86c22bab0510430d"
+      "sha256": "5d02754fe164883a7cee831b827a96fe4b542a02fb6987f98c13bf29b9c37cbc"
     },
     {
       "file": "Assets/EmergencyShift/Fonts/MainMenu/NotoSans-Medium.ttf",
@@ -42,15 +42,14 @@
     }
   ],
   "verification": {
-    "revision": "D02",
-    "editModePassed": 30,
-    "nativeFrames": 12,
-    "nativeInteractionCases": 8,
-    "fullBlackProbePixels": 921600,
-    "authoringScenes": 5,
-    "windowsBuild": "Succeeded"
+    "revision": "D03",
+    "nativeImmediateView": true,
+    "nativeFirstFrame": true,
+    "singleRetry": true,
+    "configurationOnly": true,
+    "newTestsOrBuild": false
   },
-  "report": "Docs/Reports/DeathScreenD02.md",
+  "report": "Docs/Reports/DeathScreenD03.md",
   "authoring": "Five real scenes inspected including inactive; no new audio/camera/checkpoint controller",
   "updated_date": "2026-11-04",
   "verificationD01": {
@@ -66,5 +65,14 @@
     "contentFadeSeconds": 0,
     "worldPauseDelaySeconds": 1.4,
     "irisFeather": 0.18
+  },
+  "verificationD02": {
+    "revision": "D02",
+    "editModePassed": 30,
+    "nativeFrames": 12,
+    "nativeInteractionCases": 8,
+    "fullBlackProbePixels": 921600,
+    "authoringScenes": 5,
+    "windowsBuild": "Succeeded"
   }
 }
