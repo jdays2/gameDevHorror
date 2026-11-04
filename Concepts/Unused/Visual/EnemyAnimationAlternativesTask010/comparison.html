@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TASK-010 · альтернативы анимации</title>
+<style>
+:root{color-scheme:dark;font:16px/1.5 system-ui;background:#0c171e;color:#e4edf2}
+body{max-width:1420px;margin:auto;padding:24px}h1{font-size:29px;margin:0 0 8px}h2{font-size:20px;margin:0 0 6px}p{margin:8px 0}.muted{color:#b6c8d0}.notice{border-left:4px solid #e3b776;padding:12px 16px;background:#243037;border-radius:4px}.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:#17252c;padding:14px;margin:18px 0;border-radius:8px}button,select,input{font:inherit}button,select{padding:6px 12px;border:1px solid #526872;border-radius:5px;background:#243943;color:#fff}input[type=range]{flex:1;min-width:150px}output{font-variant-numeric:tabular-nums;min-width:125px}.panels{display:grid;grid-template-columns:1fr 1fr .75fr;gap:14px}article{background:#17252c;border:1px solid #304650;border-radius:8px;padding:16px;min-width:0}canvas{display:block;width:100%;aspect-ratio:1;background:#17252c}#control{width:100%;aspect-ratio:1;object-fit:contain}.legend{display:flex;gap:20px;font-size:14px}.green{color:#80d7a5}.orange{color:#ecb26d}table{border-collapse:collapse;width:100%;margin-top:14px}th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #304650}a{color:#a7d7f0}.history{max-width:1080px;width:100%;display:block}.stats{font-size:14px;color:#b6c8d0;margin:12px 0}details{margin:24px 0}small{font-size:13px}@media(max-width:950px){.panels{grid-template-columns:1fr 1fr}.reference{grid-column:1/-1}#control{max-height:350px}}@media(max-width:620px){.panels{grid-template-columns:1fr}body{padding:14px}}
+</style>
+<h1>TASK-010 · движение отдельно от способа рисовать</h1>
+<p class="muted">Одна условная шестилапая постановка. Два разных пути получить цельный кадр. Старый рисунок — отдельный контроль качества.</p>
+<p class="notice"><b>Это схемы, не готовая анимация Сталкера.</b> Для D не нарисованы новые цельные кадры; для C не создана 3D-модель с настоящей кожей. Линии и розовые полосы показывают принцип работы. Они не подтверждают сохранность объёмов, силуэта, фактуры или художественную приёмку.</p>
+<div class="controls">
+  <label>Действие <select id="clip"><option value="walk">Шаг</option><option value="fold">Складывание</option><option value="unfold">Раскрытие / пробуждение</option><option value="attack">Подготовка → выпад → возврат</option><option value="turn">Поворот на 14° с опорами</option></select></label>
+  <button id="play" type="button">Играть</button><button id="prev" type="button">← Кадр</button><button id="next" type="button">Кадр →</button>
+  <input id="frame" type="range" min="0" max="48" value="0" step="1" aria-label="Кадр схемы"><output id="time"></output>
+  <label>Вид <select id="view"><option value="top">Строго сверху</option><option value="side">Сбоку: высоты</option><option value="front">Спереди: высоты</option></select></label>
+  <label>Темп <select id="speed"><option value="1">1×</option><option value="0.5">0.5×</option><option value="0.25">0.25×</option></select></label>
+</div>
+<div class="panels">
+  <article><h2>D · 3D-ориентир → цельный рисунок</h2><p class="muted">Рекомендуемый первый эксперимент</p><canvas id="guide" width="576" height="576"></canvas><p>Манекен задаёт опоры, высоты и фазу. Художник заново рисует <b>всё тело в кадре</b>, сохраняя характер исходника. Старая кожа не растягивается.</p><small>Здесь виден только ориентир. Ни одного нового рисованного кадра нет.</small></article>
+  <article><h2>C · цельная 3D-кожа → PNG</h2><p class="muted">Запасной производственный путь</p><canvas id="surface" width="576" height="576"></canvas><p>Один объём с корректирующими формами суставов. Кадры рендерятся строго сверху в RGBA. Текстура прикреплена к поверхности.</p><small>Полосы — схема поверхности, а не реальная topology/weights/mesh. Blender не вызывался.</small></article>
+  <article class="reference"><h2>Контроль · старый цельный Sprite</h2><label>Вид <select id="species"><option value="stalker">Сталкер</option><option value="sleeper">Спящий</option></select></label><img id="control" src="control-stalker.png" alt="Неизменённый целый Walk00 из текущего native Sprite"><p>Точный целый Walk00 из сохранённого prefab, перенесённый на холст 576² по родному pivot. Его пиксели не деформируются и <b>не изображают</b> выбранное действие схемы.</p><small>Эталон цельности и индивидуальности рисунка, не доказательство правильной анатомии всех исходных кадров. Статичный оригинал не синхронизирован с условным манекеном.</small></article>
+</div>
+<div class="legend"><span class="green">○ опорный контакт</span><span class="orange">○ перенос / поднятая лапа</span><span>Жёлтая линия: проекция условного root; многогранник: опоры</span></div>
+<p id="stats" class="stats"></p>
+<p class="muted">Общий масштаб двух схем: 576 px на 2.8 условной единицы. Шаг: 0.60 единицы за цикл, доля опоры 0.60. Каждое действие длится 1 условную секунду при 1×; это не тайминги AI. На раскрытии можно оценить возможность отдельного сна/пробуждения Спящего, но художественная переносимость на него пока не проверена.</p>
+<table><thead><tr><th>Что сравниваем</th><th>D · рисовать по 3D-ориентиру</th><th>C · рендерить 3D-поверхность</th></tr></thead><tbody>
+<tr><td>Кто владеет видом кадра</td><td>Художник, цельная перерисовка</td><td>Модель, веса, UV, материал, свет</td></tr>
+<tr><td>Сложный сгиб</td><td>Рисуется новый контур/складка/перекрытие</td><td>Проверяется реальная поверхность, вводится corrective shape</td></tr>
+<tr><td>Главный незакрытый риск</td><td>Дрейф формы между рисунками и стоимость труда</td><td>Получится другой CGI-вид; веса могут сплющить суставы</td></tr>
+<tr><td>В игре после запекания</td><td colspan="2">Выбор цельного Sprite по фазе/состоянию; IK и skin deformation остаются offline</td></tr>
+</tbody></table>
+<details><summary>Исторический кейс Locomotion02 · реальное сохранённое изображение</summary><p>after-00.jpg, редакция, описанная в README как bde2908. Это исторический управляемый URP-захват, скопированный без изменения файла. Его шаг был правдоподобнее, но перенос нарисованной кожи и складывание остаются отдельными проблемами. Текущая игра не использует этот runtime-риг.</p><img class="history" src="historical-locomotion02.jpg" alt="Исторические 24 кадра Locomotion02"><p>У него другой захват/масштаб, поэтому он не включён в синхронный числовой тест двух кандидатов.</p></details>
+<p><a href="../../../../Docs/Research/EnemyAnimationAlternativesTask010.md">Подробный отчёт, пять пайплайнов, источники и условия следующей пробы</a> · <a href="comparison-board.png">Статический обзор</a> · <a href="poses.json">Координаты и ограничения схемы</a></p>
+<script src="poses.js"></script><script src="viewer.js"></script>
+</html>
