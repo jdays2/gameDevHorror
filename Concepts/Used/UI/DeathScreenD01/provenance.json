@@ -1,7 +1,7 @@
 {
   "task": "TASK-006",
   "date": "2026-11-03",
-  "stage": "Implemented, technically verified; owner runtime review pending",
+  "stage": "D02 fast inward black closure implemented and technically verified; owner visual review pending",
   "selectedDirection": "D",
   "directionOwnerApproved": true,
   "runtimeArtisticApproval": false,
@@ -13,11 +13,11 @@
   "sources": [
     {
       "file": "Assets/EmergencyShift/Prefabs/UI/DeathScreenUI.prefab",
-      "sha256": "b61d27dce29dec21b2bbb2f6d231a901a97825287a4d17990a1945860e1ab0a0"
+      "sha256": "1b1d2dc877aeba70c011594de78357b395c1e644a584ba22c0099b81ead4e3e9"
     },
     {
       "file": "Assets/EmergencyShift/Data/UI/DeathScreen/Transition.asset",
-      "sha256": "66b4826638a1cffa959833060f07985cbaa27788bb6d222cd1b87b72b88a74ff"
+      "sha256": "e5264e7e662f7a76752391e4a4ef61969215ca5f212dc43a86c22bab0510430d"
     },
     {
       "file": "Assets/EmergencyShift/Fonts/MainMenu/NotoSans-Medium.ttf",
@@ -34,9 +34,26 @@
     {
       "file": "Concepts/Unused/UI/DeathScreen02/provenance.json",
       "sha256": "f3d2894c8e41c09fcf33f47ac8a96a6600e913b6c7f12ffc56cdc7c934dd2838"
+    },
+    {
+      "file": "Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenIris.cs",
+      "sha256": "ccce39f0c7f11df685cebd065c27b72055a52036cde3e9479ff377a15bbd10af",
+      "creation": "Original code-native uGUI mesh; no raster generation or custom shader/material"
     }
   ],
   "verification": {
+    "revision": "D02",
+    "editModePassed": 30,
+    "nativeFrames": 12,
+    "nativeInteractionCases": 8,
+    "fullBlackProbePixels": 921600,
+    "authoringScenes": 5,
+    "windowsBuild": "Succeeded"
+  },
+  "report": "Docs/Reports/DeathScreenD02.md",
+  "authoring": "Five real scenes inspected including inactive; no new audio/camera/checkpoint controller",
+  "updated_date": "2026-11-04",
+  "verificationD01": {
     "editModePassed": 1445,
     "targetedDeathScreenTests": 22,
     "sleeperPlayModePassed": 2,
@@ -44,6 +61,10 @@
     "nativeCheckpointCases": 7,
     "actualViewportLayoutCases": 30
   },
-  "report": "Docs/Reports/DeathScreenD01.md",
-  "authoring": "Five real scenes inspected including inactive; no new audio/camera/checkpoint controller"
+  "transition": {
+    "visualSeconds": 0.32,
+    "contentFadeSeconds": 0,
+    "worldPauseDelaySeconds": 1.4,
+    "irisFeather": 0.18
+  }
 }

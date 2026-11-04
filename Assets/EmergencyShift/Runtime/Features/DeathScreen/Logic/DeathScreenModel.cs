@@ -17,6 +17,9 @@ namespace EmergencyShift.Features.DeathScreen.Logic
         public bool IsInteractive => Phase == DeathScreenPhase.Ready ||
             Phase == DeathScreenPhase.Error || Phase == DeathScreenPhase.ConfirmQuit;
 
+        public float ClosureProgress => Phase == DeathScreenPhase.Entering
+            ? Ratio(Elapsed, Settings.WorldFadeSeconds) : 1;
+
         public float WorldOpacity
         {
             get
@@ -24,10 +27,6 @@ namespace EmergencyShift.Features.DeathScreen.Logic
                 if (Phase == DeathScreenPhase.Hidden)
                 {
                     return 0;
-                }
-                if (Phase == DeathScreenPhase.Entering)
-                {
-                    return Ease(Ratio(Elapsed, Settings.WorldFadeSeconds));
                 }
                 if (Phase == DeathScreenPhase.Returning)
                 {
@@ -47,8 +46,8 @@ namespace EmergencyShift.Features.DeathScreen.Logic
                 }
                 if (Phase == DeathScreenPhase.Entering)
                 {
-                    return Elapsed < Settings.ContentDelaySeconds ? 0 :
-                        Ease(Ratio(Elapsed - Settings.ContentDelaySeconds, Settings.ContentFadeSeconds));
+                    return Elapsed < Settings.ContentStartSeconds ? 0 :
+                        Ease(Ratio(Elapsed - Settings.ContentStartSeconds, Settings.ContentFadeSeconds));
                 }
                 if (Phase == DeathScreenPhase.LeavingRetry || Phase == DeathScreenPhase.LeavingQuit)
                 {

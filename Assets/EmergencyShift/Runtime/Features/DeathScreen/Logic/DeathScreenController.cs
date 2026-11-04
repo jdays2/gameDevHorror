@@ -12,6 +12,8 @@ namespace EmergencyShift.Features.DeathScreen.Logic
         private int startupFrames;
         private bool waitForNextTick;
         private bool disposed;
+        private bool waitingForMotion;
+        private float motionElapsed;
         public DeathScreenModel Model { get; }
 
         public DeathScreenController(DeathScreenModel model, IDeathScreenEnvironment environment)
@@ -41,6 +43,7 @@ namespace EmergencyShift.Features.DeathScreen.Logic
             {
                 return;
             }
+            TickMotion(unscaledSeconds);
             switch (Model.Phase)
             {
                 case DeathScreenPhase.Hidden:
@@ -48,11 +51,6 @@ namespace EmergencyShift.Features.DeathScreen.Logic
                     break;
                 case DeathScreenPhase.Entering:
                     Model.Advance(unscaledSeconds);
-                    // Let the existing TargetDead/body-closing reaction finish under the veil.
-                    if (Model.Elapsed >= Model.Settings.WorldFadeSeconds)
-                    {
-                        AcquireMotion();
-                    }
                     if (Model.Elapsed >= Model.Settings.EntrySeconds && !confirmationHeld)
                     {
                         Model.SetPhase(DeathScreenPhase.Ready);
@@ -92,6 +90,8 @@ namespace EmergencyShift.Features.DeathScreen.Logic
         {
             startupFrames = 0;
             waitForNextTick = false;
+            waitingForMotion = false;
+            motionElapsed = 0;
             try
             {
                 Model.Reset();
@@ -171,6 +171,8 @@ namespace EmergencyShift.Features.DeathScreen.Logic
                 }
                 else
                 {
+                    waitingForMotion = true;
+                    motionElapsed = 0;
                     Model.Enter(environment.HasCheckpoint);
                 }
             }
@@ -178,6 +180,21 @@ namespace EmergencyShift.Features.DeathScreen.Logic
             {
                 Cancel();
                 throw;
+            }
+        }
+
+        private void TickMotion(float seconds)
+        {
+            // Visual closure can finish first; existing TargetDead reactions keep their time behind it.
+            if (!waitingForMotion || !Model.IsVisible || Model.Phase == DeathScreenPhase.Returning)
+            {
+                return;
+            }
+            motionElapsed = Math.Min(float.MaxValue, motionElapsed + seconds);
+            if (motionElapsed >= Model.Settings.WorldPauseDelaySeconds)
+            {
+                waitingForMotion = false;
+                AcquireMotion();
             }
         }
 

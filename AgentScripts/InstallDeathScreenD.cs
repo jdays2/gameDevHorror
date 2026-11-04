@@ -145,36 +145,36 @@ public static class InstallDeathScreenD
             checkpointsAdded = 0, audioSourcesAdded = root.GetComponentsInChildren<AudioSource>(true).Length };
     }
 
-    public static object Review()
+    public static object Review() => ReviewTo(Evidence);
+
+    public static object ReviewD02() => ReviewTo("Docs/Validation/DeathScreenD02/");
+
+    private static object ReviewTo(string evidencePath)
     {
         var results = new List<object>();
         Scene active = SceneManager.GetActiveScene();
+        string originalPath = active.path;
+        if (SceneManager.sceneCount != 1 || !active.isLoaded || active.isDirty ||
+            EditorApplication.isPlayingOrWillChangePlaymode)
+        {
+            throw new InvalidOperationException("Review requires one clean stopped scene; preserve unsaved work first.");
+        }
         foreach (string path in ScenePaths)
         {
-            Scene scene = SceneManager.GetSceneByPath(path);
-            bool opened = !scene.IsValid() || !scene.isLoaded;
-            if (opened)
+            if (SceneManager.GetActiveScene().isDirty)
             {
-                scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+                throw new InvalidOperationException("Review must not discard a dirty scene.");
             }
-            try
-            {
-                results.Add(Validate(scene));
-            }
-            finally
-            {
-                if (opened)
-                {
-                    EditorSceneManager.CloseScene(scene, true);
-                }
-            }
+            Scene scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
+            results.Add(Validate(scene));
         }
-        if (active.IsValid() && active.isLoaded)
+        if (SceneManager.GetActiveScene().isDirty)
         {
-            SceneManager.SetActiveScene(active);
+            throw new InvalidOperationException("Review must not discard a dirty scene.");
         }
-        Directory.CreateDirectory(Evidence);
-        File.WriteAllText(Evidence + "authoring-review.json", JsonConvert.SerializeObject(results, Formatting.Indented));
+        EditorSceneManager.OpenScene(originalPath, OpenSceneMode.Single);
+        Directory.CreateDirectory(evidencePath);
+        File.WriteAllText(evidencePath + "authoring-review.json", JsonConvert.SerializeObject(results, Formatting.Indented));
         return results;
     }
 
@@ -193,7 +193,7 @@ public static class InstallDeathScreenD
             throw new InvalidOperationException("Invalid UI ownership, context link or profile in " + scene.path);
         }
         var viewData = new SerializedObject(view);
-        foreach (string field in new[] { "overlay", "shade", "blackout", "content", "loading", "title",
+        foreach (string field in new[] { "overlay", "shade", "iris", "blackout", "content", "loading", "title",
             "message", "primaryLabel", "secondaryLabel", "hint", "primary", "secondary", "gameplay", "fallbackEvents" })
         {
             if (viewData.FindProperty(field).objectReferenceValue == null)
@@ -202,6 +202,12 @@ public static class InstallDeathScreenD
             }
         }
         environment.Profile.Validate();
+        DeathScreenIris iris = Unique<DeathScreenIris>(scene, true);
+        if (viewData.FindProperty("iris").objectReferenceValue != iris ||
+            iris.gameObject != ((CanvasGroup)viewData.FindProperty("shade").objectReferenceValue).gameObject)
+        {
+            throw new InvalidOperationException("The black iris must belong to this screen's world veil.");
+        }
         int missingScripts = objects.Sum(item => GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(item.gameObject));
         PersistentEntity2D[] identities = All<PersistentEntity2D>(scene);
         if (missingScripts != 0 || identities.Any(item => string.IsNullOrWhiteSpace(item.Id)) ||
@@ -230,6 +236,8 @@ public static class InstallDeathScreenD
             listeners = All<AudioListener>(scene).Length, contexts = All<LevelContext2D>(scene).Length,
             deathScreens = All<DeathScreenPresenter>(scene).Length,
             audioSourcesInDeathScreen = root.GetComponentsInChildren<AudioSource>(true).Length,
+            closureSeconds = environment.Profile.ToSettings().WorldFadeSeconds,
+            worldPauseDelaySeconds = environment.Profile.ToSettings().WorldPauseDelaySeconds,
             savedRuntimeWorldAudio = All<EmergencyShift.Features.WorldAudio.View.WorldAudioPresenter>(scene).Length,
             startScene = AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene) };
     }
@@ -261,7 +269,11 @@ public static class InstallDeathScreenD
             scaler.screenMatchMode = UnityEngine.UI.CanvasScaler.ScreenMatchMode.Expand;
             canvasRect.gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
             var view = canvasRect.gameObject.AddComponent<DeathScreenView>();
-            CanvasGroup shade = Layer("World Veil", canvasRect, new Color(4 / 255f, 6 / 255f, 6 / 255f, .97f));
+            CanvasGroup shade = Layer("World Veil", canvasRect, Color.black);
+            Object.DestroyImmediate(shade.GetComponent<UnityEngine.UI.Image>());
+            DeathScreenIris iris = shade.gameObject.AddComponent<DeathScreenIris>();
+            iris.color = Color.black;
+            iris.raycastTarget = false;
             CanvasGroup blackout = Layer("Transition Black", canvasRect, Color.black);
             blackout.alpha = 0;
             RectTransform contentRect = Rect("Message and Actions", canvasRect);
@@ -315,7 +327,7 @@ public static class InstallDeathScreenD
             events.transform.SetParent(root.transform, false);
             events.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
             events.SetActive(false);
-            foreach (var pair in new Dictionary<string, Object> { { "overlay", canvas }, { "shade", shade },
+            foreach (var pair in new Dictionary<string, Object> { { "overlay", canvas }, { "shade", shade }, { "iris", iris },
                 { "blackout", blackout }, { "content", content }, { "loading", loading }, { "title", title },
                 { "message", message }, { "primaryLabel", primaryLabel }, { "secondaryLabel", secondaryLabel },
                 { "hint", hint }, { "primary", primary }, { "secondary", secondary }, { "gameplay", gameplay },

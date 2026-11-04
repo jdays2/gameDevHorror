@@ -10,6 +10,7 @@ namespace EmergencyShift.Features.DeathScreen.View
     {
         [SerializeField] private Canvas overlay;
         [SerializeField] private CanvasGroup shade;
+        [SerializeField] private DeathScreenIris iris;
         [SerializeField] private CanvasGroup blackout;
         [SerializeField] private CanvasGroup content;
         [SerializeField] private CanvasGroup loading;
@@ -63,6 +64,7 @@ namespace EmergencyShift.Features.DeathScreen.View
             }
             Show();
             shade.alpha = model.WorldOpacity;
+            iris.Render(model.ClosureProgress, model.Settings.IrisFeather);
             blackout.alpha = model.BlackoutOpacity;
             content.alpha = model.ContentOpacity;
             loading.alpha = model.Phase == DeathScreenPhase.Loading

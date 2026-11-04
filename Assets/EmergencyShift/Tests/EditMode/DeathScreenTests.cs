@@ -59,9 +59,12 @@ namespace EmergencyShift.Features.DeathScreen.Tests
             Assert.That(environment.MotionAcquisitions, Is.Zero);
             Assert.That(model.ContentOpacity, Is.Zero);
             controller.Tick(.5f, false);
-            Assert.That(model.ContentOpacity, Is.GreaterThan(0));
+            Assert.That(model.ContentOpacity, Is.Zero, "Actions stay hidden until the world is black.");
             Assert.That(environment.MotionAcquisitions, Is.Zero);
             controller.Tick(.66f, false);
+            Assert.That(model.Phase, Is.EqualTo(DeathScreenPhase.Entering));
+            Assert.That(model.ContentOpacity, Is.GreaterThan(0));
+            controller.Tick(.5f, false);
             Assert.That(model.Phase, Is.EqualTo(DeathScreenPhase.Ready));
             Assert.That(environment.MotionOwners, Is.EqualTo(4));
         }
@@ -294,9 +297,11 @@ namespace EmergencyShift.Features.DeathScreen.Tests
                 custom.Execute(DeathScreenIntent.Enter);
                 custom.Tick(1.5f, false);
                 Assert.That(custom.Model.Phase, Is.EqualTo(DeathScreenPhase.Entering));
-                Assert.That(custom.Model.ContentOpacity, Is.EqualTo(1));
+                Assert.That(custom.Model.ContentOpacity, Is.Zero);
                 Assert.That(customEnvironment.MotionAcquisitions, Is.Zero);
                 custom.Tick(.5f, false);
+                Assert.That(custom.Model.Phase, Is.EqualTo(DeathScreenPhase.Entering));
+                custom.Tick(.21f, false);
                 Assert.That(custom.Model.Phase, Is.EqualTo(DeathScreenPhase.Ready));
             }
             finally
@@ -305,10 +310,98 @@ namespace EmergencyShift.Features.DeathScreen.Tests
             }
         }
 
+        [Test]
+        public void FastClosureStartsOnDeathAndActionsAppearOnlyOnCompleteBlack()
+        {
+            var fastEnvironment = new RecordingEnvironment();
+            var fastModel = new DeathScreenModel(new DeathScreenSettings(.32f, 0, 0, .35f));
+            using (var fast = new DeathScreenController(fastModel, fastEnvironment))
+            {
+                fast.Execute(DeathScreenIntent.Enter);
+                Assert.That(fastModel.WorldOpacity, Is.EqualTo(1), "The iris is drawn immediately.");
+                Assert.That(fastModel.ClosureProgress, Is.Zero);
+                Assert.That(fastModel.ContentOpacity, Is.Zero);
+                fast.Tick(.16f, false);
+                Assert.That(fastModel.ClosureProgress, Is.EqualTo(.5f).Within(.001f));
+                Assert.That(fastModel.ContentOpacity, Is.Zero);
+                Assert.That(fastModel.IsInteractive, Is.False);
+                fast.Tick(.17f, false);
+                Assert.That(fastModel.ClosureProgress, Is.EqualTo(1));
+                Assert.That(fastModel.ContentOpacity, Is.EqualTo(1));
+                Assert.That(fastModel.Phase, Is.EqualTo(DeathScreenPhase.Ready));
+            }
+        }
+
+        [Test]
+        public void ConfiguredTextFadeCannotBeginBeforeClosureEvenWithEarlierDelay()
+        {
+            var customEnvironment = new RecordingEnvironment();
+            var customModel = new DeathScreenModel(new DeathScreenSettings(.32f, .01f, .1f, .35f));
+            using (var custom = new DeathScreenController(customModel, customEnvironment))
+            {
+                custom.Execute(DeathScreenIntent.Enter);
+                custom.Tick(.31f, false);
+                Assert.That(customModel.ContentOpacity, Is.Zero);
+                custom.Tick(.06f, false);
+                Assert.That(customModel.ContentOpacity, Is.GreaterThan(0).And.LessThan(1));
+                Assert.That(customModel.IsInteractive, Is.False);
+                custom.Tick(.06f, false);
+                Assert.That(customModel.IsInteractive, Is.True);
+            }
+        }
+
+        [TestCase(0)]
+        [TestCase(-.1f)]
+        [TestCase(1.1f)]
+        [TestCase(float.NaN)]
+        public void InvalidIrisFeatherIsRejected(float feather)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => new DeathScreenSettings(.32f, .32f, 0, .35f, feather));
+        }
+
+        [Test]
+        public void FastVisualDoesNotCutOffExistingTargetDeathReactionWhenMenuChangesPhase()
+        {
+            var fastEnvironment = new RecordingEnvironment();
+            var fastModel = new DeathScreenModel(new DeathScreenSettings(.32f, .32f, 0, .35f, .18f, 1.4f));
+            using (var fast = new DeathScreenController(fastModel, fastEnvironment))
+            {
+                fast.Execute(DeathScreenIntent.Enter);
+                fast.Tick(.33f, false);
+                Assert.That(fastModel.IsInteractive, Is.True);
+                Assert.That(fastEnvironment.MotionAcquisitions, Is.Zero);
+                fast.Execute(DeathScreenIntent.AskQuit);
+                fast.Tick(.6f, false);
+                Assert.That(fastEnvironment.MotionAcquisitions, Is.Zero);
+                fast.Execute(DeathScreenIntent.CancelQuit);
+                fast.Tick(.5f, false);
+                Assert.That(fastEnvironment.MotionAcquisitions, Is.EqualTo(1));
+                Assert.That(fastModel.IsInteractive, Is.True);
+            }
+        }
+
+        [Test]
+        public void LivingRestoreBeforeMotionDelayCannotPauseTheWorldLater()
+        {
+            var fastEnvironment = new RecordingEnvironment();
+            var fastModel = new DeathScreenModel(new DeathScreenSettings(.32f, .32f, 0, .35f, .18f, 1.4f));
+            using (var fast = new DeathScreenController(fastModel, fastEnvironment))
+            {
+                fast.Execute(DeathScreenIntent.Enter);
+                fast.Tick(.33f, false);
+                fastEnvironment.IsDead = false;
+                fast.ObserveLivingPlayer();
+                fast.Tick(2, false);
+                fast.Tick(2, false);
+                Assert.That(fastModel.IsVisible, Is.False);
+                Assert.That(fastEnvironment.MotionAcquisitions, Is.Zero);
+            }
+        }
+
         private void Ready()
         {
             Assert.That(controller.Execute(DeathScreenIntent.Enter), Is.True);
-            controller.Tick(1.5f, false);
+            controller.Tick(model.Settings.EntrySeconds + .1f, false);
             Assert.That(model.Phase, Is.EqualTo(DeathScreenPhase.Ready));
         }
 
