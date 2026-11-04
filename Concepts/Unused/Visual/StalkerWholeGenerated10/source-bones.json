@@ -1,0 +1,462 @@
+{
+  "version": "B03-proposed-visible-anatomy-correspondence",
+  "approval": "Engineering reference for a limited drawing study; no new human artistic approval or medical/3D validation.",
+  "identityAnchor": {
+    "path": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\Concepts\\Unused\\Visual\\StalkerWholeFrames07\\SourceKeys\\walk-00.png",
+    "sha256": "f1e38b24678732a9a8a03a9c00ea7470758d1ab46a1719cfae389a5a1f0bf98d",
+    "preservation": "IMMUTABLE exact RGBA. No normalization, redraw, rescale, eye/body redesign or paired-XY equalization."
+  },
+  "neighborSource": {
+    "path": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\Concepts\\Unused\\Visual\\StalkerWholeFrames07\\SourceKeys\\walk-01.png",
+    "sha256": "9ebde61d9c7a308329a5db8ce84894461baafea32a63384337edfc77d8e9f2de",
+    "role": "Original whole pose, preserved. Visible correspondence witness; not proven 3D skeleton."
+  },
+  "grid": {
+    "canvas": [
+      576,
+      576
+    ],
+    "pivot": [
+      288,
+      288
+    ],
+    "ppu": 224,
+    "origin": "top left",
+    "front": "up"
+  },
+  "fixedVisibleAnatomy": {
+    "limbs": [
+      "LF",
+      "RF",
+      "LM",
+      "RM",
+      "LR",
+      "RR"
+    ],
+    "pairs": [
+      [
+        "LF",
+        "RF"
+      ],
+      [
+        "LM",
+        "RM"
+      ],
+      [
+        "LR",
+        "RR"
+      ]
+    ],
+    "chain": "same covered body attachment region H -> proximal centerline -> ONE visible outer articulation J -> single hard pointed distal element ending T",
+    "invariants": [
+      "six continuously connected chains",
+      "same limb identity/order and body-side attachment regions",
+      "same single outer articulation per chain",
+      "no invented wrist, digits or internal hard-tip hinge",
+      "same hard-end shape family, taper and base; no kink, split or telescoping",
+      "same body/eye identity and facing"
+    ],
+    "unknowns": [
+      "true3D segment dimensions",
+      "joint heights and axes in depth",
+      "bone versus horn internal composition",
+      "medical muscle inventory",
+      "floor contacts or weight bearing"
+    ],
+    "bilateralRule": "Same anatomical graph and organ type. Equal 3D dimensions are plausible but not measured; equal XY projected lengths are NOT required."
+  },
+  "source00Source01Correspondences": [
+    {
+      "id": "LF",
+      "source00": {
+        "id": "LF",
+        "H": [
+          248,
+          241
+        ],
+        "J": [
+          184,
+          170
+        ],
+        "T": [
+          254,
+          95
+        ]
+      },
+      "source01": {
+        "id": "LF",
+        "H": [
+          248,
+          240
+        ],
+        "J": [
+          169,
+          165
+        ],
+        "T": [
+          226,
+          92
+        ]
+      },
+      "observedProjection00Px": [
+        95.58765610684259,
+        102.59142264341595
+      ],
+      "observedProjection01Px": [
+        108.93117092916977,
+        92.61749294814668
+      ],
+      "true3DLength": null,
+      "boneEndpointCaveat": "H is covered root region; T is exterior hard tip, not a confirmed internal bone endpoint."
+    },
+    {
+      "id": "RF",
+      "source00": {
+        "id": "RF",
+        "H": [
+          330,
+          242
+        ],
+        "J": [
+          402,
+          180
+        ],
+        "T": [
+          342,
+          105
+        ]
+      },
+      "source01": {
+        "id": "RF",
+        "H": [
+          330,
+          240
+        ],
+        "J": [
+          397,
+          164
+        ],
+        "T": [
+          325,
+          110
+        ]
+      },
+      "observedProjection00Px": [
+        95.01578816175763,
+        96.04686356149273
+      ],
+      "observedProjection01Px": [
+        101.31633629380802,
+        90.0
+      ],
+      "true3DLength": null,
+      "boneEndpointCaveat": "H is covered root region; T is exterior hard tip, not a confirmed internal bone endpoint."
+    },
+    {
+      "id": "LM",
+      "source00": {
+        "id": "LM",
+        "H": [
+          238,
+          286
+        ],
+        "J": [
+          153,
+          278
+        ],
+        "T": [
+          109,
+          355
+        ]
+      },
+      "source01": {
+        "id": "LM",
+        "H": [
+          238,
+          284
+        ],
+        "J": [
+          159,
+          264
+        ],
+        "T": [
+          127,
+          348
+        ]
+      },
+      "observedProjection00Px": [
+        85.37564055396598,
+        88.68483523128404
+      ],
+      "observedProjection01Px": [
+        81.49233092751734,
+        89.88882021697692
+      ],
+      "true3DLength": null,
+      "boneEndpointCaveat": "H is covered root region; T is exterior hard tip, not a confirmed internal bone endpoint."
+    },
+    {
+      "id": "RM",
+      "source00": {
+        "id": "RM",
+        "H": [
+          340,
+          292
+        ],
+        "J": [
+          425,
+          298
+        ],
+        "T": [
+          452,
+          377
+        ]
+      },
+      "source01": {
+        "id": "RM",
+        "H": [
+          340,
+          288
+        ],
+        "J": [
+          429,
+          279
+        ],
+        "T": [
+          464,
+          351
+        ]
+      },
+      "observedProjection00Px": [
+        85.21150157109074,
+        83.48652585896721
+      ],
+      "observedProjection01Px": [
+        89.45389874119518,
+        80.05623023850174
+      ],
+      "true3DLength": null,
+      "boneEndpointCaveat": "H is covered root region; T is exterior hard tip, not a confirmed internal bone endpoint."
+    },
+    {
+      "id": "LR",
+      "source00": {
+        "id": "LR",
+        "H": [
+          237,
+          338
+        ],
+        "J": [
+          184,
+          422
+        ],
+        "T": [
+          239,
+          487
+        ]
+      },
+      "source01": {
+        "id": "LR",
+        "H": [
+          237,
+          338
+        ],
+        "J": [
+          170,
+          413
+        ],
+        "T": [
+          216,
+          482
+        ]
+      },
+      "observedProjection00Px": [
+        99.32270636667126,
+        85.14693182963201
+      ],
+      "observedProjection01Px": [
+        100.56838469419701,
+        82.92767933567175
+      ],
+      "true3DLength": null,
+      "boneEndpointCaveat": "H is covered root region; T is exterior hard tip, not a confirmed internal bone endpoint."
+    },
+    {
+      "id": "RR",
+      "source00": {
+        "id": "RR",
+        "H": [
+          339,
+          338
+        ],
+        "J": [
+          389,
+          412
+        ],
+        "T": [
+          341,
+          480
+        ]
+      },
+      "source01": {
+        "id": "RR",
+        "H": [
+          338,
+          338
+        ],
+        "J": [
+          397,
+          424
+        ],
+        "T": [
+          351,
+          494
+        ]
+      },
+      "observedProjection00Px": [
+        89.30845424706443,
+        83.23460818673925
+      ],
+      "observedProjection01Px": [
+        104.29285689825551,
+        83.7615663654877
+      ],
+      "true3DLength": null,
+      "boneEndpointCaveat": "H is covered root region; T is exterior hard tip, not a confirmed internal bone endpoint."
+    }
+  ],
+  "limitedBoneGate": {
+    "source00": "PASS visible graph/continuity and usable identity anchor; no visible topology failure observed.",
+    "source01": "PASS visible graph/correspondence with00 for this limited study; projected length changes are WARN/uncertainty, not proof of anatomy failure.",
+    "scope": "Permits functional muscle-group mapping on unchanged source00 and a preplanned one-frame in-between study. Does not pass medical 3D anatomy, all8keys, 24frames or any new drawing."
+  },
+  "firstNewDrawingPlan": {
+    "id": "B03-mid50-00-to01",
+    "timeFraction": 0.5,
+    "limbs": [
+      {
+        "id": "LF",
+        "H": [
+          248,
+          241
+        ],
+        "J": [
+          176.5,
+          167.5
+        ],
+        "T": [
+          240.0,
+          93.5
+        ],
+        "plannedProjectedProximalPx": 102.54023600518968,
+        "plannedProjectedDistalControlPx": 97.510255870857
+      },
+      {
+        "id": "RF",
+        "H": [
+          330,
+          242
+        ],
+        "J": [
+          399.5,
+          172.0
+        ],
+        "T": [
+          333.5,
+          107.5
+        ],
+        "plannedProjectedProximalPx": 98.64202958171532,
+        "plannedProjectedDistalControlPx": 92.28353049163215
+      },
+      {
+        "id": "LM",
+        "H": [
+          238,
+          286
+        ],
+        "J": [
+          156.0,
+          271.0
+        ],
+        "T": [
+          118.0,
+          351.5
+        ],
+        "plannedProjectedProximalPx": 83.3606621854697,
+        "plannedProjectedDistalControlPx": 89.01825655448437
+      },
+      {
+        "id": "RM",
+        "H": [
+          340,
+          292
+        ],
+        "J": [
+          427.0,
+          288.5
+        ],
+        "T": [
+          458.0,
+          364.0
+        ],
+        "plannedProjectedProximalPx": 87.07037383634,
+        "plannedProjectedDistalControlPx": 81.61648117874232
+      },
+      {
+        "id": "LR",
+        "H": [
+          237,
+          338
+        ],
+        "J": [
+          177.0,
+          417.5
+        ],
+        "T": [
+          227.5,
+          484.5
+        ],
+        "plannedProjectedProximalPx": 99.60045180620418,
+        "plannedProjectedDistalControlPx": 83.90023837868401
+      },
+      {
+        "id": "RR",
+        "H": [
+          339,
+          338
+        ],
+        "J": [
+          393.0,
+          418.0
+        ],
+        "T": [
+          346.0,
+          487.0
+        ],
+        "plannedProjectedProximalPx": 96.51942809610924,
+        "plannedProjectedDistalControlPx": 83.48652585896721
+      }
+    ],
+    "construction": "A predeclared 2D correspondence sketch between original visible J/T positions. H nominal centers remain00 within covered attachment regions. This is not interpolation/warping of skin and not a solved 3D pose.",
+    "projectionRule": "Projected lengths are outcomes of this specific visible-pose plan, not fixed bone lengths or bilateral means. No unplanned overshoot, new joint or arbitrary after-the-fact Z explanation.",
+    "drawingCheckZonesGridPx": {
+      "visibleJ": 3,
+      "exteriorT": 3,
+      "coveredRootRegion": 7
+    },
+    "toleranceMeaning": "Project drawing-match and source localization allowances fixed before generation, NOT medical anatomical tolerances. Borderline results include registration/landmark uncertainty.",
+    "hardTipRule": "Keep one coherent hard piece. Planned difference of its top projection must read as continuous rotation/foreshortening between the neighboring originals; no narrow stretched point, internal bend or new segment. This is a visible shape consistency check, not a full 3D rigidity proof.",
+    "bodyRegistration": "Same576grid expected. If generator reframes, derive ONE uniform scale/translation from fixed body/eye landmarks BEFORE limb review; never per-limb fit.",
+    "gateOrder": "Check this bone-only plan, then actual generated whole drawing under the frozen plan; failure stops its muscle pass. No automatic24-frame generation."
+  },
+  "priorCandidates": {
+    "B02": "Unapproved 2D design constraint; keep immutable as historical experiment. It does not prove chosen source00 anatomy was wrong.",
+    "R1_R2_R3": "Remain rejected/unused. No retrospective PASS underB03 and no tolerance adjustment to rescue them."
+  },
+  "nextMuscleScope": "Separate functional grouping diagram on original00 with stable limb/segment attachment IDs, explicit O/I/fiber directions and declared uncertainty; not permission to invent a medical inventory or generate a whole animation.",
+  "inputHashes": {
+    "sourceObservations": "44f05cface988c2f5fecb3995340c368a240f1ececf51b167d42db92d111c510",
+    "B02Template": "59b99292987da4fd7c2d8ef3155fb3f74d00042b692c5e997f8a2d94017ee191",
+    "B02FinalBinding": "1f4615663403b45151d2359cd44c416be638e82361175395bee970c31aa3c224"
+  }
+}

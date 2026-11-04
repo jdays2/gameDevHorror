@@ -1,0 +1,173 @@
+{
+  "source": "original-attack-reference.png",
+  "canvas": [
+    576,
+    576
+  ],
+  "bodyEyeCenter": [
+    288,
+    288
+  ],
+  "limbs": [
+    {
+      "id": "LF",
+      "H": [
+        241,
+        234
+      ],
+      "J": [
+        193,
+        162
+      ],
+      "T": [
+        256,
+        96
+      ]
+    },
+    {
+      "id": "RF",
+      "H": [
+        335,
+        234
+      ],
+      "J": [
+        383,
+        162
+      ],
+      "T": [
+        320,
+        95
+      ]
+    },
+    {
+      "id": "LM",
+      "H": [
+        237,
+        285
+      ],
+      "J": [
+        149,
+        279
+      ],
+      "T": [
+        94,
+        351
+      ]
+    },
+    {
+      "id": "RM",
+      "H": [
+        341,
+        289
+      ],
+      "J": [
+        433,
+        280
+      ],
+      "T": [
+        486,
+        353
+      ]
+    },
+    {
+      "id": "LR",
+      "H": [
+        231,
+        333
+      ],
+      "J": [
+        171,
+        404
+      ],
+      "T": [
+        231,
+        476
+      ]
+    },
+    {
+      "id": "RR",
+      "H": [
+        341,
+        333
+      ],
+      "J": [
+        405,
+        404
+      ],
+      "T": [
+        341,
+        476
+      ]
+    }
+  ],
+  "uncertainty": "Covered H, proposed visible2D functional controls, no recovered hidden3D. Fixed reference observations before generation.",
+  "gate": "Visible J/T within5source pixels plus2observation uncertainty; no per-limb fit. Six continuous chains, same single joint and rigid tips. Root muscles under mouth/torso merge continuously; skin/sequence separate.",
+  "sourceOnlyTipQA": {
+    "method": "Dark foreground outer endpoint in predeclared source-only regions, no generated image input. Earlier LM/RM/LR/RR manual guesses were wrong, not output anatomy errors. Initial observation preserved.",
+    "threshold": 45,
+    "regions": {
+      "LF": [
+        220,
+        70,
+        280,
+        125
+      ],
+      "RF": [
+        300,
+        70,
+        345,
+        125
+      ],
+      "LM": [
+        50,
+        300,
+        120,
+        395
+      ],
+      "RM": [
+        460,
+        300,
+        520,
+        395
+      ],
+      "LR": [
+        220,
+        455,
+        270,
+        500
+      ],
+      "RR": [
+        300,
+        455,
+        350,
+        500
+      ]
+    },
+    "actualOriginalTips": {
+      "LF": [
+        256,
+        96
+      ],
+      "RF": [
+        320,
+        95
+      ],
+      "LM": [
+        94,
+        351
+      ],
+      "RM": [
+        486,
+        353
+      ],
+      "LR": [
+        231,
+        476
+      ],
+      "RR": [
+        341,
+        476
+      ]
+    }
+  }
+}
