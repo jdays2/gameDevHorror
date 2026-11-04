@@ -1,0 +1,27 @@
+{
+  "status": "completed",
+  "duration": 2.85,
+  "summary": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "EmergencyShift.Tests.FixedCreatureSpriteSceneTests.OriginalWalkAdvancesOnlyForTravelAndFoldUsesOriginalWholePose",
+      "Status": "Failed",
+      "Duration": 2.4979304,
+      "Message": "System.InvalidOperationException : Invalid Sleeper health/aggro/melee checkpoint.",
+      "StackTrace": "  at EmergencyShift.ActorCheckpointValidation.ValidateSleeper (EmergencyShift.Sleeper2D+Snapshot actor, System.Int32 maximumHealth) [0x000bb] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\Assets\\EmergencyShift\\Runtime\\Persistence\\ActorCheckpointValidation.cs:62 \r\n  at EmergencyShift.Sleeper2D.RestoreState (EmergencyShift.Sleeper2D+Snapshot saved) [0x00000] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\Assets\\EmergencyShift\\Runtime\\Enemies\\Sleeper\\Sleeper2D.cs:215 \r\n  at EmergencyShift.Tests.FixedCreatureSpriteSceneTests+<OriginalWalkAdvancesOnlyForTravelAndFoldUsesOriginalWholePose>d__7.MoveNext () [0x003f1] in C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift\\Assets\\EmergencyShift\\Tests\\PlayMode\\FixedCreatureSpriteSceneTests.cs:154 \r\n  at UnityEngine.TestTools.TestEnumerator+<Execute>d__8.MoveNext () [0x0003a] in .\\Library\\PackageCache\\com.unity.test-framework@80f691d4262b\\UnityEngine.TestRunner\\NUnitExtensions\\Attributes\\TestEnumerator.cs:52 "
+    },
+    {
+      "FullName": "EmergencyShift.Tests.FixedCreatureSpriteSceneTests.OriginalWholeAttackUsesCombatTimeWithoutIndependentLegGait",
+      "Status": "Passed",
+      "Duration": 0.2903972,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}
