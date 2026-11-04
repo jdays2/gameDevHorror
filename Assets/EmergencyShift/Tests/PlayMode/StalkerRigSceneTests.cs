@@ -73,7 +73,7 @@ namespace EmergencyShift.Tests
                 Vector2 start = physics.position;
                 yield return new WaitForSeconds(.35f);
                 Assert.That(physics.position.y - start.y, Is.GreaterThan(.3f));
-                Assert.That(body.sprite.name, Does.StartWith("body-0-"));
+                AssertOriginalBodyFrame(animator, body, "Walk");
                 Assert.That(probe.GetComponentsInChildren<MeshRenderer>(true), Is.Empty);
                 snapshot = stalker.CaptureState();
                 snapshot.state = ShadowStalker2D.BehaviourState.Retreating;
@@ -85,7 +85,7 @@ namespace EmergencyShift.Tests
                 Assert.That(animator.CurrentFrame / animator.SpriteSet.Phases, Is.LessThan(animator.SpriteSet.ClosureRows - 1));
                 yield return new WaitForSeconds(.35f);
                 Assert.That(animator.DisplayedBodyFold, Is.EqualTo(animator.SpriteSet.CompactWalkingFold).Within(.001f));
-                Assert.That(body.sprite.name, Does.StartWith("body-4-"));
+                AssertOriginalBodyFrame(animator, body, "Recoil");
                 // The body responds to the recoil state while the eye is still open.
                 snapshot.state = ShadowStalker2D.BehaviourState.Recoiling;
                 snapshot.age = 0;
@@ -96,7 +96,7 @@ namespace EmergencyShift.Tests
                 yield return new WaitForSeconds(.3f);
                 Assert.That(animator.EyeOpen, Is.True);
                 Assert.That(animator.DisplayedBodyFold, Is.EqualTo(1).Within(.001f));
-                Assert.That(body.sprite.name, Does.StartWith("body-8-"));
+                AssertOriginalBodyFrame(animator, body, "Recoil");
                 foreach (ShadowStalker2D.BehaviourState state in new[] {
                     ShadowStalker2D.BehaviourState.Recoiling, ShadowStalker2D.BehaviourState.Retreating,
                     ShadowStalker2D.BehaviourState.Waiting, ShadowStalker2D.BehaviourState.Attacking })
@@ -109,6 +109,8 @@ namespace EmergencyShift.Tests
                     yield return new WaitForSeconds(.2f);
                     Assert.That(body.sprite, Is.Not.Null);
                     Assert.That(body.sprite.name.Contains("torso"), Is.False, state + " draws only a cut torso");
+                    Assert.That(AssetDatabase.GetAssetPath(body.sprite), Does.StartWith(
+                        "Assets/EmergencyShift/Art/Enemies/Stalker/Frames/"));
                     Assert.That(probe.GetComponentsInChildren<MeshRenderer>(true), Is.Empty);
                 }
                 stalker.Kill();
@@ -118,6 +120,14 @@ namespace EmergencyShift.Tests
                 yield return SceneManager.UnloadSceneAsync(loaded);
                 loaded = default;
             }
+        }
+
+        private static void AssertOriginalBodyFrame(StalkerSpriteAnimator animator, SpriteRenderer body, string prefix)
+        {
+            Assert.That(body.sprite, Is.SameAs(animator.SpriteSet.Frame(animator.CurrentFrame)),
+                "The displayed whole drawing must match the selected actual body row and phase.");
+            Assert.That(AssetDatabase.GetAssetPath(body.sprite), Does.StartWith(
+                "Assets/EmergencyShift/Art/Enemies/Stalker/Frames/" + prefix));
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -25,13 +26,90 @@ public static class Task008NativeAudit
 
     public static object InspectSnapshot(string name) => Compact(ReadSnapshot(name), name);
 
+    public static object AuditAssetReferences(string name)
+    {
+        if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling || EditorApplication.isUpdating)
+        {
+            throw new InvalidOperationException("Requires owned stopped idle Editor.");
+        }
+        string[] paths = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/EmergencyShift" })
+            .Concat(AssetDatabase.FindAssets("t:ScriptableObject", new[] { "Assets/EmergencyShift" }))
+            .Select(AssetDatabase.GUIDToAssetPath).Distinct().OrderBy(path => path).ToArray();
+        var failures = new JArray();
+        int objects = 0;
+        foreach (string path in paths)
+        {
+            var targets = new List<UnityEngine.Object>();
+            UnityEngine.Object asset = AssetDatabase.LoadMainAssetAtPath(path);
+            if (asset == null)
+            {
+                failures.Add(new JObject { ["path"] = path, ["failure"] = "Main asset did not load." });
+                continue;
+            }
+            if (asset is GameObject prefab)
+            {
+                foreach (Transform node in prefab.GetComponentsInChildren<Transform>(true))
+                {
+                    targets.Add(node.gameObject);
+                    foreach (Component component in node.GetComponents<Component>())
+                    {
+                        if (component == null)
+                        {
+                            failures.Add(new JObject { ["path"] = path, ["object"] = node.name, ["failure"] = "Missing script." });
+                        }
+                        else
+                        {
+                            targets.Add(component);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                targets.AddRange(AssetDatabase.LoadAllAssetsAtPath(path).Where(item => item is ScriptableObject));
+            }
+            foreach (UnityEngine.Object target in targets)
+            {
+                objects++;
+                using (var serialized = new SerializedObject(target))
+                {
+                    SerializedProperty property = serialized.GetIterator();
+                    bool descend = true;
+                    while (property.Next(descend))
+                    {
+                        descend = property.propertyType != SerializedPropertyType.ObjectReference;
+                        if (property.propertyType == SerializedPropertyType.ObjectReference &&
+                            property.objectReferenceValue == null && property.objectReferenceEntityIdValue != default)
+                        {
+                            failures.Add(new JObject { ["path"] = path, ["object"] = target.name,
+                                ["type"] = target.GetType().FullName, ["property"] = property.propertyPath,
+                                ["failure"] = "Missing serialized native reference." });
+                        }
+                    }
+                }
+            }
+        }
+        var report = new JObject
+        {
+            ["assets"] = paths.Length, ["objects"] = objects, ["failures"] = failures,
+            ["passed"] = failures.Count == 0, ["sceneLoads"] = 0, ["sceneSaves"] = 0,
+            ["scope"] = "Native loaded own prefab hierarchies including inactive children and ScriptableObject assets. Null optional refs allowed; unresolved nonzero native refs/missing scripts fail. Closed scenes, shader semantics, dynamic strings and gameplay require separate verification."
+        };
+        WriteNew(name, report);
+        if (failures.Count != 0)
+        {
+            throw new InvalidOperationException("Native prefab/profile references failed; inspect " + Output(name));
+        }
+        return report;
+    }
+
     public static object Verify(string baselineName, string outputName)
     {
         JObject before = ReadSnapshot(baselineName);
         JObject after = ReadState();
         var differences = new JArray();
         var tokenDifferences = new JArray();
-        foreach (string key in new[] { "playing", "playModeStartScene", "scenes" })
+        foreach (string key in new[] { "playing", "playModeStartScene", "globalState", "scenes" })
         {
             if (!JToken.DeepEquals(before[key], after[key]))
             {
@@ -99,6 +177,16 @@ public static class Task008NativeAudit
         {
             ["project"] = Project(),
             ["playing"] = EditorApplication.isPlaying,
+            ["globalState"] = new JObject
+            {
+                ["timeScale"] = Time.timeScale,
+                ["captureDeltaTime"] = Time.captureDeltaTime,
+                ["listenerVolume"] = AudioListener.volume,
+                ["listenerPause"] = AudioListener.pause,
+                ["enabledListeners"] = UnityEngine.Object.FindObjectsByType<AudioListener>(FindObjectsInactive.Exclude)
+                    .Count(listener => listener.enabled),
+                ["runInBackground"] = Application.runInBackground
+            },
             ["playModeStartScene"] = EditorSceneManager.playModeStartScene == null ? JValue.CreateNull()
                 : new JValue(AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene)),
             ["missingScripts"] = missingScripts,

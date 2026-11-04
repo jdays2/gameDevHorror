@@ -112,8 +112,12 @@ namespace EmergencyShift.Tests
             AudioSource detection = Detection(audio);
             Assert.That(detection.isPlaying, Is.True);
             Assert.That(detection.clip, Is.SameAs(caller.Presentation.Alarm));
-            yield return null;
-            Assert.That(detection.timeSamples, Is.GreaterThan(0));
+            float deadline = Time.realtimeSinceStartup + 1;
+            while (detection.isPlaying && detection.timeSamples == 0 && Time.realtimeSinceStartup < deadline)
+            {
+                yield return null;
+            }
+            Assert.That(detection.timeSamples, Is.GreaterThan(0), "The real DSP must advance within the bounded unscaled wait.");
             other.Alert(other.Members[0]);
             Assert.That(other.AlarmCount, Is.EqualTo(1));
             Assert.That(other.Members[0].GetComponent<ScorpionAudio2D>().DetectionAccentsPlayed, Is.EqualTo(1));

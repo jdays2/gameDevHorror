@@ -1,0 +1,20 @@
+{
+  "status": "completed",
+  "duration": 1.67,
+  "summary": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "EmergencyShift.Tests.PlayerHitAudioLifetimeTests.ImmediateLevelUnloadDoesNotCreateVoicesInADyingScene",
+      "Status": "Failed",
+      "Duration": 1.6040554,
+      "Message": "Unhandled log message: '[Exception] ArgumentException: Destination scene is being unloaded'. Use UnityEngine.TestTools.LogAssert.Expect",
+      "StackTrace": "UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene (UnityEngine.GameObject go, UnityEngine.SceneManagement.Scene scene) (at <93e6391e4688454a985ab5dc6ed6bd98>:0)\r\nEmergencyShift.Features.PlayerHitAudio.View.PlayerHitAudioPresenter.Start () (at Assets/EmergencyShift/Runtime/Features/PlayerHitAudio/View/PlayerHitAudioPresenter.cs:69)\r\nUnityEngine.StackTraceUtility:ExtractStringFromExceptionInternal(Object, String&, String&)\r\n\r\n"
+    }
+  ]
+}

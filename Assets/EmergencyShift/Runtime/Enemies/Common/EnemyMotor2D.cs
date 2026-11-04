@@ -1,3 +1,4 @@
+using EmergencyShift.Features.Enemies.Logic;
 using UnityEngine;
 using Zenject;
 
@@ -9,7 +10,7 @@ namespace EmergencyShift
         private Rigidbody2D body;
         private CircleCollider2D shape;
         private CrowdAgent2D crowd;
-        private EnemyChasePath2D path;
+        private EnemyChasePathModel path;
         private static readonly float[] angles =
         {
             45,

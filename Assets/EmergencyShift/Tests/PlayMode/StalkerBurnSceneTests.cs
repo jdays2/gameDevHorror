@@ -178,8 +178,9 @@ namespace EmergencyShift.Tests
             Assert.That(audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), Is.EqualTo(2));
             Assert.That(audio.MovementSource.isPlaying, Is.True);
             Assert.That(actor.EyeDamageProgress, Is.GreaterThan(0));
-            System.IO.Directory.CreateDirectory("Docs/Validation/MonsterEyes03");
-            System.IO.File.WriteAllText("Docs/Validation/MonsterEyes03/native-light-timeline.json",
+            string output = System.IO.Path.GetFullPath(System.IO.Path.Combine(Application.dataPath, "..", "Logs", "Tests", "StalkerBurn", "native-light-timeline.json"));
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(output));
+            System.IO.File.WriteAllText(output,
                 JsonUtility.ToJson(new TimelineReport { secondCycleBurnCues = audio.PlaybackCount(StalkerAudioSet.Cue.EyeBurn), samples = samples.ToArray() }, true));
         }
 

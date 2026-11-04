@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "name": "Original handoff captures a new baseline",
+      "passed": true
+    },
+    {
+      "name": "An exact own change passes while foreign input stays protected",
+      "passed": true
+    },
+    {
+      "name": "An own allow-list cannot conceal changed protected foreign input",
+      "passed": true
+    },
+    {
+      "name": "A fresh explicit handoff supports the approved later state",
+      "passed": true
+    },
+    {
+      "name": "Recapture refuses to overwrite an existing baseline",
+      "passed": true
+    },
+    {
+      "name": "Verification inherits the recorded handoff rather than the old default",
+      "passed": true
+    },
+    {
+      "name": "A changed manifest is rejected before writing a misleading report",
+      "passed": true
+    },
+    {
+      "name": "An outside manifest cannot become a project baseline",
+      "passed": true
+    }
+  ],
+  "scope": "Actual CLI subprocesses in isolated own fixtures; no shared imported inputs or Unity touched."
+}

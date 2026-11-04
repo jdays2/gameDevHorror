@@ -1,8 +1,52 @@
 # TASK-008 · Читаемость и расширяемость кода
 
-Дата обновления: 2026-11-04. Статус: **F01/F02 реализованы и проверены в своей границе; вся TASK-008 ещё не завершена**.
+Дата обновления: 2026-11-04. Статус: **технический аудит, обязательные исправления и итоговые проверки завершены**.
 
 Авторитетная задача и критерии: [TASK-008 в Notion](https://app.notion.com/p/40c8d6dc06b68132874cd3d781d119fd). Этот документ — техническое свидетельство, не отдельный план или реестр багов.
+
+## Итоговая квалификация · 2026-11-04
+
+[Текущий source snapshot](../Validation/CodeReadabilityTask008/source-review.final.json): **950 C# путей**, из них 944 прочитаны и имеют SHA-qualified ручные выводы; шесть остановленных внешних drafts явно исключены. Состав: 790 Assets/EmergencyShift, 150 AgentScripts и 10 Concepts (четыре прочитанных рецепта и шесть исключений). Текущие повторные чтения — [recent-read-trace](../Validation/CodeReadabilityTask008/recent-read-trace.json), решения по ответственности/исключениям — [semantic-modules](../Validation/CodeReadabilityTask008/semantic-modules.json). SHA подтверждает соответствие прочитанным байтам, не качество по счётчику/regex/компиляции.
+
+CodeAudit содержит 944 reviewed_boundary, шесть preserved_unread_draft_exclusion, queued/partial0. Прежние dated passes, reviewed SHA и выводы сохранены в reviewHistory и backup. Шесть сохранённых `SleeperSpriteRig01/{AuthoringDrafts,PausedAttempt}` не прочитаны заново, не компилировались и не исполнялись. Исторические внешние генераторы квалифицированы как source/provenance, а не универсальные валидаторы сегодняшних карт. Подготовленный capture-only helper D/E/F TASK009 прочитан; его последующее исполнение относится к следующему окну владельца.
+
+Небольшие осмысленные границы SOD сохранены. Конечные FSM, guard-проверки, три явные зависимости clock/quota/личный RNG, scoped factory и длинные связные native/View-рецепты не объявлены spaghetti по форме. Общие потребители урона, оружия, UI и угрозы не получили выбора по названию вида.
+
+| Находка | Итог |
+|---|---|
+| F01/F02, BUG-059 | Immutable ScorpionSettings, короткий Step с текущими фактами/dt и абсолютная скорость атаки; AlarmCueRequested отделяет actor/pack от audio View. Прежние SO/баланс и порядок melee/cue сохранены. Red13/14 → green28/28, native4/4 до/после и итоговые общие проверки. |
+| F03 | Явная serialized world-ссылка PickupGlintInstaller на прежний profile; PickupInstaller связывает только level factories. Native ProjectContext4→5 installers, шесть прежних компонентов неизменны, GUID/profile сохранены. Реальный glint baseline1/1; итоговый тест проверяет identity обеих factory-attached View и личную pulse. |
+| F04/F05, BUG-055–057 | Maintenance CLI и parser исправлены/проверены; CodeAudit сохраняет историю; SPEC/Enemies описывают реальный Скорпион. Два дополнительных CLI red подтвердили ложный reviewedSha непрочитанного исключения; refresh теперь сохраняет unread без reviewedSha, изменившийся draft ставит queued. Итоговые8/8 CLI PASS. Ручная квалификация отделена от metadata refresh. |
+| F06 | Удалены внутренняя несериализуемая EnemyChasePath2D и meta; factory/motor используют личную model напрямую. До удаления8053 native dependency checks/0 users плюс текущий caller/GUID/dynamic review. Geometry/cache/schedule/quota/RNG сохранены; navigation/motor и release проверены. |
+| F07, BUG-062 | Реально воспроизведены устаревший audio fixture, отсутствующие encounter/flashlight DI. Scoped injection до Awake/Activate, один свой scene context, bounded штатная input readiness,30 уникальных voices и actual-shot positive control. Полные smoke15/15 и Sleeper25/25. |
+| F08, BUG-060 | Три активных output перенесены в абсолютные Logs/Tests; payload/assertions сохранены. Реальные новые отчёты получены, три исторических SHA неизменны. Разрушительного воспроизведения не было. |
+| F09, BUG-061 | TASK007 исправил UTF-8/control character своего отчёта, сохранив смысл и FAIL; настоящий doc-check проходит. Его отдельный commit713505a9; чужой файл не stage-ился TASK008. |
+| F10, BUG-063 | Deferred hurt Start переносил root в выгружаемую сцену. Исходный AccessControl red повторён; новая immediate-unload regression red→green. Parenting к Player теперь задаёт сцену и lifetime голосов. Profile/клипы/микс не менялись. |
+| F11, BUG-064 | StalkerRig fixture больше не требует отменённые body-0/4/8. Проверяет actual SpriteSet.Frame identity и оригинальные Walk/Recoil refs; оба authored уровня, движение, gradual fold, eye/body separation, whole-body/death сохранены. |
+| F12, BUG-065 | Native audio положительный контроль ждёт DSP ограниченное1s unscaled время; timeSamples>0/isPlaying/clip/once-per-pack/order/mute/isolation остаются обязательными. Игровое audio не менялось. |
+
+| Итоговая проверка | Фактическое свидетельство |
+|---|---|
+| Полный EditMode после всех C# изменений | [1478/1478](../Validation/CodeReadabilityTask008/all-editmode.final.json) |
+| Полный PlayMode после исправления трёх выявленных сбоев | [117/117](../Validation/CodeReadabilityTask008/all-playmode.final.json); исходный113/116 сохранён отдельно |
+| Настоящие диагностические routines | [Smoke15/15](../Validation/CodeReadabilityTask008/diagnostic-smoke.after.json), [Sleeper25/25](../Validation/CodeReadabilityTask008/diagnostic-sleeper.after.json) |
+| Реальная физика Скорпиона | [Погоня2.4, атака1.89732146, committed heading, disable/death и immutable assets PASS](../Validation/CodeReadabilityTask008/scorpion-native-motion.after.json) |
+| Native prefab/profile references | [266 assets/2954 objects/0 failures](../Validation/CodeReadabilityTask008/native.asset-references.final.json), включая неактивные дочерние объекты |
+| Обычный Windows64 Player | [Succeeded,0 errors,1 warning](../Validation/CodeReadabilityTask008/release-build.json),93.22s; только собственная Runtime assembly; прежний glint и установленный hurt profile/4клипа включены |
+| Открытая MechanicsSandbox | 2703 native object/component records, full normalized JSON/scene SHA/setup/dirty/global state совпали с phase2 baseline; missing scripts/refs0 |
+| Сохранённые входы | [3856 baseline files, только17 явных собственных изменений](../Validation/CodeReadabilityTask008/saved-inputs.phase2.after.json);114 TASK007 inputs побайтно сохранены |
+| Исторические test reports | [Три прежних SHA неизменны, три новых отчёта в Logs](../Validation/CodeReadabilityTask008/historical-test-outputs.after.json) |
+| Maintenance и preservation CLI | [8/8 maintenance](../Validation/CodeReadabilityTask008/maintenance-cli.final.json), [8/8 preservation](../Validation/CodeReadabilityTask008/preservation-cli.after-resume.json); реальные отдельные временные проекты |
+
+Сборка включает MechanicsSandbox, MorgueRouteTest, BasementPrototype и DoorCrushTest. Единственное предупреждение — отсутствие RuntimePipelineConfig: Pipeline выключен в обычном Player. [Console status](../Validation/CodeReadabilityTask008/console.final.json): compilationFailed=false,0 текущих errors,1 ожидаемое warning. Буфер хранит исходные red cases/прежние CS0618 и инфраструктурный30s Pipeline timeout при prebuild snapshot. Сам snapshot полностью сформирован и preserved=true; эти записи сохранены отдельно и не выданы за новый gameplay дефект или нулевую историю Console.
+
+Проверена фактическая общая dirty-копия на base HEAD8e10b3fe с source snapshot; чистая опубликованная ревизия не заявлена. Чужие pause/art/scene изменения сохранены и не входят в commit TASK008. Baseline снят заново после согласованного возврата оригиналов TASK007 и короткой записи TASK009. Native snapshots сжаты gzip без потери байтов, исходные/сжатые SHA записаны отдельно. Сцены не сохранялись, объекты авторинга не добавлялись/перемещались; итоговый контроль авторинга: **неприменим**. Единственная постоянная prefab-миграция этой фазы — world installer в ProjectContext.
+
+Не заявлены FPS/performance, художественная приёмка, публикация, завершение нового арта TASK007 или замены отклонённого B TASK009. OPT-01 и MainMenu сохраняют последнее решение владельца. Scoped commit и завершение карточек записываются после этой квалификации.
+
+## История промежуточного аудита
+
+Ниже сохранены состояния предыдущих этапов и их ограничения. Формулировки «ещё не выполнено» относятся к тому этапу; актуальный итог приведён выше. Предложения `.proposed.patch` повторно применять к текущему коду нельзя.
 
 В текущем коде есть осмысленные границы SOD и несколько конкретных мест для упрощения. Нет основания массово переписывать модели или объявлять каждый длинный View и конечный `switch` плохой архитектурой. F01/F02 теперь реализованы в игровом C# и проверены, F05 уточнён в Enemies/SPEC; F03/F06–F08 и окончательная квалификация/сборка остаются обязательными. Независимые исправления инструментов F04/BUG-055–057 реализованы и проверены отдельно.
 
@@ -27,7 +71,8 @@
 | F05 | P2 · Текущие контракты | В SPEC сохранялась прежняя visual-only стадия Скорпиона. | Исправлено после освобождения SPEC резерва TASK-006; Enemies описывает действительные settings/factory/event lifetimes. Художественно отклонённый кандидат TASK-007 и неутверждённый баланс не объявлены принятыми. |
 | F06 | P3 · Навигация | Внутренний `EnemyChasePath2D` только перенаправляет вызовы в `EnemyChasePathModel`; текущие callers — motor/factory. Сериализованных ссылок GUID в первоначальном поиске не найдено. | После финальной проверки текстовых/динамических/сериализованных uses убрать проходной слой, возвращать model напрямую. Удаления нет; навигационные регрессии и сборка ещё не запускались. |
 | F07 | P2 · Диагностические fixtures | `DevelopmentBuildSmoke` создаёт encounter и вызывает Activate без scoped injection. `SleeperRegressionProbe` создаёт активный Flashlight2D до DI, хотя Awake уже требует factory. | Проверить актуальный исходник/воспроизвести после слота; динамические fixtures должны получить существующую level composition до вызовов/Awake. Предшественник предупреждён ранее; fallback-контроллер не нужен. Обычный gameplay не объявлен сломанным. |
-| F08 | P2 · Владение доказательствами | Два сценария `ScriptedIntroSceneTests` и один `StalkerBurnSceneTests` пишут свежие отчёты в исторические `Docs/Validation/DoorScatterDelay01` и `MonsterEyes03`. | Перед повторным прогоном перенести новый вывод в Logs, сохранив assertions и прежние свидетельства. Тесты этой задачей ещё не исполнялись. |
+| F08 / [BUG-060](https://app.notion.com/p/40e8d6dc06b6819bbee9e45a88ee41df) | P2 · Владение доказательствами | Два сценария `ScriptedIntroSceneTests` и один `StalkerBurnSceneTests` пишут свежие отчёты в исторические `Docs/Validation/DoorScatterDelay01` и `MonsterEyes03`. | Перед повторным прогоном перенести новый вывод в Logs, сохранив assertions и прежние свидетельства. Тесты этой задачей ещё не исполнялись. |
+| F09 / [BUG-061](https://app.notion.com/p/40e8d6dc06b681fca6cfcdc46ec86609) | P3 · Кодировка свидетельств | Реальный doc-check прервался на ANSI-байте0x97 в actual-r2-review.md отчёта TASK007. | Владелец TASK007 исправил UTF-8 и управляющий символ перед именем JSON; смысл и FAIL сохранены. TASK008 проверил декодирование/FAIL и настоящий общий doc-check: exit0, 453 документа, 241 Docs, brokenLocalLinks=[], exactDuplicateGroups=[]. Before/after evidence сохранены; исправленный документ включён владельцем в отдельный commit `713505a9`, BUG-061 закрыт. Игровой runtime не затронут. |
 
 F01 зарегистрирован после проверки дубликатов и реального воспроизведения как [BUG-059](https://app.notion.com/p/40e8d6dc06b681f395d2f887dd8b4f69), уникальность кода сверена. F07 ещё требует фактической квалификации. F04 зарегистрирована как [BUG-055](https://app.notion.com/p/40d8d6dc06b681bd82aafcdcb81dfe53); сопутствующие дефекты проверки документации — [BUG-056](https://app.notion.com/p/40d8d6dc06b68108a382e5c6dae49a73) и [BUG-057](https://app.notion.com/p/40d8d6dc06b68194a1c9cb461bda4ccf).
 
@@ -48,6 +93,8 @@ F01 зарегистрирован после проверки дубликат�
 До исправлений [пять CLI-регрессий](../Validation/CodeReadabilityTask008/check_maintenance_cli.py) дали **две ожидаемые ошибки**: сохранение sourceCoverageComplete и ложный missing для существующих файлов с query. [Результат до](../Validation/CodeReadabilityTask008/maintenance-cli.before.json). После узких исправлений — **5/5**, [результат после](../Validation/CodeReadabilityTask008/maintenance-cli.after.json). Проверены реальный CLI refresh при added/changed/removed, сохранение старого reviewedSha256/дат/истории и removed entry при повторе, отсутствие автоматического review нового файла, byte-for-byte неизменность read-only реестра и отказ refresh без даты. Исторические поля sourceCoverage и dated evidence не становятся новым доказательством; текущие верхние counts/scopeCounts механические, а готовность после refresh всегда требует отдельной квалификации.
 
 BUG-056 исправлен разбором URL path до percent-decoding: query и fragment не входят в имя файла; `%20`/`%23` внутри имени сохраняют правильное значение. Реально отсутствующая ссылка по-прежнему возвращает exit 1 и исходный target, внешние ссылки/anchors не объявляются проверенными.
+
+После возобновления отдельно проверен инструмент сохранности saved inputs: [8/8 реальных CLI-сценариев](../Validation/CodeReadabilityTask008/preservation-cli.after-resume.json) в изолированном временном проекте. Проверены разрешённое собственное изменение, обнаружение чужого изменения даже в allow-list, новый явно указанный handoff, автоматический выбор записанного манифеста при verify, сохранность прежнего baseline, отказ изменённому манифесту и пути вне проекта. `--baseline` позволяет сохранить отдельный снимок после согласованных окон других задач; `--handoff` и его SHA закрепляют конкретное основание проверки. Общие Assets/Packages/ProjectSettings и Unity этим прогоном не затрагивались; это проверка инструмента, а не текущей сохранности игрового проекта.
 
 Исправленный refresh также применён к фактическому общему реестру. [Дельта](../Validation/CodeReadabilityTask008/registry-refresh.pre-handoff.json), [проверка сохранности review evidence](../Validation/CodeReadabilityTask008/registry-refresh.verification.json) и [прежний summary](../Validation/CodeReadabilityTask008/registry-summary.before-refresh.json) зафиксированы отдельно. Для всех 663 прежних путей сохранены reviewedSha256, reviewDate/history/report/scope/notes; все 261 новые записи queued без reviewedSha256. Датированные reviewPasses/latestReview не изменены. Это проверка реального metadata refresh, не новая семантическая квалификация 924 файлов и не Unity/native PASS.
 
@@ -146,6 +193,10 @@ controller.Step(position, target, alive, deltaTime);
 | Вариант оружия | Definition с устойчивыми ContentId/SelectionSlot, visual/audio, каталог и authored loot reference. Новый cycle стрельбы/перезарядки — собственная settings/cycle специализация. |
 | Третье одновременно выбираемое оружие | Это отдельное расширение возможностей ввода и active/spare HUD, сейчас рассчитанных на две позиции. Нельзя обещать нулевое изменение потребителей. Это не воспроизведённый текущий баг. |
 | Новое взаимодействие | IInteractable/IInteractionActor, локальный владелец состояния/команд и native callbacks. Stable SaveKey/preflight нужны только при сохранении; новый глобальный context/Manager не нужен. |
+
+Проверенный по действующим исходникам пример следующего вида: личная factory получает level clock и создаёт новую model с immutable settings для каждого actor; регистрация factory добавляется в `EnemyInstaller.Install`. Native actor использует `IEnemyBrainMotor`/`IEnemyBrainMelee` для движения и контакта, а `Damageable2D` связывает его с пулями и раздавливанием. Для атмосферы собственный наследник `AudioThreatEmitter2D` сообщает общие факты alive/engaged/attacking и услышанные cues; `AudioThreatQuery2D` уже обрабатывает эти факты через scene registry. При динамическом появлении `LevelContext2D.CreateInstance` выполняет scoped composition до Awake. Нужные компоненты и данные собираются в prefab, а размещение/цель/патруль принадлежат уровню. Save adapter появляется при требовании сохранять этот вид, со своим явным payload/preflight.
+
+Для числового варианта пистолета используется существующий `MagazineWeaponDefinition.ToSettings`: ёмкость и время перезарядки создают личный cycle через settings. Другой алгоритм, как у `PumpShotgunDefinition`, специализирует settings/cycle; `WeaponControllerFactory` продолжает создавать личную `WeaponOwnerModel` и RNG. `WeaponSettingsCatalog` проверяет уникальность ContentId и SelectionSlot. Так следующий вариант имеет явные места изменения и сохраняет текущие ограничения двух выбираемых позиций ввода/HUD.
 
 ## Сохранность внеимпортного этапа · 2026-11-03
 

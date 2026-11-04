@@ -14,7 +14,7 @@ EnemyDefinition, EnemyPatrolProfile, SleeperBehaviourProfile и StalkerBehaviour
 |---|---|
 | Текущее HP и однократная смерть | [HealthModel/команды](Health.md), EnemyHealth2D — адаптер |
 | Видимость, радиус, воздействие света | EnemyPerception2D, контракт IThreatLight2D |
-| Управление телом, обход, путь | EnemyMotor2D — native movement; EnemyChasePathModel + geometry/schedule, прежний EnemyChasePath2D — API adapter |
+| Управление телом, обход, путь | EnemyMotor2D — native movement; EnemyChasePathModel + geometry/schedule, личная model напрямую создаётся EnemyChasePathFactory |
 | Соседи и бюджет поиска | CrowdAgent2D + NavigationWorkBudget2D |
 | Тайминг выпада, дистанция/стена, доставка урона | EnemyMeleeModel/Controller/commands, отдельный EnemyMeleeEnvironment2D; EnemyMeleeAttack2D — bridge |
 | Мирные точки/паузы | EnemyPatrolModel/Controller, личный RNG и отдельная геометрия; EnemyPatrol2D — scene/DTO/gizmo adapter |
@@ -39,7 +39,7 @@ FSM Сталкера хранит состояние, агрессию, стра
 
 Ожог обрабатывается по фактическому свету до выбора обычного/сценарного решения. ScriptedStalkerRoute2D передаёт тот же StalkerObservation в модель актёра, затем исполняет только собственное движение. Триггер маршрута не подменяет Exposed. SetStalkerScriptedControlCommand сбрасывает обычную реакцию/позу, сохраняя дозу и непрерывность светового контакта; переходы страха не являются источником повреждения или EyeBurnStarted.
 
-Расчёт A* и личный кэш находятся в EnemyChasePathModel; Physics2D — в geometry, clock/RNG/квота — в schedule. Сохранены ограничения поиска и прежний recorder. Проверка размеров до умножения защищает массивы от переполнения. [BUG-021, настоящий обход стены и цена](../Reports/Navigation05.md). Параметры расписания и остальные configs/style остаются в общем проходе.
+Расчёт A* и личный кэш находятся в EnemyChasePathModel; Physics2D — в geometry, clock/RNG/квота — в schedule. EnemyChasePathFactory создаёт отдельную model для motor без прежней проходной EnemyChasePath2D; удаление внутренней несериализуемой обёртки предварено проверкой исходников и native-зависимостей. Сохранены ограничения поиска, личный RNG и прежний recorder. Проверка размеров до умножения защищает массивы от переполнения. [BUG-021, настоящий обход стены и цена](../Reports/Navigation05.md), [текущий аудит](../Reports/CodeReadabilityTask008.md). Параметры расписания и остальные configs/style остаются в общем проходе.
 
 EnemyMotor2D выбирает свободное направление с учётом мирового Radius, как и path/CanStand/fixed-heading. Прежняя ошибка локального probe на масштабированных экземплярах исправлена без изменения размеров и масок; [проверки трёх масштабов](../Reports/MotorGeometry06.md).
 

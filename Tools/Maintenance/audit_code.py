@@ -81,11 +81,14 @@ def main():
         for path, metadata in current.items():
             entry = old.get(path, {"baselineSha256": None, "reviewStatus": "queued",
                                    "notes": "New inventory entry; no semantic review yet."})
-            if entry.get("reviewStatus") != "queued":
+            excluded_unread = entry.get("reviewStatus") == "preserved_unread_draft_exclusion"
+            if entry.get("reviewStatus") != "queued" and not excluded_unread:
                 entry.setdefault("reviewedSha256", entry["sha256"])
             if path in changed and entry["reviewStatus"] != "queued":
                 entry["previousReviewStatus"] = entry["reviewStatus"]
-                entry["reviewStatus"] = "partial"
+                entry["reviewStatus"] = "queued" if excluded_unread else "partial"
+                if excluded_unread:
+                    entry["notes"] = "Preserved unread draft bytes changed; a new explicit owner/source decision is required."
             entry.update(metadata)
             entry["sourceChangedSinceReview"] = bool(entry.get("reviewedSha256") and entry["reviewedSha256"] != metadata["sha256"])
             current[path] = entry

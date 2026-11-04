@@ -36,9 +36,11 @@ def main():
     spec.loader.exec_module(collector)
     inventory = collector.inventory()
     reads = {}
-    for name in ("read-trace.json", "additional-read-trace.json"):
+    for name in ("read-trace.json", "additional-read-trace.json", "recent-read-trace.json", "scorpion.semantic-review.json"):
+        if not (OUTPUT / name).exists():
+            continue
         trace = json.loads((OUTPUT / name).read_text(encoding="utf-8"))
-        reads.update({entry["path"]: entry for entry in trace["reads"]})
+        reads.update({entry["path"]: entry for entry in trace.get("reads", trace.get("reviews", []))})
     rows = []
     for path, entry in inventory.items():
         row = {key: entry[key] for key in ("path", "sourceScope", "sha256", "guid", "lines", "serializedUsers", "dependencyScenes")}

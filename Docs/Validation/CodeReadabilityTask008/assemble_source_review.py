@@ -29,7 +29,10 @@ def main():
     additional = {row["path"]: row for row in read("additional-read-trace.json")["reads"]}
     scoped = {row["path"]: row for row in read("scorpion.semantic-review.json")["reviews"]}
     recent_path = EVIDENCE / "recent-read-trace.json"
-    recent = {row["path"]: row for row in read(recent_path.name)["reads"]} if recent_path.exists() else {}
+    recent = collections.defaultdict(list)
+    if recent_path.exists():
+        for row in read(recent_path.name)["reads"]:
+            recent[row["path"]].append(row)
     exclusions = {row["path"]: row for row in read("preserved-draft-exclusions.json")["files"]}
     modules = read("semantic-modules.json")["modules"]
     paths = sorted(p.relative_to(PROJECT).as_posix() for root in
@@ -38,6 +41,7 @@ def main():
     rows = []
     for path in paths:
         sha = hashlib.sha256((PROJECT / path).read_bytes()).hexdigest()
+        receipt = next((row for row in reversed(recent[path]) if row["sha256"] == sha), None)
         matches = [module for module in modules if path.startswith(module["prefix"])]
         module = max(matches, key=lambda item: len(item["prefix"])) if matches else None
         row = {"path": path, "sha256": sha, "state": "pending", "reasons": []}
@@ -52,8 +56,8 @@ def main():
                 row["state"] = "preserved_unread_draft_exclusion"
             else:
                 row["reasons"].append("Preserved excluded draft bytes changed.")
-        elif path in recent and sha == recent[path]["sha256"]:
-            row["readReceipt"] = recent[path]
+        elif receipt is not None:
+            row["readReceipt"] = receipt
             if module is not None:
                 row["state"] = "manual_source_conclusion"
         elif path in scoped and sha == scoped[path]["reviewedSha256"]:

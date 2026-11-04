@@ -54,7 +54,7 @@
 | Файл | Ответственность | Результат |
 |---|---|---|
 | [Runtime/Enemies/Common/CrowdAgent2D.cs](../../Assets/EmergencyShift/Runtime/Enemies/Common/CrowdAgent2D.cs) | Локальное разведение движущихся тел | reviewed_boundary |
-| [Runtime/Enemies/Common/EnemyChasePath2D.cs](../../Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs) | Ограниченный A* и кэш маршрута одного врага | partial |
+| EnemyChasePath2D.cs (исторический путь; удалён в [TASK-008](CodeReadabilityTask008.md), текущая [EnemyChasePathModel](../../Assets/EmergencyShift/Runtime/Features/Enemies/Logic/EnemyChasePathModel.cs)) | Ограниченный A* и кэш маршрута одного врага на момент этого отчёта | partial (исторический статус) |
 | [Runtime/Enemies/Common/EnemyChasePathFactory.cs](../../Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs) | Создание индивидуального пути | reviewed_boundary |
 | [Runtime/Enemies/Common/EnemyHealth2D.cs](../../Assets/EmergencyShift/Runtime/Enemies/Common/EnemyHealth2D.cs) | Unity-адаптер здоровья и однократной смерти | reviewed_boundary |
 | [Runtime/Enemies/Common/EnemyMeleeAttack2D.cs](../../Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs) | Таймлайн выпада, геометрия укуса и доставка урона | partial |

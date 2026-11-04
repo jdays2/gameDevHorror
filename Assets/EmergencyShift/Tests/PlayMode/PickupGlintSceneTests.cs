@@ -1,11 +1,13 @@
 #if UNITY_EDITOR
 using System.Collections;
+using System.Reflection;
 using EmergencyShift.Features.Pickups.Config;
 using EmergencyShift.Features.Pickups.View;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using Zenject;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -64,12 +66,21 @@ namespace EmergencyShift.Tests
             light.SetPower(true);
             light.AimAt(origin + Vector2.up * 3);
             Physics2D.SyncTransforms();
-            var profile = Resources.Load<PickupGlintProfile>("PickupGlintProfile");
+            var profile = ProjectContext.Instance.Container.Resolve<PickupGlintProfile>();
+            Assert.That(profile, Is.SameAs(AssetDatabase.LoadAssetAtPath<PickupGlintProfile>(
+                "Assets/EmergencyShift/Resources/PickupGlintProfile.asset")),
+                "Composition preserves the existing asset identity and tuning.");
             string settingsBefore = JsonUtility.ToJson(profile);
             GameObject first = Spawn(context, "World/AccessCards01/ServiceCard", origin + Vector2.up * 2);
             GameObject second = Spawn(context, "World/AccessCards01/ResearchCard", origin + new Vector2(.35f, 2.5f));
             var firstGlint = first.GetComponent<PickupGlint2D>();
             var secondGlint = second.GetComponent<PickupGlint2D>();
+            FieldInfo profileField = typeof(PickupGlint2D).GetField("profile", BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.That(profileField, Is.Not.Null);
+            Assert.That(profileField.GetValue(firstGlint), Is.SameAs(profile),
+                "The real level factory inherits the authored world profile.");
+            Assert.That(profileField.GetValue(secondGlint), Is.SameAs(profile),
+                "Independent views share tuning while their pulse state stays personal.");
             var source = first.GetComponentInChildren<SpriteRenderer>();
             Material sourceMaterial = source.sharedMaterial;
             yield return new WaitForSeconds(.15f);

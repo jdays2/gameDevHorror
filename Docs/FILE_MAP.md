@@ -4,31 +4,79 @@
 
 ## AgentScripts
 
+- [AdjustDeathScreenD02.cs](../AgentScripts/AdjustDeathScreenD02.cs)
+- [AdjustDeathScreenD03.cs](../AgentScripts/AdjustDeathScreenD03.cs)
 - [ApplyDamageFeedbackReview.cs](../AgentScripts/ApplyDamageFeedbackReview.cs)
+- [ApplyScorpionPaletteR13.cs](../AgentScripts/ApplyScorpionPaletteR13.cs)
 - [AssignPlayerInput.cs](../AgentScripts/AssignPlayerInput.cs)
+- [AuditCreaturePostures.cs](../AgentScripts/AuditCreaturePostures.cs)
 - [AuditLevelReuse.cs](../AgentScripts/AuditLevelReuse.cs)
 - [AuditProjectReferences.cs](../AgentScripts/AuditProjectReferences.cs)
 - [AuditSceneGrouping.cs](../AgentScripts/AuditSceneGrouping.cs)
+- [AuditStalkerMotion.cs](../AgentScripts/AuditStalkerMotion.cs)
 - [AuthorEntranceBlood.cs](../AgentScripts/AuthorEntranceBlood.cs)
 - [AuthorWeaponFx.cs](../AgentScripts/AuthorWeaponFx.cs)
 - [BakeMorgueDrain.cs](../AgentScripts/BakeMorgueDrain.cs)
+- [BakeStalkerPostures.cs](../AgentScripts/BakeStalkerPostures.cs)
+- [BakeStalkerSprites.cs](../AgentScripts/BakeStalkerSprites.cs)
+- [BuildCreatureVisuals.cs](../AgentScripts/BuildCreatureVisuals.cs)
+- [BuildDeathAudio53.cs](../AgentScripts/BuildDeathAudio53.cs)
+- [BuildScorpionR10.cs](../AgentScripts/BuildScorpionR10.cs)
+- [BuildScorpionR14.cs](../AgentScripts/BuildScorpionR14.cs)
+- [BuildScorpionR9.cs](../AgentScripts/BuildScorpionR9.cs)
+- [BuildScorpionSmoke.cs](../AgentScripts/BuildScorpionSmoke.cs)
 - [BuildWeaponFxBenchmark.cs](../AgentScripts/BuildWeaponFxBenchmark.cs)
+- [CaptureCreatureScenarios05.cs](../AgentScripts/CaptureCreatureScenarios05.cs)
 - [CaptureDamageReview.cs](../AgentScripts/CaptureDamageReview.cs)
+- [CheckCreatureWorkspace05.cs](../AgentScripts/CheckCreatureWorkspace05.cs)
 - [CheckDirectionalDamage.cs](../AgentScripts/CheckDirectionalDamage.cs)
 - [CheckGroundAudioScope.cs](../AgentScripts/CheckGroundAudioScope.cs)
 - [CheckInjectedActorCreation.cs](../AgentScripts/CheckInjectedActorCreation.cs)
 - [CheckWorldServices.cs](../AgentScripts/CheckWorldServices.cs)
 - [CleanUnusedShadowOverrides.cs](../AgentScripts/CleanUnusedShadowOverrides.cs)
+- [CompareCreaturePostures.cs](../AgentScripts/CompareCreaturePostures.cs)
+- [CreateDoorCrushTest.cs](../AgentScripts/CreateDoorCrushTest.cs)
+- [DeathScreenAudioReview.cs](../AgentScripts/DeathScreenAudioReview.cs)
+- [DeathScreenCheckpointFixture.cs](../AgentScripts/DeathScreenCheckpointFixture.cs)
+- [DeathScreenGameView.cs](../AgentScripts/DeathScreenGameView.cs)
+- [DeathScreenLayoutReview.cs](../AgentScripts/DeathScreenLayoutReview.cs)
+- [DeathScreenSceneReview.cs](../AgentScripts/DeathScreenSceneReview.cs)
+- [DoorCrushLive02.cs](../AgentScripts/DoorCrushLive02.cs)
+- [DoorCrushReview.cs](../AgentScripts/DoorCrushReview.cs)
 - [DoorScatterAuthoring.cs](../AgentScripts/DoorScatterAuthoring.cs)
+- [ExerciseDeathScreenCheckpoint.cs](../AgentScripts/ExerciseDeathScreenCheckpoint.cs)
+- [ExerciseDeathScreenD.cs](../AgentScripts/ExerciseDeathScreenD.cs)
+- [ExerciseDeathScreenD02.cs](../AgentScripts/ExerciseDeathScreenD02.cs)
+- [ExportCreatureAttack05.cs](../AgentScripts/ExportCreatureAttack05.cs)
+- [ExportCreatureAttackAdjacent05.cs](../AgentScripts/ExportCreatureAttackAdjacent05.cs)
+- [ExportFixedCreatureAttack06.cs](../AgentScripts/ExportFixedCreatureAttack06.cs)
 - [ExportLevelOrganization.cs](../AgentScripts/ExportLevelOrganization.cs)
+- [ExportStalkerPoses05.cs](../AgentScripts/ExportStalkerPoses05.cs)
+- [FinalizeClawSandbox.cs](../AgentScripts/FinalizeClawSandbox.cs)
 - [FinishLevelOrganization.cs](../AgentScripts/FinishLevelOrganization.cs)
+- [FormatClawAuthoring.cs](../AgentScripts/FormatClawAuthoring.cs)
+- [InspectClawSandbox.cs](../AgentScripts/InspectClawSandbox.cs)
 - [InspectStalkerBurn.cs](../AgentScripts/InspectStalkerBurn.cs)
+- [InspectStalkerLocomotion.cs](../AgentScripts/InspectStalkerLocomotion.cs)
+- [InspectStalkerSpriteStates.cs](../AgentScripts/InspectStalkerSpriteStates.cs)
 - [InspectTask001.cs](../AgentScripts/InspectTask001.cs)
 - [InspectWeaponFeedback.cs](../AgentScripts/InspectWeaponFeedback.cs)
+- [InstallClawSandbox.cs](../AgentScripts/InstallClawSandbox.cs)
+- [InstallCreatureAttack05.cs](../AgentScripts/InstallCreatureAttack05.cs)
+- [InstallDeathAudio53.cs](../AgentScripts/InstallDeathAudio53.cs)
+- [InstallDeathScreenD.cs](../AgentScripts/InstallDeathScreenD.cs)
 - [InstallDirectionalDamage.cs](../AgentScripts/InstallDirectionalDamage.cs)
+- [InstallFixedCreatureSprites06.cs](../AgentScripts/InstallFixedCreatureSprites06.cs)
 - [InstallMainMenu.cs](../AgentScripts/InstallMainMenu.cs)
 - [InstallMonsterEyes03.cs](../AgentScripts/InstallMonsterEyes03.cs)
 - [InstallPauseMenu.cs](../AgentScripts/InstallPauseMenu.cs)
+- [InstallScorpion.cs](../AgentScripts/InstallScorpion.cs)
+- [InstallScorpionFeedbackR14.cs](../AgentScripts/InstallScorpionFeedbackR14.cs)
+- [InstallSleeperPostures05.cs](../AgentScripts/InstallSleeperPostures05.cs)
+- [InstallStalkerPostures.cs](../AgentScripts/InstallStalkerPostures.cs)
+- [InstallStalkerPostures05.cs](../AgentScripts/InstallStalkerPostures05.cs)
+- [InstallStalkerRig.cs](../AgentScripts/InstallStalkerRig.cs)
+- [InstallStalkerSprites.cs](../AgentScripts/InstallStalkerSprites.cs)
 - [InstallWorldComposition.cs](../AgentScripts/InstallWorldComposition.cs)
 - [IntroEncounterAuthoring.cs](../AgentScripts/IntroEncounterAuthoring.cs)
 - [LevelAuthoringState.cs](../AgentScripts/LevelAuthoringState.cs)
@@ -39,23 +87,79 @@
 - [PickupGlintTiming.cs](../AgentScripts/PickupGlintTiming.cs)
 - [PickupGlintVerification.cs](../AgentScripts/PickupGlintVerification.cs)
 - [PreviewMonsterEyes03.cs](../AgentScripts/PreviewMonsterEyes03.cs)
+- [PreviewStalkerPostures.cs](../AgentScripts/PreviewStalkerPostures.cs)
+- [PreviewStalkerRig.cs](../AgentScripts/PreviewStalkerRig.cs)
+- [PreviewStalkerSprites.cs](../AgentScripts/PreviewStalkerSprites.cs)
+- [ProbeStalkerFold.cs](../AgentScripts/ProbeStalkerFold.cs)
+- [RefreshScorpionArt.cs](../AgentScripts/RefreshScorpionArt.cs)
 - [RestoreCreatureArtwork.cs](../AgentScripts/RestoreCreatureArtwork.cs)
+- [RestoreDeathScreenUnrelatedOverrides.cs](../AgentScripts/RestoreDeathScreenUnrelatedOverrides.cs)
+- [RestoreStalkerPublishedFrames05.cs](../AgentScripts/RestoreStalkerPublishedFrames05.cs)
 - [ReviewCreatureArtwork.cs](../AgentScripts/ReviewCreatureArtwork.cs)
 - [ReviewDamageAndRemains.cs](../AgentScripts/ReviewDamageAndRemains.cs)
 - [ReviewDamageFeedbackVisuals.cs](../AgentScripts/ReviewDamageFeedbackVisuals.cs)
 - [ReviewEntranceBlood.cs](../AgentScripts/ReviewEntranceBlood.cs)
 - [ReviewFleshTrial.cs](../AgentScripts/ReviewFleshTrial.cs)
+- [ReviewScorpionPaletteR11.cs](../AgentScripts/ReviewScorpionPaletteR11.cs)
+- [ReviewSleeperPostures05.cs](../AgentScripts/ReviewSleeperPostures05.cs)
 - [ReviewSmokeContinuity.cs](../AgentScripts/ReviewSmokeContinuity.cs)
 - [ReviewSmokeLighting.cs](../AgentScripts/ReviewSmokeLighting.cs)
 - [ReviewSmokeLightingScene.cs](../AgentScripts/ReviewSmokeLightingScene.cs)
+- [ReviewStalkerPostures.cs](../AgentScripts/ReviewStalkerPostures.cs)
+- [ReviewStalkerPostures05.cs](../AgentScripts/ReviewStalkerPostures05.cs)
+- [ReviewStalkerPreservation05.cs](../AgentScripts/ReviewStalkerPreservation05.cs)
+- [ReviewStalkerRig.cs](../AgentScripts/ReviewStalkerRig.cs)
+- [ReviewStalkerSprites.cs](../AgentScripts/ReviewStalkerSprites.cs)
 - [ReviewWeaponFx.cs](../AgentScripts/ReviewWeaponFx.cs)
+- [ReviseScorpionAudio.cs](../AgentScripts/ReviseScorpionAudio.cs)
+- [ReviseScorpionR10.cs](../AgentScripts/ReviseScorpionR10.cs)
+- [ReviseScorpionR9.cs](../AgentScripts/ReviseScorpionR9.cs)
+- [ReviseScorpionSqueakR11.cs](../AgentScripts/ReviseScorpionSqueakR11.cs)
+- [ScorpionAuthoring.cs](../AgentScripts/ScorpionAuthoring.cs)
+- [ScorpionPalettesR12.cs](../AgentScripts/ScorpionPalettesR12.cs)
 - [StaggerDoorScatter.cs](../AgentScripts/StaggerDoorScatter.cs)
 - [StalkerLightSequence.cs](../AgentScripts/StalkerLightSequence.cs)
+- [Task007BatchBuild.cs](../AgentScripts/Task007BatchBuild.cs)
+- [Task007Capture.cs](../AgentScripts/Task007Capture.cs)
+- [Task007NativeContrast.cs](../AgentScripts/Task007NativeContrast.cs)
+- [Task007Preservation.cs](../AgentScripts/Task007Preservation.cs)
+- [Task007Verify.cs](../AgentScripts/Task007Verify.cs)
+- [ValidateDoorCrush.cs](../AgentScripts/ValidateDoorCrush.cs)
+- [VerifyClawSandbox.cs](../AgentScripts/VerifyClawSandbox.cs)
+- [VerifyDeathAudio53.cs](../AgentScripts/VerifyDeathAudio53.cs)
+- [VerifyDeathScreenD.cs](../AgentScripts/VerifyDeathScreenD.cs)
+- [VerifyDeathScreenD02.cs](../AgentScripts/VerifyDeathScreenD02.cs)
+- [VerifyHallAmmo46.cs](../AgentScripts/VerifyHallAmmo46.cs)
 - [VerifyMainMenu.cs](../AgentScripts/VerifyMainMenu.cs)
 - [VerifyMenuIsolation49.cs](../AgentScripts/VerifyMenuIsolation49.cs)
 - [VerifyMonsterEyes03.cs](../AgentScripts/VerifyMonsterEyes03.cs)
 - [VerifySceneGroupingCommit.cs](../AgentScripts/VerifySceneGroupingCommit.cs)
+- [VerifyScorpion.cs](../AgentScripts/VerifyScorpion.cs)
+- [VerifyScorpionAudio.cs](../AgentScripts/VerifyScorpionAudio.cs)
+- [VerifyScorpionEyesR9.cs](../AgentScripts/VerifyScorpionEyesR9.cs)
+- [VerifyScorpionFeedbackR14.cs](../AgentScripts/VerifyScorpionFeedbackR14.cs)
+- [VerifyScorpionR10.cs](../AgentScripts/VerifyScorpionR10.cs)
+- [VerifyScorpionR9.cs](../AgentScripts/VerifyScorpionR9.cs)
+- [VerifyScorpionSqueakR11.cs](../AgentScripts/VerifyScorpionSqueakR11.cs)
+- [VerifySleeperNotes51.cs](../AgentScripts/VerifySleeperNotes51.cs)
 - [VerifyWeaponFx.cs](../AgentScripts/VerifyWeaponFx.cs)
+
+## AgentScripts/Task008
+
+- [Task008Build.cs](../AgentScripts/Task008/Task008Build.cs)
+- [Task008Diagnostics.cs](../AgentScripts/Task008/Task008Diagnostics.cs)
+- [Task008NativeAudit.cs](../AgentScripts/Task008/Task008NativeAudit.cs)
+- [Task008NavigationReferences.cs](../AgentScripts/Task008/Task008NavigationReferences.cs)
+- [Task008PickupComposition.cs](../AgentScripts/Task008/Task008PickupComposition.cs)
+
+## AgentScripts/Task009
+
+- [BuildPlayerHit.cs](../AgentScripts/Task009/BuildPlayerHit.cs)
+- [CapturePlayerHit.cs](../AgentScripts/Task009/CapturePlayerHit.cs)
+- [InspectPlayerHit.cs](../AgentScripts/Task009/InspectPlayerHit.cs)
+- [InstallPlayerHit.cs](../AgentScripts/Task009/InstallPlayerHit.cs)
+- [VerifyAudioTransitions.cs](../AgentScripts/Task009/VerifyAudioTransitions.cs)
+- [VerifyPlayerHit.cs](../AgentScripts/Task009/VerifyPlayerHit.cs)
 
 ## Assets/EmergencyShift/Editor/Authoring
 
@@ -83,6 +187,17 @@
 - [ShotgunIntegrationAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ShotgunIntegrationAuthoring.cs)
 - [ThreatSignalAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/ThreatSignalAuthoring.cs)
 - [WorldVisualRulesAuthoring.cs](../Assets/EmergencyShift/Editor/Authoring/WorldVisualRulesAuthoring.cs)
+
+## Assets/EmergencyShift/Editor/Authoring/StalkerSprites
+
+- [FixedCreatureAttackPoseComposer.cs](../Assets/EmergencyShift/Editor/Authoring/StalkerSprites/FixedCreatureAttackPoseComposer.cs)
+- [StalkerAttackPoseComposer.cs](../Assets/EmergencyShift/Editor/Authoring/StalkerSprites/StalkerAttackPoseComposer.cs)
+- [StalkerGaitModel.cs](../Assets/EmergencyShift/Editor/Authoring/StalkerSprites/StalkerGaitModel.cs)
+- [StalkerLimbRig2D.cs](../Assets/EmergencyShift/Editor/Authoring/StalkerSprites/StalkerLimbRig2D.cs)
+- [StalkerPoseComposer.cs](../Assets/EmergencyShift/Editor/Authoring/StalkerSprites/StalkerPoseComposer.cs)
+- [StalkerRigProfile.cs](../Assets/EmergencyShift/Editor/Authoring/StalkerSprites/StalkerRigProfile.cs)
+- [StalkerRigShadows2D.cs](../Assets/EmergencyShift/Editor/Authoring/StalkerSprites/StalkerRigShadows2D.cs)
+- [StalkerSkinMesh.cs](../Assets/EmergencyShift/Editor/Authoring/StalkerSprites/StalkerSkinMesh.cs)
 
 ## Assets/EmergencyShift/Editor/Build
 
@@ -142,6 +257,7 @@
 ## Assets/EmergencyShift/Runtime/Core/Contracts
 
 - [Damageable2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/Damageable2D.cs)
+- [EnemyBodyPosture.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/EnemyBodyPosture.cs)
 - [EnemyPresentationSource2D.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/EnemyPresentationSource2D.cs)
 - [IAccessCardRecipient.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IAccessCardRecipient.cs)
 - [IAutoPickup.cs](../Assets/EmergencyShift/Runtime/Core/Contracts/IAutoPickup.cs)
@@ -254,7 +370,6 @@
 ## Assets/EmergencyShift/Runtime/Enemies/Common
 
 - [CrowdAgent2D.cs](../Assets/EmergencyShift/Runtime/Enemies/Common/CrowdAgent2D.cs)
-- [EnemyChasePath2D.cs](../Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePath2D.cs)
 - [EnemyChasePathFactory.cs](../Assets/EmergencyShift/Runtime/Enemies/Common/EnemyChasePathFactory.cs)
 - [EnemyHealth2D.cs](../Assets/EmergencyShift/Runtime/Enemies/Common/EnemyHealth2D.cs)
 - [EnemyMeleeAttack2D.cs](../Assets/EmergencyShift/Runtime/Enemies/Common/EnemyMeleeAttack2D.cs)
@@ -269,6 +384,7 @@
 - [SleeperAudio2D.cs](../Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudio2D.cs)
 - [SleeperAudioThreat2D.cs](../Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperAudioThreat2D.cs)
 - [SleeperPresentationSource2D.cs](../Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperPresentationSource2D.cs)
+- [SleeperSpriteAnimator.cs](../Assets/EmergencyShift/Runtime/Enemies/Sleeper/SleeperSpriteAnimator.cs)
 
 ## Assets/EmergencyShift/Runtime/Enemies/Stalker
 
@@ -352,6 +468,30 @@
 - [ResetCheckpointSessionCommand.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/ResetCheckpointSessionCommand.cs)
 - [RestoreCheckpointSessionCommand.cs](../Assets/EmergencyShift/Runtime/Features/CheckpointSession/Logic/RestoreCheckpointSessionCommand.cs)
 
+## Assets/EmergencyShift/Runtime/Features/ClawEnemy
+
+- [ClawEnemyControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/ClawEnemyControllerFactory.cs)
+
+## Assets/EmergencyShift/Runtime/Features/ClawEnemy/Config
+
+- [ClawEnemySettings.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/Config/ClawEnemySettings.cs)
+- [ClawMotionSet.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/Config/ClawMotionSet.cs)
+- [TimedSpriteMotion.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/Config/TimedSpriteMotion.cs)
+
+## Assets/EmergencyShift/Runtime/Features/ClawEnemy/Logic
+
+- [ClawEnemyCommand.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/Logic/ClawEnemyCommand.cs)
+- [ClawEnemyController.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/Logic/ClawEnemyController.cs)
+- [ClawEnemyModel.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/Logic/ClawEnemyModel.cs)
+- [ClawEnemyObservation.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/Logic/ClawEnemyObservation.cs)
+- [IClawLocomotion.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/Logic/IClawLocomotion.cs)
+
+## Assets/EmergencyShift/Runtime/Features/ClawEnemy/View
+
+- [ClawEnemy2D.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/View/ClawEnemy2D.cs)
+- [ClawLocomotion2D.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/View/ClawLocomotion2D.cs)
+- [ClawSpriteAnimator2D.cs](../Assets/EmergencyShift/Runtime/Features/ClawEnemy/View/ClawSpriteAnimator2D.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/DamageFeedback
 
 - [DamageFeedbackInstaller.cs](../Assets/EmergencyShift/Runtime/Features/DamageFeedback/DamageFeedbackInstaller.cs)
@@ -374,8 +514,36 @@
 
 - [DirectionalDamageFeedbackView.cs](../Assets/EmergencyShift/Runtime/Features/DamageFeedback/View/DirectionalDamageFeedbackView.cs)
 
+## Assets/EmergencyShift/Runtime/Features/DeathScreen
+
+- [DeathScreenInstaller.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/DeathScreenInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/DeathScreen/Config
+
+- [DeathScreenProfile.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/Config/DeathScreenProfile.cs)
+- [DeathScreenSettings.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/Config/DeathScreenSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic
+
+- [DeathScreenCommand.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenCommand.cs)
+- [DeathScreenController.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenController.cs)
+- [DeathScreenIntent.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenIntent.cs)
+- [DeathScreenModel.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenModel.cs)
+- [DeathScreenPhase.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/DeathScreenPhase.cs)
+- [IDeathScreenEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/Logic/IDeathScreenEnvironment.cs)
+
+## Assets/EmergencyShift/Runtime/Features/DeathScreen/View
+
+- [DeathScreenButton.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenButton.cs)
+- [DeathScreenEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenEnvironment.cs)
+- [DeathScreenGameplayOverlay.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenGameplayOverlay.cs)
+- [DeathScreenIris.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenIris.cs)
+- [DeathScreenPresenter.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenPresenter.cs)
+- [DeathScreenView.cs](../Assets/EmergencyShift/Runtime/Features/DeathScreen/View/DeathScreenView.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/Doors
 
+- [DoorCrushControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Doors/DoorCrushControllerFactory.cs)
 - [DoorMotionControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionControllerFactory.cs)
 - [DoorMotionInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Doors/DoorMotionInstaller.cs)
 
@@ -387,12 +555,20 @@
 
 ## Assets/EmergencyShift/Runtime/Features/Doors/Logic
 
+- [DoorCrushController.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorCrushController.cs)
+- [DoorCrushModel.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorCrushModel.cs)
+- [DoorLeafStep.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorLeafStep.cs)
 - [DoorMotionController.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionController.cs)
 - [DoorMotionModel.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/DoorMotionModel.cs)
+- [IDoorCrushEnvironment.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/IDoorCrushEnvironment.cs)
 - [IDoorMotionView.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/IDoorMotionView.cs)
 - [RestoreDoorMotionCommand.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/RestoreDoorMotionCommand.cs)
 - [StopDoorMotionCommand.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/StopDoorMotionCommand.cs)
 - [ToggleDoorCommand.cs](../Assets/EmergencyShift/Runtime/Features/Doors/Logic/ToggleDoorCommand.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Doors/View
+
+- [DoorCrush2D.cs](../Assets/EmergencyShift/Runtime/Features/Doors/View/DoorCrush2D.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Encounter
 
@@ -416,10 +592,12 @@
 
 ## Assets/EmergencyShift/Runtime/Features/Enemies/Config
 
+- [CreatureAttackSpriteSet.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/CreatureAttackSpriteSet.cs)
 - [EnemyMeleeSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyMeleeSettings.cs)
 - [EnemyPatrolSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/EnemyPatrolSettings.cs)
 - [SleeperSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/SleeperSettings.cs)
 - [StalkerSettings.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/StalkerSettings.cs)
+- [StalkerSpriteSet.cs](../Assets/EmergencyShift/Runtime/Features/Enemies/Config/StalkerSpriteSet.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Enemies/Logic
 
@@ -672,6 +850,7 @@
 ## Assets/EmergencyShift/Runtime/Features/Pickups
 
 - [PickupControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/PickupControllerFactory.cs)
+- [PickupGlintInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/PickupGlintInstaller.cs)
 - [PickupInstaller.cs](../Assets/EmergencyShift/Runtime/Features/Pickups/PickupInstaller.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/Pickups/Config
@@ -715,6 +894,18 @@
 - [PlayerFootstepController.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepController.cs)
 - [PlayerFootstepModel.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/PlayerFootstepModel.cs)
 - [ResetFootstepCommand.cs](../Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/Logic/ResetFootstepCommand.cs)
+
+## Assets/EmergencyShift/Runtime/Features/PlayerHitAudio
+
+- [PlayerHitAudioInstaller.cs](../Assets/EmergencyShift/Runtime/Features/PlayerHitAudio/PlayerHitAudioInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/PlayerHitAudio/Config
+
+- [PlayerHitAudioProfile.cs](../Assets/EmergencyShift/Runtime/Features/PlayerHitAudio/Config/PlayerHitAudioProfile.cs)
+
+## Assets/EmergencyShift/Runtime/Features/PlayerHitAudio/View
+
+- [PlayerHitAudioPresenter.cs](../Assets/EmergencyShift/Runtime/Features/PlayerHitAudio/View/PlayerHitAudioPresenter.cs)
 
 ## Assets/EmergencyShift/Runtime/Features/PlayerInput
 
@@ -774,6 +965,35 @@
 - [RemainsEyeSurface.cs](../Assets/EmergencyShift/Runtime/Features/Remains/View/RemainsEyeSurface.cs)
 - [RemainsSpriteAdapter.cs](../Assets/EmergencyShift/Runtime/Features/Remains/View/RemainsSpriteAdapter.cs)
 
+## Assets/EmergencyShift/Runtime/Features/Scorpion
+
+- [ScorpionControllerFactory.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/ScorpionControllerFactory.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Scorpion/Config
+
+- [ScorpionPresentationSet.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/Config/ScorpionPresentationSet.cs)
+- [ScorpionRuptureSet.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/Config/ScorpionRuptureSet.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Scorpion/Logic
+
+- [AlertScorpionPackCommand.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/AlertScorpionPackCommand.cs)
+- [ScorpionCommand.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionCommand.cs)
+- [ScorpionController.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionController.cs)
+- [ScorpionModel.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionModel.cs)
+- [ScorpionPackModel.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionPackModel.cs)
+- [ScorpionSettings.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/Logic/ScorpionSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/Scorpion/View
+
+- [Scorpion2D.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/View/Scorpion2D.cs)
+- [ScorpionAudio2D.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudio2D.cs)
+- [ScorpionAudioThreat2D.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionAudioThreat2D.cs)
+- [ScorpionCorpsePose2D.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionCorpsePose2D.cs)
+- [ScorpionMotionAdapter.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionMotionAdapter.cs)
+- [ScorpionPack2D.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPack2D.cs)
+- [ScorpionPresentationSource2D.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionPresentationSource2D.cs)
+- [ScorpionSpriteAnimator2D.cs](../Assets/EmergencyShift/Runtime/Features/Scorpion/View/ScorpionSpriteAnimator2D.cs)
+
 ## Assets/EmergencyShift/Runtime/Features/ScriptedEncounters
 
 - [ScriptedEncounterInstaller.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/ScriptedEncounterInstaller.cs)
@@ -796,6 +1016,28 @@
 
 - [ScriptedRouteStartCondition.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/View/ScriptedRouteStartCondition.cs)
 - [ScriptedStalkerRoute2D.cs](../Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/View/ScriptedStalkerRoute2D.cs)
+
+## Assets/EmergencyShift/Runtime/Features/WorldAudio
+
+- [WorldAudioInstaller.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/WorldAudioInstaller.cs)
+
+## Assets/EmergencyShift/Runtime/Features/WorldAudio/Config
+
+- [WorldAudioFadeCurve.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/Config/WorldAudioFadeCurve.cs)
+- [WorldAudioProfile.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/Config/WorldAudioProfile.cs)
+- [WorldAudioSettings.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/Config/WorldAudioSettings.cs)
+
+## Assets/EmergencyShift/Runtime/Features/WorldAudio/Logic
+
+- [IWorldAudioGain.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/Logic/IWorldAudioGain.cs)
+- [SetWorldAudioDefeatedCommand.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/Logic/SetWorldAudioDefeatedCommand.cs)
+- [WorldAudioController.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/Logic/WorldAudioController.cs)
+- [WorldAudioModel.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/Logic/WorldAudioModel.cs)
+
+## Assets/EmergencyShift/Runtime/Features/WorldAudio/View
+
+- [WorldAudioBus.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/View/WorldAudioBus.cs)
+- [WorldAudioPresenter.cs](../Assets/EmergencyShift/Runtime/Features/WorldAudio/View/WorldAudioPresenter.cs)
 
 ## Assets/EmergencyShift/Runtime/Levels
 
@@ -858,6 +1100,7 @@
 - [BloodHitSpray2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodHitSpray2D.cs)
 - [BloodPool2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodPool2D.cs)
 - [BloodRuptureBurst2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/BloodRuptureBurst2D.cs)
+- [CreatureAttackSpritePlayback.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureAttackSpritePlayback.cs)
 - [CreatureGroundShadow2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureGroundShadow2D.cs)
 - [CreatureSpriteAnimator2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/CreatureSpriteAnimator2D.cs)
 - [EnemyDeathEffects2D.cs](../Assets/EmergencyShift/Runtime/Presentation/Visuals/EnemyDeathEffects2D.cs)
@@ -940,11 +1183,18 @@
 - [CheckpointPayloadTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointPayloadTests.cs)
 - [CheckpointSessionTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointSessionTests.cs)
 - [CheckpointValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/CheckpointValidationTests.cs)
+- [ClawEnemyTests.cs](../Assets/EmergencyShift/Tests/EditMode/ClawEnemyTests.cs)
+- [CreatureAttackSpritePlaybackTests.cs](../Assets/EmergencyShift/Tests/EditMode/CreatureAttackSpritePlaybackTests.cs)
+- [CreatureAttackSpriteSetTests.cs](../Assets/EmergencyShift/Tests/EditMode/CreatureAttackSpriteSetTests.cs)
+- [CreatureEyeFrameTests.cs](../Assets/EmergencyShift/Tests/EditMode/CreatureEyeFrameTests.cs)
+- [CrowdAgentTests.cs](../Assets/EmergencyShift/Tests/EditMode/CrowdAgentTests.cs)
+- [DeathScreenTests.cs](../Assets/EmergencyShift/Tests/EditMode/DeathScreenTests.cs)
 - [DialogueControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/DialogueControllerTests.cs)
 - [DialogueDataTests.cs](../Assets/EmergencyShift/Tests/EditMode/DialogueDataTests.cs)
 - [DialoguePrefabTests.cs](../Assets/EmergencyShift/Tests/EditMode/DialoguePrefabTests.cs)
 - [DirectionalDamageTests.cs](../Assets/EmergencyShift/Tests/EditMode/DirectionalDamageTests.cs)
 - [DoorAccessTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorAccessTests.cs)
+- [DoorCrushTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorCrushTests.cs)
 - [DoorFeedbackProfileTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorFeedbackProfileTests.cs)
 - [DoorMotionTests.cs](../Assets/EmergencyShift/Tests/EditMode/DoorMotionTests.cs)
 - [EncounterControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/EncounterControllerTests.cs)
@@ -958,6 +1208,7 @@
 - [EnemySystemsTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnemySystemsTests.cs)
 - [EnvironmentPresentationTests.cs](../Assets/EmergencyShift/Tests/EditMode/EnvironmentPresentationTests.cs)
 - [FinalTuningTests.cs](../Assets/EmergencyShift/Tests/EditMode/FinalTuningTests.cs)
+- [FixedCreatureAttackPlaybackTests.cs](../Assets/EmergencyShift/Tests/EditMode/FixedCreatureAttackPlaybackTests.cs)
 - [FlashlightOwnershipTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightOwnershipTests.cs)
 - [FlashlightStateTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightStateTests.cs)
 - [FlashlightUpgradeModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/FlashlightUpgradeModelTests.cs)
@@ -985,6 +1236,7 @@
 - [PersistenceTests.cs](../Assets/EmergencyShift/Tests/EditMode/PersistenceTests.cs)
 - [PickupGlintTests.cs](../Assets/EmergencyShift/Tests/EditMode/PickupGlintTests.cs)
 - [PlayerFootstepTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerFootstepTests.cs)
+- [PlayerHitAudioProfileTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerHitAudioProfileTests.cs)
 - [PlayerInputTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInputTests.cs)
 - [PlayerInteractionModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerInteractionModelTests.cs)
 - [PlayerLifeControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/PlayerLifeControllerTests.cs)
@@ -993,6 +1245,8 @@
 - [ProjectileFlightTests.cs](../Assets/EmergencyShift/Tests/EditMode/ProjectileFlightTests.cs)
 - [RemainsValidationTests.cs](../Assets/EmergencyShift/Tests/EditMode/RemainsValidationTests.cs)
 - [SceneRegistryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SceneRegistryTests.cs)
+- [ScorpionAudioHitTests.cs](../Assets/EmergencyShift/Tests/EditMode/ScorpionAudioHitTests.cs)
+- [ScorpionTests.cs](../Assets/EmergencyShift/Tests/EditMode/ScorpionTests.cs)
 - [ScriptedRouteTests.cs](../Assets/EmergencyShift/Tests/EditMode/ScriptedRouteTests.cs)
 - [SharedDefinitionBoundaryTests.cs](../Assets/EmergencyShift/Tests/EditMode/SharedDefinitionBoundaryTests.cs)
 - [ShotVisualBoundaryTests.cs](../Assets/EmergencyShift/Tests/EditMode/ShotVisualBoundaryTests.cs)
@@ -1000,7 +1254,9 @@
 - [SleeperModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperModelTests.cs)
 - [SleeperTests.cs](../Assets/EmergencyShift/Tests/EditMode/SleeperTests.cs)
 - [StalkerEyeTests.cs](../Assets/EmergencyShift/Tests/EditMode/StalkerEyeTests.cs)
+- [StalkerGaitTests.cs](../Assets/EmergencyShift/Tests/EditMode/StalkerGaitTests.cs)
 - [StalkerModelTests.cs](../Assets/EmergencyShift/Tests/EditMode/StalkerModelTests.cs)
+- [StalkerPostureTests.cs](../Assets/EmergencyShift/Tests/EditMode/StalkerPostureTests.cs)
 - [WeaponAimEnvironmentTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponAimEnvironmentTests.cs)
 - [WeaponCatalogConfigTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponCatalogConfigTests.cs)
 - [WeaponControllerTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponControllerTests.cs)
@@ -1010,6 +1266,7 @@
 - [WeaponLootPayloadTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponLootPayloadTests.cs)
 - [WeaponSettingsTests.cs](../Assets/EmergencyShift/Tests/EditMode/WeaponSettingsTests.cs)
 - [WorkBudgetTests.cs](../Assets/EmergencyShift/Tests/EditMode/WorkBudgetTests.cs)
+- [WorldAudioTests.cs](../Assets/EmergencyShift/Tests/EditMode/WorldAudioTests.cs)
 - [WorldProjectionTests.cs](../Assets/EmergencyShift/Tests/EditMode/WorldProjectionTests.cs)
 
 ## Assets/EmergencyShift/Tests/PlayMode
@@ -1024,11 +1281,15 @@
 - [CheckpointSaveLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/CheckpointSaveLifetimeTests.cs)
 - [DamageFeedbackLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DamageFeedbackLifetimeTests.cs)
 - [DialogueSessionLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DialogueSessionLifetimeTests.cs)
+- [DoorCrushCheckpointTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DoorCrushCheckpointTests.cs)
+- [DoorCrushFixture.cs](../Assets/EmergencyShift/Tests/PlayMode/DoorCrushFixture.cs)
+- [DoorCrushSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DoorCrushSceneTests.cs)
 - [DoorMotionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/DoorMotionSceneTests.cs)
 - [EnemyMeleeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyMeleeSceneTests.cs)
 - [EnemyMotorSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyMotorSceneTests.cs)
 - [EnemyNavigationSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyNavigationSceneTests.cs)
 - [EnemyPatrolSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/EnemyPatrolSceneTests.cs)
+- [FixedCreatureSpriteSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FixedCreatureSpriteSceneTests.cs)
 - [FlashlightProgressionSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FlashlightProgressionSceneTests.cs)
 - [FleshContactAudioTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FleshContactAudioTests.cs)
 - [FurnitureStudyLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/FurnitureStudyLifetimeTests.cs)
@@ -1039,18 +1300,22 @@
 - [MuzzleSmokeSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/MuzzleSmokeSceneTests.cs)
 - [PickupGlintSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PickupGlintSceneTests.cs)
 - [PickupSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PickupSceneTests.cs)
+- [PlayerHitAudioLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerHitAudioLifetimeTests.cs)
 - [PlayerMovementSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/PlayerMovementSceneTests.cs)
 - [ProbeCancellationTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProbeCancellationTests.cs)
 - [ProjectileProbeTarget.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileProbeTarget.cs)
 - [ProjectileSceneOwnershipTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSceneOwnershipTests.cs)
 - [ProjectileSpeciesContactTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ProjectileSpeciesContactTests.cs)
 - [RemainsPaletteLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/RemainsPaletteLifetimeTests.cs)
+- [ScorpionAlarmSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ScorpionAlarmSceneTests.cs)
 - [ScriptedIntroSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/ScriptedIntroSceneTests.cs)
 - [SleeperBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/SleeperBrainSceneTests.cs)
 - [StalkerBrainSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/StalkerBrainSceneTests.cs)
 - [StalkerBurnSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/StalkerBurnSceneTests.cs)
+- [StalkerRigSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/StalkerRigSceneTests.cs)
 - [TransientBloodSceneTests.cs](../Assets/EmergencyShift/Tests/PlayMode/TransientBloodSceneTests.cs)
 - [WeaponSpreadLifetimeTests.cs](../Assets/EmergencyShift/Tests/PlayMode/WeaponSpreadLifetimeTests.cs)
+- [WorldAudioBusTests.cs](../Assets/EmergencyShift/Tests/PlayMode/WorldAudioBusTests.cs)
 
 ## Concepts/Unused/Visual/SleeperSpriteRig01/AuthoringDrafts
 
@@ -1063,6 +1328,11 @@
 - [draft-SleeperSpriteBaker.cs](../Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/draft-SleeperSpriteBaker.cs)
 - [SleeperJawBakeSource.cs](../Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperJawBakeSource.cs)
 - [SleeperSpriteBaker.cs](../Concepts/Unused/Visual/SleeperSpriteRig01/PausedAttempt/SleeperSpriteBaker.cs)
+
+## Concepts/Unused/Visual/StalkerWholeFrames07
+
+- [CaptureOriginalFrames07.cs](../Concepts/Unused/Visual/StalkerWholeFrames07/CaptureOriginalFrames07.cs)
+- [RestoreOriginalFrames07.cs](../Concepts/Unused/Visual/StalkerWholeFrames07/RestoreOriginalFrames07.cs)
 
 ## Concepts/Used/Environment/CardDoorIndicators01
 
@@ -1090,6 +1360,7 @@
 - [FurnitureLightStudy.unity](../Assets/EmergencyShift/Scenes/ArtReview/FurnitureLightStudy.unity)
 - [LightingPlayground.unity](../Assets/EmergencyShift/Scenes/ArtReview/LightingPlayground.unity)
 - [BasementPrototype.unity](../Assets/EmergencyShift/Scenes/BasementPrototype.unity)
+- [DoorCrushTest.unity](../Assets/EmergencyShift/Scenes/DoorCrushTest.unity)
 - [LevelTemplate.unity](../Assets/EmergencyShift/Scenes/LevelTemplate.unity)
 - [MainMenu.unity](../Assets/EmergencyShift/Scenes/MainMenu.unity)
 - [MechanicsSandbox.unity](../Assets/EmergencyShift/Scenes/MechanicsSandbox.unity)

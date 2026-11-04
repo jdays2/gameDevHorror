@@ -3,50 +3,240 @@
   "state": "Manual source conclusions; final source SHA qualification and integration checks pending",
   "method": "These are conclusions of the recorded source reads, not results inferred from names, counters, regex or a successful compile. Prefixes assign files to a reviewed responsibility; they do not detect or certify code quality. Changed sources require another explicit read. Runtime verification remains separate.",
   "modules": [
-    {"prefix": "Assets/EmergencyShift/Runtime/Core/", "conclusion": "World, level and player composition establish lifetimes; a scoped factory can create personal models. Clocks, input/motion leases, threat registries and deterministic sources have explicit owners. Installer lists are composition, not gameplay dispatch. Release on disable/unload and exact restoration are meaningful boundaries; do not replace them with a global mutable context.", "exceptions": "Dependency counts alone are not defects; quota/clock/personal RNG and native adapters have explicit roles."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Definitions/", "conclusion": "Definitions and presentation profiles own shared validated tuning and authored references. Content identity and weapon selection slots are stable contracts; model health, ammo, aggro and random state remain personal. Validation rejects invalid required data instead of silently repairing shared assets.", "exceptions": "Scorpion motion scalars remain on the existing presentation asset for serialized compatibility; F01 snapshots them at composition. No balance/asset relocation is required."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Combat/", "conclusion": "Weapon selection/ammo and shot cycles are separate from native projectiles, impacts and feedback. Commands validate before commit, snapshot shot directions before cosmetic callbacks, and use generic damage contracts. Numeric weapon variants remain definitions; different firing algorithms have their own cycles.", "exceptions": "Two-position active/spare input and HUD are an explicit present capability, not a promise that a third slot needs no consumer change."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Player/", "conclusion": "Player native adapters translate input and current Unity facts to controllers; health, interaction, equipment, camera/aim and audio have distinct owners. Entry/death/pause fences must be respected by diagnostics. Cosmetic audio must not become damage authority.", "exceptions": "TASK009 accepted-hit presentation is changing in its own window; its final SHA and cue lifetime require a fresh read."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Enemies/", "conclusion": "Native motor/perception/melee/health adapters implement common physical contracts; Stalker and Sleeper keep their own state and presentation. Route solving and schedules are per actor. Committed attack direction, interrupt/death order and persistent aggro are intentional behavior.", "exceptions": "F06 removes only EnemyChasePath2D's pass-through shell after full usage/dependency checks. Species-specific presentation is legitimate. TASK007 changing artwork/animation is technically reviewed separately from owner art acceptance."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Enemies/", "conclusion": "Shared path model, schedule, geometry ports, patrol, perception, melee and archetype settings are meaningful reusable boundaries. General consumers do not import a species state enum to decide bullet damage or door crush. Pure model owns per-instance route/cooldowns; native adapters supply physics and current facts.", "exceptions": "Finite state switches and explicit clock/quota/random dependencies are retained. Native geometry/scheduling are substantive adapters, not candidates for F06 deletion."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/ClawEnemy/", "conclusion": "The prototype has its own settings/model/controller/commands and native actor instead of adding branches to shared damage, weapons or navigation. It reuses common contracts by behavior.", "exceptions": "Its prototype role and gameplay acceptance are not expanded by this audit."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Scorpion/", "conclusion": "F01 separates immutable settings from current Step facts and removes attack/pursuit division. F02 gives the actor cue intent and audio View subscription/playback. Pack membership and caller selection have local ownership; silent Alert and cue-before-counter order are preserved.", "exceptions": "Three-dependency controller is an explicit coordinator. Full suite/build qualification remains separate from the already completed 28 EditMode and four paired native scenarios."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Health/", "conclusion": "Personal health/state and guarded damage/death commands are independent of concrete enemy species and audio. Death is single commit; repeated hits do not create repeated death effects. Native observers project results.", "exceptions": "Checks at command creation and execution protect re-entry; their repetition is intentional."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Projectiles/", "conclusion": "Projectile model/controller own travel and one-shot impact decisions; native physics supplies hits and presentation supplies visuals. Generic target contracts keep species choice out of shot consumers. Thin-wall and one-hit checks protect the consequential boundary.", "exceptions": "No pooling/ECS/performance claim is introduced."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Remains/", "conclusion": "Remains collection/ownership and settled snapshots are separate from transient gore animation. Restoration is silent and must not replay death or create duplicate records. Profile variants remain immutable and per-record state is personal.", "exceptions": "OPT-01 remains deferred; a repeated-death optimization system is outside this task."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Flashlight/", "conclusion": "Acquisition/power/upgrades/settings and current aim/occlusion facts have explicit ownership. A decorative lamp or muzzle flash does not become protective light. Controller composition must precede Configure/Awake for dynamic fixtures.", "exceptions": "AcquireFlashlightCommand is retained as documented compatible API with tests; lack of a new runtime caller alone does not make it obsolete. F07 fixes diagnostics rather than adding fallback controllers."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Doors/", "conclusion": "Door commands/state and native motion/contact/crush adapters separate authorization, movement and occupant damage. Close-time one-shot contact handling uses health contracts, not growing species dispatch. Repeated interaction and mutually exclusive state branches are intentional.", "exceptions": "Current door demonstration writes are owned by another chat; reread changed sources and preserve its authored scalar values."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/AccessControl/", "conclusion": "Cards, locks, reception and unlock notifications have local guarded state. Stable IDs and silent restoration are separate from pickup feedback. Definitions/reference identity are not duplicated into another universal inventory manager.", "exceptions": "New numeric access variants remain authored data; new access algorithms should get an explicit local implementation."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Interaction/", "conclusion": "Interaction actor and target contracts decouple native discovery/range from target-specific commands. Each target remains responsible for whether it accepts an interaction. Current world facts are not hidden inside a mutable context bag.", "exceptions": "Alternative branches remain mutually exclusive where gameplay requires one target/action."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Pickups/", "conclusion": "Pickup acceptance, remaining quantity/consumption and presentation are separate. Factories attach individual glint Views; shared profile data does not own pulse state. Failed acceptance must not consume inventory or emit success.", "exceptions": "F03 replaces per-level hidden Resources loading with a serialized world installer using the existing profile asset; actual prefab wiring and glint native regression are still pending."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/Encounter/", "conclusion": "Encounter activation is a one-shot model/command with native authored actor references. Dynamic fixtures require level scoped injection before Configure/Activate; ordinary authored composition already provides it.", "exceptions": "F07's uncomposed diagnostic fixture is distinct from a reproduced production-gameplay defect."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/", "conclusion": "Scripted routes and encounter activation own their actors/markers explicitly; timing, presentation and native movement are distinct responsibilities. Input/motion leases and cleanup prevent an abandoned sequence retaining player control.", "exceptions": "F08 redirects fresh test evidence only; it must not change route assertions, timing or historical authored data."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/", "conclusion": "Session model/commands orchestrate capture/preflight/restore through bounded ports. Validation precedes world mutation and a failed restore must not leave a partial committed session. Slot policy and level/content identity are explicit.", "exceptions": "Implemented local checkpoints do not imply campaign transitions or persistent runtime spawn support."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Persistence/", "conclusion": "DTO versions/presence, stable keys, payload validation and adapters preserve save compatibility. Nested snapshots are validated before application; Dead/settled restoration is silent. Type-specific persistence adapters are valid ownership boundaries.", "exceptions": "No new Scorpion save payload is added merely as an extension example. Current sandbox has no new checkpoint controller."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/LevelProgress/", "conclusion": "Progress commands own completion/idempotence and level state. Presentation follows committed progress, and completion guards use explicit facts rather than scene name heuristics.", "exceptions": "Cross-level campaign behavior remains beyond implemented local-level scope."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/", "conclusion": "Objective state, completion checks and native projection remain separate. Restore does not masquerade as a newly completed objective or replay its rewards/feedback.", "exceptions": "No new objectives are attached to the owner's sandbox."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Levels/", "conclusion": "LevelContext composes authored player/clock/geometry/services with scoped factories and tears them down with the scene. It is a composition root, not a new authority for every mechanic. Explicit injected actor creation prevents lifetime leaks and Awake-before-DI.", "exceptions": "TASK007 input/animation and other window changes need final reread. Ordinary Play keeps its open level with playModeStartScene null."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/PlayerInput/", "conclusion": "Input is translated behind a small interface; startup/death/dialogue/pause locks are respected and released by their owners. Native Input System details do not enter pure combat models.", "exceptions": "Current input-interface changes belong to earlier WIP and require final exact-SHA review; do not restore mandatory MainMenu entry."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/PlayerMovement/", "conclusion": "Movement controller/model receive current input and time; physics remains native. Motion leases compose temporary restrictions with explicit cleanup rather than independent booleans that overwrite each other.", "exceptions": "A shared immutable rules object is not shared runtime movement state."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/PlayerRules/", "conclusion": "Authored player rules supply immutable validated values at composition. Personal runtime health/motion/equipment remain in their own models.", "exceptions": "Do not duplicate identical rules per level to hide composition requirements."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/", "conclusion": "Step cadence/model and current movement facts are separate from world-foley native playback. Pause/unload and scene registration have explicit lifetime; audio events do not move the player.", "exceptions": "The accepted .24 step setting and existing sounds are preserved."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/LampPower/", "conclusion": "Lamp state/commands and native light feedback are separate. Shared flicker tuning does not share timers or power state; a room lamp remains decorative rather than protective flashlight logic.", "exceptions": "No speculative new lighting manager or global update loop."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/AudioMood/", "conclusion": "Threat/mood models and mix facts are separate from clip sources and scene director ownership. Register/unregister and unload reset are meaningful; shared profiles are immutable. Six mix Step inputs are current frame facts, unlike F01's mixed static/dynamic parameters.", "exceptions": "Long native mixing code alone is not a reason to add pass-through layers; no performance claim is made."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/WorldAudio/", "conclusion": "World bus/settings and scene/native presenters own gain transitions and subscriptions; a serialized world profile establishes composition. Disable/unload releases sources and does not leave a second independent gain authority.", "exceptions": "Existing accepted death-world fade and audio are preserved; TASK006 controls its screen presentation changes."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/DamageFeedback/", "conclusion": "Accepted damage facts feed personal feedback state and native directional presentation. Damage authority remains in health/commands; cosmetic cooldowns do not suppress damage or invent enemy-specific branches.", "exceptions": "TASK009 cue wiring must be requalified at its final source revision."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/DeathScreen/", "conclusion": "Death model/controller, environment leases and presentation/installer are separate. Input, time/audio effects and retry/restore have explicit ownership and cleanup. Current screen D visual timing belongs to authored profile/presentation.", "exceptions": "TASK006's active native window and art/visual acceptance are separate; final changed SHA and actual retry behavior require verification."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/PauseMenu/", "conclusion": "Pause draft uses model/commands, environment leases and native presenter/View instead of making Canvas own all gameplay. Time/input/audio state restoration and subscriptions are explicit.", "exceptions": "Owner's unfinished pause UI is preserved as WIP. Source review and inclusion checks do not approve or publish its visuals/features."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Features/MainMenu/", "conclusion": "Deferred menu model/catalog/navigation has explicit composition and transition contracts. Existing preparation remains intact; ordinary Editor Play is independent of mandatory menu catalog/entry and no menu is left additive over a map.", "exceptions": "BUG048 remains Won't do until a working build is prepared by a separate owner decision; audit does not revive automatic entry policy."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Dialogue/", "conclusion": "Dialogue sequencing/commands and native View have separate responsibilities. Closing, aborting, disable/unload and death release input/motion leases without replaying finished content.", "exceptions": "A sequence state switch is a bounded algorithm, not species or mechanic dispatch debt."},
-    {"prefix": "Assets/EmergencyShift/Runtime/UI/", "conclusion": "HUD/readable projections observe equipment/health facts; native layout and text do not become model authority. Subscription cleanup and delayed display lifetimes are explicit.", "exceptions": "Current active/spare weapon HUD intentionally supports two slots; a third slot needs an explicit capability change."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Presentation/", "conclusion": "Audio, sprite, light, gore and visual playback are native presentation adapters with local clocks/state and shared immutable profiles. Temporary effects release their scene-owned resources; decorative and protective light roles stay distinct.", "exceptions": "TASK007 new whole-body/attack frames require final technical source reread; technical checks do not override the owner's rejection of FixedSprites06."},
-    {"prefix": "Assets/EmergencyShift/Runtime/World/", "conclusion": "World pickup/access/door/light adapters translate native events to their owning features. Stable IDs and authored scene links remain explicit; no global species/weapon switch is needed for common interactions.", "exceptions": "Preserve authored transforms, patrols, persistent keys and ordinary open-level Play."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Sandbox/", "conclusion": "Sandbox controls are intentionally local testing conveniences, separate from campaign/checkpoint production authority. R fresh-start, T owned-ammo refill and temporary range health follow current owner contract.", "exceptions": "Do not add campaign/save controllers or rebuild the authored map."},
-    {"prefix": "Assets/EmergencyShift/Runtime/Development/", "conclusion": "Opt-in development probes and generic combat targets are instrumentation, excluded from ordinary release via assembly/defines. They must use the real level composition and valid current fixtures; a probe producing a JSON file is not necessarily PASS.", "exceptions": "F07 is pending actual old-probe reproduction and full qualification. Fixed audio counts, startup input fences and old timing/art assumptions must be checked without weakening behavior assertions."},
-    {"prefix": "Assets/EmergencyShift/Editor/", "conclusion": "Authoring/baking and geometry tools remain Editor-only and use explicit asset/scene operations. Long builders can remain cohesive recipes. Their invocation is not authorized generic repair of current dirty maps, and validation that installs is a mutation.", "exceptions": "Current TASK007 bake/pause authoring additions require final reread; preserve GUIDs and art decisions. Do not run cold generators as baseline recovery."},
-    {"prefix": "Assets/EmergencyShift/Tests/", "conclusion": "Pure controls test model/command order and instance isolation; native fixtures exercise actual prefab/scene composition, lifetimes, death/retry and persistence. Guards and positive controls matter more than case counts. Tests must respect entry input fences and isolate temporary data.", "exceptions": "F08 redirects three active writes out of historical Docs evidence. Current foreign tests and Scorpion additions require exact-SHA qualification and real execution; old green reports are history."},
-    {"prefix": "AgentScripts/", "conclusion": "Explicit external authoring/build/inspection recipes are outside automatic Unity compilation. Recorded per-file conclusions distinguish mutating Install/restore recipes, old schema/candidate assumptions, evidence-only helpers and current probes. Preserve cold history and do not mass-format or automatically execute it.", "exceptions": "Use additional-read-trace per-file notes. TASK007/TASK006/TASK009/door active helpers need final reread at handback; Task008 new helpers require explicit compile/execute checks. Some old validators write false without throwing or overwrite historic outputs: neither is automatic PASS."},
-    {"prefix": "Concepts/Used/Environment/", "conclusion": "Two historical external create.cs recipes are provenance outside imports, read as history of their authored concepts. They are not production runtime or approval to recreate rejected visual results.", "exceptions": "No execution, bulk format or asset regeneration."},
-    {"prefix": "Concepts/Unused/Visual/SleeperSpriteRig01/", "conclusion": "Six preserved paused authoring drafts are explicitly excluded from fresh semantic/compile qualification. Individual SHA and exact duplicate pairs are recorded in preserved-draft-exclusions.json.", "exceptions": "Owner-paused outside imports. Preserve bytes; do not revive or claim them freshly reviewed."}
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Core/",
+      "conclusion": "World, level and player composition establish lifetimes; a scoped factory can create personal models. Clocks, input/motion leases, threat registries and deterministic sources have explicit owners. Installer lists are composition, not gameplay dispatch. Release on disable/unload and exact restoration are meaningful boundaries; do not replace them with a global mutable context.",
+      "exceptions": "Dependency counts alone are not defects; quota/clock/personal RNG and native adapters have explicit roles."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Definitions/",
+      "conclusion": "Definitions and presentation profiles own shared validated tuning and authored references. Content identity and weapon selection slots are stable contracts; model health, ammo, aggro and random state remain personal. Validation rejects invalid required data instead of silently repairing shared assets.",
+      "exceptions": "Scorpion motion scalars remain on the existing presentation asset for serialized compatibility; F01 snapshots them at composition. No balance/asset relocation is required."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Combat/",
+      "conclusion": "Weapon selection/ammo and shot cycles are separate from native projectiles, impacts and feedback. Commands validate before commit, snapshot shot directions before cosmetic callbacks, and use generic damage contracts. Numeric weapon variants remain definitions; different firing algorithms have their own cycles.",
+      "exceptions": "Two-position active/spare input and HUD are an explicit present capability, not a promise that a third slot needs no consumer change."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Player/",
+      "conclusion": "Player native adapters translate input and current Unity facts to controllers; health, interaction, equipment, camera/aim and audio have distinct owners. Entry/death/pause fences must be respected by diagnostics. Cosmetic audio must not become damage authority.",
+      "exceptions": "Current accepted-hit/HealthRestored source and scoped attachment were read at the handoff revision. The installed B clip set is preserved; artistic refusal/replacement belongs to TASK009."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Enemies/",
+      "conclusion": "Native motor/perception/melee/health adapters implement common physical contracts; Stalker and Sleeper keep their own state and presentation. Route solving and schedules are per actor. Committed attack direction, interrupt/death order and persistent aggro are intentional behavior.",
+      "exceptions": "Only the internal nonserializable pass-through EnemyChasePath2D was removed after full usage/native checks. Original painted views restored by TASK007 are preserved; technical animation checks do not imply artistic approval."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Enemies/",
+      "conclusion": "Shared path model, schedule, geometry ports, patrol, perception, melee and archetype settings are meaningful reusable boundaries. General consumers do not import a species state enum to decide bullet damage or door crush. Pure model owns per-instance route/cooldowns; native adapters supply physics and current facts.",
+      "exceptions": "Finite state switches and explicit clock/quota/random dependencies are retained. Native geometry/scheduling are substantive adapters, not candidates for F06 deletion."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/ClawEnemy/",
+      "conclusion": "The prototype has its own settings/model/controller/commands and native actor instead of adding branches to shared damage, weapons or navigation. It reuses common contracts by behavior.",
+      "exceptions": "Its prototype role and gameplay acceptance are not expanded by this audit."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Scorpion/",
+      "conclusion": "F01 separates immutable settings from current Step facts and removes attack/pursuit division. F02 gives the actor cue intent and audio View subscription/playback. Pack membership and caller selection have local ownership; silent Alert and cue-before-counter order are preserved.",
+      "exceptions": "Three-dependency controller is an explicit coordinator. Full suite/build qualification remains separate from the already completed 28 EditMode and four paired native scenarios."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Health/",
+      "conclusion": "Personal health/state and guarded damage/death commands are independent of concrete enemy species and audio. Death is single commit; repeated hits do not create repeated death effects. Native observers project results.",
+      "exceptions": "Checks at command creation and execution protect re-entry; their repetition is intentional."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Projectiles/",
+      "conclusion": "Projectile model/controller own travel and one-shot impact decisions; native physics supplies hits and presentation supplies visuals. Generic target contracts keep species choice out of shot consumers. Thin-wall and one-hit checks protect the consequential boundary.",
+      "exceptions": "No pooling/ECS/performance claim is introduced."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Remains/",
+      "conclusion": "Remains collection/ownership and settled snapshots are separate from transient gore animation. Restoration is silent and must not replay death or create duplicate records. Profile variants remain immutable and per-record state is personal.",
+      "exceptions": "OPT-01 remains deferred; a repeated-death optimization system is outside this task."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Flashlight/",
+      "conclusion": "Acquisition/power/upgrades/settings and current aim/occlusion facts have explicit ownership. A decorative lamp or muzzle flash does not become protective light. Controller composition must precede Configure/Awake for dynamic fixtures.",
+      "exceptions": "AcquireFlashlightCommand is retained as documented compatible API with tests; lack of a new runtime caller alone does not make it obsolete. F07 fixes diagnostics rather than adding fallback controllers."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Doors/",
+      "conclusion": "Door commands/state and native motion/contact/crush adapters separate authorization, movement and occupant damage. Close-time one-shot contact handling uses health contracts, not growing species dispatch. Repeated interaction and mutually exclusive state branches are intentional.",
+      "exceptions": "Current door demonstration writes are owned by another chat; reread changed sources and preserve its authored scalar values."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/AccessControl/",
+      "conclusion": "Cards, locks, reception and unlock notifications have local guarded state. Stable IDs and silent restoration are separate from pickup feedback. Definitions/reference identity are not duplicated into another universal inventory manager.",
+      "exceptions": "New numeric access variants remain authored data; new access algorithms should get an explicit local implementation."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Interaction/",
+      "conclusion": "Interaction actor and target contracts decouple native discovery/range from target-specific commands. Each target remains responsible for whether it accepts an interaction. Current world facts are not hidden inside a mutable context bag.",
+      "exceptions": "Alternative branches remain mutually exclusive where gameplay requires one target/action."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Pickups/",
+      "conclusion": "Pickup acceptance, remaining quantity/consumption and presentation are separate. Factories attach individual glint Views; shared profile data does not own pulse state. Failed acceptance must not consume inventory or emit success.",
+      "exceptions": "F03 now binds the existing profile once through the serialized world installer; native targeted prefab wiring and real view profile identity are qualified separately from local pulse state."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/Encounter/",
+      "conclusion": "Encounter activation is a one-shot model/command with native authored actor references. Dynamic fixtures require level scoped injection before Configure/Activate; ordinary authored composition already provides it.",
+      "exceptions": "F07's uncomposed diagnostic fixture is distinct from a reproduced production-gameplay defect."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/ScriptedEncounters/",
+      "conclusion": "Scripted routes and encounter activation own their actors/markers explicitly; timing, presentation and native movement are distinct responsibilities. Input/motion leases and cleanup prevent an abandoned sequence retaining player control.",
+      "exceptions": "F08 redirects fresh test evidence only; it must not change route assertions, timing or historical authored data."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/CheckpointSession/",
+      "conclusion": "Session model/commands orchestrate capture/preflight/restore through bounded ports. Validation precedes world mutation and a failed restore must not leave a partial committed session. Slot policy and level/content identity are explicit.",
+      "exceptions": "Implemented local checkpoints do not imply campaign transitions or persistent runtime spawn support."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Persistence/",
+      "conclusion": "DTO versions/presence, stable keys, payload validation and adapters preserve save compatibility. Nested snapshots are validated before application; Dead/settled restoration is silent. Type-specific persistence adapters are valid ownership boundaries.",
+      "exceptions": "No new Scorpion save payload is added merely as an extension example. Current sandbox has no new checkpoint controller."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/LevelProgress/",
+      "conclusion": "Progress commands own completion/idempotence and level state. Presentation follows committed progress, and completion guards use explicit facts rather than scene name heuristics.",
+      "exceptions": "Cross-level campaign behavior remains beyond implemented local-level scope."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/LevelObjectives/",
+      "conclusion": "Objective state, completion checks and native projection remain separate. Restore does not masquerade as a newly completed objective or replay its rewards/feedback.",
+      "exceptions": "No new objectives are attached to the owner's sandbox."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Levels/",
+      "conclusion": "LevelContext composes authored player/clock/geometry/services with scoped factories and tears them down with the scene. It is a composition root, not a new authority for every mechanic. Explicit injected actor creation prevents lifetime leaks and Awake-before-DI.",
+      "exceptions": "Current player input/audio/death composition and disposal source reread at handoff; ordinary Play keeps its open level and null start scene. Deferred native audio allocation early-unload regression belongs to the player presenter lifetime."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/PlayerInput/",
+      "conclusion": "Input is translated behind a small interface; startup/death/dialogue/pause locks are respected and released by their owners. Native Input System details do not enter pure combat models.",
+      "exceptions": "Current input-interface changes belong to earlier WIP and require final exact-SHA review; do not restore mandatory MainMenu entry."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/PlayerMovement/",
+      "conclusion": "Movement controller/model receive current input and time; physics remains native. Motion leases compose temporary restrictions with explicit cleanup rather than independent booleans that overwrite each other.",
+      "exceptions": "A shared immutable rules object is not shared runtime movement state."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/PlayerRules/",
+      "conclusion": "Authored player rules supply immutable validated values at composition. Personal runtime health/motion/equipment remain in their own models.",
+      "exceptions": "Do not duplicate identical rules per level to hide composition requirements."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/PlayerFootsteps/",
+      "conclusion": "Step cadence/model and current movement facts are separate from world-foley native playback. Pause/unload and scene registration have explicit lifetime; audio events do not move the player.",
+      "exceptions": "The accepted .24 step setting and existing sounds are preserved."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/LampPower/",
+      "conclusion": "Lamp state/commands and native light feedback are separate. Shared flicker tuning does not share timers or power state; a room lamp remains decorative rather than protective flashlight logic.",
+      "exceptions": "No speculative new lighting manager or global update loop."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/AudioMood/",
+      "conclusion": "Threat/mood models and mix facts are separate from clip sources and scene director ownership. Register/unregister and unload reset are meaningful; shared profiles are immutable. Six mix Step inputs are current frame facts, unlike F01's mixed static/dynamic parameters.",
+      "exceptions": "Long native mixing code alone is not a reason to add pass-through layers; no performance claim is made."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/WorldAudio/",
+      "conclusion": "World bus/settings and scene/native presenters own gain transitions and subscriptions; a serialized world profile establishes composition. Disable/unload releases sources and does not leave a second independent gain authority.",
+      "exceptions": "Existing accepted death-world fade and audio are preserved; TASK006 controls its screen presentation changes."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/DamageFeedback/",
+      "conclusion": "Accepted damage facts feed personal feedback state and native directional presentation. Damage authority remains in health/commands; cosmetic cooldowns do not suppress damage or invent enemy-specific branches.",
+      "exceptions": "PlayerHitAudio consumes accepted health facts and silent HealthRestored without taking damage authority. Installed sound and owner artistic assessment remain separate."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/DeathScreen/",
+      "conclusion": "Death model/controller, environment leases and presentation/installer are separate. Input, time/audio effects and retry/restore have explicit ownership and cleanup. Current screen D visual timing belongs to authored profile/presentation.",
+      "exceptions": "TASK006's active native window and art/visual acceptance are separate; final changed SHA and actual retry behavior require verification."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/PauseMenu/",
+      "conclusion": "Pause draft uses model/commands, environment leases and native presenter/View instead of making Canvas own all gameplay. Time/input/audio state restoration and subscriptions are explicit.",
+      "exceptions": "Owner's unfinished pause UI is preserved as WIP. Source review and inclusion checks do not approve or publish its visuals/features."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/MainMenu/",
+      "conclusion": "Deferred menu model/catalog/navigation has explicit composition and transition contracts. Existing preparation remains intact; ordinary Editor Play is independent of mandatory menu catalog/entry and no menu is left additive over a map.",
+      "exceptions": "BUG048 remains Won't do until a working build is prepared by a separate owner decision; audit does not revive automatic entry policy."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Dialogue/",
+      "conclusion": "Dialogue sequencing/commands and native View have separate responsibilities. Closing, aborting, disable/unload and death release input/motion leases without replaying finished content.",
+      "exceptions": "A sequence state switch is a bounded algorithm, not species or mechanic dispatch debt."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/UI/",
+      "conclusion": "HUD/readable projections observe equipment/health facts; native layout and text do not become model authority. Subscription cleanup and delayed display lifetimes are explicit.",
+      "exceptions": "Current active/spare weapon HUD intentionally supports two slots; a third slot needs an explicit capability change."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Presentation/",
+      "conclusion": "Audio, sprite, light, gore and visual playback are native presentation adapters with local clocks/state and shared immutable profiles. Temporary effects release their scene-owned resources; decorative and protective light roles stay distinct.",
+      "exceptions": "Current whole-body/attack playback source is read; original TASK007 restored drawing references remain protected. New animation/art acceptance is outside this source audit."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/World/",
+      "conclusion": "World pickup/access/door/light adapters translate native events to their owning features. Stable IDs and authored scene links remain explicit; no global species/weapon switch is needed for common interactions.",
+      "exceptions": "Preserve authored transforms, patrols, persistent keys and ordinary open-level Play."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Sandbox/",
+      "conclusion": "Sandbox controls are intentionally local testing conveniences, separate from campaign/checkpoint production authority. R fresh-start, T owned-ammo refill and temporary range health follow current owner contract.",
+      "exceptions": "Do not add campaign/save controllers or rebuild the authored map."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Development/",
+      "conclusion": "Opt-in development probes and generic combat targets are instrumentation, excluded from ordinary release via assembly/defines. They must use the real level composition and valid current fixtures; a probe producing a JSON file is not necessarily PASS.",
+      "exceptions": "BUG062 old probes were actually reproduced, including encounter DI after earlier blockers. Current smoke15 and Sleeper25 controls pass, with current audio count, input readiness, real-shot positive control and inactive/injected native fixtures."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Editor/",
+      "conclusion": "Authoring/baking and geometry tools remain Editor-only and use explicit asset/scene operations. Long builders can remain cohesive recipes. Their invocation is not authorized generic repair of current dirty maps, and validation that installs is a mutation.",
+      "exceptions": "Current own authoring source is read, but historical/current bake recipes are not invoked as generic repair. Preserve GUIDs, authored maps and owner art decisions."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Tests/",
+      "conclusion": "Pure controls test model/command order and instance isolation; native fixtures exercise actual prefab/scene composition, lifetimes, death/retry and persistence. Guards and positive controls matter more than case counts. Tests must respect entry input fences and isolate temporary data.",
+      "exceptions": "F08 redirects three active writes out of historical Docs evidence. Current foreign tests and Scorpion additions require exact-SHA qualification and real execution; old green reports are history."
+    },
+    {
+      "prefix": "AgentScripts/",
+      "conclusion": "Explicit external authoring/build/inspection recipes are outside automatic Unity compilation. Recorded per-file conclusions distinguish mutating Install/restore recipes, old schema/candidate assumptions, evidence-only helpers and current probes. Preserve cold history and do not mass-format or automatically execute it.",
+      "exceptions": "Per-file receipts distinguish actual current helpers from historical candidate/schema-specific recipes. TASK008 native/diagnostic/install/build tools have separate scoped execution evidence; retained cold recipes are source-reviewed, not universally compiled/executed. False-in-JSON and overwrite-prone old verifiers are explicitly limited."
+    },
+    {
+      "prefix": "Concepts/Used/Environment/",
+      "conclusion": "Two historical external create.cs recipes are provenance outside imports, read as history of their authored concepts. They are not production runtime or approval to recreate rejected visual results.",
+      "exceptions": "No execution, bulk format or asset regeneration."
+    },
+    {
+      "prefix": "Concepts/Unused/Visual/SleeperSpriteRig01/",
+      "conclusion": "Six preserved paused authoring drafts are explicitly excluded from fresh semantic/compile qualification. Individual SHA and exact duplicate pairs are recorded in preserved-draft-exclusions.json.",
+      "exceptions": "Owner-paused outside imports. Preserve bytes; do not revive or claim them freshly reviewed."
+    },
+    {
+      "prefix": "Assets/EmergencyShift/Runtime/Features/PlayerHitAudio/",
+      "conclusion": "Player-owned cosmetic response subscribes to accepted Damaged facts and separate HealthRestored. Immutable authored clip bank/volume/overlap data are world-bound; personal RNG/no-repeat history and two native voices belong to one presenter. WorldAudioBus owns routing/gain; audio never requests damage. DSP overlap, pause and disposal are one presentation responsibility, not a new gameplay Manager/model layer.",
+      "exceptions": "Current source includes native early-unload fix and meaningful red/green regression: parenting, not a separate move into an unloading scene, owns the voice root. Optional isolated-container attachment stays explicit. Installed B artistic refusal is tracked separately; clip/profile/mix preserved."
+    },
+    {
+      "prefix": "Concepts/Unused/Visual/StalkerWholeFrames07/",
+      "conclusion": "Explicit non-imported owner artwork/restoration recipes, separate from production decisions and automatic Unity compilation. Current restore reuses original painted whole frames in existing immutable view data layouts; preserves gameplay/time/IDs and does not claim repeated references are newly authored animation.",
+      "exceptions": "Owner original-display restoration/handoff source and current native assertions were reread. Repeated references are not additional drawings; new art candidates/approval remain outside this source audit."
+    }
   ]
 }

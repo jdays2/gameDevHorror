@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 namespace EmergencyShift
 {
@@ -93,24 +94,41 @@ namespace EmergencyShift
 
         private IEnumerator Run()
         {
+            LevelContext2D context = null;
+            foreach (GameObject root in gameObject.scene.GetRootGameObjects())
+            {
+                context = root.GetComponentInChildren<LevelContext2D>(true);
+                if (context != null)
+                {
+                    break;
+                }
+            }
+            if (context == null)
+            {
+                throw new InvalidOperationException("Sleeper regression requires a composed level in its own scene.");
+            }
             fixture = new GameObject("Disposable Sleeper regression");
+            SceneManager.MoveGameObjectToScene(fixture, context.gameObject.scene);
             var targetObject = new GameObject("Damage receiver", typeof(CombatProbeTarget2D));
             targetObject.transform.SetParent(fixture.transform);
             var target = targetObject.GetComponent<CombatProbeTarget2D>();
             targetObject.GetComponent<CircleCollider2D>().radius = .25f;
             targetObject.transform.position = origin + Vector2.down * 3;
-            var lightObject = new GameObject("Directed test flashlight", typeof(Flashlight2D));
+            var lightObject = new GameObject("Directed test flashlight");
+            lightObject.SetActive(false);
             lightObject.transform.SetParent(targetObject.transform, false);
+            var lamp = lightObject.AddComponent<Flashlight2D>();
+            context.InjectScoped(lamp);
             var beamObject = new GameObject("Beam", typeof(Light2D));
             beamObject.transform.SetParent(lightObject.transform, false);
-            var lamp = lightObject.GetComponent<Flashlight2D>();
             lamp.Configure(null, beamObject.transform, beamObject.GetComponent<Light2D>());
             lamp.enabled = false;
+            lightObject.SetActive(true);
             lamp.AimAt(origin);
             lamp.SetPower(false);
 
-            var first = FindAnyObjectByType<LevelContext2D>().CreateInstance(prefab, origin, Quaternion.identity, fixture.transform).GetComponent<Sleeper2D>();
-            var second = FindAnyObjectByType<LevelContext2D>().CreateInstance(prefab, origin + Vector2.right * 8, Quaternion.identity, fixture.transform).GetComponent<Sleeper2D>();
+            var first = context.CreateInstance(prefab, origin, Quaternion.identity, fixture.transform).GetComponent<Sleeper2D>();
+            var second = context.CreateInstance(prefab, origin + Vector2.right * 8, Quaternion.identity, fixture.transform).GetComponent<Sleeper2D>();
             first.Configure(target.transform, lamp, 1 << 8);
             second.Configure(target.transform, lamp, 1 << 8);
             var firstAudio = first.GetComponent<SleeperAudio2D>();
@@ -187,7 +205,7 @@ namespace EmergencyShift
             Check("Real melee delivers exactly one hit per attack", target.Hits == 1 && target.TotalDamage == 1);
 
             second.AttacksEnabled = false;
-            var bullet = FindAnyObjectByType<LevelContext2D>().CreateInstance(projectilePrefab.gameObject,
+            var bullet = context.CreateInstance(projectilePrefab.gameObject,
                 second.transform.position + Vector3.left * 2, Quaternion.identity, fixture.transform).GetComponent<BulletProjectile2D>();
             bullet.Launch(target.transform, Vector2.right, shotStyle, null, 1 << second.gameObject.layer, 1, 5);
             yield return new WaitForSeconds(.15f);

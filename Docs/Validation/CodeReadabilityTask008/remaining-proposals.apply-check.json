@@ -1,0 +1,32 @@
+{
+  "task": "TASK-008",
+  "checkedUtc": "2026-11-04T02:58:53.064632+00:00",
+  "state": "git apply --check --whitespace=error only; no game/source writes or compile/native execution",
+  "patches": [
+    {
+      "path": "pickup-glint-composition.proposed.patch",
+      "sha256": "8ce836e5bb076b11f156e1fc74cdcc4bea71cf8ba7e30d2e728cf4fb2f142e9a"
+    },
+    {
+      "path": "pickup-glint-native-test.proposed.patch",
+      "sha256": "0194722407f294994c4c0eccb9827d7d42dbb51bf8744feb078549383770bd34"
+    },
+    {
+      "path": "navigation-wrapper.proposed.patch",
+      "sha256": "996194522d5bb8fe24be65da15f0cc61194932ddb796700c06dadb5706520a91"
+    },
+    {
+      "path": "diagnostic-composition.proposed.patch",
+      "sha256": "5df5f986fa1878356f2ed10d75e2d6e3e8e17847441c0cdcd813c3c91747141d"
+    },
+    {
+      "path": "diagnostic-readiness.proposed.patch",
+      "sha256": "323a5c7e251238f7f67863b40ddc4ee3c53c105061af8c4d44c39844b2931bf9"
+    },
+    {
+      "path": "test-evidence-outputs.proposed.patch",
+      "sha256": "698b5ec134b1b791c5bbcd2dca925508a7b55772d90647d5570a2544d7613a5e"
+    }
+  ],
+  "required": "Fresh baseline/game handoff; actual F07 repro before fixes; native prefab installation for F03; reference checks before F06 deletion; F08 historical SHA before actual tests."
+}

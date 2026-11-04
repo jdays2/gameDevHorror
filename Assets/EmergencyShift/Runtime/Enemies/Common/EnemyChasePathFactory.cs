@@ -19,11 +19,10 @@ namespace EmergencyShift
             this.random = random ?? throw new ArgumentNullException(nameof(random));
         }
 
-        internal EnemyChasePath2D Create()
+        internal EnemyChasePathModel Create()
         {
             var schedule = new EnemyPathSchedule(clock, budget, random.Create());
-            var path = new EnemyChasePathModel(new EnemyPathGeometry2D(), new ProfiledEnemyPathSchedule2D(schedule));
-            return new EnemyChasePath2D(path);
+            return new EnemyChasePathModel(new EnemyPathGeometry2D(), new ProfiledEnemyPathSchedule2D(schedule));
         }
     }
 }

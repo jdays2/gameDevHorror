@@ -3,7 +3,6 @@ using EmergencyShift.Core.Randomness;
 using EmergencyShift.Features.PlayerHitAudio.Config;
 using EmergencyShift.Features.WorldAudio.View;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace EmergencyShift.Features.PlayerHitAudio.View
@@ -66,7 +65,8 @@ namespace EmergencyShift.Features.PlayerHitAudio.View
             }
             profile.Validate();
             voiceRoot = new GameObject("Player hit voices (runtime)");
-            SceneManager.MoveGameObjectToScene(voiceRoot, gameObject.scene);
+            // Parenting gives the voices the player's scene and destruction lifetime,
+            // including an unload that starts before this deferred Start callback.
             voiceRoot.transform.SetParent(transform, false);
             for (int index = 0; index < voices.Length; index++)
             {

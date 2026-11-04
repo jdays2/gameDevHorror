@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using EmergencyShift.Features.PlayerHitAudio.View;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -155,7 +156,11 @@ namespace EmergencyShift
             }
 
             var voices = player.GetComponentsInChildren<AudioSource>(true);
-            if (!Check(voices.Length == 28 && new HashSet<AudioSource>(voices).Count == 28 && player.GetComponent<PlayerFootsteps2D>() != null && player.GetComponent<PlayerUtilityAudio2D>() != null, "Complete player audio prefab and unique world-foley voices"))
+            bool completeAudio = voices.Length == 30 && new HashSet<AudioSource>(voices).Count == 30 &&
+                player.GetComponent<PlayerFootsteps2D>() != null &&
+                player.GetComponent<PlayerUtilityAudio2D>() != null &&
+                player.GetComponent<PlayerHitAudioPresenter>() != null;
+            if (!Check(completeAudio, "Complete player audio prefab and unique foley/hurt voices"))
             {
                 yield break;
             }
@@ -171,6 +176,15 @@ namespace EmergencyShift
             player.GetComponent<Rigidbody2D>().simulated = false;
             player.transform.position = Vector3.zero;
             var weapon = player.GetComponent<PlayerWeapon2D>();
+            float readyDeadline = Time.realtimeSinceStartup + 3;
+            while (!weapon.IsOperational && Time.realtimeSinceStartup < readyDeadline)
+            {
+                yield return null;
+            }
+            if (!Check(weapon.IsOperational, "Normal startup input fence released"))
+            {
+                yield break;
+            }
             weapon.Acquire(20);
             var aim = player.GetComponent<PlayerAim2D>();
             aim.SetScriptedTarget(new Vector2(3, 0));
@@ -214,7 +228,10 @@ namespace EmergencyShift
             wall.transform.position = new Vector3(1.5f, 0, 0);
             wall.GetComponent<BoxCollider2D>().size = new Vector2(.015f, 2);
             Physics2D.SyncTransforms();
-            weapon.TryFire();
+            if (!Check(weapon.TryFire(), "Actual shot at the thin wall"))
+            {
+                yield break;
+            }
             yield return new WaitForSeconds(.3f);
             if (!Check(target.Hits == 2, "Thin wall blocks new weapon"))
             {
@@ -224,6 +241,7 @@ namespace EmergencyShift
             var actor = new GameObject("Authored inactive actor");
             actor.SetActive(false);
             var zone = new GameObject("Encounter zone", typeof(EncounterActivation2D)).GetComponent<EncounterActivation2D>();
+            context.InjectScoped(zone);
             zone.Configure(new[] { actor });
             if (!Check(zone.Activate() && actor.activeSelf && !zone.Activate(), "One-shot encounter activation"))
             {

@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
@@ -13,8 +14,10 @@ using UnityEngine.SceneManagement;
 // No Build Settings, Player Settings, scene saves or automatic MainMenu entry changes.
 public static class Task008Build
 {
-    public static object Release()
+    public static async Task<object> Release()
     {
+        // Let Pipeline observe the Task before the synchronous native build starts.
+        await Task.Yield();
         if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling ||
             EditorApplication.isUpdating || BuildPipeline.isBuildingPlayer)
         {
@@ -62,6 +65,12 @@ public static class Task008Build
             !assemblies.Any(name => name.Contains("Development") || name.Contains("Editor") || name.Contains("Tests"));
         const string profile = "Assets/EmergencyShift/Resources/PickupGlintProfile.asset";
         bool profileIncluded = report.packedAssets.Any(pack => pack.contents.Any(item => item.sourceAssetPath == profile));
+        string[] hitAssets = Enumerable.Range(1, 4)
+            .Select(index => "Assets/EmergencyShift/Audio/PlayerHit01/player-hit-" + index.ToString("00") + ".wav")
+            .Concat(new[] { "Assets/EmergencyShift/Data/Audio/PlayerHitAudio.asset" }).ToArray();
+        string[] packed = report.packedAssets.SelectMany(pack => pack.contents)
+            .Select(item => item.sourceAssetPath).Distinct().ToArray();
+        string[] missingHitAssets = hitAssets.Where(path => !packed.Contains(path)).ToArray();
         var result = new JObject
         {
             ["result"] = report.summary.result.ToString(),
@@ -73,6 +82,8 @@ public static class Task008Build
             ["assemblies"] = JArray.FromObject(assemblies),
             ["releaseOnly"] = releaseOnly,
             ["existingPickupProfileIncluded"] = profileIncluded,
+            ["requiredPlayerHitAssets"] = JArray.FromObject(hitAssets),
+            ["missingPlayerHitAssets"] = JArray.FromObject(missingHitAssets),
             ["scenes"] = JArray.FromObject(options.scenes),
             ["player"] = output,
             ["playerSha256"] = File.Exists(output) ? Hash(output) : null,
@@ -81,7 +92,7 @@ public static class Task008Build
             ["limits"] = "Build inclusion and compilation only; no claim of gameplay/art acceptance or performance. Native scene/input preservation is compared separately after this operation."
         };
         File.WriteAllText(evidence, result.ToString());
-        if (report.summary.result != BuildResult.Succeeded || !releaseOnly || !profileIncluded)
+        if (report.summary.result != BuildResult.Succeeded || !releaseOnly || !profileIncluded || missingHitAssets.Length != 0)
         {
             throw new InvalidOperationException("Release qualification failed; inspect the saved build report.");
         }

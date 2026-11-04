@@ -152,8 +152,9 @@ namespace EmergencyShift.Tests
             MovePlayer(Vector2.zero);
             yield return new WaitForSeconds(.1f);
             Assert.That(actor.HasAggro, Is.True, "Ordinary permanent aggression remains permanent.");
-            Directory.CreateDirectory("Docs/Validation/DoorScatterDelay01");
-            File.WriteAllText("Docs/Validation/DoorScatterDelay01/flashlight-route.json", JsonUtility.ToJson(new RouteReport
+            string output = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Logs", "Tests", "ScriptedIntro", "flashlight-route.json"));
+            Directory.CreateDirectory(Path.GetDirectoryName(output));
+            File.WriteAllText(output, JsonUtility.ToJson(new RouteReport
             {
                 route = route.EncounterId,
                 completed = true,
@@ -266,8 +267,9 @@ namespace EmergencyShift.Tests
                     "Each actor must visibly start after the previous one.");
             }
 
-            Directory.CreateDirectory("Docs/Validation/DoorScatterDelay01");
-            File.WriteAllText("Docs/Validation/DoorScatterDelay01/group-route.json", JsonUtility.ToJson(new GroupReport
+            string output = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Logs", "Tests", "ScriptedIntro", "group-route.json"));
+            Directory.CreateDirectory(Path.GetDirectoryName(output));
+            File.WriteAllText(output, JsonUtility.ToJson(new GroupReport
             {
                 completed = group.All(value => value.State == ScriptedRouteState.Completed),
                 starts = order.Select(index => new StartSample { id = group[index].EncounterId, configuredDelay = group[index].StartDelaySeconds, actualDelay = firstMovement[index] - openedAt }).ToArray(),

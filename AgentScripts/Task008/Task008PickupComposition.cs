@@ -26,7 +26,8 @@ public static class Task008PickupComposition
         {
             throw new InvalidOperationException("Close the existing Prefab Stage without losing its edits first.");
         }
-        string output = Path.GetFullPath("Docs/Validation/CodeReadabilityTask008/pickup-composition.install.json");
+        string output = Path.GetFullPath(Path.Combine(Application.dataPath,
+            "../Docs/Validation/CodeReadabilityTask008/pickup-composition.install.json"));
         if (File.Exists(output))
         {
             throw new IOException("Preserve existing installation evidence.");

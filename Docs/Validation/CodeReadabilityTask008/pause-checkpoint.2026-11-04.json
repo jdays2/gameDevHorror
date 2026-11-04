@@ -1,0 +1,112 @@
+{
+  "task": "TASK-008",
+  "chat": "01a19e81-75f9-7743-9343-d660775cac53",
+  "state": "PAUSED by explicit project owner instruction relayed by authorized manager; not complete",
+  "capturedUtc": "2026-11-04T03:48:12.514287+00:00",
+  "head": "0342baaf8358501f337c7b590cb4c43fe4d55030",
+  "ownOperations": {
+    "unity": "none running; no Unity invocation since explicit handoff at 2026-11-04 02:04:49 UTC",
+    "backgroundWriters": [],
+    "gitLease": false,
+    "gameLease": false,
+    "pendingTools": [],
+    "editor": "Not queried during pause; actual live Editor belongs to TASK009. No claim about its current Play/capture state."
+  },
+  "completed": {
+    "gameCommit": "a05f2ab7e0e2a270cbfec41f64603c82e191eff6",
+    "sourceReviewCommit": "2acc9df27e92025fe4d287c17b3f5ce4950d52d7",
+    "verification": "F01 zero-pursuit actual baseline13/14 ->28/28 EditMode; F02 four native scenarios before/after.2703 loaded objects preserved,3826 saved inputs/114 TASK007 files checked. This does not verify later TASK006/009 changes.",
+    "maintenance": "c2319663,918946ad,f4c5cffa,2b38cefa,d7edeeb4; actual maintenance CLI6/6 and doc checks, no push"
+  },
+  "unfinished": [
+    "F03 explicit PickupGlint world installer/source patch and native ProjectContext wiring not applied.",
+    "F06 wrapper references/native check, deletion and nav regressions not executed.",
+    "F07 actual old diagnostic repro/BUG registration and fixes not executed. Proposed supplement waits natural startup fence and requires actual wall shot; proposed Sleeper context is selected from its own scene before inactive flashlight injection. Current smoke still expects28 voices; TASK009 adds2, actual qualification pending.",
+    "F08 BUG060 output redirection not applied; freeze historical SHA before actual runs.",
+    "Final exact source review/CodeAudit, full EditMode/PlayMode, native references/preservation, normal Windows64 build, contracts/Notion and final scoped commits remain."
+  ],
+  "resumeOnlyAfterOwnerInstruction": [
+    "Refresh registry. Queue before pause: TASK009 -> TASK007 original-display return only -> TASK008. A lease is not permission to resume.",
+    "Wait for explicit actual game handoff. Refresh source/diff, current Editor and saved/native baseline after TASK006/009 and owner-authorized TASK007 return. Preserve all foreign WIP.",
+    "Use current TASK007 preservation manifest rather than silently overwriting FixedSprites06 original history. preserve_files.py now accepts --baseline and --handoff, records manifest SHA; newest helper changes not executed.",
+    "Compile Task008 external helpers under game lease. Pickup composition helper requires proposed installer to compile first. NativeAudit new asset pass, Diagnostics new motion routine and Build.Release are prepared, not certified.",
+    "Do not reapply F01/F02 old proposals. Apply/verify remaining boundaries only after baseline and original probe repro. Final task completion must follow required verification."
+  ],
+  "notion": {
+    "task": "https://app.notion.com/p/40c8d6dc06b68132874cd3d781d119fd",
+    "taskStatus": "In progress/unfinished; do not mark Done while paused",
+    "BUG059": "https://app.notion.com/p/40e8d6dc06b681f395d2f887dd8b4f69",
+    "BUG060": "https://app.notion.com/p/40e8d6dc06b6819bbee9e45a88ee41df",
+    "aggregateChangelog": "40d8d6dc-06b6-8188-aea8-d4e832713959"
+  },
+  "authorization": {
+    "managerCoordination": "Human explicitly authorized messages to manager 01a164e4-7ed0-7632-9c3f-01ae0468a011 in this chat.",
+    "otherMessages": "Earlier narrow TASK007 handoff request was authorized; no broad authorization to other chats inferred.",
+    "push": "Not authorized anew; no push."
+  },
+  "preservation": {
+    "ownWorkingFiles": [
+      {
+        "path": "AgentScripts/Task008/Task008Diagnostics.cs",
+        "sha256": "b29e2b421772814fba329db8cedba17ca5237466dc3df0bc60c56f84e31eec8e"
+      },
+      {
+        "path": "AgentScripts/Task008/Task008NativeAudit.cs",
+        "sha256": "32ae461ecd5005d8cbfd6da793ea89b3595deb41c8a07f72168dc5a112d4ab1a"
+      },
+      {
+        "path": "AgentScripts/Task008/Task008PickupComposition.cs",
+        "sha256": "5f1e7cadfc6244d6bf491fdfaceaaff6c73929daada81a404db2928e2024da24"
+      },
+      {
+        "path": "Docs/ARCHITECTURE.md",
+        "sha256": "d85f7e15000fdf3009bc0128767c990ce5d3eb200a9462e03b07642b4d782383"
+      },
+      {
+        "path": "Docs/Reports/CodeReadabilityTask008.md",
+        "sha256": "3757d6ede0db63d1563610c20883af87a28c99a281c1f0d12ca5da31a6062df9"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/capture_inventory.py",
+        "sha256": "b06faefa8bf11afb8cc9e965aa825c44c33b86bb248447e8639732d3f1d591ba"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/diagnostic-composition.proposal.json",
+        "sha256": "dc1b0e400508f46120b528848573791778110ea6e20c6ce78296d9a071770d8e"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/diagnostic-composition.proposed.patch",
+        "sha256": "d178780589020a97f8b65cda839ac98b3bad2d21c512aa82ee48e918e1a013e6"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/preserve_files.py",
+        "sha256": "5693e026e12bd8a3096cde05b1bec1211572b07f3314fb42cf9cbbaa695c512a"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/recent-read-trace.json",
+        "sha256": "ce6ede48adca444d1974ccd61ce959b152d17f0fe7d77e27235d375f0ae4a321"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/semantic-modules.json",
+        "sha256": "acc600ab43f411b5ade927a755fa8c4ca7fc21512c66094ffe6c6fa9df11756c"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/diagnostic-readiness.proposal.json",
+        "sha256": "21484bde3488bf1d5ee39894eed8dcd7c7b637a581746d292162ec24d58ad34b"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/diagnostic-readiness.proposed.patch",
+        "sha256": "323a5c7e251238f7f67863b40ddc4ee3c53c105061af8c4d44c39844b2931bf9"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/remaining-proposals.apply-check.json",
+        "sha256": "1847b1ff379914d6ccab0a238e230b22acec31e437a4c569c1b17c2102d22f69"
+      },
+      {
+        "path": "Docs/Validation/CodeReadabilityTask008/source-review.progress-02.json",
+        "sha256": "d2fe8bef418d67824d53c2dbb12cfba1d3052b793f7d06684e831c7640f109ea"
+      }
+    ],
+    "foreign": "No rollback, staging, new commit, native operation or queue handoff performed for pause. Existing five files leases retained; no game/git lease owned."
+  }
+}

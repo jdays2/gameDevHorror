@@ -70,6 +70,29 @@ namespace EmergencyShift.Tests
         }
 
         [UnityTest]
+        public IEnumerator ImmediateLevelUnloadDoesNotCreateVoicesInADyingScene()
+        {
+            const string path = "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity";
+            SceneHandle[] handles = Enumerable.Range(0, SceneManager.sceneCount)
+                .Select(index => SceneManager.GetSceneAt(index).handle).ToArray();
+            yield return EditorSceneManager.LoadSceneAsyncInPlayMode(path, new LoadSceneParameters(LoadSceneMode.Additive));
+            scene = Enumerable.Range(0, SceneManager.sceneCount).Select(SceneManager.GetSceneAt)
+                .Single(candidate => candidate.path == path && !handles.Contains(candidate.handle));
+            var context = scene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<LevelContext2D>(true)).Single();
+            PlayerLife2D unloadingPlayer = context.Player;
+            PlayerHitAudioPresenter unloadingAudio = unloadingPlayer.GetComponent<PlayerHitAudioPresenter>();
+            Assert.That(unloadingAudio, Is.Not.Null);
+            // Deliberately unload without giving the deferred Start another frame.
+            yield return SceneManager.UnloadSceneAsync(scene);
+            Assert.That(unloadingPlayer == null, Is.True);
+            Assert.That(unloadingAudio == null, Is.True);
+            Assert.That(UnityEngine.Object.FindObjectsByType<Transform>(FindObjectsInactive.Include)
+                .Any(item => item.parent == null && item.name == "Player hit voices (runtime)"), Is.False,
+                "Early unload must not strand a voice root in the previous active scene.");
+            LogAssert.NoUnexpectedReceived();
+        }
+
+        [UnityTest]
         public IEnumerator AcceptedDamageIsOneCueWhileRestorationPauseDisableAndScopeDisposalAreSilent()
         {
             yield return Load();

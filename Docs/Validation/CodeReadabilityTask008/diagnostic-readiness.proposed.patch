@@ -1,0 +1,30 @@
+--- a/Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs
++++ b/Assets/EmergencyShift/Runtime/Development/DevelopmentBuildSmoke.cs
+@@ -171,6 +171,15 @@
+             player.GetComponent<Rigidbody2D>().simulated = false;
+             player.transform.position = Vector3.zero;
+             var weapon = player.GetComponent<PlayerWeapon2D>();
++            float readyDeadline = Time.realtimeSinceStartup + 3;
++            while (!weapon.IsOperational && Time.realtimeSinceStartup < readyDeadline)
++            {
++                yield return null;
++            }
++            if (!Check(weapon.IsOperational, "Normal startup input fence released"))
++            {
++                yield break;
++            }
+             weapon.Acquire(20);
+             var aim = player.GetComponent<PlayerAim2D>();
+             aim.SetScriptedTarget(new Vector2(3, 0));
+@@ -214,7 +223,10 @@
+             wall.transform.position = new Vector3(1.5f, 0, 0);
+             wall.GetComponent<BoxCollider2D>().size = new Vector2(.015f, 2);
+             Physics2D.SyncTransforms();
+-            weapon.TryFire();
++            if (!Check(weapon.TryFire(), "Actual shot at the thin wall"))
++            {
++                yield break;
++            }
+             yield return new WaitForSeconds(.3f);
+             if (!Check(target.Hits == 2, "Thin wall blocks new weapon"))
+             {

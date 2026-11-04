@@ -126,6 +126,33 @@ class MaintenanceCliTests(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
         self.assertEqual([], json.loads(result.stdout)["brokenLocalLinks"])
 
+    def excluded_draft_fixture(self):
+        path, registry = self.audit_fixture()
+        draft = self.write("Concepts/Paused/Draft.cs", "class Draft { }\n")
+        entry = {"path": "Concepts/Paused/Draft.cs", "sha256": hashlib.sha256(draft.read_bytes()).hexdigest(),
+                 "reviewStatus": "preserved_unread_draft_exclusion", "notes": "Owner-paused; unread."}
+        registry["files"].append(entry)
+        path.write_text(json.dumps(registry), encoding="utf-8")
+        return path, draft
+
+    def test_refresh_does_not_invent_reviewed_sha_for_preserved_unread_draft(self):
+        path, _ = self.excluded_draft_fixture()
+        result = self.run_cli("audit_code.py", "--refresh", "--date", "2026-11-04")
+        self.assertEqual(0, result.returncode, result.stderr)
+        entry = next(row for row in json.loads(path.read_text())["files"] if row["path"] == "Concepts/Paused/Draft.cs")
+        self.assertEqual("preserved_unread_draft_exclusion", entry["reviewStatus"])
+        self.assertNotIn("reviewedSha256", entry)
+
+    def test_changed_excluded_draft_is_queued_without_inventing_a_review(self):
+        path, draft = self.excluded_draft_fixture()
+        draft.write_text("class Draft { int changed; }\n", encoding="utf-8")
+        result = self.run_cli("audit_code.py", "--refresh", "--date", "2026-11-04")
+        self.assertEqual(0, result.returncode, result.stderr)
+        entry = next(row for row in json.loads(path.read_text())["files"] if row["path"] == "Concepts/Paused/Draft.cs")
+        self.assertEqual("queued", entry["reviewStatus"])
+        self.assertEqual("preserved_unread_draft_exclusion", entry["previousReviewStatus"])
+        self.assertNotIn("reviewedSha256", entry)
+
     def test_real_missing_document_link_still_fails_and_keeps_original_target(self):
         self.write("Docs/links.md", "[Missing](missing.md?revision=r1#section)\n")
         result = self.run_cli("audit_documentation.py")
