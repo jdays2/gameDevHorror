@@ -133,22 +133,22 @@ public sealed class PlayerHitCaptureProbe : MonoBehaviour
             Physics2D.Linecast(player.transform.position, (Vector2)player.transform.position + offset * 1.2f, walls).collider == null);
         GameObject actor = context.CreateInstance(prefab, player.transform.position + (Vector3)direction * 1.2f, Quaternion.identity);
         aim = player.GetComponent<PlayerAim2D>();
-        aim.SetScriptedTarget((Vector2)player.transform.position - direction * 10);
+        aim.SetScriptedTarget(actor.transform.position);
         var weapon = player.GetComponent<PlayerWeapon2D>();
-        if (!weapon.HasWeapon)
-        {
-            weapon.Acquire(30);
-        }
-        weapon.TryAddAmmo(30);
         player.Damaged += OnDamage;
         yield return new WaitForEndOfFrame();
-        string folder = "work/task009-player-hit/capture-" + candidate + "-live/";
+        string folder = "work/task009-player-hit/capture-" + candidate + "-hits-only-live/";
+        if (Directory.Exists(folder))
+        {
+            throw new IOException("Preserve an existing capture before recording again.");
+        }
         Directory.CreateDirectory(folder);
         var frames = new List<object>();
         int shotsBefore = weapon.ShotsFired;
-        int lastFiredCue = -1;
+        int cuesBefore = hit.PlayedCount;
         priorRate = Time.captureFramerate;
         double capturedSeconds = 0;
+        double stoppedAt = 0;
         bool stoppedAttacks = false;
         object result = null;
         try
@@ -160,22 +160,16 @@ public sealed class PlayerHitCaptureProbe : MonoBehaviour
             recording = true;
             Time.captureDeltaTime = 1f / 60;
             writer = new BinaryWriter(File.Create(folder + "mix.f32"));
-            for (int frame = 0; frame < 600 && capturedSeconds < 6; frame++)
+            for (int frame = 0; frame < 900 && capturedSeconds < 12; frame++)
             {
                 currentFrame = frame;
                 yield return new WaitForEndOfFrame();
                 Time.captureDeltaTime = Mathf.Max(1f / 1000, Time.unscaledDeltaTime);
-                if (hit.PlayedCount > 0 && hit.PlayedCount <= 3 && hit.PlayedCount != lastFiredCue)
-                {
-                    if (weapon.TryFire())
-                    {
-                        lastFiredCue = hit.PlayedCount;
-                    }
-                }
-                if (!stoppedAttacks && capturedSeconds >= 5)
+                if (!stoppedAttacks && hit.PlayedCount - cuesBefore >= 4)
                 {
                     actor.GetComponent<ShadowStalker2D>().AttacksEnabled = false;
                     stoppedAttacks = true;
+                    stoppedAt = capturedSeconds;
                 }
                 int count = AudioRenderer.GetSampleCountForCaptureFrame();
                 capturedSeconds += (double)count / AudioSettings.outputSampleRate;
@@ -196,13 +190,21 @@ public sealed class PlayerHitCaptureProbe : MonoBehaviour
                 frames.Add(new { frame, gameFrame = Time.frameCount, Time.time, Time.unscaledTime,
                     Time.deltaTime, Time.unscaledDeltaTime, dspTime = AudioSettings.dspTime,
                     audioSamples = count, player.Health, hit.PlayedCount, hit.ActiveVoiceCount });
+                if (stoppedAttacks && capturedSeconds >= stoppedAt + 1.2)
+                {
+                    break;
+                }
+            }
+            if (weapon.ShotsFired != shotsBefore || hit.PlayedCount - cuesBefore != 4)
+            {
+                throw new InvalidOperationException("Audition requires exactly four accepted hits and zero shots.");
             }
             result = new { candidate, scene = scene.path, fps = 30, channels = 2,
                 sampleRate = AudioSettings.outputSampleRate, frames = frames.Count,
                 width = Screen.width, height = Screen.height, clips = damageEvents,
                 shots = weapon.ShotsFired - shotsBefore, hit.PlayedCount, framesObserved = frames,
                 source = "Native AudioRenderer main mix and composited GameView, no normalization or substituted audio.",
-                fixture = "Ordinary autonomous ShadowStalker, player held at original spawn with temporary 100HP and scripted aim away from enemy. Original enemies disabled only during Play. Attack timing/damage/assets unchanged.",
+                fixture = "Four spaced accepted hits by an autonomous ShadowStalker, no firing. Player held at original spawn with temporary 100HP and aim at the enemy; other enemies disabled only during Play. Attacks stopped after hit four, with a 1.2s tail. Attack timing/damage/assets unchanged.",
                 originalProfileUnchanged = JsonUtility.ToJson(original) == unchanged,
                 captureTiming = "Per-frame audio sample count follows unscaled time; video uses those sample durations." };
         }

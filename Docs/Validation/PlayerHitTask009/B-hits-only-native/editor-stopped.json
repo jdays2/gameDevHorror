@@ -1,0 +1,34 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "return new { playing=UnityEditor.EditorApplication.isPlaying, compiling=UnityEditor.EditorApplication.isCompiling, scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty, loaded=UnityEngine.SceneManagement.SceneManager.sceneCount, startIsNull=UnityEditor.SceneManagement.EditorSceneManager.playModeStartScene==null, time=UnityEngine.Time.timeScale, capture=UnityEngine.Time.captureFramerate, listener=UnityEngine.AudioListener.volume, paused=UnityEngine.AudioListener.pause };"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": false,
+        "compiling": false,
+        "scene": "Assets/EmergencyShift/Scenes/MechanicsSandbox.unity",
+        "dirty": false,
+        "loaded": 1,
+        "startIsNull": true,
+        "time": 1,
+        "capture": 0,
+        "listener": 1,
+        "paused": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "C:\\Users\\Mark\\Documents\\Codex\\2026-10-13\\gkf\\outputs\\EmergencyShift"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
