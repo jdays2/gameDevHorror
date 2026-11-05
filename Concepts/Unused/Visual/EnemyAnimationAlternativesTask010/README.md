@@ -2,6 +2,8 @@
 
 [Отчёт](../../../../Docs/Research/EnemyAnimationAlternativesTask010.md) · [локальное сравнение](comparison.html) · [статический обзор](comparison-board.png).
 
+**Новый этап по прямому поручению владельца 2026-11-05:** [три параллельные художественные пробы с перерисовками](GenerationRound01/README.md) и [сравнение в движении с оригиналом](GenerationRound01/Selection/compare-walk.png). Описание ниже относится к первоначальному исследовательскому этапу со схемами.
+
 Статус: исследовательские схемы, не импортированные/не принятые художественные ресурсы. Основной кандидат D — offline 3D-постановка и цельная ручная перерисовка; запасной C — цельная 3D-модель и ортографические PNG. Никаких новых рисунков/настоящего 3D-mesh в пакете нет.
 
 `control-stalker.png`/`control-sleeper.png` — полные native Walk00, извлечённые без изменения RGBA и помещённые по родному pivot на 576². Не нарезка тела. Источники/регистрация/хеши — в [Validation](../../../../Docs/Validation/EnemyAnimationAlternativesTask010/references.json). `historical-locomotion02.jpg` — точная копия старого contact sheet, не свежий запуск Unity.
