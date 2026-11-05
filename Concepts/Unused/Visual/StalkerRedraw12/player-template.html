@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Сталкер · PNG-пробы</title>
+<style>
+body{margin:0;background:#20242b;color:#edf0f2;font:16px system-ui}
+#stalker-preview{max-width:1100px;margin:auto;padding:24px}
+#stalker-preview h1{font-size:25px}
+#stalker-preview p{line-height:1.5}
+#stalker-preview .notice{padding:12px;background:#5a3e22;border-radius:8px}
+#stalker-preview button,#stalker-preview select{font:inherit;padding:9px;background:#343d49;color:inherit;border:1px solid #657080;border-radius:6px}
+#stalker-preview .controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:15px 0}
+#stalker-preview .views{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+#stalker-preview .viewport{position:relative;aspect-ratio:1;background:#e5e6e2;border-radius:8px;overflow:hidden}
+#stalker-preview canvas{display:block;width:100%;height:100%}
+#stalker-preview #fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#e5e6e2}
+#stalker-preview .small{font-size:14px;color:#adb7c2}
+#stalker-preview #load-message{min-height:1.5em}
+#stalker-preview #load-message.error{color:#ffb7a3}
+#stalker-preview input[type=range]{flex:1;min-width:180px}
+#stalker-preview a{color:#b8dcff}
+@media(max-width:650px){#stalker-preview .views{grid-template-columns:1fr}}
+</style>
+<main id="stalker-preview">
+  <h1>Сталкер · четыре состояния из цельных кадров</h1>
+  <p class="notice">Непринятые пробы. Исходная анимация в игре сохранена.</p>
+  <p id="load-message" role="status">Загрузка первого кадра…</p>
+  <div class="controls">
+    <select id="state" aria-label="Анимация"></select>
+    <button id="play" type="button">Пауза</button>
+    <button id="prev" type="button">← Кадр</button>
+    <button id="next" type="button">Кадр →</button>
+    <button id="restart" type="button">Сначала</button>
+    <label>Скорость <select id="fps"><option>8</option><option selected>14</option><option>20</option><option>30</option></select> кадров/с</label>
+  </div>
+  <div class="controls"><input id="frame" type="range" min="0" value="0" aria-label="Кадр"><span id="counter"></span></div>
+  <div class="controls">
+    <label><input type="checkbox" id="onion"> Соседние целые кадры</label>
+    <label><input type="checkbox" id="bones"> План костей</label>
+    <label><input type="checkbox" id="source"> Исходный рисунок</label>
+    <label><input type="checkbox" id="dark"> Тёмный фон</label>
+  </div>
+  <div class="views">
+    <div><div class="viewport"><canvas id="current" width="576" height="576"></canvas><img id="fallback" src="<!--FALLBACK-->" alt="Первый полный кадр Сталкера"></div><p>Текущий кадр <span id="size" class="small"></span></p></div>
+    <div><div class="viewport"><canvas id="neighbor" width="576" height="576"></canvas></div><p>Следующий кадр</p></div>
+  </div>
+  <p>GIF-превью: <a href="all-states.gif">все четыре состояния</a> · <a href="movement.gif">движение</a> · <a href="sleep-wake.gif">сон и пробуждение</a> · <a href="attack.gif">атака</a>.</p>
+  <p class="small">36 поз движения, 20 общих поз сна/пробуждения и 32 позы атаки. Картинки здесь сжаты только для просмотра; исходные PNG сохранены отдельно. Сон и пробуждение останавливаются на последнем кадре. Наложения показывают целые кадры. Схема костей служит для поиска ошибок и не означает приёмку рисунков.</p>
+  <noscript><p>Интерактивный просмотр отключён. Откройте GIF-превью по ссылкам выше.</p></noscript>
+</main>
+<script>
+(() => {
+  'use strict';
+  const DATA=/*DATA*/;
+  const root=document.getElementById('stalker-preview');
+  const $=id=>root.querySelector('#'+id);
+  let state='movement',index=0,playing=true,last=0,failed=false;
+  const cache=new Map();
+  const ready=im=>Boolean(im && im.complete && im.naturalWidth>0);
+  const items=()=>DATA.states[state];
+  function showError(message){
+    failed=true;
+    $('load-message').textContent=message+' Можно открыть GIF-превью ниже.';
+    $('load-message').classList.add('error');
+  }
+  function image(id){
+    if(!cache.has(id)){
+      const im=new Image();
+      cache.set(id,im);
+      im.onload=()=>safeRefresh();
+      im.onerror=()=>{showError('Не удалось загрузить изображение.');safeRefresh();};
+      im.src=DATA.images[id];
+    }
+    return cache.get(id);
+  }
+  function draw(canvas,item,at){
+    const currentImage=image(item.image);
+    if(!ready(currentImage))return false;
+    const c=canvas.getContext('2d');
+    c.globalAlpha=1;
+    c.fillStyle=$('dark').checked?'#191d23':'#e5e6e2';
+    c.fillRect(0,0,576,576);
+    c.imageSmoothingEnabled=true;
+    function whole(frame,opacity){
+      const im=image(frame.image);
+      if(ready(im)){c.globalAlpha=opacity;c.drawImage(im,...frame.rect);}
+    }
+    if($('onion').checked){
+      whole(items()[Math.max(0,at-1)],.22);
+      whole(items()[Math.min(items().length-1,at+1)],.22);
+    }
+    whole(item,1);
+    if($('source').checked){
+      const reference=image(item.ref);
+      if(ready(reference)){c.globalAlpha=.35;c.drawImage(reference,0,0,576,576);}
+    }
+    c.globalAlpha=1;
+    if($('bones').checked){
+      const colors=['#00bed5','#ddb900','#28b982','#ec8e35','#9a83ed','#dc6eae'];
+      item.bones.forEach((limb,i)=>{
+        c.strokeStyle=colors[i];c.lineWidth=2;c.beginPath();
+        ['H','J','T'].forEach((key,j)=>j?c.lineTo(...limb[key]):c.moveTo(...limb[key]));
+        c.stroke();
+        ['H','J','T'].forEach(key=>{c.beginPath();c.arc(...limb[key],4,0,Math.PI*2);c.stroke();});
+      });
+    }
+    return ready(currentImage);
+  }
+  function refresh(){
+    const a=items(),next=Math.min(index+1,a.length-1);
+    const painted=draw($('current'),a[index],index);
+    draw($('neighbor'),a[next],next);
+    if(painted){
+      $('fallback').hidden=true;
+      if(!failed)$('load-message').textContent='Готово · '+DATA.labels[state];
+    }else if(!failed)$('load-message').textContent='Загрузка кадра…';
+    $('counter').textContent=(index+1)+' / '+a.length;
+    $('frame').max=a.length-1;$('frame').value=index;
+    $('size').textContent='· исходный PNG '+a[index].nativeSize.join('×')+' px';
+    $('play').textContent=playing?'Пауза':'Играть';
+  }
+  function safeRefresh(){try{refresh();}catch(error){showError('Ошибка просмотра: '+error.message);}}
+  Object.entries(DATA.labels).forEach(([key,label])=>{
+    const option=document.createElement('option');option.value=key;option.textContent=label;$('state').append(option);
+  });
+  $('state').value=state;
+  $('state').onchange=()=>{state=$('state').value;index=0;playing=true;last=0;safeRefresh();};
+  $('play').onclick=()=>{
+    if(index===items().length-1 && ['sleep_entry','awakening'].includes(state))index=0;
+    playing=!playing;last=0;safeRefresh();
+  };
+  $('prev').onclick=()=>{playing=false;index=Math.max(0,index-1);safeRefresh();};
+  $('next').onclick=()=>{playing=false;index=Math.min(items().length-1,index+1);safeRefresh();};
+  $('restart').onclick=()=>{index=0;playing=true;last=0;safeRefresh();};
+  $('frame').oninput=()=>{playing=false;index=Number($('frame').value);safeRefresh();};
+  ['onion','bones','source','dark'].forEach(id=>{$(id).onchange=safeRefresh;});
+  function tick(time){
+    try{
+      if(playing && time-last>=1000/Number($('fps').value)){
+        let next=index+1;
+        if(next>=items().length){
+          if(['movement','attack'].includes(state))next=0;
+          else{playing=false;safeRefresh();}
+        }
+        if(playing && ready(image(items()[next].image))){index=next;last=time;safeRefresh();}
+      }
+    }catch(error){playing=false;showError('Ошибка воспроизведения: '+error.message);}
+    requestAnimationFrame(tick);
+  }
+  safeRefresh();requestAnimationFrame(tick);
+})();
+</script>
+</html>
